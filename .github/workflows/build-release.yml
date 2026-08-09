@@ -27,15 +27,10 @@ jobs:
           test -f "source/$SOURCE_FILE"
           rm -rf buildsrc
           mkdir -p buildsrc
-          python3 -c "import base64,pathlib,re; p=pathlib.Path('source/$SOURCE_FILE'); raw=p.read_bytes(); out=None; \
-for _ in range(4): \
- clean=re.sub(rb'[^A-Za-z0-9+/=]',b'',raw); \
- raw=base64.b64decode(clean,validate=False); \
- if raw.startswith(b'PK'): out=raw; break; \
-assert out is not None, 'Source package did not decode to a ZIP'; pathlib.Path('/tmp/epgmanager-source.zip').write_bytes(out)"
+          python3 tools/restore_source.py "source/$SOURCE_FILE" /tmp/epgmanager-source.zip
           unzip -tq /tmp/epgmanager-source.zip
           unzip -q /tmp/epgmanager-source.zip -d buildsrc
-          ROOT="$(find buildsrc -maxdepth 2 -type f -name version.py -printf '%h\n' | head -n1)"
+          ROOT="$(find buildsrc -maxdepth 3 -type f -name version.py -printf '%h\n' | head -n1)"
           test -n "$ROOT"
           echo "SOURCE_ROOT=$ROOT" >> "$GITHUB_ENV"
           test -f "$ROOT/installer/build_ipk.sh"
@@ -45,7 +40,7 @@ assert out is not None, 'Source package did not decode to a ZIP'; pathlib.Path('
         shell: bash
         run: |
           set -euo pipefail
-          VERSION="$(python3 -c "import re,pathlib,os; s=pathlib.Path(os.environ['SOURCE_ROOT'],'version.py').read_text(encoding='utf-8'); m=re.search(r'__version__\\s*=\\s*[\\\"\\\']([^\\\"\\\']+)',s); print(m.group(1) if m else '')")"
+          VERSION="$(python3 -c "import re,pathlib,os; s=pathlib.Path(os.environ['SOURCE_ROOT'],'version.py').read_text(encoding='utf-8'); m=re.search(r'__version__\\s*=\\s*[\"\x27]([^\"\x27]+)',s); print(m.group(1) if m else '')")"
           test -n "$VERSION"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "IPK=enigma2-plugin-extensions-epgmanager_${VERSION}_all.ipk" >> "$GITHUB_ENV"
@@ -87,7 +82,7 @@ assert out is not None, 'Source package did not decode to a ZIP'; pathlib.Path('
         env:
           NOTES: ${{ inputs.release_notes }}
         run: |
-          python3 -c "import json,os,pathlib; v=os.environ['VERSION']; i=os.environ['IPK']; d={'version':v,'build':'github-actions','url':f'https://github.com/wacayoub/EPGManager/releases/download/v{v}/{i}','sha256':os.environ['SHA256'],'size':int(os.environ['SIZE']),'notes':os.environ.get('NOTES') or 'Automatic EPG Manager release'}; pathlib.Path('update.json').write_text(json.dumps(d,indent=2)+'\\n',encoding='utf-8')"
+          python3 -c "import json,os,pathlib; v=os.environ['VERSION']; i=os.environ['IPK']; d={'version':v,'build':'github-actions','url':f'https://github.com/wacayoub/EPGManager/releases/download/v{v}/{i}','sha256':os.environ['SHA256'],'size':int(os.environ['SIZE']),'notes':os.environ.get('NOTES') or 'Automatic EPG Manager release'}; pathlib.Path('update.json').write_text(json.dumps(d,indent=2)+'\n',encoding='utf-8')"
 
       - name: Commit update manifest
         shell: bash
