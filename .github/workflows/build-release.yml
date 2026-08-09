@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Restore current source package
         shell: bash
@@ -27,7 +27,8 @@ jobs:
           test -f "source/$SOURCE_FILE"
           rm -rf buildsrc
           mkdir -p buildsrc
-          base64 -d "source/$SOURCE_FILE" > /tmp/epgmanager-source.zip
+          python3 -c "import base64,pathlib,re; p=pathlib.Path('source/$SOURCE_FILE'); raw=p.read_bytes(); clean=re.sub(rb'[^A-Za-z0-9+/=]',b'',raw); pathlib.Path('/tmp/epgmanager-source.zip').write_bytes(base64.b64decode(clean, validate=False))"
+          unzip -tq /tmp/epgmanager-source.zip
           unzip -q /tmp/epgmanager-source.zip -d buildsrc
           test -f buildsrc/installer/build_ipk.sh
           test -f buildsrc/version.py
@@ -35,6 +36,7 @@ jobs:
       - name: Read version
         shell: bash
         run: |
+          set -euo pipefail
           VERSION="$(python3 -c "import re,pathlib; s=pathlib.Path('buildsrc/version.py').read_text(encoding='utf-8'); m=re.search(r'__version__\\s*=\\s*[\\\"\\\']([^\\\"\\\']+)',s); print(m.group(1) if m else '')")"
           test -n "$VERSION"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
