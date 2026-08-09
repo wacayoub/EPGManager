@@ -1,0 +1,90 @@
+name: Build and Publish EPGManager
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_notes:
+        description: Release notes
+        required: false
+        default: Automatic EPG Manager release
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate source
+        run: |
+          test -f installer/build_ipk.sh
+          test -f version.py
+
+      - name: Read version
+        run: |
+          VERSION=$(python3 - <<'PY'
+import re, pathlib
+s=pathlib.Path('version.py').read_text(encoding='utf-8')
+m=re.search(r'__version__\s*=\s*["\']([^"\']+)', s)
+if not m:
+    raise SystemExit('Version not found in version.py')
+print(m.group(1))
+PY
+          )
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "IPK=enigma2-plugin-extensions-epgmanager_${VERSION}_all.ipk" >> "$GITHUB_ENV"
+
+      - name: Build IPK
+        run: |
+          chmod +x installer/build_ipk.sh
+          ./installer/build_ipk.sh
+          test -f "$IPK"
+
+      - name: Calculate checksum
+        run: |
+          SHA=$(sha256sum "$IPK" | awk '{print $1}')
+          SIZE=$(stat -c%s "$IPK")
+          echo "SHA256=$SHA" >> "$GITHUB_ENV"
+          echo "SIZE=$SIZE" >> "$GITHUB_ENV"
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NOTES: ${{ inputs.release_notes }}
+        run: |
+          TAG="v$VERSION"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$IPK" --clobber
+          else
+            gh release create "$TAG" "$IPK" --title "EPG Manager $VERSION" --notes "$NOTES"
+          fi
+
+      - name: Generate update.json
+        env:
+          NOTES: ${{ inputs.release_notes }}
+        run: |
+          python3 - <<'PY'
+import json, os, pathlib
+version=os.environ['VERSION']
+ipk=os.environ['IPK']
+data={
+  'version': version,
+  'build': 'github-actions',
+  'url': f'https://github.com/wacayoub/EPGManager/releases/download/v{version}/{ipk}',
+  'sha256': os.environ['SHA256'],
+  'size': int(os.environ['SIZE']),
+  'notes': os.environ.get('NOTES') or 'Automatic EPG Manager release'
+}
+pathlib.Path('update.json').write_text(json.dumps(data, indent=2) + '\n', encoding='utf-8')
+PY
+
+      - name: Commit update manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add update.json
+          git diff --cached --quiet || git commit -m "Update manifest for v$VERSION"
+          git push
