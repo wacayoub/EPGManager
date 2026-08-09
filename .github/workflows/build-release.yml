@@ -27,9 +27,8 @@ jobs:
           test -f "source/$SOURCE_FILE"
           rm -rf buildsrc
           mkdir -p buildsrc
-          python3 tools/restore_source.py "source/$SOURCE_FILE" /tmp/epgmanager-source.zip
-          unzip -tq /tmp/epgmanager-source.zip
-          unzip -q /tmp/epgmanager-source.zip -d buildsrc
+          unzip -tq "source/$SOURCE_FILE"
+          unzip -q "source/$SOURCE_FILE" -d buildsrc
           ROOT="$(find buildsrc -maxdepth 3 -type f -name version.py -printf '%h\n' | head -n1)"
           test -n "$ROOT"
           echo "SOURCE_ROOT=$ROOT" >> "$GITHUB_ENV"
