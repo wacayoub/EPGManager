@@ -27,17 +27,25 @@ jobs:
           test -f "source/$SOURCE_FILE"
           rm -rf buildsrc
           mkdir -p buildsrc
-          python3 -c "import base64,pathlib,re; p=pathlib.Path('source/$SOURCE_FILE'); raw=p.read_bytes(); clean=re.sub(rb'[^A-Za-z0-9+/=]',b'',raw); pathlib.Path('/tmp/epgmanager-source.zip').write_bytes(base64.b64decode(clean, validate=False))"
+          python3 -c "import base64,pathlib,re; p=pathlib.Path('source/$SOURCE_FILE'); raw=p.read_bytes(); out=None; \
+for _ in range(4): \
+ clean=re.sub(rb'[^A-Za-z0-9+/=]',b'',raw); \
+ raw=base64.b64decode(clean,validate=False); \
+ if raw.startswith(b'PK'): out=raw; break; \
+assert out is not None, 'Source package did not decode to a ZIP'; pathlib.Path('/tmp/epgmanager-source.zip').write_bytes(out)"
           unzip -tq /tmp/epgmanager-source.zip
           unzip -q /tmp/epgmanager-source.zip -d buildsrc
-          test -f buildsrc/installer/build_ipk.sh
-          test -f buildsrc/version.py
+          ROOT="$(find buildsrc -maxdepth 2 -type f -name version.py -printf '%h\n' | head -n1)"
+          test -n "$ROOT"
+          echo "SOURCE_ROOT=$ROOT" >> "$GITHUB_ENV"
+          test -f "$ROOT/installer/build_ipk.sh"
+          test -f "$ROOT/version.py"
 
       - name: Read version
         shell: bash
         run: |
           set -euo pipefail
-          VERSION="$(python3 -c "import re,pathlib; s=pathlib.Path('buildsrc/version.py').read_text(encoding='utf-8'); m=re.search(r'__version__\\s*=\\s*[\\\"\\\']([^\\\"\\\']+)',s); print(m.group(1) if m else '')")"
+          VERSION="$(python3 -c "import re,pathlib,os; s=pathlib.Path(os.environ['SOURCE_ROOT'],'version.py').read_text(encoding='utf-8'); m=re.search(r'__version__\\s*=\\s*[\\\"\\\']([^\\\"\\\']+)',s); print(m.group(1) if m else '')")"
           test -n "$VERSION"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "IPK=enigma2-plugin-extensions-epgmanager_${VERSION}_all.ipk" >> "$GITHUB_ENV"
@@ -46,7 +54,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cd buildsrc
+          cd "$SOURCE_ROOT"
           chmod +x installer/build_ipk.sh
           ./installer/build_ipk.sh
           test -f "$IPK"
@@ -55,8 +63,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          SHA="$(sha256sum "buildsrc/$IPK" | awk '{print $1}')"
-          SIZE="$(stat -c%s "buildsrc/$IPK")"
+          SHA="$(sha256sum "$SOURCE_ROOT/$IPK" | awk '{print $1}')"
+          SIZE="$(stat -c%s "$SOURCE_ROOT/$IPK")"
           echo "SHA256=$SHA" >> "$GITHUB_ENV"
           echo "SIZE=$SIZE" >> "$GITHUB_ENV"
 
@@ -69,9 +77,9 @@ jobs:
           set -euo pipefail
           TAG="v$VERSION"
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "buildsrc/$IPK" --clobber
+            gh release upload "$TAG" "$SOURCE_ROOT/$IPK" --clobber
           else
-            gh release create "$TAG" "buildsrc/$IPK" --title "EPG Manager $VERSION" --notes "$NOTES"
+            gh release create "$TAG" "$SOURCE_ROOT/$IPK" --title "EPG Manager $VERSION" --notes "$NOTES"
           fi
 
       - name: Generate update.json
