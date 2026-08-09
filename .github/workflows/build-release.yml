@@ -18,16 +18,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate source
+      - name: Restore current source package
         run: |
-          test -f installer/build_ipk.sh
-          test -f version.py
+          set -e
+          SOURCE_FILE=$(tr -d '\r\n' < source/current.txt)
+          test -n "$SOURCE_FILE"
+          test -f "source/$SOURCE_FILE"
+          rm -rf buildsrc
+          mkdir -p buildsrc
+          base64 -d "source/$SOURCE_FILE" > /tmp/epgmanager-source.zip
+          unzip -q /tmp/epgmanager-source.zip -d buildsrc
+          test -f buildsrc/installer/build_ipk.sh
+          test -f buildsrc/version.py
 
       - name: Read version
         run: |
           VERSION=$(python3 - <<'PY'
 import re, pathlib
-s=pathlib.Path('version.py').read_text(encoding='utf-8')
+s=pathlib.Path('buildsrc/version.py').read_text(encoding='utf-8')
 m=re.search(r'__version__\s*=\s*["\']([^"\']+)', s)
 if not m:
     raise SystemExit('Version not found in version.py')
@@ -39,14 +47,16 @@ PY
 
       - name: Build IPK
         run: |
+          set -e
+          cd buildsrc
           chmod +x installer/build_ipk.sh
           ./installer/build_ipk.sh
           test -f "$IPK"
 
       - name: Calculate checksum
         run: |
-          SHA=$(sha256sum "$IPK" | awk '{print $1}')
-          SIZE=$(stat -c%s "$IPK")
+          SHA=$(sha256sum "buildsrc/$IPK" | awk '{print $1}')
+          SIZE=$(stat -c%s "buildsrc/$IPK")
           echo "SHA256=$SHA" >> "$GITHUB_ENV"
           echo "SIZE=$SIZE" >> "$GITHUB_ENV"
 
@@ -55,11 +65,12 @@ PY
           GH_TOKEN: ${{ github.token }}
           NOTES: ${{ inputs.release_notes }}
         run: |
+          set -e
           TAG="v$VERSION"
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$IPK" --clobber
+            gh release upload "$TAG" "buildsrc/$IPK" --clobber
           else
-            gh release create "$TAG" "$IPK" --title "EPG Manager $VERSION" --notes "$NOTES"
+            gh release create "$TAG" "buildsrc/$IPK" --title "EPG Manager $VERSION" --notes "$NOTES"
           fi
 
       - name: Generate update.json
