@@ -1,0 +1,36 @@
+name: Export EPGManager Test Source
+
+on:
+  push:
+    branches:
+      - test/ui-source-import
+    paths:
+      - .github/workflows/export-source-test.yml
+
+permissions:
+  contents: read
+
+jobs:
+  export-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Extract current source
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE_FILE="$(tr -d '\r\n' < source/current.txt)"
+          test -n "$SOURCE_FILE"
+          rm -rf exported-source
+          mkdir -p exported-source
+          unzip -q "source/$SOURCE_FILE" -d exported-source
+          find exported-source -maxdepth 4 -type f | sort | head -200
+
+      - name: Upload extracted source
+        uses: actions/upload-artifact@v4
+        with:
+          name: epgmanager-test-source
+          path: exported-source
+          retention-days: 1
