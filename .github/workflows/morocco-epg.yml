@@ -1,11 +1,11 @@
 name: Morocco EPG Cloud
 
 on:
-  # GitHub cron is UTC. The Python gate keeps only 06:00/18:00 Africa/Casablanca.
+  # GitHub cron is UTC. The generator itself keeps only 06:00/18:00 Africa/Casablanca.
   schedule:
     - cron: "0 5,6,17,18 * * *"
   workflow_dispatch:
-  # Also build immediately whenever the cloud generator/workflow itself changes.
+  # Rebuild immediately when the cloud pipeline changes.
   push:
     branches:
       - main
@@ -17,14 +17,91 @@ on:
 permissions:
   contents: write
 
+# A new run must never wait behind a scraper that is hanging on a remote site.
 concurrency:
   group: morocco-epg-cloud
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
-  build:
+  bootstrap:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Ensure permanent epg-data endpoint exists
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin epg-data >/dev/null 2>&1; then
+            echo "epg-data already exists."
+            exit 0
+          fi
+
+          echo "Creating bootstrap epg-data branch so the public URL can never be 404."
+          rm -rf bootstrap publish
+          mkdir -p bootstrap
+          python - <<'PY'
+          import gzip, json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          channels = {
+              "AlAoula":"Al Aoula",
+              "Arrabiaa":"Attaqafia / Arrabiaa",
+              "AlMaghribiya":"Al Maghribia",
+              "Assadisa":"Assadissa",
+              "Tamazight":"Tamazight",
+              "AFLAM.ma":"Aflam TV",
+              "Arryadia_HD":"Arryadia HD",
+              "Arryadia_TNT":"Arryadia TNT",
+              "Arryadia_HD1":"Arryadia HD1",
+              "Arryadia_HD2":"Arryadia HD2",
+              "Arryadia_HD3":"Arryadia HD3",
+              "2M":"2M",
+              "Chada TV":"Chada TV",
+              "MEDI1TV_AR.ma":"Medi1 TV Arabic",
+              "MEDI1TV_MAGHREB.ma":"Medi1 TV Maghreb",
+          }
+          root = ET.Element("tv", {"generator-info-name":"EPGManager Morocco Cloud"})
+          for cid, name in channels.items():
+              c = ET.SubElement(root, "channel", {"id": cid})
+              ET.SubElement(c, "display-name").text = name
+          ET.indent(root, space="  ")
+          xml = ET.tostring(root, encoding="utf-8", xml_declaration=True)
+          Path("bootstrap/morocco.xml.gz").write_bytes(gzip.compress(xml, compresslevel=9))
+          Path("bootstrap/morocco.txt").write_text("EPGManager Morocco Cloud bootstrap feed\n", encoding="utf-8")
+          Path("bootstrap/manifest.json").write_text(json.dumps({
+              "version":"bootstrap",
+              "status":"bootstrap",
+              "generated":datetime.now(timezone.utc).isoformat(),
+              "channels":len(channels),
+              "programmes":0
+          }, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
+          PY
+
+          git config user.name "EPGManager Cloud"
+          git config user.email "actions@users.noreply.github.com"
+          git worktree add --detach publish
+          cd publish
+          git checkout --orphan epg-data
+          git rm -rf . >/dev/null 2>&1 || true
+          cp ../bootstrap/morocco.xml.gz .
+          cp ../bootstrap/morocco.txt .
+          cp ../bootstrap/manifest.json .
+          printf '%s\n' 'EPGManager Morocco Cloud data branch.' > README.md
+          git add morocco.xml.gz morocco.txt manifest.json README.md
+          git commit -m "Bootstrap Morocco EPG endpoint"
+          git push origin epg-data
+
+  build:
+    needs: bootstrap
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
     steps:
       - name: Checkout generator
         uses: actions/checkout@v4
@@ -37,74 +114,93 @@ jobs:
           python-version: "3.11"
 
       - name: Install scraper dependencies
+        shell: bash
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install requests beautifulsoup4 lxml cloudscraper
+          python -m pip install --disable-pip-version-check --no-input --retries 2 --timeout 15 \
+            requests beautifulsoup4 lxml cloudscraper
 
-      - name: Rebuild exact Morocco generator
+      - name: Verify generator
         shell: bash
         run: |
           set -euo pipefail
-          cat tools/morocco_epg_parts/part*.b64 | tr -d '\n\r' | base64 -d | gzip -dc > /tmp/morocco_epg.py
-          echo "67c6cf02e007db3f64762b7102456aa052d024acaf23699fba7a2545aa96a45f  /tmp/morocco_epg.py" | sha256sum -c -
-          python -m py_compile /tmp/morocco_epg.py
+          python -m py_compile tools/morocco_epg.py
 
       - name: Download Last Known Good feed
         shell: bash
         run: |
           mkdir -p previous output
-          curl -fL --retry 2 --connect-timeout 8 --max-time 30 \
+          curl -fL --retry 2 --retry-delay 1 --connect-timeout 5 --max-time 20 \
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
             -o previous/morocco.xml.gz || true
 
-      - name: Generate Morocco XMLTV
+      - name: Generate Morocco XMLTV with hard deadline
+        id: generate
         shell: bash
         run: |
+          set +e
           EXTRA=""
           if [ "${{ github.event_name }}" = "schedule" ]; then
             EXTRA="--scheduled"
           fi
-          python /tmp/morocco_epg.py \
-            --output-dir output \
-            --previous previous/morocco.xml.gz \
-            --days 7 \
-            ${EXTRA}
-
-      - name: Detect schedule-gate skip
-        id: generated
-        shell: bash
-        run: |
-          if [ -s output/morocco.xml.gz ]; then
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "ready=false" >> "$GITHUB_OUTPUT"
+          timeout --signal=TERM --kill-after=15s 300s \
+            python tools/morocco_epg.py \
+              --output-dir output \
+              --previous previous/morocco.xml.gz \
+              --days 7 \
+              ${EXTRA}
+          rc=$?
+          echo "generator_rc=${rc}" >> "$GITHUB_OUTPUT"
+          if [ "$rc" -eq 124 ] || [ "$rc" -eq 137 ]; then
+            echo "Generator deadline reached; keeping Last Known Good feed."
+          elif [ "$rc" -ne 0 ]; then
+            echo "Generator returned ${rc}; keeping Last Known Good feed."
           fi
+          exit 0
 
-      - name: Validate generated XMLTV
-        if: steps.generated.outputs.ready == 'true'
+      - name: Validate candidate without risking Last Known Good
+        id: candidate
         shell: bash
         run: |
           python - <<'PY'
-          import gzip, json, xml.etree.ElementTree as ET
+          import gzip, json, os, xml.etree.ElementTree as ET
           from pathlib import Path
-          p=Path('output/morocco.xml.gz')
-          root=ET.fromstring(gzip.decompress(p.read_bytes()))
-          channels={x.get('id') for x in root.findall('channel')}
-          programmes=root.findall('programme')
-          required={'AlAoula','2M','Chada TV','MEDI1TV_AR.ma','Arryadia_HD'}
-          missing=sorted(required-channels)
-          if missing:
-              raise SystemExit('Missing mandatory channel IDs: '+', '.join(missing))
-          if len(programmes) < 50:
-              raise SystemExit('Abnormal programme count: %d' % len(programmes))
-          manifest=json.loads(Path('output/manifest.json').read_text(encoding='utf-8'))
-          if manifest.get('programmes') != len(programmes):
-              raise SystemExit('Manifest/programme count mismatch')
-          print('Validation PASS:',len(channels),'channels,',len(programmes),'programmes')
+
+          out = Path(os.environ['GITHUB_OUTPUT'])
+          p = Path('output/morocco.xml.gz')
+          ready = False
+          reason = 'no candidate generated'
+          if p.is_file() and p.stat().st_size > 100:
+              try:
+                  root = ET.fromstring(gzip.decompress(p.read_bytes()))
+                  channels = {x.get('id') for x in root.findall('channel')}
+                  programmes = root.findall('programme')
+                  required = {'AlAoula','2M','Chada TV','MEDI1TV_AR.ma','Arryadia_HD'}
+                  missing = sorted(required - channels)
+                  if missing:
+                      reason = 'missing channel IDs: ' + ', '.join(missing)
+                  elif len(programmes) < 50:
+                      reason = 'abnormal programme count: %d' % len(programmes)
+                  else:
+                      manifest_path = Path('output/manifest.json')
+                      if not manifest_path.is_file():
+                          reason = 'manifest missing'
+                      else:
+                          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+                          if manifest.get('programmes') != len(programmes):
+                              reason = 'manifest/programme count mismatch'
+                          else:
+                              ready = True
+                              reason = 'PASS: %d channels, %d programmes' % (len(channels), len(programmes))
+              except Exception as exc:
+                  reason = 'candidate parse failed: %s' % exc
+          print(reason)
+          with out.open('a', encoding='utf-8') as f:
+              f.write('ready=%s\n' % ('true' if ready else 'false'))
+              f.write('reason=%s\n' % reason.replace('\n',' '))
           PY
 
-      - name: Publish epg-data branch
-        if: steps.generated.outputs.ready == 'true'
+      - name: Publish validated candidate
+        if: steps.candidate.outputs.ready == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -112,16 +208,8 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
 
           rm -rf publish
-          if git ls-remote --exit-code --heads origin epg-data >/dev/null 2>&1; then
-            git worktree add -B epg-data publish origin/epg-data
-          else
-            git worktree add --detach publish
-            cd publish
-            git checkout --orphan epg-data
-            git rm -rf . >/dev/null 2>&1 || true
-            cd ..
-          fi
-
+          git fetch origin epg-data:refs/remotes/origin/epg-data
+          git worktree add -B epg-data publish origin/epg-data
           cp output/morocco.xml.gz publish/morocco.xml.gz
           cp output/morocco.txt publish/morocco.txt
           cp output/manifest.json publish/manifest.json
@@ -133,6 +221,12 @@ jobs:
             echo "No EPG content change; nothing to publish."
             exit 0
           fi
-          VERSION=$(python -c "import json; print(json.load(open('manifest.json'))['version'])")
+          VERSION=$(python -c "import json; print(json.load(open('manifest.json')).get('version','unknown'))")
           git commit -m "Morocco EPG ${VERSION}"
           git push origin epg-data
+
+      - name: Keep endpoint healthy when candidate is rejected
+        if: steps.candidate.outputs.ready != 'true'
+        run: |
+          echo "Candidate rejected: ${{ steps.candidate.outputs.reason }}"
+          echo "The existing epg-data/morocco.xml.gz remains untouched."
