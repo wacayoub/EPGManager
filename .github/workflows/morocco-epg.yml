@@ -34,6 +34,14 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install requests beautifulsoup4 lxml cloudscraper
 
+      - name: Rebuild exact Morocco generator
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat tools/morocco_epg_parts/part*.b64 | tr -d '\n\r' | base64 -d | gzip -dc > /tmp/morocco_epg.py
+          echo "67c6cf02e007db3f64762b7102456aa052d024acaf23699fba7a2545aa96a45f  /tmp/morocco_epg.py" | sha256sum -c -
+          python -m py_compile /tmp/morocco_epg.py
+
       - name: Download Last Known Good feed
         shell: bash
         run: |
@@ -49,7 +57,7 @@ jobs:
           if [ "${{ github.event_name }}" = "schedule" ]; then
             EXTRA="--scheduled"
           fi
-          python tools/morocco_epg.py \
+          python /tmp/morocco_epg.py \
             --output-dir output \
             --previous previous/morocco.xml.gz \
             --days 7 \
