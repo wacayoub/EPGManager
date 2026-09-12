@@ -5,19 +5,19 @@ on:
   schedule:
     - cron: "0 5,6,17,18 * * *"
   workflow_dispatch:
-  # Rebuild immediately when the cloud pipeline changes.
   push:
     branches:
       - main
     paths:
       - ".github/workflows/morocco-epg.yml"
       - "tools/morocco_epg.py"
+      - "tools/morocco_cloud_runner.py"
       - "tools/morocco_epg_parts/**"
 
 permissions:
   contents: write
 
-# A new run must never wait behind a scraper that is hanging on a remote site.
+# Never let a new run wait behind a remote website that is hanging.
 concurrency:
   group: morocco-epg-cloud
   cancel-in-progress: true
@@ -119,11 +119,11 @@ jobs:
           python -m pip install --disable-pip-version-check --no-input --retries 2 --timeout 15 \
             requests beautifulsoup4 lxml cloudscraper
 
-      - name: Verify generator
+      - name: Verify generators
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile tools/morocco_epg.py
+          python -m py_compile tools/morocco_epg.py tools/morocco_cloud_runner.py
 
       - name: Download Last Known Good feed
         shell: bash
@@ -143,7 +143,7 @@ jobs:
             EXTRA="--scheduled"
           fi
           timeout --signal=TERM --kill-after=15s 300s \
-            python tools/morocco_epg.py \
+            python tools/morocco_cloud_runner.py \
               --output-dir output \
               --previous previous/morocco.xml.gz \
               --days 7 \
@@ -177,7 +177,7 @@ jobs:
                   required = {'AlAoula','2M','Chada TV','MEDI1TV_AR.ma','Arryadia_HD'}
                   missing = sorted(required - channels)
                   if missing:
-                      reason = 'missing channel IDs: ' + ', '.join(missing)
+                      reason = 'missing stable channel IDs: ' + ', '.join(missing)
                   elif len(programmes) < 50:
                       reason = 'abnormal programme count: %d' % len(programmes)
                   else:
@@ -190,7 +190,7 @@ jobs:
                               reason = 'manifest/programme count mismatch'
                           else:
                               ready = True
-                              reason = 'PASS: %d channels, %d programmes' % (len(channels), len(programmes))
+                              reason = 'PASS: %d stable channels, %d programmes' % (len(channels), len(programmes))
               except Exception as exc:
                   reason = 'candidate parse failed: %s' % exc
           print(reason)
@@ -199,7 +199,7 @@ jobs:
               f.write('reason=%s\n' % reason.replace('\n',' '))
           PY
 
-      - name: Publish validated candidate
+      - name: Publish validated candidate atomically
         if: steps.candidate.outputs.ready == 'true'
         shell: bash
         run: |
