@@ -1,0 +1,124 @@
+name: Morocco EPG Cloud
+
+on:
+  # GitHub cron is UTC. We schedule both possible UTC offsets used by Morocco;
+  # the Python gate runs the scraper only when Africa/Casablanca is 06:xx/18:xx.
+  schedule:
+    - cron: "0 5,6,17,18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: morocco-epg-cloud
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout generator
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install scraper dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install requests beautifulsoup4 lxml cloudscraper
+
+      - name: Download Last Known Good feed
+        shell: bash
+        run: |
+          mkdir -p previous output
+          curl -fL --retry 2 --connect-timeout 8 --max-time 30 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
+            -o previous/morocco.xml.gz || true
+
+      - name: Generate Morocco XMLTV
+        shell: bash
+        run: |
+          EXTRA=""
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            EXTRA="--scheduled"
+          fi
+          python tools/morocco_epg.py \
+            --output-dir output \
+            --previous previous/morocco.xml.gz \
+            --days 7 \
+            ${EXTRA}
+
+      - name: Detect schedule-gate skip
+        id: generated
+        shell: bash
+        run: |
+          if [ -s output/morocco.xml.gz ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validate generated XMLTV
+        if: steps.generated.outputs.ready == 'true'
+        shell: bash
+        run: |
+          python - <<'PY'
+          import gzip, json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          p=Path('output/morocco.xml.gz')
+          root=ET.fromstring(gzip.decompress(p.read_bytes()))
+          channels={x.get('id') for x in root.findall('channel')}
+          programmes=root.findall('programme')
+          required={'AlAoula','2M','Chada TV','MEDI1TV_AR.ma','Arryadia_HD'}
+          missing=sorted(required-channels)
+          if missing:
+              raise SystemExit('Missing mandatory channel IDs: '+', '.join(missing))
+          if len(programmes) < 50:
+              raise SystemExit('Abnormal programme count: %d' % len(programmes))
+          manifest=json.loads(Path('output/manifest.json').read_text(encoding='utf-8'))
+          if manifest.get('programmes') != len(programmes):
+              raise SystemExit('Manifest/programme count mismatch')
+          print('Validation PASS:',len(channels),'channels,',len(programmes),'programmes')
+          PY
+
+      - name: Publish epg-data branch
+        if: steps.generated.outputs.ready == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Cloud"
+          git config user.email "actions@users.noreply.github.com"
+
+          rm -rf publish
+          if git ls-remote --exit-code --heads origin epg-data >/dev/null 2>&1; then
+            git worktree add -B epg-data publish origin/epg-data
+          else
+            git worktree add --detach publish
+            cd publish
+            git checkout --orphan epg-data
+            git rm -rf . >/dev/null 2>&1 || true
+            cd ..
+          fi
+
+          cp output/morocco.xml.gz publish/morocco.xml.gz
+          cp output/morocco.txt publish/morocco.txt
+          cp output/manifest.json publish/manifest.json
+          printf '%s\n' 'EPGManager Morocco Cloud data branch.' > publish/README.md
+
+          cd publish
+          git add morocco.xml.gz morocco.txt manifest.json README.md
+          if git diff --cached --quiet; then
+            echo "No EPG content change; nothing to publish."
+            exit 0
+          fi
+          VERSION=$(python -c "import json; print(json.load(open('manifest.json'))['version'])")
+          git commit -m "Morocco EPG ${VERSION}"
+          git push origin epg-data
