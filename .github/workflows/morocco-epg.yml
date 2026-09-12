@@ -1,11 +1,18 @@
 name: Morocco EPG Cloud
 
 on:
-  # GitHub cron is UTC. We schedule both possible UTC offsets used by Morocco;
-  # the Python gate runs the scraper only when Africa/Casablanca is 06:xx/18:xx.
+  # GitHub cron is UTC. The Python gate keeps only 06:00/18:00 Africa/Casablanca.
   schedule:
     - cron: "0 5,6,17,18 * * *"
   workflow_dispatch:
+  # Also build immediately whenever the cloud generator/workflow itself changes.
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/morocco-epg.yml"
+      - "tools/morocco_epg.py"
+      - "tools/morocco_epg_parts/**"
 
 permissions:
   contents: write
