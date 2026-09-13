@@ -14,6 +14,7 @@ import re
 import xml.etree.ElementTree as ET
 
 AR_RE = re.compile(r"[\u0600-\u06ff]")
+WORD_RE = re.compile(r"[A-Za-z\u0600-\u06ff]")
 
 
 def read_xml(path: Path):
@@ -31,6 +32,28 @@ def display_name(channel: ET.Element) -> str:
         if (n.text or "").strip():
             return (n.text or "").strip()
     return channel.get("id") or ""
+
+
+def readable_name(value: str) -> bool:
+    value = (value or "").strip()
+    return len(value) >= 2 and bool(WORD_RE.search(value))
+
+
+def id_fallback_name(cid: str) -> str:
+    base = re.split(r"\.[a-z]{2,3}(?:@|$)", cid or "", maxsplit=1, flags=re.I)[0]
+    base = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", base)
+    base = re.sub(r"[_-]+", " ", base)
+    return re.sub(r"\s+", " ", base).strip() or cid
+
+
+def best_mapping_name(cid: str, source_meta: dict, channel: ET.Element) -> str:
+    catalogue_name = (source_meta.get("name") or "").strip()
+    current_name = display_name(channel)
+    if readable_name(catalogue_name):
+        return catalogue_name
+    if readable_name(current_name):
+        return current_name
+    return id_fallback_name(cid)
 
 
 def programme_groups(root):
@@ -126,11 +149,18 @@ def main() -> int:
             c = prev_channels.get(cid)
         if c is None:
             c = ET.Element("channel", {"id": cid})
-            ET.SubElement(c, "display-name", {"lang": "ar"}).text = source_meta.get("name") or cid
-        out_root.append(copy_element(c))
+        else:
+            c = copy_element(c)
+        mapping_name = best_mapping_name(cid, source_meta, c)
+        existing = c.findall("display-name")
+        if not existing:
+            ET.SubElement(c, "display-name", {"lang": "ar"}).text = mapping_name
+        elif not readable_name(display_name(c)):
+            existing[0].text = mapping_name
+        out_root.append(c)
         site = source_meta.get("site") or "unknown"
         source_counts[site] += 1
-        text_lines.append("%s|%s" % (cid, display_name(c)))
+        text_lines.append("%s|%s" % (cid, mapping_name))
 
     for cid in sorted(selected_programmes, key=str.casefold):
         for p in sorted(selected_programmes[cid], key=lambda x: x.get("start") or ""):
@@ -160,7 +190,7 @@ def main() -> int:
     (out_dir / "mena-arabic.xml.gz").write_bytes(gz_bytes)
     (out_dir / "mena-arabic.txt").write_text("\n".join(text_lines) + "\n", encoding="utf-8")
     manifest = {
-        "schema": 1,
+        "schema": 2,
         "generated": datetime.now(timezone.utc).isoformat(),
         "status": "ok",
         "channels": channel_count,
