@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-13T19:04:08.039299+00:00",
+  "generated": "2026-09-13T20:19:02.161254+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -9,13 +9,13 @@
     {
       "name": "openepg-egypt1",
       "origin": "openepg",
-      "channels_with_current_48h_epg": 104,
+      "channels_with_current_48h_epg": 90,
       "bytes": 341905
     },
     {
       "name": "openepg-egypt2",
       "origin": "openepg",
-      "channels_with_current_48h_epg": 105,
+      "channels_with_current_48h_epg": 91,
       "bytes": 141447
     },
     {
@@ -127,17 +127,17 @@
       "bytes": 4291
     }
   ],
-  "candidate_channel_rows": 1749,
-  "unique_logical_channels": 1078,
-  "programmes": 52509,
-  "premium_hybrid_events": 1007,
+  "candidate_channel_rows": 1713,
+  "unique_logical_channels": 1059,
+  "programmes": 48620,
+  "premium_hybrid_events": 967,
   "stats": {
-    "logical_duplicate_groups": 369,
-    "regular_channels": 983,
-    "source_openepg": 355,
+    "logical_duplicate_groups": 356,
+    "regular_channels": 972,
+    "source_openepg": 344,
     "source_epgshare": 535,
-    "premium_channels": 95,
-    "source_primary": 188
+    "premium_channels": 87,
+    "source_primary": 180
   },
   "aliases": [
     {
@@ -292,14 +292,26 @@
       "aliases": []
     },
     {
+      "canonical_id": "Aden.TV.ae",
+      "canonical_name": "Aden TV",
+      "logical_key": "aden tv",
+      "aliases": [
+        {
+          "id": "Aden.Almustakillah.HD.ae",
+          "name": "Aden Almustakillah HD",
+          "source": "epgshare-ae1"
+        }
+      ]
+    },
+    {
       "canonical_id": "Aghani Aghani.sa",
       "canonical_name": "Aghani Aghani.sa",
       "logical_key": "aghani aghani",
       "aliases": []
     },
     {
-      "canonical_id": "Al Arabiya.sa",
-      "canonical_name": "Al Arabiya.sa",
+      "canonical_id": "AlarabiyaPortrait.ae@SD",
+      "canonical_name": "Al Arabiya",
       "logical_key": "al arabiya",
       "aliases": [
         {
@@ -311,6 +323,16 @@
           "id": "Al Arabiya HD.sa",
           "name": "Al Arabiya HD.sa",
           "source": "openepg-saudi2"
+        },
+        {
+          "id": "Al Arabiya.sa",
+          "name": "Al Arabiya.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Al Arabiya.sa",
+          "name": "Al Arabiya.sa",
+          "source": "openepg-saudi6"
         },
         {
           "id": "Al.Arabiya.HD.ae",
@@ -332,10 +354,33 @@
       ]
     },
     {
-      "canonical_id": "Al Araby TV.sa",
-      "canonical_name": "Al Araby TV.sa",
+      "canonical_id": "AlArabyTV2.qa@SD",
+      "canonical_name": "Al Araby 2",
+      "logical_key": "al araby 2",
+      "aliases": [
+        {
+          "id": "Al.Araby.2.HD.ae",
+          "name": "Al Araby 2 HD",
+          "source": "epgshare-ae1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "AlArabyTV.qa@SD",
+      "canonical_name": "Al Araby TV",
       "logical_key": "al araby tv",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "Al Araby TV.sa",
+          "name": "Al Araby TV.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Al Araby TV.sa",
+          "name": "Al Araby TV.sa",
+          "source": "openepg-saudi6"
+        }
+      ]
     },
     {
       "canonical_id": "Al Dafrah.sa",
@@ -432,11 +477,6 @@
       "logical_key": "al nahar drama",
       "aliases": [
         {
-          "id": "Al Nahar Drama.eg",
-          "name": "Al Nahar Drama.eg",
-          "source": "openepg-egypt2"
-        },
-        {
           "id": "Al.Nahar.Drama.ae",
           "name": "Al Nahar Drama",
           "source": "epgshare-ae1"
@@ -465,6 +505,18 @@
       "canonical_name": "Al Quran Al Kareem TV HD.sa",
       "logical_key": "al quran al kareem tv",
       "aliases": []
+    },
+    {
+      "canonical_id": "AlraiTV.kw@SD",
+      "canonical_name": "Al Rai TV",
+      "logical_key": "al rai tv",
+      "aliases": [
+        {
+          "id": "Al.Rai.TV.ae",
+          "name": "Al Rai TV",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "Al Resalah.sa",
@@ -560,19 +612,14 @@
       ]
     },
     {
-      "canonical_id": "Alkass Three.qa",
-      "canonical_name": "Alkass Three.qa",
+      "canonical_id": "2023 Alkass 3.qa",
+      "canonical_name": "2023 Alkass 3.qa",
       "logical_key": "alkass 3",
       "aliases": [
         {
-          "id": "2023 Alkass 3.qa",
-          "name": "2023 Alkass 3.qa",
-          "source": "openepg-qatar2"
-        },
-        {
-          "id": "2023 Alkass 3.qa",
-          "name": "2023 Alkass 3.qa",
-          "source": "openepg-qatar3"
+          "id": "Alkass Three.qa",
+          "name": "Alkass Three.qa",
+          "source": "openepg-qatar6"
         },
         {
           "id": "Alkass.Three.ae",
@@ -747,26 +794,36 @@
       ]
     },
     {
-      "canonical_id": "Asharq.sa",
-      "canonical_name": "Asharq.sa",
+      "canonical_id": "EN:.Asharq.sa",
+      "canonical_name": "EN: Asharq",
       "logical_key": "asharq",
       "aliases": [
         {
-          "id": "EN:.Asharq.sa",
-          "name": "EN: Asharq",
-          "source": "epgshare-sa2"
+          "id": "Asharq.sa",
+          "name": "Asharq.sa",
+          "source": "openepg-saudi1"
+        },
+        {
+          "id": "Asharq.sa",
+          "name": "Asharq.sa",
+          "source": "openepg-saudi2"
         }
       ]
     },
     {
-      "canonical_id": "Asharq Discovery.sa",
-      "canonical_name": "Asharq Discovery.sa",
+      "canonical_id": "Asharq.Discovery.HD.ae",
+      "canonical_name": "Asharq Discovery HD",
       "logical_key": "asharq discovery",
       "aliases": [
         {
-          "id": "Asharq.Discovery.HD.ae",
-          "name": "Asharq Discovery HD",
-          "source": "epgshare-ae1"
+          "id": "Asharq Discovery.sa",
+          "name": "Asharq Discovery.sa",
+          "source": "openepg-saudi1"
+        },
+        {
+          "id": "Asharq Discovery.sa",
+          "name": "Asharq Discovery.sa",
+          "source": "openepg-saudi2"
         }
       ]
     },
@@ -987,24 +1044,14 @@
       ]
     },
     {
-      "canonical_id": "beINSports2.qa@MENA",
-      "canonical_name": "beINSPORTS2",
+      "canonical_id": "beIN SPORTS2 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS2 DIGITAL.qa",
       "logical_key": "bein sports 2",
       "aliases": [
         {
           "id": "beIN SPORTS 2.qa",
           "name": "beIN SPORTS 2.qa",
           "source": "openepg-qatar1"
-        },
-        {
-          "id": "beIN SPORTS2 DIGITAL.qa",
-          "name": "beIN SPORTS2 DIGITAL.qa",
-          "source": "openepg-qatar2"
-        },
-        {
-          "id": "beIN SPORTS2 DIGITAL.qa",
-          "name": "beIN SPORTS2 DIGITAL.qa",
-          "source": "openepg-qatar3"
         },
         {
           "id": "beIN_SPORTS2_DIGITAL_Mono_AR.bein",
@@ -1095,14 +1142,24 @@
       ]
     },
     {
-      "canonical_id": "beIN SPORTS5 DIGITAL.qa",
-      "canonical_name": "beIN SPORTS5 DIGITAL.qa",
+      "canonical_id": "beINSports5.qa@MENA",
+      "canonical_name": "beINSPORTS5",
       "logical_key": "bein sports 5",
       "aliases": [
         {
           "id": "beIN SPORTS 5.qa",
           "name": "beIN SPORTS 5.qa",
           "source": "openepg-qatar1"
+        },
+        {
+          "id": "beIN SPORTS5 DIGITAL.qa",
+          "name": "beIN SPORTS5 DIGITAL.qa",
+          "source": "openepg-qatar2"
+        },
+        {
+          "id": "beIN SPORTS5 DIGITAL.qa",
+          "name": "beIN SPORTS5 DIGITAL.qa",
+          "source": "openepg-qatar3"
         },
         {
           "id": "beIN_SPORTS5_DIGITAL_Mono_AR.bein",
@@ -1288,14 +1345,14 @@
       ]
     },
     {
-      "canonical_id": "beIN SPORTS NEWS.qa",
-      "canonical_name": "beIN SPORTS NEWS.qa",
+      "canonical_id": "beIN.Sports.News.ae",
+      "canonical_name": "beIN Sports News",
       "logical_key": "bein sports news",
       "aliases": [
         {
-          "id": "beIN.Sports.News.ae",
-          "name": "beIN Sports News",
-          "source": "epgshare-ae1"
+          "id": "beIN SPORTS NEWS.qa",
+          "name": "beIN SPORTS NEWS.qa",
+          "source": "openepg-qatar1"
         }
       ]
     },
@@ -1616,11 +1673,6 @@
           "id": "CBC.ae",
           "name": "CBC",
           "source": "epgshare-ae1"
-        },
-        {
-          "id": "CBC.eg",
-          "name": "CBC.eg",
-          "source": "openepg-egypt2"
         }
       ]
     },
@@ -1629,11 +1681,6 @@
       "canonical_name": "CBC Drama.sa",
       "logical_key": "cbc drama",
       "aliases": [
-        {
-          "id": "CBC Drama.eg",
-          "name": "CBC Drama.eg",
-          "source": "openepg-egypt2"
-        },
         {
           "id": "CBC.Drama.ae",
           "name": "CBC Drama",
@@ -1838,18 +1885,6 @@
       ]
     },
     {
-      "canonical_id": "DMC.Drama.ae",
-      "canonical_name": "DMC Drama",
-      "logical_key": "dmc drama",
-      "aliases": [
-        {
-          "id": "DMC DRAMA.eg",
-          "name": "DMC DRAMA.eg",
-          "source": "openepg-egypt2"
-        }
-      ]
-    },
-    {
       "canonical_id": "Drama Stacked nov 2024 200x200.qa",
       "canonical_name": "Drama Stacked nov 2024 200x200.qa",
       "logical_key": "drama stacked nov 2024 200x200",
@@ -1932,18 +1967,6 @@
         {
           "id": "Dubai TV.eg",
           "name": "Dubai TV.eg",
-          "source": "openepg-egypt2"
-        }
-      ]
-    },
-    {
-      "canonical_id": "Dubai.Zaman.ae",
-      "canonical_name": "Dubai Zaman",
-      "logical_key": "dubai zaman",
-      "aliases": [
-        {
-          "id": "Dubai Zaman.eg",
-          "name": "Dubai Zaman.eg",
           "source": "openepg-egypt2"
         }
       ]
@@ -2171,11 +2194,6 @@
       "canonical_name": "Jordan TV.sa",
       "logical_key": "jordan tv",
       "aliases": [
-        {
-          "id": "Jordan TV.eg",
-          "name": "Jordan TV.eg",
-          "source": "openepg-egypt2"
-        },
         {
           "id": "Jordan.TV.HD.ae",
           "name": "Jordan TV HD",
@@ -2805,11 +2823,6 @@
           "id": "MBC MAX.ae",
           "name": "MBC MAX.ae",
           "source": "openepg-uae6"
-        },
-        {
-          "id": "MBC MAX.eg",
-          "name": "MBC MAX.eg",
-          "source": "openepg-egypt2"
         }
       ]
     },
@@ -3161,30 +3174,6 @@
       ]
     },
     {
-      "canonical_id": "On.Drama.ae",
-      "canonical_name": "On Drama",
-      "logical_key": "on drama",
-      "aliases": [
-        {
-          "id": "ON Drama.eg",
-          "name": "ON Drama.eg",
-          "source": "openepg-egypt2"
-        }
-      ]
-    },
-    {
-      "canonical_id": "On.E.HD.ae",
-      "canonical_name": "On E HD",
-      "logical_key": "on e",
-      "aliases": [
-        {
-          "id": "ON E.eg",
-          "name": "ON E.eg",
-          "source": "openepg-egypt2"
-        }
-      ]
-    },
-    {
       "canonical_id": "One Drama.eg",
       "canonical_name": "One Drama.eg",
       "logical_key": "one drama",
@@ -3336,13 +3325,7 @@
       "canonical_id": "OSNtv Movies Comedy.sa",
       "canonical_name": "OSNtv Movies Comedy.sa",
       "logical_key": "osn movies comedy",
-      "aliases": [
-        {
-          "id": "OSN TV Movies Comedy.eg",
-          "name": "OSN TV Movies Comedy.eg",
-          "source": "openepg-egypt2"
-        }
-      ]
+      "aliases": []
     },
     {
       "canonical_id": "OSNtv Movies Family.sa",
@@ -3562,19 +3545,14 @@
       "aliases": []
     },
     {
-      "canonical_id": "Rotana Cinema.eg",
-      "canonical_name": "Rotana Cinema.eg",
+      "canonical_id": "Rotana Cinema HD.sa",
+      "canonical_name": "Rotana Cinema HD.sa",
       "logical_key": "rotana cinema",
       "aliases": [
         {
-          "id": "Rotana Cinema HD.sa",
-          "name": "Rotana Cinema HD.sa",
-          "source": "openepg-saudi1"
-        },
-        {
-          "id": "Rotana Cinema HD.sa",
-          "name": "Rotana Cinema HD.sa",
-          "source": "openepg-saudi2"
+          "id": "Rotana Cinema.eg",
+          "name": "Rotana Cinema.eg",
+          "source": "openepg-egypt2"
         }
       ]
     },
@@ -4250,30 +4228,6 @@
       ]
     },
     {
-      "canonical_id": "OnE.eg@SD",
-      "canonical_name": "أون إي",
-      "logical_key": "أون إي",
-      "aliases": [
-        {
-          "id": "أون إي.eg",
-          "name": "أون إي.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "OnDrama.eg@SD",
-      "canonical_name": "أون دراما",
-      "logical_key": "أون دراما",
-      "aliases": [
-        {
-          "id": "أون دراما.eg",
-          "name": "أون دراما.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "LBC.sa@SD",
       "canonical_name": "إل بي سي",
       "logical_key": "إل بي سي",
@@ -4305,6 +4259,18 @@
         {
           "id": "إم بي سي دراما +.eg",
           "name": "إم بي سي دراما +.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LanaTV.lb@SD",
+      "canonical_name": "ال تي في",
+      "logical_key": "ال تي في",
+      "aliases": [
+        {
+          "id": "ال تي في.eg",
+          "name": "ال تي في.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4430,18 +4396,6 @@
       ]
     },
     {
-      "canonical_id": "EchoroukTV.dz@SD",
-      "canonical_name": "الشروق الجزائرية",
-      "logical_key": "الشروق الجزائرية",
-      "aliases": [
-        {
-          "id": "الشروق الجزائرية.eg",
-          "name": "الشروق الجزائرية.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "AlDafrahTV.ae@SD",
       "canonical_name": "الظفرة",
       "logical_key": "الظفرة",
@@ -4502,18 +4456,6 @@
       ]
     },
     {
-      "canonical_id": "AlKaheraWalNas.eg@SD",
-      "canonical_name": "القاهرة والناس",
-      "logical_key": "القاهرة والناس",
-      "aliases": [
-        {
-          "id": "القاهرة والناس.eg",
-          "name": "القاهرة والناس.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "AlKaheraWalNas2.eg@SD",
       "canonical_name": "القاهرة والناس 2",
       "logical_key": "القاهرة والناس 2",
@@ -4521,18 +4463,6 @@
         {
           "id": "القاهرة والناس 2.eg",
           "name": "القاهرة والناس 2.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "ElMehwarChannel.eg@SD",
-      "canonical_name": "المحور",
-      "logical_key": "المحور",
-      "aliases": [
-        {
-          "id": "المحور.eg",
-          "name": "المحور.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4557,18 +4487,6 @@
         {
           "id": "النهار.eg",
           "name": "النهار.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "AlNaharDrama.eg@SD",
-      "canonical_name": "النهار دراما",
-      "logical_key": "النهار دراما",
-      "aliases": [
-        {
-          "id": "النهار دراما.eg",
-          "name": "النهار دراما.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4605,30 +4523,6 @@
         {
           "id": "دجلة.eg",
           "name": "دجلة.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "DMCDrama.eg@SD",
-      "canonical_name": "دي إم سي دراما",
-      "logical_key": "دي إم سي دراما",
-      "aliases": [
-        {
-          "id": "دي إم سي دراما.eg",
-          "name": "دي إم سي دراما.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "ThikrayatTV.sa@SD",
-      "canonical_name": "ذكريات",
-      "logical_key": "ذكريات",
-      "aliases": [
-        {
-          "id": "ذكريات.eg",
-          "name": "ذكريات.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4706,37 +4600,13 @@
       ]
     },
     {
-      "canonical_id": "ZeeAlwan.ae@SD",
-      "canonical_name": "زي ألوان",
-      "logical_key": "زي ألوان",
+      "canonical_id": "Cima.eg@SD",
+      "canonical_name": "سيما",
+      "logical_key": "سيما",
       "aliases": [
         {
-          "id": "زي ألوان.eg",
-          "name": "زي ألوان.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "CBC.eg@SD",
-      "canonical_name": "سي بي سي",
-      "logical_key": "سي بي سي",
-      "aliases": [
-        {
-          "id": "سي بي سي.eg",
-          "name": "سي بي سي.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "CBCDrama.eg@SD",
-      "canonical_name": "سي بي سي دراما",
-      "logical_key": "سي بي سي دراما",
-      "aliases": [
-        {
-          "id": "سي بي سي دراما.eg",
-          "name": "سي بي سي دراما.eg",
+          "id": "سيما.eg",
+          "name": "سيما.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4761,18 +4631,6 @@
         {
           "id": "صدى البلد 2.eg",
           "name": "صدى البلد 2.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "AmmanTV.jo@SD",
-      "canonical_name": "عَمان",
-      "logical_key": "عَمان",
-      "aliases": [
-        {
-          "id": "عَمان.eg",
-          "name": "عَمان.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4845,30 +4703,6 @@
         {
           "id": "ميكس بالعربي.eg",
           "name": "ميكس بالعربي.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "NileDrama.eg@SD",
-      "canonical_name": "نايل دراما",
-      "logical_key": "نايل دراما",
-      "aliases": [
-        {
-          "id": "نايل دراما.eg",
-          "name": "نايل دراما.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "NileLife.eg@SD",
-      "canonical_name": "نايل لايف",
-      "logical_key": "نايل لايف",
-      "aliases": [
-        {
-          "id": "نايل لايف.eg",
-          "name": "نايل لايف.eg",
           "source": "openepg-egypt1"
         }
       ]

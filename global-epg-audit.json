@@ -1,27 +1,28 @@
 {
   "schema": 1,
   "scope": "all exclusive MENA country/provider shards",
-  "channels_scanned": 1022,
-  "programmes_scanned": 51158,
+  "channels_scanned": 971,
+  "programmes_scanned": 47706,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 3,
-    "arabic_provider_title_not_arabic": 951,
-    "empty_description": 37384,
-    "hybrid_arabic_latin_description": 6,
-    "premium_title_not_english": 92,
-    "severity_warning": 40661,
-    "very_long_event_gt_6h": 51,
-    "very_short_event_lt_5m": 2174
+    "arabic_provider_title_not_arabic": 947,
+    "empty_description": 34661,
+    "empty_title": 2,
+    "hybrid_arabic_latin_description": 5,
+    "premium_title_not_english": 89,
+    "severity_critical": 2,
+    "severity_warning": 37887,
+    "very_long_event_gt_6h": 49,
+    "very_short_event_lt_5m": 2133
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 802,
-      "hybrid_arabic_latin_description": 6
+      "empty_description": 792,
+      "hybrid_arabic_latin_description": 5
     },
     "mena-bh": {
-      "empty_description": 154,
-      "very_long_event_gt_6h": 1,
-      "very_short_event_lt_5m": 7
+      "empty_description": 79,
+      "very_long_event_gt_6h": 1
     },
     "mena-dz": {
       "empty_description": 729,
@@ -29,52 +30,53 @@
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 3589,
+      "empty_description": 3279,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 3342,
+      "empty_description": 2605,
       "very_short_event_lt_5m": 6
     },
     "mena-jo": {
-      "empty_description": 430,
+      "empty_description": 453,
       "very_short_event_lt_5m": 8
     },
     "mena-kw": {
-      "empty_description": 882,
+      "empty_description": 776,
       "very_short_event_lt_5m": 1
     },
     "mena-lb": {
-      "empty_description": 770,
+      "empty_description": 784,
       "very_long_event_gt_6h": 2
     },
     "mena-ly": {
-      "empty_description": 592
+      "empty_description": 219
     },
     "mena-mr": {
       "empty_description": 61,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 401
+      "empty_description": 387,
+      "empty_title": 2
     },
     "mena-other": {
-      "empty_description": 17367,
+      "empty_description": 16588,
       "very_long_event_gt_6h": 22,
-      "very_short_event_lt_5m": 1207
+      "very_short_event_lt_5m": 1203
     },
     "mena-ps": {
-      "empty_description": 996
+      "empty_description": 773
     },
     "mena-qa": {
-      "empty_description": 1400,
+      "empty_description": 1397,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1887,
-      "very_short_event_lt_5m": 494
+      "empty_description": 1848,
+      "very_short_event_lt_5m": 472
     },
     "mena-sd": {
       "empty_description": 248
@@ -83,67 +85,57 @@
       "empty_description": 145
     },
     "mena-tn": {
-      "empty_description": 212,
+      "empty_description": 211,
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
-      "empty_description": 620,
-      "very_long_event_gt_6h": 8
+      "empty_description": 575,
+      "very_long_event_gt_6h": 6
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 338,
-      "empty_description": 305,
+      "arabic_provider_title_not_arabic": 339,
+      "empty_description": 306,
       "very_long_event_gt_6h": 1,
-      "very_short_event_lt_5m": 12
+      "very_short_event_lt_5m": 11
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 123,
-      "empty_description": 1085,
-      "very_short_event_lt_5m": 379
+      "empty_description": 1056,
+      "very_short_event_lt_5m": 372
     },
     "provider-bein": {
-      "empty_description": 269,
-      "premium_title_not_english": 88,
+      "empty_description": 258,
+      "premium_title_not_english": 85,
       "very_long_event_gt_6h": 2
     },
     "provider-dmi": {
       "arabic_provider_title_not_arabic": 74,
-      "empty_description": 273,
+      "empty_description": 287,
       "very_long_event_gt_6h": 2
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 3,
-      "arabic_provider_title_not_arabic": 280,
-      "empty_description": 366,
+      "arabic_provider_title_not_arabic": 275,
+      "empty_description": 349,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "provider-osn": {
-      "empty_description": 132,
+      "empty_description": 129,
       "premium_title_not_english": 4,
       "very_short_event_lt_5m": 37
     },
     "provider-rotana": {
       "arabic_provider_title_not_arabic": 136,
-      "empty_description": 152
+      "empty_description": 151
     },
     "provider-starz": {
-      "empty_description": 175,
+      "empty_description": 176,
       "very_long_event_gt_6h": 1
     }
   },
   "samples": {
     "empty_description": [
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260913190000 +0000",
-        "stop": "20260913200000 +0000",
-        "title": "Darb Al Thahab",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
       {
         "shard": "provider-bein",
         "channel_id": "beIN Drama.eg",
@@ -396,36 +388,6 @@
       },
       {
         "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES FAMILY.eg",
-        "channel": "BEIN MOVIES FAMILY.eg",
-        "start": "20260913173000 +0000",
-        "stop": "20260913191500 +0000",
-        "title": "Paddington in Peru",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES FAMILY.eg",
-        "channel": "BEIN MOVIES FAMILY.eg",
-        "start": "20260913191500 +0000",
-        "stop": "20260913204500 +0000",
-        "title": "Are We Done Yet?",
-        "desc": "",
-        "duration_minutes": 90.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260913190000 +0000",
-        "stop": "20260913200000 +0000",
-        "title": "The Other Bennet Sister",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
         "channel_id": "BeIn Series HD 1.eg",
         "channel": "BeIn Series HD 1.eg",
         "start": "20260913200000 +0000",
@@ -531,6 +493,46 @@
         "start": "20260914060000 +0000",
         "stop": "20260914070000 +0000",
         "title": "Shark Tank",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914070000 +0000",
+        "stop": "20260914080000 +0000",
+        "title": "Matlock S2",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914080000 +0000",
+        "stop": "20260914090000 +0000",
+        "title": "The Good Doctor S1",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914090000 +0000",
+        "stop": "20260914100000 +0000",
+        "title": "1883",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914100000 +0000",
+        "stop": "20260914110000 +0000",
+        "title": "Yellowjackets S2",
         "desc": "",
         "duration_minutes": 60.0
       }
@@ -850,16 +852,6 @@
         "shard": "provider-bein",
         "channel_id": "beINMovies1Premiere.qa@SD",
         "channel": "beINMOVIES1",
-        "start": "20260913180000 +0000",
-        "stop": "20260913194500 +0000",
-        "title": "البلوغ",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
         "start": "20260913194500 +0000",
         "stop": "20260913221500 +0000",
         "title": "أساطير أبطال كوندور: الشجعان",
@@ -935,6 +927,16 @@
         "title": "البلوغ",
         "desc": "",
         "duration_minutes": 106.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260914101500 +0000",
+        "stop": "20260914120000 +0000",
+        "title": "دير سانتا",
+        "desc": "",
+        "duration_minutes": 105.0
       }
     ],
     "very_long_event_gt_6h": [
@@ -1067,26 +1069,6 @@
         "title": "Midnight News",
         "desc": "نشرة منتصف الليل",
         "duration_minutes": 451.0
-      },
-      {
-        "shard": "mena-ye",
-        "channel_id": "Aden.TV.ae",
-        "channel": "Aden TV",
-        "start": "20260913230000 +0100",
-        "stop": "20260914080000 +0100",
-        "title": "News",
-        "desc": "",
-        "duration_minutes": 540.0
-      },
-      {
-        "shard": "mena-ye",
-        "channel_id": "Aden.TV.ae",
-        "channel": "Aden TV",
-        "start": "20260914230000 +0100",
-        "stop": "20260915080000 +0100",
-        "title": "News",
-        "desc": "",
-        "duration_minutes": 540.0
       },
       {
         "shard": "mena-ye",
@@ -1337,6 +1319,26 @@
         "title": "WOA STARZPLAY RUGBY",
         "desc": "‫‬.",
         "duration_minutes": 444.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "EN:.Aflam.sa",
+        "channel": "EN: Aflam",
+        "start": "20260914115957 +0000",
+        "stop": "20260914235959 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 720.03
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "EN:.Al.Asouf.Channel.sa",
+        "channel": "EN: Al Asouf Channel",
+        "start": "20260914123851 +0000",
+        "stop": "20260914235959 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 681.13
       }
     ],
     "very_short_event_lt_5m": [
@@ -1724,8 +1726,8 @@
         "shard": "provider-adm",
         "channel_id": "Majid.sa",
         "channel": "Majid.sa",
-        "start": "20260913192000 +0000",
-        "stop": "20260913192300 +0000",
+        "start": "20260913225000 +0000",
+        "stop": "20260913225300 +0000",
         "title": "غارفيلد أوريجينالز",
         "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
         "duration_minutes": 3.0
@@ -1734,8 +1736,8 @@
         "shard": "provider-adm",
         "channel_id": "Majid.sa",
         "channel": "Majid.sa",
-        "start": "20260913225000 +0000",
-        "stop": "20260913225300 +0000",
+        "start": "20260914092000 +0000",
+        "stop": "20260914092300 +0000",
         "title": "غارفيلد أوريجينالز",
         "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
         "duration_minutes": 3.0
@@ -2180,16 +2182,6 @@
         "shard": "mena-ae",
         "channel_id": "NickJrArabia.ae@SD",
         "channel": "Nick Jr HD",
-        "start": "20260913185500 +0000",
-        "stop": "20260913192000 +0000",
-        "title": "رابل آند كرو",
-        "desc": "يفتح مقهى كارل متجرًا لبيع العصائر على الممشى الخشبي! ولكن عندما تتسبب السفينة الدوارة في فوضى بسبب جوز الهند، يعرف فريق Rubble & Crew ما يجب فعله. // يعمل فريق Rubble & Crew معًا لإيجاد حل للبناء عندما تحتاج مفاجأة عيد ميلاد Charger المرتدة إلى دفعة!",
-        "duration_minutes": 25.0
-      },
-      {
-        "shard": "mena-ae",
-        "channel_id": "NickJrArabia.ae@SD",
-        "channel": "Nick Jr HD",
         "start": "20260914010000 +0000",
         "stop": "20260914012500 +0000",
         "title": "رابل آند كرو",
@@ -2235,6 +2227,28 @@
         "title": "سانجاي أند كرايغ",
         "desc": "ينقلب الأطفال على سانجاي عندما يحاصرهم جميعًا على طريق سريع متوسط في \"Traffical Island\"، ثم في \"Partybot\"، يجد سانجاي وكريج روبوتًا قديمًا ويصبحان حيوانات احتفالية.",
         "duration_minutes": 20.0
+      }
+    ],
+    "empty_title": [
+      {
+        "shard": "mena-om",
+        "channel_id": "OmanTV.om",
+        "channel": "قناة عمان العامة",
+        "start": "20260913200000 +0000",
+        "stop": "20260913210000 +0000",
+        "title": "",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "mena-om",
+        "channel_id": "OmanTVMubashir.om",
+        "channel": "قناة عمان مباشر",
+        "start": "20260913200000 +0000",
+        "stop": "20260913210000 +0000",
+        "title": "",
+        "desc": "",
+        "duration_minutes": 60.0
       }
     ]
   }
