@@ -2,15 +2,12 @@
 # -*- coding: utf-8 -*-
 """Strict identity + compatibility layer on top of mena_cloud_shards_safe.
 
-Besides provider identity fixes, this layer preserves existing receiver mappings
-for known beIN XMLTV aliases.  The XML keeps the old ID, but its programme
-timeline is copied from the audited canonical ID.  The lightweight .txt Smart
-Mapping catalogue hides those compatibility aliases so new mappings choose only
-clean IDs.
+Known beIN XMLTV aliases are kept in BOTH XML and the lightweight catalogue so
+an existing receiver mapping never becomes invalid.  Their programme timelines
+are copied from audited canonical IDs.  New-mapping preference for canonical IDs
+can be handled by the receiver suggestion score without deleting legacy IDs.
 """
 from __future__ import annotations
-
-from pathlib import Path
 
 import mena_cloud_shards_safe as safe
 
@@ -30,7 +27,7 @@ BEIN_COMPAT_ALIASES = {
     "NEWS_DIGITAL_Mono_AR.bein": "beIN.Sports.News.ae",
     "NEWS_DIGITAL_Mono_EN.bein": "beIN.Sports.News.ae",
 
-    # XTRA aliases / guide-language twins.  Leading-zero forms normalize to the
+    # XTRA aliases / guide-language twins. Leading-zero forms normalize to the
     # same linear XTRA number so an existing mapping keeps working.
     "beIN SPORTS XTRA 04 bein.com.qa": "beIN SPORTS XTRA 4.qa",
     "beIN SPORTS XTRA 05 bein.com.qa": "beIN SPORTS XTRA 5.qa",
@@ -42,9 +39,9 @@ BEIN_COMPAT_ALIASES = {
     "logos-_beINSPORTSXTRA3_EN.bein": "beINSPORTSXTRA3.qa",
 }
 
-# These IDs may remain in XML for backward compatibility, but are intentionally
-# not advertised to Smart Mapping for NEW selections.
-BEIN_HIDE_FROM_CATALOG = set(BEIN_COMPAT_ALIASES) | {
+# IDs that should receive a negative recommendation score in a future receiver
+# build.  They remain present here so an old manual mapping is not silently lost.
+BEIN_NON_RECOMMENDED_IDS = {
     "beIN SPORTS66 DIGITAL -01.qa",
     "beIN_SPORTS66_DIGITAL_Mono-01_EN.bein",
     "beIN SPORTS-boxoffice-bein.com.qa",
@@ -52,6 +49,7 @@ BEIN_HIDE_FROM_CATALOG = set(BEIN_COMPAT_ALIASES) | {
     "bein.com-06.qa",
     "bein.com-07.qa",
     "bein.com-08.qa",
+    "bein SPORTS FTA DIGITAL.qa",
 }
 
 
@@ -81,8 +79,8 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
     compat_applied = {}
 
     if stem == "provider-bein":
-        # Preserve old IDs but force their schedules to the audited canonical
-        # timeline.  No receiver mapping migration is required.
+        # Preserve old IDs and force their schedules to the audited canonical
+        # timeline. This is intentionally done BEFORE writing both XML and TXT.
         for alias, canonical in BEIN_COMPAT_ALIASES.items():
             if alias in ids_set and canonical in ids_set and canonical in programmes:
                 count = _copy_programmes_to_alias(alias, canonical, programmes)
@@ -91,25 +89,15 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
     result = _original_write_shard(out_dir, stem, ids_set, channels, programmes, label)
 
     if stem == "provider-bein":
-        # Smart Mapping catalogue: advertise only clean/new choices. Existing
-        # mappings do not depend on this list; their alias still exists in XML.
-        txt_path = Path(out_dir) / (stem + ".txt")
-        kept = []
-        hidden = []
-        if txt_path.exists():
-            for raw in txt_path.read_text(encoding="utf-8").splitlines():
-                cid = raw.split("|", 1)[0].strip()
-                if cid in BEIN_HIDE_FROM_CATALOG:
-                    hidden.append(cid)
-                else:
-                    kept.append(raw)
-            txt_path.write_text("\n".join(kept) + ("\n" if kept else ""), encoding="utf-8")
-
+        # Do not remove aliases from the .txt catalogue: current receiver mappings
+        # may validate their saved XMLTV ID against that list.
         result["compat_aliases"] = compat_applied
-        result["smart_mapping_hidden_ids"] = sorted(set(hidden), key=str.casefold)
-        result["smart_mapping_catalog_channels"] = len(kept)
-        print("beIN compatibility: %d aliases refreshed from canonical; %d IDs hidden from new Smart Mapping" %
-              (len(compat_applied), len(set(hidden))))
+        result["non_recommended_ids"] = sorted(
+            [cid for cid in BEIN_NON_RECOMMENDED_IDS if cid in ids_set], key=str.casefold
+        )
+        result["catalog_preserves_legacy_ids"] = True
+        print("beIN compatibility: %d aliases refreshed from canonical; legacy catalogue IDs preserved" %
+              len(compat_applied))
 
     return result
 
