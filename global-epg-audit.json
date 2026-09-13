@@ -1,21 +1,21 @@
 {
   "schema": 1,
   "scope": "all exclusive MENA country/provider shards",
-  "channels_scanned": 1059,
-  "programmes_scanned": 52939,
+  "channels_scanned": 1057,
+  "programmes_scanned": 51894,
   "issue_counts": {
-    "arabic_provider_description_not_arabic": 13,
-    "arabic_provider_title_not_arabic": 1857,
-    "empty_description": 38597,
+    "arabic_provider_description_not_arabic": 3,
+    "arabic_provider_title_not_arabic": 954,
+    "empty_description": 37613,
     "hybrid_arabic_latin_description": 6,
     "premium_title_not_english": 104,
-    "severity_warning": 42861,
+    "severity_warning": 40950,
     "very_long_event_gt_6h": 52,
-    "very_short_event_lt_5m": 2232
+    "very_short_event_lt_5m": 2218
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 815,
+      "empty_description": 816,
       "hybrid_arabic_latin_description": 6
     },
     "mena-bh": {
@@ -24,21 +24,21 @@
       "very_short_event_lt_5m": 8
     },
     "mena-dz": {
-      "empty_description": 733,
+      "empty_description": 741,
       "very_long_event_gt_6h": 6,
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 3639,
+      "empty_description": 3628,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 3356,
+      "empty_description": 3366,
       "very_short_event_lt_5m": 6
     },
     "mena-jo": {
-      "empty_description": 432,
+      "empty_description": 430,
       "very_short_event_lt_5m": 8
     },
     "mena-kw": {
@@ -46,26 +46,26 @@
       "very_short_event_lt_5m": 1
     },
     "mena-lb": {
-      "empty_description": 777,
+      "empty_description": 778,
       "very_long_event_gt_6h": 2
     },
     "mena-ly": {
-      "empty_description": 593
+      "empty_description": 592
     },
     "mena-mr": {
       "empty_description": 61,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 416
+      "empty_description": 415
     },
     "mena-other": {
-      "empty_description": 17510,
+      "empty_description": 17477,
       "very_long_event_gt_6h": 22,
-      "very_short_event_lt_5m": 1218
+      "very_short_event_lt_5m": 1222
     },
     "mena-ps": {
-      "empty_description": 997
+      "empty_description": 995
     },
     "mena-qa": {
       "empty_description": 1407,
@@ -73,11 +73,11 @@
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1924,
+      "empty_description": 1921,
       "very_short_event_lt_5m": 510
     },
     "mena-sd": {
-      "empty_description": 249
+      "empty_description": 248
     },
     "mena-sy": {
       "empty_description": 145
@@ -87,24 +87,18 @@
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
-      "empty_description": 624,
+      "empty_description": 623,
       "very_long_event_gt_6h": 8
     },
     "provider-adm": {
-      "arabic_provider_description_not_arabic": 10,
-      "arabic_provider_title_not_arabic": 346,
-      "empty_description": 311,
+      "arabic_provider_title_not_arabic": 336,
+      "empty_description": 273,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 12
     },
-    "provider-alkass": {
-      "arabic_provider_title_not_arabic": 893,
-      "empty_description": 908,
-      "very_short_event_lt_5m": 18
-    },
     "provider-art": {
       "arabic_provider_title_not_arabic": 123,
-      "empty_description": 1119,
+      "empty_description": 1117,
       "very_short_event_lt_5m": 391
     },
     "provider-bein": {
@@ -125,7 +119,7 @@
       "very_short_event_lt_5m": 1
     },
     "provider-osn": {
-      "empty_description": 135,
+      "empty_description": 134,
       "premium_title_not_english": 4,
       "very_short_event_lt_5m": 37
     },
@@ -141,1208 +135,404 @@
   "samples": {
     "empty_description": [
       {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 1.qa",
-        "channel": "2023 Alkass 1.qa",
-        "start": "20260913160000 +0000",
-        "stop": "20260913190000 +0000",
-        "title": "دوري نجوم قطر",
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260913170000 +0000",
+        "stop": "20260913180000 +0000",
+        "title": "El Qatel Allazy Ahabany",
         "desc": "",
-        "duration_minutes": 180.0
+        "duration_minutes": 60.0
       },
       {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 1.qa",
-        "channel": "2023 Alkass 1.qa",
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260913180000 +0000",
+        "stop": "20260913190000 +0000",
+        "title": "El Qatel Allazy Ahabany",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
         "start": "20260913190000 +0000",
-        "stop": "20260913203000 +0000",
-        "title": "المجلس",
+        "stop": "20260913200000 +0000",
+        "title": "Darb Al Thahab",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260913200000 +0000",
+        "stop": "20260913210000 +0000",
+        "title": "Darb Al Thahab",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260913210000 +0000",
+        "stop": "20260913220000 +0000",
+        "title": "Basmet Hada",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260913220000 +0000",
+        "stop": "20260913230000 +0000",
+        "title": "El Qatel Allazy Ahabany",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260913230000 +0000",
+        "stop": "20260914000000 +0000",
+        "title": "Sarmasik Zamani",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914000000 +0000",
+        "stop": "20260914010000 +0000",
+        "title": "Darb Al Thahab",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914010000 +0000",
+        "stop": "20260914020000 +0000",
+        "title": "Mazad El Shar",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914020000 +0000",
+        "stop": "20260914030000 +0000",
+        "title": "Sarab",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914030000 +0000",
+        "stop": "20260914040000 +0000",
+        "title": "Basmet Hada",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914040000 +0000",
+        "stop": "20260914050000 +0000",
+        "title": "El Qatel Allazy Ahabany",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914050000 +0000",
+        "stop": "20260914060000 +0000",
+        "title": "Sarmasik Zamani",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914060000 +0000",
+        "stop": "20260914070000 +0000",
+        "title": "Darb Al Thahab",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914070000 +0000",
+        "stop": "20260914080000 +0000",
+        "title": "Mazad El Shar",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914080000 +0000",
+        "stop": "20260914090000 +0000",
+        "title": "Sarab",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914090000 +0000",
+        "stop": "20260914100000 +0000",
+        "title": "Basmet Hada",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914100000 +0000",
+        "stop": "20260914110000 +0000",
+        "title": "El Qatel Allazy Ahabany",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914110000 +0000",
+        "stop": "20260914120000 +0000",
+        "title": "Sarmasik Zamani",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914120000 +0000",
+        "stop": "20260914130000 +0000",
+        "title": "Darb Al Thahab",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914130000 +0000",
+        "stop": "20260914140000 +0000",
+        "title": "Mazad El Shar",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914140000 +0000",
+        "stop": "20260914150000 +0000",
+        "title": "Sarab",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914150000 +0000",
+        "stop": "20260914160000 +0000",
+        "title": "Basmet Hada",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914160000 +0000",
+        "stop": "20260914170000 +0000",
+        "title": "El Qatel Allazy Ahabany",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914170000 +0000",
+        "stop": "20260914180000 +0000",
+        "title": "Sarmasik Zamani",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914180000 +0000",
+        "stop": "20260914190000 +0000",
+        "title": "Darb Al Thahab",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914190000 +0000",
+        "stop": "20260914194000 +0000",
+        "title": "Mazad El Shar",
+        "desc": "",
+        "duration_minutes": 40.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Drama.eg",
+        "channel": "beIN Drama.eg",
+        "start": "20260914194000 +0000",
+        "stop": "20260914200000 +0000",
+        "title": "برنامج beIN Action",
+        "desc": "",
+        "duration_minutes": 20.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES DRAMA.eg",
+        "channel": "BEIN MOVIES DRAMA.eg",
+        "start": "20260913161500 +0000",
+        "stop": "20260913183000 +0000",
+        "title": "A Beautiful Mind",
+        "desc": "",
+        "duration_minutes": 135.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES DRAMA.eg",
+        "channel": "BEIN MOVIES DRAMA.eg",
+        "start": "20260913183000 +0000",
+        "stop": "20260913201500 +0000",
+        "title": "The Addams Family",
+        "desc": "",
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES FAMILY.eg",
+        "channel": "BEIN MOVIES FAMILY.eg",
+        "start": "20260913173000 +0000",
+        "stop": "20260913191500 +0000",
+        "title": "Paddington in Peru",
+        "desc": "",
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES FAMILY.eg",
+        "channel": "BEIN MOVIES FAMILY.eg",
+        "start": "20260913191500 +0000",
+        "stop": "20260913204500 +0000",
+        "title": "Are We Done Yet?",
         "desc": "",
         "duration_minutes": 90.0
       },
       {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913175100 +0100",
-        "stop": "20260913175800 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG1",
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES PREMIERE.eg",
+        "channel": "BEIN MOVIES PREMIERE.eg",
+        "start": "20260913161500 +0000",
+        "stop": "20260913180000 +0000",
+        "title": "Dear Santa",
         "desc": "",
-        "duration_minutes": 7.0
+        "duration_minutes": 105.0
       },
       {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913175800 +0100",
-        "stop": "20260913180500 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG2",
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES PREMIERE.eg",
+        "channel": "BEIN MOVIES PREMIERE.eg",
+        "start": "20260913180000 +0000",
+        "stop": "20260913194500 +0000",
+        "title": "Adulthood",
         "desc": "",
-        "duration_minutes": 7.0
+        "duration_minutes": 105.0
       },
       {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913180500 +0100",
-        "stop": "20260913181100 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG3",
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260913170000 +0000",
+        "stop": "20260913180000 +0000",
+        "title": "Shark Tank",
         "desc": "",
-        "duration_minutes": 6.0
+        "duration_minutes": 60.0
       },
       {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913181200 +0100",
-        "stop": "20260913182000 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG4",
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260913180000 +0000",
+        "stop": "20260913190000 +0000",
+        "title": "Matlock S2",
         "desc": "",
-        "duration_minutes": 8.0
+        "duration_minutes": 60.0
       },
       {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913182100 +0100",
-        "stop": "20260913185000 +0100",
-        "title": "Wildlife Heroes S1 E01 - American Icons",
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260913190000 +0000",
+        "stop": "20260913200000 +0000",
+        "title": "The Other Bennet Sister",
         "desc": "",
-        "duration_minutes": 29.0
+        "duration_minutes": 60.0
       },
       {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913185100 +0100",
-        "stop": "20260913192000 +0100",
-        "title": "Wildlife Heroes S1 E02 - The Big Move",
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260913200000 +0000",
+        "stop": "20260913210000 +0000",
+        "title": "The Miniature Wife",
         "desc": "",
-        "duration_minutes": 29.0
+        "duration_minutes": 60.0
       },
       {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913192100 +0100",
-        "stop": "20260913195100 +0100",
-        "title": "Farming the Wild - S3 Ep5 - Ibiza Adventure Part 1",
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260913210000 +0000",
+        "stop": "20260913220000 +0000",
+        "title": "1883",
         "desc": "",
-        "duration_minutes": 30.0
+        "duration_minutes": 60.0
       },
       {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913195100 +0100",
-        "stop": "20260913202100 +0100",
-        "title": "Farming the Wild - S3 Ep06 - Ibiza Adventure Part2",
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260913220000 +0000",
+        "stop": "20260913230000 +0000",
+        "title": "Yellowjackets S2",
         "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913202100 +0100",
-        "stop": "20260913202800 +0100",
-        "title": "Dropped_S3_EP1_SurvivalMode_SEG1_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913202800 +0100",
-        "stop": "20260913203300 +0100",
-        "title": "Dropped_S3_EP1_SurvivalMode_SEG2_4",
-        "desc": "",
-        "duration_minutes": 5.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913203300 +0100",
-        "stop": "20260913204000 +0100",
-        "title": "Dropped_S3_EP1_SurvivalMode_SEG3_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913204100 +0100",
-        "stop": "20260913205000 +0100",
-        "title": "Dropped_S3_EP1_SurvivalMode_SEG4_4",
-        "desc": "",
-        "duration_minutes": 9.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913205100 +0100",
-        "stop": "20260913205800 +0100",
-        "title": "Dropped_S3_EP2_GamePlan_SEG1_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913205900 +0100",
-        "stop": "20260913210600 +0100",
-        "title": "Dropped_S3_EP2_GamePlan_SEG2_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913210600 +0100",
-        "stop": "20260913211200 +0100",
-        "title": "Dropped_S3_EP2_GamePlan_SEG3_4",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913211200 +0100",
-        "stop": "20260913212000 +0100",
-        "title": "Dropped_S3_EP2_GamePlan_SEG4_4",
-        "desc": "",
-        "duration_minutes": 8.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913212100 +0100",
-        "stop": "20260913212700 +0100",
-        "title": "Hollywood Weapons S3 EP5 - Larry's Shadow - SEG1",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913212800 +0100",
-        "stop": "20260913213400 +0100",
-        "title": "Hollywood Weapons S3 EP5 - Larry's Shadow - SEG2",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913213400 +0100",
-        "stop": "20260913214300 +0100",
-        "title": "Hollywood Weapons S3 EP5 - Larry's Shadow - SEG3",
-        "desc": "",
-        "duration_minutes": 9.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913214400 +0100",
-        "stop": "20260913215200 +0100",
-        "title": "Hollywood Weapons S3 EP5 - Larry's Shadow - SEG4",
-        "desc": "",
-        "duration_minutes": 8.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913215200 +0100",
-        "stop": "20260913215900 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG1",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913215900 +0100",
-        "stop": "20260913220600 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG2",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913220700 +0100",
-        "stop": "20260913221300 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG3",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913221300 +0100",
-        "stop": "20260913222100 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG4",
-        "desc": "",
-        "duration_minutes": 8.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913222200 +0100",
-        "stop": "20260913225100 +0100",
-        "title": "Wildlife Heroes S1 E01 - American Icons",
-        "desc": "",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913225200 +0100",
-        "stop": "20260913232100 +0100",
-        "title": "Wildlife Heroes S1 E02 - The Big Move",
-        "desc": "",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913232200 +0100",
-        "stop": "20260913235200 +0100",
-        "title": "Farming the Wild - S3 Ep5 - Ibiza Adventure Part 1",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913235200 +0100",
-        "stop": "20260914002200 +0100",
-        "title": "Farming the Wild - S3 Ep06 - Ibiza Adventure Part2",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914002200 +0100",
-        "stop": "20260914005200 +0100",
-        "title": "Nordic Wild Hunter S1 Ep23",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914005200 +0100",
-        "stop": "20260914012100 +0100",
-        "title": "Nordic Wild Hunter S1 Ep24",
-        "desc": "",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914012200 +0100",
-        "stop": "20260914015200 +0100",
-        "title": "Dead Meat S1 EP1 - SoCal w/Tommy Gomes",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914015200 +0100",
-        "stop": "20260914022100 +0100",
-        "title": "Dead Meat S1 EP2 - Boars on the Back Nine",
-        "desc": "",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914022200 +0100",
-        "stop": "20260914022900 +0100",
-        "title": "Dropped_S3_EP3_WindBurnt_SEG1_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914023000 +0100",
-        "stop": "20260914023600 +0100",
-        "title": "Dropped_S3_EP3_WindBurnt_SEG2_4",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914023600 +0100",
-        "stop": "20260914024400 +0100",
-        "title": "Dropped_S3_EP3_WindBurnt_SEG3_4",
-        "desc": "",
-        "duration_minutes": 8.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914024500 +0100",
-        "stop": "20260914025100 +0100",
-        "title": "Dropped_S3_EP3_WindBurnt_SEG4_4",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914025200 +0100",
-        "stop": "20260914030000 +0100",
-        "title": "Dropped_S3_EP4_BrotherlyLove_SEG1_4",
-        "desc": "",
-        "duration_minutes": 8.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914030000 +0100",
-        "stop": "20260914030700 +0100",
-        "title": "Dropped_S3_EP4_BrotherlyLove_SEG2_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      }
-    ],
-    "arabic_provider_title_not_arabic": [
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913175100 +0100",
-        "stop": "20260913175800 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG1",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913175800 +0100",
-        "stop": "20260913180500 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG2",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913180500 +0100",
-        "stop": "20260913181100 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG3",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913181200 +0100",
-        "stop": "20260913182000 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG4",
-        "desc": "",
-        "duration_minutes": 8.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913182100 +0100",
-        "stop": "20260913185000 +0100",
-        "title": "Wildlife Heroes S1 E01 - American Icons",
-        "desc": "",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913185100 +0100",
-        "stop": "20260913192000 +0100",
-        "title": "Wildlife Heroes S1 E02 - The Big Move",
-        "desc": "",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913192100 +0100",
-        "stop": "20260913195100 +0100",
-        "title": "Farming the Wild - S3 Ep5 - Ibiza Adventure Part 1",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913195100 +0100",
-        "stop": "20260913202100 +0100",
-        "title": "Farming the Wild - S3 Ep06 - Ibiza Adventure Part2",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913202100 +0100",
-        "stop": "20260913202800 +0100",
-        "title": "Dropped_S3_EP1_SurvivalMode_SEG1_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913202800 +0100",
-        "stop": "20260913203300 +0100",
-        "title": "Dropped_S3_EP1_SurvivalMode_SEG2_4",
-        "desc": "",
-        "duration_minutes": 5.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913203300 +0100",
-        "stop": "20260913204000 +0100",
-        "title": "Dropped_S3_EP1_SurvivalMode_SEG3_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913204100 +0100",
-        "stop": "20260913205000 +0100",
-        "title": "Dropped_S3_EP1_SurvivalMode_SEG4_4",
-        "desc": "",
-        "duration_minutes": 9.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913205100 +0100",
-        "stop": "20260913205800 +0100",
-        "title": "Dropped_S3_EP2_GamePlan_SEG1_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913205900 +0100",
-        "stop": "20260913210600 +0100",
-        "title": "Dropped_S3_EP2_GamePlan_SEG2_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913210600 +0100",
-        "stop": "20260913211200 +0100",
-        "title": "Dropped_S3_EP2_GamePlan_SEG3_4",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913211200 +0100",
-        "stop": "20260913212000 +0100",
-        "title": "Dropped_S3_EP2_GamePlan_SEG4_4",
-        "desc": "",
-        "duration_minutes": 8.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913212100 +0100",
-        "stop": "20260913212700 +0100",
-        "title": "Hollywood Weapons S3 EP5 - Larry's Shadow - SEG1",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913212800 +0100",
-        "stop": "20260913213400 +0100",
-        "title": "Hollywood Weapons S3 EP5 - Larry's Shadow - SEG2",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913213400 +0100",
-        "stop": "20260913214300 +0100",
-        "title": "Hollywood Weapons S3 EP5 - Larry's Shadow - SEG3",
-        "desc": "",
-        "duration_minutes": 9.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913214400 +0100",
-        "stop": "20260913215200 +0100",
-        "title": "Hollywood Weapons S3 EP5 - Larry's Shadow - SEG4",
-        "desc": "",
-        "duration_minutes": 8.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913215200 +0100",
-        "stop": "20260913215900 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG1",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913215900 +0100",
-        "stop": "20260913220600 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG2",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913220700 +0100",
-        "stop": "20260913221300 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG3",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913221300 +0100",
-        "stop": "20260913222100 +0100",
-        "title": "Hollywood Weapons S3 EP6 - We Hear Ya - SEG4",
-        "desc": "",
-        "duration_minutes": 8.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913222200 +0100",
-        "stop": "20260913225100 +0100",
-        "title": "Wildlife Heroes S1 E01 - American Icons",
-        "desc": "",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913225200 +0100",
-        "stop": "20260913232100 +0100",
-        "title": "Wildlife Heroes S1 E02 - The Big Move",
-        "desc": "",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913232200 +0100",
-        "stop": "20260913235200 +0100",
-        "title": "Farming the Wild - S3 Ep5 - Ibiza Adventure Part 1",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260913235200 +0100",
-        "stop": "20260914002200 +0100",
-        "title": "Farming the Wild - S3 Ep06 - Ibiza Adventure Part2",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914002200 +0100",
-        "stop": "20260914005200 +0100",
-        "title": "Nordic Wild Hunter S1 Ep23",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914005200 +0100",
-        "stop": "20260914012100 +0100",
-        "title": "Nordic Wild Hunter S1 Ep24",
-        "desc": "",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914012200 +0100",
-        "stop": "20260914015200 +0100",
-        "title": "Dead Meat S1 EP1 - SoCal w/Tommy Gomes",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914015200 +0100",
-        "stop": "20260914022100 +0100",
-        "title": "Dead Meat S1 EP2 - Boars on the Back Nine",
-        "desc": "",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914022200 +0100",
-        "stop": "20260914022900 +0100",
-        "title": "Dropped_S3_EP3_WindBurnt_SEG1_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914023000 +0100",
-        "stop": "20260914023600 +0100",
-        "title": "Dropped_S3_EP3_WindBurnt_SEG2_4",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914023600 +0100",
-        "stop": "20260914024400 +0100",
-        "title": "Dropped_S3_EP3_WindBurnt_SEG3_4",
-        "desc": "",
-        "duration_minutes": 8.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914024500 +0100",
-        "stop": "20260914025100 +0100",
-        "title": "Dropped_S3_EP3_WindBurnt_SEG4_4",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914025200 +0100",
-        "stop": "20260914030000 +0100",
-        "title": "Dropped_S3_EP4_BrotherlyLove_SEG1_4",
-        "desc": "",
-        "duration_minutes": 8.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914030000 +0100",
-        "stop": "20260914030700 +0100",
-        "title": "Dropped_S3_EP4_BrotherlyLove_SEG2_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914030700 +0100",
-        "stop": "20260914031300 +0100",
-        "title": "Dropped_S3_EP4_BrotherlyLove_SEG3_4",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914031400 +0100",
-        "stop": "20260914032100 +0100",
-        "title": "Dropped_S3_EP4_BrotherlyLove_SEG4_4",
-        "desc": "",
-        "duration_minutes": 7.0
-      }
-    ],
-    "very_short_event_lt_5m": [
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914041000 +0100",
-        "stop": "20260914041400 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914080900 +0100",
-        "stop": "20260914081300 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914120700 +0100",
-        "stop": "20260914121100 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914160600 +0100",
-        "stop": "20260914161000 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914200400 +0100",
-        "stop": "20260914200800 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260915000300 +0100",
-        "stop": "20260915000700 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
-        "start": "20260914041000 +0100",
-        "stop": "20260914041400 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
-        "start": "20260914080900 +0100",
-        "stop": "20260914081300 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
-        "start": "20260914120700 +0100",
-        "stop": "20260914121100 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
-        "start": "20260914160600 +0100",
-        "stop": "20260914161000 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
-        "start": "20260914200400 +0100",
-        "stop": "20260914200800 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
-        "start": "20260915000300 +0100",
-        "stop": "20260915000700 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Three.qa",
-        "channel": "Alkass Three.qa",
-        "start": "20260914041000 +0100",
-        "stop": "20260914041400 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Three.qa",
-        "channel": "Alkass Three.qa",
-        "start": "20260914080900 +0100",
-        "stop": "20260914081300 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Three.qa",
-        "channel": "Alkass Three.qa",
-        "start": "20260914120700 +0100",
-        "stop": "20260914121100 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Three.qa",
-        "channel": "Alkass Three.qa",
-        "start": "20260914160600 +0100",
-        "stop": "20260914161000 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Three.qa",
-        "channel": "Alkass Three.qa",
-        "start": "20260914200400 +0100",
-        "stop": "20260914200800 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Three.qa",
-        "channel": "Alkass Three.qa",
-        "start": "20260915000300 +0100",
-        "stop": "20260915000700 +0100",
-        "title": "Backcountry Rescue S1 E02 - Home Safe - SEG3",
-        "desc": "",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913221700 +0000",
-        "stop": "20260913222100 +0000",
-        "title": "Matchbox Adventure",
-        "desc": "مايسون جيمس في سباق ضد الزمن لاستعادة الكنز المفقود من المنحدرات الصخرية قبل أن يثور البركان.",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913222100 +0000",
-        "stop": "20260913222500 +0000",
-        "title": "Matchbox Adventure",
-        "desc": "عندما يندلع حريق في المدينة، ينطلق المستكشف الشهير عالميًا، ميسون جيمس، إلى العمل! يقود شاحنة الإطفاء عبر المدينة للمساعدة في إخماد الحريق! هل سيتمكن من اجتياز المدينة وإنقاذ اليوم؟",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913222500 +0000",
-        "stop": "20260913222900 +0000",
-        "title": "Matchbox Adventure",
-        "desc": "مايسون جيمس لديه بعض الوثائق الهامة لتسليمها، لكن في طريقه يقف العميل إلياس كربتري. هل سيتمكن من إيصال الوثائق في الوقت المناسب؟!",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913222900 +0000",
-        "stop": "20260913223300 +0000",
-        "title": "Matchbox Adventure",
-        "desc": "مايسون جيمس يجد نفسه في ازدحام مروري غير متوقع عندما يبتلع حفرة ضخمة الطريق وتبتلع شاحنة الآيس كريم!",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913223300 +0000",
-        "stop": "20260913223600 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "ينطلقان آدم ومشمش في رحلة ممتعة عبر الحروف الأبجدية، ويتعرفان على حيوان أو شيء ممتع لكل حرف من الألف إلى الياء.",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913223600 +0000",
-        "stop": "20260913223900 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يعُدّان آدم ومشمش من واحد إلى عشرة بطريقة ممتعة ومليئة بالمرح لتعليم الأطفال الأرقام.",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913223900 +0000",
-        "stop": "20260913224200 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يستمعان آدم ومشمش لأصوات الآلات الموسيقية الجميلة، من الطبلة والناي إلى البيانو والكمان - في رحلة ممتعة عبر الألحان.",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913224200 +0000",
-        "stop": "20260913224400 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يغنيان آدم ومشمش ويتحركان مع أغنية ممتعة لتعليم الأطفال أجزاء الجسم من خلال الموسيقى والتكرار.",
-        "duration_minutes": 2.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913224400 +0000",
-        "stop": "20260913224600 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يقدمان آدم ومشمش مجموعة من الحيوانات في مغامرة موسيقية ممتعة تساعد الأطفال على تعلم أسمائهم من خلال الإيقاع والتكرار.",
-        "duration_minutes": 2.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914011900 +0000",
-        "stop": "20260914012100 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يتعلمان آدم ومشمش أهمية اللطف مع الآخرين واستخدام الكلمات المهذبة مثل \"شكرًا\" و\"عفوًا\" في المواقف اليومية.",
-        "duration_minutes": 2.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914014600 +0000",
-        "stop": "20260914014900 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يعُدّان آدم ومشمش من واحد إلى عشرة بطريقة ممتعة ومليئة بالمرح لتعليم الأطفال الأرقام.",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914021300 +0000",
-        "stop": "20260914021500 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يغنيان آدم ومشمش ويتحركان مع أغنية ممتعة لتعليم الأطفال أجزاء الجسم من خلال الموسيقى والتكرار.",
-        "duration_minutes": 2.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914021500 +0000",
-        "stop": "20260914021900 +0000",
-        "title": "Barbie: Fashion Stories",
-        "desc": "مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914054600 +0000",
-        "stop": "20260914055000 +0000",
-        "title": "Barbie: Fashion Stories",
-        "desc": "مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914061400 +0000",
-        "stop": "20260914061800 +0000",
-        "title": "Barbie: Dream Besties",
-        "desc": "تعرف على أفضل الصديقات الحالمات: باربي، باربي، تيريزا، رينيه، ديزي، وكين! يشاركن أحلامهن، ويقدمن حيواناتهن الأليفة، ويقمن بجولة في مساحاتهم الحلمية الرائعة.",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914061800 +0000",
-        "stop": "20260914062000 +0000",
-        "title": "Duplo Adventures",
-        "desc": "قطار البخار المزدان بالأضواء هو وسيلة النقل المثلى بينما ننقل مجموعة من المغنيين بجانب مشاهد مغطاة بالثلوج وزينة الموسم.",
-        "duration_minutes": 2.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914080500 +0000",
-        "stop": "20260914080800 +0000",
-        "title": "Duplo Adventures",
-        "desc": "قطار البخار المزدان بالأضواء هو وسيلة النقل المثلى بينما ننقل مجموعة من المغنيين بجانب مشاهد مغطاة بالثلوج وزينة الموسم.",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914091500 +0000",
-        "stop": "20260914091800 +0000",
-        "title": "Duplo Adventures",
-        "desc": "يريد كل من بن، دوغي، هوبسي، راي وكيتي لعب ألعاب مختلفة، عليهم أن يتوصلوا إلى حل وسط.",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914095900 +0000",
-        "stop": "20260914100300 +0000",
-        "title": "Matchbox Adventure",
-        "desc": "عندما يندلع حريق في المدينة، ينطلق المستكشف الشهير عالميًا، ميسون جيمس، إلى العمل! يقود شاحنة الإطفاء عبر المدينة للمساعدة في إخماد الحريق! هل سيتمكن من اجتياز المدينة وإنقاذ اليوم؟",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914111400 +0000",
-        "stop": "20260914111600 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يتعلمان آدم ومشمش عن كوكب الأرض والشمس والقمر، وكيف يتعاقب الليل والنهار من حولنا.",
-        "duration_minutes": 2.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914111600 +0000",
-        "stop": "20260914112000 +0000",
-        "title": "Barbie: Fashion Stories",
-        "desc": "مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914150100 +0000",
-        "stop": "20260914150400 +0000",
-        "title": "Barbie And Barbie On Set",
-        "desc": "باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!",
-        "duration_minutes": 3.0
+        "duration_minutes": 60.0
       }
     ],
     "premium_title_not_english": [
@@ -2149,6 +1339,810 @@
         "duration_minutes": 374.0
       }
     ],
+    "very_short_event_lt_5m": [
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260913221700 +0000",
+        "stop": "20260913222100 +0000",
+        "title": "Matchbox Adventure",
+        "desc": "مايسون جيمس في سباق ضد الزمن لاستعادة الكنز المفقود من المنحدرات الصخرية قبل أن يثور البركان.",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260913222100 +0000",
+        "stop": "20260913222500 +0000",
+        "title": "Matchbox Adventure",
+        "desc": "عندما يندلع حريق في المدينة، ينطلق المستكشف الشهير عالميًا، ميسون جيمس، إلى العمل! يقود شاحنة الإطفاء عبر المدينة للمساعدة في إخماد الحريق! هل سيتمكن من اجتياز المدينة وإنقاذ اليوم؟",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260913222500 +0000",
+        "stop": "20260913222900 +0000",
+        "title": "Matchbox Adventure",
+        "desc": "مايسون جيمس لديه بعض الوثائق الهامة لتسليمها، لكن في طريقه يقف العميل إلياس كربتري. هل سيتمكن من إيصال الوثائق في الوقت المناسب؟!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260913222900 +0000",
+        "stop": "20260913223300 +0000",
+        "title": "Matchbox Adventure",
+        "desc": "مايسون جيمس يجد نفسه في ازدحام مروري غير متوقع عندما يبتلع حفرة ضخمة الطريق وتبتلع شاحنة الآيس كريم!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260913223300 +0000",
+        "stop": "20260913223600 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "ينطلقان آدم ومشمش في رحلة ممتعة عبر الحروف الأبجدية، ويتعرفان على حيوان أو شيء ممتع لكل حرف من الألف إلى الياء.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260913223600 +0000",
+        "stop": "20260913223900 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يعُدّان آدم ومشمش من واحد إلى عشرة بطريقة ممتعة ومليئة بالمرح لتعليم الأطفال الأرقام.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260913223900 +0000",
+        "stop": "20260913224200 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يستمعان آدم ومشمش لأصوات الآلات الموسيقية الجميلة، من الطبلة والناي إلى البيانو والكمان - في رحلة ممتعة عبر الألحان.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260913224200 +0000",
+        "stop": "20260913224400 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يغنيان آدم ومشمش ويتحركان مع أغنية ممتعة لتعليم الأطفال أجزاء الجسم من خلال الموسيقى والتكرار.",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260913224400 +0000",
+        "stop": "20260913224600 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يقدمان آدم ومشمش مجموعة من الحيوانات في مغامرة موسيقية ممتعة تساعد الأطفال على تعلم أسمائهم من خلال الإيقاع والتكرار.",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914011900 +0000",
+        "stop": "20260914012100 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يتعلمان آدم ومشمش أهمية اللطف مع الآخرين واستخدام الكلمات المهذبة مثل \"شكرًا\" و\"عفوًا\" في المواقف اليومية.",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914014600 +0000",
+        "stop": "20260914014900 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يعُدّان آدم ومشمش من واحد إلى عشرة بطريقة ممتعة ومليئة بالمرح لتعليم الأطفال الأرقام.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914021300 +0000",
+        "stop": "20260914021500 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يغنيان آدم ومشمش ويتحركان مع أغنية ممتعة لتعليم الأطفال أجزاء الجسم من خلال الموسيقى والتكرار.",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914021500 +0000",
+        "stop": "20260914021900 +0000",
+        "title": "Barbie: Fashion Stories",
+        "desc": "مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914054600 +0000",
+        "stop": "20260914055000 +0000",
+        "title": "Barbie: Fashion Stories",
+        "desc": "مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914061400 +0000",
+        "stop": "20260914061800 +0000",
+        "title": "Barbie: Dream Besties",
+        "desc": "تعرف على أفضل الصديقات الحالمات: باربي، باربي، تيريزا، رينيه، ديزي، وكين! يشاركن أحلامهن، ويقدمن حيواناتهن الأليفة، ويقمن بجولة في مساحاتهم الحلمية الرائعة.",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914061800 +0000",
+        "stop": "20260914062000 +0000",
+        "title": "Duplo Adventures",
+        "desc": "قطار البخار المزدان بالأضواء هو وسيلة النقل المثلى بينما ننقل مجموعة من المغنيين بجانب مشاهد مغطاة بالثلوج وزينة الموسم.",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914080500 +0000",
+        "stop": "20260914080800 +0000",
+        "title": "Duplo Adventures",
+        "desc": "قطار البخار المزدان بالأضواء هو وسيلة النقل المثلى بينما ننقل مجموعة من المغنيين بجانب مشاهد مغطاة بالثلوج وزينة الموسم.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914091500 +0000",
+        "stop": "20260914091800 +0000",
+        "title": "Duplo Adventures",
+        "desc": "يريد كل من بن، دوغي، هوبسي، راي وكيتي لعب ألعاب مختلفة، عليهم أن يتوصلوا إلى حل وسط.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914095900 +0000",
+        "stop": "20260914100300 +0000",
+        "title": "Matchbox Adventure",
+        "desc": "عندما يندلع حريق في المدينة، ينطلق المستكشف الشهير عالميًا، ميسون جيمس، إلى العمل! يقود شاحنة الإطفاء عبر المدينة للمساعدة في إخماد الحريق! هل سيتمكن من اجتياز المدينة وإنقاذ اليوم؟",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914111400 +0000",
+        "stop": "20260914111600 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يتعلمان آدم ومشمش عن كوكب الأرض والشمس والقمر، وكيف يتعاقب الليل والنهار من حولنا.",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914111600 +0000",
+        "stop": "20260914112000 +0000",
+        "title": "Barbie: Fashion Stories",
+        "desc": "مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914150100 +0000",
+        "stop": "20260914150400 +0000",
+        "title": "Barbie And Barbie On Set",
+        "desc": "باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914152900 +0000",
+        "stop": "20260914153200 +0000",
+        "title": "Duplo Adventures",
+        "desc": "يأخذ بيب وليو هوپسي والعديد من الحيوانات الأخرى التي تحتاج إلى الرعاية إلى مستشفى البيطري لتلقي العلاج وتحسن صحتهم.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914153200 +0000",
+        "stop": "20260914153500 +0000",
+        "title": "Duplo Adventures",
+        "desc": "ينقسم بيب وليو إلى فرق لبناء شيء ما، لكنهما يقرران توحيد جهودهما لجعل الأمر أكثر متعة.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914153500 +0000",
+        "stop": "20260914153800 +0000",
+        "title": "Duplo Adventures",
+        "desc": "يجد ليو وبيب وهوبسي خريطة مذهلة تحمل وجهة غامضة. هل يمكنهم العثور عليها؟",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914153800 +0000",
+        "stop": "20260914154000 +0000",
+        "title": "Duplo Adventures",
+        "desc": "بيب، ليو و هوبسي يزورون راي في مكان مربي النحل ليتعلموا عن النحل!",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914173900 +0000",
+        "stop": "20260914174300 +0000",
+        "title": "Barbie Summer Adventure",
+        "desc": "انتهت المدرسة لفصل الصيف! باربي، باربي، سكيبر، ستايسي، وتشيلسي يحتفلون!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914185200 +0000",
+        "stop": "20260914185500 +0000",
+        "title": "Barbie: Fashion Stories",
+        "desc": "باربي و باربي تغنيان عن مدى روعة الأصدقاء أثناء تصوير فيديو استعد معي بنسخة حفلة",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914191400 +0000",
+        "stop": "20260914191800 +0000",
+        "title": "Matchbox Adventure",
+        "desc": "استعدوا للاضطرابات! ستكون الرحلة مليئة بالمطبات!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914191800 +0000",
+        "stop": "20260914192000 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يعرّفان آدم ومشمش الأطفال على الفصول الأربعة ويشرحان ما يحدث من تغييرات في الطقس خلال كل فصل.",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914192000 +0000",
+        "stop": "20260914192200 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يتّبع آدم روتينه المسائي من الاستحمام وقراءة القصص حتى يحين وقت النوم في أغنية هادئة تساعد الأطفال على الاسترخاء.",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914215900 +0000",
+        "stop": "20260914220300 +0000",
+        "title": "Barbie: Fashion Stories",
+        "desc": "باربي وباربي يصوران مقطع استعد معي على الشاطئ في منزل الأحلام الجديد!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914225700 +0000",
+        "stop": "20260914230000 +0000",
+        "title": "Duplo Adventures",
+        "desc": "ماذا تريد أن تصبح عندما تكبر؟ الهالوين هو عطلة ممتعة حيث يمكن للأطفال ارتداء ملابس أي شخصية يرغبون فيها ويكونوا من يريدون أن يكونوا.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914231200 +0000",
+        "stop": "20260914231500 +0000",
+        "title": "Barbie Doll Adventures",
+        "desc": "تتسبب إوزة هاربة في مطاردة فوضوية تقود باربي وأصدقائها عبر عالم الدمى.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914233900 +0000",
+        "stop": "20260914234100 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يذهب آدم في رحلة مع جده ويستكشفان الألوان من حولهما في الطبيعة والحياة اليومية.",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260914234100 +0000",
+        "stop": "20260914234400 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يعرّفان آدم ومشمش الأطفال على الأشكال الأساسية مثل الدائرة والمربع والمثلث والمستطيل من خلال أغنية ممتعة وسهلة الحفظ.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNtv Pop Up.sa",
+        "channel": "OSNtv Pop Up.sa",
+        "start": "20260913235700 +0000",
+        "stop": "20260914000000 +0000",
+        "title": "The Amazing World Of Gumball",
+        "desc": "ذا أميزينج وورلد أوف جامبول - عالم غامبول المُدهش",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "MBC3.ae@SD",
+        "channel": "MBC3",
+        "start": "20260914000000 +0000",
+        "stop": "20260914000100 +0000",
+        "title": "سلاحف النينجا",
+        "desc": "",
+        "duration_minutes": 1.0
+      },
+      {
+        "shard": "provider-adm",
+        "channel_id": "Majid.sa",
+        "channel": "Majid.sa",
+        "start": "20260913192000 +0000",
+        "stop": "20260913192300 +0000",
+        "title": "غارفيلد أوريجينالز",
+        "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-adm",
+        "channel_id": "Majid.sa",
+        "channel": "Majid.sa",
+        "start": "20260913225000 +0000",
+        "stop": "20260913225300 +0000",
+        "title": "غارفيلد أوريجينالز",
+        "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
+        "duration_minutes": 3.0
+      }
+    ],
+    "arabic_provider_title_not_arabic": [
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260913170000 +0000",
+        "stop": "20260913180000 +0000",
+        "title": "A'elati Tarbah",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260913180000 +0000",
+        "stop": "20260913190000 +0000",
+        "title": "Teebah",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260913190000 +0000",
+        "stop": "20260913203000 +0000",
+        "title": "Kalam Nawa'em",
+        "desc": "",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260913203000 +0000",
+        "stop": "20260913212500 +0000",
+        "title": "Fi Mithl Hatha Al Yawm",
+        "desc": "",
+        "duration_minutes": 55.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260913212500 +0000",
+        "stop": "20260913221500 +0000",
+        "title": "A'elati Tarbah",
+        "desc": "",
+        "duration_minutes": 50.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260913221500 +0000",
+        "stop": "20260913230500 +0000",
+        "title": "Al Nowaylati",
+        "desc": "",
+        "duration_minutes": 50.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260913230500 +0000",
+        "stop": "20260913235000 +0000",
+        "title": "Ali Klay",
+        "desc": "",
+        "duration_minutes": 45.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260913235000 +0000",
+        "stop": "20260913235959 +0000",
+        "title": "Awdat Khalati",
+        "desc": "",
+        "duration_minutes": 9.98
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914000000 +0000",
+        "stop": "20260914004000 +0000",
+        "title": "Awdat Khalati",
+        "desc": "",
+        "duration_minutes": 40.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914004000 +0000",
+        "stop": "20260914012000 +0000",
+        "title": "Teebah",
+        "desc": "",
+        "duration_minutes": 40.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914012000 +0000",
+        "stop": "20260914021000 +0000",
+        "title": "A'elati Tarbah",
+        "desc": "",
+        "duration_minutes": 50.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914021000 +0000",
+        "stop": "20260914025500 +0000",
+        "title": "Al Nowaylati",
+        "desc": "",
+        "duration_minutes": 45.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914025500 +0000",
+        "stop": "20260914033900 +0000",
+        "title": "Ali Klay",
+        "desc": "",
+        "duration_minutes": 44.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914033900 +0000",
+        "stop": "20260914041500 +0000",
+        "title": "Al Motawahesh",
+        "desc": "",
+        "duration_minutes": 36.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914041500 +0000",
+        "stop": "20260914044500 +0000",
+        "title": "Al A'ela",
+        "desc": "",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914044500 +0000",
+        "stop": "20260914053300 +0000",
+        "title": "Awdat Khalati",
+        "desc": "",
+        "duration_minutes": 48.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914053300 +0000",
+        "stop": "20260914060500 +0000",
+        "title": "Teebah",
+        "desc": "",
+        "duration_minutes": 32.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914060500 +0000",
+        "stop": "20260914065500 +0000",
+        "title": "A'elati Tarbah",
+        "desc": "",
+        "duration_minutes": 50.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914065500 +0000",
+        "stop": "20260914070000 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 5.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914070000 +0000",
+        "stop": "20260914074800 +0000",
+        "title": "Al Nowaylati",
+        "desc": "",
+        "duration_minutes": 48.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914074800 +0000",
+        "stop": "20260914075500 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 7.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914075500 +0000",
+        "stop": "20260914085000 +0000",
+        "title": "Ali Klay",
+        "desc": "",
+        "duration_minutes": 55.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914085000 +0000",
+        "stop": "20260914085500 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 5.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914085500 +0000",
+        "stop": "20260914093000 +0000",
+        "title": "Al Motawahesh",
+        "desc": "",
+        "duration_minutes": 35.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914093000 +0000",
+        "stop": "20260914100500 +0000",
+        "title": "Al A'ela",
+        "desc": "",
+        "duration_minutes": 35.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914100500 +0000",
+        "stop": "20260914110000 +0000",
+        "title": "Awdat Khalati",
+        "desc": "",
+        "duration_minutes": 55.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914110000 +0000",
+        "stop": "20260914115100 +0000",
+        "title": "A'elati Tarbah",
+        "desc": "",
+        "duration_minutes": 51.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914115100 +0000",
+        "stop": "20260914120000 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 9.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914120000 +0000",
+        "stop": "20260914125000 +0000",
+        "title": "Aa Amal",
+        "desc": "",
+        "duration_minutes": 50.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914125000 +0000",
+        "stop": "20260914130000 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 10.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914130000 +0000",
+        "stop": "20260914134800 +0000",
+        "title": "Al Nowaylati",
+        "desc": "",
+        "duration_minutes": 48.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914134800 +0000",
+        "stop": "20260914140000 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 12.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914140000 +0000",
+        "stop": "20260914145400 +0000",
+        "title": "Ali Klay",
+        "desc": "",
+        "duration_minutes": 54.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914145400 +0000",
+        "stop": "20260914150000 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 6.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914150000 +0000",
+        "stop": "20260914154700 +0000",
+        "title": "Awdat Khalati",
+        "desc": "",
+        "duration_minutes": 47.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914154700 +0000",
+        "stop": "20260914155500 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 8.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914155500 +0000",
+        "stop": "20260914163000 +0000",
+        "title": "Al Motawahesh",
+        "desc": "",
+        "duration_minutes": 35.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914163000 +0000",
+        "stop": "20260914170500 +0000",
+        "title": "Al A'ela",
+        "desc": "",
+        "duration_minutes": 35.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914170500 +0000",
+        "stop": "20260914175000 +0000",
+        "title": "A'elati Tarbah",
+        "desc": "",
+        "duration_minutes": 45.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914175000 +0000",
+        "stop": "20260914180000 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 10.0
+      }
+    ],
     "arabic_provider_description_not_arabic": [
       {
         "shard": "provider-mbc",
@@ -2179,106 +2173,6 @@
         "title": "Shaqet Faisal",
         "desc": "‫‬",
         "duration_minutes": 50.0
-      },
-      {
-        "shard": "provider-adm",
-        "channel_id": "AbuDhabiTV.ae@SD",
-        "channel": "Abu Dhabi TV HD",
-        "start": "20260914103000 +0000",
-        "stop": "20260914113000 +0000",
-        "title": "Awalem Khafeya",
-        "desc": "Hilal Kamal is a journalist who coincidentally finds the memoirs of an actress who is believed to have been murdered. The memoirs reveal the truth about her death, which urges Hilal to form a team to uncover the truth.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-adm",
-        "channel_id": "AbuDhabiTV.ae@SD",
-        "channel": "Abu Dhabi TV HD",
-        "start": "20260915063000 +0000",
-        "stop": "20260915073000 +0000",
-        "title": "Wazen",
-        "desc": "A group of eminent poets from all over the UAE talk about their notable achievements in leaving an impact on poetry in the country.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-adm",
-        "channel_id": "AbuDhabiTV.ae@SD",
-        "channel": "Abu Dhabi TV HD",
-        "start": "20260915093000 +0000",
-        "stop": "20260915100000 +0000",
-        "title": "Athwaaq",
-        "desc": "Owners of UAE-inspired collectibles and designs showcase their vibrant homes inspired by the country's rich environment and heritage.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-adm",
-        "channel_id": "AbuDhabiTV.ae@SD",
-        "channel": "Abu Dhabi TV HD",
-        "start": "20260915100000 +0000",
-        "stop": "20260915110000 +0000",
-        "title": "Ma'radh Abu Dhabi Al Dowali Le Al ketab",
-        "desc": "The Abu Dhabi International Book Fair kicks off with the goal of providing a platform for connecting the leading publishers and providing a wide variety of books for interested readers to buy.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-adm",
-        "channel_id": "AbuDhabiTV.ae@SD",
-        "channel": "Abu Dhabi TV HD",
-        "start": "20260915110000 +0000",
-        "stop": "20260915113000 +0000",
-        "title": "Nashrat Al Akhbar",
-        "desc": "The hosts present the latest and biggest news and updates and interview experts to discuss and analyse events in the UAE and around the world.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-adm",
-        "channel_id": "AbuDhabiTV.ae@SD",
-        "channel": "Abu Dhabi TV HD",
-        "start": "20260915113000 +0000",
-        "stop": "20260915120000 +0000",
-        "title": "Awalem Khafiya",
-        "desc": "Hilal Kamel, a famous journalist, acquires important documents that incriminate some politicians and expose their corruption. His life is in danger when he decides to publish the information.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-adm",
-        "channel_id": "AbuDhabiTV.ae@SD",
-        "channel": "Abu Dhabi TV HD",
-        "start": "20260915120000 +0000",
-        "stop": "20260915130000 +0000",
-        "title": "Kasr Adem",
-        "desc": "People from different backgrounds and social statuses in Syria deal with the crisis the country faces, and the weakest are the ones who suffer the most.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-adm",
-        "channel_id": "AbuDhabiTV.ae@SD",
-        "channel": "Abu Dhabi TV HD",
-        "start": "20260915130000 +0000",
-        "stop": "20260915140000 +0000",
-        "title": "Awlaad Al Ra'i",
-        "desc": "Three brothers embark on a difficult journey to build a business empire, resulting in wealth and influence that test their family ties.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-adm",
-        "channel_id": "AbuDhabiTV.ae@SD",
-        "channel": "Abu Dhabi TV HD",
-        "start": "20260915140000 +0000",
-        "stop": "20260915150000 +0000",
-        "title": "Nashrat Al Akhbar",
-        "desc": "The hosts present the latest and biggest news and updates and interview experts to discuss and analyse events in the UAE and around the world.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-adm",
-        "channel_id": "AbuDhabiTV.ae@SD",
-        "channel": "Abu Dhabi TV HD",
-        "start": "20260915150000 +0000",
-        "stop": "20260915160000 +0000",
-        "title": "Masa Abu Dhabi",
-        "desc": "A comprehensive compilation of latest events and happenings from around the UAE, along with various topics and interesting stories.",
-        "duration_minutes": 60.0
       }
     ],
     "hybrid_arabic_latin_description": [
