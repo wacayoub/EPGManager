@@ -1,15 +1,15 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=977
-programmes_scanned=47478
+channels_scanned=968
+programmes_scanned=46598
 critical=0
-warnings=37889
+warnings=37510
 
 ISSUE COUNTS
-empty_description=34686
-very_short_event_lt_5m=2108
-arabic_provider_title_not_arabic=949
-premium_title_not_english=88
-very_long_event_gt_6h=50
+empty_description=34369
+very_short_event_lt_5m=2053
+arabic_provider_title_not_arabic=946
+premium_title_not_english=83
+very_long_event_gt_6h=51
 hybrid_arabic_latin_description=5
 arabic_provider_description_not_arabic=3
 
@@ -23,9 +23,7 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260915034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=949
-- provider-mbc | EN: MBC Iraq | 20260913203000 +0000 | Fi Mithl Hatha Al Yawm
-- provider-mbc | EN: MBC Iraq | 20260913212500 +0000 | A'elati Tarbah
+[arabic_provider_title_not_arabic] count=946
 - provider-mbc | EN: MBC Iraq | 20260913221500 +0000 | Al Nowaylati
 - provider-mbc | EN: MBC Iraq | 20260913230500 +0000 | Ali Klay
 - provider-mbc | EN: MBC Iraq | 20260913235000 +0000 | Awdat Khalati
@@ -34,9 +32,10 @@ TOP SAMPLES
 - provider-mbc | EN: MBC Iraq | 20260914012000 +0000 | A'elati Tarbah
 - provider-mbc | EN: MBC Iraq | 20260914021000 +0000 | Al Nowaylati
 - provider-mbc | EN: MBC Iraq | 20260914025500 +0000 | Ali Klay
+- provider-mbc | EN: MBC Iraq | 20260914033900 +0000 | Al Motawahesh
+- provider-mbc | EN: MBC Iraq | 20260914041500 +0000 | Al A'ela
 
-[empty_description] count=34686
-- provider-bein | beIN Drama.eg | 20260913210000 +0000 | Basmet Hada
+[empty_description] count=34369
 - provider-bein | beIN Drama.eg | 20260913220000 +0000 | El Qatel Allazy Ahabany
 - provider-bein | beIN Drama.eg | 20260913230000 +0000 | Sarmasik Zamani
 - provider-bein | beIN Drama.eg | 20260914000000 +0000 | Darb Al Thahab
@@ -46,6 +45,7 @@ TOP SAMPLES
 - provider-bein | beIN Drama.eg | 20260914040000 +0000 | El Qatel Allazy Ahabany
 - provider-bein | beIN Drama.eg | 20260914050000 +0000 | Sarmasik Zamani
 - provider-bein | beIN Drama.eg | 20260914060000 +0000 | Darb Al Thahab
+- provider-bein | beIN Drama.eg | 20260914070000 +0000 | Mazad El Shar
 
 [hybrid_arabic_latin_description] count=5
 - mena-ae | Nick Jr HD | 20260914010000 +0000 | رابل آند كرو
@@ -59,8 +59,7 @@ TOP SAMPLES
 - mena-ae | NickToons HD | 20260914010000 +0000 | سانجاي أند كرايغ
   desc: ينقلب الأطفال على سانجاي عندما يحاصرهم جميعًا على طريق سريع متوسط في "Traffical Island"، ثم في "Partybot"، يجد سانجاي وكريج روبوتًا قديمًا ويصبحان حيوانات احتفالية.
 
-[premium_title_not_english] count=88
-- provider-bein | BeIn Series HD 1.eg | 20260913210000 +0000 | 1883
+[premium_title_not_english] count=83
 - provider-bein | BeIn Series HD 1.eg | 20260914030000 +0000 | 1883
 - provider-bein | BeIn Series HD 1.eg | 20260914090000 +0000 | 1883
 - provider-bein | BeIn Series HD 1.eg | 20260914150000 +0000 | 1883
@@ -76,8 +75,10 @@ TOP SAMPLES
   desc: الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.
 - provider-bein | بي إن دراما | 20260914020000 +0000 | سراب
   desc: يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب
+- provider-bein | بي إن دراما | 20260914030000 +0000 | بصمة حدا
+  desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
 
-[very_long_event_gt_6h] count=50
+[very_long_event_gt_6h] count=51
 - provider-bein | bein SPORTS FTA DIGITAL.qa | 20260913212500 +0100 | Saudi Arabia vs Indonesia - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB07
   desc: مباراة، موسم 2026.
 - provider-bein | bein SPORTS FTA DIGITAL.qa | 20260914212500 +0100 | Saudi Arabia vs Indonesia
@@ -92,15 +93,7 @@ TOP SAMPLES
 - mena-eg | EN: Masrah Masr Channel | 20260914124848 +0000 | TV guide is not available
 - mena-qa | Qatar TV HD | 20260913214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2108
-- provider-osn | OSNtv Kids | 20260913221700 +0000 | Matchbox Adventure
-  desc: مايسون جيمس في سباق ضد الزمن لاستعادة الكنز المفقود من المنحدرات الصخرية قبل أن يثور البركان.
-- provider-osn | OSNtv Kids | 20260913222100 +0000 | Matchbox Adventure
-  desc: عندما يندلع حريق في المدينة، ينطلق المستكشف الشهير عالميًا، ميسون جيمس، إلى العمل! يقود شاحنة الإطفاء عبر المدينة للمساعدة في إخماد الحريق! هل سيتمكن من اجتياز المدينة وإنقاذ اليوم؟
-- provider-osn | OSNtv Kids | 20260913222500 +0000 | Matchbox Adventure
-  desc: مايسون جيمس لديه بعض الوثائق الهامة لتسليمها، لكن في طريقه يقف العميل إلياس كربتري. هل سيتمكن من إيصال الوثائق في الوقت المناسب؟!
-- provider-osn | OSNtv Kids | 20260913222900 +0000 | Matchbox Adventure
-  desc: مايسون جيمس يجد نفسه في ازدحام مروري غير متوقع عندما يبتلع حفرة ضخمة الطريق وتبتلع شاحنة الآيس كريم!
+[very_short_event_lt_5m] count=2053
 - provider-osn | OSNtv Kids | 20260913223300 +0000 | Adam Wa Mishmish
   desc: ينطلقان آدم ومشمش في رحلة ممتعة عبر الحروف الأبجدية، ويتعرفان على حيوان أو شيء ممتع لكل حرف من الألف إلى الياء.
 - provider-osn | OSNtv Kids | 20260913223600 +0000 | Adam Wa Mishmish
@@ -113,3 +106,11 @@ TOP SAMPLES
   desc: يقدمان آدم ومشمش مجموعة من الحيوانات في مغامرة موسيقية ممتعة تساعد الأطفال على تعلم أسمائهم من خلال الإيقاع والتكرار.
 - provider-osn | OSNtv Kids | 20260914011900 +0000 | Adam Wa Mishmish
   desc: يتعلمان آدم ومشمش أهمية اللطف مع الآخرين واستخدام الكلمات المهذبة مثل "شكرًا" و"عفوًا" في المواقف اليومية.
+- provider-osn | OSNtv Kids | 20260914014600 +0000 | Adam Wa Mishmish
+  desc: يعُدّان آدم ومشمش من واحد إلى عشرة بطريقة ممتعة ومليئة بالمرح لتعليم الأطفال الأرقام.
+- provider-osn | OSNtv Kids | 20260914021300 +0000 | Adam Wa Mishmish
+  desc: يغنيان آدم ومشمش ويتحركان مع أغنية ممتعة لتعليم الأطفال أجزاء الجسم من خلال الموسيقى والتكرار.
+- provider-osn | OSNtv Kids | 20260914021500 +0000 | Barbie: Fashion Stories
+  desc: مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!
+- provider-osn | OSNtv Kids | 20260914054600 +0000 | Barbie: Fashion Stories
+  desc: مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!

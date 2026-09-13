@@ -1,148 +1,138 @@
 {
   "schema": 1,
   "scope": "all exclusive MENA country/provider shards",
-  "channels_scanned": 977,
-  "programmes_scanned": 47478,
+  "channels_scanned": 968,
+  "programmes_scanned": 46598,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 3,
-    "arabic_provider_title_not_arabic": 949,
-    "empty_description": 34686,
+    "arabic_provider_title_not_arabic": 946,
+    "empty_description": 34369,
     "hybrid_arabic_latin_description": 5,
-    "premium_title_not_english": 88,
-    "severity_warning": 37889,
-    "very_long_event_gt_6h": 50,
-    "very_short_event_lt_5m": 2108
+    "premium_title_not_english": 83,
+    "severity_warning": 37510,
+    "very_long_event_gt_6h": 51,
+    "very_short_event_lt_5m": 2053
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 788,
+      "empty_description": 785,
       "hybrid_arabic_latin_description": 5
     },
     "mena-bh": {
-      "empty_description": 78,
+      "empty_description": 142,
       "very_long_event_gt_6h": 1,
-      "very_short_event_lt_5m": 7
+      "very_short_event_lt_5m": 16
     },
     "mena-dz": {
-      "empty_description": 726,
+      "empty_description": 720,
       "very_long_event_gt_6h": 6,
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 3252,
+      "empty_description": 3235,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 2600,
+      "empty_description": 2575,
       "very_short_event_lt_5m": 6
     },
     "mena-jo": {
-      "empty_description": 512
+      "empty_description": 505
     },
     "mena-kw": {
-      "empty_description": 796,
+      "empty_description": 863,
       "very_short_event_lt_5m": 1
     },
     "mena-lb": {
-      "empty_description": 780,
+      "empty_description": 770,
       "very_long_event_gt_6h": 2
     },
     "mena-ly": {
-      "empty_description": 221
+      "empty_description": 220
     },
     "mena-mr": {
-      "empty_description": 62,
+      "empty_description": 61,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 377
+      "empty_description": 360
     },
     "mena-other": {
-      "empty_description": 16640,
+      "empty_description": 16422,
       "very_long_event_gt_6h": 22,
-      "very_short_event_lt_5m": 1200
+      "very_short_event_lt_5m": 1180
     },
     "mena-ps": {
-      "empty_description": 773
+      "empty_description": 764
     },
     "mena-qa": {
-      "empty_description": 1395,
-      "very_long_event_gt_6h": 2,
+      "empty_description": 1381,
+      "very_long_event_gt_6h": 3,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1824,
-      "very_short_event_lt_5m": 456
+      "empty_description": 1773,
+      "very_short_event_lt_5m": 427
     },
     "mena-sd": {
-      "empty_description": 248
+      "empty_description": 246
     },
     "mena-sy": {
-      "empty_description": 145
+      "empty_description": 142
     },
     "mena-tn": {
-      "empty_description": 210,
+      "empty_description": 207,
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
-      "empty_description": 572,
+      "empty_description": 569,
       "very_long_event_gt_6h": 6
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 341,
-      "empty_description": 306,
+      "arabic_provider_title_not_arabic": 340,
+      "empty_description": 303,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 12
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 122,
-      "empty_description": 1035,
-      "very_short_event_lt_5m": 366
+      "empty_description": 1001,
+      "very_short_event_lt_5m": 355
     },
     "provider-bein": {
-      "empty_description": 249,
-      "premium_title_not_english": 84,
+      "empty_description": 238,
+      "premium_title_not_english": 79,
       "very_long_event_gt_6h": 2
     },
     "provider-dmi": {
-      "arabic_provider_title_not_arabic": 74,
+      "arabic_provider_title_not_arabic": 75,
       "empty_description": 287,
       "very_long_event_gt_6h": 2
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 3,
-      "arabic_provider_title_not_arabic": 277,
-      "empty_description": 357,
+      "arabic_provider_title_not_arabic": 275,
+      "empty_description": 354,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "provider-osn": {
-      "empty_description": 128,
+      "empty_description": 124,
       "premium_title_not_english": 4,
-      "very_short_event_lt_5m": 37
+      "very_short_event_lt_5m": 33
     },
     "provider-rotana": {
-      "arabic_provider_title_not_arabic": 135,
-      "empty_description": 150
+      "arabic_provider_title_not_arabic": 134,
+      "empty_description": 148
     },
     "provider-starz": {
-      "empty_description": 175,
+      "empty_description": 174,
       "very_long_event_gt_6h": 1
     }
   },
   "samples": {
     "empty_description": [
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260913210000 +0000",
-        "stop": "20260913220000 +0000",
-        "title": "Basmet Hada",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
       {
         "shard": "provider-bein",
         "channel_id": "beIN Drama.eg",
@@ -377,16 +367,6 @@
         "shard": "provider-bein",
         "channel_id": "BeIn Series HD 1.eg",
         "channel": "BeIn Series HD 1.eg",
-        "start": "20260913210000 +0000",
-        "stop": "20260913220000 +0000",
-        "title": "1883",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
         "start": "20260913220000 +0000",
         "stop": "20260913230000 +0000",
         "title": "Yellowjackets S2",
@@ -532,19 +512,29 @@
         "title": "Shark Tank",
         "desc": "",
         "duration_minutes": 60.0
-      }
-    ],
-    "premium_title_not_english": [
+      },
       {
         "shard": "provider-bein",
         "channel_id": "BeIn Series HD 1.eg",
         "channel": "BeIn Series HD 1.eg",
-        "start": "20260913210000 +0000",
-        "stop": "20260913220000 +0000",
-        "title": "1883",
+        "start": "20260914130000 +0000",
+        "stop": "20260914140000 +0000",
+        "title": "Matlock S2",
         "desc": "",
         "duration_minutes": 60.0
       },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914140000 +0000",
+        "stop": "20260914150000 +0000",
+        "title": "The Good Doctor S1",
+        "desc": "",
+        "duration_minutes": 60.0
+      }
+    ],
+    "premium_title_not_english": [
       {
         "shard": "provider-bein",
         "channel_id": "BeIn Series HD 1.eg",
@@ -849,16 +839,6 @@
         "shard": "provider-bein",
         "channel_id": "beINMovies1Premiere.qa@SD",
         "channel": "beINMOVIES1",
-        "start": "20260913194500 +0000",
-        "stop": "20260913221500 +0000",
-        "title": "أساطير أبطال كوندور: الشجعان",
-        "desc": "",
-        "duration_minutes": 150.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
         "start": "20260913221500 +0000",
         "stop": "20260913235900 +0000",
         "title": "عدالة الجدة",
@@ -932,6 +912,26 @@
         "start": "20260914101500 +0000",
         "stop": "20260914120000 +0000",
         "title": "دير سانتا",
+        "desc": "",
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260914120000 +0000",
+        "stop": "20260914143000 +0000",
+        "title": "أساطير أبطال كوندور: الشجعان",
+        "desc": "",
+        "duration_minutes": 150.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260914143000 +0000",
+        "stop": "20260914161500 +0000",
+        "title": "البلوغ",
         "desc": "",
         "duration_minutes": 105.0
       }
@@ -1043,6 +1043,16 @@
         "channel": "Qatar TV HD",
         "start": "20260914214500 +0100",
         "stop": "20260915070000 +0100",
+        "title": "Soil",
+        "desc": "",
+        "duration_minutes": 555.0
+      },
+      {
+        "shard": "mena-qa",
+        "channel_id": "Qatar.TV.HD.ae",
+        "channel": "Qatar TV HD",
+        "start": "20260915214500 +0100",
+        "stop": "20260916070000 +0100",
         "title": "Soil",
         "desc": "",
         "duration_minutes": 555.0
@@ -1326,59 +1336,9 @@
         "title": "WOA STARZPLAY RUGBY",
         "desc": "‫‬.",
         "duration_minutes": 444.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "EN:.Aflam.sa",
-        "channel": "EN: Aflam",
-        "start": "20260914115957 +0000",
-        "stop": "20260914235959 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 720.03
       }
     ],
     "very_short_event_lt_5m": [
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913221700 +0000",
-        "stop": "20260913222100 +0000",
-        "title": "Matchbox Adventure",
-        "desc": "مايسون جيمس في سباق ضد الزمن لاستعادة الكنز المفقود من المنحدرات الصخرية قبل أن يثور البركان.",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913222100 +0000",
-        "stop": "20260913222500 +0000",
-        "title": "Matchbox Adventure",
-        "desc": "عندما يندلع حريق في المدينة، ينطلق المستكشف الشهير عالميًا، ميسون جيمس، إلى العمل! يقود شاحنة الإطفاء عبر المدينة للمساعدة في إخماد الحريق! هل سيتمكن من اجتياز المدينة وإنقاذ اليوم؟",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913222500 +0000",
-        "stop": "20260913222900 +0000",
-        "title": "Matchbox Adventure",
-        "desc": "مايسون جيمس لديه بعض الوثائق الهامة لتسليمها، لكن في طريقه يقف العميل إلياس كربتري. هل سيتمكن من إيصال الوثائق في الوقت المناسب؟!",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913222900 +0000",
-        "stop": "20260913223300 +0000",
-        "title": "Matchbox Adventure",
-        "desc": "مايسون جيمس يجد نفسه في ازدحام مروري غير متوقع عندما يبتلع حفرة ضخمة الطريق وتبتلع شاحنة الآيس كريم!",
-        "duration_minutes": 4.0
-      },
       {
         "shard": "provider-osn",
         "channel_id": "OSNKids.ae@SD",
@@ -1738,29 +1698,49 @@
         "title": "غارفيلد أوريجينالز",
         "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
         "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-adm",
+        "channel_id": "Majid.sa",
+        "channel": "Majid.sa",
+        "start": "20260914144500 +0000",
+        "stop": "20260914144800 +0000",
+        "title": "غارفيلد أوريجينالز",
+        "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-adm",
+        "channel_id": "Majid.sa",
+        "channel": "Majid.sa",
+        "start": "20260914144800 +0000",
+        "stop": "20260914145100 +0000",
+        "title": "غارفيلد أوريجينالز",
+        "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-adm",
+        "channel_id": "Majid.sa",
+        "channel": "Majid.sa",
+        "start": "20260914145100 +0000",
+        "stop": "20260914145400 +0000",
+        "title": "غارفيلد أوريجينالز",
+        "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-adm",
+        "channel_id": "Majid.sa",
+        "channel": "Majid.sa",
+        "start": "20260914191500 +0000",
+        "stop": "20260914191800 +0000",
+        "title": "غارفيلد أوريجينالز",
+        "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
+        "duration_minutes": 3.0
       }
     ],
     "arabic_provider_title_not_arabic": [
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260913203000 +0000",
-        "stop": "20260913212500 +0000",
-        "title": "Fi Mithl Hatha Al Yawm",
-        "desc": "",
-        "duration_minutes": 55.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260913212500 +0000",
-        "stop": "20260913221500 +0000",
-        "title": "A'elati Tarbah",
-        "desc": "",
-        "duration_minutes": 50.0
-      },
       {
         "shard": "provider-mbc",
         "channel_id": "EN:.MBC1.Iraq.sa",
@@ -2140,6 +2120,26 @@
         "title": "Layla Fontastic Ma' Abla Fahita",
         "desc": "",
         "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914200000 +0000",
+        "stop": "20260914203500 +0000",
+        "title": "Al Motawahesh",
+        "desc": "",
+        "duration_minutes": 35.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914203500 +0000",
+        "stop": "20260914212300 +0000",
+        "title": "Fi Mithl Hatha Al Yawm",
+        "desc": "",
+        "duration_minutes": 48.0
       }
     ],
     "arabic_provider_description_not_arabic": [

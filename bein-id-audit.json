@@ -1,1768 +1,4547 @@
 {
-  "schema": 1,
-  "counts": {
-    "ALIAS/REVIEW": 18,
-    "BROKEN": 1,
-    "OK": 39,
-    "WEAK": 0
+  "schema": 2,
+  "mode": "virtual-epgmanager-exhaustive-bein",
+  "summary": {
+    "channels": 66,
+    "programmes": 1143,
+    "counts": {
+      "ALIAS_OK": 15,
+      "REVIEW": 36,
+      "PASS": 13,
+      "FAIL": 2
+    }
   },
-  "sports": [
+  "compat_aliases": {
+    "4k_DIGITAL_Mono_AR.bein": "beIN4K.qa@SD",
+    "beINSports2.qa@MENA": "beIN SPORTS2 DIGITAL.qa",
+    "beINSports4.qa@MENA": "beIN SPORTS4 DIGITAL.qa",
+    "beINSports6.qa@MENA": "beIN SPORTS6 DIGITAL -d-1.qa",
+    "beIN SPORTS7 DIGITAL.qa": "beINSports7.qa@MENA",
+    "NEWS_DIGITAL_Mono_AR.bein": "beIN.Sports.News.ae",
+    "NEWS_DIGITAL_Mono_EN.bein": "beIN.Sports.News.ae",
+    "beIN SPORTS XTRA 04 bein.com.qa": "beIN SPORTS XTRA 4.qa",
+    "beIN SPORTS XTRA 05 bein.com.qa": "beIN SPORTS XTRA 5.qa",
+    "beIN_SPORTS_XTRA_06_bein.com_EN.bein": "beIN SPORTS XTRA 6.qa",
+    "beIN_SPORTS_XTRA_07_bein.com_EN.bein": "beIN SPORTS XTRA 7.qa",
+    "beIN_SPORTS_XTRA_08_Bein.com_EN.bein": "beIN SPORTS XTRA 8.qa",
+    "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein": "beIN SPORTS XTRA 9.qa",
+    "beIN SPORTS XTRA 3.qa": "beINSPORTSXTRA3.qa",
+    "logos-_beINSPORTSXTRA3_EN.bein": "beINSPORTSXTRA3.qa"
+  },
+  "non_recommended_ids": [
+    "bein SPORTS FTA DIGITAL.qa",
+    "beIN SPORTS-boxoffice-bein.com.qa",
+    "beIN SPORTS66 DIGITAL -01.qa",
+    "bein.com-05.qa",
+    "bein.com-06.qa",
+    "bein.com-07.qa",
+    "bein.com-08.qa",
+    "beIN_SPORTS66_DIGITAL_Mono-01_EN.bein"
+  ],
+  "channels": [
     {
       "id": "4k_DIGITAL_Mono_AR.bein",
       "name": "4k_DIGITAL_Mono_AR",
       "family": "beIN 4K",
-      "sports_like": true,
-      "events": 25,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "GUIDE_ALIAS_ID"
-      ],
-      "empty_desc": 0,
-      "title_ar_pct": 72.0,
-      "title_en_pct": 28.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "sports_ar",
+      "events": 24,
+      "fingerprint": "00a20a16d415e30222e09e3bf3c938e3c971a349",
+      "coverage_hours": 45.78,
+      "span_hours": 45.78,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 75.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 75.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 29.2,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship",
-        "Live : rpool v Fulham - الدوري الإنجليزي الممتاز",
-        "Sunderland v Arsenal - الدوري الإنجليزي الممتاز",
-        "Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship",
-        "Live : rpool v Fulham - الدوري الإنجليزي الممتاز"
-      ]
+        {
+          "start": "20260913214500 +0000",
+          "stop": "20260913233500 +0000",
+          "title": "Live : rpool v Fulham - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        },
+        {
+          "start": "20260913233500 +0000",
+          "stop": "20260914012500 +0000",
+          "title": "Sunderland v Arsenal - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        },
+        {
+          "start": "20260914012500 +0000",
+          "stop": "20260914033500 +0000",
+          "title": "Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914033500 +0000",
+          "stop": "20260914052500 +0000",
+          "title": "Live : rpool v Fulham - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "LOW_TITLE_DIVERSITY=17%"
+      ],
+      "compat_canonical": "beIN4K.qa@SD",
+      "alias_exact_match": true
+    },
+    {
+      "id": "beIN Drama.eg",
+      "name": "beIN Drama.eg",
+      "family": "beIN Drama",
+      "kind": "drama",
+      "events": 23,
+      "fingerprint": "a27e6f763ef754646ecb6cd137d55379129a4f51",
+      "coverage_hours": 22.0,
+      "span_hours": 22.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 23,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 4.3,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 4.3,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 17.4,
+      "unique_title_pct": 30.4,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "El Qatel Allazy Ahabany",
+          "desc": ""
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "Sarmasik Zamani",
+          "desc": ""
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "Darb Al Thahab",
+          "desc": ""
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "Mazad El Shar",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=23",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "BeIn Series HD 1.eg",
+      "name": "BeIn Series HD 1.eg",
+      "family": "beIN Series",
+      "kind": "series",
+      "events": 22,
+      "fingerprint": "956f00101987af689d02e8210208ef79cfa5ae3f",
+      "coverage_hours": 22.0,
+      "span_hours": 22.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 22,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 86.4,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 18.2,
+      "unique_title_pct": 36.4,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "Yellowjackets S2",
+          "desc": ""
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "Outlander S3",
+          "desc": ""
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "Shark Tank",
+          "desc": ""
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "Matlock S2",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=22",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN Series HD 2.eg",
+      "name": "beIN Series HD 2.eg",
+      "family": "beIN Series",
+      "kind": "series",
+      "events": 26,
+      "fingerprint": "61c82aecee29cb9a7c66d68b8b6fa35cf8052ce1",
+      "coverage_hours": 22.42,
+      "span_hours": 22.42,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 26,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 30.8,
+      "unique_title_pct": 30.8,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "From",
+          "desc": ""
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "Your Honor",
+          "desc": ""
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914003000 +0000",
+          "title": "Black Clover S3",
+          "desc": ""
+        },
+        {
+          "start": "20260914003000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "Black Clover S3",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=26",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "bein SPORTS FTA DIGITAL.qa",
       "name": "bein SPORTS FTA DIGITAL.qa",
       "family": "beIN Sports FTA",
-      "sports_like": true,
-      "events": 6,
-      "status": "BROKEN",
-      "issues": [
-        "VERY_LONG=2"
-      ],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "sports_ar",
+      "events": 5,
+      "fingerprint": "aeb0c621334135db7a6399914a9e6c499e27ecf3",
+      "coverage_hours": 22.33,
+      "span_hours": 39.92,
+      "gaps_gt_2h": 1,
+      "gap_hours": 17.58,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 2,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 20.0,
+      "unique_title_pct": 100.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Chinese Taipei vs Qatar - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB06",
-        "Saudi Arabia vs Indonesia - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB07",
-        "Saudi Arabia vs Indonesia",
-        "Bahrain vs Kazakhstan",
-        "China vs Philippines"
-      ]
+        {
+          "start": "20260913212500 +0100",
+          "stop": "20260914035000 +0100",
+          "title": "Saudi Arabia vs Indonesia - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB07",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914212500 +0100",
+          "stop": "20260915035000 +0100",
+          "title": "Saudi Arabia vs Indonesia",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260915035000 +0100",
+          "stop": "20260915065000 +0100",
+          "title": "Bahrain vs Kazakhstan",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260915065000 +0100",
+          "stop": "20260915095000 +0100",
+          "title": "China vs Philippines",
+          "desc": "مباراة."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "LONG_6H=2",
+        "GAPS_GT_2H=1",
+        "TITLE_AR_ENRICHMENT_LOW=0%",
+        "NON_RECOMMENDED_ID"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS MAX1 DIGITAL.qa",
       "name": "beIN SPORTS MAX1 DIGITAL.qa",
       "family": "beIN MAX 1",
-      "sports_like": true,
-      "events": 14,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "max",
+      "events": 13,
+      "fingerprint": "2d95b3064ae3019ba2aa7a8f8707b7af1b900363",
+      "coverage_hours": 26.0,
+      "span_hours": 30.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 4.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 13,
+      "generic": 13,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 7.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN Sports MAX",
-        "beIN Sports MAX",
-        "beIN Sports MAX",
-        "beIN Sports MAX",
-        "beIN Sports MAX"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914020000 +0000",
+          "stop": "20260914040000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914040000 +0000",
+          "stop": "20260914060000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914060000 +0000",
+          "stop": "20260914080000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "REPEATED_TITLE=100%",
+        "LOW_TITLE_DIVERSITY=8%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS MAX2 DIGITAL.qa",
       "name": "beIN SPORTS MAX2 DIGITAL.qa",
       "family": "beIN MAX 2",
-      "sports_like": true,
+      "kind": "max",
       "events": 4,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "8a9357a61bd346dfc8929500c0f8ebb65f9e81aa",
+      "coverage_hours": 8.0,
+      "span_hours": 8.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 4,
+      "generic": 4,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 25.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN Sports MAX",
-        "beIN Sports MAX",
-        "beIN Sports MAX",
-        "beIN Sports MAX"
-      ]
+        {
+          "start": "20260913210000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914030000 +0000",
+          "stop": "20260914050000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "DUPLICATE_TIMELINE_OTHER_FAMILY"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS MAX3 DIGITAL.qa",
       "name": "beIN SPORTS MAX3 DIGITAL.qa",
       "family": "beIN MAX 3",
-      "sports_like": true,
+      "kind": "max",
       "events": 4,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "8a9357a61bd346dfc8929500c0f8ebb65f9e81aa",
+      "coverage_hours": 8.0,
+      "span_hours": 8.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 4,
+      "generic": 4,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 25.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN Sports MAX",
-        "beIN Sports MAX",
-        "beIN Sports MAX",
-        "beIN Sports MAX"
-      ]
+        {
+          "start": "20260913210000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914030000 +0000",
+          "stop": "20260914050000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "DUPLICATE_TIMELINE_OTHER_FAMILY"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS MAX4 DIGITAL.qa",
       "name": "beIN SPORTS MAX4 DIGITAL.qa",
       "family": "beIN MAX 4",
-      "sports_like": true,
+      "kind": "max",
       "events": 4,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "8a9357a61bd346dfc8929500c0f8ebb65f9e81aa",
+      "coverage_hours": 8.0,
+      "span_hours": 8.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 4,
+      "generic": 4,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 25.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN Sports MAX",
-        "beIN Sports MAX",
-        "beIN Sports MAX",
-        "beIN Sports MAX"
-      ]
+        {
+          "start": "20260913210000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914030000 +0000",
+          "stop": "20260914050000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "DUPLICATE_TIMELINE_OTHER_FAMILY"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS MAX5 DIGITAL.qa",
       "name": "beIN SPORTS MAX5 DIGITAL.qa",
       "family": "beIN MAX 5",
-      "sports_like": true,
+      "kind": "max",
       "events": 4,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "8a9357a61bd346dfc8929500c0f8ebb65f9e81aa",
+      "coverage_hours": 8.0,
+      "span_hours": 8.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 4,
+      "generic": 4,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 25.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN Sports MAX",
-        "beIN Sports MAX",
-        "beIN Sports MAX",
-        "beIN Sports MAX"
-      ]
+        {
+          "start": "20260913210000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914030000 +0000",
+          "stop": "20260914050000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "DUPLICATE_TIMELINE_OTHER_FAMILY"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS XTRA 04 bein.com.qa",
       "name": "beIN SPORTS XTRA 04 bein.com.qa",
-      "family": "beIN XTRA 04",
-      "sports_like": true,
-      "events": 7,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN XTRA 4",
+      "kind": "xtra",
+      "events": 6,
+      "fingerprint": "a63301195f08cfa5d934ce996cad642581659c00",
+      "coverage_hours": 6.0,
+      "span_hours": 6.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 6,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "REPEATED_TITLE=100%"
+      ],
+      "compat_canonical": "beIN SPORTS XTRA 4.qa",
+      "alias_exact_match": true
     },
     {
       "id": "beIN SPORTS XTRA 05 bein.com.qa",
       "name": "beIN SPORTS XTRA 05 bein.com.qa",
-      "family": "beIN XTRA 05",
-      "sports_like": true,
-      "events": 7,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN XTRA 5",
+      "kind": "xtra",
+      "events": 6,
+      "fingerprint": "a63301195f08cfa5d934ce996cad642581659c00",
+      "coverage_hours": 6.0,
+      "span_hours": 6.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 6,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "REPEATED_TITLE=100%"
+      ],
+      "compat_canonical": "beIN SPORTS XTRA 5.qa",
+      "alias_exact_match": true
     },
     {
       "id": "beIN SPORTS XTRA 3.qa",
       "name": "beIN SPORTS XTRA 3.qa",
       "family": "beIN XTRA 3",
-      "sports_like": true,
-      "events": 25,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "xtra",
+      "events": 24,
+      "fingerprint": "1a9dc61419c5d6341ef9cae74caf79bbbc553f9f",
+      "coverage_hours": 27.0,
+      "span_hours": 29.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 2.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 21,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 87.5,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914020000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=88%",
+        "REPEATED_TITLE=88%",
+        "LOW_TITLE_DIVERSITY=17%"
+      ],
+      "compat_canonical": "beINSPORTSXTRA3.qa",
+      "alias_exact_match": true
     },
     {
       "id": "beIN SPORTS XTRA 4.qa",
       "name": "beIN SPORTS XTRA 4.qa",
       "family": "beIN XTRA 4",
-      "sports_like": true,
-      "events": 7,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "xtra",
+      "events": 6,
+      "fingerprint": "a63301195f08cfa5d934ce996cad642581659c00",
+      "coverage_hours": 6.0,
+      "span_hours": 6.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 6,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "REPEATED_TITLE=100%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS XTRA 5.qa",
       "name": "beIN SPORTS XTRA 5.qa",
       "family": "beIN XTRA 5",
-      "sports_like": true,
-      "events": 7,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "xtra",
+      "events": 6,
+      "fingerprint": "a63301195f08cfa5d934ce996cad642581659c00",
+      "coverage_hours": 6.0,
+      "span_hours": 6.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 6,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "REPEATED_TITLE=100%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS XTRA 6.qa",
       "name": "beIN SPORTS XTRA 6.qa",
       "family": "beIN XTRA 6",
-      "sports_like": true,
-      "events": 7,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "xtra",
+      "events": 6,
+      "fingerprint": "a63301195f08cfa5d934ce996cad642581659c00",
+      "coverage_hours": 6.0,
+      "span_hours": 6.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 6,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "REPEATED_TITLE=100%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS XTRA 7.qa",
       "name": "beIN SPORTS XTRA 7.qa",
       "family": "beIN XTRA 7",
-      "sports_like": true,
-      "events": 7,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "xtra",
+      "events": 6,
+      "fingerprint": "a63301195f08cfa5d934ce996cad642581659c00",
+      "coverage_hours": 6.0,
+      "span_hours": 6.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 6,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "REPEATED_TITLE=100%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS XTRA 8.qa",
       "name": "beIN SPORTS XTRA 8.qa",
       "family": "beIN XTRA 8",
-      "sports_like": true,
+      "kind": "xtra",
       "events": 4,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "3ec79f495aee9d45e42f2f6af456b0abd967c94c",
+      "coverage_hours": 8.0,
+      "span_hours": 8.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 4,
+      "generic": 4,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 25.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA"
-      ]
+        {
+          "start": "20260913210000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914030000 +0000",
+          "stop": "20260914050000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS XTRA 9.qa",
       "name": "beIN SPORTS XTRA 9.qa",
       "family": "beIN XTRA 9",
-      "sports_like": true,
-      "events": 7,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "xtra",
+      "events": 6,
+      "fingerprint": "a63301195f08cfa5d934ce996cad642581659c00",
+      "coverage_hours": 6.0,
+      "span_hours": 6.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 6,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "REPEATED_TITLE=100%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS-boxoffice-bein.com.qa",
       "name": "beIN SPORTS-boxoffice-bein.com.qa",
       "family": "beIN Boxoffice",
-      "sports_like": true,
+      "kind": "boxoffice",
       "events": 22,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "BOXOFFICE_NOT_LINEAR_SPORT"
-      ],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 86.4,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "46e1804d5f96e7969188b178f043c2ad3c3d3ba5",
+      "coverage_hours": 29.72,
+      "span_hours": 31.25,
+      "gaps_gt_2h": 0,
+      "gap_hours": 1.53,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 86.4,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 18.2,
+      "unique_title_pct": 63.6,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "The Twilight Saga: New Moon",
-        "The Walking Dead",
-        "The Walking Dead",
-        "Wrath of Man",
-        "Flightplan"
-      ]
+        {
+          "start": "20260913210000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "The Twilight Saga: New Moon",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260913234500 +0000",
+          "title": "The Walking Dead",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913234500 +0000",
+          "stop": "20260913235900 +0000",
+          "title": "The Walking Dead",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914004500 +0000",
+          "stop": "20260914024000 +0000",
+          "title": "Wrath of Man",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "BOXOFFICE_NOT_SPORTS_LINEAR",
+        "NON_RECOMMENDED_ID"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS1 DIGITAL.qa",
       "name": "beIN SPORTS1 DIGITAL.qa",
-      "family": "beIN Sports 1",
-      "sports_like": true,
-      "events": 36,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 25.0,
-      "title_en_pct": 75.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN Sports 1 AR/MENA",
+      "kind": "sports_ar",
+      "events": 35,
+      "fingerprint": "404a62d06861b3cf405d6bfddc9f8c613837cfd7",
+      "coverage_hours": 51.58,
+      "span_hours": 51.58,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 88.6,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 88.6,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 8.6,
+      "unique_title_pct": 68.6,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Manchester United vs Manchester City - الدوري الإنجليزي الممتاز",
-        "Brest vs PSG - الدوري الفرنسي",
-        "EPL Stories - قصص الدوري الإنجليزي الممتاز 2026/2027 EP.9",
-        "Manchester United vs Manchester City",
-        "Brest vs PSG"
-      ]
+        {
+          "start": "20260913211500 +0100",
+          "stop": "20260914003000 +0100",
+          "title": "Brest vs PSG - الدوري الفرنسي",
+          "desc": "مباراة ضمن منافسات الدوري الفرنسي، الجولة 4، موسم 2026/2027، الحلقة 1."
+        },
+        {
+          "start": "20260914003000 +0100",
+          "stop": "20260914010000 +0100",
+          "title": "EPL Stories - قصص الدوري الإنجليزي الممتاز 2026/2027 EP.9",
+          "desc": "برنامج رياضي يستعرض قصصاً وشخصيات بارزة من الدوري الإنجليزي الممتاز، موسم 2026/2027، الحلقة 9."
+        },
+        {
+          "start": "20260914010000 +0100",
+          "stop": "20260914044500 +0100",
+          "title": "Manchester United vs Manchester City",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914044500 +0100",
+          "stop": "20260914075000 +0100",
+          "title": "Brest vs PSG",
+          "desc": "مباراة."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS1 ENGLISH Digital.qa",
       "name": "beIN SPORTS1 ENGLISH Digital.qa",
       "family": "beIN Sports 1 EN",
-      "sports_like": true,
-      "events": 21,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 71.4,
-      "title_en_pct": 28.6,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "sports_en",
+      "events": 41,
+      "fingerprint": "b86bf22cc6bd68703a1d9b035c228dc4cd8a2470",
+      "coverage_hours": 50.42,
+      "span_hours": 50.42,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 29.3,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 29.3,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 7.3,
+      "unique_title_pct": 73.2,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Manchester United vs Manchester City - الدوري الإنجليزي الممتاز",
-        "Brest vs PSG - الدوري الفرنسي",
-        "Barcelona vs Feyenoord - دوري أبطال أوروبا",
-        "PSG vs Slovan Bratislava - دوري أبطال أوروبا",
-        "Race 1 - Sachsenring Round - ADAC-GT4"
-      ]
+        {
+          "start": "20260913213500 +0100",
+          "stop": "20260914000000 +0100",
+          "title": "Brest vs PSG - الدوري الفرنسي",
+          "desc": "مباراة ضمن منافسات الدوري الفرنسي، الجولة 4، موسم 2026/2027، الحلقة 1."
+        },
+        {
+          "start": "20260914000000 +0100",
+          "stop": "20260914003000 +0100",
+          "title": "Live : rpool vs Fulham",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914003000 +0100",
+          "stop": "20260914010000 +0100",
+          "title": "Barcelona vs Feyenoord - دوري أبطال أوروبا",
+          "desc": "مباراة ضمن منافسات دوري أبطال أوروبا، الجولة 1، موسم 2026/2027."
+        },
+        {
+          "start": "20260914010000 +0100",
+          "stop": "20260914020000 +0100",
+          "title": "UEL & UECL Magazine - مجلة 2026/27",
+          "desc": "مجلة رياضية تقدم الأخبار والتحليلات المتعلقة بـالدوري الأوروبي، موسم 2026."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS2 DIGITAL.qa",
       "name": "beIN SPORTS2 DIGITAL.qa",
-      "family": "beIN Sports 2",
-      "sports_like": true,
-      "events": 16,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 100.0,
-      "title_en_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN Sports 2 AR/MENA",
+      "kind": "sports_ar",
+      "events": 15,
+      "fingerprint": "eee9e43e1efea964f1475fb94956e86362a57fbe",
+      "coverage_hours": 27.98,
+      "span_hours": 28.98,
+      "gaps_gt_2h": 0,
+      "gap_hours": 1.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 100.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 20.0,
+      "unique_title_pct": 60.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Galatasaray vs Kocaelispor - الدوري التركي الممتاز",
-        "Sheffield Utd vs Wolverhampton Wanderers - دوري البطولة الإنجليزية",
-        "Aston Villa vs Nottingham Forest - الدوري الإنجليزي الممتاز",
-        "The Big Interview - المقابلة الكبرى",
-        "Real Madrid vs Rayo Vallecono - الدوري الإسباني"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "Sheffield Utd vs Wolverhampton Wanderers - دوري البطولة الإنجليزية",
+          "desc": "مباراة ضمن منافسات دوري البطولة الإنجليزية، موسم 2026."
+        },
+        {
+          "start": "20260914003000 +0000",
+          "stop": "20260914023200 +0000",
+          "title": "Aston Villa vs Nottingham Forest - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، الجولة 4، موسم 2026/2027."
+        },
+        {
+          "start": "20260914023200 +0000",
+          "stop": "20260914025900 +0000",
+          "title": "The Big Interview - المقابلة الكبرى",
+          "desc": "مقابلة رياضية خاصة مع إحدى الشخصيات البارزة في عالم الرياضة، موسم 2026/2027."
+        },
+        {
+          "start": "20260914025900 +0000",
+          "stop": "20260914054000 +0000",
+          "title": "Real Madrid vs Rayo Vallecono - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS2 ENGLISH Digital.qa",
       "name": "beIN SPORTS2 ENGLISH Digital.qa",
       "family": "beIN Sports 2 EN",
-      "sports_like": true,
-      "events": 24,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "sports_en",
+      "events": 23,
+      "fingerprint": "045ff9bb41d397badd48bdbceae501ed77838336",
+      "coverage_hours": 25.3,
+      "span_hours": 29.3,
+      "gaps_gt_2h": 0,
+      "gap_hours": 4.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 8.7,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 8.7,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 13.0,
+      "unique_title_pct": 69.6,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "World Feed - Tennis US Open",
-        "Sheffield Utd vs Wolverhampton Wanderers",
-        "EN ATP Tour: This Week 2026 Ep.35",
-        "EN Spirit of Sport Series 11 | E10",
-        "EN Fast Zone 2026 - Ep 22"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "Sheffield Utd vs Wolverhampton Wanderers",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914020000 +0000",
+          "stop": "20260914023000 +0000",
+          "title": "EN ATP Tour: This Week 2026 Ep.35",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026، الحلقة 35."
+        },
+        {
+          "start": "20260914023000 +0000",
+          "stop": "20260914031800 +0000",
+          "title": "EN Spirit of Sport Series 11 | E10",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، الحلقة 10."
+        },
+        {
+          "start": "20260914031800 +0000",
+          "stop": "20260914040000 +0000",
+          "title": "EN Fast Zone 2026 - Ep 22",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026، الحلقة 22."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS4 DIGITAL.qa",
       "name": "beIN SPORTS4 DIGITAL.qa",
-      "family": "beIN Sports 4",
-      "sports_like": true,
-      "events": 18,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 77.8,
-      "title_en_pct": 22.2,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN Sports 4 AR/MENA",
+      "kind": "sports_ar",
+      "events": 17,
+      "fingerprint": "c8741a3ab88bcdac1371c135dae09a5d5b2050e2",
+      "coverage_hours": 26.62,
+      "span_hours": 30.38,
+      "gaps_gt_2h": 0,
+      "gap_hours": 3.77,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 82.4,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 82.4,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 23.5,
+      "unique_title_pct": 58.8,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Portugal vs Costa Rica - FIFA U-20 Women World Cup",
-        "Chelsea vs Hull City - الدوري الإنجليزي الممتاز",
-        "Rc Lens, Goal Miners & Footballers",
-        "Rennes vs Marseille - الدوري الفرنسي",
-        "Havre AC vs Angers - الدوري الفرنسي"
-      ]
+        {
+          "start": "20260913211300 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "Chelsea vs Hull City - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، الجولة 4، موسم 2026/2027."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "Rc Lens, Goal Miners & Footballers",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914015300 +0000",
+          "stop": "20260914033600 +0000",
+          "title": "Rennes vs Marseille - الدوري الفرنسي",
+          "desc": "مباراة ضمن منافسات الدوري الفرنسي، الجولة 4، موسم 2026/2027، الحلقة 1."
+        },
+        {
+          "start": "20260914033600 +0000",
+          "stop": "20260914052500 +0000",
+          "title": "Havre AC vs Angers - الدوري الفرنسي",
+          "desc": "مباراة ضمن منافسات الدوري الفرنسي، الجولة 4، موسم 2026/2027، الحلقة 1."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS6 DIGITAL -d-1.qa",
       "name": "beIN SPORTS6 DIGITAL -d-1.qa",
-      "family": "beIN Sports 6",
-      "sports_like": true,
+      "family": "beIN Sports 6 AR/MENA",
+      "kind": "sports_ar",
       "events": 5,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 40.0,
-      "title_en_pct": 60.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "eddd230b63d50f9a9f6e012df70290f3798206f7",
+      "coverage_hours": 7.5,
+      "span_hours": 7.5,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 40.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 40.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 20.0,
+      "unique_title_pct": 100.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Premier Padel - Paris Major - Match 2",
-        "Lorient vs Toulouse - الدوري الفرنسي",
-        "Sprint Race - Madrid Round - FIA Formula 2 Championship",
-        "Trofeo Pirelli Race 1 - Hungaroring Round - Ferrari Challenge",
-        "Rennes vs Marseille - الدوري الفرنسي"
-      ]
+        {
+          "start": "20260913210000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "Premier Padel - Paris Major - Match 2",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914004500 +0000",
+          "title": "Lorient vs Toulouse - الدوري الفرنسي",
+          "desc": "مباراة ضمن منافسات الدوري الفرنسي، الجولة 4، موسم 2026/2027، الحلقة 1."
+        },
+        {
+          "start": "20260914004500 +0000",
+          "stop": "20260914014500 +0000",
+          "title": "Sprint Race - Madrid Round - FIA Formula 2 Championship",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914014500 +0000",
+          "stop": "20260914024500 +0000",
+          "title": "Trofeo Pirelli Race 1 - Hungaroring Round - Ferrari Challenge",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026، الحلقة 1."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS66 DIGITAL -01.qa",
       "name": "beIN SPORTS66 DIGITAL -01.qa",
-      "family": "beIN Sports 66",
-      "sports_like": true,
-      "events": 15,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "SUSPICIOUS_CHANNEL_66"
-      ],
-      "empty_desc": 0,
-      "title_ar_pct": 13.3,
-      "title_en_pct": 86.7,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN Sports 66 AR/MENA",
+      "kind": "sports_ar",
+      "events": 14,
+      "fingerprint": "06eab780e4da2684b482d1ce4dfd65095d8faf2e",
+      "coverage_hours": 25.5,
+      "span_hours": 30.67,
+      "gaps_gt_2h": 2,
+      "gap_hours": 5.17,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 14.3,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 14.3,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 57.1,
+      "unique_title_pct": 28.6,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Trofeo Pirelli Race 1 - Hungaroring Round",
-        "Premier Padel - Paris Major",
-        "Premier Padel - Paris Major",
-        "Lorient vs Toulouse - الدوري الفرنسي",
-        "Sprint Race - Madrid Round"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "Premier Padel - Paris Major",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914023500 +0000",
+          "stop": "20260914044000 +0000",
+          "title": "Premier Padel - Paris Major",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914044000 +0000",
+          "stop": "20260914063000 +0000",
+          "title": "Lorient vs Toulouse - الدوري الفرنسي",
+          "desc": "مباراة ضمن منافسات الدوري الفرنسي، موسم 2026/2027، الحلقة 1."
+        },
+        {
+          "start": "20260914063000 +0000",
+          "stop": "20260914073800 +0000",
+          "title": "Sprint Race - Madrid Round",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "FAIL",
+      "issues": [
+        "SUSPICIOUS_SPORTS66_ID"
+      ],
+      "warnings": [
+        "GAPS_GT_2H=2",
+        "TITLE_AR_ENRICHMENT_LOW=14%",
+        "NON_RECOMMENDED_ID"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN SPORTS7 DIGITAL.qa",
       "name": "beIN SPORTS7 DIGITAL.qa",
-      "family": "beIN Sports 7",
-      "sports_like": true,
+      "family": "beIN Sports 7 AR/MENA",
+      "kind": "sports_ar",
       "events": 12,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "0de4099897a7d545ef56d2d07a21f72b10e5d919",
+      "coverage_hours": 27.13,
+      "span_hours": 31.37,
+      "gaps_gt_2h": 2,
+      "gap_hours": 4.23,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 16.7,
+      "unique_title_pct": 66.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Day 15 - Arthur Ashe Court - Tennis US Open 2026 - Men's Singles Final",
-        "Sochaux vs Nantes - French Ligue 2",
-        "Christian Harrison (USA) / Xinran Sun (CHN) vs Neal Skupski (GBR) / Kevin Krawietz (GER) - Arthur",
-        "Aryna Sabalenka vs Elena Rybakina - Arthur Ashe Court - Tennis US Open 2026 - Women's Singles Final",
-        "Alexander Zverev vs Botic van de Zandschulp D11M3 - Mini Matches - Tennis US Open"
-      ]
+        {
+          "start": "20260913203000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "Day 15 - Arthur Ashe Court - Tennis US Open 2026 - Men's Singles Final",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914020700 +0000",
+          "stop": "20260914035200 +0000",
+          "title": "Sochaux vs Nantes - French Ligue 2",
+          "desc": "مباراة، موسم 2026/2027، الحلقة 2."
+        },
+        {
+          "start": "20260914035200 +0000",
+          "stop": "20260914060500 +0000",
+          "title": "Christian Harrison (USA) / Xinran Sun (CHN) vs Neal Skupski (GBR) / Kevin Krawietz (GER) - Arthur",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914060500 +0000",
+          "stop": "20260914094000 +0000",
+          "title": "Aryna Sabalenka vs Elena Rybakina - Arthur Ashe Court - Tennis US Open 2026 - Women's Singles Final",
+          "desc": "مباراة، موسم 2026."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "GAPS_GT_2H=2",
+        "TITLE_AR_ENRICHMENT_LOW=0%"
+      ],
+      "compat_canonical": "beINSports7.qa@MENA",
+      "alias_exact_match": true
     },
     {
       "id": "bein.com-05.qa",
       "name": "bein.com-05.qa",
-      "family": "UNKNOWN bein.com alias",
-      "sports_like": true,
-      "events": 30,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "OPAQUE_BEIN_COM_ID"
-      ],
-      "empty_desc": 30,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 0.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "Opaque beIN.com alias",
+      "kind": "opaque",
+      "events": 29,
+      "fingerprint": "249a2fb6d8d501bc856ecbcd4fd9671dbd3dd5b1",
+      "coverage_hours": 27.0,
+      "span_hours": 29.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 2.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 29,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 27,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 93.1,
+      "unique_title_pct": 10.3,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+          "desc": ""
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+          "desc": ""
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+          "desc": ""
+        },
+        {
+          "start": "20260914020000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=29",
+        "GENERIC_GUIDE=93%",
+        "REPEATED_TITLE=93%",
+        "LOW_TITLE_DIVERSITY=10%",
+        "OPAQUE_BEIN_COM_ID",
+        "NON_RECOMMENDED_ID"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "bein.com-06.qa",
       "name": "bein.com-06.qa",
-      "family": "UNKNOWN bein.com alias",
-      "sports_like": true,
-      "events": 32,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "OPAQUE_BEIN_COM_ID"
-      ],
-      "empty_desc": 32,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 0.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "Opaque beIN.com alias",
+      "kind": "opaque",
+      "events": 31,
+      "fingerprint": "ab0a6b5390f55bc1f1aedab25343bf194c4dc69e",
+      "coverage_hours": 27.0,
+      "span_hours": 29.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 2.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 31,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 29,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 93.5,
+      "unique_title_pct": 9.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": ""
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": ""
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": ""
+        },
+        {
+          "start": "20260914020000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=31",
+        "GENERIC_GUIDE=94%",
+        "REPEATED_TITLE=94%",
+        "LOW_TITLE_DIVERSITY=10%",
+        "OPAQUE_BEIN_COM_ID",
+        "NON_RECOMMENDED_ID"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "bein.com-07.qa",
       "name": "bein.com-07.qa",
-      "family": "UNKNOWN bein.com alias",
-      "sports_like": true,
-      "events": 31,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "OPAQUE_BEIN_COM_ID"
-      ],
-      "empty_desc": 31,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 0.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "Opaque beIN.com alias",
+      "kind": "opaque",
+      "events": 30,
+      "fingerprint": "8a8a9e926f4955addba0999690832b94a487a364",
+      "coverage_hours": 27.0,
+      "span_hours": 29.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 2.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 30,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 28,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 93.3,
+      "unique_title_pct": 10.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": ""
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": ""
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": ""
+        },
+        {
+          "start": "20260914020000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=30",
+        "GENERIC_GUIDE=93%",
+        "REPEATED_TITLE=93%",
+        "LOW_TITLE_DIVERSITY=10%",
+        "OPAQUE_BEIN_COM_ID",
+        "NON_RECOMMENDED_ID"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "bein.com-08.qa",
       "name": "bein.com-08.qa",
-      "family": "UNKNOWN bein.com alias",
-      "sports_like": true,
-      "events": 27,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "OPAQUE_BEIN_COM_ID"
-      ],
-      "empty_desc": 27,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 0.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "Opaque beIN.com alias",
+      "kind": "opaque",
+      "events": 26,
+      "fingerprint": "6e21f3543847e101e6e286a4ee5cce1c9085f3ab",
+      "coverage_hours": 27.0,
+      "span_hours": 29.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 2.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 26,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 25,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 96.2,
+      "unique_title_pct": 7.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+          "desc": ""
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+          "desc": ""
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+          "desc": ""
+        },
+        {
+          "start": "20260914020000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=26",
+        "GENERIC_GUIDE=96%",
+        "REPEATED_TITLE=96%",
+        "LOW_TITLE_DIVERSITY=8%",
+        "OPAQUE_BEIN_COM_ID",
+        "NON_RECOMMENDED_ID"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN.Sports.HD.ae",
       "name": "beIN Sports HD",
-      "family": "bein sports",
-      "sports_like": true,
-      "events": 15,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN Sports HD",
+      "kind": "other",
+      "events": 16,
+      "fingerprint": "39c8c4093718f8ea19adc85bffadbef57c47866b",
+      "coverage_hours": 52.25,
+      "span_hours": 52.25,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 18.8,
+      "unique_title_pct": 62.5,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Day 3 - Morning Session - World Athletics U20 Championships - Oregon 26",
-        "T100 Triathlon Vancouver",
-        "Day 3 - Evening Session - World Athletics U20 Championships - Oregon 26",
-        "Nîmes vs Montpellier - Daikin StarLigue - French Handball",
-        "Day 4 - Morning Session - World Athletics U20 Championships - Oregon 26"
-      ]
+        {
+          "start": "20260913203000 +0100",
+          "stop": "20260914003500 +0100",
+          "title": "Day 3 - Morning Session - World Athletics U20 Championships - Oregon 26",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914003500 +0100",
+          "stop": "20260914041500 +0100",
+          "title": "T100 Triathlon Vancouver",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914041500 +0100",
+          "stop": "20260914083000 +0100",
+          "title": "Day 3 - Evening Session - World Athletics U20 Championships - Oregon 26",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914083000 +0100",
+          "stop": "20260914100000 +0100",
+          "title": "Nîmes vs Montpellier - Daikin StarLigue - French Handball",
+          "desc": "مباراة، موسم 2026."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN.Sports.News.ae",
       "name": "beIN Sports News",
       "family": "beIN Sports News",
-      "sports_like": true,
-      "events": 39,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 2.6,
-      "title_en_pct": 92.3,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "news",
+      "events": 38,
+      "fingerprint": "94277055da4a8d5495b257a1402044d523fba194",
+      "coverage_hours": 48.5,
+      "span_hours": 49.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.5,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 2,
+      "generic": 2,
+      "title_has_ar_pct": 13.2,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 13.2,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 34.2,
+      "unique_title_pct": 47.4,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "ON Time Stadium",
-        "Sport TV Magazine - مجلة",
-        "24/7",
-        "Football Match",
-        "ON Target"
-      ]
+        {
+          "start": "20260913223000 +0100",
+          "stop": "20260914000000 +0100",
+          "title": "24/7",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914000000 +0100",
+          "stop": "20260914020000 +0100",
+          "title": "Football Match",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914020000 +0100",
+          "stop": "20260914030000 +0100",
+          "title": "ON Target",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914030000 +0100",
+          "stop": "20260914040000 +0100",
+          "title": "Al Hassad",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "TITLE_AR_ENRICHMENT_LOW=13%",
+        "PLACEHOLDER=2"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN4K.qa@SD",
       "name": "beIN 4K",
       "family": "beIN 4K",
-      "sports_like": true,
-      "events": 25,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 72.0,
-      "title_en_pct": 28.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "sports_ar",
+      "events": 24,
+      "fingerprint": "00a20a16d415e30222e09e3bf3c938e3c971a349",
+      "coverage_hours": 45.78,
+      "span_hours": 45.78,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
-      "preview": [
-        "Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship",
-        "Live : rpool v Fulham - الدوري الإنجليزي الممتاز",
-        "Sunderland v Arsenal - الدوري الإنجليزي الممتاز",
-        "Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship",
-        "Live : rpool v Fulham - الدوري الإنجليزي الممتاز"
-      ]
-    },
-    {
-      "id": "beIN_SPORTS1_FRENCH_Digital_Mono_AR.bein",
-      "name": "beIN_SPORTS1_FRENCH_Digital_Mono_AR",
-      "family": "beIN Sports 1 FR",
-      "sports_like": true,
-      "events": 2,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "GUIDE_ALIAS_ID"
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 75.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 75.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 29.2,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
       ],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
-      "invalid": 0,
-      "long_gt_6h": 0,
       "preview": [
-        "Salon VIP",
-        "Brest vs PSG"
-      ]
+        {
+          "start": "20260913214500 +0000",
+          "stop": "20260913233500 +0000",
+          "title": "Live : rpool v Fulham - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        },
+        {
+          "start": "20260913233500 +0000",
+          "stop": "20260914012500 +0000",
+          "title": "Sunderland v Arsenal - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        },
+        {
+          "start": "20260914012500 +0000",
+          "stop": "20260914033500 +0000",
+          "title": "Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914033500 +0000",
+          "stop": "20260914052500 +0000",
+          "title": "Live : rpool v Fulham - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "LOW_TITLE_DIVERSITY=17%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN_SPORTS3_DIGITAL_Mono_EN.bein",
       "name": "beIN_SPORTS3_DIGITAL_Mono_EN",
       "family": "beIN Sports 3 EN",
-      "sports_like": true,
+      "kind": "sports_en",
       "events": 12,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "GUIDE_ALIAS_ID"
-      ],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "330394e787b9452ec941186357884c26e3d855e3",
+      "coverage_hours": 27.45,
+      "span_hours": 27.45,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 16.7,
+      "unique_title_pct": 75.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Real Sociedad vs Atletico Madrid",
-        "Real Madrid vs Rayo Vallecono",
-        "Athletic Bilbao vs Elche",
-        "Bournemouth vs Brentford",
-        "Levante vs Barcelona"
-      ]
+        {
+          "start": "20260913214800 +0100",
+          "stop": "20260914001500 +0100",
+          "title": "Real Sociedad vs Atletico Madrid",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914001500 +0100",
+          "stop": "20260914021500 +0100",
+          "title": "Real Madrid vs Rayo Vallecono",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914021500 +0100",
+          "stop": "20260914040000 +0100",
+          "title": "Athletic Bilbao vs Elche",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914040000 +0100",
+          "stop": "20260914060000 +0100",
+          "title": "Bournemouth vs Brentford",
+          "desc": "مباراة."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN_SPORTS4_DIGITAL_Mono_EN.bein",
       "name": "beIN_SPORTS4_DIGITAL_Mono_EN",
       "family": "beIN Sports 4 EN",
-      "sports_like": true,
-      "events": 16,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "GUIDE_ALIAS_ID"
-      ],
-      "empty_desc": 0,
-      "title_ar_pct": 18.8,
-      "title_en_pct": 81.2,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "sports_en",
+      "events": 17,
+      "fingerprint": "41043f27cb9dab52f75e3c3f2cb631f8976c41ee",
+      "coverage_hours": 29.58,
+      "span_hours": 51.17,
+      "gaps_gt_2h": 1,
+      "gap_hours": 21.58,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 17.6,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 17.6,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 17.6,
+      "unique_title_pct": 64.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Al Qadsiah (KSA) vs Al Wasl (UAE)",
-        "الدوري الفرنسي Show",
-        "Celta Vigo vs Malaga",
-        "Al Qadsiah (KSA) vs Al Wasl (UAE)",
-        "Coventry City vs Brighton"
-      ]
+        {
+          "start": "20260913210500 +0100",
+          "stop": "20260913232000 +0100",
+          "title": "Al Qadsiah (KSA) vs Al Wasl (UAE)",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260913232000 +0100",
+          "stop": "20260914000000 +0100",
+          "title": "الدوري الفرنسي Show",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، الحلقة 1."
+        },
+        {
+          "start": "20260914000000 +0100",
+          "stop": "20260914014500 +0100",
+          "title": "Celta Vigo vs Malaga",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914014500 +0100",
+          "stop": "20260914033000 +0100",
+          "title": "Al Qadsiah (KSA) vs Al Wasl (UAE)",
+          "desc": "مباراة."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GAPS_GT_2H=1"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN_SPORTS5_DIGITAL_Mono_EN.bein",
       "name": "beIN_SPORTS5_DIGITAL_Mono_EN",
       "family": "beIN Sports 5 EN",
-      "sports_like": true,
-      "events": 21,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "GUIDE_ALIAS_ID"
-      ],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "sports_en",
+      "events": 22,
+      "fingerprint": "6b3d6b15078ce0e8018b9d4b1f74af06f2ffbcb1",
+      "coverage_hours": 50.17,
+      "span_hours": 50.17,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 4.5,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 4.5,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 18.2,
+      "unique_title_pct": 72.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "New Zealand vs USA",
-        "Villarreal vs Real Betis",
-        "Auxerre vs Nice",
-        "Villarreal vs Real Betis",
-        "New Zealand vs USA"
-      ]
+        {
+          "start": "20260913215000 +0100",
+          "stop": "20260914000000 +0100",
+          "title": "Villarreal vs Real Betis",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914000000 +0100",
+          "stop": "20260914020000 +0100",
+          "title": "Auxerre vs Nice",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914020000 +0100",
+          "stop": "20260914040000 +0100",
+          "title": "Villarreal vs Real Betis",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914040000 +0100",
+          "stop": "20260914054500 +0100",
+          "title": "New Zealand vs USA",
+          "desc": "مباراة."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN_SPORTS66_DIGITAL_Mono-01_EN.bein",
       "name": "beIN_SPORTS66_DIGITAL_Mono-01_EN",
       "family": "beIN Sports 66 EN",
-      "sports_like": true,
-      "events": 5,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "SUSPICIOUS_CHANNEL_66",
-        "GUIDE_ALIAS_ID"
-      ],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "sports_en",
+      "events": 4,
+      "fingerprint": "b283da2d1641d58428d78a5ad6b4756ecb2ca9a5",
+      "coverage_hours": 10.58,
+      "span_hours": 51.0,
+      "gaps_gt_2h": 2,
+      "gap_hours": 40.42,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 50.0,
+      "unique_title_pct": 75.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Gaziantep vs Fenerbahçe",
-        "Sprint Race",
-        "Trofeo Pirelli Race 1",
-        "Deportivo Alaves vs Valencia",
-        "Deportivo Alaves vs Valencia"
-      ]
+        {
+          "start": "20260913221500 +0100",
+          "stop": "20260913231500 +0100",
+          "title": "Sprint Race",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913231500 +0100",
+          "stop": "20260914000000 +0100",
+          "title": "Trofeo Pirelli Race 1",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، الحلقة 1."
+        },
+        {
+          "start": "20260914205000 +0100",
+          "stop": "20260915011500 +0100",
+          "title": "Deportivo Alaves vs Valencia",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260915205000 +0100",
+          "stop": "20260916011500 +0100",
+          "title": "Deportivo Alaves vs Valencia",
+          "desc": "مباراة."
+        }
+      ],
+      "verdict": "FAIL",
+      "issues": [
+        "SUSPICIOUS_SPORTS66_ID"
+      ],
+      "warnings": [
+        "GAPS_GT_2H=2",
+        "NON_RECOMMENDED_ID"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN_SPORTS7_DIGITAL_Mono_EN.bein",
       "name": "beIN_SPORTS7_DIGITAL_Mono_EN",
       "family": "beIN Sports 7 EN",
-      "sports_like": true,
-      "events": 10,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "GUIDE_ALIAS_ID"
-      ],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "sports_en",
+      "events": 11,
+      "fingerprint": "0a2cf1d91a1dadc2ecf3f2a1e6a704fe18770425",
+      "coverage_hours": 31.0,
+      "span_hours": 52.0,
+      "gaps_gt_2h": 1,
+      "gap_hours": 21.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 27.3,
+      "unique_title_pct": 45.5,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Day 15",
-        "China vs Spain",
-        "Day 15",
-        "Aryna Sabalenka vs Elena Rybakina",
-        "Christian Harrison (USA) vs Xinran Sun (CHN) vs Neal Skupski (GBR) vs Kevin Krawietz (GER)"
-      ]
+        {
+          "start": "20260913203000 +0100",
+          "stop": "20260914000000 +0100",
+          "title": "Day 15",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914000000 +0100",
+          "stop": "20260914020000 +0100",
+          "title": "China vs Spain",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914020000 +0100",
+          "stop": "20260914053000 +0100",
+          "title": "Day 15",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914053000 +0100",
+          "stop": "20260914083000 +0100",
+          "title": "Aryna Sabalenka vs Elena Rybakina",
+          "desc": "مباراة."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GAPS_GT_2H=1"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beIN_SPORTS_XTRA_06_bein.com_EN.bein",
       "name": "beIN_SPORTS_XTRA_06_bein.com_EN",
-      "family": "beIN XTRA 06",
-      "sports_like": true,
-      "events": 7,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN XTRA 6",
+      "kind": "xtra",
+      "events": 6,
+      "fingerprint": "a63301195f08cfa5d934ce996cad642581659c00",
+      "coverage_hours": 6.0,
+      "span_hours": 6.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 6,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "REPEATED_TITLE=100%"
+      ],
+      "compat_canonical": "beIN SPORTS XTRA 6.qa",
+      "alias_exact_match": true
     },
     {
       "id": "beIN_SPORTS_XTRA_07_bein.com_EN.bein",
       "name": "beIN_SPORTS_XTRA_07_bein.com_EN",
-      "family": "beIN XTRA 07",
-      "sports_like": true,
-      "events": 7,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN XTRA 7",
+      "kind": "xtra",
+      "events": 6,
+      "fingerprint": "a63301195f08cfa5d934ce996cad642581659c00",
+      "coverage_hours": 6.0,
+      "span_hours": 6.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 6,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "REPEATED_TITLE=100%"
+      ],
+      "compat_canonical": "beIN SPORTS XTRA 7.qa",
+      "alias_exact_match": true
     },
     {
       "id": "beIN_SPORTS_XTRA_08_Bein.com_EN.bein",
       "name": "beIN_SPORTS_XTRA_08_Bein.com_EN",
-      "family": "beIN XTRA 08",
-      "sports_like": true,
+      "family": "beIN XTRA 8",
+      "kind": "xtra",
       "events": 4,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "3ec79f495aee9d45e42f2f6af456b0abd967c94c",
+      "coverage_hours": 8.0,
+      "span_hours": 8.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 4,
+      "generic": 4,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 25.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA"
-      ]
+        {
+          "start": "20260913210000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914030000 +0000",
+          "stop": "20260914050000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%"
+      ],
+      "compat_canonical": "beIN SPORTS XTRA 8.qa",
+      "alias_exact_match": true
     },
     {
       "id": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein",
       "name": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN",
-      "family": "bein sports xtra digital 09 bein com english",
-      "sports_like": true,
-      "events": 7,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN",
+      "kind": "other",
+      "events": 6,
+      "fingerprint": "a63301195f08cfa5d934ce996cad642581659c00",
+      "coverage_hours": 6.0,
+      "span_hours": 6.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 6,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 100.0,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "REPEATED_TITLE=100%"
+      ],
+      "compat_canonical": "beIN SPORTS XTRA 9.qa",
+      "alias_exact_match": true
+    },
+    {
+      "id": "beINDrama1.qa@SD",
+      "name": "بي إن دراما",
+      "family": "beIN Drama",
+      "kind": "drama",
+      "events": 25,
+      "fingerprint": "751fb79b26e9f3c9f58587b7d812af867967393d",
+      "coverage_hours": 24.0,
+      "span_hours": 24.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 1,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 4.0,
+      "title_hybrid_pct": 4.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 20.0,
+      "unique_title_pct": 28.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "درب الذهب",
+          "desc": "بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في ص"
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "مزاد الشر",
+          "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن"
+        },
+        {
+          "start": "20260914020000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "سراب",
+          "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق و"
+        },
+        {
+          "start": "20260914030000 +0000",
+          "stop": "20260914040000 +0000",
+          "title": "بصمة حدا",
+          "desc": "بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في ص"
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=1"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINMovies1Premiere.qa@SD",
+      "name": "beINMOVIES1",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 12,
+      "fingerprint": "0d5a559efda9ea19500379124131201c61ea17d4",
+      "coverage_hours": 21.5,
+      "span_hours": 21.5,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 12,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 0.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 16.7,
+      "unique_title_pct": 91.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260913221500 +0000",
+          "stop": "20260913235900 +0000",
+          "title": "عدالة الجدة",
+          "desc": ""
+        },
+        {
+          "start": "20260913235900 +0000",
+          "stop": "20260914014400 +0000",
+          "title": "زوار الليل: المصحة",
+          "desc": ""
+        },
+        {
+          "start": "20260914014400 +0000",
+          "stop": "20260914032900 +0000",
+          "title": "الجذور",
+          "desc": ""
+        },
+        {
+          "start": "20260914032900 +0000",
+          "stop": "20260914045900 +0000",
+          "title": "المنزل آمن!",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=12",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINMovies2Action.qa@SD",
+      "name": "beINMOVIES2",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 13,
+      "fingerprint": "46f3177d8db05e4b25becfa42eac877f381b6d21",
+      "coverage_hours": 23.5,
+      "span_hours": 23.5,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 13,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 0.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 15.4,
+      "unique_title_pct": 92.3,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260913211500 +0000",
+          "stop": "20260913231400 +0000",
+          "title": "ستار تريك بيوند",
+          "desc": ""
+        },
+        {
+          "start": "20260913231400 +0000",
+          "stop": "20260914004400 +0000",
+          "title": "استحواذ",
+          "desc": ""
+        },
+        {
+          "start": "20260914004400 +0000",
+          "stop": "20260914023000 +0000",
+          "title": "رجال البدلة السوداء",
+          "desc": ""
+        },
+        {
+          "start": "20260914023000 +0000",
+          "stop": "20260914040000 +0000",
+          "title": "رجال البدلة السوداء 2",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=13",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINMovies3Drama.qa@SD",
+      "name": "beINMOVIES3",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 12,
+      "fingerprint": "9065fd1dd71a8b76306c3eeb1ac230be49a58f70",
+      "coverage_hours": 22.23,
+      "span_hours": 22.23,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 12,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 8.3,
+      "title_hybrid_pct": 8.3,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 16.7,
+      "unique_title_pct": 91.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913234600 +0000",
+          "title": "Men, Women & Children",
+          "desc": ""
+        },
+        {
+          "start": "20260913234600 +0000",
+          "stop": "20260914011500 +0000",
+          "title": "أمة الحيتان",
+          "desc": ""
+        },
+        {
+          "start": "20260914011500 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "المطر القاتل",
+          "desc": ""
+        },
+        {
+          "start": "20260914030000 +0000",
+          "stop": "20260914050000 +0000",
+          "title": "12 الأيتام الأقوياء",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=12",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINMovies4Family.qa@SD",
+      "name": "beINMOVIES4",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 13,
+      "fingerprint": "46febcb1e88078e2ed4fc8f634e6ca4dd6760bf5",
+      "coverage_hours": 20.75,
+      "span_hours": 20.75,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 13,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 0.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 15.4,
+      "unique_title_pct": 69.2,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260913223000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "أمواج عالية",
+          "desc": ""
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914013200 +0000",
+          "title": "هل وصلنا بعد؟",
+          "desc": ""
+        },
+        {
+          "start": "20260914013200 +0000",
+          "stop": "20260914031500 +0000",
+          "title": "قشعريرة",
+          "desc": ""
+        },
+        {
+          "start": "20260914031500 +0000",
+          "stop": "20260914045900 +0000",
+          "title": "السنافر",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=13",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINSeries2.qa@SD",
+      "name": "بي إن سيريس إتش...",
+      "family": "beIN Series",
+      "kind": "series",
+      "events": 28,
+      "fingerprint": "e6040902273f6ce25ecf52ae393817b767540232",
+      "coverage_hours": 24.0,
+      "span_hours": 24.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 100.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 28.6,
+      "unique_title_pct": 32.1,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "Dexter S6",
+          "desc": "يقرر (دكستر) حضور لم شمل مدرسته الثانوية، حيث يكتشف جريمة قتل غامضة ويصبح مُطالبًا بإجراء تحقيق، بينما تقوده خيوط القضية إلى اكتشاف صادم، ممّا يُثير لديه ذكريات الماضي المؤلمة."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "From",
+          "desc": "يتم كشف الغموض عن مدينة في وسط الولايات المتحدة تسجن كل من يدخلها. بينما يكافح السكان للحفاظ على حياتهم الطبيعية والبحث عن مخرج، ويجب عليهم أيضًا البقاء على قيد الحياة من تهديدات ا"
+        },
+        {
+          "start": "20260914020000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "Your Honor",
+          "desc": "بعد ارتكاب ابنه جريمة قتل بدهس رجل والهرب بسيارته، يكتشف قاضِ يسعى دائمًا لتطبيق القانون أصعب الخيارات، حينما يصبح عليه فعل ما لا يمكن تخيله لحماية ابنه."
+        },
+        {
+          "start": "20260914030000 +0000",
+          "stop": "20260914033000 +0000",
+          "title": "Black Clover S3",
+          "desc": "في الموسم الثالث، تتعافى مملكة كلوفر، ويتم محاكمة (أستا) و(سيكري) ويتوبان، بينما يتدرب (أستا) وحلفاؤه لمواجهة الشياطين المرعبة، بينما يعزز (يونو) مكانته باعتباره معجزة، ويصبح أقوى "
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beINSports2.qa@MENA",
       "name": "beINSPORTS2",
-      "family": "beIN Sports 2",
-      "sports_like": true,
-      "events": 16,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 100.0,
-      "title_en_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN Sports 2 AR/MENA",
+      "kind": "sports_ar",
+      "events": 15,
+      "fingerprint": "eee9e43e1efea964f1475fb94956e86362a57fbe",
+      "coverage_hours": 27.98,
+      "span_hours": 28.98,
+      "gaps_gt_2h": 0,
+      "gap_hours": 1.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 100.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 20.0,
+      "unique_title_pct": 60.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Galatasaray vs Kocaelispor - الدوري التركي الممتاز",
-        "Sheffield Utd vs Wolverhampton Wanderers - دوري البطولة الإنجليزية",
-        "Aston Villa vs Nottingham Forest - الدوري الإنجليزي الممتاز",
-        "The Big Interview - المقابلة الكبرى",
-        "Real Madrid vs Rayo Vallecono - الدوري الإسباني"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "Sheffield Utd vs Wolverhampton Wanderers - دوري البطولة الإنجليزية",
+          "desc": "مباراة ضمن منافسات دوري البطولة الإنجليزية، موسم 2026."
+        },
+        {
+          "start": "20260914003000 +0000",
+          "stop": "20260914023200 +0000",
+          "title": "Aston Villa vs Nottingham Forest - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، الجولة 4، موسم 2026/2027."
+        },
+        {
+          "start": "20260914023200 +0000",
+          "stop": "20260914025900 +0000",
+          "title": "The Big Interview - المقابلة الكبرى",
+          "desc": "مقابلة رياضية خاصة مع إحدى الشخصيات البارزة في عالم الرياضة، موسم 2026/2027."
+        },
+        {
+          "start": "20260914025900 +0000",
+          "stop": "20260914054000 +0000",
+          "title": "Real Madrid vs Rayo Vallecono - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": "beIN SPORTS2 DIGITAL.qa",
+      "alias_exact_match": true
     },
     {
       "id": "beINSports3.qa@MENA",
       "name": "beINSPORTS3",
-      "family": "beIN Sports 3",
-      "sports_like": true,
-      "events": 18,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 100.0,
-      "title_en_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN Sports 3 AR/MENA",
+      "kind": "sports_ar",
+      "events": 4,
+      "fingerprint": "0059198e24d3542c5279726c48a8ea5ec12cbe16",
+      "coverage_hours": 7.75,
+      "span_hours": 7.75,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 100.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 25.0,
+      "unique_title_pct": 100.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Tottenham Hotspur vs Everton - الدوري الإنجليزي الممتاز",
-        "Sunderland vs Arsenal - الدوري الإنجليزي الممتاز",
-        "Real Sociedad vs Atletico Madrid - الدوري الإسباني",
-        "Paris FC vs Lyon - الدوري الفرنسي",
-        "Racing Club vs Deportivo Alaves - الدوري الإسباني"
-      ]
+        {
+          "start": "20260913211500 +0000",
+          "stop": "20260913231500 +0000",
+          "title": "Real Madrid vs Rayo Vallecono - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        },
+        {
+          "start": "20260913231500 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "Athletic Bilbao vs Elche - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "Bournemouth vs Brentford - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، الجولة 4، موسم 2026/2027."
+        },
+        {
+          "start": "20260914030000 +0000",
+          "stop": "20260914050000 +0000",
+          "title": "Levante vs Barcelona - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beINSports4.qa@MENA",
       "name": "beINSPORT4",
-      "family": "beIN Sports 4",
-      "sports_like": true,
-      "events": 18,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 77.8,
-      "title_en_pct": 22.2,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN Sports 4 AR/MENA",
+      "kind": "sports_ar",
+      "events": 17,
+      "fingerprint": "c8741a3ab88bcdac1371c135dae09a5d5b2050e2",
+      "coverage_hours": 26.62,
+      "span_hours": 30.38,
+      "gaps_gt_2h": 0,
+      "gap_hours": 3.77,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 82.4,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 82.4,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 23.5,
+      "unique_title_pct": 58.8,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Portugal vs Costa Rica - FIFA U-20 Women World Cup",
-        "Chelsea vs Hull City - الدوري الإنجليزي الممتاز",
-        "Rc Lens, Goal Miners & Footballers",
-        "Rennes vs Marseille - الدوري الفرنسي",
-        "Havre AC vs Angers - الدوري الفرنسي"
-      ]
+        {
+          "start": "20260913211300 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "Chelsea vs Hull City - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، الجولة 4، موسم 2026/2027."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "Rc Lens, Goal Miners & Footballers",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914015300 +0000",
+          "stop": "20260914033600 +0000",
+          "title": "Rennes vs Marseille - الدوري الفرنسي",
+          "desc": "مباراة ضمن منافسات الدوري الفرنسي، الجولة 4، موسم 2026/2027، الحلقة 1."
+        },
+        {
+          "start": "20260914033600 +0000",
+          "stop": "20260914052500 +0000",
+          "title": "Havre AC vs Angers - الدوري الفرنسي",
+          "desc": "مباراة ضمن منافسات الدوري الفرنسي، الجولة 4، موسم 2026/2027، الحلقة 1."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": "beIN SPORTS4 DIGITAL.qa",
+      "alias_exact_match": true
     },
     {
       "id": "beINSports5.qa@MENA",
       "name": "beINSPORTS5",
-      "family": "beIN Sports 5",
-      "sports_like": true,
-      "events": 14,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 57.1,
-      "title_en_pct": 42.9,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN Sports 5 AR/MENA",
+      "kind": "sports_ar",
+      "events": 4,
+      "fingerprint": "52db11e8cbde7e7777a0713142ad8b74226110ef",
+      "coverage_hours": 7.75,
+      "span_hours": 7.75,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 75.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 75.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 25.0,
+      "unique_title_pct": 100.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Getafe vs Deportivo La Coruna - الدوري الإسباني",
-        "Crystal Palace vs Ipswich Town - الدوري الإنجليزي الممتاز",
-        "Al Nassr (KSA) - Gamba Osaka (JPN) - دوري أبطال آسيا 2 2025/2026 - Final",
-        "Auxerre vs Nice - الدوري الفرنسي",
-        "Italy vs Japan - FIFA U-20 Women World Cup"
-      ]
+        {
+          "start": "20260913210000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "Celta Vigo vs Malaga - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "Valladolid vs Oviedo - الدوري الإسباني Hypermotion",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، موسم 2026/2027."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "Getafe vs Deportivo La Coruna - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        },
+        {
+          "start": "20260914030000 +0000",
+          "stop": "20260914044500 +0000",
+          "title": "New Zealand vs USA - FIFA U-20 Women World Cup",
+          "desc": "مباراة، موسم 2026."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beINSports6.qa@MENA",
       "name": "beINSPORTS6",
-      "family": "beIN Sports 6",
-      "sports_like": true,
+      "family": "beIN Sports 6 AR/MENA",
+      "kind": "sports_ar",
       "events": 5,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 40.0,
-      "title_en_pct": 60.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "eddd230b63d50f9a9f6e012df70290f3798206f7",
+      "coverage_hours": 7.5,
+      "span_hours": 7.5,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 40.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 40.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 20.0,
+      "unique_title_pct": 100.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Premier Padel - Paris Major - Match 2",
-        "Lorient vs Toulouse - الدوري الفرنسي",
-        "Sprint Race - Madrid Round - FIA Formula 2 Championship",
-        "Trofeo Pirelli Race 1 - Hungaroring Round - Ferrari Challenge",
-        "Rennes vs Marseille - الدوري الفرنسي"
-      ]
+        {
+          "start": "20260913210000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "Premier Padel - Paris Major - Match 2",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914004500 +0000",
+          "title": "Lorient vs Toulouse - الدوري الفرنسي",
+          "desc": "مباراة ضمن منافسات الدوري الفرنسي، الجولة 4، موسم 2026/2027، الحلقة 1."
+        },
+        {
+          "start": "20260914004500 +0000",
+          "stop": "20260914014500 +0000",
+          "title": "Sprint Race - Madrid Round - FIA Formula 2 Championship",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914014500 +0000",
+          "stop": "20260914024500 +0000",
+          "title": "Trofeo Pirelli Race 1 - Hungaroring Round - Ferrari Challenge",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026، الحلقة 1."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": "beIN SPORTS6 DIGITAL -d-1.qa",
+      "alias_exact_match": true
     },
     {
       "id": "beINSports7.qa@MENA",
       "name": "beINSPORTS7",
-      "family": "beIN Sports 7",
-      "sports_like": true,
+      "family": "beIN Sports 7 AR/MENA",
+      "kind": "sports_ar",
       "events": 12,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "0de4099897a7d545ef56d2d07a21f72b10e5d919",
+      "coverage_hours": 27.13,
+      "span_hours": 31.37,
+      "gaps_gt_2h": 2,
+      "gap_hours": 4.23,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 16.7,
+      "unique_title_pct": 66.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Day 15 - Arthur Ashe Court - Tennis US Open 2026 - Men's Singles Final",
-        "Sochaux vs Nantes - French Ligue 2",
-        "Christian Harrison (USA) / Xinran Sun (CHN) vs Neal Skupski (GBR) / Kevin Krawietz (GER) - Arthur",
-        "Aryna Sabalenka vs Elena Rybakina - Arthur Ashe Court - Tennis US Open 2026 - Women's Singles Final",
-        "Alexander Zverev vs Botic van de Zandschulp D11M3 - Mini Matches - Tennis US Open"
-      ]
+        {
+          "start": "20260913203000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "Day 15 - Arthur Ashe Court - Tennis US Open 2026 - Men's Singles Final",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914020700 +0000",
+          "stop": "20260914035200 +0000",
+          "title": "Sochaux vs Nantes - French Ligue 2",
+          "desc": "مباراة، موسم 2026/2027، الحلقة 2."
+        },
+        {
+          "start": "20260914035200 +0000",
+          "stop": "20260914060500 +0000",
+          "title": "Christian Harrison (USA) / Xinran Sun (CHN) vs Neal Skupski (GBR) / Kevin Krawietz (GER) - Arthur",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914060500 +0000",
+          "stop": "20260914094000 +0000",
+          "title": "Aryna Sabalenka vs Elena Rybakina - Arthur Ashe Court - Tennis US Open 2026 - Women's Singles Final",
+          "desc": "مباراة، موسم 2026."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GAPS_GT_2H=2",
+        "TITLE_AR_ENRICHMENT_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beINSports8.qa@MENA",
       "name": "beINSPORTS8",
-      "family": "beIN Sports 8",
-      "sports_like": true,
-      "events": 34,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN Sports 8 AR/MENA",
+      "kind": "sports_ar",
+      "events": 35,
+      "fingerprint": "117a975b8c94029e82874c6d349c2f6c32a9f156",
+      "coverage_hours": 50.75,
+      "span_hours": 50.75,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 94.3,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 94.3,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 22.9,
+      "unique_title_pct": 40.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Tampa Bay Buccaneers @ Cincinatti Bengals - NFL -National Footbal League - 2026/27",
-        "Green Bay Packers @ Minnesota Vikings - NFL -National Footbal League - 2026/27",
-        "Main Race",
-        "Qualifying",
-        "Sprint Race"
-      ]
+        {
+          "start": "20260913200000 +0100",
+          "stop": "20260913232500 +0100",
+          "title": "Tampa Bay Buccaneers @ Cincinatti Bengals - NFL -National Footbal League - 2026/27",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913232500 +0100",
+          "stop": "20260914023000 +0100",
+          "title": "Green Bay Packers @ Minnesota Vikings - NFL -National Footbal League - 2026/27",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914023000 +0100",
+          "stop": "20260914063000 +0100",
+          "title": "Main Race",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914063000 +0100",
+          "stop": "20260914072000 +0100",
+          "title": "Qualifying",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beINSports9.qa@MENA",
       "name": "beINSPORTS9",
-      "family": "beIN Sports 9",
-      "sports_like": true,
-      "events": 22,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "family": "beIN Sports 9 AR/MENA",
+      "kind": "sports_ar",
+      "events": 21,
+      "fingerprint": "b16fc95cce8c90ff4bb4feaae4a6fd9032f18e85",
+      "coverage_hours": 29.23,
+      "span_hours": 32.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 2.77,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 9.5,
+      "unique_title_pct": 81.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "Longines Global Champions Tour - Shanghai Jumping - Against The Clock With Jump Off",
-        "Longines Global Champions Tour - Shanghai Jumping - Grand Prix",
-        "Longines Global Champions Tour - Mexico City Jumping - GCL R2 – Competition Team",
-        "Longines Global Champions Tour - Mexico City Jumping - Trofeo banorte Against the clock with Jump Of",
-        "Longines Global Champions Tour - Mexico City Jumping - Grand Prix"
-      ]
+        {
+          "start": "20260913211500 +0000",
+          "stop": "20260914000700 +0000",
+          "title": "Longines Global Champions Tour - Shanghai Jumping - Grand Prix",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914013000 +0000",
+          "stop": "20260914023000 +0000",
+          "title": "Longines Global Champions Tour - Mexico City Jumping - GCL R2 – Competition Team",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914023000 +0000",
+          "stop": "20260914051500 +0000",
+          "title": "Longines Global Champions Tour - Mexico City Jumping - Trofeo banorte Against the clock with Jump Of",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914051500 +0000",
+          "stop": "20260914074500 +0000",
+          "title": "Longines Global Champions Tour - Mexico City Jumping - Grand Prix",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "TITLE_AR_ENRICHMENT_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beINSportsXtra1.qa@SD",
       "name": "beIN SPORTS XTRA 1",
       "family": "beIN XTRA 1",
-      "sports_like": true,
+      "kind": "xtra",
       "events": 49,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "ba21c51756886b8b0beedb7baa1b947689706f50",
+      "coverage_hours": 49.0,
+      "span_hours": 49.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 49,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 65.3,
+      "unique_title_pct": 4.1,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=100%",
+        "LOW_TITLE_DIVERSITY=4%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beINSportsXtra2.qa@SD",
       "name": "beIN SPORTS XTRA 2",
       "family": "beIN XTRA 2",
-      "sports_like": true,
+      "kind": "xtra",
       "events": 49,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "fingerprint": "953c80a3534ecdc71362ed7f183836ee15bfee59",
+      "coverage_hours": 49.0,
+      "span_hours": 49.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 48,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 55.1,
+      "unique_title_pct": 6.1,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914000000 +0000",
+          "stop": "20260914010000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=98%",
+        "LOW_TITLE_DIVERSITY=6%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "beINSPORTSXTRA3.qa",
       "name": "beINSPORTSXTRA3.qa",
       "family": "beIN XTRA 3",
-      "sports_like": true,
-      "events": 25,
-      "status": "OK",
-      "issues": [],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "xtra",
+      "events": 24,
+      "fingerprint": "1a9dc61419c5d6341ef9cae74caf79bbbc553f9f",
+      "coverage_hours": 27.0,
+      "span_hours": 29.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 2.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 21,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 87.5,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914020000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=88%",
+        "REPEATED_TITLE=88%",
+        "LOW_TITLE_DIVERSITY=17%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "logos-_beINSPORTS8_EN.bein",
       "name": "logos-_beINSPORTS8_EN",
       "family": "beIN Sports 8 EN",
-      "sports_like": true,
-      "events": 18,
-      "status": "ALIAS/REVIEW",
-      "issues": [
+      "kind": "sports_en",
+      "events": 19,
+      "fingerprint": "f6ff47d52babbadff4e173e34a2ca49075075f96",
+      "coverage_hours": 31.08,
+      "span_hours": 52.0,
+      "gaps_gt_2h": 1,
+      "gap_hours": 20.92,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 21.1,
+      "unique_title_pct": 57.9,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260913200000 +0100",
+          "stop": "20260913232500 +0100",
+          "title": "Tampa Bay Buccaneers @ Cincinatti Bengals",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913232500 +0100",
+          "stop": "20260914023000 +0100",
+          "title": "Green Bay Packers @ Minnesota Vikings",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914232500 +0100",
+          "stop": "20260915023000 +0100",
+          "title": "Green Bay Packers @ Minnesota Vikings",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260915023000 +0100",
+          "stop": "20260915063000 +0100",
+          "title": "Main Race",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GAPS_GT_2H=1",
         "LOGO_PREFIX_ID"
       ],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
-      "invalid": 0,
-      "long_gt_6h": 0,
-      "preview": [
-        "Tampa Bay Buccaneers @ Cincinatti Bengals",
-        "Green Bay Packers @ Minnesota Vikings",
-        "Green Bay Packers @ Minnesota Vikings",
-        "Main Race",
-        "Qualifying"
-      ]
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "logos-_beINSPORTS9_EN.bein",
       "name": "logos-_beINSPORTS9_EN",
       "family": "beIN Sports 9 EN",
-      "sports_like": true,
-      "events": 20,
-      "status": "ALIAS/REVIEW",
-      "issues": [
+      "kind": "sports_en",
+      "events": 21,
+      "fingerprint": "de8abaa75eebf8c970df5d085ce97d73aaa93c83",
+      "coverage_hours": 29.5,
+      "span_hours": 51.25,
+      "gaps_gt_2h": 1,
+      "gap_hours": 21.75,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 47.6,
+      "unique_title_pct": 52.4,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260913211500 +0100",
+          "stop": "20260914000700 +0100",
+          "title": "Longines Global Champions Tour",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914000700 +0100",
+          "stop": "20260914010000 +0100",
+          "title": "Grand Prix Final with a Jump",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914010000 +0100",
+          "stop": "20260914024500 +0100",
+          "title": "Longines Global Champions Tour",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914024500 +0100",
+          "stop": "20260914040000 +0100",
+          "title": "Longines Global Champions Tour",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GAPS_GT_2H=1",
         "LOGO_PREFIX_ID"
       ],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
-      "invalid": 0,
-      "long_gt_6h": 0,
-      "preview": [
-        "Longines Global Champions Tour",
-        "Grand Prix Final with a Jump",
-        "Longines Global Champions Tour",
-        "Longines Global Champions Tour",
-        "Longines Global Champions Tour"
-      ]
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
       "id": "logos-_beINSPORTSXTRA3_EN.bein",
       "name": "logos-_beINSPORTSXTRA3_EN",
       "family": "beIN XTRA 3",
-      "sports_like": true,
-      "events": 25,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "LOGO_PREFIX_ID"
-      ],
-      "empty_desc": 0,
-      "title_ar_pct": 0.0,
-      "title_en_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "xtra",
+      "events": 24,
+      "fingerprint": "1a9dc61419c5d6341ef9cae74caf79bbbc553f9f",
+      "coverage_hours": 27.0,
+      "span_hours": 29.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 2.0,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 21,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 87.5,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August"
-      ]
+        {
+          "start": "20260913220000 +0000",
+          "stop": "20260913230000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260913230000 +0000",
+          "stop": "20260914000000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914010000 +0000",
+          "stop": "20260914020000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914020000 +0000",
+          "stop": "20260914030000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=88%",
+        "REPEATED_TITLE=88%",
+        "LOW_TITLE_DIVERSITY=17%"
+      ],
+      "compat_canonical": "beINSPORTSXTRA3.qa",
+      "alias_exact_match": true
     },
     {
       "id": "NEWS_DIGITAL_Mono_AR.bein",
       "name": "NEWS_DIGITAL_Mono_AR",
       "family": "beIN Sports News",
-      "sports_like": true,
-      "events": 39,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "GUIDE_ALIAS_ID"
-      ],
-      "empty_desc": 0,
-      "title_ar_pct": 2.6,
-      "title_en_pct": 92.3,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "news",
+      "events": 38,
+      "fingerprint": "94277055da4a8d5495b257a1402044d523fba194",
+      "coverage_hours": 48.5,
+      "span_hours": 49.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.5,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 2,
+      "generic": 2,
+      "title_has_ar_pct": 13.2,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 13.2,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 34.2,
+      "unique_title_pct": 47.4,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "ON Time Stadium",
-        "Sport TV Magazine - مجلة",
-        "24/7",
-        "Football Match",
-        "ON Target"
-      ]
+        {
+          "start": "20260913223000 +0100",
+          "stop": "20260914000000 +0100",
+          "title": "24/7",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914000000 +0100",
+          "stop": "20260914020000 +0100",
+          "title": "Football Match",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914020000 +0100",
+          "stop": "20260914030000 +0100",
+          "title": "ON Target",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914030000 +0100",
+          "stop": "20260914040000 +0100",
+          "title": "Al Hassad",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "TITLE_AR_ENRICHMENT_LOW=13%",
+        "PLACEHOLDER=2"
+      ],
+      "compat_canonical": "beIN.Sports.News.ae",
+      "alias_exact_match": true
     },
     {
       "id": "NEWS_DIGITAL_Mono_EN.bein",
       "name": "NEWS_DIGITAL_Mono_EN",
       "family": "beIN Sports News",
-      "sports_like": true,
-      "events": 39,
-      "status": "ALIAS/REVIEW",
-      "issues": [
-        "GUIDE_ALIAS_ID"
-      ],
-      "empty_desc": 0,
-      "title_ar_pct": 2.6,
-      "title_en_pct": 92.3,
-      "desc_ar_pct": 100.0,
-      "desc_en_pct": 0.0,
-      "overlaps": 0,
+      "kind": "news",
+      "events": 38,
+      "fingerprint": "94277055da4a8d5495b257a1402044d523fba194",
+      "coverage_hours": 48.5,
+      "span_hours": 49.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.5,
       "invalid": 0,
+      "overlaps": 0,
       "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 2,
+      "generic": 2,
+      "title_has_ar_pct": 13.2,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 13.2,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 34.2,
+      "unique_title_pct": 47.4,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
       "preview": [
-        "ON Time Stadium",
-        "Sport TV Magazine - مجلة",
-        "24/7",
-        "Football Match",
-        "ON Target"
-      ]
+        {
+          "start": "20260913223000 +0100",
+          "stop": "20260914000000 +0100",
+          "title": "24/7",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914000000 +0100",
+          "stop": "20260914020000 +0100",
+          "title": "Football Match",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914020000 +0100",
+          "stop": "20260914030000 +0100",
+          "title": "ON Target",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914030000 +0100",
+          "stop": "20260914040000 +0100",
+          "title": "Al Hassad",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "TITLE_AR_ENRICHMENT_LOW=13%",
+        "PLACEHOLDER=2"
+      ],
+      "compat_canonical": "beIN.Sports.News.ae",
+      "alias_exact_match": true
     }
   ],
-  "families": [
+  "duplicate_timeline_groups": [
     {
-      "family": "beIN 4K",
-      "preferred": "beIN4K.qa@SD",
-      "members": [
-        "beIN4K.qa@SD",
-        "4k_DIGITAL_Mono_AR.bein"
+      "ids": [
+        "4k_DIGITAL_Mono_AR.bein",
+        "beIN4K.qa@SD"
+      ],
+      "families": [
+        "beIN 4K"
       ]
     },
     {
-      "family": "beIN Boxoffice",
-      "preferred": "beIN SPORTS-boxoffice-bein.com.qa",
-      "members": [
-        "beIN SPORTS-boxoffice-bein.com.qa"
-      ]
-    },
-    {
-      "family": "beIN MAX 1",
-      "preferred": "beIN SPORTS MAX1 DIGITAL.qa",
-      "members": [
-        "beIN SPORTS MAX1 DIGITAL.qa"
-      ]
-    },
-    {
-      "family": "beIN MAX 2",
-      "preferred": "beIN SPORTS MAX2 DIGITAL.qa",
-      "members": [
-        "beIN SPORTS MAX2 DIGITAL.qa"
-      ]
-    },
-    {
-      "family": "beIN MAX 3",
-      "preferred": "beIN SPORTS MAX3 DIGITAL.qa",
-      "members": [
-        "beIN SPORTS MAX3 DIGITAL.qa"
-      ]
-    },
-    {
-      "family": "beIN MAX 4",
-      "preferred": "beIN SPORTS MAX4 DIGITAL.qa",
-      "members": [
-        "beIN SPORTS MAX4 DIGITAL.qa"
-      ]
-    },
-    {
-      "family": "beIN MAX 5",
-      "preferred": "beIN SPORTS MAX5 DIGITAL.qa",
-      "members": [
+      "ids": [
+        "beIN SPORTS MAX2 DIGITAL.qa",
+        "beIN SPORTS MAX3 DIGITAL.qa",
+        "beIN SPORTS MAX4 DIGITAL.qa",
         "beIN SPORTS MAX5 DIGITAL.qa"
+      ],
+      "families": [
+        "beIN MAX 2",
+        "beIN MAX 3",
+        "beIN MAX 4",
+        "beIN MAX 5"
       ]
     },
     {
-      "family": "bein sports",
-      "preferred": "beIN.Sports.HD.ae",
-      "members": [
-        "beIN.Sports.HD.ae"
-      ]
-    },
-    {
-      "family": "beIN Sports 1",
-      "preferred": "beIN SPORTS1 DIGITAL.qa",
-      "members": [
-        "beIN SPORTS1 DIGITAL.qa"
-      ]
-    },
-    {
-      "family": "beIN Sports 1 EN",
-      "preferred": "beIN SPORTS1 ENGLISH Digital.qa",
-      "members": [
-        "beIN SPORTS1 ENGLISH Digital.qa"
-      ]
-    },
-    {
-      "family": "beIN Sports 1 FR",
-      "preferred": "beIN_SPORTS1_FRENCH_Digital_Mono_AR.bein",
-      "members": [
-        "beIN_SPORTS1_FRENCH_Digital_Mono_AR.bein"
-      ]
-    },
-    {
-      "family": "beIN Sports 2",
-      "preferred": "beIN SPORTS2 DIGITAL.qa",
-      "members": [
-        "beIN SPORTS2 DIGITAL.qa",
-        "beINSports2.qa@MENA"
-      ]
-    },
-    {
-      "family": "beIN Sports 2 EN",
-      "preferred": "beIN SPORTS2 ENGLISH Digital.qa",
-      "members": [
-        "beIN SPORTS2 ENGLISH Digital.qa"
-      ]
-    },
-    {
-      "family": "beIN Sports 3",
-      "preferred": "beINSports3.qa@MENA",
-      "members": [
-        "beINSports3.qa@MENA"
-      ]
-    },
-    {
-      "family": "beIN Sports 3 EN",
-      "preferred": "beIN_SPORTS3_DIGITAL_Mono_EN.bein",
-      "members": [
-        "beIN_SPORTS3_DIGITAL_Mono_EN.bein"
-      ]
-    },
-    {
-      "family": "beIN Sports 4",
-      "preferred": "beIN SPORTS4 DIGITAL.qa",
-      "members": [
-        "beIN SPORTS4 DIGITAL.qa",
-        "beINSports4.qa@MENA"
-      ]
-    },
-    {
-      "family": "beIN Sports 4 EN",
-      "preferred": "beIN_SPORTS4_DIGITAL_Mono_EN.bein",
-      "members": [
-        "beIN_SPORTS4_DIGITAL_Mono_EN.bein"
-      ]
-    },
-    {
-      "family": "beIN Sports 5",
-      "preferred": "beINSports5.qa@MENA",
-      "members": [
-        "beINSports5.qa@MENA"
-      ]
-    },
-    {
-      "family": "beIN Sports 5 EN",
-      "preferred": "beIN_SPORTS5_DIGITAL_Mono_EN.bein",
-      "members": [
-        "beIN_SPORTS5_DIGITAL_Mono_EN.bein"
-      ]
-    },
-    {
-      "family": "beIN Sports 6",
-      "preferred": "beIN SPORTS6 DIGITAL -d-1.qa",
-      "members": [
-        "beIN SPORTS6 DIGITAL -d-1.qa",
-        "beINSports6.qa@MENA"
-      ]
-    },
-    {
-      "family": "beIN Sports 66",
-      "preferred": "beIN SPORTS66 DIGITAL -01.qa",
-      "members": [
-        "beIN SPORTS66 DIGITAL -01.qa"
-      ]
-    },
-    {
-      "family": "beIN Sports 66 EN",
-      "preferred": "beIN_SPORTS66_DIGITAL_Mono-01_EN.bein",
-      "members": [
-        "beIN_SPORTS66_DIGITAL_Mono-01_EN.bein"
-      ]
-    },
-    {
-      "family": "beIN Sports 7",
-      "preferred": "beIN SPORTS7 DIGITAL.qa",
-      "members": [
-        "beIN SPORTS7 DIGITAL.qa",
-        "beINSports7.qa@MENA"
-      ]
-    },
-    {
-      "family": "beIN Sports 7 EN",
-      "preferred": "beIN_SPORTS7_DIGITAL_Mono_EN.bein",
-      "members": [
-        "beIN_SPORTS7_DIGITAL_Mono_EN.bein"
-      ]
-    },
-    {
-      "family": "beIN Sports 8",
-      "preferred": "beINSports8.qa@MENA",
-      "members": [
-        "beINSports8.qa@MENA"
-      ]
-    },
-    {
-      "family": "beIN Sports 8 EN",
-      "preferred": "logos-_beINSPORTS8_EN.bein",
-      "members": [
-        "logos-_beINSPORTS8_EN.bein"
-      ]
-    },
-    {
-      "family": "beIN Sports 9",
-      "preferred": "beINSports9.qa@MENA",
-      "members": [
-        "beINSports9.qa@MENA"
-      ]
-    },
-    {
-      "family": "beIN Sports 9 EN",
-      "preferred": "logos-_beINSPORTS9_EN.bein",
-      "members": [
-        "logos-_beINSPORTS9_EN.bein"
-      ]
-    },
-    {
-      "family": "beIN Sports FTA",
-      "preferred": "bein SPORTS FTA DIGITAL.qa",
-      "members": [
-        "bein SPORTS FTA DIGITAL.qa"
-      ]
-    },
-    {
-      "family": "beIN Sports News",
-      "preferred": "beIN.Sports.News.ae",
-      "members": [
-        "beIN.Sports.News.ae",
-        "NEWS_DIGITAL_Mono_AR.bein",
-        "NEWS_DIGITAL_Mono_EN.bein"
-      ]
-    },
-    {
-      "family": "bein sports xtra digital 09 bein com english",
-      "preferred": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein",
-      "members": [
+      "ids": [
+        "beIN SPORTS XTRA 04 bein.com.qa",
+        "beIN SPORTS XTRA 05 bein.com.qa",
+        "beIN SPORTS XTRA 4.qa",
+        "beIN SPORTS XTRA 5.qa",
+        "beIN SPORTS XTRA 6.qa",
+        "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 9.qa",
+        "beIN_SPORTS_XTRA_06_bein.com_EN.bein",
+        "beIN_SPORTS_XTRA_07_bein.com_EN.bein",
         "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein"
+      ],
+      "families": [
+        "beIN XTRA 4",
+        "beIN XTRA 5",
+        "beIN XTRA 6",
+        "beIN XTRA 7",
+        "beIN XTRA 9",
+        "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN"
       ]
     },
     {
-      "family": "beIN XTRA 04",
-      "preferred": "beIN SPORTS XTRA 04 bein.com.qa",
-      "members": [
-        "beIN SPORTS XTRA 04 bein.com.qa"
-      ]
-    },
-    {
-      "family": "beIN XTRA 05",
-      "preferred": "beIN SPORTS XTRA 05 bein.com.qa",
-      "members": [
-        "beIN SPORTS XTRA 05 bein.com.qa"
-      ]
-    },
-    {
-      "family": "beIN XTRA 06",
-      "preferred": "beIN_SPORTS_XTRA_06_bein.com_EN.bein",
-      "members": [
-        "beIN_SPORTS_XTRA_06_bein.com_EN.bein"
-      ]
-    },
-    {
-      "family": "beIN XTRA 07",
-      "preferred": "beIN_SPORTS_XTRA_07_bein.com_EN.bein",
-      "members": [
-        "beIN_SPORTS_XTRA_07_bein.com_EN.bein"
-      ]
-    },
-    {
-      "family": "beIN XTRA 08",
-      "preferred": "beIN_SPORTS_XTRA_08_Bein.com_EN.bein",
-      "members": [
-        "beIN_SPORTS_XTRA_08_Bein.com_EN.bein"
-      ]
-    },
-    {
-      "family": "beIN XTRA 1",
-      "preferred": "beINSportsXtra1.qa@SD",
-      "members": [
-        "beINSportsXtra1.qa@SD"
-      ]
-    },
-    {
-      "family": "beIN XTRA 2",
-      "preferred": "beINSportsXtra2.qa@SD",
-      "members": [
-        "beINSportsXtra2.qa@SD"
-      ]
-    },
-    {
-      "family": "beIN XTRA 3",
-      "preferred": "beIN SPORTS XTRA 3.qa",
-      "members": [
+      "ids": [
         "beIN SPORTS XTRA 3.qa",
         "beINSPORTSXTRA3.qa",
         "logos-_beINSPORTSXTRA3_EN.bein"
+      ],
+      "families": [
+        "beIN XTRA 3"
       ]
     },
     {
-      "family": "beIN XTRA 4",
-      "preferred": "beIN SPORTS XTRA 4.qa",
-      "members": [
-        "beIN SPORTS XTRA 4.qa"
+      "ids": [
+        "beIN SPORTS XTRA 8.qa",
+        "beIN_SPORTS_XTRA_08_Bein.com_EN.bein"
+      ],
+      "families": [
+        "beIN XTRA 8"
       ]
     },
     {
-      "family": "beIN XTRA 5",
-      "preferred": "beIN SPORTS XTRA 5.qa",
-      "members": [
-        "beIN SPORTS XTRA 5.qa"
+      "ids": [
+        "beIN SPORTS2 DIGITAL.qa",
+        "beINSports2.qa@MENA"
+      ],
+      "families": [
+        "beIN Sports 2 AR/MENA"
       ]
     },
     {
-      "family": "beIN XTRA 6",
-      "preferred": "beIN SPORTS XTRA 6.qa",
-      "members": [
-        "beIN SPORTS XTRA 6.qa"
+      "ids": [
+        "beIN SPORTS4 DIGITAL.qa",
+        "beINSports4.qa@MENA"
+      ],
+      "families": [
+        "beIN Sports 4 AR/MENA"
       ]
     },
     {
-      "family": "beIN XTRA 7",
-      "preferred": "beIN SPORTS XTRA 7.qa",
-      "members": [
-        "beIN SPORTS XTRA 7.qa"
+      "ids": [
+        "beIN SPORTS6 DIGITAL -d-1.qa",
+        "beINSports6.qa@MENA"
+      ],
+      "families": [
+        "beIN Sports 6 AR/MENA"
       ]
     },
     {
-      "family": "beIN XTRA 8",
-      "preferred": "beIN SPORTS XTRA 8.qa",
-      "members": [
-        "beIN SPORTS XTRA 8.qa"
+      "ids": [
+        "beIN SPORTS7 DIGITAL.qa",
+        "beINSports7.qa@MENA"
+      ],
+      "families": [
+        "beIN Sports 7 AR/MENA"
       ]
     },
     {
-      "family": "beIN XTRA 9",
-      "preferred": "beIN SPORTS XTRA 9.qa",
-      "members": [
-        "beIN SPORTS XTRA 9.qa"
-      ]
-    },
-    {
-      "family": "UNKNOWN bein.com alias",
-      "preferred": "bein.com-06.qa",
-      "members": [
-        "bein.com-06.qa",
-        "bein.com-07.qa",
-        "bein.com-05.qa",
-        "bein.com-08.qa"
+      "ids": [
+        "beIN.Sports.News.ae",
+        "NEWS_DIGITAL_Mono_AR.bein",
+        "NEWS_DIGITAL_Mono_EN.bein"
+      ],
+      "families": [
+        "beIN Sports News"
       ]
     }
   ]
