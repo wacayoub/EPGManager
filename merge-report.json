@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-13T21:01:57.783119+00:00",
+  "generated": "2026-09-13T21:08:46.351273+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -9,13 +9,13 @@
     {
       "name": "openepg-egypt1",
       "origin": "openepg",
-      "channels_with_current_48h_epg": 85,
+      "channels_with_current_48h_epg": 82,
       "bytes": 341905
     },
     {
       "name": "openepg-egypt2",
       "origin": "openepg",
-      "channels_with_current_48h_epg": 87,
+      "channels_with_current_48h_epg": 84,
       "bytes": 141447
     },
     {
@@ -27,7 +27,7 @@
     {
       "name": "openepg-qatar1",
       "origin": "openepg",
-      "channels_with_current_48h_epg": 29,
+      "channels_with_current_48h_epg": 27,
       "bytes": 27590
     },
     {
@@ -57,7 +57,7 @@
     {
       "name": "openepg-qatar6",
       "origin": "openepg",
-      "channels_with_current_48h_epg": 7,
+      "channels_with_current_48h_epg": 6,
       "bytes": 2541
     },
     {
@@ -127,17 +127,17 @@
       "bytes": 4291
     }
   ],
-  "candidate_channel_rows": 1692,
-  "unique_logical_channels": 1042,
-  "programmes": 48788,
-  "premium_hybrid_events": 945,
+  "candidate_channel_rows": 1674,
+  "unique_logical_channels": 1031,
+  "programmes": 48257,
+  "premium_hybrid_events": 942,
   "stats": {
-    "logical_duplicate_groups": 355,
-    "regular_channels": 957,
-    "source_openepg": 339,
+    "logical_duplicate_groups": 352,
+    "regular_channels": 947,
+    "source_openepg": 337,
     "source_epgshare": 535,
-    "premium_channels": 85,
-    "source_primary": 168
+    "premium_channels": 84,
+    "source_primary": 159
   },
   "aliases": [
     {
@@ -189,8 +189,8 @@
       ]
     },
     {
-      "canonical_id": "AbuDhabiSports1.ae@SD",
-      "canonical_name": "AD Sports 1 HD",
+      "canonical_id": "AD Sports 1.sa",
+      "canonical_name": "AD Sports 1.sa",
       "logical_key": "abu dhabi sports 1",
       "aliases": [
         {
@@ -212,16 +212,6 @@
           "id": "AD Sports 1 HD.sa",
           "name": "AD Sports 1 HD.sa",
           "source": "openepg-saudi6"
-        },
-        {
-          "id": "AD Sports 1.sa",
-          "name": "AD Sports 1.sa",
-          "source": "openepg-saudi1"
-        },
-        {
-          "id": "AD Sports 1.sa",
-          "name": "AD Sports 1.sa",
-          "source": "openepg-saudi2"
         },
         {
           "id": "AD.Sports.1.HD.ae",
@@ -591,11 +581,6 @@
           "id": "Al Kass One.sa",
           "name": "Al Kass One.sa",
           "source": "openepg-saudi6"
-        },
-        {
-          "id": "Alkass One.qa",
-          "name": "Alkass One.qa",
-          "source": "openepg-qatar6"
         },
         {
           "id": "Alkass.One.HD.ae",
@@ -1271,18 +1256,6 @@
           "id": "bein_SPORTS_FTA_DIGITAL_Mono_EN.bein",
           "name": "bein_SPORTS_FTA_DIGITAL_Mono_EN",
           "source": "epgshare-bein1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "beIN SPORTS MAX1 DIGITAL.qa",
-      "canonical_name": "beIN SPORTS MAX1 DIGITAL.qa",
-      "logical_key": "bein sports max 1",
-      "aliases": [
-        {
-          "id": "beIN SPORTS MAX 1.qa",
-          "name": "beIN SPORTS MAX 1.qa",
-          "source": "openepg-qatar1"
         }
       ]
     },
@@ -3251,11 +3224,6 @@
       "logical_key": "osn kids",
       "aliases": [
         {
-          "id": "OSN TV Kids.eg",
-          "name": "OSN TV Kids.eg",
-          "source": "openepg-egypt2"
-        },
-        {
           "id": "OSNtv Kids.sa",
           "name": "OSNtv Kids.sa",
           "source": "openepg-saudi5"
@@ -3671,20 +3639,10 @@
       ]
     },
     {
-      "canonical_id": "RoyaTV.jo@SD",
-      "canonical_name": "Roya TV",
+      "canonical_id": "Roya TV HD.sa",
+      "canonical_name": "Roya TV HD.sa",
       "logical_key": "roya tv",
       "aliases": [
-        {
-          "id": "Roya TV HD.sa",
-          "name": "Roya TV HD.sa",
-          "source": "openepg-saudi5"
-        },
-        {
-          "id": "Roya TV HD.sa",
-          "name": "Roya TV HD.sa",
-          "source": "openepg-saudi6"
-        },
         {
           "id": "Roya.TV.HD.ae",
           "name": "Roya TV HD",
@@ -4292,18 +4250,6 @@
       ]
     },
     {
-      "canonical_id": "AlRasheedTV.iq@SD",
-      "canonical_name": "الرشيد",
-      "logical_key": "الرشيد",
-      "aliases": [
-        {
-          "id": "الرشيد.eg",
-          "name": "الرشيد.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "AlSaudiya.sa@SD",
       "canonical_name": "السعودية",
       "logical_key": "السعودية",
@@ -4311,18 +4257,6 @@
         {
           "id": "السعودية.eg",
           "name": "السعودية.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "AlSaeedah.eg@SD",
-      "canonical_name": "السعيدة",
-      "logical_key": "السعيدة",
-      "aliases": [
-        {
-          "id": "السعيدة.eg",
-          "name": "السعيدة.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4580,13 +4514,13 @@
       ]
     },
     {
-      "canonical_id": "ZeeAlwan.ae@SD",
-      "canonical_name": "زي ألوان",
-      "logical_key": "زي ألوان",
+      "canonical_id": "Cima.eg@SD",
+      "canonical_name": "سيما",
+      "logical_key": "سيما",
       "aliases": [
         {
-          "id": "زي ألوان.eg",
-          "name": "زي ألوان.eg",
+          "id": "سيما.eg",
+          "name": "سيما.eg",
           "source": "openepg-egypt1"
         }
       ]

@@ -1,152 +1,138 @@
 {
   "schema": 1,
   "scope": "all exclusive MENA country/provider shards",
-  "channels_scanned": 973,
-  "programmes_scanned": 48132,
+  "channels_scanned": 974,
+  "programmes_scanned": 47373,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 3,
-    "arabic_provider_title_not_arabic": 959,
-    "empty_description": 34921,
-    "empty_title": 2,
+    "arabic_provider_title_not_arabic": 949,
+    "empty_description": 34584,
     "hybrid_arabic_latin_description": 5,
     "premium_title_not_english": 88,
-    "severity_critical": 2,
-    "severity_warning": 38150,
+    "severity_warning": 37790,
     "very_long_event_gt_6h": 50,
-    "very_short_event_lt_5m": 2124
+    "very_short_event_lt_5m": 2111
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 801,
+      "empty_description": 788,
       "hybrid_arabic_latin_description": 5
     },
     "mena-bh": {
-      "empty_description": 79,
+      "empty_description": 78,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 7
     },
     "mena-dz": {
-      "empty_description": 729,
+      "empty_description": 723,
       "very_long_event_gt_6h": 6,
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 3305,
+      "empty_description": 3256,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 2637,
+      "empty_description": 2596,
       "very_short_event_lt_5m": 6
     },
     "mena-jo": {
-      "empty_description": 480,
-      "very_short_event_lt_5m": 3
+      "empty_description": 512
     },
     "mena-kw": {
-      "empty_description": 807,
+      "empty_description": 796,
       "very_short_event_lt_5m": 1
     },
     "mena-lb": {
-      "empty_description": 789,
+      "empty_description": 780,
       "very_long_event_gt_6h": 2
     },
     "mena-ly": {
-      "empty_description": 222
+      "empty_description": 221
     },
     "mena-mr": {
       "empty_description": 61,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 385,
-      "empty_title": 2
+      "empty_description": 377
     },
     "mena-other": {
-      "empty_description": 16717,
+      "empty_description": 16569,
       "very_long_event_gt_6h": 22,
-      "very_short_event_lt_5m": 1205
+      "very_short_event_lt_5m": 1201
     },
     "mena-ps": {
-      "empty_description": 783
+      "empty_description": 773
     },
     "mena-qa": {
-      "empty_description": 1417,
+      "empty_description": 1395,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1839,
-      "very_short_event_lt_5m": 462
+      "empty_description": 1826,
+      "very_short_event_lt_5m": 458
     },
     "mena-sd": {
-      "empty_description": 251
+      "empty_description": 248
     },
     "mena-sy": {
-      "empty_description": 148
+      "empty_description": 145
     },
     "mena-tn": {
-      "empty_description": 212,
+      "empty_description": 210,
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
-      "empty_description": 582,
+      "empty_description": 572,
       "very_long_event_gt_6h": 6
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 344,
-      "empty_description": 280,
+      "arabic_provider_title_not_arabic": 341,
+      "empty_description": 281,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 12
     },
     "provider-art": {
-      "arabic_provider_title_not_arabic": 125,
-      "empty_description": 1044,
-      "very_short_event_lt_5m": 368
+      "arabic_provider_title_not_arabic": 122,
+      "empty_description": 1037,
+      "very_short_event_lt_5m": 366
     },
     "provider-bein": {
-      "empty_description": 256,
+      "empty_description": 249,
       "premium_title_not_english": 84,
       "very_long_event_gt_6h": 2
     },
     "provider-dmi": {
-      "arabic_provider_title_not_arabic": 75,
-      "empty_description": 288,
+      "arabic_provider_title_not_arabic": 74,
+      "empty_description": 287,
       "very_long_event_gt_6h": 2
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 3,
-      "arabic_provider_title_not_arabic": 278,
-      "empty_description": 352,
+      "arabic_provider_title_not_arabic": 277,
+      "empty_description": 351,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "provider-osn": {
-      "empty_description": 129,
+      "empty_description": 128,
       "premium_title_not_english": 4,
       "very_short_event_lt_5m": 37
     },
     "provider-rotana": {
-      "arabic_provider_title_not_arabic": 137,
-      "empty_description": 152
+      "arabic_provider_title_not_arabic": 135,
+      "empty_description": 150
     },
     "provider-starz": {
-      "empty_description": 176,
+      "empty_description": 175,
       "very_long_event_gt_6h": 1
     }
   },
   "samples": {
     "empty_description": [
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260913200000 +0000",
-        "stop": "20260913210000 +0000",
-        "title": "Darb Al Thahab",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
       {
         "shard": "provider-bein",
         "channel_id": "beIN Drama.eg",
@@ -391,16 +377,6 @@
         "shard": "provider-bein",
         "channel_id": "BeIn Series HD 1.eg",
         "channel": "BeIn Series HD 1.eg",
-        "start": "20260913200000 +0000",
-        "stop": "20260913210000 +0000",
-        "title": "The Miniature Wife",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
         "start": "20260913210000 +0000",
         "stop": "20260913220000 +0000",
         "title": "1883",
@@ -534,6 +510,26 @@
         "start": "20260914100000 +0000",
         "stop": "20260914110000 +0000",
         "title": "Yellowjackets S2",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914110000 +0000",
+        "stop": "20260914120000 +0000",
+        "title": "Outlander S3",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914120000 +0000",
+        "stop": "20260914130000 +0000",
+        "title": "Shark Tank",
         "desc": "",
         "duration_minutes": 60.0
       }
@@ -2228,28 +2224,6 @@
         "title": "سانجاي أند كرايغ",
         "desc": "ينقلب الأطفال على سانجاي عندما يحاصرهم جميعًا على طريق سريع متوسط في \"Traffical Island\"، ثم في \"Partybot\"، يجد سانجاي وكريج روبوتًا قديمًا ويصبحان حيوانات احتفالية.",
         "duration_minutes": 20.0
-      }
-    ],
-    "empty_title": [
-      {
-        "shard": "mena-om",
-        "channel_id": "OmanTV.om",
-        "channel": "قناة عمان العامة",
-        "start": "20260913200000 +0000",
-        "stop": "20260913210000 +0000",
-        "title": "",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "mena-om",
-        "channel_id": "OmanTVMubashir.om",
-        "channel": "قناة عمان مباشر",
-        "start": "20260913200000 +0000",
-        "stop": "20260913210000 +0000",
-        "title": "",
-        "desc": "",
-        "duration_minutes": 60.0
       }
     ]
   }
