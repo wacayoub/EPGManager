@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Strict final publication policy layered on mena_cloud_finalize_safe."""
+"""Strict final publication policy layered on mena_cloud_finalize_safe.
+
+beIN SPORTS title policy mirrors the Qatar1 formatter:
+- keep teams/proper names in Latin when that is the safest canonical form;
+- translate competitions/editorial labels to Arabic inside the same title;
+- move season/round metadata to the Arabic description;
+- normalize LIVE prefix to `Live :`;
+- preserve the RTL-safe UEFA Magazine wording requested by the receiver UI.
+"""
 from __future__ import annotations
 
 import re
@@ -18,6 +26,10 @@ def _probe(cid, name):
 def _is_alkass(cid, name):
     p = _probe(cid, name)
     return "alkass" in p or "al kass" in p
+
+
+def _is_bein_sports(cid, name):
+    return safe._is_bein_sports(cid, name)
 
 
 def _is_arabic_provider(cid, name):
@@ -55,6 +67,117 @@ _BAD_ALKASS_RE = re.compile(
 )
 
 
+# Qatar1-style bilingual/hybrid beIN title vocabulary.  More specific rules
+# must come before broader ones.
+_BEIN_TITLE_COMPETITIONS = [
+    (re.compile(r"\bUEFA\s+Champions\s+League\b", re.I), "دوري أبطال أوروبا"),
+    (re.compile(r"\bUEFA\s+Europa\s+League\b", re.I), "الدوري الأوروبي"),
+    (re.compile(r"\bUEFA\s+(?:Europa\s+)?Conference\s+League\b", re.I), "دوري المؤتمر الأوروبي"),
+    (re.compile(r"\bAFC\s+Champions\s+League\s+Elite\b", re.I), "دوري أبطال آسيا للنخبة"),
+    (re.compile(r"\bAFC\s+Champions\s+League\s+Two\b", re.I), "دوري أبطال آسيا 2"),
+    (re.compile(r"\bAFC\s+Champions\s+League\b", re.I), "دوري أبطال آسيا"),
+    (re.compile(r"\bEnglish\s+Premier\s+League\b|\bPremier\s+League\b", re.I), "الدوري الإنجليزي الممتاز"),
+    (re.compile(r"\bFrench\s+(?:League\s*-\s*)?Ligue\s*1\b|\bLigue\s*1\b", re.I), "الدوري الفرنسي"),
+    (re.compile(r"\bSpanish\s+(?:La\s*Liga|League)\b|\bLa\s*Liga\b", re.I), "الدوري الإسباني"),
+    (re.compile(r"\bGerman\s+Bundesliga\b|\bBundesliga\b", re.I), "الدوري الألماني"),
+    (re.compile(r"\bItalian\s+Serie\s*A\b|\bSerie\s*A\b", re.I), "الدوري الإيطالي"),
+    (re.compile(r"\bSaudi\s+Pro\s+League\b", re.I), "الدوري السعودي للمحترفين"),
+    (re.compile(r"\bUAE\s+Pro\s+League\b|\bADNOC\s+Pro\s+League\b", re.I), "دوري أدنوك للمحترفين"),
+    (re.compile(r"\bQatar\s+Stars\s+League\b", re.I), "دوري نجوم قطر"),
+    (re.compile(r"\bTurkish\s+Super\s+League\b|\bS[uü]per\s+Lig\b", re.I), "الدوري التركي الممتاز"),
+    (re.compile(r"\bEFL\b.*?\bChampionship\b|\bEnglish\s+Football\s+League.*?Championship\b", re.I), "دوري البطولة الإنجليزية"),
+]
+
+_SEASON_ROUND_TAIL_RE = re.compile(
+    r"(?:\s*[-–—|:]\s*)?(?:20\d{2}(?:[/\-]20\d{2})?)"
+    r"(?:\s*[-–—|:]\s*(?:Week|Round|Matchday|MD)\s*\d{1,2})?\s*$",
+    re.I,
+)
+_ROUND_TAIL_RE = re.compile(
+    r"\s*[-–—|:]\s*(?:Week|Round|Matchday|MD)\s*\d{1,2}\s*$", re.I
+)
+_LIVE_PREFIX_RE = re.compile(r"^\s*Live\s*(?:[-:|])?\s*", re.I)
+
+
+def _set_title(programme, text):
+    if not text:
+        return
+    titles = list(programme.findall("title"))
+    if titles:
+        title = titles[0]
+        for extra in titles[1:]:
+            programme.remove(extra)
+    else:
+        title = base.ET.SubElement(programme, "title")
+    title.text = text
+    # Keep `en` for XMLTV compatibility/searching even though the visible title
+    # is deliberately hybrid EN/AR, matching the previous Qatar1 behaviour.
+    title.set("lang", "en")
+
+
+def _cleanup_title_separators(text):
+    text = re.sub(r"\s+", " ", text or "").strip()
+    text = re.sub(r"\s*[-–—|:]\s*[-–—|:]\s*", " - ", text)
+    text = re.sub(r"\s*[-–—|:]\s*$", "", text)
+    text = re.sub(r"^\s*[-–—|:]\s*", "", text)
+    return text.strip()
+
+
+def _hybrid_bein_title(title):
+    """Return Qatar1-style hybrid EN/AR display title for beIN SPORTS."""
+    original = re.sub(r"\s+", " ", title or "").strip()
+    if not original:
+        return original
+
+    # Preserve already-Arabic/hybrid provider titles, only normalize LIVE.
+    had_live = bool(_LIVE_PREFIX_RE.match(original))
+    work = _LIVE_PREFIX_RE.sub("", original).strip()
+
+    # Exact RTL-safe UEFA magazine wording used by Qatar1.
+    if re.search(r"\bUEFA\s+Champions\s+League\s+Magazine\b", work, re.I):
+        if re.search(r"\bpreview\b", work, re.I):
+            work = "UEFA مجلة - تقديم دوري أبطال أوروبا"
+        else:
+            work = "UEFA مجلة - دوري أبطال أوروبا"
+    elif re.search(r"\bUEFA\s+Europa\s+League\s+Magazine\b", work, re.I):
+        if re.search(r"\bpreview\b", work, re.I):
+            work = "UEFA مجلة - تقديم الدوري الأوروبي"
+        else:
+            work = "UEFA مجلة - الدوري الأوروبي"
+    else:
+        # Translate the competition inside the English title, while preserving
+        # clubs, players and proper names in their canonical Latin form.
+        for rx, arabic in _BEIN_TITLE_COMPETITIONS:
+            if rx.search(work):
+                work = rx.sub(arabic, work, count=1)
+                break
+
+        # Round/season live in the Arabic description, not the visible title.
+        old = None
+        while old != work:
+            old = work
+            work = _ROUND_TAIL_RE.sub("", work)
+            work = _SEASON_ROUND_TAIL_RE.sub("", work)
+
+        # Qatar1 editorial normalization.
+        work = re.sub(r"\bNews\s+Bulletin\b", "News Bulletin - نشرة الأخبار", work, flags=re.I)
+        work = re.sub(r"\bThe\s+Big\s+Interview\b", "The Big Interview - المقابلة الكبرى", work, flags=re.I)
+        work = re.sub(r"\bEPL\s+Stories\b", "EPL Stories - قصص الدوري الإنجليزي الممتاز", work, flags=re.I)
+        if re.search(r"\bHighlights\b", work, re.I) and "ملخص" not in work:
+            work = re.sub(r"\bHighlights\b", "Highlights - ملخص", work, count=1, flags=re.I)
+        if re.search(r"\bPreview\b", work, re.I) and "تقديم" not in work:
+            work = re.sub(r"\bPreview\b", "Preview - تقديم", work, count=1, flags=re.I)
+        if re.search(r"\bReview\b", work, re.I) and "مراجعة" not in work:
+            work = re.sub(r"\bReview\b", "Review - مراجعة", work, count=1, flags=re.I)
+        if re.search(r"\bMagazine\b", work, re.I) and "مجلة" not in work:
+            work = re.sub(r"\bMagazine\b", "Magazine - مجلة", work, count=1, flags=re.I)
+
+    work = _cleanup_title_separators(work)
+    if had_live:
+        work = "Live : " + work
+    return work
+
+
 def strict_clean_channel_rows(cid, name, rows):
     cleaned = _original_clean(cid, name, rows)
 
@@ -72,6 +195,13 @@ def strict_clean_channel_rows(cid, name, rows):
             desc = safe._text(p, "desc")
             if not desc:
                 safe._set_desc(p, _alkass_desc(safe._text(p, "title")))
+
+    if _is_bein_sports(cid, name):
+        for p in cleaned:
+            old_title = safe._text(p, "title")
+            new_title = _hybrid_bein_title(old_title)
+            if new_title and new_title != old_title:
+                _set_title(p, new_title)
 
     if _is_arabic_provider(cid, name):
         for p in cleaned:
