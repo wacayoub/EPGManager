@@ -14,6 +14,7 @@ on:
       - "tools/mena_cloud_shards.py"
       - "tools/mena_cloud_shards_safe.py"
       - "tools/mena_program_audit.py"
+      - "tools/mena_global_epg_audit.py"
 
 permissions:
   contents: write
@@ -84,7 +85,8 @@ jobs:
             tools/mena_cloud_finalize.py \
             tools/mena_cloud_shards.py \
             tools/mena_cloud_shards_safe.py \
-            tools/mena_program_audit.py
+            tools/mena_program_audit.py \
+            tools/mena_global_epg_audit.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
@@ -245,6 +247,18 @@ jobs:
             --text output/final/program-audit.txt \
             --events 5
 
+      - name: Audit all MENA programmes
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/mena_global_epg_audit.py \
+            --dir output/final \
+            --manifest output/final/shards.json \
+            --json output/final/global-epg-audit.json \
+            --text output/final/global-epg-audit.txt \
+            --sample-limit 40
+
       - name: Publish atomically to mena-data
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -263,12 +277,14 @@ jobs:
           cp ../output/final/shards.json .
           cp ../output/final/program-audit.json .
           cp ../output/final/program-audit.txt .
+          cp ../output/final/global-epg-audit.json .
+          cp ../output/final/global-epg-audit.txt .
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
           printf '%s\n' \
             'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver sources are split exclusively by premium/provider identity first, then by authoritative/conservative channel country, then MENA Other. Regional pack suffixes are never treated as nationality. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
             > README.md
-          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt catalog.json merge-report.json README.md
+          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt catalog.json merge-report.json README.md
           if git diff --cached --quiet; then
             echo "No MENA data changes."
             exit 0
