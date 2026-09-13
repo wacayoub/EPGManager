@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Merge MENA XMLTV sources into one conservative 48-hour candidate feed.
+"""Merge MENA XMLTV sources into one conservative rolling 48-hour feed.
 
 Policy:
-- primary iptv-org/official data remains the canonical identity when available;
+- official/iptv-org data is the canonical identity when available;
 - OpenEPG and selected fresh EPGShare MENA feeds enrich coverage;
 - TV only, no radio/data-like services;
 - conservative logical-channel de-duplication;
 - Arabic-first metadata for ordinary Arabic channels;
-- beIN/OSN premium channels prefer English titles + Arabic descriptions;
+- beIN/OSN premium channels prefer English title + Arabic description;
+- guide-language twins are merged without collapsing real ENGLISH/FRENCH channels;
 - programmes are clipped to a configurable rolling window (48h by default).
 """
 from __future__ import annotations
@@ -27,11 +28,11 @@ import xml.etree.ElementTree as ET
 AR_RE = re.compile(r"[\u0600-\u06ff]")
 LATIN_RE = re.compile(r"[A-Za-z]")
 RADIO_RE = re.compile(r"(?:^|[\W_])(?:radio|fm)(?:[\W_]|$)", re.I)
-RESOLUTION_RE = re.compile(r"(?:^|\s)(?:uhd|4k|fhd|full\s*hd|hd|sd)(?:\s|$)", re.I)
+RESOLUTION_RE = re.compile(r"(?:^|\s)(?:uhd|fhd|full\s*hd|hd|sd)(?:\s|$)", re.I)
 LANG_TAG_RE = re.compile(r"^(?:ar|ara|arabic|en|eng|english)\s*[:|_-]\s*", re.I)
-COUNTRY_SUFFIX_RE = re.compile(r"\.(?:ae|sa|qa|eg|bh|kw|om|jo|lb|iq|ps|ye|mena)(?:@.*)?$", re.I)
+COUNTRY_SUFFIX_RE = re.compile(r"\.(?:ae|sa|qa|eg|bh|kw|om|jo|lb|iq|ps|ye|mena|bein)(?:@.*)?$", re.I)
 SPACE_RE = re.compile(r"\s+")
-PREMIUM_RE = re.compile(r"\b(?:bein|osn)\b", re.I)
+PREMIUM_RE = re.compile(r"(?:^|[^a-z0-9])(?:bein|osn)(?:[^a-z0-9]|$)|beinsports|osntv", re.I)
 
 OFFICIAL_SITES = {
     "shahid.mbc.net", "rotana.net", "roya-tv.com", "aljazeera.com",
@@ -39,7 +40,7 @@ OFFICIAL_SITES = {
     "saudiatv.sa", "sba.net.ae", "dmi.gov.ae", "osn.com",
 }
 
-# Morocco has its own dedicated cloud feed and is intentionally not duplicated here.
+# Morocco remains on its dedicated higher-quality cloud feed.
 REMOTE_SOURCES = [
     ("openepg-egypt1", "openepg", "https://www.open-epg.com/files/egypt1.xml.gz"),
     ("openepg-egypt2", "openepg", "https://www.open-epg.com/files/egypt2.xml.gz"),
@@ -63,15 +64,11 @@ REMOTE_SOURCES = [
     ("epgshare-aljazeera1", "epgshare", "https://epgshare01.online/epgshare01/epg_ripper_ALJAZEERA1.xml.gz"),
 ]
 
-# Conservative spelling aliases only. Broad semantic aliases belong in receiver mapping logic.
 ALIASES = {
     "abu dhabi sport": "abu dhabi sports",
     "ad sport": "abu dhabi sports",
     "bbc arabic news": "bbc news arabic",
     "bbc arabic": "bbc news arabic",
-    "bein sports english 1": "bein sports 1 english",
-    "bein sports en 1": "bein sports 1 english",
-    "bein sports en1": "bein sports 1 english",
     "bein movies 1 premier": "bein movies 1",
     "bein movies1 premier": "bein movies 1",
     "bein movies 2 action": "bein movies 2",
@@ -79,16 +76,20 @@ ALIASES = {
     "cartoon network arabic1": "cartoon network arabic",
 }
 
+
 def copy_element(node: ET.Element) -> ET.Element:
     return ET.fromstring(ET.tostring(node, encoding="utf-8"))
+
 
 def read_xml_bytes(data: bytes) -> ET.Element:
     if data[:2] == b"\x1f\x8b":
         data = gzip.decompress(data)
     return ET.fromstring(data)
 
+
 def read_xml_file(path: Path) -> ET.Element:
     return read_xml_bytes(path.read_bytes())
+
 
 def download(url: str, attempts: int = 3) -> bytes:
     last = None
@@ -97,7 +98,7 @@ def download(url: str, attempts: int = 3) -> bytes:
             req = urllib.request.Request(
                 url,
                 headers={
-                    "User-Agent": "EPGManager-MENA-Cloud/3.0 (+https://github.com/wacayoub/EPGManager)",
+                    "User-Agent": "EPGManager-MENA-Cloud/3.1 (+https://github.com/wacayoub/EPGManager)",
                     "Accept": "application/xml,application/gzip,*/*",
                 },
             )
@@ -108,6 +109,7 @@ def download(url: str, attempts: int = 3) -> bytes:
             if attempt + 1 < attempts:
                 time.sleep(1.5 * (attempt + 1))
     raise RuntimeError("%s: %s" % (url, last))
+
 
 def parse_xmltv_dt(value: str):
     value = (value or "").strip()
@@ -127,6 +129,7 @@ def parse_xmltv_dt(value: str):
         tz = timezone.utc
     return dt.replace(tzinfo=tz).astimezone(timezone.utc)
 
+
 def display_name(channel: ET.Element) -> str:
     names = channel.findall("display-name")
     for node in names:
@@ -135,11 +138,13 @@ def display_name(channel: ET.Element) -> str:
             return text
     return (names[0].text or "").strip() if names else (channel.get("id") or "")
 
+
 def is_radio(cid: str, name: str) -> bool:
     probe = "%s %s" % (cid or "", name or "")
     if RADIO_RE.search(probe):
         return True
     return any(x in (name or "") for x in ("إذاعة", "راديو"))
+
 
 def language_of(text: str) -> str:
     text = text or ""
@@ -151,6 +156,7 @@ def language_of(text: str) -> str:
         return "en"
     return "other"
 
+
 def clean_name(value: str) -> str:
     value = (value or "").strip()
     value = LANG_TAG_RE.sub("", value)
@@ -161,37 +167,136 @@ def clean_name(value: str) -> str:
     value = SPACE_RE.sub(" ", value).strip().casefold()
     return ALIASES.get(value, value)
 
+
+def premium_key(value: str, cid: str = "") -> str:
+    """Normalize premium identity while preserving actual ENGLISH/FRENCH channels.
+
+    EPGShare BEIN1 uses a final _AR/_EN token for guide language. That token is
+    metadata, not a different linear channel. Internal ENGLISH/FRENCH tokens are
+    real channel variants and therefore stay in the key.
+    """
+    raw = (value or cid or "").strip()
+    raw = LANG_TAG_RE.sub("", raw)
+    raw = COUNTRY_SUFFIX_RE.sub("", raw)
+    raw = raw.replace("&", " and ")
+    raw = re.sub(r"[_./|:+\-]+", " ", raw)
+    base = SPACE_RE.sub(" ", raw).strip().casefold()
+
+    # Guide-language suffixes from EPGShare .bein IDs only.
+    if (cid or "").casefold().endswith(".bein"):
+        base = re.sub(r"\s+(?:ar|en)$", "", base)
+
+    # Transport/presentation words are not channel identity. Keep 4K because it is.
+    base = re.sub(r"\b(?:digital|mono|fhd|full\s*hd|uhd|hd|sd)\b", " ", base)
+    base = re.sub(r"\bmono\s*0*1\b", " ", base)
+    base = re.sub(r"\bbein\s+com\b", "bein", base)
+    base = re.sub(r"\bosn\s*tv\b|\bosntv\b", "osn", base)
+    base = re.sub(r"\bbein\s*sports\b|\bbeinsports\b", "bein sports", base)
+
+    # Split compact number tokens: SPORTS1 -> SPORTS 1, XTRA1 -> XTRA 1, MOVIES1 -> MOVIES 1.
+    base = re.sub(r"\b(sports|xtra|movies|series|max)(\d+)\b", r"\1 \2", base)
+
+    # Standardize genuine linear-language variants without deleting them.
+    base = re.sub(r"\bbein sports\s+(?:en|eng)\s+(\d+)\b", r"bein sports \1 english", base)
+    base = re.sub(r"\bbein sports\s+(\d+)\s+(?:en|eng)\b", r"bein sports \1 english", base)
+    base = re.sub(r"\bbein sports\s+(?:fr|fra)\s+(\d+)\b", r"bein sports \1 french", base)
+    base = re.sub(r"\bbein sports\s+(\d+)\s+(?:fr|fra)\b", r"bein sports \1 french", base)
+
+    # Known naming-equivalence for the same linear premium channels.
+    base = re.sub(r"\bbein movies\s*1\s+premiere\b", "bein movies 1", base)
+    base = re.sub(r"\bbein movies\s*2\s+action\b", "bein movies 2", base)
+    base = SPACE_RE.sub(" ", base).strip()
+    return base
+
+
 def logical_key(cid: str, name: str) -> str:
-    base = clean_name(name)
-    if len(base) < 3:
-        base = clean_name(cid)
-    if PREMIUM_RE.search(base):
-        base = re.sub(r"(?:^|\s)(?:arabic|arab|english|eng)(?:\s|$)", " ", base, flags=re.I)
-        base = SPACE_RE.sub(" ", base).strip()
-    if base in {"sports", "sport", "movie", "movies", "news", "tv", "channel"}:
+    probe = "%s %s" % (cid or "", name or "")
+    if PREMIUM_RE.search(probe):
+        # IDs are authoritative for EPGShare BEIN because display-name often repeats the ID.
+        source_value = cid if (cid or "").casefold().endswith(".bein") else (name or cid)
+        base = premium_key(source_value, cid)
+    else:
+        base = clean_name(name)
+        if len(base) < 3:
+            base = clean_name(cid)
+    if base in {"sports", "sport", "movie", "movies", "news", "tv", "channel", "bein", "osn"}:
         return "id:" + (cid or base).casefold()
     return base
+
 
 def is_premium(cid: str, name: str) -> bool:
     return bool(PREMIUM_RE.search("%s %s" % (cid or "", name or "")))
 
-def node_text(node: ET.Element, tag: str) -> str:
-    child = node.find(tag)
-    return (child.text or "").strip() if child is not None else ""
 
-def programme_quality(p: ET.Element, want: str, role: str) -> int:
-    text = node_text(p, role)
-    lang = language_of(text)
-    score = 0
-    if want == "ar":
-        score += 120 if lang == "ar" else 0
-    elif want == "en":
-        score += 120 if lang == "en" else 0
-    if text:
-        score += min(len(text), 200) // 20
-    if role == "desc" and len(text) >= 20:
-        score += 10
+def declared_language(node: ET.Element) -> str:
+    lang = (node.get("lang") or "").strip().casefold()
+    if lang.startswith("ar"):
+        return "ar"
+    if lang.startswith("en"):
+        return "en"
+    return ""
+
+
+def text_items(programme: ET.Element, role: str):
+    out = []
+    for node in programme.findall(role):
+        text = (node.text or "").strip()
+        if text:
+            out.append((text, declared_language(node) or language_of(text)))
+    return out
+
+
+def best_text(programme: ET.Element, role: str, want: str):
+    best = (None, None, -1)
+    for text, lang in text_items(programme, role):
+        score = 0
+        if lang == want:
+            score += 240
+        elif lang in {"ar", "en"}:
+            score -= 80
+        if want == "ar" and language_of(text) == "ar":
+            score += 80
+        if want == "en" and language_of(text) == "en":
+            score += 80
+        score += min(len(text), 300) // 20
+        if role == "desc" and len(text) >= 20:
+            score += 15
+        if score > best[2]:
+            best = (text, lang, score)
+    return best
+
+
+def role_text(programme: ET.Element, role: str) -> str:
+    items = text_items(programme, role)
+    return items[0][0] if items else ""
+
+
+def role_language(programme: ET.Element, role: str) -> str:
+    items = text_items(programme, role)
+    return items[0][1] if items else "other"
+
+
+def replace_role(programme: ET.Element, role: str, text: str, lang: str) -> None:
+    if not text:
+        return
+    nodes = list(programme.findall(role))
+    if nodes:
+        node = nodes[0]
+        for extra in nodes[1:]:
+            programme.remove(extra)
+    else:
+        node = ET.SubElement(programme, role)
+    node.text = text
+    if lang in {"ar", "en"}:
+        node.set("lang", lang)
+
+
+def programme_quality(programme: ET.Element, want: str, role: str) -> int:
+    text, lang, score = best_text(programme, role, want)
+    if not text:
+        return -1000
     return score
+
 
 def source_base(origin: str, site: str) -> int:
     if origin == "primary":
@@ -202,8 +307,10 @@ def source_base(origin: str, site: str) -> int:
         return 74
     return 60
 
+
 class Candidate:
     __slots__ = ("cid", "name", "key", "origin", "source_name", "site", "channel", "programmes")
+
     def __init__(self, cid, name, origin, source_name, site, channel, programmes):
         self.cid = cid
         self.name = name
@@ -214,13 +321,15 @@ class Candidate:
         self.channel = channel
         self.programmes = programmes
 
-def slot_epoch(p: ET.Element):
-    dt = parse_xmltv_dt(p.get("start") or "")
+
+def slot_epoch(programme: ET.Element):
+    dt = parse_xmltv_dt(programme.get("start") or "")
     return int(dt.timestamp()) if dt is not None else None
 
-def in_window(p: ET.Element, now: datetime, end: datetime) -> bool:
-    start = parse_xmltv_dt(p.get("start") or "")
-    stop = parse_xmltv_dt(p.get("stop") or "")
+
+def in_window(programme: ET.Element, now: datetime, end: datetime) -> bool:
+    start = parse_xmltv_dt(programme.get("start") or "")
+    stop = parse_xmltv_dt(programme.get("stop") or "")
     if start is None:
         return False
     if stop is not None and stop <= now - timedelta(minutes=5):
@@ -231,102 +340,98 @@ def in_window(p: ET.Element, now: datetime, end: datetime) -> bool:
         return False
     return True
 
+
 def load_candidates(root: ET.Element, origin: str, source_name: str, site_by_id: dict, now, end):
     channels = {}
-    for c in root.findall("channel"):
-        cid = (c.get("id") or "").strip()
+    for channel in root.findall("channel"):
+        cid = (channel.get("id") or "").strip()
         if cid:
-            channels[cid] = c
+            channels[cid] = channel
     programmes = defaultdict(list)
-    for p in root.findall("programme"):
-        cid = (p.get("channel") or "").strip()
-        if cid and in_window(p, now, end):
-            programmes[cid].append(p)
+    for programme in root.findall("programme"):
+        cid = (programme.get("channel") or "").strip()
+        if cid and in_window(programme, now, end):
+            programmes[cid].append(programme)
     out = []
     for cid, rows in programmes.items():
-        c = channels.get(cid)
-        if c is None:
-            c = ET.Element("channel", {"id": cid})
-            ET.SubElement(c, "display-name").text = cid
-        name = display_name(c) or cid
+        channel = channels.get(cid)
+        if channel is None:
+            channel = ET.Element("channel", {"id": cid})
+            ET.SubElement(channel, "display-name").text = cid
+        name = display_name(channel) or cid
         if is_radio(cid, name):
             continue
-        out.append(Candidate(cid, name, origin, source_name, site_by_id.get(cid, ""), c, rows))
+        out.append(Candidate(cid, name, origin, source_name, site_by_id.get(cid, ""), channel, rows))
     return out
+
 
 def cluster_programmes(candidates):
     rows = []
-    for cand in candidates:
-        for p in cand.programmes:
-            ts = slot_epoch(p)
+    for candidate in candidates:
+        for programme in candidate.programmes:
+            ts = slot_epoch(programme)
             if ts is not None:
-                rows.append((ts, cand, p))
+                rows.append((ts, candidate, programme))
     rows.sort(key=lambda x: x[0])
     clusters = []
-    for ts, cand, p in rows:
+    for ts, candidate, programme in rows:
         if clusters and abs(ts - clusters[-1][0]) <= 120:
-            clusters[-1][1].append((cand, p))
+            clusters[-1][1].append((candidate, programme))
         else:
-            clusters.append([ts, [(cand, p)]])
+            clusters.append([ts, [(candidate, programme)]])
     return clusters
 
+
 def choose_canonical(candidates):
-    def score(c):
-        base = source_base(c.origin, c.site)
-        if c.origin == "primary":
-            base += 60
-        base += min(len(c.programmes), 20)
-        return (base, -len(c.cid), c.cid.casefold())
+    def score(candidate):
+        value = source_base(candidate.origin, candidate.site)
+        if candidate.origin == "primary":
+            value += 60
+        value += min(len(candidate.programmes), 20)
+        return (value, -len(candidate.cid), candidate.cid.casefold())
     return max(candidates, key=score)
 
+
+def choose_best_entry(entries, want: str, role: str):
+    return max(
+        entries,
+        key=lambda x: (
+            programme_quality(x[1], want, role),
+            source_base(x[0].origin, x[0].site),
+        ),
+    )
+
+
 def choose_event(entries, premium: bool):
-    template_c, template_p = max(
+    template_candidate, template_programme = max(
         entries,
         key=lambda x: (
             source_base(x[0].origin, x[0].site) + (50 if x[0].origin == "primary" else 0),
             programme_quality(x[1], "en" if premium else "ar", "title"),
         ),
     )
-    out = copy_element(template_p)
+    out = copy_element(template_programme)
+
     if premium:
-        title_c, title_p = max(entries, key=lambda x: (
-            programme_quality(x[1], "en", "title"), source_base(x[0].origin, x[0].site)))
-        desc_c, desc_p = max(entries, key=lambda x: (
-            programme_quality(x[1], "ar", "desc"), source_base(x[0].origin, x[0].site)))
-        title = node_text(title_p, "title")
-        desc = node_text(desc_p, "desc")
-        if title and language_of(title) == "en":
-            t = out.find("title")
-            if t is None:
-                t = ET.SubElement(out, "title")
-            t.text = title
-            t.set("lang", "en")
-        if desc and language_of(desc) == "ar":
-            d = out.find("desc")
-            if d is None:
-                d = ET.SubElement(out, "desc")
-            d.text = desc
-            d.set("lang", "ar")
+        _title_candidate, title_programme = choose_best_entry(entries, "en", "title")
+        _desc_candidate, desc_programme = choose_best_entry(entries, "ar", "desc")
+        title, title_lang, _ = best_text(title_programme, "title", "en")
+        desc, desc_lang, _ = best_text(desc_programme, "desc", "ar")
+        if title and title_lang == "en":
+            replace_role(out, "title", title, "en")
+        if desc and desc_lang == "ar":
+            replace_role(out, "desc", desc, "ar")
     else:
-        title_c, title_p = max(entries, key=lambda x: (
-            programme_quality(x[1], "ar", "title"), source_base(x[0].origin, x[0].site)))
-        desc_c, desc_p = max(entries, key=lambda x: (
-            programme_quality(x[1], "ar", "desc"), source_base(x[0].origin, x[0].site)))
-        title = node_text(title_p, "title")
-        desc = node_text(desc_p, "desc")
-        if title and language_of(title) == "ar":
-            t = out.find("title")
-            if t is None:
-                t = ET.SubElement(out, "title")
-            t.text = title
-            t.set("lang", "ar")
-        if desc and language_of(desc) == "ar":
-            d = out.find("desc")
-            if d is None:
-                d = ET.SubElement(out, "desc")
-            d.text = desc
-            d.set("lang", "ar")
+        _title_candidate, title_programme = choose_best_entry(entries, "ar", "title")
+        _desc_candidate, desc_programme = choose_best_entry(entries, "ar", "desc")
+        title, title_lang, _ = best_text(title_programme, "title", "ar")
+        desc, desc_lang, _ = best_text(desc_programme, "desc", "ar")
+        if title and title_lang == "ar":
+            replace_role(out, "title", title, "ar")
+        if desc and desc_lang == "ar":
+            replace_role(out, "desc", desc, "ar")
     return out
+
 
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -372,9 +477,9 @@ def main() -> int:
             failed.append({"name": source_name, "url": url, "error": str(exc)[:220]})
 
     groups = defaultdict(list)
-    for cand in candidates:
-        if cand.key:
-            groups[cand.key].append(cand)
+    for candidate in candidates:
+        if candidate.key:
+            groups[candidate.key].append(candidate)
 
     out = ET.Element("tv", {
         "generator-info-name": "EPGManager MENA Cloud Merge",
@@ -390,10 +495,10 @@ def main() -> int:
         group = groups[key]
         canonical = choose_canonical(group)
         premium = is_premium(canonical.cid, canonical.name) or any(is_premium(c.cid, c.name) for c in group)
-        cnode = copy_element(canonical.channel)
-        cnode.set("id", canonical.cid)
-        out.append(cnode)
-        channel_rows.append(cnode)
+        channel_node = copy_element(canonical.channel)
+        channel_node.set("id", canonical.cid)
+        out.append(channel_node)
+        channel_rows.append(channel_node)
 
         if len(group) > 1:
             alias_rows.append({
@@ -408,10 +513,10 @@ def main() -> int:
             stats["logical_duplicate_groups"] += 1
 
         for _ts, entries in cluster_programmes(group):
-            p = choose_event(entries, premium)
-            p.set("channel", canonical.cid)
-            programme_rows.append(p)
-            if premium and language_of(node_text(p, "title")) == "en" and language_of(node_text(p, "desc")) == "ar":
+            programme = choose_event(entries, premium)
+            programme.set("channel", canonical.cid)
+            programme_rows.append(programme)
+            if premium and role_language(programme, "title") == "en" and role_language(programme, "desc") == "ar":
                 premium_hybrid += 1
 
         stats["premium_channels" if premium else "regular_channels"] += 1
@@ -419,13 +524,20 @@ def main() -> int:
 
     seen = set()
     unique_programmes = []
-    for p in sorted(programme_rows, key=lambda x: ((x.get("channel") or "").casefold(), x.get("start") or "", x.get("stop") or "")):
-        key = ((p.get("channel") or "").strip(), (p.get("start") or "").strip(), (p.get("stop") or "").strip())
-        if not key[0] or not key[1] or key in seen:
+    for programme in sorted(
+        programme_rows,
+        key=lambda x: ((x.get("channel") or "").casefold(), x.get("start") or "", x.get("stop") or ""),
+    ):
+        event_id = (
+            (programme.get("channel") or "").strip(),
+            (programme.get("start") or "").strip(),
+            (programme.get("stop") or "").strip(),
+        )
+        if not event_id[0] or not event_id[1] or event_id in seen:
             continue
-        seen.add(key)
-        unique_programmes.append(p)
-        out.append(p)
+        seen.add(event_id)
+        unique_programmes.append(programme)
+        out.append(programme)
 
     if len(channel_rows) < 25 or len(unique_programmes) < 100:
         raise SystemExit("Merged MENA output too small: %d channels / %d programmes" % (len(channel_rows), len(unique_programmes)))
@@ -436,7 +548,7 @@ def main() -> int:
     out_path.write_bytes(ET.tostring(out, encoding="utf-8", xml_declaration=True))
 
     report = {
-        "schema": 1,
+        "schema": 2,
         "generated": now.isoformat(),
         "window_hours": args.window_hours,
         "sources_attempted": 1 + len(REMOTE_SOURCES),
@@ -454,6 +566,7 @@ def main() -> int:
     print("MENA merge: %d logical channels / %d programmes / %d premium EN-title+AR-desc events / %d failed remotes" %
           (len(channel_rows), len(unique_programmes), premium_hybrid, len(failed)))
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
