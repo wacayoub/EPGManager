@@ -9,6 +9,8 @@ import gzip
 import json
 from pathlib import Path
 import re
+import subprocess
+import sys
 import xml.etree.ElementTree as ET
 
 AR_RE = re.compile(r"[\u0600-\u06ff]")
@@ -174,6 +176,18 @@ def main():
     Path(args.json).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     Path(args.text).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
+
+    # Integration-level virtual EPGManager: same real generated shards, but with
+    # candidate scoring, canonical-ID selection and programme quality checks.
+    virtual_script = Path(__file__).with_name("virtual_epgmanager_test.py")
+    if virtual_script.exists():
+        subprocess.run([
+            sys.executable, str(virtual_script),
+            "--dir", str(base),
+            "--json", str(base / "virtual-epgmanager.json"),
+            "--text", str(base / "virtual-epgmanager.txt"),
+            "--events", str(max(1, args.events)),
+        ], check=True)
     return 0
 
 
