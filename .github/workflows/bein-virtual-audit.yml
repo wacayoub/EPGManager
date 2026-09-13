@@ -1,0 +1,50 @@
+name: beIN Virtual EPG Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/bein-virtual-audit.yml"
+      - "tools/bein_id_audit.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bein-virtual-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout audit code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Download currently published beIN Cloud
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/bein-audit
+          curl -fL --retry 3 --retry-delay 1 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/provider-bein.xml.gz" \
+            -o /tmp/bein-audit/provider-bein.xml.gz
+          curl -fL --retry 3 --retry-delay 1 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/shards.json" \
+            -o /tmp/bein-audit/shards.json
+
+      - name: Run exhaustive Virtual EPGManager ID-by-ID audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/bein_id_audit.py \
+            --xml /tmp/bein-audit/provider-bein.xml.gz \
+            --json /tmp/bein-audit/bein-id-audit.json \
+            --text /tmp/bein-audit/bein-id-audit.txt
+          cat /tmp/bein-audit/bein-id-audit.txt
