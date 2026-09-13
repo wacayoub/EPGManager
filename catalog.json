@@ -1,21 +1,24 @@
 {
-  "schema": 2,
-  "strategy": "official-first-all-arabic-tv",
+  "schema": 3,
+  "strategy": "official-first-all-arabic-tv-no-sattv",
   "source_project": "iptv-org/epg",
   "input_channel_files": 538,
   "arabic_rows_seen": 16355,
   "invalid_rows_skipped": 15937,
-  "morocco_rows_skipped": 15,
+  "morocco_rows_skipped": 9,
   "radio_rows_skipped": 3,
-  "unique_channels": 291,
+  "excluded_site_rows_skipped": 94,
+  "excluded_sites": [
+    "sat.tv"
+  ],
+  "unique_channels": 246,
   "morocco_excluded": true,
   "tv_only": true,
   "source_counts": {
-    "elcinema.com": 67,
+    "elcinema.com": 59,
     "shahid.mbc.net": 56,
     "bein.com": 48,
-    "sat.tv": 47,
-    "osn.com": 36,
+    "osn.com": 46,
     "rotana.net": 9,
     "beinsports.com": 7,
     "roya-tv.com": 7,
@@ -37,44 +40,20 @@
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
-      "xmltv_id": "AbuDhabiEmirates.ae@SD",
-      "name": "الامارات",
-      "site": "sat.tv",
-      "site_id": "1#38#الامارات",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "AbuDhabiSports1.ae@SD",
-      "name": "أبو ظبي الرياضية 1",
-      "site": "sat.tv",
-      "site_id": "1#38#أبو ظبي الرياضية 1",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "AbuDhabiSports2.ae@SD",
-      "name": "أبو ظبي الرياضية 2",
-      "site": "sat.tv",
-      "site_id": "1#38#أبو ظبي الرياضية 2",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
+      "name": "AD Sports 1 HD",
+      "site": "osn.com",
+      "site_id": "9069",
+      "priority": 25,
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "AbuDhabiTV.ae@SD",
-      "name": "أبو ظبي",
-      "site": "elcinema.com",
-      "site_id": "1136",
-      "priority": 100,
-      "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "AdenTV.ye@SD",
-      "name": "عدن",
-      "site": "sat.tv",
-      "site_id": "1#38#عدن",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
+      "name": "Abu Dhabi TV HD",
+      "site": "osn.com",
+      "site_id": "9939",
+      "priority": 25,
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "Aflam.sa@SD",
@@ -83,14 +62,6 @@
       "site_id": "989622",
       "priority": 10,
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "AlAanTV.ae@SD",
-      "name": "الآن",
-      "site": "sat.tv",
-      "site_id": "1#38#الآن",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "Alarabiya.ae@SD",
@@ -121,7 +92,7 @@
       "name": "Al Arabiya",
       "site": "osn.com",
       "site_id": "9970",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -137,16 +108,16 @@
       "name": "Al Araby TV",
       "site": "osn.com",
       "site_id": "3800",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "AlArabyTV2.qa@SD",
-      "name": "التلفزيون العربي 2",
-      "site": "elcinema.com",
-      "site_id": "1382",
-      "priority": 100,
-      "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
+      "name": "Al Araby 2",
+      "site": "osn.com",
+      "site_id": "9844",
+      "priority": 25,
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "AlDafrahTV.ae@SD",
@@ -173,14 +144,6 @@
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
-      "xmltv_id": "AlhayatDrama.eg@SD",
-      "name": "الحياة مسلسلات",
-      "site": "sat.tv",
-      "site_id": "1#38#الحياة مسلسلات",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "AlhayatTV.eg@SD",
       "name": "الحياة",
       "site": "elcinema.com",
@@ -203,14 +166,6 @@
       "site_id": "1216",
       "priority": 100,
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "AlJanoubiyaTV.tn@SD",
-      "name": "الجنوبية",
-      "site": "sat.tv",
-      "site_id": "1#50#الجنوبية",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "AlJazeera.qa@Arabic",
@@ -317,14 +272,6 @@
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
-      "xmltv_id": "AlMamlakaTV.jo@SD",
-      "name": "المملكة تي في",
-      "site": "sat.tv",
-      "site_id": "1#38#المملكة تي في",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "AlManar.lb@SD",
       "name": "المنار",
       "site": "elcinema.com",
@@ -339,14 +286,6 @@
       "site_id": "1119",
       "priority": 100,
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "AlMayadeenTV.lb@SD",
-      "name": "الميادين",
-      "site": "sat.tv",
-      "site_id": "1#38#الميادين",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "AlNahar.eg@SD",
@@ -377,7 +316,7 @@
       "name": "Al Rai TV",
       "site": "osn.com",
       "site_id": "9043",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -387,14 +326,6 @@
       "site_id": "1306",
       "priority": 100,
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "AlRayyanTV.qa@SD",
-      "name": "الريان",
-      "site": "sat.tv",
-      "site_id": "1#38#الريان",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "AlResalah.sa@SD",
@@ -429,28 +360,12 @@
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
-      "xmltv_id": "AlSharqiya.iq@SD",
-      "name": "الشرقية",
-      "site": "sat.tv",
-      "site_id": "1#38#الشرقية",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "AlSharqiyaMinKabla.ae@SD",
       "name": "الشرقية",
       "site": "elcinema.com",
       "site_id": "1269",
       "priority": 100,
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "AlSharqiyaNews.iq@SD",
-      "name": "الشرقية للأخبار",
-      "site": "sat.tv",
-      "site_id": "1#38#الشرقية للأخبار",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "AlSouriyaTV.sy@HD",
@@ -497,7 +412,7 @@
       "name": "Animal Planet HD",
       "site": "osn.com",
       "site_id": "4505",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -565,14 +480,6 @@
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
-      "xmltv_id": "AttessiaTV.tn@SD",
-      "name": "القناة 9",
-      "site": "sat.tv",
-      "site_id": "1#38#القناة 9",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "ATV.kw@SD",
       "name": "إيه تي في",
       "site": "elcinema.com",
@@ -589,20 +496,12 @@
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
-      "xmltv_id": "BahiaTV.dz@SD",
-      "name": "باهية",
-      "site": "sat.tv",
-      "site_id": "1#38#باهية",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "BahrainTV.bh@SD",
-      "name": "البحرين",
-      "site": "elcinema.com",
-      "site_id": "1368",
-      "priority": 100,
-      "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
+      "name": "Bahrain TV",
+      "site": "osn.com",
+      "site_id": "9013",
+      "priority": 25,
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "Baraem.qa@SD",
@@ -617,7 +516,7 @@
       "name": "BBC World",
       "site": "osn.com",
       "site_id": "9099",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -881,7 +780,7 @@
       "name": "Bloomberg Originals",
       "site": "osn.com",
       "site_id": "4512",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -894,18 +793,18 @@
     },
     {
       "xmltv_id": "CartoonNetworkArabic.ae@SD",
-      "name": "نتورك بالعربية",
-      "site": "elcinema.com",
-      "site_id": "1242",
-      "priority": 100,
-      "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
+      "name": "CN Arabia",
+      "site": "osn.com",
+      "site_id": "9987",
+      "priority": 25,
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "CartoonNetworkMENA.uk@SD",
       "name": "Cartoon Network HD",
       "site": "osn.com",
       "site_id": "4507",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -969,7 +868,7 @@
       "name": "CNN HD",
       "site": "osn.com",
       "site_id": "4504",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -977,7 +876,7 @@
       "name": "C & I",
       "site": "osn.com",
       "site_id": "212",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -990,19 +889,19 @@
     },
     {
       "xmltv_id": "DiscoveryChannelMiddleEastAfrica.us@SD",
-      "name": "ديسكفري",
-      "site": "elcinema.com",
-      "site_id": "1272",
-      "priority": 100,
-      "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
+      "name": "Discovery Channel HD",
+      "site": "osn.com",
+      "site_id": "5665",
+      "priority": 25,
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "DMC.eg@SD",
-      "name": "دي إم سي",
-      "site": "elcinema.com",
-      "site_id": "1290",
-      "priority": 100,
-      "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
+      "name": "DMC HD",
+      "site": "osn.com",
+      "site_id": "9085",
+      "priority": 25,
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "DMCDrama.eg@SD",
@@ -1021,60 +920,12 @@
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
-      "xmltv_id": "DubaiRacing.ae@SD",
-      "name": "دبي ريسينج 1",
-      "site": "sat.tv",
-      "site_id": "1#38#دبي ريسينج 1",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "DubaiRacing2.ae@SD",
-      "name": "دبي ريسينج 2",
-      "site": "sat.tv",
-      "site_id": "1#38#دبي ريسينج 2",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "DubaiRacing3.ae@SD",
-      "name": "دبي ريسينج 3",
-      "site": "sat.tv",
-      "site_id": "1#38#دبي ريسينج 3",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "DubaiSports1.ae@SD",
-      "name": "دبي الرياضية 1",
-      "site": "sat.tv",
-      "site_id": "1#38#دبي الرياضية 1",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "DubaiSports2.ae@SD",
-      "name": "دبي الرياضية 2",
-      "site": "sat.tv",
-      "site_id": "1#38#دبي الرياضية 2",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "DubaiSports3.ae@SD",
-      "name": "دبي الرياضية 3",
-      "site": "sat.tv",
-      "site_id": "1#38#دبي الرياضية 3",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "DubaiTV.ae@SD",
-      "name": "دبي",
-      "site": "elcinema.com",
-      "site_id": "1169",
-      "priority": 100,
-      "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
+      "name": "Dubai TV HD",
+      "site": "osn.com",
+      "site_id": "6603",
+      "priority": 25,
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "DubaiZaman.ae@SD",
@@ -1093,28 +944,12 @@
       "source_file": "sites/teleboy.ch/teleboy.ch.channels.xml"
     },
     {
-      "xmltv_id": "EchoroukNews.dz@SD",
-      "name": "الشروق الإخبارية",
-      "site": "sat.tv",
-      "site_id": "1#38#الشروق الإخبارية",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "EchoroukTV.dz@SD",
       "name": "الشروق الجزائرية",
       "site": "elcinema.com",
       "site_id": "1315",
       "priority": 100,
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "ElhiwarEttounsiTV.tn@SD",
-      "name": "الحوار التونسي",
-      "site": "sat.tv",
-      "site_id": "1#50#الحوار التونسي",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "ElMehwarChannel.eg@SD",
@@ -1139,14 +974,6 @@
       "site_id": "1334",
       "priority": 100,
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "EnnaharTV.dz@SD",
-      "name": "النهار تي في",
-      "site": "sat.tv",
-      "site_id": "1#38#النهار تي في",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "ERTU1.eg@SD",
@@ -1233,7 +1060,7 @@
       "name": "Gametoon",
       "site": "osn.com",
       "site_id": "6606",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1241,7 +1068,7 @@
       "name": "Ginx",
       "site": "osn.com",
       "site_id": "6604",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1261,14 +1088,6 @@
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
-      "xmltv_id": "HannibalTV.tn@SD",
-      "name": "حنبعل",
-      "site": "sat.tv",
-      "site_id": "1#50#حنبعل",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "HGTVArabia.us@SD",
       "name": "15",
       "site": "bein.com",
@@ -1281,7 +1100,7 @@
       "name": "H2 HD",
       "site": "osn.com",
       "site_id": "5667",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1289,7 +1108,7 @@
       "name": "History HD",
       "site": "osn.com",
       "site_id": "5661",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1313,7 +1132,7 @@
       "name": "Discovery IDX HD",
       "site": "osn.com",
       "site_id": "5668",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1341,19 +1160,11 @@
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
-      "xmltv_id": "KhartoumTV.sd@SD",
-      "name": "الخرطوم",
-      "site": "sat.tv",
-      "site_id": "1#38#الخرطوم",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "KSASports1.sa@SD",
       "name": "KSA Sports 1 HD",
       "site": "osn.com",
       "site_id": "9961",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1363,14 +1174,6 @@
       "site_id": "1310",
       "priority": 100,
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "KTV2.kw@SD",
-      "name": "دولة الكويت - الثانية",
-      "site": "sat.tv",
-      "site_id": "1#38#دولة الكويت - الثانية",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "LanaTV.lb@SD",
@@ -1585,7 +1388,7 @@
       "name": "MBC Mood",
       "site": "osn.com",
       "site_id": "411",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1609,7 +1412,7 @@
       "name": "MCM TOP",
       "site": "osn.com",
       "site_id": "5664",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1633,7 +1436,7 @@
       "name": "Moonbug Kids",
       "site": "osn.com",
       "site_id": "310",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1641,7 +1444,7 @@
       "name": "MOTORVISION",
       "site": "osn.com",
       "site_id": "305",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1713,7 +1516,7 @@
       "name": "Nickelodeon HD",
       "site": "osn.com",
       "site_id": "5663",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1721,7 +1524,7 @@
       "name": "Nick Jr HD",
       "site": "osn.com",
       "site_id": "5670",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1729,24 +1532,8 @@
       "name": "NickToons HD",
       "site": "osn.com",
       "site_id": "5671",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "NileCinema.eg@SD",
-      "name": "نايل سينما",
-      "site": "sat.tv",
-      "site_id": "1#38#نايل سينما",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "NileComedy.eg@SD",
-      "name": "نايل كوميدي",
-      "site": "sat.tv",
-      "site_id": "1#38#نايل كوميدي",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "NileDrama.eg@SD",
@@ -1763,14 +1550,6 @@
       "site_id": "1159",
       "priority": 100,
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "NoorDubai.ae@SD",
-      "name": "نور دبي تي في",
-      "site": "sat.tv",
-      "site_id": "1#38#نور دبي تي في",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "OmanSportsTV.om",
@@ -1790,11 +1569,11 @@
     },
     {
       "xmltv_id": "OmanTV.om@SD",
-      "name": "عمان",
-      "site": "elcinema.com",
-      "site_id": "1317",
-      "priority": 100,
-      "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
+      "name": "Oman TV",
+      "site": "osn.com",
+      "site_id": "9983",
+      "priority": 25,
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "OmanTVCultural.om",
@@ -1833,7 +1612,7 @@
       "name": "OSNtv Comedy",
       "site": "osn.com",
       "site_id": "4508",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1841,7 +1620,7 @@
       "name": "OSNtv Kids",
       "site": "osn.com",
       "site_id": "4506",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1849,7 +1628,7 @@
       "name": "OSNtv Mezze",
       "site": "osn.com",
       "site_id": "4501",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1857,7 +1636,7 @@
       "name": "OSNtv Movies Action",
       "site": "osn.com",
       "site_id": "302",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1865,7 +1644,7 @@
       "name": "OSNtv Movies Hollywood",
       "site": "osn.com",
       "site_id": "4503",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1873,7 +1652,7 @@
       "name": "OSNtv Movies Premiere",
       "site": "osn.com",
       "site_id": "301",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1881,7 +1660,7 @@
       "name": "OSNtv Showcase",
       "site": "osn.com",
       "site_id": "304",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1889,7 +1668,7 @@
       "name": "OSNtv Yahala",
       "site": "osn.com",
       "site_id": "4509",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1897,7 +1676,7 @@
       "name": "OSNtv Yahala Aflam",
       "site": "osn.com",
       "site_id": "306",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1905,16 +1684,8 @@
       "name": "OSNtv Yahala Bil Arabi",
       "site": "osn.com",
       "site_id": "309",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "PNCFood.eg@SD",
-      "name": "بانوراما فوود",
-      "site": "sat.tv",
-      "site_id": "1#38#بانوراما فوود",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "QatarTelevision.qa@SD",
@@ -1923,14 +1694,6 @@
       "site_id": "1319",
       "priority": 100,
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "QatarTelevision2.qa@SD",
-      "name": "قطر 2",
-      "site": "sat.tv",
-      "site_id": "1#38#قطر 2",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "RabehSaqer.sa@HD",
@@ -1953,7 +1716,7 @@
       "name": "RFM TV",
       "site": "osn.com",
       "site_id": "222",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -2073,7 +1836,7 @@
       "name": "RT English",
       "site": "osn.com",
       "site_id": "7114",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -2081,7 +1844,7 @@
       "name": "RT Arabic",
       "site": "osn.com",
       "site_id": "9396",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -2125,14 +1888,6 @@
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
-      "xmltv_id": "SamiraTV.dz@SD",
-      "name": "سميرة",
-      "site": "sat.tv",
-      "site_id": "1#38#سميرة",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "SaudiThaqafiyaTV.sa@SD",
       "name": "الثقافية",
       "site": "shahid.mbc.net",
@@ -2149,14 +1904,6 @@
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
-      "xmltv_id": "SharjahSports.ae@SD",
-      "name": "الشارقة الرياضية",
-      "site": "sat.tv",
-      "site_id": "1#38#الشارقة الرياضية",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "SharjahTV.ae@SD",
       "name": "الشارقة",
       "site": "elcinema.com",
@@ -2166,11 +1913,11 @@
     },
     {
       "xmltv_id": "SkyNewsArabia.ae@SD",
-      "name": "سكاي نيوز عربية",
-      "site": "sat.tv",
-      "site_id": "1#38#سكاي نيوز عربية",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
+      "name": "Sky News Arabia HD",
+      "site": "osn.com",
+      "site_id": "2015",
+      "priority": 25,
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "SpacetoonArabic.ae@SD",
@@ -2197,28 +1944,12 @@
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
-      "xmltv_id": "SudanTV.sd@SD",
-      "name": "السودان تي في",
-      "site": "sat.tv",
-      "site_id": "1#38#السودان تي في",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "Tarab.sa@SD",
       "name": "طرب",
       "site": "shahid.mbc.net",
       "site_id": "49922763510387",
       "priority": 10,
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "TelvzaTV.tn@SD",
-      "name": "تلفزة",
-      "site": "sat.tv",
-      "site_id": "1#50#تلفزة",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "TeN.eg@SD",
@@ -2241,72 +1972,8 @@
       "name": "TLC HD",
       "site": "osn.com",
       "site_id": "308",
-      "priority": 140,
+      "priority": 25,
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "TunisnaTV.tn@SD",
-      "name": "تونسنا",
-      "site": "sat.tv",
-      "site_id": "1#50#تونسنا",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "TV2.dz@SD",
-      "name": "الجزائر تي في",
-      "site": "sat.tv",
-      "site_id": "1#38#الجزائر تي في",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "TV3.dz@SD",
-      "name": "الجزائرية الثالثة",
-      "site": "sat.tv",
-      "site_id": "1#38#الجزائرية الثالثة",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "TV4.dz@SD",
-      "name": "الجزائرية الرابعة",
-      "site": "sat.tv",
-      "site_id": "1#38#الجزائرية الرابعة",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "TV5.dz@SD",
-      "name": "الجزائرية الخامسة",
-      "site": "sat.tv",
-      "site_id": "1#38#الجزائرية الخامسة",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "TV6.dz@SD",
-      "name": "الجزائرية السادسة",
-      "site": "sat.tv",
-      "site_id": "1#38#الجزائرية السادسة",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "TV7.dz@SD",
-      "name": "الجزائرية السابعة",
-      "site": "sat.tv",
-      "site_id": "1#38#الجزائرية السابعة",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "TV8.dz@SD",
-      "name": "الجزائرية الثامنة",
-      "site": "sat.tv",
-      "site_id": "1#38#الجزائرية الثامنة",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "UTV.iq@SD",
@@ -2323,30 +1990,6 @@
       "site_id": "414449",
       "priority": 10,
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "YasTV.ae@SD",
-      "name": "ياس تي في",
-      "site": "sat.tv",
-      "site_id": "1#38#ياس تي في",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "YemenShababChannel.ye@SD",
-      "name": "يمن شباب",
-      "site": "sat.tv",
-      "site_id": "1#38#يمن شباب",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "YemenTV.ye@SD",
-      "name": "اليمن تي في",
-      "site": "sat.tv",
-      "site_id": "1#38#اليمن تي في",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "ZeeAlwan.ae@SD",

@@ -1,1 +1,1 @@
-EPGManager MENA Arabic Cloud data branch. Generated from Arabic TV guide websites with official-first source selection and per-channel Last Known Good protection.
+EPGManager MENA Cloud data branch. TV-only, rolling 48-hour guide. Official/iptv-org + OpenEPG + MENA-relevant EPGShare feeds, conservative channel de-duplication, Arabic-first metadata, and beIN/OSN English-title + Arabic-description enrichment. Morocco remains on its dedicated cloud feed. SAT.TV is not used.
