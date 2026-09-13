@@ -10,6 +10,7 @@ on:
       - "tools/mena_cloud_catalog.py"
       - "tools/mena_cloud_merge.py"
       - "tools/mena_cloud_merge_safe.py"
+      - "tools/mena_cloud_merge_arabic_first.py"
       - "tools/mena_cloud_finalize.py"
       - "tools/mena_cloud_finalize_safe.py"
       - "tools/mena_cloud_finalize_strict.py"
@@ -19,6 +20,7 @@ on:
       - "tools/mena_program_audit.py"
       - "tools/mena_global_epg_audit.py"
       - "tools/virtual_epgmanager_test.py"
+      - "tools/arabic_priority_test.py"
 
 permissions:
   contents: write
@@ -86,6 +88,7 @@ jobs:
             tools/mena_cloud_catalog.py \
             tools/mena_cloud_merge.py \
             tools/mena_cloud_merge_safe.py \
+            tools/mena_cloud_merge_arabic_first.py \
             tools/mena_cloud_finalize.py \
             tools/mena_cloud_finalize_safe.py \
             tools/mena_cloud_finalize_strict.py \
@@ -94,7 +97,8 @@ jobs:
             tools/mena_cloud_shards_strict.py \
             tools/mena_program_audit.py \
             tools/mena_global_epg_audit.py \
-            tools/virtual_epgmanager_test.py
+            tools/virtual_epgmanager_test.py \
+            tools/arabic_priority_test.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
@@ -157,12 +161,12 @@ jobs:
           fi
           exit 0
 
-      - name: Merge OpenEPG + EPGShare MENA feeds
+      - name: Merge MENA feeds with Arabic-first language arbitration
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          python tools/mena_cloud_merge_safe.py \
+          python tools/mena_cloud_merge_arabic_first.py \
             --primary output/raw.xml \
             --catalog-manifest output/catalog.json \
             --output output/merged.xml \
@@ -278,6 +282,16 @@ jobs:
             --text output/final/virtual-epgmanager.txt \
             --events 5
 
+      - name: Run Arabic-first local-channel regression test
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/arabic_priority_test.py \
+            --dir output/final \
+            --json output/final/arabic-priority-test.json \
+            --text output/final/arabic-priority-test.txt
+
       - name: Publish atomically to mena-data
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -300,12 +314,14 @@ jobs:
           cp ../output/final/global-epg-audit.txt .
           cp ../output/final/virtual-epgmanager.json .
           cp ../output/final/virtual-epgmanager.txt .
+          cp ../output/final/arabic-priority-test.json .
+          cp ../output/final/arabic-priority-test.txt .
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
           printf '%s\n' \
-            'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver sources are split exclusively by premium/provider identity first, then by authoritative/conservative channel country, then MENA Other. Regional pack suffixes are never treated as nationality. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
+            'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver sources are split exclusively by premium/provider identity first, then by authoritative/conservative channel country, then MENA Other. Arabic programme metadata is preferred before English/international fallback for regular MENA channels. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
             > README.md
-          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt virtual-epgmanager.json virtual-epgmanager.txt catalog.json merge-report.json README.md
+          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt virtual-epgmanager.json virtual-epgmanager.txt arabic-priority-test.json arabic-priority-test.txt catalog.json merge-report.json README.md
           if git diff --cached --quiet; then
             echo "No MENA data changes."
             exit 0
