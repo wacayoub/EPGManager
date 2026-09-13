@@ -1,30 +1,79 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Accuracy layer for mena_cloud_shards.
+"""Accuracy layer for MENA country/provider shards.
 
-EPGShare AE/SA packs are broad regional catalogues: their .ae/.sa suffixes are
-not reliable country identity. This wrapper keeps the provider-first sharder,
-but replaces country detection with conservative name/official-source rules.
-Uncertain channels go to MENA Other instead of a wrong country.
+Rules:
+- provider ownership is inferred from channel identity, never from the website
+  that happened to supply its EPG;
+- country is inferred from explicit channel identity/name, or from an
+  iptv-org canonical catalogue ID when available;
+- regional OpenEPG/EPGShare pack names and raw .ae/.sa aliases are not country
+  proof; uncertain channels are intentionally kept in MENA Other.
 """
 from __future__ import annotations
 
-from pathlib import Path
 import re
 import sys
-
 import mena_cloud_shards as base
 
-TRUSTED_CACHE_COUNTRY = {
-    "openepg-egypt1": "EG", "openepg-egypt2": "EG",
-    "openepg-palestine1": "PS",
-    "openepg-qatar1": "QA", "openepg-qatar2": "QA", "openepg-qatar3": "QA",
-    "openepg-qatar4": "QA", "openepg-qatar5": "QA", "openepg-qatar6": "QA",
-    "openepg-saudi1": "SA", "openepg-saudi2": "SA", "openepg-saudi3": "SA",
-    "openepg-saudi4": "SA", "openepg-saudi5": "SA", "openepg-saudi6": "SA",
-    "openepg-uae6": "AE",
-    "epgshare-aljazeera1": "QA",
-}
+
+def pop_arg(name):
+    try:
+        i = sys.argv.index(name)
+    except ValueError:
+        return None
+    if i + 1 >= len(sys.argv):
+        raise SystemExit("%s requires a value" % name)
+    value = sys.argv[i + 1]
+    del sys.argv[i:i + 2]
+    return value
+
+
+def identity_probe(cid, name, meta):
+    # Deliberately exclude meta['site']: a guide provider is not the owner of
+    # every linear channel it lists (e.g. osn.com and shahid.mbc.net).
+    return base.norm("%s %s %s" % (cid or "", name or "", (meta or {}).get("name") or ""))
+
+
+def has_word(text, *words):
+    padded = " " + text + " "
+    return any((" " + base.norm(word) + " ") in padded for word in words)
+
+
+def safe_provider_group(cid, name, meta):
+    p = identity_probe(cid, name, meta)
+    low_id = (cid or "").casefold()
+
+    if has_word(p, "alkass", "al kass"):
+        return "alkass"
+    if has_word(p, "bein", "be in", "bein sports", "beinsports") or low_id.endswith(".bein"):
+        return "bein"
+    if has_word(p, "osn", "osntv", "osn tv"):
+        return "osn"
+    if re.search(r"(?:^| )mbc(?: |[0-9]|$)", p) or has_word(
+            p, "al arabiya", "alarabiya", "al hadath", "alhadath", "wanasah"):
+        return "mbc"
+    if has_word(p, "rotana"):
+        return "rotana"
+    if has_word(
+            p, "abu dhabi", "abudhabi", "ad sports", "ad sport", "yas sports",
+            "yas tv", "majid", "national geographic abu dhabi", "al emarat"):
+        return "adm"
+    if has_word(
+            p, "dubai tv", "dubai sports", "dubai one", "dubai racing",
+            "sama dubai", "noor dubai", "dubai zaman"):
+        return "dmi"
+    if has_word(
+            p, "art aflam", "art cinema", "art hekayat", "art movies", "art sport",
+            "alfa cinema", "alfa drama", "alfa hekayat", "alfa series", "alfa music",
+            "alfa fann", "alfa al safwa", "alfa al yawm") or re.search(r"(?:^| )art(?: |[0-9]|$)", p):
+        return "art"
+    if re.search(r"(?:^| )ssc(?: |[0-9]|$)", p) or has_word(p, "saudi sports company"):
+        return "ssc"
+    if has_word(p, "starzplay", "starz play", "starz"):
+        return "starz"
+    return None
+
 
 COUNTRY_KEYWORDS = [
     ("MR", ("mauritania", "mauritanie", "almouritania")),
@@ -46,6 +95,7 @@ COUNTRY_KEYWORDS = [
     ("SY", ("syria", "syrian", "souriya", "al souriya", "halab today", "sama tv", "lana tv")),
     ("EG", ("egypt", "egyptian", "misr", "masr", "masriya", "al masriyah", "cairo", "qahera", "kahera", "alexandaria", "alexandria", "askandria", "aswan", "matrouh", "north sinai", "south sinai", "zamalek", "al ahly", "nile", "cbc", "dmc", "extra news", "on time sports", "on drama", "on e", "mekameleen", "mazzika", "sada el balad", "mehwar", "al nahar", "alnahar", "al hayat", "alhayat")),
 ]
+
 MOROCCO_WORDS = (
     "morocco", "maroc", "maghribiya", "al aoula", "alaoula", "arryadia",
     "arrabiaa", "assadissa", "2m", "2m monde", "2m national", "medi1",
@@ -53,67 +103,30 @@ MOROCCO_WORDS = (
 )
 
 
-def pop_arg(name):
-    try:
-        i = sys.argv.index(name)
-    except ValueError:
-        return None
-    if i + 1 >= len(sys.argv):
-        raise SystemExit("%s requires a path" % name)
-    value = sys.argv[i + 1]
-    del sys.argv[i:i + 2]
-    return value
+def safe_country_code(cid, name, meta):
+    p = identity_probe(cid, name, meta)
+    if any(has_word(p, word) for word in MOROCCO_WORDS) or re.search(r"\.ma(?:@|$)", cid or "", re.I):
+        return "MA"
 
+    for code, words in COUNTRY_KEYWORDS:
+        if any(has_word(p, word) for word in words):
+            return code
 
-def trusted_memberships(cache_dir):
-    out = {}
-    if not cache_dir:
-        return out
-    root_dir = Path(cache_dir)
-    if not root_dir.is_dir():
-        return out
-    for source, code in TRUSTED_CACHE_COUNTRY.items():
-        path = root_dir / (source + ".xml.gz")
-        if not path.is_file() or path.stat().st_size == 0:
-            continue
-        try:
-            root = base.read_xml(path)
-        except Exception:
-            continue
-        for c in root.findall("channel"):
-            cid = (c.get("id") or "").strip()
-            if cid:
-                out.setdefault(cid, set()).add(code)
-    return out
+    # Only a canonical iptv-org catalogue identity may contribute its country
+    # suffix. A raw alias from EPGShare/OpenEPG has meta == {} and is ignored.
+    if meta and meta.get("xmltv_id"):
+        canonical_id = str(meta.get("xmltv_id") or "")
+        m = re.search(r"\.([a-z]{2})(?:@|$)", canonical_id, re.I)
+        if m and m.group(1).upper() in base.COUNTRY_BY_CODE:
+            return m.group(1).upper()
+    return None
 
 
 def main():
-    cache_dir = pop_arg("--source-cache-dir")
-    memberships = trusted_memberships(cache_dir)
-
-    def safe_country_code(cid, name, meta):
-        p = base.probe(cid, name, meta)
-        if any(base.has_word(p, word) for word in MOROCCO_WORDS) or re.search(r"\.ma(?:@|$)", cid or "", re.I):
-            return "MA"
-        for code, words in COUNTRY_KEYWORDS:
-            if any(base.has_word(p, word) for word in words):
-                return code
-
-        trusted = memberships.get(cid) or set()
-        if len(trusted) == 1:
-            code = next(iter(trusted))
-            if code in base.COUNTRY_BY_CODE:
-                return code
-
-        # Only catalogue-backed primary IDs may use their country suffix.
-        # Raw EPGShare aliases such as *.ae/*.sa are intentionally NOT trusted.
-        if meta:
-            meta_id = str(meta.get("xmltv_id") or cid or "")
-            m = re.search(r"\.([a-z]{2})(?:@|$)", meta_id, re.I)
-            if m and m.group(1).upper() in base.COUNTRY_BY_CODE:
-                return m.group(1).upper()
-        return None
-
+    # Kept for workflow compatibility; pack membership is intentionally ignored
+    # because regional packs are not nationality/ownership evidence.
+    pop_arg("--source-cache-dir")
+    base.provider_group = safe_provider_group
     base.country_code = safe_country_code
     return base.main()
 
