@@ -11,10 +11,13 @@ on:
       - "tools/mena_cloud_merge.py"
       - "tools/mena_cloud_merge_safe.py"
       - "tools/mena_cloud_finalize.py"
+      - "tools/mena_cloud_finalize_safe.py"
       - "tools/mena_cloud_shards.py"
       - "tools/mena_cloud_shards_safe.py"
+      - "tools/mena_cloud_shards_strict.py"
       - "tools/mena_program_audit.py"
       - "tools/mena_global_epg_audit.py"
+      - "tools/virtual_epgmanager_test.py"
 
 permissions:
   contents: write
@@ -83,10 +86,13 @@ jobs:
             tools/mena_cloud_merge.py \
             tools/mena_cloud_merge_safe.py \
             tools/mena_cloud_finalize.py \
+            tools/mena_cloud_finalize_safe.py \
             tools/mena_cloud_shards.py \
             tools/mena_cloud_shards_safe.py \
+            tools/mena_cloud_shards_strict.py \
             tools/mena_program_audit.py \
-            tools/mena_global_epg_audit.py
+            tools/mena_global_epg_audit.py \
+            tools/virtual_epgmanager_test.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
@@ -162,12 +168,12 @@ jobs:
             --cache-dir output/upstream \
             --window-hours 48
 
-      - name: Finalize combined MENA with per-channel LKG
+      - name: Finalize combined MENA with safe LKG timeline gate
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          python tools/mena_cloud_finalize.py \
+          python tools/mena_cloud_finalize_safe.py \
             --candidate output/merged.xml \
             --catalog-manifest output/catalog.json \
             --previous previous/mena-arabic.xml.gz \
@@ -180,7 +186,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python tools/mena_cloud_shards_safe.py \
+          python tools/mena_cloud_shards_strict.py \
             --source-cache-dir output/upstream \
             --channel-metadata output/channels.json \
             --input output/final/mena-arabic.xml.gz \
@@ -259,6 +265,17 @@ jobs:
             --text output/final/global-epg-audit.txt \
             --sample-limit 40
 
+      - name: Run virtual EPGManager integration test
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/virtual_epgmanager_test.py \
+            --dir output/final \
+            --json output/final/virtual-epgmanager.json \
+            --text output/final/virtual-epgmanager.txt \
+            --events 5
+
       - name: Publish atomically to mena-data
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -279,12 +296,14 @@ jobs:
           cp ../output/final/program-audit.txt .
           cp ../output/final/global-epg-audit.json .
           cp ../output/final/global-epg-audit.txt .
+          cp ../output/final/virtual-epgmanager.json .
+          cp ../output/final/virtual-epgmanager.txt .
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
           printf '%s\n' \
             'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver sources are split exclusively by premium/provider identity first, then by authoritative/conservative channel country, then MENA Other. Regional pack suffixes are never treated as nationality. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
             > README.md
-          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt catalog.json merge-report.json README.md
+          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt virtual-epgmanager.json virtual-epgmanager.txt catalog.json merge-report.json README.md
           if git diff --cached --quiet; then
             echo "No MENA data changes."
             exit 0
