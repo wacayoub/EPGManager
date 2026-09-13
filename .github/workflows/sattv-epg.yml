@@ -1,0 +1,230 @@
+name: SAT.TV Satellite EPG Cloud
+
+on:
+  schedule:
+    - cron: "0 5,6,17,18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sattv-satellite-epg-cloud
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Local schedule gate
+        id: gate
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            hour="$(TZ=Africa/Casablanca date +%H)"
+            if [ "$hour" = "06" ] || [ "$hour" = "18" ]; then
+              echo "run=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "Skipping duplicate UTC slot; Casablanca hour=${hour}."
+            fi
+          fi
+
+      - name: Checkout EPGManager
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout current iptv-org EPG adapter
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - name: Set up Python
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/iptv-org-epg/package-lock.json
+
+      - name: Install upstream EPG grabber
+        if: steps.gate.outputs.run == 'true'
+        working-directory: vendor/iptv-org-epg
+        shell: bash
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify SAT.TV cloud scripts
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: python -m py_compile tools/sattv_satellite_catalog.py tools/sattv_finalize.py
+
+      - name: Discover current SAT.TV channels
+        if: steps.gate.outputs.run == 'true'
+        working-directory: vendor/iptv-org-epg
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "${GITHUB_WORKSPACE}/output/catalog"
+          npm run channels:parse --- \
+            --config=./sites/sat.tv/sat.tv.config.js \
+            --output="${GITHUB_WORKSPACE}/output/catalog/sattv-ar.channels.xml" \
+            --set=lang:ar
+
+      - name: Split channel catalogue by satellite
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/sattv_satellite_catalog.py \
+            --input output/catalog/sattv-ar.channels.xml \
+            --output-dir output/catalog
+
+      - name: Download Last Known Good satellite feeds
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p previous
+          for feed in nilesat-7w hotbird-13e; do
+            curl -fL --retry 2 --retry-delay 1 --connect-timeout 5 --max-time 30 \
+              "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/sat-data/${feed}.xml.gz" \
+              -o "previous/${feed}.xml.gz" || true
+          done
+
+      - name: Grab Nilesat 7/8W EPG
+        if: steps.gate.outputs.run == 'true'
+        working-directory: vendor/iptv-org-epg
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=30s 1500s \
+            npm run grab --- \
+              --channels="${GITHUB_WORKSPACE}/output/catalog/nilesat-7w.channels.xml" \
+              --output="${GITHUB_WORKSPACE}/output/nilesat-7w.raw.xml" \
+              --days=7 \
+              --maxConnections=3 \
+              --timeout=20000
+          echo "Nilesat grab exit code=$?; finalize/LKG decides publication."
+          exit 0
+
+      - name: Grab HOTBIRD 13E EPG
+        if: steps.gate.outputs.run == 'true'
+        working-directory: vendor/iptv-org-epg
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=30s 1200s \
+            npm run grab --- \
+              --channels="${GITHUB_WORKSPACE}/output/catalog/hotbird-13e.channels.xml" \
+              --output="${GITHUB_WORKSPACE}/output/hotbird-13e.raw.xml" \
+              --days=7 \
+              --maxConnections=3 \
+              --timeout=20000
+          echo "HOTBIRD grab exit code=$?; finalize/LKG decides publication."
+          exit 0
+
+      - name: Finalize feeds with per-channel LKG
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          touch output/nilesat-7w.raw.xml output/hotbird-13e.raw.xml
+          mkdir -p output/final
+          python tools/sattv_finalize.py \
+            --candidate output/nilesat-7w.raw.xml \
+            --catalog output/catalog/nilesat-7w.catalog.json \
+            --previous previous/nilesat-7w.xml.gz \
+            --basename nilesat-7w \
+            --label "Eutelsat/Nilesat 7/8W" \
+            --output-dir output/final \
+            --min-channels 25 --min-programmes 100
+          python tools/sattv_finalize.py \
+            --candidate output/hotbird-13e.raw.xml \
+            --catalog output/catalog/hotbird-13e.catalog.json \
+            --previous previous/hotbird-13e.xml.gz \
+            --basename hotbird-13e \
+            --label "HOTBIRD 13E" \
+            --output-dir output/final \
+            --min-channels 20 --min-programmes 80
+
+      - name: Validate XML.GZ outputs
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import gzip, json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          for name in ('nilesat-7w', 'hotbird-13e'):
+              p = Path('output/final/%s.xml.gz' % name)
+              root = ET.fromstring(gzip.decompress(p.read_bytes()))
+              c = len(root.findall('channel'))
+              e = len(root.findall('programme'))
+              manifest = json.loads(Path('output/final/%s.manifest.json' % name).read_text(encoding='utf-8'))
+              assert c == manifest['channels']
+              assert e == manifest['programmes']
+              print('PASS %s: %d channels / %d programmes / %d bytes' % (name, c, e, p.stat().st_size))
+          PY
+
+      - name: Publish atomically to sat-data
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Cloud"
+          git config user.email "actions@users.noreply.github.com"
+          git fetch origin sat-data
+          rm -rf publish
+          git worktree add publish origin/sat-data
+          cd publish
+          git checkout -B sat-data origin/sat-data
+          cp ../output/final/nilesat-7w.xml.gz .
+          cp ../output/final/nilesat-7w.txt .
+          cp ../output/final/nilesat-7w.manifest.json .
+          cp ../output/final/hotbird-13e.xml.gz .
+          cp ../output/final/hotbird-13e.txt .
+          cp ../output/final/hotbird-13e.manifest.json .
+          cp ../output/catalog/nilesat-7w.catalog.json .
+          cp ../output/catalog/hotbird-13e.catalog.json .
+          cp ../output/catalog/catalog-manifest.json .
+          cat > README.md <<'EOF'
+          # EPGManager SAT.TV satellite cloud
+
+          Personal satellite EPG cache generated by GitHub Actions.
+
+          - `nilesat-7w.xml.gz` — Eutelsat/Nilesat 7/8W
+          - `hotbird-13e.xml.gz` — HOTBIRD 13E
+          - matching `.txt` catalogues are lightweight mapping indexes
+          - matching `.manifest.json` files expose health/counts
+
+          Generation schedule: 06:00 and 18:00 Africa/Casablanca, plus manual workflow dispatch.
+          EOF
+          git add nilesat-7w.xml.gz nilesat-7w.txt nilesat-7w.manifest.json \
+                  hotbird-13e.xml.gz hotbird-13e.txt hotbird-13e.manifest.json \
+                  nilesat-7w.catalog.json hotbird-13e.catalog.json catalog-manifest.json README.md
+          if git diff --cached --quiet; then
+            echo "No SAT.TV data changes."
+            exit 0
+          fi
+          stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
+          git commit -m "SAT.TV satellite EPG ${stamp}"
+          git push origin sat-data
