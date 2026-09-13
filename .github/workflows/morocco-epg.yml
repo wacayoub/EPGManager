@@ -14,12 +14,13 @@ on:
       - "tools/morocco_cloud_runner.py"
       - "tools/morocco_cloud_runner_ar.py"
       - "tools/morocco_cloud_runner_ar2.py"
+      - "tools/morocco_cloud_legacy_logic.py"
+      - "tools/morocco_cloud_final.py"
       - "tools/morocco_epg_parts/**"
 
 permissions:
   contents: write
 
-# Never let a new run wait behind a remote website that is hanging.
 concurrency:
   group: morocco-epg-cloud
   cancel-in-progress: true
@@ -103,7 +104,7 @@ jobs:
   build:
     needs: bootstrap
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - name: Checkout generator
         uses: actions/checkout@v4
@@ -125,7 +126,45 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile tools/morocco_epg.py tools/morocco_cloud_runner.py tools/morocco_cloud_runner_ar.py tools/morocco_cloud_runner_ar2.py
+          python -m py_compile \
+            tools/morocco_epg.py \
+            tools/morocco_cloud_runner.py \
+            tools/morocco_cloud_runner_ar.py \
+            tools/morocco_cloud_runner_ar2.py \
+            tools/morocco_cloud_legacy_logic.py \
+            tools/morocco_cloud_final.py
+
+      - name: Test migrated SNRT and Arryadia logic
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=tools python - <<'PY'
+          import morocco_cloud_legacy_logic as m
+
+          # SNRT news retitling + terrestrial tag.
+          row = {
+              'title': 'الأخبار',
+              'desc_short': 'نشرة باللغة الفرنسية بث أرضي',
+              'raw_text': 'الفرنسية TNT',
+          }
+          title = m._snrt_title(row)
+          assert title == 'الأخبار الفرنسية [TNT / بث أرضي]', title
+
+          # Exact weather description is a stable operator rule.
+          assert m.WEATHER_DESC == 'نشرة جوية مفصلة حول حالة الطقس في المملكة المغربية.'
+
+          # Arryadia club names / competition / live / matchday.
+          t, d, live = m.format_football_title(
+              'كرة القدم مباشر',
+              'WAC - RCA البطولة الإحترافية الجولة 5'
+          )
+          assert live is True
+          assert t == 'Live: Wydad Casablanca vs Raja Casablanca - Botola Pro', t
+          assert d.startswith('[Journée 5]'), d
+          assert m.normalize_club('RSB') == 'RS Berkane'
+          assert m.normalize_club('AS FAR') == 'AS FAR Rabat'
+          print('SNRT/Arryadia historical regression: PASS')
+          PY
 
       - name: Download Last Known Good feed
         shell: bash
@@ -135,7 +174,7 @@ jobs:
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
             -o previous/morocco.xml.gz || true
 
-      - name: Generate Morocco XMLTV with full-day Arabic 2M quality layer
+      - name: Generate Morocco XMLTV with final historical source logic
         id: generate
         shell: bash
         run: |
@@ -144,8 +183,8 @@ jobs:
           if [ "${{ github.event_name }}" = "schedule" ]; then
             EXTRA="--scheduled"
           fi
-          timeout --signal=TERM --kill-after=15s 300s \
-            python tools/morocco_cloud_runner_ar2.py \
+          timeout --signal=TERM --kill-after=20s 600s \
+            python tools/morocco_cloud_final.py \
               --output-dir output \
               --previous previous/morocco.xml.gz \
               --days 7 \
@@ -159,7 +198,7 @@ jobs:
           fi
           exit 0
 
-      - name: Validate candidate and 2M language policy
+      - name: Validate candidate and Moroccan source policies
         id: candidate
         shell: bash
         run: |
@@ -193,9 +232,14 @@ jobs:
                           else:
                               ar = re.compile(r'[\u0600-\u06ff]')
                               twom = [x for x in programmes if x.get('channel') == '2M']
+                              snrt_ids = {'AlAoula','Arrabiaa','AlMaghribiya','Assadisa','Tamazight','AFLAM.ma'}
+                              arr_ids = {'Arryadia_HD','Arryadia_TNT','Arryadia_HD1','Arryadia_HD2','Arryadia_HD3'}
+                              snrt = [x for x in programmes if x.get('channel') in snrt_ids]
+                              arr = [x for x in programmes if x.get('channel') in arr_ids]
                               bad_t = []
                               bad_d = []
                               bad_policy = []
+                              bad_time = []
                               evening = 0
                               french_first = set()
                               allowed_fr = {
@@ -216,7 +260,6 @@ jobs:
                                           evening += 1
                                   except Exception:
                                       hour = -1
-
                                   if tt in allowed_fr:
                                       key = (day, allowed_fr[tt])
                                       if t is None or t.get('lang') != 'fr':
@@ -229,10 +272,33 @@ jobs:
                                           french_first.add(key)
                                   elif t is None or t.get('lang') != 'ar' or not ar.search(tt):
                                       bad_t.append(tt)
-
-                                  # Descriptions remain Arabic even when the first title is French.
                                   if d is None or d.get('lang') != 'ar' or not ar.search(dd):
                                       bad_d.append(dd)
+
+                              for x in snrt + arr:
+                                  st = x.get('start') or ''
+                                  sp = x.get('stop') or ''
+                                  if st and sp and sp[:14] <= st[:14]:
+                                      bad_time.append((x.get('channel'), st, sp))
+
+                              # Historical Arryadia rule: real HD1/2/3 events are LIVE;
+                              # synthetic gap fillers deliberately start with 'Programmes'.
+                              bad_hd_live = []
+                              for x in arr:
+                                  if x.get('channel') not in {'Arryadia_HD1','Arryadia_HD2','Arryadia_HD3'}:
+                                      continue
+                                  t = x.find('title')
+                                  tt = (t.text or '') if t is not None else ''
+                                  if tt and not tt.startswith('Programmes ') and not tt.upper().startswith('LIVE:'):
+                                      bad_hd_live.append(tt)
+
+                              weather_bad = []
+                              for x in snrt:
+                                  t = x.find('title'); d = x.find('desc')
+                                  tt = (t.text or '') if t is not None else ''
+                                  dd = (d.text or '') if d is not None else ''
+                                  if tt == 'أحوال الطقس' and dd != 'نشرة جوية مفصلة حول حالة الطقس في المملكة المغربية.':
+                                      weather_bad.append(dd)
 
                               if len(twom) < 20:
                                   reason = '2M programme count too small for 7-day feed: %d' % len(twom)
@@ -244,9 +310,20 @@ jobs:
                                   reason = '2M Arabic title quality failed outside allowed French first editions: %d/%d bad; sample=%r' % (len(bad_t), len(twom), bad_t[:3])
                               elif bad_d:
                                   reason = '2M Arabic description quality failed: %d/%d bad; sample=%r' % (len(bad_d), len(twom), bad_d[:3])
+                              elif len(snrt) < 10:
+                                  reason = 'SNRT programme count too small: %d' % len(snrt)
+                              elif len(arr) < 10:
+                                  reason = 'Arryadia programme count too small: %d' % len(arr)
+                              elif bad_time:
+                                  reason = 'SNRT/Arryadia invalid stop timeline: %r' % (bad_time[:3],)
+                              elif weather_bad:
+                                  reason = 'SNRT weather description policy failed: %r' % weather_bad[:3]
+                              elif bad_hd_live:
+                                  reason = 'Arryadia HD1/2/3 LIVE policy failed: %r' % bad_hd_live[:3]
                               else:
                                   ready = True
-                                  reason = 'PASS: %d channels, %d programmes; 2M=%d full-day/evening=%d; French-first=%d; all other titles + all descriptions Arabic' % (len(channels), len(programmes), len(twom), evening, len(french_first))
+                                  reason = 'PASS: %d channels, %d programmes; 2M=%d evening=%d French-first=%d; SNRT=%d; Arryadia=%d; historical rules OK' % (
+                                      len(channels), len(programmes), len(twom), evening, len(french_first), len(snrt), len(arr))
               except Exception as exc:
                   reason = 'candidate parse failed: %s' % exc
           print(reason)
@@ -269,17 +346,18 @@ jobs:
           cp output/morocco.xml.gz publish/morocco.xml.gz
           cp output/morocco.txt publish/morocco.txt
           cp output/manifest.json publish/manifest.json
-          cp output/2m_audit.json publish/2m_audit.json
+          if [ -f output/2m_audit.json ]; then cp output/2m_audit.json publish/2m_audit.json; fi
           printf '%s\n' 'EPGManager Morocco Cloud data branch.' > publish/README.md
 
           cd publish
-          git add morocco.xml.gz morocco.txt manifest.json 2m_audit.json README.md
+          git add morocco.xml.gz morocco.txt manifest.json README.md
+          if [ -f 2m_audit.json ]; then git add 2m_audit.json; fi
           if git diff --cached --quiet; then
             echo "No EPG content change; nothing to publish."
             exit 0
           fi
           VERSION=$(python -c "import json; print(json.load(open('manifest.json')).get('version','unknown'))")
-          git commit -m "Morocco EPG ${VERSION} full-day 2M language policy"
+          git commit -m "Morocco EPG ${VERSION} historical SNRT Arryadia and 2M logic"
           git push origin epg-data
 
       - name: Keep endpoint healthy when candidate is rejected
