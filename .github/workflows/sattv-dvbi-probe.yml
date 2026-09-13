@@ -13,40 +13,23 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 2
     steps:
-      - name: Probe public SAT.TV DVB-I endpoints
+      - name: Probe public SAT.TV DVB-I Algeria list
         shell: bash
         run: |
-          set +e
-          urls=(
-            "https://sattv-csr.tv/dvb-i/api/serviceList/satTVAlgeria"
-            "https://sattv-csr.tv/dvb-i/api/serviceList/satTVMorocco"
-            "https://sattv-csr.tv/dvb-i/api/serviceList/satTVEgypt"
-            "https://sattv-csr.tv/dvb-i/api/serviceList/satTVArabesque"
-            "https://sattv-csr.tv/dvb-i/api/serviceList/satTVItalia"
-            "https://sattv-csr.tv/dvb-i/api/serviceList/satTVFarsi"
-            "https://sattv-csr.tv/dvb-i/api/serviceList/satTVInternational"
-          )
-          n=0
-          for u in "${urls[@]}"; do
-            n=$((n+1))
-            echo "===== PROBE $u ====="
-            code=$(curl -L -sS --connect-timeout 8 --max-time 20 -o "/tmp/probe${n}.xml" -w '%{http_code}' "$u")
-            echo "HTTP=$code bytes=$(wc -c < "/tmp/probe${n}.xml" 2>/dev/null || echo 0)"
-            if [ "$code" = "200" ]; then
-              python - "$u" "/tmp/probe${n}.xml" <<'PY'
-          import re, sys
+          set -euo pipefail
+          u="https://sattv-csr.tv/dvb-i/api/serviceList/satTVAlgeria"
+          curl -fL -sS --connect-timeout 5 --max-time 12 "$u" -o /tmp/sattv.xml
+          echo "bytes=$(wc -c < /tmp/sattv.xml)"
+          python - <<'PY'
+          import re
           from pathlib import Path
-          u, p = sys.argv[1], Path(sys.argv[2])
-          s = p.read_text(encoding='utf-8', errors='replace')
-          print('URL', u)
-          print('HEAD', s[:1000].replace('\n',' '))
-          urls = sorted(set(re.findall(r'https?://[^<\s"\']+', s)))
-          print('EMBEDDED_URLS', len(urls))
-          for x in urls[:30]: print(x[:500])
-          for token in ('ContentGuideSource','ScheduleInfoEndpoint','ProgramInformation','ServiceInstance','SatelliteParameters'):
-              print(token, s.count(token))
+          s=Path('/tmp/sattv.xml').read_text(encoding='utf-8',errors='replace')
+          print('HEAD', s[:1500].replace('\n',' '))
+          urls=sorted(set(re.findall(r'https?://[^<\s"\']+',s)))
+          print('EMBEDDED_URLS',len(urls))
+          for x in urls[:80]: print(x[:700])
+          for token in ('ContentGuideSource','ScheduleInfoEndpoint','ProgramInformation','ServiceInstance','SatelliteParameters','ContentGuide'):
+              print(token,s.count(token))
           PY
-            fi
-          done
