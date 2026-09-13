@@ -2,11 +2,10 @@
 # -*- coding: utf-8 -*-
 """Arabic/Darija quality layer for the Morocco Cloud 2M scraper.
 
-This wrapper keeps the resilient cloud runner but restores the translation
-behaviour of the original 2M script: known Moroccan/Darija programme names
-are normalized from a curated dictionary, unknown French/romanized titles
-fall back to Arabic translation, and real descriptions are translated rather
-than being replaced by a generic sentence.
+Known 2M/Moroccan programme names are normalized to their proper Arabic or
+Darija spelling. Unknown French/romanized titles use the historical 2M
+translation fallback. Descriptions are curated for known shows and translated
+to Arabic for unknown shows. The receiver still downloads only morocco.xml.gz.
 """
 from __future__ import annotations
 
@@ -24,8 +23,6 @@ TZ = runner.TZ
 PARIS = runner.PARIS
 AUDIT = []
 
-# Start from every correction already present in the historical 2M script,
-# then keep the extra aliases added by the resilient cloud runner.
 T2M_AR = dict(base.T2M)
 T2M_AR.update(runner.T2M_AR)
 T2M_AR.update({
@@ -55,6 +52,7 @@ T2M_AR.update({
     "najm chaabi": "النجم الشعبي",
     "ahsane patissier": "أحسن باتيسييه",
     "ahsan patissier celebrites 2m": "أحسن باتيسييه المشاهير",
+    "ahsane patissier celebrity": "أحسن باتيسييه المشاهير",
     "ch hiwat bladi": "شهيوات بلادي",
     "chhiwat bladi": "شهيوات بلادي",
     "alhane 3chaqnaha": "ألحان عشقناها",
@@ -63,9 +61,48 @@ T2M_AR.update({
     "kif al hal": "كيف الحال",
     "al khobarae": "الخبراء",
     "zor bladk": "زور بلادك",
+    "zor bladek": "زور بلادك",
+    "zour bladk": "زور بلادك",
+    "zour bladek": "زور بلادك",
+    "kan ya ma kan": "كان يا ما كان",
+    "kane ya makan": "كان يا ما كان",
+    "dna al hayawanat": "الحمض النووي للحيوانات",
+    "ghidae wa siha": "غذاء وصحة",
+    "ghida wa siha": "غذاء وصحة",
+    "ghidaa wa siha": "غذاء وصحة",
+    "twahachnak": "توحشناك",
+    "ch hiwa ma3a choumicha": "شهيوة مع شميشة",
+    "chhiwa ma3a choumicha": "شهيوة مع شميشة",
+    "ch hiwa maa choumicha": "شهيوة مع شميشة",
+    "al amana": "الأمانة",
+    "qalb aswad": "قلب أسود",
     "lecture du coran": "تلاوة القرآن الكريم",
     "coran avec laureats": "القرآن الكريم مع الفائزين",
 })
+
+SHOW_DESC = {
+    "القرآن الكريم مع الفائزين": "برنامج ديني يقدّم تلاوات قرآنية لفائزين في مسابقات الحفظ والتجويد، مع إبراز أحكام التجويد وجمال التلاوة.",
+    "تلاوة القرآن الكريم": "موعد ديني مخصص لتلاوة آيات من القرآن الكريم على القناة الثانية 2M.",
+    "شهيوات بلادي": "رحلة عبر جهات المغرب لاكتشاف الأطباق والتخصصات المحلية، بمشاركة سكان كل منطقة وإبراز غنى المطبخ المغربي.",
+    "ألحان عشقناها": "برنامج موسيقي مغربي يحتفي بالألوان الغنائية الأصيلة مثل الملحون والموسيقى الأندلسية والصوفية، مع فنانين وضيوف.",
+    "زور بلادك": "برنامج يعرّف بالمؤهلات السياحية لمختلف مناطق المغرب ويشجع على اكتشاف المدن والوجهات الوطنية.",
+    "كان يا ما كان": "برنامج يعود إلى تاريخ مدن مغربية من خلال معالمها التاريخية وأماكنها الرمزية وشخصياتها المؤثرة.",
+    "الحمض النووي للحيوانات": "برنامج وثائقي يعرّف بعالم الحيوانات وخصائصها وسلوكها وتنوعها.",
+    "غذاء وصحة": "برنامج صحي يقدم نصائح ومعلومات مبسطة حول التغذية السليمة والصحة ونمط العيش.",
+    "شرقي أو غربي": "دراما اجتماعية تحكي قصة عائلتين متعاديتين تنشأ بينهما قصة حب صعبة، حيث يتحدى عبلة ويعقوب صراع العائلتين من أجل علاقتهما.",
+    "أحسن باتيسييه": "مسابقة في فن الحلويات يتنافس فيها المشاركون عبر تحديات متنوعة لاختيار أفضل باتيسييه.",
+    "أحسن باتيسييه المشاهير": "مسابقة ترفيهية في فن الحلويات يتنافس فيها مشاهير للفوز بلقب أفضل باتيسييه.",
+    "كيف الحال": "برنامج اجتماعي يقدم نصائح عملية حول تدبير شؤون الأسرة وتربية الأطفال والحياة الزوجية.",
+    "توحشناك": "عرض موسيقي يحتفي بذاكرة الأغنية المغربية ويستضيف أسماء من الموسيقى المغربية الحديثة والأمازيغية والريفية.",
+    "شهيوة مع شميشة": "برنامج طبخ تقدمه شميشة الشافعي، يقدم وصفات مغربية متنوعة وسهلة مع إبراز المنتجات المحلية.",
+    "الأمانة": "عمل درامي يتناول صراعاً على النفوذ والإرث داخل عائلة بعد تقاعد رب الأسرة ووقوع أحداث تقلب موازينها.",
+    "قلب أسود": "عمل درامي يُعرض على القناة الثانية 2M.",
+    "رشيد شو": "برنامج حواري وترفيهي مغربي يجمع بين الفكاهة والعروض والمقابلات مع فنانين وشخصيات مختلفة.",
+    "صباحيات 2M": "برنامج صباحي مغربي يجمع مواضيع المجتمع والصحة والثقافة والمطبخ مع فقرات وضيوف متنوعين.",
+    "عين الكبريت": "برنامج مغربي يُعرض على القناة الثانية 2M.",
+    "النجم الشعبي": "برنامج فني يحتفي بالأغنية الشعبية المغربية والفنانين والمواهب.",
+    "سهرة شعبية": "سهرة فنية مخصصة للأغنية والموسيقى الشعبية المغربية.",
+}
 
 _AR_RE = re.compile(r"[\u0600-\u06ff]")
 _title_cache = {}
@@ -87,14 +124,16 @@ def norm(text):
 
 def semantic_desc(title_ar):
     n = clean(title_ar)
+    if n in SHOW_DESC:
+        return SHOW_DESC[n]
     if any(x in n for x in ("الأخبار", "الظهيرة", "المسائية")):
         return "موعد إخباري على القناة الثانية 2M يقدم أبرز الأخبار والمستجدات الوطنية والدولية."
     if "صباحيات" in n:
-        return "برنامج صباحي مغربي على 2M يجمع مواضيع المجتمع والصحة والثقافة والمطبخ مع فقرات وضيوف متنوعين."
-    if any(x in n for x in ("شهيوات", "باتيسييه", "الطياب")):
+        return SHOW_DESC["صباحيات 2M"]
+    if any(x in n for x in ("شهيوات", "شهيوة", "باتيسييه", "الطياب")):
         return "برنامج مغربي للطبخ على 2M يقدم وصفات ونصائح وأفكاراً من المطبخ المغربي."
     if "رشيد شو" in n:
-        return "برنامج حواري وترفيهي مغربي على 2M يستضيف فنانين وشخصيات مع فقرات متنوعة."
+        return SHOW_DESC["رشيد شو"]
     if "صلاة الجمعة" in n or "القرآن" in n:
         return "موعد ديني على القناة الثانية 2M."
     if "النجم الشعبي" in n or "سهرة شعبية" in n or "ألحان" in n:
@@ -114,7 +153,6 @@ def translate_title(title):
         n = norm(raw)
         out = T2M_AR.get(n)
         if not out:
-            # Prefer the longest curated Darija/2M alias before machine translation.
             matches = [(len(k), v) for k, v in T2M_AR.items() if k and len(k) >= 5 and k in n]
             if matches:
                 out = max(matches)[1]
@@ -124,7 +162,6 @@ def translate_title(title):
             translated = base.google_ar(_translate_http, raw)
             if has_arabic(translated):
                 out = translated
-        # Never publish a raw French/romanized title as lang=ar.
         if not has_arabic(out):
             out = "برنامج على 2M"
     _title_cache[raw] = clean(out)
@@ -136,7 +173,13 @@ def translate_desc(desc, title_ar):
     key = (raw, title_ar)
     if key in _desc_cache:
         return _desc_cache[key]
-    if raw and has_arabic(raw):
+
+    # For known Moroccan programmes prefer a hand-curated natural description
+    # over machine translation. This avoids literal French wording and keeps
+    # programme names/meaning correct in Moroccan TV context.
+    if title_ar in SHOW_DESC:
+        out = SHOW_DESC[title_ar]
+    elif raw and has_arabic(raw):
         out = raw
     elif raw:
         out = base.tr2m_desc(_translate_http, raw)
@@ -144,9 +187,9 @@ def translate_desc(desc, title_ar):
             out = base.google_ar(_translate_http, raw)
     else:
         out = ""
+
     if not has_arabic(out):
         out = semantic_desc(title_ar)
-    # Avoid descriptions that are only the title; make them useful for EPG.
     if norm(out) == norm(title_ar) or len(clean(out)) < 10:
         out = semantic_desc(title_ar)
     _desc_cache[key] = clean(out)
@@ -171,8 +214,6 @@ def scrape_2m_ar(days):
             except Exception as exc:
                 runner.log("2M %s fetch failed: %s" % (day, exc))
 
-        # If generic parsing cannot understand the upstream page, use the old
-        # 2M parser: it already contains the historical Arabic translation logic.
         if len(candidates) < 5:
             try:
                 h = base.Http()
@@ -184,8 +225,7 @@ def scrape_2m_ar(days):
                         e.dl = "ar"
                         if not has_arabic(e.title):
                             e.title = translate_title(e.title)
-                        if not has_arabic(e.desc):
-                            e.desc = translate_desc(e.desc, e.title)
+                        e.desc = translate_desc(e.desc, e.title)
                         AUDIT.append({
                             "date": day.isoformat(), "source_title": "old-parser",
                             "title_ar": e.title, "desc_ar": e.desc,
@@ -240,12 +280,22 @@ def main():
     if AUDIT:
         titles_ok = sum(bool(x.get("title_ok")) for x in AUDIT)
         descs_ok = sum(bool(x.get("desc_ok")) for x in AUDIT)
+        unique = {}
+        for x in AUDIT:
+            source = x.get("source_title") or ""
+            if source not in unique:
+                unique[source] = {
+                    "source_title": source,
+                    "title_ar": x.get("title_ar", ""),
+                    "desc_ar": x.get("desc_ar", ""),
+                }
         report = {
             "events": len(AUDIT),
             "title_arabic": titles_ok,
             "description_arabic": descs_ok,
             "title_ratio": round(titles_ok / float(len(AUDIT)), 4),
             "description_ratio": round(descs_ok / float(len(AUDIT)), 4),
+            "unique_programmes": list(unique.values()),
             "samples": AUDIT[:40],
         }
         (outdir / "2m_audit.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
