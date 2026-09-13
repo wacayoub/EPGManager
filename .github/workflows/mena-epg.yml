@@ -1,9 +1,6 @@
 name: MENA Cloud EPG
 
 on:
-  # TEMP RC30 validation trigger; removed before merge.
-  push:
-    branches: ["mena-cloud-rc30-split"]
   # GitHub cron is UTC. The local-time gate handles Morocco DST/UTC changes.
   schedule:
     - cron: "0 5,6,17,18 * * *"
