@@ -21,6 +21,7 @@ on:
       - "tools/mena_global_epg_audit.py"
       - "tools/virtual_epgmanager_test.py"
       - "tools/arabic_priority_test.py"
+      - "tools/bein_id_audit.py"
 
 permissions:
   contents: write
@@ -98,7 +99,8 @@ jobs:
             tools/mena_program_audit.py \
             tools/mena_global_epg_audit.py \
             tools/virtual_epgmanager_test.py \
-            tools/arabic_priority_test.py
+            tools/arabic_priority_test.py \
+            tools/bein_id_audit.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
@@ -292,6 +294,16 @@ jobs:
             --json output/final/arabic-priority-test.json \
             --text output/final/arabic-priority-test.txt
 
+      - name: Audit every beIN Sports XMLTV ID
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/bein_id_audit.py \
+            --xml output/final/provider-bein.xml.gz \
+            --json output/final/bein-id-audit.json \
+            --text output/final/bein-id-audit.txt
+
       - name: Publish atomically to mena-data
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -316,12 +328,14 @@ jobs:
           cp ../output/final/virtual-epgmanager.txt .
           cp ../output/final/arabic-priority-test.json .
           cp ../output/final/arabic-priority-test.txt .
+          cp ../output/final/bein-id-audit.json .
+          cp ../output/final/bein-id-audit.txt .
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
           printf '%s\n' \
             'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver sources are split exclusively by premium/provider identity first, then by authoritative/conservative channel country, then MENA Other. Arabic programme metadata is preferred before English/international fallback for regular MENA channels. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
             > README.md
-          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt virtual-epgmanager.json virtual-epgmanager.txt arabic-priority-test.json arabic-priority-test.txt catalog.json merge-report.json README.md
+          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt virtual-epgmanager.json virtual-epgmanager.txt arabic-priority-test.json arabic-priority-test.txt bein-id-audit.json bein-id-audit.txt catalog.json merge-report.json README.md
           if git diff --cached --quiet; then
             echo "No MENA data changes."
             exit 0
