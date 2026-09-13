@@ -32,6 +32,7 @@ import morocco_cloud_runner_ar as ar1
 TZ = runner.TZ
 PARIS = runner.PARIS
 
+# Preserve the branding/native meaning instead of trusting generic MT.
 ar1.T2M_AR.update({
     "info soir": "أخبار المساء",
     "info soir 2m": "أخبار المساء",
@@ -65,6 +66,9 @@ _MONTHS_FR = (
 _TIME_RE = re.compile(r"^(?:[01]?\d|2[0-3]):[0-5]\d$")
 _DURATION_RE = re.compile(r"(?:(\d+)\s*h(?:\s*(\d+))?|(?:(\d+)\s*min))", re.I)
 
+# First evening edition is deliberately French. All later occurrences/replays
+# are converted to the canonical Arabic title. This is per Morocco broadcast
+# day and only applies from 18:00 local time onward.
 _SPECIAL_FR = {
     "info_soir": "Info Soir",
     "meteo": "Météo",
@@ -90,14 +94,17 @@ def _special_family(title):
 
 
 def _apply_evening_language_policy(rows):
+    """Keep the first evening bulletin trio in French, repeats in Arabic."""
     seen_first = set()
     stats = defaultdict(lambda: {"fr_first": 0, "ar_other": 0})
+
     for e in sorted(rows, key=lambda x: x.start):
         family = _special_family(e.title)
         if not family:
             continue
         local = e.start.astimezone(TZ)
         key = (local.date().isoformat(), family)
+
         if local.hour >= 18 and key not in seen_first:
             seen_first.add(key)
             e.title = _SPECIAL_FR[family]
@@ -108,6 +115,7 @@ def _apply_evening_language_policy(rows):
             e.tl = "ar"
             stats[family]["ar_other"] += 1
         e.dl = "ar"
+
     return dict(stats)
 
 
@@ -126,6 +134,7 @@ def _append_audit(day, source, tm, source_title, source_desc, title_ar, desc_ar)
 
 
 def _useful_desc(desc):
+    """Avoid translating tiny category labels; semantic Arabic is better."""
     raw = ar1.clean(desc)
     if not raw:
         return ""
@@ -141,6 +150,12 @@ def _useful_desc(desc):
 
 
 def _events_from_candidates(day, source, candidates, rollover=False):
+    """Convert source-time candidates to Morocco XMLTV events.
+
+    Candidate forms: (HH:MM, title, desc) or (HH:MM, title, desc, duration_min).
+    Sudinfo is a broadcast-day list and may append 00:xx-05:xx after the evening;
+    rollover=True detects that clock wrap and moves those rows to the next day.
+    """
     rows = []
     add_day = 0
     prev_minute = None
@@ -168,6 +183,7 @@ def _events_from_candidates(day, source, candidates, rollover=False):
 
 
 def _from_generic(day, period, candidates):
+    # TeleCableSat's afternoon block may include the after-midnight tail.
     converted = []
     for tm, source_title, source_desc in candidates:
         try:
@@ -184,6 +200,7 @@ def _from_generic(day, period, candidates):
 
 
 def _from_old_parser(day, period, html):
+    """Fallback to the historical 2M parser when TeleCableSat markup changes."""
     rows = []
     try:
         parsed = base.parse_2m(ar1._translate_http, html, day, period)
@@ -209,6 +226,7 @@ def _duration_minutes(text):
 
 
 def _heading_cards(html):
+    """Fallback parser for pages such as Sudinfo where programmes are H3 cards."""
     soup = BeautifulSoup(html, "lxml")
     rows = []
     seen = set()
@@ -260,10 +278,22 @@ def _heading_cards(html):
     return rows
 
 
+def _colonize_french_times(html):
+    """Normalize French TV times (e.g. 21h00) to 21:00 for shared parser."""
+    return re.sub(
+        r"(?<!\d)([0-2]?\d)\s*[hH]\s*([0-5]\d)(?!\d)",
+        lambda m: "%02d:%s" % (int(m.group(1)), m.group(2)),
+        str(html or ""),
+    )
+
+
 def _page_matches_day(html, day):
+    """Reject cached/wrong weekday pages before they can poison the cloud feed."""
     text = ar1.clean(BeautifulSoup(html, "lxml").get_text(" ", strip=True)).casefold()
+    # normalize French accents to the same lightweight key used elsewhere
     n = ar1.norm(text)
     month = _MONTHS_FR[day.month - 1]
+    # ar1.norm strips accents, so août => aout, février => fevrier.
     token1 = "%d %s" % (day.day, month)
     token2 = "%02d %s" % (day.day, month)
     return token1 in n or token2 in n
@@ -297,6 +327,8 @@ def _dedupe_exact(rows):
         if old is None:
             by_start[key] = e
             continue
+        # Same linear channel/start cannot have two shows. Prefer richer metadata,
+        # then explicit duration/stop.
         old_score = len(ar1.clean(old.desc)) * 2 + len(ar1.clean(old.title)) + (20 if old.stop else 0)
         new_score = len(ar1.clean(e.desc)) * 2 + len(ar1.clean(e.title)) + (20 if e.stop else 0)
         if new_score > old_score:
@@ -336,7 +368,7 @@ def _fetch_telerama_day(s, day, today):
     r = runner.fetch(s, url, referer="https://television.telerama.fr/")
     if not _page_matches_day(r.text, day):
         raise ValueError("Telerama returned a page for another date")
-    candidates = runner.generic_programme_cards(r.text)
+    candidates = runner.generic_programme_cards(_colonize_french_times(r.text))
     rows = _events_from_candidates(day, "telerama", candidates)
     return _dedupe_exact(rows)
 
@@ -354,15 +386,18 @@ def _fetch_sudinfo_day(s, day, today):
 
 
 def _fetch_tvmag_day(s, day, today):
+    # TVMag is intentionally today-only. Its archive/cache is less predictable,
+    # so it must never be trusted for future-day URLs.
     if day != today:
         return []
     r = runner.fetch(s, _TVMAG_BASE, referer="https://tvmag.lefigaro.fr/")
-    candidates = runner.generic_programme_cards(r.text)
+    candidates = runner.generic_programme_cards(_colonize_french_times(r.text))
     rows = _events_from_candidates(day, "tvmag", candidates)
     return _dedupe_exact(rows)
 
 
 def _merge_prefer(primary, backup):
+    """Fill missing start slots from a backup without rewriting good primary rows."""
     merged = {e.start.replace(second=0, microsecond=0): e for e in primary}
     for e in backup:
         key = e.start.replace(second=0, microsecond=0)
@@ -370,6 +405,8 @@ def _merge_prefer(primary, backup):
             merged[key] = e
         else:
             old = merged[key]
+            # Keep primary title/timing, but an explicit stop from Sudinfo can safely
+            # fill a missing stop and a richer Arabic description can replace a weak one.
             if old.stop is None and e.stop is not None:
                 old.stop = e.stop
             if len(ar1.clean(e.desc)) > len(ar1.clean(old.desc)) + 20 and ar1.has_arabic(e.desc):
@@ -414,6 +451,9 @@ def scrape_2m_full_day(days):
             runner.log("2M %s remains incomplete after all fresh sources (%d events)" % (day, len(selected)))
         out.extend(selected)
 
+    # If most of the requested horizon is not complete, deliberately return no
+    # fresh 2M rows so runner.choose() falls back to the proven Last-Known-Good
+    # provider feed instead of publishing a misleading partial schedule.
     required_good_days = max(1, min(days, max(2, days - 2)))
     if good_days < required_good_days:
         runner.log("2M fresh horizon rejected: good-days=%d/%d required=%d; sources=%s" % (
@@ -436,20 +476,21 @@ def scrape_2m_full_day(days):
             if e.tl == "fr":
                 french_first += 1
 
-    title_policy = sum(ar1.has_arabic(e.title) or e.tl == "fr" for e in rows)
+    title_ar = sum(ar1.has_arabic(e.title) or e.tl == "fr" for e in rows)
     desc_ar = sum(ar1.has_arabic(e.desc) for e in rows)
     runner.log(
         "2M MULTI-SOURCE audit: %d events; good-days=%d/%d; sources=%s; evening=%d; InfoSoir=%d; Meteo=%d; EcoNews=%d; FR-first=%d; title-policy=%d/%d; AR-desc=%d/%d; policy=%s"
         % (
             len(rows), good_days, days, dict(source_stats), evening,
             special["info_soir"], special["meteo"], special["eco_news"],
-            french_first, title_policy, len(rows), desc_ar, len(rows), policy_stats,
+            french_first, title_ar, len(rows), desc_ar, len(rows), policy_stats,
         )
     )
     return rows
 
 
 def main():
+    # ar1.main() will patch runner.scrape_2m with this global function.
     ar1.scrape_2m_ar = scrape_2m_full_day
     return ar1.main()
 
