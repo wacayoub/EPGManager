@@ -11,13 +11,31 @@ from difflib import SequenceMatcher
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-from bein_id_audit import build_profile, display_name, first, clean
+from bein_id_audit import build_profile, display_name, clean
 
-TECH = re.compile(r"(?:logo(?:\.svg)?|brand\s*logo|awg\s*cn\s*brand|colour[-_ ]?blue|placeholder|dummy)", re.I)
 COUNTRY = ("ae","sa","eg","qa","kw","bh","om","jo","lb","iq","ps","ye","dz","tn","ly","sd","sy","mr")
 COUNTRY_SHARDS = {"mena-%s" % x: x for x in COUNTRY}
 ARABIC_PROVIDERS = {"provider-mbc","provider-adm","provider-dmi","provider-rotana","provider-art","provider-ssc","provider-alkass"}
 PREMIUM = {"provider-bein","provider-osn"}
+
+# These are known source artefacts / impossible linear-channel IDs. Keep this
+# deliberately strict so a legitimate brand such as "Logos TV" is not rejected.
+TECH_PATTERNS = [
+    re.compile(r"brand\s*logo", re.I),
+    re.compile(r"logo\.svg", re.I),
+    re.compile(r"(?:^|[-_ ])logo(?:[-_ .]|$)", re.I),
+    re.compile(r"colour[-_ ]?blue", re.I),
+    re.compile(r"\b200x200\b", re.I),
+    re.compile(r"\bstacked\s+nov\b", re.I),
+    re.compile(r"\bupdatez[-_ ]?ngw\b", re.I),
+    re.compile(r"\bplaceholder\b", re.I),
+    re.compile(r"\bdummy\b", re.I),
+]
+TECH_ALLOWLIST = {"logos.tv.ae"}  # Real channel/brand, not a logo filename.
+KNOWN_BAD_IDS = {
+    "bein sports66 digital -01.qa": "SUSPICIOUS_BEIN_SPORTS66_ID",
+    "bein_sports66_digital_mono-01_en.bein": "SUSPICIOUS_BEIN_SPORTS66_ID",
+}
 
 
 def read_root(path):
@@ -33,6 +51,15 @@ def feed_country(cid):
         if re.search(r"\.%s(?:@|$)" % cc, low):
             return cc
     return ""
+
+
+def is_technical_id(cid):
+    low = (cid or "").strip().casefold()
+    if low in TECH_ALLOWLIST:
+        return False
+    if low.startswith(("logos-_", "logos_")):
+        return True
+    return any(p.search(cid or "") for p in TECH_PATTERNS)
 
 
 def identity_name(v):
@@ -90,9 +117,11 @@ def grade(r):
     if 0 < r["coverage_hours"] < 6:
         warn("SPARSE_COVERAGE=%.1fh" % r["coverage_hours"])
 
-    probe = "%s %s" % (r["id"], r["name"])
-    if TECH.search(probe):
-        bad("TECHNICAL_OR_LOGO_ID")
+    if is_technical_id(r["id"]):
+        bad("TECHNICAL_OR_ASSET_ID")
+    bad_reason = KNOWN_BAD_IDS.get((r["id"] or "").casefold())
+    if bad_reason:
+        bad(bad_reason)
     if r["id"].startswith(("logos-", "logos_")):
         warn("LOGO_PREFIX_ID")
     if re.search(r"(?:^|\D)20(?:1\d|2[0-5])(?:\D|$)", r["id"]) and "alkass" in r["id"].casefold():
@@ -118,6 +147,53 @@ def grade(r):
     r["score"] = max(0, 100 - 35 * len(issues) - min(50, 8 * len(warnings)))
     r["verdict"] = "FAIL" if issues else "REVIEW" if warnings else "PASS"
     r["auto_lock_safe"] = bool(r["verdict"] == "PASS" and n and r["coverage_hours"] >= 6)
+
+
+def apply_duplicate_verdicts(rows):
+    groups = defaultdict(list)
+    for r in rows:
+        if r["events"]:
+            groups[r["fingerprint"]].append(r)
+    duplicates = []
+    for members in groups.values():
+        if len(members) < 2:
+            continue
+        unrelated = False
+        for i in range(len(members)):
+            for j in range(i + 1, len(members)):
+                if similar(members[i]["name"], members[j]["name"]) < 0.45:
+                    unrelated = True
+                    break
+            if unrelated:
+                break
+        duplicates.append({"ids": [x["id"] for x in members], "unrelated": unrelated})
+        for r in members:
+            group_tag = "DUPLICATE_TIMELINE_GROUP=%d" % len(members)
+            if group_tag not in r["warnings"]:
+                r["warnings"].append(group_tag)
+
+            # Two IDs can be a legitimate alias/simulcast. Three or more unrelated
+            # channel names carrying a byte-identical schedule is strong evidence
+            # that programme rows were assigned to the wrong channels upstream.
+            if unrelated and len(members) >= 3:
+                issue = "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=%d" % len(members)
+                if issue not in r["issues"]:
+                    r["issues"].append(issue)
+                r["verdict"] = "FAIL"
+                r["score"] = min(r["score"], 40)
+                r["auto_lock_safe"] = False
+            elif unrelated:
+                if "DUPLICATE_TIMELINE_UNRELATED" not in r["warnings"]:
+                    r["warnings"].append("DUPLICATE_TIMELINE_UNRELATED")
+                if r["verdict"] == "PASS":
+                    r["verdict"] = "REVIEW"
+                    r["score"] = min(r["score"], 92)
+                    r["auto_lock_safe"] = False
+            elif r["verdict"] == "PASS":
+                r["verdict"] = "REVIEW"
+                r["score"] = min(r["score"], 92)
+                r["auto_lock_safe"] = False
+    return duplicates
 
 
 def main():
@@ -154,40 +230,23 @@ def main():
             grade(r)
             rows.append(r)
 
-    groups = defaultdict(list)
-    for r in rows:
-        if r["events"]:
-            groups[r["fingerprint"]].append(r)
-    duplicates = []
-    for members in groups.values():
-        if len(members) < 2:
-            continue
-        unrelated = False
-        for i in range(len(members)):
-            for j in range(i + 1, len(members)):
-                if similar(members[i]["name"], members[j]["name"]) < 0.45:
-                    unrelated = True
-        duplicates.append({"ids": [x["id"] for x in members], "unrelated": unrelated})
-        for r in members:
-            tag = "DUPLICATE_TIMELINE_GROUP=%d" % len(members)
-            if tag not in r["warnings"]:
-                r["warnings"].append(tag)
-            if unrelated and "DUPLICATE_TIMELINE_UNRELATED" not in r["warnings"]:
-                r["warnings"].append("DUPLICATE_TIMELINE_UNRELATED")
-            if r["verdict"] == "PASS":
-                r["verdict"] = "REVIEW"
-                r["score"] = min(r["score"], 92)
-                r["auto_lock_safe"] = False
+    duplicates = apply_duplicate_verdicts(rows)
 
     counts = Counter(r["verdict"] for r in rows)
     by = defaultdict(Counter)
+    issue_counts = Counter()
+    warning_counts = Counter()
     for r in rows:
         by[r["shard"]][r["verdict"]] += 1
         by[r["shard"]]["channels"] += 1
         by[r["shard"]]["programmes"] += r["events"]
+        for x in r["issues"]:
+            issue_counts[x.split("=")[0]] += 1
+        for x in r["warnings"]:
+            warning_counts[x.split("=")[0]] += 1
 
     out = {
-        "schema": 1,
+        "schema": 2,
         "mode": "virtual-epgmanager-all-id-programme-audit",
         "summary": {
             "channels": len(rows),
@@ -198,6 +257,8 @@ def main():
             "auto_lock_safe": sum(r["auto_lock_safe"] for r in rows),
             "missing_shards": missing,
         },
+        "issue_counts": dict(issue_counts),
+        "warning_counts": dict(warning_counts),
         "by_shard": {k: dict(v) for k, v in sorted(by.items())},
         "channels": [{k: v for k, v in r.items() if k not in {"rows", "fingerprint"}} for r in rows],
         "duplicate_timeline_groups": duplicates,
@@ -212,13 +273,16 @@ def main():
             w.writerow([r["shard"], r["id"], r["name"], r["verdict"], r["score"], int(r["auto_lock_safe"]), r["events"], r["coverage_hours"], r["span_hours"], r["gaps_gt_2h"], r["empty_desc"], r["title_has_ar_pct"], r["title_has_latin_pct"], r["desc_ar_pct"], r["feed_country"], "; ".join(r["issues"]), "; ".join(r["warnings"]), pv[0] if pv else "", pv[1] if len(pv) > 1 else ""])
 
     lines = [
-        "VIRTUAL EPGMANAGER - EXHAUSTIVE ALL-ID PROGRAMME AUDIT",
+        "VIRTUAL EPGMANAGER - EXHAUSTIVE ALL-ID PROGRAMME AUDIT V2",
         "channels=%d programmes=%d PASS=%d REVIEW=%d FAIL=%d AUTO_LOCK_SAFE=%d" % (
             len(rows), sum(r["events"] for r in rows), counts["PASS"], counts["REVIEW"], counts["FAIL"], sum(r["auto_lock_safe"] for r in rows)
         ),
         "",
-        "SHARD SUMMARY",
+        "HARD ISSUE COUNTS",
     ]
+    for k, v in issue_counts.most_common():
+        lines.append("- %s: %d" % (k, v))
+    lines += ["", "SHARD SUMMARY"]
     for s in stems:
         c = by[s]
         lines.append("- %s: channels=%d programmes=%d PASS=%d REVIEW=%d FAIL=%d" % (s, c["channels"], c["programmes"], c["PASS"], c["REVIEW"], c["FAIL"]))
