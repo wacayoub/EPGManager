@@ -9,6 +9,7 @@ on:
       - ".github/workflows/mena-epg.yml"
       - "tools/mena_cloud_catalog.py"
       - "tools/mena_cloud_merge.py"
+      - "tools/mena_cloud_merge_safe.py"
       - "tools/mena_cloud_finalize.py"
       - "tools/mena_cloud_shards.py"
       - "tools/mena_cloud_shards_safe.py"
@@ -78,6 +79,7 @@ jobs:
           python -m py_compile \
             tools/mena_cloud_catalog.py \
             tools/mena_cloud_merge.py \
+            tools/mena_cloud_merge_safe.py \
             tools/mena_cloud_finalize.py \
             tools/mena_cloud_shards.py \
             tools/mena_cloud_shards_safe.py
@@ -136,7 +138,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python tools/mena_cloud_merge.py \
+          python tools/mena_cloud_merge_safe.py \
             --primary output/raw.xml \
             --catalog-manifest output/catalog.json \
             --output output/merged.xml \
