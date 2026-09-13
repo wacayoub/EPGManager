@@ -101,6 +101,18 @@ jobs:
             --output-channels output/mena.channels.xml \
             --output-manifest output/catalog.json
 
+      - name: Download authoritative channel-country metadata
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! curl -fL --retry 2 --retry-delay 1 --connect-timeout 5 --max-time 30 \
+            "https://iptv-org.github.io/api/channels.json" \
+            -o output/channels.json; then
+            echo '[]' > output/channels.json
+            echo "Channel metadata unavailable; conservative fallback classifier will be used."
+          fi
+
       - name: Download Last Known Good combined MENA feed
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -166,6 +178,7 @@ jobs:
           set -euo pipefail
           python tools/mena_cloud_shards_safe.py \
             --source-cache-dir output/upstream \
+            --channel-metadata output/channels.json \
             --input output/final/mena-arabic.xml.gz \
             --catalog-manifest output/catalog.json \
             --output-dir output/final \
@@ -238,7 +251,7 @@ jobs:
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
           printf '%s\n' \
-            'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver sources are split exclusively by premium/provider group first, then by conservatively detected country, then MENA Other. Ambiguous EPGShare country suffixes are never trusted. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
+            'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver sources are split exclusively by premium/provider identity first, then by authoritative/conservative channel country, then MENA Other. Regional pack suffixes are never treated as nationality. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
             > README.md
           git add *.xml.gz *.txt manifest.json shards.json catalog.json merge-report.json README.md
           if git diff --cached --quiet; then
@@ -246,5 +259,5 @@ jobs:
             exit 0
           fi
           stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
-          git commit -m "MENA Cloud safe country/provider shards ${stamp}"
+          git commit -m "MENA Cloud authoritative country/provider shards ${stamp}"
           git push origin mena-data
