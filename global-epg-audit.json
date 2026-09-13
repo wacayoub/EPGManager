@@ -1,28 +1,29 @@
 {
   "schema": 1,
   "scope": "all exclusive MENA country/provider shards",
-  "channels_scanned": 971,
-  "programmes_scanned": 47706,
+  "channels_scanned": 973,
+  "programmes_scanned": 48132,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 3,
-    "arabic_provider_title_not_arabic": 947,
-    "empty_description": 34661,
+    "arabic_provider_title_not_arabic": 959,
+    "empty_description": 34921,
     "empty_title": 2,
     "hybrid_arabic_latin_description": 5,
-    "premium_title_not_english": 89,
+    "premium_title_not_english": 88,
     "severity_critical": 2,
-    "severity_warning": 37887,
-    "very_long_event_gt_6h": 49,
-    "very_short_event_lt_5m": 2133
+    "severity_warning": 38150,
+    "very_long_event_gt_6h": 50,
+    "very_short_event_lt_5m": 2124
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 792,
+      "empty_description": 801,
       "hybrid_arabic_latin_description": 5
     },
     "mena-bh": {
       "empty_description": 79,
-      "very_long_event_gt_6h": 1
+      "very_long_event_gt_6h": 1,
+      "very_short_event_lt_5m": 7
     },
     "mena-dz": {
       "empty_description": 729,
@@ -30,93 +31,93 @@
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 3279,
+      "empty_description": 3305,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 2605,
+      "empty_description": 2637,
       "very_short_event_lt_5m": 6
     },
     "mena-jo": {
-      "empty_description": 453,
-      "very_short_event_lt_5m": 8
+      "empty_description": 480,
+      "very_short_event_lt_5m": 3
     },
     "mena-kw": {
-      "empty_description": 776,
+      "empty_description": 807,
       "very_short_event_lt_5m": 1
     },
     "mena-lb": {
-      "empty_description": 784,
+      "empty_description": 789,
       "very_long_event_gt_6h": 2
     },
     "mena-ly": {
-      "empty_description": 219
+      "empty_description": 222
     },
     "mena-mr": {
       "empty_description": 61,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 387,
+      "empty_description": 385,
       "empty_title": 2
     },
     "mena-other": {
-      "empty_description": 16588,
+      "empty_description": 16717,
       "very_long_event_gt_6h": 22,
-      "very_short_event_lt_5m": 1203
+      "very_short_event_lt_5m": 1205
     },
     "mena-ps": {
-      "empty_description": 773
+      "empty_description": 783
     },
     "mena-qa": {
-      "empty_description": 1397,
+      "empty_description": 1417,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1848,
-      "very_short_event_lt_5m": 472
+      "empty_description": 1839,
+      "very_short_event_lt_5m": 462
     },
     "mena-sd": {
-      "empty_description": 248
+      "empty_description": 251
     },
     "mena-sy": {
-      "empty_description": 145
+      "empty_description": 148
     },
     "mena-tn": {
-      "empty_description": 211,
+      "empty_description": 212,
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
-      "empty_description": 575,
+      "empty_description": 582,
       "very_long_event_gt_6h": 6
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 339,
-      "empty_description": 306,
-      "very_long_event_gt_6h": 1,
-      "very_short_event_lt_5m": 11
+      "arabic_provider_title_not_arabic": 344,
+      "empty_description": 280,
+      "very_long_event_gt_6h": 2,
+      "very_short_event_lt_5m": 12
     },
     "provider-art": {
-      "arabic_provider_title_not_arabic": 123,
-      "empty_description": 1056,
-      "very_short_event_lt_5m": 372
+      "arabic_provider_title_not_arabic": 125,
+      "empty_description": 1044,
+      "very_short_event_lt_5m": 368
     },
     "provider-bein": {
-      "empty_description": 258,
-      "premium_title_not_english": 85,
+      "empty_description": 256,
+      "premium_title_not_english": 84,
       "very_long_event_gt_6h": 2
     },
     "provider-dmi": {
-      "arabic_provider_title_not_arabic": 74,
-      "empty_description": 287,
+      "arabic_provider_title_not_arabic": 75,
+      "empty_description": 288,
       "very_long_event_gt_6h": 2
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 3,
-      "arabic_provider_title_not_arabic": 275,
-      "empty_description": 349,
+      "arabic_provider_title_not_arabic": 278,
+      "empty_description": 352,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
@@ -126,8 +127,8 @@
       "very_short_event_lt_5m": 37
     },
     "provider-rotana": {
-      "arabic_provider_title_not_arabic": 136,
-      "empty_description": 151
+      "arabic_provider_title_not_arabic": 137,
+      "empty_description": 152
     },
     "provider-starz": {
       "empty_description": 176,
@@ -981,6 +982,16 @@
         "duration_minutes": 459.0
       },
       {
+        "shard": "provider-adm",
+        "channel_id": "Yas.TV.HD.ae",
+        "channel": "Yas TV HD",
+        "start": "20260915210000 +0100",
+        "stop": "20260916031200 +0100",
+        "title": "Sharjah Arabian Horse Festival",
+        "desc": "",
+        "duration_minutes": 372.0
+      },
+      {
         "shard": "provider-dmi",
         "channel_id": "Dubai.Racing.ae",
         "channel": "Dubai Racing",
@@ -1329,16 +1340,6 @@
         "title": "TV guide is not available",
         "desc": "",
         "duration_minutes": 720.03
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "EN:.Al.Asouf.Channel.sa",
-        "channel": "EN: Al Asouf Channel",
-        "start": "20260914123851 +0000",
-        "stop": "20260914235959 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 681.13
       }
     ],
     "very_short_event_lt_5m": [
@@ -1748,16 +1749,6 @@
         "shard": "provider-mbc",
         "channel_id": "EN:.MBC1.Iraq.sa",
         "channel": "EN: MBC Iraq",
-        "start": "20260913190000 +0000",
-        "stop": "20260913203000 +0000",
-        "title": "Kalam Nawa'em",
-        "desc": "",
-        "duration_minutes": 90.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
         "start": "20260913203000 +0000",
         "stop": "20260913212500 +0000",
         "title": "Fi Mithl Hatha Al Yawm",
@@ -2143,6 +2134,16 @@
         "title": "TV guide is not available",
         "desc": "",
         "duration_minutes": 9.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914190000 +0000",
+        "stop": "20260914200000 +0000",
+        "title": "Layla Fontastic Ma' Abla Fahita",
+        "desc": "",
+        "duration_minutes": 60.0
       }
     ],
     "arabic_provider_description_not_arabic": [

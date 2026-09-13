@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-13T20:19:02.161254+00:00",
+  "generated": "2026-09-13T21:01:57.783119+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -9,13 +9,13 @@
     {
       "name": "openepg-egypt1",
       "origin": "openepg",
-      "channels_with_current_48h_epg": 90,
+      "channels_with_current_48h_epg": 85,
       "bytes": 341905
     },
     {
       "name": "openepg-egypt2",
       "origin": "openepg",
-      "channels_with_current_48h_epg": 91,
+      "channels_with_current_48h_epg": 87,
       "bytes": 141447
     },
     {
@@ -127,17 +127,17 @@
       "bytes": 4291
     }
   ],
-  "candidate_channel_rows": 1713,
-  "unique_logical_channels": 1059,
-  "programmes": 48620,
-  "premium_hybrid_events": 967,
+  "candidate_channel_rows": 1692,
+  "unique_logical_channels": 1042,
+  "programmes": 48788,
+  "premium_hybrid_events": 945,
   "stats": {
-    "logical_duplicate_groups": 356,
-    "regular_channels": 972,
-    "source_openepg": 344,
+    "logical_duplicate_groups": 355,
+    "regular_channels": 957,
+    "source_openepg": 339,
     "source_epgshare": 535,
-    "premium_channels": 87,
-    "source_primary": 180
+    "premium_channels": 85,
+    "source_primary": 168
   },
   "aliases": [
     {
@@ -253,8 +253,8 @@
       ]
     },
     {
-      "canonical_id": "Abu Dhabi TV.eg",
-      "canonical_name": "Abu Dhabi TV.eg",
+      "canonical_id": "AbuDhabiTV.ae@SD",
+      "canonical_name": "Abu Dhabi TV HD",
       "logical_key": "abu dhabi tv",
       "aliases": [
         {
@@ -276,6 +276,11 @@
           "id": "Abu Dhabi TV HD.sa",
           "name": "Abu Dhabi TV HD.sa",
           "source": "openepg-saudi6"
+        },
+        {
+          "id": "Abu Dhabi TV.eg",
+          "name": "Abu Dhabi TV.eg",
+          "source": "openepg-egypt2"
         }
       ]
     },
@@ -1115,24 +1120,14 @@
       ]
     },
     {
-      "canonical_id": "beINSports4.qa@MENA",
-      "canonical_name": "beINSPORT4",
+      "canonical_id": "beIN SPORTS4 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS4 DIGITAL.qa",
       "logical_key": "bein sports 4",
       "aliases": [
         {
           "id": "beIN SPORTS 4.qa",
           "name": "beIN SPORTS 4.qa",
           "source": "openepg-qatar1"
-        },
-        {
-          "id": "beIN SPORTS4 DIGITAL.qa",
-          "name": "beIN SPORTS4 DIGITAL.qa",
-          "source": "openepg-qatar2"
-        },
-        {
-          "id": "beIN SPORTS4 DIGITAL.qa",
-          "name": "beIN SPORTS4 DIGITAL.qa",
-          "source": "openepg-qatar3"
         },
         {
           "id": "beIN_SPORTS4_DIGITAL_Mono_AR.bein",
@@ -1169,19 +1164,14 @@
       ]
     },
     {
-      "canonical_id": "beINSports6.qa@MENA",
-      "canonical_name": "beINSPORTS6",
+      "canonical_id": "beIN SPORTS6 DIGITAL -d-1.qa",
+      "canonical_name": "beIN SPORTS6 DIGITAL -d-1.qa",
       "logical_key": "bein sports 6",
       "aliases": [
         {
           "id": "beIN SPORTS 6.qa",
           "name": "beIN SPORTS 6.qa",
           "source": "openepg-qatar1"
-        },
-        {
-          "id": "beIN SPORTS6 DIGITAL -d-1.qa",
-          "name": "beIN SPORTS6 DIGITAL -d-1.qa",
-          "source": "openepg-qatar2"
         },
         {
           "id": "beIN_SPORTS6_DIGITAL_Mono-d-1_AR.bein",
@@ -2379,11 +2369,6 @@
           "source": "openepg-saudi4"
         },
         {
-          "id": "MBC 2.eg",
-          "name": "MBC 2.eg",
-          "source": "openepg-egypt2"
-        },
-        {
           "id": "MBC.2.ae",
           "name": "MBC 2",
           "source": "epgshare-ae1"
@@ -3425,11 +3410,6 @@
       "logical_key": "osn showcase",
       "aliases": [
         {
-          "id": "OSN TV Showcase.eg",
-          "name": "OSN TV Showcase.eg",
-          "source": "openepg-egypt2"
-        },
-        {
           "id": "OSNtv Showcase.sa",
           "name": "OSNtv Showcase.sa",
           "source": "openepg-saudi5"
@@ -4264,18 +4244,6 @@
       ]
     },
     {
-      "canonical_id": "LanaTV.lb@SD",
-      "canonical_name": "ال تي في",
-      "logical_key": "ال تي في",
-      "aliases": [
-        {
-          "id": "ال تي في.eg",
-          "name": "ال تي في.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "Althania.sy@SD",
       "canonical_name": "الثانية",
       "logical_key": "الثانية",
@@ -4456,6 +4424,18 @@
       ]
     },
     {
+      "canonical_id": "AlKaheraWalNas.eg@SD",
+      "canonical_name": "القاهرة والناس",
+      "logical_key": "القاهرة والناس",
+      "aliases": [
+        {
+          "id": "القاهرة والناس.eg",
+          "name": "القاهرة والناس.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "AlKaheraWalNas2.eg@SD",
       "canonical_name": "القاهرة والناس 2",
       "logical_key": "القاهرة والناس 2",
@@ -4600,13 +4580,13 @@
       ]
     },
     {
-      "canonical_id": "Cima.eg@SD",
-      "canonical_name": "سيما",
-      "logical_key": "سيما",
+      "canonical_id": "ZeeAlwan.ae@SD",
+      "canonical_name": "زي ألوان",
+      "logical_key": "زي ألوان",
       "aliases": [
         {
-          "id": "سيما.eg",
-          "name": "سيما.eg",
+          "id": "زي ألوان.eg",
+          "name": "زي ألوان.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4703,18 +4683,6 @@
         {
           "id": "ميكس بالعربي.eg",
           "name": "ميكس بالعربي.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "NessmaElJadida.tn@SD",
-      "canonical_name": "نسمة",
-      "logical_key": "نسمة",
-      "aliases": [
-        {
-          "id": "نسمة.eg",
-          "name": "نسمة.eg",
           "source": "openepg-egypt1"
         }
       ]
