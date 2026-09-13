@@ -48,3 +48,46 @@ jobs:
             --json /tmp/bein-audit/bein-id-audit.json \
             --text /tmp/bein-audit/bein-id-audit.txt
           cat /tmp/bein-audit/bein-id-audit.txt
+
+      - name: Verify actual displayed scripts without trusting XML lang tags
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import gzip, re, xml.etree.ElementTree as ET
+          from collections import defaultdict
+          AR = re.compile(r'[\u0600-\u06ff]')
+          LAT = re.compile(r'[A-Za-z]')
+          root = ET.fromstring(gzip.decompress(open('/tmp/bein-audit/provider-bein.xml.gz','rb').read()))
+          names = {}
+          for c in root.findall('channel'):
+              cid = (c.get('id') or '').strip()
+              dn = c.find('display-name')
+              names[cid] = ((dn.text or '').strip() if dn is not None else cid)
+          events = defaultdict(list)
+          for p in root.findall('programme'):
+              events[(p.get('channel') or '').strip()].append(p)
+          print('REAL_SCRIPT_CHECK - XML lang attributes ignored')
+          for cid in sorted(names, key=str.casefold):
+              rows = events.get(cid, [])
+              ta = tl = th = da = dl = mismatch = 0
+              for p in rows:
+                  t = p.find('title')
+                  d = p.find('desc')
+                  tv = ((t.text or '').strip() if t is not None else '')
+                  dv = ((d.text or '').strip() if d is not None else '')
+                  ar_t = len(AR.findall(tv)) >= 2
+                  la_t = len(LAT.findall(tv)) >= 2
+                  ar_d = len(AR.findall(dv)) >= 2
+                  la_d = len(LAT.findall(dv)) >= 2
+                  ta += ar_t; tl += la_t; th += ar_t and la_t
+                  da += ar_d; dl += la_d
+                  declared = ((t.get('lang') or '').lower() if t is not None else '')
+                  if declared.startswith('ar') and la_t and not ar_t:
+                      mismatch += 1
+                  if declared.startswith('en') and ar_t and not la_t:
+                      mismatch += 1
+              n = max(1, len(rows))
+              print('SCRIPT|%s|events=%d|title_AR=%.0f%%|title_Latin=%.0f%%|hybrid=%.0f%%|desc_AR=%.0f%%|lang_tag_mismatch=%d' % (
+                  cid, len(rows), ta*100.0/n, tl*100.0/n, th*100.0/n, da*100.0/n, mismatch))
+          PY
