@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-13T15:39:35.145758+00:00",
+  "generated": "2026-09-13T15:45:33.544277+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -105,7 +105,7 @@
     {
       "name": "epgshare-ae1",
       "origin": "epgshare",
-      "channels_with_current_48h_epg": 568,
+      "channels_with_current_48h_epg": 564,
       "bytes": 1818290
     },
     {
@@ -127,17 +127,17 @@
       "bytes": 4291
     }
   ],
-  "candidate_channel_rows": 1769,
-  "unique_logical_channels": 1109,
-  "programmes": 63439,
-  "premium_hybrid_events": 1157,
+  "candidate_channel_rows": 1767,
+  "unique_logical_channels": 1104,
+  "programmes": 63039,
+  "premium_hybrid_events": 1153,
   "stats": {
-    "logical_duplicate_groups": 395,
-    "regular_channels": 1007,
-    "source_openepg": 372,
-    "source_epgshare": 543,
+    "logical_duplicate_groups": 393,
+    "regular_channels": 1002,
+    "source_openepg": 371,
+    "source_epgshare": 537,
     "premium_channels": 102,
-    "source_primary": 194
+    "source_primary": 196
   },
   "aliases": [
     {
@@ -249,8 +249,8 @@
       "aliases": []
     },
     {
-      "canonical_id": "Abu Dhabi TV.eg",
-      "canonical_name": "Abu Dhabi TV.eg",
+      "canonical_id": "AbuDhabiTV.ae@SD",
+      "canonical_name": "Abu Dhabi TV HD",
       "logical_key": "abu dhabi tv",
       "aliases": [
         {
@@ -272,6 +272,11 @@
           "id": "Abu Dhabi TV HD.sa",
           "name": "Abu Dhabi TV HD.sa",
           "source": "openepg-saudi6"
+        },
+        {
+          "id": "Abu Dhabi TV.eg",
+          "name": "Abu Dhabi TV.eg",
+          "source": "openepg-egypt2"
         }
       ]
     },
@@ -338,8 +343,8 @@
       "aliases": []
     },
     {
-      "canonical_id": "Al Arabiya.sa",
-      "canonical_name": "Al Arabiya.sa",
+      "canonical_id": "AlarabiyaPortrait.ae@SD",
+      "canonical_name": "Al Arabiya",
       "logical_key": "al arabiya",
       "aliases": [
         {
@@ -351,6 +356,16 @@
           "id": "Al Arabiya HD.sa",
           "name": "Al Arabiya HD.sa",
           "source": "openepg-saudi2"
+        },
+        {
+          "id": "Al Arabiya.sa",
+          "name": "Al Arabiya.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Al Arabiya.sa",
+          "name": "Al Arabiya.sa",
+          "source": "openepg-saudi6"
         },
         {
           "id": "Al.Arabiya.HD.ae",
@@ -372,10 +387,33 @@
       ]
     },
     {
-      "canonical_id": "Al Araby TV.sa",
-      "canonical_name": "Al Araby TV.sa",
+      "canonical_id": "AlArabyTV2.qa@SD",
+      "canonical_name": "Al Araby 2",
+      "logical_key": "al araby 2",
+      "aliases": [
+        {
+          "id": "Al.Araby.2.HD.ae",
+          "name": "Al Araby 2 HD",
+          "source": "epgshare-ae1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "AlArabyTV.qa@SD",
+      "canonical_name": "Al Araby TV",
       "logical_key": "al araby tv",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "Al Araby TV.sa",
+          "name": "Al Araby TV.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Al Araby TV.sa",
+          "name": "Al Araby TV.sa",
+          "source": "openepg-saudi6"
+        }
+      ]
     },
     {
       "canonical_id": "Al Dafrah.sa",
@@ -511,6 +549,18 @@
       "canonical_name": "Al Quran Al Kareem TV HD.sa",
       "logical_key": "al quran al kareem tv",
       "aliases": []
+    },
+    {
+      "canonical_id": "AlraiTV.kw@SD",
+      "canonical_name": "Al Rai TV",
+      "logical_key": "al rai tv",
+      "aliases": [
+        {
+          "id": "Al.Rai.TV.ae",
+          "name": "Al Rai TV",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "Al Resalah.sa",
@@ -802,10 +852,30 @@
       "aliases": []
     },
     {
-      "canonical_id": "Bahrain TV.sa",
-      "canonical_name": "Bahrain TV.sa",
+      "canonical_id": "BahrainTV.bh@SD",
+      "canonical_name": "Bahrain TV",
       "logical_key": "bahrain tv",
       "aliases": [
+        {
+          "id": "Bahrain TV.sa",
+          "name": "Bahrain TV.sa",
+          "source": "openepg-saudi1"
+        },
+        {
+          "id": "Bahrain TV.sa",
+          "name": "Bahrain TV.sa",
+          "source": "openepg-saudi2"
+        },
+        {
+          "id": "Bahrain TV.sa",
+          "name": "Bahrain TV.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Bahrain TV.sa",
+          "name": "Bahrain TV.sa",
+          "source": "openepg-saudi6"
+        },
         {
           "id": "Bahrain.TV.HD.ae",
           "name": "Bahrain TV HD",
@@ -832,10 +902,21 @@
       ]
     },
     {
-      "canonical_id": "BBC World.sa",
-      "canonical_name": "BBC World.sa",
+      "canonical_id": "BBCArabic.uk@SD",
+      "canonical_name": "BBC World",
       "logical_key": "bbc world",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "BBC World.sa",
+          "name": "BBC World.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "BBC World.sa",
+          "name": "BBC World.sa",
+          "source": "openepg-saudi6"
+        }
+      ]
     },
     {
       "canonical_id": "BBC World News.sa",
@@ -4248,6 +4329,18 @@
       ]
     },
     {
+      "canonical_id": "LanaTV.lb@SD",
+      "canonical_name": "ال تي في",
+      "logical_key": "ال تي في",
+      "aliases": [
+        {
+          "id": "ال تي في.eg",
+          "name": "ال تي في.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "JordanTV.jo@SD",
       "canonical_name": "الأردن",
       "logical_key": "الأردن",
@@ -4339,30 +4432,6 @@
         {
           "id": "السعيدة.eg",
           "name": "السعيدة.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "Alsumaria.iq@SD",
-      "canonical_name": "السومرية",
-      "logical_key": "السومرية",
-      "aliases": [
-        {
-          "id": "السومرية.eg",
-          "name": "السومرية.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "SharjahTV.ae@SD",
-      "canonical_name": "الشارقة",
-      "logical_key": "الشارقة",
-      "aliases": [
-        {
-          "id": "الشارقة.eg",
-          "name": "الشارقة.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4560,18 +4629,6 @@
       ]
     },
     {
-      "canonical_id": "DubaiZaman.ae@SD",
-      "canonical_name": "دبي زمان",
-      "logical_key": "دبي زمان",
-      "aliases": [
-        {
-          "id": "دبي زمان.eg",
-          "name": "دبي زمان.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "DijlahTV.iq@SD",
       "canonical_name": "دجلة",
       "logical_key": "دجلة",
@@ -4692,6 +4749,18 @@
       ]
     },
     {
+      "canonical_id": "SamaDubai.ae@SD",
+      "canonical_name": "سما دبي",
+      "logical_key": "سما دبي",
+      "aliases": [
+        {
+          "id": "سما دبي.eg",
+          "name": "سما دبي.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "CBC.eg@SD",
       "canonical_name": "سي بي سي",
       "logical_key": "سي بي سي",
@@ -4759,18 +4828,6 @@
         {
           "id": "صدى البلد دراما.eg",
           "name": "صدى البلد دراما.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "AmmanTV.jo@SD",
-      "canonical_name": "عَمان",
-      "logical_key": "عَمان",
-      "aliases": [
-        {
-          "id": "عَمان.eg",
-          "name": "عَمان.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4867,30 +4924,6 @@
         {
           "id": "نايل دراما.eg",
           "name": "نايل دراما.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "NileLife.eg@SD",
-      "canonical_name": "نايل لايف",
-      "logical_key": "نايل لايف",
-      "aliases": [
-        {
-          "id": "نايل لايف.eg",
-          "name": "نايل لايف.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "NessmaElJadida.tn@SD",
-      "canonical_name": "نسمة",
-      "logical_key": "نسمة",
-      "aliases": [
-        {
-          "id": "نسمة.eg",
-          "name": "نسمة.eg",
           "source": "openepg-egypt1"
         }
       ]
