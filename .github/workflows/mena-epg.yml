@@ -1,18 +1,10 @@
 name: MENA Arabic EPG Cloud
 
 on:
-  # GitHub cron is UTC. The local-time gate keeps only 06:00/18:00 Africa/Casablanca.
+  # GitHub cron is UTC. The local-time gate handles Morocco DST/UTC changes.
   schedule:
     - cron: "0 5,6,17,18 * * *"
   workflow_dispatch:
-  # Temporary bootstrap trigger. Remove after the first verified production run.
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/mena-epg.yml"
-      - "tools/mena_cloud_catalog.py"
-      - "tools/mena_cloud_finalize.py"
 
 permissions:
   contents: write
@@ -22,79 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  bootstrap:
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - name: Local schedule gate
-        id: gate
-        shell: bash
-        run: |
-          if [ "${{ github.event_name }}" != "schedule" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          else
-            hour="$(TZ=Africa/Casablanca date +%H)"
-            if [ "$hour" = "06" ] || [ "$hour" = "18" ]; then
-              echo "run=true" >> "$GITHUB_OUTPUT"
-            else
-              echo "run=false" >> "$GITHUB_OUTPUT"
-              echo "Skipping duplicate UTC cron slot; Casablanca hour is ${hour}."
-            fi
-          fi
-
-      - name: Checkout repository
-        if: steps.gate.outputs.run == 'true'
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Ensure permanent mena-data endpoint exists
-        if: steps.gate.outputs.run == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          if git ls-remote --exit-code --heads origin mena-data >/dev/null 2>&1; then
-            echo "mena-data already exists."
-            exit 0
-          fi
-
-          rm -rf bootstrap publish
-          mkdir -p bootstrap
-          python - <<'PY'
-          import gzip, json
-          from datetime import datetime, timezone
-          from pathlib import Path
-          import xml.etree.ElementTree as ET
-
-          root = ET.Element("tv", {"generator-info-name":"EPGManager MENA Arabic Cloud"})
-          xml = ET.tostring(root, encoding="utf-8", xml_declaration=True)
-          Path("bootstrap/mena-arabic.xml.gz").write_bytes(gzip.compress(xml, compresslevel=9))
-          Path("bootstrap/mena-arabic.txt").write_text("EPGManager MENA Arabic Cloud bootstrap\n", encoding="utf-8")
-          Path("bootstrap/manifest.json").write_text(json.dumps({
-              "schema":1,
-              "status":"bootstrap",
-              "generated":datetime.now(timezone.utc).isoformat(),
-              "channels":0,
-              "programmes":0
-          }, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
-          PY
-
-          git config user.name "EPGManager Cloud"
-          git config user.email "actions@users.noreply.github.com"
-          git worktree add --detach publish
-          cd publish
-          git checkout --orphan mena-data
-          git rm -rf . >/dev/null 2>&1 || true
-          cp ../bootstrap/mena-arabic.xml.gz .
-          cp ../bootstrap/mena-arabic.txt .
-          cp ../bootstrap/manifest.json .
-          printf '%s\n' 'EPGManager MENA Arabic Cloud data branch.' > README.md
-          git add mena-arabic.xml.gz mena-arabic.txt manifest.json README.md
-          git commit -m "Bootstrap MENA Arabic EPG endpoint"
-          git push origin mena-data
-
   build:
-    needs: bootstrap
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
@@ -110,6 +30,7 @@ jobs:
               echo "run=true" >> "$GITHUB_OUTPUT"
             else
               echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "Skipping duplicate UTC slot; Casablanca hour=${hour}."
             fi
           fi
 
@@ -155,7 +76,7 @@ jobs:
         shell: bash
         run: npm ci --no-audit --no-fund
 
-      - name: Build all-Arabic official-first channel catalogue
+      - name: Build all-Arabic TV catalogue
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
@@ -174,9 +95,8 @@ jobs:
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz" \
             -o previous/mena-arabic.xml.gz || true
 
-      - name: Grab Arabic programme data from selected websites
+      - name: Grab Arabic programme data
         if: steps.gate.outputs.run == 'true'
-        id: grab
         working-directory: vendor/iptv-org-epg
         shell: bash
         env:
@@ -191,7 +111,6 @@ jobs:
               --maxConnections=3 \
               --timeout=20000
           rc=$?
-          echo "grab_rc=${rc}" >> "$GITHUB_OUTPUT"
           if [ "$rc" -ne 0 ]; then
             echo "Upstream grab returned ${rc}; per-channel LKG will protect existing coverage."
           fi
@@ -224,9 +143,9 @@ jobs:
           manifest = json.loads(Path('output/final/manifest.json').read_text(encoding='utf-8'))
           assert len(channels) >= 25, len(channels)
           assert len(programmes) >= 100, len(programmes)
-          assert manifest['channels'] == len(channels), (manifest['channels'], len(channels))
-          assert manifest['programmes'] == len(programmes), (manifest['programmes'], len(programmes))
-          print('PASS: %d MENA Arabic channels / %d programmes / Arabic titles %.1f%%' % (
+          assert manifest['channels'] == len(channels)
+          assert manifest['programmes'] == len(programmes)
+          print('PASS: %d MENA Arabic TV channels / %d programmes / Arabic titles %.1f%%' % (
               len(channels), len(programmes), 100.0 * manifest.get('arabic_title_ratio', 0)))
           PY
 
@@ -246,7 +165,7 @@ jobs:
           cp ../output/final/mena-arabic.txt .
           cp ../output/final/manifest.json .
           cp ../output/catalog.json catalog.json
-          printf '%s\n' 'EPGManager MENA Arabic Cloud data branch. Generated from Arabic TV guide websites with official-first source selection and per-channel Last Known Good protection.' > README.md
+          printf '%s\n' 'EPGManager MENA Arabic Cloud data branch. TV-only Arabic guide catalogue, Morocco excluded, official-first source selection and per-channel Last Known Good protection.' > README.md
           git add mena-arabic.xml.gz mena-arabic.txt manifest.json catalog.json README.md
           if git diff --cached --quiet; then
             echo "No MENA data changes."
