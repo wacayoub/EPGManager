@@ -12,6 +12,7 @@ on:
       - "tools/mena_cloud_merge_safe.py"
       - "tools/mena_cloud_finalize.py"
       - "tools/mena_cloud_finalize_safe.py"
+      - "tools/mena_cloud_finalize_strict.py"
       - "tools/mena_cloud_shards.py"
       - "tools/mena_cloud_shards_safe.py"
       - "tools/mena_cloud_shards_strict.py"
@@ -87,6 +88,7 @@ jobs:
             tools/mena_cloud_merge_safe.py \
             tools/mena_cloud_finalize.py \
             tools/mena_cloud_finalize_safe.py \
+            tools/mena_cloud_finalize_strict.py \
             tools/mena_cloud_shards.py \
             tools/mena_cloud_shards_safe.py \
             tools/mena_cloud_shards_strict.py \
@@ -168,12 +170,12 @@ jobs:
             --cache-dir output/upstream \
             --window-hours 48
 
-      - name: Finalize combined MENA with safe LKG timeline gate
+      - name: Finalize combined MENA with strict LKG/provider quality gate
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          python tools/mena_cloud_finalize_safe.py \
+          python tools/mena_cloud_finalize_strict.py \
             --candidate output/merged.xml \
             --catalog-manifest output/catalog.json \
             --previous previous/mena-arabic.xml.gz \
