@@ -1,0 +1,86 @@
+name: All ID Programme Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/all-id-audit.yml"
+      - "tools/all_id_audit.py"
+      - "tools/bein_id_audit.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: all-id-programme-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout auditor
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Checkout current MENA data
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: audit-data
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify auditor
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/bein_id_audit.py tools/all_id_audit.py
+
+      - name: Audit every published XMLTV ID and all programmes
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-output
+          python tools/all_id_audit.py \
+            --dir audit-data \
+            --manifest audit-data/shards.json \
+            --json audit-output/all-id-audit.json \
+            --text audit-output/all-id-audit.txt \
+            --csv audit-output/all-id-audit.csv
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('audit-output/all-id-audit.json').read_text(encoding='utf-8'))
+          manifest=json.loads(Path('audit-data/shards.json').read_text(encoding='utf-8'))
+          s=report['summary']
+          assert not s['missing_shards'], s['missing_shards']
+          assert s['channels'] == manifest['published_channels'], (s['channels'], manifest['published_channels'])
+          print('COMPLETE AUDIT:', s)
+          PY
+
+      - name: Publish audit reports to mena-data
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp audit-output/all-id-audit.json audit-data/all-id-audit.json
+          cp audit-output/all-id-audit.txt audit-data/all-id-audit.txt
+          cp audit-output/all-id-audit.csv audit-data/all-id-audit.csv
+          cd audit-data
+          git config user.name "EPGManager Audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add all-id-audit.json all-id-audit.txt all-id-audit.csv
+          if git diff --cached --quiet; then
+            echo "No audit report changes."
+            exit 0
+          fi
+          stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
+          git commit -m "All-ID programme audit ${stamp}"
+          git push origin HEAD:mena-data
