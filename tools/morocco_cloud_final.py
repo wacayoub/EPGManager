@@ -15,7 +15,8 @@ from __future__ import annotations
 
 import gzip
 import re
-from datetime import datetime
+from collections import defaultdict
+from datetime import datetime, timedelta
 from xml.etree import ElementTree as ET
 
 import morocco_epg as base
@@ -73,10 +74,84 @@ def tolerant_previous(path):
     return out
 
 
+def _snrt_cloud_cleanup(rows, days):
+    """Keep historical SNRT semantics while making the cloud XMLTV timeline strict.
+
+    SNRT pages expose archive rows in addition to the useful current horizon and
+    can occasionally expose two DOM rows at exactly the same channel/start time.
+    The receiver tolerated that, but an XMLTV cloud feed must never publish
+    zero-duration events.  We therefore keep only the requested horizon,
+    collapse same-channel/same-start duplicates to the richer row, and infer
+    every stop from the next *strictly later* event.
+    """
+    now = datetime.now(TZ)
+    window_start = now - timedelta(hours=12)
+    window_end = now + timedelta(days=max(1, int(days)) + 1)
+    useful = [e for e in rows if window_start <= e.start < window_end]
+
+    exact = {}
+    collapsed = 0
+    for e in useful:
+        key = (e.channel, e.start)
+        old = exact.get(key)
+        if old is None:
+            exact[key] = e
+            continue
+        collapsed += 1
+        # Same instant cannot carry two linear-TV events. Preserve whichever row
+        # has the richer receiver-derived metadata/detail description.
+        old_score = len(str(old.desc or "")) * 2 + len(str(old.title or ""))
+        new_score = len(str(e.desc or "")) * 2 + len(str(e.title or ""))
+        if new_score > old_score:
+            exact[key] = e
+
+    by_channel = defaultdict(list)
+    for e in exact.values():
+        by_channel[e.channel].append(e)
+
+    clean = []
+    repaired = 0
+    for cid, channel_rows in by_channel.items():
+        channel_rows.sort(key=lambda x: x.start)
+        for i, e in enumerate(channel_rows):
+            next_start = channel_rows[i + 1].start if i + 1 < len(channel_rows) else None
+            if next_start and next_start > e.start:
+                if e.stop != next_start:
+                    repaired += 1
+                e.stop = next_start
+            elif not e.stop or e.stop <= e.start:
+                # Preserve the receiver's broadcaster-day convention at night;
+                # otherwise use a safe one-hour tail for the final visible row.
+                if e.start.hour < 7:
+                    stop = e.start.replace(hour=7, minute=0, second=0, microsecond=0)
+                    if stop <= e.start:
+                        stop += timedelta(days=1)
+                else:
+                    stop = e.start + timedelta(hours=1)
+                e.stop = stop
+                repaired += 1
+            clean.append(e)
+
+    clean.sort(key=lambda x: (x.channel, x.start, x.title.casefold()))
+    runner.log(
+        "SNRT cloud timeline cleanup: input=%d horizon=%d final=%d collapsed=%d stops-repaired=%d"
+        % (len(rows), len(useful), len(clean), collapsed, repaired)
+    )
+    return clean
+
+
 def main():
     # Install receiver-proven Moroccan source behaviour before runner.main()
     # builds its parallel provider jobs.
     legacy.install()
+
+    # Wrap the historical SNRT result only at the cloud serialization boundary:
+    # title/description/news/TNT/weather logic stays untouched.
+    historical_snrt = base.scrape_snrt
+    def cloud_snrt(days):
+        return _snrt_cloud_cleanup(historical_snrt(days), days)
+    base.scrape_snrt = cloud_snrt
+
     runner.read_previous = tolerant_previous
     return final2m.main()
 
