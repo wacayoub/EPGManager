@@ -1,123 +1,165 @@
 {
-  "schema": 1,
+  "schema": 2,
   "mode": "virtual-epgmanager-all-id-programme-audit",
   "summary": {
     "channels": 968,
     "programmes": 46598,
     "PASS": 165,
-    "REVIEW": 786,
-    "FAIL": 17,
+    "REVIEW": 457,
+    "FAIL": 346,
     "auto_lock_safe": 165,
     "missing_shards": []
   },
+  "issue_counts": {
+    "NO_PROGRAMMES": 7,
+    "SUSPICIOUS_BEIN_SPORTS66_ID": 2,
+    "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE": 323,
+    "TECHNICAL_OR_ASSET_ID": 14
+  },
+  "warning_counts": {
+    "STALE_YEAR_IN_ID": 4,
+    "LOW_TITLE_DIVERSITY": 215,
+    "DUPLICATE_TIMELINE_GROUP": 410,
+    "DUPLICATE_TIMELINE_UNRELATED": 28,
+    "EMPTY_DESC": 666,
+    "PREMIUM_AR_DESC_LOW": 14,
+    "LONG_GT_6H": 29,
+    "GAPS_GT_2H": 25,
+    "PLACEHOLDER": 24,
+    "GENERIC_GUIDE": 38,
+    "REPEATED_TITLE": 126,
+    "PREMIUM_TITLE_LATIN_LOW": 5,
+    "LOGO_PREFIX_ID": 3,
+    "ARABIC_PROVIDER_TITLE_AR_LOW": 21,
+    "SHORT_LT_2M": 17,
+    "SPARSE_COVERAGE": 13,
+    "FOREIGN_FEED_ID": 249
+  },
   "by_shard": {
     "mena-ae": {
-      "REVIEW": 23,
+      "FAIL": 7,
       "channels": 26,
       "programmes": 1324,
+      "REVIEW": 16,
       "PASS": 3
     },
     "mena-bh": {
-      "REVIEW": 4,
+      "REVIEW": 3,
       "channels": 4,
-      "programmes": 232
+      "programmes": 232,
+      "FAIL": 1
     },
     "mena-dz": {
-      "REVIEW": 15,
+      "REVIEW": 6,
       "channels": 15,
-      "programmes": 731
+      "programmes": 731,
+      "FAIL": 9
     },
     "mena-eg": {
-      "REVIEW": 89,
+      "FAIL": 31,
       "channels": 96,
       "programmes": 3946,
+      "REVIEW": 58,
       "PASS": 7
     },
     "mena-iq": {
-      "REVIEW": 49,
+      "FAIL": 31,
       "channels": 49,
-      "programmes": 2646
+      "programmes": 2646,
+      "REVIEW": 18
     },
     "mena-jo": {
-      "REVIEW": 15,
+      "REVIEW": 9,
       "channels": 15,
-      "programmes": 706
+      "programmes": 706,
+      "FAIL": 6
     },
     "mena-kw": {
-      "REVIEW": 14,
+      "FAIL": 7,
       "channels": 14,
-      "programmes": 889
+      "programmes": 889,
+      "REVIEW": 7
     },
     "mena-lb": {
-      "REVIEW": 18,
+      "REVIEW": 7,
       "channels": 18,
-      "programmes": 861
+      "programmes": 861,
+      "FAIL": 11
     },
     "mena-ly": {
-      "REVIEW": 4,
+      "FAIL": 4,
       "channels": 4,
       "programmes": 220
     },
     "mena-mr": {
-      "REVIEW": 1,
+      "FAIL": 1,
       "channels": 1,
       "programmes": 61
     },
     "mena-om": {
-      "REVIEW": 12,
+      "FAIL": 2,
       "channels": 13,
       "programmes": 506,
+      "REVIEW": 10,
       "PASS": 1
     },
     "mena-other": {
-      "FAIL": 7,
+      "FAIL": 161,
       "channels": 405,
       "programmes": 21971,
-      "REVIEW": 326,
+      "REVIEW": 172,
       "PASS": 72
     },
     "mena-ps": {
-      "REVIEW": 13,
+      "FAIL": 11,
       "channels": 13,
-      "programmes": 764
+      "programmes": 764,
+      "REVIEW": 2
     },
     "mena-qa": {
-      "REVIEW": 26,
+      "FAIL": 12,
       "channels": 28,
       "programmes": 1470,
+      "REVIEW": 14,
       "PASS": 2
     },
     "mena-sa": {
-      "REVIEW": 32,
+      "REVIEW": 22,
       "channels": 41,
       "programmes": 2480,
-      "PASS": 9
+      "PASS": 9,
+      "FAIL": 10
     },
     "mena-sd": {
-      "REVIEW": 4,
+      "FAIL": 3,
       "channels": 4,
-      "programmes": 246
+      "programmes": 246,
+      "REVIEW": 1
     },
     "mena-sy": {
-      "REVIEW": 4,
+      "REVIEW": 1,
       "channels": 4,
-      "programmes": 158
+      "programmes": 158,
+      "FAIL": 3
     },
     "mena-tn": {
-      "REVIEW": 5,
+      "REVIEW": 3,
       "channels": 5,
-      "programmes": 216
+      "programmes": 216,
+      "FAIL": 2
     },
     "mena-ye": {
-      "REVIEW": 15,
+      "FAIL": 13,
       "channels": 15,
-      "programmes": 576
+      "programmes": 576,
+      "REVIEW": 2
     },
     "provider-adm": {
-      "REVIEW": 11,
+      "REVIEW": 10,
       "channels": 14,
       "programmes": 684,
-      "PASS": 3
+      "PASS": 3,
+      "FAIL": 1
     },
     "provider-alkass": {
       "FAIL": 7,
@@ -125,16 +167,17 @@
       "programmes": 0
     },
     "provider-art": {
-      "REVIEW": 11,
+      "REVIEW": 8,
       "channels": 11,
-      "programmes": 1001
+      "programmes": 1001,
+      "FAIL": 3
     },
     "provider-bein": {
-      "REVIEW": 51,
+      "REVIEW": 46,
       "channels": 66,
       "programmes": 1143,
       "PASS": 12,
-      "FAIL": 3
+      "FAIL": 8
     },
     "provider-dmi": {
       "PASS": 3,
@@ -149,16 +192,18 @@
       "REVIEW": 17
     },
     "provider-osn": {
-      "REVIEW": 5,
+      "REVIEW": 4,
       "channels": 22,
       "programmes": 925,
+      "FAIL": 1,
       "PASS": 17
     },
     "provider-rotana": {
       "PASS": 16,
       "channels": 23,
       "programmes": 658,
-      "REVIEW": 7
+      "REVIEW": 6,
+      "FAIL": 1
     },
     "provider-starz": {
       "REVIEW": 5,
@@ -2284,12 +2329,14 @@
       ],
       "shard": "provider-bein",
       "feed_country": "qa",
-      "issues": [],
+      "issues": [
+        "SUSPICIOUS_BEIN_SPORTS66_ID"
+      ],
       "warnings": [
         "GAPS_GT_2H=2/TOTAL=5.2h"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 57,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -2768,15 +2815,16 @@
       ],
       "shard": "provider-bein",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "PLACEHOLDER=2",
         "GENERIC_GUIDE=5%",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -3104,12 +3152,14 @@
       ],
       "shard": "provider-bein",
       "feed_country": "",
-      "issues": [],
+      "issues": [
+        "SUSPICIOUS_BEIN_SPORTS66_ID"
+      ],
       "warnings": [
         "GAPS_GT_2H=2/TOTAL=40.4h"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 57,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -4659,7 +4709,7 @@
       "shard": "provider-bein",
       "feed_country": "",
       "issues": [
-        "TECHNICAL_OR_LOGO_ID"
+        "TECHNICAL_OR_ASSET_ID"
       ],
       "warnings": [
         "GAPS_GT_2H=1/TOTAL=20.9h",
@@ -4729,7 +4779,7 @@
       "shard": "provider-bein",
       "feed_country": "",
       "issues": [
-        "TECHNICAL_OR_LOGO_ID"
+        "TECHNICAL_OR_ASSET_ID"
       ],
       "warnings": [
         "GAPS_GT_2H=1/TOTAL=21.8h",
@@ -4799,7 +4849,7 @@
       "shard": "provider-bein",
       "feed_country": "",
       "issues": [
-        "TECHNICAL_OR_LOGO_ID"
+        "TECHNICAL_OR_ASSET_ID"
       ],
       "warnings": [
         "GENERIC_GUIDE=88%",
@@ -4871,15 +4921,16 @@
       ],
       "shard": "provider-bein",
       "feed_country": "",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "PLACEHOLDER=2",
         "GENERIC_GUIDE=5%",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -4941,15 +4992,16 @@
       ],
       "shard": "provider-bein",
       "feed_country": "",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "PLACEHOLDER=2",
         "GENERIC_GUIDE=5%",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -5148,15 +5200,16 @@
       ],
       "shard": "provider-osn",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "PREMIUM_AR_DESC_LOW=0%",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -9956,15 +10009,16 @@
       ],
       "shard": "provider-rotana",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "ARABIC_PROVIDER_TITLE_AR_LOW=0%",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -11085,15 +11139,16 @@
       ],
       "shard": "provider-adm",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=75(100%)",
         "ARABIC_PROVIDER_TITLE_AR_LOW=0%",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -12766,16 +12821,17 @@
       ],
       "shard": "provider-art",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
         "ARABIC_PROVIDER_TITLE_AR_LOW=0%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -12837,16 +12893,17 @@
       ],
       "shard": "provider-art",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
         "ARABIC_PROVIDER_TITLE_AR_LOW=0%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -12908,16 +12965,17 @@
       ],
       "shard": "provider-art",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
         "ARABIC_PROVIDER_TITLE_AR_LOW=0%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -13320,15 +13378,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -14001,15 +14060,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=34(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -14071,17 +14131,18 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -14143,17 +14204,18 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -14215,15 +14277,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -14493,15 +14556,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -14563,15 +14627,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -14701,16 +14766,17 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=18(100%)",
         "GAPS_GT_2H=1/TOTAL=16.0h",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -14841,15 +14907,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=16(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -14911,15 +14978,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -15584,15 +15652,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -15654,15 +15723,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -16601,15 +16671,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -16878,17 +16949,18 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -17018,15 +17090,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -17088,15 +17161,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -17158,15 +17232,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -17228,15 +17303,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -17298,15 +17374,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -17435,15 +17512,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -17641,15 +17719,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -17711,15 +17790,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -18258,16 +18338,17 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=18(100%)",
         "GAPS_GT_2H=1/TOTAL=16.0h",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -18329,15 +18410,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=34(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -18601,15 +18683,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -19013,16 +19096,17 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -19484,15 +19568,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -19621,15 +19706,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -19691,15 +19777,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -19761,15 +19848,16 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=5"
+      ],
       "warnings": [
         "EMPTY_DESC=40(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=5",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=5"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -19831,16 +19919,17 @@
       ],
       "shard": "mena-eg",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=6"
+      ],
       "warnings": [
         "EMPTY_DESC=68(100%)",
         "LOW_TITLE_DIVERSITY=16%",
         "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=6",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=6"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -20034,15 +20123,16 @@
       ],
       "shard": "mena-sa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=75(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SA",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -20104,15 +20194,16 @@
       ],
       "shard": "mena-sa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=75(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SA",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -20174,15 +20265,16 @@
       ],
       "shard": "mena-sa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -20703,15 +20795,16 @@
       ],
       "shard": "mena-sa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -20909,15 +21002,16 @@
       ],
       "shard": "mena-sa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=75(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SA",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -21510,15 +21604,16 @@
       ],
       "shard": "mena-sa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -22189,15 +22284,16 @@
       ],
       "shard": "mena-sa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=75(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SA",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -22259,15 +22355,16 @@
       ],
       "shard": "mena-sa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=75(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SA",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -22397,15 +22494,16 @@
       ],
       "shard": "mena-sa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=77(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SA",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -22600,15 +22698,16 @@
       ],
       "shard": "mena-sa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SA",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -22670,14 +22769,15 @@
       ],
       "shard": "mena-ae",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -22739,16 +22839,17 @@
       ],
       "shard": "mena-ae",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=61(100%)",
         "REPEATED_TITLE=80%",
         "LOW_TITLE_DIVERSITY=10%",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -22810,14 +22911,15 @@
       ],
       "shard": "mena-ae",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -23013,14 +23115,15 @@
       ],
       "shard": "mena-ae",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=4"
+      ],
       "warnings": [
         "EMPTY_DESC=44(100%)",
-        "DUPLICATE_TIMELINE_GROUP=4",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=4"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -23149,15 +23252,16 @@
       ],
       "shard": "mena-ae",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=6"
+      ],
       "warnings": [
         "EMPTY_DESC=68(100%)",
         "LOW_TITLE_DIVERSITY=16%",
-        "DUPLICATE_TIMELINE_GROUP=6",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=6"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -24098,14 +24202,15 @@
       ],
       "shard": "mena-ae",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=75(100%)",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -24301,14 +24406,15 @@
       ],
       "shard": "mena-ae",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -24435,15 +24541,16 @@
       ],
       "shard": "mena-qa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=4"
+      ],
       "warnings": [
         "EMPTY_DESC=44(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA",
-        "DUPLICATE_TIMELINE_GROUP=4",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=4"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -24573,17 +24680,18 @@
       ],
       "shard": "mena-qa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=61(100%)",
         "REPEATED_TITLE=80%",
         "LOW_TITLE_DIVERSITY=10%",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -24785,15 +24893,16 @@
       ],
       "shard": "mena-qa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -25597,15 +25706,16 @@
       ],
       "shard": "mena-qa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -25735,15 +25845,16 @@
       ],
       "shard": "mena-qa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -25805,15 +25916,16 @@
       ],
       "shard": "mena-qa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -25944,15 +26056,16 @@
       ],
       "shard": "mena-qa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -26014,15 +26127,16 @@
       ],
       "shard": "mena-qa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -26084,15 +26198,16 @@
       ],
       "shard": "mena-qa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -26154,15 +26269,16 @@
       ],
       "shard": "mena-qa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -26224,15 +26340,16 @@
       ],
       "shard": "mena-qa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -26294,15 +26411,16 @@
       ],
       "shard": "mena-qa",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -26364,15 +26482,16 @@
       ],
       "shard": "mena-kw",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=KW",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -26434,15 +26553,16 @@
       ],
       "shard": "mena-kw",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=77(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=KW",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -26709,15 +26829,16 @@
       ],
       "shard": "mena-kw",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=KW",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -26779,15 +26900,16 @@
       ],
       "shard": "mena-kw",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=KW",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -26849,15 +26971,16 @@
       ],
       "shard": "mena-kw",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=KW",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -26919,15 +27042,16 @@
       ],
       "shard": "mena-kw",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=KW",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -27060,15 +27184,16 @@
       ],
       "shard": "mena-kw",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=KW",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -27476,15 +27601,16 @@
       ],
       "shard": "mena-bh",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=77(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=BH",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -27613,15 +27739,16 @@
       ],
       "shard": "mena-om",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=OM",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -28021,15 +28148,16 @@
       ],
       "shard": "mena-om",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=16(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=OM",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -28630,15 +28758,16 @@
       ],
       "shard": "mena-jo",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=JO",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -28769,15 +28898,16 @@
       ],
       "shard": "mena-jo",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=JO",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -28977,15 +29107,16 @@
       ],
       "shard": "mena-jo",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=16(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=JO",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -29047,15 +29178,16 @@
       ],
       "shard": "mena-jo",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=JO",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -29117,15 +29249,16 @@
       ],
       "shard": "mena-jo",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=JO",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -29458,15 +29591,16 @@
       ],
       "shard": "mena-jo",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=JO",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -29665,15 +29799,16 @@
       ],
       "shard": "mena-lb",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LB",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -29735,15 +29870,16 @@
       ],
       "shard": "mena-lb",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LB",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -29805,17 +29941,18 @@
       ],
       "shard": "mena-lb",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=LB",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -29944,15 +30081,16 @@
       ],
       "shard": "mena-lb",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=7"
+      ],
       "warnings": [
         "EMPTY_DESC=70(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LB",
-        "DUPLICATE_TIMELINE_GROUP=7",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=7"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -30014,15 +30152,16 @@
       ],
       "shard": "mena-lb",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=7"
+      ],
       "warnings": [
         "EMPTY_DESC=70(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LB",
-        "DUPLICATE_TIMELINE_GROUP=7",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=7"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -30084,15 +30223,16 @@
       ],
       "shard": "mena-lb",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=7"
+      ],
       "warnings": [
         "EMPTY_DESC=70(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LB",
-        "DUPLICATE_TIMELINE_GROUP=7",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=7"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -30154,15 +30294,16 @@
       ],
       "shard": "mena-lb",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=7"
+      ],
       "warnings": [
         "EMPTY_DESC=70(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LB",
-        "DUPLICATE_TIMELINE_GROUP=7",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=7"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -30494,15 +30635,16 @@
       ],
       "shard": "mena-lb",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LB",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -30564,15 +30706,16 @@
       ],
       "shard": "mena-lb",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LB",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -30634,15 +30777,16 @@
       ],
       "shard": "mena-lb",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LB",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -30704,15 +30848,16 @@
       ],
       "shard": "mena-lb",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LB",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -30774,15 +30919,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -30844,15 +30990,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -30914,17 +31061,18 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=12"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=12",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=12"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -31055,17 +31203,18 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=12"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=12",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=12"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -31268,16 +31417,17 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=6"
+      ],
       "warnings": [
         "EMPTY_DESC=68(100%)",
         "LOW_TITLE_DIVERSITY=16%",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=6",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=6"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -31339,15 +31489,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -31409,15 +31560,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -31479,15 +31631,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -31619,15 +31772,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -31896,15 +32050,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -32168,15 +32323,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -32373,15 +32529,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -32443,15 +32600,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -32513,15 +32671,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -32583,15 +32742,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -32858,15 +33018,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -32928,17 +33089,18 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=12"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=12",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=12"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -33070,17 +33232,18 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=12"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=12",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=12"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -33142,17 +33305,18 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=12"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=12",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=12"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -33214,17 +33378,18 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=12"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=12",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=12"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -33286,17 +33451,18 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=12"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=12",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=12"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -33358,17 +33524,18 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=12"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=12",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=12"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -33430,15 +33597,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -33500,15 +33668,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=16(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -33570,17 +33739,18 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=12"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=12",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=12"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -33711,17 +33881,18 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=12"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=12",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=12"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -33783,15 +33954,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -33920,15 +34092,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -33990,15 +34163,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -34060,15 +34234,16 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -34130,17 +34305,18 @@
       ],
       "shard": "mena-iq",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=12"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=IQ",
-        "DUPLICATE_TIMELINE_GROUP=12",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=12"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -34202,15 +34378,16 @@
       ],
       "shard": "mena-ps",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=PS",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -34272,15 +34449,16 @@
       ],
       "shard": "mena-ps",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=PS",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -34342,15 +34520,16 @@
       ],
       "shard": "mena-ps",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=PS",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -34412,17 +34591,18 @@
       ],
       "shard": "mena-ps",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=PS",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -34484,15 +34664,16 @@
       ],
       "shard": "mena-ps",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=PS",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -34554,15 +34735,16 @@
       ],
       "shard": "mena-ps",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=PS",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -34694,17 +34876,18 @@
       ],
       "shard": "mena-ps",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
         "FOREIGN_FEED_ID=AE_EXPECTED=PS",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 68,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -34766,15 +34949,16 @@
       ],
       "shard": "mena-ps",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=PS",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -34836,15 +35020,16 @@
       ],
       "shard": "mena-ps",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=PS",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -34977,15 +35162,16 @@
       ],
       "shard": "mena-ps",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=PS",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -35047,15 +35233,16 @@
       ],
       "shard": "mena-ps",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=PS",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -35117,15 +35304,16 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -35187,15 +35375,16 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -35328,15 +35517,16 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -35398,16 +35588,17 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=18(100%)",
         "GAPS_GT_2H=1/TOTAL=16.0h",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -35469,16 +35660,17 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=18(100%)",
         "GAPS_GT_2H=1/TOTAL=16.0h",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -35607,16 +35799,17 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "LONG_GT_6H=2",
         "EMPTY_DESC=45(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -35678,15 +35871,16 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=16(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -35748,16 +35942,17 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=18(100%)",
         "GAPS_GT_2H=1/TOTAL=16.0h",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -35819,15 +36014,16 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=16(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -35889,15 +36085,16 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=16(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -35959,16 +36156,17 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "LONG_GT_6H=2",
         "EMPTY_DESC=45(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -36030,16 +36228,17 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=18(100%)",
         "GAPS_GT_2H=1/TOTAL=16.0h",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -36101,16 +36300,17 @@
       ],
       "shard": "mena-ye",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "LONG_GT_6H=2",
         "EMPTY_DESC=45(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=YE",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -36242,16 +36442,17 @@
       ],
       "shard": "mena-dz",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=9"
+      ],
       "warnings": [
         "LONG_GT_6H=2",
         "EMPTY_DESC=61(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=DZ",
-        "DUPLICATE_TIMELINE_GROUP=9",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=9"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -36382,15 +36583,16 @@
       ],
       "shard": "mena-dz",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=DZ",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -36521,15 +36723,16 @@
       ],
       "shard": "mena-dz",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=16(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=DZ",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -36591,15 +36794,16 @@
       ],
       "shard": "mena-dz",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=16(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=DZ",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -36661,15 +36865,16 @@
       ],
       "shard": "mena-dz",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=DZ",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -36868,16 +37073,17 @@
       ],
       "shard": "mena-dz",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=9"
+      ],
       "warnings": [
         "LONG_GT_6H=2",
         "EMPTY_DESC=61(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=DZ",
-        "DUPLICATE_TIMELINE_GROUP=9",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=9"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -37006,16 +37212,17 @@
       ],
       "shard": "mena-dz",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=18(100%)",
         "GAPS_GT_2H=1/TOTAL=16.0h",
         "FOREIGN_FEED_ID=AE_EXPECTED=DZ",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -37077,16 +37284,17 @@
       ],
       "shard": "mena-dz",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=9"
+      ],
       "warnings": [
         "LONG_GT_6H=2",
         "EMPTY_DESC=61(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=DZ",
-        "DUPLICATE_TIMELINE_GROUP=9",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=9"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -37148,15 +37356,16 @@
       ],
       "shard": "mena-dz",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=4"
+      ],
       "warnings": [
         "EMPTY_DESC=44(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=DZ",
-        "DUPLICATE_TIMELINE_GROUP=4",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=4"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -37423,15 +37632,16 @@
       ],
       "shard": "mena-tn",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=47(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=TN",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -37493,15 +37703,16 @@
       ],
       "shard": "mena-tn",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=47(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=TN",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -37563,15 +37774,16 @@
       ],
       "shard": "mena-ly",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LY",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -37633,15 +37845,16 @@
       ],
       "shard": "mena-ly",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LY",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -37703,15 +37916,16 @@
       ],
       "shard": "mena-ly",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=5"
+      ],
       "warnings": [
         "EMPTY_DESC=40(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LY",
-        "DUPLICATE_TIMELINE_GROUP=5",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=5"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -37773,15 +37987,16 @@
       ],
       "shard": "mena-ly",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=5"
+      ],
       "warnings": [
         "EMPTY_DESC=40(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=LY",
-        "DUPLICATE_TIMELINE_GROUP=5",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=5"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -37843,15 +38058,16 @@
       ],
       "shard": "mena-sd",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SD",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -37913,15 +38129,16 @@
       ],
       "shard": "mena-sd",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SD",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -38054,15 +38271,16 @@
       ],
       "shard": "mena-sd",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SD",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -38191,16 +38409,17 @@
       ],
       "shard": "mena-sy",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=18(100%)",
         "GAPS_GT_2H=1/TOTAL=16.0h",
         "FOREIGN_FEED_ID=AE_EXPECTED=SY",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -38262,15 +38481,16 @@
       ],
       "shard": "mena-sy",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SY",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -38332,15 +38552,16 @@
       ],
       "shard": "mena-sy",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=SY",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -38402,16 +38623,17 @@
       ],
       "shard": "mena-mr",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=9"
+      ],
       "warnings": [
         "LONG_GT_6H=2",
         "EMPTY_DESC=61(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=MR",
-        "DUPLICATE_TIMELINE_GROUP=9",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=9"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -38474,7 +38696,7 @@
       "shard": "mena-other",
       "feed_country": "qa",
       "issues": [
-        "TECHNICAL_OR_LOGO_ID"
+        "TECHNICAL_OR_ASSET_ID"
       ],
       "warnings": [
         "EMPTY_DESC=124(100%)"
@@ -38543,7 +38765,7 @@
       "shard": "mena-other",
       "feed_country": "qa",
       "issues": [
-        "TECHNICAL_OR_LOGO_ID"
+        "TECHNICAL_OR_ASSET_ID"
       ],
       "warnings": [
         "EMPTY_DESC=57(100%)"
@@ -38612,7 +38834,7 @@
       "shard": "mena-other",
       "feed_country": "qa",
       "issues": [
-        "TECHNICAL_OR_LOGO_ID"
+        "TECHNICAL_OR_ASSET_ID"
       ],
       "warnings": [
         "EMPTY_DESC=59(100%)"
@@ -38747,14 +38969,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -38816,14 +39039,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -38885,14 +39109,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -39098,14 +39323,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -39436,14 +39662,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -39505,15 +39732,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=18(100%)",
         "GAPS_GT_2H=1/TOTAL=16.0h",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -39575,14 +39803,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -39644,14 +39873,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -39713,14 +39943,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -39782,15 +40013,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=9"
+      ],
       "warnings": [
         "LONG_GT_6H=2",
         "EMPTY_DESC=61(100%)",
-        "DUPLICATE_TIMELINE_GROUP=9",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=9"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -39852,14 +40084,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -39921,14 +40154,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=4"
+      ],
       "warnings": [
         "EMPTY_DESC=44(100%)",
-        "DUPLICATE_TIMELINE_GROUP=4",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=4"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -40059,14 +40293,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -40128,14 +40363,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -40197,15 +40433,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -40267,14 +40504,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -40336,16 +40574,17 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -40407,16 +40646,17 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -40478,14 +40718,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -40754,14 +40995,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -40823,15 +41065,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=9"
+      ],
       "warnings": [
         "LONG_GT_6H=2",
         "EMPTY_DESC=61(100%)",
-        "DUPLICATE_TIMELINE_GROUP=9",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=9"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -40893,14 +41136,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -40962,16 +41206,17 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41033,14 +41278,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41102,14 +41348,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41171,14 +41418,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41240,14 +41488,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41309,14 +41558,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41378,15 +41628,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=9"
+      ],
       "warnings": [
         "LONG_GT_6H=2",
         "EMPTY_DESC=61(100%)",
-        "DUPLICATE_TIMELINE_GROUP=9",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=9"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41448,15 +41699,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=9"
+      ],
       "warnings": [
         "LONG_GT_6H=2",
         "EMPTY_DESC=61(100%)",
-        "DUPLICATE_TIMELINE_GROUP=9",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=9"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41518,14 +41770,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41587,14 +41840,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41656,14 +41910,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41725,14 +41980,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41794,15 +42050,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=9"
+      ],
       "warnings": [
         "LONG_GT_6H=2",
         "EMPTY_DESC=61(100%)",
-        "DUPLICATE_TIMELINE_GROUP=9",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=9"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41864,14 +42121,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=75(100%)",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -41933,16 +42191,17 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42004,14 +42263,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42073,14 +42333,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42142,15 +42403,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42212,15 +42474,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42282,15 +42545,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42352,15 +42616,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42422,15 +42687,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42492,15 +42758,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42562,14 +42829,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42699,14 +42967,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42768,14 +43037,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42904,16 +43174,17 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=12"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
-        "DUPLICATE_TIMELINE_GROUP=12",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=12"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -42975,14 +43246,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -43044,14 +43316,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -43113,14 +43386,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -43182,15 +43456,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -43252,14 +43527,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -43321,14 +43597,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -43457,14 +43734,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -43593,15 +43871,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -43730,14 +44009,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -43799,14 +44079,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -45469,16 +45750,17 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=61(100%)",
         "REPEATED_TITLE=80%",
         "LOW_TITLE_DIVERSITY=10%",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -45540,14 +45822,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -45609,14 +45892,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -45678,14 +45962,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -46078,14 +46363,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -46147,14 +46433,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -46281,12 +46568,14 @@
       ],
       "shard": "mena-other",
       "feed_country": "qa",
-      "issues": [],
+      "issues": [
+        "TECHNICAL_OR_ASSET_ID"
+      ],
       "warnings": [
         "EMPTY_DESC=44(100%)"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 57,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -46415,14 +46704,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -46552,15 +46842,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=18(100%)",
         "GAPS_GT_2H=1/TOTAL=16.0h",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -47032,14 +47323,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -47101,14 +47393,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -47639,14 +47932,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -47708,14 +48002,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -47777,14 +48072,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -48177,14 +48473,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -48311,14 +48608,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -48380,14 +48678,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -48645,7 +48944,7 @@
       "shard": "mena-other",
       "feed_country": "qa",
       "issues": [
-        "TECHNICAL_OR_LOGO_ID"
+        "TECHNICAL_OR_ASSET_ID"
       ],
       "warnings": [
         "SHORT_LT_2M=2",
@@ -48911,15 +49210,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -48981,15 +49281,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -49051,15 +49352,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -49121,15 +49423,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -49191,15 +49494,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -49261,12 +49565,14 @@
       ],
       "shard": "mena-other",
       "feed_country": "qa",
-      "issues": [],
+      "issues": [
+        "TECHNICAL_OR_ASSET_ID"
+      ],
       "warnings": [
         "EMPTY_DESC=28(100%)"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 57,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -49328,14 +49634,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -49462,14 +49769,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -49600,14 +49908,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -50001,14 +50310,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -50070,14 +50380,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -50139,14 +50450,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=47(100%)",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -50208,15 +50520,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -50278,15 +50591,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -50348,15 +50662,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -50418,15 +50733,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -50488,15 +50804,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -50558,15 +50875,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -52260,7 +52578,7 @@
       "shard": "mena-other",
       "feed_country": "qa",
       "issues": [
-        "TECHNICAL_OR_LOGO_ID"
+        "TECHNICAL_OR_ASSET_ID"
       ],
       "warnings": [
         "EMPTY_DESC=32(100%)",
@@ -52534,14 +52852,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -53037,14 +53356,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -53368,14 +53688,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -53437,14 +53758,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=5"
+      ],
       "warnings": [
         "EMPTY_DESC=40(100%)",
-        "DUPLICATE_TIMELINE_GROUP=5",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=5"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -53506,14 +53828,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -53575,14 +53898,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -53644,14 +53968,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -53847,15 +54172,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -53982,14 +54308,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -54051,14 +54378,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -54252,15 +54580,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=6"
+      ],
       "warnings": [
         "EMPTY_DESC=68(100%)",
         "LOW_TITLE_DIVERSITY=16%",
-        "DUPLICATE_TIMELINE_GROUP=6",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=6"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -54389,14 +54718,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -54458,14 +54788,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -54662,14 +54993,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -54800,14 +55132,13 @@
       "shard": "mena-other",
       "feed_country": "ae",
       "issues": [
-        "TECHNICAL_OR_LOGO_ID"
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
       ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 57,
+      "score": 40,
       "verdict": "FAIL",
       "auto_lock_safe": false
     },
@@ -55005,14 +55336,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=10"
+      ],
       "warnings": [
         "EMPTY_DESC=16(100%)",
-        "DUPLICATE_TIMELINE_GROUP=10",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=10"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -55074,14 +55406,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -55279,14 +55612,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -56014,14 +56348,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -56083,14 +56418,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -56152,14 +56488,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -56221,14 +56558,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -56290,14 +56628,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -56760,14 +57099,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -56963,14 +57303,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=3"
+      ],
       "warnings": [
         "EMPTY_DESC=34(100%)",
-        "DUPLICATE_TIMELINE_GROUP=3",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=3"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -57167,15 +57508,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=6"
+      ],
       "warnings": [
         "EMPTY_DESC=68(100%)",
         "LOW_TITLE_DIVERSITY=16%",
-        "DUPLICATE_TIMELINE_GROUP=6",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=6"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -57376,14 +57718,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=7"
+      ],
       "warnings": [
         "EMPTY_DESC=70(100%)",
-        "DUPLICATE_TIMELINE_GROUP=7",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=7"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -57445,14 +57788,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=7"
+      ],
       "warnings": [
         "EMPTY_DESC=70(100%)",
-        "DUPLICATE_TIMELINE_GROUP=7",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=7"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -57514,14 +57858,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=7"
+      ],
       "warnings": [
         "EMPTY_DESC=70(100%)",
-        "DUPLICATE_TIMELINE_GROUP=7",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=7"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -57651,14 +57996,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -57720,14 +58066,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -57858,14 +58205,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -57927,14 +58275,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -58469,14 +58818,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -58538,14 +58888,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -58675,14 +59026,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -58744,14 +59096,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -58813,14 +59166,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -58882,14 +59236,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -58951,14 +59306,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -59154,14 +59510,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -59291,14 +59648,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -59557,12 +59915,14 @@
       ],
       "shard": "mena-other",
       "feed_country": "qa",
-      "issues": [],
+      "issues": [
+        "TECHNICAL_OR_ASSET_ID"
+      ],
       "warnings": [
         "EMPTY_DESC=18(100%)"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 57,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -59689,12 +60049,14 @@
       ],
       "shard": "mena-other",
       "feed_country": "qa",
-      "issues": [],
+      "issues": [
+        "TECHNICAL_OR_ASSET_ID"
+      ],
       "warnings": [
         "EMPTY_DESC=26(100%)"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 57,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -59821,12 +60183,14 @@
       ],
       "shard": "mena-other",
       "feed_country": "qa",
-      "issues": [],
+      "issues": [
+        "TECHNICAL_OR_ASSET_ID"
+      ],
       "warnings": [
         "EMPTY_DESC=43(100%)"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 57,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -60345,14 +60709,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -60414,15 +60779,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -60484,15 +60850,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -60554,15 +60921,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -60624,15 +60992,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=29"
+      ],
       "warnings": [
         "EMPTY_DESC=37(100%)",
         "LOW_TITLE_DIVERSITY=19%",
-        "DUPLICATE_TIMELINE_GROUP=29",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=29"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -60694,14 +61063,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -60828,16 +61198,17 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=8"
+      ],
       "warnings": [
         "EMPTY_DESC=49(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=2%",
-        "DUPLICATE_TIMELINE_GROUP=8",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=8"
       ],
-      "score": 76,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -61022,14 +61393,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -61425,14 +61797,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -61494,14 +61867,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -61564,7 +61938,7 @@
       "shard": "mena-other",
       "feed_country": "qa",
       "issues": [
-        "TECHNICAL_OR_LOGO_ID"
+        "TECHNICAL_OR_ASSET_ID"
       ],
       "warnings": [
         "EMPTY_DESC=36(100%)",
@@ -61701,14 +62075,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -61770,15 +62145,16 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=6"
+      ],
       "warnings": [
         "EMPTY_DESC=68(100%)",
         "LOW_TITLE_DIVERSITY=16%",
-        "DUPLICATE_TIMELINE_GROUP=6",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=6"
       ],
-      "score": 84,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -61840,14 +62216,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -62044,14 +62421,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=5"
+      ],
       "warnings": [
         "EMPTY_DESC=40(100%)",
-        "DUPLICATE_TIMELINE_GROUP=5",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=5"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -62113,14 +62491,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=36"
+      ],
       "warnings": [
         "EMPTY_DESC=81(100%)",
-        "DUPLICATE_TIMELINE_GROUP=36",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=36"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
@@ -62377,14 +62756,15 @@
       ],
       "shard": "mena-other",
       "feed_country": "ae",
-      "issues": [],
+      "issues": [
+        "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=158"
+      ],
       "warnings": [
         "EMPTY_DESC=59(100%)",
-        "DUPLICATE_TIMELINE_GROUP=158",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "DUPLICATE_TIMELINE_GROUP=158"
       ],
-      "score": 92,
-      "verdict": "REVIEW",
+      "score": 40,
+      "verdict": "FAIL",
       "auto_lock_safe": false
     },
     {
