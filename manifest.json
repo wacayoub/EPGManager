@@ -1,23 +1,23 @@
 {
-  "schema": 3,
-  "generated": "2026-09-13T12:00:17.454365+00:00",
+  "schema": 4,
+  "generated": "2026-09-13T12:23:05.413097+00:00",
   "status": "ok",
   "window_hours": 48,
-  "channels": 1119,
-  "programmes": 64781,
+  "channels": 1118,
+  "programmes": 64202,
   "catalogue_channels": 246,
   "fresh_channels": 1107,
-  "lkg_channels": 12,
+  "lkg_channels": 11,
   "no_epg_channels": 40,
-  "arabic_title_ratio": 0.3625,
-  "english_title_ratio": 0.6355,
-  "arabic_desc_ratio": 0.2837,
-  "premium_hybrid_events": 1262,
+  "arabic_title_ratio": 0.3578,
+  "english_title_ratio": 0.6403,
+  "arabic_desc_ratio": 0.2794,
+  "premium_hybrid_events": 1250,
   "remote_sources_ok": 20,
   "remote_sources_failed": [],
   "logical_duplicate_groups": 394,
   "source_counts": {
-    "merged-external": 911,
+    "merged-external": 910,
     "shahid.mbc.net": 56,
     "elcinema.com": 49,
     "osn.com": 46,
@@ -30,6 +30,68 @@
     "freetv.tv": 1,
     "i24news.tv": 1
   },
-  "size_bytes": 2554444,
-  "sha256": "750da0095231fa64a8b9465a2e191dc97cfe6ea6bbb97ed6ed1df0fafe0ac37b"
+  "size_bytes": 2528028,
+  "sha256": "50e5549900e9c70b6753d396ea1ddc1ac6bb994066c2d5062a9f268261cd8deb",
+  "split_policy": "beIN/OSN -> premium; all other MENA -> mena; legacy combined retained",
+  "splits": {
+    "mena": {
+      "channels": 1031,
+      "programmes": 60585,
+      "arabic_title_ratio": 0.3773,
+      "english_title_ratio": 0.6212,
+      "arabic_desc_ratio": 0.2755,
+      "source_counts": {
+        "merged-external": 836,
+        "shahid.mbc.net": 56,
+        "elcinema.com": 49,
+        "osn.com": 36,
+        "bein.com": 33,
+        "rotana.net": 8,
+        "roya-tv.com": 5,
+        "ayn.om": 4,
+        "aljazeera.com": 2,
+        "freetv.tv": 1,
+        "i24news.tv": 1
+      },
+      "size_bytes": 2414446,
+      "sha256": "124122c52873794e88f813015227001f782214299516dc412f5897cb0dee3a72"
+    },
+    "premium": {
+      "channels": 87,
+      "programmes": 3617,
+      "arabic_title_ratio": 0.0315,
+      "english_title_ratio": 0.9594,
+      "arabic_desc_ratio": 0.3434,
+      "source_counts": {
+        "merged-external": 74,
+        "osn.com": 10,
+        "beinsports.com": 3
+      },
+      "size_bytes": 113710,
+      "sha256": "ef1130f0d865d2dd5812d615a9526889916a432a434d59da2f5e0d6cb3fd4e48"
+    },
+    "legacy_combined": {
+      "channels": 1118,
+      "programmes": 64202,
+      "arabic_title_ratio": 0.3578,
+      "english_title_ratio": 0.6403,
+      "arabic_desc_ratio": 0.2794,
+      "source_counts": {
+        "merged-external": 910,
+        "shahid.mbc.net": 56,
+        "elcinema.com": 49,
+        "osn.com": 46,
+        "bein.com": 33,
+        "rotana.net": 8,
+        "roya-tv.com": 5,
+        "ayn.om": 4,
+        "beinsports.com": 3,
+        "aljazeera.com": 2,
+        "freetv.tv": 1,
+        "i24news.tv": 1
+      },
+      "size_bytes": 2528028,
+      "sha256": "50e5549900e9c70b6753d396ea1ddc1ac6bb994066c2d5062a9f268261cd8deb"
+    }
+  }
 }

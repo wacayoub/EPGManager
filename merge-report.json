@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-13T11:59:43.036344+00:00",
+  "generated": "2026-09-13T12:22:34.728021+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -127,17 +127,17 @@
       "bytes": 4291
     }
   ],
-  "candidate_channel_rows": 1772,
+  "candidate_channel_rows": 1773,
   "unique_logical_channels": 1109,
-  "programmes": 64211,
-  "premium_hybrid_events": 1262,
+  "programmes": 63629,
+  "premium_hybrid_events": 1250,
   "stats": {
     "logical_duplicate_groups": 394,
     "regular_channels": 1007,
-    "source_openepg": 373,
-    "source_epgshare": 540,
+    "source_openepg": 369,
+    "source_epgshare": 543,
     "premium_channels": 102,
-    "source_primary": 196
+    "source_primary": 197
   },
   "aliases": [
     {
@@ -243,8 +243,8 @@
       "aliases": []
     },
     {
-      "canonical_id": "Abu Dhabi TV.eg",
-      "canonical_name": "Abu Dhabi TV.eg",
+      "canonical_id": "AbuDhabiTV.ae@SD",
+      "canonical_name": "Abu Dhabi TV HD",
       "logical_key": "abu dhabi tv",
       "aliases": [
         {
@@ -266,6 +266,11 @@
           "id": "Abu Dhabi TV HD.sa",
           "name": "Abu Dhabi TV HD.sa",
           "source": "openepg-saudi6"
+        },
+        {
+          "id": "Abu Dhabi TV.eg",
+          "name": "Abu Dhabi TV.eg",
+          "source": "openepg-egypt2"
         }
       ]
     },
@@ -783,26 +788,36 @@
       ]
     },
     {
-      "canonical_id": "Asharq.sa",
-      "canonical_name": "Asharq.sa",
+      "canonical_id": "EN:.Asharq.sa",
+      "canonical_name": "EN: Asharq",
       "logical_key": "asharq",
       "aliases": [
         {
-          "id": "EN:.Asharq.sa",
-          "name": "EN: Asharq",
-          "source": "epgshare-sa2"
+          "id": "Asharq.sa",
+          "name": "Asharq.sa",
+          "source": "openepg-saudi1"
+        },
+        {
+          "id": "Asharq.sa",
+          "name": "Asharq.sa",
+          "source": "openepg-saudi2"
         }
       ]
     },
     {
-      "canonical_id": "Asharq Discovery.sa",
-      "canonical_name": "Asharq Discovery.sa",
+      "canonical_id": "Asharq.Discovery.HD.ae",
+      "canonical_name": "Asharq Discovery HD",
       "logical_key": "asharq discovery",
       "aliases": [
         {
-          "id": "Asharq.Discovery.HD.ae",
-          "name": "Asharq Discovery HD",
-          "source": "epgshare-ae1"
+          "id": "Asharq Discovery.sa",
+          "name": "Asharq Discovery.sa",
+          "source": "openepg-saudi1"
+        },
+        {
+          "id": "Asharq Discovery.sa",
+          "name": "Asharq Discovery.sa",
+          "source": "openepg-saudi2"
         }
       ]
     },
@@ -3147,14 +3162,19 @@
       ]
     },
     {
-      "canonical_id": "Oman TV Sport.sa",
-      "canonical_name": "Oman TV Sport.sa",
+      "canonical_id": "Oman.TV.Sport.HD.ae",
+      "canonical_name": "Oman TV Sport HD",
       "logical_key": "oman tv sport",
       "aliases": [
         {
-          "id": "Oman.TV.Sport.HD.ae",
-          "name": "Oman TV Sport HD",
-          "source": "epgshare-ae1"
+          "id": "Oman TV Sport.sa",
+          "name": "Oman TV Sport.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Oman TV Sport.sa",
+          "name": "Oman TV Sport.sa",
+          "source": "openepg-saudi6"
         }
       ]
     },
@@ -4313,6 +4333,18 @@
       ]
     },
     {
+      "canonical_id": "LanaTV.lb@SD",
+      "canonical_name": "ال تي في",
+      "logical_key": "ال تي في",
+      "aliases": [
+        {
+          "id": "ال تي في.eg",
+          "name": "ال تي في.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "JordanTV.jo@SD",
       "canonical_name": "الأردن",
       "logical_key": "الأردن",
@@ -4416,18 +4448,6 @@
         {
           "id": "السومرية.eg",
           "name": "السومرية.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "SharjahTV.ae@SD",
-      "canonical_name": "الشارقة",
-      "logical_key": "الشارقة",
-      "aliases": [
-        {
-          "id": "الشارقة.eg",
-          "name": "الشارقة.eg",
           "source": "openepg-egypt1"
         }
       ]
