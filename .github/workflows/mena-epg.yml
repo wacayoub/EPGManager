@@ -5,6 +5,13 @@ on:
   schedule:
     - cron: "0 5,6,17,18 * * *"
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/mena-epg.yml"
+      - "tools/mena_cloud_catalog.py"
+      - "tools/mena_cloud_merge.py"
+      - "tools/mena_cloud_finalize.py"
+      - "tools/mena_cloud_shards.py"
 
 permissions:
   contents: write
@@ -71,7 +78,8 @@ jobs:
           python -m py_compile \
             tools/mena_cloud_catalog.py \
             tools/mena_cloud_merge.py \
-            tools/mena_cloud_finalize.py
+            tools/mena_cloud_finalize.py \
+            tools/mena_cloud_shards.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
@@ -135,7 +143,7 @@ jobs:
             --cache-dir output/upstream \
             --window-hours 48
 
-      - name: Finalize + split MENA and Premium with per-channel LKG
+      - name: Finalize combined MENA with per-channel LKG
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
@@ -148,7 +156,18 @@ jobs:
             --window-hours 48 \
             --output-dir output/final
 
-      - name: Validate production feeds and split invariants
+      - name: Split MENA by country and premium provider
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/mena_cloud_shards.py \
+            --input output/final/mena-arabic.xml.gz \
+            --catalog-manifest output/catalog.json \
+            --output-dir output/final \
+            --manifest output/final/shards.json
+
+      - name: Validate production feeds and exclusive shard invariants
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
@@ -160,46 +179,40 @@ jobs:
           def load(stem):
               p = Path('output/final/%s.xml.gz' % stem)
               root = ET.fromstring(gzip.decompress(p.read_bytes()))
-              channels = root.findall('channel')
-              programmes = root.findall('programme')
-              ids = [(c.get('id') or '').strip() for c in channels]
+              ids = [(c.get('id') or '').strip() for c in root.findall('channel')]
               assert all(ids), '%s: empty channel id' % stem
-              assert len(ids) == len(set(ids)), '%s: duplicate channel ids remain' % stem
-              event_keys = []
-              for e in programmes:
+              assert len(ids) == len(set(ids)), '%s: duplicate channel ids' % stem
+              events = root.findall('programme')
+              keys = []
+              for e in events:
                   key = ((e.get('channel') or '').strip(),
                          (e.get('start') or '').strip(),
                          (e.get('stop') or '').strip())
                   assert key[0] and key[1], '%s: invalid programme key' % stem
-                  event_keys.append(key)
-              assert len(event_keys) == len(set(event_keys)), '%s: duplicate programme slots remain' % stem
-              assert set(e.get('channel') for e in programmes).issubset(set(ids)), '%s: programme references missing channel' % stem
-              return set(ids), len(programmes)
+                  keys.append(key)
+              assert len(keys) == len(set(keys)), '%s: duplicate programme slots' % stem
+              assert set(e.get('channel') for e in events).issubset(set(ids)), '%s: orphan programme' % stem
+              return set(ids), len(events)
 
           combined_ids, combined_events = load('mena-arabic')
-          mena_ids, mena_events = load('mena')
-          premium_ids, premium_events = load('premium')
-          manifest = json.loads(Path('output/final/manifest.json').read_text(encoding='utf-8'))
-
-          assert len(combined_ids) >= 25, len(combined_ids)
-          assert combined_events >= 100, combined_events
-          assert len(mena_ids) >= 25, len(mena_ids)
-          assert mena_events >= 100, mena_events
-          assert len(premium_ids) >= 1, len(premium_ids)
-          assert premium_events >= 2, premium_events
-          assert not (mena_ids & premium_ids), 'MENA/Premium split overlap'
-          assert (mena_ids | premium_ids) == combined_ids, 'MENA/Premium union != combined'
-          assert manifest['channels'] == len(combined_ids)
-          assert manifest['programmes'] == combined_events
-          assert manifest['window_hours'] == 48
-          assert manifest['splits']['mena']['channels'] == len(mena_ids)
-          assert manifest['splits']['premium']['channels'] == len(premium_ids)
-
-          print('PASS: combined=%d/%d MENA=%d/%d PREMIUM=%d/%d hybrid=%d' % (
-              len(combined_ids), combined_events,
-              len(mena_ids), mena_events,
-              len(premium_ids), premium_events,
-              manifest.get('premium_hybrid_events', 0)))
+          main_manifest = json.loads(Path('output/final/manifest.json').read_text(encoding='utf-8'))
+          shard_manifest = json.loads(Path('output/final/shards.json').read_text(encoding='utf-8'))
+          assert main_manifest['window_hours'] == 48
+          assert combined_events >= 100
+          seen = set()
+          for stem, expected in shard_manifest['shards'].items():
+              ids, events = load(stem)
+              assert len(ids) == expected['channels'], (stem, len(ids), expected['channels'])
+              assert events == expected['programmes'], (stem, events, expected['programmes'])
+              assert not (seen & ids), 'exclusive shard overlap: %s' % stem
+              seen.update(ids)
+          assert len(seen) == shard_manifest['published_channels']
+          assert len(combined_ids) == shard_manifest['input_channels']
+          assert len(seen) + shard_manifest['excluded_morocco_channels'] == len(combined_ids)
+          assert shard_manifest['other_channels'] == shard_manifest['shards']['mena-other']['channels']
+          print('PASS: combined=%d/%d exclusive_shards=%d MoroccoExcluded=%d Other=%d' % (
+              len(combined_ids), combined_events, len(seen),
+              shard_manifest['excluded_morocco_channels'], shard_manifest['other_channels']))
           PY
 
       - name: Publish atomically to mena-data
@@ -214,23 +227,20 @@ jobs:
           git worktree add publish origin/mena-data
           cd publish
           git checkout -B mena-data origin/mena-data
-          cp ../output/final/mena-arabic.xml.gz .
-          cp ../output/final/mena-arabic.txt .
-          cp ../output/final/mena.xml.gz .
-          cp ../output/final/mena.txt .
-          cp ../output/final/premium.xml.gz .
-          cp ../output/final/premium.txt .
+          cp ../output/final/*.xml.gz .
+          cp ../output/final/*.txt .
           cp ../output/final/manifest.json .
+          cp ../output/final/shards.json .
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
           printf '%s\n' \
-            'EPGManager MENA Cloud data branch. Receiver-optimized split: mena.xml.gz contains regular MENA TV, premium.xml.gz contains beIN/OSN, and mena-arabic.xml.gz remains the legacy combined compatibility feed. TV-only, rolling 48-hour guide, conservative de-duplication, Arabic-first regular metadata, and premium English-title + Arabic-description enrichment. Morocco remains on its dedicated cloud feed. SAT.TV is not used.' \
+            'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver sources are split exclusively by premium/provider group first, then by country, then MENA Other. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility. SAT.TV is not used.' \
             > README.md
-          git add mena-arabic.xml.gz mena-arabic.txt mena.xml.gz mena.txt premium.xml.gz premium.txt manifest.json catalog.json merge-report.json README.md
+          git add *.xml.gz *.txt manifest.json shards.json catalog.json merge-report.json README.md
           if git diff --cached --quiet; then
             echo "No MENA data changes."
             exit 0
           fi
           stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
-          git commit -m "MENA Cloud split EPG ${stamp}"
+          git commit -m "MENA Cloud country/provider shards ${stamp}"
           git push origin mena-data
