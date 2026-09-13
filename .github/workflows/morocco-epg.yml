@@ -12,6 +12,7 @@ on:
       - ".github/workflows/morocco-epg.yml"
       - "tools/morocco_epg.py"
       - "tools/morocco_cloud_runner.py"
+      - "tools/morocco_cloud_runner_ar.py"
       - "tools/morocco_epg_parts/**"
 
 permissions:
@@ -123,7 +124,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile tools/morocco_epg.py tools/morocco_cloud_runner.py
+          python -m py_compile tools/morocco_epg.py tools/morocco_cloud_runner.py tools/morocco_cloud_runner_ar.py
 
       - name: Download Last Known Good feed
         shell: bash
@@ -133,7 +134,7 @@ jobs:
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
             -o previous/morocco.xml.gz || true
 
-      - name: Generate Morocco XMLTV with hard deadline
+      - name: Generate Morocco XMLTV with Arabic 2M quality layer
         id: generate
         shell: bash
         run: |
@@ -143,7 +144,7 @@ jobs:
             EXTRA="--scheduled"
           fi
           timeout --signal=TERM --kill-after=15s 300s \
-            python tools/morocco_cloud_runner.py \
+            python tools/morocco_cloud_runner_ar.py \
               --output-dir output \
               --previous previous/morocco.xml.gz \
               --days 7 \
@@ -157,12 +158,12 @@ jobs:
           fi
           exit 0
 
-      - name: Validate candidate without risking Last Known Good
+      - name: Validate candidate and Arabic quality
         id: candidate
         shell: bash
         run: |
           python - <<'PY'
-          import gzip, json, os, xml.etree.ElementTree as ET
+          import gzip, json, os, re, xml.etree.ElementTree as ET
           from pathlib import Path
 
           out = Path(os.environ['GITHUB_OUTPUT'])
@@ -189,8 +190,28 @@ jobs:
                           if manifest.get('programmes') != len(programmes):
                               reason = 'manifest/programme count mismatch'
                           else:
-                              ready = True
-                              reason = 'PASS: %d stable channels, %d programmes' % (len(channels), len(programmes))
+                              ar = re.compile(r'[\u0600-\u06ff]')
+                              twom = [x for x in programmes if x.get('channel') == '2M']
+                              bad_t = []
+                              bad_d = []
+                              for x in twom:
+                                  t = x.find('title')
+                                  d = x.find('desc')
+                                  tt = (t.text or '') if t is not None else ''
+                                  dd = (d.text or '') if d is not None else ''
+                                  if t is None or t.get('lang') != 'ar' or not ar.search(tt):
+                                      bad_t.append(tt)
+                                  if d is None or d.get('lang') != 'ar' or not ar.search(dd):
+                                      bad_d.append(dd)
+                              if len(twom) < 5:
+                                  reason = '2M programme count too small: %d' % len(twom)
+                              elif bad_t:
+                                  reason = '2M Arabic title quality failed: %d/%d bad; sample=%r' % (len(bad_t), len(twom), bad_t[:3])
+                              elif bad_d:
+                                  reason = '2M Arabic description quality failed: %d/%d bad; sample=%r' % (len(bad_d), len(twom), bad_d[:3])
+                              else:
+                                  ready = True
+                                  reason = 'PASS: %d channels, %d programmes; 2M=%d with 100%% Arabic title/desc' % (len(channels), len(programmes), len(twom))
               except Exception as exc:
                   reason = 'candidate parse failed: %s' % exc
           print(reason)
@@ -213,16 +234,17 @@ jobs:
           cp output/morocco.xml.gz publish/morocco.xml.gz
           cp output/morocco.txt publish/morocco.txt
           cp output/manifest.json publish/manifest.json
+          cp output/2m_audit.json publish/2m_audit.json
           printf '%s\n' 'EPGManager Morocco Cloud data branch.' > publish/README.md
 
           cd publish
-          git add morocco.xml.gz morocco.txt manifest.json README.md
+          git add morocco.xml.gz morocco.txt manifest.json 2m_audit.json README.md
           if git diff --cached --quiet; then
             echo "No EPG content change; nothing to publish."
             exit 0
           fi
           VERSION=$(python -c "import json; print(json.load(open('manifest.json')).get('version','unknown'))")
-          git commit -m "Morocco EPG ${VERSION}"
+          git commit -m "Morocco EPG ${VERSION} Arabic 2M"
           git push origin epg-data
 
       - name: Keep endpoint healthy when candidate is rejected
