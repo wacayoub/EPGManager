@@ -1,0 +1,337 @@
+{
+  "schema": 1,
+  "mode": "virtual-epgmanager",
+  "targets": [
+    {
+      "key": "mbc5",
+      "label": "MBC5",
+      "receiver": "MBC 5 HD",
+      "shard": "provider-mbc",
+      "policy": "arabic",
+      "safe_lock": true,
+      "best_id": "MBC5.ae@SD",
+      "best_status": "PASS",
+      "candidates": [
+        {
+          "id": "MBC5.ae@SD",
+          "name": "MBC5",
+          "events": 36,
+          "score": 100.0,
+          "status": "PASS",
+          "title_ar_pct": 100.0,
+          "title_en_pct": 0.0,
+          "desc_ar_pct": 100.0,
+          "desc_en_pct": 0.0,
+          "empty_desc": 0,
+          "overlaps": 0,
+          "short_duplicates": 0,
+          "nonpositive": 0,
+          "mixed_tz_days": 0,
+          "mbc_meta_titles": 0,
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "key": "mbc1",
+      "label": "MBC1",
+      "receiver": "MBC 1 HD",
+      "shard": "provider-mbc",
+      "policy": "arabic",
+      "safe_lock": true,
+      "best_id": "MBC1.ae@SD",
+      "best_status": "PASS",
+      "candidates": [
+        {
+          "id": "MBC1.ae@SD",
+          "name": "MBC1",
+          "events": 47,
+          "score": 99.6,
+          "status": "PASS",
+          "title_ar_pct": 100.0,
+          "title_en_pct": 0.0,
+          "desc_ar_pct": 100.0,
+          "desc_en_pct": 0.0,
+          "empty_desc": 5,
+          "overlaps": 0,
+          "short_duplicates": 0,
+          "nonpositive": 0,
+          "mixed_tz_days": 0,
+          "mbc_meta_titles": 0,
+          "reasons": [
+            "5 empty description(s)"
+          ]
+        },
+        {
+          "id": "EN:.MBC1.Iraq.sa",
+          "name": "EN: MBC Iraq",
+          "events": 82,
+          "score": 27.0,
+          "status": "FAIL",
+          "title_ar_pct": 0.0,
+          "title_en_pct": 100.0,
+          "desc_ar_pct": 0.0,
+          "desc_en_pct": 0.0,
+          "empty_desc": 82,
+          "overlaps": 0,
+          "short_duplicates": 0,
+          "nonpositive": 0,
+          "mixed_tz_days": 0,
+          "mbc_meta_titles": 0,
+          "reasons": [
+            "Arabic title coverage 0%",
+            "Arabic description coverage 0%",
+            "82 empty description(s)"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "mbc2",
+      "label": "MBC2",
+      "receiver": "MBC 2 HD",
+      "shard": "provider-mbc",
+      "policy": "arabic",
+      "safe_lock": true,
+      "best_id": "MBC2.ae@SD",
+      "best_status": "PASS",
+      "candidates": [
+        {
+          "id": "MBC2.ae@SD",
+          "name": "MBC2",
+          "events": 28,
+          "score": 100.0,
+          "status": "PASS",
+          "title_ar_pct": 100.0,
+          "title_en_pct": 7.1,
+          "desc_ar_pct": 100.0,
+          "desc_en_pct": 0.0,
+          "empty_desc": 0,
+          "overlaps": 0,
+          "short_duplicates": 0,
+          "nonpositive": 0,
+          "mixed_tz_days": 0,
+          "mbc_meta_titles": 0,
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "key": "mbc_action",
+      "label": "MBC Action",
+      "receiver": "MBC ACTION HD",
+      "shard": "provider-mbc",
+      "policy": "arabic",
+      "safe_lock": true,
+      "best_id": "MBCAction.ae@SD",
+      "best_status": "PASS",
+      "candidates": [
+        {
+          "id": "MBCAction.ae@SD",
+          "name": "MBC Action",
+          "events": 57,
+          "score": 100.0,
+          "status": "PASS",
+          "title_ar_pct": 100.0,
+          "title_en_pct": 22.8,
+          "desc_ar_pct": 100.0,
+          "desc_en_pct": 0.0,
+          "empty_desc": 0,
+          "overlaps": 0,
+          "short_duplicates": 0,
+          "nonpositive": 0,
+          "mixed_tz_days": 0,
+          "mbc_meta_titles": 0,
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "key": "bein1_ar",
+      "label": "beIN Sports 1 Arabic",
+      "receiver": "beIN SPORTS 1 AR",
+      "shard": "provider-bein",
+      "policy": "premium",
+      "safe_lock": true,
+      "best_id": "beIN SPORTS1 DIGITAL.qa",
+      "best_status": "PASS",
+      "candidates": [
+        {
+          "id": "beIN SPORTS1 DIGITAL.qa",
+          "name": "beIN SPORTS1 DIGITAL.qa",
+          "events": 34,
+          "score": 97.5,
+          "status": "PASS",
+          "title_ar_pct": 79.4,
+          "title_en_pct": 100.0,
+          "desc_ar_pct": 100.0,
+          "desc_en_pct": 0.0,
+          "empty_desc": 0,
+          "overlaps": 0,
+          "short_duplicates": 0,
+          "nonpositive": 0,
+          "mixed_tz_days": 0,
+          "mbc_meta_titles": 2,
+          "reasons": [
+            "2 title(s) still contain season/episode"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "bein2_ar",
+      "label": "beIN Sports 2 Arabic",
+      "receiver": "beIN SPORTS 2 AR",
+      "shard": "provider-bein",
+      "policy": "premium",
+      "safe_lock": true,
+      "best_id": "beINSports2.qa@MENA",
+      "best_status": "PASS",
+      "candidates": [
+        {
+          "id": "beINSports2.qa@MENA",
+          "name": "beINSPORTS2",
+          "events": 17,
+          "score": 100.0,
+          "status": "PASS",
+          "title_ar_pct": 0.0,
+          "title_en_pct": 100.0,
+          "desc_ar_pct": 100.0,
+          "desc_en_pct": 0.0,
+          "empty_desc": 0,
+          "overlaps": 0,
+          "short_duplicates": 0,
+          "nonpositive": 0,
+          "mixed_tz_days": 0,
+          "mbc_meta_titles": 0,
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "key": "adm1",
+      "label": "Abu Dhabi Sports 1",
+      "receiver": "Abu Dhabi Sports 1 HD",
+      "shard": "provider-adm",
+      "policy": "arabic",
+      "safe_lock": true,
+      "best_id": "AbuDhabiSports1.ae@SD",
+      "best_status": "PASS",
+      "candidates": [
+        {
+          "id": "AbuDhabiSports1.ae@SD",
+          "name": "AD Sports 1 HD",
+          "events": 29,
+          "score": 99.4,
+          "status": "PASS",
+          "title_ar_pct": 100.0,
+          "title_en_pct": 0.0,
+          "desc_ar_pct": 100.0,
+          "desc_en_pct": 0.0,
+          "empty_desc": 1,
+          "overlaps": 0,
+          "short_duplicates": 0,
+          "nonpositive": 0,
+          "mixed_tz_days": 0,
+          "mbc_meta_titles": 0,
+          "reasons": [
+            "1 empty description(s)"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "osn_action",
+      "label": "OSN Movies Action",
+      "receiver": "OSN Movies Action",
+      "shard": "provider-osn",
+      "policy": "premium",
+      "safe_lock": true,
+      "best_id": "OSNMoviesAction.ae@SD",
+      "best_status": "PASS",
+      "candidates": [
+        {
+          "id": "OSNMoviesAction.ae@SD",
+          "name": "OSNtv Movies Action",
+          "events": 16,
+          "score": 100.0,
+          "status": "PASS",
+          "title_ar_pct": 0.0,
+          "title_en_pct": 100.0,
+          "desc_ar_pct": 100.0,
+          "desc_en_pct": 0.0,
+          "empty_desc": 0,
+          "overlaps": 0,
+          "short_duplicates": 0,
+          "nonpositive": 0,
+          "mixed_tz_days": 0,
+          "mbc_meta_titles": 0,
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "key": "osn_premiere",
+      "label": "OSN Movies Premiere",
+      "receiver": "OSN Movies Premiere",
+      "shard": "provider-osn",
+      "policy": "premium",
+      "safe_lock": true,
+      "best_id": "OSNMoviesPremiere.ae@SD",
+      "best_status": "PASS",
+      "candidates": [
+        {
+          "id": "OSNMoviesPremiere.ae@SD",
+          "name": "OSNtv Movies Premiere",
+          "events": 18,
+          "score": 100.0,
+          "status": "PASS",
+          "title_ar_pct": 0.0,
+          "title_en_pct": 100.0,
+          "desc_ar_pct": 100.0,
+          "desc_en_pct": 0.0,
+          "empty_desc": 0,
+          "overlaps": 0,
+          "short_duplicates": 0,
+          "nonpositive": 0,
+          "mixed_tz_days": 0,
+          "mbc_meta_titles": 0,
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "key": "alkass1",
+      "label": "Al Kass 1",
+      "receiver": "Al Kass 1 HD",
+      "shard": "provider-alkass",
+      "policy": "arabic",
+      "safe_lock": false,
+      "best_id": "2023 Alkass 1.qa",
+      "best_status": "FAIL",
+      "candidates": [
+        {
+          "id": "2023 Alkass 1.qa",
+          "name": "2023 Alkass 1.qa",
+          "events": 2,
+          "score": 56.5,
+          "status": "FAIL",
+          "title_ar_pct": 100.0,
+          "title_en_pct": 0.0,
+          "desc_ar_pct": 0.0,
+          "desc_en_pct": 0.0,
+          "empty_desc": 2,
+          "overlaps": 0,
+          "short_duplicates": 0,
+          "nonpositive": 0,
+          "mixed_tz_days": 0,
+          "mbc_meta_titles": 0,
+          "reasons": [
+            "Arabic description coverage 0%",
+            "2 empty description(s)"
+          ]
+        }
+      ]
+    }
+  ]
+}

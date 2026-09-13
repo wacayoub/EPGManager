@@ -1,37 +1,27 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=1056
-programmes_scanned=53041
-critical=101
-warnings=44172
+channels_scanned=1059
+programmes_scanned=52939
+critical=0
+warnings=42861
 
 ISSUE COUNTS
-empty_description=38351
-very_short_event_lt_5m=2236
-arabic_provider_title_not_arabic=1861
-description_equals_title=1488
+empty_description=38597
+very_short_event_lt_5m=2232
+arabic_provider_title_not_arabic=1857
 premium_title_not_english=104
-overlapping_programmes=102
-very_long_event_gt_6h=95
-arabic_provider_description_not_arabic=16
-contained_or_short_duplicate_title=7
-non_positive_duration=7
+very_long_event_gt_6h=52
+arabic_provider_description_not_arabic=13
 hybrid_arabic_latin_description=6
 
 TOP SAMPLES
 
-[arabic_provider_description_not_arabic] count=16
+[arabic_provider_description_not_arabic] count=13
 - provider-mbc | MBC Maser.sa | 20260914034500 +0000 | Shaqet Faisal
   desc: ‫‬
 - provider-mbc | MBC Maser.sa | 20260914130000 +0000 | Shaqet Faisal
   desc: ‫‬
 - provider-mbc | MBC Maser.sa | 20260915034500 +0000 | Shaqet Faisal
   desc: ‫‬
-- provider-adm | Abu Dhabi TV HD | 20260913200000 +0000 | Ajaza Maftouha
-  desc: As the head of a family loses his job and is surrounded by financial crises, he finds himself facing many difficulties in dealing with his teenage children.
-- provider-adm | Abu Dhabi TV HD | 20260913223000 +0000 | Awlad Al-Rai
-  desc: From scratch, three brothers embark on a bitter struggle to build a business empire. As wealth grows, success turns into a severe test of blood ties, where interests intertwine and power and loyalty struggles clash betwe
-- provider-adm | Abu Dhabi TV HD | 20260914072000 +0000 | Daqa'eq
-  desc: The host sheds light on various scientific and technological facts while explaining them in a simplified manner and highlighting the modern achievements in these fields.
 - provider-adm | Abu Dhabi TV HD | 20260914103000 +0000 | Awalem Khafeya
   desc: Hilal Kamal is a journalist who coincidentally finds the memoirs of an actress who is believed to have been murdered. The memoirs reveal the truth about her death, which urges Hilal to form a team to uncover the truth.
 - provider-adm | Abu Dhabi TV HD | 20260915063000 +0000 | Wazen
@@ -40,9 +30,14 @@ TOP SAMPLES
   desc: Owners of UAE-inspired collectibles and designs showcase their vibrant homes inspired by the country's rich environment and heritage.
 - provider-adm | Abu Dhabi TV HD | 20260915100000 +0000 | Ma'radh Abu Dhabi Al Dowali Le Al ketab
   desc: The Abu Dhabi International Book Fair kicks off with the goal of providing a platform for connecting the leading publishers and providing a wide variety of books for interested readers to buy.
+- provider-adm | Abu Dhabi TV HD | 20260915110000 +0000 | Nashrat Al Akhbar
+  desc: The hosts present the latest and biggest news and updates and interview experts to discuss and analyse events in the UAE and around the world.
+- provider-adm | Abu Dhabi TV HD | 20260915113000 +0000 | Awalem Khafiya
+  desc: Hilal Kamel, a famous journalist, acquires important documents that incriminate some politicians and expose their corruption. His life is in danger when he decides to publish the information.
+- provider-adm | Abu Dhabi TV HD | 20260915120000 +0000 | Kasr Adem
+  desc: People from different backgrounds and social statuses in Syria deal with the crisis the country faces, and the weakest are the ones who suffer the most.
 
-[arabic_provider_title_not_arabic] count=1861
-- provider-alkass | 2023 Alkass 2.qa | 20260913174200 +0100 | Hollywood Weapons S3 EP5 - Larry's Shadow - SEG4
+[arabic_provider_title_not_arabic] count=1857
 - provider-alkass | 2023 Alkass 2.qa | 20260913175100 +0100 | Hollywood Weapons S3 EP6 - We Hear Ya - SEG1
 - provider-alkass | 2023 Alkass 2.qa | 20260913175800 +0100 | Hollywood Weapons S3 EP6 - We Hear Ya - SEG2
 - provider-alkass | 2023 Alkass 2.qa | 20260913180500 +0100 | Hollywood Weapons S3 EP6 - We Hear Ya - SEG3
@@ -52,50 +47,11 @@ TOP SAMPLES
 - provider-alkass | 2023 Alkass 2.qa | 20260913192100 +0100 | Farming the Wild - S3 Ep5 - Ibiza Adventure Part 1
 - provider-alkass | 2023 Alkass 2.qa | 20260913195100 +0100 | Farming the Wild - S3 Ep06 - Ibiza Adventure Part2
 - provider-alkass | 2023 Alkass 2.qa | 20260913202100 +0100 | Dropped_S3_EP1_SurvivalMode_SEG1_4
+- provider-alkass | 2023 Alkass 2.qa | 20260913202800 +0100 | Dropped_S3_EP1_SurvivalMode_SEG2_4
 
-[contained_or_short_duplicate_title] count=7
-- provider-adm | Abu Dhabi TV HD | 20260914000000 +0000 | أولاد الراعي
-  prev: أولاد الراعي
-  desc: أولاد الراعي
-- provider-adm | Abu Dhabi TV HD | 20260914003000 +0000 | بيوتنا
-  prev: بيوتنا
-  desc: ‫م1 ، ح11 : ‫يقوم فريق التقديم بدعوة خبراء وضيوف لمناقشة مواضيع تتعلق ببر الوالدين وعلاقة الشخص مع والديه وكيف يجب احترامهما وتقديرهما.‬‬
-- provider-adm | Abu Dhabi TV HD | 20260915000000 +0000 | أولاد الراعي
-  prev: أولاد الراعي
-  desc: أولاد الراعي
-- mena-dz | الشروق الجزائرية | 20260914050000 +0000 | برنامج
-  prev: برنامج
-- mena-dz | الشروق الجزائرية | 20260914060000 +0000 | برنامج
-  prev: برنامج
-- mena-dz | الشروق الجزائرية | 20260914213000 +0000 | برنامج
-  prev: برنامج
-- mena-dz | الشروق الجزائرية | 20260914233000 +0000 | برنامج
-  prev: برنامج
-
-[description_equals_title] count=1488
+[empty_description] count=38597
 - provider-alkass | 2023 Alkass 1.qa | 20260913160000 +0000 | دوري نجوم قطر
-  desc: دوري نجوم قطر
 - provider-alkass | 2023 Alkass 1.qa | 20260913190000 +0000 | المجلس
-  desc: المجلس
-- provider-bein | beIN SPORTS XTRA 1 | 20260914150000 +0000 | beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-  desc: beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-- provider-bein | beIN SPORTS XTRA 1 | 20260914160000 +0000 | beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-  desc: beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-- provider-bein | beIN SPORTS XTRA 1 | 20260914170000 +0000 | beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-  desc: beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-- provider-bein | beIN SPORTS XTRA 1 | 20260914180000 +0000 | beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-  desc: beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-- provider-bein | beIN SPORTS XTRA 1 | 20260915000000 +0000 | beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-  desc: beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-- provider-bein | beIN SPORTS XTRA 1 | 20260915030000 +0000 | beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-  desc: beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-- provider-bein | beIN SPORTS XTRA 1 | 20260915040000 +0000 | beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-  desc: beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-- provider-bein | beIN SPORTS XTRA 1 | 20260915050000 +0000 | beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-  desc: beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events
-
-[empty_description] count=38351
-- provider-alkass | 2023 Alkass 2.qa | 20260913174200 +0100 | Hollywood Weapons S3 EP5 - Larry's Shadow - SEG4
 - provider-alkass | 2023 Alkass 2.qa | 20260913175100 +0100 | Hollywood Weapons S3 EP6 - We Hear Ya - SEG1
 - provider-alkass | 2023 Alkass 2.qa | 20260913175800 +0100 | Hollywood Weapons S3 EP6 - We Hear Ya - SEG2
 - provider-alkass | 2023 Alkass 2.qa | 20260913180500 +0100 | Hollywood Weapons S3 EP6 - We Hear Ya - SEG3
@@ -104,7 +60,6 @@ TOP SAMPLES
 - provider-alkass | 2023 Alkass 2.qa | 20260913185100 +0100 | Wildlife Heroes S1 E02 - The Big Move
 - provider-alkass | 2023 Alkass 2.qa | 20260913192100 +0100 | Farming the Wild - S3 Ep5 - Ibiza Adventure Part 1
 - provider-alkass | 2023 Alkass 2.qa | 20260913195100 +0100 | Farming the Wild - S3 Ep06 - Ibiza Adventure Part2
-- provider-alkass | 2023 Alkass 2.qa | 20260913202100 +0100 | Dropped_S3_EP1_SurvivalMode_SEG1_4
 
 [hybrid_arabic_latin_description] count=6
 - mena-ae | Nick Jr HD | 20260913185500 +0000 | رابل آند كرو
@@ -120,74 +75,40 @@ TOP SAMPLES
 - mena-ae | NickToons HD | 20260914010000 +0000 | سانجاي أند كرايغ
   desc: ينقلب الأطفال على سانجاي عندما يحاصرهم جميعًا على طريق سريع متوسط في "Traffical Island"، ثم في "Partybot"، يجد سانجاي وكريج روبوتًا قديمًا ويصبحان حيوانات احتفالية.
 
-[non_positive_duration] count=7
-- provider-bein | beINSPORTSMAX1 | 20260913190000 +0000 | beIN Sports MAX
-- provider-bein | beINSPORTSMAX2 | 20260913190000 +0000 | beIN Sports MAX
-- provider-bein | beINSPORTSMAX3 | 20260913190000 +0000 | beIN Sports MAX
-- provider-bein | beINSPORTSMAX4 | 20260913190000 +0000 | beIN Sports MAX
-- provider-bein | beINSPORTSMAX5 | 20260913190000 +0000 | beIN Sports MAX
-- provider-bein | beINSPORTSMAX6 | 20260913190000 +0000 | beIN Sports MAX
-- mena-qa | Fox Action Movies MENA | 20260913190000 +0000 | الفايكنغ الأخير
-
-[overlapping_programmes] count=102
-- provider-adm | Abu Dhabi TV HD | 20260913185000 +0000 | دقائق
-  prev: دقائق 2
-  desc: ‫م2 ، ح6 : ‫يقوم فريق التقديم بتسليط الضوء على العديد من الحقائق العلمية والتكنولوجية، بالإضافة إلى شرحها بطريقة مبسطة وإبراز الإنجازات الحديثة في المجالين.‬‬
-- provider-adm | Abu Dhabi TV HD | 20260913200000 +0000 | Ajaza Maftouha
-  prev: أجود داي تو داي هارد
-  desc: As the head of a family loses his job and is surrounded by financial crises, he finds himself facing many difficulties in dealing with his teenage children.
-- provider-adm | Abu Dhabi TV HD | 20260913204000 +0000 | إجازة مفتوحة
-  prev: Ajaza Maftouha
-  desc: يشهد منزل شريف وندى تحولاً اجتماعياً جذرياً حين يفقد شريف وظيفته ويتولى مهام الأمومة؛ ورغم شعوره بالحيرة في البداية، يثبت شريف في النهاية أن "الأب هو الأعلم".
-- provider-adm | Abu Dhabi TV HD | 20260913210000 +0000 | برنامج علوم الدار
-  prev: إجازة مفتوحة
-  desc: ‫م1 ، ح39 : ‫يجد الأب نفسه في مواقف وغريبة ومضحكة بعد أن فقد وظيفته، إذ يحاول إعالة عائلته والتعامل مع أولاده المراهقين.‬‬
-- provider-adm | Abu Dhabi TV HD | 20260913211900 +0000 | إجازة مفتوحة
-  prev: برنامج علوم الدار
-  desc: يشهد منزل شريف وندى تحولاً اجتماعياً جذرياً حين يفقد شريف وظيفته ويتولى مهام الأمومة؛ ورغم شعوره بالحيرة في البداية، يثبت شريف في النهاية أن "الأب هو الأعلم".
-- provider-adm | Abu Dhabi TV HD | 20260913213000 +0000 | إجازة مفتوحة
-  prev: برنامج علوم الدار
-  desc: ‫م1 ، ح40 : ‫يجد الأب نفسه في مواقف وغريبة ومضحكة بعد أن فقد وظيفته، إذ يحاول إعالة عائلته والتعامل مع أولاده المراهقين.‬‬
-- provider-adm | Abu Dhabi TV HD | 20260913223000 +0000 | Awlad Al-Rai
-  prev: علوم الدار
-  desc: From scratch, three brothers embark on a bitter struggle to build a business empire. As wealth grows, success turns into a severe test of blood ties, where interests intertwine and power and loyalty struggles clash betwe
-- provider-adm | Abu Dhabi TV HD | 20260913230000 +0000 | إيدج أوف ذا أنون ويذ جيمي تشين
-  prev: Awlad Al-Rai
-  desc: ‫م1 ، ح2 : ‫يجري جيمي تشين مقابلة مع أبرز الرياضيين الذين يمرون بظروف صعبة ويواجهون لحظات مميتة باستمرار في مساعيهم التي تتطلب مآثر غير عادية من القوة العقلية والبدنية.‬‬
-- provider-adm | Abu Dhabi TV HD | 20260914000000 +0000 | أولاد الراعي
-  prev: أولاد الراعي
-  desc: أولاد الراعي
-- provider-adm | Abu Dhabi TV HD | 20260914003000 +0000 | بيوتنا
-  prev: بيوتنا
-  desc: ‫م1 ، ح11 : ‫يقوم فريق التقديم بدعوة خبراء وضيوف لمناقشة مواضيع تتعلق ببر الوالدين وعلاقة الشخص مع والديه وكيف يجب احترامهما وتقديرهما.‬‬
-
 [premium_title_not_english] count=104
 - provider-bein | BeIn Series HD 1.eg | 20260913210000 +0000 | 1883
 - provider-bein | BeIn Series HD 1.eg | 20260914030000 +0000 | 1883
 - provider-bein | BeIn Series HD 1.eg | 20260914090000 +0000 | 1883
 - provider-bein | BeIn Series HD 1.eg | 20260914150000 +0000 | 1883
 - provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260913173500 +0000 | 9 - 1
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
 - provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260913181500 +0000 | 9 - 1
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
 - provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260914165500 +0000 | 9 - 1
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
 - provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260914173500 +0000 | 9 - 1
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
 - provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260914181500 +0000 | 9 - 1
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
 - provider-bein | بي إن دراما | 20260913170000 +0000 | القاتل الذي أحبني
   desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
 
-[very_long_event_gt_6h] count=95
+[very_long_event_gt_6h] count=52
 - provider-bein | bein SPORTS FTA DIGITAL.qa | 20260913212500 +0100 | Saudi Arabia vs Indonesia - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB07
+  desc: مباراة، موسم 2026.
 - provider-bein | bein SPORTS FTA DIGITAL.qa | 20260914212500 +0100 | Saudi Arabia vs Indonesia
-- provider-mbc | AL Arabiya English | 20260913000000 +0000 | جدول البرامج غير متاح
-- provider-mbc | AL Arabiya English | 20260914000000 +0000 | جدول البرامج غير متاح
-- provider-mbc | العربية برامج | 20260913000000 +0000 | جدول البرامج غير متاح
-- provider-mbc | العربية برامج | 20260914000000 +0000 | جدول البرامج غير متاح
-- provider-mbc | MBC1 | 20260913000000 +0000 | جدول البرامج غير متاح
-- provider-mbc | MBC1 | 20260914000000 +0000 | جدول البرامج غير متاح
-- provider-mbc | MBC1 | 20260915000000 +0000 | جدول البرامج غير متاح
+  desc: مباراة.
 - provider-mbc | MBC Mood | 20260913190300 +0000 | طرب
   desc: موعدكم الليلي مع نجوم الطرب الأصيل، حيث الإحساس والسلطنة في مختارات من برامج MBC وحفلات موسم الرياض.
+- provider-adm | Yas TV HD | 20260914193000 +0100 | Camel Racing
+- provider-dmi | Dubai Racing | 20260913120000 +0000 | 13 SEPTEMBER 2026 RACE FROM RACING TV, UK
+- provider-dmi | Dubai Racing | 20260914120000 +0000 | 14 SEPTEMBER 2026 RACE FROM RACING TV, UK
+- provider-dmi | Dubai Racing | 20260915013000 +0000 | Dubai International Arabian Horse Championship - 04/04/2026
+- provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
+- mena-eg | EN: Masrah Masr Channel | 20260914124848 +0000 | TV guide is not available
+- mena-qa | Qatar TV HD | 20260913214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2236
+[very_short_event_lt_5m] count=2232
 - provider-alkass | 2023 Alkass 2.qa | 20260914041000 +0100 | Backcountry Rescue S1 E02 - Home Safe - SEG3
 - provider-alkass | 2023 Alkass 2.qa | 20260914080900 +0100 | Backcountry Rescue S1 E02 - Home Safe - SEG3
 - provider-alkass | 2023 Alkass 2.qa | 20260914120700 +0100 | Backcountry Rescue S1 E02 - Home Safe - SEG3
