@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-13T21:08:46.351273+00:00",
+  "generated": "2026-09-13T21:13:17.592955+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -127,17 +127,17 @@
       "bytes": 4291
     }
   ],
-  "candidate_channel_rows": 1674,
-  "unique_logical_channels": 1031,
-  "programmes": 48257,
-  "premium_hybrid_events": 942,
+  "candidate_channel_rows": 1672,
+  "unique_logical_channels": 1032,
+  "programmes": 48290,
+  "premium_hybrid_events": 939,
   "stats": {
     "logical_duplicate_groups": 352,
-    "regular_channels": 947,
-    "source_openepg": 337,
-    "source_epgshare": 535,
+    "regular_channels": 948,
+    "source_openepg": 339,
+    "source_epgshare": 536,
     "premium_channels": 84,
-    "source_primary": 159
+    "source_primary": 157
   },
   "aliases": [
     {
@@ -189,8 +189,8 @@
       ]
     },
     {
-      "canonical_id": "AD Sports 1.sa",
-      "canonical_name": "AD Sports 1.sa",
+      "canonical_id": "AbuDhabiSports1.ae@SD",
+      "canonical_name": "AD Sports 1 HD",
       "logical_key": "abu dhabi sports 1",
       "aliases": [
         {
@@ -212,6 +212,16 @@
           "id": "AD Sports 1 HD.sa",
           "name": "AD Sports 1 HD.sa",
           "source": "openepg-saudi6"
+        },
+        {
+          "id": "AD Sports 1.sa",
+          "name": "AD Sports 1.sa",
+          "source": "openepg-saudi1"
+        },
+        {
+          "id": "AD Sports 1.sa",
+          "name": "AD Sports 1.sa",
+          "source": "openepg-saudi2"
         },
         {
           "id": "AD.Sports.1.HD.ae",
@@ -243,8 +253,8 @@
       ]
     },
     {
-      "canonical_id": "AbuDhabiTV.ae@SD",
-      "canonical_name": "Abu Dhabi TV HD",
+      "canonical_id": "Abu Dhabi TV.eg",
+      "canonical_name": "Abu Dhabi TV.eg",
       "logical_key": "abu dhabi tv",
       "aliases": [
         {
@@ -266,11 +276,6 @@
           "id": "Abu Dhabi TV HD.sa",
           "name": "Abu Dhabi TV HD.sa",
           "source": "openepg-saudi6"
-        },
-        {
-          "id": "Abu Dhabi TV.eg",
-          "name": "Abu Dhabi TV.eg",
-          "source": "openepg-egypt2"
         }
       ]
     },
@@ -305,8 +310,8 @@
       "aliases": []
     },
     {
-      "canonical_id": "AlarabiyaPortrait.ae@SD",
-      "canonical_name": "Al Arabiya",
+      "canonical_id": "Al Arabiya.sa",
+      "canonical_name": "Al Arabiya.sa",
       "logical_key": "al arabiya",
       "aliases": [
         {
@@ -318,16 +323,6 @@
           "id": "Al Arabiya HD.sa",
           "name": "Al Arabiya HD.sa",
           "source": "openepg-saudi2"
-        },
-        {
-          "id": "Al Arabiya.sa",
-          "name": "Al Arabiya.sa",
-          "source": "openepg-saudi5"
-        },
-        {
-          "id": "Al Arabiya.sa",
-          "name": "Al Arabiya.sa",
-          "source": "openepg-saudi6"
         },
         {
           "id": "Al.Arabiya.HD.ae",
@@ -349,33 +344,10 @@
       ]
     },
     {
-      "canonical_id": "AlArabyTV2.qa@SD",
-      "canonical_name": "Al Araby 2",
-      "logical_key": "al araby 2",
-      "aliases": [
-        {
-          "id": "Al.Araby.2.HD.ae",
-          "name": "Al Araby 2 HD",
-          "source": "epgshare-ae1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "AlArabyTV.qa@SD",
-      "canonical_name": "Al Araby TV",
+      "canonical_id": "Al Araby TV.sa",
+      "canonical_name": "Al Araby TV.sa",
       "logical_key": "al araby tv",
-      "aliases": [
-        {
-          "id": "Al Araby TV.sa",
-          "name": "Al Araby TV.sa",
-          "source": "openepg-saudi5"
-        },
-        {
-          "id": "Al Araby TV.sa",
-          "name": "Al Araby TV.sa",
-          "source": "openepg-saudi6"
-        }
-      ]
+      "aliases": []
     },
     {
       "canonical_id": "Al Dafrah.sa",
@@ -4028,24 +4000,14 @@
       "aliases": []
     },
     {
-      "canonical_id": "TeN.eg@SD",
-      "canonical_name": "تن",
+      "canonical_id": "Ten.sa",
+      "canonical_name": "Ten.sa",
       "logical_key": "ten",
       "aliases": [
         {
           "id": "Ten.ae",
           "name": "Ten",
           "source": "epgshare-ae1"
-        },
-        {
-          "id": "Ten.sa",
-          "name": "Ten.sa",
-          "source": "openepg-saudi1"
-        },
-        {
-          "id": "Ten.sa",
-          "name": "Ten.sa",
-          "source": "openepg-saudi2"
         }
       ]
     },
@@ -4262,6 +4224,18 @@
       ]
     },
     {
+      "canonical_id": "AlSaeedah.eg@SD",
+      "canonical_name": "السعيدة",
+      "logical_key": "السعيدة",
+      "aliases": [
+        {
+          "id": "السعيدة.eg",
+          "name": "السعيدة.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "Alsumaria.iq@SD",
       "canonical_name": "السومرية",
       "logical_key": "السومرية",
@@ -4293,6 +4267,18 @@
         {
           "id": "الشرقية.eg",
           "name": "الشرقية.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "EchoroukTV.dz@SD",
+      "canonical_name": "الشروق الجزائرية",
+      "logical_key": "الشروق الجزائرية",
+      "aliases": [
+        {
+          "id": "الشروق الجزائرية.eg",
+          "name": "الشروق الجزائرية.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4430,18 +4416,6 @@
       ]
     },
     {
-      "canonical_id": "DijlahTV.iq@SD",
-      "canonical_name": "دجلة",
-      "logical_key": "دجلة",
-      "aliases": [
-        {
-          "id": "دجلة.eg",
-          "name": "دجلة.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "RabehSaqer.sa@HD",
       "canonical_name": "رابح صقر",
       "logical_key": "رابح صقر",
@@ -4514,13 +4488,13 @@
       ]
     },
     {
-      "canonical_id": "Cima.eg@SD",
-      "canonical_name": "سيما",
-      "logical_key": "سيما",
+      "canonical_id": "ZeeAlwan.ae@SD",
+      "canonical_name": "زي ألوان",
+      "logical_key": "زي ألوان",
       "aliases": [
         {
-          "id": "سيما.eg",
-          "name": "سيما.eg",
+          "id": "زي ألوان.eg",
+          "name": "زي ألوان.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4622,13 +4596,13 @@
       ]
     },
     {
-      "canonical_id": "UTV.iq@SD",
-      "canonical_name": "يو تي في",
-      "logical_key": "يو تي في",
+      "canonical_id": "NileLife.eg@SD",
+      "canonical_name": "نايل لايف",
+      "logical_key": "نايل لايف",
       "aliases": [
         {
-          "id": "يو تي في.eg",
-          "name": "يو تي في.eg",
+          "id": "نايل لايف.eg",
+          "name": "نايل لايف.eg",
           "source": "openepg-egypt1"
         }
       ]
