@@ -3,10 +3,11 @@
 """Build an official-first Arabic XMLTV channel catalogue from iptv-org/epg.
 
 The script scans every *.channels.xml shipped by iptv-org/epg and selects
-Arabic listings. Duplicate xmltv_id entries are resolved deterministically:
+Arabic TV listings. Duplicate xmltv_id entries are resolved deterministically:
 broadcaster-owned/official sites first, broad Arabic TV guides second, and
 generic aggregators last. Morocco is intentionally excluded because the
 project already publishes a higher-quality dedicated morocco.xml.gz feed.
+Radio services are excluded because EPGManager's receiver-side mapping is TV-only.
 """
 from __future__ import annotations
 
@@ -14,6 +15,7 @@ import argparse
 import json
 from collections import Counter
 from pathlib import Path
+import re
 import xml.etree.ElementTree as ET
 
 SITE_PRIORITY = {
@@ -34,7 +36,9 @@ SITE_PRIORITY = {
     "epgshare01.online": 900,
 }
 
-EXCLUDED_ID_SUFFIXES = (".ma",)
+MOROCCO_ID_RE = re.compile(r"\.ma(?:@|$)", re.I)
+RADIO_ID_RE = re.compile(r"(?:^|[^a-z])(?:radio|fm)(?:[^a-z]|$)", re.I)
+ARABIC_RADIO_WORDS = ("إذاعة", "راديو")
 
 
 def site_score(site: str) -> tuple[int, str]:
@@ -48,6 +52,17 @@ def is_arabic_channel(node: ET.Element) -> bool:
 
 def channel_key(node: ET.Element) -> str:
     return (node.get("xmltv_id") or "").strip()
+
+
+def is_radio_service(node: ET.Element, cid: str) -> bool:
+    name = (node.text or "").strip()
+    folded_id = re.sub(r"([a-z])([A-Z])", r"\1 \2", cid)
+    if RADIO_ID_RE.search(folded_id):
+        return True
+    lower_name = name.casefold()
+    if re.search(r"(?:^|\W)(?:radio|fm)(?:\W|$)", lower_name, re.I):
+        return True
+    return any(word in name for word in ARABIC_RADIO_WORDS)
 
 
 def copy_channel(node: ET.Element) -> ET.Element:
@@ -76,6 +91,8 @@ def main() -> int:
     winners: dict[str, tuple[tuple[int, str], ET.Element, str, str]] = {}
     seen_ar = 0
     invalid = 0
+    morocco_skipped = 0
+    radio_skipped = 0
     parse_errors = []
 
     for path in files:
@@ -93,7 +110,11 @@ def main() -> int:
             if not cid or not node.get("site_id") or not site:
                 invalid += 1
                 continue
-            if not args.include_morocco and cid.casefold().endswith(EXCLUDED_ID_SUFFIXES):
+            if not args.include_morocco and MOROCCO_ID_RE.search(cid):
+                morocco_skipped += 1
+                continue
+            if is_radio_service(node, cid):
+                radio_skipped += 1
                 continue
             score = site_score(site)
             current = winners.get(cid)
@@ -118,7 +139,7 @@ def main() -> int:
         })
 
     if len(selected) < 25:
-        raise SystemExit("Abnormally small Arabic catalogue: %d channels" % len(selected))
+        raise SystemExit("Abnormally small Arabic TV catalogue: %d channels" % len(selected))
 
     out_xml = Path(args.output_channels)
     out_xml.parent.mkdir(parents=True, exist_ok=True)
@@ -126,14 +147,17 @@ def main() -> int:
     out_xml.write_bytes(ET.tostring(channels, encoding="utf-8", xml_declaration=True))
 
     manifest = {
-        "schema": 1,
-        "strategy": "official-first-all-arabic",
+        "schema": 2,
+        "strategy": "official-first-all-arabic-tv",
         "source_project": "iptv-org/epg",
         "input_channel_files": len(files),
         "arabic_rows_seen": seen_ar,
         "invalid_rows_skipped": invalid,
+        "morocco_rows_skipped": morocco_skipped,
+        "radio_rows_skipped": radio_skipped,
         "unique_channels": len(selected),
         "morocco_excluded": not args.include_morocco,
+        "tv_only": True,
         "source_counts": dict(sorted(source_counts.items(), key=lambda kv: (-kv[1], kv[0]))),
         "parse_errors": parse_errors[:20],
         "channels": selected,
@@ -141,8 +165,9 @@ def main() -> int:
     Path(args.output_manifest).write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print("MENA Arabic catalogue: %d unique channels from %d source sites" %
+    print("MENA Arabic TV catalogue: %d unique channels from %d source sites" %
           (len(selected), len(source_counts)))
+    print("  skipped: Morocco rows=%d, radio rows=%d" % (morocco_skipped, radio_skipped))
     for site, count in source_counts.most_common(20):
         print("  %-28s %4d" % (site, count))
     return 0
