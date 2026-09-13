@@ -2,13 +2,11 @@
 # -*- coding: utf-8 -*-
 """Accuracy layer for MENA country/provider shards.
 
-Rules:
-- provider ownership is inferred from channel identity, never from the website
-  that happened to supply its EPG;
-- country is inferred from explicit channel identity/name, or from an
-  iptv-org canonical catalogue ID when available;
-- regional OpenEPG/EPGShare pack names and raw .ae/.sa aliases are not country
-  proof; uncertain channels are intentionally kept in MENA Other.
+Provider ownership comes from channel identity, never from the website/guide
+that supplied the EPG. Country comes from explicit identity/name or, for an
+iptv-org canonical catalogue row, its canonical country suffix. Regional
+OpenEPG/EPGShare pack labels and raw .ae/.sa aliases are never nationality
+proof; uncertain services go to MENA Other.
 """
 from __future__ import annotations
 
@@ -30,9 +28,11 @@ def pop_arg(name):
 
 
 def identity_probe(cid, name, meta):
-    # Deliberately exclude meta['site']: a guide provider is not the owner of
-    # every linear channel it lists (e.g. osn.com and shahid.mbc.net).
     return base.norm("%s %s %s" % (cid or "", name or "", (meta or {}).get("name") or ""))
+
+
+def compact(value):
+    return re.sub(r"[^a-z0-9]+", "", base.norm(value or ""))
 
 
 def has_word(text, *words):
@@ -42,35 +42,43 @@ def has_word(text, *words):
 
 def safe_provider_group(cid, name, meta):
     p = identity_probe(cid, name, meta)
-    low_id = (cid or "").casefold()
+    c_id = compact(cid)
+    c_name = compact(name)
+    tokens = (c_id, c_name)
 
-    if has_word(p, "alkass", "al kass"):
+    if has_word(p, "alkass", "al kass") or any(x.startswith("alkass") for x in tokens):
         return "alkass"
-    if has_word(p, "bein", "be in", "bein sports", "beinsports") or low_id.endswith(".bein"):
+    if has_word(p, "bein", "be in", "bein sports", "beinsports") or any(x.startswith("bein") for x in tokens):
         return "bein"
-    if has_word(p, "osn", "osntv", "osn tv"):
+    if has_word(p, "osn", "osntv", "osn tv") or any(x.startswith("osn") for x in tokens):
         return "osn"
-    if re.search(r"(?:^| )mbc(?: |[0-9]|$)", p) or has_word(
-            p, "al arabiya", "alarabiya", "al hadath", "alhadath", "wanasah"):
+    if (re.search(r"(?:^| )mbc(?: |[0-9]|$)", p)
+            or any(x.startswith("mbc") for x in tokens)
+            or any(x.startswith("alarabiya") for x in tokens)
+            or any(x.startswith("alhadath") for x in tokens)
+            or any(x.startswith("wanasah") for x in tokens)):
         return "mbc"
-    if has_word(p, "rotana"):
+    if has_word(p, "rotana") or any(x.startswith("rotana") for x in tokens):
         return "rotana"
-    if has_word(
-            p, "abu dhabi", "abudhabi", "ad sports", "ad sport", "yas sports",
-            "yas tv", "majid", "national geographic abu dhabi", "al emarat"):
+    if (has_word(p, "abu dhabi", "abudhabi", "ad sports", "ad sport", "yas sports",
+                 "yas tv", "majid", "national geographic abu dhabi", "al emarat")
+            or any(x.startswith(("abudhabi", "adsports", "yassports", "yastv", "majid")) for x in tokens)):
         return "adm"
-    if has_word(
-            p, "dubai tv", "dubai sports", "dubai one", "dubai racing",
-            "sama dubai", "noor dubai", "dubai zaman"):
+    if (has_word(p, "dubai tv", "dubai sports", "dubai one", "dubai racing",
+                 "sama dubai", "noor dubai", "dubai zaman")
+            or any(x.startswith(("dubaitv", "dubaisports", "dubaione", "dubairacing",
+                                 "samadubai", "noordubai", "dubaizaman")) for x in tokens)):
         return "dmi"
-    if has_word(
-            p, "art aflam", "art cinema", "art hekayat", "art movies", "art sport",
-            "alfa cinema", "alfa drama", "alfa hekayat", "alfa series", "alfa music",
-            "alfa fann", "alfa al safwa", "alfa al yawm") or re.search(r"(?:^| )art(?: |[0-9]|$)", p):
+    if (has_word(p, "art aflam", "art cinema", "art hekayat", "art movies", "art sport",
+                 "alfa cinema", "alfa drama", "alfa hekayat", "alfa series", "alfa music",
+                 "alfa fann", "alfa al safwa", "alfa al yawm")
+            or re.search(r"(?:^| )art(?: |[0-9]|$)", p)
+            or any(x.startswith(("artaflam", "artcinema", "arthekayat", "artmovies",
+                                 "alfacinema", "alfadrama", "alfahekayat")) for x in tokens)):
         return "art"
-    if re.search(r"(?:^| )ssc(?: |[0-9]|$)", p) or has_word(p, "saudi sports company"):
+    if re.search(r"(?:^| )ssc(?: |[0-9]|$)", p) or has_word(p, "saudi sports company") or any(x.startswith("ssc") for x in tokens):
         return "ssc"
-    if has_word(p, "starzplay", "starz play", "starz"):
+    if has_word(p, "starzplay", "starz play", "starz") or any(x.startswith("starz") for x in tokens):
         return "starz"
     return None
 
@@ -107,13 +115,9 @@ def safe_country_code(cid, name, meta):
     p = identity_probe(cid, name, meta)
     if any(has_word(p, word) for word in MOROCCO_WORDS) or re.search(r"\.ma(?:@|$)", cid or "", re.I):
         return "MA"
-
     for code, words in COUNTRY_KEYWORDS:
         if any(has_word(p, word) for word in words):
             return code
-
-    # Only a canonical iptv-org catalogue identity may contribute its country
-    # suffix. A raw alias from EPGShare/OpenEPG has meta == {} and is ignored.
     if meta and meta.get("xmltv_id"):
         canonical_id = str(meta.get("xmltv_id") or "")
         m = re.search(r"\.([a-z]{2})(?:@|$)", canonical_id, re.I)
@@ -123,8 +127,6 @@ def safe_country_code(cid, name, meta):
 
 
 def main():
-    # Kept for workflow compatibility; pack membership is intentionally ignored
-    # because regional packs are not nationality/ownership evidence.
     pop_arg("--source-cache-dir")
     base.provider_group = safe_provider_group
     base.country_code = safe_country_code
