@@ -130,7 +130,7 @@ def main() -> int:
         out_root.append(copy_element(c))
         site = source_meta.get("site") or "unknown"
         source_counts[site] += 1
-        text_lines.append("%s|%s|%s" % (cid, display_name(c), site))
+        text_lines.append("%s|%s" % (cid, display_name(c)))
 
     for cid in sorted(selected_programmes, key=str.casefold):
         for p in sorted(selected_programmes[cid], key=lambda x: x.get("start") or ""):
