@@ -15,7 +15,7 @@
         {
           "id": "MBC5.ae@SD",
           "name": "MBC5",
-          "events": 36,
+          "events": 34,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 100.0,
@@ -45,8 +45,8 @@
         {
           "id": "MBC1.ae@SD",
           "name": "MBC1",
-          "events": 47,
-          "score": 99.6,
+          "events": 45,
+          "score": 99.5,
           "status": "PASS",
           "title_ar_pct": 100.0,
           "title_en_pct": 0.0,
@@ -65,14 +65,14 @@
         {
           "id": "EN:.MBC1.Iraq.sa",
           "name": "EN: MBC Iraq",
-          "events": 82,
+          "events": 83,
           "score": 27.0,
           "status": "FAIL",
           "title_ar_pct": 0.0,
           "title_en_pct": 100.0,
           "desc_ar_pct": 0.0,
           "desc_en_pct": 0.0,
-          "empty_desc": 82,
+          "empty_desc": 83,
           "overlaps": 0,
           "short_duplicates": 0,
           "nonpositive": 0,
@@ -81,7 +81,7 @@
           "reasons": [
             "Arabic title coverage 0%",
             "Arabic description coverage 0%",
-            "82 empty description(s)"
+            "83 empty description(s)"
           ]
         }
       ]
@@ -99,11 +99,11 @@
         {
           "id": "MBC2.ae@SD",
           "name": "MBC2",
-          "events": 28,
+          "events": 26,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 100.0,
-          "title_en_pct": 7.1,
+          "title_en_pct": 7.7,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
           "empty_desc": 0,
@@ -129,11 +129,11 @@
         {
           "id": "MBCAction.ae@SD",
           "name": "MBC Action",
-          "events": 57,
+          "events": 56,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 100.0,
-          "title_en_pct": 22.8,
+          "title_en_pct": 23.2,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
           "empty_desc": 0,
@@ -159,10 +159,10 @@
         {
           "id": "beIN SPORTS1 DIGITAL.qa",
           "name": "beIN SPORTS1 DIGITAL.qa",
-          "events": 34,
+          "events": 35,
           "score": 97.5,
           "status": "PASS",
-          "title_ar_pct": 79.4,
+          "title_ar_pct": 62.9,
           "title_en_pct": 100.0,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
@@ -194,7 +194,7 @@
           "events": 17,
           "score": 100.0,
           "status": "PASS",
-          "title_ar_pct": 0.0,
+          "title_ar_pct": 5.9,
           "title_en_pct": 100.0,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
@@ -221,7 +221,7 @@
         {
           "id": "AbuDhabiSports1.ae@SD",
           "name": "AD Sports 1 HD",
-          "events": 22,
+          "events": 27,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 100.0,
@@ -251,7 +251,7 @@
         {
           "id": "OSNMoviesAction.ae@SD",
           "name": "OSNtv Movies Action",
-          "events": 16,
+          "events": 15,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 0.0,
@@ -281,7 +281,7 @@
         {
           "id": "OSNMoviesPremiere.ae@SD",
           "name": "OSNtv Movies Premiere",
-          "events": 18,
+          "events": 17,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 0.0,
@@ -304,29 +304,10 @@
       "receiver": "Al Kass 1 HD",
       "shard": "provider-alkass",
       "policy": "arabic",
-      "safe_lock": true,
-      "best_id": "2023 Alkass 1.qa",
-      "best_status": "PASS",
-      "candidates": [
-        {
-          "id": "2023 Alkass 1.qa",
-          "name": "2023 Alkass 1.qa",
-          "events": 2,
-          "score": 100.0,
-          "status": "PASS",
-          "title_ar_pct": 100.0,
-          "title_en_pct": 0.0,
-          "desc_ar_pct": 100.0,
-          "desc_en_pct": 0.0,
-          "empty_desc": 0,
-          "overlaps": 0,
-          "short_duplicates": 0,
-          "nonpositive": 0,
-          "mixed_tz_days": 0,
-          "mbc_meta_titles": 0,
-          "reasons": []
-        }
-      ]
+      "safe_lock": false,
+      "best_id": null,
+      "best_status": "NO_MATCH",
+      "candidates": []
     }
   ]
 }

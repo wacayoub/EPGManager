@@ -1,40 +1,40 @@
 {
   "schema": 1,
   "scope": "all exclusive MENA country/provider shards",
-  "channels_scanned": 1057,
-  "programmes_scanned": 51894,
+  "channels_scanned": 1022,
+  "programmes_scanned": 51158,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 3,
-    "arabic_provider_title_not_arabic": 954,
-    "empty_description": 37613,
+    "arabic_provider_title_not_arabic": 951,
+    "empty_description": 37384,
     "hybrid_arabic_latin_description": 6,
-    "premium_title_not_english": 104,
-    "severity_warning": 40950,
-    "very_long_event_gt_6h": 52,
-    "very_short_event_lt_5m": 2218
+    "premium_title_not_english": 92,
+    "severity_warning": 40661,
+    "very_long_event_gt_6h": 51,
+    "very_short_event_lt_5m": 2174
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 816,
+      "empty_description": 802,
       "hybrid_arabic_latin_description": 6
     },
     "mena-bh": {
-      "empty_description": 155,
+      "empty_description": 154,
       "very_long_event_gt_6h": 1,
-      "very_short_event_lt_5m": 8
+      "very_short_event_lt_5m": 7
     },
     "mena-dz": {
-      "empty_description": 741,
+      "empty_description": 729,
       "very_long_event_gt_6h": 6,
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 3628,
+      "empty_description": 3589,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 3366,
+      "empty_description": 3342,
       "very_short_event_lt_5m": 6
     },
     "mena-jo": {
@@ -42,11 +42,11 @@
       "very_short_event_lt_5m": 8
     },
     "mena-kw": {
-      "empty_description": 810,
+      "empty_description": 882,
       "very_short_event_lt_5m": 1
     },
     "mena-lb": {
-      "empty_description": 778,
+      "empty_description": 770,
       "very_long_event_gt_6h": 2
     },
     "mena-ly": {
@@ -57,24 +57,24 @@
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 415
+      "empty_description": 401
     },
     "mena-other": {
-      "empty_description": 17477,
+      "empty_description": 17367,
       "very_long_event_gt_6h": 22,
-      "very_short_event_lt_5m": 1222
+      "very_short_event_lt_5m": 1207
     },
     "mena-ps": {
-      "empty_description": 995
+      "empty_description": 996
     },
     "mena-qa": {
-      "empty_description": 1407,
+      "empty_description": 1400,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1921,
-      "very_short_event_lt_5m": 510
+      "empty_description": 1887,
+      "very_short_event_lt_5m": 494
     },
     "mena-sd": {
       "empty_description": 248
@@ -83,77 +83,57 @@
       "empty_description": 145
     },
     "mena-tn": {
-      "empty_description": 214,
+      "empty_description": 212,
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
-      "empty_description": 623,
+      "empty_description": 620,
       "very_long_event_gt_6h": 8
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 336,
-      "empty_description": 273,
+      "arabic_provider_title_not_arabic": 338,
+      "empty_description": 305,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 12
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 123,
-      "empty_description": 1117,
-      "very_short_event_lt_5m": 391
+      "empty_description": 1085,
+      "very_short_event_lt_5m": 379
     },
     "provider-bein": {
-      "empty_description": 294,
-      "premium_title_not_english": 100,
+      "empty_description": 269,
+      "premium_title_not_english": 88,
       "very_long_event_gt_6h": 2
     },
     "provider-dmi": {
       "arabic_provider_title_not_arabic": 74,
-      "empty_description": 274,
-      "very_long_event_gt_6h": 3
+      "empty_description": 273,
+      "very_long_event_gt_6h": 2
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 3,
-      "arabic_provider_title_not_arabic": 284,
-      "empty_description": 369,
+      "arabic_provider_title_not_arabic": 280,
+      "empty_description": 366,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "provider-osn": {
-      "empty_description": 134,
+      "empty_description": 132,
       "premium_title_not_english": 4,
       "very_short_event_lt_5m": 37
     },
     "provider-rotana": {
-      "arabic_provider_title_not_arabic": 137,
-      "empty_description": 154
+      "arabic_provider_title_not_arabic": 136,
+      "empty_description": 152
     },
     "provider-starz": {
-      "empty_description": 176,
+      "empty_description": 175,
       "very_long_event_gt_6h": 1
     }
   },
   "samples": {
     "empty_description": [
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260913170000 +0000",
-        "stop": "20260913180000 +0000",
-        "title": "El Qatel Allazy Ahabany",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260913180000 +0000",
-        "stop": "20260913190000 +0000",
-        "title": "El Qatel Allazy Ahabany",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
       {
         "shard": "provider-bein",
         "channel_id": "beIN Drama.eg",
@@ -416,26 +396,6 @@
       },
       {
         "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES DRAMA.eg",
-        "channel": "BEIN MOVIES DRAMA.eg",
-        "start": "20260913161500 +0000",
-        "stop": "20260913183000 +0000",
-        "title": "A Beautiful Mind",
-        "desc": "",
-        "duration_minutes": 135.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES DRAMA.eg",
-        "channel": "BEIN MOVIES DRAMA.eg",
-        "start": "20260913183000 +0000",
-        "stop": "20260913201500 +0000",
-        "title": "The Addams Family",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
         "channel_id": "BEIN MOVIES FAMILY.eg",
         "channel": "BEIN MOVIES FAMILY.eg",
         "start": "20260913173000 +0000",
@@ -453,46 +413,6 @@
         "title": "Are We Done Yet?",
         "desc": "",
         "duration_minutes": 90.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES PREMIERE.eg",
-        "channel": "BEIN MOVIES PREMIERE.eg",
-        "start": "20260913161500 +0000",
-        "stop": "20260913180000 +0000",
-        "title": "Dear Santa",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES PREMIERE.eg",
-        "channel": "BEIN MOVIES PREMIERE.eg",
-        "start": "20260913180000 +0000",
-        "stop": "20260913194500 +0000",
-        "title": "Adulthood",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260913170000 +0000",
-        "stop": "20260913180000 +0000",
-        "title": "Shark Tank",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260913180000 +0000",
-        "stop": "20260913190000 +0000",
-        "title": "Matlock S2",
-        "desc": "",
-        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
@@ -531,6 +451,86 @@
         "start": "20260913220000 +0000",
         "stop": "20260913230000 +0000",
         "title": "Yellowjackets S2",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260913230000 +0000",
+        "stop": "20260914000000 +0000",
+        "title": "Outlander S3",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914000000 +0000",
+        "stop": "20260914010000 +0000",
+        "title": "Shark Tank",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914010000 +0000",
+        "stop": "20260914020000 +0000",
+        "title": "Matlock S2",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914020000 +0000",
+        "stop": "20260914030000 +0000",
+        "title": "The Good Doctor S1",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914030000 +0000",
+        "stop": "20260914040000 +0000",
+        "title": "1883",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914040000 +0000",
+        "stop": "20260914050000 +0000",
+        "title": "Yellowjackets S2",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914050000 +0000",
+        "stop": "20260914060000 +0000",
+        "title": "Outlander S3",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914060000 +0000",
+        "stop": "20260914070000 +0000",
+        "title": "Shark Tank",
         "desc": "",
         "duration_minutes": 60.0
       }
@@ -580,26 +580,6 @@
         "shard": "provider-bein",
         "channel_id": "beIN SPORTS-boxoffice-bein.com.qa",
         "channel": "beIN SPORTS-boxoffice-bein.com.qa",
-        "start": "20260913173500 +0000",
-        "stop": "20260913181500 +0000",
-        "title": "9 - 1",
-        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
-        "duration_minutes": 40.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN SPORTS-boxoffice-bein.com.qa",
-        "channel": "beIN SPORTS-boxoffice-bein.com.qa",
-        "start": "20260913181500 +0000",
-        "stop": "20260913185500 +0000",
-        "title": "9 - 1",
-        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
-        "duration_minutes": 40.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN SPORTS-boxoffice-bein.com.qa",
-        "channel": "beIN SPORTS-boxoffice-bein.com.qa",
         "start": "20260914165500 +0000",
         "stop": "20260914173500 +0000",
         "title": "9 - 1",
@@ -625,16 +605,6 @@
         "title": "9 - 1",
         "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
         "duration_minutes": 40.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260913170000 +0000",
-        "stop": "20260913180000 +0000",
-        "title": "القاتل الذي أحبني",
-        "desc": "بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتشابك فيه مصائر أبنائهما بمرارة الماضي.",
-        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
@@ -878,46 +848,6 @@
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260913170000 +0000",
-        "stop": "20260913180000 +0000",
-        "title": "E24 | S1 طبلية",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260913180000 +0000",
-        "stop": "20260913190000 +0000",
-        "title": "E7 | S1 عزابي",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260913190000 +0000",
-        "stop": "20260913200000 +0000",
-        "title": "سوبر موم S1",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260913161500 +0000",
-        "stop": "20260913180000 +0000",
-        "title": "دير سانتا",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
         "channel_id": "beINMovies1Premiere.qa@SD",
         "channel": "beINMOVIES1",
         "start": "20260913180000 +0000",
@@ -935,6 +865,76 @@
         "title": "أساطير أبطال كوندور: الشجعان",
         "desc": "",
         "duration_minutes": 150.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260913221500 +0000",
+        "stop": "20260913235900 +0000",
+        "title": "عدالة الجدة",
+        "desc": "",
+        "duration_minutes": 104.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260913235900 +0000",
+        "stop": "20260914014400 +0000",
+        "title": "زوار الليل: المصحة",
+        "desc": "",
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260914014400 +0000",
+        "stop": "20260914032900 +0000",
+        "title": "الجذور",
+        "desc": "",
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260914032900 +0000",
+        "stop": "20260914045900 +0000",
+        "title": "المنزل آمن!",
+        "desc": "",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260914045900 +0000",
+        "stop": "20260914062900 +0000",
+        "title": "هاي غراوند",
+        "desc": "",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260914062900 +0000",
+        "stop": "20260914082900 +0000",
+        "title": "قوة الطبيعة: الجفاف",
+        "desc": "",
+        "duration_minutes": 120.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260914082900 +0000",
+        "stop": "20260914101500 +0000",
+        "title": "البلوغ",
+        "desc": "",
+        "duration_minutes": 106.0
       }
     ],
     "very_long_event_gt_6h": [
@@ -977,16 +977,6 @@
         "title": "Camel Racing",
         "desc": "",
         "duration_minutes": 459.0
-      },
-      {
-        "shard": "provider-dmi",
-        "channel_id": "Dubai.Racing.ae",
-        "channel": "Dubai Racing",
-        "start": "20260913120000 +0000",
-        "stop": "20260913182800 +0000",
-        "title": "13 SEPTEMBER 2026 RACE FROM RACING TV, UK",
-        "desc": "",
-        "duration_minutes": 388.0
       },
       {
         "shard": "provider-dmi",
@@ -1337,6 +1327,16 @@
         "title": "TV Program",
         "desc": "",
         "duration_minutes": 374.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "ar:.ستارزبلاي.رغبي.ae",
+        "channel": "ar: ستارزبلاي رغبي",
+        "start": "20260914183600 +0000",
+        "stop": "20260915020000 +0000",
+        "title": "WOA STARZPLAY RUGBY",
+        "desc": "‫‬.",
+        "duration_minutes": 444.0
       }
     ],
     "very_short_event_lt_5m": [
@@ -1746,26 +1746,6 @@
         "shard": "provider-mbc",
         "channel_id": "EN:.MBC1.Iraq.sa",
         "channel": "EN: MBC Iraq",
-        "start": "20260913170000 +0000",
-        "stop": "20260913180000 +0000",
-        "title": "A'elati Tarbah",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260913180000 +0000",
-        "stop": "20260913190000 +0000",
-        "title": "Teebah",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
         "start": "20260913190000 +0000",
         "stop": "20260913203000 +0000",
         "title": "Kalam Nawa'em",
@@ -2141,6 +2121,26 @@
         "title": "TV guide is not available",
         "desc": "",
         "duration_minutes": 10.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914180000 +0000",
+        "stop": "20260914185100 +0000",
+        "title": "Teebah",
+        "desc": "",
+        "duration_minutes": 51.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914185100 +0000",
+        "stop": "20260914190000 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 9.0
       }
     ],
     "arabic_provider_description_not_arabic": [

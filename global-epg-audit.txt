@@ -1,15 +1,15 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=1057
-programmes_scanned=51894
+channels_scanned=1022
+programmes_scanned=51158
 critical=0
-warnings=40950
+warnings=40661
 
 ISSUE COUNTS
-empty_description=37613
-very_short_event_lt_5m=2218
-arabic_provider_title_not_arabic=954
-premium_title_not_english=104
-very_long_event_gt_6h=52
+empty_description=37384
+very_short_event_lt_5m=2174
+arabic_provider_title_not_arabic=951
+premium_title_not_english=92
+very_long_event_gt_6h=51
 hybrid_arabic_latin_description=6
 arabic_provider_description_not_arabic=3
 
@@ -23,9 +23,7 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260915034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=954
-- provider-mbc | EN: MBC Iraq | 20260913170000 +0000 | A'elati Tarbah
-- provider-mbc | EN: MBC Iraq | 20260913180000 +0000 | Teebah
+[arabic_provider_title_not_arabic] count=951
 - provider-mbc | EN: MBC Iraq | 20260913190000 +0000 | Kalam Nawa'em
 - provider-mbc | EN: MBC Iraq | 20260913203000 +0000 | Fi Mithl Hatha Al Yawm
 - provider-mbc | EN: MBC Iraq | 20260913212500 +0000 | A'elati Tarbah
@@ -34,10 +32,10 @@ TOP SAMPLES
 - provider-mbc | EN: MBC Iraq | 20260913235000 +0000 | Awdat Khalati
 - provider-mbc | EN: MBC Iraq | 20260914000000 +0000 | Awdat Khalati
 - provider-mbc | EN: MBC Iraq | 20260914004000 +0000 | Teebah
+- provider-mbc | EN: MBC Iraq | 20260914012000 +0000 | A'elati Tarbah
+- provider-mbc | EN: MBC Iraq | 20260914021000 +0000 | Al Nowaylati
 
-[empty_description] count=37613
-- provider-bein | beIN Drama.eg | 20260913170000 +0000 | El Qatel Allazy Ahabany
-- provider-bein | beIN Drama.eg | 20260913180000 +0000 | El Qatel Allazy Ahabany
+[empty_description] count=37384
 - provider-bein | beIN Drama.eg | 20260913190000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260913200000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260913210000 +0000 | Basmet Hada
@@ -46,6 +44,8 @@ TOP SAMPLES
 - provider-bein | beIN Drama.eg | 20260914000000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260914010000 +0000 | Mazad El Shar
 - provider-bein | beIN Drama.eg | 20260914020000 +0000 | Sarab
+- provider-bein | beIN Drama.eg | 20260914030000 +0000 | Basmet Hada
+- provider-bein | beIN Drama.eg | 20260914040000 +0000 | El Qatel Allazy Ahabany
 
 [hybrid_arabic_latin_description] count=6
 - mena-ae | Nick Jr HD | 20260913185500 +0000 | رابل آند كرو
@@ -61,25 +61,25 @@ TOP SAMPLES
 - mena-ae | NickToons HD | 20260914010000 +0000 | سانجاي أند كرايغ
   desc: ينقلب الأطفال على سانجاي عندما يحاصرهم جميعًا على طريق سريع متوسط في "Traffical Island"، ثم في "Partybot"، يجد سانجاي وكريج روبوتًا قديمًا ويصبحان حيوانات احتفالية.
 
-[premium_title_not_english] count=104
+[premium_title_not_english] count=92
 - provider-bein | BeIn Series HD 1.eg | 20260913210000 +0000 | 1883
 - provider-bein | BeIn Series HD 1.eg | 20260914030000 +0000 | 1883
 - provider-bein | BeIn Series HD 1.eg | 20260914090000 +0000 | 1883
 - provider-bein | BeIn Series HD 1.eg | 20260914150000 +0000 | 1883
-- provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260913173500 +0000 | 9 - 1
-  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
-- provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260913181500 +0000 | 9 - 1
-  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
 - provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260914165500 +0000 | 9 - 1
   desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
 - provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260914173500 +0000 | 9 - 1
   desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
 - provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260914181500 +0000 | 9 - 1
   desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
-- provider-bein | بي إن دراما | 20260913170000 +0000 | القاتل الذي أحبني
+- provider-bein | بي إن دراما | 20260914000000 +0000 | درب الذهب
   desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
+- provider-bein | بي إن دراما | 20260914010000 +0000 | مزاد الشر
+  desc: الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.
+- provider-bein | بي إن دراما | 20260914020000 +0000 | سراب
+  desc: يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب
 
-[very_long_event_gt_6h] count=52
+[very_long_event_gt_6h] count=51
 - provider-bein | bein SPORTS FTA DIGITAL.qa | 20260913212500 +0100 | Saudi Arabia vs Indonesia - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB07
   desc: مباراة، موسم 2026.
 - provider-bein | bein SPORTS FTA DIGITAL.qa | 20260914212500 +0100 | Saudi Arabia vs Indonesia
@@ -87,14 +87,14 @@ TOP SAMPLES
 - provider-mbc | MBC Mood | 20260913190300 +0000 | طرب
   desc: موعدكم الليلي مع نجوم الطرب الأصيل، حيث الإحساس والسلطنة في مختارات من برامج MBC وحفلات موسم الرياض.
 - provider-adm | Yas TV HD | 20260914193000 +0100 | Camel Racing
-- provider-dmi | Dubai Racing | 20260913120000 +0000 | 13 SEPTEMBER 2026 RACE FROM RACING TV, UK
 - provider-dmi | Dubai Racing | 20260914120000 +0000 | 14 SEPTEMBER 2026 RACE FROM RACING TV, UK
 - provider-dmi | Dubai Racing | 20260915013000 +0000 | Dubai International Arabian Horse Championship - 04/04/2026
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
 - mena-eg | EN: Masrah Masr Channel | 20260914124848 +0000 | TV guide is not available
 - mena-qa | Qatar TV HD | 20260913214500 +0100 | Soil
+- mena-qa | Qatar TV HD | 20260914214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2218
+[very_short_event_lt_5m] count=2174
 - provider-osn | OSNtv Kids | 20260913221700 +0000 | Matchbox Adventure
   desc: مايسون جيمس في سباق ضد الزمن لاستعادة الكنز المفقود من المنحدرات الصخرية قبل أن يثور البركان.
 - provider-osn | OSNtv Kids | 20260913222100 +0000 | Matchbox Adventure
