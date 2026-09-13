@@ -1,9 +1,6 @@
 name: MENA Cloud EPG
 
 on:
-  push:
-    branches:
-      - mena-cloud-rc29-merge
   # GitHub cron is UTC. The local-time gate handles Morocco DST/UTC changes.
   schedule:
     - cron: "0 5,6,17,18 * * *"
