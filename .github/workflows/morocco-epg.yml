@@ -13,6 +13,7 @@ on:
       - "tools/morocco_epg.py"
       - "tools/morocco_cloud_runner.py"
       - "tools/morocco_cloud_runner_ar.py"
+      - "tools/morocco_cloud_runner_ar2.py"
       - "tools/morocco_epg_parts/**"
 
 permissions:
@@ -124,7 +125,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile tools/morocco_epg.py tools/morocco_cloud_runner.py tools/morocco_cloud_runner_ar.py
+          python -m py_compile tools/morocco_epg.py tools/morocco_cloud_runner.py tools/morocco_cloud_runner_ar.py tools/morocco_cloud_runner_ar2.py
 
       - name: Download Last Known Good feed
         shell: bash
@@ -134,7 +135,7 @@ jobs:
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
             -o previous/morocco.xml.gz || true
 
-      - name: Generate Morocco XMLTV with Arabic 2M quality layer
+      - name: Generate Morocco XMLTV with full-day Arabic 2M quality layer
         id: generate
         shell: bash
         run: |
@@ -144,7 +145,7 @@ jobs:
             EXTRA="--scheduled"
           fi
           timeout --signal=TERM --kill-after=15s 300s \
-            python tools/morocco_cloud_runner_ar.py \
+            python tools/morocco_cloud_runner_ar2.py \
               --output-dir output \
               --previous previous/morocco.xml.gz \
               --days 7 \
@@ -194,24 +195,34 @@ jobs:
                               twom = [x for x in programmes if x.get('channel') == '2M']
                               bad_t = []
                               bad_d = []
+                              evening = 0
                               for x in twom:
                                   t = x.find('title')
                                   d = x.find('desc')
                                   tt = (t.text or '') if t is not None else ''
                                   dd = (d.text or '') if d is not None else ''
+                                  start = x.get('start') or ''
+                                  try:
+                                      hour = int(start[8:10])
+                                      if hour >= 18:
+                                          evening += 1
+                                  except Exception:
+                                      pass
                                   if t is None or t.get('lang') != 'ar' or not ar.search(tt):
                                       bad_t.append(tt)
                                   if d is None or d.get('lang') != 'ar' or not ar.search(dd):
                                       bad_d.append(dd)
-                              if len(twom) < 5:
-                                  reason = '2M programme count too small: %d' % len(twom)
+                              if len(twom) < 20:
+                                  reason = '2M programme count too small for 7-day feed: %d' % len(twom)
+                              elif evening < 3:
+                                  reason = '2M full-day coverage failed: only %d evening events' % evening
                               elif bad_t:
                                   reason = '2M Arabic title quality failed: %d/%d bad; sample=%r' % (len(bad_t), len(twom), bad_t[:3])
                               elif bad_d:
                                   reason = '2M Arabic description quality failed: %d/%d bad; sample=%r' % (len(bad_d), len(twom), bad_d[:3])
                               else:
                                   ready = True
-                                  reason = 'PASS: %d channels, %d programmes; 2M=%d with 100%% Arabic title/desc' % (len(channels), len(programmes), len(twom))
+                                  reason = 'PASS: %d channels, %d programmes; 2M=%d full-day/evening=%d with 100%% Arabic title/desc' % (len(channels), len(programmes), len(twom), evening)
               except Exception as exc:
                   reason = 'candidate parse failed: %s' % exc
           print(reason)
@@ -244,7 +255,7 @@ jobs:
             exit 0
           fi
           VERSION=$(python -c "import json; print(json.load(open('manifest.json')).get('version','unknown'))")
-          git commit -m "Morocco EPG ${VERSION} Arabic 2M"
+          git commit -m "Morocco EPG ${VERSION} full-day Arabic 2M"
           git push origin epg-data
 
       - name: Keep endpoint healthy when candidate is rejected
