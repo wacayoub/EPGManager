@@ -1,6 +1,6 @@
 {
-  "schema": 1,
-  "generated": "2026-09-13T11:53:31.689184+00:00",
+  "schema": 2,
+  "generated": "2026-09-13T11:59:43.036344+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -128,16 +128,16 @@
     }
   ],
   "candidate_channel_rows": 1772,
-  "unique_logical_channels": 1173,
-  "programmes": 65195,
-  "premium_hybrid_events": 0,
+  "unique_logical_channels": 1109,
+  "programmes": 64211,
+  "premium_hybrid_events": 1262,
   "stats": {
-    "logical_duplicate_groups": 374,
-    "regular_channels": 1042,
-    "source_openepg": 397,
-    "source_epgshare": 580,
-    "source_primary": 196,
-    "premium_channels": 131
+    "logical_duplicate_groups": 394,
+    "regular_channels": 1007,
+    "source_openepg": 373,
+    "source_epgshare": 540,
+    "premium_channels": 102,
+    "source_primary": 196
   },
   "aliases": [
     {
@@ -204,6 +204,24 @@
       "canonical_id": "2023 Alkass 8.qa",
       "canonical_name": "2023 Alkass 8.qa",
       "logical_key": "2023 alkass 8",
+      "aliases": []
+    },
+    {
+      "canonical_id": "4k_DIGITAL_Mono_AR.bein",
+      "canonical_name": "4k_DIGITAL_Mono_AR",
+      "logical_key": "4k",
+      "aliases": [
+        {
+          "id": "4k_DIGITAL_Mono_EN.bein",
+          "name": "4k_DIGITAL_Mono_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "4k DIGITAL.qa",
+      "canonical_name": "4k DIGITAL.qa",
+      "logical_key": "4k digital",
       "aliases": []
     },
     {
@@ -588,6 +606,102 @@
       "aliases": []
     },
     {
+      "canonical_id": "Alkass_1_EN.bein",
+      "canonical_name": "Alkass_1_EN",
+      "logical_key": "alkass 1",
+      "aliases": [
+        {
+          "id": "Alkass_1_AR.bein",
+          "name": "Alkass_1_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "Alkass_2_EN.bein",
+      "canonical_name": "Alkass_2_EN",
+      "logical_key": "alkass 2",
+      "aliases": [
+        {
+          "id": "Alkass_2_AR.bein",
+          "name": "Alkass_2_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "Alkass_3_EN.bein",
+      "canonical_name": "Alkass_3_EN",
+      "logical_key": "alkass 3",
+      "aliases": [
+        {
+          "id": "Alkass_3_AR.bein",
+          "name": "Alkass_3_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "Alkass_4_EN.bein",
+      "canonical_name": "Alkass_4_EN",
+      "logical_key": "alkass 4",
+      "aliases": [
+        {
+          "id": "Alkass_4_AR.bein",
+          "name": "Alkass_4_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "Alkass_5_En.bein",
+      "canonical_name": "Alkass_5_EN",
+      "logical_key": "alkass 5",
+      "aliases": [
+        {
+          "id": "Alkass_5_AR.bein",
+          "name": "Alkass_5_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "Alkass_6_EN.bein",
+      "canonical_name": "Alkass_6_EN",
+      "logical_key": "alkass 6",
+      "aliases": [
+        {
+          "id": "Alkass_6_AR.bein",
+          "name": "Alkass_6_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "Alkass_7_EN.bein",
+      "canonical_name": "Alkass_7_EN",
+      "logical_key": "alkass 7",
+      "aliases": [
+        {
+          "id": "Alkass_7_AR.bein",
+          "name": "Alkass_7_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "Alkass_8_EN.bein",
+      "canonical_name": "Alkass_8_EN",
+      "logical_key": "alkass 8",
+      "aliases": [
+        {
+          "id": "Alkass_8_AR.bein",
+          "name": "Alkass_8_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
       "canonical_id": "Alkass.Four.ae",
       "canonical_name": "Alkass Four",
       "logical_key": "alkass four",
@@ -812,9 +926,33 @@
       "aliases": []
     },
     {
+      "canonical_id": "bein.com-05.qa",
+      "canonical_name": "bein.com-05.qa",
+      "logical_key": "bein 05",
+      "aliases": []
+    },
+    {
+      "canonical_id": "bein.com-06.qa",
+      "canonical_name": "bein.com-06.qa",
+      "logical_key": "bein 06",
+      "aliases": []
+    },
+    {
+      "canonical_id": "bein.com-07.qa",
+      "canonical_name": "bein.com-07.qa",
+      "logical_key": "bein 07",
+      "aliases": []
+    },
+    {
+      "canonical_id": "bein.com-08.qa",
+      "canonical_name": "bein.com-08.qa",
+      "logical_key": "bein 08",
+      "aliases": []
+    },
+    {
       "canonical_id": "beIN4K.qa@SD",
       "canonical_name": "beIN 4K",
-      "logical_key": "bein",
+      "logical_key": "bein 4k",
       "aliases": [
         {
           "id": "beIN 4K.qa",
@@ -822,30 +960,6 @@
           "source": "openepg-qatar1"
         }
       ]
-    },
-    {
-      "canonical_id": "bein.com-05.qa",
-      "canonical_name": "bein.com-05.qa",
-      "logical_key": "bein com 05",
-      "aliases": []
-    },
-    {
-      "canonical_id": "bein.com-06.qa",
-      "canonical_name": "bein.com-06.qa",
-      "logical_key": "bein com 06",
-      "aliases": []
-    },
-    {
-      "canonical_id": "bein.com-07.qa",
-      "canonical_name": "bein.com-07.qa",
-      "logical_key": "bein com 07",
-      "aliases": []
-    },
-    {
-      "canonical_id": "bein.com-08.qa",
-      "canonical_name": "bein.com-08.qa",
-      "logical_key": "bein com 08",
-      "aliases": []
     },
     {
       "canonical_id": "beIN.Sports.HD.ae",
@@ -860,28 +974,287 @@
       ]
     },
     {
-      "canonical_id": "beIN SPORTS EN 1.qa",
-      "canonical_name": "beIN SPORTS EN 1.qa",
+      "canonical_id": "beIN SPORTS1 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS1 DIGITAL.qa",
       "logical_key": "bein sports 1",
       "aliases": [
         {
           "id": "beIN SPORTS 1.qa",
           "name": "beIN SPORTS 1.qa",
           "source": "openepg-qatar1"
+        },
+        {
+          "id": "beIN_SPORTS1_DIGITAL_Mono_AR.bein",
+          "name": "beIN_SPORTS1_DIGITAL_Mono_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS1_DIGITAL_Mono_EN.bein",
+          "name": "beIN_SPORTS1_DIGITAL_Mono_En",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS1 ENGLISH Digital.qa",
+      "canonical_name": "beIN SPORTS1 ENGLISH Digital.qa",
+      "logical_key": "bein sports 1 english",
+      "aliases": [
+        {
+          "id": "beIN SPORTS EN 1.qa",
+          "name": "beIN SPORTS EN 1.qa",
+          "source": "openepg-qatar1"
+        },
+        {
+          "id": "beIN_SPORTS1_ENGLISH_Digital_Mono_AR.bein",
+          "name": "beIN_SPORTS1_ENGLISH_Digital_Mono_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS1_ENGLISH_Digital_Mono_EN.bein",
+          "name": "beIN_SPORTS1_ENGLISH_Digital_Mono_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS2 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS2 DIGITAL.qa",
+      "logical_key": "bein sports 2",
+      "aliases": [
+        {
+          "id": "beIN SPORTS 2.qa",
+          "name": "beIN SPORTS 2.qa",
+          "source": "openepg-qatar1"
+        },
+        {
+          "id": "beIN_SPORTS2_DIGITAL_Mono_AR.bein",
+          "name": "beIN_SPORTS2_DIGITAL_Mono_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS2_DIGITAL_Mono_EN.bein",
+          "name": "beIN_SPORTS2_DIGITAL_Mono_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS2 ENGLISH Digital.qa",
+      "canonical_name": "beIN SPORTS2 ENGLISH Digital.qa",
+      "logical_key": "bein sports 2 english",
+      "aliases": [
+        {
+          "id": "beIN SPORTS EN 2.qa",
+          "name": "beIN SPORTS EN 2.qa",
+          "source": "openepg-qatar1"
+        },
+        {
+          "id": "beIN_SPORTS2_ENGLISH_Digital_Mono_AR.bein",
+          "name": "beIN_SPORTS2_ENGLISH_Digital_Mono_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS2_ENGLISH_Digital_Mono_EN.bein",
+          "name": "beIN_SPORTS2_ENGLISH_Digital_Mono_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS3 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS3 DIGITAL.qa",
+      "logical_key": "bein sports 3",
+      "aliases": [
+        {
+          "id": "beIN SPORTS 3.qa",
+          "name": "beIN SPORTS 3.qa",
+          "source": "openepg-qatar1"
+        },
+        {
+          "id": "beIN_SPORTS3_DIGITAL_Mono_AR.bein",
+          "name": "beIN_SPORTS3_DIGITAL_Mono_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS3_DIGITAL_Mono_EN.bein",
+          "name": "beIN_SPORTS3_DIGITAL_Mono_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS4 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS4 DIGITAL.qa",
+      "logical_key": "bein sports 4",
+      "aliases": [
+        {
+          "id": "beIN SPORTS 4.qa",
+          "name": "beIN SPORTS 4.qa",
+          "source": "openepg-qatar1"
+        },
+        {
+          "id": "beIN_SPORTS4_DIGITAL_Mono_AR.bein",
+          "name": "beIN_SPORTS4_DIGITAL_Mono_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS4_DIGITAL_Mono_EN.bein",
+          "name": "beIN_SPORTS4_DIGITAL_Mono_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS5 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS5 DIGITAL.qa",
+      "logical_key": "bein sports 5",
+      "aliases": [
+        {
+          "id": "beIN SPORTS 5.qa",
+          "name": "beIN SPORTS 5.qa",
+          "source": "openepg-qatar1"
+        },
+        {
+          "id": "beIN_SPORTS5_DIGITAL_Mono_AR.bein",
+          "name": "beIN_SPORTS5_DIGITAL_Mono_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS5_DIGITAL_Mono_EN.bein",
+          "name": "beIN_SPORTS5_DIGITAL_Mono_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS6 DIGITAL -d-1.qa",
+      "canonical_name": "beIN SPORTS6 DIGITAL -d-1.qa",
+      "logical_key": "bein sports 6 d 1",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS6_DIGITAL_Mono-d-1_AR.bein",
+          "name": "beIN_SPORTS6_DIGITAL_Mono-d-1_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS66 DIGITAL -01.qa",
+      "canonical_name": "beIN SPORTS66 DIGITAL -01.qa",
+      "logical_key": "bein sports 66 01",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS66_DIGITAL_Mono-01_EN.bein",
+          "name": "beIN_SPORTS66_DIGITAL_Mono-01_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS7 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS7 DIGITAL.qa",
+      "logical_key": "bein sports 7",
+      "aliases": [
+        {
+          "id": "beIN SPORTS 7.qa",
+          "name": "beIN SPORTS 7.qa",
+          "source": "openepg-qatar1"
+        },
+        {
+          "id": "beIN_SPORTS7_DIGITAL_Mono_AR.bein",
+          "name": "beIN_SPORTS7_DIGITAL_Mono_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS7_DIGITAL_Mono_EN.bein",
+          "name": "beIN_SPORTS7_DIGITAL_Mono_EN",
+          "source": "epgshare-bein1"
         }
       ]
     },
     {
       "canonical_id": "beIN SPORTS-boxoffice-bein.com.qa",
       "canonical_name": "beIN SPORTS-boxoffice-bein.com.qa",
-      "logical_key": "bein sports boxoffice bein com",
+      "logical_key": "bein sports boxoffice bein",
       "aliases": []
     },
     {
       "canonical_id": "bein SPORTS FTA DIGITAL.qa",
       "canonical_name": "bein SPORTS FTA DIGITAL.qa",
-      "logical_key": "bein sports fta digital",
-      "aliases": []
+      "logical_key": "bein sports fta",
+      "aliases": [
+        {
+          "id": "bein_SPORTS_FTA_DIGITAL_Mono_AR.bein",
+          "name": "bein_SPORTS_FTA_DIGITAL_Mono_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "bein_SPORTS_FTA_DIGITAL_Mono_EN.bein",
+          "name": "bein_SPORTS_FTA_DIGITAL_Mono_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS MAX1 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS MAX1 DIGITAL.qa",
+      "logical_key": "bein sports max 1",
+      "aliases": [
+        {
+          "id": "beIN SPORTS MAX 1.qa",
+          "name": "beIN SPORTS MAX 1.qa",
+          "source": "openepg-qatar1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS MAX2 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS MAX2 DIGITAL.qa",
+      "logical_key": "bein sports max 2",
+      "aliases": [
+        {
+          "id": "beIN SPORTS MAX 2.qa",
+          "name": "beIN SPORTS MAX 2.qa",
+          "source": "openepg-qatar1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS MAX3 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS MAX3 DIGITAL.qa",
+      "logical_key": "bein sports max 3",
+      "aliases": [
+        {
+          "id": "beIN SPORTS MAX 3.qa",
+          "name": "beIN SPORTS MAX 3.qa",
+          "source": "openepg-qatar1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS MAX4 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS MAX4 DIGITAL.qa",
+      "logical_key": "bein sports max 4",
+      "aliases": [
+        {
+          "id": "beIN SPORTS MAX 4.qa",
+          "name": "beIN SPORTS MAX 4.qa",
+          "source": "openepg-qatar1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS MAX5 DIGITAL.qa",
+      "canonical_name": "beIN SPORTS MAX5 DIGITAL.qa",
+      "logical_key": "bein sports max 5",
+      "aliases": [
+        {
+          "id": "beIN SPORTS MAX 5.qa",
+          "name": "beIN SPORTS MAX 5.qa",
+          "source": "openepg-qatar1"
+        }
+      ]
     },
     {
       "canonical_id": "beIN SPORTS NEWS.qa",
@@ -896,6 +1269,88 @@
       ]
     },
     {
+      "canonical_id": "beIN SPORTS XTRA 04 bein.com.qa",
+      "canonical_name": "beIN SPORTS XTRA 04 bein.com.qa",
+      "logical_key": "bein sports xtra 04 bein",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS_XTRA_04_bein.com_AR.bein",
+          "name": "beIN_SPORTS_XTRA_04_bein.com_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS_XTRA_04_bein.com_EN.bein",
+          "name": "beIN_SPORTS_XTRA_04_bein.com_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS XTRA 05 bein.com.qa",
+      "canonical_name": "beIN SPORTS XTRA 05 bein.com.qa",
+      "logical_key": "bein sports xtra 05 bein",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS_XTRA_05_bein.com_AR.bein",
+          "name": "beIN_SPORTS_XTRA_05_bein.com_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS_XTRA_05_bein.com_EN.bein",
+          "name": "beIN_SPORTS_XTRA_05_bein.com_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN_SPORTS_XTRA_06_bein.com_EN.bein",
+      "canonical_name": "beIN_SPORTS_XTRA_06_bein.com_EN",
+      "logical_key": "bein sports xtra 06 bein",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS_XTRA_06_bein.com_AR.bein",
+          "name": "beIN_SPORTS_XTRA_06_bein.com_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN_SPORTS_XTRA_07_bein.com_EN.bein",
+      "canonical_name": "beIN_SPORTS_XTRA_07_bein.com_EN",
+      "logical_key": "bein sports xtra 07 bein",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS_XTRA_07_bein.com_AR.bein",
+          "name": "beIN_SPORTS_XTRA_07_bein.com_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN_SPORTS_XTRA_08_Bein.com_EN.bein",
+      "canonical_name": "beIN_SPORTS_XTRA_08_Bein.com_EN",
+      "logical_key": "bein sports xtra 08 bein",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS_XTRA_08_Bein.com_AR.bein",
+          "name": "beIN_SPORTS_XTRA_08_Bein.com_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein",
+      "canonical_name": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN",
+      "logical_key": "bein sports xtra 09 bein",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS_XTRA_Digital_09_Bein.com_AR.bein",
+          "name": "beIN_SPORTS_XTRA_Digital_09_Bein.com_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
       "canonical_id": "beINSportsXtra1.qa@SD",
       "canonical_name": "beIN SPORTS XTRA 1",
       "logical_key": "bein sports xtra 1",
@@ -904,6 +1359,26 @@
           "id": "beIN SPORTS XTRA 1.qa",
           "name": "beIN SPORTS XTRA 1.qa",
           "source": "openepg-qatar1"
+        },
+        {
+          "id": "beIN SPORTS XTRA1 Digital.qa",
+          "name": "beIN SPORTS XTRA1 Digital.qa",
+          "source": "openepg-qatar2"
+        },
+        {
+          "id": "beIN SPORTS XTRA1 Digital.qa",
+          "name": "beIN SPORTS XTRA1 Digital.qa",
+          "source": "openepg-qatar3"
+        },
+        {
+          "id": "beIN_SPORTS_XTRA1_Digital_Mono_AR.bein",
+          "name": "beIN_SPORTS_XTRA1_Digital_Mono_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS_XTRA1_Digital_Mono_EN.bein",
+          "name": "beIN_SPORTS_XTRA1_Digital_Mono_EN",
+          "source": "epgshare-bein1"
         }
       ]
     },
@@ -916,126 +1391,28 @@
           "id": "beIN SPORTS XTRA 2.qa",
           "name": "beIN SPORTS XTRA 2.qa",
           "source": "openepg-qatar1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "beIN SPORTS XTRA1 Digital.qa",
-      "canonical_name": "beIN SPORTS XTRA1 Digital.qa",
-      "logical_key": "bein sports xtra1 digital",
-      "aliases": []
-    },
-    {
-      "canonical_id": "beIN SPORTS XTRA2 Digital.qa",
-      "canonical_name": "beIN SPORTS XTRA2 Digital.qa",
-      "logical_key": "bein sports xtra2 digital",
-      "aliases": []
-    },
-    {
-      "canonical_id": "beIN SPORTS1 DIGITAL.qa",
-      "canonical_name": "beIN SPORTS1 DIGITAL.qa",
-      "logical_key": "bein sports1 digital",
-      "aliases": [
+        },
         {
-          "id": "beIN SPORTS1 ENGLISH Digital.qa",
-          "name": "beIN SPORTS1 ENGLISH Digital.qa",
+          "id": "beIN SPORTS XTRA2 Digital.qa",
+          "name": "beIN SPORTS XTRA2 Digital.qa",
           "source": "openepg-qatar2"
         },
         {
-          "id": "beIN SPORTS1 ENGLISH Digital.qa",
-          "name": "beIN SPORTS1 ENGLISH Digital.qa",
+          "id": "beIN SPORTS XTRA2 Digital.qa",
+          "name": "beIN SPORTS XTRA2 Digital.qa",
           "source": "openepg-qatar3"
-        }
-      ]
-    },
-    {
-      "canonical_id": "beIN_SPORTS1_DIGITAL_Mono_AR.bein",
-      "canonical_name": "beIN_SPORTS1_DIGITAL_Mono_AR",
-      "logical_key": "bein sports1 digital mono ar",
-      "aliases": [
-        {
-          "id": "beIN_SPORTS1_ENGLISH_Digital_Mono_AR.bein",
-          "name": "beIN_SPORTS1_ENGLISH_Digital_Mono_AR",
-          "source": "epgshare-bein1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "beIN_SPORTS1_ENGLISH_Digital_Mono_EN.bein",
-      "canonical_name": "beIN_SPORTS1_ENGLISH_Digital_Mono_EN",
-      "logical_key": "bein sports1 digital mono en",
-      "aliases": [
-        {
-          "id": "beIN_SPORTS1_DIGITAL_Mono_EN.bein",
-          "name": "beIN_SPORTS1_DIGITAL_Mono_En",
-          "source": "epgshare-bein1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "beIN SPORTS2 DIGITAL.qa",
-      "canonical_name": "beIN SPORTS2 DIGITAL.qa",
-      "logical_key": "bein sports2 digital",
-      "aliases": [
-        {
-          "id": "beIN SPORTS2 ENGLISH Digital.qa",
-          "name": "beIN SPORTS2 ENGLISH Digital.qa",
-          "source": "openepg-qatar2"
         },
         {
-          "id": "beIN SPORTS2 ENGLISH Digital.qa",
-          "name": "beIN SPORTS2 ENGLISH Digital.qa",
-          "source": "openepg-qatar3"
-        }
-      ]
-    },
-    {
-      "canonical_id": "beIN_SPORTS2_ENGLISH_Digital_Mono_AR.bein",
-      "canonical_name": "beIN_SPORTS2_ENGLISH_Digital_Mono_AR",
-      "logical_key": "bein sports2 digital mono ar",
-      "aliases": [
+          "id": "beIN_SPORTS_XTRA2_Digital_Mono_AR.bein",
+          "name": "beIN_SPORTS_XTRA2_Digital_Mono_AR",
+          "source": "epgshare-bein1"
+        },
         {
-          "id": "beIN_SPORTS2_DIGITAL_Mono_AR.bein",
-          "name": "beIN_SPORTS2_DIGITAL_Mono_AR",
+          "id": "beIN_SPORTS_XTRA2_Digital_Mono_EN.bein",
+          "name": "beIN_SPORTS_XTRA2_Digital_Mono_EN",
           "source": "epgshare-bein1"
         }
       ]
-    },
-    {
-      "canonical_id": "beIN_SPORTS2_ENGLISH_Digital_Mono_EN.bein",
-      "canonical_name": "beIN_SPORTS2_ENGLISH_Digital_Mono_EN",
-      "logical_key": "bein sports2 digital mono en",
-      "aliases": [
-        {
-          "id": "beIN_SPORTS2_DIGITAL_Mono_EN.bein",
-          "name": "beIN_SPORTS2_DIGITAL_Mono_EN",
-          "source": "epgshare-bein1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "beIN SPORTS3 DIGITAL.qa",
-      "canonical_name": "beIN SPORTS3 DIGITAL.qa",
-      "logical_key": "bein sports3 digital",
-      "aliases": []
-    },
-    {
-      "canonical_id": "beIN SPORTS4 DIGITAL.qa",
-      "canonical_name": "beIN SPORTS4 DIGITAL.qa",
-      "logical_key": "bein sports4 digital",
-      "aliases": []
-    },
-    {
-      "canonical_id": "beIN SPORTS5 DIGITAL.qa",
-      "canonical_name": "beIN SPORTS5 DIGITAL.qa",
-      "logical_key": "bein sports5 digital",
-      "aliases": []
-    },
-    {
-      "canonical_id": "beIN SPORTS7 DIGITAL.qa",
-      "canonical_name": "beIN SPORTS7 DIGITAL.qa",
-      "logical_key": "bein sports7 digital",
-      "aliases": []
     },
     {
       "canonical_id": "beINSports8.qa@MENA",
@@ -1376,12 +1753,6 @@
           "source": "openepg-saudi2"
         }
       ]
-    },
-    {
-      "canonical_id": "4k DIGITAL.qa",
-      "canonical_name": "4k DIGITAL.qa",
-      "logical_key": "digital",
-      "aliases": []
     },
     {
       "canonical_id": "Discovery HD.sa",
@@ -1875,6 +2246,42 @@
           "id": "LBC.eg",
           "name": "LBC.eg",
           "source": "openepg-egypt2"
+        }
+      ]
+    },
+    {
+      "canonical_id": "logos-_beINSPORTS8_AR.bein",
+      "canonical_name": "logos-_beINSPORTS8_AR",
+      "logical_key": "logos beinsports8",
+      "aliases": [
+        {
+          "id": "logos-_beINSPORTS8_EN.bein",
+          "name": "logos-_beINSPORTS8_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "logos-_beINSPORTS9_EN.bein",
+      "canonical_name": "logos-_beINSPORTS9_EN",
+      "logical_key": "logos beinsports9",
+      "aliases": [
+        {
+          "id": "logos-_beINSPORTS9_AR.bein",
+          "name": "logos-_beINSPORTS9_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "logos-_beINSPORTSXTRA3_EN.bein",
+      "canonical_name": "logos-_beINSPORTSXTRA3_EN",
+      "logical_key": "logos beinsportsxtra3",
+      "aliases": [
+        {
+          "id": "logos-_beINSPORTSXTRA3_AR.bein",
+          "name": "logos-_beINSPORTSXTRA3_AR",
+          "source": "epgshare-bein1"
         }
       ]
     },
@@ -2819,8 +3226,13 @@
     {
       "canonical_id": "OSNComedy.ae@SD",
       "canonical_name": "OSNtv Comedy",
-      "logical_key": "osntv comedy",
+      "logical_key": "osn comedy",
       "aliases": [
+        {
+          "id": "OSN TV Comedy.eg",
+          "name": "OSN TV Comedy.eg",
+          "source": "openepg-egypt2"
+        },
         {
           "id": "OSNtv Comedy.sa",
           "name": "OSNtv Comedy.sa",
@@ -2836,26 +3248,37 @@
     {
       "canonical_id": "OSNtv Crime.sa",
       "canonical_name": "OSNtv Crime.sa",
-      "logical_key": "osntv crime",
-      "aliases": []
+      "logical_key": "osn crime",
+      "aliases": [
+        {
+          "id": "OSN TV Crime.eg",
+          "name": "OSN TV Crime.eg",
+          "source": "openepg-egypt2"
+        }
+      ]
     },
     {
       "canonical_id": "OSNtv Documentary.sa",
       "canonical_name": "OSNtv Documentary.sa",
-      "logical_key": "osntv documentary",
+      "logical_key": "osn documentary",
       "aliases": []
     },
     {
       "canonical_id": "OSNtv iQIYI.sa",
       "canonical_name": "OSNtv iQIYI.sa",
-      "logical_key": "osntv iqiyi",
+      "logical_key": "osn iqiyi",
       "aliases": []
     },
     {
       "canonical_id": "OSNKids.ae@SD",
       "canonical_name": "OSNtv Kids",
-      "logical_key": "osntv kids",
+      "logical_key": "osn kids",
       "aliases": [
+        {
+          "id": "OSN TV Kids.eg",
+          "name": "OSN TV Kids.eg",
+          "source": "openepg-egypt2"
+        },
         {
           "id": "OSNtv Kids.sa",
           "name": "OSNtv Kids.sa",
@@ -2871,7 +3294,7 @@
     {
       "canonical_id": "OSNMezze.ae@SD",
       "canonical_name": "OSNtv Mezze",
-      "logical_key": "osntv mezze",
+      "logical_key": "osn mezze",
       "aliases": [
         {
           "id": "OSNtv Mezze.sa",
@@ -2888,8 +3311,13 @@
     {
       "canonical_id": "OSNMoviesAction.ae@SD",
       "canonical_name": "OSNtv Movies Action",
-      "logical_key": "osntv movies action",
+      "logical_key": "osn movies action",
       "aliases": [
+        {
+          "id": "OSN TV Movies Action.eg",
+          "name": "OSN TV Movies Action.eg",
+          "source": "openepg-egypt2"
+        },
         {
           "id": "OSNtv Movies Action.sa",
           "name": "OSNtv Movies Action.sa",
@@ -2905,20 +3333,37 @@
     {
       "canonical_id": "OSNtv Movies Comedy.sa",
       "canonical_name": "OSNtv Movies Comedy.sa",
-      "logical_key": "osntv movies comedy",
-      "aliases": []
+      "logical_key": "osn movies comedy",
+      "aliases": [
+        {
+          "id": "OSN TV Movies Comedy.eg",
+          "name": "OSN TV Movies Comedy.eg",
+          "source": "openepg-egypt2"
+        }
+      ]
     },
     {
       "canonical_id": "OSNtv Movies Family.sa",
       "canonical_name": "OSNtv Movies Family.sa",
-      "logical_key": "osntv movies family",
-      "aliases": []
+      "logical_key": "osn movies family",
+      "aliases": [
+        {
+          "id": "OSN TV Movies Family.eg",
+          "name": "OSN TV Movies Family.eg",
+          "source": "openepg-egypt2"
+        }
+      ]
     },
     {
       "canonical_id": "OSNMoviesHollywood.ae@SD",
       "canonical_name": "OSNtv Movies Hollywood",
-      "logical_key": "osntv movies hollywood",
+      "logical_key": "osn movies hollywood",
       "aliases": [
+        {
+          "id": "OSN TV Movies Hollywood.eg",
+          "name": "OSN TV Movies Hollywood.eg",
+          "source": "openepg-egypt2"
+        },
         {
           "id": "OSNtv Movies Hollywood.sa",
           "name": "OSNtv Movies Hollywood.sa",
@@ -2934,14 +3379,19 @@
     {
       "canonical_id": "OSNtv Movies Horror.sa",
       "canonical_name": "OSNtv Movies Horror.sa",
-      "logical_key": "osntv movies horror",
+      "logical_key": "osn movies horror",
       "aliases": []
     },
     {
       "canonical_id": "OSNMoviesPremiere.ae@SD",
       "canonical_name": "OSNtv Movies Premiere",
-      "logical_key": "osntv movies premiere",
+      "logical_key": "osn movies premiere",
       "aliases": [
+        {
+          "id": "OSN TV Movies Premiere.eg",
+          "name": "OSN TV Movies Premiere.eg",
+          "source": "openepg-egypt2"
+        },
         {
           "id": "OSNtv Movies Premiere.sa",
           "name": "OSNtv Movies Premiere.sa",
@@ -2957,26 +3407,43 @@
     {
       "canonical_id": "OSNtv Now.sa",
       "canonical_name": "OSNtv Now.sa",
-      "logical_key": "osntv now",
-      "aliases": []
+      "logical_key": "osn now",
+      "aliases": [
+        {
+          "id": "OSN TV Now.eg",
+          "name": "OSN TV Now.eg",
+          "source": "openepg-egypt2"
+        }
+      ]
     },
     {
       "canonical_id": "OSNtv One.sa",
       "canonical_name": "OSNtv One.sa",
-      "logical_key": "osntv one",
-      "aliases": []
+      "logical_key": "osn one",
+      "aliases": [
+        {
+          "id": "OSN TV One.eg",
+          "name": "OSN TV One.eg",
+          "source": "openepg-egypt2"
+        }
+      ]
     },
     {
       "canonical_id": "OSNtv Pop Up.sa",
       "canonical_name": "OSNtv Pop Up.sa",
-      "logical_key": "osntv pop up",
+      "logical_key": "osn pop up",
       "aliases": []
     },
     {
       "canonical_id": "OSNShowcase.ae@SD",
       "canonical_name": "OSNtv Showcase",
-      "logical_key": "osntv showcase",
+      "logical_key": "osn showcase",
       "aliases": [
+        {
+          "id": "OSN TV Showcase.eg",
+          "name": "OSN TV Showcase.eg",
+          "source": "openepg-egypt2"
+        },
         {
           "id": "OSNtv Showcase.sa",
           "name": "OSNtv Showcase.sa",
@@ -2992,13 +3459,13 @@
     {
       "canonical_id": "OSNtv Showcase Classics.sa",
       "canonical_name": "OSNtv Showcase Classics.sa",
-      "logical_key": "osntv showcase classics",
+      "logical_key": "osn showcase classics",
       "aliases": []
     },
     {
       "canonical_id": "OSNYahala.ae@SD",
       "canonical_name": "OSNtv Yahala",
-      "logical_key": "osntv yahala",
+      "logical_key": "osn yahala",
       "aliases": [
         {
           "id": "OSNtv Yahala.sa",
@@ -3015,7 +3482,7 @@
     {
       "canonical_id": "OSNYahalaAflam.ae@SD",
       "canonical_name": "OSNtv Yahala Aflam",
-      "logical_key": "osntv yahala aflam",
+      "logical_key": "osn yahala aflam",
       "aliases": [
         {
           "id": "OSNtv Yahala Aflam.sa",
@@ -3032,8 +3499,13 @@
     {
       "canonical_id": "OSNYahalaBilArabi.ae@SD",
       "canonical_name": "OSNtv Yahala Bil Arabi",
-      "logical_key": "osntv yahala bil arabi",
+      "logical_key": "osn yahala bil arabi",
       "aliases": [
+        {
+          "id": "OSN TV Yahala Bil Arabi.eg",
+          "name": "OSN TV Yahala Bil Arabi.eg",
+          "source": "openepg-egypt2"
+        },
         {
           "id": "OSNtv Yahala Bil Arabi.sa",
           "name": "OSNtv Yahala Bil Arabi.sa",
@@ -3949,6 +4421,18 @@
       ]
     },
     {
+      "canonical_id": "SharjahTV.ae@SD",
+      "canonical_name": "الشارقة",
+      "logical_key": "الشارقة",
+      "aliases": [
+        {
+          "id": "الشارقة.eg",
+          "name": "الشارقة.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "AsharqNews.sa@SD",
       "canonical_name": "الشرق",
       "logical_key": "الشرق",
@@ -4105,18 +4589,6 @@
       ]
     },
     {
-      "canonical_id": "AlNaharDrama.eg@SD",
-      "canonical_name": "النهار دراما",
-      "logical_key": "النهار دراما",
-      "aliases": [
-        {
-          "id": "النهار دراما.eg",
-          "name": "النهار دراما.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "beINDrama1.qa@SD",
       "canonical_name": "بي إن دراما",
       "logical_key": "بي إن دراما",
@@ -4256,18 +4728,6 @@
         {
           "id": "زي ألوان.eg",
           "name": "زي ألوان.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "SamaDubai.ae@SD",
-      "canonical_name": "سما دبي",
-      "logical_key": "سما دبي",
-      "aliases": [
-        {
-          "id": "سما دبي.eg",
-          "name": "سما دبي.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4448,6 +4908,18 @@
         {
           "id": "نايل دراما.eg",
           "name": "نايل دراما.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "NileLife.eg@SD",
+      "canonical_name": "نايل لايف",
+      "logical_key": "نايل لايف",
+      "aliases": [
+        {
+          "id": "نايل لايف.eg",
+          "name": "نايل لايف.eg",
           "source": "openepg-egypt1"
         }
       ]
