@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-13T17:27:16.359783+00:00",
+  "generated": "2026-09-13T17:41:10.879278+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -127,17 +127,17 @@
       "bytes": 4291
     }
   ],
-  "candidate_channel_rows": 1753,
-  "unique_logical_channels": 1096,
-  "programmes": 61801,
-  "premium_hybrid_events": 1134,
+  "candidate_channel_rows": 1755,
+  "unique_logical_channels": 1101,
+  "programmes": 61732,
+  "premium_hybrid_events": 1032,
   "stats": {
-    "logical_duplicate_groups": 389,
-    "regular_channels": 997,
-    "source_openepg": 374,
+    "logical_duplicate_groups": 386,
+    "regular_channels": 1002,
+    "source_openepg": 377,
     "source_epgshare": 534,
     "premium_channels": 99,
-    "source_primary": 188
+    "source_primary": 190
   },
   "aliases": [
     {
@@ -249,8 +249,8 @@
       "aliases": []
     },
     {
-      "canonical_id": "Abu Dhabi TV.eg",
-      "canonical_name": "Abu Dhabi TV.eg",
+      "canonical_id": "AbuDhabiTV.ae@SD",
+      "canonical_name": "Abu Dhabi TV HD",
       "logical_key": "abu dhabi tv",
       "aliases": [
         {
@@ -272,6 +272,11 @@
           "id": "Abu Dhabi TV HD.sa",
           "name": "Abu Dhabi TV HD.sa",
           "source": "openepg-saudi6"
+        },
+        {
+          "id": "Abu Dhabi TV.eg",
+          "name": "Abu Dhabi TV.eg",
+          "source": "openepg-egypt2"
         }
       ]
     },
@@ -338,8 +343,8 @@
       "aliases": []
     },
     {
-      "canonical_id": "Al Arabiya.sa",
-      "canonical_name": "Al Arabiya.sa",
+      "canonical_id": "AlarabiyaPortrait.ae@SD",
+      "canonical_name": "Al Arabiya",
       "logical_key": "al arabiya",
       "aliases": [
         {
@@ -351,6 +356,16 @@
           "id": "Al Arabiya HD.sa",
           "name": "Al Arabiya HD.sa",
           "source": "openepg-saudi2"
+        },
+        {
+          "id": "Al Arabiya.sa",
+          "name": "Al Arabiya.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Al Arabiya.sa",
+          "name": "Al Arabiya.sa",
+          "source": "openepg-saudi6"
         },
         {
           "id": "Al.Arabiya.HD.ae",
@@ -898,18 +913,6 @@
       "aliases": []
     },
     {
-      "canonical_id": "beIN4K.qa@SD",
-      "canonical_name": "beIN 4K",
-      "logical_key": "bein 4k",
-      "aliases": [
-        {
-          "id": "beIN 4K.qa",
-          "name": "beIN 4K.qa",
-          "source": "openepg-qatar1"
-        }
-      ]
-    },
-    {
       "canonical_id": "beIN.Sports.HD.ae",
       "canonical_name": "beIN Sports HD",
       "logical_key": "bein sports",
@@ -1311,24 +1314,14 @@
       ]
     },
     {
-      "canonical_id": "beINSportsXtra1.qa@SD",
-      "canonical_name": "beIN SPORTS XTRA 1",
+      "canonical_id": "beIN SPORTS XTRA1 Digital.qa",
+      "canonical_name": "beIN SPORTS XTRA1 Digital.qa",
       "logical_key": "bein sports xtra 1",
       "aliases": [
         {
           "id": "beIN SPORTS XTRA 1.qa",
           "name": "beIN SPORTS XTRA 1.qa",
           "source": "openepg-qatar1"
-        },
-        {
-          "id": "beIN SPORTS XTRA1 Digital.qa",
-          "name": "beIN SPORTS XTRA1 Digital.qa",
-          "source": "openepg-qatar2"
-        },
-        {
-          "id": "beIN SPORTS XTRA1 Digital.qa",
-          "name": "beIN SPORTS XTRA1 Digital.qa",
-          "source": "openepg-qatar3"
         },
         {
           "id": "beIN_SPORTS_XTRA1_Digital_Mono_AR.bein",
@@ -1343,24 +1336,14 @@
       ]
     },
     {
-      "canonical_id": "beINSportsXtra2.qa@SD",
-      "canonical_name": "beIN SPORTS XTRA 2",
+      "canonical_id": "beIN SPORTS XTRA2 Digital.qa",
+      "canonical_name": "beIN SPORTS XTRA2 Digital.qa",
       "logical_key": "bein sports xtra 2",
       "aliases": [
         {
           "id": "beIN SPORTS XTRA 2.qa",
           "name": "beIN SPORTS XTRA 2.qa",
           "source": "openepg-qatar1"
-        },
-        {
-          "id": "beIN SPORTS XTRA2 Digital.qa",
-          "name": "beIN SPORTS XTRA2 Digital.qa",
-          "source": "openepg-qatar2"
-        },
-        {
-          "id": "beIN SPORTS XTRA2 Digital.qa",
-          "name": "beIN SPORTS XTRA2 Digital.qa",
-          "source": "openepg-qatar3"
         },
         {
           "id": "beIN_SPORTS_XTRA2_Digital_Mono_AR.bein",
@@ -4386,6 +4369,18 @@
       ]
     },
     {
+      "canonical_id": "SharjahTV.ae@SD",
+      "canonical_name": "الشارقة",
+      "logical_key": "الشارقة",
+      "aliases": [
+        {
+          "id": "الشارقة.eg",
+          "name": "الشارقة.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "AsharqNews.sa@SD",
       "canonical_name": "الشرق",
       "logical_key": "الشرق",
@@ -4530,18 +4525,6 @@
       ]
     },
     {
-      "canonical_id": "AlNaharDrama.eg@SD",
-      "canonical_name": "النهار دراما",
-      "logical_key": "النهار دراما",
-      "aliases": [
-        {
-          "id": "النهار دراما.eg",
-          "name": "النهار دراما.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "beINDrama1.qa@SD",
       "canonical_name": "بي إن دراما",
       "logical_key": "بي إن دراما",
@@ -4669,18 +4652,6 @@
         {
           "id": "روتانا كوميدي.eg",
           "name": "روتانا كوميدي.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "ZeeAlwan.ae@SD",
-      "canonical_name": "زي ألوان",
-      "logical_key": "زي ألوان",
-      "aliases": [
-        {
-          "id": "زي ألوان.eg",
-          "name": "زي ألوان.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4849,18 +4820,6 @@
         {
           "id": "نايل دراما.eg",
           "name": "نايل دراما.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "NessmaElJadida.tn@SD",
-      "canonical_name": "نسمة",
-      "logical_key": "نسمة",
-      "aliases": [
-        {
-          "id": "نسمة.eg",
-          "name": "نسمة.eg",
           "source": "openepg-egypt1"
         }
       ]
