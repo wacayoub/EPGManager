@@ -1,17 +1,20 @@
 {
-  "schema": 1,
-  "strategy": "official-first-all-arabic",
+  "schema": 2,
+  "strategy": "official-first-all-arabic-tv",
   "source_project": "iptv-org/epg",
   "input_channel_files": 538,
   "arabic_rows_seen": 16355,
   "invalid_rows_skipped": 15937,
-  "unique_channels": 304,
+  "morocco_rows_skipped": 15,
+  "radio_rows_skipped": 3,
+  "unique_channels": 291,
   "morocco_excluded": true,
+  "tv_only": true,
   "source_counts": {
-    "elcinema.com": 69,
-    "shahid.mbc.net": 59,
-    "sat.tv": 53,
+    "elcinema.com": 67,
+    "shahid.mbc.net": 56,
     "bein.com": 48,
+    "sat.tv": 47,
     "osn.com": 36,
     "rotana.net": 9,
     "beinsports.com": 7,
@@ -19,29 +22,12 @@
     "artonline.tv": 5,
     "ayn.om": 4,
     "aljazeera.com": 2,
-    "snrt.ma": 2,
     "freetv.tv": 1,
     "i24news.tv": 1,
     "teleboy.ch": 1
   },
   "parse_errors": [],
   "channels": [
-    {
-      "xmltv_id": "2M.ma@SD",
-      "name": "2M وطني",
-      "site": "sat.tv",
-      "site_id": "1#38#2M وطني",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "2MMonde.ma@SD",
-      "name": "المغربية الثانية",
-      "site": "elcinema.com",
-      "site_id": "1353",
-      "priority": 100,
-      "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
-    },
     {
       "xmltv_id": "AbdulmajeedAbdullah.sa@SD",
       "name": "عبدالمجيد عبدالله",
@@ -103,22 +89,6 @@
       "name": "الآن",
       "site": "sat.tv",
       "site_id": "1#38#الآن",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "AlAoula.ma@MiddleEast",
-      "name": "الأولى المغربية",
-      "site": "elcinema.com",
-      "site_id": "1312",
-      "priority": 100,
-      "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "AlAoula.ma@SD",
-      "name": "الاولى",
-      "site": "sat.tv",
-      "site_id": "1#38#الاولى",
       "priority": 120,
       "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
@@ -347,22 +317,6 @@
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
-      "xmltv_id": "AlkhuzamaRadio.sa@SD",
-      "name": "إذاعة خزامى",
-      "site": "shahid.mbc.net",
-      "site_id": "1029746",
-      "priority": 10,
-      "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "AlMaghribia.ma@SD",
-      "name": "المغربية",
-      "site": "sat.tv",
-      "site_id": "1#49#المغربية",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "AlMamlakaTV.jo@SD",
       "name": "المملكة تي في",
       "site": "sat.tv",
@@ -547,14 +501,6 @@
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
-      "xmltv_id": "Arryadia.ma@HD",
-      "name": "الرياضية",
-      "site": "sat.tv",
-      "site_id": "1#49#الرياضية",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
       "xmltv_id": "ARTAflam1.sa@SD",
       "name": "افلام 1",
       "site": "artonline.tv",
@@ -617,22 +563,6 @@
       "site_id": "862837",
       "priority": 10,
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "Assadissa.ma@SD",
-      "name": "Assadissa",
-      "site": "snrt.ma",
-      "site_id": "4073",
-      "priority": 500,
-      "source_file": "sites/snrt.ma/snrt.ma.channels.xml"
-    },
-    {
-      "xmltv_id": "Athaqafia.ma@SD",
-      "name": "الثقافية",
-      "site": "sat.tv",
-      "site_id": "1#49#الثقافية",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
       "xmltv_id": "AttessiaTV.tn@SD",
@@ -1443,14 +1373,6 @@
       "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
     {
-      "xmltv_id": "LaayouneTV.ma@SD",
-      "name": "Laâyoune",
-      "site": "snrt.ma",
-      "site_id": "4069",
-      "priority": 500,
-      "source_file": "sites/snrt.ma/snrt.ma.channels.xml"
-    },
-    {
       "xmltv_id": "LanaTV.lb@SD",
       "name": "ال تي في",
       "site": "elcinema.com",
@@ -1607,14 +1529,6 @@
       "name": "MBC Drama",
       "site": "shahid.mbc.net",
       "site_id": "816781",
-      "priority": 10,
-      "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "MBCFM.ae@SD",
-      "name": "MBC FM",
-      "site": "shahid.mbc.net",
-      "site_id": "388567",
       "priority": 10,
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
@@ -1995,14 +1909,6 @@
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
-      "xmltv_id": "PanoramaFM.sa@SD",
-      "name": "Panorama FM",
-      "site": "shahid.mbc.net",
-      "site_id": "388566",
-      "priority": 10,
-      "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
-    },
-    {
       "xmltv_id": "PNCFood.eg@SD",
       "name": "بانوراما فوود",
       "site": "sat.tv",
@@ -2295,14 +2201,6 @@
       "name": "السودان تي في",
       "site": "sat.tv",
       "site_id": "1#38#السودان تي في",
-      "priority": 120,
-      "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
-    },
-    {
-      "xmltv_id": "TamazightTV.ma@SD",
-      "name": "الأمازيغية",
-      "site": "sat.tv",
-      "site_id": "1#49#الأمازيغية",
       "priority": 120,
       "source_file": "sites/sat.tv/sat.tv_ar.channels.xml"
     },
