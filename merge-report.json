@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-13T17:10:00.422558+00:00",
+  "generated": "2026-09-13T17:27:16.359783+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -127,17 +127,17 @@
       "bytes": 4291
     }
   ],
-  "candidate_channel_rows": 1758,
-  "unique_logical_channels": 1097,
-  "programmes": 61955,
-  "premium_hybrid_events": 1137,
+  "candidate_channel_rows": 1753,
+  "unique_logical_channels": 1096,
+  "programmes": 61801,
+  "premium_hybrid_events": 1134,
   "stats": {
-    "logical_duplicate_groups": 394,
-    "regular_channels": 998,
-    "source_openepg": 369,
-    "source_epgshare": 535,
+    "logical_duplicate_groups": 389,
+    "regular_channels": 997,
+    "source_openepg": 374,
+    "source_epgshare": 534,
     "premium_channels": 99,
-    "source_primary": 193
+    "source_primary": 188
   },
   "aliases": [
     {
@@ -372,10 +372,33 @@
       ]
     },
     {
-      "canonical_id": "Al Araby TV.sa",
-      "canonical_name": "Al Araby TV.sa",
+      "canonical_id": "AlArabyTV2.qa@SD",
+      "canonical_name": "Al Araby 2",
+      "logical_key": "al araby 2",
+      "aliases": [
+        {
+          "id": "Al.Araby.2.HD.ae",
+          "name": "Al Araby 2 HD",
+          "source": "epgshare-ae1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "AlArabyTV.qa@SD",
+      "canonical_name": "Al Araby TV",
       "logical_key": "al araby tv",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "Al Araby TV.sa",
+          "name": "Al Araby TV.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Al Araby TV.sa",
+          "name": "Al Araby TV.sa",
+          "source": "openepg-saudi6"
+        }
+      ]
     },
     {
       "canonical_id": "Al Dafrah.sa",
@@ -4255,18 +4278,6 @@
       ]
     },
     {
-      "canonical_id": "LanaTV.lb@SD",
-      "canonical_name": "ال تي في",
-      "logical_key": "ال تي في",
-      "aliases": [
-        {
-          "id": "ال تي في.eg",
-          "name": "ال تي في.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "JordanTV.jo@SD",
       "canonical_name": "الأردن",
       "logical_key": "الأردن",
@@ -4370,18 +4381,6 @@
         {
           "id": "السومرية.eg",
           "name": "السومرية.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "SharjahTV.ae@SD",
-      "canonical_name": "الشارقة",
-      "logical_key": "الشارقة",
-      "aliases": [
-        {
-          "id": "الشارقة.eg",
-          "name": "الشارقة.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4507,18 +4506,6 @@
       ]
     },
     {
-      "canonical_id": "ElMehwarChannel.eg@SD",
-      "canonical_name": "المحور",
-      "logical_key": "المحور",
-      "aliases": [
-        {
-          "id": "المحور.eg",
-          "name": "المحور.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "AlMasriyah.eg@SD",
       "canonical_name": "المصرية",
       "logical_key": "المصرية",
@@ -4574,18 +4561,6 @@
         {
           "id": "تلفزيون حضرموت.eg",
           "name": "تلفزيون حضرموت.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "DubaiZaman.ae@SD",
-      "canonical_name": "دبي زمان",
-      "logical_key": "دبي زمان",
-      "aliases": [
-        {
-          "id": "دبي زمان.eg",
-          "name": "دبي زمان.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4831,18 +4806,6 @@
       ]
     },
     {
-      "canonical_id": "ERTU1.eg@SD",
-      "canonical_name": "قناة مصر الأولى",
-      "logical_key": "قناة مصر الأولى",
-      "aliases": [
-        {
-          "id": "قناة مصر الأولى.eg",
-          "name": "قناة مصر الأولى.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "MasperoZaman.eg@SD",
       "canonical_name": "ماسبيرو زمان",
       "logical_key": "ماسبيرو زمان",
@@ -4886,18 +4849,6 @@
         {
           "id": "نايل دراما.eg",
           "name": "نايل دراما.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "NileLife.eg@SD",
-      "canonical_name": "نايل لايف",
-      "logical_key": "نايل لايف",
-      "aliases": [
-        {
-          "id": "نايل لايف.eg",
-          "name": "نايل لايف.eg",
           "source": "openepg-egypt1"
         }
       ]
