@@ -1,0 +1,61 @@
+name: Raw Source Integrity Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/source-integrity-audit.yml"
+      - "tools/source_integrity_audit.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: source-integrity-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Audit raw sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/mena_cloud_merge.py tools/source_integrity_audit.py
+          mkdir -p output
+          python tools/source_integrity_audit.py \
+            --output-json output/source-integrity-audit.json \
+            --output-text output/source-integrity-audit.txt \
+            --window-hours 48
+
+      - name: Publish diagnostics to mena-data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin mena-data
+          git worktree add publish origin/mena-data
+          cd publish
+          git checkout -B mena-data origin/mena-data
+          cp ../output/source-integrity-audit.json .
+          cp ../output/source-integrity-audit.txt .
+          git config user.name "EPGManager Source Audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add source-integrity-audit.json source-integrity-audit.txt
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Audit raw MENA source integrity"
+          git push origin HEAD:mena-data
