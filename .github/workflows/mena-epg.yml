@@ -1,7 +1,6 @@
 name: MENA Cloud EPG
 
 on:
-  # GitHub cron is UTC. The local-time gate handles Morocco DST/UTC changes.
   schedule:
     - cron: "0 5,6,17,18 * * *"
   workflow_dispatch:
@@ -12,6 +11,7 @@ on:
       - "tools/mena_cloud_merge.py"
       - "tools/mena_cloud_finalize.py"
       - "tools/mena_cloud_shards.py"
+      - "tools/mena_cloud_shards_safe.py"
 
 permissions:
   contents: write
@@ -79,7 +79,8 @@ jobs:
             tools/mena_cloud_catalog.py \
             tools/mena_cloud_merge.py \
             tools/mena_cloud_finalize.py \
-            tools/mena_cloud_shards.py
+            tools/mena_cloud_shards.py \
+            tools/mena_cloud_shards_safe.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
@@ -161,7 +162,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python tools/mena_cloud_shards.py \
+          python tools/mena_cloud_shards_safe.py \
+            --source-cache-dir output/upstream \
             --input output/final/mena-arabic.xml.gz \
             --catalog-manifest output/catalog.json \
             --output-dir output/final \
@@ -234,7 +236,7 @@ jobs:
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
           printf '%s\n' \
-            'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver sources are split exclusively by premium/provider group first, then by country, then MENA Other. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility. SAT.TV is not used.' \
+            'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver sources are split exclusively by premium/provider group first, then by conservatively detected country, then MENA Other. Ambiguous EPGShare country suffixes are never trusted. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
             > README.md
           git add *.xml.gz *.txt manifest.json shards.json catalog.json merge-report.json README.md
           if git diff --cached --quiet; then
@@ -242,5 +244,5 @@ jobs:
             exit 0
           fi
           stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
-          git commit -m "MENA Cloud country/provider shards ${stamp}"
+          git commit -m "MENA Cloud safe country/provider shards ${stamp}"
           git push origin mena-data
