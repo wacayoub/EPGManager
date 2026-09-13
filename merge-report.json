@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-13T15:56:59.758311+00:00",
+  "generated": "2026-09-13T16:56:26.099412+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -111,14 +111,14 @@
     {
       "name": "epgshare-bein1",
       "origin": "epgshare",
-      "channels_with_current_48h_epg": 62,
-      "bytes": 42967
+      "channels_with_current_48h_epg": 56,
+      "bytes": 33343
     },
     {
       "name": "epgshare-sa2",
       "origin": "epgshare",
       "channels_with_current_48h_epg": 41,
-      "bytes": 96615
+      "bytes": 97219
     },
     {
       "name": "epgshare-aljazeera1",
@@ -127,17 +127,17 @@
       "bytes": 4291
     }
   ],
-  "candidate_channel_rows": 1766,
-  "unique_logical_channels": 1105,
-  "programmes": 63048,
-  "premium_hybrid_events": 1151,
+  "candidate_channel_rows": 1757,
+  "unique_logical_channels": 1097,
+  "programmes": 62161,
+  "premium_hybrid_events": 1149,
   "stats": {
-    "logical_duplicate_groups": 392,
-    "regular_channels": 1003,
-    "source_openepg": 373,
-    "source_epgshare": 537,
-    "premium_channels": 102,
-    "source_primary": 195
+    "logical_duplicate_groups": 391,
+    "regular_channels": 998,
+    "source_openepg": 371,
+    "source_epgshare": 534,
+    "premium_channels": 99,
+    "source_primary": 192
   },
   "aliases": [
     {
@@ -612,54 +612,6 @@
       "aliases": []
     },
     {
-      "canonical_id": "Alkass_1_EN.bein",
-      "canonical_name": "Alkass_1_EN",
-      "logical_key": "alkass 1",
-      "aliases": [
-        {
-          "id": "Alkass_1_AR.bein",
-          "name": "Alkass_1_AR",
-          "source": "epgshare-bein1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "Alkass_2_EN.bein",
-      "canonical_name": "Alkass_2_EN",
-      "logical_key": "alkass 2",
-      "aliases": [
-        {
-          "id": "Alkass_2_AR.bein",
-          "name": "Alkass_2_AR",
-          "source": "epgshare-bein1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "Alkass_3_EN.bein",
-      "canonical_name": "Alkass_3_EN",
-      "logical_key": "alkass 3",
-      "aliases": [
-        {
-          "id": "Alkass_3_AR.bein",
-          "name": "Alkass_3_AR",
-          "source": "epgshare-bein1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "Alkass_4_EN.bein",
-      "canonical_name": "Alkass_4_EN",
-      "logical_key": "alkass 4",
-      "aliases": [
-        {
-          "id": "Alkass_4_AR.bein",
-          "name": "Alkass_4_AR",
-          "source": "epgshare-bein1"
-        }
-      ]
-    },
-    {
       "canonical_id": "Alkass_5_En.bein",
       "canonical_name": "Alkass_5_EN",
       "logical_key": "alkass 5",
@@ -1019,6 +971,18 @@
         {
           "id": "beIN_SPORTS1_ENGLISH_Digital_Mono_EN.bein",
           "name": "beIN_SPORTS1_ENGLISH_Digital_Mono_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN_SPORTS1_FRENCH_Digital_Mono_EN.bein",
+      "canonical_name": "beIN_SPORTS1_FRENCH_Digital_Mono_EN",
+      "logical_key": "bein sports 1 french",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS1_FRENCH_Digital_Mono_AR.bein",
+          "name": "beIN_SPORTS1_FRENCH_Digital_Mono_AR",
           "source": "epgshare-bein1"
         }
       ]
@@ -4324,6 +4288,18 @@
       ]
     },
     {
+      "canonical_id": "LanaTV.lb@SD",
+      "canonical_name": "ال تي في",
+      "logical_key": "ال تي في",
+      "aliases": [
+        {
+          "id": "ال تي في.eg",
+          "name": "ال تي في.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "JordanTV.jo@SD",
       "canonical_name": "الأردن",
       "logical_key": "الأردن",
@@ -4427,18 +4403,6 @@
         {
           "id": "السومرية.eg",
           "name": "السومرية.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "SharjahTV.ae@SD",
-      "canonical_name": "الشارقة",
-      "logical_key": "الشارقة",
-      "aliases": [
-        {
-          "id": "الشارقة.eg",
-          "name": "الشارقة.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4559,6 +4523,18 @@
         {
           "id": "القاهرة والناس 2.eg",
           "name": "القاهرة والناس 2.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "ElMehwarChannel.eg@SD",
+      "canonical_name": "المحور",
+      "logical_key": "المحور",
+      "aliases": [
+        {
+          "id": "المحور.eg",
+          "name": "المحور.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4732,6 +4708,18 @@
       ]
     },
     {
+      "canonical_id": "ZeeAlwan.ae@SD",
+      "canonical_name": "زي ألوان",
+      "logical_key": "زي ألوان",
+      "aliases": [
+        {
+          "id": "زي ألوان.eg",
+          "name": "زي ألوان.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "CBC.eg@SD",
       "canonical_name": "سي بي سي",
       "logical_key": "سي بي سي",
@@ -4888,18 +4876,6 @@
       ]
     },
     {
-      "canonical_id": "NileDrama.eg@SD",
-      "canonical_name": "نايل دراما",
-      "logical_key": "نايل دراما",
-      "aliases": [
-        {
-          "id": "نايل دراما.eg",
-          "name": "نايل دراما.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "NileLife.eg@SD",
       "canonical_name": "نايل لايف",
       "logical_key": "نايل لايف",
@@ -4907,6 +4883,18 @@
         {
           "id": "نايل لايف.eg",
           "name": "نايل لايف.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "NessmaElJadida.tn@SD",
+      "canonical_name": "نسمة",
+      "logical_key": "نسمة",
+      "aliases": [
+        {
+          "id": "نسمة.eg",
+          "name": "نسمة.eg",
           "source": "openepg-egypt1"
         }
       ]
