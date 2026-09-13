@@ -1,4 +1,4 @@
-name: MENA Arabic EPG Cloud
+name: MENA Cloud EPG
 
 on:
   # GitHub cron is UTC. The local-time gate handles Morocco DST/UTC changes.
@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: mena-arabic-epg-cloud
+  group: mena-cloud-epg
   cancel-in-progress: true
 
 jobs:
@@ -68,7 +68,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile tools/mena_cloud_catalog.py tools/mena_cloud_finalize.py
+          python -m py_compile \
+            tools/mena_cloud_catalog.py \
+            tools/mena_cloud_merge.py \
+            tools/mena_cloud_finalize.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
@@ -76,7 +79,7 @@ jobs:
         shell: bash
         run: npm ci --no-audit --no-fund
 
-      - name: Build all-Arabic TV catalogue
+      - name: Build official-first Arabic TV catalogue
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
@@ -95,7 +98,7 @@ jobs:
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz" \
             -o previous/mena-arabic.xml.gz || true
 
-      - name: Grab Arabic programme data
+      - name: Grab primary programme data - 2 days only
         if: steps.gate.outputs.run == 'true'
         working-directory: vendor/iptv-org-epg
         shell: bash
@@ -107,25 +110,42 @@ jobs:
             npm run grab --- \
               --channels="${GITHUB_WORKSPACE}/output/mena.channels.xml" \
               --output="${GITHUB_WORKSPACE}/output/raw.xml" \
-              --days=7 \
+              --days=2 \
               --maxConnections=3 \
               --timeout=20000
           rc=$?
           if [ "$rc" -ne 0 ]; then
-            echo "Upstream grab returned ${rc}; per-channel LKG will protect existing coverage."
+            echo "Upstream grab returned ${rc}; cloud merge + per-channel LKG will protect coverage."
+          fi
+          if [ ! -s "${GITHUB_WORKSPACE}/output/raw.xml" ]; then
+            printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/raw.xml"
           fi
           exit 0
 
-      - name: Merge fresh data with per-channel LKG
+      - name: Merge OpenEPG + EPGShare MENA feeds
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          test -s output/raw.xml || { echo "No raw XMLTV candidate generated"; exit 1; }
+          python tools/mena_cloud_merge.py \
+            --primary output/raw.xml \
+            --catalog-manifest output/catalog.json \
+            --output output/merged.xml \
+            --report output/merge-report.json \
+            --cache-dir output/upstream \
+            --window-hours 48
+
+      - name: Finalize with per-channel LKG
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
           python tools/mena_cloud_finalize.py \
-            --candidate output/raw.xml \
+            --candidate output/merged.xml \
             --catalog-manifest output/catalog.json \
             --previous previous/mena-arabic.xml.gz \
+            --merge-report output/merge-report.json \
+            --window-hours 48 \
             --output-dir output/final
 
       - name: Validate production feed
@@ -136,17 +156,36 @@ jobs:
           python - <<'PY'
           import gzip, json, xml.etree.ElementTree as ET
           from pathlib import Path
+
           p = Path('output/final/mena-arabic.xml.gz')
           root = ET.fromstring(gzip.decompress(p.read_bytes()))
           channels = root.findall('channel')
           programmes = root.findall('programme')
           manifest = json.loads(Path('output/final/manifest.json').read_text(encoding='utf-8'))
+
+          ids = [(c.get('id') or '').strip() for c in channels]
+          assert all(ids), 'empty channel id'
+          assert len(ids) == len(set(ids)), 'duplicate channel ids remain'
+
+          event_keys = []
+          for e in programmes:
+            key = ((e.get('channel') or '').strip(),
+                   (e.get('start') or '').strip(),
+                   (e.get('stop') or '').strip())
+            assert key[0] and key[1], 'invalid programme key'
+            event_keys.append(key)
+          assert len(event_keys) == len(set(event_keys)), 'duplicate programme slots remain'
+
           assert len(channels) >= 25, len(channels)
           assert len(programmes) >= 100, len(programmes)
           assert manifest['channels'] == len(channels)
           assert manifest['programmes'] == len(programmes)
-          print('PASS: %d MENA Arabic TV channels / %d programmes / Arabic titles %.1f%%' % (
-              len(channels), len(programmes), 100.0 * manifest.get('arabic_title_ratio', 0)))
+          assert manifest['window_hours'] == 48
+
+          print('PASS: %d MENA TV channels / %d programmes / AR titles %.1f%% / hybrid premium=%d' % (
+              len(channels), len(programmes),
+              100.0 * manifest.get('arabic_title_ratio', 0),
+              manifest.get('premium_hybrid_events', 0)))
           PY
 
       - name: Publish atomically to mena-data
@@ -165,12 +204,15 @@ jobs:
           cp ../output/final/mena-arabic.txt .
           cp ../output/final/manifest.json .
           cp ../output/catalog.json catalog.json
-          printf '%s\n' 'EPGManager MENA Arabic Cloud data branch. TV-only Arabic guide catalogue, Morocco excluded, official-first source selection and per-channel Last Known Good protection.' > README.md
-          git add mena-arabic.xml.gz mena-arabic.txt manifest.json catalog.json README.md
+          cp ../output/merge-report.json merge-report.json
+          printf '%s\n' \
+            'EPGManager MENA Cloud data branch. TV-only, rolling 48-hour guide. Official/iptv-org + OpenEPG + MENA-relevant EPGShare feeds, conservative channel de-duplication, Arabic-first metadata, and beIN/OSN English-title + Arabic-description enrichment. Morocco remains on its dedicated cloud feed. SAT.TV is not used.' \
+            > README.md
+          git add mena-arabic.xml.gz mena-arabic.txt manifest.json catalog.json merge-report.json README.md
           if git diff --cached --quiet; then
             echo "No MENA data changes."
             exit 0
           fi
           stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
-          git commit -m "MENA Arabic EPG ${stamp}"
+          git commit -m "MENA Cloud EPG ${stamp}"
           git push origin mena-data

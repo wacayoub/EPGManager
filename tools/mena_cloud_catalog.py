@@ -8,6 +8,9 @@ broadcaster-owned/official sites first, broad Arabic TV guides second, and
 generic aggregators last. Morocco is intentionally excluded because the
 project already publishes a higher-quality dedicated morocco.xml.gz feed.
 Radio services are excluded because EPGManager's receiver-side mapping is TV-only.
+
+SAT.TV is intentionally excluded from the MENA Cloud catalogue. It may remain
+useful elsewhere, but MENA Cloud must not depend on it.
 """
 from __future__ import annotations
 
@@ -30,29 +33,25 @@ SITE_PRIORITY = {
     "saudiatv.sa": 18,
     "sba.net.ae": 19,
     "dmi.gov.ae": 20,
+    "osn.com": 25,
     "elcinema.com": 100,
-    "sat.tv": 120,
-    "osn.com": 140,
     "epgshare01.online": 900,
 }
+EXCLUDED_SITES = {"sat.tv"}
 
 MOROCCO_ID_RE = re.compile(r"\.ma(?:@|$)", re.I)
 RADIO_ID_RE = re.compile(r"(?:^|[^a-z])(?:radio|fm)(?:[^a-z]|$)", re.I)
 ARABIC_RADIO_WORDS = ("إذاعة", "راديو")
 
-
 def site_score(site: str) -> tuple[int, str]:
     return (SITE_PRIORITY.get(site, 500), site)
-
 
 def is_arabic_channel(node: ET.Element) -> bool:
     lang = (node.get("lang") or "").strip().lower()
     return lang == "ar" or lang.startswith("ar-")
 
-
 def channel_key(node: ET.Element) -> str:
     return (node.get("xmltv_id") or "").strip()
-
 
 def is_radio_service(node: ET.Element, cid: str) -> bool:
     name = (node.text or "").strip()
@@ -64,7 +63,6 @@ def is_radio_service(node: ET.Element, cid: str) -> bool:
         return True
     return any(word in name for word in ARABIC_RADIO_WORDS)
 
-
 def copy_channel(node: ET.Element) -> ET.Element:
     out = ET.Element("channel")
     for key in ("site", "site_id", "lang", "xmltv_id"):
@@ -73,7 +71,6 @@ def copy_channel(node: ET.Element) -> ET.Element:
             out.set(key, value)
     out.text = (node.text or "").strip()
     return out
-
 
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -93,6 +90,7 @@ def main() -> int:
     invalid = 0
     morocco_skipped = 0
     radio_skipped = 0
+    excluded_site_skipped = 0
     parse_errors = []
 
     for path in files:
@@ -109,6 +107,9 @@ def main() -> int:
             site = (node.get("site") or path.parent.name or "unknown").strip()
             if not cid or not node.get("site_id") or not site:
                 invalid += 1
+                continue
+            if site in EXCLUDED_SITES:
+                excluded_site_skipped += 1
                 continue
             if not args.include_morocco and MOROCCO_ID_RE.search(cid):
                 morocco_skipped += 1
@@ -147,14 +148,16 @@ def main() -> int:
     out_xml.write_bytes(ET.tostring(channels, encoding="utf-8", xml_declaration=True))
 
     manifest = {
-        "schema": 2,
-        "strategy": "official-first-all-arabic-tv",
+        "schema": 3,
+        "strategy": "official-first-all-arabic-tv-no-sattv",
         "source_project": "iptv-org/epg",
         "input_channel_files": len(files),
         "arabic_rows_seen": seen_ar,
         "invalid_rows_skipped": invalid,
         "morocco_rows_skipped": morocco_skipped,
         "radio_rows_skipped": radio_skipped,
+        "excluded_site_rows_skipped": excluded_site_skipped,
+        "excluded_sites": sorted(EXCLUDED_SITES),
         "unique_channels": len(selected),
         "morocco_excluded": not args.include_morocco,
         "tv_only": True,
@@ -167,11 +170,11 @@ def main() -> int:
     )
     print("MENA Arabic TV catalogue: %d unique channels from %d source sites" %
           (len(selected), len(source_counts)))
-    print("  skipped: Morocco rows=%d, radio rows=%d" % (morocco_skipped, radio_skipped))
+    print("  skipped: Morocco=%d radio=%d excluded-site=%d" %
+          (morocco_skipped, radio_skipped, excluded_site_skipped))
     for site, count in source_counts.most_common(20):
         print("  %-28s %4d" % (site, count))
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Validate, merge with per-channel LKG and publish the MENA Arabic XMLTV feed."""
+"""Validate, clip, LKG-protect and publish the MENA XMLTV feed."""
 from __future__ import annotations
 
 import argparse
 from collections import Counter, defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import gzip
 import hashlib
 import json
@@ -14,8 +14,8 @@ import re
 import xml.etree.ElementTree as ET
 
 AR_RE = re.compile(r"[\u0600-\u06ff]")
+LATIN_RE = re.compile(r"[A-Za-z]")
 WORD_RE = re.compile(r"[A-Za-z\u0600-\u06ff]")
-
 
 def read_xml(path: Path):
     if not path or not path.is_file() or path.stat().st_size == 0:
@@ -25,6 +25,36 @@ def read_xml(path: Path):
         data = gzip.decompress(data)
     return ET.fromstring(data)
 
+def parse_xmltv_dt(value: str):
+    value = (value or "").strip()
+    m = re.match(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?", value)
+    if not m:
+        return None
+    digits, offset = m.group(1), m.group(2)
+    fmt = "%Y%m%d%H%M%S" if len(digits) == 14 else "%Y%m%d%H%M"
+    dt = datetime.strptime(digits, fmt)
+    if offset == "Z":
+        tz = timezone.utc
+    elif offset:
+        sign = 1 if offset[0] == "+" else -1
+        hh, mm = int(offset[1:3]), int(offset[3:5])
+        tz = timezone(sign * timedelta(hours=hh, minutes=mm))
+    else:
+        tz = timezone.utc
+    return dt.replace(tzinfo=tz).astimezone(timezone.utc)
+
+def in_window(p: ET.Element, now: datetime, end: datetime) -> bool:
+    start = parse_xmltv_dt(p.get("start") or "")
+    stop = parse_xmltv_dt(p.get("stop") or "")
+    if start is None:
+        return False
+    if stop is not None and stop <= now - timedelta(minutes=5):
+        return False
+    if start >= end:
+        return False
+    if stop is None and start < now - timedelta(hours=6):
+        return False
+    return True
 
 def display_name(channel: ET.Element) -> str:
     names = channel.findall("display-name")
@@ -33,18 +63,15 @@ def display_name(channel: ET.Element) -> str:
             return (n.text or "").strip()
     return channel.get("id") or ""
 
-
 def readable_name(value: str) -> bool:
     value = (value or "").strip()
     return len(value) >= 2 and bool(WORD_RE.search(value))
-
 
 def id_fallback_name(cid: str) -> str:
     base = re.split(r"\.[a-z]{2,3}(?:@|$)", cid or "", maxsplit=1, flags=re.I)[0]
     base = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", base)
     base = re.sub(r"[_-]+", " ", base)
     return re.sub(r"\s+", " ", base).strip() or cid
-
 
 def best_mapping_name(cid: str, source_meta: dict, channel: ET.Element) -> str:
     catalogue_name = (source_meta.get("name") or "").strip()
@@ -55,17 +82,15 @@ def best_mapping_name(cid: str, source_meta: dict, channel: ET.Element) -> str:
         return current_name
     return id_fallback_name(cid)
 
-
-def programme_groups(root):
+def programme_groups(root, now, end):
     groups = defaultdict(list)
     if root is None:
         return groups
     for p in root.findall("programme"):
         cid = (p.get("channel") or "").strip()
-        if cid:
+        if cid and in_window(p, now, end):
             groups[cid].append(p)
     return groups
-
 
 def channel_map(root):
     out = {}
@@ -77,26 +102,25 @@ def channel_map(root):
             out[cid] = c
     return out
 
-
 def event_key(p: ET.Element):
-    title = p.find("title")
-    return (
-        (p.get("channel") or "").strip(),
-        (p.get("start") or "").strip(),
-        ((title.text if title is not None else "") or "").strip().casefold(),
-    )
-
+    return ((p.get("channel") or "").strip(), (p.get("start") or "").strip(), (p.get("stop") or "").strip())
 
 def useful(rows) -> bool:
-    if len(rows) < 3:
-        return False
     starts = {(p.get("start") or "").strip() for p in rows if (p.get("start") or "").strip()}
-    return len(starts) >= 3
-
+    return len(starts) >= 2
 
 def copy_element(node: ET.Element) -> ET.Element:
     return ET.fromstring(ET.tostring(node, encoding="utf-8"))
 
+def language_of(text: str) -> str:
+    text = text or ""
+    ar = len(AR_RE.findall(text))
+    en = len(LATIN_RE.findall(text))
+    if ar >= 2 and ar >= en * 0.5:
+        return "ar"
+    if en >= 2:
+        return "en"
+    return "other"
 
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -104,41 +128,48 @@ def main() -> int:
     ap.add_argument("--catalog-manifest", required=True)
     ap.add_argument("--previous")
     ap.add_argument("--output-dir", required=True)
+    ap.add_argument("--merge-report")
+    ap.add_argument("--window-hours", type=int, default=48)
     args = ap.parse_args()
 
+    now = datetime.now(timezone.utc)
+    end = now + timedelta(hours=max(1, args.window_hours))
     candidate_path = Path(args.candidate)
     previous_path = Path(args.previous) if args.previous else None
     catalog = json.loads(Path(args.catalog_manifest).read_text(encoding="utf-8"))
-    source_by_id = {x["xmltv_id"]: x for x in catalog.get("channels", [])}
+    source_by_id = {x["xmltv_id"]: x for x in catalog.get("channels", []) if x.get("xmltv_id")}
 
     candidate = read_xml(candidate_path)
     previous = read_xml(previous_path) if previous_path and previous_path.is_file() else None
     cand_channels, prev_channels = channel_map(candidate), channel_map(previous)
-    cand_programmes, prev_programmes = programme_groups(candidate), programme_groups(previous)
+    cand_programmes = programme_groups(candidate, now, end)
+    prev_programmes = programme_groups(previous, now, end)
 
     selected_programmes = {}
     states = Counter()
-    ids = set(source_by_id)
-    ids.update(cand_programmes)
+    ids = set(cand_programmes)
+    ids.update(source_by_id)
     for cid in sorted(ids, key=str.casefold):
         fresh = cand_programmes.get(cid, [])
         old = prev_programmes.get(cid, [])
         if useful(fresh):
             selected_programmes[cid] = fresh
             states["fresh"] += 1
-        elif cid in source_by_id and useful(old):
+        elif useful(old):
             selected_programmes[cid] = old
             states["lkg"] += 1
         else:
             states["no_epg"] += 1
 
     out_root = ET.Element("tv", {
-        "generator-info-name": "EPGManager MENA Arabic Cloud",
+        "generator-info-name": "EPGManager MENA Cloud",
         "generator-info-url": "https://github.com/wacayoub/EPGManager",
     })
     seen_programmes = set()
     programme_count = 0
     arabic_titles = 0
+    english_titles = 0
+    arabic_descs = 0
     source_counts = Counter()
     text_lines = []
 
@@ -154,31 +185,38 @@ def main() -> int:
         mapping_name = best_mapping_name(cid, source_meta, c)
         existing = c.findall("display-name")
         if not existing:
-            ET.SubElement(c, "display-name", {"lang": "ar"}).text = mapping_name
+            ET.SubElement(c, "display-name").text = mapping_name
         elif not readable_name(display_name(c)):
             existing[0].text = mapping_name
         out_root.append(c)
-        site = source_meta.get("site") or "unknown"
+        site = source_meta.get("site") or "merged-external"
         source_counts[site] += 1
         text_lines.append("%s|%s" % (cid, mapping_name))
 
     for cid in sorted(selected_programmes, key=str.casefold):
         for p in sorted(selected_programmes[cid], key=lambda x: x.get("start") or ""):
-            key = event_key(p)
+            cp = copy_element(p)
+            cp.set("channel", cid)
+            key = event_key(cp)
             if not key[1] or key in seen_programmes:
                 continue
             seen_programmes.add(key)
-            cp = copy_element(p)
             out_root.append(cp)
             programme_count += 1
-            t = cp.find("title")
-            if t is not None and AR_RE.search((t.text or "")):
+            title = cp.find("title")
+            desc = cp.find("desc")
+            title_lang = language_of((title.text or "") if title is not None else "")
+            desc_lang = language_of((desc.text or "") if desc is not None else "")
+            if title_lang == "ar":
                 arabic_titles += 1
+            if title_lang == "en":
+                english_titles += 1
+            if desc_lang == "ar":
+                arabic_descs += 1
 
     channel_count = len(selected_programmes)
     if channel_count < 25 or programme_count < 100:
-        raise SystemExit("Candidate/LKG output too small: %d channels / %d programmes" %
-                         (channel_count, programme_count))
+        raise SystemExit("Candidate/LKG output too small: %d channels / %d programmes" % (channel_count, programme_count))
 
     ET.indent(out_root, space="  ")
     xml_bytes = ET.tostring(out_root, encoding="utf-8", xml_declaration=True)
@@ -189,10 +227,21 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "mena-arabic.xml.gz").write_bytes(gz_bytes)
     (out_dir / "mena-arabic.txt").write_text("\n".join(text_lines) + "\n", encoding="utf-8")
+
+    merge_report = {}
+    if args.merge_report:
+        p = Path(args.merge_report)
+        if p.is_file():
+            try:
+                merge_report = json.loads(p.read_text(encoding="utf-8"))
+            except Exception:
+                merge_report = {}
+
     manifest = {
-        "schema": 2,
-        "generated": datetime.now(timezone.utc).isoformat(),
+        "schema": 3,
+        "generated": now.isoformat(),
         "status": "ok",
+        "window_hours": args.window_hours,
         "channels": channel_count,
         "programmes": programme_count,
         "catalogue_channels": catalog.get("unique_channels", 0),
@@ -200,18 +249,20 @@ def main() -> int:
         "lkg_channels": states["lkg"],
         "no_epg_channels": states["no_epg"],
         "arabic_title_ratio": round(arabic_titles / float(programme_count), 4) if programme_count else 0,
+        "english_title_ratio": round(english_titles / float(programme_count), 4) if programme_count else 0,
+        "arabic_desc_ratio": round(arabic_descs / float(programme_count), 4) if programme_count else 0,
+        "premium_hybrid_events": merge_report.get("premium_hybrid_events", 0),
+        "remote_sources_ok": merge_report.get("remote_sources_ok"),
+        "remote_sources_failed": merge_report.get("remote_sources_failed", []),
+        "logical_duplicate_groups": (merge_report.get("stats") or {}).get("logical_duplicate_groups", 0),
         "source_counts": dict(sorted(source_counts.items(), key=lambda kv: (-kv[1], kv[0]))),
         "size_bytes": len(gz_bytes),
         "sha256": sha,
     }
-    (out_dir / "manifest.json").write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
-    print("MENA output: %d channels / %d programmes / fresh=%d lkg=%d no_epg=%d / %.1f%% Arabic titles" %
-          (channel_count, programme_count, states["fresh"], states["lkg"], states["no_epg"],
-           manifest["arabic_title_ratio"] * 100.0))
+    (out_dir / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print("MENA output: %d channels / %d programmes / fresh=%d lkg=%d no_epg=%d / window=%dh" %
+          (channel_count, programme_count, states["fresh"], states["lkg"], states["no_epg"], args.window_hours))
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())
