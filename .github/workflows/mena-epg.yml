@@ -1,6 +1,9 @@
 name: MENA Cloud EPG
 
 on:
+  # TEMP RC30 validation trigger; removed before merge.
+  push:
+    branches: ["mena-cloud-rc30-split"]
   # GitHub cron is UTC. The local-time gate handles Morocco DST/UTC changes.
   schedule:
     - cron: "0 5,6,17,18 * * *"
@@ -90,7 +93,7 @@ jobs:
             --output-channels output/mena.channels.xml \
             --output-manifest output/catalog.json
 
-      - name: Download Last Known Good MENA feed
+      - name: Download Last Known Good combined MENA feed
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
@@ -135,7 +138,7 @@ jobs:
             --cache-dir output/upstream \
             --window-hours 48
 
-      - name: Finalize with per-channel LKG
+      - name: Finalize + split MENA and Premium with per-channel LKG
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
@@ -148,7 +151,7 @@ jobs:
             --window-hours 48 \
             --output-dir output/final
 
-      - name: Validate production feed
+      - name: Validate production feeds and split invariants
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
@@ -157,34 +160,48 @@ jobs:
           import gzip, json, xml.etree.ElementTree as ET
           from pathlib import Path
 
-          p = Path('output/final/mena-arabic.xml.gz')
-          root = ET.fromstring(gzip.decompress(p.read_bytes()))
-          channels = root.findall('channel')
-          programmes = root.findall('programme')
+          def load(stem):
+              p = Path('output/final/%s.xml.gz' % stem)
+              root = ET.fromstring(gzip.decompress(p.read_bytes()))
+              channels = root.findall('channel')
+              programmes = root.findall('programme')
+              ids = [(c.get('id') or '').strip() for c in channels]
+              assert all(ids), '%s: empty channel id' % stem
+              assert len(ids) == len(set(ids)), '%s: duplicate channel ids remain' % stem
+              event_keys = []
+              for e in programmes:
+                  key = ((e.get('channel') or '').strip(),
+                         (e.get('start') or '').strip(),
+                         (e.get('stop') or '').strip())
+                  assert key[0] and key[1], '%s: invalid programme key' % stem
+                  event_keys.append(key)
+              assert len(event_keys) == len(set(event_keys)), '%s: duplicate programme slots remain' % stem
+              assert set(e.get('channel') for e in programmes).issubset(set(ids)), '%s: programme references missing channel' % stem
+              return set(ids), len(programmes)
+
+          combined_ids, combined_events = load('mena-arabic')
+          mena_ids, mena_events = load('mena')
+          premium_ids, premium_events = load('premium')
           manifest = json.loads(Path('output/final/manifest.json').read_text(encoding='utf-8'))
 
-          ids = [(c.get('id') or '').strip() for c in channels]
-          assert all(ids), 'empty channel id'
-          assert len(ids) == len(set(ids)), 'duplicate channel ids remain'
-
-          event_keys = []
-          for e in programmes:
-            key = ((e.get('channel') or '').strip(),
-                   (e.get('start') or '').strip(),
-                   (e.get('stop') or '').strip())
-            assert key[0] and key[1], 'invalid programme key'
-            event_keys.append(key)
-          assert len(event_keys) == len(set(event_keys)), 'duplicate programme slots remain'
-
-          assert len(channels) >= 25, len(channels)
-          assert len(programmes) >= 100, len(programmes)
-          assert manifest['channels'] == len(channels)
-          assert manifest['programmes'] == len(programmes)
+          assert len(combined_ids) >= 25, len(combined_ids)
+          assert combined_events >= 100, combined_events
+          assert len(mena_ids) >= 25, len(mena_ids)
+          assert mena_events >= 100, mena_events
+          assert len(premium_ids) >= 1, len(premium_ids)
+          assert premium_events >= 2, premium_events
+          assert not (mena_ids & premium_ids), 'MENA/Premium split overlap'
+          assert (mena_ids | premium_ids) == combined_ids, 'MENA/Premium union != combined'
+          assert manifest['channels'] == len(combined_ids)
+          assert manifest['programmes'] == combined_events
           assert manifest['window_hours'] == 48
+          assert manifest['splits']['mena']['channels'] == len(mena_ids)
+          assert manifest['splits']['premium']['channels'] == len(premium_ids)
 
-          print('PASS: %d MENA TV channels / %d programmes / AR titles %.1f%% / hybrid premium=%d' % (
-              len(channels), len(programmes),
-              100.0 * manifest.get('arabic_title_ratio', 0),
+          print('PASS: combined=%d/%d MENA=%d/%d PREMIUM=%d/%d hybrid=%d' % (
+              len(combined_ids), combined_events,
+              len(mena_ids), mena_events,
+              len(premium_ids), premium_events,
               manifest.get('premium_hybrid_events', 0)))
           PY
 
@@ -202,17 +219,21 @@ jobs:
           git checkout -B mena-data origin/mena-data
           cp ../output/final/mena-arabic.xml.gz .
           cp ../output/final/mena-arabic.txt .
+          cp ../output/final/mena.xml.gz .
+          cp ../output/final/mena.txt .
+          cp ../output/final/premium.xml.gz .
+          cp ../output/final/premium.txt .
           cp ../output/final/manifest.json .
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
           printf '%s\n' \
-            'EPGManager MENA Cloud data branch. TV-only, rolling 48-hour guide. Official/iptv-org + OpenEPG + MENA-relevant EPGShare feeds, conservative channel de-duplication, Arabic-first metadata, and beIN/OSN English-title + Arabic-description enrichment. Morocco remains on its dedicated cloud feed. SAT.TV is not used.' \
+            'EPGManager MENA Cloud data branch. Receiver-optimized split: mena.xml.gz contains regular MENA TV, premium.xml.gz contains beIN/OSN, and mena-arabic.xml.gz remains the legacy combined compatibility feed. TV-only, rolling 48-hour guide, conservative de-duplication, Arabic-first regular metadata, and premium English-title + Arabic-description enrichment. Morocco remains on its dedicated cloud feed. SAT.TV is not used.' \
             > README.md
-          git add mena-arabic.xml.gz mena-arabic.txt manifest.json catalog.json merge-report.json README.md
+          git add mena-arabic.xml.gz mena-arabic.txt mena.xml.gz mena.txt premium.xml.gz premium.txt manifest.json catalog.json merge-report.json README.md
           if git diff --cached --quiet; then
             echo "No MENA data changes."
             exit 0
           fi
           stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
-          git commit -m "MENA Cloud EPG ${stamp}"
+          git commit -m "MENA Cloud split EPG ${stamp}"
           git push origin mena-data
