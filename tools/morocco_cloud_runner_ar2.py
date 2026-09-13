@@ -5,6 +5,11 @@
 Extends morocco_cloud_runner_ar with the full TeleCableSat day split used by
 the historical 2M scraper (morning + noon + afternoon), so evening bulletins
 such as Info Soir, Meteo and Eco News are not lost by a morning-only page.
+
+Historical operator policy is preserved exactly for the evening bulletin trio:
+for each broadcast day, the first evening Info Soir, Meteo and Eco News title
+stays in French; later/replay occurrences are Arabic. Descriptions remain
+Arabic for both the French first edition and Arabic repeats.
 """
 from __future__ import annotations
 
@@ -25,6 +30,7 @@ PARIS = runner.PARIS
 ar1.T2M_AR.update({
     "info soir": "أخبار المساء",
     "info soir 2m": "أخبار المساء",
+    "infosoir": "أخبار المساء",
     "meteo": "النشرة الجوية",
     "la meteo": "النشرة الجوية",
     "meteo 2m": "النشرة الجوية",
@@ -43,6 +49,64 @@ ar1._desc_cache.clear()
 
 _PERIODS = ("morning", "noon", "afternoon")
 _BASE_URL = "https://tv-programme.telecablesat.fr/chaine/340/2m-monde.html"
+
+# First evening edition is deliberately French. All later occurrences/replays
+# are converted to the canonical Arabic title. This is per Morocco broadcast
+# day and only applies from 18:00 local time onward.
+_SPECIAL_FR = {
+    "info_soir": "Info Soir",
+    "meteo": "Météo",
+    "eco_news": "Eco News",
+}
+_SPECIAL_AR = {
+    "info_soir": "أخبار المساء",
+    "meteo": "النشرة الجوية",
+    "eco_news": "إيكو نيوز",
+}
+
+
+def _special_family(title):
+    raw = ar1.clean(title)
+    n = ar1.norm(raw)
+    if raw == "أخبار المساء" or n in ("info soir", "info soir 2m", "infosoir"):
+        return "info_soir"
+    if raw == "النشرة الجوية" or n in ("meteo", "la meteo", "meteo 2m", "bulletin meteo"):
+        return "meteo"
+    if raw == "إيكو نيوز" or n in ("eco news", "econews", "eco news 2m"):
+        return "eco_news"
+    return None
+
+
+def _apply_evening_language_policy(rows):
+    """Keep the first evening bulletin trio in French, repeats in Arabic.
+
+    The source translation pass runs first so every event already has a useful
+    Arabic description. Only the title/language marker changes here.
+    """
+    seen_first = set()
+    stats = defaultdict(lambda: {"fr_first": 0, "ar_other": 0})
+
+    for e in sorted(rows, key=lambda x: x.start):
+        family = _special_family(e.title)
+        if not family:
+            continue
+        local = e.start.astimezone(TZ)
+        key = (local.date().isoformat(), family)
+
+        if local.hour >= 18 and key not in seen_first:
+            seen_first.add(key)
+            e.title = _SPECIAL_FR[family]
+            e.tl = "fr"
+            stats[family]["fr_first"] += 1
+        else:
+            e.title = _SPECIAL_AR[family]
+            e.tl = "ar"
+            stats[family]["ar_other"] += 1
+
+        # Descriptions always stay Arabic, matching the historical 2M logic.
+        e.dl = "ar"
+
+    return dict(stats)
 
 
 def _append_audit(day, period, tm, source_title, source_desc, title_ar, desc_ar):
@@ -126,34 +190,35 @@ def scrape_2m_full_day(days):
             runner.log("2M %s: no full-day period rows" % day)
         out.extend(day_rows)
 
-    # Exact dedupe across period boundaries.
+    # Exact dedupe across period boundaries while titles are still canonical
+    # Arabic, then apply the first-evening-French rule once per broadcast day.
     ded = {}
     for e in out:
         ded[(e.start, e.title.casefold())] = e
     rows = sorted(ded.values(), key=lambda e: e.start)
+    policy_stats = _apply_evening_language_policy(rows)
     base.infer(rows)
 
     special = {"info_soir": 0, "meteo": 0, "eco_news": 0}
     evening = 0
+    french_first = 0
     for e in rows:
-        n = ar1.norm(e.title)
+        family = _special_family(e.title)
         if e.start.astimezone(TZ).hour >= 18:
             evening += 1
-        if "اخبار المساء" in n or e.title == "أخبار المساء":
-            special["info_soir"] += 1
-        if e.title == "النشرة الجوية":
-            special["meteo"] += 1
-        if e.title == "إيكو نيوز":
-            special["eco_news"] += 1
+        if family:
+            special[family] += 1
+            if e.tl == "fr":
+                french_first += 1
 
-    title_ok = sum(ar1.has_arabic(e.title) for e in rows)
-    desc_ok = sum(ar1.has_arabic(e.desc) for e in rows)
+    title_ar = sum(ar1.has_arabic(e.title) for e in rows)
+    desc_ar = sum(ar1.has_arabic(e.desc) for e in rows)
     runner.log(
-        "2M FULL-DAY audit: %d events; periods=%s; evening=%d; InfoSoir=%d; Meteo=%d; EcoNews=%d; AR title=%d/%d desc=%d/%d"
+        "2M FULL-DAY audit: %d events; periods=%s; evening=%d; InfoSoir=%d; Meteo=%d; EcoNews=%d; FR-first=%d; AR-title=%d/%d; AR-desc=%d/%d; policy=%s"
         % (
             len(rows), dict(period_counts), evening,
             special["info_soir"], special["meteo"], special["eco_news"],
-            title_ok, len(rows), desc_ok, len(rows),
+            french_first, title_ar, len(rows), desc_ar, len(rows), policy_stats,
         )
     )
     return rows
