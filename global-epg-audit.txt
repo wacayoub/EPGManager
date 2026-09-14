@@ -1,13 +1,13 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=611
-programmes_scanned=31021
+channels_scanned=643
+programmes_scanned=32242
 critical=0
-warnings=18549
+warnings=18661
 
 ISSUE COUNTS
-empty_description=15228
-very_short_event_lt_5m=2402
-arabic_provider_title_not_arabic=862
+empty_description=15350
+very_short_event_lt_5m=2395
+arabic_provider_title_not_arabic=859
 premium_title_not_english=28
 very_long_event_gt_6h=21
 hybrid_arabic_latin_description=4
@@ -22,7 +22,7 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260916034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=862
+[arabic_provider_title_not_arabic] count=859
 - provider-alkass | Alkass Five.qa | 20260914103000 +0000 | 22nd Asian Men's Handball Championship Saudi Arabia vs. Iran
   desc: برنامج رياضي على قنوات الكأس.
 - provider-alkass | Alkass Five.qa | 20260914120000 +0000 | Review
@@ -44,7 +44,7 @@ TOP SAMPLES
 - provider-alkass | Alkass Five.qa | 20260914210000 +0000 | News
   desc: برنامج رياضي على قنوات الكأس.
 
-[empty_description] count=15228
+[empty_description] count=15350
 - provider-bein | beIN Drama.eg | 20260914110000 +0000 | Sarmasik Zamani
 - provider-bein | beIN Drama.eg | 20260914120000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260914130000 +0000 | Mazad El Shar
@@ -100,7 +100,7 @@ TOP SAMPLES
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
 - mena-qa | Qatar TV HD | 20260914214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2402
+[very_short_event_lt_5m] count=2395
 - provider-osn | OSNtv Kids | 20260914150100 +0000 | Barbie and Barbie on Set
   desc: باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!
 - provider-osn | OSNtv Kids | 20260914152900 +0000 | Lego Duplo Adventures S3
@@ -123,4 +123,4 @@ TOP SAMPLES
   desc: يتّبع آدم روتينه المسائي من الاستحمام وقراءة القصص حتى يحين وقت النوم في أغنية هادئة تساعد الأطفال على الاسترخاء.
 
 ALL-ID RELEASE GATE
-{"FAIL": 0, "NO_EPG": 0, "PASS": 164, "REVIEW": 447, "auto_lock_safe": 164, "channels": 611, "missing_shards": [], "programmes": 31021}
+{"FAIL": 0, "NO_EPG": 0, "PASS": 163, "REVIEW": 480, "auto_lock_safe": 163, "channels": 643, "missing_shards": [], "programmes": 32242}

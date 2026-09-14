@@ -1,84 +1,84 @@
 {
   "schema": 2,
   "scope": "all exclusive MENA country/provider shards + synchronous alias-aware all-ID release gate",
-  "channels_scanned": 611,
-  "programmes_scanned": 31021,
+  "channels_scanned": 643,
+  "programmes_scanned": 32242,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 862,
-    "empty_description": 15228,
+    "arabic_provider_title_not_arabic": 859,
+    "empty_description": 15350,
     "hybrid_arabic_latin_description": 4,
     "mixed_timezone_offsets_same_day": 2,
     "premium_title_not_english": 28,
-    "severity_warning": 18549,
+    "severity_warning": 18661,
     "very_long_event_gt_6h": 21,
-    "very_short_event_lt_5m": 2402
+    "very_short_event_lt_5m": 2395
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 399,
+      "empty_description": 386,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
-      "very_short_event_lt_5m": 4
+      "very_short_event_lt_5m": 10
     },
     "mena-dz": {
       "empty_description": 88,
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 1256,
+      "empty_description": 1271,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 583
+      "empty_description": 553
     },
     "mena-jo": {
-      "empty_description": 46,
+      "empty_description": 67,
       "very_short_event_lt_5m": 6
     },
     "mena-kw": {
-      "empty_description": 184,
+      "empty_description": 210,
       "very_short_event_lt_5m": 3
     },
     "mena-lb": {
-      "empty_description": 62,
+      "empty_description": 58,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
       "empty_description": 368
     },
     "mena-other": {
-      "empty_description": 7666,
+      "empty_description": 7739,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 8,
-      "very_short_event_lt_5m": 1188
+      "very_short_event_lt_5m": 1180
     },
     "mena-qa": {
-      "empty_description": 655,
+      "empty_description": 653,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1322,
-      "very_short_event_lt_5m": 619
+      "empty_description": 1339,
+      "very_short_event_lt_5m": 615
     },
     "mena-sd": {
       "empty_description": 47
     },
     "mena-sy": {
-      "empty_description": 1
+      "empty_description": 4
     },
     "mena-tn": {
-      "empty_description": 125,
+      "empty_description": 132,
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
       "empty_description": 26
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 262,
-      "empty_description": 201,
+      "arabic_provider_title_not_arabic": 260,
+      "empty_description": 215,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 22
     },
@@ -88,8 +88,8 @@
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 17,
-      "empty_description": 1163,
-      "very_short_event_lt_5m": 449
+      "empty_description": 1160,
+      "very_short_event_lt_5m": 448
     },
     "provider-bein": {
       "empty_description": 52,
@@ -97,8 +97,8 @@
       "premium_title_not_english": 17
     },
     "provider-dmi": {
-      "arabic_provider_title_not_arabic": 70,
-      "empty_description": 257,
+      "arabic_provider_title_not_arabic": 69,
+      "empty_description": 256,
       "very_long_event_gt_6h": 3,
       "very_short_event_lt_5m": 2
     },
@@ -115,7 +115,7 @@
     },
     "provider-rotana": {
       "arabic_provider_title_not_arabic": 75,
-      "empty_description": 175,
+      "empty_description": 174,
       "very_short_event_lt_5m": 46
     },
     "provider-starz": {
@@ -1912,13 +1912,13 @@
     ]
   },
   "all_id_release_gate": {
-    "channels": 611,
-    "programmes": 31021,
-    "PASS": 164,
-    "REVIEW": 447,
+    "channels": 643,
+    "programmes": 32242,
+    "PASS": 163,
+    "REVIEW": 480,
     "NO_EPG": 0,
     "FAIL": 0,
-    "auto_lock_safe": 164,
+    "auto_lock_safe": 163,
     "missing_shards": []
   }
 }

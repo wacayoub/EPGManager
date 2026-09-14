@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-14T11:45:18.820328+00:00",
+  "generated": "2026-09-14T11:52:00.720501+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -27,25 +27,23 @@
     {
       "name": "openepg-qatar1",
       "origin": "openepg",
-      "channels_with_current_48h_epg": 14,
-      "bytes": 24553,
-      "quarantined_identity_only": 15,
-      "retired_ssc_dropped": 0
+      "channels_with_current_48h_epg": 29,
+      "bytes": 24553
     },
     {
       "name": "openepg-qatar2",
       "origin": "openepg",
-      "channels_with_current_48h_epg": 17,
+      "channels_with_current_48h_epg": 22,
       "bytes": 11434,
-      "quarantined_identity_only": 15,
+      "quarantined_identity_only": 10,
       "retired_ssc_dropped": 0
     },
     {
       "name": "openepg-qatar3",
       "origin": "openepg",
-      "channels_with_current_48h_epg": 22,
+      "channels_with_current_48h_epg": 29,
       "bytes": 13115,
-      "quarantined_identity_only": 14,
+      "quarantined_identity_only": 7,
       "retired_ssc_dropped": 0
     },
     {
@@ -123,9 +121,9 @@
     {
       "name": "epgshare-bein1",
       "origin": "epgshare",
-      "channels_with_current_48h_epg": 23,
+      "channels_with_current_48h_epg": 39,
       "bytes": 33343,
-      "quarantined_identity_only": 16,
+      "quarantined_identity_only": 0,
       "retired_ssc_dropped": 0
     },
     {
@@ -143,17 +141,17 @@
       "bytes": 4339
     }
   ],
-  "candidate_channel_rows": 1706,
-  "unique_logical_channels": 1046,
-  "programmes": 31805,
-  "premium_hybrid_events": 1112,
+  "candidate_channel_rows": 1699,
+  "unique_logical_channels": 1044,
+  "programmes": 32999,
+  "premium_hybrid_events": 1191,
   "stats": {
-    "regular_channels": 961,
+    "regular_channels": 959,
     "source_epgshare": 513,
-    "logical_duplicate_groups": 359,
+    "logical_duplicate_groups": 355,
     "premium_channels": 85,
-    "source_openepg": 334,
-    "source_primary": 199
+    "source_openepg": 339,
+    "source_primary": 192
   },
   "aliases": [
     {
@@ -251,30 +249,10 @@
       ]
     },
     {
-      "canonical_id": "AbuDhabiTV.ae@SD",
-      "canonical_name": "Abu Dhabi TV HD",
+      "canonical_id": "Abu Dhabi TV HD.sa",
+      "canonical_name": "Abu Dhabi TV HD.sa",
       "logical_key": "abu dhabi tv",
       "aliases": [
-        {
-          "id": "Abu Dhabi TV HD.sa",
-          "name": "Abu Dhabi TV HD.sa",
-          "source": "openepg-saudi3"
-        },
-        {
-          "id": "Abu Dhabi TV HD.sa",
-          "name": "Abu Dhabi TV HD.sa",
-          "source": "openepg-saudi4"
-        },
-        {
-          "id": "Abu Dhabi TV HD.sa",
-          "name": "Abu Dhabi TV HD.sa",
-          "source": "openepg-saudi5"
-        },
-        {
-          "id": "Abu Dhabi TV HD.sa",
-          "name": "Abu Dhabi TV HD.sa",
-          "source": "openepg-saudi6"
-        },
         {
           "id": "Abu Dhabi TV.eg",
           "name": "Abu Dhabi TV.eg",
@@ -4301,18 +4279,6 @@
       ]
     },
     {
-      "canonical_id": "LanaTV.lb@SD",
-      "canonical_name": "ال تي في",
-      "logical_key": "ال تي في",
-      "aliases": [
-        {
-          "id": "ال تي في.eg",
-          "name": "ال تي في.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "JordanTV.jo@SD",
       "canonical_name": "الأردن",
       "logical_key": "الأردن",
@@ -4356,18 +4322,6 @@
         {
           "id": "الحياة.eg",
           "name": "الحياة.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "AlRasheedTV.iq@SD",
-      "canonical_name": "الرشيد",
-      "logical_key": "الرشيد",
-      "aliases": [
-        {
-          "id": "الرشيد.eg",
-          "name": "الرشيد.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4613,18 +4567,6 @@
       ]
     },
     {
-      "canonical_id": "DubaiZaman.ae@SD",
-      "canonical_name": "دبي زمان",
-      "logical_key": "دبي زمان",
-      "aliases": [
-        {
-          "id": "دبي زمان.eg",
-          "name": "دبي زمان.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "DijlahTV.iq@SD",
       "canonical_name": "دجلة",
       "logical_key": "دجلة",
@@ -4733,13 +4675,13 @@
       ]
     },
     {
-      "canonical_id": "SamaDubai.ae@SD",
-      "canonical_name": "سما دبي",
-      "logical_key": "سما دبي",
+      "canonical_id": "ZeeAlwan.ae@SD",
+      "canonical_name": "زي ألوان",
+      "logical_key": "زي ألوان",
       "aliases": [
         {
-          "id": "سما دبي.eg",
-          "name": "سما دبي.eg",
+          "id": "زي ألوان.eg",
+          "name": "زي ألوان.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4901,25 +4843,13 @@
       ]
     },
     {
-      "canonical_id": "NileDrama.eg@SD",
-      "canonical_name": "نايل دراما",
-      "logical_key": "نايل دراما",
+      "canonical_id": "NessmaElJadida.tn@SD",
+      "canonical_name": "نسمة",
+      "logical_key": "نسمة",
       "aliases": [
         {
-          "id": "نايل دراما.eg",
-          "name": "نايل دراما.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "NileLife.eg@SD",
-      "canonical_name": "نايل لايف",
-      "logical_key": "نايل لايف",
-      "aliases": [
-        {
-          "id": "نايل لايف.eg",
-          "name": "نايل لايف.eg",
+          "id": "نسمة.eg",
+          "name": "نسمة.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4940,253 +4870,10 @@
   "integrity_quarantine": {
     "sources": [
       {
-        "source": "primary",
-        "input_candidates": 202,
-        "kept_candidates": 194,
-        "quarantined_candidates": 8,
-        "quarantined": [
-          {
-            "source": "primary",
-            "id": "beINSportsMax1.qa@MENA",
-            "name": "beINSPORTSMAX1",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 5
-          },
-          {
-            "source": "primary",
-            "id": "beINSportsMax2.qa@MENA",
-            "name": "beINSPORTSMAX2",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 5
-          },
-          {
-            "source": "primary",
-            "id": "beINSportsMax3.qa@MENA",
-            "name": "beINSPORTSMAX3",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 5
-          },
-          {
-            "source": "primary",
-            "id": "beINSportsMax4.qa@MENA",
-            "name": "beINSPORTSMAX4",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 5
-          },
-          {
-            "source": "primary",
-            "id": "beINSportsMax5.qa@MENA",
-            "name": "beINSPORTSMAX5",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 5
-          },
-          {
-            "source": "primary",
-            "id": "beINSportsMax6.qa@MENA",
-            "name": "beINSPORTSMAX6",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 5
-          },
-          {
-            "source": "primary",
-            "id": "beINSportsXtra1.qa@SD",
-            "name": "beIN SPORTS XTRA 1",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 50
-          },
-          {
-            "source": "primary",
-            "id": "beINSportsXtra2.qa@SD",
-            "name": "beIN SPORTS XTRA 2",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 50
-          }
-        ],
-        "clone_groups": [],
-        "identity_only_candidates": 8,
-        "retired_ssc_ids": [],
-        "retired_ssc_dropped": 0,
-        "dropped_ids": [],
-        "recovery_rejected_unknown_identity": 0,
-        "recovery_rejected_unknown_ids": [],
-        "recovery_rejected_already_clean": 0,
-        "recovery_rejected_already_clean_ids": [],
-        "recovery_accepted": 0
-      },
-      {
-        "source": "openepg-qatar1",
-        "input_candidates": 29,
-        "kept_candidates": 14,
-        "quarantined_candidates": 15,
-        "quarantined": [
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS MAX 1.qa",
-            "name": "beIN SPORTS MAX 1.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 21
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS MAX 2.qa",
-            "name": "beIN SPORTS MAX 2.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 21
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS MAX 3.qa",
-            "name": "beIN SPORTS MAX 3.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 21
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS MAX 4.qa",
-            "name": "beIN SPORTS MAX 4.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 21
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS MAX 5.qa",
-            "name": "beIN SPORTS MAX 5.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 21
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS MAX 6.qa",
-            "name": "beIN SPORTS MAX 6.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 21
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS XTRA 1.qa",
-            "name": "beIN SPORTS XTRA 1.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 41
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS XTRA 2.qa",
-            "name": "beIN SPORTS XTRA 2.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 41
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS XTRA 3.qa",
-            "name": "beIN SPORTS XTRA 3.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 41
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS XTRA 4.qa",
-            "name": "beIN SPORTS XTRA 4.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 41
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS XTRA 5.qa",
-            "name": "beIN SPORTS XTRA 5.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 41
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS XTRA 6.qa",
-            "name": "beIN SPORTS XTRA 6.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 41
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS XTRA 7.qa",
-            "name": "beIN SPORTS XTRA 7.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 21
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS XTRA 8.qa",
-            "name": "beIN SPORTS XTRA 8.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 21
-          },
-          {
-            "source": "openepg-qatar1",
-            "id": "beIN SPORTS XTRA 9.qa",
-            "name": "beIN SPORTS XTRA 9.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 21
-          }
-        ],
-        "clone_groups": [],
-        "identity_only_candidates": 15,
-        "retired_ssc_ids": [],
-        "retired_ssc_dropped": 0,
-        "dropped_ids": [],
-        "recovery_rejected_unknown_identity": 0,
-        "recovery_rejected_unknown_ids": [],
-        "recovery_rejected_already_clean": 0,
-        "recovery_rejected_already_clean_ids": [],
-        "recovery_accepted": 0
-      },
-      {
         "source": "openepg-qatar2",
         "input_candidates": 32,
-        "kept_candidates": 17,
-        "quarantined_candidates": 15,
+        "kept_candidates": 22,
+        "quarantined_candidates": 10,
         "quarantined": [
           {
             "source": "openepg-qatar2",
@@ -5240,42 +4927,6 @@
           },
           {
             "source": "openepg-qatar2",
-            "id": "beIN SPORTS XTRA 04 bein.com.qa",
-            "name": "beIN SPORTS XTRA 04 bein.com.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 19
-          },
-          {
-            "source": "openepg-qatar2",
-            "id": "beIN SPORTS XTRA 05 bein.com.qa",
-            "name": "beIN SPORTS XTRA 05 bein.com.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 19
-          },
-          {
-            "source": "openepg-qatar2",
-            "id": "beIN SPORTS XTRA1 Digital.qa",
-            "name": "beIN SPORTS XTRA1 Digital.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 38
-          },
-          {
-            "source": "openepg-qatar2",
-            "id": "beIN SPORTS XTRA2 Digital.qa",
-            "name": "beIN SPORTS XTRA2 Digital.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 38
-          },
-          {
-            "source": "openepg-qatar2",
             "id": "bein.com-05.qa",
             "name": "bein.com-05.qa",
             "reasons": [
@@ -5312,15 +4963,6 @@
           },
           {
             "source": "openepg-qatar2",
-            "id": "beINSPORTSXTRA3.qa",
-            "name": "beINSPORTSXTRA3.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 19
-          },
-          {
-            "source": "openepg-qatar2",
             "id": "NBA DIGITAL.qa",
             "name": "NBA DIGITAL.qa",
             "reasons": [
@@ -5340,7 +4982,14 @@
             "NBA DIGITAL.qa"
           ]
         ],
-        "identity_only_candidates": 15,
+        "bein_event_sources_preserved": [
+          "beIN SPORTS XTRA 04 bein.com.qa",
+          "beIN SPORTS XTRA 05 bein.com.qa",
+          "beIN SPORTS XTRA1 Digital.qa",
+          "beIN SPORTS XTRA2 Digital.qa",
+          "beINSPORTSXTRA3.qa"
+        ],
+        "identity_only_candidates": 10,
         "retired_ssc_ids": [],
         "retired_ssc_dropped": 0,
         "dropped_ids": [],
@@ -5353,8 +5002,8 @@
       {
         "source": "openepg-qatar3",
         "input_candidates": 37,
-        "kept_candidates": 22,
-        "quarantined_candidates": 15,
+        "kept_candidates": 29,
+        "quarantined_candidates": 8,
         "quarantined": [
           {
             "source": "openepg-qatar3",
@@ -5373,74 +5022,6 @@
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
             "programmes": 8
-          },
-          {
-            "source": "openepg-qatar3",
-            "id": "beIN SPORTS MAX1 DIGITAL.qa",
-            "name": "beIN SPORTS MAX1 DIGITAL.qa",
-            "reasons": [
-              "CLONED_UNRELATED_TIMELINE=6",
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 8
-          },
-          {
-            "source": "openepg-qatar3",
-            "id": "beIN SPORTS MAX2 DIGITAL.qa",
-            "name": "beIN SPORTS MAX2 DIGITAL.qa",
-            "reasons": [
-              "CLONED_UNRELATED_TIMELINE=6",
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 8
-          },
-          {
-            "source": "openepg-qatar3",
-            "id": "beIN SPORTS MAX3 DIGITAL.qa",
-            "name": "beIN SPORTS MAX3 DIGITAL.qa",
-            "reasons": [
-              "CLONED_UNRELATED_TIMELINE=6",
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 8
-          },
-          {
-            "source": "openepg-qatar3",
-            "id": "beIN SPORTS MAX4 DIGITAL.qa",
-            "name": "beIN SPORTS MAX4 DIGITAL.qa",
-            "reasons": [
-              "CLONED_UNRELATED_TIMELINE=6",
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 8
-          },
-          {
-            "source": "openepg-qatar3",
-            "id": "beIN SPORTS MAX5 DIGITAL.qa",
-            "name": "beIN SPORTS MAX5 DIGITAL.qa",
-            "reasons": [
-              "CLONED_UNRELATED_TIMELINE=6",
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 8
-          },
-          {
-            "source": "openepg-qatar3",
-            "id": "beIN SPORTS XTRA1 Digital.qa",
-            "name": "beIN SPORTS XTRA1 Digital.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 17
-          },
-          {
-            "source": "openepg-qatar3",
-            "id": "beIN SPORTS XTRA2 Digital.qa",
-            "name": "beIN SPORTS XTRA2 Digital.qa",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 14
           },
           {
             "source": "openepg-qatar3",
@@ -5508,7 +5089,16 @@
             "NBA DIGITAL.qa"
           ]
         ],
-        "identity_only_candidates": 14,
+        "bein_event_sources_preserved": [
+          "beIN SPORTS MAX1 DIGITAL.qa",
+          "beIN SPORTS MAX2 DIGITAL.qa",
+          "beIN SPORTS MAX3 DIGITAL.qa",
+          "beIN SPORTS MAX4 DIGITAL.qa",
+          "beIN SPORTS MAX5 DIGITAL.qa",
+          "beIN SPORTS XTRA1 Digital.qa",
+          "beIN SPORTS XTRA2 Digital.qa"
+        ],
+        "identity_only_candidates": 7,
         "retired_ssc_ids": [],
         "retired_ssc_dropped": 0,
         "dropped_ids": [
@@ -5578,7 +5168,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 23
+            "programmes": 22
           },
           {
             "source": "openepg-qatar4",
@@ -5609,6 +5199,7 @@
           }
         ],
         "clone_groups": [],
+        "bein_event_sources_preserved": [],
         "identity_only_candidates": 0,
         "retired_ssc_ids": [],
         "retired_ssc_dropped": 0,
@@ -5669,7 +5260,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 191
+            "programmes": 190
           },
           {
             "source": "openepg-qatar5",
@@ -5696,7 +5287,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 23
+            "programmes": 22
           },
           {
             "source": "openepg-qatar5",
@@ -5714,7 +5305,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 50
+            "programmes": 49
           },
           {
             "source": "openepg-qatar5",
@@ -5727,6 +5318,7 @@
           }
         ],
         "clone_groups": [],
+        "bein_event_sources_preserved": [],
         "identity_only_candidates": 0,
         "retired_ssc_ids": [],
         "retired_ssc_dropped": 0,
@@ -5761,7 +5353,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 75
+            "programmes": 76
           },
           {
             "source": "epgshare-ae1",
@@ -5770,7 +5362,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 75
+            "programmes": 76
           },
           {
             "source": "epgshare-ae1",
@@ -5779,7 +5371,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 75
+            "programmes": 76
           },
           {
             "source": "epgshare-ae1",
@@ -5788,7 +5380,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 75
+            "programmes": 76
           },
           {
             "source": "epgshare-ae1",
@@ -5797,7 +5389,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 75
+            "programmes": 76
           },
           {
             "source": "epgshare-ae1",
@@ -5806,7 +5398,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 75
+            "programmes": 76
           },
           {
             "source": "epgshare-ae1",
@@ -5815,7 +5407,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 75
+            "programmes": 76
           },
           {
             "source": "epgshare-ae1",
@@ -5824,7 +5416,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 75
+            "programmes": 76
           },
           {
             "source": "epgshare-ae1",
@@ -5833,7 +5425,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 75
+            "programmes": 76
           },
           {
             "source": "epgshare-ae1",
@@ -5842,7 +5434,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 75
+            "programmes": 76
           },
           {
             "source": "epgshare-ae1",
@@ -5851,7 +5443,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 75
+            "programmes": 76
           },
           {
             "source": "epgshare-ae1",
@@ -5860,7 +5452,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 124
+            "programmes": 123
           },
           {
             "source": "epgshare-ae1",
@@ -5869,7 +5461,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 124
+            "programmes": 123
           },
           {
             "source": "epgshare-ae1",
@@ -5878,7 +5470,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 124
+            "programmes": 123
           },
           {
             "source": "epgshare-ae1",
@@ -5887,7 +5479,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 124
+            "programmes": 123
           },
           {
             "source": "epgshare-ae1",
@@ -5896,7 +5488,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 124
+            "programmes": 123
           },
           {
             "source": "epgshare-ae1",
@@ -7111,7 +6703,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=3"
             ],
-            "programmes": 93
+            "programmes": 94
           },
           {
             "source": "epgshare-ae1",
@@ -7120,7 +6712,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=3"
             ],
-            "programmes": 93
+            "programmes": 94
           },
           {
             "source": "epgshare-ae1",
@@ -7129,7 +6721,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=3"
             ],
-            "programmes": 93
+            "programmes": 94
           },
           {
             "source": "epgshare-ae1",
@@ -9633,6 +9225,7 @@
             "DW05.ae"
           ]
         ],
+        "bein_event_sources_preserved": [],
         "identity_only_candidates": 383,
         "retired_ssc_ids": [],
         "retired_ssc_dropped": 0,
@@ -9646,8 +9239,8 @@
       {
         "source": "epgshare-bein1",
         "input_candidates": 46,
-        "kept_candidates": 23,
-        "quarantined_candidates": 23,
+        "kept_candidates": 39,
+        "quarantined_candidates": 7,
         "quarantined": [
           {
             "source": "epgshare-bein1",
@@ -9657,150 +9250,6 @@
               "SUSPICIOUS_BEIN_SPORTS66_ID"
             ],
             "programmes": 10
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA1_Digital_Mono_AR.bein",
-            "name": "beIN_SPORTS_XTRA1_Digital_Mono_AR",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 32
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA1_Digital_Mono_EN.bein",
-            "name": "beIN_SPORTS_XTRA1_Digital_Mono_EN",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 32
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA2_Digital_Mono_AR.bein",
-            "name": "beIN_SPORTS_XTRA2_Digital_Mono_AR",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 38
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA2_Digital_Mono_EN.bein",
-            "name": "beIN_SPORTS_XTRA2_Digital_Mono_EN",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 38
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA_04_bein.com_AR.bein",
-            "name": "beIN_SPORTS_XTRA_04_bein.com_AR",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 37
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA_04_bein.com_EN.bein",
-            "name": "beIN_SPORTS_XTRA_04_bein.com_EN",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 37
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA_05_bein.com_AR.bein",
-            "name": "beIN_SPORTS_XTRA_05_bein.com_AR",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 37
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA_05_bein.com_EN.bein",
-            "name": "beIN_SPORTS_XTRA_05_bein.com_EN",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 37
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA_06_bein.com_AR.bein",
-            "name": "beIN_SPORTS_XTRA_06_bein.com_AR",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 37
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA_06_bein.com_EN.bein",
-            "name": "beIN_SPORTS_XTRA_06_bein.com_EN",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 37
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA_07_bein.com_AR.bein",
-            "name": "beIN_SPORTS_XTRA_07_bein.com_AR",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 37
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA_07_bein.com_EN.bein",
-            "name": "beIN_SPORTS_XTRA_07_bein.com_EN",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 37
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA_08_Bein.com_AR.bein",
-            "name": "beIN_SPORTS_XTRA_08_Bein.com_AR",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 37
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA_08_Bein.com_EN.bein",
-            "name": "beIN_SPORTS_XTRA_08_Bein.com_EN",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 37
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA_Digital_09_Bein.com_AR.bein",
-            "name": "beIN_SPORTS_XTRA_Digital_09_Bein.com_AR",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 37
-          },
-          {
-            "source": "epgshare-bein1",
-            "id": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein",
-            "name": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN",
-            "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE"
-            ],
-            "programmes": 37
           },
           {
             "source": "epgshare-bein1",
@@ -9843,7 +9292,6 @@
             "id": "logos-_beINSPORTSXTRA3_AR.bein",
             "name": "logos-_beINSPORTSXTRA3_AR",
             "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE",
               "TECHNICAL_OR_ASSET_ID"
             ],
             "programmes": 38
@@ -9853,14 +9301,33 @@
             "id": "logos-_beINSPORTSXTRA3_EN.bein",
             "name": "logos-_beINSPORTSXTRA3_EN",
             "reasons": [
-              "GENERIC_OR_PLACEHOLDER_GUIDE",
               "TECHNICAL_OR_ASSET_ID"
             ],
             "programmes": 38
           }
         ],
         "clone_groups": [],
-        "identity_only_candidates": 16,
+        "bein_event_sources_preserved": [
+          "beIN_SPORTS_XTRA1_Digital_Mono_AR.bein",
+          "beIN_SPORTS_XTRA1_Digital_Mono_EN.bein",
+          "beIN_SPORTS_XTRA2_Digital_Mono_AR.bein",
+          "beIN_SPORTS_XTRA2_Digital_Mono_EN.bein",
+          "beIN_SPORTS_XTRA_04_bein.com_AR.bein",
+          "beIN_SPORTS_XTRA_04_bein.com_EN.bein",
+          "beIN_SPORTS_XTRA_05_bein.com_AR.bein",
+          "beIN_SPORTS_XTRA_05_bein.com_EN.bein",
+          "beIN_SPORTS_XTRA_06_bein.com_AR.bein",
+          "beIN_SPORTS_XTRA_06_bein.com_EN.bein",
+          "beIN_SPORTS_XTRA_07_bein.com_AR.bein",
+          "beIN_SPORTS_XTRA_07_bein.com_EN.bein",
+          "beIN_SPORTS_XTRA_08_Bein.com_AR.bein",
+          "beIN_SPORTS_XTRA_08_Bein.com_EN.bein",
+          "beIN_SPORTS_XTRA_Digital_09_Bein.com_AR.bein",
+          "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein",
+          "logos-_beINSPORTSXTRA3_AR.bein",
+          "logos-_beINSPORTSXTRA3_EN.bein"
+        ],
+        "identity_only_candidates": 0,
         "retired_ssc_ids": [],
         "retired_ssc_dropped": 0,
         "dropped_ids": [
@@ -10039,6 +9506,7 @@
             "EN:.WIZZO.Esports.World.Cup.sa"
           ]
         ],
+        "bein_event_sources_preserved": [],
         "identity_only_candidates": 14,
         "retired_ssc_ids": [
           "EN:.SSC.Extra.1.HD.sa",
@@ -10072,8 +9540,8 @@
         "recovery_accepted": 0
       }
     ],
-    "quarantined_candidates": 492,
-    "identity_only_candidates": 465,
+    "quarantined_candidates": 441,
+    "identity_only_candidates": 414,
     "dropped_ids": [
       "0001 AWG CN Brand Logo 1color Black 4C.qa",
       "0004 CNN International logo.svg.qa",
@@ -10277,30 +9745,6 @@
       "BBC.Horn.of.Africa.ae",
       "BBC.World.News.ae",
       "BBCEarth-new 200x200.qa",
-      "beIN SPORTS MAX 1.qa",
-      "beIN SPORTS MAX 2.qa",
-      "beIN SPORTS MAX 3.qa",
-      "beIN SPORTS MAX 4.qa",
-      "beIN SPORTS MAX 5.qa",
-      "beIN SPORTS MAX 6.qa",
-      "beIN SPORTS MAX1 DIGITAL.qa",
-      "beIN SPORTS MAX2 DIGITAL.qa",
-      "beIN SPORTS MAX3 DIGITAL.qa",
-      "beIN SPORTS MAX4 DIGITAL.qa",
-      "beIN SPORTS MAX5 DIGITAL.qa",
-      "beIN SPORTS XTRA 04 bein.com.qa",
-      "beIN SPORTS XTRA 05 bein.com.qa",
-      "beIN SPORTS XTRA 1.qa",
-      "beIN SPORTS XTRA 2.qa",
-      "beIN SPORTS XTRA 3.qa",
-      "beIN SPORTS XTRA 4.qa",
-      "beIN SPORTS XTRA 5.qa",
-      "beIN SPORTS XTRA 6.qa",
-      "beIN SPORTS XTRA 7.qa",
-      "beIN SPORTS XTRA 8.qa",
-      "beIN SPORTS XTRA 9.qa",
-      "beIN SPORTS XTRA1 Digital.qa",
-      "beIN SPORTS XTRA2 Digital.qa",
       "beIN SPORTS66 DIGITAL -01.qa",
       "bein.com-05.qa",
       "bein.com-06.qa",
@@ -10308,31 +9752,6 @@
       "bein.com-08.qa",
       "beIN.Sports.HD.ae",
       "beIN_SPORTS66_DIGITAL_Mono-01_EN.bein",
-      "beIN_SPORTS_XTRA1_Digital_Mono_AR.bein",
-      "beIN_SPORTS_XTRA1_Digital_Mono_EN.bein",
-      "beIN_SPORTS_XTRA2_Digital_Mono_AR.bein",
-      "beIN_SPORTS_XTRA2_Digital_Mono_EN.bein",
-      "beIN_SPORTS_XTRA_04_bein.com_AR.bein",
-      "beIN_SPORTS_XTRA_04_bein.com_EN.bein",
-      "beIN_SPORTS_XTRA_05_bein.com_AR.bein",
-      "beIN_SPORTS_XTRA_05_bein.com_EN.bein",
-      "beIN_SPORTS_XTRA_06_bein.com_AR.bein",
-      "beIN_SPORTS_XTRA_06_bein.com_EN.bein",
-      "beIN_SPORTS_XTRA_07_bein.com_AR.bein",
-      "beIN_SPORTS_XTRA_07_bein.com_EN.bein",
-      "beIN_SPORTS_XTRA_08_Bein.com_AR.bein",
-      "beIN_SPORTS_XTRA_08_Bein.com_EN.bein",
-      "beIN_SPORTS_XTRA_Digital_09_Bein.com_AR.bein",
-      "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein",
-      "beINSportsMax1.qa@MENA",
-      "beINSportsMax2.qa@MENA",
-      "beINSportsMax3.qa@MENA",
-      "beINSportsMax4.qa@MENA",
-      "beINSportsMax5.qa@MENA",
-      "beINSportsMax6.qa@MENA",
-      "beINSportsXtra1.qa@SD",
-      "beINSportsXtra2.qa@SD",
-      "beINSPORTSXTRA3.qa",
       "Beirut.Aflam.ae",
       "Beirut.Alyoom.ae",
       "Beirut.Cinema.ae",
