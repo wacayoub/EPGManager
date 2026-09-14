@@ -24,14 +24,22 @@ _original_write_shard = safe.base.write_shard
 
 
 # Only mappings verified as the same logical linear service are included here.
-# Real EN/FR beIN linear variants are deliberately NOT collapsed into Arabic.
+# Real dedicated EN/FR channels are deliberately NOT collapsed into Arabic.
+# In the current beIN MENA lineup only SPORTS EN 1/2 are separate English
+# services. The old Mono_EN IDs for numbered 3/4/5/7 are guide-language variants
+# of the same SPORTS 3/4/5/7 linear services, so they inherit the numbered MENA
+# canonical timeline instead of publishing a shorter/incomplete schedule.
 BEIN_COMPAT_ALIASES = {
     # Main sports / 4K
     "4k_DIGITAL_Mono_AR.bein": "beIN4K.qa@SD",
-    "beINSports2.qa@MENA": "beIN SPORTS2 DIGITAL.qa",
-    "beINSports4.qa@MENA": "beIN SPORTS4 DIGITAL.qa",
-    "beINSports6.qa@MENA": "beIN SPORTS6 DIGITAL -d-1.qa",
+    "beIN SPORTS2 DIGITAL.qa": "beINSports2.qa@MENA",
+    "beIN_SPORTS3_DIGITAL_Mono_EN.bein": "beINSports3.qa@MENA",
+    "beIN SPORTS4 DIGITAL.qa": "beINSports4.qa@MENA",
+    "beIN_SPORTS4_DIGITAL_Mono_EN.bein": "beINSports4.qa@MENA",
+    "beIN_SPORTS5_DIGITAL_Mono_EN.bein": "beINSports5.qa@MENA",
+    "beIN SPORTS6 DIGITAL -d-1.qa": "beINSports6.qa@MENA",
     "beIN SPORTS7 DIGITAL.qa": "beINSports7.qa@MENA",
+    "beIN_SPORTS7_DIGITAL_Mono_EN.bein": "beINSports7.qa@MENA",
 
     # Older NEWS canonical IDs may reappear in upstream feeds.
     "NEWS_DIGITAL_Mono_AR.bein": "beIN.Sports.News.ae",
