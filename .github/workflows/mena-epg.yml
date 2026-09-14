@@ -30,6 +30,7 @@ on:
       - "tools/bein_final_regression.py"
       - "tools/osn_id_audit_policy.py"
       - "tools/osn_final_regression.py"
+      - "tools/osn_bilingual_enrich.py"
 
 permissions:
   contents: write
@@ -116,7 +117,8 @@ jobs:
             tools/all_id_audit_alias_aware.py \
             tools/bein_final_regression.py \
             tools/osn_id_audit_policy.py \
-            tools/osn_final_regression.py
+            tools/osn_final_regression.py \
+            tools/osn_bilingual_enrich.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
@@ -134,6 +136,15 @@ jobs:
             --epg-root vendor/iptv-org-epg \
             --output-channels output/mena.channels.xml \
             --output-manifest output/catalog.json
+
+      - name: Build official OSN English-title donor catalogue
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/osn_bilingual_enrich.py build-channels \
+            --catalog-manifest output/catalog.json \
+            --output output/osn-en.channels.xml
 
       - name: Download authoritative channel-country metadata
         if: steps.gate.outputs.run == 'true'
@@ -179,6 +190,28 @@ jobs:
           fi
           exit 0
 
+      - name: Grab official OSN English title donor - 2 days only
+        if: steps.gate.outputs.run == 'true'
+        working-directory: vendor/iptv-org-epg
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=2048
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=20s 600s \
+            npm run grab --- \
+              --channels="${GITHUB_WORKSPACE}/output/osn-en.channels.xml" \
+              --output="${GITHUB_WORKSPACE}/output/osn-en.xml" \
+              --days=2 \
+              --maxConnections=1 \
+              --timeout=20000
+          rc=$?
+          echo "OSN English donor grab rc=${rc}"
+          if [ ! -s "${GITHUB_WORKSPACE}/output/osn-en.xml" ]; then
+            printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/osn-en.xml"
+          fi
+          exit 0
+
       - name: Merge MENA feeds with Arabic-first language arbitration
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -217,6 +250,30 @@ jobs:
             --catalog-manifest output/catalog.json \
             --output-dir output/final \
             --manifest output/final/shards.json
+
+      - name: Enrich OSN with official English titles and preserve Arabic descriptions
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/osn_bilingual_enrich.py enrich \
+            --xml output/final/provider-osn.xml.gz \
+            --donor output/osn-en.xml \
+            --report-json output/final/osn-bilingual-enrichment.json \
+            --report-text output/final/osn-bilingual-enrichment.txt
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          p = Path('output/final/provider-osn.xml.gz')
+          data = p.read_bytes()
+          mpath = Path('output/final/shards.json')
+          manifest = json.loads(mpath.read_text(encoding='utf-8'))
+          row = manifest['shards']['provider-osn']
+          row['size_bytes'] = len(data)
+          row['sha256'] = hashlib.sha256(data).hexdigest()
+          mpath.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print('OSN shard manifest refreshed: bytes=%d sha256=%s' % (len(data), row['sha256']))
+          PY
 
       - name: Validate production feeds and exclusive shard invariants
         if: steps.gate.outputs.run == 'true'
@@ -395,12 +452,13 @@ jobs:
           cp ../output/final/bein-id-audit-policy.txt .
           cp ../output/final/osn-id-audit-policy.json .
           cp ../output/final/osn-id-audit-policy.txt .
+          cp ../output/final/osn-bilingual-enrichment.json .
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
           printf '%s\n' \
-            'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver-facing XML omits channel identities with zero final programmes to reduce parsing and memory cost; the full internal catalogue remains available for audits and source recovery. Event channels reappear automatically when real EPG is available. Receiver sources are split exclusively by premium/provider identity first, then by authoritative/conservative channel country, then MENA Other. Arabic programme metadata is preferred before English/international fallback for regular MENA channels. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
+            'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver-facing XML omits channel identities with zero final programmes to reduce parsing and memory cost; the full internal catalogue remains available for audits and source recovery. Event channels reappear automatically when real EPG is available. Receiver sources are split exclusively by premium/provider identity first, then by authoritative/conservative channel country, then MENA Other. Arabic programme metadata is preferred before English/international fallback for regular MENA channels. Premium OSN uses official English titles with official Arabic descriptions when exact bilingual slots are available. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
             > README.md
-          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt virtual-epgmanager.json virtual-epgmanager.txt arabic-priority-test.json arabic-priority-test.txt bein-id-audit.json bein-id-audit.txt bein-id-audit-policy.json bein-id-audit-policy.txt osn-id-audit-policy.json osn-id-audit-policy.txt catalog.json merge-report.json README.md
+          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt virtual-epgmanager.json virtual-epgmanager.txt arabic-priority-test.json arabic-priority-test.txt bein-id-audit.json bein-id-audit.txt bein-id-audit-policy.json bein-id-audit-policy.txt osn-id-audit-policy.json osn-id-audit-policy.txt osn-bilingual-enrichment.json catalog.json merge-report.json README.md
           if git diff --cached --quiet; then
             echo "No MENA data changes."
             exit 0
