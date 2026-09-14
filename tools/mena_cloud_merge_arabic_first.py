@@ -11,6 +11,7 @@ Rules:
 - quarantine technical IDs, placeholder guides and exact cloned timelines shared
   by unrelated channels before they can enter logical-channel arbitration;
 - keep legitimate quarantined channel identities as NO-EPG mapping candidates;
+- retired SSC linear-channel identities are removed from the active 2026 EPG set;
 - recovery feeds may only fill an already-known identity that has no clean timetable;
 - obvious foreign-guide contamination (for example Al Jazeera English schedule on
   an unrelated local channel) is rejected rather than published as false EPG.
@@ -43,6 +44,13 @@ for _row in _RECOVERY_SOURCES:
     if _row not in base.REMOTE_SOURCES:
         base.REMOTE_SOURCES.append(_row)
 
+# SSC stopped linear broadcasting in October 2025 and the Saudi Sports Company
+# closed in July 2026. Keep stale upstream IDs out of current Smart Mapping.
+_RETIRED_SSC_RE = re.compile(
+    r"(?:^|\s)ssc(?:\s*(?:[1-7]|extra(?:\s*[1-3])?|news|sports?))?(?:\s|$)",
+    re.I,
+)
+
 
 def recovery_source_base(origin, site):
     if origin == "iptvorg":
@@ -55,6 +63,10 @@ base.source_base = recovery_source_base
 
 def _probe(cid, name):
     return safe._compact("%s %s" % (cid or "", name or ""))
+
+
+def _is_retired_ssc(candidate):
+    return bool(_RETIRED_SSC_RE.search(_probe(candidate.cid, candidate.name)))
 
 
 def arabic_first_logical_key(cid, name):
@@ -81,6 +93,12 @@ def guarded_load_candidates(root, origin, source_name, site_by_id, now, end):
     """Quarantine bad programmes and constrain recovery to true NO-EPG gaps."""
     rows = _original_load_candidates(root, origin, source_name, site_by_id, now, end)
     is_recovery = source_name.startswith("recovery-")
+
+    retired = [c for c in rows if _is_retired_ssc(c)]
+    retired_ids = sorted({c.cid for c in retired}, key=str.casefold)
+    if retired:
+        rows = [c for c in rows if not _is_retired_ssc(c)]
+
     clean, findings = guard.sanitize_candidate_rows(
         rows,
         source_name=source_name,
@@ -93,7 +111,7 @@ def guarded_load_candidates(root, origin, source_name, site_by_id, now, end):
         for q in findings.get("quarantined", [])
     }
     identity_only = []
-    dropped = []
+    dropped = list(retired_ids)
     for c in rows:
         if id(c) in clean_obj_ids:
             continue
@@ -129,6 +147,8 @@ def guarded_load_candidates(root, origin, source_name, site_by_id, now, end):
         _CLEAN_PROGRAMME_KEYS.update(c.key for c in clean if c.key and c.programmes)
 
     findings["identity_only_candidates"] = len(identity_only)
+    findings["retired_ssc_ids"] = retired_ids
+    findings["retired_ssc_dropped"] = len(retired_ids)
     findings["dropped_ids"] = sorted(set(dropped), key=str.casefold)
     findings["recovery_rejected_unknown_identity"] = len(rejected_unknown)
     findings["recovery_rejected_unknown_ids"] = sorted(set(rejected_unknown), key=str.casefold)
@@ -136,15 +156,15 @@ def guarded_load_candidates(root, origin, source_name, site_by_id, now, end):
     findings["recovery_rejected_already_clean_ids"] = sorted(set(rejected_already_clean), key=str.casefold)
     findings["recovery_accepted"] = len(clean) if is_recovery else 0
 
-    if findings.get("quarantined_candidates") or is_recovery:
+    if findings.get("quarantined_candidates") or is_recovery or retired_ids:
         _QUARANTINE_FINDINGS.append(findings)
         if is_recovery:
             print("Recovery source: %s accepted=%d already-clean=%d unknown=%d quarantined=%d" % (
                 source_name, len(clean), len(rejected_already_clean), len(rejected_unknown),
                 findings["quarantined_candidates"]))
         else:
-            print("Integrity quarantine: %s clean=%d identity-only=%d dropped=%d quarantined=%d" % (
-                source_name, len(clean), len(identity_only), len(dropped),
+            print("Integrity quarantine: %s clean=%d identity-only=%d dropped=%d retired-ssc=%d quarantined=%d" % (
+                source_name, len(clean), len(identity_only), len(set(dropped)), len(retired_ids),
                 findings["quarantined_candidates"]))
     return result
 
@@ -296,6 +316,7 @@ def _write_quarantine_report():
     quarantined = [q for finding in _QUARANTINE_FINDINGS for q in finding.get("quarantined", [])]
     identity_only_total = sum(int(x.get("identity_only_candidates", 0) or 0) for x in _QUARANTINE_FINDINGS)
     dropped_ids = sorted({cid for x in _QUARANTINE_FINDINGS for cid in x.get("dropped_ids", [])}, key=str.casefold)
+    retired_ssc_ids = sorted({cid for x in _QUARANTINE_FINDINGS for cid in x.get("retired_ssc_ids", [])}, key=str.casefold)
     recovery_accepted = sum(int(x.get("recovery_accepted", 0) or 0) for x in _QUARANTINE_FINDINGS)
     recovery_unknown = sum(int(x.get("recovery_rejected_unknown_identity", 0) or 0) for x in _QUARANTINE_FINDINGS)
     recovery_already_clean = sum(int(x.get("recovery_rejected_already_clean", 0) or 0) for x in _QUARANTINE_FINDINGS)
@@ -310,6 +331,7 @@ def _write_quarantine_report():
             0, int(row.get("channels_with_current_48h_epg", 0) or 0) - identity_only
         )
         row["quarantined_identity_only"] = identity_only
+        row["retired_ssc_dropped"] = int(finding.get("retired_ssc_dropped", 0) or 0)
         if row.get("name", "").startswith("recovery-"):
             row["recovery_accepted"] = int(finding.get("recovery_accepted", 0) or 0)
             row["recovery_rejected_unknown_identity"] = int(finding.get("recovery_rejected_unknown_identity", 0) or 0)
@@ -321,8 +343,9 @@ def _write_quarantine_report():
         "quarantined_candidates": len(quarantined),
         "identity_only_candidates": identity_only_total,
         "dropped_ids": dropped_ids,
+        "retired_ssc_ids": retired_ssc_ids,
         "quarantined_ids": sorted({q.get("id", "") for q in quarantined if q.get("id")}, key=str.casefold),
-        "policy": "wrong/generic programmes are stripped but legitimate channel IDs are retained as NO EPG; technical/asset and known impossible IDs are dropped",
+        "policy": "wrong/generic programmes are stripped but legitimate channel IDs are retained as NO EPG; technical/asset, known impossible and retired SSC IDs are dropped",
     }
     report["recovery"] = {
         "sources": [x[0] for x in _RECOVERY_SOURCES],
