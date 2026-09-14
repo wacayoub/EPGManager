@@ -41,10 +41,12 @@ INHERITED_CORE_IDS = {"NationalGeographicAbuDhabi.ae"}
 # Keep it visible, canonical and no-autolock until an Arabic-safe donor is found.
 REVIEW_CORE_IDS = {"YasTV.ae"}
 CORE_IDS = ARABIC_CORE_IDS | PREMIUM_CORE_IDS | INHERITED_CORE_IDS | REVIEW_CORE_IDS
+# Event-only feeds may legitimately disappear when no real event guide is active.
+# Their absence is healthy and they reappear automatically when useful EPG returns.
 SECONDARY_IDS = {"ADSportsExtra.ae", "YasTVExtra.ae"}
 OPTIONAL_STANDBY_IDS = {"BaynounahTV.ae"}
-REQUIRED_IDS = CORE_IDS | SECONDARY_IDS
-ALLOWED_IDS = REQUIRED_IDS | OPTIONAL_STANDBY_IDS
+REQUIRED_IDS = CORE_IDS
+ALLOWED_IDS = CORE_IDS | SECONDARY_IDS | OPTIONAL_STANDBY_IDS
 
 MIN_CORE_COVERAGE_H = 29.0
 MIN_AR_TITLE = 0.85
