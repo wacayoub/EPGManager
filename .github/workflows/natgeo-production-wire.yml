@@ -1,0 +1,177 @@
+name: Wire Verified NatGeo Arabic Production
+
+on:
+  push:
+    paths:
+      - ".github/workflows/natgeo-production-wire.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch MENA production pipeline
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('.github/workflows/mena-epg.yml')
+          s = p.read_text(encoding='utf-8')
+
+          # Trigger production when verified NatGeo cache/tool or ADM gates change.
+          anchor = '      - "tools/mbc_gap_repair.py"\n'
+          extra = (
+              '      - "tools/mbc_gap_repair.py"\n'
+              '      - "tools/natgeo_ad_arabic_enrich.py"\n'
+              '      - "data/natgeo_ad_arabic_metadata.json"\n'
+              '      - "tools/adm_id_audit_policy.py"\n'
+              '      - "tools/adm_final_regression.py"\n'
+          )
+          if '      - "tools/natgeo_ad_arabic_enrich.py"' not in s:
+              if anchor not in s: raise SystemExit('push-path anchor missing')
+              s = s.replace(anchor, extra, 1)
+
+          # Compile new production code in the same early fail-fast gate.
+          old = '            tools/mbc_final_regression.py \\\n            tools/mbc_gap_repair.py\n'
+          new = '            tools/mbc_final_regression.py \\\n            tools/mbc_gap_repair.py \\\n            tools/natgeo_ad_arabic_enrich.py \\\n            tools/adm_id_audit_policy.py \\\n            tools/adm_final_regression.py\n'
+          if '            tools/natgeo_ad_arabic_enrich.py' not in s:
+              if old not in s: raise SystemExit('compile anchor missing')
+              s = s.replace(old, new, 1)
+
+          # Enrich canonical combined + legacy MENA before strict provider split.
+          split_anchor = '      - name: Split MENA by country and premium provider\n'
+          enrich = '''      - name: Enrich NatGeo Abu Dhabi with verified Arabic metadata
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/natgeo_ad_arabic_enrich.py audit-cache \\
+            --cache data/natgeo_ad_arabic_metadata.json
+          python tools/natgeo_ad_arabic_enrich.py enrich \\
+            --xml output/final/mena-arabic.xml.gz \\
+            --output output/final/mena-arabic.xml.gz \\
+            --cache data/natgeo_ad_arabic_metadata.json \\
+            --report-json output/final/natgeo-arabic-enrichment.json \\
+            --report-text output/final/natgeo-arabic-enrichment.txt
+          if [ -s output/final/mena.xml.gz ]; then
+            python tools/natgeo_ad_arabic_enrich.py enrich \\
+              --xml output/final/mena.xml.gz \\
+              --output output/final/mena.xml.gz \\
+              --cache data/natgeo_ad_arabic_metadata.json
+          fi
+          python - <<'PY2'
+          import gzip, hashlib, json, re, xml.etree.ElementTree as ET
+          from pathlib import Path
+          AR = re.compile(r'[\\u0600-\\u06ff]')
+          LAT = re.compile(r'[A-Za-z]')
+          def profile(path):
+              data=Path(path).read_bytes()
+              root=ET.fromstring(gzip.decompress(data))
+              ps=root.findall('programme')
+              titles=[]; descs=[]
+              for x in ps:
+                  t=x.find('title'); d=x.find('desc')
+                  titles.append(((t.text or '').strip() if t is not None else ''))
+                  descs.append(((d.text or '').strip() if d is not None else ''))
+              n=float(len(ps) or 1)
+              return {
+                  'programmes': len(ps),
+                  'arabic_title_ratio': round(sum(bool(AR.search(x)) for x in titles)/n,4),
+                  'english_title_ratio': round(sum(bool(LAT.search(x)) for x in titles)/n,4),
+                  'arabic_desc_ratio': round(sum(bool(AR.search(x)) for x in descs)/n,4),
+                  'size_bytes': len(data),
+                  'sha256': hashlib.sha256(data).hexdigest(),
+              }
+          mp=Path('output/final/manifest.json')
+          m=json.loads(mp.read_text(encoding='utf-8'))
+          combined=profile('output/final/mena-arabic.xml.gz')
+          for k,v in combined.items(): m[k]=v
+          if isinstance(m.get('splits'),dict) and isinstance(m['splits'].get('legacy_combined'),dict):
+              m['splits']['legacy_combined'].update(combined)
+          if Path('output/final/mena.xml.gz').exists() and isinstance(m.get('splits'),dict) and isinstance(m['splits'].get('mena'),dict):
+              m['splits']['mena'].update(profile('output/final/mena.xml.gz'))
+          mp.write_text(json.dumps(m,ensure_ascii=False,indent=2)+'\\n',encoding='utf-8')
+          print('NatGeo enrichment manifest metadata refreshed')
+          PY2
+
+'''
+          if 'Enrich NatGeo Abu Dhabi with verified Arabic metadata' not in s:
+              if split_anchor not in s: raise SystemExit('split anchor missing')
+              s = s.replace(split_anchor, enrich + split_anchor, 1)
+
+          # Run ADM policy after provider-adm has been generated.
+          osn_anchor = '      - name: Enrich OSN with official English titles and preserve Arabic descriptions\n'
+          adm = '''      - name: Audit Abu Dhabi Media and NatGeo Arabic quality
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/adm_id_audit_policy.py \\
+            --xml output/final/provider-adm.xml.gz \\
+            --json output/final/adm-id-audit-policy.json \\
+            --text output/final/adm-id-audit-policy.txt
+
+      - name: Run final Abu Dhabi Media regression gate
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/adm_final_regression.py \\
+            --audit-json output/final/adm-id-audit-policy.json \\
+            --text output/final/adm-final-regression.txt
+
+'''
+          if 'Audit Abu Dhabi Media and NatGeo Arabic quality' not in s:
+              if osn_anchor not in s: raise SystemExit('OSN insertion anchor missing')
+              s = s.replace(osn_anchor, adm + osn_anchor, 1)
+
+          # Publish machine-readable NatGeo/ADM audit reports too.
+          copy_anchor = '          cp ../output/final/osn-bilingual-enrichment.json .\n'
+          copy_extra = (
+              '          cp ../output/final/osn-bilingual-enrichment.json .\n'
+              '          cp ../output/final/natgeo-arabic-enrichment.json .\n'
+              '          cp ../output/final/adm-id-audit-policy.json .\n'
+          )
+          if 'cp ../output/final/natgeo-arabic-enrichment.json .' not in s:
+              if copy_anchor not in s: raise SystemExit('publish copy anchor missing')
+              s = s.replace(copy_anchor, copy_extra, 1)
+
+          add_anchor = 'osn-bilingual-enrichment.json catalog.json merge-report.json README.md\n'
+          add_extra = 'osn-bilingual-enrichment.json natgeo-arabic-enrichment.json adm-id-audit-policy.json catalog.json merge-report.json README.md\n'
+          if 'natgeo-arabic-enrichment.json adm-id-audit-policy.json' not in s:
+              if add_anchor not in s: raise SystemExit('git add anchor missing')
+              s = s.replace(add_anchor, add_extra, 1)
+
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Validate patched workflow targets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/natgeo_ad_arabic_enrich.py tools/adm_id_audit_policy.py tools/adm_final_regression.py
+          python tools/natgeo_ad_arabic_enrich.py audit-cache --cache data/natgeo_ad_arabic_metadata.json
+          grep -q 'Enrich NatGeo Abu Dhabi with verified Arabic metadata' .github/workflows/mena-epg.yml
+          grep -q 'Audit Abu Dhabi Media and NatGeo Arabic quality' .github/workflows/mena-epg.yml
+          grep -q 'natgeo-arabic-enrichment.json' .github/workflows/mena-epg.yml
+
+      - name: Commit production wiring
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Cloud"
+          git config user.email "actions@users.noreply.github.com"
+          git add .github/workflows/mena-epg.yml
+          if ! git diff --cached --quiet; then
+            git commit -m "Use verified Arabic NatGeo metadata in MENA production"
+            git push origin HEAD:main
+          fi
