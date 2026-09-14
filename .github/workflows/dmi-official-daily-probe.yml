@@ -1,0 +1,81 @@
+name: DMI Official Daily Probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/dmi-official-daily-probe.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Read exact official DMI daily pages
+        shell: bash
+        run: |
+          python - <<'PY'
+          import html,re,urllib.parse,urllib.request
+
+          roots=[
+            'https://www.dmi.gov.ae/content/dubaione/en-ae/schedule.html',
+            'https://www.dmi.gov.ae/content/samadubai/ar-ae/schedule.html',
+            'https://www.dmi.gov.ae/content/dubaizaman/ar-ae/schedule.html',
+            'https://www.dmi.gov.ae/content/corporate/en-ae/schedule.html',
+          ]
+          def get(url):
+            req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 EPGManager-DMI-Daily/1.0'})
+            with urllib.request.urlopen(req,timeout=35) as r:return r.geturl(),r.read().decode('utf-8','ignore')
+          def clean_text(text):
+            text=re.sub(r'(?is)<script.*?</script>|<style.*?</style>',' ',text)
+            text=re.sub(r'(?s)<[^>]+>','\n',text)
+            text=html.unescape(text)
+            return [re.sub(r'\s+',' ',x).strip() for x in text.splitlines() if re.sub(r'\s+',' ',x).strip()]
+          def day_label(lines):
+            for i,x in enumerate(lines):
+              if re.search(r'(?:Sep|September)\s+\d{1,2},\s*2026',x,re.I):
+                return ('%s %s' % (lines[i-1] if i else '',x)).strip()
+            return 'UNKNOWN'
+          seen=set()
+          for root in roots:
+            print('\nROOT',root)
+            try:
+              final,text=get(root)
+            except Exception as e:
+              print(' ERROR',e);continue
+            links=[final]
+            for h in re.findall(r'''href=["']([^"']+)["']''',text,re.I):
+              if 'schedule' in h.casefold() or 'program-schedule' in h.casefold():
+                u=urllib.parse.urljoin(final,h)
+                if u.startswith('http') and u not in links:links.append(u)
+            # Also test numbered daily pages used by Dubai One even if not all links are emitted.
+            if 'dubaione' in final:
+              for n in range(2,8):
+                u=final.replace('schedule.html','schedule.%d.html'%n)
+                if u not in links:links.append(u)
+            for u in links:
+              if u in seen:continue
+              seen.add(u)
+              try:
+                f,t=get(u); lines=clean_text(t)
+              except Exception as e:
+                print(' PAGE',u,'ERROR',e);continue
+              label=day_label(lines)
+              print('\n PAGE',f,'|',label,'| bytes',len(t))
+              # Print schedule stream in compact order: time then next visible title/description.
+              hits=0
+              for i,x in enumerate(lines):
+                if re.match(r'^GMT:\s*\d{1,2}:\d{2}\s+UAE:\s*\d{1,2}:\d{2}$',x,re.I):
+                  nxt=lines[i+1:i+4]
+                  print('  ',x,'|',' | '.join(nxt))
+                  hits+=1
+                  if hits>=40:break
+              if hits==0:
+                # report explicit no-program state / dates
+                for x in lines:
+                  if 'No programs available' in x or re.search(r'(?:Sep|September)\s+1[34],\s*2026',x,re.I):
+                    print('  ',x)
+          PY
