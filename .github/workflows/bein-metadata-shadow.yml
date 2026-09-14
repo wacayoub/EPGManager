@@ -1,0 +1,127 @@
+name: beIN Metadata Bridge Shadow
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/bein-metadata-shadow.yml"
+      - "tools/bein_metadata_bridge.py"
+      - "tools/bein_id_audit.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bein-metadata-bridge-shadow
+  cancel-in-progress: true
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout generator
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Checkout current production MENA data
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: data
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/bein_metadata_bridge.py tools/bein_id_audit.py
+
+      - name: Audit current production beIN
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p shadow/before shadow/after
+          cp data/shards.json shadow/before/shards.json
+          python tools/bein_id_audit.py \
+            --xml data/provider-bein.xml.gz \
+            --json shadow/before/bein-id-audit.json \
+            --text shadow/before/bein-id-audit.txt
+
+      - name: Apply metadata bridge in shadow only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/bein_metadata_bridge.py \
+            --input data/provider-bein.xml.gz \
+            --output shadow/after/provider-bein.xml.gz \
+            --report shadow/bein-metadata-bridge.json
+          cp data/shards.json shadow/after/shards.json
+
+      - name: Audit repaired shadow beIN
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/bein_id_audit.py \
+            --xml shadow/after/provider-bein.xml.gz \
+            --json shadow/after/bein-id-audit.json \
+            --text shadow/after/bein-id-audit.txt
+
+      - name: Compare before and after with regression gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          before = json.loads(Path('shadow/before/bein-id-audit.json').read_text(encoding='utf-8'))
+          after = json.loads(Path('shadow/after/bein-id-audit.json').read_text(encoding='utf-8'))
+          bridge = json.loads(Path('shadow/bein-metadata-bridge.json').read_text(encoding='utf-8'))
+
+          bs, a_s = before['summary'], after['summary']
+          assert bs['channels'] == a_s['channels'], (bs['channels'], a_s['channels'])
+          assert bs['programmes'] == a_s['programmes'], (bs['programmes'], a_s['programmes'])
+          assert int(a_s['counts'].get('FAIL', 0)) <= int(bs['counts'].get('FAIL', 0)), (bs['counts'], a_s['counts'])
+          assert bridge['invariants']['channel_ids_unchanged']
+          assert bridge['invariants']['programme_slots_unchanged']
+
+          def totals(report):
+              rows = report['channels']
+              return {
+                  'empty_desc': sum(int(x.get('empty_desc', 0) or 0) for x in rows),
+                  'arabic_desc_events': sum(round((100.0 - (100.0 * int(x.get('empty_desc', 0) or 0) / max(1, int(x.get('events', 0) or 0)))) * int(x.get('events', 0) or 0) / 100.0) for x in rows),
+              }
+          bt, at = totals(before), totals(after)
+          assert at['empty_desc'] <= bt['empty_desc'], (bt, at)
+
+          comparison = {
+              'before': bs,
+              'after': a_s,
+              'before_totals': bt,
+              'after_totals': at,
+              'bridge': bridge['summary'],
+              'regression_gate': 'PASS',
+          }
+          Path('shadow/comparison.json').write_text(json.dumps(comparison, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps(comparison, ensure_ascii=False, indent=2))
+          print('PAIR DETAILS')
+          for row in bridge['pairs']:
+              print('%s <-> %s | matched=%d left-only=%d right-only=%d title_updates=%d desc_fills=%d' % (
+                  row['left'], row['right'], row['matched_slots'], row['left_only_slots'], row['right_only_slots'],
+                  row['title_updates'], row['arabic_desc_fills']))
+          PY
+
+      - name: Upload beIN shadow evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: bein-metadata-shadow
+          path: shadow/
+          if-no-files-found: error
