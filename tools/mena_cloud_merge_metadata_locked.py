@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Shadow merge wrapper that locks regular-channel metadata to its chosen timeline.
+"""Shadow merge wrapper for trusted-primary timeline + metadata locking.
 
 Purpose:
-- keep the chosen timeline's title for ordinary MENA channels;
-- never replace a title merely because another feed has a close time slot;
+- for ordinary MENA channels, prefer a structurally safe broadcaster/official
+  primary timeline before OpenEPG/EPGShare alternatives;
+- fall back to the existing Arabic-first arbitration when that primary is empty,
+  placeholder-heavy, structurally unsafe, contaminated, or too sparse;
+- keep the chosen timeline's title authoritative;
+- never replace a regular-channel title merely because another feed has a close
+  time slot;
 - allow Arabic-description enrichment only when the alternate event has the
   exact same normalized title as the chosen timeline event;
 - preserve the existing beIN/OSN premium bilingual enrichment policy.
 
-This wrapper is initially used only by the metadata-lock shadow workflow.
+This wrapper remains shadow-only until its full All-ID gate passes.
 """
 from __future__ import annotations
 
@@ -17,8 +22,10 @@ import re
 
 import mena_cloud_merge as base
 import mena_cloud_merge_arabic_first as arabic
+import mena_cloud_merge_safe as safe
 
 _previous_choose_event = base.choose_event
+_previous_choose_timeline = safe._choose_timeline
 
 
 def _norm_title(value):
@@ -35,6 +42,57 @@ def _first_text(programme, role):
 def _remove_role(programme, role):
     for node in list(programme.findall(role)):
         programme.remove(node)
+
+
+def _coverage_hours(candidate):
+    """Union coverage of valid candidate events, capped only by loaded rows."""
+    rows = []
+    for p in candidate.programmes or []:
+        start = base.parse_xmltv_dt(p.get("start") or "")
+        stop = base.parse_xmltv_dt(p.get("stop") or "")
+        if start is None or stop is None or stop <= start:
+            continue
+        rows.append((start, stop))
+    rows.sort()
+    if not rows:
+        return 0.0
+    merged = []
+    for start, stop in rows:
+        if not merged or start > merged[-1][1]:
+            merged.append([start, stop])
+        elif stop > merged[-1][1]:
+            merged[-1][1] = stop
+    return sum((stop - start).total_seconds() for start, stop in merged) / 3600.0
+
+
+def official_primary_choose_timeline(candidates):
+    """Prefer a healthy broadcaster-owned primary for regular channels only."""
+    if any(base.is_premium(c.cid, c.name) for c in candidates):
+        return _previous_choose_timeline(candidates)
+
+    eligible = []
+    for c in candidates:
+        if c.origin != "primary" or c.site not in base.OFFICIAL_SITES or not c.programmes:
+            continue
+        st = safe._candidate_stats(c, False)
+        coverage = _coverage_hours(c)
+        if not arabic._structurally_safe(st):
+            continue
+        if arabic._foreign_contamination(c):
+            continue
+        if int(st.get("valid", 0)) < 3 or coverage < 6.0:
+            continue
+        eligible.append((coverage, st["score"], st["valid"], c.cid.casefold(), c, st))
+
+    if eligible:
+        eligible.sort(reverse=True, key=lambda x: (x[0], x[1], x[2], x[3]))
+        chosen = eligible[0]
+        return chosen[4], chosen[5]
+
+    return _previous_choose_timeline(candidates)
+
+
+safe._choose_timeline = official_primary_choose_timeline
 
 
 def locked_choose_event(entries, premium):
