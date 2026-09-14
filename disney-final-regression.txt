@@ -1,0 +1,24 @@
+DISNEY MENA FINAL REGRESSION GATE: PASS / FROZEN
+verified_at=2026-09-14
+
+Official MENA identity:
+- tv.ar.disneyme.com = HTTP 200; Disney Channel + Disney Junior + schedule markers present
+- tv.en.disneyme.com = HTTP 200; Disney Channel + Disney Junior + schedule markers present
+- tv.en.disneyme.com/whats-on = HTTP 200; official schedule present
+
+Independent upstream timeline validation:
+- Disney Channel.sa: OpenEPG Saudi1 88 current events / 32.5h; Arabic title=100%; Arabic desc=100%; gaps=0; overlaps=0; empty_desc=0
+- Disney Channel.sa: Saudi2 overlap window 53/53 exact start+stop = 100.0%
+- Disney Junior.sa: OpenEPG Saudi1 132 current events / 32.5h; Arabic title=100%; Arabic desc=100%; gaps=0; overlaps=0; empty_desc=0
+- Disney Junior.sa: Saudi2 overlap window 81/81 exact start+stop = 100.0%
+- Disney Junior short<2m micro-slots are verified schedule slots, not corrupt events; they are independently reproduced in the secondary feed.
+
+Published production audit:
+- Disney Channel.sa: PASS score=100 auto_lock=YES events=94 coverage=34.5h title_AR=100% desc_AR=100% gaps=0 overlaps=0 invalid=0 empty_desc=0
+- Disney Junior.sa: PASS score=100 auto_lock=YES events=138 coverage=34.4h title_AR=100% desc_AR=100% gaps=0 overlaps=0 invalid=0 empty_desc=0
+
+Policy:
+- Exact MENA feed identity is now proven by official Disney Middle East presence plus independent timeline agreement.
+- Arabic metadata remains preferred for these MENA feeds.
+- No XMLTV timeline was rewritten to obtain PASS.
+- FROZEN unless a future regression detects identity mismatch, invalid timing, overlap, material coverage collapse, or Arabic metadata collapse.
