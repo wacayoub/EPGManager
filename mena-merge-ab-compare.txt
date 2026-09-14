@@ -1,0 +1,17 @@
+ALL-ID BEFORE/AFTER COMPARISON
+improved=3 regressed=2 added=0 removed=0 same_verdict_event_changes=3
+before={'channels': 1049, 'programmes': 33310, 'PASS': 152, 'REVIEW': 469, 'NO_EPG': 428, 'FAIL': 0, 'auto_lock_safe': 152, 'missing_shards': []}
+after={'channels': 1049, 'programmes': 33303, 'PASS': 153, 'REVIEW': 468, 'NO_EPG': 428, 'FAIL': 0, 'auto_lock_safe': 153, 'missing_shards': []}
+
+REGRESSIONS
+- provider-mbc | MBC4.ae@SD | PASS -> REVIEW | events 61 -> 63 | score 100 -> 84
+- provider-mbc | MBCAction.ae@SD | PASS -> REVIEW | events 71 -> 67 | score 100 -> 84
+
+IMPROVEMENTS
+- mena-ae | CartoonNetworkArabic.ae@SD | REVIEW -> PASS | events 73 -> 73 | score 92 -> 100
+- provider-mbc | MBCMasr.eg@SD | REVIEW -> PASS | events 38 -> 36 | score 92 -> 100
+- provider-mbc | MBCMasrUSA.us@SD | REVIEW -> PASS | events 38 -> 38 | score 92 -> 100
+
+ADDED
+
+REMOVED
