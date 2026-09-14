@@ -1,21 +1,10 @@
 {
   "schema": 2,
-  "generated": "2026-09-14T05:44:21.782073+00:00",
+  "generated": "2026-09-14T05:49:37.861952+00:00",
   "window_hours": 48,
-  "sources_attempted": 23,
+  "sources_attempted": 21,
   "remote_sources_ok": 20,
-  "remote_sources_failed": [
-    {
-      "name": "recovery-iptvorg-osn-ae",
-      "url": "https://iptv-org.github.io/epg/guides/ae/osn.com.epg.xml",
-      "error": "https://iptv-org.github.io/epg/guides/ae/osn.com.epg.xml: HTTP Error 404: Not Found"
-    },
-    {
-      "name": "recovery-iptvorg-rotana-sa",
-      "url": "https://iptv-org.github.io/epg/guides/sa/rotana.net.epg.xml",
-      "error": "https://iptv-org.github.io/epg/guides/sa/rotana.net.epg.xml: HTTP Error 404: Not Found"
-    }
-  ],
+  "remote_sources_failed": [],
   "source_stats": [
     {
       "name": "openepg-egypt1",
@@ -135,9 +124,9 @@
     {
       "name": "epgshare-sa2",
       "origin": "epgshare",
-      "channels_with_current_48h_epg": 17,
+      "channels_with_current_48h_epg": 16,
       "bytes": 88992,
-      "quarantined_identity_only": 23
+      "quarantined_identity_only": 24
     },
     {
       "name": "epgshare-aljazeera1",
@@ -146,17 +135,17 @@
       "bytes": 4291
     }
   ],
-  "candidate_channel_rows": 1684,
+  "candidate_channel_rows": 1675,
   "unique_logical_channels": 1046,
-  "programmes": 33358,
-  "premium_hybrid_events": 996,
+  "programmes": 33254,
+  "premium_hybrid_events": 995,
   "stats": {
     "regular_channels": 965,
-    "source_epgshare": 524,
-    "logical_duplicate_groups": 356,
+    "source_epgshare": 525,
+    "logical_duplicate_groups": 349,
     "premium_channels": 81,
-    "source_openepg": 326,
-    "source_primary": 196
+    "source_openepg": 334,
+    "source_primary": 187
   },
   "aliases": [
     {
@@ -311,8 +300,8 @@
       "aliases": []
     },
     {
-      "canonical_id": "AlarabiyaPortrait.ae@SD",
-      "canonical_name": "Al Arabiya",
+      "canonical_id": "Al Arabiya.sa",
+      "canonical_name": "Al Arabiya.sa",
       "logical_key": "al arabiya",
       "aliases": [
         {
@@ -324,16 +313,6 @@
           "id": "Al Arabiya HD.sa",
           "name": "Al Arabiya HD.sa",
           "source": "openepg-saudi2"
-        },
-        {
-          "id": "Al Arabiya.sa",
-          "name": "Al Arabiya.sa",
-          "source": "openepg-saudi5"
-        },
-        {
-          "id": "Al Arabiya.sa",
-          "name": "Al Arabiya.sa",
-          "source": "openepg-saudi6"
         },
         {
           "id": "Al.Arabiya.HD.ae",
@@ -355,33 +334,10 @@
       ]
     },
     {
-      "canonical_id": "AlArabyTV2.qa@SD",
-      "canonical_name": "Al Araby 2",
-      "logical_key": "al araby 2",
-      "aliases": [
-        {
-          "id": "Al.Araby.2.HD.ae",
-          "name": "Al Araby 2 HD",
-          "source": "epgshare-ae1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "AlArabyTV.qa@SD",
-      "canonical_name": "Al Araby TV",
+      "canonical_id": "Al Araby TV.sa",
+      "canonical_name": "Al Araby TV.sa",
       "logical_key": "al araby tv",
-      "aliases": [
-        {
-          "id": "Al Araby TV.sa",
-          "name": "Al Araby TV.sa",
-          "source": "openepg-saudi5"
-        },
-        {
-          "id": "Al Araby TV.sa",
-          "name": "Al Araby TV.sa",
-          "source": "openepg-saudi6"
-        }
-      ]
+      "aliases": []
     },
     {
       "canonical_id": "Al Dafrah.sa",
@@ -4108,18 +4064,6 @@
       ]
     },
     {
-      "canonical_id": "LanaTV.lb@SD",
-      "canonical_name": "ال تي في",
-      "logical_key": "ال تي في",
-      "aliases": [
-        {
-          "id": "ال تي في.eg",
-          "name": "ال تي في.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "JordanTV.jo@SD",
       "canonical_name": "الأردن",
       "logical_key": "الأردن",
@@ -4420,18 +4364,6 @@
       ]
     },
     {
-      "canonical_id": "DubaiZaman.ae@SD",
-      "canonical_name": "دبي زمان",
-      "logical_key": "دبي زمان",
-      "aliases": [
-        {
-          "id": "دبي زمان.eg",
-          "name": "دبي زمان.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "DijlahTV.iq@SD",
       "canonical_name": "دجلة",
       "logical_key": "دجلة",
@@ -4439,18 +4371,6 @@
         {
           "id": "دجلة.eg",
           "name": "دجلة.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "DMCDrama.eg@SD",
-      "canonical_name": "دي إم سي دراما",
-      "logical_key": "دي إم سي دراما",
-      "aliases": [
-        {
-          "id": "دي إم سي دراما.eg",
-          "name": "دي إم سي دراما.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4547,18 +4467,6 @@
         {
           "id": "زي ألوان.eg",
           "name": "زي ألوان.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "SamaDubai.ae@SD",
-      "canonical_name": "سما دبي",
-      "logical_key": "سما دبي",
-      "aliases": [
-        {
-          "id": "سما دبي.eg",
-          "name": "سما دبي.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4720,30 +4628,6 @@
       ]
     },
     {
-      "canonical_id": "NileLife.eg@SD",
-      "canonical_name": "نايل لايف",
-      "logical_key": "نايل لايف",
-      "aliases": [
-        {
-          "id": "نايل لايف.eg",
-          "name": "نايل لايف.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "NessmaElJadida.tn@SD",
-      "canonical_name": "نسمة",
-      "logical_key": "نسمة",
-      "aliases": [
-        {
-          "id": "نسمة.eg",
-          "name": "نسمة.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "UTV.iq@SD",
       "canonical_name": "يو تي في",
       "logical_key": "يو تي في",
@@ -4760,8 +4644,8 @@
     "sources": [
       {
         "source": "primary",
-        "input_candidates": 199,
-        "kept_candidates": 191,
+        "input_candidates": 190,
+        "kept_candidates": 182,
         "quarantined_candidates": 8,
         "quarantined": [
           {
@@ -5353,7 +5237,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 218
+            "programmes": 217
           },
           {
             "source": "openepg-qatar4",
@@ -6135,7 +6019,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 74
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -6144,7 +6028,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 74
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -6153,7 +6037,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 74
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -6162,7 +6046,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 74
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -6171,7 +6055,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 74
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -6180,7 +6064,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 74
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -6189,7 +6073,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 74
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -6198,7 +6082,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 74
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -9693,8 +9577,8 @@
       {
         "source": "epgshare-sa2",
         "input_candidates": 40,
-        "kept_candidates": 17,
-        "quarantined_candidates": 23,
+        "kept_candidates": 16,
+        "quarantined_candidates": 24,
         "quarantined": [
           {
             "source": "epgshare-sa2",
@@ -9712,6 +9596,15 @@
             "name": "EN: El-Podcasters Channel",
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=22",
+              "GENERIC_OR_PLACEHOLDER_GUIDE"
+            ],
+            "programmes": 3
+          },
+          {
+            "source": "epgshare-sa2",
+            "id": "EN:.MBC.Masr.Drama.sa",
+            "name": "EN: MBC Masr Drama",
+            "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
             "programmes": 3
@@ -9952,7 +9845,7 @@
             "EN:.SSC.Extra.1.HD.sa"
           ]
         ],
-        "identity_only_candidates": 23,
+        "identity_only_candidates": 24,
         "dropped_ids": [],
         "recovery_rejected_unknown_identity": 0,
         "recovery_rejected_unknown_ids": [],
@@ -9961,8 +9854,8 @@
         "recovery_accepted": 0
       }
     ],
-    "quarantined_candidates": 502,
-    "identity_only_candidates": 475,
+    "quarantined_candidates": 503,
+    "identity_only_candidates": 476,
     "dropped_ids": [
       "0001 AWG CN Brand Logo 1color Black 4C.qa",
       "0004 CNN International logo.svg.qa",
@@ -10250,6 +10143,7 @@
       "EN:.BIG.TIME.sa",
       "EN:.El-Podcasters.Channel.sa",
       "EN:.Majid.Almohandis.sa",
+      "EN:.MBC.Masr.Drama.sa",
       "EN:.Mohammed.Abdu.sa",
       "EN:.Red.Bull.TV.sa",
       "EN:.Sikkat.Safar.Channel.sa",
@@ -10473,10 +10367,7 @@
     "policy": "wrong/generic programmes are stripped but legitimate channel IDs are retained as NO EPG; technical/asset and known impossible IDs are dropped"
   },
   "recovery": {
-    "sources": [
-      "recovery-iptvorg-osn-ae",
-      "recovery-iptvorg-rotana-sa"
-    ],
+    "sources": [],
     "accepted_candidate_rows": 0,
     "rejected_unknown_identity_rows": 0,
     "rejected_already_clean_rows": 0,

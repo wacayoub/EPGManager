@@ -1,34 +1,23 @@
 {
   "schema": 4,
-  "generated": "2026-09-14T05:45:52.907340+00:00",
+  "generated": "2026-09-14T05:50:30.924913+00:00",
   "status": "ok",
   "window_hours": 48,
-  "channels": 1051,
-  "programmes": 32954,
+  "channels": 1060,
+  "programmes": 33252,
   "catalogue_channels": 246,
-  "fresh_channels": 592,
-  "lkg_channels": 5,
+  "fresh_channels": 591,
+  "lkg_channels": 14,
   "no_epg_channels": 74,
-  "arabic_title_ratio": 0.6033,
-  "english_title_ratio": 0.3939,
-  "arabic_desc_ratio": 0.5229,
-  "premium_hybrid_events": 996,
+  "arabic_title_ratio": 0.6067,
+  "english_title_ratio": 0.3906,
+  "arabic_desc_ratio": 0.5219,
+  "premium_hybrid_events": 995,
   "remote_sources_ok": 20,
-  "remote_sources_failed": [
-    {
-      "name": "recovery-iptvorg-osn-ae",
-      "url": "https://iptv-org.github.io/epg/guides/ae/osn.com.epg.xml",
-      "error": "https://iptv-org.github.io/epg/guides/ae/osn.com.epg.xml: HTTP Error 404: Not Found"
-    },
-    {
-      "name": "recovery-iptvorg-rotana-sa",
-      "url": "https://iptv-org.github.io/epg/guides/sa/rotana.net.epg.xml",
-      "error": "https://iptv-org.github.io/epg/guides/sa/rotana.net.epg.xml: HTTP Error 404: Not Found"
-    }
-  ],
-  "logical_duplicate_groups": 356,
+  "remote_sources_failed": [],
+  "logical_duplicate_groups": 349,
   "source_counts": {
-    "merged-external": 850,
+    "merged-external": 859,
     "shahid.mbc.net": 55,
     "elcinema.com": 47,
     "osn.com": 46,
@@ -41,18 +30,18 @@
     "freetv.tv": 1,
     "i24news.tv": 1
   },
-  "size_bytes": 1124244,
-  "sha256": "db8883b5c411b3c56d95c40dfaf4fbee9b0c805ba9aecc6f280f8987b96175f7",
+  "size_bytes": 1129154,
+  "sha256": "040bd89e55677a6ee0411658b906e04a4ba9f5217464b3b3c60bff7671950fe9",
   "split_policy": "beIN/OSN -> premium; all other MENA -> mena; legacy combined retained",
   "splits": {
     "mena": {
-      "channels": 1051,
-      "programmes": 32954,
-      "arabic_title_ratio": 0.6033,
-      "english_title_ratio": 0.3939,
-      "arabic_desc_ratio": 0.5229,
+      "channels": 1060,
+      "programmes": 33252,
+      "arabic_title_ratio": 0.6067,
+      "english_title_ratio": 0.3906,
+      "arabic_desc_ratio": 0.5219,
       "source_counts": {
-        "merged-external": 850,
+        "merged-external": 859,
         "shahid.mbc.net": 55,
         "elcinema.com": 47,
         "osn.com": 46,
@@ -65,20 +54,20 @@
         "freetv.tv": 1,
         "i24news.tv": 1
       },
-      "size_bytes": 1124227,
-      "sha256": "c9fc21ff791b59b4cf5ab6a1d30eeb222661bb36696408534d99d0ec88ba2d7f"
+      "size_bytes": 1129137,
+      "sha256": "a2ed6bed3ee9c838378bbfddf9709c86927d85dc87aace1ab8b18e7e5963645e"
     },
     "premium": {
       "channels": 1046,
-      "programmes": 32763,
-      "arabic_title_ratio": 0.6013,
-      "english_title_ratio": 0.396,
-      "arabic_desc_ratio": 0.5233,
+      "programmes": 32639,
+      "arabic_title_ratio": 0.5999,
+      "english_title_ratio": 0.3974,
+      "arabic_desc_ratio": 0.5197,
       "source_counts": {
-        "merged-external": 850,
+        "merged-external": 859,
         "shahid.mbc.net": 53,
-        "elcinema.com": 46,
-        "osn.com": 45,
+        "osn.com": 42,
+        "elcinema.com": 40,
         "bein.com": 28,
         "rotana.net": 8,
         "roya-tv.com": 5,
@@ -88,17 +77,17 @@
         "freetv.tv": 1,
         "i24news.tv": 1
       },
-      "size_bytes": 1115665,
-      "sha256": "f9100ab8de8c24eef8f93915da9649c407ddf6804fdbd48803d4ce7ec48594e4"
+      "size_bytes": 1106178,
+      "sha256": "0caf1a7420cdf9015ca727d2259854cfc5c4eb69905886407aef1a703bb0c87b"
     },
     "legacy_combined": {
-      "channels": 1051,
-      "programmes": 32954,
-      "arabic_title_ratio": 0.6033,
-      "english_title_ratio": 0.3939,
-      "arabic_desc_ratio": 0.5229,
+      "channels": 1060,
+      "programmes": 33252,
+      "arabic_title_ratio": 0.6067,
+      "english_title_ratio": 0.3906,
+      "arabic_desc_ratio": 0.5219,
       "source_counts": {
-        "merged-external": 850,
+        "merged-external": 859,
         "shahid.mbc.net": 55,
         "elcinema.com": 47,
         "osn.com": 46,
@@ -111,8 +100,8 @@
         "freetv.tv": 1,
         "i24news.tv": 1
       },
-      "size_bytes": 1124244,
-      "sha256": "db8883b5c411b3c56d95c40dfaf4fbee9b0c805ba9aecc6f280f8987b96175f7"
+      "size_bytes": 1129154,
+      "sha256": "040bd89e55677a6ee0411658b906e04a4ba9f5217464b3b3c60bff7671950fe9"
     }
   }
 }
