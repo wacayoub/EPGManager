@@ -5,6 +5,8 @@
 beIN SPORTS title policy mirrors the Qatar1 formatter. This layer also applies
 an integrity gate to BOTH the fresh candidate and previous LKG programme maps,
 so a polluted historical feed cannot reintroduce cloned/wrong schedules.
+Legitimate quarantined channel identities are retained with zero programmes so
+Smart Mapping can expose them as NO EPG instead of silently losing the ID.
 """
 from __future__ import annotations
 
@@ -16,6 +18,7 @@ import mena_integrity_guard as guard
 
 _original_clean = safe._clean_channel_rows
 _original_programme_groups = base.programme_groups
+_original_build_feed = base.build_feed
 _INTEGRITY_GROUP_CALL = 0
 
 
@@ -37,6 +40,23 @@ def strict_programme_groups(root, now, end):
 
 
 base.programme_groups = strict_programme_groups
+
+
+def strict_build_feed(ids, selected_programmes, cand_channels, prev_channels, source_by_id, generator_name):
+    """Keep clean candidate identities even when their bad programme rows were stripped."""
+    expanded = set(ids or [])
+    expanded.update(cand_channels.keys())
+    return _original_build_feed(
+        sorted(expanded, key=str.casefold),
+        selected_programmes,
+        cand_channels,
+        prev_channels,
+        source_by_id,
+        generator_name,
+    )
+
+
+base.build_feed = strict_build_feed
 
 
 def _probe(cid, name):
