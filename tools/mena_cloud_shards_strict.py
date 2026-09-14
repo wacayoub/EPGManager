@@ -5,6 +5,11 @@
 Known beIN XMLTV aliases are kept in BOTH XML and the lightweight catalogue so
 an existing receiver mapping never becomes invalid. Their programme timelines
 are copied from audited canonical IDs. New mappings prefer canonical IDs.
+
+beIN MAX/XTRA are event-channel sources and are deliberately preserved as source
+feeds even when the current guide is generic/repetitive outside a live event.
+They may stay REVIEW for mapping quality, but their source programmes must not be
+pruned merely because the guide is a placeholder between events.
 """
 from __future__ import annotations
 
@@ -83,11 +88,17 @@ def _copy_programmes_to_alias(alias, canonical, programmes):
     return len(copied)
 
 
+def _is_bein_event_source(cid):
+    low = (cid or "").casefold()
+    return "xtra" in low or "max" in low
+
+
 def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
     ids_set = set(ids)
     compat_applied = {}
     repair_report = None
     shard_programmes = programmes
+    event_sources_preserved = []
 
     if stem == "provider-bein":
         # Work on copies. Repairs are metadata/schedule corrections limited to the
@@ -95,8 +106,20 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
         repaired, repair_report = bein_repair.repair_programme_map(
             ids_set, programmes, safe.base.copy_element
         )
-        # Future-proof zero guard: never let generic-event cleanup accidentally
-        # publish a channel with zero programmes. Current XTRA3 keeps real events.
+
+        # MAX/XTRA are event-channel sources. Keep the upstream source timeline in
+        # full, including generic/off-event guide rows. Generic rows may be marked
+        # REVIEW by diagnostics, but they must not cause the source itself to be
+        # stripped. This also means a future real event can appear without waiting
+        # for the ID to be rediscovered/recreated.
+        for cid in ids_set:
+            if _is_bein_event_source(cid) and programmes.get(cid):
+                repaired[cid] = [safe.base.copy_element(p) for p in programmes.get(cid, [])]
+                event_sources_preserved.append(cid)
+
+        # Future-proof zero guard: never let cleanup accidentally publish a channel
+        # with zero programmes. MAX/XTRA are already restored above; this protects
+        # every other beIN ID as well.
         restored = []
         for cid in ids_set:
             if programmes.get(cid) and not repaired.get(cid):
@@ -110,7 +133,8 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
         shard_programmes.update(repaired)
 
         # Preserve aliases and force each to the audited canonical timeline AFTER
-        # the canonical schedule has received safe metadata repairs.
+        # the canonical schedule has received safe metadata repairs. XTRA aliases
+        # therefore inherit the preserved canonical event-source timeline.
         for alias, canonical in BEIN_COMPAT_ALIASES.items():
             if alias in ids_set and canonical in ids_set and canonical in shard_programmes:
                 count = _copy_programmes_to_alias(alias, canonical, shard_programmes)
@@ -126,14 +150,17 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
             [cid for cid in BEIN_NON_RECOMMENDED_IDS if cid in ids_set], key=str.casefold
         )
         result["catalog_preserves_legacy_ids"] = True
+        result["event_source_policy"] = "MAX/XTRA source timelines preserved; generic/off-event rows are not pruned"
+        result["event_sources_preserved"] = sorted(event_sources_preserved, key=str.casefold)
         result["repair"] = (repair_report or {}).get("summary", {})
         result["repair_long_events"] = (repair_report or {}).get("long_event_repairs", [])
         print(
-            "beIN repair: ArabicDesc=%d replayTitle=%d long=%d genericXTRA=%d; compatibility aliases=%d" % (
+            "beIN repair: ArabicDesc=%d replayTitle=%d long=%d genericXTRA=%d; eventSourcesPreserved=%d aliases=%d" % (
                 result["repair"].get("arabic_desc_fills", 0),
                 result["repair"].get("known_replay_title_fixes", 0),
                 result["repair"].get("long_event_repairs", 0),
                 result["repair"].get("generic_xtra_removed", 0),
+                len(event_sources_preserved),
                 len(compat_applied),
             )
         )
