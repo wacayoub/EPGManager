@@ -16,6 +16,12 @@ catalogue/merge reports for recovery and audits but are never emitted into any
 receiver XML. The reviewed canonical MBC set is therefore the only MBC identity
 surface exposed to EPGManager.
 
+Rotana follows the same receiver-boundary principle after the 2026-09-14
+ID-by-ID audit: official rotana.net IDs and unique useful MENA services stay
+receiver-facing, while legacy Egypt/UAE duplicates, ambiguous generic cinema
+aliases, the generic Clip holding-guide twin and the foreign Cinema+ US feed are
+kept internal-only for audit/recovery.
+
 Two canonical MBC services have a narrow evidence-backed Shahid donor policy.
 OSN remains primary for Al Hadath and ElCinema remains primary for MBC Masr
 Drama; Shahid may add only non-placeholder Arabic events that do not overlap the
@@ -73,6 +79,27 @@ MBC_INTERNAL_ONLY_IDS = {
     "MBCMood.sa@HD",
     "Wanasah.sa",
 }
+
+# Rotana receiver policy reviewed 2026-09-14. The official rotana.net identities
+# for Cinema Egypt/KSA, Classic, Comedy, Drama, Khalijia and Clip remain visible,
+# together with unique MENA services Rotana+, Aflam+, Kids, M+ and Music. These
+# older/foreign/ambiguous twins stay internal so Smart Mapping gets one preferred
+# identity per real MENA service instead of several competing names.
+ROTANA_INTERNAL_ONLY_IDS = {
+    "Rotana Cinema + US.sa",
+    "Rotana Cinema HD.sa",
+    "Rotana Cinema Masr.sa",
+    "Rotana Classic.eg",
+    "Rotana Clip.sa",
+    "Rotana Comedy.eg",
+    "Rotana Drama.eg",
+    "Rotana Khalejia.eg",
+    "Rotana Khalijia HD.sa",
+    "Rotana.Cinema.Egypt.ae",
+    "Rotana.Cinema.KSA.ae",
+}
+
+RECEIVER_INTERNAL_ONLY_IDS = MBC_INTERNAL_ONLY_IDS | ROTANA_INTERNAL_ONLY_IDS
 
 # Importing strict has already installed the standard integrity/LKG wrapper.
 _strict_programme_groups = base.programme_groups
@@ -251,14 +278,20 @@ def _translate_bein_news_programmes(programmes):
 def pruned_build_feed(ids, selected_programmes, cand_channels, prev_channels, source_by_id, generator_name):
     requested_ids = set(ids or [])
     internal_mbc = requested_ids & MBC_INTERNAL_ONLY_IDS
+    internal_rotana = requested_ids & ROTANA_INTERNAL_ONLY_IDS
     active_ids = {
         cid for cid in requested_ids
-        if selected_programmes.get(cid) and cid not in MBC_INTERNAL_ONLY_IDS
+        if selected_programmes.get(cid) and cid not in RECEIVER_INTERNAL_ONLY_IDS
     }
     if internal_mbc and "Legacy Combined" in generator_name:
         print(
             "MBC receiver prune: removed %d internal-only IDs from combined XML: %s" %
             (len(internal_mbc), ", ".join(sorted(internal_mbc, key=str.casefold)))
+        )
+    if internal_rotana and "Legacy Combined" in generator_name:
+        print(
+            "Rotana receiver prune: removed %d internal-only IDs from combined XML: %s" %
+            (len(internal_rotana), ", ".join(sorted(internal_rotana, key=str.casefold)))
         )
     translated_programmes = _translate_bein_news_programmes(selected_programmes)
     return strict._original_build_feed(
@@ -272,7 +305,7 @@ def pruned_build_feed(ids, selected_programmes, cand_channels, prev_channels, so
 
 
 # Preserve all strict protections, then layer the targeted clone quarantine,
-# receiver-facing zero-EPG prune, canonical-only MBC identity policy and
+# receiver-facing zero-EPG prune, canonical MBC/Rotana identity policy and
 # beIN SPORTS NEWS Arabic-title policy.
 base.programme_groups = quarantine_known_false_sport_clone
 base.build_feed = pruned_build_feed
