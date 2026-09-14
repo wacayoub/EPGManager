@@ -6,6 +6,12 @@ This module is intentionally conservative. It detects source artefact IDs,
 placeholder guides and byte-equivalent timelines assigned to unrelated channel
 identities. Suspect programme data is quarantined; channel identity may still be
 retained elsewhere by the catalogue/mapping layer.
+
+beIN MAX/XTRA are a deliberate exception to the generic/clone quarantine rule:
+they are event-channel source feeds and often carry a repeated holding guide
+between events. Their source rows must stay available so a real event can appear
+without the ID being rediscovered. They are still subject to bad-ID/technical-ID
+checks and should not be auto-locked from a generic holding title alone.
 """
 from __future__ import annotations
 
@@ -71,6 +77,19 @@ def is_technical_id(cid):
     return any(p.search(cid or "") for p in TECH_PATTERNS)
 
 
+def is_bein_event_source(cid, name=""):
+    """True for beIN MAX/XTRA event-channel source identities.
+
+    Match on both ID and display name because upstream providers use several
+    spellings (beINSportsMax1, beIN SPORTS XTRA 3, etc.).
+    """
+    probe = _norm("%s %s" % (cid or "", name or ""))
+    compact = probe.replace(" ", "")
+    has_bein = "bein" in compact
+    has_event = "max" in probe.split() or "xtra" in probe.split() or "max" in compact or "xtra" in compact
+    return has_bein and has_event
+
+
 def identity_name(value):
     value = (value or "").casefold()
     value = re.sub(r"\.(?:ae|sa|qa|eg|bh|kw|om|jo|lb|iq|ps|ye|dz|tn|ly|sd|sy|mr|mena|bein)(?:@.*)?$", "", value)
@@ -90,6 +109,13 @@ def identity_similarity(a, b):
 
 def candidate_identity(candidate):
     return "%s %s" % (getattr(candidate, "cid", "") or "", getattr(candidate, "name", "") or "")
+
+
+def candidate_is_bein_event_source(candidate):
+    return is_bein_event_source(
+        getattr(candidate, "cid", "") or "",
+        getattr(candidate, "name", "") or "",
+    )
 
 
 def timeline_fingerprint(programmes, min_events=3):
@@ -134,17 +160,23 @@ def sanitize_candidate_rows(rows, source_name="", detect_clones=True):
     rows = list(rows or [])
     reasons = defaultdict(set)
     clone_groups = []
+    event_sources_preserved = []
 
     for c in rows:
         cid = getattr(c, "cid", "") or ""
+        name = getattr(c, "name", "") or ""
         programmes = getattr(c, "programmes", []) or []
+        event_source = is_bein_event_source(cid, name)
         bad = bad_id_reason(cid)
         if bad:
             reasons[id(c)].add(bad)
         if is_technical_id(cid):
             reasons[id(c)].add("TECHNICAL_OR_ASSET_ID")
         if len(programmes) >= 3 and generic_ratio(programmes) >= 0.80:
-            reasons[id(c)].add("GENERIC_OR_PLACEHOLDER_GUIDE")
+            if event_source:
+                event_sources_preserved.append(cid)
+            else:
+                reasons[id(c)].add("GENERIC_OR_PLACEHOLDER_GUIDE")
 
     if detect_clones:
         groups = defaultdict(list)
@@ -159,6 +191,13 @@ def sanitize_candidate_rows(rows, source_name="", detect_clones=True):
             clone_groups.append(ids)
             tag = "CLONED_UNRELATED_TIMELINE=%d" % len(members)
             for c in members:
+                # Identical MAX/XTRA holding timelines are expected outside real
+                # events. Retain those source rows; only non-event identities in
+                # the group remain quarantine candidates.
+                if candidate_is_bein_event_source(c):
+                    if (getattr(c, "cid", "") or "") not in event_sources_preserved:
+                        event_sources_preserved.append(getattr(c, "cid", "") or "")
+                    continue
                 reasons[id(c)].add(tag)
 
     clean, quarantined = [], []
@@ -182,6 +221,7 @@ def sanitize_candidate_rows(rows, source_name="", detect_clones=True):
         "quarantined_candidates": len(quarantined),
         "quarantined": quarantined,
         "clone_groups": clone_groups,
+        "bein_event_sources_preserved": sorted(set(event_sources_preserved), key=str.casefold),
     }
     return clean, findings
 
@@ -190,15 +230,20 @@ def sanitize_programme_groups(groups):
     """Filter final/LKG programme groups using the same hard integrity rules."""
     groups = dict(groups or {})
     blocked = defaultdict(set)
+    event_sources_preserved = []
 
     for cid, programmes in groups.items():
+        event_source = is_bein_event_source(cid)
         bad = bad_id_reason(cid)
         if bad:
             blocked[cid].add(bad)
         if is_technical_id(cid):
             blocked[cid].add("TECHNICAL_OR_ASSET_ID")
         if len(programmes) >= 3 and generic_ratio(programmes) >= 0.80:
-            blocked[cid].add("GENERIC_OR_PLACEHOLDER_GUIDE")
+            if event_source:
+                event_sources_preserved.append(cid)
+            else:
+                blocked[cid].add("GENERIC_OR_PLACEHOLDER_GUIDE")
 
     fp_groups = defaultdict(list)
     for cid, programmes in groups.items():
@@ -215,6 +260,10 @@ def sanitize_programme_groups(groups):
         clone_groups.append(list(members))
         tag = "CLONED_UNRELATED_TIMELINE=%d" % len(members)
         for cid in members:
+            if is_bein_event_source(cid):
+                if cid not in event_sources_preserved:
+                    event_sources_preserved.append(cid)
+                continue
             blocked[cid].add(tag)
 
     clean = {cid: rows for cid, rows in groups.items() if cid not in blocked}
@@ -226,5 +275,6 @@ def sanitize_programme_groups(groups):
         "reason_counts": dict(reason_counts),
         "blocked": {cid: sorted(vals) for cid, vals in sorted(blocked.items())},
         "clone_groups": clone_groups,
+        "bein_event_sources_preserved": sorted(set(event_sources_preserved), key=str.casefold),
     }
     return clean, findings
