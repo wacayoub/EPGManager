@@ -1,0 +1,57 @@
+name: Official Source Endpoint Probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/official_source_endpoint_probe.py"
+      - ".github/workflows/official-source-endpoint-probe.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: official-source-endpoint-probe
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Probe official source endpoints
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          python -m py_compile tools/official_source_endpoint_probe.py
+          python tools/official_source_endpoint_probe.py
+
+      - name: Publish diagnostic only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin mena-data
+          git worktree add current-data origin/mena-data
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/official-source-endpoint-probe.json .
+          cp ../output/official-source-endpoint-probe.txt .
+          git config user.name "EPGManager Official Source Probe"
+          git config user.email "actions@users.noreply.github.com"
+          git add official-source-endpoint-probe.json official-source-endpoint-probe.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Probe official MENA EPG endpoints"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
