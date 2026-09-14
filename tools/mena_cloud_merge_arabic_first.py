@@ -10,6 +10,7 @@ Rules:
 - known Arabic/Latin aliases are collapsed for selected local channels;
 - quarantine technical IDs, placeholder guides and exact cloned timelines shared
   by unrelated channels before they can enter logical-channel arbitration;
+- keep legitimate quarantined channel identities as NO-EPG mapping candidates;
 - obvious foreign-guide contamination (for example Al Jazeera English schedule on
   an unrelated local channel) is rejected rather than published as false EPG.
 """
@@ -56,18 +57,41 @@ base.logical_key = arabic_first_logical_key
 
 
 def guarded_load_candidates(root, origin, source_name, site_by_id, now, end):
-    """Quarantine corrupt source rows before they can win the merge."""
+    """Quarantine corrupt programme rows while retaining legitimate channel IDs."""
     rows = _original_load_candidates(root, origin, source_name, site_by_id, now, end)
     clean, findings = guard.sanitize_candidate_rows(
         rows,
         source_name=source_name,
         detect_clones=(origin in {"openepg", "epgshare"}),
     )
+
+    clean_obj_ids = {id(c) for c in clean}
+    reason_by_id = {
+        q.get("id", ""): set(q.get("reasons") or [])
+        for q in findings.get("quarantined", [])
+    }
+    identity_only = []
+    dropped = []
+    for c in rows:
+        if id(c) in clean_obj_ids:
+            continue
+        reasons = reason_by_id.get(c.cid, set())
+        # Asset IDs and known impossible IDs must never be exposed to mapping.
+        if "TECHNICAL_OR_ASSET_ID" in reasons or "SUSPICIOUS_BEIN_SPORTS66_ID" in reasons:
+            dropped.append(c.cid)
+            continue
+        # Preserve the real channel identity but strip the untrusted timetable.
+        c.programmes = []
+        identity_only.append(c)
+
+    findings["identity_only_candidates"] = len(identity_only)
+    findings["dropped_ids"] = sorted(set(dropped), key=str.casefold)
     if findings.get("quarantined_candidates"):
         _QUARANTINE_FINDINGS.append(findings)
-        print("Integrity quarantine: %s kept=%d quarantined=%d" % (
-            source_name, findings["kept_candidates"], findings["quarantined_candidates"]))
-    return clean
+        print("Integrity quarantine: %s clean=%d identity-only=%d dropped=%d quarantined=%d" % (
+            source_name, len(clean), len(identity_only), len(dropped),
+            findings["quarantined_candidates"]))
+    return clean + identity_only
 
 
 base.load_candidates = guarded_load_candidates
@@ -149,6 +173,12 @@ def _foreign_contamination(candidate):
 
 
 def arabic_first_choose_timeline(candidates):
+    # Identity-only quarantine rows are useful for canonical mapping but must
+    # never beat a real clean timetable during timeline arbitration.
+    with_programmes = [c for c in candidates if c.programmes]
+    if with_programmes:
+        candidates = with_programmes
+
     premium = any(base.is_premium(c.cid, c.name) for c in candidates)
     if premium:
         return _original_choose_timeline(candidates)
@@ -184,6 +214,8 @@ def arabic_first_choose_timeline(candidates):
 
 
 def arabic_first_clean_timeline(candidate, premium):
+    if not candidate.programmes:
+        return []
     if not premium and _foreign_contamination(candidate):
         return []
     return _original_clean_timeline(candidate, premium)
@@ -211,11 +243,29 @@ def _write_quarantine_report():
     except Exception:
         report = {}
     quarantined = [q for finding in _QUARANTINE_FINDINGS for q in finding.get("quarantined", [])]
+    identity_only_total = sum(int(x.get("identity_only_candidates", 0) or 0) for x in _QUARANTINE_FINDINGS)
+    dropped_ids = sorted({cid for x in _QUARANTINE_FINDINGS for cid in x.get("dropped_ids", [])}, key=str.casefold)
+
+    # base.main() counts every returned Candidate. Correct source stats so the
+    # existing field continues to mean channels that actually carry current EPG.
+    by_source = {x.get("source"): x for x in _QUARANTINE_FINDINGS}
+    for row in report.get("source_stats", []):
+        finding = by_source.get(row.get("name"))
+        if not finding:
+            continue
+        identity_only = int(finding.get("identity_only_candidates", 0) or 0)
+        row["channels_with_current_48h_epg"] = max(
+            0, int(row.get("channels_with_current_48h_epg", 0) or 0) - identity_only
+        )
+        row["quarantined_identity_only"] = identity_only
+
     report["integrity_quarantine"] = {
         "sources": _QUARANTINE_FINDINGS,
         "quarantined_candidates": len(quarantined),
+        "identity_only_candidates": identity_only_total,
+        "dropped_ids": dropped_ids,
         "quarantined_ids": sorted({q.get("id", "") for q in quarantined if q.get("id")}, key=str.casefold),
-        "policy": "technical IDs, generic placeholders and >=3 exact cloned unrelated timelines are rejected before merge",
+        "policy": "wrong/generic programmes are stripped but legitimate channel IDs are retained as NO EPG; technical/asset and known impossible IDs are dropped",
     }
     path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
