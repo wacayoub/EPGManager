@@ -2,12 +2,9 @@
 # -*- coding: utf-8 -*-
 """Strict final publication policy layered on mena_cloud_finalize_safe.
 
-beIN SPORTS title policy mirrors the Qatar1 formatter:
-- keep teams/proper names in Latin when that is the safest canonical form;
-- translate competitions/editorial labels to Arabic inside the same title;
-- move season/round metadata to the Arabic description;
-- normalize LIVE prefix to `Live :`;
-- preserve the RTL-safe UEFA Magazine wording requested by the receiver UI.
+beIN SPORTS title policy mirrors the Qatar1 formatter. This layer also applies
+an integrity gate to BOTH the fresh candidate and previous LKG programme maps,
+so a polluted historical feed cannot reintroduce cloned/wrong schedules.
 """
 from __future__ import annotations
 
@@ -15,8 +12,31 @@ import re
 
 import mena_cloud_finalize as base
 import mena_cloud_finalize_safe as safe
+import mena_integrity_guard as guard
 
 _original_clean = safe._clean_channel_rows
+_original_programme_groups = base.programme_groups
+_INTEGRITY_GROUP_CALL = 0
+
+
+def strict_programme_groups(root, now, end):
+    """Reject bad final/LKG channel timelines before fresh-vs-LKG selection."""
+    global _INTEGRITY_GROUP_CALL
+    groups = _original_programme_groups(root, now, end)
+    clean, findings = guard.sanitize_programme_groups(groups)
+    _INTEGRITY_GROUP_CALL += 1
+    label = "fresh" if _INTEGRITY_GROUP_CALL == 1 else "lkg"
+    if findings.get("blocked_channels"):
+        print("Integrity final gate (%s): kept=%d blocked=%d reasons=%s" % (
+            label,
+            findings.get("kept_channels", 0),
+            findings.get("blocked_channels", 0),
+            findings.get("reason_counts", {}),
+        ))
+    return clean
+
+
+base.programme_groups = strict_programme_groups
 
 
 def _probe(cid, name):
@@ -66,9 +86,6 @@ _BAD_ALKASS_RE = re.compile(
     re.I,
 )
 
-
-# Qatar1-style bilingual/hybrid beIN title vocabulary.  More specific rules
-# must come before broader ones.
 _BEIN_TITLE_COMPETITIONS = [
     (re.compile(r"\bUEFA\s+Champions\s+League\b", re.I), "دوري أبطال أوروبا"),
     (re.compile(r"\bUEFA\s+Europa\s+League\b", re.I), "الدوري الأوروبي"),
@@ -110,8 +127,6 @@ def _set_title(programme, text):
     else:
         title = base.ET.SubElement(programme, "title")
     title.text = text
-    # Keep `en` for XMLTV compatibility/searching even though the visible title
-    # is deliberately hybrid EN/AR, matching the previous Qatar1 behaviour.
     title.set("lang", "en")
 
 
@@ -129,11 +144,9 @@ def _hybrid_bein_title(title):
     if not original:
         return original
 
-    # Preserve already-Arabic/hybrid provider titles, only normalize LIVE.
     had_live = bool(_LIVE_PREFIX_RE.match(original))
     work = _LIVE_PREFIX_RE.sub("", original).strip()
 
-    # Exact RTL-safe UEFA magazine wording used by Qatar1.
     if re.search(r"\bUEFA\s+Champions\s+League\s+Magazine\b", work, re.I):
         if re.search(r"\bpreview\b", work, re.I):
             work = "UEFA مجلة - تقديم دوري أبطال أوروبا"
@@ -145,21 +158,17 @@ def _hybrid_bein_title(title):
         else:
             work = "UEFA مجلة - الدوري الأوروبي"
     else:
-        # Translate the competition inside the English title, while preserving
-        # clubs, players and proper names in their canonical Latin form.
         for rx, arabic in _BEIN_TITLE_COMPETITIONS:
             if rx.search(work):
                 work = rx.sub(arabic, work, count=1)
                 break
 
-        # Round/season live in the Arabic description, not the visible title.
         old = None
         while old != work:
             old = work
             work = _ROUND_TAIL_RE.sub("", work)
             work = _SEASON_ROUND_TAIL_RE.sub("", work)
 
-        # Qatar1 editorial normalization.
         work = re.sub(r"\bNews\s+Bulletin\b", "News Bulletin - نشرة الأخبار", work, flags=re.I)
         work = re.sub(r"\bThe\s+Big\s+Interview\b", "The Big Interview - المقابلة الكبرى", work, flags=re.I)
         work = re.sub(r"\bEPL\s+Stories\b", "EPL Stories - قصص الدوري الإنجليزي الممتاز", work, flags=re.I)
@@ -186,8 +195,6 @@ def strict_clean_channel_rows(cid, name, rows):
         ar = sum(1 for t in titles if safe._lang(t) == "ar")
         bad_signature = sum(1 for t in titles if _BAD_ALKASS_RE.search(t or ""))
         ar_ratio = (ar / float(len(titles))) if titles else 0.0
-        # Wrong aggregator guide is worse than no guide. Keep the channel ID for
-        # mapping, but publish no programmes until a trustworthy schedule exists.
         if bad_signature >= 2 or (len(titles) >= 5 and ar_ratio < 0.50):
             return []
 
@@ -206,7 +213,6 @@ def strict_clean_channel_rows(cid, name, rows):
     if _is_arabic_provider(cid, name):
         for p in cleaned:
             desc = safe._text(p, "desc")
-            # Arabic-provider policy: never publish English prose as description.
             if desc and safe._lang(desc) == "en":
                 safe._set_desc(p, "")
 
