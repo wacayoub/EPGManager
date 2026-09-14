@@ -1,0 +1,2597 @@
+{
+  "schema": 2,
+  "mode": "virtual-epgmanager-exhaustive-bein",
+  "summary": {
+    "channels": 39,
+    "programmes": 912,
+    "counts": {
+      "ALIAS_OK": 1,
+      "REVIEW": 23,
+      "PASS": 15
+    }
+  },
+  "compat_aliases": {
+    "4k_DIGITAL_Mono_AR.bein": "beIN4K.qa@SD"
+  },
+  "non_recommended_ids": [
+    "bein SPORTS FTA DIGITAL.qa",
+    "beIN SPORTS-boxoffice-bein.com.qa"
+  ],
+  "channels": [
+    {
+      "id": "4k_DIGITAL_Mono_AR.bein",
+      "name": "4k_DIGITAL_Mono_AR",
+      "family": "beIN 4K",
+      "kind": "sports_ar",
+      "events": 17,
+      "fingerprint": "94a35c113153592e1e349fbddb9f9ee4306a0158",
+      "coverage_hours": 33.32,
+      "span_hours": 33.32,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 76.5,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 76.5,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 29.4,
+      "unique_title_pct": 23.5,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914101300 +0000",
+          "stop": "20260914115600 +0000",
+          "title": "Sunderland v Arsenal - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        },
+        {
+          "start": "20260914115600 +0000",
+          "stop": "20260914140100 +0000",
+          "title": "Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914140100 +0000",
+          "stop": "20260914154300 +0000",
+          "title": "Manchester United v Manchester City - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        },
+        {
+          "start": "20260914154300 +0000",
+          "stop": "20260914172400 +0000",
+          "title": "Live : rpool v Fulham - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        }
+      ],
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": "beIN4K.qa@SD",
+      "alias_exact_match": true
+    },
+    {
+      "id": "beIN Drama.eg",
+      "name": "beIN Drama.eg",
+      "family": "beIN Drama",
+      "kind": "drama",
+      "events": 11,
+      "fingerprint": "41984a2de13fc8bac214cd63bedcba28158783af",
+      "coverage_hours": 10.0,
+      "span_hours": 10.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 11,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 9.1,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 9.1,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 18.2,
+      "unique_title_pct": 63.6,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "El Qatel Allazy Ahabany",
+          "desc": ""
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "Sarmasik Zamani",
+          "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "Darb Al Thahab",
+          "desc": ""
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914140000 +0000",
+          "title": "Mazad El Shar",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=11",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "BEIN MOVIES ACTION.eg",
+      "name": "BEIN MOVIES ACTION.eg",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 24,
+      "fingerprint": "c0c28cca970462b2d0c7354b9ec1bd751edc0272",
+      "coverage_hours": 46.25,
+      "span_hours": 46.25,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 24,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 12.5,
+      "unique_title_pct": 79.2,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914091500 +0000",
+          "stop": "20260914105000 +0000",
+          "title": "Reawakening",
+          "desc": ""
+        },
+        {
+          "start": "20260914105000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "Star Trek",
+          "desc": ""
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914151500 +0000",
+          "title": "Star Trek Into Darkness",
+          "desc": ""
+        },
+        {
+          "start": "20260914151500 +0000",
+          "stop": "20260914171500 +0000",
+          "title": "Star Trek Beyond",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=24",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "BEIN MOVIES DRAMA.eg",
+      "name": "BEIN MOVIES DRAMA.eg",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 26,
+      "fingerprint": "239d7b343e96ac4b1c219c6092dbfed2a770617c",
+      "coverage_hours": 47.77,
+      "span_hours": 47.77,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 26,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 11.5,
+      "unique_title_pct": 76.9,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914081400 +0000",
+          "stop": "20260914104400 +0000",
+          "title": "Forrest Gump",
+          "desc": ""
+        },
+        {
+          "start": "20260914104400 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "A Beautiful Mind",
+          "desc": ""
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914144500 +0000",
+          "title": "The Addams Family",
+          "desc": ""
+        },
+        {
+          "start": "20260914144500 +0000",
+          "stop": "20260914163000 +0000",
+          "title": "Addams Family Values",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=26",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "BEIN MOVIES FAMILY.eg",
+      "name": "BEIN MOVIES FAMILY.eg",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 27,
+      "fingerprint": "f833185829ebd8c0a126e6377db94a00ad6b8b74",
+      "coverage_hours": 45.75,
+      "span_hours": 45.75,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 27,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 11.1,
+      "unique_title_pct": 55.6,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914090000 +0000",
+          "stop": "20260914104500 +0000",
+          "title": "Goosebumps",
+          "desc": ""
+        },
+        {
+          "start": "20260914104500 +0000",
+          "stop": "20260914123000 +0000",
+          "title": "The Smurfs",
+          "desc": ""
+        },
+        {
+          "start": "20260914123000 +0000",
+          "stop": "20260914141500 +0000",
+          "title": "Paddington in Peru",
+          "desc": ""
+        },
+        {
+          "start": "20260914141500 +0000",
+          "stop": "20260914154400 +0000",
+          "title": "Are We Done Yet?",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=27",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "BEIN MOVIES PREMIERE.eg",
+      "name": "BEIN MOVIES PREMIERE.eg",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 24,
+      "fingerprint": "b4d01a0a79288b1fa094be83298647e1d3201359",
+      "coverage_hours": 44.5,
+      "span_hours": 44.5,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 24,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 8.3,
+      "unique_title_pct": 75.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914101500 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "Dear Santa",
+          "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914143000 +0000",
+          "title": "Legends of the Condor Heroes: The Gallants",
+          "desc": ""
+        },
+        {
+          "start": "20260914143000 +0000",
+          "stop": "20260914161500 +0000",
+          "title": "Adulthood",
+          "desc": ""
+        },
+        {
+          "start": "20260914161500 +0000",
+          "stop": "20260914180000 +0000",
+          "title": "You Gotta Believe",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=24",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "BeIn Series HD 1.eg",
+      "name": "BeIn Series HD 1.eg",
+      "family": "beIN Series",
+      "kind": "series",
+      "events": 10,
+      "fingerprint": "cff4f0725f127187e2b77bf1fe82a5a8cd5552e0",
+      "coverage_hours": 10.0,
+      "span_hours": 10.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 10,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 90.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 20.0,
+      "unique_title_pct": 80.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "Yellowjackets S2",
+          "desc": ""
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "Outlander S3",
+          "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "Shark Tank",
+          "desc": ""
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914140000 +0000",
+          "title": "Matlock S2",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=10",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN Series HD 2.eg",
+      "name": "beIN Series HD 2.eg",
+      "family": "beIN Series",
+      "kind": "series",
+      "events": 12,
+      "fingerprint": "a2ea29664d73c373bf5593a9c57fbdce8a87fdd6",
+      "coverage_hours": 10.42,
+      "span_hours": 10.42,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 12,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 33.3,
+      "unique_title_pct": 58.3,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "From",
+          "desc": ""
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "Your Honor",
+          "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914123000 +0000",
+          "title": "Black Clover S3",
+          "desc": ""
+        },
+        {
+          "start": "20260914123000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "Black Clover S3",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=12",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN SPORTS 1.qa",
+      "name": "beIN SPORTS 1.qa",
+      "family": "beIN Sports 1 AR/MENA",
+      "kind": "sports_ar",
+      "events": 34,
+      "fingerprint": "fa2f7af798a10078298d915aed03c646c47883ec",
+      "coverage_hours": 41.67,
+      "span_hours": 41.67,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 88.2,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 88.2,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 8.8,
+      "unique_title_pct": 61.8,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914095000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "China vs Hong Kong - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL03",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914123000 +0000",
+          "title": "UEFA UCL Magazine - مجلة 2026/2027 -MD1 Review - مراجعة",
+          "desc": "مراجعة لأبرز أحداث دوري أبطال أوروبا، الجولة 1، موسم 2026/2027."
+        },
+        {
+          "start": "20260914123000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "Live : rpool vs Fulham - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، الجولة 4، موسم 2026/2027."
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914133000 +0000",
+          "title": "Tottenham Hotspur vs Everton - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، الجولة 4، موسم 2026/2027."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN SPORTS EN 1.qa",
+      "name": "beIN SPORTS EN 1.qa",
+      "family": "beIN SPORTS EN 1.qa",
+      "kind": "other",
+      "events": 38,
+      "fingerprint": "0decd13bab267dcc863b7d6310a7768f5e062bb9",
+      "coverage_hours": 41.17,
+      "span_hours": 41.17,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 76.3,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 76.3,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 10.5,
+      "unique_title_pct": 68.4,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914102000 +0000",
+          "stop": "20260914123000 +0000",
+          "title": "Japan vs Thailand - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914123000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "EN This is Paris 2026/27 | E5",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026، الحلقة 5."
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914133500 +0000",
+          "title": "EN EPL Stories - قصص الدوري الإنجليزي الممتاز 2026/27 | E15 - Amad Diallo",
+          "desc": "برنامج رياضي يستعرض قصصاً وشخصيات بارزة من الدوري الإنجليزي الممتاز، موسم 2026، الحلقة 15."
+        },
+        {
+          "start": "20260914133500 +0000",
+          "stop": "20260914155000 +0000",
+          "title": "PFC Neftchi (UZB) vs Air Force (IRQ) - دوري أبطال آسيا للنخبة",
+          "desc": "مباراة ضمن منافسات دوري أبطال آسيا للنخبة، الجولة 1، موسم 2026/2027."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN SPORTS EN 2.qa",
+      "name": "beIN SPORTS EN 2.qa",
+      "family": "beIN SPORTS EN 2.qa",
+      "kind": "other",
+      "events": 33,
+      "fingerprint": "dffeef8eded110494946b75ef0a6f3542dc858b7",
+      "coverage_hours": 42.92,
+      "span_hours": 42.92,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 27.3,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 27.3,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 15.2,
+      "unique_title_pct": 66.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914095000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "Chinese Taipei vs Vietnam - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914123000 +0000",
+          "title": "EN ATP Tour: This Week 2026 Ep.35",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026، الحلقة 35."
+        },
+        {
+          "start": "20260914123000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "EN MLB Plays of the Week 2026 | E23",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026، الحلقة 23."
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914134800 +0000",
+          "title": "Qualifying - Moto GP - San Marino GP",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "bein SPORTS FTA DIGITAL.qa",
+      "name": "bein SPORTS FTA DIGITAL.qa",
+      "family": "beIN Sports FTA",
+      "kind": "sports_ar",
+      "events": 25,
+      "fingerprint": "bc3ac2c6f959ca0155124c09d60c14cc25df8b38",
+      "coverage_hours": 41.17,
+      "span_hours": 41.67,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.5,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 16.0,
+      "unique_title_pct": 40.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914095000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "Chinese Taipei vs Vietnam - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914124500 +0000",
+          "title": "Arab Participation In Asian Games",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914124500 +0000",
+          "stop": "20260914132000 +0000",
+          "title": "Asian Sports Discipline",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914132000 +0000",
+          "stop": "20260914153500 +0000",
+          "title": "Japan vs Thailand - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01",
+          "desc": "مباراة، موسم 2026."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "NON_RECOMMENDED_ID"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN SPORTS NEWS.qa",
+      "name": "beIN SPORTS NEWS.qa",
+      "family": "beIN Sports News",
+      "kind": "news",
+      "events": 74,
+      "fingerprint": "554af985e9e868a737ebb0a3906ca2a4ceb69dfe",
+      "coverage_hours": 42.0,
+      "span_hours": 42.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 32.4,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 32.4,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 23.0,
+      "unique_title_pct": 28.4,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "Al Hassad",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914113000 +0000",
+          "title": "News Bulletin - نشرة الأخبار",
+          "desc": "نشرة رياضية تقدم أبرز الأخبار والتطورات."
+        },
+        {
+          "start": "20260914113000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "Al Hassila - 14/09/26",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "The Issue of The Day",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN SPORTS-boxoffice-bein.com.qa",
+      "name": "beIN SPORTS-boxoffice-bein.com.qa",
+      "family": "beIN Boxoffice",
+      "kind": "boxoffice",
+      "events": 25,
+      "fingerprint": "016aade0a0c18c890ef7bb99fdcd07c43c7686a8",
+      "coverage_hours": 41.72,
+      "span_hours": 42.75,
+      "gaps_gt_2h": 0,
+      "gap_hours": 1.03,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 12.0,
+      "unique_title_pct": 52.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914093000 +0000",
+          "stop": "20260914111000 +0000",
+          "title": "Echoes of War",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914111000 +0000",
+          "stop": "20260914123500 +0000",
+          "title": "Perrier's Bounty",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914123500 +0000",
+          "stop": "20260914142000 +0000",
+          "title": "Detective Knight Rogue",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914142000 +0000",
+          "stop": "20260914155000 +0000",
+          "title": "Detective Knight: Independence",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "NON_RECOMMENDED_ID"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN SPORTS.qa",
+      "name": "beIN SPORTS.qa",
+      "family": "beIN SPORTS.qa",
+      "kind": "other",
+      "events": 19,
+      "fingerprint": "51bd2bbc64119e186da658c83d7fbfa0ee606402",
+      "coverage_hours": 41.42,
+      "span_hours": 41.42,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 1,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 15.8,
+      "unique_title_pct": 68.4,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914102000 +0000",
+          "stop": "20260914123500 +0000",
+          "title": "Japan vs Thailand - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914123500 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "Qatar's Weightlifting Team",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914150000 +0000",
+          "title": "Bahrain vs Kazakhstan - Basketball Men - Asian Games Aichi-Nagoya 2026 -BKB05",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914150000 +0000",
+          "stop": "20260914170000 +0000",
+          "title": "China vs Philippines - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB06",
+          "desc": "مباراة، موسم 2026."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "LONG_6H=1"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN4K.qa@SD",
+      "name": "beIN 4K",
+      "family": "beIN 4K",
+      "kind": "sports_ar",
+      "events": 17,
+      "fingerprint": "94a35c113153592e1e349fbddb9f9ee4306a0158",
+      "coverage_hours": 33.32,
+      "span_hours": 33.32,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 76.5,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 76.5,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 29.4,
+      "unique_title_pct": 23.5,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914101300 +0000",
+          "stop": "20260914115600 +0000",
+          "title": "Sunderland v Arsenal - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        },
+        {
+          "start": "20260914115600 +0000",
+          "stop": "20260914140100 +0000",
+          "title": "Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914140100 +0000",
+          "stop": "20260914154300 +0000",
+          "title": "Manchester United v Manchester City - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        },
+        {
+          "start": "20260914154300 +0000",
+          "stop": "20260914172400 +0000",
+          "title": "Live : rpool v Fulham - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN_SPORTS3_DIGITAL_Mono_EN.bein",
+      "name": "beIN_SPORTS3_DIGITAL_Mono_EN",
+      "family": "beIN Sports 3 EN",
+      "kind": "sports_en",
+      "events": 13,
+      "fingerprint": "87af3ba4d1c462e6a6a136b37bf8d9ef7da106ac",
+      "coverage_hours": 28.75,
+      "span_hours": 50.75,
+      "gaps_gt_2h": 1,
+      "gap_hours": 22.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 23.1,
+      "unique_title_pct": 53.8,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914080000 +0100",
+          "stop": "20260914133000 +0100",
+          "title": "West Ham Utd vs Wrexham",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914133000 +0100",
+          "stop": "20260914151500 +0100",
+          "title": "Levante vs Barcelona",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914151500 +0100",
+          "stop": "20260914170000 +0100",
+          "title": "Real Madrid vs Rayo Vallecono",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914170000 +0100",
+          "stop": "20260914190000 +0100",
+          "title": "West Ham Utd vs Wrexham",
+          "desc": "مباراة."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GAPS_GT_2H=1"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN_SPORTS4_DIGITAL_Mono_EN.bein",
+      "name": "beIN_SPORTS4_DIGITAL_Mono_EN",
+      "family": "beIN Sports 4 EN",
+      "kind": "sports_en",
+      "events": 15,
+      "fingerprint": "c2923880719956bc8d8b4f973021749d3cb9f222",
+      "coverage_hours": 31.0,
+      "span_hours": 52.58,
+      "gaps_gt_2h": 1,
+      "gap_hours": 21.58,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 13.3,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 13.3,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 20.0,
+      "unique_title_pct": 53.3,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914084500 +0100",
+          "stop": "20260914103000 +0100",
+          "title": "Al Qadsiah (KSA) vs Al Wasl (UAE)",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914103000 +0100",
+          "stop": "20260914121500 +0100",
+          "title": "Lorient vs Toulouse",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914121500 +0100",
+          "stop": "20260914125000 +0100",
+          "title": "الدوري الفرنسي Weekly Review - مراجعة",
+          "desc": "مراجعة لأبرز أحداث الدوري الفرنسي، الحلقة 1."
+        },
+        {
+          "start": "20260914125000 +0100",
+          "stop": "20260914150500 +0100",
+          "title": "Daejeon Hanacitizen (KOR) vs Kyoto Sanga (JPN)",
+          "desc": "مباراة."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GAPS_GT_2H=1"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN_SPORTS5_DIGITAL_Mono_EN.bein",
+      "name": "beIN_SPORTS5_DIGITAL_Mono_EN",
+      "family": "beIN Sports 5 EN",
+      "kind": "sports_en",
+      "events": 16,
+      "fingerprint": "86ff07adfb93a4d2735a244ee366abaa4e647044",
+      "coverage_hours": 38.25,
+      "span_hours": 38.25,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 6.2,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 6.2,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 12.5,
+      "unique_title_pct": 87.5,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914094500 +0100",
+          "stop": "20260914125000 +0100",
+          "title": "Villarreal vs Real Betis",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914125000 +0100",
+          "stop": "20260914173000 +0100",
+          "title": "Ratchaburi FC (THA) vs Shanghai Port (CHN)",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914173000 +0100",
+          "stop": "20260914193000 +0100",
+          "title": "Valladolid vs Oviedo",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914193000 +0100",
+          "stop": "20260914213500 +0100",
+          "title": "Getafe vs Deportivo La Coruna",
+          "desc": "مباراة."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN_SPORTS7_DIGITAL_Mono_EN.bein",
+      "name": "beIN_SPORTS7_DIGITAL_Mono_EN",
+      "family": "beIN Sports 7 EN",
+      "kind": "sports_en",
+      "events": 12,
+      "fingerprint": "7f39041b2a539e63cf10d611d9a16a026a9cc2a0",
+      "coverage_hours": 30.25,
+      "span_hours": 51.25,
+      "gaps_gt_2h": 1,
+      "gap_hours": 21.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 16.7,
+      "unique_title_pct": 75.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914083000 +0100",
+          "stop": "20260914113000 +0100",
+          "title": "Christian Harrison (USA) vs Xinran Sun (CHN) vs Neal Skupski (GBR) vs Kevin Krawietz (GER)",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914113000 +0100",
+          "stop": "20260914133000 +0100",
+          "title": "Katerina Siniakova (CZE) vs Taylor Townsend (USA) vs Ashlyn Krueger (USA) vs Robin Montgomery (USA)",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914133000 +0100",
+          "stop": "20260914153000 +0100",
+          "title": "China vs Spain",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914153000 +0100",
+          "stop": "20260914183000 +0100",
+          "title": "Day 15",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GAPS_GT_2H=1"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINDrama1.qa@SD",
+      "name": "بي إن دراما",
+      "family": "beIN Drama",
+      "kind": "drama",
+      "events": 11,
+      "fingerprint": "07140a87c2e945bb172f473c0b026507ec795711",
+      "coverage_hours": 10.0,
+      "span_hours": 10.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 1,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 9.1,
+      "title_hybrid_pct": 9.1,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 18.2,
+      "unique_title_pct": 63.6,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "القاتل الذي أحبني",
+          "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن"
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "أوراق النسيان",
+          "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق و"
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "درب الذهب",
+          "desc": "بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في ص"
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914140000 +0000",
+          "title": "مزاد الشر",
+          "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن"
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=1"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINGourmet.qa@SD",
+      "name": "beINGOURMET",
+      "family": "beINGOURMET",
+      "kind": "other",
+      "events": 10,
+      "fingerprint": "9116ec39b4f6924f7b6458af7aa4fe0dcbb3a12b",
+      "coverage_hours": 10.0,
+      "span_hours": 10.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 10,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 70.0,
+      "title_hybrid_pct": 70.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 30.0,
+      "unique_title_pct": 40.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "E8 | S1 عزابي",
+          "desc": ""
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "سوبر موم S1",
+          "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "Al Dar Alkabira S2 EP 8",
+          "desc": ""
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914140000 +0000",
+          "title": "E25 | S1 طبلية",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=10"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINMovies1Premiere.qa@SD",
+      "name": "beINMOVIES1",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 17,
+      "fingerprint": "2c2d60356ec42cd10689f976e3042f94ca1cc6c1",
+      "coverage_hours": 33.25,
+      "span_hours": 33.25,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 17,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 0.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 11.8,
+      "unique_title_pct": 82.4,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914101500 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "دير سانتا",
+          "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914143000 +0000",
+          "title": "أساطير أبطال كوندور: الشجعان",
+          "desc": ""
+        },
+        {
+          "start": "20260914143000 +0000",
+          "stop": "20260914161500 +0000",
+          "title": "البلوغ",
+          "desc": ""
+        },
+        {
+          "start": "20260914161500 +0000",
+          "stop": "20260914180000 +0000",
+          "title": "تشبث بإيمانك!",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=17",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINMovies2Action.qa@SD",
+      "name": "beINMOVIES2",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 19,
+      "fingerprint": "8d9c18500c5cca040b658eb4ab8b9dd8402e9727",
+      "coverage_hours": 35.5,
+      "span_hours": 35.5,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 19,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 0.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 15.8,
+      "unique_title_pct": 73.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914091500 +0000",
+          "stop": "20260914105000 +0000",
+          "title": "عودة الشاردة",
+          "desc": ""
+        },
+        {
+          "start": "20260914105000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "ستار تريك",
+          "desc": ""
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914151500 +0000",
+          "title": "ستار تريك إنتو داركنس",
+          "desc": ""
+        },
+        {
+          "start": "20260914151500 +0000",
+          "stop": "20260914171500 +0000",
+          "title": "ستار تريك بيوند",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=19",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINMovies3Drama.qa@SD",
+      "name": "beINMOVIES3",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 19,
+      "fingerprint": "d2f69722487f8a28258033e82c00ef74c124defd",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 19,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 15.8,
+      "title_hybrid_pct": 15.8,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 15.8,
+      "unique_title_pct": 78.9,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914081400 +0000",
+          "stop": "20260914104400 +0000",
+          "title": "فورست جامب",
+          "desc": ""
+        },
+        {
+          "start": "20260914104400 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "العبقري",
+          "desc": ""
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914144500 +0000",
+          "title": "عائلة آدامز",
+          "desc": ""
+        },
+        {
+          "start": "20260914144500 +0000",
+          "stop": "20260914163000 +0000",
+          "title": "قيم عائلة آدامز",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=19",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINMovies4Family.qa@SD",
+      "name": "beINMOVIES4",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 7,
+      "fingerprint": "cbeb141f04a3804923ef30699d08ddc1886cf7b6",
+      "coverage_hours": 11.75,
+      "span_hours": 11.75,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 7,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 0.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 14.3,
+      "unique_title_pct": 100.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914090000 +0000",
+          "stop": "20260914104500 +0000",
+          "title": "قشعريرة",
+          "desc": ""
+        },
+        {
+          "start": "20260914104500 +0000",
+          "stop": "20260914123000 +0000",
+          "title": "السنافر",
+          "desc": ""
+        },
+        {
+          "start": "20260914123000 +0000",
+          "stop": "20260914141500 +0000",
+          "title": "بادينجتون في بيرو",
+          "desc": ""
+        },
+        {
+          "start": "20260914141500 +0000",
+          "stop": "20260914154400 +0000",
+          "title": "هل إنتهينا بعد؟",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=7",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINSeries1.qa@SD",
+      "name": "beINSERIES1",
+      "family": "beIN Series",
+      "kind": "series",
+      "events": 11,
+      "fingerprint": "6e8bfe1f586ba11e42eb773b534db6b1dd93a156",
+      "coverage_hours": 10.17,
+      "span_hours": 10.17,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 11,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 81.8,
+      "title_hybrid_pct": 81.8,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 18.2,
+      "unique_title_pct": 81.8,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "يلوجاكيتس S2",
+          "desc": ""
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914120500 +0000",
+          "title": "E6 | S3 دخيلة",
+          "desc": ""
+        },
+        {
+          "start": "20260914120500 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "E7 | S8 كل أمريكي",
+          "desc": ""
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914140000 +0000",
+          "title": "E19 | S2 وثيقة",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=11",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINSeries2.qa@SD",
+      "name": "بي إن سيريس إتش...",
+      "family": "beIN Series",
+      "kind": "series",
+      "events": 9,
+      "fingerprint": "6e643c8ad9af361316bccdce28764bcdda159af3",
+      "coverage_hours": 8.0,
+      "span_hours": 8.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 100.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 22.2,
+      "unique_title_pct": 88.9,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "NCIS: Sydney S3",
+          "desc": "يحقق الفريق في اختفاء طيارين بحريين أمريكيين في بحر المرجان، ليكتشف مؤامرة إرهابية تتستر عليها مجموعات سياسية، وسط مشكلات شخصية يعاني منها أفراد الفريق."
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "The Agency: Central Intelligence",
+          "desc": "يتعمق المسلسل في إطار درامي داخل عالم من المؤامرات والحيل، حيث تخوض الشخصيات معاركها الداخلية الخاصة بالإضافة إلى محاربة التهديدات الموجهة للأمة والعالم."
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "Dexter S6",
+          "desc": "يقرر (دكستر) حضور لم شمل مدرسته الثانوية، حيث يكتشف جريمة قتل غامضة ويصبح مُطالبًا بإجراء تحقيق، بينما تقوده خيوط القضية إلى اكتشاف صادم، ممّا يُثير لديه ذكريات الماضي المؤلمة."
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914140000 +0000",
+          "title": "From",
+          "desc": "يتم كشف الغموض عن مدينة في وسط الولايات المتحدة تسجن كل من يدخلها. بينما يكافح السكان للحفاظ على حياتهم الطبيعية والبحث عن مخرج، ويجب عليهم أيضًا البقاء على قيد الحياة من تهديدات ا"
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINSports2.qa@MENA",
+      "name": "beINSPORTS2",
+      "family": "beIN Sports 2 AR/MENA",
+      "kind": "sports_ar",
+      "events": 21,
+      "fingerprint": "83cba431a641e0b5603bd83bc0b1c7c5eb5c425b",
+      "coverage_hours": 44.67,
+      "span_hours": 44.67,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 1,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 85.7,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 85.7,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 14.3,
+      "unique_title_pct": 76.2,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914102000 +0000",
+          "stop": "20260914124500 +0000",
+          "title": "South Korea vs Myanmar - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL02",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914124500 +0000",
+          "stop": "20260914133500 +0000",
+          "title": "Sunderland vs Arsenal - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، الجولة 4، موسم 2026/2027."
+        },
+        {
+          "start": "20260914133500 +0000",
+          "stop": "20260914155000 +0000",
+          "title": "PFC Neftchi (UZB) vs Air Force (IRQ) - دوري أبطال آسيا للنخبة",
+          "desc": "مباراة ضمن منافسات دوري أبطال آسيا للنخبة، الجولة 1، موسم 2026/2027."
+        },
+        {
+          "start": "20260914155000 +0000",
+          "stop": "20260914180000 +0000",
+          "title": "Shabab Al Ahli (UAE) vs Tractor (IRN) - دوري أبطال آسيا للنخبة",
+          "desc": "مباراة ضمن منافسات دوري أبطال آسيا للنخبة، الجولة 1، موسم 2026/2027."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "LONG_6H=1"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINSports3.qa@MENA",
+      "name": "beINSPORTS3",
+      "family": "beIN Sports 3 AR/MENA",
+      "kind": "sports_ar",
+      "events": 24,
+      "fingerprint": "fcd6e4af3af4de83c2f70c1199a20fe6e878a1dd",
+      "coverage_hours": 42.65,
+      "span_hours": 42.65,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 95.8,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 95.8,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 16.7,
+      "unique_title_pct": 54.2,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914102100 +0000",
+          "stop": "20260914121500 +0000",
+          "title": "Levante vs Barcelona - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        },
+        {
+          "start": "20260914121500 +0000",
+          "stop": "20260914140000 +0000",
+          "title": "Real Madrid vs Rayo Vallecono - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        },
+        {
+          "start": "20260914140000 +0000",
+          "stop": "20260914160000 +0000",
+          "title": "West Ham Utd vs Wrexham -دوري البطولة الإنجليزية",
+          "desc": "مباراة ضمن منافسات دوري البطولة الإنجليزية، موسم 2026/2027."
+        },
+        {
+          "start": "20260914160000 +0000",
+          "stop": "20260914180500 +0000",
+          "title": "Celta Vigo vs Malaga - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINSports4.qa@MENA",
+      "name": "beINSPORT4",
+      "family": "beIN Sports 4 AR/MENA",
+      "kind": "sports_ar",
+      "events": 24,
+      "fingerprint": "8bd23e2fedf348bb083db229a16ca3ac6b9f04c9",
+      "coverage_hours": 42.62,
+      "span_hours": 42.62,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 75.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 75.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 12.5,
+      "unique_title_pct": 62.5,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914092300 +0000",
+          "stop": "20260914111000 +0000",
+          "title": "Chelsea vs Hull City - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، الجولة 4، موسم 2026/2027."
+        },
+        {
+          "start": "20260914111000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "Osasuna vs Espanyol - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914144800 +0000",
+          "title": "Coventry City vs Brighton - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، الجولة 4، موسم 2026/2027."
+        },
+        {
+          "start": "20260914144800 +0000",
+          "stop": "20260914164500 +0000",
+          "title": "Portugal vs Costa Rica - FIFA U-20 Women World Cup",
+          "desc": "مباراة، موسم 2026."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINSports5.qa@MENA",
+      "name": "beINSPORTS5",
+      "family": "beIN Sports 5 AR/MENA",
+      "kind": "sports_ar",
+      "events": 20,
+      "fingerprint": "7c9aa0ad743579103f752ac4c4fb592b9bbaec4d",
+      "coverage_hours": 45.93,
+      "span_hours": 45.93,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 60.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 60.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 15.0,
+      "unique_title_pct": 55.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914084900 +0000",
+          "stop": "20260914104500 +0000",
+          "title": "Valladolid vs Oviedo - الدوري الإسباني Hypermotion",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، موسم 2026/2027."
+        },
+        {
+          "start": "20260914104500 +0000",
+          "stop": "20260914124500 +0000",
+          "title": "Getafe vs Deportivo La Coruna - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        },
+        {
+          "start": "20260914124500 +0000",
+          "stop": "20260914144500 +0000",
+          "title": "Colombia vs Korea Dpr - FIFA U-20 Women World Cup",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914144500 +0000",
+          "stop": "20260914164500 +0000",
+          "title": "Nigeria vs New Caledonia - FIFA U-20 Women World Cup",
+          "desc": "مباراة، موسم 2026."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINSports6.qa@MENA",
+      "name": "beINSPORTS6",
+      "family": "beIN Sports 6 AR/MENA",
+      "kind": "sports_ar",
+      "events": 20,
+      "fingerprint": "39bcccef7b84bbf21d83756a28e2dc72f2d85939",
+      "coverage_hours": 36.25,
+      "span_hours": 39.08,
+      "gaps_gt_2h": 1,
+      "gap_hours": 2.83,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 40.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 40.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 20.0,
+      "unique_title_pct": 45.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914085500 +0000",
+          "stop": "20260914102600 +0000",
+          "title": "Premier Padel - Paris Major - Claudia Fernandez Sanchez Esp Martina Calvo Esp vs Ariana Sanchez Fall",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914102600 +0000",
+          "stop": "20260914131000 +0000",
+          "title": "Premier Padel - Paris Major - Agustin Tapia Arg Arturo Coello Esp vs Alejandro Galan Esp Federico C",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914131000 +0000",
+          "stop": "20260914150500 +0000",
+          "title": "Havre AC vs Angers - الدوري الفرنسي",
+          "desc": "مباراة ضمن منافسات الدوري الفرنسي، الجولة 4، موسم 2026/2027، الحلقة 1."
+        },
+        {
+          "start": "20260914150500 +0000",
+          "stop": "20260914170500 +0000",
+          "title": "Cordoba vs Almeria - الدوري الإسباني Hypermotion",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، موسم 2026/2027."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GAPS_GT_2H=1"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINSports7.qa@MENA",
+      "name": "beINSPORTS7",
+      "family": "beIN Sports 7 AR/MENA",
+      "kind": "sports_ar",
+      "events": 18,
+      "fingerprint": "a6675982f70f1e026c4331a8b5aba8291787a090",
+      "coverage_hours": 44.58,
+      "span_hours": 44.58,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 16.7,
+      "unique_title_pct": 55.6,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914094000 +0000",
+          "stop": "20260914113500 +0000",
+          "title": "Ghana vs France - FIFA U-20 Women World Cup",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914113500 +0000",
+          "stop": "20260914135500 +0000",
+          "title": "China vs Spain - FIFA U-20 Women World Cup",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914135500 +0000",
+          "stop": "20260914183000 +0000",
+          "title": "Zverev, Alexander (GER) vs Shelton, Ben (USA) - Arthur Ashe Court - Tennis US Open 2026 - Men's Sing",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914183000 +0000",
+          "stop": "20260914210100 +0000",
+          "title": "Aryna Sabalenka vs Elena Rybakina - Arthur Ashe Court - Tennis US Open 2026 - Women's Singles Final",
+          "desc": "مباراة، موسم 2026."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINSports8.qa@MENA",
+      "name": "beINSPORTS8",
+      "family": "beIN Sports 8 AR/MENA",
+      "kind": "sports_ar",
+      "events": 29,
+      "fingerprint": "9316f9d338261790f11139c7906d14ceb67aac18",
+      "coverage_hours": 41.92,
+      "span_hours": 41.92,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 6.9,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 6.9,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 6.9,
+      "unique_title_pct": 69.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100500 +0000",
+          "stop": "20260914112500 +0000",
+          "title": "Sprint Race - Madrid Round - FIA Formula 2 Championship",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914112500 +0000",
+          "stop": "20260914124500 +0000",
+          "title": "Feature Race - Madrid Round - FIA Formula 2 Championship",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914124500 +0000",
+          "stop": "20260914133000 +0000",
+          "title": "Qualifying - Moto 3 - San Marino GP",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914133000 +0000",
+          "stop": "20260914143000 +0000",
+          "title": "Main Race - Moto 3 - San Marino GP",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINSports9.qa@MENA",
+      "name": "beINSPORTS9",
+      "family": "beIN Sports 9 AR/MENA",
+      "kind": "sports_ar",
+      "events": 32,
+      "fingerprint": "3d890a211fb00dbdf279801f9cc2e9c7d9a4aa27",
+      "coverage_hours": 41.83,
+      "span_hours": 41.83,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 9.4,
+      "unique_title_pct": 84.4,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914094500 +0000",
+          "stop": "20260914103000 +0000",
+          "title": "M2 Qterminals Qatar Classic 2026 - Glass Court",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914103000 +0000",
+          "stop": "20260914111500 +0000",
+          "title": "M3 Qterminals Qatar Classic 2026 - Glass Court",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914111500 +0000",
+          "stop": "20260914121500 +0000",
+          "title": "M4 Qterminals Qatar Classic 2026 - Glass Court",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914121500 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "M1 Qterminals Qatar Classic 2026 - Glass Court",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beINSPORTSXTRA3.qa",
+      "name": "beINSPORTSXTRA3.qa",
+      "family": "beIN XTRA 3",
+      "kind": "xtra",
+      "events": 13,
+      "fingerprint": "9e8ec29bc4922a4d8f3a7c2ac8e3323f973df96d",
+      "coverage_hours": 16.0,
+      "span_hours": 17.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 1.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 10,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 76.9,
+      "unique_title_pct": 30.8,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914122000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914122000 +0000",
+          "stop": "20260914150000 +0000",
+          "title": "Feature Race - Madrid Round",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "GENERIC_GUIDE=77%",
+        "REPEATED_TITLE=77%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "NEWS_DIGITAL_Mono_AR.bein",
+      "name": "NEWS_DIGITAL_Mono_AR",
+      "family": "beIN Sports News",
+      "kind": "news",
+      "events": 68,
+      "fingerprint": "a4862e13558f903e81806ddec45e0de0922328bc",
+      "coverage_hours": 38.0,
+      "span_hours": 38.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 100.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 23.5,
+      "unique_title_pct": 23.5,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0100",
+          "stop": "20260914110000 +0100",
+          "title": "Al Hassad",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914110000 +0100",
+          "stop": "20260914113000 +0100",
+          "title": "News Bulletin - نشرة الأخبار",
+          "desc": "نشرة رياضية تقدم أبرز الأخبار والتطورات."
+        },
+        {
+          "start": "20260914113000 +0100",
+          "stop": "20260914120000 +0100",
+          "title": "UEFA UCL Magazine - مجلة",
+          "desc": "مجلة رياضية تقدم الأخبار والتحليلات المتعلقة بـدوري أبطال أوروبا، موسم 2026/2027."
+        },
+        {
+          "start": "20260914120000 +0100",
+          "stop": "20260914130000 +0100",
+          "title": "Super Monday",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "NEWS_DIGITAL_Mono_EN.bein",
+      "name": "NEWS_DIGITAL_Mono_EN",
+      "family": "beIN Sports News",
+      "kind": "news",
+      "events": 68,
+      "fingerprint": "a4862e13558f903e81806ddec45e0de0922328bc",
+      "coverage_hours": 38.0,
+      "span_hours": 38.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 33.8,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 33.8,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 23.5,
+      "unique_title_pct": 23.5,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0100",
+          "stop": "20260914110000 +0100",
+          "title": "Al Hassad",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914110000 +0100",
+          "stop": "20260914113000 +0100",
+          "title": "News Bulletin - نشرة الأخبار",
+          "desc": "نشرة رياضية تقدم أبرز الأخبار والتطورات."
+        },
+        {
+          "start": "20260914113000 +0100",
+          "stop": "20260914120000 +0100",
+          "title": "UEFA UCL Magazine - مجلة",
+          "desc": "مجلة رياضية تقدم الأخبار والتحليلات المتعلقة بـدوري أبطال أوروبا، موسم 2026/2027."
+        },
+        {
+          "start": "20260914120000 +0100",
+          "stop": "20260914130000 +0100",
+          "title": "Super Monday",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        }
+      ],
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    }
+  ],
+  "duplicate_timeline_groups": [
+    {
+      "ids": [
+        "4k_DIGITAL_Mono_AR.bein",
+        "beIN4K.qa@SD"
+      ],
+      "families": [
+        "beIN 4K"
+      ]
+    },
+    {
+      "ids": [
+        "NEWS_DIGITAL_Mono_AR.bein",
+        "NEWS_DIGITAL_Mono_EN.bein"
+      ],
+      "families": [
+        "beIN Sports News"
+      ]
+    }
+  ]
+}
