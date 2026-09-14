@@ -1,0 +1,124 @@
+name: Strict Rescue Validation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/strict-rescue-validation.yml"
+      - "tools/strict_rescue_validation.py"
+      - "tools/official_duplicate_rescue_audit.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: strict-rescue-validation
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Checkout current MENA data
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: current-data
+          fetch-depth: 0
+
+      - name: Checkout iptv-org EPG
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/epg
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/epg/package-lock.json
+
+      - name: Install grabber
+        working-directory: vendor/epg
+        run: npm ci --no-audit --no-fund
+
+      - name: Rebuild current All-ID input privately
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/all_id_audit.py \
+            --dir current-data \
+            --manifest current-data/shards.json \
+            --json /tmp/strict-all-id.json \
+            --text /tmp/strict-all-id.txt \
+            --csv /tmp/strict-all-id.csv
+
+      - name: Plan exact-ID alternate sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          python tools/official_duplicate_rescue_audit.py plan \
+            --epg-root vendor/epg \
+            --all-id-csv /tmp/strict-all-id.csv \
+            --catalog current-data/catalog.json \
+            --channels-out /tmp/strict-rescue.channels.xml \
+            --plan-json output/strict-rescue-plan.json
+
+      - name: Grab candidates - 48h
+        working-directory: vendor/epg
+        shell: bash
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=20s 900s \
+            npm run grab --- \
+              --channels=/tmp/strict-rescue.channels.xml \
+              --output=/tmp/strict-rescue.xml \
+              --days=2 --maxConnections=3 --timeout=20000
+          test -s /tmp/strict-rescue.xml || printf '%s\n' '<?xml version="1.0"?><tv></tv>' >/tmp/strict-rescue.xml
+          exit 0
+
+      - name: Strict second-pass validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/strict_rescue_validation.py
+          python tools/strict_rescue_validation.py \
+            --plan-json output/strict-rescue-plan.json \
+            --grabbed /tmp/strict-rescue.xml \
+            --json output/strict-rescue-validation.json \
+            --text output/strict-rescue-validation.txt
+          cat output/strict-rescue-validation.txt
+
+      - name: Publish diagnostic only
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/strict-rescue-plan.json .
+          cp ../output/strict-rescue-validation.json .
+          cp ../output/strict-rescue-validation.txt .
+          git config user.name "EPGManager Strict Rescue Audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add strict-rescue-plan.json strict-rescue-validation.json strict-rescue-validation.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Strictly validate exact-ID rescue candidates"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
