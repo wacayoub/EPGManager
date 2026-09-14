@@ -1,0 +1,258 @@
+{
+  "schema": 1,
+  "before_summary": {
+    "channels": 1041,
+    "programmes": 32528,
+    "PASS": 152,
+    "REVIEW": 459,
+    "NO_EPG": 430,
+    "FAIL": 0,
+    "auto_lock_safe": 152,
+    "missing_shards": []
+  },
+  "after_summary": {
+    "channels": 1050,
+    "programmes": 33453,
+    "PASS": 157,
+    "REVIEW": 465,
+    "NO_EPG": 428,
+    "FAIL": 0,
+    "auto_lock_safe": 157,
+    "missing_shards": []
+  },
+  "transitions": {
+    "NO_EPG->NO_EPG": 428,
+    "NO_EPG->PASS": 1,
+    "PASS->PASS": 148,
+    "PASS->REVIEW": 4,
+    "REVIEW->PASS": 6,
+    "REVIEW->REVIEW": 453
+  },
+  "improved": [
+    {
+      "shard": "mena-ae",
+      "id": "CartoonNetworkArabic.ae@SD",
+      "name": "CN Arabia",
+      "before": "REVIEW",
+      "after": "PASS",
+      "before_score": 92,
+      "after_score": 100,
+      "before_events": 33,
+      "after_events": 73,
+      "before_warnings": [
+        "EMPTY_DESC=1(3%)"
+      ],
+      "after_warnings": []
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Cima.eg@SD",
+      "name": "سيما",
+      "before": "REVIEW",
+      "after": "PASS",
+      "before_score": 92,
+      "after_score": 100,
+      "before_events": 18,
+      "after_events": 22,
+      "before_warnings": [
+        "GAPS_GT_2H=1/TOTAL=6.0h"
+      ],
+      "after_warnings": []
+    },
+    {
+      "shard": "mena-other",
+      "id": "ستار ورلد.eg",
+      "name": "ستار ورلد.eg",
+      "before": "REVIEW",
+      "after": "PASS",
+      "before_score": 92,
+      "after_score": 100,
+      "before_events": 16,
+      "after_events": 15,
+      "before_warnings": [
+        "EMPTY_DESC=1(6%)"
+      ],
+      "after_warnings": []
+    },
+    {
+      "shard": "mena-sa",
+      "id": "BabAlHara.sa@SD",
+      "name": "قناة باب الحارة",
+      "before": "NO_EPG",
+      "after": "PASS",
+      "before_score": 65,
+      "after_score": 100,
+      "before_events": 0,
+      "after_events": 49,
+      "before_warnings": [],
+      "after_warnings": []
+    },
+    {
+      "shard": "provider-mbc",
+      "id": "MBC1.ae@SD",
+      "name": "MBC1",
+      "before": "REVIEW",
+      "after": "PASS",
+      "before_score": 92,
+      "after_score": 100,
+      "before_events": 55,
+      "after_events": 54,
+      "before_warnings": [
+        "PLACEHOLDER=1"
+      ],
+      "after_warnings": []
+    },
+    {
+      "shard": "provider-mbc",
+      "id": "MBCMasr.eg@SD",
+      "name": "MBC Masr",
+      "before": "REVIEW",
+      "after": "PASS",
+      "before_score": 92,
+      "after_score": 100,
+      "before_events": 39,
+      "after_events": 38,
+      "before_warnings": [
+        "DUPLICATE_TIMELINE_GROUP=2"
+      ],
+      "after_warnings": []
+    },
+    {
+      "shard": "provider-mbc",
+      "id": "MBCMasrUSA.us@SD",
+      "name": "MBC Masr",
+      "before": "REVIEW",
+      "after": "PASS",
+      "before_score": 92,
+      "after_score": 100,
+      "before_events": 39,
+      "after_events": 38,
+      "before_warnings": [
+        "DUPLICATE_TIMELINE_GROUP=2"
+      ],
+      "after_warnings": []
+    }
+  ],
+  "regressed": [
+    {
+      "shard": "mena-eg",
+      "id": "AlNaharDrama.eg@SD",
+      "name": "النهار دراما",
+      "before": "PASS",
+      "after": "REVIEW",
+      "before_score": 100,
+      "after_score": 92,
+      "before_events": 24,
+      "after_events": 44,
+      "before_warnings": [],
+      "after_warnings": [
+        "LOW_TITLE_DIVERSITY=14%"
+      ]
+    },
+    {
+      "shard": "mena-other",
+      "id": "BBCArabic.uk@SD",
+      "name": "BBC World",
+      "before": "PASS",
+      "after": "REVIEW",
+      "before_score": 100,
+      "after_score": 92,
+      "before_events": 44,
+      "after_events": 103,
+      "before_warnings": [],
+      "after_warnings": [
+        "LOW_TITLE_DIVERSITY=16%"
+      ]
+    },
+    {
+      "shard": "provider-mbc",
+      "id": "MBC3.ae@SD",
+      "name": "MBC 3",
+      "before": "PASS",
+      "after": "REVIEW",
+      "before_score": 100,
+      "after_score": 92,
+      "before_events": 57,
+      "after_events": 134,
+      "before_warnings": [],
+      "after_warnings": [
+        "LOW_TITLE_DIVERSITY=16%"
+      ]
+    },
+    {
+      "shard": "provider-mbc",
+      "id": "MBCPlusDrama.sa@SD",
+      "name": "MBC Plus Drama",
+      "before": "PASS",
+      "after": "REVIEW",
+      "before_score": 100,
+      "after_score": 92,
+      "before_events": 23,
+      "after_events": 55,
+      "before_warnings": [],
+      "after_warnings": [
+        "LOW_TITLE_DIVERSITY=14%"
+      ]
+    }
+  ],
+  "added": [
+    {
+      "shard": "mena-other",
+      "id": "ال تي في.eg",
+      "verdict": "REVIEW"
+    },
+    {
+      "shard": "mena-other",
+      "id": "الرشيد.eg",
+      "verdict": "REVIEW"
+    },
+    {
+      "shard": "mena-other",
+      "id": "الشارقة.eg",
+      "verdict": "REVIEW"
+    },
+    {
+      "shard": "mena-other",
+      "id": "المحور.eg",
+      "verdict": "REVIEW"
+    },
+    {
+      "shard": "mena-other",
+      "id": "دبي زمان.eg",
+      "verdict": "REVIEW"
+    },
+    {
+      "shard": "mena-other",
+      "id": "زي ألوان.eg",
+      "verdict": "PASS"
+    },
+    {
+      "shard": "mena-other",
+      "id": "نايل لايف.eg",
+      "verdict": "REVIEW"
+    },
+    {
+      "shard": "provider-adm",
+      "id": "Abu Dhabi TV HD.sa",
+      "verdict": "PASS"
+    },
+    {
+      "shard": "provider-mbc",
+      "id": "Al Arabiya.sa",
+      "verdict": "REVIEW"
+    },
+    {
+      "shard": "provider-rotana",
+      "id": "RotanaClip.sa@SD",
+      "verdict": "REVIEW"
+    }
+  ],
+  "removed": [
+    {
+      "shard": "mena-other",
+      "id": "ميكس.eg",
+      "verdict": "NO_EPG"
+    }
+  ],
+  "same_verdict_changed_programme_count": 347
+}

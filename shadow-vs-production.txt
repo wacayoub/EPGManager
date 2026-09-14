@@ -1,0 +1,34 @@
+ALL-ID BEFORE/AFTER COMPARISON
+improved=7 regressed=4 added=10 removed=1 same_verdict_event_changes=347
+before={'channels': 1041, 'programmes': 32528, 'PASS': 152, 'REVIEW': 459, 'NO_EPG': 430, 'FAIL': 0, 'auto_lock_safe': 152, 'missing_shards': []}
+after={'channels': 1050, 'programmes': 33453, 'PASS': 157, 'REVIEW': 465, 'NO_EPG': 428, 'FAIL': 0, 'auto_lock_safe': 157, 'missing_shards': []}
+
+REGRESSIONS
+- mena-eg | AlNaharDrama.eg@SD | PASS -> REVIEW | events 24 -> 44 | score 100 -> 92
+- mena-other | BBCArabic.uk@SD | PASS -> REVIEW | events 44 -> 103 | score 100 -> 92
+- provider-mbc | MBC3.ae@SD | PASS -> REVIEW | events 57 -> 134 | score 100 -> 92
+- provider-mbc | MBCPlusDrama.sa@SD | PASS -> REVIEW | events 23 -> 55 | score 100 -> 92
+
+IMPROVEMENTS
+- mena-ae | CartoonNetworkArabic.ae@SD | REVIEW -> PASS | events 33 -> 73 | score 92 -> 100
+- mena-eg | Cima.eg@SD | REVIEW -> PASS | events 18 -> 22 | score 92 -> 100
+- mena-other | ستار ورلد.eg | REVIEW -> PASS | events 16 -> 15 | score 92 -> 100
+- mena-sa | BabAlHara.sa@SD | NO_EPG -> PASS | events 0 -> 49 | score 65 -> 100
+- provider-mbc | MBC1.ae@SD | REVIEW -> PASS | events 55 -> 54 | score 92 -> 100
+- provider-mbc | MBCMasr.eg@SD | REVIEW -> PASS | events 39 -> 38 | score 92 -> 100
+- provider-mbc | MBCMasrUSA.us@SD | REVIEW -> PASS | events 39 -> 38 | score 92 -> 100
+
+ADDED
+- mena-other | ال تي في.eg | REVIEW
+- mena-other | الرشيد.eg | REVIEW
+- mena-other | الشارقة.eg | REVIEW
+- mena-other | المحور.eg | REVIEW
+- mena-other | دبي زمان.eg | REVIEW
+- mena-other | زي ألوان.eg | PASS
+- mena-other | نايل لايف.eg | REVIEW
+- provider-adm | Abu Dhabi TV HD.sa | PASS
+- provider-mbc | Al Arabiya.sa | REVIEW
+- provider-rotana | RotanaClip.sa@SD | REVIEW
+
+REMOVED
+- mena-other | ميكس.eg | NO_EPG
