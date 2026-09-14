@@ -23,6 +23,11 @@ on:
       - "tools/virtual_epgmanager_test.py"
       - "tools/arabic_priority_test.py"
       - "tools/bein_id_audit.py"
+      - "tools/bein_provider_repair.py"
+      - "tools/bein_id_audit_policy.py"
+      - "tools/mena_integrity_guard.py"
+      - "tools/all_id_audit_alias_aware.py"
+      - "tools/bein_final_regression.py"
 
 permissions:
   contents: write
@@ -102,7 +107,12 @@ jobs:
             tools/mena_global_epg_audit.py \
             tools/virtual_epgmanager_test.py \
             tools/arabic_priority_test.py \
-            tools/bein_id_audit.py
+            tools/bein_id_audit.py \
+            tools/bein_provider_repair.py \
+            tools/bein_id_audit_policy.py \
+            tools/mena_integrity_guard.py \
+            tools/all_id_audit_alias_aware.py \
+            tools/bein_final_regression.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
@@ -310,6 +320,16 @@ jobs:
             --xml output/final/provider-bein.xml.gz \
             --json output/final/bein-id-audit.json \
             --text output/final/bein-id-audit.txt
+
+      - name: Run final beIN regression gate
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/bein_final_regression.py \
+            --xml output/final/provider-bein.xml.gz \
+            --audit-json output/final/bein-id-audit.json \
+            --text output/final/bein-final-regression.txt
 
       - name: Publish atomically to mena-data
         if: steps.gate.outputs.run == 'true'
