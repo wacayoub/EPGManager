@@ -1,0 +1,49 @@
+name: Yas TV Arabic Twin Probe
+
+on:
+  push:
+    paths:
+      - ".github/workflows/yas-arabic-twin-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare every Yas identity in UAE EPGShare
+        shell: bash
+        run: |
+          python - <<'PY'
+          import gzip,re,urllib.request,xml.etree.ElementTree as ET
+          from collections import defaultdict
+          u='https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz'
+          req=urllib.request.Request(u,headers={'User-Agent':'EPGManager/1.0'})
+          with urllib.request.urlopen(req,timeout=30) as r:data=r.read()
+          root=ET.fromstring(gzip.decompress(data))
+          AR=re.compile(r'[\u0600-\u06ff]')
+          names={}
+          for c in root.findall('channel'):
+            cid=(c.get('id') or '').strip(); dns=[(n.text or '').strip() for n in c.findall('display-name')]
+            probe=' '.join([cid]+dns).casefold()
+            if 'yas' in probe or 'ياس' in probe:
+              names[cid]=dns
+          ps=defaultdict(list)
+          for p in root.findall('programme'):
+            cid=(p.get('channel') or '').strip()
+            if cid in names: ps[cid].append(p)
+          for cid in sorted(names,key=str.casefold):
+            rows=ps[cid]
+            titles=[((p.find('title').text or '').strip() if p.find('title') is not None else '') for p in rows]
+            descs=[((p.find('desc').text or '').strip() if p.find('desc') is not None else '') for p in rows]
+            ta=sum(bool(AR.search(x)) for x in titles); da=sum(bool(AR.search(x)) for x in descs)
+            print('\nID',cid,'NAMES',names[cid])
+            print('events=%d title_AR=%d/%d desc_AR=%d/%d'%(len(rows),ta,len(rows),da,len(rows)))
+            for p in rows[:8]:
+              t=p.find('title');d=p.find('desc')
+              print('ROW|%s|%s|%s|%s'%(p.get('start',''),p.get('stop',''),(t.text or '').strip() if t is not None else '',(d.text or '').strip()[:180] if d is not None else ''))
+          PY
