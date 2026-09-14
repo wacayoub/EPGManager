@@ -1,14 +1,14 @@
 VIRTUAL EPGMANAGER - EXHAUSTIVE beIN ID-BY-ID AUDIT
-channels=72 programmes=1544 PASS=14 ALIAS_OK=24 REVIEW=34 FAIL=0
+channels=72 programmes=1533 PASS=14 ALIAS_OK=24 REVIEW=34 FAIL=0
 Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 01. [ALIAS_OK] 4k_DIGITAL_Mono_AR.bein -> beIN4K.qa@SD
     name=4k_DIGITAL_Mono_AR | family=beIN 4K | kind=sports_ar
-    events=15 coverage=29.5h span=29.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=80% Latin=100% hybrid=80% unique=27% | desc: AR=100% empty=0 same-as-title=0
+    events=14 coverage=27.8h span=27.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=79% Latin=100% hybrid=79% unique=29% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Manchester United v Manchester City - الدوري الإنجليزي الممتاز
     • Liverpool vs Fulham - الدوري الإنجليزي الممتاز
+    • Sunderland v Arsenal - الدوري الإنجليزي الممتاز
 
 02. [REVIEW] beIN Drama.eg
     name=beIN Drama.eg | family=beIN Drama | kind=drama
@@ -36,11 +36,11 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 05. [PASS] BEIN MOVIES FAMILY.eg
     name=BEIN MOVIES FAMILY.eg | family=beIN Movies | kind=movies
-    events=24 coverage=40.5h span=40.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=50% | desc: AR=100% empty=0 same-as-title=0
+    events=23 coverage=39.0h span=39.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=48% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Are We Done Yet?
     • The Adventures of Sharkboy and Lavagirl 3-D
+    • Dora and the Lost City of Gold
 
 06. [REVIEW] BEIN MOVIES PREMIERE.eg
     name=BEIN MOVIES PREMIERE.eg | family=beIN Movies | kind=movies
@@ -76,27 +76,27 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 10. [PASS] beIN SPORTS EN 1.qa
     name=beIN SPORTS EN 1.qa | family=beIN SPORTS EN 1.qa | kind=other
-    events=35 coverage=37.9h span=37.9h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=80% Latin=100% hybrid=80% unique=69% | desc: AR=100% empty=0 same-as-title=0
+    events=34 coverage=35.7h span=35.7h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=79% Latin=100% hybrid=79% unique=68% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • PFC Neftchi (UZB) vs Air Force (IRQ) - دوري أبطال آسيا للنخبة
     • Al Shamal (QAT) vs Al Ittihad (KSA) - دوري أبطال آسيا للنخبة
+    • EFL Highlights - ملخص 2026/27 | E5
 
 11. [PASS] beIN SPORTS EN 2.qa
     name=beIN SPORTS EN 2.qa | family=beIN SPORTS EN 2.qa | kind=other
-    events=28 coverage=38.2h span=38.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=32% Latin=100% hybrid=32% unique=75% | desc: AR=100% empty=0 same-as-title=0
+    events=27 coverage=36.9h span=36.9h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=33% Latin=100% hybrid=33% unique=78% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Main Race - Moto GP - San Marino GP
     • Shabab Al Ahli (UAE) vs Tractor (IRN) - دوري أبطال آسيا للنخبة
+    • Esteghlal FC (IRN) vs Al Sadd (QAT) - دوري أبطال آسيا للنخبة
 
 12. [REVIEW] bein SPORTS FTA DIGITAL.qa
     name=bein SPORTS FTA DIGITAL.qa | family=beIN Sports FTA | kind=sports_ar
-    events=22 coverage=37.7h span=38.2h gaps>2h=0 gap_total=0.5h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=46% | desc: AR=100% empty=0 same-as-title=0
+    events=21 coverage=35.4h span=35.9h gaps>2h=0 gap_total=0.5h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=48% | desc: AR=100% empty=0 same-as-title=0
     notes=TITLE_AR_ENRICHMENT_LOW=0%
-    • Japan vs Thailand - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01
     • Qatar's Weightlifting Team
+    • Bahrain vs Kazakhstan - Basketball Men - Asian Games Aichi-Nagoya 2026 -BKB05
 
 13. [REVIEW] beIN SPORTS MAX 1.qa
     name=beIN SPORTS MAX 1.qa | family=beIN MAX 1 | kind=max
@@ -228,11 +228,11 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 29. [REVIEW] beIN SPORTS-boxoffice-bein.com.qa
     name=beIN SPORTS-boxoffice-bein.com.qa | family=beIN Boxoffice | kind=boxoffice
-    events=22 coverage=36.9h span=37.9h gaps>2h=0 gap_total=1.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=59% | desc: AR=100% empty=0 same-as-title=0
+    events=21 coverage=35.4h span=36.4h gaps>2h=0 gap_total=1.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=62% | desc: AR=100% empty=0 same-as-title=0
     notes=BOXOFFICE_NOT_SPORTS_LINEAR
-    • Detective Knight: Independence
     • Wrath of Man
+    • Enhanced
 
 30. [PASS] beIN SPORTS.qa
     name=beIN SPORTS.qa | family=beIN SPORTS.qa | kind=other
@@ -244,11 +244,11 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 31. [PASS] beIN4K.qa@SD
     name=beIN 4K | family=beIN 4K | kind=sports_ar
-    events=15 coverage=29.5h span=29.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=80% Latin=100% hybrid=80% unique=27% | desc: AR=100% empty=0 same-as-title=0
+    events=14 coverage=27.8h span=27.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=79% Latin=100% hybrid=79% unique=29% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Manchester United v Manchester City - الدوري الإنجليزي الممتاز
     • Liverpool vs Fulham - الدوري الإنجليزي الممتاز
+    • Sunderland v Arsenal - الدوري الإنجليزي الممتاز
 
 32. [ALIAS_OK] beIN_SPORTS3_DIGITAL_Mono_EN.bein -> beINSports3.qa@MENA
     name=beIN_SPORTS3_DIGITAL_Mono_EN | family=beIN Sports 3 EN | kind=sports_en
@@ -356,11 +356,11 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 45. [ALIAS_OK] beINMovies4Family.qa@SD -> BEIN MOVIES FAMILY.eg
     name=beINMOVIES4 | family=beIN Movies | kind=movies
-    events=24 coverage=40.5h span=40.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=50% | desc: AR=100% empty=0 same-as-title=0
+    events=23 coverage=39.0h span=39.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=48% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Are We Done Yet?
     • The Adventures of Sharkboy and Lavagirl 3-D
+    • Dora and the Lost City of Gold
 
 46. [REVIEW] beINSeries1.qa@SD
     name=beINSERIES1 | family=beIN Series | kind=series
@@ -380,11 +380,11 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 48. [PASS] beINSports2.qa@MENA
     name=beINSPORTS2 | family=beIN Sports 2 AR/MENA | kind=sports_ar
-    events=19 coverage=36.9h span=36.9h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=90% Latin=100% hybrid=90% unique=79% | desc: AR=100% empty=0 same-as-title=0
+    events=18 coverage=34.7h span=34.7h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=89% Latin=100% hybrid=89% unique=78% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • PFC Neftchi (UZB) vs Air Force (IRQ) - دوري أبطال آسيا للنخبة
     • Shabab Al Ahli (UAE) vs Tractor (IRN) - دوري أبطال آسيا للنخبة
+    • The Big Interview - المقابلة الكبرى
 
 49. [PASS] beINSports3.qa@MENA
     name=beINSPORTS3 | family=beIN Sports 3 AR/MENA | kind=sports_ar
@@ -428,11 +428,11 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 54. [REVIEW] beINSports8.qa@MENA
     name=beINSPORTS8 | family=beIN Sports 8 AR/MENA | kind=sports_ar
-    events=25 coverage=37.5h span=37.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=8% Latin=100% hybrid=8% unique=72% | desc: AR=100% empty=0 same-as-title=0
+    events=24 coverage=36.2h span=36.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=8% Latin=100% hybrid=8% unique=71% | desc: AR=100% empty=0 same-as-title=0
     notes=TITLE_AR_ENRICHMENT_LOW=8%
-    • Practice 2 - Spanish Grand Prix
     • Practice 3 - Spanish Grand Prix
+    • Main Race Qualifying - Spanish Grand Prix
 
 55. [REVIEW] beINSports9.qa@MENA
     name=beINSPORTS9 | family=beIN Sports 9 AR/MENA | kind=sports_ar
@@ -572,11 +572,11 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 72. [ALIAS_OK] بي إن موفيز فاميلي.eg -> BEIN MOVIES FAMILY.eg
     name=بي إن موفيز فاميلي.eg | family=بي إن موفيز فاميلي.eg | kind=other
-    events=24 coverage=40.5h span=40.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=50% | desc: AR=100% empty=0 same-as-title=0
+    events=23 coverage=39.0h span=39.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=48% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Are We Done Yet?
     • The Adventures of Sharkboy and Lavagirl 3-D
+    • Dora and the Lost City of Gold
 
 EXACT DUPLICATE TIMELINE GROUPS
 - 4k_DIGITAL_Mono_AR.bein ; beIN4K.qa@SD | families=beIN 4K

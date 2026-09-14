@@ -1,22 +1,22 @@
 {
   "schema": 2,
   "scope": "all exclusive MENA country/provider shards + synchronous alias-aware all-ID release gate",
-  "channels_scanned": 639,
-  "programmes_scanned": 29574,
+  "channels_scanned": 640,
+  "programmes_scanned": 29575,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
     "arabic_provider_title_not_arabic": 829,
-    "empty_description": 14286,
+    "empty_description": 14275,
     "hybrid_arabic_latin_description": 4,
     "mixed_timezone_offsets_same_day": 2,
     "premium_title_not_english": 131,
-    "severity_warning": 17497,
+    "severity_warning": 17470,
     "very_long_event_gt_6h": 22,
-    "very_short_event_lt_5m": 2221
+    "very_short_event_lt_5m": 2205
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 347,
+      "empty_description": 346,
       "hybrid_arabic_latin_description": 3,
       "very_short_event_lt_5m": 1
     },
@@ -24,7 +24,7 @@
       "very_short_event_lt_5m": 7
     },
     "mena-dz": {
-      "empty_description": 83,
+      "empty_description": 97,
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
@@ -33,7 +33,7 @@
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 550
+      "empty_description": 549
     },
     "mena-jo": {
       "empty_description": 56,
@@ -44,26 +44,26 @@
       "very_short_event_lt_5m": 3
     },
     "mena-lb": {
-      "empty_description": 50,
+      "empty_description": 44,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
       "empty_description": 321
     },
     "mena-other": {
-      "empty_description": 7291,
+      "empty_description": 7280,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 7,
-      "very_short_event_lt_5m": 1153
+      "very_short_event_lt_5m": 1151
     },
     "mena-qa": {
-      "empty_description": 641,
+      "empty_description": 642,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1221,
-      "very_short_event_lt_5m": 547
+      "empty_description": 1210,
+      "very_short_event_lt_5m": 543
     },
     "mena-sd": {
       "empty_description": 47
@@ -72,7 +72,7 @@
       "empty_description": 4
     },
     "mena-tn": {
-      "empty_description": 117,
+      "empty_description": 119,
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
@@ -80,7 +80,7 @@
     },
     "provider-adm": {
       "arabic_provider_title_not_arabic": 263,
-      "empty_description": 202,
+      "empty_description": 217,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 19
     },
@@ -90,8 +90,8 @@
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 14,
-      "empty_description": 1050,
-      "very_short_event_lt_5m": 403
+      "empty_description": 1042,
+      "very_short_event_lt_5m": 399
     },
     "provider-bein": {
       "empty_description": 36,
@@ -100,7 +100,7 @@
     },
     "provider-dmi": {
       "arabic_provider_title_not_arabic": 73,
-      "empty_description": 249,
+      "empty_description": 248,
       "very_long_event_gt_6h": 4,
       "very_short_event_lt_5m": 4
     },
@@ -111,12 +111,12 @@
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
-      "very_short_event_lt_5m": 38
+      "very_short_event_lt_5m": 35
     },
     "provider-rotana": {
       "arabic_provider_title_not_arabic": 72,
-      "empty_description": 121,
-      "very_short_event_lt_5m": 19
+      "empty_description": 117,
+      "very_short_event_lt_5m": 16
     },
     "provider-starz": {
       "empty_description": 140,
@@ -1133,21 +1133,21 @@
         "shard": "provider-mbc",
         "channel_id": "EN:.MBC1.Iraq.sa",
         "channel": "EN: MBC Iraq",
-        "start": "20260914150000 +0000",
-        "stop": "20260914154700 +0000",
-        "title": "Awdat Khalati",
-        "desc": "",
-        "duration_minutes": 47.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
         "start": "20260914154700 +0000",
         "stop": "20260914155500 +0000",
         "title": "TV guide is not available",
         "desc": "",
         "duration_minutes": 8.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914155500 +0000",
+        "stop": "20260914163000 +0000",
+        "title": "Al Motawahesh",
+        "desc": "",
+        "duration_minutes": 35.0
       }
     ],
     "premium_title_not_english": [
@@ -1579,36 +1579,6 @@
         "shard": "provider-osn",
         "channel_id": "OSNKids.ae@SD",
         "channel": "OSNtv Kids",
-        "start": "20260914153200 +0000",
-        "stop": "20260914153500 +0000",
-        "title": "Duplo Adventures",
-        "desc": "ينقسم بيب وليو إلى فرق لبناء شيء ما، لكنهما يقرران توحيد جهودهما لجعل الأمر أكثر متعة.",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914153500 +0000",
-        "stop": "20260914153800 +0000",
-        "title": "Duplo Adventures",
-        "desc": "يجد ليو وبيب وهوبسي خريطة مذهلة تحمل وجهة غامضة. هل يمكنهم العثور عليها؟",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914153800 +0000",
-        "stop": "20260914154000 +0000",
-        "title": "Duplo Adventures",
-        "desc": "بيب، ليو و هوبسي يزورون راي في مكان مربي النحل ليتعلموا عن النحل!",
-        "duration_minutes": 2.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
         "start": "20260914173900 +0000",
         "stop": "20260914174300 +0000",
         "title": "Barbie Summer Adventure",
@@ -1959,9 +1929,9 @@
         "shard": "provider-rotana",
         "channel_id": "RotanaClip.sa@SD",
         "channel": "روتانا كليب",
-        "start": "20260914153300 +0000",
-        "stop": "20260914153700 +0000",
-        "title": "نقول ايه",
+        "start": "20260914155000 +0000",
+        "stop": "20260914155400 +0000",
+        "title": "حالي اتلغبط",
         "desc": "",
         "duration_minutes": 4.0
       },
@@ -1969,9 +1939,39 @@
         "shard": "provider-rotana",
         "channel_id": "RotanaClip.sa@SD",
         "channel": "روتانا كليب",
-        "start": "20260914153700 +0000",
-        "stop": "20260914154100 +0000",
-        "title": "غمرني",
+        "start": "20260914155400 +0000",
+        "stop": "20260914155700 +0000",
+        "title": "يا حظي",
+        "desc": "",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-rotana",
+        "channel_id": "RotanaClip.sa@SD",
+        "channel": "روتانا كليب",
+        "start": "20260914160300 +0000",
+        "stop": "20260914160600 +0000",
+        "title": "دوا دوا",
+        "desc": "",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-rotana",
+        "channel_id": "RotanaClip.sa@SD",
+        "channel": "روتانا كليب",
+        "start": "20260914161200 +0000",
+        "stop": "20260914161500 +0000",
+        "title": "قلبي على قلبو",
+        "desc": "",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-rotana",
+        "channel_id": "RotanaClip.sa@SD",
+        "channel": "روتانا كليب",
+        "start": "20260914162100 +0000",
+        "stop": "20260914162500 +0000",
+        "title": "لعبه الايام",
         "desc": "",
         "duration_minutes": 4.0
       }
@@ -2042,10 +2042,10 @@
     ]
   },
   "all_id_release_gate": {
-    "channels": 639,
-    "programmes": 29574,
+    "channels": 640,
+    "programmes": 29575,
     "PASS": 155,
-    "REVIEW": 484,
+    "REVIEW": 485,
     "NO_EPG": 0,
     "FAIL": 0,
     "auto_lock_safe": 155,

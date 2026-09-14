@@ -12,3 +12,29 @@ title AR=0% EN=0% | desc AR=0%
 shard=mena-eg id=<missing> events=0 status=MISSING_ID
 title AR=0% EN=0% | desc AR=0%
 
+DISNEY + NATIONAL GEOGRAPHIC FROZEN FAMILY GATE
+
+[PASS_FROZEN] mena-other/Disney Channel.sa
+  events=99 coverage=36.5h gaps>2h=0 overlaps=0 invalid=0 title_AR=100% desc_AR=100% empty_desc=0
+  issues=NONE
+[PASS_FROZEN] mena-other/Disney Junior.sa
+  events=149 coverage=36.7h gaps>2h=0 overlaps=0 invalid=0 title_AR=100% desc_AR=100% empty_desc=0
+  issues=NONE
+[PASS_FROZEN] mena-other/Nat. Geo. AD.sa
+  events=48 coverage=37.0h gaps>2h=0 overlaps=0 invalid=0 title_AR=100% desc_AR=100% empty_desc=0
+  issues=NONE
+[PASS_FROZEN] mena-other/Nat. Geo. Wild HD.sa
+  events=52 coverage=37.5h gaps>2h=0 overlaps=0 invalid=0 title_AR=100% desc_AR=100% empty_desc=0
+  issues=NONE
+[PASS_FROZEN] mena-other/Nat. Geographic.sa
+  events=49 coverage=37.0h gaps>2h=0 overlaps=0 invalid=0 title_AR=100% desc_AR=100% empty_desc=0
+  issues=NONE
+
+[QUARANTINE_REVIEW] mena-other/Nat geo hd.qa
+  issues=GAPS_GT_2H=2/TOTAL=6.0h, EMPTY_DESC=33, DESC_AR_LOW=0%
+[QUARANTINE_REVIEW] mena-other/NationalGeographicMiddleEast.uk@SD
+  issues=LOW_COVERAGE=1.5h, EMPTY_DESC=2, DESC_AR_LOW=0%
+[QUARANTINE_REVIEW] provider-adm/Nat.Geo.Abu.Dhabi.HD.ae
+  issues=EMPTY_DESC=66, TITLE_AR_LOW=0%, DESC_AR_LOW=0%
+
+frozen_family_gate=PASS
