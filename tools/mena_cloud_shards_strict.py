@@ -13,8 +13,14 @@ pruned merely because the guide is a placeholder between events. The integrity
 guard now preserves those event feeds before this shard layer, and this layer
 restores their untouched source timeline after beIN metadata repair as a second
 safety net.
+
+beIN SPORTS NEWS is Arabic-first for all receiver-facing provider IDs, including
+legacy source IDs that only appear during provider sharding. Only known recurring
+editorial labels are translated; unknown labels remain untouched.
 """
 from __future__ import annotations
+
+import re
 
 import mena_cloud_shards_safe as safe
 import bein_provider_repair as bein_repair
@@ -71,6 +77,27 @@ BEIN_NON_RECOMMENDED_IDS = {
     "bein.com-08.qa",
 }
 
+_NEWS_EXACT_TITLES = {
+    "al hassila": "الحصيلة",
+    "the issue of the day": "الشوط الثالث",
+    "news bulletin": "نشرة الأخبار",
+    "special interview": "مقابلة خاصة",
+    "super monday": "سوبر الإثنين",
+    "al hassad": "الحصاد",
+    "the big interview": "المقابلة الكبرى",
+    "sports news": "الأخبار الرياضية",
+    "football news": "أخبار كرة القدم",
+    "news summary": "موجز الأخبار",
+    "breaking news": "أخبار عاجلة",
+    "morning news": "أخبار الصباح",
+    "evening news": "أخبار المساء",
+    "world news": "أخبار العالم",
+    "international news": "الأخبار الدولية",
+    "press conference": "مؤتمر صحفي",
+    "sports today": "رياضة اليوم",
+}
+_NEWS_DATE_SUFFIX_RE = re.compile(r"\s*[-–—|]\s*(\d{1,2}/\d{1,2}/\d{2,4})\s*$")
+
 
 def strict_provider_group(cid, name, meta):
     raw = "%s %s %s" % (cid or "", name or "", (meta or {}).get("name") or "")
@@ -104,12 +131,64 @@ def _is_bein_event_source(cid):
     return "xtra" in low or "max" in low
 
 
+def _is_bein_news_source(cid):
+    low = (cid or "").casefold()
+    return "news" in low and "bein" in low
+
+
+def _translate_known_news_title(title):
+    original = re.sub(r"\s+", " ", title or "").strip()
+    if not original:
+        return original
+
+    suffix = ""
+    m = _NEWS_DATE_SUFFIX_RE.search(original)
+    if m:
+        suffix = " - " + m.group(1)
+        core = original[:m.start()].strip()
+    else:
+        core = original
+
+    # Already-Arabic normalized labels stay stable on repeated rebuilds.
+    for arabic in _NEWS_EXACT_TITLES.values():
+        if arabic in core:
+            return arabic + suffix
+
+    # Strip Arabic portions only for lookup so Qatar1-style hybrid forms such as
+    # "News Bulletin - نشرة الأخبار" collapse to the same Arabic display label.
+    latin_core = re.sub(r"[\u0600-\u06ff]+", " ", core)
+    norm = re.sub(r"[^a-z0-9]+", " ", latin_core.casefold()).strip()
+    return _NEWS_EXACT_TITLES.get(norm, original) + (suffix if norm in _NEWS_EXACT_TITLES else "")
+
+
+def _translate_bein_news_sources(ids_set, programmes):
+    changed = 0
+    for cid in ids_set:
+        if not _is_bein_news_source(cid) or not programmes.get(cid):
+            continue
+        copied = []
+        for programme in programmes.get(cid, []):
+            cp = safe.base.copy_element(programme)
+            title = cp.find("title")
+            if title is not None:
+                old = (title.text or "").strip()
+                new = _translate_known_news_title(old)
+                if new and new != old:
+                    title.text = new
+                    title.set("lang", "ar")
+                    changed += 1
+            copied.append(cp)
+        programmes[cid] = copied
+    return changed
+
+
 def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
     ids_set = set(ids)
     compat_applied = {}
     repair_report = None
     shard_programmes = programmes
     event_sources_preserved = []
+    news_titles_translated = 0
 
     if stem == "provider-bein":
         # Work on copies. Repairs are metadata/schedule corrections limited to the
@@ -151,6 +230,11 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
                 count = _copy_programmes_to_alias(alias, canonical, shard_programmes)
                 compat_applied[alias] = {"canonical": canonical, "programmes": count}
 
+        # Some legacy/source NEWS IDs are not compatibility copies because their
+        # source timeline is retained independently. Apply the same deterministic
+        # Arabic exact-label policy to every receiver-facing beIN NEWS ID here.
+        news_titles_translated = _translate_bein_news_sources(ids_set, shard_programmes)
+
     result = _original_write_shard(out_dir, stem, ids_set, channels, shard_programmes, label)
 
     if stem == "provider-bein":
@@ -164,16 +248,19 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
         result["event_source_policy"] = "MAX/XTRA source timelines preserved; generic/off-event rows are not pruned"
         result["event_sources_preserved"] = sorted(event_sources_preserved, key=str.casefold)
         result["event_source_count"] = len(event_sources_preserved)
+        result["news_title_policy"] = "known beIN SPORTS NEWS editorial labels rendered Arabic-first; unknown labels preserved"
+        result["news_titles_translated"] = news_titles_translated
         result["repair"] = (repair_report or {}).get("summary", {})
         result["repair_long_events"] = (repair_report or {}).get("long_event_repairs", [])
         print(
-            "beIN repair: ArabicDesc=%d replayTitle=%d long=%d genericXTRA=%d; eventSourcesPreserved=%d aliases=%d" % (
+            "beIN repair: ArabicDesc=%d replayTitle=%d long=%d genericXTRA=%d; eventSourcesPreserved=%d aliases=%d newsArabic=%d" % (
                 result["repair"].get("arabic_desc_fills", 0),
                 result["repair"].get("known_replay_title_fixes", 0),
                 result["repair"].get("long_event_repairs", 0),
                 result["repair"].get("generic_xtra_removed", 0),
                 len(event_sources_preserved),
                 len(compat_applied),
+                news_titles_translated,
             )
         )
 
