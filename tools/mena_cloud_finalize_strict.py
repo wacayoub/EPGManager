@@ -102,7 +102,7 @@ def _alkass_desc(title):
 
 _BAD_ALKASS_RE = re.compile(
     r"hollywood weapons|wildlife heroes|farming the wild|backcountry rescue|"
-    r"nordic wild hunter|dropped[_ ]|survival mode|american icons",
+    r"nordic wild hunter|dropped[_ ]|survival mode|american icons|dead meat",
     re.I,
 )
 
@@ -212,10 +212,12 @@ def strict_clean_channel_rows(cid, name, rows):
 
     if _is_alkass(cid, name) and cleaned:
         titles = [safe._text(p, "title") for p in cleaned if safe._text(p, "title")]
-        ar = sum(1 for t in titles if safe._lang(t) == "ar")
         bad_signature = sum(1 for t in titles if _BAD_ALKASS_RE.search(t or ""))
-        ar_ratio = (ar / float(len(titles))) if titles else 0.0
-        if bad_signature >= 2 or (len(titles) >= 5 and ar_ratio < 0.50):
+        # Language alone is not an integrity failure. OpenEPG qatar3 currently
+        # has valid distinct Al Kass timelines in English for channels where the
+        # Arabic feed is corrupt/missing. Reject only content signatures that are
+        # demonstrably from another channel, then keep English as safe fallback.
+        if bad_signature >= 2:
             return []
 
         for p in cleaned:
