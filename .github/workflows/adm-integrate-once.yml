@@ -29,7 +29,7 @@ jobs:
           python -m py_compile tools/adm_identity_policy.py tools/adm_id_audit_policy.py tools/adm_final_regression.py
           python tools/adm_identity_policy.py
 
-      - name: Apply guarded integration patch
+      - name: Apply guarded identity integration patch
         shell: bash
         run: |
           set -euo pipefail
@@ -61,41 +61,9 @@ jobs:
                   '"yas tv", "majid", "national geographic abu dhabi", "al emarat")\n            or any(x.startswith(("abudhabi", "adsports", "yassports", "yastv", "majid")) for x in tokens)):',
                   '"yas tv", "majid", "national geographic abu dhabi", "al emarat", "baynounah")\n            or any(x.startswith(("abudhabi", "adsports", "yassports", "yastv", "majid", "baynounah")) for x in tokens)):',
               )
-
-          workflow = Path('.github/workflows/mena-epg.yml')
-          wtext = workflow.read_text(encoding='utf-8')
-          if 'tools/adm_identity_policy.py' not in wtext:
-              replace_once(
-                  workflow,
-                  '      - "tools/mbc_gap_repair.py"\n',
-                  '      - "tools/mbc_gap_repair.py"\n      - "tools/adm_identity_policy.py"\n      - "tools/adm_id_audit_policy.py"\n      - "tools/adm_final_regression.py"\n',
-              )
-              replace_once(
-                  workflow,
-                  '            tools/mbc_gap_repair.py\n',
-                  '            tools/mbc_gap_repair.py \\\n            tools/adm_identity_policy.py \\\n            tools/adm_id_audit_policy.py \\\n            tools/adm_final_regression.py\n',
-              )
-
-          wtext = workflow.read_text(encoding='utf-8')
-          if 'Audit Abu Dhabi Media canonical receiver policy' not in wtext:
-              replace_once(
-                  workflow,
-                  '      - name: Publish atomically to mena-data\n',
-                  '''      - name: Audit Abu Dhabi Media canonical receiver policy\n        if: steps.gate.outputs.run == 'true'\n        shell: bash\n        run: |\n          set -euo pipefail\n          python tools/adm_id_audit_policy.py \\\n            --xml output/final/provider-adm.xml.gz \\\n            --json output/final/adm-id-audit-policy.json \\\n            --text output/final/adm-id-audit-policy.txt\n\n      - name: Run final Abu Dhabi Media regression gate\n        if: steps.gate.outputs.run == 'true'\n        shell: bash\n        run: |\n          set -euo pipefail\n          python tools/adm_final_regression.py \\\n            --audit-json output/final/adm-id-audit-policy.json \\\n            --text output/final/adm-final-regression.txt\n\n      - name: Publish atomically to mena-data\n''',
-              )
-              replace_once(
-                  workflow,
-                  '          cp ../output/final/osn-bilingual-enrichment.json .\n',
-                  '          cp ../output/final/osn-bilingual-enrichment.json .\n          cp ../output/final/adm-id-audit-policy.json .\n',
-              )
-              replace_once(
-                  workflow,
-                  'osn-bilingual-enrichment.json catalog.json merge-report.json README.md\n',
-                  'osn-bilingual-enrichment.json adm-id-audit-policy.json catalog.json merge-report.json README.md\n',
-              )
           PY
 
-      - name: Compile patched pipeline and verify integration anchors
+      - name: Compile patched production code
         shell: bash
         run: |
           set -euo pipefail
@@ -109,19 +77,18 @@ jobs:
             tools/adm_final_regression.py
           python tools/adm_identity_policy.py
           grep -q 'adm_identity.install(base)' tools/mena_cloud_merge_arabic_first.py
-          grep -q 'Audit Abu Dhabi Media canonical receiver policy' .github/workflows/mena-epg.yml
           grep -q 'baynounah' tools/mena_cloud_shards_safe.py
 
-      - name: Commit integration only after checks pass
+      - name: Commit only non-workflow production code
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "EPGManager Cloud"
           git config user.email "actions@users.noreply.github.com"
-          git add tools/mena_cloud_merge_arabic_first.py tools/mena_cloud_shards_safe.py .github/workflows/mena-epg.yml
+          git add tools/mena_cloud_merge_arabic_first.py tools/mena_cloud_shards_safe.py
           if git diff --cached --quiet; then
-            echo "ADM integration already present."
+            echo "ADM identity integration already present."
             exit 0
           fi
-          git commit -m "Wire canonical Abu Dhabi Media provider policy"
+          git commit -m "Wire canonical Abu Dhabi Media receiver identities"
           git push origin HEAD:main
