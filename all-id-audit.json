@@ -2,10 +2,10 @@
   "schema": 3,
   "mode": "virtual-epgmanager-all-id-programme-audit",
   "summary": {
-    "channels": 622,
-    "programmes": 32341,
+    "channels": 620,
+    "programmes": 32239,
     "PASS": 162,
-    "REVIEW": 460,
+    "REVIEW": 458,
     "NO_EPG": 0,
     "FAIL": 0,
     "auto_lock_safe": 162,
@@ -17,30 +17,29 @@
     "ARABIC_PROVIDER_TITLE_AR_LOW": 19,
     "LONG_GT_6H": 15,
     "GAPS_GT_2H": 28,
-    "DUPLICATE_TIMELINE_GROUP": 49,
+    "DUPLICATE_TIMELINE_GROUP": 45,
     "DUPLICATE_TIMELINE_UNRELATED": 20,
-    "EMPTY_DESC": 329,
+    "EMPTY_DESC": 326,
     "PREMIUM_AR_DESC_LOW": 15,
     "PREMIUM_TITLE_LATIN_LOW": 6,
-    "GENERIC_GUIDE": 7,
+    "GENERIC_GUIDE": 1,
     "REPEATED_TITLE": 80,
-    "LOW_TITLE_DIVERSITY": 167,
+    "LOW_TITLE_DIVERSITY": 169,
     "SHORT_LT_2M": 11,
-    "FOREIGN_FEED_ID": 78,
-    "PLACEHOLDER": 6,
+    "FOREIGN_FEED_ID": 72,
     "SPARSE_COVERAGE": 5
   },
   "by_shard": {
     "mena-ae": {
       "REVIEW": 20,
       "channels": 21,
-      "programmes": 1176,
+      "programmes": 1172,
       "PASS": 1
     },
     "mena-bh": {
       "REVIEW": 1,
       "channels": 2,
-      "programmes": 127,
+      "programmes": 126,
       "PASS": 1
     },
     "mena-dz": {
@@ -49,9 +48,9 @@
       "programmes": 47
     },
     "mena-eg": {
-      "REVIEW": 58,
-      "channels": 63,
-      "programmes": 2237,
+      "REVIEW": 57,
+      "channels": 62,
+      "programmes": 2206,
       "PASS": 5
     },
     "mena-iq": {
@@ -60,15 +59,15 @@
       "programmes": 660
     },
     "mena-jo": {
-      "REVIEW": 9,
-      "channels": 10,
-      "programmes": 575,
+      "REVIEW": 8,
+      "channels": 9,
+      "programmes": 542,
       "PASS": 1
     },
     "mena-kw": {
-      "REVIEW": 5,
-      "channels": 5,
-      "programmes": 305
+      "REVIEW": 3,
+      "channels": 3,
+      "programmes": 241
     },
     "mena-lb": {
       "REVIEW": 7,
@@ -78,31 +77,26 @@
     "mena-om": {
       "REVIEW": 11,
       "channels": 12,
-      "programmes": 679,
+      "programmes": 677,
       "PASS": 1
     },
     "mena-other": {
-      "REVIEW": 189,
-      "channels": 257,
-      "programmes": 15069,
+      "REVIEW": 192,
+      "channels": 260,
+      "programmes": 15162,
       "PASS": 68
-    },
-    "mena-ps": {
-      "REVIEW": 1,
-      "channels": 1,
-      "programmes": 32
     },
     "mena-qa": {
       "REVIEW": 16,
       "channels": 17,
-      "programmes": 804,
+      "programmes": 805,
       "PASS": 1
     },
     "mena-sa": {
       "PASS": 10,
-      "channels": 32,
-      "programmes": 2395,
-      "REVIEW": 22
+      "channels": 31,
+      "programmes": 2358,
+      "REVIEW": 21
     },
     "mena-sd": {
       "REVIEW": 1,
@@ -127,7 +121,7 @@
     "provider-adm": {
       "REVIEW": 9,
       "channels": 13,
-      "programmes": 765,
+      "programmes": 763,
       "PASS": 4
     },
     "provider-alkass": {
@@ -139,42 +133,42 @@
     "provider-art": {
       "REVIEW": 8,
       "channels": 8,
-      "programmes": 1208
+      "programmes": 1204
     },
     "provider-bein": {
       "REVIEW": 25,
       "channels": 39,
-      "programmes": 918,
+      "programmes": 912,
       "PASS": 14
     },
     "provider-dmi": {
       "PASS": 5,
       "channels": 13,
-      "programmes": 546,
+      "programmes": 505,
       "REVIEW": 8
     },
     "provider-mbc": {
-      "REVIEW": 14,
-      "channels": 37,
-      "programmes": 1806,
+      "REVIEW": 15,
+      "channels": 38,
+      "programmes": 1877,
       "PASS": 23
     },
     "provider-osn": {
       "REVIEW": 10,
       "channels": 22,
-      "programmes": 1236,
+      "programmes": 1231,
       "PASS": 12
     },
     "provider-rotana": {
       "PASS": 15,
       "channels": 23,
-      "programmes": 916,
+      "programmes": 912,
       "REVIEW": 8
     },
     "provider-starz": {
       "REVIEW": 5,
       "channels": 5,
-      "programmes": 194
+      "programmes": 193
     }
   },
   "channels": [
@@ -1129,9 +1123,9 @@
       "name": "BEIN MOVIES PREMIERE.eg",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 25,
-      "coverage_hours": 46.27,
-      "span_hours": 46.27,
+      "events": 24,
+      "coverage_hours": 44.5,
+      "span_hours": 44.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1140,7 +1134,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 25,
+      "empty_desc": 24,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -1149,19 +1143,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 8.0,
-      "unique_title_pct": 72.0,
+      "top_title_pct": 8.3,
+      "unique_title_pct": 75.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914082900 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "Adulthood",
-          "desc": ""
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914120000 +0000",
@@ -1179,13 +1167,19 @@
           "stop": "20260914161500 +0000",
           "title": "Adulthood",
           "desc": ""
+        },
+        {
+          "start": "20260914161500 +0000",
+          "stop": "20260914180000 +0000",
+          "title": "You Gotta Believe",
+          "desc": ""
         }
       ],
       "shard": "provider-bein",
       "feed_country": "eg",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=25(100%)",
+        "EMPTY_DESC=24(100%)",
         "PREMIUM_AR_DESC_LOW=0%"
       ],
       "score": 84,
@@ -1398,9 +1392,9 @@
       "name": "beIN SPORTS EN 1.qa",
       "family": "beIN SPORTS EN 1.qa",
       "kind": "other",
-      "events": 39,
-      "coverage_hours": 44.17,
-      "span_hours": 44.17,
+      "events": 38,
+      "coverage_hours": 41.17,
+      "span_hours": 41.17,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1413,24 +1407,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 76.9,
+      "title_has_ar_pct": 76.3,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 76.9,
+      "title_hybrid_pct": 76.3,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 10.3,
-      "unique_title_pct": 66.7,
+      "top_title_pct": 10.5,
+      "unique_title_pct": 68.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914072000 +0000",
-          "stop": "20260914102000 +0000",
-          "title": "Manchester United vs Manchester City - الدوري الإنجليزي الممتاز",
-          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، الجولة 4، موسم 2026/2027."
-        },
         {
           "start": "20260914102000 +0000",
           "stop": "20260914123000 +0000",
@@ -1448,6 +1436,12 @@
           "stop": "20260914133500 +0000",
           "title": "EN EPL Stories - قصص الدوري الإنجليزي الممتاز 2026/27 | E15 - Amad Diallo",
           "desc": "برنامج رياضي يستعرض قصصاً وشخصيات بارزة من الدوري الإنجليزي الممتاز، موسم 2026، الحلقة 15."
+        },
+        {
+          "start": "20260914133500 +0000",
+          "stop": "20260914155000 +0000",
+          "title": "PFC Neftchi (UZB) vs Air Force (IRQ) - دوري أبطال آسيا للنخبة",
+          "desc": "مباراة ضمن منافسات دوري أبطال آسيا للنخبة، الجولة 1، موسم 2026/2027."
         }
       ],
       "shard": "provider-bein",
@@ -1723,9 +1717,9 @@
       "name": "beIN SPORTS.qa",
       "family": "beIN SPORTS.qa",
       "kind": "other",
-      "events": 20,
-      "coverage_hours": 42.0,
-      "span_hours": 42.0,
+      "events": 19,
+      "coverage_hours": 41.42,
+      "span_hours": 41.42,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1743,19 +1737,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 15.0,
-      "unique_title_pct": 70.0,
+      "top_title_pct": 15.8,
+      "unique_title_pct": 68.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914094500 +0000",
-          "stop": "20260914102000 +0000",
-          "title": "Asian Sports Discipline",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914102000 +0000",
           "stop": "20260914123500 +0000",
@@ -1772,6 +1760,12 @@
           "start": "20260914130000 +0000",
           "stop": "20260914150000 +0000",
           "title": "Bahrain vs Kazakhstan - Basketball Men - Asian Games Aichi-Nagoya 2026 -BKB05",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914150000 +0000",
+          "stop": "20260914170000 +0000",
+          "title": "China vs Philippines - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB06",
           "desc": "مباراة، موسم 2026."
         }
       ],
@@ -2260,9 +2254,9 @@
       "name": "beINMOVIES1",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 18,
-      "coverage_hours": 35.02,
-      "span_hours": 35.02,
+      "events": 17,
+      "coverage_hours": 33.25,
+      "span_hours": 33.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2271,7 +2265,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 18,
+      "empty_desc": 17,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -2280,19 +2274,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 11.1,
-      "unique_title_pct": 77.8,
+      "top_title_pct": 11.8,
+      "unique_title_pct": 82.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914082900 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "البلوغ",
-          "desc": ""
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914120000 +0000",
@@ -2310,13 +2298,19 @@
           "stop": "20260914161500 +0000",
           "title": "البلوغ",
           "desc": ""
+        },
+        {
+          "start": "20260914161500 +0000",
+          "stop": "20260914180000 +0000",
+          "title": "تشبث بإيمانك!",
+          "desc": ""
         }
       ],
       "shard": "provider-bein",
       "feed_country": "qa",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=18(100%)",
+        "EMPTY_DESC=17(100%)",
         "PREMIUM_TITLE_LATIN_LOW=0%",
         "PREMIUM_AR_DESC_LOW=0%"
       ],
@@ -2669,9 +2663,9 @@
       "name": "beINSPORTS2",
       "family": "beIN Sports 2 AR/MENA",
       "kind": "sports_ar",
-      "events": 22,
-      "coverage_hours": 45.25,
-      "span_hours": 45.25,
+      "events": 21,
+      "coverage_hours": 44.67,
+      "span_hours": 44.67,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2684,24 +2678,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 86.4,
+      "title_has_ar_pct": 85.7,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 86.4,
+      "title_hybrid_pct": 85.7,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.6,
-      "unique_title_pct": 72.7,
+      "top_title_pct": 14.3,
+      "unique_title_pct": 76.2,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914094500 +0000",
-          "stop": "20260914102000 +0000",
-          "title": "Live : rpool vs Fulham - الدوري الإنجليزي الممتاز",
-          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، الجولة 4، موسم 2026/2027."
-        },
         {
           "start": "20260914102000 +0000",
           "stop": "20260914124500 +0000",
@@ -2718,6 +2706,12 @@
           "start": "20260914133500 +0000",
           "stop": "20260914155000 +0000",
           "title": "PFC Neftchi (UZB) vs Air Force (IRQ) - دوري أبطال آسيا للنخبة",
+          "desc": "مباراة ضمن منافسات دوري أبطال آسيا للنخبة، الجولة 1، موسم 2026/2027."
+        },
+        {
+          "start": "20260914155000 +0000",
+          "stop": "20260914180000 +0000",
+          "title": "Shabab Al Ahli (UAE) vs Tractor (IRN) - دوري أبطال آسيا للنخبة",
           "desc": "مباراة ضمن منافسات دوري أبطال آسيا للنخبة، الجولة 1، موسم 2026/2027."
         }
       ],
@@ -2736,9 +2730,9 @@
       "name": "beINSPORTS3",
       "family": "beIN Sports 3 AR/MENA",
       "kind": "sports_ar",
-      "events": 25,
-      "coverage_hours": 44.48,
-      "span_hours": 44.48,
+      "events": 24,
+      "coverage_hours": 42.65,
+      "span_hours": 42.65,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2751,24 +2745,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 96.0,
+      "title_has_ar_pct": 95.8,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 96.0,
+      "title_hybrid_pct": 95.8,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 16.0,
-      "unique_title_pct": 52.0,
+      "top_title_pct": 16.7,
+      "unique_title_pct": 54.2,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914083100 +0000",
-          "stop": "20260914102100 +0000",
-          "title": "Getafe vs Deportivo La Coruna - الدوري الإسباني",
-          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
-        },
         {
           "start": "20260914102100 +0000",
           "stop": "20260914121500 +0000",
@@ -2786,6 +2774,12 @@
           "stop": "20260914160000 +0000",
           "title": "West Ham Utd vs Wrexham -دوري البطولة الإنجليزية",
           "desc": "مباراة ضمن منافسات دوري البطولة الإنجليزية، موسم 2026/2027."
+        },
+        {
+          "start": "20260914160000 +0000",
+          "stop": "20260914180500 +0000",
+          "title": "Celta Vigo vs Malaga - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
         }
       ],
       "shard": "provider-bein",
@@ -3599,9 +3593,9 @@
       "name": "OSNtv Kids",
       "family": "OSNtv Kids",
       "kind": "other",
-      "events": 191,
-      "coverage_hours": 38.1,
-      "span_hours": 38.1,
+      "events": 189,
+      "coverage_hours": 37.83,
+      "span_hours": 37.83,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -3619,25 +3613,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 12.6,
-      "unique_title_pct": 15.7,
+      "top_title_pct": 12.7,
+      "unique_title_pct": 15.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100300 +0000",
-          "stop": "20260914101100 +0000",
-          "title": "Bing",
-          "desc": "بينغ وهوبتي يلعبان مع الخس المتكلم على هاتف فلاب. ولكن لا ينبغي استخدام الهاتف للطيران!"
-        },
-        {
-          "start": "20260914101100 +0000",
-          "stop": "20260914101900 +0000",
-          "title": "Bing",
-          "desc": "بينغ وأصدقاؤه يقيمون عرضاً في الحديقة! بينغ يغني أغنية \"رينيبوا\" في الختام!"
-        },
         {
           "start": "20260914101900 +0000",
           "stop": "20260914102700 +0000",
@@ -3649,6 +3631,18 @@
           "stop": "20260914105000 +0000",
           "title": "The Croods: Family Tree S2",
           "desc": "بسبب انزعاجه من عدم قدرته على تربية لحيته، يلجأ غروغ إلى بعض الأساليب غير التقليدية لنمو الشعر."
+        },
+        {
+          "start": "20260914105000 +0000",
+          "stop": "20260914110300 +0000",
+          "title": "The Pingu Show",
+          "desc": "بينغو وبينغو يلعبان دور سوبرمان، لكن بينغا تريد أن تلعب دور الأميرات. عندما يرى بينغو رسالة على الطاولة يريد قراءتها، يخفيها!"
+        },
+        {
+          "start": "20260914110300 +0000",
+          "stop": "20260914111400 +0000",
+          "title": "LEGO City Adventures",
+          "desc": "يروي راوي خارج الشاشة يومًا في حياة الحرفي المساعد، هارل هوبس."
         }
       ],
       "shard": "provider-osn",
@@ -4261,9 +4255,9 @@
       "name": "OSNtv Movies Family.sa",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 32,
-      "coverage_hours": 45.0,
-      "span_hours": 45.0,
+      "events": 31,
+      "coverage_hours": 43.33,
+      "span_hours": 43.33,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -4281,19 +4275,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 12.5,
-      "unique_title_pct": 50.0,
+      "top_title_pct": 12.9,
+      "unique_title_pct": 48.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914084000 +0000",
-          "stop": "20260914102000 +0000",
-          "title": "The Lego Movie",
-          "desc": "ذا ليغو موفي"
-        },
         {
           "start": "20260914102000 +0000",
           "stop": "20260914120500 +0000",
@@ -4311,6 +4299,12 @@
           "stop": "20260914150000 +0000",
           "title": "Megamind",
           "desc": "ميغامايند"
+        },
+        {
+          "start": "20260914150000 +0000",
+          "stop": "20260914162500 +0000",
+          "title": "Dr. Seuss' The Grinch",
+          "desc": "دكتور سوس ذا غرينش"
         }
       ],
       "shard": "provider-osn",
@@ -4391,9 +4385,9 @@
       "name": "OSNtv Now.sa",
       "family": "OSNtv Now.sa",
       "kind": "other",
-      "events": 55,
-      "coverage_hours": 42.5,
-      "span_hours": 42.5,
+      "events": 54,
+      "coverage_hours": 42.25,
+      "span_hours": 42.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -4411,19 +4405,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 10.9,
-      "unique_title_pct": 27.3,
+      "top_title_pct": 11.1,
+      "unique_title_pct": 27.8,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "Red Bull Driftbrothers",
-          "desc": "دريفت براذرز"
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914111000 +0000",
@@ -4441,6 +4429,12 @@
           "stop": "20260914124500 +0000",
           "title": "CryptoKnights",
           "desc": "كريبتونايتس"
+        },
+        {
+          "start": "20260914124500 +0000",
+          "stop": "20260914134000 +0000",
+          "title": "John From Cincinnati",
+          "desc": "جون فروم سينسيناتي"
         }
       ],
       "shard": "provider-osn",
@@ -4521,9 +4515,9 @@
       "name": "OSNtv Pop Up.sa",
       "family": "OSNtv Pop Up.sa",
       "kind": "other",
-      "events": 215,
-      "coverage_hours": 42.33,
-      "span_hours": 42.33,
+      "events": 214,
+      "coverage_hours": 42.13,
+      "span_hours": 42.13,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -4541,19 +4535,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 78.1,
+      "top_title_pct": 78.0,
       "unique_title_pct": 0.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100600 +0000",
-          "stop": "20260914101800 +0000",
-          "title": "The Amazing World Of Gumball",
-          "desc": "ذا أميزينج وورلد أوف جامبول - عالم غامبول المُدهش"
-        },
         {
           "start": "20260914101800 +0000",
           "stop": "20260914103000 +0000",
@@ -4569,6 +4557,12 @@
         {
           "start": "20260914104200 +0000",
           "stop": "20260914105400 +0000",
+          "title": "The Amazing World Of Gumball",
+          "desc": "ذا أميزينج وورلد أوف جامبول - عالم غامبول المُدهش"
+        },
+        {
+          "start": "20260914105400 +0000",
+          "stop": "20260914110600 +0000",
           "title": "The Amazing World Of Gumball",
           "desc": "ذا أميزينج وورلد أوف جامبول - عالم غامبول المُدهش"
         }
@@ -4908,6 +4902,73 @@
       "issues": [],
       "warnings": [
         "LOW_TITLE_DIVERSITY=17%"
+      ],
+      "score": 92,
+      "verdict": "REVIEW",
+      "auto_lock_safe": false
+    },
+    {
+      "id": "Al Arabiya.sa",
+      "name": "Al Arabiya.sa",
+      "family": "Al Arabiya.sa",
+      "kind": "other",
+      "events": 73,
+      "coverage_hours": 45.92,
+      "span_hours": 45.92,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 7,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 2.7,
+      "title_hybrid_pct": 2.7,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 46.6,
+      "unique_title_pct": 20.5,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914103000 +0000",
+          "title": "أخبار العربية",
+          "desc": "تغطية مباشرة للأخبار المحلية والعالمية مع التركيز على التطورات في العالم، وصولاً إلى عرض دقيق وتحليلات معمقة تهم المشاهدين."
+        },
+        {
+          "start": "20260914103000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "غداء عمل",
+          "desc": "يحلل الأخبار الاقتصادية ويقدم صورة موجزة لتداولات الأسواق الخليجية والعربية والعالمية خلال اليوم."
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914113000 +0000",
+          "title": "أخبار العربية",
+          "desc": "تغطية مباشرة للأخبار المحلية والعالمية مع التركيز على التطورات في العالم، وصولاً إلى عرض دقيق وتحليلات معمقة تهم المشاهدين."
+        },
+        {
+          "start": "20260914113000 +0000",
+          "stop": "20260914123000 +0000",
+          "title": "جرس الإغلاق",
+          "desc": "ملخص تنفيذي يومي لكل المهتمين بعالم المال والأعمال من متابعي الأخبار الاقتصادية ورجال الأعمال والمستثمرين الأفراد المتابعين لحركة الأسواق، بالإضافة إلى نظرة تفصيلية وتحليل يومي للم"
+        }
+      ],
+      "shard": "provider-mbc",
+      "feed_country": "sa",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=7(10%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -6113,9 +6174,9 @@
       "name": "MBC 3",
       "family": "MBC 3",
       "kind": "other",
-      "events": 123,
-      "coverage_hours": 37.52,
-      "span_hours": 38.0,
+      "events": 122,
+      "coverage_hours": 37.28,
+      "span_hours": 37.77,
       "gaps_gt_2h": 0,
       "gap_hours": 0.48,
       "invalid": 0,
@@ -6129,23 +6190,17 @@
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 18.7,
-      "title_hybrid_pct": 18.7,
+      "title_has_latin_pct": 18.9,
+      "title_hybrid_pct": 18.9,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 9.8,
-      "unique_title_pct": 21.1,
+      "unique_title_pct": 21.3,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914101400 +0000",
-          "title": "هانغري براين",
-          "desc": "الحلقة 28\n‫م2 ، ح28 : ‫مجموعة شاملة ومتنوعة من الفقرات الممتعة والمليئة بمعلومات وحقائق قيمة التي تغطي عدة مواضيع مثل التاريخ والعلوم والرياضة والحيوانات وغير ذلك الكثير.‬‬"
-        },
         {
           "start": "20260914101400 +0000",
           "stop": "20260914103000 +0000",
@@ -6163,6 +6218,12 @@
           "stop": "20260914111500 +0000",
           "title": "كوكونت: التنين الصغير",
           "desc": "انضموا إلى التنين الصغير كوكونت وأصدقائه الطريفين في مغامرات نارية! من توحيد التنانين إلى حل الألغاز الجنونية، يثبتون أن الحجم الصغير لا يتنافى مع امتلاك قلب كبير وخيال أكبر بكثير."
+        },
+        {
+          "start": "20260914111500 +0000",
+          "stop": "20260914113000 +0000",
+          "title": "كوكونت: التنين الصغير",
+          "desc": "انضموا إلى التنين الصغير كوكونت وأصدقائه الطريفين في مغامرات نارية! من توحيد التنانين إلى حل الألغاز الجنونية، يثبتون أن الحجم الصغير لا يتنافى مع امتلاك قلب كبير وخيال أكبر بكثير."
         }
       ],
       "shard": "provider-mbc",
@@ -6178,9 +6239,9 @@
       "name": "MBC3",
       "family": "MBC3",
       "kind": "other",
-      "events": 154,
-      "coverage_hours": 35.83,
-      "span_hours": 38.12,
+      "events": 153,
+      "coverage_hours": 35.58,
+      "span_hours": 37.87,
       "gaps_gt_2h": 0,
       "gap_hours": 2.28,
       "invalid": 0,
@@ -6194,23 +6255,17 @@
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 64.3,
-      "title_hybrid_pct": 64.3,
+      "title_has_latin_pct": 64.1,
+      "title_hybrid_pct": 64.1,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 21.4,
-      "unique_title_pct": 10.4,
+      "top_title_pct": 21.6,
+      "unique_title_pct": 10.5,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "Pet Hotel",
-          "desc": "الموسم 1 • الحلقة 11\nفي فندق الحيوانات المرح، يستقبل بوبو وليلي وناي ناي وفيكي ضيوفهم الجدد. ومع ابتكارات روبين وطرافة كل حيوان، تنطلق يوميا مغامرات مليئة بالضحك والمعرفة."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914103000 +0000",
@@ -6228,6 +6283,12 @@
           "stop": "20260914110000 +0000",
           "title": "أطفال المزرعة",
           "desc": "الموسم 1 • الحلقة 32\nاليوم الأكثر رياحا"
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914110700 +0000",
+          "title": "Super Agent Jon Le Bon!",
+          "desc": "الموسم 4 • الحلقة 12\nكعضو في منظمة سرية جدا ومسؤولة عن حماية الأرض من الأشرار الخارقين، يتوجب على العميل جان حماية الكوكب من كارثة وشيكة."
         }
       ],
       "shard": "provider-mbc",
@@ -8016,9 +8077,9 @@
       "name": "Rotana Kids.sa",
       "family": "Rotana Kids.sa",
       "kind": "other",
-      "events": 145,
-      "coverage_hours": 42.25,
-      "span_hours": 42.25,
+      "events": 144,
+      "coverage_hours": 42.0,
+      "span_hours": 42.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -8036,19 +8097,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 4.1,
-      "unique_title_pct": 28.3,
+      "top_title_pct": 4.2,
+      "unique_title_pct": 27.8,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "هجوم الفيروس:الحلقة 13",
-          "desc": "منذ مئات السنين، تم اختطاف سكان بلدة في المحيط الهادئ من قبل سيدرنو، سيد الفيروسات الشرير، ليتمكن من تحويلهم إلى فيروسات وحشية يغزو بهم الأرض."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914103000 +0000",
@@ -8066,6 +8121,12 @@
           "stop": "20260914110000 +0000",
           "title": "روبوت ترينز:الحلقة 32",
           "desc": "المواطنون في (ترين وورلد) مجموعة قطارات آلية ذكية، رائعة الألوان؛ على رأسها الخمسة الأبطال: كاي، آلف، دوك، سيلي وفيكتور. يخوضون جميعاً مغامرات شيقة ممتعة تخطف الأبصار، في سعيهم لإن"
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914111500 +0000",
+          "title": "سابرينا: سيكرتس أوف إيه تينيج ويتش:الحلقة 15",
+          "desc": "سابرينا فناة نصف ساحرة ونصف بشرية، تعيش حياة مزدوجة فهي طالبة في المدرسة الثانوية العادية وتخضع لتدريب السحرة في ذات الوقت. حالما يتصادم عالميها، تخوض معارك ضد أعداء لها أثناء محاو"
         }
       ],
       "shard": "provider-rotana",
@@ -8548,9 +8609,9 @@
       "name": "روتانا كليب",
       "family": "روتانا كليب",
       "kind": "other",
-      "events": 101,
-      "coverage_hours": 10.85,
-      "span_hours": 10.85,
+      "events": 98,
+      "coverage_hours": 10.68,
+      "span_hours": 10.68,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -8559,7 +8620,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 101,
+      "empty_desc": 98,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -8568,35 +8629,35 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 3.0,
-      "unique_title_pct": 85.1,
+      "top_title_pct": 3.1,
+      "unique_title_pct": 86.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260914100900 +0000",
-          "stop": "20260914101200 +0000",
-          "title": "قومي رقصي",
-          "desc": ""
-        },
-        {
-          "start": "20260914101200 +0000",
-          "stop": "20260914101700 +0000",
-          "title": "نصاب",
-          "desc": ""
-        },
-        {
-          "start": "20260914101700 +0000",
-          "stop": "20260914101900 +0000",
-          "title": "دحبني انته",
-          "desc": ""
-        },
-        {
           "start": "20260914101900 +0000",
           "stop": "20260914102400 +0000",
           "title": "حرية",
+          "desc": ""
+        },
+        {
+          "start": "20260914102400 +0000",
+          "stop": "20260914102800 +0000",
+          "title": "إستنا",
+          "desc": ""
+        },
+        {
+          "start": "20260914102800 +0000",
+          "stop": "20260914103100 +0000",
+          "title": "حالتي النفسية",
+          "desc": ""
+        },
+        {
+          "start": "20260914103100 +0000",
+          "stop": "20260914103600 +0000",
+          "title": "وين ماراح",
           "desc": ""
         }
       ],
@@ -8604,7 +8665,7 @@
       "feed_country": "sa",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=101(100%)"
+        "EMPTY_DESC=98(100%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -9076,9 +9137,9 @@
       "name": "AD Sports 2.sa",
       "family": "AD Sports 2.sa",
       "kind": "other",
-      "events": 44,
-      "coverage_hours": 43.25,
-      "span_hours": 43.25,
+      "events": 43,
+      "coverage_hours": 42.75,
+      "span_hours": 42.75,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -9096,19 +9157,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 68.2,
-      "unique_title_pct": 25.0,
+      "top_title_pct": 69.8,
+      "unique_title_pct": 25.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914094500 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "أكشن في إسبوع",
-          "desc": "تابعوا من هنا البرنامج الرياضي، أكشن في إسبوع."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914111500 +0000",
@@ -9126,6 +9181,12 @@
           "stop": "20260914141500 +0000",
           "title": "طواف العالم للدراجات :طواف إسبانيا - المرحلة 21",
           "desc": "الأكشن والحماس يرافقان سلسلة سباق الدراجات الأكثر شهرة في العالم، مع أفضل الدراجين على كوكب الأرض، يتنافسون على اللقب المرغوب بشدّة. لجميع عشاق ركوب الدراجات، لا تفوتكم مشاهدة السل"
+        },
+        {
+          "start": "20260914141500 +0000",
+          "stop": "20260914143000 +0000",
+          "title": "مقتطفات الكأس الألماني:الجولة 1",
+          "desc": "‫‫أبرز مباريات بطولة كأس ألمانيا لكرة القدم، حيث يتنافس لاعبو كرة القدم المحترفون ضد بعضهم للفوز والحصول على اللقب المرموق.‬‬"
         }
       ],
       "shard": "provider-adm",
@@ -9141,9 +9202,9 @@
       "name": "AD Sports Premium 1.sa",
       "family": "AD Sports Premium 1.sa",
       "kind": "other",
-      "events": 44,
-      "coverage_hours": 44.5,
-      "span_hours": 44.5,
+      "events": 43,
+      "coverage_hours": 42.75,
+      "span_hours": 42.75,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -9156,24 +9217,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 29.5,
-      "title_has_latin_pct": 70.5,
+      "title_has_ar_pct": 27.9,
+      "title_has_latin_pct": 72.1,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
-      "desc_latin_pct": 11.4,
-      "top_title_pct": 70.5,
-      "unique_title_pct": 20.5,
+      "desc_latin_pct": 9.3,
+      "top_title_pct": 72.1,
+      "unique_title_pct": 20.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914083000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "الدوري الإيطالي:نابولي × بولونيا",
-          "desc": "ترقّبوا منافسات الدوري الإيطالي لكرة القدم Serie A، حيث تتصارع أعرق الأندية على لقب السكوديتو، والمقاعد الأوروبية، فيما تخوض فرق أخرى معركة البقاء وتفادي الهبوط."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914104500 +0000",
@@ -9191,14 +9246,20 @@
           "stop": "20260914130000 +0000",
           "title": "مجلة الدوري الإيطالي:الجولة 4",
           "desc": "لا تفوتوا أهم تحليلات المباريات مع الخبراء الفنيين والمحللين الرياضيين، بالإضافة إلى معرفة آراء اللاعبين والمدربين... وأهم الأخبار الكروية وأروع الأهداف خلال الموسم."
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914144500 +0000",
+          "title": "الدوري الإيطالي:ساسولو × يوفنتوس",
+          "desc": "ترقّبوا منافسات الدوري الإيطالي لكرة القدم Serie A، حيث تتصارع أعرق الأندية على لقب السكوديتو، والمقاعد الأوروبية، فيما تخوض فرق أخرى معركة البقاء وتفادي الهبوط."
         }
       ],
       "shard": "provider-adm",
       "feed_country": "sa",
       "issues": [],
       "warnings": [
-        "REPEATED_TITLE=70%",
-        "ARABIC_PROVIDER_TITLE_AR_LOW=30%"
+        "REPEATED_TITLE=72%",
+        "ARABIC_PROVIDER_TITLE_AR_LOW=28%"
       ],
       "score": 84,
       "verdict": "REVIEW",
@@ -9483,9 +9544,9 @@
       "name": "Majid.sa",
       "family": "Majid.sa",
       "kind": "other",
-      "events": 206,
-      "coverage_hours": 42.0,
-      "span_hours": 42.0,
+      "events": 205,
+      "coverage_hours": 41.83,
+      "span_hours": 41.83,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -9503,19 +9564,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.6,
+      "top_title_pct": 13.7,
       "unique_title_pct": 8.3,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914101000 +0000",
-          "stop": "20260914102000 +0000",
-          "title": "ذا فيكسيز",
-          "desc": "تعرفوا على الكائنات الضئيلة التي تسكن في أجهزتكم وهواتفكم الذكية! إنهم فريق الصيانة (ذا فيكسيز) الذين يداومون على صيانة وإصلاح أجهزتكم من الداخل، بمساعدة حقيبة معداتهم المدهشة!"
-        },
         {
           "start": "20260914102000 +0000",
           "stop": "20260914103000 +0000",
@@ -9531,6 +9586,12 @@
         {
           "start": "20260914110000 +0000",
           "stop": "20260914111000 +0000",
+          "title": "أومكا آند مي",
+          "desc": "يستكشف شبل الدب القطبي المتفائل والفضولي (أومكا)، عالم القطب الشمالي الاستثنائي برفقة أفضل أصدقائه."
+        },
+        {
+          "start": "20260914111000 +0000",
+          "stop": "20260914112000 +0000",
           "title": "أومكا آند مي",
           "desc": "يستكشف شبل الدب القطبي المتفائل والفضولي (أومكا)، عالم القطب الشمالي الاستثنائي برفقة أفضل أصدقائه."
         }
@@ -9578,12 +9639,6 @@
       ],
       "preview": [
         {
-          "start": "20260914093000 +0100",
-          "stop": "20260914101500 +0100",
-          "title": "Incredible Animal Journeys",
-          "desc": ""
-        },
-        {
           "start": "20260914101500 +0100",
           "stop": "20260914110000 +0100",
           "title": "Lawless Island",
@@ -9599,6 +9654,12 @@
           "start": "20260914114500 +0100",
           "stop": "20260914123000 +0100",
           "title": "Bull Shark Vs Hammerhead",
+          "desc": ""
+        },
+        {
+          "start": "20260914123000 +0100",
+          "stop": "20260914131500 +0100",
+          "title": "The Infinite Explorer",
           "desc": ""
         }
       ],
@@ -9618,9 +9679,9 @@
       "name": "Yas TV HD",
       "family": "Yas TV HD",
       "kind": "other",
-      "events": 39,
-      "coverage_hours": 49.75,
-      "span_hours": 49.75,
+      "events": 40,
+      "coverage_hours": 51.2,
+      "span_hours": 51.2,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -9629,7 +9690,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 1,
       "empty_title": 0,
-      "empty_desc": 39,
+      "empty_desc": 40,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -9638,8 +9699,8 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 12.8,
-      "unique_title_pct": 53.8,
+      "top_title_pct": 12.5,
+      "unique_title_pct": 52.5,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -9676,7 +9737,7 @@
       "warnings": [
         "LONG_GT_6H=2",
         "SHORT_LT_2M=1",
-        "EMPTY_DESC=39(100%)",
+        "EMPTY_DESC=40(100%)",
         "ARABIC_PROVIDER_TITLE_AR_LOW=0%"
       ],
       "score": 68,
@@ -10287,9 +10348,9 @@
       "name": "دبي زمان",
       "family": "دبي زمان",
       "kind": "other",
-      "events": 47,
-      "coverage_hours": 42.0,
-      "span_hours": 42.0,
+      "events": 46,
+      "coverage_hours": 40.67,
+      "span_hours": 40.67,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -10298,7 +10359,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 32,
+      "empty_desc": 29,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -10307,19 +10368,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 34.0,
-      "unique_title_pct": 40.4,
+      "top_title_pct": 32.6,
+      "unique_title_pct": 39.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914090000 +0000",
-          "stop": "20260914102000 +0000",
-          "title": "الخليج كلمة ونغم",
-          "desc": "تقوم فكرة البرنامج حول الأعمال الغنائية والشعرية من الزمن الجميل، ويستضيف مجموعة من نجوم الفن والغناء الخليجي."
-        },
         {
           "start": "20260914102000 +0000",
           "stop": "20260914110500 +0000",
@@ -10337,13 +10392,19 @@
           "stop": "20260914123000 +0000",
           "title": "برنامج الاوائل",
           "desc": ""
+        },
+        {
+          "start": "20260914123000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "برنامج نجم وسما",
+          "desc": ""
         }
       ],
       "shard": "provider-dmi",
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=32(68%)"
+        "EMPTY_DESC=29(63%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -10486,9 +10547,9 @@
       "name": "سما دبي",
       "family": "سما دبي",
       "kind": "other",
-      "events": 51,
-      "coverage_hours": 41.0,
-      "span_hours": 41.0,
+      "events": 11,
+      "coverage_hours": 8.5,
+      "span_hours": 8.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -10497,7 +10558,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 23,
+      "empty_desc": 2,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -10506,8 +10567,8 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.7,
-      "unique_title_pct": 35.3,
+      "top_title_pct": 27.3,
+      "unique_title_pct": 54.5,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -10515,20 +10576,20 @@
       "preview": [
         {
           "start": "20260914100000 +0000",
-          "stop": "20260914103000 +0000",
-          "title": "منتصف النهار",
-          "desc": ""
-        },
-        {
-          "start": "20260914103000 +0000",
           "stop": "20260914110000 +0000",
-          "title": "برنامج ارض الخير",
-          "desc": ""
+          "title": "سبع أبواب",
+          "desc": "في إطار من الدراما الاجتماعية، تدور أحداث المسلسل من خلال مجموعة قصص تقع في ثنائيات، وثلاثيات، وخماسيات ،وسباعيات، بأسماء مختلفة مثل: (حالة حنان، وعريس ليلة خميس، ومضاوي أكلها الذي"
         },
         {
           "start": "20260914110000 +0000",
+          "stop": "20260914113000 +0000",
+          "title": "ورثة بن عاقول",
+          "desc": "تدور الأحداث في سوق محلية قديمة تُدعى بسوق (الجت)، حيث ينشأ صراع بين الباعة والتجار، ويعرض المسلسل المواقف التي تصادفها الشخصيات الخيالية أثناء عملها في السوق."
+        },
+        {
+          "start": "20260914113000 +0000",
           "stop": "20260914120000 +0000",
-          "title": "برنامج عليكم بالعافية",
+          "title": "برنامج كنوز الدار",
           "desc": ""
         },
         {
@@ -10542,7 +10603,7 @@
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=23(45%)"
+        "EMPTY_DESC=2(18%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -10821,9 +10882,9 @@
       "name": "Alfa Fann.sa",
       "family": "Alfa Fann.sa",
       "kind": "other",
-      "events": 311,
-      "coverage_hours": 45.62,
-      "span_hours": 45.62,
+      "events": 310,
+      "coverage_hours": 45.38,
+      "span_hours": 45.38,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -10832,7 +10893,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 311,
+      "empty_desc": 310,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -10848,12 +10909,6 @@
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100100 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "محمد عبده في الدّمام",
-          "desc": ""
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914102200 +0000",
@@ -10871,13 +10926,19 @@
           "stop": "20260914103100 +0000",
           "title": "زينة",
           "desc": ""
+        },
+        {
+          "start": "20260914103100 +0000",
+          "stop": "20260914103500 +0000",
+          "title": "مهم جدّاً",
+          "desc": ""
         }
       ],
       "shard": "provider-art",
       "feed_country": "sa",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=311(100%)"
+        "EMPTY_DESC=310(100%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -10888,9 +10949,9 @@
       "name": "Alfa Music HD.sa",
       "family": "Alfa Music HD.sa",
       "kind": "other",
-      "events": 634,
-      "coverage_hours": 45.45,
-      "span_hours": 45.45,
+      "events": 631,
+      "coverage_hours": 45.25,
+      "span_hours": 45.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -10899,7 +10960,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 634,
+      "empty_desc": 631,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -10909,34 +10970,34 @@
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 2.4,
-      "unique_title_pct": 30.4,
+      "unique_title_pct": 30.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260914100900 +0000",
-          "stop": "20260914101200 +0000",
-          "title": "كان ليك وحشة",
-          "desc": ""
-        },
-        {
-          "start": "20260914101200 +0000",
-          "stop": "20260914101700 +0000",
-          "title": "حبيب تفصيل",
-          "desc": ""
-        },
-        {
-          "start": "20260914101700 +0000",
-          "stop": "20260914102100 +0000",
-          "title": "فوق فوق",
-          "desc": ""
-        },
-        {
           "start": "20260914102100 +0000",
           "stop": "20260914102400 +0000",
           "title": "حظي",
+          "desc": ""
+        },
+        {
+          "start": "20260914102400 +0000",
+          "stop": "20260914102800 +0000",
+          "title": "إهتم فيّي",
+          "desc": ""
+        },
+        {
+          "start": "20260914102800 +0000",
+          "stop": "20260914103300 +0000",
+          "title": "الجوّ",
+          "desc": ""
+        },
+        {
+          "start": "20260914103300 +0000",
+          "stop": "20260914103600 +0000",
+          "title": "الحبّ ما بينيّمش",
           "desc": ""
         }
       ],
@@ -10944,7 +11005,7 @@
       "feed_country": "sa",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=634(100%)"
+        "EMPTY_DESC=631(100%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -11091,9 +11152,9 @@
       "name": "en: STARZPLAY Cricket 1",
       "family": "en: STARZPLAY Cricket 1",
       "kind": "other",
-      "events": 40,
-      "coverage_hours": 49.28,
-      "span_hours": 49.28,
+      "events": 39,
+      "coverage_hours": 48.75,
+      "span_hours": 48.75,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -11102,7 +11163,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 40,
+      "empty_desc": 39,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -11111,19 +11172,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 22.5,
-      "unique_title_pct": 60.0,
+      "top_title_pct": 23.1,
+      "unique_title_pct": 61.5,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914094300 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "Asia Cup 2025: Super Four- Sri Lanka vs Bangladesh - Asian Blockbusters",
-          "desc": ""
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914104000 +0000",
@@ -11141,13 +11196,19 @@
           "stop": "20260914120000 +0000",
           "title": "Australia v Bangladesh - ICC Women's Cricket World Cup Highlights",
           "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914123000 +0000",
+          "title": "2024: Sri Lanka vs New Zealand, Match 15 - ICC Women's T20 World Cup Highlights",
+          "desc": ""
         }
       ],
       "shard": "provider-starz",
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=40(100%)"
+        "EMPTY_DESC=39(100%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -12668,7 +12729,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 17,
+      "empty_desc": 16,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -12713,7 +12774,7 @@
       "feed_country": "eg",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=17(52%)"
+        "EMPTY_DESC=16(48%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -13937,9 +13998,9 @@
       "name": "EN: Masrah Masr Channel",
       "family": "EN: Masrah Masr Channel",
       "kind": "other",
-      "events": 37,
-      "coverage_hours": 48.97,
-      "span_hours": 49.0,
+      "events": 38,
+      "coverage_hours": 50.35,
+      "span_hours": 50.38,
       "gaps_gt_2h": 0,
       "gap_hours": 0.03,
       "invalid": 0,
@@ -13948,7 +14009,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 37,
+      "empty_desc": 38,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -13958,7 +14019,7 @@
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 2.7,
+      "unique_title_pct": 2.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -13993,7 +14054,7 @@
       "feed_country": "sa",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=37(100%)",
+        "EMPTY_DESC=38(100%)",
         "REPEATED_TITLE=100%",
         "LOW_TITLE_DIVERSITY=3%",
         "FOREIGN_FEED_ID=SA_EXPECTED=EG"
@@ -15020,77 +15081,6 @@
         "EMPTY_DESC=37(100%)"
       ],
       "score": 92,
-      "verdict": "REVIEW",
-      "auto_lock_safe": false
-    },
-    {
-      "id": "On.Time.Sports.HD.ae",
-      "name": "On Time Sports HD",
-      "family": "On Time Sports HD",
-      "kind": "other",
-      "events": 32,
-      "coverage_hours": 38.5,
-      "span_hours": 39.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.5,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 32,
-      "desc_same_title": 0,
-      "placeholder": 1,
-      "generic": 1,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 0.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 34.4,
-      "unique_title_pct": 53.1,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914100000 +0100",
-          "stop": "20260914110000 +0100",
-          "title": "ON Target",
-          "desc": ""
-        },
-        {
-          "start": "20260914110000 +0100",
-          "stop": "20260914120000 +0100",
-          "title": "Sport TV Magazine",
-          "desc": ""
-        },
-        {
-          "start": "20260914120000 +0100",
-          "stop": "20260914140000 +0100",
-          "title": "Football Match",
-          "desc": ""
-        },
-        {
-          "start": "20260914140000 +0100",
-          "stop": "20260914150000 +0100",
-          "title": "Football Match",
-          "desc": ""
-        }
-      ],
-      "shard": "mena-eg",
-      "feed_country": "ae",
-      "issues": [],
-      "warnings": [
-        "EMPTY_DESC=32(100%)",
-        "PLACEHOLDER=1",
-        "GENERIC_GUIDE=3%",
-        "FOREIGN_FEED_ID=AE_EXPECTED=EG",
-        "DUPLICATE_TIMELINE_GROUP=6"
-      ],
-      "score": 68,
       "verdict": "REVIEW",
       "auto_lock_safe": false
     },
@@ -16301,9 +16291,9 @@
       "name": "فيروز",
       "family": "فيروز",
       "kind": "other",
-      "events": 598,
-      "coverage_hours": 37.95,
-      "span_hours": 37.95,
+      "events": 595,
+      "coverage_hours": 37.7,
+      "span_hours": 37.7,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -16312,7 +16302,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 598,
+      "empty_desc": 595,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -16321,7 +16311,7 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 3.3,
+      "top_title_pct": 3.4,
       "unique_title_pct": 5.2,
       "mixed_tz_days": 0,
       "offsets": [
@@ -16329,27 +16319,27 @@
       ],
       "preview": [
         {
-          "start": "20260914100529 +0000",
-          "stop": "20260914101132 +0000",
-          "title": "بحبك يا لبنان",
-          "desc": ""
-        },
-        {
-          "start": "20260914101132 +0000",
-          "stop": "20260914101432 +0000",
-          "title": "أنا لحبيبي",
-          "desc": ""
-        },
-        {
-          "start": "20260914101432 +0000",
-          "stop": "20260914102009 +0000",
-          "title": "سألتك حبيبي",
-          "desc": ""
-        },
-        {
           "start": "20260914102009 +0000",
           "stop": "20260914102335 +0000",
           "title": "تبقى ميل",
+          "desc": ""
+        },
+        {
+          "start": "20260914102335 +0000",
+          "stop": "20260914102956 +0000",
+          "title": "ع هدير البوسطة",
+          "desc": ""
+        },
+        {
+          "start": "20260914102956 +0000",
+          "stop": "20260914103312 +0000",
+          "title": "نحنا والقمر جيران",
+          "desc": ""
+        },
+        {
+          "start": "20260914103312 +0000",
+          "stop": "20260914103627 +0000",
+          "title": "دبكة لبنان",
           "desc": ""
         }
       ],
@@ -16357,7 +16347,7 @@
       "feed_country": "sa",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=598(100%)",
+        "EMPTY_DESC=595(100%)",
         "LOW_TITLE_DIVERSITY=5%"
       ],
       "score": 84,
@@ -16429,77 +16419,6 @@
         "LOW_TITLE_DIVERSITY=2%"
       ],
       "score": 84,
-      "verdict": "REVIEW",
-      "auto_lock_safe": false
-    },
-    {
-      "id": "KSA.Sports.3.HD.ae",
-      "name": "KSA Sports 3 HD",
-      "family": "KSA Sports 3 HD",
-      "kind": "other",
-      "events": 32,
-      "coverage_hours": 38.5,
-      "span_hours": 39.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.5,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 32,
-      "desc_same_title": 0,
-      "placeholder": 1,
-      "generic": 1,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 0.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 34.4,
-      "unique_title_pct": 53.1,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914100000 +0100",
-          "stop": "20260914110000 +0100",
-          "title": "ON Target",
-          "desc": ""
-        },
-        {
-          "start": "20260914110000 +0100",
-          "stop": "20260914120000 +0100",
-          "title": "Sport TV Magazine",
-          "desc": ""
-        },
-        {
-          "start": "20260914120000 +0100",
-          "stop": "20260914140000 +0100",
-          "title": "Football Match",
-          "desc": ""
-        },
-        {
-          "start": "20260914140000 +0100",
-          "stop": "20260914150000 +0100",
-          "title": "Football Match",
-          "desc": ""
-        }
-      ],
-      "shard": "mena-sa",
-      "feed_country": "ae",
-      "issues": [],
-      "warnings": [
-        "EMPTY_DESC=32(100%)",
-        "PLACEHOLDER=1",
-        "GENERIC_GUIDE=3%",
-        "FOREIGN_FEED_ID=AE_EXPECTED=SA",
-        "DUPLICATE_TIMELINE_GROUP=6"
-      ],
-      "score": 68,
       "verdict": "REVIEW",
       "auto_lock_safe": false
     },
@@ -16960,9 +16879,9 @@
       "name": "رابح صقر",
       "family": "رابح صقر",
       "kind": "other",
-      "events": 389,
-      "coverage_hours": 37.88,
-      "span_hours": 37.88,
+      "events": 387,
+      "coverage_hours": 37.65,
+      "span_hours": 37.65,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -16971,7 +16890,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 389,
+      "empty_desc": 387,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -16988,18 +16907,6 @@
       ],
       "preview": [
         {
-          "start": "20260914100759 +0000",
-          "stop": "20260914101234 +0000",
-          "title": "قليل الخاتمه",
-          "desc": ""
-        },
-        {
-          "start": "20260914101234 +0000",
-          "stop": "20260914102126 +0000",
-          "title": "عادك الا صغير",
-          "desc": ""
-        },
-        {
           "start": "20260914102126 +0000",
           "stop": "20260914102626 +0000",
           "title": "وين انت",
@@ -17010,13 +16917,25 @@
           "stop": "20260914103141 +0000",
           "title": "ضعفي محبة",
           "desc": ""
+        },
+        {
+          "start": "20260914103141 +0000",
+          "stop": "20260914103747 +0000",
+          "title": "صعب",
+          "desc": ""
+        },
+        {
+          "start": "20260914103747 +0000",
+          "stop": "20260914104432 +0000",
+          "title": "من كبرها",
+          "desc": ""
         }
       ],
       "shard": "mena-sa",
       "feed_country": "sa",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=389(100%)",
+        "EMPTY_DESC=387(100%)",
         "LOW_TITLE_DIVERSITY=18%"
       ],
       "score": 84,
@@ -17905,9 +17824,9 @@
       "name": "الشرقية",
       "family": "الشرقية",
       "kind": "other",
-      "events": 17,
-      "coverage_hours": 10.5,
-      "span_hours": 10.5,
+      "events": 16,
+      "coverage_hours": 9.75,
+      "span_hours": 9.75,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -17925,19 +17844,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 23.5,
-      "unique_title_pct": 70.6,
+      "top_title_pct": 25.0,
+      "unique_title_pct": 75.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914093000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "أبجد هوس",
-          "desc": "في إطار كوميدي، تدور أحداث المسلسل حول مجموعة من كبار السن والمتقاعدين عن العمل، حيث يتخذون قرارًا بالالتحاق بفصول محو الأمية، فتقع لهم مفارقات يومية."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914104500 +0000",
@@ -17955,13 +17868,19 @@
           "stop": "20260914120000 +0000",
           "title": "برنامج تعال اسمعك",
           "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914121500 +0000",
+          "title": "أخبار",
+          "desc": ""
         }
       ],
       "shard": "mena-ae",
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=10(59%)"
+        "EMPTY_DESC=10(62%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -18447,9 +18366,9 @@
       "name": "Nickelodeon HD",
       "family": "Nickelodeon HD",
       "kind": "other",
-      "events": 109,
-      "coverage_hours": 38.25,
-      "span_hours": 38.25,
+      "events": 108,
+      "coverage_hours": 37.83,
+      "span_hours": 37.83,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -18466,20 +18385,14 @@
       "title_has_latin_pct": 0.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
-      "desc_latin_pct": 6.4,
-      "top_title_pct": 22.9,
-      "unique_title_pct": 16.5,
+      "desc_latin_pct": 6.5,
+      "top_title_pct": 23.1,
+      "unique_title_pct": 16.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914095000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "هنري دينجر",
-          "desc": "بعد اكتشاف أن المتسابقين في برنامج سوالفيو للمواهب يفقدون وعيهم، يطلب الكابتن مان وكيد دينجر مساعدة شارلوت وشوز لمعرفة سبب الأذى."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914103500 +0000",
@@ -18497,13 +18410,19 @@
           "stop": "20260914112000 +0000",
           "title": "ذات غيرل لاي لاي",
           "desc": "تحاول لاي لاي وسادي الانضمام إلى فريق التشجيع، وتضيفان لمسات خاصة بهما إلى الروتين، لكنهما تتعلمان أن التميز لا يعمل دائمًا عندما تحاولان الانسجام مع الفريق."
+        },
+        {
+          "start": "20260914112000 +0000",
+          "stop": "20260914114500 +0000",
+          "title": "ذا لاود هاوس",
+          "desc": "نتابع المغامرات المجنونة التي قام بها لينكولن لاود البالغ من العمر 11 عامًا وأخواته العشر منفردة جدًا - لوري، ليني، لونا، لوان، لين، لوسي، لانا، لولا، ليزا وليلي!"
         }
       ],
       "shard": "mena-ae",
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "LOW_TITLE_DIVERSITY=16%"
+        "LOW_TITLE_DIVERSITY=17%"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -18581,9 +18500,9 @@
       "name": "NickToons HD",
       "family": "NickToons HD",
       "kind": "other",
-      "events": 116,
-      "coverage_hours": 38.5,
-      "span_hours": 38.5,
+      "events": 115,
+      "coverage_hours": 38.08,
+      "span_hours": 38.08,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -18601,19 +18520,13 @@
       "title_hybrid_pct": 0.9,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 1.7,
-      "top_title_pct": 22.4,
-      "unique_title_pct": 19.8,
+      "top_title_pct": 22.6,
+      "unique_title_pct": 20.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914095000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "ذا لاود هاوس",
-          "desc": "هل تساءلت يومًا عن شعورك بالنمو في أسرة كبيرة؟ يعطي لينكولن لاود ، البالغ من العمر أحد عشر عامًا ، للمشاهدين نظرة من الداخل حول كيفية النجاة من فوضى منزل ضخم ، خاصةً كونه الصبي الو"
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914103000 +0000",
@@ -18631,6 +18544,12 @@
           "stop": "20260914111500 +0000",
           "title": "سبونجبوب سكويربانتس",
           "desc": "من يعيش وأصدقائه إلى الوقوع في المتاعب.في أناناس تحت البحر؟ سبونجبوب سكوير! تابع مغامرات هذا الإسفنجة المتفائلة والمتحمسة التي تؤدي نواياها الحسنة حتماً هو"
+        },
+        {
+          "start": "20260914111500 +0000",
+          "stop": "20260914113500 +0000",
+          "title": "ذا باتريك ستار شو",
+          "desc": "يفقد باتريك جهاز التحكم عن بعد في الوسائد، لذلك يسافر إلى الأريكة لتعقبه. يستضيف باتريك حملة تليفونية لجمع الأموال للقواقع التي لا تستطيع الرقص."
         }
       ],
       "shard": "mena-ae",
@@ -18922,9 +18841,9 @@
       "name": "الشارقة",
       "family": "الشارقة",
       "kind": "other",
-      "events": 16,
-      "coverage_hours": 9.58,
-      "span_hours": 9.58,
+      "events": 32,
+      "coverage_hours": 24.0,
+      "span_hours": 24.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -18933,7 +18852,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 13,
+      "empty_desc": 26,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -18942,43 +18861,43 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 12.5,
-      "unique_title_pct": 87.5,
+      "top_title_pct": 31.2,
+      "unique_title_pct": 53.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260914100000 +0000",
-          "stop": "20260914110000 +0000",
-          "title": "برنامج الخط المباشر",
+          "start": "20260915000000 +0000",
+          "stop": "20260915004500 +0000",
+          "title": "برنامج استشاري الشارقة",
           "desc": ""
         },
         {
-          "start": "20260914110000 +0000",
-          "stop": "20260914114000 +0000",
+          "start": "20260915004500 +0000",
+          "stop": "20260915011500 +0000",
           "title": "النقطة العميا (فلاش باك)",
           "desc": "تعيش داليا حياة تبدو في ظاهرها سعيدة، لكن بعد معاناتها من كوابيس متكررة عن حادثة وقعت في طفولتها تُوفيّ على إثرها أبويها، تلجأ إلى طبيب نفسي، وتبدأ في اكتشاف أمور تهدد استقرار حيات"
         },
         {
-          "start": "20260914114000 +0000",
-          "stop": "20260914120000 +0000",
-          "title": "برنامج لغة وأدب وفن",
+          "start": "20260915011500 +0000",
+          "stop": "20260915021500 +0000",
+          "title": "برنامج أماسي",
           "desc": ""
         },
         {
-          "start": "20260914120000 +0000",
-          "stop": "20260914123000 +0000",
-          "title": "برنامج",
-          "desc": ""
+          "start": "20260915021500 +0000",
+          "stop": "20260915030000 +0000",
+          "title": "اليتيم",
+          "desc": "تدور أحداثه حول “عرسان اليتيم”، الفتى الذي يُترك وحيدًا بعد مقتل والده في صراع عائلي من أجل الميراث، فيكبر ليصبح رمز أمل وقوّة وسط شبكة من الصراعات المحمومة، العواطف المعقدة، والأس"
         }
       ],
       "shard": "mena-ae",
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=13(81%)"
+        "EMPTY_DESC=26(81%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -19124,9 +19043,9 @@
       "name": "Star World Middle East",
       "family": "Star World Middle East",
       "kind": "other",
-      "events": 58,
-      "coverage_hours": 10.55,
-      "span_hours": 10.55,
+      "events": 57,
+      "coverage_hours": 10.35,
+      "span_hours": 10.35,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -19135,28 +19054,22 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 58,
+      "empty_desc": 57,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 75.9,
-      "title_hybrid_pct": 75.9,
+      "title_has_latin_pct": 75.4,
+      "title_hybrid_pct": 75.4,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 6.9,
-      "unique_title_pct": 53.4,
+      "top_title_pct": 7.0,
+      "unique_title_pct": 54.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100400 +0000",
-          "stop": "20260914101600 +0000",
-          "title": "E29 | S2",
-          "desc": ""
-        },
         {
           "start": "20260914101600 +0000",
           "stop": "20260914102600 +0000",
@@ -19174,13 +19087,19 @@
           "stop": "20260914104800 +0000",
           "title": "| S1 التوأمان المبدعان - مصنع الأحلام",
           "desc": ""
+        },
+        {
+          "start": "20260914104800 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "| S1 التوأمان المبدعان - مصنع الأحلام",
+          "desc": ""
         }
       ],
       "shard": "mena-ae",
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=58(100%)"
+        "EMPTY_DESC=57(100%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -19191,9 +19110,9 @@
       "name": "زي ألوان",
       "family": "زي ألوان",
       "kind": "other",
-      "events": 24,
-      "coverage_hours": 24.0,
-      "span_hours": 24.0,
+      "events": 8,
+      "coverage_hours": 8.0,
+      "span_hours": 8.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -19207,40 +19126,40 @@
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 83.3,
-      "title_hybrid_pct": 83.3,
+      "title_has_latin_pct": 62.5,
+      "title_hybrid_pct": 62.5,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 16.7,
-      "unique_title_pct": 29.2,
+      "top_title_pct": 37.5,
+      "unique_title_pct": 75.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260915000000 +0000",
-          "stop": "20260915010000 +0000",
-          "title": "Kundali Bhagya",
-          "desc": "تدور أحداث المسلسل حول الشقيقتين بريتا وسيرشتي، واللتان يذهبان في مغامرة من أجل البحث عن والدتهما سارلا."
-        },
-        {
-          "start": "20260915010000 +0000",
-          "stop": "20260915020000 +0000",
+          "start": "20260914100000 +0000",
+          "stop": "20260914110000 +0000",
           "title": "The Stickman",
           "desc": "في إطار درامي رومانسي، يحكي العمل قصة حب (تامر) الذي يعمل مطور ألعاب، والمصرفية (بيري)، اللذين يلتقيان بطريقة غير عادية ويقعان في فخ لعبة خطيرة ولكنها جميلة ومثيرة."
         },
         {
-          "start": "20260915020000 +0000",
-          "stop": "20260915030000 +0000",
+          "start": "20260914110000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "توابع",
+          "desc": "تنقلب حياة لاكشمي رأساً على عقب بسبب إجبار اهلها لها على الزواج من رجل أعمال غني لا تعرفه حيث تشعر بالخيانة بعد أن عرفت حقيقة زواجها من هذا الرجل لتحقيق مصلحة له."
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914130000 +0000",
           "title": "The Trusted",
           "desc": "يحكي المسلسل قصة جندي سابق من قهرمان مرعش ترك عمله في القوات الخاصة، واتجه لقضاء حياته في متجر للكتب المستعملة، وكانت نقطة تحول حياة مرعشلي بعد أن دخلت مصورة تدعى ماهور مكتبته إذ أ"
         },
         {
-          "start": "20260915030000 +0000",
-          "stop": "20260915040000 +0000",
+          "start": "20260914130000 +0000",
+          "stop": "20260914140000 +0000",
           "title": "Lakshmi's Lucky Destiny",
-          "desc": "تنقلب حياة لاكشمي رأساً على عقب بسبب إجبار اهلها لها على الزواج من رجل أعمال غني لا تعرفه حيث تشعر بالخيانة بعد أن عرفت حقيقة زواجها من هذا الرجل لتحقيق مصلحة له."
+          "desc": "في إطار درامي رومانسي، يحكي العمل قصة حب (تامر) الذي يعمل مطور ألعاب، والمصرفية (بيري)، اللذين يلتقيان بطريقة غير عادية ويقعان في فخ لعبة خطيرة ولكنها جميلة ومثيرة."
         }
       ],
       "shard": "mena-ae",
@@ -20278,9 +20197,9 @@
       "name": "Qatar 2 HD",
       "family": "Qatar 2 HD",
       "kind": "other",
-      "events": 86,
-      "coverage_hours": 48.25,
-      "span_hours": 48.25,
+      "events": 87,
+      "coverage_hours": 48.5,
+      "span_hours": 48.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -20289,7 +20208,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 86,
+      "empty_desc": 87,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -20298,8 +20217,8 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 4.7,
-      "unique_title_pct": 54.7,
+      "top_title_pct": 4.6,
+      "unique_title_pct": 54.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -20334,7 +20253,7 @@
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=86(100%)",
+        "EMPTY_DESC=87(100%)",
         "FOREIGN_FEED_ID=AE_EXPECTED=QA"
       ],
       "score": 84,
@@ -20374,12 +20293,6 @@
       ],
       "preview": [
         {
-          "start": "20260914100000 +0100",
-          "stop": "20260914101500 +0100",
-          "title": "Virtues Of Islam",
-          "desc": ""
-        },
-        {
           "start": "20260914101500 +0100",
           "stop": "20260914103000 +0100",
           "title": "Our Sons",
@@ -20395,6 +20308,12 @@
           "start": "20260914113000 +0100",
           "stop": "20260914114500 +0100",
           "title": "A Solid Unit",
+          "desc": ""
+        },
+        {
+          "start": "20260914114500 +0100",
+          "stop": "20260914121500 +0100",
+          "title": "The Garden Of Hope",
           "desc": ""
         }
       ],
@@ -20547,77 +20466,6 @@
       "auto_lock_safe": false
     },
     {
-      "id": "Kuwait.Sport.HD.ae",
-      "name": "Kuwait Sport HD",
-      "family": "Kuwait Sport HD",
-      "kind": "other",
-      "events": 32,
-      "coverage_hours": 38.5,
-      "span_hours": 39.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.5,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 32,
-      "desc_same_title": 0,
-      "placeholder": 1,
-      "generic": 1,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 0.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 34.4,
-      "unique_title_pct": 53.1,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914100000 +0100",
-          "stop": "20260914110000 +0100",
-          "title": "ON Target",
-          "desc": ""
-        },
-        {
-          "start": "20260914110000 +0100",
-          "stop": "20260914120000 +0100",
-          "title": "Sport TV Magazine",
-          "desc": ""
-        },
-        {
-          "start": "20260914120000 +0100",
-          "stop": "20260914140000 +0100",
-          "title": "Football Match",
-          "desc": ""
-        },
-        {
-          "start": "20260914140000 +0100",
-          "stop": "20260914150000 +0100",
-          "title": "Football Match",
-          "desc": ""
-        }
-      ],
-      "shard": "mena-kw",
-      "feed_country": "ae",
-      "issues": [],
-      "warnings": [
-        "EMPTY_DESC=32(100%)",
-        "PLACEHOLDER=1",
-        "GENERIC_GUIDE=3%",
-        "FOREIGN_FEED_ID=AE_EXPECTED=KW",
-        "DUPLICATE_TIMELINE_GROUP=6"
-      ],
-      "score": 68,
-      "verdict": "REVIEW",
-      "auto_lock_safe": false
-    },
-    {
       "id": "Kuwait.TV.1.HD.ae",
       "name": "Kuwait TV 1 HD",
       "family": "Kuwait TV 1 HD",
@@ -20682,77 +20530,6 @@
         "FOREIGN_FEED_ID=AE_EXPECTED=KW"
       ],
       "score": 84,
-      "verdict": "REVIEW",
-      "auto_lock_safe": false
-    },
-    {
-      "id": "Kuwait.TV.Sport.Plus.HD.ae",
-      "name": "Kuwait TV Sport Plus HD",
-      "family": "Kuwait TV Sport Plus HD",
-      "kind": "other",
-      "events": 32,
-      "coverage_hours": 38.5,
-      "span_hours": 39.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.5,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 32,
-      "desc_same_title": 0,
-      "placeholder": 1,
-      "generic": 1,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 0.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 34.4,
-      "unique_title_pct": 53.1,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914100000 +0100",
-          "stop": "20260914110000 +0100",
-          "title": "ON Target",
-          "desc": ""
-        },
-        {
-          "start": "20260914110000 +0100",
-          "stop": "20260914120000 +0100",
-          "title": "Sport TV Magazine",
-          "desc": ""
-        },
-        {
-          "start": "20260914120000 +0100",
-          "stop": "20260914140000 +0100",
-          "title": "Football Match",
-          "desc": ""
-        },
-        {
-          "start": "20260914140000 +0100",
-          "stop": "20260914150000 +0100",
-          "title": "Football Match",
-          "desc": ""
-        }
-      ],
-      "shard": "mena-kw",
-      "feed_country": "ae",
-      "issues": [],
-      "warnings": [
-        "EMPTY_DESC=32(100%)",
-        "PLACEHOLDER=1",
-        "GENERIC_GUIDE=3%",
-        "FOREIGN_FEED_ID=AE_EXPECTED=KW",
-        "DUPLICATE_TIMELINE_GROUP=6"
-      ],
-      "score": 68,
       "verdict": "REVIEW",
       "auto_lock_safe": false
     },
@@ -20830,9 +20607,9 @@
       "name": "Bahrain TV",
       "family": "Bahrain TV",
       "kind": "other",
-      "events": 84,
-      "coverage_hours": 38.38,
-      "span_hours": 38.38,
+      "events": 83,
+      "coverage_hours": 37.83,
+      "span_hours": 37.83,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -20850,19 +20627,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 17.9,
-      "unique_title_pct": 36.9,
+      "top_title_pct": 18.1,
+      "unique_title_pct": 37.3,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914094100 +0000",
-          "stop": "20260914101400 +0000",
-          "title": "على الخارطة",
-          "desc": "يسلط المضيف الضوء على بعض أكبر المؤسسات وأكثرها نجاحاً في البحرين."
-        },
         {
           "start": "20260914101400 +0000",
           "stop": "20260914111700 +0000",
@@ -20880,6 +20651,12 @@
           "stop": "20260914120000 +0000",
           "title": "اغاني",
           "desc": "مجموعة من الأغاني ومقاطع الفيديو والحفلات الموسيقية المتنوعة."
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914120800 +0000",
+          "title": "نشرة الأخبار",
+          "desc": "تقدم المذيعة آخر تحديثات الأخبار والتطورات المتعلقة بالمجتمع والسياسة والاقتصاد والمالية من جميع أنحاء العالم."
         }
       ],
       "shard": "mena-bh",
@@ -20895,9 +20672,9 @@
       "name": "Oman Al Thakafeyah.sa",
       "family": "Oman Al Thakafeyah.sa",
       "kind": "other",
-      "events": 90,
-      "coverage_hours": 42.42,
-      "span_hours": 42.42,
+      "events": 89,
+      "coverage_hours": 42.17,
+      "span_hours": 42.17,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -20915,19 +20692,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 6.7,
-      "unique_title_pct": 57.8,
+      "top_title_pct": 5.6,
+      "unique_title_pct": 58.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "أخبار الثقافة",
-          "desc": "نشرة يومية ترصد أبرز الأحداث الثقافية التي تقام في العالم، من خلال عدد من التقارير المصاحبة للفعاليات، وتقارير خاصة لمعالم ومواضيع ثقافية محلية وعالمية."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914103000 +0000",
@@ -20945,6 +20716,12 @@
           "stop": "20260914113000 +0000",
           "title": "الزراعة من أجل الكوكب",
           "desc": "برنامج حول العديد من طرق الزراعة المستدامة التي تساعد في حماية البيئة والكوكب."
+        },
+        {
+          "start": "20260914113000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "رحلات ممتعة",
+          "desc": "رحلة إلى مكان مختلف في كل حلقة، للتعرف على الثقافات والهويات والمواقع الجديدة من حول العالم."
         }
       ],
       "shard": "mena-om",
@@ -21570,9 +21347,9 @@
       "name": "قناة عمان الثقافية",
       "family": "قناة عمان الثقافية",
       "kind": "other",
-      "events": 71,
-      "coverage_hours": 34.58,
-      "span_hours": 34.75,
+      "events": 70,
+      "coverage_hours": 34.33,
+      "span_hours": 34.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.17,
       "invalid": 0,
@@ -21581,7 +21358,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 71,
+      "empty_desc": 70,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -21590,19 +21367,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 2.8,
-      "unique_title_pct": 88.7,
+      "top_title_pct": 2.9,
+      "unique_title_pct": 90.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "R2 برنامج / اخبار الثقافة",
-          "desc": ""
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914103000 +0000",
@@ -21620,13 +21391,19 @@
           "stop": "20260914113000 +0000",
           "title": "الزراعة من اجل الكوكب",
           "desc": ""
+        },
+        {
+          "start": "20260914113000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "برنامج - رحلات ممتعة - الحلقة 20",
+          "desc": ""
         }
       ],
       "shard": "mena-om",
       "feed_country": "om",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=71(100%)"
+        "EMPTY_DESC=70(100%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -21906,77 +21683,6 @@
       "auto_lock_safe": false
     },
     {
-      "id": "Jordan.Sport.HD.ae",
-      "name": "Jordan Sport HD",
-      "family": "Jordan Sport HD",
-      "kind": "other",
-      "events": 32,
-      "coverage_hours": 38.5,
-      "span_hours": 39.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.5,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 32,
-      "desc_same_title": 0,
-      "placeholder": 1,
-      "generic": 1,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 0.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 34.4,
-      "unique_title_pct": 53.1,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914100000 +0100",
-          "stop": "20260914110000 +0100",
-          "title": "ON Target",
-          "desc": ""
-        },
-        {
-          "start": "20260914110000 +0100",
-          "stop": "20260914120000 +0100",
-          "title": "Sport TV Magazine",
-          "desc": ""
-        },
-        {
-          "start": "20260914120000 +0100",
-          "stop": "20260914140000 +0100",
-          "title": "Football Match",
-          "desc": ""
-        },
-        {
-          "start": "20260914140000 +0100",
-          "stop": "20260914150000 +0100",
-          "title": "Football Match",
-          "desc": ""
-        }
-      ],
-      "shard": "mena-jo",
-      "feed_country": "ae",
-      "issues": [],
-      "warnings": [
-        "EMPTY_DESC=32(100%)",
-        "PLACEHOLDER=1",
-        "GENERIC_GUIDE=3%",
-        "FOREIGN_FEED_ID=AE_EXPECTED=JO",
-        "DUPLICATE_TIMELINE_GROUP=6"
-      ],
-      "score": 68,
-      "verdict": "REVIEW",
-      "auto_lock_safe": false
-    },
-    {
       "id": "JordanTV.jo@SD",
       "name": "الأردن",
       "family": "الأردن",
@@ -22184,9 +21890,9 @@
       "name": "Roya Kitchen",
       "family": "Roya Kitchen",
       "kind": "other",
-      "events": 115,
-      "coverage_hours": 35.05,
-      "span_hours": 35.07,
+      "events": 114,
+      "coverage_hours": 34.73,
+      "span_hours": 34.75,
       "gaps_gt_2h": 0,
       "gap_hours": 0.02,
       "invalid": 0,
@@ -22204,19 +21910,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 21.7,
-      "unique_title_pct": 7.8,
+      "top_title_pct": 21.9,
+      "unique_title_pct": 7.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914095631 +0000",
-          "stop": "20260914101528 +0000",
-          "title": "مطبخ رؤيا",
-          "desc": "برنامج يقدم مقادير وطرق تحضير المأكولات والأطباق المحلية والعربيه والعالمية ."
-        },
         {
           "start": "20260914101528 +0000",
           "stop": "20260914102307 +0000",
@@ -22234,6 +21934,12 @@
           "stop": "20260914110028 +0000",
           "title": "مطبخ رؤيا - المطبخ الأوروبي",
           "desc": "أكبر تشكيلة من وصفات الطبخ والأكلات الجديدة من المطبخ الأوروبى ضمن مطبخ رؤيا."
+        },
+        {
+          "start": "20260914110028 +0000",
+          "stop": "20260914111720 +0000",
+          "title": "مطبخ رؤيا - حلويات غربية",
+          "desc": "وصفات الحلويات الغربية الشهية ضمن مطبخ رؤيا."
         }
       ],
       "shard": "mena-jo",
@@ -24011,80 +23717,10 @@
       "feed_country": "iq",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=7(64%)"
+        "EMPTY_DESC=7(64%)",
+        "DUPLICATE_TIMELINE_GROUP=2"
       ],
       "score": 92,
-      "verdict": "REVIEW",
-      "auto_lock_safe": false
-    },
-    {
-      "id": "Palestine.Sport.ae",
-      "name": "Palestine Sport",
-      "family": "Palestine Sport",
-      "kind": "other",
-      "events": 32,
-      "coverage_hours": 38.5,
-      "span_hours": 39.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.5,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 32,
-      "desc_same_title": 0,
-      "placeholder": 1,
-      "generic": 1,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 0.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 34.4,
-      "unique_title_pct": 53.1,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914100000 +0100",
-          "stop": "20260914110000 +0100",
-          "title": "ON Target",
-          "desc": ""
-        },
-        {
-          "start": "20260914110000 +0100",
-          "stop": "20260914120000 +0100",
-          "title": "Sport TV Magazine",
-          "desc": ""
-        },
-        {
-          "start": "20260914120000 +0100",
-          "stop": "20260914140000 +0100",
-          "title": "Football Match",
-          "desc": ""
-        },
-        {
-          "start": "20260914140000 +0100",
-          "stop": "20260914150000 +0100",
-          "title": "Football Match",
-          "desc": ""
-        }
-      ],
-      "shard": "mena-ps",
-      "feed_country": "ae",
-      "issues": [],
-      "warnings": [
-        "EMPTY_DESC=32(100%)",
-        "PLACEHOLDER=1",
-        "GENERIC_GUIDE=3%",
-        "FOREIGN_FEED_ID=AE_EXPECTED=PS",
-        "DUPLICATE_TIMELINE_GROUP=6"
-      ],
-      "score": 68,
       "verdict": "REVIEW",
       "auto_lock_safe": false
     },
@@ -24769,6 +24405,74 @@
       "auto_lock_safe": false
     },
     {
+      "id": "Al Araby TV.sa",
+      "name": "Al Araby TV.sa",
+      "family": "Al Araby TV.sa",
+      "kind": "other",
+      "events": 59,
+      "coverage_hours": 46.0,
+      "span_hours": 46.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 59,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 0.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 64.4,
+      "unique_title_pct": 15.3,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914103000 +0000",
+          "title": "الأخبار",
+          "desc": ""
+        },
+        {
+          "start": "20260914103000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "اقتصادكم",
+          "desc": ""
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "الظهيرة",
+          "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "الأخبار",
+          "desc": ""
+        }
+      ],
+      "shard": "mena-other",
+      "feed_country": "sa",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=59(100%)",
+        "LOW_TITLE_DIVERSITY=15%"
+      ],
+      "score": 84,
+      "verdict": "REVIEW",
+      "auto_lock_safe": false
+    },
+    {
       "id": "Al Dafrah.sa",
       "name": "Al Dafrah.sa",
       "family": "Al Dafrah.sa",
@@ -25386,9 +25090,9 @@
       "name": "AlSharqiya.eg",
       "family": "AlSharqiya.eg",
       "kind": "other",
-      "events": 17,
-      "coverage_hours": 10.5,
-      "span_hours": 10.5,
+      "events": 16,
+      "coverage_hours": 9.75,
+      "span_hours": 9.75,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -25397,28 +25101,22 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 17,
+      "empty_desc": 16,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 58.8,
-      "title_has_latin_pct": 41.2,
+      "title_has_ar_pct": 62.5,
+      "title_has_latin_pct": 37.5,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 23.5,
-      "unique_title_pct": 70.6,
+      "top_title_pct": 25.0,
+      "unique_title_pct": 75.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914093000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "Abjad Hawas",
-          "desc": ""
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914104500 +0000",
@@ -25436,13 +25134,19 @@
           "stop": "20260914120000 +0000",
           "title": "برنامج تعال اسمعك",
           "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914121500 +0000",
+          "title": "أخبار",
+          "desc": ""
         }
       ],
       "shard": "mena-other",
       "feed_country": "eg",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=17(100%)"
+        "EMPTY_DESC=16(100%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -26258,9 +25962,9 @@
       "name": "ar: بلوم",
       "family": "ar: بلوم",
       "kind": "other",
-      "events": 292,
-      "coverage_hours": 48.15,
-      "span_hours": 48.15,
+      "events": 293,
+      "coverage_hours": 48.4,
+      "span_hours": 48.4,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -26274,29 +25978,17 @@
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 11.3,
-      "title_hybrid_pct": 11.3,
+      "title_has_latin_pct": 10.9,
+      "title_hybrid_pct": 10.9,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 6.2,
-      "unique_title_pct": 16.1,
+      "top_title_pct": 6.1,
+      "unique_title_pct": 16.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100600 +0000",
-          "stop": "20260914101400 +0000",
-          "title": "لي ميني-إيغو دولا فوغي",
-          "desc": "‫م1 ، ح33 : ‫يعتبر الأصدقاء الأربعة جولييت وغاستون جيد وغابين أبطال غابتهم، إذ يرتدون أوشحة وأقنعة من أجل حماية بيئتهم.‬."
-        },
-        {
-          "start": "20260914101400 +0000",
-          "stop": "20260914101600 +0000",
-          "title": "Pocoyo Digital First",
-          "desc": "‫م1 ، ح19 :."
-        },
         {
           "start": "20260914101600 +0000",
           "stop": "20260914102700 +0000",
@@ -26308,6 +26000,18 @@
           "stop": "20260914103300 +0000",
           "title": "كراي بيبيز",
           "desc": "‫م2 ، ح19 :."
+        },
+        {
+          "start": "20260914103300 +0000",
+          "stop": "20260914104500 +0000",
+          "title": "ليليبودز",
+          "desc": "‫م1 ، ح5 : ‫يرعى أفراد مجتمع ليليبودز السحري الصغير المكون من بستانيين، موطنهم النابض بالحياة مع حماية كائناته، ومن خلال العمل الجماعي والمشاكسة والدهشة، يبعثون الحياة في عالمهم ال"
+        },
+        {
+          "start": "20260914104500 +0000",
+          "stop": "20260914105000 +0000",
+          "title": "بيبا بغ",
+          "desc": "‫م4 ، ح48 : ‫تقضي الخنزيرة الصغيرة الفضولية والودودة بيبا حياتها مع أصدقائها وعائلتها، على الرغم من توجيه والدتها المحببة ووالدها المتهور، إلا أنها تتعرض لمواقف صعبة كل يوم تقريبا،"
         }
       ],
       "shard": "mena-other",
@@ -26659,9 +26363,9 @@
       "name": "ar: ستارزبلاي كريكيت 1",
       "family": "ar: ستارزبلاي كريكيت 1",
       "kind": "other",
-      "events": 40,
-      "coverage_hours": 49.28,
-      "span_hours": 49.28,
+      "events": 39,
+      "coverage_hours": 48.75,
+      "span_hours": 48.75,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -26675,23 +26379,17 @@
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 62.5,
-      "title_hybrid_pct": 62.5,
+      "title_has_latin_pct": 61.5,
+      "title_hybrid_pct": 61.5,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 22.5,
-      "unique_title_pct": 57.5,
+      "top_title_pct": 23.1,
+      "unique_title_pct": 59.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914094300 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "Asia Cup 2025: Super Four- Sri Lanka vs Bangladesh - Asian Blockbusters",
-          "desc": "‫‬."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914104000 +0000",
@@ -26709,6 +26407,12 @@
           "stop": "20260914120000 +0000",
           "title": "آي سي سي وومنز ورلد كب كريكيت",
           "desc": "‫‫أحداث من كأس العالم للكريكيت للسيدات، وهي بطولة عالمية ضمن سلسلة مباريات بطولة اليوم الدولي الواحد للمنتخبات الوطنية للسيدات، وتعد أقدم بطولة عالمية في هذه الرياضة.‬."
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914123000 +0000",
+          "title": "آي سي سي وومنز تي٢٠ ورلد كب هايلايتس",
+          "desc": "‫‫مجموعة من أهم وأبرز لقطات مباريات بطولة كأس العالم للكريكت للسيدات تي٢٠ التابعة للمجلس الدولي للكريكت، حيث تتنافس المنتخبات الوطنية النسائية لرفع الكأس المرموق.‬."
         }
       ],
       "shard": "mena-other",
@@ -27266,9 +26970,9 @@
       "name": "Bara3em-1.qa",
       "family": "Bara3em-1.qa",
       "kind": "other",
-      "events": 114,
-      "coverage_hours": 41.97,
-      "span_hours": 42.17,
+      "events": 113,
+      "coverage_hours": 41.88,
+      "span_hours": 42.08,
       "gaps_gt_2h": 0,
       "gap_hours": 0.2,
       "invalid": 0,
@@ -27277,7 +26981,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 114,
+      "empty_desc": 113,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -27286,19 +26990,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 5.3,
-      "unique_title_pct": 52.6,
+      "top_title_pct": 4.4,
+      "unique_title_pct": 53.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914101000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "Miraculous: Tales of Ladybug and Cat Noir - The Rose",
-          "desc": ""
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914103500 +0000",
@@ -27316,13 +27014,19 @@
           "stop": "20260914112000 +0000",
           "title": "Big City Greens - Blood Moon Part 1/ Blood Moon Part 2",
           "desc": ""
+        },
+        {
+          "start": "20260914112000 +0000",
+          "stop": "20260914114500 +0000",
+          "title": "Big City Greens - Cricket's Shoes/ Feud Fight",
+          "desc": ""
         }
       ],
       "shard": "mena-other",
       "feed_country": "qa",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=114(100%)"
+        "EMPTY_DESC=113(100%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -28077,9 +27781,9 @@
       "name": "Cartoon-Network-Arabic-1.qa",
       "family": "Cartoon-Network-Arabic-1.qa",
       "kind": "other",
-      "events": 200,
-      "coverage_hours": 39.95,
-      "span_hours": 41.92,
+      "events": 199,
+      "coverage_hours": 39.78,
+      "span_hours": 41.75,
       "gaps_gt_2h": 0,
       "gap_hours": 1.97,
       "invalid": 0,
@@ -28088,28 +27792,22 @@
       "long_gt_12h": 0,
       "short_lt_2m": 5,
       "empty_title": 0,
-      "empty_desc": 200,
+      "empty_desc": 199,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 91.5,
-      "title_has_latin_pct": 82.5,
-      "title_hybrid_pct": 74.0,
+      "title_has_latin_pct": 82.9,
+      "title_hybrid_pct": 74.4,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 8.0,
-      "unique_title_pct": 23.0,
+      "top_title_pct": 7.5,
+      "unique_title_pct": 23.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100400 +0000",
-          "stop": "20260914101400 +0000",
-          "title": "كروكر و الأصدقاء",
-          "desc": ""
-        },
         {
           "start": "20260914101400 +0000",
           "stop": "20260914102500 +0000",
@@ -28127,6 +27825,12 @@
           "stop": "20260914103000 +0000",
           "title": "E32 | S1 روبوتيك",
           "desc": ""
+        },
+        {
+          "start": "20260914103000 +0000",
+          "stop": "20260914103400 +0000",
+          "title": "E33 | S1 روبوتيك",
+          "desc": ""
         }
       ],
       "shard": "mena-other",
@@ -28134,7 +27838,7 @@
       "issues": [],
       "warnings": [
         "SHORT_LT_2M=5",
-        "EMPTY_DESC=200(100%)"
+        "EMPTY_DESC=199(100%)"
       ],
       "score": 84,
       "verdict": "REVIEW",
@@ -28145,9 +27849,9 @@
       "name": "Cartoonito.sa",
       "family": "Cartoonito.sa",
       "kind": "other",
-      "events": 219,
-      "coverage_hours": 42.17,
-      "span_hours": 42.17,
+      "events": 218,
+      "coverage_hours": 42.0,
+      "span_hours": 42.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -28166,18 +27870,12 @@
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 1.8,
-      "unique_title_pct": 75.3,
+      "unique_title_pct": 75.2,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100500 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "ذا توم آند جيري شو:بينش هيتر",
-          "desc": "رسوم متحركة ملونة جديدة، تعرض الشخصيات الكلاسيكية التي أحببتموها، توم وجيري والخطط الماكرة المضحكة ضد بعضهما البعض."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914102500 +0000",
@@ -28194,6 +27892,12 @@
           "start": "20260914103500 +0000",
           "stop": "20260914105500 +0000",
           "title": "مستر بيين:هوتيل بين",
+          "desc": "انضموا إلى (مستر بيين) الشخصية الغريبة المرحة، مع صديق عمره الحميم (دميته المحشوة) في مغامراتهما المضحكة."
+        },
+        {
+          "start": "20260914105500 +0000",
+          "stop": "20260914110500 +0000",
+          "title": "مستر بيين:جوراسيك بين",
           "desc": "انضموا إلى (مستر بيين) الشخصية الغريبة المرحة، مع صديق عمره الحميم (دميته المحشوة) في مغامراتهما المضحكة."
         }
       ],
@@ -28280,9 +27984,9 @@
       "name": "CBeebies-1.qa",
       "family": "CBeebies-1.qa",
       "kind": "other",
-      "events": 186,
-      "coverage_hours": 41.2,
-      "span_hours": 41.63,
+      "events": 185,
+      "coverage_hours": 40.98,
+      "span_hours": 41.42,
       "gaps_gt_2h": 0,
       "gap_hours": 0.43,
       "invalid": 0,
@@ -28291,28 +27995,22 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 186,
+      "empty_desc": 185,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 89.2,
-      "title_has_latin_pct": 83.9,
-      "title_hybrid_pct": 73.1,
+      "title_has_latin_pct": 83.8,
+      "title_hybrid_pct": 73.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 4.3,
-      "unique_title_pct": 27.4,
+      "unique_title_pct": 27.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914101300 +0000",
-          "title": "E34 | S1 الشيف شين",
-          "desc": ""
-        },
         {
           "start": "20260914101300 +0000",
           "stop": "20260914102500 +0000",
@@ -28330,13 +28028,19 @@
           "stop": "20260914104900 +0000",
           "title": "E17 | S2 سونيك السريع",
           "desc": ""
+        },
+        {
+          "start": "20260914104900 +0000",
+          "stop": "20260914110300 +0000",
+          "title": "E18 | S2 سونيك السريع",
+          "desc": ""
         }
       ],
       "shard": "mena-other",
       "feed_country": "qa",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=186(100%)"
+        "EMPTY_DESC=185(100%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -28443,12 +28147,6 @@
       ],
       "preview": [
         {
-          "start": "20260914093000 +0100",
-          "stop": "20260914101500 +0100",
-          "title": "مسرحيات تلفزيونية",
-          "desc": ""
-        },
-        {
           "start": "20260914101500 +0100",
           "stop": "20260914110000 +0100",
           "title": "مسرحيات تلفزيونية",
@@ -28464,6 +28162,12 @@
           "start": "20260914113000 +0100",
           "stop": "20260914120000 +0100",
           "title": "الصين·الشرق الأوسط",
+          "desc": ""
+        },
+        {
+          "start": "20260914120000 +0100",
+          "stop": "20260914123000 +0100",
+          "title": "CGTN — أخبار",
           "desc": ""
         }
       ],
@@ -28812,18 +28516,18 @@
       "name": "CNN International",
       "family": "CNN International",
       "kind": "other",
-      "events": 243,
-      "coverage_hours": 48.43,
-      "span_hours": 48.43,
+      "events": 241,
+      "coverage_hours": 48.17,
+      "span_hours": 48.17,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
       "overlaps": 0,
       "long_gt_6h": 0,
       "long_gt_12h": 0,
-      "short_lt_2m": 16,
+      "short_lt_2m": 15,
       "empty_title": 0,
-      "empty_desc": 243,
+      "empty_desc": 241,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -28832,25 +28536,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 36.6,
-      "unique_title_pct": 12.3,
+      "top_title_pct": 36.5,
+      "unique_title_pct": 12.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0100",
-          "stop": "20260914101500 +0100",
-          "title": "News",
-          "desc": ""
-        },
-        {
-          "start": "20260914101500 +0100",
-          "stop": "20260914101600 +0100",
-          "title": "Introduction",
-          "desc": ""
-        },
         {
           "start": "20260914101600 +0100",
           "stop": "20260914103000 +0100",
@@ -28862,14 +28554,26 @@
           "stop": "20260914104500 +0100",
           "title": "News",
           "desc": ""
+        },
+        {
+          "start": "20260914104500 +0100",
+          "stop": "20260914104600 +0100",
+          "title": "Introduction",
+          "desc": ""
+        },
+        {
+          "start": "20260914104600 +0100",
+          "stop": "20260914105800 +0100",
+          "title": "Access Asia",
+          "desc": ""
         }
       ],
       "shard": "mena-other",
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "SHORT_LT_2M=16",
-        "EMPTY_DESC=243(100%)",
+        "SHORT_LT_2M=15",
+        "EMPTY_DESC=241(100%)",
         "LOW_TITLE_DIVERSITY=12%",
         "DUPLICATE_TIMELINE_GROUP=2",
         "DUPLICATE_TIMELINE_UNRELATED"
@@ -28948,9 +28652,9 @@
       "name": "C & I",
       "family": "C & I",
       "kind": "other",
-      "events": 52,
-      "coverage_hours": 39.0,
-      "span_hours": 39.0,
+      "events": 51,
+      "coverage_hours": 38.25,
+      "span_hours": 38.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -28968,19 +28672,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 21.2,
-      "unique_title_pct": 28.8,
+      "top_title_pct": 21.6,
+      "unique_title_pct": 29.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914093000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "امبرفيكت ميردر",
-          "desc": "في أوائل عام 2021، بدأت غابي بيتيتو وخطيبها بريان لوندر رحلة عبر الولايات المتحدة، وقاما بتوثيق مغامرتهما على وسائل التواصل الاجتماعي. ولكن هذه المغامرة تأخذ منعطفاً مأساوياً."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914110000 +0000",
@@ -28998,6 +28696,12 @@
           "stop": "20260914123000 +0000",
           "title": "غرين آيد كيليرز",
           "desc": "عندما تم إطلاق النار على لاني هورويتز تسع مرات داخل منزله في جوبيتر، فلوريدا، لم يستغرق الأمر وقتًا طويلًا حتى أصبحت زوجته دونا المشتبه الرئيسي في القضية."
+        },
+        {
+          "start": "20260914123000 +0000",
+          "stop": "20260914131500 +0000",
+          "title": "غرين آيد كيليرز",
+          "desc": "اعتقدت ميشيل بوت بأن هناك شخصًا واحدًا يقف في طريق المصالحة مع زوجها، وهذا الشخص هو تريسي موندابو. لذلك أخذت سكينًا وطعنتها حتى الموت."
         }
       ],
       "shard": "mena-other",
@@ -29338,9 +29042,9 @@
       "name": "Disney Junior.sa",
       "family": "Disney Junior.sa",
       "kind": "other",
-      "events": 169,
-      "coverage_hours": 42.08,
-      "span_hours": 42.08,
+      "events": 168,
+      "coverage_hours": 42.0,
+      "span_hours": 42.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -29359,18 +29063,12 @@
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 2.4,
-      "unique_title_pct": 68.0,
+      "unique_title_pct": 68.5,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914101000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "بلوي:مافِن كُون",
-          "desc": "بلوي كلبة زرقاء محبوبة عمرها ستة أعوام تعيش مع أبيها وأمها وأختها بينغو البالغة أربعة أعوام. حب بلوي للعب يحضر عائلتها وجيرانها كلهم إلى عالمها من المرح والألعاب"
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914102500 +0000",
@@ -29388,6 +29086,12 @@
           "stop": "20260914111500 +0000",
           "title": "سوبركيتيز:ميوزييم مايهم/ بيغ ديغ",
           "desc": "بيتسي وجيني وسباركس وبادي قطط خارقة! تقوم هذه المجموعة الرباعية بتصويب الأخطاء أينما وُجدت، إنهم في مهمة لجعل العالم مكاناً أفضل وأكثر لطفاً وروعةً."
+        },
+        {
+          "start": "20260914111500 +0000",
+          "stop": "20260914114000 +0000",
+          "title": "صوفيا الأولى: سحر ملكي:سليبي تايم سبيل / زين ذا هيرو",
+          "desc": "انضموا إلى صوفيا في تشارمزويل، حيث يحمل كل يوم دروسًا سحرية ومغامراتٍ ملكية!"
         }
       ],
       "shard": "mena-other",
@@ -30361,9 +30065,9 @@
       "name": "en: Bloom",
       "family": "en: Bloom",
       "kind": "other",
-      "events": 292,
-      "coverage_hours": 48.15,
-      "span_hours": 48.15,
+      "events": 293,
+      "coverage_hours": 48.4,
+      "span_hours": 48.4,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -30372,7 +30076,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 292,
+      "empty_desc": 293,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -30381,25 +30085,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 6.2,
-      "unique_title_pct": 16.8,
+      "top_title_pct": 6.1,
+      "unique_title_pct": 16.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100600 +0000",
-          "stop": "20260914101400 +0000",
-          "title": "Miniheroes of the forest",
-          "desc": ""
-        },
-        {
-          "start": "20260914101400 +0000",
-          "stop": "20260914101600 +0000",
-          "title": "Pocoyo Digital First",
-          "desc": ""
-        },
         {
           "start": "20260914101600 +0000",
           "stop": "20260914102700 +0000",
@@ -30411,13 +30103,25 @@
           "stop": "20260914103300 +0000",
           "title": "Cry Babies Magic Tears",
           "desc": ""
+        },
+        {
+          "start": "20260914103300 +0000",
+          "stop": "20260914104500 +0000",
+          "title": "Lilybuds",
+          "desc": ""
+        },
+        {
+          "start": "20260914104500 +0000",
+          "stop": "20260914105000 +0000",
+          "title": "Peppa Pig",
+          "desc": ""
         }
       ],
       "shard": "mena-other",
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=292(100%)",
+        "EMPTY_DESC=293(100%)",
         "LOW_TITLE_DIVERSITY=17%"
       ],
       "score": 84,
@@ -30566,7 +30270,7 @@
       "name": "EN: Fairuz",
       "family": "EN: Fairuz",
       "kind": "other",
-      "events": 760,
+      "events": 761,
       "coverage_hours": 48.15,
       "span_hours": 48.18,
       "gaps_gt_2h": 0,
@@ -30577,7 +30281,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 760,
+      "empty_desc": 761,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -30594,27 +30298,27 @@
       ],
       "preview": [
         {
-          "start": "20260914100529 +0000",
-          "stop": "20260914101132 +0000",
-          "title": "Bahebak Ya Lebnan",
-          "desc": ""
-        },
-        {
-          "start": "20260914101132 +0000",
-          "stop": "20260914101432 +0000",
-          "title": "Ana La Habibi",
-          "desc": ""
-        },
-        {
-          "start": "20260914101432 +0000",
-          "stop": "20260914102009 +0000",
-          "title": "Sa'altak Habibi",
-          "desc": ""
-        },
-        {
           "start": "20260914102009 +0000",
           "stop": "20260914102335 +0000",
           "title": "Tebka Mayel",
+          "desc": ""
+        },
+        {
+          "start": "20260914102335 +0000",
+          "stop": "20260914102956 +0000",
+          "title": "A Hadeer El Bousta",
+          "desc": ""
+        },
+        {
+          "start": "20260914102956 +0000",
+          "stop": "20260914103312 +0000",
+          "title": "Nehna wel amar jiran",
+          "desc": ""
+        },
+        {
+          "start": "20260914103312 +0000",
+          "stop": "20260914103627 +0000",
+          "title": "Dabket Lebnan",
           "desc": ""
         }
       ],
@@ -30622,7 +30326,7 @@
       "feed_country": "sa",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=760(100%)",
+        "EMPTY_DESC=761(100%)",
         "LOW_TITLE_DIVERSITY=4%"
       ],
       "score": 84,
@@ -30702,9 +30406,9 @@
       "name": "EN: Rabeh Saqer",
       "family": "EN: Rabeh Saqer",
       "kind": "other",
-      "events": 494,
-      "coverage_hours": 48.2,
-      "span_hours": 48.23,
+      "events": 493,
+      "coverage_hours": 48.15,
+      "span_hours": 48.18,
       "gaps_gt_2h": 0,
       "gap_hours": 0.03,
       "invalid": 0,
@@ -30713,7 +30417,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 494,
+      "empty_desc": 493,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -30730,18 +30434,6 @@
       ],
       "preview": [
         {
-          "start": "20260914100759 +0000",
-          "stop": "20260914101234 +0000",
-          "title": "Qleel El Khatema",
-          "desc": ""
-        },
-        {
-          "start": "20260914101234 +0000",
-          "stop": "20260914102126 +0000",
-          "title": "Aadak Ela Saghier",
-          "desc": ""
-        },
-        {
           "start": "20260914102126 +0000",
           "stop": "20260914102626 +0000",
           "title": "Wein Inta",
@@ -30752,13 +30444,25 @@
           "stop": "20260914103141 +0000",
           "title": "Daafi Mahaba",
           "desc": ""
+        },
+        {
+          "start": "20260914103141 +0000",
+          "stop": "20260914103747 +0000",
+          "title": "saab",
+          "desc": ""
+        },
+        {
+          "start": "20260914103747 +0000",
+          "stop": "20260914104432 +0000",
+          "title": "Men Kebraha",
+          "desc": ""
         }
       ],
       "shard": "mena-other",
       "feed_country": "sa",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=494(100%)",
+        "EMPTY_DESC=493(100%)",
         "LOW_TITLE_DIVERSITY=14%"
       ],
       "score": 84,
@@ -31379,9 +31083,9 @@
       "name": "France 24.sa",
       "family": "France 24.sa",
       "kind": "other",
-      "events": 213,
-      "coverage_hours": 42.25,
-      "span_hours": 42.25,
+      "events": 212,
+      "coverage_hours": 41.98,
+      "span_hours": 41.98,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -31399,19 +31103,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 32.9,
-      "unique_title_pct": 15.5,
+      "top_title_pct": 32.5,
+      "unique_title_pct": 15.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914101600 +0000",
-          "title": "الأخبار",
-          "desc": "تغطية مباشرة للأخبار المحلية والعالمية مع التركيز على التطورات في العالم، وصولاً إلى عرض دقيق وتحليلات معمقة تهم المشاهدين."
-        },
         {
           "start": "20260914101600 +0000",
           "stop": "20260914103000 +0000",
@@ -31429,6 +31127,12 @@
           "stop": "20260914105800 +0000",
           "title": "على هذه الأرض",
           "desc": "يتناول موضوع التنمية المستدامة ويطرح قضية البقاء على الأرض، وكيفية جعل الموارد - التي كنا نظنها لا تنضب - مستدامة في المستقبل."
+        },
+        {
+          "start": "20260914105800 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "العناوين",
+          "desc": "آخر الأخبار والمستجدات والقضايا الراهنة حول العالم."
         }
       ],
       "shard": "mena-other",
@@ -31446,9 +31150,9 @@
       "name": "France 24 Arabic",
       "family": "France 24 Arabic",
       "kind": "other",
-      "events": 272,
-      "coverage_hours": 49.0,
-      "span_hours": 49.0,
+      "events": 271,
+      "coverage_hours": 48.78,
+      "span_hours": 48.78,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -31457,7 +31161,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 24,
       "empty_title": 0,
-      "empty_desc": 272,
+      "empty_desc": 271,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -31466,19 +31170,13 @@
       "title_hybrid_pct": 91.5,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 38.6,
-      "unique_title_pct": 13.2,
+      "top_title_pct": 38.4,
+      "unique_title_pct": 13.3,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0100",
-          "stop": "20260914101300 +0100",
-          "title": "الأخبار",
-          "desc": ""
-        },
         {
           "start": "20260914101300 +0100",
           "stop": "20260914110000 +0100",
@@ -31496,6 +31194,12 @@
           "stop": "20260914111600 +0100",
           "title": "الأخبار",
           "desc": ""
+        },
+        {
+          "start": "20260914111600 +0100",
+          "stop": "20260914113000 +0100",
+          "title": "ثقافة",
+          "desc": ""
         }
       ],
       "shard": "mena-other",
@@ -31503,7 +31207,7 @@
       "issues": [],
       "warnings": [
         "SHORT_LT_2M=24",
-        "EMPTY_DESC=272(100%)",
+        "EMPTY_DESC=271(100%)",
         "LOW_TITLE_DIVERSITY=13%"
       ],
       "score": 76,
@@ -31515,18 +31219,18 @@
       "name": "France 24 English",
       "family": "France 24 English",
       "kind": "other",
-      "events": 243,
-      "coverage_hours": 48.43,
-      "span_hours": 48.43,
+      "events": 241,
+      "coverage_hours": 48.17,
+      "span_hours": 48.17,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
       "overlaps": 0,
       "long_gt_6h": 0,
       "long_gt_12h": 0,
-      "short_lt_2m": 16,
+      "short_lt_2m": 15,
       "empty_title": 0,
-      "empty_desc": 243,
+      "empty_desc": 241,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -31535,25 +31239,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 36.6,
-      "unique_title_pct": 12.3,
+      "top_title_pct": 36.5,
+      "unique_title_pct": 12.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0100",
-          "stop": "20260914101500 +0100",
-          "title": "News",
-          "desc": ""
-        },
-        {
-          "start": "20260914101500 +0100",
-          "stop": "20260914101600 +0100",
-          "title": "Introduction",
-          "desc": ""
-        },
         {
           "start": "20260914101600 +0100",
           "stop": "20260914103000 +0100",
@@ -31565,14 +31257,26 @@
           "stop": "20260914104500 +0100",
           "title": "News",
           "desc": ""
+        },
+        {
+          "start": "20260914104500 +0100",
+          "stop": "20260914104600 +0100",
+          "title": "Introduction",
+          "desc": ""
+        },
+        {
+          "start": "20260914104600 +0100",
+          "stop": "20260914105800 +0100",
+          "title": "Access Asia",
+          "desc": ""
         }
       ],
       "shard": "mena-other",
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "SHORT_LT_2M=16",
-        "EMPTY_DESC=243(100%)",
+        "SHORT_LT_2M=15",
+        "EMPTY_DESC=241(100%)",
         "LOW_TITLE_DIVERSITY=12%",
         "DUPLICATE_TIMELINE_GROUP=2",
         "DUPLICATE_TIMELINE_UNRELATED"
@@ -31853,9 +31557,9 @@
       "name": "GMA Pinoy TV.sa",
       "family": "GMA Pinoy TV.sa",
       "kind": "other",
-      "events": 18,
-      "coverage_hours": 12.58,
-      "span_hours": 12.58,
+      "events": 17,
+      "coverage_hours": 12.0,
+      "span_hours": 12.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -31864,7 +31568,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 18,
+      "empty_desc": 17,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -31873,19 +31577,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 16.7,
-      "unique_title_pct": 66.7,
+      "top_title_pct": 11.8,
+      "unique_title_pct": 70.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914094000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "ذا ماستر كاتر",
-          "desc": ""
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914104500 +0000",
@@ -31903,13 +31601,19 @@
           "stop": "20260914125000 +0000",
           "title": "24 أوراس",
           "desc": ""
+        },
+        {
+          "start": "20260914125000 +0000",
+          "stop": "20260914132500 +0000",
+          "title": "ذا ماستر كاتر",
+          "desc": ""
         }
       ],
       "shard": "mena-other",
       "feed_country": "sa",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=18(100%)"
+        "EMPTY_DESC=17(100%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -32785,9 +32489,9 @@
       "name": "KBS World",
       "family": "KBS World",
       "kind": "other",
-      "events": 62,
-      "coverage_hours": 48.25,
-      "span_hours": 48.25,
+      "events": 63,
+      "coverage_hours": 48.83,
+      "span_hours": 48.83,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -32796,7 +32500,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 62,
+      "empty_desc": 63,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -32805,8 +32509,8 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 9.7,
-      "unique_title_pct": 32.3,
+      "top_title_pct": 9.5,
+      "unique_title_pct": 31.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -32841,7 +32545,7 @@
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=62(100%)"
+        "EMPTY_DESC=63(100%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -33660,9 +33364,9 @@
       "name": "MOTORVISION",
       "family": "MOTORVISION",
       "kind": "other",
-      "events": 72,
-      "coverage_hours": 38.25,
-      "span_hours": 38.25,
+      "events": 71,
+      "coverage_hours": 37.92,
+      "span_hours": 37.92,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -33680,19 +33384,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 8.3,
-      "unique_title_pct": 51.4,
+      "top_title_pct": 8.5,
+      "unique_title_pct": 52.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914102000 +0000",
-          "title": "تيونينغ",
-          "desc": "يأخذك برنامج «تيونينغ» في جولة في كواليس ورشات التعديل الخاصة، مستعرضاً أحدث السيارات الرائعة، كما يقدم لكم عرضاً لأروع السيارات المعدلة."
-        },
         {
           "start": "20260914102000 +0000",
           "stop": "20260914104500 +0000",
@@ -33710,6 +33408,12 @@
           "stop": "20260914113500 +0000",
           "title": "فاستزون 2025",
           "desc": "يقدم لكم هذا البرنامج أفضل مزيج من الرياضات الآلية الوطنية والدولية من جميع أنحاء العالم."
+        },
+        {
+          "start": "20260914113500 +0000",
+          "stop": "20260914121500 +0000",
+          "title": "تحدي فيراري في أميركا الشمالية لعام 2025",
+          "desc": "يتألف موسم «تحدي فيراري في أمريكا الشمالية» لعام 2025 من ست جولات تُقام على حلبات سباق شهيرة، وتُخاض حصريًّا بسيارة «فيراري 296 تشالنج»، حيث يبدأ الموسم في مارس في سونوما وينتهي في"
         }
       ],
       "shard": "mena-other",
@@ -34392,9 +34096,9 @@
       "name": "Nat. Geographic.sa",
       "family": "Nat. Geographic.sa",
       "kind": "other",
-      "events": 57,
-      "coverage_hours": 42.75,
-      "span_hours": 42.75,
+      "events": 56,
+      "coverage_hours": 42.0,
+      "span_hours": 42.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -34412,19 +34116,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 8.8,
-      "unique_title_pct": 42.1,
+      "top_title_pct": 8.9,
+      "unique_title_pct": 42.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914093000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "كنوز المايا الضائعة:سيكريتس أوف ذا سنيك آلتار",
-          "desc": "تكشف المدينتين أسرار الحرب المنسية."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914110000 +0000",
@@ -34442,6 +34140,12 @@
           "stop": "20260914123000 +0000",
           "title": "أساليب البقاء:ووريار ويدينغ",
           "desc": "هازن أوديل مرشد النجاة ودليل الحياة البرية. يسافر بنا إلى مجموعة من أقصى الأماكن على سطح الأرض لخوض التحديات الفرضية. ذلك بالاعتماد على التقنيات القديمة التي استخدمها السكان الأصلي"
+        },
+        {
+          "start": "20260914123000 +0000",
+          "stop": "20260914131500 +0000",
+          "title": "ناين إليفن: ريونايتد:10:15 صباحًا 11 سبتمبر - 7:45 صباحًا 12...",
+          "desc": "بعد 25 عامًا على أحداث 11 سبتمبر، يلتقي ناجون ومسعفون وشهود مجددًا بأشخاص غيّروا حياتهم في ذلك اليوم، مستعيدين قصصًا مؤثرة عن الشجاعة والنجاة والروابط التي بقيت معهم لعقود."
         }
       ],
       "shard": "mena-other",
@@ -34457,9 +34161,9 @@
       "name": "ناشيونال جيوجرافيك",
       "family": "ناشيونال جيوجرافيك",
       "kind": "other",
-      "events": 10,
-      "coverage_hours": 7.75,
-      "span_hours": 7.75,
+      "events": 9,
+      "coverage_hours": 7.0,
+      "span_hours": 7.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -34468,28 +34172,22 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 9,
+      "empty_desc": 8,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 10.0,
-      "title_hybrid_pct": 10.0,
+      "title_has_latin_pct": 11.1,
+      "title_hybrid_pct": 11.1,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 30.0,
-      "unique_title_pct": 70.0,
+      "top_title_pct": 33.3,
+      "unique_title_pct": 77.8,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914093000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "برنامج أحداث 11 سبتمبر: لمّ الشمل",
-          "desc": ""
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914104500 +0000",
@@ -34507,13 +34205,19 @@
           "stop": "20260914121500 +0000",
           "title": "برنامج تحقيقات الكوارث الجوية",
           "desc": ""
+        },
+        {
+          "start": "20260914121500 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "برنامج تحقيقات الكوارث الجوية",
+          "desc": ""
         }
       ],
       "shard": "mena-other",
       "feed_country": "",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=9(90%)"
+        "EMPTY_DESC=8(89%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -35269,9 +34973,9 @@
       "name": "RT Documentary.sa",
       "family": "RT Documentary.sa",
       "kind": "other",
-      "events": 169,
-      "coverage_hours": 42.22,
-      "span_hours": 42.22,
+      "events": 168,
+      "coverage_hours": 42.02,
+      "span_hours": 42.02,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -35289,19 +34993,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 28.4,
+      "top_title_pct": 28.6,
       "unique_title_pct": 8.3,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914101200 +0000",
-          "title": "وقوع الكوارث",
-          "desc": "وثائقي يسلط الضوء على الكوارث حين وقوعها، والتداعيات التي تليها."
-        },
         {
           "start": "20260914101200 +0000",
           "stop": "20260914103000 +0000",
@@ -35317,6 +35015,12 @@
         {
           "start": "20260914104100 +0000",
           "stop": "20260914110000 +0000",
+          "title": "أميريكان ستوري",
+          "desc": "سلسلة مختارات ملهمة تحتفل بالقصص الملهمة لأشخاص غير عاديين في أمريكا."
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914111100 +0000",
           "title": "أميريكان ستوري",
           "desc": "سلسلة مختارات ملهمة تحتفل بالقصص الملهمة لأشخاص غير عاديين في أمريكا."
         }
@@ -35939,10 +35643,10 @@
       "family": "Sports First",
       "kind": "other",
       "events": 216,
-      "coverage_hours": 46.55,
-      "span_hours": 48.28,
+      "coverage_hours": 46.5,
+      "span_hours": 48.25,
       "gaps_gt_2h": 0,
-      "gap_hours": 1.73,
+      "gap_hours": 1.75,
       "invalid": 0,
       "overlaps": 0,
       "long_gt_6h": 0,
@@ -35959,18 +35663,12 @@
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 1.9,
-      "unique_title_pct": 60.2,
+      "unique_title_pct": 60.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100200 +0100",
-          "stop": "20260914101700 +0100",
-          "title": "Roar Combat League S1 Ep 3 pt 4",
-          "desc": ""
-        },
         {
           "start": "20260914101700 +0100",
           "stop": "20260914103100 +0100",
@@ -35987,6 +35685,12 @@
           "start": "20260914104300 +0100",
           "stop": "20260914105700 +0100",
           "title": "UK Strongest Man Ep 9 pt 3",
+          "desc": ""
+        },
+        {
+          "start": "20260914105700 +0100",
+          "stop": "20260914110800 +0100",
+          "title": "UK Strongest Man Ep 9 pt 4",
           "desc": ""
         }
       ],
@@ -36460,9 +36164,9 @@
       "name": "stc tv sports HD.sa",
       "family": "stc tv sports HD.sa",
       "kind": "other",
-      "events": 28,
-      "coverage_hours": 44.67,
-      "span_hours": 44.67,
+      "events": 27,
+      "coverage_hours": 42.75,
+      "span_hours": 42.75,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -36475,24 +36179,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 75.0,
-      "title_has_latin_pct": 25.0,
+      "title_has_ar_pct": 74.1,
+      "title_has_latin_pct": 25.9,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 25.0,
-      "unique_title_pct": 71.4,
+      "top_title_pct": 25.9,
+      "unique_title_pct": 70.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914082000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "نابولي × بولونيا 2026/27",
-          "desc": "يلعب فريق نابولي ضد فريق بولونيا ضمن مباريات الدوري الإيطالي لعام 2026/27."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914121000 +0000",
@@ -36510,6 +36208,12 @@
           "stop": "20260914154500 +0000",
           "title": "تورينو × ميلان 2026/27",
           "desc": "يلعب فريق تورينو ضد فريق ميلان ضمن مباريات الدوري الإيطالي لعام 2026/27."
+        },
+        {
+          "start": "20260914154500 +0000",
+          "stop": "20260914174500 +0000",
+          "title": "بولونيا × لاتسيو 2026/27",
+          "desc": "يلعب فريق بولونيا ضد فريق لاتسيو ضمن مباريات الدوري الإيطالي لعام 2026/27."
         }
       ],
       "shard": "mena-other",
@@ -37126,9 +36830,9 @@
       "name": "TV5 Monde",
       "family": "TV5 Monde",
       "kind": "other",
-      "events": 70,
-      "coverage_hours": 46.35,
-      "span_hours": 48.57,
+      "events": 71,
+      "coverage_hours": 46.93,
+      "span_hours": 49.15,
       "gaps_gt_2h": 1,
       "gap_hours": 2.22,
       "invalid": 0,
@@ -37137,17 +36841,17 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 70,
+      "empty_desc": 71,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 5.7,
+      "title_has_ar_pct": 5.6,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 5.7,
+      "title_hybrid_pct": 5.6,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 5.7,
-      "unique_title_pct": 67.1,
+      "top_title_pct": 5.6,
+      "unique_title_pct": 66.2,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -37182,7 +36886,7 @@
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=70(100%)",
+        "EMPTY_DESC=71(100%)",
         "GAPS_GT_2H=1/TOTAL=2.2h"
       ],
       "score": 84,
@@ -37261,18 +36965,18 @@
       "name": "World Fishing Network",
       "family": "World Fishing Network",
       "kind": "other",
-      "events": 98,
-      "coverage_hours": 48.0,
-      "span_hours": 48.98,
+      "events": 97,
+      "coverage_hours": 47.52,
+      "span_hours": 48.48,
       "gaps_gt_2h": 0,
-      "gap_hours": 0.98,
+      "gap_hours": 0.97,
       "invalid": 0,
       "overlaps": 0,
       "long_gt_6h": 0,
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 98,
+      "empty_desc": 97,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -37281,19 +36985,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 5.1,
-      "unique_title_pct": 60.2,
+      "top_title_pct": 5.2,
+      "unique_title_pct": 59.8,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914094400 +0100",
-          "stop": "20260914101300 +0100",
-          "title": "Last Minute Smallmouth",
-          "desc": ""
-        },
         {
           "start": "20260914101400 +0100",
           "stop": "20260914104400 +0100",
@@ -37311,13 +37009,19 @@
           "stop": "20260914114300 +0100",
           "title": "Fly Rod Rainbows",
           "desc": ""
+        },
+        {
+          "start": "20260914114400 +0100",
+          "stop": "20260914121400 +0100",
+          "title": "Lake Murray Largemouth Beatdown",
+          "desc": ""
         }
       ],
       "shard": "mena-other",
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=98(100%)"
+        "EMPTY_DESC=97(100%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -37790,9 +37494,9 @@
       "name": "أو إس إن فاميلي موفيز.eg",
       "family": "أو إس إن فاميلي موفيز.eg",
       "kind": "other",
-      "events": 7,
-      "coverage_hours": 10.92,
-      "span_hours": 10.92,
+      "events": 6,
+      "coverage_hours": 9.25,
+      "span_hours": 9.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -37809,20 +37513,14 @@
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
-      "desc_latin_pct": 14.3,
-      "top_title_pct": 14.3,
+      "desc_latin_pct": 16.7,
+      "top_title_pct": 16.7,
       "unique_title_pct": 100.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914084000 +0000",
-          "stop": "20260914102000 +0000",
-          "title": "The Lego Movie",
-          "desc": "يرصد الفيلم قصة رجلٍ يُدعى إيميت بريكوسوكي (كريس برات) ،يعتقد عن طريق الخطأ بأنه رجلٌ خارقٌ وأنه يستطيع إنقاذ العالم. وبمساعدة فيتروفيوس (مورجان فريمان) وسيدةٍ قويةٍ تُدعى لوسي (إل"
-        },
         {
           "start": "20260914102000 +0000",
           "stop": "20260914120500 +0000",
@@ -37840,6 +37538,12 @@
           "stop": "20260914150000 +0000",
           "title": "Megamind",
           "desc": "صراع غير اعتيادي بين الخير والشر، بطله (ميجامايند) الذي نجح في التغلب على خصمه (مترومان)، ويشعر بالملل حيث لم يعد هناك من يستحق أن يواجهه، إلى أن يخلق لنفسه خصم جديد له، وهو (تايتن"
+        },
+        {
+          "start": "20260914150000 +0000",
+          "stop": "20260914162500 +0000",
+          "title": "The Grinch",
+          "desc": "تدور أحداث الفيلم عن (جرينش) الغاضب الذي يخطط لتدمير موسم عيد الكريسماس لقاطني القرية المجاورة لـ(هوفيل)، إلى أن تتغير عواطفه نحو العيد على يد فتاة صغيرة."
         }
       ],
       "shard": "mena-other",
@@ -37922,9 +37626,9 @@
       "name": "أو إس إن كوميدي.eg",
       "family": "أو إس إن كوميدي.eg",
       "kind": "other",
-      "events": 77,
-      "coverage_hours": 34.33,
-      "span_hours": 34.33,
+      "events": 76,
+      "coverage_hours": 33.83,
+      "span_hours": 33.83,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -37942,19 +37646,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 23.4,
-      "unique_title_pct": 10.4,
+      "top_title_pct": 23.7,
+      "unique_title_pct": 10.5,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914095000 +0000",
-          "stop": "20260914102000 +0000",
-          "title": "2 Broke Girls S6",
-          "desc": "في الموسم السادس من المسلسل، على كل من ماكس وكارولين الموازنة بين عملهما في المطعم وبين مشروعهما الخاص بالكعك المكوب، وشيئًا فشيئًا يزدهر مشروعهما معًا."
-        },
         {
           "start": "20260914102000 +0000",
           "stop": "20260914105000 +0000",
@@ -37970,6 +37668,12 @@
         {
           "start": "20260914112000 +0000",
           "stop": "20260914115000 +0000",
+          "title": "Friends S9",
+          "desc": "تبدأ (مونيكا) و(تشاندلر) في محاولة لإنجاب طفل، (تشاندلر) يواجه مشكلة في الحصول على قسط كاف من النوم في المنزل، ينام في اجتماع ويوافق بطريق الخطأ على إدارة مكتب شركته (تولسا)، وتعتق"
+        },
+        {
+          "start": "20260914115000 +0000",
+          "stop": "20260914120500 +0000",
           "title": "Friends S9",
           "desc": "تبدأ (مونيكا) و(تشاندلر) في محاولة لإنجاب طفل، (تشاندلر) يواجه مشكلة في الحصول على قسط كاف من النوم في المنزل، ينام في اجتماع ويوافق بطريق الخطأ على إدارة مكتب شركته (تولسا)، وتعتق"
         }
@@ -37989,9 +37693,9 @@
       "name": "أو إس إن كيدز.eg",
       "family": "أو إس إن كيدز.eg",
       "kind": "other",
-      "events": 46,
-      "coverage_hours": 10.92,
-      "span_hours": 10.92,
+      "events": 45,
+      "coverage_hours": 10.62,
+      "span_hours": 10.62,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -38004,24 +37708,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 4.3,
-      "title_has_latin_pct": 95.7,
+      "title_has_ar_pct": 4.4,
+      "title_has_latin_pct": 95.6,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 15.2,
-      "unique_title_pct": 39.1,
+      "top_title_pct": 15.6,
+      "unique_title_pct": 40.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914101800 +0000",
-          "title": "Bing S3",
-          "desc": "في الموسم الثالث، تتوالى مغامرات الأرنب (بينج) الشيقة مع أصدقاءه، حيث يمرحون ويستمتعون بأوقاتهم، ويتعلم معهم أشياء جميلة عن الحياة ويكتشف عجائب العالم التي لم يعهدها من قبل."
-        },
         {
           "start": "20260914101800 +0000",
           "stop": "20260914102500 +0000",
@@ -38039,6 +37737,12 @@
           "stop": "20260914110000 +0000",
           "title": "The Pingu Show",
           "desc": "يخوض بينجو والراوي مغامرة مذهلة في رحلة للعثور على بيت المرح السحري الخاص ببينجو، والمصمم على شكل حوت."
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914111400 +0000",
+          "title": "Lego City Adventures",
+          "desc": "تدور أحداث المسلسل في مدينة ليجو العصرية، حيث تضم أشرس رجال الإطفاء وأفضل رجال الشرطي والكثير من الحمقى، لذا يعيش كل هؤلاء معًا ويخوضون مغامرات ممتعة."
         }
       ],
       "shard": "mena-other",
@@ -38580,9 +38284,9 @@
       "name": "أو إٍس إن ناو.eg",
       "family": "أو إٍس إن ناو.eg",
       "kind": "other",
-      "events": 44,
-      "coverage_hours": 34.0,
-      "span_hours": 34.0,
+      "events": 43,
+      "coverage_hours": 33.75,
+      "span_hours": 33.75,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -38595,24 +38299,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 11.4,
+      "title_has_ar_pct": 11.6,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 11.4,
+      "title_hybrid_pct": 11.6,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 2.6,
-      "top_title_pct": 11.4,
-      "unique_title_pct": 29.5,
+      "top_title_pct": 11.6,
+      "unique_title_pct": 30.2,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "Red Bull Driftbrothers",
-          "desc": "يتتبع العمل الأخوين (إلياس) و(يوهانس هونتوندجي) خلال مشاركتهما في بطولة درافت مليئة بالدراما، حيث يواجهان مسارات خطيرة، أعطالاً ميكانيكية، ومنافسة شديدة مع بقية المتسابقين."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914110000 +0000",
@@ -38630,13 +38328,19 @@
           "stop": "20260914124000 +0000",
           "title": "CryptoKnights",
           "desc": "يجمع البرنامج بين عالم العملات المشفرة الديناميكي ووسائل الإعلام المختلفة، فيستعين بنخبة من أبرز الشخصيات المؤثرة في هذا المجال لتقييم مشاريع العملات المشفرة الواعدة والاستثمار فيه"
+        },
+        {
+          "start": "20260914124000 +0000",
+          "stop": "20260914135000 +0000",
+          "title": "John from Cincinnati",
+          "desc": "على شاطئ إمبريال بولاية كاليفورنيا، تعيش أسرة تهوى ركوب الأمواج ولكن تأتي الرياح دائمًا بما لا تشتهي السفن حيث تتأثر حياتهم بقدوم جون ذلك الرجل الغامض الغريب الأطوار."
         }
       ],
       "shard": "mena-other",
       "feed_country": "eg",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=5(11%)"
+        "EMPTY_DESC=5(12%)"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -39642,73 +39346,6 @@
       "auto_lock_safe": false
     },
     {
-      "id": "ال تي في.eg",
-      "name": "ال تي في.eg",
-      "family": "ال تي في.eg",
-      "kind": "other",
-      "events": 10,
-      "coverage_hours": 10.0,
-      "span_hours": 10.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 3,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 20.0,
-      "title_hybrid_pct": 20.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 20.0,
-      "unique_title_pct": 90.0,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914110000 +0000",
-          "title": "كسر عضم ج2: السراديب",
-          "desc": "بعد انتهاء أحداث الجزء الأول، يعود (أبو ريان) من جديد وفي جعبته العديد من الأسرار والقضايا، في الوقت الذي يتولى فيه العميد (كنعان الصايغ)، الكشف عن قضايا الفساد والتصدي لمرتكبيها."
-        },
-        {
-          "start": "20260914110000 +0000",
-          "stop": "20260914120000 +0000",
-          "title": "برنامج Album",
-          "desc": ""
-        },
-        {
-          "start": "20260914120000 +0000",
-          "stop": "20260914130000 +0000",
-          "title": "رجال العز",
-          "desc": "في أجواء البيئة الشامية، تدور أحداث المسلسل في مدينة دمشق في فترة الثلاثينيات من القرن الماضي وهي فترة الاحتلال الفرنسي لسوريا، حيث يدخل المسلسل في أعماق حكايا عديدة حدثت في أعماق "
-        },
-        {
-          "start": "20260914130000 +0000",
-          "stop": "20260914140000 +0000",
-          "title": "كذب أبيض",
-          "desc": "تنقلب حياة أربع شقيقات رأسًا على عقب بعد وفاة والدهن الثري بصورة مفاجئة، ويترك خلفه مجموعة من المشاكل التي تضطرهن لترك حياتهن المُترفة والمُرفهة والتعامل مع تلك المشاكل وتحديات الح"
-        }
-      ],
-      "shard": "mena-other",
-      "feed_country": "eg",
-      "issues": [],
-      "warnings": [
-        "EMPTY_DESC=3(30%)"
-      ],
-      "score": 92,
-      "verdict": "REVIEW",
-      "auto_lock_safe": false
-    },
-    {
       "id": "ال دي سي.eg",
       "name": "ال دي سي.eg",
       "family": "ال دي سي.eg",
@@ -40041,6 +39678,73 @@
       "warnings": [
         "EMPTY_DESC=4(50%)",
         "DUPLICATE_TIMELINE_GROUP=2"
+      ],
+      "score": 92,
+      "verdict": "REVIEW",
+      "auto_lock_safe": false
+    },
+    {
+      "id": "النهار دراما.eg",
+      "name": "النهار دراما.eg",
+      "family": "النهار دراما.eg",
+      "kind": "other",
+      "events": 41,
+      "coverage_hours": 41.0,
+      "span_hours": 41.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 0.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 26.8,
+      "unique_title_pct": 14.6,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "ستهم",
+          "desc": "بعدما يُقتل زوجها، تدخل (ستهم) في عدة صراعات مع أسرتها وتحاول تربية أبناءها بعيدا عن المشاكل، ثم تضطر للتنكر في هيئة رجل حتى تواجه الصعوبات التي تقابلها في الحياة."
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "الضوء الشارد",
+          "desc": "تدور القصة حول الصراع الطبقي بين طبقة الإقطاعيين القدامى متمثلة في عائلة العزايزة وطبقة الملاك الجدد متمثلة في عائلة السوالم الذين كانوا أجراء فيما مضى، ويلجأ السوالم لطرق غير شرعي"
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "السوق الحرة",
+          "desc": "تدور الأحداث في أروقة «السوق الحرة» بأحد المطارات الدولية، حيث تتقاطع طرق المسافرين العابرين مع الموظفين، فتحدث بينهم مواقف طريفة ومفارقات كوميدية تعكس تباين الثقافات والشخصيات، وت"
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914140000 +0000",
+          "title": "طرف ثالث",
+          "desc": "تدور أحداث المسلسل حول ثلاثة شباب يقف القدر حائلًا أمام أحلامهم، فيزدادوا إصرارًا على تحقيقها، ويدفعهم القدر لملاقاة الجنرال فيشكل منهم فريقًا لاسترداد الحقوق، ويكتشفون أنهم لا يحص"
+        }
+      ],
+      "shard": "mena-other",
+      "feed_country": "eg",
+      "issues": [],
+      "warnings": [
+        "LOW_TITLE_DIVERSITY=15%"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -40447,9 +40151,9 @@
       "name": "بي إن موفيز بريمير.eg",
       "family": "بي إن موفيز بريمير.eg",
       "kind": "other",
-      "events": 23,
-      "coverage_hours": 43.27,
-      "span_hours": 43.27,
+      "events": 22,
+      "coverage_hours": 41.5,
+      "span_hours": 41.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -40467,19 +40171,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 8.7,
-      "unique_title_pct": 69.6,
+      "top_title_pct": 9.1,
+      "unique_title_pct": 72.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914082900 +0000",
-          "stop": "20260914101500 +0000",
-          "title": "Adulthood",
-          "desc": "يواجه الشقيقان (نواه) و(ميجان) صدمة مدوية؛ بعد عثورهما على جثة مدفونة منذ زمن طويل في قبو منزل والديهما، وسريعًا ينجرف الثنائي في دوامة من الجريمة والقتل."
-        },
         {
           "start": "20260914101500 +0000",
           "stop": "20260914120000 +0000",
@@ -40497,6 +40195,12 @@
           "stop": "20260914161500 +0000",
           "title": "Adulthood",
           "desc": "يواجه الشقيقان (نواه) و(ميجان) صدمة مدوية؛ بعد عثورهما على جثة مدفونة منذ زمن طويل في قبو منزل والديهما، وسريعًا ينجرف الثنائي في دوامة من الجريمة والقتل."
+        },
+        {
+          "start": "20260914161500 +0000",
+          "stop": "20260914180000 +0000",
+          "title": "You Gotta Believe",
+          "desc": "يقرر فريق بيسبول غير معروف والمكون من لاعبين شباب، إهداء الموسم لوالد أحد اللاعبين الذي يحتضر، ويصلون بشكل غير متوقع إلى نهائيات دوري البيسبول الصغير لعام 2002 بعد الفوز بمواجهات ت"
         }
       ],
       "shard": "mena-other",
@@ -41105,73 +40809,6 @@
       "auto_lock_safe": true
     },
     {
-      "id": "سما دبي.eg",
-      "name": "سما دبي.eg",
-      "family": "سما دبي.eg",
-      "kind": "other",
-      "events": 51,
-      "coverage_hours": 41.0,
-      "span_hours": 41.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 24,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 0.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 13.7,
-      "unique_title_pct": 35.3,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914100000 +0000",
-          "stop": "20260914103000 +0000",
-          "title": "منتصف النهار",
-          "desc": ""
-        },
-        {
-          "start": "20260914103000 +0000",
-          "stop": "20260914110000 +0000",
-          "title": "برنامج ارض الخير",
-          "desc": ""
-        },
-        {
-          "start": "20260914110000 +0000",
-          "stop": "20260914120000 +0000",
-          "title": "برنامج عليكم بالعافية",
-          "desc": ""
-        },
-        {
-          "start": "20260914120000 +0000",
-          "stop": "20260914130000 +0000",
-          "title": "برنامج رواق الفكر",
-          "desc": ""
-        }
-      ],
-      "shard": "mena-other",
-      "feed_country": "eg",
-      "issues": [],
-      "warnings": [
-        "EMPTY_DESC=24(47%)"
-      ],
-      "score": 92,
-      "verdict": "REVIEW",
-      "auto_lock_safe": false
-    },
-    {
       "id": "عمان.eg",
       "name": "عمان.eg",
       "family": "عمان.eg",
@@ -41304,9 +40941,9 @@
       "name": "قناة الكبير أوي.ae",
       "family": "قناة الكبير أوي.ae",
       "kind": "other",
-      "events": 5,
-      "coverage_hours": 2.25,
-      "span_hours": 2.25,
+      "events": 4,
+      "coverage_hours": 1.73,
+      "span_hours": 1.73,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -41324,19 +40961,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 20.0,
+      "top_title_pct": 25.0,
       "unique_title_pct": 100.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914094400 +0000",
-          "stop": "20260914101537 +0000",
-          "title": "الكبير الموسم 1 الحلقة 7",
-          "desc": "قبل وفاته، يفصح عمدة قرية في الصعيد لابنه بأن لديه أخ توأم في الغربة ومن حقه المطالبة بنصف الميراث، والترشح ضده لمنصب العمدة."
-        },
         {
           "start": "20260914101537 +0000",
           "stop": "20260914103940 +0000",
@@ -41354,13 +40985,19 @@
           "stop": "20260914113138 +0000",
           "title": "الكبير الموسم 1 الحلقة 10",
           "desc": "قبل وفاته، يفصح عمدة قرية في الصعيد لابنه بأن لديه أخ توأم في الغربة ومن حقه المطالبة بنصف الميراث، والترشح ضده لمنصب العمدة."
+        },
+        {
+          "start": "20260914113138 +0000",
+          "stop": "20260914115958 +0000",
+          "title": "الكبير الموسم 1 الحلقة 11",
+          "desc": "قبل وفاته، يفصح عمدة قرية في الصعيد لابنه بأن لديه أخ توأم في الغربة ومن حقه المطالبة بنصف الميراث، والترشح ضده لمنصب العمدة."
         }
       ],
       "shard": "mena-other",
       "feed_country": "ae",
       "issues": [],
       "warnings": [
-        "SPARSE_COVERAGE=2.2h"
+        "SPARSE_COVERAGE=1.7h"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -41554,6 +41191,73 @@
       "auto_lock_safe": false
     },
     {
+      "id": "قناة مصر الأولى.eg",
+      "name": "قناة مصر الأولى.eg",
+      "family": "قناة مصر الأولى.eg",
+      "kind": "other",
+      "events": 33,
+      "coverage_hours": 34.0,
+      "span_hours": 34.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 18,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 0.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 18.2,
+      "unique_title_pct": 42.4,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914090000 +0000",
+          "stop": "20260914103000 +0000",
+          "title": "برنامج من ماسبيرو",
+          "desc": ""
+        },
+        {
+          "start": "20260914103000 +0000",
+          "stop": "20260914113000 +0000",
+          "title": "فوق مستوى الشبهات",
+          "desc": "تدور قصة المسلسل حول أستاذة جامعية متخصصة في التنمية البشرية تدعى رحمة حليم (يسرا)، تظهر أمام الجميع طوال الوقت بمظهر السيدة الناجحة في كافة مجالات حياتها وعملها، لكنها في المقابل "
+        },
+        {
+          "start": "20260914113000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "نيللي وشريهان",
+          "desc": "تدور أحداث المسلسل في إطار كوميدي اجتماعي، حيث تُجسّد (دنيا) دور فتاة ثرية تُدعى نيللي، وتجسد (إيمي) شخصية فتاة فقيرة تُدعى شريهان، إلى جانب كونهما ابنتا عم، فهما شخصيتان متنافرتان"
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "نشرة الثالثة",
+          "desc": ""
+        }
+      ],
+      "shard": "mena-other",
+      "feed_country": "eg",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=18(55%)"
+      ],
+      "score": 92,
+      "verdict": "REVIEW",
+      "auto_lock_safe": false
+    },
+    {
       "id": "ميكس وان.eg",
       "name": "ميكس وان.eg",
       "family": "ميكس وان.eg",
@@ -41625,9 +41329,9 @@
       "name": "ناصر القصبي.ae",
       "family": "ناصر القصبي.ae",
       "kind": "other",
-      "events": 33,
-      "coverage_hours": 25.18,
-      "span_hours": 25.18,
+      "events": 32,
+      "coverage_hours": 24.4,
+      "span_hours": 24.4,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -41645,19 +41349,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 12.1,
-      "unique_title_pct": 36.4,
+      "top_title_pct": 12.5,
+      "unique_title_pct": 34.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914093029 +0000",
-          "stop": "20260914101707 +0000",
-          "title": "ابو الملايين موسم 1 حلقة 9",
-          "desc": "رجل في الخمسينات من العمر يخشى أن تضيع ثروته بين ليلة وضحاها جراء ضربة اقتصادية مفاجئة، فيقرر الهرب إلى دبي حيث يعيش أخوه غير الشقيق."
-        },
         {
           "start": "20260914101707 +0000",
           "stop": "20260914110149 +0000",
@@ -41674,6 +41372,12 @@
           "start": "20260914115123 +0000",
           "stop": "20260914123521 +0000",
           "title": "ابو الملايين موسم 1 حلقة 12",
+          "desc": "رجل في الخمسينات من العمر يخشى أن تضيع ثروته بين ليلة وضحاها جراء ضربة اقتصادية مفاجئة، فيقرر الهرب إلى دبي حيث يعيش أخوه غير الشقيق."
+        },
+        {
+          "start": "20260914123521 +0000",
+          "stop": "20260914132054 +0000",
+          "title": "ابو الملايين موسم 1 حلقة 13",
           "desc": "رجل في الخمسينات من العمر يخشى أن تضيع ثروته بين ليلة وضحاها جراء ضربة اقتصادية مفاجئة، فيقرر الهرب إلى دبي حيث يعيش أخوه غير الشقيق."
         }
       ],
@@ -41749,6 +41453,73 @@
       "score": 100,
       "verdict": "PASS",
       "auto_lock_safe": true
+    },
+    {
+      "id": "نايل لايف.eg",
+      "name": "نايل لايف.eg",
+      "family": "نايل لايف.eg",
+      "kind": "other",
+      "events": 34,
+      "coverage_hours": 34.5,
+      "span_hours": 34.5,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 22,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 0.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 11.8,
+      "unique_title_pct": 41.2,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914093000 +0000",
+          "stop": "20260914103000 +0000",
+          "title": "برنامج أكلة لذيذة",
+          "desc": ""
+        },
+        {
+          "start": "20260914103000 +0000",
+          "stop": "20260914104500 +0000",
+          "title": "إيه الأخبار؟",
+          "desc": "برنامج أسبوعي يقدم العديد من الأخبار الفنية، سواء المحلية على مستوى مصر أو العالمية من خلال بعض التقارير المصورة واستعراض أهم المواقع الإلكترونية الخاصة بالفن والفنانين."
+        },
+        {
+          "start": "20260914104500 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "عائلة أستاذ أمين",
+          "desc": "يدور المسلسل حول (أستاذ أمين)، رب الأسرة الذي يواجه مشاكل يومية اقتصادية ومعيشية حياتية مع عائلته، ويحاول طيلة الوقت التغلب على كل هذه المشاكل اليومية."
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "برنامج صحتك بالدنيا",
+          "desc": ""
+        }
+      ],
+      "shard": "mena-other",
+      "feed_country": "eg",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=22(65%)"
+      ],
+      "score": 92,
+      "verdict": "REVIEW",
+      "auto_lock_safe": false
     },
     {
       "id": "نتورك بالعربية.eg",
@@ -41879,6 +41650,74 @@
       "score": 100,
       "verdict": "PASS",
       "auto_lock_safe": true
+    },
+    {
+      "id": "يو تي في.eg",
+      "name": "يو تي في.eg",
+      "family": "يو تي في.eg",
+      "kind": "other",
+      "events": 11,
+      "coverage_hours": 10.0,
+      "span_hours": 10.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 7,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 100.0,
+      "title_has_latin_pct": 0.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 18.2,
+      "unique_title_pct": 72.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914100000 +0000",
+          "stop": "20260914110000 +0000",
+          "title": "عودة المنتقم",
+          "desc": "في بورتو، تتلقى مارجريدا مكالمة هاتفية غامضة تدفعها لمقابلة أنطونيو الذي لم تراه منذ سنوات عدة، وبعد عدة أيام يقوم الثنائي بسرقة بنك في ظروف غامضة، لتتحول الأمور في حياتهما إلى جنو"
+        },
+        {
+          "start": "20260914110000 +0000",
+          "stop": "20260914113000 +0000",
+          "title": "أخبار",
+          "desc": ""
+        },
+        {
+          "start": "20260914113000 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "برنامج تريندينغ",
+          "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "سعادة المجنون",
+          "desc": "في لعبة شطرنج بشرية يقودها الجنون والطمع، تدور أحداث المسلسل حول \"أوس صبري\"، الذي يجد نفسه عالقاً في صفقة مع الشيطان. حيث يضطر أوس للاعتراف بجريمة قتل لم يرتكبها، وهي تصفية زوجته ا"
+        }
+      ],
+      "shard": "mena-other",
+      "feed_country": "eg",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=7(64%)",
+        "DUPLICATE_TIMELINE_GROUP=2"
+      ],
+      "score": 92,
+      "verdict": "REVIEW",
+      "auto_lock_safe": false
     }
   ],
   "duplicate_timeline_groups": [
@@ -41949,17 +41788,6 @@
     },
     {
       "ids": [
-        "On.Time.Sports.HD.ae",
-        "KSA.Sports.3.HD.ae",
-        "Kuwait.Sport.HD.ae",
-        "Kuwait.TV.Sport.Plus.HD.ae",
-        "Jordan.Sport.HD.ae",
-        "Palestine.Sport.ae"
-      ],
-      "unrelated": false
-    },
-    {
-      "ids": [
         "CNBC.Arabiya.ae",
         "DW.Arabia.HD.ae"
       ],
@@ -42014,6 +41842,13 @@
         "Al.Hayah.Mosalsalat.ae"
       ],
       "unrelated": true
+    },
+    {
+      "ids": [
+        "UTV.iq@SD",
+        "يو تي في.eg"
+      ],
+      "unrelated": false
     },
     {
       "ids": [
