@@ -18,8 +18,6 @@ COUNTRY_SHARDS = {"mena-%s" % x: x for x in COUNTRY}
 ARABIC_PROVIDERS = {"provider-mbc","provider-adm","provider-dmi","provider-rotana","provider-art","provider-ssc","provider-alkass"}
 PREMIUM = {"provider-bein","provider-osn"}
 
-# These are known source artefacts / impossible linear-channel IDs. Keep this
-# deliberately strict so a legitimate brand such as "Logos TV" is not rejected.
 TECH_PATTERNS = [
     re.compile(r"brand\s*logo", re.I),
     re.compile(r"logo\.svg", re.I),
@@ -31,7 +29,7 @@ TECH_PATTERNS = [
     re.compile(r"\bplaceholder\b", re.I),
     re.compile(r"\bdummy\b", re.I),
 ]
-TECH_ALLOWLIST = {"logos.tv.ae"}  # Real channel/brand, not a logo filename.
+TECH_ALLOWLIST = {"logos.tv.ae"}
 KNOWN_BAD_IDS = {
     "bein sports66 digital -01.qa": "SUSPICIOUS_BEIN_SPORTS66_ID",
     "bein_sports66_digital_mono-01_en.bein": "SUSPICIOUS_BEIN_SPORTS66_ID",
@@ -145,7 +143,19 @@ def grade(r):
 
     r["issues"], r["warnings"] = issues, warnings
     r["score"] = max(0, 100 - 35 * len(issues) - min(50, 8 * len(warnings)))
-    r["verdict"] = "FAIL" if issues else "REVIEW" if warnings else "PASS"
+
+    # A real channel whose guide was deliberately quarantined is not a broken
+    # mapping ID. Expose it explicitly as NO_EPG (purple on receiver) rather
+    # than mixing it with genuinely invalid/wrong programme assignments.
+    non_no_epg_issues = [x for x in issues if x != "NO_PROGRAMMES"]
+    if n == 0 and not non_no_epg_issues:
+        r["verdict"] = "NO_EPG"
+    elif issues:
+        r["verdict"] = "FAIL"
+    elif warnings:
+        r["verdict"] = "REVIEW"
+    else:
+        r["verdict"] = "PASS"
     r["auto_lock_safe"] = bool(r["verdict"] == "PASS" and n and r["coverage_hours"] >= 6)
 
 
@@ -172,9 +182,6 @@ def apply_duplicate_verdicts(rows):
             if group_tag not in r["warnings"]:
                 r["warnings"].append(group_tag)
 
-            # Two IDs can be a legitimate alias/simulcast. Three or more unrelated
-            # channel names carrying a byte-identical schedule is strong evidence
-            # that programme rows were assigned to the wrong channels upstream.
             if unrelated and len(members) >= 3:
                 issue = "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE=%d" % len(members)
                 if issue not in r["issues"]:
@@ -246,13 +253,14 @@ def main():
             warning_counts[x.split("=")[0]] += 1
 
     out = {
-        "schema": 2,
+        "schema": 3,
         "mode": "virtual-epgmanager-all-id-programme-audit",
         "summary": {
             "channels": len(rows),
             "programmes": sum(r["events"] for r in rows),
             "PASS": counts["PASS"],
             "REVIEW": counts["REVIEW"],
+            "NO_EPG": counts["NO_EPG"],
             "FAIL": counts["FAIL"],
             "auto_lock_safe": sum(r["auto_lock_safe"] for r in rows),
             "missing_shards": missing,
@@ -273,19 +281,21 @@ def main():
             w.writerow([r["shard"], r["id"], r["name"], r["verdict"], r["score"], int(r["auto_lock_safe"]), r["events"], r["coverage_hours"], r["span_hours"], r["gaps_gt_2h"], r["empty_desc"], r["title_has_ar_pct"], r["title_has_latin_pct"], r["desc_ar_pct"], r["feed_country"], "; ".join(r["issues"]), "; ".join(r["warnings"]), pv[0] if pv else "", pv[1] if len(pv) > 1 else ""])
 
     lines = [
-        "VIRTUAL EPGMANAGER - EXHAUSTIVE ALL-ID PROGRAMME AUDIT V2",
-        "channels=%d programmes=%d PASS=%d REVIEW=%d FAIL=%d AUTO_LOCK_SAFE=%d" % (
-            len(rows), sum(r["events"] for r in rows), counts["PASS"], counts["REVIEW"], counts["FAIL"], sum(r["auto_lock_safe"] for r in rows)
+        "VIRTUAL EPGMANAGER - EXHAUSTIVE ALL-ID PROGRAMME AUDIT V3",
+        "channels=%d programmes=%d PASS=%d REVIEW=%d NO_EPG=%d FAIL=%d AUTO_LOCK_SAFE=%d" % (
+            len(rows), sum(r["events"] for r in rows), counts["PASS"], counts["REVIEW"],
+            counts["NO_EPG"], counts["FAIL"], sum(r["auto_lock_safe"] for r in rows)
         ),
         "",
-        "HARD ISSUE COUNTS",
+        "ISSUE COUNTS",
     ]
     for k, v in issue_counts.most_common():
         lines.append("- %s: %d" % (k, v))
     lines += ["", "SHARD SUMMARY"]
     for s in stems:
         c = by[s]
-        lines.append("- %s: channels=%d programmes=%d PASS=%d REVIEW=%d FAIL=%d" % (s, c["channels"], c["programmes"], c["PASS"], c["REVIEW"], c["FAIL"]))
+        lines.append("- %s: channels=%d programmes=%d PASS=%d REVIEW=%d NO_EPG=%d FAIL=%d" % (
+            s, c["channels"], c["programmes"], c["PASS"], c["REVIEW"], c["NO_EPG"], c["FAIL"]))
     lines += ["", "ID-BY-ID RESULTS", ""]
     for i, r in enumerate(rows, 1):
         lines.append("%04d. [%s] %s | %s | shard=%s | score=%d | auto_lock=%s" % (i, r["verdict"], r["id"], r["name"], r["shard"], r["score"], "YES" if r["auto_lock_safe"] else "NO"))
