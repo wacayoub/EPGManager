@@ -10,6 +10,7 @@ on:
       - ".github/workflows/all-id-audit.yml"
       - "tools/all_id_audit.py"
       - "tools/all_id_audit_alias_aware.py"
+      - "tools/all_id_audit_verified_exceptions.py"
       - "tools/bein_id_audit.py"
       - "tools/bein_provider_repair.py"
       - "tools/mena_cloud_shards_strict.py"
@@ -52,14 +53,15 @@ jobs:
           python -m py_compile \
             tools/bein_id_audit.py \
             tools/all_id_audit.py \
-            tools/all_id_audit_alias_aware.py
+            tools/all_id_audit_alias_aware.py \
+            tools/all_id_audit_verified_exceptions.py
 
       - name: Audit every published XMLTV ID and all programmes
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p audit-output
-          python tools/all_id_audit_alias_aware.py \
+          python tools/all_id_audit_verified_exceptions.py \
             --dir audit-data \
             --manifest audit-data/shards.json \
             --json audit-output/all-id-audit.json \
