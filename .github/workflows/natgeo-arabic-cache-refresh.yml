@@ -1,0 +1,59 @@
+name: Build Verified NatGeo Arabic Metadata Cache
+
+on:
+  push:
+    paths:
+      - ".github/workflows/natgeo-arabic-cache-refresh.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate enricher
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/natgeo_ad_arabic_enrich.py
+
+      - name: Build exact-match Arabic metadata cache
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/natgeo_ad_arabic_enrich.py refresh-cache \
+            --output data/natgeo_ad_arabic_metadata.json \
+            --delay 0.12
+          python tools/natgeo_ad_arabic_enrich.py audit-cache \
+            --cache data/natgeo_ad_arabic_metadata.json
+
+      - name: Show freeze readiness
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('data/natgeo_ad_arabic_metadata.json',encoding='utf-8'))
+          pct=float(p.get('matched_event_pct') or 0)
+          print('NATGEO_METADATA_COVERAGE=%.1f%%' % pct)
+          print('NATGEO_METADATA_FREEZE_READY=%s' % ('YES' if pct >= 85.0 else 'NO'))
+          print('entries=%s events=%s/%s' % (len(p.get('entries') or {}),p.get('matched_event_count'),p.get('source_event_count')))
+          PY
+
+      - name: Commit verified cache
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Cloud"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/natgeo_ad_arabic_metadata.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Cache verified Arabic metadata for NatGeo Abu Dhabi"
+            git push origin HEAD:main
+          fi
