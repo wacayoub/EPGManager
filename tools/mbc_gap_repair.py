@@ -4,7 +4,7 @@
 
 This module does NOT replace the selected primary source.  It is deliberately
 limited to two audited receiver IDs where the selected primary occasionally
-publishes a short/incomplete 2-day window:
+publishes a short/incomplete rolling 48-hour window:
 
 - AlHadath.sa@SD: OSN remains primary; Shahid may fill uncovered time only.
 - MBCMasrDrama.sa@SD: ElCinema remains primary; Shahid may fill uncovered time only.
@@ -14,6 +14,12 @@ Known placeholder rows are rejected, existing primary timestamps are never
 modified, and any donor event that overlaps a primary/already-accepted event is
 rejected.  This preserves the one-primary-timeline architecture while providing
 a narrow, evidence-backed gap fallback.
+
+Important: a rolling 48-hour receiver window normally spans three UTC calendar
+dates when the workflow runs after midnight.  Donor fetches therefore cover
+every UTC date touched by [now, now + window_hours], then trim events back to the
+exact rolling window.  Fetching only today + tomorrow can cap usable donor
+coverage below 30 hours late in the day even when Shahid has a healthy guide.
 """
 from __future__ import annotations
 
@@ -153,6 +159,17 @@ def _needs_repair(profile, minimum: float) -> bool:
     return float(profile.get("coverage_h", 0.0)) < minimum or int(profile.get("gaps_gt_2h", 0)) > 0
 
 
+def _donor_days(now: datetime, end: datetime):
+    """Return every UTC calendar date touched by the rolling receiver window."""
+    day = now.astimezone(timezone.utc).date()
+    last = end.astimezone(timezone.utc).date()
+    days = []
+    while day <= last:
+        days.append(day)
+        day += timedelta(days=1)
+    return days
+
+
 def _fetch_shahid(site_id: str, day, timeout: int = 15):
     params = {
         "csvChannelIds": site_id,
@@ -233,10 +250,14 @@ def repair_file(path: str | Path, window_hours: int = 48, report_path: str | Pat
     root = ET.parse(str(path)).getroot()
     now = datetime.now(timezone.utc)
     end = now + timedelta(hours=max(1, int(window_hours)))
+    donor_days = _donor_days(now, end)
     report = {
-        "schema": 1,
+        "schema": 2,
         "mode": "targeted-shahid-gap-donor",
         "generated_utc": now.isoformat(),
+        "window_hours": int(window_hours),
+        "window_end_utc": end.isoformat(),
+        "donor_days_utc": [day.isoformat() for day in donor_days],
         "targets": {},
     }
     changed = 0
@@ -248,6 +269,7 @@ def repair_file(path: str | Path, window_hours: int = 48, report_path: str | Pat
             "primary": config["primary"],
             "donor": "shahid.mbc.net",
             "before": before,
+            "donor_days_utc": [day.isoformat() for day in donor_days],
             "donor_raw_real": 0,
             "accepted": 0,
             "rejected_overlap": 0,
@@ -263,8 +285,7 @@ def repair_file(path: str | Path, window_hours: int = 48, report_path: str | Pat
 
         donor_rows = []
         seen_donor = set()
-        for offset in (0, 1):
-            day = (now + timedelta(days=offset)).date()
+        for day in donor_days:
             try:
                 fetched = _fetch_shahid(config["site_id"], day)
             except Exception as exc:
@@ -330,7 +351,8 @@ def repair_file(path: str | Path, window_hours: int = 48, report_path: str | Pat
         report_file.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     statuses = {cid: row.get("status") for cid, row in report["targets"].items()}
-    print("MBC Shahid donor repair: accepted=%d statuses=%s" % (changed, statuses))
+    print("MBC Shahid donor repair: accepted=%d donor_days=%s statuses=%s" % (
+        changed, ",".join(day.isoformat() for day in donor_days), statuses))
     for cid, row in report["targets"].items():
         print("  %s: %.1fh/%d gaps -> %.1fh/%d gaps, accepted=%d" % (
             cid,
