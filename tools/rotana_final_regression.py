@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Final regression gate for the receiver-facing Rotana provider shard."""
+"""Final regression gate for the receiver-facing Rotana provider shard.
+
+Rotana Clip is an optional standby source: it may be absent when strict
+finalization finds no useful receiver EPG. Its catalogue/source identity remains
+pinned and audited, and if it is present it must stay SECONDARY/no-autolock.
+"""
 from __future__ import annotations
 
 import argparse
@@ -11,7 +16,8 @@ import rotana_id_audit_policy as policy
 
 # Official adapter identities verified on 2026-09-14. These pins prevent an
 # upstream priority reshuffle from silently replacing a reviewed rotana.net guide
-# with an older Egypt/UAE/legacy feed.
+# with an older Egypt/UAE/legacy feed. The Clip pin remains enforced even when the
+# receiver shard omits Clip because the source catalogue still knows the service.
 EXPECTED_SOURCE_PINS = {
     "RotanaCinemaEgypt.eg@SD": "rotana.net",
     "RotanaCinemaKSA.sa@SD": "rotana.net",
@@ -41,21 +47,21 @@ def main():
         errors.append("ROTANA_AUDIT_STATUS=%s" % summary.get("status"))
     if audit.get("unexpected_ids"):
         errors.append("NEW_UNAUDITED_IDS=%s" % ",".join(audit["unexpected_ids"]))
-    if audit.get("missing_ids"):
-        errors.append("MISSING_RECEIVER_IDS=%s" % ",".join(audit["missing_ids"]))
+    if audit.get("missing_required_ids"):
+        errors.append("MISSING_REQUIRED_RECEIVER_IDS=%s" % ",".join(audit["missing_required_ids"]))
 
     actual_ids = set(rows)
-    if actual_ids != policy.EXPECTED_RECEIVER_IDS:
-        missing = sorted(policy.EXPECTED_RECEIVER_IDS - actual_ids, key=str.casefold)
-        extra = sorted(actual_ids - policy.EXPECTED_RECEIVER_IDS, key=str.casefold)
-        if missing:
-            errors.append("ROTANA_CANONICAL_MISSING=%s" % ",".join(missing))
-        if extra:
-            errors.append("ROTANA_CANONICAL_EXTRA=%s" % ",".join(extra))
+    missing_required = sorted(policy.REQUIRED_RECEIVER_IDS - actual_ids, key=str.casefold)
+    extra = sorted(actual_ids - policy.ALLOWED_RECEIVER_IDS, key=str.casefold)
+    if missing_required:
+        errors.append("ROTANA_REQUIRED_MISSING=%s" % ",".join(missing_required))
+    if extra:
+        errors.append("ROTANA_CANONICAL_EXTRA=%s" % ",".join(extra))
 
     for cid in sorted(policy.FROZEN_CORE_IDS, key=str.casefold):
         row = rows.get(cid)
         if not row:
+            errors.append("ROTANA_CORE_MISSING=%s" % cid)
             continue
         if row.get("class") != "FROZEN_CORE" or row.get("verdict") != "FROZEN":
             errors.append("ROTANA_CORE_NOT_CLEAN=%s:%s/%s" % (
@@ -63,15 +69,28 @@ def main():
         if row.get("auto_lock_safe") is not True:
             errors.append("ROTANA_CORE_NOT_AUTOLOCK_SAFE=%s" % cid)
 
-    for cid in sorted(policy.SECONDARY_IDS, key=str.casefold):
+    for cid in sorted(policy.REQUIRED_SECONDARY_IDS, key=str.casefold):
         row = rows.get(cid)
         if not row:
+            errors.append("ROTANA_REQUIRED_SECONDARY_MISSING=%s" % cid)
             continue
         if row.get("class") != "SECONDARY" or row.get("verdict") != "SECONDARY":
-            errors.append("ROTANA_SECONDARY_BAD=%s:%s/%s" % (
+            errors.append("ROTANA_REQUIRED_SECONDARY_BAD=%s:%s/%s" % (
                 cid, row.get("class"), row.get("verdict")))
         if row.get("auto_lock_safe") is True:
-            errors.append("ROTANA_SECONDARY_AUTOLOCK=%s" % cid)
+            errors.append("ROTANA_REQUIRED_SECONDARY_AUTOLOCK=%s" % cid)
+
+    for cid in sorted(policy.OPTIONAL_SECONDARY_IDS, key=str.casefold):
+        row = rows.get(cid)
+        if not row:
+            notes.append("optional_standby_absent=%s" % cid)
+            continue
+        if row.get("class") != "SECONDARY" or row.get("verdict") != "SECONDARY":
+            errors.append("ROTANA_OPTIONAL_SECONDARY_BAD=%s:%s/%s" % (
+                cid, row.get("class"), row.get("verdict")))
+        if row.get("auto_lock_safe") is True:
+            errors.append("ROTANA_OPTIONAL_SECONDARY_AUTOLOCK=%s" % cid)
+        notes.append("optional_standby_present=%s" % cid)
 
     catalogue = json.loads(Path(args.catalog_manifest).read_text(encoding="utf-8"))
     selected = {
@@ -88,18 +107,23 @@ def main():
         if actual_site != wanted_site:
             errors.append("ROTANA_PIN_WRONG=%s:%s!=%s" % (cid, actual_site, wanted_site))
 
-    notes.append("receiver_ids=%d" % len(policy.EXPECTED_RECEIVER_IDS))
+    notes.append("required_receiver_ids=%d" % len(policy.REQUIRED_RECEIVER_IDS))
+    notes.append("allowed_optional_ids=%d" % len(policy.OPTIONAL_SECONDARY_IDS))
     notes.append("frozen_core=%d" % len(policy.FROZEN_CORE_IDS))
-    notes.append("secondary_no_autolock=%d" % len(policy.SECONDARY_IDS))
-    notes.append("minimum_core_coverage=%.1fh" % policy.MIN_COVERAGE_HOURS)
+    notes.append("required_secondary_no_autolock=%d" % len(policy.REQUIRED_SECONDARY_IDS))
+    notes.append("nominal_core_coverage=%.1fh" % policy.MIN_COVERAGE_HOURS)
+    notes.append("official_evening_floor=%.1fh" % policy.OFFICIAL_MIN_COVERAGE_HOURS)
     notes.append("official_rotana_source_pins=%d" % len(EXPECTED_SOURCE_PINS))
 
     status = "FAIL" if errors else "PASS"
     lines = [
         "ROTANA FINAL REGRESSION GATE: %s" % status,
-        "core=%s/%s secondary=%s/%s actual_ids=%d" % (
+        "core=%s/%s required_secondary=%s/%s optional_present=%s/%s actual_ids=%d" % (
             summary.get("core_ok", 0), summary.get("core_expected", len(policy.FROZEN_CORE_IDS)),
-            summary.get("secondary_ok", 0), summary.get("secondary_expected", len(policy.SECONDARY_IDS)),
+            summary.get("required_secondary_ok", 0),
+            summary.get("required_secondary_expected", len(policy.REQUIRED_SECONDARY_IDS)),
+            summary.get("optional_secondary_present", 0),
+            summary.get("optional_secondary_allowed", len(policy.OPTIONAL_SECONDARY_IDS)),
             len(rows)),
         "",
         "Checks:",
@@ -108,7 +132,7 @@ def main():
     if errors:
         lines.extend(["", "Errors:"] + ["- " + e for e in errors])
     else:
-        lines.append("- all canonical Rotana receiver/source invariants passed")
+        lines.append("- all required Rotana receiver/source invariants passed; optional standby is safe")
 
     Path(args.text).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
