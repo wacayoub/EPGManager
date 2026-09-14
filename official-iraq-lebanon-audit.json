@@ -1,24 +1,21 @@
 {
-  "schema": 1,
+  "schema": 2,
   "date_utc": "2026-09-14",
   "sources": {
     "alsumaria": {
       "id": "Alsumaria.iq@SD",
       "verdict": "CANDIDATE_OFFICIAL",
-      "official_events": 45,
-      "official_unique_ratio": 0.356,
+      "official_events": 24,
+      "official_unique_ratio": 0.583,
+      "official_bad_ratio": 0.0,
       "official_samples": [
         {
           "time": "07:45",
-          "title": "الى"
+          "title": "نشرة أخبار السومرية"
         },
         {
           "time": "08:30",
-          "title": "الى"
-        },
-        {
-          "time": "04:00",
-          "title": "دقيقة"
+          "title": "السومرية نيوز"
         },
         {
           "time": "04:00",
@@ -26,68 +23,72 @@
         },
         {
           "time": "04:00",
-          "title": "تفضيلاتي"
-        },
-        {
-          "time": "04:00",
           "title": "ناس وناس"
-        },
-        {
-          "time": "05:00",
-          "title": "تفضيلاتي"
         },
         {
           "time": "05:00",
           "title": "Live Talk"
         },
         {
-          "time": "07:45",
-          "title": "تفضيلاتي"
-        },
-        {
-          "time": "07:45",
-          "title": "نشرة أخبار السومرية"
-        },
-        {
-          "time": "08:30",
-          "title": "تفضيلاتي"
-        },
-        {
           "time": "08:30",
           "title": "عشرين"
+        },
+        {
+          "time": "09:30",
+          "title": "من كثر حبي لك"
+        },
+        {
+          "time": "09:30",
+          "title": "ورود ملونة"
+        },
+        {
+          "time": "09:30",
+          "title": "موضي قطعة من الذهب"
+        },
+        {
+          "time": "11:00",
+          "title": "Live Talk"
+        },
+        {
+          "time": "12:00",
+          "title": "مذكرات عشيقة سابقة"
+        },
+        {
+          "time": "12:45",
+          "title": "نشرة أخبار السومرية"
         }
       ],
-      "current_events": 48,
+      "current_unique_events": 12,
       "current_samples": [
         {
           "start": "20260914064000 +0000",
           "title": "موضي قطعة من ذهب",
-          "file": "mena-arabic.xml.gz"
-        },
-        {
-          "start": "20260914064000 +0000",
-          "title": "موضي قطعة من ذهب",
-          "file": "premium.xml.gz"
-        },
-        {
-          "start": "20260914064000 +0000",
-          "title": "موضي قطعة من ذهب",
-          "file": "mena-iq.xml.gz"
-        },
-        {
-          "start": "20260914064000 +0000",
-          "title": "موضي قطعة من ذهب",
-          "file": "mena.xml.gz"
+          "file": "mena-arabic.xml.gz,mena-iq.xml.gz,mena.xml.gz,premium.xml.gz"
         },
         {
           "start": "20260914080000 +0000",
           "title": "برنامج ناس وناس",
-          "file": "mena-arabic.xml.gz"
+          "file": "mena-arabic.xml.gz,mena-iq.xml.gz,mena.xml.gz,premium.xml.gz"
         },
         {
-          "start": "20260914080000 +0000",
-          "title": "برنامج ناس وناس",
-          "file": "premium.xml.gz"
+          "start": "20260914090000 +0000",
+          "title": "برنامج live talk",
+          "file": "mena-arabic.xml.gz,mena-iq.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914103000 +0000",
+          "title": "قطع وريد",
+          "file": "mena-arabic.xml.gz,mena-iq.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914114500 +0000",
+          "title": "نشرة اخبار السومرية",
+          "file": "mena-arabic.xml.gz,mena-iq.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914123000 +0000",
+          "title": "برنامج عشرين",
+          "file": "mena-arabic.xml.gz,mena-iq.xml.gz,mena.xml.gz,premium.xml.gz"
         }
       ],
       "fetches": [
@@ -95,19 +96,15 @@
           "url": "https://www.alsumaria.tv/TV-grid",
           "status": "OK",
           "bytes": 640276,
-          "events": 45,
+          "events": 24,
           "samples": [
             {
               "time": "07:45",
-              "title": "الى"
+              "title": "نشرة أخبار السومرية"
             },
             {
               "time": "08:30",
-              "title": "الى"
-            },
-            {
-              "time": "04:00",
-              "title": "دقيقة"
+              "title": "السومرية نيوز"
             },
             {
               "time": "04:00",
@@ -115,11 +112,15 @@
             },
             {
               "time": "04:00",
-              "title": "تفضيلاتي"
+              "title": "ناس وناس"
             },
             {
-              "time": "04:00",
-              "title": "ناس وناس"
+              "time": "05:00",
+              "title": "Live Talk"
+            },
+            {
+              "time": "08:30",
+              "title": "عشرين"
             }
           ]
         }
@@ -130,6 +131,7 @@
       "verdict": "CANDIDATE_OFFICIAL",
       "official_events": 13,
       "official_unique_ratio": 1.0,
+      "official_bad_ratio": 0.0,
       "official_samples": [
         {
           "time": "05:00",
@@ -180,37 +182,37 @@
           "title": "Morning Show"
         }
       ],
-      "current_events": 52,
+      "current_unique_events": 13,
       "current_samples": [
         {
           "start": "20260914063000 +0000",
           "title": "تحت سابع أرض",
-          "file": "mena-arabic.xml.gz"
-        },
-        {
-          "start": "20260914063000 +0000",
-          "title": "تحت سابع أرض",
-          "file": "premium.xml.gz"
-        },
-        {
-          "start": "20260914063000 +0000",
-          "title": "تحت سابع أرض",
-          "file": "mena.xml.gz"
-        },
-        {
-          "start": "20260914063000 +0000",
-          "title": "تحت سابع أرض",
-          "file": "mena-lb.xml.gz"
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
         },
         {
           "start": "20260914073000 +0000",
           "title": "الفخ",
-          "file": "mena-arabic.xml.gz"
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
         },
         {
-          "start": "20260914073000 +0000",
-          "title": "الفخ",
-          "file": "premium.xml.gz"
+          "start": "20260914083000 +0000",
+          "title": "نشرة الأخبار",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914090000 +0000",
+          "title": "برنامج هنا بيروت",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914100000 +0000",
+          "title": "برنامج وهلق شو",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914110000 +0000",
+          "title": "هند خانم",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
         }
       ],
       "fetches": [
