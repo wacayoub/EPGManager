@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 """Exhaustive receiver-facing MBC/Shahid production audit.
 
-The provider-mbc shard intentionally keeps legacy/foreign/operator-specific IDs
-for compatibility and investigation, but only a reviewed MENA core may be used
-as frozen Smart Mapping targets. Every currently published ID is classified so
-new upstream MBC identities cannot silently enter the trusted set.
+provider-mbc is canonical-only: the receiver shard must expose exactly the
+reviewed MENA targets below. Legacy/foreign/operator-specific IDs may remain in
+combined/internal MENA data for compatibility, audit and recovery, but any such
+ID leaking into provider-mbc is a release blocker.
 """
 from __future__ import annotations
 
@@ -20,11 +20,11 @@ import xml.etree.ElementTree as ET
 
 import bein_id_audit as base
 
-# Canonical MENA linear services audited on 2026-09-14. Low title diversity is
-# diagnostic-only for news/thematic channels; structural timeline/language
-# regressions remain blocking.
+# Canonical receiver-facing MBC services frozen on 2026-09-14 after ID-by-ID EPG
+# testing. Strategy: MENA feed identity, Arabic-first metadata, >=30h clean guide,
+# no structural timeline errors. Low title diversity is diagnostic-only for
+# news/thematic services.
 FROZEN_CORE_IDS = {
-    "Al Arabiya Business.sa",
     "Alarabiya.ae@SD",
     "AlHadath.sa@SD",
     "MBC1.ae@SD",
@@ -40,28 +40,23 @@ FROZEN_CORE_IDS = {
     "MBCMasr2.eg@SD",
     "MBCMasrDrama.sa@SD",
     "MBCMax.ae@SD",
+    "MBCPersia.ae@SD",
     "MBCPlusDrama.sa@SD",
 }
 
-# Valid identities that are not frozen as preferred MENA mapping targets. They
-# are operator-specific, language-specific or provide weak/generic thematic EPG.
+# Valid but internal-only MBC identities. They are retained in the wider MENA
+# dataset for audit/recovery and must not be receiver Smart Mapping targets.
 SECONDARY_REVIEW_IDS = {
+    "Al Arabiya Business.sa",
     "MBC Plus eLife HD.sa",
     "MBC Plus Variety HD.sa",
     "MBC VARIETY.sa",
     "MBCMood.sa@HD",
-    "MBCPersia.ae@SD",
     "Wanasah.sa",
 }
 
-# Known receiver-visible IDs retained for compatibility/audit only. These are
-# legacy spellings, foreign USA feeds, portrait variants or demonstrably weaker
-# guide-language variants. They must never become frozen merely because a later
-# source happens to return programmes. MBC1Egypt.eg@HD appeared upstream during
-# the 2026-09-14 audit with only one Shahid programme per day, so it is explicitly
-# quarantined rather than inherited as a canonical MBC1/Masr mapping target.
-# Al Arabiya.sa is an OpenEPG Saudi alias in the same logical Al Arabiya group;
-# it remains for compatibility but cannot compete with the audited core feed.
+# Known internal-only aliases/weak feeds. These must never compete with the
+# receiver canonical set merely because a later upstream source returns data.
 QUARANTINED_IDS = {
     "Al Arabiya.sa",
     "AlArabiyaBusiness.ae@SD",
@@ -82,12 +77,12 @@ QUARANTINED_IDS = {
 }
 
 EXPECTED_IDS = FROZEN_CORE_IDS | SECONDARY_REVIEW_IDS | QUARANTINED_IDS
-MIN_COVERAGE_HOURS = 24.0
+MIN_COVERAGE_HOURS = 30.0
 MIN_TITLE_AR_PCT = 60.0
 MIN_DESC_AR_PCT = 90.0
 # A handful of missing descriptions must not invalidate an otherwise clean
-# linear MBC guide. MBC1 currently has 6/49 empty descriptions (~12%) while all
-# populated descriptions remain Arabic and the timeline is structurally sound.
+# linear MBC guide. MBC1 can have a small number of empty descriptions while all
+# populated descriptions remain Arabic and its timeline stays structurally sound.
 MAX_EMPTY_DESC_RATIO = 0.15
 _XMLTV_DT = re.compile(r"^(\d{14})(?:\s*([+-]\d{4}))?")
 
@@ -256,9 +251,12 @@ def main():
 
     actual = set(channels)
     missing_core = sorted(FROZEN_CORE_IDS - actual, key=str.casefold)
+    receiver_extras = sorted(actual - FROZEN_CORE_IDS, key=str.casefold)
     unexpected = sorted(actual - EXPECTED_IDS, key=str.casefold)
     if missing_core:
         errors.append("MISSING_FROZEN_CORE=%s" % ",".join(missing_core))
+    if receiver_extras:
+        errors.append("NONCANONICAL_RECEIVER_IDS=%s" % ",".join(receiver_extras))
     if unexpected:
         errors.append("NEW_UNAUDITED_MBC_IDS=%s" % ",".join(unexpected))
 
@@ -267,12 +265,12 @@ def main():
     frozen_fail = sum(1 for row in rows if row.get("class") == "FROZEN_CORE" and row.get("verdict") == "FAIL")
 
     lines = [
-        "VIRTUAL EPGMANAGER - EXHAUSTIVE MBC/SHAHID PRODUCTION AUDIT",
+        "VIRTUAL EPGMANAGER - EXHAUSTIVE MBC CANONICAL RECEIVER AUDIT",
         "channels=%d programmes=%d frozen=%d/%d frozen_fail=%d secondary=%d quarantine=%d unclassified=%d" % (
             len(rows), sum(int(r.get("events", 0) or 0) for r in rows), frozen_ok,
             len(FROZEN_CORE_IDS), frozen_fail, counts["SECONDARY_REVIEW"],
             counts["QUARANTINE"], counts["UNCLASSIFIED"]),
-        "policy=canonical Arabic MENA feeds frozen; foreign/legacy/operator-specific IDs retained but not auto-lock safe",
+        "policy=provider-mbc must contain exactly 17 canonical receiver IDs; >=30h clean Arabic-first EPG",
         "",
     ]
 
@@ -300,8 +298,8 @@ def main():
         lines.extend("- %s" % x for x in errors)
 
     payload = {
-        "schema": 2,
-        "mode": "virtual-epgmanager-exhaustive-mbc-production-policy",
+        "schema": 3,
+        "mode": "virtual-epgmanager-canonical-mbc-receiver-policy",
         "summary": {
             "status": status,
             "channels": len(rows),
@@ -317,6 +315,7 @@ def main():
         "secondary_review_ids": sorted(SECONDARY_REVIEW_IDS, key=str.casefold),
         "quarantined_ids": sorted(QUARANTINED_IDS, key=str.casefold),
         "missing_core_ids": missing_core,
+        "receiver_extra_ids": receiver_extras,
         "unexpected_ids": unexpected,
         "errors": errors,
         "channels": [{k: v for k, v in row.items() if k != "rows"} for row in rows],
