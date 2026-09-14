@@ -1,0 +1,125 @@
+name: Official Duplicate Source Health
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/official-duplicate-health.yml"
+      - "tools/official_duplicate_health_compare.py"
+
+permissions:
+  contents: write
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Checkout iptv-org EPG
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/epg
+          fetch-depth: 1
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/epg/package-lock.json
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install grabber
+        working-directory: vendor/epg
+        shell: bash
+        run: npm ci --no-audit --no-fund
+
+      - name: Build shared-ID channel files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          root=Path('vendor/epg')
+          files={
+            'shahid': root/'sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml',
+            'osn': root/'sites/osn.com/osn.com_ar.channels.xml',
+          }
+          maps={}
+          for name,p in files.items():
+              tree=ET.parse(p)
+              maps[name]={ (c.get('xmltv_id') or '').strip(): c for c in tree.getroot().findall('channel') if (c.get('xmltv_id') or '').strip() }
+          shared=sorted(set(maps['shahid']) & set(maps['osn']), key=str.casefold)
+          print('shared ids=', len(shared))
+          for name in ('shahid','osn'):
+              out=ET.Element('channels')
+              for cid in shared:
+                  out.append(ET.fromstring(ET.tostring(maps[name][cid], encoding='unicode')))
+              ET.indent(out, space='  ')
+              Path(f'/tmp/{name}.channels.xml').write_bytes(ET.tostring(out, encoding='utf-8', xml_declaration=True))
+          Path('/tmp/shared-count.txt').write_text(str(len(shared)))
+          PY
+
+      - name: Grab Shahid shared IDs - 48h
+        working-directory: vendor/epg
+        shell: bash
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=20s 480s \
+            npm run grab --- --channels=/tmp/shahid.channels.xml --output=/tmp/shahid.xml --days=2 --maxConnections=1 --timeout=20000
+          test -s /tmp/shahid.xml || printf '%s\n' '<?xml version="1.0"?><tv></tv>' >/tmp/shahid.xml
+          exit 0
+
+      - name: Grab OSN shared IDs - 48h
+        working-directory: vendor/epg
+        shell: bash
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=20s 480s \
+            npm run grab --- --channels=/tmp/osn.channels.xml --output=/tmp/osn.xml --days=2 --maxConnections=1 --timeout=20000
+          test -s /tmp/osn.xml || printf '%s\n' '<?xml version="1.0"?><tv></tv>' >/tmp/osn.xml
+          exit 0
+
+      - name: Compare timetable quality
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          python tools/official_duplicate_health_compare.py \
+            --a /tmp/shahid.xml --b /tmp/osn.xml \
+            --a-name shahid --b-name osn \
+            --json output/official-duplicate-health.json \
+            --text output/official-duplicate-health.txt
+          cat output/official-duplicate-health.txt
+
+      - name: Publish diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin mena-data
+          git worktree add publish origin/mena-data
+          cd publish
+          git checkout -B mena-data origin/mena-data
+          cp ../output/official-duplicate-health.json .
+          cp ../output/official-duplicate-health.txt .
+          git config user.name "EPGManager Official Source Audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add official-duplicate-health.json official-duplicate-health.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Audit Shahid vs OSN duplicate source health"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
