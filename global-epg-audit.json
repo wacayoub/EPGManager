@@ -1,76 +1,77 @@
 {
   "schema": 2,
   "scope": "all exclusive MENA country/provider shards + synchronous alias-aware all-ID release gate",
-  "channels_scanned": 641,
-  "programmes_scanned": 31182,
+  "channels_scanned": 637,
+  "programmes_scanned": 29645,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 849,
-    "empty_description": 14989,
+    "arabic_provider_title_not_arabic": 844,
+    "empty_description": 14451,
     "hybrid_arabic_latin_description": 4,
     "mixed_timezone_offsets_same_day": 2,
-    "premium_title_not_english": 154,
-    "severity_warning": 18344,
-    "very_long_event_gt_6h": 21,
-    "very_short_event_lt_5m": 2323
+    "premium_title_not_english": 165,
+    "severity_warning": 17756,
+    "very_long_event_gt_6h": 22,
+    "very_short_event_lt_5m": 2266
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 384,
+      "empty_description": 370,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
-      "very_short_event_lt_5m": 9
+      "very_short_event_lt_5m": 2
     },
     "mena-dz": {
-      "empty_description": 99,
+      "empty_description": 83,
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 1259,
+      "empty_description": 1234,
+      "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 609
+      "empty_description": 560
     },
     "mena-jo": {
       "empty_description": 41,
       "very_short_event_lt_5m": 5
     },
     "mena-kw": {
-      "empty_description": 204,
+      "empty_description": 175,
       "very_short_event_lt_5m": 3
     },
     "mena-lb": {
-      "empty_description": 55,
+      "empty_description": 56,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 348
+      "empty_description": 333
     },
     "mena-other": {
-      "empty_description": 7552,
+      "empty_description": 7337,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 7,
-      "very_short_event_lt_5m": 1161
+      "very_short_event_lt_5m": 1154
     },
     "mena-qa": {
-      "empty_description": 647,
+      "empty_description": 648,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1294,
-      "very_short_event_lt_5m": 589
+      "empty_description": 1223,
+      "very_short_event_lt_5m": 562
     },
     "mena-sd": {
       "empty_description": 47
     },
     "mena-sy": {
-      "empty_description": 3
+      "empty_description": 4
     },
     "mena-tn": {
-      "empty_description": 107,
+      "empty_description": 122,
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
@@ -83,58 +84,47 @@
       "very_short_event_lt_5m": 22
     },
     "provider-alkass": {
-      "arabic_provider_title_not_arabic": 110,
+      "arabic_provider_title_not_arabic": 107,
       "very_long_event_gt_6h": 2
     },
     "provider-art": {
-      "arabic_provider_title_not_arabic": 16,
-      "empty_description": 1118,
-      "very_short_event_lt_5m": 434
+      "arabic_provider_title_not_arabic": 14,
+      "empty_description": 1075,
+      "very_short_event_lt_5m": 414
     },
     "provider-bein": {
-      "empty_description": 44,
+      "empty_description": 40,
       "mixed_timezone_offsets_same_day": 2,
-      "premium_title_not_english": 143
+      "premium_title_not_english": 134
     },
     "provider-dmi": {
-      "arabic_provider_title_not_arabic": 69,
-      "empty_description": 242,
+      "arabic_provider_title_not_arabic": 73,
+      "empty_description": 251,
       "very_long_event_gt_6h": 4,
-      "very_short_event_lt_5m": 2
+      "very_short_event_lt_5m": 4
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
-      "arabic_provider_title_not_arabic": 315,
-      "empty_description": 308,
+      "arabic_provider_title_not_arabic": 312,
+      "empty_description": 306,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
-      "empty_description": 89,
-      "premium_title_not_english": 11,
-      "very_short_event_lt_5m": 41
+      "premium_title_not_english": 31,
+      "very_short_event_lt_5m": 40
     },
     "provider-rotana": {
-      "arabic_provider_title_not_arabic": 75,
-      "empty_description": 154,
-      "very_short_event_lt_5m": 35
+      "arabic_provider_title_not_arabic": 74,
+      "empty_description": 160,
+      "very_short_event_lt_5m": 38
     },
     "provider-starz": {
-      "empty_description": 143,
+      "empty_description": 144,
       "very_long_event_gt_6h": 1
     }
   },
   "samples": {
     "arabic_provider_title_not_arabic": [
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Five.qa",
-        "channel": "Alkass Five.qa",
-        "start": "20260914131500 +0000",
-        "stop": "20260914141500 +0000",
-        "title": "alhasila",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 60.0
-      },
       {
         "shard": "provider-alkass",
         "channel_id": "Alkass Five.qa",
@@ -419,26 +409,6 @@
         "shard": "provider-alkass",
         "channel_id": "Alkass Four.qa",
         "channel": "Alkass Four.qa",
-        "start": "20260914130000 +0000",
-        "stop": "20260914133000 +0000",
-        "title": "News",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Four.qa",
-        "channel": "Alkass Four.qa",
-        "start": "20260914133000 +0000",
-        "stop": "20260914140000 +0000",
-        "title": "Fiba",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Four.qa",
-        "channel": "Alkass Four.qa",
         "start": "20260914140000 +0000",
         "stop": "20260914150000 +0000",
         "title": "FADFA",
@@ -524,6 +494,36 @@
         "title": "Thenten wnoss",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260914223000 +0000",
+        "stop": "20260914234500 +0000",
+        "title": "11th Asian Youth Men's Handball Championship Uzbekistan vs. Korea",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 75.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260914234500 +0000",
+        "stop": "20260915020000 +0000",
+        "title": "Doha Bank Stars League Al-Sailiya vs. Al-Sadd",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 135.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260915020000 +0000",
+        "stop": "20260915023000 +0000",
+        "title": "Golmania",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
       }
     ],
     "very_long_event_gt_6h": [
@@ -626,6 +626,16 @@
         "title": "WOA STARZPLAY RUGBY",
         "desc": "",
         "duration_minutes": 444.0
+      },
+      {
+        "shard": "mena-eg",
+        "channel_id": "EN:.Masrah.Masr.Channel.sa",
+        "channel": "EN: Masrah Masr Channel",
+        "start": "20260916133208 +0000",
+        "stop": "20260916235959 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 627.85
       },
       {
         "shard": "mena-qa",
@@ -743,16 +753,6 @@
         "shard": "provider-bein",
         "channel_id": "beIN Drama.eg",
         "channel": "beIN Drama.eg",
-        "start": "20260914130000 +0000",
-        "stop": "20260914140000 +0000",
-        "title": "Mazad El Shar",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
         "start": "20260914140000 +0000",
         "stop": "20260914150000 +0000",
         "title": "Sarab",
@@ -863,16 +863,6 @@
         "shard": "provider-bein",
         "channel_id": "beINDrama1.qa@SD",
         "channel": "بي إن دراما",
-        "start": "20260914130000 +0000",
-        "stop": "20260914140000 +0000",
-        "title": "Mazad El Shar",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
         "start": "20260914140000 +0000",
         "stop": "20260914150000 +0000",
         "title": "Sarab",
@@ -938,16 +928,6 @@
         "title": "برنامج beIN Action",
         "desc": "",
         "duration_minutes": 20.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914130000 +0000",
-        "stop": "20260914140000 +0000",
-        "title": "E25 | S1 طبلية",
-        "desc": "",
-        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
@@ -1053,16 +1033,6 @@
         "shard": "provider-bein",
         "channel_id": "beINSeries1.qa@SD",
         "channel": "beINSERIES1",
-        "start": "20260914130000 +0000",
-        "stop": "20260914140000 +0000",
-        "title": "E19 | S2 وثيقة",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINSeries1.qa@SD",
-        "channel": "beINSERIES1",
         "start": "20260914140000 +0000",
         "stop": "20260914150000 +0000",
         "title": "The Good Doctor S1 | E10",
@@ -1138,6 +1108,46 @@
         "title": "برنامج beIN Action",
         "desc": "",
         "duration_minutes": 15.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "بي إن موفيز أكشن.eg",
+        "channel": "بي إن موفيز أكشن.eg",
+        "start": "20260916050000 +0000",
+        "stop": "20260916073000 +0000",
+        "title": "Angels & Demons",
+        "desc": "",
+        "duration_minutes": 150.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "بي إن موفيز بريمير.eg",
+        "channel": "بي إن موفيز بريمير.eg",
+        "start": "20260916034500 +0000",
+        "stop": "20260916051500 +0000",
+        "title": "Hard Home",
+        "desc": "",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "بي إن موفيز بريمير.eg",
+        "channel": "بي إن موفيز بريمير.eg",
+        "start": "20260916051500 +0000",
+        "stop": "20260916064500 +0000",
+        "title": "Desert Dawn",
+        "desc": "",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "بي إن موفيز دراما.eg",
+        "channel": "بي إن موفيز دراما.eg",
+        "start": "20260916030000 +0000",
+        "stop": "20260916043000 +0000",
+        "title": "Beautiful Wedding",
+        "desc": "",
+        "duration_minutes": 90.0
       }
     ],
     "premium_title_not_english": [
@@ -1150,36 +1160,6 @@
         "title": "1883",
         "desc": "يسافر جيل ما بعد الحرب الأهلية من عائلة (داتون) إلى تكساس للقيام برحلة شاقة إلى أوريجون قبل أن يقرروا الاستقرار في مونتانا، حيث تقرر العائلة تأسيس مزرعة يلوستون.",
         "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN SPORTS NEWS.qa",
-        "channel": "beIN SPORTS NEWS.qa",
-        "start": "20260914130000 +0000",
-        "stop": "20260914133000 +0000",
-        "title": "نشرة الأخبار",
-        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN SPORTS NEWS.qa",
-        "channel": "beIN SPORTS NEWS.qa",
-        "start": "20260914133000 +0000",
-        "stop": "20260914134500 +0000",
-        "title": "مقابلة خاصة - 14/09/26",
-        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
-        "duration_minutes": 15.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN SPORTS NEWS.qa",
-        "channel": "beIN SPORTS NEWS.qa",
-        "start": "20260914140000 +0000",
-        "stop": "20260914143000 +0000",
-        "title": "نشرة الأخبار",
-        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
-        "duration_minutes": 30.0
       },
       {
         "shard": "provider-bein",
@@ -1540,6 +1520,36 @@
         "title": "الشوط الثالث",
         "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
         "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915220000 +0000",
+        "stop": "20260915230000 +0000",
+        "title": "الحصاد",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915230000 +0000",
+        "stop": "20260915233000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915233000 +0000",
+        "stop": "20260916000000 +0000",
+        "title": "الحصيلة - 16/09/26",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
       }
     ],
     "mixed_timezone_offsets_same_day": [
@@ -2032,13 +2042,13 @@
     ]
   },
   "all_id_release_gate": {
-    "channels": 641,
-    "programmes": 31182,
-    "PASS": 159,
-    "REVIEW": 482,
+    "channels": 637,
+    "programmes": 29645,
+    "PASS": 162,
+    "REVIEW": 475,
     "NO_EPG": 0,
     "FAIL": 0,
-    "auto_lock_safe": 159,
+    "auto_lock_safe": 162,
     "missing_shards": []
   }
 }
