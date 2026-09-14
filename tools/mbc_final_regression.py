@@ -10,6 +10,8 @@ source-health must all be green before the later beIN/OSN gates can run.
 Rotana keeps the global two-day source strategy: its own companion gate applies
 the narrowly audited evening-boundary floor only to official rotana.net core IDs;
 this umbrella gate never relaxes MBC or source-health rules to accommodate it.
+Rotana Clip is allowed to remain an internal standby whenever zero-useful-EPG
+pruning removes it from the receiver shard.
 """
 from __future__ import annotations
 
@@ -171,7 +173,7 @@ def main():
     companions = run_companion_gates(xml_path, catalogue_path)
     errors.extend(companions["errors"])
     notes.extend(companions["notes"])
-    notes.append("RotanaPolicy=2-day official evening boundary guarded independently")
+    notes.append("RotanaPolicy=2-day official evening boundary + optional Clip standby")
 
     status = "FAIL" if errors else "PASS"
     lines = [
