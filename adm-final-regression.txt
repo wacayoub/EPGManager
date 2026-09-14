@@ -1,0 +1,16 @@
+ABU DHABI MEDIA FINAL REGRESSION GATE: FAIL
+core_frozen=0/9 core_review=0 secondary=0/2 actual_ids=12
+
+Checks:
+- optional_standby_absent=BaynounahTV.ae
+- canonical_required_ids=9
+- core=9
+- event_secondary_no_autolock=2
+- optional_standby=1
+- legacy_receiver_ids=0
+
+Errors:
+- ADM_AUDIT_STATUS=FAIL
+- ADM_REQUIRED_MISSING=AbuDhabiEmirates.ae,AbuDhabiSports1.ae,AbuDhabiSports2.ae,AbuDhabiTV.ae,ADSportsPremium1.ae,ADSportsPremium2.ae,Majid.ae,NationalGeographicAbuDhabi.ae,YasTV.ae
+- ADM_UNAUDITED_EXTRA=Abu Dhabi.sa,AbuDhabiSports1.ae@SD,AbuDhabiTV.ae@SD,AD Sports 2.sa,AD Sports Premium 1.sa,AD Sports Premium 2.sa,Al Emarat.sa,en:.AD.Sports.Extra.ae,en:.YAS.TV.Extra.ae,Majid.sa,Nat.Geo.Abu.Dhabi.HD.ae,Yas.TV.HD.ae
+- ADM_LEGACY_IDS=Abu Dhabi.sa,AbuDhabiSports1.ae@SD,AbuDhabiTV.ae@SD,AD Sports 2.sa,AD Sports Premium 1.sa,AD Sports Premium 2.sa,Al Emarat.sa,en:.AD.Sports.Extra.ae,en:.YAS.TV.Extra.ae,Majid.sa,Nat.Geo.Abu.Dhabi.HD.ae,Yas.TV.HD.ae
