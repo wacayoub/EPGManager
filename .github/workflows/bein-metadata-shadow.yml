@@ -1,18 +1,22 @@
-name: beIN Metadata Bridge Shadow
+name: beIN Provider Repair Shadow
 
 on:
   workflow_dispatch:
   push:
     paths:
       - ".github/workflows/bein-metadata-shadow.yml"
-      - "tools/bein_metadata_bridge.py"
+      - "tools/bein_provider_repair.py"
+      - "tools/mena_cloud_shards_strict.py"
+      - "tools/bein_id_audit_policy.py"
       - "tools/bein_id_audit.py"
+      - "tools/all_id_audit_alias_aware.py"
+      - "tools/all_id_audit.py"
 
 permissions:
   contents: read
 
 concurrency:
-  group: bein-metadata-bridge-shadow
+  group: bein-provider-repair-shadow
   cancel-in-progress: true
 
 jobs:
@@ -42,92 +46,128 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile tools/bein_metadata_bridge.py tools/bein_id_audit.py
+          python -m py_compile \
+            tools/bein_provider_repair.py \
+            tools/mena_cloud_shards.py \
+            tools/mena_cloud_shards_safe.py \
+            tools/mena_cloud_shards_strict.py \
+            tools/bein_id_audit.py \
+            tools/bein_id_audit_policy.py \
+            tools/all_id_audit.py \
+            tools/all_id_audit_alias_aware.py
 
       - name: Audit current production beIN
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p shadow/before shadow/after
+          mkdir -p shadow/before shadow/rebuilt shadow/audit
           cp data/shards.json shadow/before/shards.json
-          python tools/bein_id_audit.py \
+          python tools/bein_id_audit_policy.py \
             --xml data/provider-bein.xml.gz \
             --json shadow/before/bein-id-audit.json \
             --text shadow/before/bein-id-audit.txt
 
-      - name: Apply metadata bridge in shadow only
+      - name: Rebuild shards from current combined production in shadow
         shell: bash
         run: |
           set -euo pipefail
-          python tools/bein_metadata_bridge.py \
-            --input data/provider-bein.xml.gz \
-            --output shadow/after/provider-bein.xml.gz \
-            --report shadow/bein-metadata-bridge.json
-          cp data/shards.json shadow/after/shards.json
+          python tools/mena_cloud_shards_strict.py \
+            --input data/mena-arabic.xml.gz \
+            --catalog-manifest data/catalog.json \
+            --output-dir shadow/rebuilt \
+            --manifest shadow/rebuilt/shards.json
 
-      - name: Audit repaired shadow beIN
+      - name: Audit repaired beIN
         shell: bash
         run: |
           set -euo pipefail
-          python tools/bein_id_audit.py \
-            --xml shadow/after/provider-bein.xml.gz \
-            --json shadow/after/bein-id-audit.json \
-            --text shadow/after/bein-id-audit.txt
+          python tools/bein_id_audit_policy.py \
+            --xml shadow/rebuilt/provider-bein.xml.gz \
+            --json shadow/rebuilt/bein-id-audit.json \
+            --text shadow/rebuilt/bein-id-audit.txt
 
-      - name: Compare before and after with regression gates
+      - name: Alias-aware all-ID regression audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/all_id_audit_alias_aware.py \
+            --dir shadow/rebuilt \
+            --manifest shadow/rebuilt/shards.json \
+            --json shadow/audit/all-id-audit.json \
+            --text shadow/audit/all-id-audit.txt \
+            --csv shadow/audit/all-id-audit.csv
+
+      - name: Verify beIN correction gates
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
-          import json
+          import gzip, json, re, xml.etree.ElementTree as ET
           from pathlib import Path
 
           before = json.loads(Path('shadow/before/bein-id-audit.json').read_text(encoding='utf-8'))
-          after = json.loads(Path('shadow/after/bein-id-audit.json').read_text(encoding='utf-8'))
-          bridge = json.loads(Path('shadow/bein-metadata-bridge.json').read_text(encoding='utf-8'))
+          after = json.loads(Path('shadow/rebuilt/bein-id-audit.json').read_text(encoding='utf-8'))
+          manifest = json.loads(Path('shadow/rebuilt/shards.json').read_text(encoding='utf-8'))
+          allid = json.loads(Path('shadow/audit/all-id-audit.json').read_text(encoding='utf-8'))
 
-          bs, a_s = before['summary'], after['summary']
-          assert bs['channels'] == a_s['channels'], (bs['channels'], a_s['channels'])
-          assert bs['programmes'] == a_s['programmes'], (bs['programmes'], a_s['programmes'])
-          assert int(a_s['counts'].get('FAIL', 0)) <= int(bs['counts'].get('FAIL', 0)), (bs['counts'], a_s['counts'])
-          assert bridge['invariants']['channel_ids_unchanged']
-          assert bridge['invariants']['programme_slots_unchanged']
+          rich_arabic_ids = {
+              'بي إن موفيز أكشن.eg', 'بي إن موفيز بريمير.eg',
+              'بي إن موفيز دراما.eg', 'بي إن موفيز فاميلي.eg',
+              'بي إن سيريس.eg', 'بي إن سيريس إتش دي 2.eg',
+          }
+          before_ids = {x['id'] for x in before['channels']}
+          after_ids = {x['id'] for x in after['channels']}
+          assert not (rich_arabic_ids & before_ids), rich_arabic_ids & before_ids
+          assert rich_arabic_ids <= after_ids, sorted(rich_arabic_ids - after_ids)
+          assert after['summary']['channels'] == 45, after['summary']
+          assert int(after['summary']['counts'].get('FAIL', 0)) == 0, after['summary']
+          assert int(allid['summary'].get('FAIL', 0)) == 0, allid['summary']
+          assert int(allid['summary'].get('NO_EPG', 0)) == 0, allid['summary']
 
-          def totals(report):
-              rows = report['channels']
-              return {
-                  'empty_desc': sum(int(x.get('empty_desc', 0) or 0) for x in rows),
-                  'arabic_desc_events': sum(round((100.0 - (100.0 * int(x.get('empty_desc', 0) or 0) / max(1, int(x.get('events', 0) or 0)))) * int(x.get('events', 0) or 0) / 100.0) for x in rows),
-              }
-          bt, at = totals(before), totals(after)
-          assert at['empty_desc'] <= bt['empty_desc'], (bt, at)
+          shard = manifest['shards']['provider-bein']
+          assert shard['channels'] == 45, shard
+          assert len(shard.get('compat_aliases') or {}) >= 13, shard.get('compat_aliases')
+          assert not {'bein SPORTS FTA DIGITAL.qa', 'beIN SPORTS-boxoffice-bein.com.qa'} & set(shard.get('non_recommended_ids') or [])
+          repair = shard.get('repair') or {}
+          assert repair.get('arabic_desc_fills', 0) >= 120, repair
+          assert repair.get('long_event_repairs', 0) == 2, repair
+          assert repair.get('generic_xtra_removed', 0) == 10, repair
+
+          raw = gzip.decompress(Path('shadow/rebuilt/provider-bein.xml.gz').read_bytes())
+          root = ET.fromstring(raw)
+          events = root.findall('programme')
+          titles = [next(((x.text or '').strip() for x in p.findall('title') if (x.text or '').strip()), '') for p in events]
+          xtra = [p for p in events if (p.get('channel') or '') == 'beINSPORTSXTRA3.qa']
+          assert len(xtra) == 3, len(xtra)
+          assert not any('For Live And Exclusive Coverage of Premium Sporting Events' in t for t in titles)
+          assert not any(re.search(r'\brpool\b', t, re.I) for t in titles)
+          assert not any(re.match(r'^\s*Live\s*:\s*Liverpool\s+v(?:s)?\s+Fulham\b', t, re.I) for t in titles)
+          assert any(re.match(r'^\s*Live\s*:\s*Liverpool\s+v(?:s)?\s+Tottenham\b', t, re.I) for t in titles), 'genuine Liverpool-Tottenham Live marker was lost'
+
+          by_id = {x['id']: x for x in after['channels']}
+          for cid in ['BEIN MOVIES FAMILY.eg', 'BeIn Series HD 1.eg', 'beIN Series HD 2.eg']:
+              assert by_id[cid]['empty_desc'] == 0, (cid, by_id[cid]['empty_desc'])
+          for cid in rich_arabic_ids:
+              assert by_id[cid]['verdict'] == 'ALIAS_OK', (cid, by_id[cid]['verdict'])
 
           comparison = {
-              'before': bs,
-              'after': a_s,
-              'before_totals': bt,
-              'after_totals': at,
-              'bridge': bridge['summary'],
+              'before': before['summary'],
+              'after': after['summary'],
+              'all_id': allid['summary'],
+              'provider_bein_manifest': {
+                  'channels': shard['channels'], 'programmes': shard['programmes'],
+                  'compat_aliases': len(shard.get('compat_aliases') or {}),
+                  'repair': repair,
+              },
               'regression_gate': 'PASS',
           }
           Path('shadow/comparison.json').write_text(json.dumps(comparison, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
           print(json.dumps(comparison, ensure_ascii=False, indent=2))
-          print('PAIR DETAILS')
-          for row in bridge['pairs']:
-              print('%s <-> %s | matched=%d left-only=%d right-only=%d title_updates=%d desc_fills=%d' % (
-                  row['left'], row['right'], row['matched_slots'], row['left_only_slots'], row['right_only_slots'],
-                  row['title_updates'], row['arabic_desc_fills']))
           PY
-
-      - name: Include combined MENA corpus for offline beIN enrichment analysis
-        shell: bash
-        run: |
-          set -euo pipefail
-          cp data/mena-arabic.xml.gz shadow/full-mena-arabic.xml.gz
 
       - name: Upload beIN shadow evidence
         uses: actions/upload-artifact@v4
         with:
-          name: bein-metadata-shadow
+          name: bein-provider-repair-shadow
           path: shadow/
           if-no-files-found: error
