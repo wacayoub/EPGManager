@@ -8,19 +8,27 @@ Rules:
 - English remains fallback only when no trustworthy Arabic candidate exists;
 - beIN/OSN premium policy remains handled by the existing premium pipeline;
 - known Arabic/Latin aliases are collapsed for selected local channels;
+- quarantine technical IDs, placeholder guides and exact cloned timelines shared
+  by unrelated channels before they can enter logical-channel arbitration;
 - obvious foreign-guide contamination (for example Al Jazeera English schedule on
   an unrelated local channel) is rejected rather than published as false EPG.
 """
 from __future__ import annotations
 
+import json
+from pathlib import Path
 import re
+import sys
 
 import mena_cloud_merge as base
 import mena_cloud_merge_safe as safe
+import mena_integrity_guard as guard
 
 _original_choose_timeline = safe._choose_timeline
 _original_clean_timeline = safe._clean_timeline
 _original_logical_key = base.logical_key
+_original_load_candidates = base.load_candidates
+_QUARANTINE_FINDINGS = []
 
 
 def _probe(cid, name):
@@ -31,17 +39,12 @@ def arabic_first_logical_key(cid, name):
     """Collapse a few proven Latin/Arabic spellings before language arbitration."""
     p = _probe(cid, name)
 
-    # Yemen: Aden TV / قناة عدن / تلفزيون عدن.
     if (re.search(r"(?:^| )aden(?: tv)?(?: |$)", p)
             or re.search(r"(?:^| )(?:قناة |تلفزيون )?عدن(?: |$)", p)):
         return "aden tv"
-
-    # Iraq: AFAQ / Afaq TV / آفاق / افاق.
     if (re.search(r"(?:^| )afaq(?: tv)?(?: |$)", p)
             or re.search(r"(?:^| )(?:قناة )?(?:آفاق|افاق)(?: |$)", p)):
         return "afaq tv"
-
-    # Egypt: Al Nada TV / قناة الندى / الندى.
     if (re.search(r"(?:^| )al nada(?: tv)?(?: |$)", p)
             or re.search(r"(?:^| )(?:قناة )?الندى(?: |$)", p)):
         return "al nada tv"
@@ -49,8 +52,25 @@ def arabic_first_logical_key(cid, name):
     return _original_logical_key(cid, name)
 
 
-# load_candidates() resolves base.logical_key at runtime.
 base.logical_key = arabic_first_logical_key
+
+
+def guarded_load_candidates(root, origin, source_name, site_by_id, now, end):
+    """Quarantine corrupt source rows before they can win the merge."""
+    rows = _original_load_candidates(root, origin, source_name, site_by_id, now, end)
+    clean, findings = guard.sanitize_candidate_rows(
+        rows,
+        source_name=source_name,
+        detect_clones=(origin in {"openepg", "epgshare"}),
+    )
+    if findings.get("quarantined_candidates"):
+        _QUARANTINE_FINDINGS.append(findings)
+        print("Integrity quarantine: %s kept=%d quarantined=%d" % (
+            source_name, findings["kept_candidates"], findings["quarantined_candidates"]))
+    return clean
+
+
+base.load_candidates = guarded_load_candidates
 
 
 def _event_has_lang(programme, role, wanted):
@@ -125,7 +145,6 @@ def _foreign_contamination(candidate):
         title = title_items[0][0].strip() if title_items else ""
         if _AJE_SIGNATURE_RE.match(title):
             hits.add(title.casefold())
-    # Requiring several distinct signature shows avoids rejecting a coincidental title.
     return len(hits) >= 3
 
 
@@ -156,15 +175,11 @@ def arabic_first_choose_timeline(candidates):
     clean = [x for x in ranked if x[3] == 1]
     if clean:
         best_tier = max(x[0] for x in clean)
-        # Arabic truly comes first. Source/provider score only breaks ties inside
-        # the best available Arabic tier.
         pool = [x for x in clean if x[0] == best_tier] if best_tier > 0 else clean
         pool.sort(reverse=True, key=lambda x: (x[0], x[1], x[2], x[4], x[5], x[6], x[7]))
         chosen = pool[0]
         return chosen[8], chosen[9]
 
-    # Every candidate was contaminated: preserve identity but let clean_timeline
-    # publish no false programmes.
     return _original_choose_timeline(candidates)
 
 
@@ -174,11 +189,43 @@ def arabic_first_clean_timeline(candidate, premium):
     return _original_clean_timeline(candidate, premium)
 
 
-# safe_cluster_programmes() resolves these globals from mena_cloud_merge_safe
-# at runtime, so this layer changes arbitration without duplicating merge code.
 safe._choose_timeline = arabic_first_choose_timeline
 safe._clean_timeline = arabic_first_clean_timeline
 
 
+def _report_path():
+    for i, arg in enumerate(sys.argv[1:], 1):
+        if arg == "--report" and i + 1 < len(sys.argv):
+            return Path(sys.argv[i + 1])
+        if arg.startswith("--report="):
+            return Path(arg.split("=", 1)[1])
+    return None
+
+
+def _write_quarantine_report():
+    path = _report_path()
+    if path is None or not path.is_file():
+        return
+    try:
+        report = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        report = {}
+    quarantined = [q for finding in _QUARANTINE_FINDINGS for q in finding.get("quarantined", [])]
+    report["integrity_quarantine"] = {
+        "sources": _QUARANTINE_FINDINGS,
+        "quarantined_candidates": len(quarantined),
+        "quarantined_ids": sorted({q.get("id", "") for q in quarantined if q.get("id")}, key=str.casefold),
+        "policy": "technical IDs, generic placeholders and >=3 exact cloned unrelated timelines are rejected before merge",
+    }
+    path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def main():
+    rc = base.main()
+    if rc == 0:
+        _write_quarantine_report()
+    return rc
+
+
 if __name__ == "__main__":
-    raise SystemExit(base.main())
+    raise SystemExit(main())
