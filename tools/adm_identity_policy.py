@@ -51,7 +51,12 @@ def adm_key(cid, name):
     if ("ad sports extra" in probe or "adsportsextra" in compact
             or "abu dhabi sports extra" in probe):
         return "ad sports extra"
-    if "yas tv extra" in probe or "yastvextra" in compact:
+    # EPGShare exposes verified slot-identical AR/EN twins for YAS TV Extra.
+    # The Arabic identity is explicitly grouped with the English source so the
+    # normal Arabic-first event merger can retain the same 94/94 timeline while
+    # selecting native Arabic titles and descriptions.
+    if ("yas tv extra" in probe or "yastvextra" in compact
+            or "ياس تي في إكسترا" in probe or "ياس تي في اكسترا" in probe):
         return "yas tv extra"
 
     # Premium 1/2 are real channels used for premium sports rights.  Keep them
@@ -168,6 +173,7 @@ if __name__ == "__main__":
         ("AD Sports Premium 1.sa", "AD Sports Premium 1.sa"): "abu dhabi sports premium 1",
         ("en:.AD.Sports.Extra.ae", "en: AD Sports Extra"): "ad sports extra",
         ("en:.YAS.TV.Extra.ae", "en: YAS TV Extra"): "yas tv extra",
+        ("ar:.ياس.تي.في.إكسترا.ae", "ar: ياس تي في إكسترا"): "yas tv extra",
         ("Majid.sa", "Majid.sa"): "majid",
         ("Nat.Geo.Abu.Dhabi.HD.ae", "Nat Geo Abu Dhabi HD"): "national geographic abu dhabi",
         ("Yas.TV.HD.ae", "Yas TV HD"): "yas tv",
