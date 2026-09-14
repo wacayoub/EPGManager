@@ -23,6 +23,8 @@ from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
 
+# Audit trigger: MBC gap-boundary diagnostic v2.
+
 SITE_PRIORITY = {
     "shahid.mbc.net": 10,
     "rotana.net": 11,
