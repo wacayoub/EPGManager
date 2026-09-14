@@ -118,7 +118,18 @@ ADM_INTERNAL_ONLY_IDS = {
     "Emarat.HD.ae",
 }
 
-RECEIVER_INTERNAL_ONLY_IDS = MBC_INTERNAL_ONLY_IDS | ROTANA_INTERNAL_ONLY_IDS | ADM_INTERNAL_ONLY_IDS
+# These two historical .eg identities are not valid current channels.  The real
+# channels are AlSharqiyaMinKabla.ae (Sharjah/Kalba, UAE) and AlSharqiya.iq
+# (Iraq).  Old LKG data had cloned the UAE timeline onto the .eg aliases.
+INVALID_LEGACY_IDENTITY_IDS = {
+    "AlSharqiya.eg",
+    "الشرقية.eg",
+}
+
+RECEIVER_INTERNAL_ONLY_IDS = (
+    MBC_INTERNAL_ONLY_IDS | ROTANA_INTERNAL_ONLY_IDS | ADM_INTERNAL_ONLY_IDS |
+    INVALID_LEGACY_IDENTITY_IDS
+)
 
 # Importing strict has already installed the standard integrity/LKG wrapper.
 _strict_programme_groups = base.programme_groups
