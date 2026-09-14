@@ -46,6 +46,7 @@ jobs:
       - name: Verify scripts
         run: |
           python -m py_compile \
+            tools/mena_cloud_finalize_pruned.py \
             tools/quarantine_known_clone_group.py \
             tools/known_clone_quarantine_ab_audit.py \
             tools/all_id_audit.py
@@ -87,10 +88,10 @@ jobs:
             --report output/merge-report.json \
             --cache-dir output/upstream \
             --window-hours 48
-      - name: Finalize A production policy
+      - name: Finalize A exact production policy
         run: |
           set -euo pipefail
-          python tools/mena_cloud_finalize_strict.py \
+          python tools/mena_cloud_finalize_pruned.py \
             --candidate output/merged.xml --catalog-manifest output/catalog.json \
             --previous previous/mena-arabic.xml.gz --merge-report output/merge-report.json \
             --window-hours 48 --output-dir output/a
@@ -100,7 +101,7 @@ jobs:
             --output-dir output/a --manifest output/a/shards.json
           python tools/all_id_audit.py --dir output/a --manifest output/a/shards.json \
             --json output/a/all-id.json --text output/a/all-id.txt --csv output/a/all-id.csv
-      - name: Finalize B targeted quarantine
+      - name: Finalize B production plus targeted quarantine
         run: |
           set -euo pipefail
           python tools/quarantine_known_clone_group.py \
