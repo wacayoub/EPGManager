@@ -16,6 +16,12 @@ catalogue/merge reports for recovery and audits but are never emitted into any
 receiver XML. The reviewed canonical MBC set is therefore the only MBC identity
 surface exposed to EPGManager.
 
+Two canonical MBC services have a narrow evidence-backed Shahid donor policy.
+OSN remains primary for Al Hadath and ElCinema remains primary for MBC Masr
+Drama; Shahid may add only non-placeholder Arabic events that do not overlap the
+selected primary timeline. This is applied before normal finalization so combined
+and provider feeds stay coherent.
+
 beIN SPORTS NEWS is Arabic-first at the final receiver-facing boundary: known
 recurring editorial titles are rendered in Arabic while IDs, dates, start/stop
 slots and programme counts remain untouched. Unknown titles are preserved rather
@@ -24,10 +30,12 @@ than mistranslated.
 from __future__ import annotations
 
 import re
+import sys
 
 import mena_cloud_finalize as base
 import mena_cloud_finalize_strict as strict
 import mena_integrity_guard as guard
+import mbc_gap_repair
 
 KNOWN_FALSE_SPORT_CLONE_IDS = {
     "On.Time.Sports.HD.ae",
@@ -270,5 +278,29 @@ base.programme_groups = quarantine_known_false_sport_clone
 base.build_feed = pruned_build_feed
 
 
+def _arg_value(name, default=None):
+    for idx, arg in enumerate(sys.argv[1:], 1):
+        if arg == name and idx + 1 < len(sys.argv):
+            return sys.argv[idx + 1]
+        if arg.startswith(name + "="):
+            return arg.split("=", 1)[1]
+    return default
+
+
+def main():
+    # Repair only the merged candidate, before strict finalization/LKG selection.
+    # Network failure is non-fatal here: the later MBC freeze gate remains the
+    # authority and will block publication if the primary guide is still weak.
+    candidate = _arg_value("--candidate")
+    window_hours = int(_arg_value("--window-hours", "48") or 48)
+    if candidate:
+        try:
+            report_path = str((__import__("pathlib").Path(candidate).parent / "mbc-gap-repair.json"))
+            mbc_gap_repair.repair_file(candidate, window_hours=window_hours, report_path=report_path)
+        except Exception as exc:
+            print("MBC Shahid donor repair unavailable; freeze gate will decide: %s" % str(exc)[:240])
+    return base.main()
+
+
 if __name__ == "__main__":
-    raise SystemExit(base.main())
+    raise SystemExit(main())
