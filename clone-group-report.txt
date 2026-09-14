@@ -1,0 +1,73 @@
+CLONE GROUP TRIAGE
+groups=21 quarantine_high=1 verify_pair=9
+
+01. QUARANTINE_HIGH size=6 unrelated=False shards=mena-eg,mena-jo,mena-kw,mena-ps,mena-sa countries=ae
+    - [mena-eg] On.Time.Sports.HD.ae | On Time Sports HD | events=33 | Sport TV Magazine -> ON Target
+    - [mena-sa] KSA.Sports.3.HD.ae | KSA Sports 3 HD | events=33 | Sport TV Magazine -> ON Target
+    - [mena-kw] Kuwait.Sport.HD.ae | Kuwait Sport HD | events=33 | Sport TV Magazine -> ON Target
+    - [mena-kw] Kuwait.TV.Sport.Plus.HD.ae | Kuwait TV Sport Plus HD | events=33 | Sport TV Magazine -> ON Target
+    - [mena-jo] Jordan.Sport.HD.ae | Jordan Sport HD | events=33 | Sport TV Magazine -> ON Target
+    - [mena-ps] Palestine.Sport.ae | Palestine Sport | events=33 | Sport TV Magazine -> ON Target
+02. VERIFY_PAIR size=2 unrelated=True shards=mena-eg,mena-other countries=ae
+    - [mena-eg] Al.Kahera.Wal.Nas.ae | Al Kahera Wal Nas | events=50 | TV Program -> May's Kitchen
+    - [mena-other] Al.Hayah.2.ae | Al Hayah 2 | events=50 | TV Program -> May's Kitchen
+03. VERIFY_PAIR size=2 unrelated=True shards=mena-iq countries=ae
+    - [mena-iq] Al.Rasheed.TV.HD.ae | Al Rasheed TV HD | events=51 | Dijla Morning -> News
+    - [mena-iq] Iraq.Al.Hadath.ae | Iraq Al Hadath | events=51 | Dijla Morning -> News
+04. VERIFY_PAIR size=2 unrelated=True shards=mena-om,mena-qa countries=ae
+    - [mena-qa] Al.Rayyan.HD.ae | Al Rayyan HD | events=49 | A Blessing Morning -> Happy Marriage
+    - [mena-om] Oman.TV.Mubasher.HD.ae | Oman TV Mubasher HD | events=49 | A Blessing Morning -> Happy Marriage
+05. VERIFY_PAIR size=2 unrelated=True shards=mena-other,mena-ye countries=ae
+    - [mena-ye] Al.Sahat.TV.ae | Al Sahat TV | events=92 | Stadium -> From Ankara
+    - [mena-other] Anewz.ae | Anewz | events=92 | Stadium -> From Ankara
+06. VERIFY_PAIR size=2 unrelated=True shards=mena-other countries=ae
+    - [mena-other] Arirang.World.ae | Arirang World | events=107 | News generation -> Culture Crunch
+    - [mena-other] Press.TV.HD.ae | Press TV HD | events=107 | News generation -> Culture Crunch
+07. VERIFY_PAIR size=2 unrelated=True shards=mena-other countries=ae
+    - [mena-other] CNN.International.ae | CNN International | events=242 | Focus -> Sports France 24
+    - [mena-other] France.24.English.ae | France 24 English | events=242 | Focus -> Sports France 24
+08. VERIFY_PAIR size=2 unrelated=True shards=mena-iq,mena-other countries=ae
+    - [mena-iq] Dijlah.Zaman.ae | Dijlah Zaman | events=25 | My Daughters And I -> Omar And Salma
+    - [mena-other] Al.Hayah.Mosalsalat.ae | Al Hayah Mosalsalat | events=25 | My Daughters And I -> Omar And Salma
+09. VERIFY_PAIR size=2 unrelated=True shards=mena-eg,mena-other countries=eg
+    - [mena-eg] Egyptian TV.eg | Egyptian TV.eg | events=33 | برنامج من ماسبيرو -> Foq Mostawa El Shobohat
+    - [mena-other] Aloula.eg | Aloula.eg | events=33 | برنامج من ماسبيرو -> Foq Mostawa El Shobohat
+10. VERIFY_PAIR size=2 unrelated=True shards=mena-eg,mena-other countries=ae
+    - [mena-eg] Nile.TV.ae | Nile TV | events=92 | Storyteller -> Newshour
+    - [mena-other] TRT.World.ae | TRT World | events=92 | Storyteller -> Newshour
+11. REVIEW_SIMULCAST_OR_ALIAS size=4 unrelated=False shards=mena-eg,mena-other countries=ae
+    - [mena-eg] Al.Masriyah.ae | Al Masriyah | events=47 | The Story Of Narges -> Al Hayat's Kitchen
+    - [mena-eg] Al.Shams.TV.ae | Al Shams TV | events=47 | The Story Of Narges -> Al Hayat's Kitchen
+    - [mena-other] Al.Hayah.HD.ae | Al Hayah HD | events=47 | The Story Of Narges -> Al Hayat's Kitchen
+    - [mena-other] Al.Thanya.ae | Al Thanya | events=47 | The Story Of Narges -> Al Hayat's Kitchen
+12. REVIEW_SIMULCAST_OR_ALIAS size=3 unrelated=False shards=mena-other,mena-qa countries=ae
+    - [mena-qa] Al.Jazeera.Mobasher.2.HD.ae | Al Jazeera Mobasher 2 HD | events=62 | News -> News
+    - [mena-qa] Al.Jazeera.Mobasher.HD.ae | Al Jazeera Mobasher HD | events=62 | News -> News
+    - [mena-other] Al.Araby.HD.ae | Al Araby HD | events=62 | News -> News
+13. REVIEW_SIMULCAST_OR_ALIAS size=2 unrelated=False shards=mena-iq countries=ae
+    - [mena-iq] Al.Iraqiya.HD.ae | Al Iraqiya HD | events=60 | Al Shariqya Morning -> A B C
+    - [mena-iq] Al.Sharqiya.TV.HD.ae | Al Sharqiya TV HD | events=60 | Al Shariqya Morning -> A B C
+14. REVIEW_SIMULCAST_OR_ALIAS size=2 unrelated=False shards=mena-iq countries=ae
+    - [mena-iq] Al.Iraqiya.News.HD.ae | Al Iraqiya News HD | events=49 | The Chair Game -> The Report
+    - [mena-iq] Al.sharqiya.News.HD.ae | Al sharqiya News HD | events=49 | The Chair Game -> The Report
+15. REVIEW_SIMULCAST_OR_ALIAS size=2 unrelated=False shards=mena-ae,mena-other countries=ae
+    - [mena-ae] CNBC.Arabiya.ae | CNBC Arabiya | events=90 | المستقبل الآن -> عن كثب
+    - [mena-other] DW.Arabia.HD.ae | DW Arabia HD | events=90 | المستقبل الآن -> عن كثب
+16. REVIEW_SIMULCAST_OR_ALIAS size=2 unrelated=False shards=mena-eg,mena-other countries=eg
+    - [mena-eg] ElMehwarChannel.eg@SD | المحور | events=9 | فيلم -> برنامج مطبخك عندنا
+    - [mena-other] المحور.eg | المحور.eg | events=9 | فيلم -> برنامج مطبخك عندنا
+17. REVIEW_SIMULCAST_OR_ALIAS size=2 unrelated=False shards=provider-mbc countries=eg
+    - [provider-mbc] MBCMasr.eg@SD | MBC Masr | events=36 | أهلاً بالستات -> نصيبي و قسمتك
+    - [provider-mbc] MBCMasrUSA.us@SD | MBC Masr | events=36 | أهلاً بالستات -> نصيبي و قسمتك
+18. REVIEW_SIMULCAST_OR_ALIAS size=2 unrelated=False shards=provider-bein countries=
+    - [provider-bein] NEWS_DIGITAL_Mono_AR.bein | NEWS_DIGITAL_Mono_AR | events=69 | Super Monday -> Al Hassad
+    - [provider-bein] NEWS_DIGITAL_Mono_EN.bein | NEWS_DIGITAL_Mono_EN | events=69 | Super Monday -> Al Hassad
+19. REVIEW_SIMULCAST_OR_ALIAS size=2 unrelated=False shards=mena-eg countries=ae
+    - [mena-eg] Nile.Comedy.ae | Nile Comedy | events=57 | For Security Matters -> Al Tarek
+    - [mena-eg] Nile.Drama.ae | Nile Drama | events=57 | For Security Matters -> Al Tarek
+20. REVIEW_SIMULCAST_OR_ALIAS size=2 unrelated=False shards=mena-om countries=om
+    - [mena-om] OmanTV.om | قناة عمان العامة | events=72 | متون -> اخبار الثانية
+    - [mena-om] OmanTVMubashir.om | قناة عمان مباشر | events=72 | متون -> اخبار الثانية
+21. COMPAT_ALIAS size=2 unrelated=False shards=provider-bein countries=qa
+    - [provider-bein] 4k_DIGITAL_Mono_AR.bein | 4k_DIGITAL_Mono_AR | events=18 | Live : rpool v Fulham - الدوري الإنجليزي الممتاز -> Sunderland v Arsenal - الدوري الإنجليزي الممتاز
+    - [provider-bein] beIN4K.qa@SD | beIN 4K | events=18 | Live : rpool v Fulham - الدوري الإنجليزي الممتاز -> Sunderland v Arsenal - الدوري الإنجليزي الممتاز
