@@ -1,15 +1,15 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=645
-programmes_scanned=32087
+channels_scanned=642
+programmes_scanned=31315
 critical=0
-warnings=18613
+warnings=18436
 
 ISSUE COUNTS
-empty_description=15339
-very_short_event_lt_5m=2361
-arabic_provider_title_not_arabic=859
-premium_title_not_english=26
-very_long_event_gt_6h=20
+empty_description=15068
+very_short_event_lt_5m=2332
+arabic_provider_title_not_arabic=853
+premium_title_not_english=154
+very_long_event_gt_6h=21
 hybrid_arabic_latin_description=4
 arabic_provider_description_not_arabic=2
 mixed_timezone_offsets_same_day=2
@@ -22,9 +22,7 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260916034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=859
-- provider-alkass | Alkass Five.qa | 20260914120000 +0000 | Review
-  desc: برنامج رياضي على قنوات الكأس.
+[arabic_provider_title_not_arabic] count=853
 - provider-alkass | Alkass Five.qa | 20260914130000 +0000 | News
   desc: برنامج رياضي على قنوات الكأس.
 - provider-alkass | Alkass Five.qa | 20260914131500 +0000 | alhasila
@@ -43,9 +41,10 @@ TOP SAMPLES
   desc: برنامج رياضي على قنوات الكأس.
 - provider-alkass | Alkass Five.qa | 20260914213000 +0000 | alhasila
   desc: برنامج رياضي على قنوات الكأس.
+- provider-alkass | Alkass Five.qa | 20260914223000 +0000 | 90 minutes
+  desc: برنامج رياضي يقدم التحليل والنقاش حول أبرز الأحداث والمباريات.
 
-[empty_description] count=15339
-- provider-bein | beIN Drama.eg | 20260914120000 +0000 | Darb Al Thahab
+[empty_description] count=15068
 - provider-bein | beIN Drama.eg | 20260914130000 +0000 | Mazad El Shar
 - provider-bein | beIN Drama.eg | 20260914140000 +0000 | Sarab
 - provider-bein | beIN Drama.eg | 20260914150000 +0000 | Basmet Hada
@@ -55,6 +54,7 @@ TOP SAMPLES
 - provider-bein | beIN Drama.eg | 20260914190000 +0000 | Mazad El Shar
 - provider-bein | beIN Drama.eg | 20260914194000 +0000 | برنامج beIN Action
 - provider-bein | BEIN MOVIES ACTION.eg | 20260916050000 +0000 | Angels & Demons
+- provider-bein | BEIN MOVIES DRAMA.eg | 20260916030000 +0000 | Beautiful Wedding
 
 [hybrid_arabic_latin_description] count=4
 - mena-ae | Nickelodeon HD | 20260915141500 +0000 | سونك بانك
@@ -72,20 +72,29 @@ TOP SAMPLES
 - provider-bein | beINSPORTS2 | 2026-09-16 | 
   offsets: +0000,implicit-UTC
 
-[premium_title_not_english] count=26
+[premium_title_not_english] count=154
 - provider-bein | BeIn Series HD 1.eg | 20260914150000 +0000 | 1883
   desc: يسافر جيل ما بعد الحرب الأهلية من عائلة (داتون) إلى تكساس للقيام برحلة شاقة إلى أوريجون قبل أن يقرروا الاستقرار في مونتانا، حيث تقرر العائلة تأسيس مزرعة يلوستون.
-- provider-bein | beINGOURMET | 20260914130000 +0000 | E25 | S1 طبلية
-- provider-bein | beINGOURMET | 20260914140000 +0000 | E8 | S1 عزابي
-- provider-bein | beINGOURMET | 20260914150000 +0000 | سوبر موم S1
-- provider-bein | beINGOURMET | 20260914170000 +0000 | E25 | S1 طبلية
-- provider-bein | beINGOURMET | 20260914180000 +0000 | E8 | S1 عزابي
-- provider-bein | beINGOURMET | 20260914190000 +0000 | سوبر موم S1
-- provider-bein | beINSERIES1 | 20260914120500 +0000 | E7 | S8 كل أمريكي
-- provider-bein | beINSERIES1 | 20260914130000 +0000 | E19 | S2 وثيقة
-- provider-bein | beINSERIES1 | 20260914150000 +0000 | E8 | S1 1883
+- provider-bein | beIN SPORTS NEWS.qa | 20260914130000 +0000 | نشرة الأخبار
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
+- provider-bein | beIN SPORTS NEWS.qa | 20260914133000 +0000 | مقابلة خاصة - 14/09/26
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
+- provider-bein | beIN SPORTS NEWS.qa | 20260914140000 +0000 | نشرة الأخبار
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
+- provider-bein | beIN SPORTS NEWS.qa | 20260914163000 +0000 | مقابلة خاصة - 14/09/26
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
+- provider-bein | beIN SPORTS NEWS.qa | 20260914170000 +0000 | نشرة الأخبار
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
+- provider-bein | beIN SPORTS NEWS.qa | 20260914173000 +0000 | مجلة دوري أبطال أوروبا
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
+- provider-bein | beIN SPORTS NEWS.qa | 20260914193000 +0000 | مقابلة خاصة - 14/09/26
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
+- provider-bein | beIN SPORTS NEWS.qa | 20260914200000 +0000 | نشرة الأخبار
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
+- provider-bein | beIN SPORTS NEWS.qa | 20260914203000 +0000 | مجلة دوري أبطال أوروبا
+  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
 
-[very_long_event_gt_6h] count=20
+[very_long_event_gt_6h] count=21
 - provider-alkass | Alkass Two.qa | 20260914103000 +0000 | Seashore Phoenix Championship
   desc: برنامج رياضي على قنوات الكأس.
 - provider-alkass | Alkass Two.qa | 20260915103000 +0000 | Seashore Phoenix Championship
@@ -95,12 +104,12 @@ TOP SAMPLES
 - provider-adm | Yas TV HD | 20260914193000 +0100 | Camel Racing
 - provider-adm | Yas TV HD | 20260915210000 +0100 | Sharjah Arabian Horse Festival
 - provider-dmi | Dubai Racing 1 HD | 20260914130000 +0100 | Race From Racing Tv
+- provider-dmi | Dubai Racing 1 HD | 20260916130000 +0100 | Race From Racing Tv
 - provider-dmi | Dubai Racing | 20260914120000 +0000 | 14 SEPTEMBER 2026 RACE FROM RACING TV, UK
 - provider-dmi | Dubai Racing | 20260915013000 +0000 | Dubai International Arabian Horse Championship - 04/04/2026
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
-- mena-qa | Qatar TV HD | 20260914214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2361
+[very_short_event_lt_5m] count=2332
 - provider-osn | OSNtv Kids | 20260914150100 +0000 | Barbie and Barbie on Set
   desc: باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!
 - provider-osn | OSNtv Kids | 20260914152900 +0000 | Lego Duplo Adventures S3
@@ -123,4 +132,4 @@ TOP SAMPLES
   desc: يتّبع آدم روتينه المسائي من الاستحمام وقراءة القصص حتى يحين وقت النوم في أغنية هادئة تساعد الأطفال على الاسترخاء.
 
 ALL-ID RELEASE GATE
-{"FAIL": 0, "NO_EPG": 0, "PASS": 159, "REVIEW": 486, "auto_lock_safe": 159, "channels": 645, "missing_shards": [], "programmes": 32087}
+{"FAIL": 0, "NO_EPG": 0, "PASS": 156, "REVIEW": 486, "auto_lock_safe": 156, "channels": 642, "missing_shards": [], "programmes": 31315}

@@ -1,15 +1,15 @@
 {
   "schema": 1,
   "policy": "exclusive provider-first, then country, then MENA Other; Morocco excluded to dedicated Morocco Cloud",
-  "input_channels": 648,
-  "published_channels": 645,
+  "input_channels": 645,
+  "published_channels": 642,
   "excluded_morocco_channels": 3,
-  "other_channels": 251,
+  "other_channels": 250,
   "provider_counts": {
     "alkass": 9,
     "bein": 72,
     "osn": 22,
-    "mbc": 38,
+    "mbc": 37,
     "rotana": 23,
     "adm": 13,
     "dmi": 13,
@@ -19,7 +19,7 @@
   },
   "country_counts": {
     "EG": 62,
-    "SA": 31,
+    "SA": 30,
     "AE": 21,
     "QA": 17,
     "KW": 3,
@@ -41,18 +41,18 @@
     "provider-alkass": {
       "label": "Al Kass",
       "channels": 9,
-      "programmes": 251,
-      "size_bytes": 3491,
-      "sha256": "8294d22f116ef4a37d8b12034419fd0d4684af62a2271c5161fbd12eeaeea2ca",
+      "programmes": 238,
+      "size_bytes": 3376,
+      "sha256": "811997f2a12e6f728fdc4c1a94a728dd916f435af3bf9794046a3d22cb8a2843",
       "kind": "provider",
       "key": "alkass"
     },
     "provider-bein": {
       "label": "beIN",
       "channels": 72,
-      "programmes": 1712,
-      "size_bytes": 62887,
-      "sha256": "3165c3e825677b52d7ae72f7b8e9196d6e4e555de6504679ee4e1884e63ae02f",
+      "programmes": 1648,
+      "size_bytes": 60274,
+      "sha256": "3752cbb966d51c6887feb6101c5bc634e9e7de54c0e67811edc8b6aa5e03aa46",
       "compat_aliases": {
         "4k_DIGITAL_Mono_AR.bein": {
           "canonical": "beIN4K.qa@SD",
@@ -64,11 +64,11 @@
         },
         "beIN_SPORTS4_DIGITAL_Mono_EN.bein": {
           "canonical": "beINSports4.qa@MENA",
-          "programmes": 23
+          "programmes": 22
         },
         "beIN_SPORTS5_DIGITAL_Mono_EN.bein": {
           "canonical": "beINSports5.qa@MENA",
-          "programmes": 19
+          "programmes": 18
         },
         "beIN_SPORTS7_DIGITAL_Mono_EN.bein": {
           "canonical": "beINSports7.qa@MENA",
@@ -76,31 +76,31 @@
         },
         "NEWS_DIGITAL_Mono_EN.bein": {
           "canonical": "NEWS_DIGITAL_Mono_AR.bein",
-          "programmes": 65
+          "programmes": 64
         },
         "beIN SPORTS XTRA 04 bein.com.qa": {
           "canonical": "beIN SPORTS XTRA 4.qa",
-          "programmes": 40
+          "programmes": 39
         },
         "beIN SPORTS XTRA 05 bein.com.qa": {
           "canonical": "beIN SPORTS XTRA 5.qa",
-          "programmes": 40
+          "programmes": 39
         },
         "beIN_SPORTS_XTRA_06_bein.com_EN.bein": {
           "canonical": "beIN SPORTS XTRA 6.qa",
-          "programmes": 40
+          "programmes": 39
         },
         "beIN_SPORTS_XTRA_07_bein.com_EN.bein": {
           "canonical": "beIN SPORTS XTRA 7.qa",
-          "programmes": 21
+          "programmes": 20
         },
         "beIN_SPORTS_XTRA_08_Bein.com_EN.bein": {
           "canonical": "beIN SPORTS XTRA 8.qa",
-          "programmes": 21
+          "programmes": 20
         },
         "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein": {
           "canonical": "beIN SPORTS XTRA 9.qa",
-          "programmes": 21
+          "programmes": 20
         },
         "beIN SPORTS XTRA 3.qa": {
           "canonical": "beINSPORTSXTRA3.qa",
@@ -108,15 +108,15 @@
         },
         "بي إن موفيز أكشن.eg": {
           "canonical": "BEIN MOVIES ACTION.eg",
-          "programmes": 23
+          "programmes": 22
         },
         "بي إن موفيز دراما.eg": {
           "canonical": "BEIN MOVIES DRAMA.eg",
-          "programmes": 25
+          "programmes": 24
         },
         "بي إن موفيز فاميلي.eg": {
           "canonical": "BEIN MOVIES FAMILY.eg",
-          "programmes": 26
+          "programmes": 25
         },
         "بي إن موفيز بريمير.eg": {
           "canonical": "BEIN MOVIES PREMIERE.eg",
@@ -124,15 +124,15 @@
         },
         "بي إن سيريس.eg": {
           "canonical": "BeIn Series HD 1.eg",
-          "programmes": 8
+          "programmes": 7
         },
         "بي إن سيريس إتش دي 2.eg": {
           "canonical": "beIN Series HD 2.eg",
-          "programmes": 10
+          "programmes": 8
         },
         "beINDrama1.qa@SD": {
           "canonical": "beIN Drama.eg",
-          "programmes": 9
+          "programmes": 8
         },
         "beINMovies1Premiere.qa@SD": {
           "canonical": "BEIN MOVIES PREMIERE.eg",
@@ -140,15 +140,15 @@
         },
         "beINMovies2Action.qa@SD": {
           "canonical": "BEIN MOVIES ACTION.eg",
-          "programmes": 23
+          "programmes": 22
         },
         "beINMovies3Drama.qa@SD": {
           "canonical": "BEIN MOVIES DRAMA.eg",
-          "programmes": 25
+          "programmes": 24
         },
         "beINMovies4Family.qa@SD": {
           "canonical": "BEIN MOVIES FAMILY.eg",
-          "programmes": 26
+          "programmes": 25
         }
       },
       "non_recommended_ids": [],
@@ -185,22 +185,15 @@
         "beINSPORTSXTRA3.qa"
       ],
       "event_source_count": 28,
+      "news_title_policy": "known beIN SPORTS NEWS editorial labels rendered Arabic-first; unknown labels preserved",
+      "news_titles_translated": 0,
       "repair": {
-        "arabic_desc_fills": 111,
-        "known_replay_title_fixes": 17,
+        "arabic_desc_fills": 105,
+        "known_replay_title_fixes": 16,
         "long_event_repairs": 2,
-        "generic_xtra_removed": 704
+        "generic_xtra_removed": 678
       },
       "repair_long_events": [
-        {
-          "channel": "beINSports2.qa@MENA",
-          "title": "São Paulo (BRA) vs Boca Juniors (ARG) - Conmebol Sudamericana - De Final 2nd Leg",
-          "old_hours": 6.67,
-          "new_hours": 2.17,
-          "reference_channels": [
-            "beIN SPORTS EN 2.qa"
-          ]
-        },
         {
           "channel": "beIN SPORTS.qa",
           "title": "Vietnam vs Kuwait - Football Men - Asian Games Aichi-Nagoya 2026 - FBL06",
@@ -208,6 +201,15 @@
           "new_hours": 2.25,
           "reference_channels": [
             "beIN SPORTS 1.qa"
+          ]
+        },
+        {
+          "channel": "beINSports2.qa@MENA",
+          "title": "São Paulo (BRA) vs Boca Juniors (ARG) - Conmebol Sudamericana - De Final 2nd Leg",
+          "old_hours": 6.67,
+          "new_hours": 2.17,
+          "reference_channels": [
+            "beIN SPORTS EN 2.qa"
           ]
         }
       ],
@@ -217,54 +219,54 @@
     "provider-osn": {
       "label": "OSN",
       "channels": 22,
-      "programmes": 1168,
-      "size_bytes": 49381,
-      "sha256": "cac0712731b6fa6055feccc87bb8f83a3d93e8f34f6a252486811d4ab10d1a20",
+      "programmes": 1147,
+      "size_bytes": 48526,
+      "sha256": "ae6f8cbd07f159ad19e788422c019ababf640c30a1ad3adeb122d0975b9404e7",
       "kind": "provider",
       "key": "osn"
     },
     "provider-mbc": {
       "label": "MBC Group",
-      "channels": 38,
-      "programmes": 1856,
-      "size_bytes": 83447,
-      "sha256": "cfbe4f3133f6dbd81de4f372acb1079150283c86c4e92f731c43d79bf96db427",
+      "channels": 37,
+      "programmes": 1753,
+      "size_bytes": 80670,
+      "sha256": "e89f630b01511cb218411572973b0d6938a51628acc64ad168b8721fa655d2e7",
       "kind": "provider",
       "key": "mbc"
     },
     "provider-rotana": {
       "label": "Rotana",
       "channels": 23,
-      "programmes": 848,
-      "size_bytes": 47996,
-      "sha256": "d70561acf492f894f4c932eac8fd6add0f25268885f175f31be6f6ca90810e10",
+      "programmes": 823,
+      "size_bytes": 47132,
+      "sha256": "7bdd32c4325e689259bc6bf37dbe2e433261d014ae141f36ceab8e8f8a0b97dd",
       "kind": "provider",
       "key": "rotana"
     },
     "provider-adm": {
       "label": "Abu Dhabi Media",
       "channels": 13,
-      "programmes": 722,
-      "size_bytes": 20515,
-      "sha256": "17f0b812744190695a5a278afb51fa7fd64cc6c4f5e350bd543c03c32c0d0de6",
+      "programmes": 714,
+      "size_bytes": 20371,
+      "sha256": "999a5eeafc64e057345b34d1554580574d827282ee75822b40907826599fa1b0",
       "kind": "provider",
       "key": "adm"
     },
     "provider-dmi": {
       "label": "Dubai Media",
       "channels": 13,
-      "programmes": 494,
-      "size_bytes": 18610,
-      "sha256": "cfc1c0d8649e637b640e4b7805386304b05c322feb143202d859008daf8bf405",
+      "programmes": 487,
+      "size_bytes": 18330,
+      "sha256": "e44b5a332805cdce1ab29dc18c1b699f7103c52449f6c82fbd02dfcb11ec4aa7",
       "kind": "provider",
       "key": "dmi"
     },
     "provider-art": {
       "label": "ART / Alfa",
       "channels": 8,
-      "programmes": 1145,
-      "size_bytes": 15221,
-      "sha256": "3fd735a12f9b2d8aee59155d2f8fad0496dd9028a1d3dcd0f7d896e2731b81d5",
+      "programmes": 1124,
+      "size_bytes": 14994,
+      "sha256": "84a2ec73952b60c93964b71d7ff1f7a7264c5e3917180339ab7ef464a9e8b669",
       "kind": "provider",
       "key": "art"
     },
@@ -280,99 +282,99 @@
     "provider-starz": {
       "label": "STARZPLAY",
       "channels": 5,
-      "programmes": 185,
-      "size_bytes": 3671,
-      "sha256": "05675f85da358fe22183944e4891dd080d6ffc5f26342093ade98de31e388281",
+      "programmes": 181,
+      "size_bytes": 3619,
+      "sha256": "ac8d7a3b18168fb94cda42aa27398e7db186e4f6555f471f8fede496c39f0193",
       "kind": "provider",
       "key": "starz"
     },
     "mena-eg": {
       "label": "Egypt",
       "channels": 62,
-      "programmes": 2061,
-      "size_bytes": 70973,
-      "sha256": "e08e99ab41b2e09fa96bb36c39a506bc632928baaeee4428ab6768b01d4f2edf",
+      "programmes": 2023,
+      "size_bytes": 68767,
+      "sha256": "a08a259932135661da6fbba2f09b55d553f2977003f719f5534f80e2746d379f",
       "kind": "country",
       "key": "EG"
     },
     "mena-sa": {
       "label": "Saudi Arabia",
-      "channels": 31,
-      "programmes": 2293,
-      "size_bytes": 66753,
-      "sha256": "1bf50fccf6c4a3748d6274c5b3bb654a520fe08c65c0186d9209540497a8eda0",
+      "channels": 30,
+      "programmes": 2246,
+      "size_bytes": 66874,
+      "sha256": "9855121f6e8f98e222401283df8c036d818bedd37ec5c467a459ca0fa3a6cd46",
       "kind": "country",
       "key": "SA"
     },
     "mena-ae": {
       "label": "United Arab Emirates",
       "channels": 21,
-      "programmes": 1106,
-      "size_bytes": 62388,
-      "sha256": "773b7bbfe78a7af14ed9d811f64908b8caa9f94fdf0cff4ae8de2814743a1b09",
+      "programmes": 1069,
+      "size_bytes": 61104,
+      "sha256": "5ba450cbf5a0ce46fae807c0753ea90bcd5dcc610357f78e0a8293257fb95c61",
       "kind": "country",
       "key": "AE"
     },
     "mena-qa": {
       "label": "Qatar",
       "channels": 17,
-      "programmes": 787,
-      "size_bytes": 15437,
-      "sha256": "0cd958ace0c13841ece902c4781f6ce0d0bdfd142d8637c9cc72b1927861be97",
+      "programmes": 782,
+      "size_bytes": 15376,
+      "sha256": "e89d7e87ec0e387cb01b85cd14ca9d5b8d256b9fbf874c5ba8327a1107d61878",
       "kind": "country",
       "key": "QA"
     },
     "mena-kw": {
       "label": "Kuwait",
       "channels": 3,
-      "programmes": 236,
-      "size_bytes": 4571,
-      "sha256": "cc8b9537fb46334d2d4bbe844601696b928d24375aa82a91a9aac9658cfedcfd",
+      "programmes": 230,
+      "size_bytes": 4505,
+      "sha256": "a50fbb96c51f1447a0602343632a35e591349534ad826f45c0ba407fff605e9e",
       "kind": "country",
       "key": "KW"
     },
     "mena-bh": {
       "label": "Bahrain",
       "channels": 2,
-      "programmes": 119,
-      "size_bytes": 4485,
-      "sha256": "e5f992b3048fe6b586b72ae5f906df0a2dd315b2198aceeb7dc94ce5ba9facaf",
+      "programmes": 115,
+      "size_bytes": 4450,
+      "sha256": "cabce88ebbd56e9e96319e855ea20604c9cba7286cffb0a088a14040126ef496",
       "kind": "country",
       "key": "BH"
     },
     "mena-om": {
       "label": "Oman",
       "channels": 12,
-      "programmes": 623,
-      "size_bytes": 17213,
-      "sha256": "c5897ea18659703fafe09376a4bd91cb370b176a0375f8c0b48757ca616052b0",
+      "programmes": 601,
+      "size_bytes": 16973,
+      "sha256": "e5224f19d1be7de26c974136efa28e452831ed52cb31c2d8c2b01972e1b7758f",
       "kind": "country",
       "key": "OM"
     },
     "mena-jo": {
       "label": "Jordan",
       "channels": 9,
-      "programmes": 509,
-      "size_bytes": 18544,
-      "sha256": "8bc3fe2266288384155b0b751a3b43c3801f333237ac287947ccebe583ad670b",
+      "programmes": 497,
+      "size_bytes": 18317,
+      "sha256": "1d184369568fbab6a15a54510e3ce6e5f32113763fbdd633bab63c4e2aa3edec",
       "kind": "country",
       "key": "JO"
     },
     "mena-lb": {
       "label": "Lebanon",
       "channels": 7,
-      "programmes": 142,
-      "size_bytes": 6619,
-      "sha256": "3a3b84e20c4b4e681d993caa341d205d1018a5610378e1a3e8c8099fb90b7e80",
+      "programmes": 137,
+      "size_bytes": 5856,
+      "sha256": "0046c5693652e29869f47cd730a19e5f1958ada8359ee5ee748ba1a2532d8d8a",
       "kind": "country",
       "key": "LB"
     },
     "mena-iq": {
       "label": "Iraq",
       "channels": 17,
-      "programmes": 666,
-      "size_bytes": 12510,
-      "sha256": "04f839e515602abb03fdb14661413ba218669e0ffc93553514533ca1ea53b12c",
+      "programmes": 677,
+      "size_bytes": 12790,
+      "sha256": "148a279789b8fd257b554e937ca870f0f8c1ff1225fbafae2c9dd13834e0b586",
       "kind": "country",
       "key": "IQ"
     },
@@ -388,27 +390,27 @@
     "mena-ye": {
       "label": "Yemen",
       "channels": 1,
-      "programmes": 36,
-      "size_bytes": 2817,
-      "sha256": "2436dbcbfa399400b495fe0b16e2fab8a4b77e677a78e3351e987204ba1bf936",
+      "programmes": 35,
+      "size_bytes": 2807,
+      "sha256": "b4f1478e13e541b5a4c8879b307374f4b74f22a67ef6bdcd5165af5db55a4ccc",
       "kind": "country",
       "key": "YE"
     },
     "mena-dz": {
       "label": "Algeria",
       "channels": 3,
-      "programmes": 92,
-      "size_bytes": 3202,
-      "sha256": "057411a56befe46a200db16714cd37551a9d05f066fee329c142ccd37ff909c3",
+      "programmes": 110,
+      "size_bytes": 4061,
+      "sha256": "0b52e7769fcfb2b052fba5d576876b2487c9fc7d11e6031a0718fa6d0ba7cb0c",
       "kind": "country",
       "key": "DZ"
     },
     "mena-tn": {
       "label": "Tunisia",
       "channels": 4,
-      "programmes": 147,
-      "size_bytes": 4902,
-      "sha256": "a7d57be6746354263065a7e52fb087d0d8b2472c5b97a9a441783a6488d6e46f",
+      "programmes": 114,
+      "size_bytes": 4260,
+      "sha256": "48997cb38a5bc0e37239add1e50c14d0c1eb226d57ad2ee7fd41a73a1bbd659d",
       "kind": "country",
       "key": "TN"
     },
@@ -425,17 +427,17 @@
       "label": "Sudan",
       "channels": 1,
       "programmes": 47,
-      "size_bytes": 1065,
-      "sha256": "46abec68aa4e501b27432197bfd365e27543e23f8469a5fa9ac4f22e4172c990",
+      "size_bytes": 1072,
+      "sha256": "72d24c3a5fc3d970104cae4b684d0d1ea24d4a670323fa8a73c27b9a2a6fb616",
       "kind": "country",
       "key": "SD"
     },
     "mena-sy": {
       "label": "Syria",
       "channels": 1,
-      "programmes": 27,
-      "size_bytes": 2408,
-      "sha256": "0b4d8e24830a85a76e82e9773fe0ca56f117b4cc2a62ebe6180da6b7317dda1f",
+      "programmes": 4,
+      "size_bytes": 1221,
+      "sha256": "5cd4b6e7a7d9d1de658eded59b2328711c8d33d44cde3d2629a6ffcbb314222d",
       "kind": "country",
       "key": "SY"
     },
@@ -450,10 +452,10 @@
     },
     "mena-other": {
       "label": "MENA Other",
-      "channels": 251,
-      "programmes": 14815,
-      "size_bytes": 490543,
-      "sha256": "774cbe31f1cbef0380980059ae70277e1a65d5a783a1d877d8ad06efa424c197",
+      "channels": 250,
+      "programmes": 14513,
+      "size_bytes": 478506,
+      "sha256": "f787ed8bdde8abadd6fa278b8abc2bcab990acf05d5b0579fd6a6049bcd35b1b",
       "kind": "other",
       "key": "MENA"
     }

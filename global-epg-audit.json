@@ -1,140 +1,130 @@
 {
   "schema": 2,
   "scope": "all exclusive MENA country/provider shards + synchronous alias-aware all-ID release gate",
-  "channels_scanned": 645,
-  "programmes_scanned": 32087,
+  "channels_scanned": 642,
+  "programmes_scanned": 31315,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 859,
-    "empty_description": 15339,
+    "arabic_provider_title_not_arabic": 853,
+    "empty_description": 15068,
     "hybrid_arabic_latin_description": 4,
     "mixed_timezone_offsets_same_day": 2,
-    "premium_title_not_english": 26,
-    "severity_warning": 18613,
-    "very_long_event_gt_6h": 20,
-    "very_short_event_lt_5m": 2361
+    "premium_title_not_english": 154,
+    "severity_warning": 18436,
+    "very_long_event_gt_6h": 21,
+    "very_short_event_lt_5m": 2332
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 404,
+      "empty_description": 386,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
       "very_short_event_lt_5m": 9
     },
     "mena-dz": {
-      "empty_description": 88,
+      "empty_description": 99,
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 1270,
+      "empty_description": 1259,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 598
+      "empty_description": 605
     },
     "mena-jo": {
-      "empty_description": 62,
+      "empty_description": 59,
       "very_short_event_lt_5m": 5
     },
     "mena-kw": {
-      "empty_description": 210,
+      "empty_description": 204,
       "very_short_event_lt_5m": 3
     },
     "mena-lb": {
-      "empty_description": 57,
+      "empty_description": 54,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 363
+      "empty_description": 349
     },
     "mena-other": {
-      "empty_description": 7712,
+      "empty_description": 7591,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 7,
-      "very_short_event_lt_5m": 1169
+      "very_short_event_lt_5m": 1165
     },
     "mena-qa": {
-      "empty_description": 651,
+      "empty_description": 648,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1330,
-      "very_short_event_lt_5m": 602
+      "empty_description": 1299,
+      "very_short_event_lt_5m": 591
     },
     "mena-sd": {
       "empty_description": 47
     },
     "mena-sy": {
-      "empty_description": 4
+      "empty_description": 1
     },
     "mena-tn": {
-      "empty_description": 130,
+      "empty_description": 107,
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
-      "empty_description": 25
+      "empty_description": 24
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 263,
-      "empty_description": 218,
+      "arabic_provider_title_not_arabic": 265,
+      "empty_description": 220,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 22
     },
     "provider-alkass": {
-      "arabic_provider_title_not_arabic": 116,
+      "arabic_provider_title_not_arabic": 112,
       "very_long_event_gt_6h": 2
     },
     "provider-art": {
-      "arabic_provider_title_not_arabic": 17,
-      "empty_description": 1145,
-      "very_short_event_lt_5m": 443
+      "arabic_provider_title_not_arabic": 16,
+      "empty_description": 1124,
+      "very_short_event_lt_5m": 436
     },
     "provider-bein": {
-      "empty_description": 48,
+      "empty_description": 44,
       "mixed_timezone_offsets_same_day": 2,
-      "premium_title_not_english": 15
+      "premium_title_not_english": 143
     },
     "provider-dmi": {
-      "arabic_provider_title_not_arabic": 70,
-      "empty_description": 255,
-      "very_long_event_gt_6h": 3,
+      "arabic_provider_title_not_arabic": 69,
+      "empty_description": 251,
+      "very_long_event_gt_6h": 4,
       "very_short_event_lt_5m": 2
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
-      "arabic_provider_title_not_arabic": 318,
-      "empty_description": 318,
+      "arabic_provider_title_not_arabic": 316,
+      "empty_description": 309,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
-      "empty_description": 91,
+      "empty_description": 89,
       "premium_title_not_english": 11,
       "very_short_event_lt_5m": 41
     },
     "provider-rotana": {
       "arabic_provider_title_not_arabic": 75,
-      "empty_description": 166,
-      "very_short_event_lt_5m": 43
+      "empty_description": 156,
+      "very_short_event_lt_5m": 36
     },
     "provider-starz": {
-      "empty_description": 147,
+      "empty_description": 143,
       "very_long_event_gt_6h": 1
     }
   },
   "samples": {
     "arabic_provider_title_not_arabic": [
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Five.qa",
-        "channel": "Alkass Five.qa",
-        "start": "20260914120000 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "Review",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 60.0
-      },
       {
         "shard": "provider-alkass",
         "channel_id": "Alkass Five.qa",
@@ -439,26 +429,6 @@
         "shard": "provider-alkass",
         "channel_id": "Alkass Four.qa",
         "channel": "Alkass Four.qa",
-        "start": "20260914113000 +0000",
-        "stop": "20260914123000 +0000",
-        "title": "Thenten wnoss",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Four.qa",
-        "channel": "Alkass Four.qa",
-        "start": "20260914123000 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "Golmania",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Four.qa",
-        "channel": "Alkass Four.qa",
         "start": "20260914130000 +0000",
         "stop": "20260914133000 +0000",
         "title": "News",
@@ -524,6 +494,36 @@
         "title": "News",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260914183000 +0000",
+        "stop": "20260914201500 +0000",
+        "title": "arabia football",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260914201500 +0000",
+        "stop": "20260914210000 +0000",
+        "title": "Al Majlis AFC Champions League Elite",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 45.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260914210000 +0000",
+        "stop": "20260914213000 +0000",
+        "title": "News",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
       }
     ],
     "very_long_event_gt_6h": [
@@ -586,6 +586,16 @@
         "title": "Race From Racing Tv",
         "desc": "",
         "duration_minutes": 386.0
+      },
+      {
+        "shard": "provider-dmi",
+        "channel_id": "Dubai.Racing.1.HD.ae",
+        "channel": "Dubai Racing 1 HD",
+        "start": "20260916130000 +0100",
+        "stop": "20260916192700 +0100",
+        "title": "Race From Racing Tv",
+        "desc": "",
+        "duration_minutes": 387.0
       },
       {
         "shard": "provider-dmi",
@@ -733,16 +743,6 @@
         "shard": "provider-bein",
         "channel_id": "beIN Drama.eg",
         "channel": "beIN Drama.eg",
-        "start": "20260914120000 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "Darb Al Thahab",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
         "start": "20260914130000 +0000",
         "stop": "20260914140000 +0000",
         "title": "Mazad El Shar",
@@ -863,16 +863,6 @@
         "shard": "provider-bein",
         "channel_id": "beINDrama1.qa@SD",
         "channel": "بي إن دراما",
-        "start": "20260914120000 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "Darb Al Thahab",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
         "start": "20260914130000 +0000",
         "stop": "20260914140000 +0000",
         "title": "Mazad El Shar",
@@ -948,16 +938,6 @@
         "title": "برنامج beIN Action",
         "desc": "",
         "duration_minutes": 20.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914120000 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "Al Dar Alkabira S2 EP 8",
-        "desc": "",
-        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
@@ -1073,16 +1053,6 @@
         "shard": "provider-bein",
         "channel_id": "beINSeries1.qa@SD",
         "channel": "beINSERIES1",
-        "start": "20260914120500 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "E7 | S8 كل أمريكي",
-        "desc": "",
-        "duration_minutes": 55.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINSeries1.qa@SD",
-        "channel": "beINSERIES1",
         "start": "20260914130000 +0000",
         "stop": "20260914140000 +0000",
         "title": "E19 | S2 وثيقة",
@@ -1128,118 +1098,6 @@
         "title": "يلوجاكيتس S2",
         "desc": "",
         "duration_minutes": 60.0
-      }
-    ],
-    "premium_title_not_english": [
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914150000 +0000",
-        "stop": "20260914160000 +0000",
-        "title": "1883",
-        "desc": "يسافر جيل ما بعد الحرب الأهلية من عائلة (داتون) إلى تكساس للقيام برحلة شاقة إلى أوريجون قبل أن يقرروا الاستقرار في مونتانا، حيث تقرر العائلة تأسيس مزرعة يلوستون.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914130000 +0000",
-        "stop": "20260914140000 +0000",
-        "title": "E25 | S1 طبلية",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914140000 +0000",
-        "stop": "20260914150000 +0000",
-        "title": "E8 | S1 عزابي",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914150000 +0000",
-        "stop": "20260914160000 +0000",
-        "title": "سوبر موم S1",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914170000 +0000",
-        "stop": "20260914180000 +0000",
-        "title": "E25 | S1 طبلية",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914180000 +0000",
-        "stop": "20260914190000 +0000",
-        "title": "E8 | S1 عزابي",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914190000 +0000",
-        "stop": "20260914200000 +0000",
-        "title": "سوبر موم S1",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINSeries1.qa@SD",
-        "channel": "beINSERIES1",
-        "start": "20260914120500 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "E7 | S8 كل أمريكي",
-        "desc": "",
-        "duration_minutes": 55.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINSeries1.qa@SD",
-        "channel": "beINSERIES1",
-        "start": "20260914130000 +0000",
-        "stop": "20260914140000 +0000",
-        "title": "E19 | S2 وثيقة",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINSeries1.qa@SD",
-        "channel": "beINSERIES1",
-        "start": "20260914150000 +0000",
-        "stop": "20260914155500 +0000",
-        "title": "E8 | S1 1883",
-        "desc": "",
-        "duration_minutes": 55.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINSeries1.qa@SD",
-        "channel": "beINSERIES1",
-        "start": "20260914162000 +0000",
-        "stop": "20260914172000 +0000",
-        "title": "يلوجاكيتس S2",
-        "desc": "",
-        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
@@ -1273,8 +1131,20 @@
       },
       {
         "shard": "provider-bein",
-        "channel_id": "بي إن سيريس.eg",
-        "channel": "بي إن سيريس.eg",
+        "channel_id": "beINSeries2.qa@SD",
+        "channel": "بي إن سيريس إتش...",
+        "start": "20260915164500 +0000",
+        "stop": "20260915170000 +0000",
+        "title": "برنامج beIN Action",
+        "desc": "",
+        "duration_minutes": 15.0
+      }
+    ],
+    "premium_title_not_english": [
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
         "start": "20260914150000 +0000",
         "stop": "20260914160000 +0000",
         "title": "1883",
@@ -1282,114 +1152,394 @@
         "duration_minutes": 60.0
       },
       {
-        "shard": "provider-osn",
-        "channel_id": "OSNMoviesAction.ae@SD",
-        "channel": "OSNtv Movies Action",
-        "start": "20260915220500 +0000",
-        "stop": "20260916002000 +0000",
-        "title": "ذا ماتريكس",
-        "desc": "عندما يقود شخص غريب الهاكر نيون إلى عالم سفلي مريب، يكتشف الحقيقة الصادمة - الحياة التي يعرفها هي خدعة متقنة من قِبَل ذكاء اصطناعي شرير.",
-        "duration_minutes": 135.0
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914130000 +0000",
+        "stop": "20260914133000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
       },
       {
-        "shard": "provider-osn",
-        "channel_id": "OSNMoviesHollywood.ae@SD",
-        "channel": "OSNtv Movies Hollywood",
-        "start": "20260914233000 +0000",
-        "stop": "20260915012000 +0000",
-        "title": "ذا ريسلر",
-        "desc": "يُواجه مصارعٌ تقدّم به السن تحديات الحياة خارج الحلبة، بعدما أجبره جسده المنهك على الاعتزال، ليبدأ رحلة تصالح مع ما تبقّى له من العمر.",
-        "duration_minutes": 110.0
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914133000 +0000",
+        "stop": "20260914134500 +0000",
+        "title": "مقابلة خاصة - 14/09/26",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 15.0
       },
       {
-        "shard": "provider-osn",
-        "channel_id": "OSNMoviesHollywood.ae@SD",
-        "channel": "OSNtv Movies Hollywood",
-        "start": "20260915232500 +0000",
-        "stop": "20260916012500 +0000",
-        "title": "سلامدوغ مليونير",
-        "desc": "يُستجوب فتى من أحياء مومباي الفقيرة بعد أن أثار فوزه في برنامج أسئلة الشكوك، فيبدأ باسترجاع محطات من ماضيه تشرح كيف عرف كل الإجابات.",
-        "duration_minutes": 120.0
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914140000 +0000",
+        "stop": "20260914143000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
       },
       {
-        "shard": "provider-osn",
-        "channel_id": "OSNtv Documentary.sa",
-        "channel": "OSNtv Documentary.sa",
-        "start": "20260916000000 +0000",
-        "stop": "20260916001000 +0000",
-        "title": "آوتسايد ذا بابل: أون ذا راود ويذ أليكساندر بي",
-        "desc": "",
-        "duration_minutes": 10.0
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914163000 +0000",
+        "stop": "20260914164500 +0000",
+        "title": "مقابلة خاصة - 14/09/26",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 15.0
       },
       {
-        "shard": "provider-osn",
-        "channel_id": "OSNtv Documentary.sa",
-        "channel": "OSNtv Documentary.sa",
-        "start": "20260916001000 +0000",
-        "stop": "20260916011000 +0000",
-        "title": "غلادياتور دايز: أناتومي أوف أيه بريزن ميردر",
-        "desc": "",
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914170000 +0000",
+        "stop": "20260914173000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914173000 +0000",
+        "stop": "20260914180000 +0000",
+        "title": "مجلة دوري أبطال أوروبا",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914193000 +0000",
+        "stop": "20260914194500 +0000",
+        "title": "مقابلة خاصة - 14/09/26",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 15.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914200000 +0000",
+        "stop": "20260914203000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914203000 +0000",
+        "stop": "20260914210000 +0000",
+        "title": "مجلة دوري أبطال أوروبا",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914210000 +0000",
+        "stop": "20260914220000 +0000",
+        "title": "سوبر الإثنين",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
         "duration_minutes": 60.0
       },
       {
-        "shard": "provider-osn",
-        "channel_id": "OSNtv Documentary.sa",
-        "channel": "OSNtv Documentary.sa",
-        "start": "20260916011000 +0000",
-        "stop": "20260916024000 +0000",
-        "title": "إت ويل بي كايوس",
-        "desc": "",
-        "duration_minutes": 90.0
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914220000 +0000",
+        "stop": "20260914230000 +0000",
+        "title": "الحصاد",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 60.0
       },
       {
-        "shard": "provider-osn",
-        "channel_id": "OSNtv Documentary.sa",
-        "channel": "OSNtv Documentary.sa",
-        "start": "20260916024000 +0000",
-        "stop": "20260916040500 +0000",
-        "title": "وايت لايت/بلاك رين: ذا ديستراكشن أوف هيروشي",
-        "desc": "",
-        "duration_minutes": 85.0
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914230000 +0000",
+        "stop": "20260914233000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
       },
       {
-        "shard": "provider-osn",
-        "channel_id": "OSNtv Documentary.sa",
-        "channel": "OSNtv Documentary.sa",
-        "start": "20260916040500 +0000",
-        "stop": "20260916054000 +0000",
-        "title": "أوباما: إن برسوت أوف ايه مور بيرفكت يونيون",
-        "desc": "",
-        "duration_minutes": 95.0
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260914233000 +0000",
+        "stop": "20260915000000 +0000",
+        "title": "الحصيلة - 15/09/26",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
       },
       {
-        "shard": "provider-osn",
-        "channel_id": "OSNtv Documentary.sa",
-        "channel": "OSNtv Documentary.sa",
-        "start": "20260916054000 +0000",
-        "stop": "20260916063500 +0000",
-        "title": "ذا آناركيستس",
-        "desc": "",
-        "duration_minutes": 55.0
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915000000 +0000",
+        "stop": "20260915010000 +0000",
+        "title": "سوبر الإثنين",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 60.0
       },
       {
-        "shard": "provider-osn",
-        "channel_id": "OSNtv Documentary.sa",
-        "channel": "OSNtv Documentary.sa",
-        "start": "20260916063500 +0000",
-        "stop": "20260916074500 +0000",
-        "title": "وان نيشن أندر سترس",
-        "desc": "",
-        "duration_minutes": 70.0
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915010000 +0000",
+        "stop": "20260915020000 +0000",
+        "title": "الحصاد",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 60.0
       },
       {
-        "shard": "provider-osn",
-        "channel_id": "OSNYahalaAflam.ae@SD",
-        "channel": "OSNtv Yahala Aflam",
-        "start": "20260915233500 +0000",
-        "stop": "20260916011500 +0000",
-        "title": "شوجر دادي",
-        "desc": "يقوم شوقي بأخذ حبيبته ناتاليا في رحلة إلى سهل حشيش. عندما يكتشف أبناؤه العلاقة، يتوجهون إلى هناك لمواجهته وإنقاذ زواج والديهم.",
-        "duration_minutes": 100.0
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915020000 +0000",
+        "stop": "20260915023000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915023000 +0000",
+        "stop": "20260915030000 +0000",
+        "title": "مجلة دوري أبطال أوروبا",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915030000 +0000",
+        "stop": "20260915040000 +0000",
+        "title": "الحصاد",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915040000 +0000",
+        "stop": "20260915043000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915043000 +0000",
+        "stop": "20260915044500 +0000",
+        "title": "مقابلة خاصة - 14/09/26",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 15.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915050000 +0000",
+        "stop": "20260915053000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915053000 +0000",
+        "stop": "20260915060000 +0000",
+        "title": "الحصيلة - 15/09/26",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915060000 +0000",
+        "stop": "20260915070000 +0000",
+        "title": "سوبر الإثنين",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915070000 +0000",
+        "stop": "20260915080000 +0000",
+        "title": "الحصاد",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915080000 +0000",
+        "stop": "20260915083000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915083000 +0000",
+        "stop": "20260915090000 +0000",
+        "title": "مجلة دوري أبطال أوروبا",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915090000 +0000",
+        "stop": "20260915100000 +0000",
+        "title": "سوبر الإثنين",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915100000 +0000",
+        "stop": "20260915110000 +0000",
+        "title": "الحصاد",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915110000 +0000",
+        "stop": "20260915113000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915113000 +0000",
+        "stop": "20260915120000 +0000",
+        "title": "الحصيلة - 15/09/26",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915120000 +0000",
+        "stop": "20260915130000 +0000",
+        "title": "سوبر الإثنين",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915130000 +0000",
+        "stop": "20260915133000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915140000 +0000",
+        "stop": "20260915143000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915170000 +0000",
+        "stop": "20260915173000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915173000 +0000",
+        "stop": "20260915180000 +0000",
+        "title": "تقديم الدوري الأوروبي",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915193000 +0000",
+        "stop": "20260915194500 +0000",
+        "title": "مقابلة خاصة - 13/09/26",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 15.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915200000 +0000",
+        "stop": "20260915203000 +0000",
+        "title": "نشرة الأخبار",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915203000 +0000",
+        "stop": "20260915210000 +0000",
+        "title": "تقديم الدوري الأوروبي",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS NEWS.qa",
+        "channel": "beIN SPORTS NEWS.qa",
+        "start": "20260915210000 +0000",
+        "stop": "20260915220000 +0000",
+        "title": "الشوط الثالث",
+        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
+        "duration_minutes": 60.0
       }
     ],
     "mixed_timezone_offsets_same_day": [
@@ -1882,13 +2032,13 @@
     ]
   },
   "all_id_release_gate": {
-    "channels": 645,
-    "programmes": 32087,
-    "PASS": 159,
+    "channels": 642,
+    "programmes": 31315,
+    "PASS": 156,
     "REVIEW": 486,
     "NO_EPG": 0,
     "FAIL": 0,
-    "auto_lock_safe": 159,
+    "auto_lock_safe": 156,
     "missing_shards": []
   }
 }
