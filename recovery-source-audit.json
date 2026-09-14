@@ -1,12 +1,14 @@
 {
-  "schema": 2,
+  "schema": 3,
   "mode": "diagnostic-only-recovery-source-audit",
   "window_hours": 48,
-  "no_epg_input": 441,
+  "no_epg_input": 433,
   "sources": [
     {
       "source": "iptv-epg-eg",
+      "scope": "country",
       "country": "eg",
+      "trust": "candidate",
       "url": "https://iptv-epg.org/files/epg-eg.xml.gz",
       "status": "ok",
       "bytes": 137939,
@@ -14,12 +16,14 @@
       "clean_current_candidates": 23,
       "quarantined_candidates": 63,
       "recoveries": [],
-      "exact_recoveries": 0,
-      "fuzzy_review": 0
+      "safe_exact_recoveries": 0,
+      "review_candidates": 0
     },
     {
       "source": "iptv-epg-lb",
+      "scope": "country",
       "country": "lb",
+      "trust": "candidate",
       "url": "https://iptv-epg.org/files/epg-lb.xml.gz",
       "status": "ok",
       "bytes": 38200,
@@ -27,12 +31,14 @@
       "clean_current_candidates": 6,
       "quarantined_candidates": 52,
       "recoveries": [],
-      "exact_recoveries": 0,
-      "fuzzy_review": 0
+      "safe_exact_recoveries": 0,
+      "review_candidates": 0
     },
     {
       "source": "iptv-epg-ae",
+      "scope": "country",
       "country": "ae",
+      "trust": "candidate",
       "url": "https://iptv-epg.org/files/epg-ae.xml.gz",
       "status": "ok",
       "bytes": 42406,
@@ -40,12 +46,14 @@
       "clean_current_candidates": 8,
       "quarantined_candidates": 50,
       "recoveries": [],
-      "exact_recoveries": 0,
-      "fuzzy_review": 0
+      "safe_exact_recoveries": 0,
+      "review_candidates": 0
     },
     {
       "source": "ghaleb-arabic-epg",
-      "country": "mena",
+      "scope": "mena",
+      "country": "",
+      "trust": "candidate",
       "url": "https://raw.githubusercontent.com/GhalebAldoboni/EPG-Guide/master/ArabicEPG.xml",
       "status": "ok",
       "bytes": 3723701,
@@ -53,11 +61,35 @@
       "clean_current_candidates": 121,
       "quarantined_candidates": 4,
       "recoveries": [],
-      "exact_recoveries": 0,
-      "fuzzy_review": 0
+      "safe_exact_recoveries": 0,
+      "review_candidates": 0
+    },
+    {
+      "source": "legacy-guidearab",
+      "scope": "mena",
+      "country": "",
+      "trust": "review",
+      "url": "http://195.154.221.171/epg/guidearab.xml.gz",
+      "status": "error",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "source": "epgpw-lite",
+      "scope": "global",
+      "country": "",
+      "trust": "review",
+      "url": "https://epg.pw/xmltv/epg_lite.xml.gz",
+      "status": "ok",
+      "bytes": 1625743,
+      "raw_current_candidates": 357,
+      "clean_current_candidates": 357,
+      "quarantined_candidates": 0,
+      "recoveries": [],
+      "safe_exact_recoveries": 0,
+      "review_candidates": 0
     }
   ],
   "recoveries": [],
-  "exact_recoveries_total": 0,
-  "fuzzy_review_total": 0
+  "safe_exact_recoveries_total": 0,
+  "review_candidates_total": 0
 }

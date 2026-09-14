@@ -1,7 +1,9 @@
-MENA RECOVERY SOURCE AUDIT V2 - DIAGNOSTIC ONLY
-NO_EPG input=441 exact_recoveries=0 fuzzy_review=0
+MENA RECOVERY SOURCE AUDIT V3 - DIAGNOSTIC ONLY
+NO_EPG input=433 safe_exact=0 review_candidates=0
 
-- iptv-epg-eg: raw=86 clean=23 quarantined=63 exact=0 fuzzy=0
-- iptv-epg-lb: raw=58 clean=6 quarantined=52 exact=0 fuzzy=0
-- iptv-epg-ae: raw=58 clean=8 quarantined=50 exact=0 fuzzy=0
-- ghaleb-arabic-epg: raw=125 clean=121 quarantined=4 exact=0 fuzzy=0
+- iptv-epg-eg [country/candidate]: raw=86 clean=23 quarantined=63 safe_exact=0 review=0
+- iptv-epg-lb [country/candidate]: raw=58 clean=6 quarantined=52 safe_exact=0 review=0
+- iptv-epg-ae [country/candidate]: raw=58 clean=8 quarantined=50 safe_exact=0 review=0
+- ghaleb-arabic-epg [mena/candidate]: raw=125 clean=121 quarantined=4 safe_exact=0 review=0
+- legacy-guidearab: ERROR <urlopen error timed out>
+- epgpw-lite [global/review]: raw=357 clean=357 quarantined=0 safe_exact=0 review=0
