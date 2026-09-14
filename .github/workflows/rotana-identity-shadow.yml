@@ -1,0 +1,101 @@
+name: Rotana Identity Shadow Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/rotana-identity-shadow.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout production MENA data
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          fetch-depth: 1
+
+      - name: Compare Rotana identities without publishing
+        shell: bash
+        run: |
+          python - <<'PY'
+          import gzip, json, re, xml.etree.ElementTree as ET
+          from collections import defaultdict
+          from datetime import datetime
+          from pathlib import Path
+
+          root=ET.fromstring(gzip.decompress(Path('provider-rotana.xml.gz').read_bytes()))
+          by=defaultdict(list)
+          names={}
+          for c in root.findall('channel'):
+              cid=(c.get('id') or '').strip()
+              n=c.find('display-name')
+              names[cid]=(n.text or cid).strip() if n is not None else cid
+          for p in root.findall('programme'):
+              by[(p.get('channel') or '').strip()].append(p)
+
+          def dt(v):
+              v=(v or '').strip()
+              for fmt in ('%Y%m%d%H%M%S %z','%Y%m%d%H%M%S'):
+                  try:return datetime.strptime(v,fmt)
+                  except ValueError:pass
+              return None
+          def text(p,tag):
+              x=p.find(tag); return (x.text or '').strip() if x is not None else ''
+          def norm(s):
+              return re.sub(r'[^0-9A-Za-z\u0600-\u06ff]+',' ',s or '').casefold().strip()
+          def slots(cid):
+              out=set()
+              for p in by.get(cid,[]):
+                  s,e=dt(p.get('start')),dt(p.get('stop'))
+                  if s and e and e>s: out.add((s.isoformat(),e.isoformat()))
+              return out
+          def starts(cid):
+              return {a for a,b in slots(cid)}
+          def titles(cid):
+              return {norm(text(p,'title')) for p in by.get(cid,[]) if norm(text(p,'title'))}
+          def jac(a,b):
+              return round(100*len(a&b)/max(1,len(a|b)),1)
+          def profile(cid):
+              rows=[]
+              for p in by.get(cid,[]):
+                  s,e=dt(p.get('start')),dt(p.get('stop'))
+                  if s and e and e>s: rows.append((s,e,p))
+              rows.sort(key=lambda x:x[0])
+              coverage=sum((e-s).total_seconds() for s,e,_ in rows)/3600
+              empty=sum(not text(p,'desc') for _,_,p in rows)
+              ar=sum(bool(re.search(r'[\u0600-\u06ff]',text(p,'title'))) for _,_,p in rows)
+              return {'id':cid,'name':names.get(cid,cid),'events':len(rows),'coverage_h':round(coverage,2),'empty_desc':empty,'title_ar_pct':round(100*ar/max(1,len(rows)),1)}
+
+          families={
+            'cinema_ksa':['RotanaCinemaKSA.sa@SD','Rotana.Cinema.KSA.ae','Rotana Cinema HD.sa'],
+            'cinema_egypt':['RotanaCinemaEgypt.eg@SD','Rotana.Cinema.Egypt.ae','Rotana Cinema Masr.sa'],
+            'classic':['RotanaClassic.sa@SD','Rotana Classic.eg'],
+            'comedy':['RotanaComedy.sa@SD','Rotana Comedy.eg'],
+            'drama':['RotanaDrama.sa@SD','Rotana Drama.eg'],
+            'khalijia':['RotanaKhalijia.sa@SD','Rotana Khalijia HD.sa','Rotana Khalejia.eg'],
+            'clip':['RotanaClip.sa@SD','Rotana Clip.sa'],
+          }
+          result={'channels':sorted([profile(cid) for cid in names],key=lambda x:x['id'].casefold()),'families':{}}
+          for family,ids in families.items():
+              present=[cid for cid in ids if cid in names]
+              pairs=[]
+              for i,a in enumerate(present):
+                  for b in present[i+1:]:
+                      pairs.append({'a':a,'b':b,'slot_jaccard_pct':jac(slots(a),slots(b)),'start_jaccard_pct':jac(starts(a),starts(b)),'title_jaccard_pct':jac(titles(a),titles(b)),'exact_slots':slots(a)==slots(b)})
+              result['families'][family]={'ids':present,'profiles':[profile(x) for x in present],'pairs':pairs}
+          Path('rotana-identity-shadow.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(result,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Upload evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: rotana-identity-shadow
+          path: rotana-identity-shadow.json
+          if-no-files-found: error
