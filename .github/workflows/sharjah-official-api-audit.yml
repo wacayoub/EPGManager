@@ -1,0 +1,62 @@
+name: Sharjah Official API Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/sharjah_official_api_audit.py"
+      - ".github/workflows/sharjah-official-api-audit.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sharjah-official-api-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Checkout current MENA data
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: current-data
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Audit Sharjah official API
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          python -m py_compile tools/sharjah_official_api_audit.py
+          python tools/sharjah_official_api_audit.py \
+            --all-id-csv current-data/all-id-audit.csv \
+            --json output/sharjah-official-api-audit.json \
+            --text output/sharjah-official-api-audit.txt
+          cat output/sharjah-official-api-audit.txt
+      - name: Publish diagnostic only
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/sharjah-official-api-audit.json .
+          cp ../output/sharjah-official-api-audit.txt .
+          git config user.name "EPGManager Sharjah API Audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add sharjah-official-api-audit.*
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Audit Sharjah official program grid"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
