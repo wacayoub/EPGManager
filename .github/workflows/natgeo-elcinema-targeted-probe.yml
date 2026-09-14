@@ -1,0 +1,53 @@
+name: NatGeo ElCinema Targeted Arabic Probe
+
+on:
+  push:
+    paths:
+      - ".github/workflows/natgeo-elcinema-targeted-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: vendor/iptv-org-epg/package-lock.json
+      - name: Install grabber
+        working-directory: vendor/iptv-org-epg
+        run: npm ci --no-audit --no-fund
+      - name: Target only two NatGeo Arabic ElCinema channels
+        shell: bash
+        run: |
+          cat > /tmp/natgeo.channels.xml <<'XML'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <channels>
+            <channel site="elcinema.com" site_id="1266" lang="ar" xmltv_id="NationalGeographicAbuDhabi.ae@SD">ناشيونال جيوجرافيك أبوظبي</channel>
+            <channel site="elcinema.com" site_id="1275" lang="ar" xmltv_id="NationalGeographicMiddleEast.uk@SD">ناشيونال جيوجرافيك</channel>
+          </channels>
+          XML
+          cd vendor/iptv-org-epg
+          npm run grab --- --channels=/tmp/natgeo.channels.xml --output=/tmp/natgeo.xml --days=2 --maxConnections=1 --timeout=30000
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          r=ET.parse('/tmp/natgeo.xml').getroot()
+          for cid in ['NationalGeographicAbuDhabi.ae@SD','NationalGeographicMiddleEast.uk@SD']:
+              ps=[p for p in r.findall('programme') if p.get('channel')==cid]
+              print('\nID',cid,'EVENTS',len(ps))
+              for p in ps[:60]:
+                  t=p.find('title'); d=p.find('desc')
+                  print('ROW|%s|%s|%s|%s' % (p.get('start',''),p.get('stop',''),(t.text or '').strip() if t is not None else '',(d.text or '').strip()[:220] if d is not None else ''))
+          PY
