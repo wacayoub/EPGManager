@@ -9,7 +9,10 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 COUNTRIES = ["ae","sa","qa","kw","bh","om","jo","lb","iq","ye","eg","dz","tn","ly","sd","sy","ps","mr"]
-BASE = "https://iptv-org.github.io/epg/guides/{cc}/osn.com.epg.xml"
+URL_PATTERNS = [
+    "https://iptv-org.github.io/epg/guides/{cc}/osn.com.xml",
+    "https://iptv-org.github.io/epg/guides/{cc}/osn.com.epg.xml",
+]
 PLACEHOLDER = re.compile(r"^(?:tv guide is not available|the schedule is not available|schedule unavailable|programme schedule unavailable|program schedule unavailable|no information|no info|tba|جدول البرامج غير متاح|لا توجد معلومات|لا يوجد برنامج)$", re.I)
 
 def parse_dt(v):
@@ -49,18 +52,22 @@ def main():
     hits=defaultdict(list)
     sources=[]
     for cc in COUNTRIES:
-        url=BASE.format(cc=cc)
-        try:
-            root=fetch_xml(url)
-        except Exception as exc:
-            sources.append({"country":cc,"url":url,"status":"ERROR","error":str(exc)[:160]})
+        root=None; chosen=None; errors=[]
+        for pat in URL_PATTERNS:
+            url=pat.format(cc=cc)
+            try:
+                root=fetch_xml(url); chosen=url; break
+            except Exception as exc:
+                errors.append(f"{url}: {str(exc)[:100]}")
+        if root is None:
+            sources.append({"country":cc,"url":None,"status":"ERROR","error":" | ".join(errors)[:320]})
             continue
         by=defaultdict(list)
         for p in root.findall("programme"):
             cid=(p.get("channel") or "").strip()
             if cid in missing:
                 by[cid].append(p)
-        sources.append({"country":cc,"url":url,"status":"OK","channels_with_missing_ids":len(by),"programmes":sum(len(x) for x in by.values())})
+        sources.append({"country":cc,"url":chosen,"status":"OK","channels_with_missing_ids":len(by),"programmes":sum(len(x) for x in by.values())})
         for cid,rows in by.items():
             rows.sort(key=lambda p:p.get("start") or "")
             titles=[text(p) for p in rows if text(p)]
@@ -83,11 +90,11 @@ def main():
         else:
             verdict="EMPTY"
         results.append({"id":cid,"name":missing[cid].get("name",""),"shard":missing[cid].get("shard",""),"verdict":verdict,"best":best,"countries":[x["country"] for x in variants],"distinct_schedules":len(set(x["signature"] for x in variants))})
-    out={"schema":1,"no_epg_input":len(missing),"sources":sources,"results":results,"counts":{k:sum(1 for x in results if x["verdict"]==k) for k in ["CANDIDATE_EXACT_ID","REVIEW","EMPTY"]}}
+    out={"schema":2,"no_epg_input":len(missing),"sources":sources,"results":results,"counts":{k:sum(1 for x in results if x["verdict"]==k) for k in ["CANDIDATE_EXACT_ID","REVIEW","EMPTY"]}}
     Path(a.json).write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     lines=["OSN COUNTRY-GUIDE EXACT-ID RESCUE AUDIT",f"NO_EPG input={len(missing)} matched_ids={len(results)} candidates={out['counts']['CANDIDATE_EXACT_ID']} review={out['counts']['REVIEW']}","","GUIDES"]
     for s in sources:
-        lines.append(f"- {s['country']}: {s['status']} matched={s.get('channels_with_missing_ids',0)} programmes={s.get('programmes',0)}"+(f" error={s.get('error')}" if s['status']!='OK' else ""))
+        lines.append(f"- {s['country']}: {s['status']} matched={s.get('channels_with_missing_ids',0)} programmes={s.get('programmes',0)} url={s.get('url') or '-'}"+(f" error={s.get('error')}" if s['status']!='OK' else ""))
     lines += ["","MATCHED MISSING IDS"]
     for x in results:
         b=x["best"]
