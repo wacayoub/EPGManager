@@ -2,12 +2,12 @@
   "schema": 2,
   "mode": "virtual-epgmanager-exhaustive-bein",
   "summary": {
-    "channels": 72,
-    "programmes": 1533,
+    "channels": 67,
+    "programmes": 1506,
     "counts": {
-      "ALIAS_OK": 24,
+      "ALIAS_OK": 25,
       "PASS": 24,
-      "KEEP_SOURCE": 22,
+      "KEEP_SOURCE": 16,
       "REVIEW": 2
     }
   },
@@ -16,6 +16,7 @@
     "beIN_SPORTS3_DIGITAL_Mono_EN.bein": "beINSports3.qa@MENA",
     "beIN_SPORTS4_DIGITAL_Mono_EN.bein": "beINSports4.qa@MENA",
     "beIN_SPORTS5_DIGITAL_Mono_EN.bein": "beINSports5.qa@MENA",
+    "beIN SPORTS6 DIGITAL -d-1.qa": "beINSports6.qa@MENA",
     "beIN_SPORTS7_DIGITAL_Mono_EN.bein": "beINSports7.qa@MENA",
     "NEWS_DIGITAL_Mono_EN.bein": "NEWS_DIGITAL_Mono_AR.bein",
     "beIN SPORTS XTRA 04 bein.com.qa": "beIN SPORTS XTRA 4.qa",
@@ -44,10 +45,10 @@
       "name": "4k_DIGITAL_Mono_AR",
       "family": "beIN 4K",
       "kind": "sports_ar",
-      "events": 14,
-      "fingerprint": "2ec379e53f994d842b894c90b5ed7d0e34aa4280",
-      "coverage_hours": 27.82,
-      "span_hours": 27.82,
+      "events": 13,
+      "fingerprint": "bba4617f0a6b95e9ed260f5c96388172a2fd84b7",
+      "coverage_hours": 26.13,
+      "span_hours": 26.13,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -60,24 +61,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 78.6,
+      "title_has_ar_pct": 76.9,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 78.6,
+      "title_hybrid_pct": 76.9,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 28.6,
-      "unique_title_pct": 28.6,
+      "top_title_pct": 30.8,
+      "unique_title_pct": 30.8,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914154300 +0000",
-          "stop": "20260914172400 +0000",
-          "title": "Liverpool vs Fulham - الدوري الإنجليزي الممتاز",
-          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
-        },
         {
           "start": "20260914172400 +0000",
           "stop": "20260914190800 +0000",
@@ -94,6 +89,12 @@
           "start": "20260914224500 +0000",
           "stop": "20260915003700 +0000",
           "title": "Manchester United v Manchester City - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        },
+        {
+          "start": "20260915003700 +0000",
+          "stop": "20260915022700 +0000",
+          "title": "Liverpool vs Fulham - الدوري الإنجليزي الممتاز",
           "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
         }
       ],
@@ -112,10 +113,10 @@
       "name": "beIN Drama.eg",
       "family": "beIN Drama",
       "kind": "drama",
-      "events": 6,
-      "fingerprint": "576ab3126ae19349f82d976252a9c34cfd677769",
-      "coverage_hours": 5.0,
-      "span_hours": 5.0,
+      "events": 4,
+      "fingerprint": "70140ed01a4e221e537a47cb126350d79dd8e682",
+      "coverage_hours": 3.0,
+      "span_hours": 3.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -124,34 +125,22 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 6,
+      "empty_desc": 4,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 16.7,
+      "title_has_ar_pct": 25.0,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 16.7,
+      "title_hybrid_pct": 25.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 16.7,
+      "top_title_pct": 25.0,
       "unique_title_pct": 100.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "Basmet Hada",
-          "desc": ""
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "El Qatel Allazy Ahabany",
-          "desc": ""
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -163,19 +152,21 @@
           "stop": "20260914190000 +0000",
           "title": "Darb Al Thahab",
           "desc": ""
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914194000 +0000",
+          "title": "Mazad El Shar",
+          "desc": ""
+        },
+        {
+          "start": "20260914194000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "برنامج beIN Action",
+          "desc": ""
         }
       ],
       "missing_desc_events": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "Basmet Hada"
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "El Qatel Allazy Ahabany"
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -211,10 +202,10 @@
       "name": "BEIN MOVIES ACTION.eg",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 21,
-      "fingerprint": "a48bc805a48e1f2710ba13ae176af6ed7b085ddb",
-      "coverage_hours": 40.25,
-      "span_hours": 40.25,
+      "events": 20,
+      "fingerprint": "29155cad7c6a1a4d6021de46fa2d7fa0a25c565d",
+      "coverage_hours": 38.25,
+      "span_hours": 38.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -231,20 +222,14 @@
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
-      "desc_latin_pct": 5.0,
-      "top_title_pct": 14.3,
-      "unique_title_pct": 81.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 15.0,
+      "unique_title_pct": 80.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914151500 +0000",
-          "stop": "20260914171500 +0000",
-          "title": "Star Trek Beyond",
-          "desc": "يدور الفيلم عن فريق مشروع (USS Enterprise) بقيادة كابتن (جايمس تي كريك)، الذي يتعرض لهجوم عنيف غير قابل للردع بواسطة موجة كبيرة من فضائيين غير معلومين، يدمرون لهم مشروعهم ليتركوهم "
-        },
         {
           "start": "20260914171500 +0000",
           "stop": "20260914190000 +0000",
@@ -262,6 +247,12 @@
           "stop": "20260914230000 +0000",
           "title": "Pain & Gain",
           "desc": "رصد الفيلم قصةً واقعيةً حدثت عام 1990 بميامي، حيث مجموعة من لاعبي كمال الأجسام، من ضمنهم دانيال لوجو (مارك والبرج)، دانيال لاعب كمال أجسام في ميامي بالولايات المتحدة يسعى لتحقيق نف"
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915004500 +0000",
+          "title": "The Island",
+          "desc": "في عام 2019، يعيش لينكولن 6 إكو (إيوان ماكجريجور) في مكان مغلق، ويحلم مثل بقية قاطني هذا المكان بأن يتم اختيارهم للذهاب إلى \"الجزيرة\" التي تعد أخر مكان غير ملوث على ظهر الكوكب، لكن"
         }
       ],
       "missing_desc_events": [
@@ -285,10 +276,10 @@
       "name": "BEIN MOVIES DRAMA.eg",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 23,
-      "fingerprint": "8bf867f06a52d8569ab729d6ab1783e52e152c0f",
-      "coverage_hours": 41.25,
-      "span_hours": 41.25,
+      "events": 22,
+      "fingerprint": "2bbfee67021547240e5eb8e2a341b55278dcb740",
+      "coverage_hours": 39.5,
+      "span_hours": 39.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -306,19 +297,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.0,
-      "unique_title_pct": 73.9,
+      "top_title_pct": 13.6,
+      "unique_title_pct": 72.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914144500 +0000",
-          "stop": "20260914163000 +0000",
-          "title": "Addams Family Values",
-          "desc": "(وينسداي) و(بوجسلي) شقيقان يعانيان منذ مولد شقيقهم، وهو ما دفع والدهم للبحث عن مربية، حيث يجد فتاة جميلة أعجب بها (العم فيستر)، الذي كانت تسعى للزواج منه لكي ترثه، كل هذا لم يعرفه "
-        },
         {
           "start": "20260914163000 +0000",
           "stop": "20260914183000 +0000",
@@ -336,6 +321,12 @@
           "stop": "20260914221500 +0000",
           "title": "Same Kind of Different as Me",
           "desc": "قصة (رون هول)، تاجر دولي في الأعمال الفنية، يجب عليه أن يصادق رجلاً خطيرًا بلا مأوى (دجيمون هونسو)، من أجل إنقاذ علاقته بزوجته (رينيه زيلوجير)، وهي المرأة التي سوف تقود أحلامها ثلا"
+        },
+        {
+          "start": "20260914221500 +0000",
+          "stop": "20260915000000 +0000",
+          "title": "The Island Between Tides",
+          "desc": "تتبع امرأة شابة لحنًا غامضًا وغريبًا إلى أن تصل لجزيرة مد وجزر نائية، لكنها عندما تعبر المد المنخفض التالي تجد نفسها في عالم مختلف بعد مرور خمسة وعشرين عامًا."
         }
       ],
       "missing_desc_events": [
@@ -359,10 +350,10 @@
       "name": "BEIN MOVIES FAMILY.eg",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 23,
-      "fingerprint": "f5dc05ca2934199a28fd34f7eee5e1f2c53e0f6c",
-      "coverage_hours": 39.02,
-      "span_hours": 39.02,
+      "events": 22,
+      "fingerprint": "b64878092cead0ea01ea961dc5b9c5feebe1d2b6",
+      "coverage_hours": 37.25,
+      "span_hours": 37.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -380,19 +371,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.0,
-      "unique_title_pct": 47.8,
+      "top_title_pct": 13.6,
+      "unique_title_pct": 50.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914154400 +0000",
-          "stop": "20260914173000 +0000",
-          "title": "The Adventures of Sharkboy and Lavagirl 3-D",
-          "desc": "طفل في العاشرة يتركه والديه كثيرًا لانهماكهما في العمل، ويخلق من وحي خياله كوكب يسميه (درول)، ويخلق به شخصيات خيالية أبرزهم شاركبوي ولافاجيرل، ويدخل معهما في مغامراتهما الوهمية، وذ"
-        },
         {
           "start": "20260914173000 +0000",
           "stop": "20260914191500 +0000",
@@ -410,6 +395,12 @@
           "stop": "20260914223000 +0000",
           "title": "Destined to Ride",
           "desc": "انقلبت حياة (ليلي) رأسًا على عقب عندما أُجبرت على ترك أصدقائها، والذهاب في رحلة صيفية إلى مزرعة نائية مع عمتها المحبة للطبيعة، (ليلي) أيقنت أن حياتها الاجتماعية انتهت، وهناك قام جي"
+        },
+        {
+          "start": "20260914223000 +0000",
+          "stop": "20260914234400 +0000",
+          "title": "The Swan Princess: Escape from Castle Mountain",
+          "desc": "بينما يستعد الأمير ديريك والأميرة أوديت للاحتفال بالذكرى السنوية الأولى لزواجهما، يهجم كلافيوس باعثًا الفوضى في المملكة سعيًا في غزو العالم بأكمله."
         }
       ],
       "missing_desc_events": [],
@@ -427,10 +418,10 @@
       "name": "BEIN MOVIES PREMIERE.eg",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 22,
-      "fingerprint": "81a483a2309db93cf206e27ff73e59d71937e39f",
-      "coverage_hours": 40.25,
-      "span_hours": 40.25,
+      "events": 21,
+      "fingerprint": "ec4c7cce9508529fd9a5ca170652b1e900460bac",
+      "coverage_hours": 38.5,
+      "span_hours": 38.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -448,19 +439,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 9.1,
-      "unique_title_pct": 72.7,
+      "top_title_pct": 9.5,
+      "unique_title_pct": 71.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914143000 +0000",
-          "stop": "20260914161500 +0000",
-          "title": "Adulthood",
-          "desc": "يواجه الشقيقان (نواه) و(ميجان) صدمة مدوية؛ بعد عثورهما على جثة مدفونة منذ زمن طويل في قبو منزل والديهما، وسريعًا ينجرف الثنائي في دوامة من الجريمة والقتل."
-        },
         {
           "start": "20260914161500 +0000",
           "stop": "20260914180000 +0000",
@@ -478,6 +463,12 @@
           "stop": "20260914224500 +0000",
           "title": "The Count of Monte-Cristo",
           "desc": "يدور العمل في معالجة حديثة لقصة (كونتي دي مونت كريستو)، حيث يتعرض شاب للخيانة والغدر من أقرب صديق له، وينتهي به الأمر بالسجن؛ فيقرر الانتقام بعد ذلك واسترداد حقوقه."
+        },
+        {
+          "start": "20260914224500 +0000",
+          "stop": "20260915001400 +0000",
+          "title": "Shark Island",
+          "desc": "تسافر عارضات أزياء إلى جزيرة لالتقاط صورًا مع قلادة لا تُقدر بثمن، إلا أن قاتلاً طليقاً يظهر في الجزيرة النائية ولا يوجد سبيل للهروب منه سوى المياه المليئة بأسماك القرش."
         }
       ],
       "missing_desc_events": [
@@ -506,78 +497,10 @@
       "name": "BeIn Series HD 1.eg",
       "family": "beIN Series",
       "kind": "series",
-      "events": 5,
-      "fingerprint": "3d86c412591d2fce6f463770a4a7947dfa3bed84",
-      "coverage_hours": 5.0,
-      "span_hours": 5.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 80.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 20.0,
-      "unique_title_pct": 100.0,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "1883",
-          "desc": "يسافر جيل ما بعد الحرب الأهلية من عائلة (داتون) إلى تكساس للقيام برحلة شاقة إلى أوريجون قبل أن يقرروا الاستقرار في مونتانا، حيث تقرر العائلة تأسيس مزرعة يلوستون."
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "Yellowjackets S2",
-          "desc": "في الموسم الثاني، بينما تحاول الفتيات المضي قدمًا في حياتهن، يعود الظلام فيطاردهن من جديد."
-        },
-        {
-          "start": "20260914170000 +0000",
-          "stop": "20260914180000 +0000",
-          "title": "Outlander S3",
-          "desc": "قصة الممرضة المتزوجة (كلير راندل) والتي عادت بطريقة غامضة بالزمن من عام 1945 الى عام 1743 فتتعرض للمخاطر، حيث يمنح ماضي (جيمي) أمله الوحيد في البقاء على قيد الحياة في أعقاب معركة ("
-        },
-        {
-          "start": "20260914180000 +0000",
-          "stop": "20260914190000 +0000",
-          "title": "All American S8",
-          "desc": "يتتبع المسلسل شخصيات جوردان، وليلى، وكوب، وكاسيوس، وكي جي، وخليل، وأمينة خلال رخلتهم وراء أحلامهم، حيث يجدون أنفسهم أمام تحديات غير متوقعة لعلاقات الصداقة والروابط العائلية."
-        }
-      ],
-      "missing_desc_events": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "verdict": "PASS",
-      "issues": [],
-      "warnings": [],
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "beIN Series HD 2.eg",
-      "name": "beIN Series HD 2.eg",
-      "family": "beIN Series",
-      "kind": "series",
-      "events": 6,
-      "fingerprint": "a7c60d9dfc35bb66e8033e538e98b2e8f13f1499",
-      "coverage_hours": 5.42,
-      "span_hours": 5.42,
+      "events": 3,
+      "fingerprint": "da897612cefc0dc05c43f8cb96df1ea0503c8573",
+      "coverage_hours": 3.0,
+      "span_hours": 3.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -596,24 +519,74 @@
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 33.3,
-      "unique_title_pct": 83.3,
+      "unique_title_pct": 100.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "Dexter S6",
-          "desc": "يقرر (دكستر) حضور لم شمل مدرسته الثانوية، حيث يكتشف جريمة قتل غامضة ويصبح مُطالبًا بإجراء تحقيق، بينما تقوده خيوط القضية إلى اكتشاف صادم، ممّا يُثير لديه ذكريات الماضي المؤلمة."
+          "start": "20260914170000 +0000",
+          "stop": "20260914180000 +0000",
+          "title": "Outlander S3",
+          "desc": "قصة الممرضة المتزوجة (كلير راندل) والتي عادت بطريقة غامضة بالزمن من عام 1945 الى عام 1743 فتتعرض للمخاطر، حيث يمنح ماضي (جيمي) أمله الوحيد في البقاء على قيد الحياة في أعقاب معركة ("
         },
         {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "From",
-          "desc": "يتم كشف الغموض عن مدينة في وسط الولايات المتحدة تسجن كل من يدخلها. بينما يكافح السكان للحفاظ على حياتهم الطبيعية والبحث عن مخرج، ويجب عليهم أيضًا البقاء على قيد الحياة من تهديدات ا"
+          "start": "20260914180000 +0000",
+          "stop": "20260914190000 +0000",
+          "title": "All American S8",
+          "desc": "يتتبع المسلسل شخصيات جوردان، وليلى، وكوب، وكاسيوس، وكي جي، وخليل، وأمينة خلال رخلتهم وراء أحلامهم، حيث يجدون أنفسهم أمام تحديات غير متوقعة لعلاقات الصداقة والروابط العائلية."
         },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "Doc S2",
+          "desc": "في الموسم الثاني، يعود ماضي (إيمي) ليطاردها وتكافح مع ذكرياتها خلال عملها على علاج حالات جديدة، كما تشهد حياتها عدة تطورات على المستوى المهني والشخصي."
+        }
+      ],
+      "missing_desc_events": [],
+      "source_status": "NORMAL",
+      "mapping_mode": "normal_candidate",
+      "auto_lock_safe": true,
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "beIN Series HD 2.eg",
+      "name": "beIN Series HD 2.eg",
+      "family": "beIN Series",
+      "kind": "series",
+      "events": 4,
+      "fingerprint": "aec4b2fe4da3b922e93a5c2b77c8af52c018084a",
+      "coverage_hours": 3.42,
+      "span_hours": 3.42,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 50.0,
+      "unique_title_pct": 75.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -625,6 +598,18 @@
           "stop": "20260914183000 +0000",
           "title": "Black Clover S3",
           "desc": "في الموسم الثالث، تتعافى مملكة كلوفر، ويتم محاكمة (أستا) و(سيكري) ويتوبان، بينما يتدرب (أستا) وحلفاؤه لمواجهة الشياطين المرعبة، بينما يعزز (يونو) مكانته باعتباره معجزة، ويصبح أقوى "
+        },
+        {
+          "start": "20260914183000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "Black Clover S3",
+          "desc": "في الموسم الثالث، تتعافى مملكة كلوفر، ويتم محاكمة (أستا) و(سيكري) ويتوبان، بينما يتدرب (أستا) وحلفاؤه لمواجهة الشياطين المرعبة، بينما يعزز (يونو) مكانته باعتباره معجزة، ويصبح أقوى "
+        },
+        {
+          "start": "20260914200000 +0000",
+          "stop": "20260914202500 +0000",
+          "title": "Star Trek: Discovery S5",
+          "desc": "تكتشف الكابتن (بيرنهام) وطاقمها في الموسم الخامس لغزاً خطيراً يدفعهم إلى مغامرة ملحمية عبر المجرة للبحث عن قوة قديمة تم إخفائها عمداً لقرون، إلا أنهم يواجهون أعداء يبذلون قصارى جهد"
         }
       ],
       "missing_desc_events": [],
@@ -846,10 +831,10 @@
       "name": "bein SPORTS FTA DIGITAL.qa",
       "family": "beIN Sports FTA",
       "kind": "sports_ar",
-      "events": 21,
-      "fingerprint": "a8a6f861c75d10b55e4d0e7a0a908a84391f3bd0",
-      "coverage_hours": 35.42,
-      "span_hours": 35.92,
+      "events": 20,
+      "fingerprint": "56623e8b0dc07bc47dcdef033d0f4429bec6a44e",
+      "coverage_hours": 35.0,
+      "span_hours": 35.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.5,
       "invalid": 0,
@@ -867,19 +852,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 14.3,
-      "unique_title_pct": 47.6,
+      "top_title_pct": 15.0,
+      "unique_title_pct": 45.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914153500 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "Qatar's Weightlifting Team",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914160000 +0000",
           "stop": "20260914180000 +0000",
@@ -896,6 +875,12 @@
           "start": "20260914200000 +0000",
           "stop": "20260914220000 +0000",
           "title": "Chinese Taipei vs Vietnam - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01",
+          "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914220000 +0000",
+          "stop": "20260915000000 +0000",
+          "title": "Japan vs Thailand - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01",
           "desc": "مباراة، موسم 2026."
         }
       ],
@@ -914,10 +899,10 @@
       "name": "beIN SPORTS MAX 1.qa",
       "family": "beIN MAX 1",
       "kind": "max",
-      "events": 19,
-      "fingerprint": "e4bbbdc637a2f3a52e4822fa4af554e899d643e9",
-      "coverage_hours": 38.0,
-      "span_hours": 38.0,
+      "events": 18,
+      "fingerprint": "ab9986e58aa5b24ae915ca5116fc145227c17cf1",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -928,26 +913,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 19,
-      "generic": 19,
+      "placeholder": 18,
+      "generic": 18,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.3,
+      "unique_title_pct": 5.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -965,6 +944,12 @@
           "stop": "20260914230000 +0000",
           "title": "beIN Sports MAX",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
       "missing_desc_events": [],
@@ -976,7 +961,7 @@
       "warnings": [
         "GENERIC_GUIDE=100%",
         "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=5%",
+        "LOW_TITLE_DIVERSITY=6%",
         "DUPLICATE_TIMELINE_OTHER_FAMILY"
       ],
       "compat_canonical": null,
@@ -987,10 +972,10 @@
       "name": "beIN SPORTS MAX 2.qa",
       "family": "beIN MAX 2",
       "kind": "max",
-      "events": 19,
-      "fingerprint": "e4bbbdc637a2f3a52e4822fa4af554e899d643e9",
-      "coverage_hours": 38.0,
-      "span_hours": 38.0,
+      "events": 18,
+      "fingerprint": "ab9986e58aa5b24ae915ca5116fc145227c17cf1",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1001,26 +986,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 19,
-      "generic": 19,
+      "placeholder": 18,
+      "generic": 18,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.3,
+      "unique_title_pct": 5.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -1038,6 +1017,12 @@
           "stop": "20260914230000 +0000",
           "title": "beIN Sports MAX",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
       "missing_desc_events": [],
@@ -1049,7 +1034,7 @@
       "warnings": [
         "GENERIC_GUIDE=100%",
         "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=5%",
+        "LOW_TITLE_DIVERSITY=6%",
         "DUPLICATE_TIMELINE_OTHER_FAMILY"
       ],
       "compat_canonical": null,
@@ -1060,10 +1045,10 @@
       "name": "beIN SPORTS MAX 3.qa",
       "family": "beIN MAX 3",
       "kind": "max",
-      "events": 19,
-      "fingerprint": "e4bbbdc637a2f3a52e4822fa4af554e899d643e9",
-      "coverage_hours": 38.0,
-      "span_hours": 38.0,
+      "events": 18,
+      "fingerprint": "ab9986e58aa5b24ae915ca5116fc145227c17cf1",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1074,26 +1059,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 19,
-      "generic": 19,
+      "placeholder": 18,
+      "generic": 18,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.3,
+      "unique_title_pct": 5.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -1111,6 +1090,12 @@
           "stop": "20260914230000 +0000",
           "title": "beIN Sports MAX",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
       "missing_desc_events": [],
@@ -1122,7 +1107,7 @@
       "warnings": [
         "GENERIC_GUIDE=100%",
         "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=5%",
+        "LOW_TITLE_DIVERSITY=6%",
         "DUPLICATE_TIMELINE_OTHER_FAMILY"
       ],
       "compat_canonical": null,
@@ -1133,10 +1118,10 @@
       "name": "beIN SPORTS MAX 4.qa",
       "family": "beIN MAX 4",
       "kind": "max",
-      "events": 19,
-      "fingerprint": "e4bbbdc637a2f3a52e4822fa4af554e899d643e9",
-      "coverage_hours": 38.0,
-      "span_hours": 38.0,
+      "events": 18,
+      "fingerprint": "ab9986e58aa5b24ae915ca5116fc145227c17cf1",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1147,26 +1132,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 19,
-      "generic": 19,
+      "placeholder": 18,
+      "generic": 18,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.3,
+      "unique_title_pct": 5.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -1184,6 +1163,12 @@
           "stop": "20260914230000 +0000",
           "title": "beIN Sports MAX",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
       "missing_desc_events": [],
@@ -1195,7 +1180,7 @@
       "warnings": [
         "GENERIC_GUIDE=100%",
         "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=5%",
+        "LOW_TITLE_DIVERSITY=6%",
         "DUPLICATE_TIMELINE_OTHER_FAMILY"
       ],
       "compat_canonical": null,
@@ -1206,10 +1191,10 @@
       "name": "beIN SPORTS MAX 5.qa",
       "family": "beIN MAX 5",
       "kind": "max",
-      "events": 19,
-      "fingerprint": "e4bbbdc637a2f3a52e4822fa4af554e899d643e9",
-      "coverage_hours": 38.0,
-      "span_hours": 38.0,
+      "events": 18,
+      "fingerprint": "ab9986e58aa5b24ae915ca5116fc145227c17cf1",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1220,26 +1205,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 19,
-      "generic": 19,
+      "placeholder": 18,
+      "generic": 18,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.3,
+      "unique_title_pct": 5.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -1257,6 +1236,12 @@
           "stop": "20260914230000 +0000",
           "title": "beIN Sports MAX",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
       "missing_desc_events": [],
@@ -1268,7 +1253,7 @@
       "warnings": [
         "GENERIC_GUIDE=100%",
         "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=5%",
+        "LOW_TITLE_DIVERSITY=6%",
         "DUPLICATE_TIMELINE_OTHER_FAMILY"
       ],
       "compat_canonical": null,
@@ -1279,10 +1264,10 @@
       "name": "beIN SPORTS MAX 6.qa",
       "family": "beIN MAX 6",
       "kind": "max",
-      "events": 19,
-      "fingerprint": "e4bbbdc637a2f3a52e4822fa4af554e899d643e9",
-      "coverage_hours": 38.0,
-      "span_hours": 38.0,
+      "events": 18,
+      "fingerprint": "ab9986e58aa5b24ae915ca5116fc145227c17cf1",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1293,26 +1278,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 19,
-      "generic": 19,
+      "placeholder": 18,
+      "generic": 18,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.3,
+      "unique_title_pct": 5.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -1330,6 +1309,12 @@
           "stop": "20260914230000 +0000",
           "title": "beIN Sports MAX",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "beIN Sports MAX",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
       "missing_desc_events": [],
@@ -1341,7 +1326,7 @@
       "warnings": [
         "GENERIC_GUIDE=100%",
         "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=5%",
+        "LOW_TITLE_DIVERSITY=6%",
         "DUPLICATE_TIMELINE_OTHER_FAMILY"
       ],
       "compat_canonical": null,
@@ -1352,10 +1337,10 @@
       "name": "beIN SPORTS NEWS.qa",
       "family": "beIN Sports News",
       "kind": "news",
-      "events": 64,
-      "fingerprint": "a795c5e12b6a3011f17926e6bbb3a866efd99b7f",
-      "coverage_hours": 37.0,
-      "span_hours": 37.0,
+      "events": 58,
+      "fingerprint": "418257d58bccfffc81126de15dbede4d5effc15a",
+      "coverage_hours": 34.5,
+      "span_hours": 34.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1368,40 +1353,40 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 68.8,
-      "title_has_latin_pct": 31.2,
+      "title_has_ar_pct": 72.4,
+      "title_has_latin_pct": 27.6,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 21.9,
-      "unique_title_pct": 31.2,
+      "top_title_pct": 22.4,
+      "unique_title_pct": 34.5,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "Six O'Clock bulletin",
+          "start": "20260914173000 +0000",
+          "stop": "20260914180000 +0000",
+          "title": "مجلة دوري أبطال أوروبا",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914180000 +0000",
+          "stop": "20260914190000 +0000",
+          "title": "Nine O'Clock bulletin",
           "desc": "نشرة رياضية تقدم أبرز الأخبار والتطورات."
         },
         {
-          "start": "20260914160000 +0000",
-          "stop": "20260914161500 +0000",
-          "title": "Al Jawla - Live Studio",
+          "start": "20260914190000 +0000",
+          "stop": "20260914191500 +0000",
+          "title": "Al Jawla",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         },
         {
-          "start": "20260914161500 +0000",
-          "stop": "20260914163000 +0000",
+          "start": "20260914191500 +0000",
+          "stop": "20260914193000 +0000",
           "title": "The summary 1 - 14/09/26",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
-        {
-          "start": "20260914163000 +0000",
-          "stop": "20260914164500 +0000",
-          "title": "مقابلة خاصة - 14/09/26",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
@@ -1420,10 +1405,10 @@
       "name": "beIN SPORTS XTRA 04 bein.com.qa",
       "family": "beIN XTRA 4",
       "kind": "xtra",
-      "events": 37,
-      "fingerprint": "b8f953fc1e3387f5f15e2812c0661f4c181804ce",
-      "coverage_hours": 37.0,
-      "span_hours": 37.0,
+      "events": 35,
+      "fingerprint": "1273f9320005aa52ed047e9e072b6d75acde2e52",
+      "coverage_hours": 35.0,
+      "span_hours": 35.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1435,31 +1420,19 @@
       "empty_desc": 0,
       "desc_same_title": 0,
       "placeholder": 0,
-      "generic": 37,
+      "generic": 35,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 2.7,
+      "unique_title_pct": 2.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -1469,6 +1442,18 @@
         {
           "start": "20260914180000 +0000",
           "stop": "20260914190000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914200000 +0000",
+          "stop": "20260914210000 +0000",
           "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
         }
@@ -1492,10 +1477,10 @@
       "name": "beIN SPORTS XTRA 05 bein.com.qa",
       "family": "beIN XTRA 5",
       "kind": "xtra",
-      "events": 37,
-      "fingerprint": "b8f953fc1e3387f5f15e2812c0661f4c181804ce",
-      "coverage_hours": 37.0,
-      "span_hours": 37.0,
+      "events": 35,
+      "fingerprint": "1273f9320005aa52ed047e9e072b6d75acde2e52",
+      "coverage_hours": 35.0,
+      "span_hours": 35.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1507,31 +1492,19 @@
       "empty_desc": 0,
       "desc_same_title": 0,
       "placeholder": 0,
-      "generic": 37,
+      "generic": 35,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 2.7,
+      "unique_title_pct": 2.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -1541,6 +1514,18 @@
         {
           "start": "20260914180000 +0000",
           "stop": "20260914190000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914200000 +0000",
+          "stop": "20260914210000 +0000",
           "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
         }
@@ -1564,10 +1549,10 @@
       "name": "beIN SPORTS XTRA 3.qa",
       "family": "beIN XTRA 3",
       "kind": "xtra",
-      "events": 17,
-      "fingerprint": "039f768ae5f9afa6d7978676f30f5b32d0d199bc",
-      "coverage_hours": 34.0,
-      "span_hours": 38.0,
+      "events": 16,
+      "fingerprint": "22461658a0552c2be9bc80d5a25201e929ddfc25",
+      "coverage_hours": 32.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 4.0,
       "invalid": 0,
@@ -1578,26 +1563,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 17,
-      "generic": 17,
+      "placeholder": 16,
+      "generic": 16,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.9,
+      "unique_title_pct": 6.2,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914140000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "beIN Sports XTRA",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914160000 +0000",
           "stop": "20260914180000 +0000",
@@ -1613,6 +1592,12 @@
         {
           "start": "20260914200000 +0000",
           "stop": "20260914220000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914220000 +0000",
+          "stop": "20260915000000 +0000",
           "title": "beIN Sports XTRA",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
@@ -1636,10 +1621,10 @@
       "name": "beIN SPORTS XTRA 4.qa",
       "family": "beIN XTRA 4",
       "kind": "xtra",
-      "events": 37,
-      "fingerprint": "b8f953fc1e3387f5f15e2812c0661f4c181804ce",
-      "coverage_hours": 37.0,
-      "span_hours": 37.0,
+      "events": 35,
+      "fingerprint": "1273f9320005aa52ed047e9e072b6d75acde2e52",
+      "coverage_hours": 35.0,
+      "span_hours": 35.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1651,31 +1636,19 @@
       "empty_desc": 0,
       "desc_same_title": 0,
       "placeholder": 0,
-      "generic": 37,
+      "generic": 35,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 2.7,
+      "unique_title_pct": 2.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -1685,6 +1658,18 @@
         {
           "start": "20260914180000 +0000",
           "stop": "20260914190000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914200000 +0000",
+          "stop": "20260914210000 +0000",
           "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
         }
@@ -1708,10 +1693,10 @@
       "name": "beIN SPORTS XTRA 5.qa",
       "family": "beIN XTRA 5",
       "kind": "xtra",
-      "events": 37,
-      "fingerprint": "b8f953fc1e3387f5f15e2812c0661f4c181804ce",
-      "coverage_hours": 37.0,
-      "span_hours": 37.0,
+      "events": 35,
+      "fingerprint": "1273f9320005aa52ed047e9e072b6d75acde2e52",
+      "coverage_hours": 35.0,
+      "span_hours": 35.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1723,31 +1708,19 @@
       "empty_desc": 0,
       "desc_same_title": 0,
       "placeholder": 0,
-      "generic": 37,
+      "generic": 35,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 2.7,
+      "unique_title_pct": 2.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -1757,6 +1730,18 @@
         {
           "start": "20260914180000 +0000",
           "stop": "20260914190000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914200000 +0000",
+          "stop": "20260914210000 +0000",
           "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
         }
@@ -1780,10 +1765,10 @@
       "name": "beIN SPORTS XTRA 6.qa",
       "family": "beIN XTRA 6",
       "kind": "xtra",
-      "events": 37,
-      "fingerprint": "b8f953fc1e3387f5f15e2812c0661f4c181804ce",
-      "coverage_hours": 37.0,
-      "span_hours": 37.0,
+      "events": 35,
+      "fingerprint": "1273f9320005aa52ed047e9e072b6d75acde2e52",
+      "coverage_hours": 35.0,
+      "span_hours": 35.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1795,31 +1780,19 @@
       "empty_desc": 0,
       "desc_same_title": 0,
       "placeholder": 0,
-      "generic": 37,
+      "generic": 35,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 2.7,
+      "unique_title_pct": 2.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -1829,6 +1802,18 @@
         {
           "start": "20260914180000 +0000",
           "stop": "20260914190000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914200000 +0000",
+          "stop": "20260914210000 +0000",
           "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
         }
@@ -1852,10 +1837,10 @@
       "name": "beIN SPORTS XTRA 7.qa",
       "family": "beIN XTRA 7",
       "kind": "xtra",
-      "events": 19,
-      "fingerprint": "8efc07ada6c2db3f564aa17787b5b6101836aede",
-      "coverage_hours": 38.0,
-      "span_hours": 38.0,
+      "events": 18,
+      "fingerprint": "111e2e2407f70ed89a4622c96834f3879b5e0b8c",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1866,26 +1851,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 19,
-      "generic": 19,
+      "placeholder": 18,
+      "generic": 18,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.3,
+      "unique_title_pct": 5.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports XTRA",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -1903,6 +1882,12 @@
           "stop": "20260914230000 +0000",
           "title": "beIN Sports XTRA",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
       "missing_desc_events": [],
@@ -1914,7 +1899,7 @@
       "warnings": [
         "GENERIC_GUIDE=100%",
         "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=5%"
+        "LOW_TITLE_DIVERSITY=6%"
       ],
       "compat_canonical": null,
       "alias_exact_match": null
@@ -1924,10 +1909,10 @@
       "name": "beIN SPORTS XTRA 8.qa",
       "family": "beIN XTRA 8",
       "kind": "xtra",
-      "events": 19,
-      "fingerprint": "8efc07ada6c2db3f564aa17787b5b6101836aede",
-      "coverage_hours": 38.0,
-      "span_hours": 38.0,
+      "events": 18,
+      "fingerprint": "111e2e2407f70ed89a4622c96834f3879b5e0b8c",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1938,26 +1923,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 19,
-      "generic": 19,
+      "placeholder": 18,
+      "generic": 18,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.3,
+      "unique_title_pct": 5.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports XTRA",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -1975,6 +1954,12 @@
           "stop": "20260914230000 +0000",
           "title": "beIN Sports XTRA",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
       "missing_desc_events": [],
@@ -1986,7 +1971,7 @@
       "warnings": [
         "GENERIC_GUIDE=100%",
         "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=5%"
+        "LOW_TITLE_DIVERSITY=6%"
       ],
       "compat_canonical": null,
       "alias_exact_match": null
@@ -1996,10 +1981,10 @@
       "name": "beIN SPORTS XTRA 9.qa",
       "family": "beIN XTRA 9",
       "kind": "xtra",
-      "events": 19,
-      "fingerprint": "8efc07ada6c2db3f564aa17787b5b6101836aede",
-      "coverage_hours": 38.0,
-      "span_hours": 38.0,
+      "events": 18,
+      "fingerprint": "111e2e2407f70ed89a4622c96834f3879b5e0b8c",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2010,26 +1995,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 19,
-      "generic": 19,
+      "placeholder": 18,
+      "generic": 18,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.3,
+      "unique_title_pct": 5.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports XTRA",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -2047,6 +2026,12 @@
           "stop": "20260914230000 +0000",
           "title": "beIN Sports XTRA",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
       "missing_desc_events": [],
@@ -2058,7 +2043,7 @@
       "warnings": [
         "GENERIC_GUIDE=100%",
         "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=5%"
+        "LOW_TITLE_DIVERSITY=6%"
       ],
       "compat_canonical": null,
       "alias_exact_match": null
@@ -2068,10 +2053,10 @@
       "name": "beIN SPORTS-boxoffice-bein.com.qa",
       "family": "beIN Boxoffice",
       "kind": "boxoffice",
-      "events": 21,
-      "fingerprint": "fe65c7256586e1f99bd0c503e29c03f2859d02ea",
-      "coverage_hours": 35.38,
-      "span_hours": 36.42,
+      "events": 20,
+      "fingerprint": "fc4d0c0d8313e61a4f832d394cf482a70487ed54",
+      "coverage_hours": 33.47,
+      "span_hours": 34.5,
       "gaps_gt_2h": 0,
       "gap_hours": 1.03,
       "invalid": 0,
@@ -2089,19 +2074,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 14.3,
-      "unique_title_pct": 61.9,
+      "top_title_pct": 15.0,
+      "unique_title_pct": 65.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914155000 +0000",
-          "stop": "20260914174500 +0000",
-          "title": "Wrath of Man",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914174500 +0000",
           "stop": "20260914192500 +0000",
@@ -2118,6 +2097,12 @@
           "start": "20260914210000 +0000",
           "stop": "20260914224000 +0000",
           "title": "Danny The Dog",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914224000 +0000",
+          "stop": "20260914235900 +0000",
+          "title": "Rambo IV",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
@@ -2136,10 +2121,10 @@
       "name": "beIN SPORTS.qa",
       "family": "beIN SPORTS.qa",
       "kind": "other",
-      "events": 16,
-      "fingerprint": "aaaeb26812d9279f0687f0a000deaafcb47fa7ee",
-      "coverage_hours": 30.75,
-      "span_hours": 30.75,
+      "events": 15,
+      "fingerprint": "19174d71fa33a2ecda461bfb326d290fca5bc326",
+      "coverage_hours": 28.75,
+      "span_hours": 28.75,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2157,19 +2142,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 12.5,
-      "unique_title_pct": 75.0,
+      "top_title_pct": 13.3,
+      "unique_title_pct": 80.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "China vs Philippines - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB06",
-          "desc": "مباراة، موسم 2026."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -2187,6 +2166,12 @@
           "stop": "20260914230000 +0000",
           "title": "Bahrain vs Kazakhstan - Basketball Men - Asian Games Aichi-Nagoya 2026 -BKB05",
           "desc": "مباراة، موسم 2026."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "China vs Philippines - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB06",
+          "desc": "مباراة، موسم 2026."
         }
       ],
       "missing_desc_events": [],
@@ -2200,14 +2185,84 @@
       "alias_exact_match": null
     },
     {
+      "id": "beIN SPORTS6 DIGITAL -d-1.qa",
+      "name": "beIN SPORTS6 DIGITAL -d-1.qa",
+      "family": "beIN Sports 6 AR/MENA",
+      "kind": "sports_ar",
+      "events": 16,
+      "fingerprint": "06313446698e47edc6dfe038db9249d01f29ffc6",
+      "coverage_hours": 28.08,
+      "span_hours": 30.92,
+      "gaps_gt_2h": 1,
+      "gap_hours": 2.83,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 37.5,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 37.5,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 18.8,
+      "unique_title_pct": 56.2,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914170500 +0000",
+          "stop": "20260914195000 +0000",
+          "title": "Premier Padel - Paris Major - Agustin Tapia Arg Arturo Coello Esp vs Alejandro Galan Esp Federico C",
+          "desc": "مباراة."
+        },
+        {
+          "start": "20260914195000 +0000",
+          "stop": "20260914221500 +0000",
+          "title": "Gaziantep vs Fenerbahçe - الدوري التركي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري التركي الممتاز، الجولة 5، موسم 2027."
+        },
+        {
+          "start": "20260914221500 +0000",
+          "stop": "20260914232800 +0000",
+          "title": "Sprint Race - Madrid Round - FIA Formula 2 Championship",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914232800 +0000",
+          "stop": "20260915000000 +0000",
+          "title": "Trofeo Pirelli Race 1 - Hungaroring Round - Ferrari Challenge",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026، الحلقة 1."
+        }
+      ],
+      "missing_desc_events": [],
+      "source_status": "NORMAL",
+      "mapping_mode": "normal_candidate",
+      "auto_lock_safe": true,
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [
+        "GAPS_GT_2H=1"
+      ],
+      "compat_canonical": "beINSports6.qa@MENA",
+      "alias_exact_match": true
+    },
+    {
       "id": "beIN4K.qa@SD",
       "name": "beIN 4K",
       "family": "beIN 4K",
       "kind": "sports_ar",
-      "events": 14,
-      "fingerprint": "2ec379e53f994d842b894c90b5ed7d0e34aa4280",
-      "coverage_hours": 27.82,
-      "span_hours": 27.82,
+      "events": 13,
+      "fingerprint": "bba4617f0a6b95e9ed260f5c96388172a2fd84b7",
+      "coverage_hours": 26.13,
+      "span_hours": 26.13,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2220,24 +2275,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 78.6,
+      "title_has_ar_pct": 76.9,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 78.6,
+      "title_hybrid_pct": 76.9,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 28.6,
-      "unique_title_pct": 28.6,
+      "top_title_pct": 30.8,
+      "unique_title_pct": 30.8,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914154300 +0000",
-          "stop": "20260914172400 +0000",
-          "title": "Liverpool vs Fulham - الدوري الإنجليزي الممتاز",
-          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
-        },
         {
           "start": "20260914172400 +0000",
           "stop": "20260914190800 +0000",
@@ -2254,6 +2303,12 @@
           "start": "20260914224500 +0000",
           "stop": "20260915003700 +0000",
           "title": "Manchester United v Manchester City - الدوري الإنجليزي الممتاز",
+          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        },
+        {
+          "start": "20260915003700 +0000",
+          "stop": "20260915022700 +0000",
+          "title": "Liverpool vs Fulham - الدوري الإنجليزي الممتاز",
           "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
         }
       ],
@@ -2272,10 +2327,10 @@
       "name": "beIN_SPORTS3_DIGITAL_Mono_EN",
       "family": "beIN Sports 3 EN",
       "kind": "sports_en",
-      "events": 22,
-      "fingerprint": "a3d580afd81feb79ecfb24efb3bb2ad4a11c1a50",
-      "coverage_hours": 39.0,
-      "span_hours": 39.0,
+      "events": 21,
+      "fingerprint": "09bd94dab8b4df1110cf09e303daaf08d7a9ea30",
+      "coverage_hours": 37.0,
+      "span_hours": 37.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2288,24 +2343,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 95.5,
+      "title_has_ar_pct": 95.2,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 95.5,
+      "title_hybrid_pct": 95.2,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.6,
-      "unique_title_pct": 59.1,
+      "top_title_pct": 14.3,
+      "unique_title_pct": 57.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914140000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "West Ham Utd vs Wrexham -دوري البطولة الإنجليزية",
-          "desc": "مباراة ضمن منافسات دوري البطولة الإنجليزية، موسم 2026/2027."
-        },
         {
           "start": "20260914160000 +0000",
           "stop": "20260914180500 +0000",
@@ -2323,6 +2372,12 @@
           "stop": "20260914221500 +0000",
           "title": "Getafe vs Deportivo La Coruna - الدوري الإسباني",
           "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        },
+        {
+          "start": "20260914221500 +0000",
+          "stop": "20260915001500 +0000",
+          "title": "Al Ahli (KSA) vs Pakhtakor (UZB) - دوري أبطال آسيا للنخبة",
+          "desc": "مباراة ضمن منافسات دوري أبطال آسيا للنخبة، الجولة 1، موسم 2026/2027."
         }
       ],
       "missing_desc_events": [],
@@ -2340,10 +2395,10 @@
       "name": "beIN_SPORTS4_DIGITAL_Mono_EN",
       "family": "beIN Sports 4 EN",
       "kind": "sports_en",
-      "events": 21,
-      "fingerprint": "aebc346299d37d15751018cbc8411a4c3eda340b",
-      "coverage_hours": 37.2,
-      "span_hours": 37.2,
+      "events": 20,
+      "fingerprint": "29a56f5742bae86271fcc3738e7392fc6e8d16d7",
+      "coverage_hours": 35.25,
+      "span_hours": 35.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2356,24 +2411,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 71.4,
+      "title_has_ar_pct": 75.0,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 71.4,
+      "title_hybrid_pct": 75.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 14.3,
-      "unique_title_pct": 61.9,
+      "top_title_pct": 15.0,
+      "unique_title_pct": 65.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914144800 +0000",
-          "stop": "20260914164500 +0000",
-          "title": "Portugal vs Costa Rica - FIFA U-20 Women World Cup",
-          "desc": "مباراة، موسم 2026."
-        },
         {
           "start": "20260914164500 +0000",
           "stop": "20260914180500 +0000",
@@ -2391,6 +2440,12 @@
           "stop": "20260914210000 +0000",
           "title": "الدوري الفرنسي Show",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026/2027، الحلقة 1."
+        },
+        {
+          "start": "20260914210000 +0000",
+          "stop": "20260914224500 +0000",
+          "title": "Celta Vigo vs Malaga - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
         }
       ],
       "missing_desc_events": [],
@@ -2408,10 +2463,10 @@
       "name": "beIN_SPORTS5_DIGITAL_Mono_EN",
       "family": "beIN Sports 5 EN",
       "kind": "sports_en",
-      "events": 17,
-      "fingerprint": "84bbe141d4a561126f5fd3b4f1ce10b7537ceaf0",
-      "coverage_hours": 40.0,
-      "span_hours": 40.0,
+      "events": 16,
+      "fingerprint": "cda98c347faaa5c005bee3d290a928c8729cf893",
+      "coverage_hours": 38.0,
+      "span_hours": 38.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2424,24 +2479,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 58.8,
+      "title_has_ar_pct": 62.5,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 58.8,
+      "title_hybrid_pct": 62.5,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 17.6,
-      "unique_title_pct": 64.7,
+      "top_title_pct": 18.8,
+      "unique_title_pct": 68.8,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914144500 +0000",
-          "stop": "20260914164500 +0000",
-          "title": "Nigeria vs New Caledonia - FIFA U-20 Women World Cup",
-          "desc": "مباراة، موسم 2026."
-        },
         {
           "start": "20260914164500 +0000",
           "stop": "20260914185000 +0000",
@@ -2459,6 +2508,12 @@
           "stop": "20260914230000 +0000",
           "title": "Auxerre vs Nice - الدوري الفرنسي",
           "desc": "مباراة ضمن منافسات الدوري الفرنسي، الجولة 4، موسم 2026/2027، الحلقة 1."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "Villarreal vs Real Betis - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
         }
       ],
       "missing_desc_events": [],
@@ -2544,10 +2599,10 @@
       "name": "beIN_SPORTS_XTRA_06_bein.com_EN",
       "family": "beIN XTRA 6",
       "kind": "xtra",
-      "events": 37,
-      "fingerprint": "b8f953fc1e3387f5f15e2812c0661f4c181804ce",
-      "coverage_hours": 37.0,
-      "span_hours": 37.0,
+      "events": 35,
+      "fingerprint": "1273f9320005aa52ed047e9e072b6d75acde2e52",
+      "coverage_hours": 35.0,
+      "span_hours": 35.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2559,31 +2614,19 @@
       "empty_desc": 0,
       "desc_same_title": 0,
       "placeholder": 0,
-      "generic": 37,
+      "generic": 35,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 2.7,
+      "unique_title_pct": 2.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -2593,6 +2636,18 @@
         {
           "start": "20260914180000 +0000",
           "stop": "20260914190000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914200000 +0000",
+          "stop": "20260914210000 +0000",
           "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
         }
@@ -2616,10 +2671,10 @@
       "name": "beIN_SPORTS_XTRA_07_bein.com_EN",
       "family": "beIN XTRA 7",
       "kind": "xtra",
-      "events": 19,
-      "fingerprint": "8efc07ada6c2db3f564aa17787b5b6101836aede",
-      "coverage_hours": 38.0,
-      "span_hours": 38.0,
+      "events": 18,
+      "fingerprint": "111e2e2407f70ed89a4622c96834f3879b5e0b8c",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2630,26 +2685,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 19,
-      "generic": 19,
+      "placeholder": 18,
+      "generic": 18,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.3,
+      "unique_title_pct": 5.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports XTRA",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -2667,6 +2716,12 @@
           "stop": "20260914230000 +0000",
           "title": "beIN Sports XTRA",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
       "missing_desc_events": [],
@@ -2678,7 +2733,7 @@
       "warnings": [
         "GENERIC_GUIDE=100%",
         "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=5%"
+        "LOW_TITLE_DIVERSITY=6%"
       ],
       "compat_canonical": "beIN SPORTS XTRA 7.qa",
       "alias_exact_match": true
@@ -2688,10 +2743,10 @@
       "name": "beIN_SPORTS_XTRA_08_Bein.com_EN",
       "family": "beIN XTRA 8",
       "kind": "xtra",
-      "events": 19,
-      "fingerprint": "8efc07ada6c2db3f564aa17787b5b6101836aede",
-      "coverage_hours": 38.0,
-      "span_hours": 38.0,
+      "events": 18,
+      "fingerprint": "111e2e2407f70ed89a4622c96834f3879b5e0b8c",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2702,26 +2757,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 19,
-      "generic": 19,
+      "placeholder": 18,
+      "generic": 18,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.3,
+      "unique_title_pct": 5.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports XTRA",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -2737,6 +2786,12 @@
         {
           "start": "20260914210000 +0000",
           "stop": "20260914230000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
           "title": "beIN Sports XTRA",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
@@ -2750,7 +2805,7 @@
       "warnings": [
         "GENERIC_GUIDE=100%",
         "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=5%"
+        "LOW_TITLE_DIVERSITY=6%"
       ],
       "compat_canonical": "beIN SPORTS XTRA 8.qa",
       "alias_exact_match": true
@@ -2760,10 +2815,10 @@
       "name": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN",
       "family": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN",
       "kind": "other",
-      "events": 19,
-      "fingerprint": "8efc07ada6c2db3f564aa17787b5b6101836aede",
-      "coverage_hours": 38.0,
-      "span_hours": 38.0,
+      "events": 18,
+      "fingerprint": "111e2e2407f70ed89a4622c96834f3879b5e0b8c",
+      "coverage_hours": 36.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2774,26 +2829,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 19,
-      "generic": 19,
+      "placeholder": 18,
+      "generic": 18,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.3,
+      "unique_title_pct": 5.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports XTRA",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914190000 +0000",
@@ -2809,6 +2858,12 @@
         {
           "start": "20260914210000 +0000",
           "stop": "20260914230000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
           "title": "beIN Sports XTRA",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
@@ -2822,7 +2877,7 @@
       "warnings": [
         "GENERIC_GUIDE=100%",
         "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=5%"
+        "LOW_TITLE_DIVERSITY=6%"
       ],
       "compat_canonical": "beIN SPORTS XTRA 9.qa",
       "alias_exact_match": true
@@ -2832,10 +2887,10 @@
       "name": "بي إن دراما",
       "family": "beIN Drama",
       "kind": "drama",
-      "events": 6,
-      "fingerprint": "576ab3126ae19349f82d976252a9c34cfd677769",
-      "coverage_hours": 5.0,
-      "span_hours": 5.0,
+      "events": 4,
+      "fingerprint": "70140ed01a4e221e537a47cb126350d79dd8e682",
+      "coverage_hours": 3.0,
+      "span_hours": 3.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2844,34 +2899,22 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 6,
+      "empty_desc": 4,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 16.7,
+      "title_has_ar_pct": 25.0,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 16.7,
+      "title_hybrid_pct": 25.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 16.7,
+      "top_title_pct": 25.0,
       "unique_title_pct": 100.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "Basmet Hada",
-          "desc": ""
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "El Qatel Allazy Ahabany",
-          "desc": ""
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -2883,19 +2926,21 @@
           "stop": "20260914190000 +0000",
           "title": "Darb Al Thahab",
           "desc": ""
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914194000 +0000",
+          "title": "Mazad El Shar",
+          "desc": ""
+        },
+        {
+          "start": "20260914194000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "برنامج beIN Action",
+          "desc": ""
         }
       ],
       "missing_desc_events": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "Basmet Hada"
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "El Qatel Allazy Ahabany"
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -2931,10 +2976,10 @@
       "name": "beINGOURMET",
       "family": "beINGOURMET",
       "kind": "other",
-      "events": 5,
-      "fingerprint": "5fd6fa3d2bd0367250744ed94a411682870c1a75",
-      "coverage_hours": 5.0,
-      "span_hours": 5.0,
+      "events": 3,
+      "fingerprint": "62f3c3ed466845c47895106fdb96b27adc4e9251",
+      "coverage_hours": 3.0,
+      "span_hours": 3.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2943,34 +2988,22 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 5,
+      "empty_desc": 3,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 60.0,
-      "title_hybrid_pct": 60.0,
+      "title_has_latin_pct": 66.7,
+      "title_hybrid_pct": 66.7,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 40.0,
-      "unique_title_pct": 80.0,
+      "top_title_pct": 33.3,
+      "unique_title_pct": 100.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "سوبر موم S1",
-          "desc": ""
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "Al Dar Alkabira S2 EP 8",
-          "desc": ""
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -2982,19 +3015,15 @@
           "stop": "20260914190000 +0000",
           "title": "E8 | S1 عزابي",
           "desc": ""
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "سوبر موم S1",
+          "desc": ""
         }
       ],
       "missing_desc_events": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "سوبر موم S1"
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "Al Dar Alkabira S2 EP 8"
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -3025,10 +3054,10 @@
       "name": "beINMOVIES1",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 22,
-      "fingerprint": "81a483a2309db93cf206e27ff73e59d71937e39f",
-      "coverage_hours": 40.25,
-      "span_hours": 40.25,
+      "events": 21,
+      "fingerprint": "ec4c7cce9508529fd9a5ca170652b1e900460bac",
+      "coverage_hours": 38.5,
+      "span_hours": 38.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -3046,19 +3075,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 9.1,
-      "unique_title_pct": 72.7,
+      "top_title_pct": 9.5,
+      "unique_title_pct": 71.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914143000 +0000",
-          "stop": "20260914161500 +0000",
-          "title": "Adulthood",
-          "desc": "يواجه الشقيقان (نواه) و(ميجان) صدمة مدوية؛ بعد عثورهما على جثة مدفونة منذ زمن طويل في قبو منزل والديهما، وسريعًا ينجرف الثنائي في دوامة من الجريمة والقتل."
-        },
         {
           "start": "20260914161500 +0000",
           "stop": "20260914180000 +0000",
@@ -3076,6 +3099,12 @@
           "stop": "20260914224500 +0000",
           "title": "The Count of Monte-Cristo",
           "desc": "يدور العمل في معالجة حديثة لقصة (كونتي دي مونت كريستو)، حيث يتعرض شاب للخيانة والغدر من أقرب صديق له، وينتهي به الأمر بالسجن؛ فيقرر الانتقام بعد ذلك واسترداد حقوقه."
+        },
+        {
+          "start": "20260914224500 +0000",
+          "stop": "20260915001400 +0000",
+          "title": "Shark Island",
+          "desc": "تسافر عارضات أزياء إلى جزيرة لالتقاط صورًا مع قلادة لا تُقدر بثمن، إلا أن قاتلاً طليقاً يظهر في الجزيرة النائية ولا يوجد سبيل للهروب منه سوى المياه المليئة بأسماك القرش."
         }
       ],
       "missing_desc_events": [
@@ -3104,10 +3133,10 @@
       "name": "beINMOVIES2",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 21,
-      "fingerprint": "a48bc805a48e1f2710ba13ae176af6ed7b085ddb",
-      "coverage_hours": 40.25,
-      "span_hours": 40.25,
+      "events": 20,
+      "fingerprint": "29155cad7c6a1a4d6021de46fa2d7fa0a25c565d",
+      "coverage_hours": 38.25,
+      "span_hours": 38.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -3124,20 +3153,14 @@
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
-      "desc_latin_pct": 5.0,
-      "top_title_pct": 14.3,
-      "unique_title_pct": 81.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 15.0,
+      "unique_title_pct": 80.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914151500 +0000",
-          "stop": "20260914171500 +0000",
-          "title": "Star Trek Beyond",
-          "desc": "يدور الفيلم عن فريق مشروع (USS Enterprise) بقيادة كابتن (جايمس تي كريك)، الذي يتعرض لهجوم عنيف غير قابل للردع بواسطة موجة كبيرة من فضائيين غير معلومين، يدمرون لهم مشروعهم ليتركوهم "
-        },
         {
           "start": "20260914171500 +0000",
           "stop": "20260914190000 +0000",
@@ -3155,6 +3178,12 @@
           "stop": "20260914230000 +0000",
           "title": "Pain & Gain",
           "desc": "رصد الفيلم قصةً واقعيةً حدثت عام 1990 بميامي، حيث مجموعة من لاعبي كمال الأجسام، من ضمنهم دانيال لوجو (مارك والبرج)، دانيال لاعب كمال أجسام في ميامي بالولايات المتحدة يسعى لتحقيق نف"
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915004500 +0000",
+          "title": "The Island",
+          "desc": "في عام 2019، يعيش لينكولن 6 إكو (إيوان ماكجريجور) في مكان مغلق، ويحلم مثل بقية قاطني هذا المكان بأن يتم اختيارهم للذهاب إلى \"الجزيرة\" التي تعد أخر مكان غير ملوث على ظهر الكوكب، لكن"
         }
       ],
       "missing_desc_events": [
@@ -3178,10 +3207,10 @@
       "name": "beINMOVIES3",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 23,
-      "fingerprint": "8bf867f06a52d8569ab729d6ab1783e52e152c0f",
-      "coverage_hours": 41.25,
-      "span_hours": 41.25,
+      "events": 22,
+      "fingerprint": "2bbfee67021547240e5eb8e2a341b55278dcb740",
+      "coverage_hours": 39.5,
+      "span_hours": 39.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -3199,19 +3228,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.0,
-      "unique_title_pct": 73.9,
+      "top_title_pct": 13.6,
+      "unique_title_pct": 72.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914144500 +0000",
-          "stop": "20260914163000 +0000",
-          "title": "Addams Family Values",
-          "desc": "(وينسداي) و(بوجسلي) شقيقان يعانيان منذ مولد شقيقهم، وهو ما دفع والدهم للبحث عن مربية، حيث يجد فتاة جميلة أعجب بها (العم فيستر)، الذي كانت تسعى للزواج منه لكي ترثه، كل هذا لم يعرفه "
-        },
         {
           "start": "20260914163000 +0000",
           "stop": "20260914183000 +0000",
@@ -3229,6 +3252,12 @@
           "stop": "20260914221500 +0000",
           "title": "Same Kind of Different as Me",
           "desc": "قصة (رون هول)، تاجر دولي في الأعمال الفنية، يجب عليه أن يصادق رجلاً خطيرًا بلا مأوى (دجيمون هونسو)، من أجل إنقاذ علاقته بزوجته (رينيه زيلوجير)، وهي المرأة التي سوف تقود أحلامها ثلا"
+        },
+        {
+          "start": "20260914221500 +0000",
+          "stop": "20260915000000 +0000",
+          "title": "The Island Between Tides",
+          "desc": "تتبع امرأة شابة لحنًا غامضًا وغريبًا إلى أن تصل لجزيرة مد وجزر نائية، لكنها عندما تعبر المد المنخفض التالي تجد نفسها في عالم مختلف بعد مرور خمسة وعشرين عامًا."
         }
       ],
       "missing_desc_events": [
@@ -3252,10 +3281,10 @@
       "name": "beINMOVIES4",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 23,
-      "fingerprint": "f5dc05ca2934199a28fd34f7eee5e1f2c53e0f6c",
-      "coverage_hours": 39.02,
-      "span_hours": 39.02,
+      "events": 22,
+      "fingerprint": "b64878092cead0ea01ea961dc5b9c5feebe1d2b6",
+      "coverage_hours": 37.25,
+      "span_hours": 37.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -3273,19 +3302,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.0,
-      "unique_title_pct": 47.8,
+      "top_title_pct": 13.6,
+      "unique_title_pct": 50.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914154400 +0000",
-          "stop": "20260914173000 +0000",
-          "title": "The Adventures of Sharkboy and Lavagirl 3-D",
-          "desc": "طفل في العاشرة يتركه والديه كثيرًا لانهماكهما في العمل، ويخلق من وحي خياله كوكب يسميه (درول)، ويخلق به شخصيات خيالية أبرزهم شاركبوي ولافاجيرل، ويدخل معهما في مغامراتهما الوهمية، وذ"
-        },
         {
           "start": "20260914173000 +0000",
           "stop": "20260914191500 +0000",
@@ -3303,6 +3326,12 @@
           "stop": "20260914223000 +0000",
           "title": "Destined to Ride",
           "desc": "انقلبت حياة (ليلي) رأسًا على عقب عندما أُجبرت على ترك أصدقائها، والذهاب في رحلة صيفية إلى مزرعة نائية مع عمتها المحبة للطبيعة، (ليلي) أيقنت أن حياتها الاجتماعية انتهت، وهناك قام جي"
+        },
+        {
+          "start": "20260914223000 +0000",
+          "stop": "20260914234400 +0000",
+          "title": "The Swan Princess: Escape from Castle Mountain",
+          "desc": "بينما يستعد الأمير ديريك والأميرة أوديت للاحتفال بالذكرى السنوية الأولى لزواجهما، يهجم كلافيوس باعثًا الفوضى في المملكة سعيًا في غزو العالم بأكمله."
         }
       ],
       "missing_desc_events": [],
@@ -3320,10 +3349,10 @@
       "name": "beINSERIES1",
       "family": "beIN Series",
       "kind": "series",
-      "events": 6,
-      "fingerprint": "81eeb25c48b5d1312d605080c32f8a6f85f0bd62",
-      "coverage_hours": 5.17,
-      "span_hours": 5.17,
+      "events": 3,
+      "fingerprint": "152e3608657f18baa7100ccacfded59d05aa7649",
+      "coverage_hours": 2.83,
+      "span_hours": 2.83,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -3332,16 +3361,16 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 6,
+      "empty_desc": 3,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 83.3,
-      "title_hybrid_pct": 83.3,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 100.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 16.7,
+      "top_title_pct": 33.3,
       "unique_title_pct": 100.0,
       "mixed_tz_days": 0,
       "offsets": [
@@ -3349,46 +3378,25 @@
       ],
       "preview": [
         {
-          "start": "20260914150000 +0000",
-          "stop": "20260914155500 +0000",
-          "title": "E8 | S1 1883",
-          "desc": ""
-        },
-        {
-          "start": "20260914155500 +0000",
-          "stop": "20260914162000 +0000",
-          "title": "beIN Action | E358",
-          "desc": ""
-        },
-        {
-          "start": "20260914162000 +0000",
-          "stop": "20260914172000 +0000",
-          "title": "يلوجاكيتس S2",
-          "desc": ""
-        },
-        {
           "start": "20260914172000 +0000",
           "stop": "20260914182500 +0000",
           "title": "E6 | S3 دخيلة",
           "desc": ""
+        },
+        {
+          "start": "20260914182500 +0000",
+          "stop": "20260914191000 +0000",
+          "title": "E2 | S1 ماديسون",
+          "desc": ""
+        },
+        {
+          "start": "20260914191000 +0000",
+          "stop": "20260914201000 +0000",
+          "title": "E2 | S1 ليلة غرق تايتانيك",
+          "desc": ""
         }
       ],
       "missing_desc_events": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914155500 +0000",
-          "title": "E8 | S1 1883"
-        },
-        {
-          "start": "20260914155500 +0000",
-          "stop": "20260914162000 +0000",
-          "title": "beIN Action | E358"
-        },
-        {
-          "start": "20260914162000 +0000",
-          "stop": "20260914172000 +0000",
-          "title": "يلوجاكيتس S2"
-        },
         {
           "start": "20260914172000 +0000",
           "stop": "20260914182500 +0000",
@@ -3419,10 +3427,10 @@
       "name": "بي إن سيريس إتش...",
       "family": "beIN Series",
       "kind": "series",
-      "events": 32,
-      "fingerprint": "dd5a824a898f67951e31684102095cc383712204",
-      "coverage_hours": 26.5,
-      "span_hours": 32.5,
+      "events": 30,
+      "fingerprint": "3459b141e12afbaeebfad281a7b1d55e12d3cdaa",
+      "coverage_hours": 24.58,
+      "span_hours": 30.58,
       "gaps_gt_2h": 1,
       "gap_hours": 6.0,
       "invalid": 0,
@@ -3440,25 +3448,13 @@
       "title_hybrid_pct": 100.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 28.1,
-      "unique_title_pct": 28.1,
+      "top_title_pct": 26.7,
+      "unique_title_pct": 30.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914153000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "Black Clover S3",
-          "desc": "في الموسم الثالث، تتعافى مملكة كلوفر، ويتم محاكمة (أستا) و(سيكري) ويتوبان، بينما يتدرب (أستا) وحلفاؤه لمواجهة الشياطين المرعبة، بينما يعزز (يونو) مكانته باعتباره معجزة، ويصبح أقوى "
-        },
-        {
-          "start": "20260914170000 +0000",
-          "stop": "20260914172500 +0000",
-          "title": "Star Trek: Discovery S5",
-          "desc": "تكتشف الكابتن (بيرنهام) وطاقمها في الموسم الخامس لغزاً خطيراً يدفعهم إلى مغامرة ملحمية عبر المجرة للبحث عن قوة قديمة تم إخفائها عمداً لقرون، إلا أنهم يواجهون أعداء يبذلون قصارى جهد"
-        },
         {
           "start": "20260914172500 +0000",
           "stop": "20260914180000 +0000",
@@ -3470,6 +3466,18 @@
           "stop": "20260915010000 +0000",
           "title": "Dexter S7",
           "desc": "تبدأ صدمة جديدة في ملاحقة (ديبرا) بعدما شاهدت ارتكاب أخيها (دكستر) لجريمة قتل، قبل أن تتصارع مع ضميرها لإخفاء تورطهما في الجريمة، وتخوض معركة شخصية لمحاولة تغيير رغبات (دكستر) الإج"
+        },
+        {
+          "start": "20260915010000 +0000",
+          "stop": "20260915020000 +0000",
+          "title": "From",
+          "desc": "يتم كشف الغموض عن مدينة في وسط الولايات المتحدة تسجن كل من يدخلها. بينما يكافح السكان للحفاظ على حياتهم الطبيعية والبحث عن مخرج، ويجب عليهم أيضًا البقاء على قيد الحياة من تهديدات ا"
+        },
+        {
+          "start": "20260915020000 +0000",
+          "stop": "20260915030000 +0000",
+          "title": "Your Honor",
+          "desc": "بعد ارتكاب ابنه جريمة قتل بدهس رجل والهرب بسيارته، يكتشف قاضِ يسعى دائمًا لتطبيق القانون أصعب الخيارات، حينما يصبح عليه فعل ما لا يمكن تخيله لحماية ابنه."
         }
       ],
       "missing_desc_events": [
@@ -3563,10 +3571,10 @@
       "name": "beINSPORTS3",
       "family": "beIN Sports 3 AR/MENA",
       "kind": "sports_ar",
-      "events": 22,
-      "fingerprint": "a3d580afd81feb79ecfb24efb3bb2ad4a11c1a50",
-      "coverage_hours": 39.0,
-      "span_hours": 39.0,
+      "events": 21,
+      "fingerprint": "09bd94dab8b4df1110cf09e303daaf08d7a9ea30",
+      "coverage_hours": 37.0,
+      "span_hours": 37.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -3579,24 +3587,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 95.5,
+      "title_has_ar_pct": 95.2,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 95.5,
+      "title_hybrid_pct": 95.2,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.6,
-      "unique_title_pct": 59.1,
+      "top_title_pct": 14.3,
+      "unique_title_pct": 57.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914140000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "West Ham Utd vs Wrexham -دوري البطولة الإنجليزية",
-          "desc": "مباراة ضمن منافسات دوري البطولة الإنجليزية، موسم 2026/2027."
-        },
         {
           "start": "20260914160000 +0000",
           "stop": "20260914180500 +0000",
@@ -3614,6 +3616,12 @@
           "stop": "20260914221500 +0000",
           "title": "Getafe vs Deportivo La Coruna - الدوري الإسباني",
           "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
+        },
+        {
+          "start": "20260914221500 +0000",
+          "stop": "20260915001500 +0000",
+          "title": "Al Ahli (KSA) vs Pakhtakor (UZB) - دوري أبطال آسيا للنخبة",
+          "desc": "مباراة ضمن منافسات دوري أبطال آسيا للنخبة، الجولة 1، موسم 2026/2027."
         }
       ],
       "missing_desc_events": [],
@@ -3631,10 +3639,10 @@
       "name": "beINSPORT4",
       "family": "beIN Sports 4 AR/MENA",
       "kind": "sports_ar",
-      "events": 21,
-      "fingerprint": "aebc346299d37d15751018cbc8411a4c3eda340b",
-      "coverage_hours": 37.2,
-      "span_hours": 37.2,
+      "events": 20,
+      "fingerprint": "29a56f5742bae86271fcc3738e7392fc6e8d16d7",
+      "coverage_hours": 35.25,
+      "span_hours": 35.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -3647,24 +3655,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 71.4,
+      "title_has_ar_pct": 75.0,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 71.4,
+      "title_hybrid_pct": 75.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 14.3,
-      "unique_title_pct": 61.9,
+      "top_title_pct": 15.0,
+      "unique_title_pct": 65.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914144800 +0000",
-          "stop": "20260914164500 +0000",
-          "title": "Portugal vs Costa Rica - FIFA U-20 Women World Cup",
-          "desc": "مباراة، موسم 2026."
-        },
         {
           "start": "20260914164500 +0000",
           "stop": "20260914180500 +0000",
@@ -3682,6 +3684,12 @@
           "stop": "20260914210000 +0000",
           "title": "الدوري الفرنسي Show",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026/2027، الحلقة 1."
+        },
+        {
+          "start": "20260914210000 +0000",
+          "stop": "20260914224500 +0000",
+          "title": "Celta Vigo vs Malaga - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
         }
       ],
       "missing_desc_events": [],
@@ -3699,10 +3707,10 @@
       "name": "beINSPORTS5",
       "family": "beIN Sports 5 AR/MENA",
       "kind": "sports_ar",
-      "events": 17,
-      "fingerprint": "84bbe141d4a561126f5fd3b4f1ce10b7537ceaf0",
-      "coverage_hours": 40.0,
-      "span_hours": 40.0,
+      "events": 16,
+      "fingerprint": "cda98c347faaa5c005bee3d290a928c8729cf893",
+      "coverage_hours": 38.0,
+      "span_hours": 38.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -3715,24 +3723,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 58.8,
+      "title_has_ar_pct": 62.5,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 58.8,
+      "title_hybrid_pct": 62.5,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 17.6,
-      "unique_title_pct": 64.7,
+      "top_title_pct": 18.8,
+      "unique_title_pct": 68.8,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914144500 +0000",
-          "stop": "20260914164500 +0000",
-          "title": "Nigeria vs New Caledonia - FIFA U-20 Women World Cup",
-          "desc": "مباراة، موسم 2026."
-        },
         {
           "start": "20260914164500 +0000",
           "stop": "20260914185000 +0000",
@@ -3750,6 +3752,12 @@
           "stop": "20260914230000 +0000",
           "title": "Auxerre vs Nice - الدوري الفرنسي",
           "desc": "مباراة ضمن منافسات الدوري الفرنسي، الجولة 4، موسم 2026/2027، الحلقة 1."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915010000 +0000",
+          "title": "Villarreal vs Real Betis - الدوري الإسباني",
+          "desc": "مباراة ضمن منافسات الدوري الإسباني، الجولة 5، موسم 2026/2027."
         }
       ],
       "missing_desc_events": [],
@@ -3767,10 +3775,10 @@
       "name": "beINSPORTS6",
       "family": "beIN Sports 6 AR/MENA",
       "kind": "sports_ar",
-      "events": 17,
-      "fingerprint": "f0828b55d4b1209657303bf38ca1d5a55eff2bee",
-      "coverage_hours": 30.08,
-      "span_hours": 32.92,
+      "events": 16,
+      "fingerprint": "06313446698e47edc6dfe038db9249d01f29ffc6",
+      "coverage_hours": 28.08,
+      "span_hours": 30.92,
       "gaps_gt_2h": 1,
       "gap_hours": 2.83,
       "invalid": 0,
@@ -3783,24 +3791,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 41.2,
+      "title_has_ar_pct": 37.5,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 41.2,
+      "title_hybrid_pct": 37.5,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 17.6,
-      "unique_title_pct": 52.9,
+      "top_title_pct": 18.8,
+      "unique_title_pct": 56.2,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150500 +0000",
-          "stop": "20260914170500 +0000",
-          "title": "Cordoba vs Almeria - الدوري الإسباني Hypermotion",
-          "desc": "مباراة ضمن منافسات الدوري الإسباني، موسم 2026/2027."
-        },
         {
           "start": "20260914170500 +0000",
           "stop": "20260914195000 +0000",
@@ -3818,6 +3820,12 @@
           "stop": "20260914232800 +0000",
           "title": "Sprint Race - Madrid Round - FIA Formula 2 Championship",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914232800 +0000",
+          "stop": "20260915000000 +0000",
+          "title": "Trofeo Pirelli Race 1 - Hungaroring Round - Ferrari Challenge",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026، الحلقة 1."
         }
       ],
       "missing_desc_events": [],
@@ -3905,10 +3913,10 @@
       "name": "beINSPORTS8",
       "family": "beIN Sports 8 AR/MENA",
       "kind": "sports_ar",
-      "events": 24,
-      "fingerprint": "860f8b415b990801a4cd49fc7ae4027a6aca8741",
-      "coverage_hours": 36.23,
-      "span_hours": 36.23,
+      "events": 23,
+      "fingerprint": "095ce3d7d88c6a18058daba9a1bc1fed992189e5",
+      "coverage_hours": 34.73,
+      "span_hours": 34.73,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -3921,24 +3929,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 8.3,
+      "title_has_ar_pct": 8.7,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 8.3,
+      "title_hybrid_pct": 8.7,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 8.3,
-      "unique_title_pct": 70.8,
+      "top_title_pct": 8.7,
+      "unique_title_pct": 73.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914154600 +0000",
-          "stop": "20260914171600 +0000",
-          "title": "Practice 3 - Spanish Grand Prix",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026، الحلقة 3."
-        },
         {
           "start": "20260914171600 +0000",
           "stop": "20260914183500 +0000",
@@ -3955,6 +3957,12 @@
           "start": "20260914210000 +0000",
           "stop": "20260914230000 +0000",
           "title": "Main Race - Spanish Grand Prix",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260914234500 +0000",
+          "title": "Qualifying - Moto GP - San Marino GP",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
         }
       ],
@@ -3973,12 +3981,12 @@
       "name": "beINSPORTS9",
       "family": "beIN Sports 9 AR/MENA",
       "kind": "sports_ar",
-      "events": 26,
-      "fingerprint": "d0e3e83e62cd4b62806f3ab6cd8fee1fac561a6e",
-      "coverage_hours": 33.62,
-      "span_hours": 36.38,
+      "events": 23,
+      "fingerprint": "59b45dd80ff4286c2aa2e8152d6f160920778247",
+      "coverage_hours": 34.55,
+      "span_hours": 34.55,
       "gaps_gt_2h": 0,
-      "gap_hours": 2.77,
+      "gap_hours": 0.0,
       "invalid": 0,
       "overlaps": 0,
       "long_gt_6h": 0,
@@ -3994,36 +4002,36 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 11.5,
-      "unique_title_pct": 61.5,
+      "top_title_pct": 8.7,
+      "unique_title_pct": 95.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260914151500 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "M1 Qterminals Qatar Classic 2026 - Glass Court",
+          "start": "20260914170200 +0000",
+          "stop": "20260914191500 +0000",
+          "title": "Longines Global Champions Tour - Cannes Jumping - Against The Clock With Jump Off",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914191500 +0000",
+          "stop": "20260914213000 +0000",
+          "title": "Longines Global Champions Tour - Cannes Jumping - Grand Prix",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914213000 +0000",
+          "stop": "20260914220000 +0000",
+          "title": "HL Al Shaqab International League 2026 – Jumping competition (Two Phases)",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
         },
         {
-          "start": "20260914160000 +0000",
-          "stop": "20260914164500 +0000",
-          "title": "M5 Qterminals Qatar Classic 2026 - Glass Court",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
-          "start": "20260914164500 +0000",
-          "stop": "20260914173000 +0000",
-          "title": "M6 Qterminals Qatar Classic 2026 - Glass Court",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
-          "start": "20260914173000 +0000",
-          "stop": "20260914181500 +0000",
-          "title": "M7 Qterminals Qatar Classic 2026 - Glass Court",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+          "start": "20260914220000 +0000",
+          "stop": "20260914233000 +0000",
+          "title": "Longines Global Champions Tour - St Tropez Jumping - Round 1 Competition Team",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، الجولة 1."
         }
       ],
       "missing_desc_events": [],
@@ -4037,368 +4045,14 @@
       "alias_exact_match": null
     },
     {
-      "id": "beINSportsMax1.qa@MENA",
-      "name": "beINSPORTSMAX1",
-      "family": "beIN MAX 1",
-      "kind": "max",
-      "events": 2,
-      "fingerprint": "b12a14203ecf93c88590d7c77825c42bf2bf9abb",
-      "coverage_hours": 4.0,
-      "span_hours": 4.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 2,
-      "generic": 2,
-      "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 100.0,
-      "unique_title_pct": 50.0,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
-        {
-          "start": "20260914170000 +0000",
-          "stop": "20260914190000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        }
-      ],
-      "missing_desc_events": [],
-      "source_status": "KEEP_SOURCE",
-      "mapping_mode": "event_only_or_manual",
-      "auto_lock_safe": false,
-      "verdict": "KEEP_SOURCE",
-      "issues": [],
-      "warnings": [
-        "GENERIC_GUIDE=100%",
-        "DUPLICATE_TIMELINE_OTHER_FAMILY"
-      ],
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "beINSportsMax2.qa@MENA",
-      "name": "beINSPORTSMAX2",
-      "family": "beIN MAX 2",
-      "kind": "max",
-      "events": 2,
-      "fingerprint": "b12a14203ecf93c88590d7c77825c42bf2bf9abb",
-      "coverage_hours": 4.0,
-      "span_hours": 4.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 2,
-      "generic": 2,
-      "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 100.0,
-      "unique_title_pct": 50.0,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
-        {
-          "start": "20260914170000 +0000",
-          "stop": "20260914190000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        }
-      ],
-      "missing_desc_events": [],
-      "source_status": "KEEP_SOURCE",
-      "mapping_mode": "event_only_or_manual",
-      "auto_lock_safe": false,
-      "verdict": "KEEP_SOURCE",
-      "issues": [],
-      "warnings": [
-        "GENERIC_GUIDE=100%",
-        "DUPLICATE_TIMELINE_OTHER_FAMILY"
-      ],
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "beINSportsMax3.qa@MENA",
-      "name": "beINSPORTSMAX3",
-      "family": "beIN MAX 3",
-      "kind": "max",
-      "events": 2,
-      "fingerprint": "b12a14203ecf93c88590d7c77825c42bf2bf9abb",
-      "coverage_hours": 4.0,
-      "span_hours": 4.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 2,
-      "generic": 2,
-      "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 100.0,
-      "unique_title_pct": 50.0,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
-        {
-          "start": "20260914170000 +0000",
-          "stop": "20260914190000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        }
-      ],
-      "missing_desc_events": [],
-      "source_status": "KEEP_SOURCE",
-      "mapping_mode": "event_only_or_manual",
-      "auto_lock_safe": false,
-      "verdict": "KEEP_SOURCE",
-      "issues": [],
-      "warnings": [
-        "GENERIC_GUIDE=100%",
-        "DUPLICATE_TIMELINE_OTHER_FAMILY"
-      ],
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "beINSportsMax4.qa@MENA",
-      "name": "beINSPORTSMAX4",
-      "family": "beIN MAX 4",
-      "kind": "max",
-      "events": 2,
-      "fingerprint": "b12a14203ecf93c88590d7c77825c42bf2bf9abb",
-      "coverage_hours": 4.0,
-      "span_hours": 4.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 2,
-      "generic": 2,
-      "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 100.0,
-      "unique_title_pct": 50.0,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
-        {
-          "start": "20260914170000 +0000",
-          "stop": "20260914190000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        }
-      ],
-      "missing_desc_events": [],
-      "source_status": "KEEP_SOURCE",
-      "mapping_mode": "event_only_or_manual",
-      "auto_lock_safe": false,
-      "verdict": "KEEP_SOURCE",
-      "issues": [],
-      "warnings": [
-        "GENERIC_GUIDE=100%",
-        "DUPLICATE_TIMELINE_OTHER_FAMILY"
-      ],
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "beINSportsMax5.qa@MENA",
-      "name": "beINSPORTSMAX5",
-      "family": "beIN MAX 5",
-      "kind": "max",
-      "events": 2,
-      "fingerprint": "b12a14203ecf93c88590d7c77825c42bf2bf9abb",
-      "coverage_hours": 4.0,
-      "span_hours": 4.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 2,
-      "generic": 2,
-      "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 100.0,
-      "unique_title_pct": 50.0,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
-        {
-          "start": "20260914170000 +0000",
-          "stop": "20260914190000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        }
-      ],
-      "missing_desc_events": [],
-      "source_status": "KEEP_SOURCE",
-      "mapping_mode": "event_only_or_manual",
-      "auto_lock_safe": false,
-      "verdict": "KEEP_SOURCE",
-      "issues": [],
-      "warnings": [
-        "GENERIC_GUIDE=100%",
-        "DUPLICATE_TIMELINE_OTHER_FAMILY"
-      ],
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "beINSportsMax6.qa@MENA",
-      "name": "beINSPORTSMAX6",
-      "family": "beIN MAX 6",
-      "kind": "max",
-      "events": 2,
-      "fingerprint": "b12a14203ecf93c88590d7c77825c42bf2bf9abb",
-      "coverage_hours": 4.0,
-      "span_hours": 4.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 2,
-      "generic": 2,
-      "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 100.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 100.0,
-      "unique_title_pct": 50.0,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
-        {
-          "start": "20260914170000 +0000",
-          "stop": "20260914190000 +0000",
-          "title": "beIN Sports MAX",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        }
-      ],
-      "missing_desc_events": [],
-      "source_status": "KEEP_SOURCE",
-      "mapping_mode": "event_only_or_manual",
-      "auto_lock_safe": false,
-      "verdict": "KEEP_SOURCE",
-      "issues": [],
-      "warnings": [
-        "GENERIC_GUIDE=100%",
-        "DUPLICATE_TIMELINE_OTHER_FAMILY"
-      ],
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
       "id": "beINSportsXtra1.qa@SD",
       "name": "beIN SPORTS XTRA 1",
       "family": "beIN XTRA 1",
       "kind": "xtra",
-      "events": 47,
-      "fingerprint": "db948fb14d779bce57fc5cd92ec194136f4bec02",
-      "coverage_hours": 49.25,
-      "span_hours": 49.25,
+      "events": 45,
+      "fingerprint": "0c29ae0856bfe0b0c2e0f0be353abca4ffb08a96",
+      "coverage_hours": 49.0,
+      "span_hours": 49.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -4410,40 +4064,40 @@
       "empty_desc": 0,
       "desc_same_title": 0,
       "placeholder": 0,
-      "generic": 46,
+      "generic": 43,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 97.9,
-      "unique_title_pct": 4.3,
+      "top_title_pct": 77.8,
+      "unique_title_pct": 8.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
-          "start": "20260914170000 +0000",
-          "stop": "20260914180000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
           "start": "20260914180000 +0000",
           "stop": "20260914190000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914200000 +0000",
+          "stop": "20260914210000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914210000 +0000",
+          "stop": "20260914220000 +0000",
           "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
         }
@@ -4455,9 +4109,9 @@
       "verdict": "KEEP_SOURCE",
       "issues": [],
       "warnings": [
-        "GENERIC_GUIDE=98%",
-        "REPEATED_TITLE=98%",
-        "LOW_TITLE_DIVERSITY=4%"
+        "GENERIC_GUIDE=96%",
+        "REPEATED_TITLE=78%",
+        "LOW_TITLE_DIVERSITY=9%"
       ],
       "compat_canonical": null,
       "alias_exact_match": null
@@ -4468,7 +4122,7 @@
       "family": "beIN XTRA 2",
       "kind": "xtra",
       "events": 49,
-      "fingerprint": "54c280dd292497539d556fabc813b20b5b5c5012",
+      "fingerprint": "27bdf78b5535fba24345ebedf219d85a416115a9",
       "coverage_hours": 49.0,
       "span_hours": 49.0,
       "gaps_gt_2h": 0,
@@ -4488,34 +4142,34 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 100.0,
-      "unique_title_pct": 2.0,
+      "top_title_pct": 69.4,
+      "unique_title_pct": 4.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
-          "start": "20260914170000 +0000",
-          "stop": "20260914180000 +0000",
-          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
-        },
-        {
           "start": "20260914180000 +0000",
           "stop": "20260914190000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914200000 +0000",
+          "stop": "20260914210000 +0000",
+          "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
+        },
+        {
+          "start": "20260914210000 +0000",
+          "stop": "20260914220000 +0000",
           "title": "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
         }
@@ -4528,8 +4182,7 @@
       "issues": [],
       "warnings": [
         "GENERIC_GUIDE=100%",
-        "REPEATED_TITLE=100%",
-        "LOW_TITLE_DIVERSITY=2%"
+        "LOW_TITLE_DIVERSITY=4%"
       ],
       "compat_canonical": null,
       "alias_exact_match": null
@@ -4539,10 +4192,10 @@
       "name": "beINSPORTSXTRA3.qa",
       "family": "beIN XTRA 3",
       "kind": "xtra",
-      "events": 17,
-      "fingerprint": "039f768ae5f9afa6d7978676f30f5b32d0d199bc",
-      "coverage_hours": 34.0,
-      "span_hours": 38.0,
+      "events": 16,
+      "fingerprint": "22461658a0552c2be9bc80d5a25201e929ddfc25",
+      "coverage_hours": 32.0,
+      "span_hours": 36.0,
       "gaps_gt_2h": 0,
       "gap_hours": 4.0,
       "invalid": 0,
@@ -4553,26 +4206,20 @@
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
-      "placeholder": 17,
-      "generic": 17,
+      "placeholder": 16,
+      "generic": 16,
       "title_has_ar_pct": 0.0,
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 100.0,
-      "unique_title_pct": 5.9,
+      "unique_title_pct": 6.2,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914140000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "beIN Sports XTRA",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914160000 +0000",
           "stop": "20260914180000 +0000",
@@ -4588,6 +4235,12 @@
         {
           "start": "20260914200000 +0000",
           "stop": "20260914220000 +0000",
+          "title": "beIN Sports XTRA",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914220000 +0000",
+          "stop": "20260915000000 +0000",
           "title": "beIN Sports XTRA",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
@@ -4611,10 +4264,10 @@
       "name": "NEWS_DIGITAL_Mono_AR",
       "family": "beIN Sports News",
       "kind": "news",
-      "events": 61,
-      "fingerprint": "69cdbecb75123d2b1a12bd5a9a482d8a9081c87d",
-      "coverage_hours": 33.0,
-      "span_hours": 33.0,
+      "events": 86,
+      "fingerprint": "9c20805b2480a640896ebf3814e7a41841b2de44",
+      "coverage_hours": 49.25,
+      "span_hours": 49.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -4628,39 +4281,39 @@
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 37.7,
-      "title_hybrid_pct": 37.7,
+      "title_has_latin_pct": 30.2,
+      "title_hybrid_pct": 30.2,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 23.0,
-      "unique_title_pct": 24.6,
+      "top_title_pct": 23.3,
+      "unique_title_pct": 16.3,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260914150000 +0100",
-          "stop": "20260914160000 +0100",
-          "title": "سوبر الإثنين",
+          "start": "20260914174500 +0100",
+          "stop": "20260914180000 +0100",
+          "title": "Football Legends",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         },
         {
-          "start": "20260914160000 +0100",
-          "stop": "20260914163000 +0100",
-          "title": "نشرة الأخبار",
+          "start": "20260914180000 +0100",
+          "stop": "20260914190000 +0100",
+          "title": "Six O'Clock bulletin",
+          "desc": "نشرة رياضية تقدم أبرز الأخبار والتطورات."
+        },
+        {
+          "start": "20260914190000 +0100",
+          "stop": "20260914191500 +0100",
+          "title": "Al Jawla",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         },
         {
-          "start": "20260914163000 +0100",
-          "stop": "20260914170000 +0100",
-          "title": "beIN Action",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
-        {
-          "start": "20260914170000 +0100",
-          "stop": "20260914173000 +0100",
-          "title": "نشرة الأخبار",
+          "start": "20260914191500 +0100",
+          "stop": "20260914193000 +0100",
+          "title": "The summary 1",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
@@ -4670,7 +4323,9 @@
       "auto_lock_safe": false,
       "verdict": "KEEP_SOURCE",
       "issues": [],
-      "warnings": [],
+      "warnings": [
+        "LOW_TITLE_DIVERSITY=16%"
+      ],
       "compat_canonical": null,
       "alias_exact_match": null
     },
@@ -4679,10 +4334,10 @@
       "name": "NEWS_DIGITAL_Mono_EN",
       "family": "beIN Sports News",
       "kind": "news",
-      "events": 61,
-      "fingerprint": "69cdbecb75123d2b1a12bd5a9a482d8a9081c87d",
-      "coverage_hours": 33.0,
-      "span_hours": 33.0,
+      "events": 86,
+      "fingerprint": "9c20805b2480a640896ebf3814e7a41841b2de44",
+      "coverage_hours": 49.25,
+      "span_hours": 49.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -4696,39 +4351,39 @@
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 37.7,
-      "title_hybrid_pct": 37.7,
+      "title_has_latin_pct": 30.2,
+      "title_hybrid_pct": 30.2,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 23.0,
-      "unique_title_pct": 24.6,
+      "top_title_pct": 23.3,
+      "unique_title_pct": 16.3,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260914150000 +0100",
-          "stop": "20260914160000 +0100",
-          "title": "سوبر الإثنين",
+          "start": "20260914174500 +0100",
+          "stop": "20260914180000 +0100",
+          "title": "Football Legends",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         },
         {
-          "start": "20260914160000 +0100",
-          "stop": "20260914163000 +0100",
-          "title": "نشرة الأخبار",
+          "start": "20260914180000 +0100",
+          "stop": "20260914190000 +0100",
+          "title": "Six O'Clock bulletin",
+          "desc": "نشرة رياضية تقدم أبرز الأخبار والتطورات."
+        },
+        {
+          "start": "20260914190000 +0100",
+          "stop": "20260914191500 +0100",
+          "title": "Al Jawla",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         },
         {
-          "start": "20260914163000 +0100",
-          "stop": "20260914170000 +0100",
-          "title": "beIN Action",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
-        {
-          "start": "20260914170000 +0100",
-          "stop": "20260914173000 +0100",
-          "title": "نشرة الأخبار",
+          "start": "20260914191500 +0100",
+          "stop": "20260914193000 +0100",
+          "title": "The summary 1",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
@@ -4738,7 +4393,9 @@
       "auto_lock_safe": false,
       "verdict": "ALIAS_OK",
       "issues": [],
-      "warnings": [],
+      "warnings": [
+        "LOW_TITLE_DIVERSITY=16%"
+      ],
       "compat_canonical": "NEWS_DIGITAL_Mono_AR.bein",
       "alias_exact_match": true
     },
@@ -4747,10 +4404,78 @@
       "name": "بي إن سيريس إتش دي 2.eg",
       "family": "بي إن سيريس إتش دي 2.eg",
       "kind": "other",
-      "events": 6,
-      "fingerprint": "a7c60d9dfc35bb66e8033e538e98b2e8f13f1499",
-      "coverage_hours": 5.42,
-      "span_hours": 5.42,
+      "events": 4,
+      "fingerprint": "aec4b2fe4da3b922e93a5c2b77c8af52c018084a",
+      "coverage_hours": 3.42,
+      "span_hours": 3.42,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 50.0,
+      "unique_title_pct": 75.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914170000 +0000",
+          "stop": "20260914180000 +0000",
+          "title": "Your Honor",
+          "desc": "بعد ارتكاب ابنه جريمة قتل بدهس رجل والهرب بسيارته، يكتشف قاضِ يسعى دائمًا لتطبيق القانون أصعب الخيارات، حينما يصبح عليه فعل ما لا يمكن تخيله لحماية ابنه."
+        },
+        {
+          "start": "20260914180000 +0000",
+          "stop": "20260914183000 +0000",
+          "title": "Black Clover S3",
+          "desc": "في الموسم الثالث، تتعافى مملكة كلوفر، ويتم محاكمة (أستا) و(سيكري) ويتوبان، بينما يتدرب (أستا) وحلفاؤه لمواجهة الشياطين المرعبة، بينما يعزز (يونو) مكانته باعتباره معجزة، ويصبح أقوى "
+        },
+        {
+          "start": "20260914183000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "Black Clover S3",
+          "desc": "في الموسم الثالث، تتعافى مملكة كلوفر، ويتم محاكمة (أستا) و(سيكري) ويتوبان، بينما يتدرب (أستا) وحلفاؤه لمواجهة الشياطين المرعبة، بينما يعزز (يونو) مكانته باعتباره معجزة، ويصبح أقوى "
+        },
+        {
+          "start": "20260914200000 +0000",
+          "stop": "20260914202500 +0000",
+          "title": "Star Trek: Discovery S5",
+          "desc": "تكتشف الكابتن (بيرنهام) وطاقمها في الموسم الخامس لغزاً خطيراً يدفعهم إلى مغامرة ملحمية عبر المجرة للبحث عن قوة قديمة تم إخفائها عمداً لقرون، إلا أنهم يواجهون أعداء يبذلون قصارى جهد"
+        }
+      ],
+      "missing_desc_events": [],
+      "source_status": "NORMAL",
+      "mapping_mode": "normal_candidate",
+      "auto_lock_safe": true,
+      "verdict": "ALIAS_OK",
+      "issues": [],
+      "warnings": [],
+      "compat_canonical": "beIN Series HD 2.eg",
+      "alias_exact_match": true
+    },
+    {
+      "id": "بي إن سيريس.eg",
+      "name": "بي إن سيريس.eg",
+      "family": "بي إن سيريس.eg",
+      "kind": "other",
+      "events": 3,
+      "fingerprint": "da897612cefc0dc05c43f8cb96df1ea0503c8573",
+      "coverage_hours": 3.0,
+      "span_hours": 3.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -4769,92 +4494,12 @@
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 33.3,
-      "unique_title_pct": 83.3,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "Dexter S6",
-          "desc": "يقرر (دكستر) حضور لم شمل مدرسته الثانوية، حيث يكتشف جريمة قتل غامضة ويصبح مُطالبًا بإجراء تحقيق، بينما تقوده خيوط القضية إلى اكتشاف صادم، ممّا يُثير لديه ذكريات الماضي المؤلمة."
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "From",
-          "desc": "يتم كشف الغموض عن مدينة في وسط الولايات المتحدة تسجن كل من يدخلها. بينما يكافح السكان للحفاظ على حياتهم الطبيعية والبحث عن مخرج، ويجب عليهم أيضًا البقاء على قيد الحياة من تهديدات ا"
-        },
-        {
-          "start": "20260914170000 +0000",
-          "stop": "20260914180000 +0000",
-          "title": "Your Honor",
-          "desc": "بعد ارتكاب ابنه جريمة قتل بدهس رجل والهرب بسيارته، يكتشف قاضِ يسعى دائمًا لتطبيق القانون أصعب الخيارات، حينما يصبح عليه فعل ما لا يمكن تخيله لحماية ابنه."
-        },
-        {
-          "start": "20260914180000 +0000",
-          "stop": "20260914183000 +0000",
-          "title": "Black Clover S3",
-          "desc": "في الموسم الثالث، تتعافى مملكة كلوفر، ويتم محاكمة (أستا) و(سيكري) ويتوبان، بينما يتدرب (أستا) وحلفاؤه لمواجهة الشياطين المرعبة، بينما يعزز (يونو) مكانته باعتباره معجزة، ويصبح أقوى "
-        }
-      ],
-      "missing_desc_events": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "verdict": "ALIAS_OK",
-      "issues": [],
-      "warnings": [],
-      "compat_canonical": "beIN Series HD 2.eg",
-      "alias_exact_match": true
-    },
-    {
-      "id": "بي إن سيريس.eg",
-      "name": "بي إن سيريس.eg",
-      "family": "بي إن سيريس.eg",
-      "kind": "other",
-      "events": 5,
-      "fingerprint": "3d86c412591d2fce6f463770a4a7947dfa3bed84",
-      "coverage_hours": 5.0,
-      "span_hours": 5.0,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 80.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 20.0,
       "unique_title_pct": 100.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914150000 +0000",
-          "stop": "20260914160000 +0000",
-          "title": "1883",
-          "desc": "يسافر جيل ما بعد الحرب الأهلية من عائلة (داتون) إلى تكساس للقيام برحلة شاقة إلى أوريجون قبل أن يقرروا الاستقرار في مونتانا، حيث تقرر العائلة تأسيس مزرعة يلوستون."
-        },
-        {
-          "start": "20260914160000 +0000",
-          "stop": "20260914170000 +0000",
-          "title": "Yellowjackets S2",
-          "desc": "في الموسم الثاني، بينما تحاول الفتيات المضي قدمًا في حياتهن، يعود الظلام فيطاردهن من جديد."
-        },
         {
           "start": "20260914170000 +0000",
           "stop": "20260914180000 +0000",
@@ -4866,6 +4511,12 @@
           "stop": "20260914190000 +0000",
           "title": "All American S8",
           "desc": "يتتبع المسلسل شخصيات جوردان، وليلى، وكوب، وكاسيوس، وكي جي، وخليل، وأمينة خلال رخلتهم وراء أحلامهم، حيث يجدون أنفسهم أمام تحديات غير متوقعة لعلاقات الصداقة والروابط العائلية."
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "Doc S2",
+          "desc": "في الموسم الثاني، يعود ماضي (إيمي) ليطاردها وتكافح مع ذكرياتها خلال عملها على علاج حالات جديدة، كما تشهد حياتها عدة تطورات على المستوى المهني والشخصي."
         }
       ],
       "missing_desc_events": [],
@@ -4883,10 +4534,10 @@
       "name": "بي إن موفيز أكشن.eg",
       "family": "بي إن موفيز أكشن.eg",
       "kind": "other",
-      "events": 21,
-      "fingerprint": "a48bc805a48e1f2710ba13ae176af6ed7b085ddb",
-      "coverage_hours": 40.25,
-      "span_hours": 40.25,
+      "events": 20,
+      "fingerprint": "29155cad7c6a1a4d6021de46fa2d7fa0a25c565d",
+      "coverage_hours": 38.25,
+      "span_hours": 38.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -4903,20 +4554,14 @@
       "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
-      "desc_latin_pct": 5.0,
-      "top_title_pct": 14.3,
-      "unique_title_pct": 81.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 15.0,
+      "unique_title_pct": 80.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914151500 +0000",
-          "stop": "20260914171500 +0000",
-          "title": "Star Trek Beyond",
-          "desc": "يدور الفيلم عن فريق مشروع (USS Enterprise) بقيادة كابتن (جايمس تي كريك)، الذي يتعرض لهجوم عنيف غير قابل للردع بواسطة موجة كبيرة من فضائيين غير معلومين، يدمرون لهم مشروعهم ليتركوهم "
-        },
         {
           "start": "20260914171500 +0000",
           "stop": "20260914190000 +0000",
@@ -4934,6 +4579,12 @@
           "stop": "20260914230000 +0000",
           "title": "Pain & Gain",
           "desc": "رصد الفيلم قصةً واقعيةً حدثت عام 1990 بميامي، حيث مجموعة من لاعبي كمال الأجسام، من ضمنهم دانيال لوجو (مارك والبرج)، دانيال لاعب كمال أجسام في ميامي بالولايات المتحدة يسعى لتحقيق نف"
+        },
+        {
+          "start": "20260914230000 +0000",
+          "stop": "20260915004500 +0000",
+          "title": "The Island",
+          "desc": "في عام 2019، يعيش لينكولن 6 إكو (إيوان ماكجريجور) في مكان مغلق، ويحلم مثل بقية قاطني هذا المكان بأن يتم اختيارهم للذهاب إلى \"الجزيرة\" التي تعد أخر مكان غير ملوث على ظهر الكوكب، لكن"
         }
       ],
       "missing_desc_events": [
@@ -4957,10 +4608,10 @@
       "name": "بي إن موفيز بريمير.eg",
       "family": "بي إن موفيز بريمير.eg",
       "kind": "other",
-      "events": 22,
-      "fingerprint": "81a483a2309db93cf206e27ff73e59d71937e39f",
-      "coverage_hours": 40.25,
-      "span_hours": 40.25,
+      "events": 21,
+      "fingerprint": "ec4c7cce9508529fd9a5ca170652b1e900460bac",
+      "coverage_hours": 38.5,
+      "span_hours": 38.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -4978,19 +4629,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 9.1,
-      "unique_title_pct": 72.7,
+      "top_title_pct": 9.5,
+      "unique_title_pct": 71.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914143000 +0000",
-          "stop": "20260914161500 +0000",
-          "title": "Adulthood",
-          "desc": "يواجه الشقيقان (نواه) و(ميجان) صدمة مدوية؛ بعد عثورهما على جثة مدفونة منذ زمن طويل في قبو منزل والديهما، وسريعًا ينجرف الثنائي في دوامة من الجريمة والقتل."
-        },
         {
           "start": "20260914161500 +0000",
           "stop": "20260914180000 +0000",
@@ -5008,6 +4653,12 @@
           "stop": "20260914224500 +0000",
           "title": "The Count of Monte-Cristo",
           "desc": "يدور العمل في معالجة حديثة لقصة (كونتي دي مونت كريستو)، حيث يتعرض شاب للخيانة والغدر من أقرب صديق له، وينتهي به الأمر بالسجن؛ فيقرر الانتقام بعد ذلك واسترداد حقوقه."
+        },
+        {
+          "start": "20260914224500 +0000",
+          "stop": "20260915001400 +0000",
+          "title": "Shark Island",
+          "desc": "تسافر عارضات أزياء إلى جزيرة لالتقاط صورًا مع قلادة لا تُقدر بثمن، إلا أن قاتلاً طليقاً يظهر في الجزيرة النائية ولا يوجد سبيل للهروب منه سوى المياه المليئة بأسماك القرش."
         }
       ],
       "missing_desc_events": [
@@ -5036,10 +4687,10 @@
       "name": "بي إن موفيز دراما.eg",
       "family": "بي إن موفيز دراما.eg",
       "kind": "other",
-      "events": 23,
-      "fingerprint": "8bf867f06a52d8569ab729d6ab1783e52e152c0f",
-      "coverage_hours": 41.25,
-      "span_hours": 41.25,
+      "events": 22,
+      "fingerprint": "2bbfee67021547240e5eb8e2a341b55278dcb740",
+      "coverage_hours": 39.5,
+      "span_hours": 39.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -5057,19 +4708,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.0,
-      "unique_title_pct": 73.9,
+      "top_title_pct": 13.6,
+      "unique_title_pct": 72.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914144500 +0000",
-          "stop": "20260914163000 +0000",
-          "title": "Addams Family Values",
-          "desc": "(وينسداي) و(بوجسلي) شقيقان يعانيان منذ مولد شقيقهم، وهو ما دفع والدهم للبحث عن مربية، حيث يجد فتاة جميلة أعجب بها (العم فيستر)، الذي كانت تسعى للزواج منه لكي ترثه، كل هذا لم يعرفه "
-        },
         {
           "start": "20260914163000 +0000",
           "stop": "20260914183000 +0000",
@@ -5087,6 +4732,12 @@
           "stop": "20260914221500 +0000",
           "title": "Same Kind of Different as Me",
           "desc": "قصة (رون هول)، تاجر دولي في الأعمال الفنية، يجب عليه أن يصادق رجلاً خطيرًا بلا مأوى (دجيمون هونسو)، من أجل إنقاذ علاقته بزوجته (رينيه زيلوجير)، وهي المرأة التي سوف تقود أحلامها ثلا"
+        },
+        {
+          "start": "20260914221500 +0000",
+          "stop": "20260915000000 +0000",
+          "title": "The Island Between Tides",
+          "desc": "تتبع امرأة شابة لحنًا غامضًا وغريبًا إلى أن تصل لجزيرة مد وجزر نائية، لكنها عندما تعبر المد المنخفض التالي تجد نفسها في عالم مختلف بعد مرور خمسة وعشرين عامًا."
         }
       ],
       "missing_desc_events": [
@@ -5110,10 +4761,10 @@
       "name": "بي إن موفيز فاميلي.eg",
       "family": "بي إن موفيز فاميلي.eg",
       "kind": "other",
-      "events": 23,
-      "fingerprint": "f5dc05ca2934199a28fd34f7eee5e1f2c53e0f6c",
-      "coverage_hours": 39.02,
-      "span_hours": 39.02,
+      "events": 22,
+      "fingerprint": "b64878092cead0ea01ea961dc5b9c5feebe1d2b6",
+      "coverage_hours": 37.25,
+      "span_hours": 37.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -5131,19 +4782,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.0,
-      "unique_title_pct": 47.8,
+      "top_title_pct": 13.6,
+      "unique_title_pct": 50.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914154400 +0000",
-          "stop": "20260914173000 +0000",
-          "title": "The Adventures of Sharkboy and Lavagirl 3-D",
-          "desc": "طفل في العاشرة يتركه والديه كثيرًا لانهماكهما في العمل، ويخلق من وحي خياله كوكب يسميه (درول)، ويخلق به شخصيات خيالية أبرزهم شاركبوي ولافاجيرل، ويدخل معهما في مغامراتهما الوهمية، وذ"
-        },
         {
           "start": "20260914173000 +0000",
           "stop": "20260914191500 +0000",
@@ -5161,6 +4806,12 @@
           "stop": "20260914223000 +0000",
           "title": "Destined to Ride",
           "desc": "انقلبت حياة (ليلي) رأسًا على عقب عندما أُجبرت على ترك أصدقائها، والذهاب في رحلة صيفية إلى مزرعة نائية مع عمتها المحبة للطبيعة، (ليلي) أيقنت أن حياتها الاجتماعية انتهت، وهناك قام جي"
+        },
+        {
+          "start": "20260914223000 +0000",
+          "stop": "20260914234400 +0000",
+          "title": "The Swan Princess: Escape from Castle Mountain",
+          "desc": "بينما يستعد الأمير ديريك والأميرة أوديت للاحتفال بالذكرى السنوية الأولى لزواجهما، يهجم كلافيوس باعثًا الفوضى في المملكة سعيًا في غزو العالم بأكمله."
         }
       ],
       "missing_desc_events": [],
@@ -5317,6 +4968,15 @@
     },
     {
       "ids": [
+        "beIN SPORTS6 DIGITAL -d-1.qa",
+        "beINSports6.qa@MENA"
+      ],
+      "families": [
+        "beIN Sports 6 AR/MENA"
+      ]
+    },
+    {
+      "ids": [
         "beIN_SPORTS3_DIGITAL_Mono_EN.bein",
         "beINSports3.qa@MENA"
       ],
@@ -5353,24 +5013,6 @@
       "families": [
         "beIN Sports 7 AR/MENA",
         "beIN Sports 7 EN"
-      ]
-    },
-    {
-      "ids": [
-        "beINSportsMax1.qa@MENA",
-        "beINSportsMax2.qa@MENA",
-        "beINSportsMax3.qa@MENA",
-        "beINSportsMax4.qa@MENA",
-        "beINSportsMax5.qa@MENA",
-        "beINSportsMax6.qa@MENA"
-      ],
-      "families": [
-        "beIN MAX 1",
-        "beIN MAX 2",
-        "beIN MAX 3",
-        "beIN MAX 4",
-        "beIN MAX 5",
-        "beIN MAX 6"
       ]
     },
     {
