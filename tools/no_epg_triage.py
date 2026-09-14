@@ -3,7 +3,8 @@
 """Classify published NO_EPG identities before searching for new sources.
 
 The goal is to separate real active channels that need source work from aliases,
-dormant event IDs and foreign/legacy aggregator identities. Diagnostic only.
+dormant event IDs, provider umbrella IDs and foreign/legacy aggregator identities.
+Diagnostic only.
 """
 from __future__ import annotations
 
@@ -22,6 +23,12 @@ BEIN_EVENT_RE = re.compile(
 )
 STALE_YEAR_RE = re.compile(r"(?:^|\D)20(?:1\d|2[0-5])(?:\D|$)")
 COUNTRY_SHARD_RE = re.compile(r"^mena-([a-z]{2})$", re.I)
+
+# Verified against the current official provider catalogue. These are historical
+# or umbrella identities, not current linear channels requiring an EPG timetable.
+PROVIDER_UMBRELLA_IDS = {
+    "osn.tv.ae": "OSN's current catalogue exposes individual OSNtv linear channels, not a generic OSN TV channel",
+}
 
 
 def as_int(value):
@@ -76,6 +83,10 @@ def classify(row, live_by_id, live_by_key, alias_map):
     shard = row.get("shard", "")
     probe = "%s %s" % (cid, name)
 
+    umbrella_reason = PROVIDER_UMBRELLA_IDS.get(cid.casefold())
+    if umbrella_reason:
+        return "DORMANT_PROVIDER_UMBRELLA", "", umbrella_reason
+
     canonical = alias_map.get(cid)
     if canonical and canonical in live_by_id:
         return "ALIAS_TO_LIVE_CANONICAL", canonical, "merge-report alias points to a live EPG identity"
@@ -83,8 +94,6 @@ def classify(row, live_by_id, live_by_key, alias_map):
     key = row_key(row)
     logical = []
     for other in live_by_key.get(key, []):
-        # Provider aliases can cross country suffixes. Country shards must remain
-        # in the same authoritative country to avoid repeating AE1-style mistakes.
         if provider_family(shard):
             logical.append(other)
         elif expected_country(shard) and expected_country(shard) == expected_country(other.get("shard", "")):
@@ -104,7 +113,6 @@ def classify(row, live_by_id, live_by_key, alias_map):
     if fc and ec and fc != ec:
         return "FOREIGN_AGGREGATOR_ID_REVIEW", "", "feed suffix does not match authoritative country shard"
 
-    # AE1 historically bundled many non-UAE Arab channels under .ae suffixes.
     if fc == "ae" and ec and ec != "ae":
         return "FOREIGN_AGGREGATOR_ID_REVIEW", "", "EPGShare-style UAE suffix on another country identity"
 
@@ -150,7 +158,7 @@ def main():
         by_shard[item["shard"]][category] += 1
 
     out = {
-        "schema": 1,
+        "schema": 2,
         "mode": "no-epg-triage-diagnostic",
         "total_no_epg": len(no_epg),
         "category_counts": dict(counts),
@@ -161,7 +169,7 @@ def main():
     Path(args.json).write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     lines = [
-        "NO_EPG TRIAGE - DIAGNOSTIC",
+        "NO_EPG TRIAGE - DIAGNOSTIC V2",
         "total=%d source_hunting=%d" % (len(no_epg), counts["ACTIVE_CHANNEL_NEEDS_SOURCE"]),
         "",
         "CATEGORY COUNTS",
