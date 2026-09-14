@@ -160,7 +160,7 @@ def donor_titles(root):
         title = first(p,"title")[0]
         if key is None or not title or not LAT.search(title): continue
         english[cid] += 1
-        if key in titles and donor_titles[key] != title:
+        if key in titles and titles[key] != title:
             conflicts += 1
         else:
             titles[key] = title
