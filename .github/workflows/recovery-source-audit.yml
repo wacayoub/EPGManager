@@ -8,6 +8,7 @@ on:
       - "tools/recovery_source_audit.py"
       - "tools/no_epg_triage.py"
       - "tools/canonical_repair_audit.py"
+      - "tools/official_catalog_canonical_audit.py"
       - "tools/all_id_audit.py"
       - "tools/bein_id_audit.py"
       - "tools/mena_integrity_guard.py"
@@ -60,7 +61,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile tools/recovery_source_audit.py tools/no_epg_triage.py tools/canonical_repair_audit.py tools/mena_integrity_guard.py tools/mena_cloud_merge.py tools/mena_cloud_merge_safe.py
+          python -m py_compile tools/recovery_source_audit.py tools/no_epg_triage.py tools/canonical_repair_audit.py tools/official_catalog_canonical_audit.py tools/mena_integrity_guard.py tools/mena_cloud_merge.py tools/mena_cloud_merge_safe.py
           mkdir -p output
           python tools/recovery_source_audit.py \
             --all-id-csv /tmp/recovery-all-id.csv \
@@ -76,6 +77,11 @@ jobs:
             --csv /tmp/recovery-all-id.csv \
             --json output/canonical-repair-audit.json \
             --text output/canonical-repair-audit.txt
+          python tools/official_catalog_canonical_audit.py \
+            --csv /tmp/recovery-all-id.csv \
+            --catalog current-data/catalog.json \
+            --json output/official-catalog-canonical-audit.json \
+            --text output/official-catalog-canonical-audit.txt
 
       - name: Publish diagnostics to mena-data
         shell: bash
@@ -89,11 +95,13 @@ jobs:
           cp ../output/no-epg-triage.txt .
           cp ../output/canonical-repair-audit.json .
           cp ../output/canonical-repair-audit.txt .
+          cp ../output/official-catalog-canonical-audit.json .
+          cp ../output/official-catalog-canonical-audit.txt .
           cp /tmp/recovery-all-id.json all-id-audit.json
           cp /tmp/recovery-all-id.csv all-id-audit.csv
           git config user.name "EPGManager Recovery Audit"
           git config user.email "actions@users.noreply.github.com"
-          git add recovery-source-audit.json recovery-source-audit.txt no-epg-triage.json no-epg-triage.txt canonical-repair-audit.json canonical-repair-audit.txt all-id-audit.json all-id-audit.csv
+          git add recovery-source-audit.json recovery-source-audit.txt no-epg-triage.json no-epg-triage.txt canonical-repair-audit.json canonical-repair-audit.txt official-catalog-canonical-audit.json official-catalog-canonical-audit.txt all-id-audit.json all-id-audit.csv
           if git diff --cached --quiet; then
             exit 0
           fi
