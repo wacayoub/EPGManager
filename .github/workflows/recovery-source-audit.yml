@@ -6,6 +6,8 @@ on:
     paths:
       - ".github/workflows/recovery-source-audit.yml"
       - "tools/recovery_source_audit.py"
+      - "tools/all_id_audit.py"
+      - "tools/bein_id_audit.py"
       - "tools/mena_integrity_guard.py"
       - "tools/mena_cloud_merge.py"
       - "tools/mena_cloud_merge_safe.py"
@@ -33,12 +35,24 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Load current all-ID verdicts
+      - name: Load current published MENA data
         shell: bash
         run: |
           set -euo pipefail
           git fetch origin mena-data
-          git show origin/mena-data:all-id-audit.csv > /tmp/all-id-audit.csv
+          git worktree add current-data origin/mena-data
+
+      - name: Rebuild exhaustive current all-ID verdicts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/all_id_audit.py tools/bein_id_audit.py
+          python tools/all_id_audit.py \
+            --dir current-data \
+            --manifest current-data/shards.json \
+            --json /tmp/recovery-all-id.json \
+            --text /tmp/recovery-all-id.txt \
+            --csv /tmp/recovery-all-id.csv
 
       - name: Audit recovery candidates
         shell: bash
@@ -47,7 +61,7 @@ jobs:
           python -m py_compile tools/recovery_source_audit.py tools/mena_integrity_guard.py tools/mena_cloud_merge.py tools/mena_cloud_merge_safe.py
           mkdir -p output
           python tools/recovery_source_audit.py \
-            --all-id-csv /tmp/all-id-audit.csv \
+            --all-id-csv /tmp/recovery-all-id.csv \
             --output-json output/recovery-source-audit.json \
             --output-text output/recovery-source-audit.txt \
             --window-hours 48
@@ -56,14 +70,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git worktree add publish origin/mena-data
-          cd publish
+          cd current-data
           git checkout -B mena-data origin/mena-data
           cp ../output/recovery-source-audit.json .
           cp ../output/recovery-source-audit.txt .
+          cp /tmp/recovery-all-id.json all-id-audit.json
+          cp /tmp/recovery-all-id.csv all-id-audit.csv
           git config user.name "EPGManager Recovery Audit"
           git config user.email "actions@users.noreply.github.com"
-          git add recovery-source-audit.json recovery-source-audit.txt
+          git add recovery-source-audit.json recovery-source-audit.txt all-id-audit.json all-id-audit.csv
           if git diff --cached --quiet; then
             exit 0
           fi
