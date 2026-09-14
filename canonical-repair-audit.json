@@ -1,11 +1,11 @@
 {
-  "schema": 1,
+  "schema": 2,
   "mode": "foreign-id-canonical-repair-audit",
   "foreign_no_epg": 191,
   "counts": {
-    "NO_CANONICAL_MATCH": 178,
-    "REVIEW_CANONICAL_REPAIR": 6,
-    "SAFE_CANONICAL_REPAIR": 7
+    "NO_CANONICAL_MATCH": 182,
+    "SAFE_CANONICAL_REPAIR": 6,
+    "REVIEW_CANONICAL_REPAIR": 3
   },
   "matches": [
     {
@@ -13,11 +13,14 @@
       "target_id": "Aghapy.TV.ae",
       "target_name": "Aghapy TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Alhayat TV.eg",
       "canonical_name": "Alhayat TV.eg",
+      "canonical_variants": [],
       "canonical_events": 21,
       "score": 0.615,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -25,11 +28,14 @@
       "target_id": "Al.Ahly.TV.HD.ae",
       "target_name": "Al Ahly TV HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al Nahar TV.sa",
       "canonical_name": "Al Nahar TV.sa",
+      "canonical_variants": [],
       "canonical_events": 58,
-      "score": 0.684,
+      "score": 0.667,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -37,11 +43,16 @@
       "target_id": "Al.Askandria.5.ae",
       "target_name": "Al Askandria 5",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Masriyah.ae",
-      "canonical_name": "Al Masriyah",
+      "target_variants": [
+        "num:5"
+      ],
+      "canonical_id": "Al Masriya.sa",
+      "canonical_name": "Al Masriya.sa",
+      "canonical_variants": [],
       "canonical_events": 47,
-      "score": 0.69,
+      "score": 0.667,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -49,11 +60,16 @@
       "target_id": "Al.Kahera.3.ae",
       "target_name": "Al Kahera 3",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Kahera.Wal.Nas.ae",
-      "canonical_name": "Al Kahera Wal Nas",
-      "canonical_events": 51,
-      "score": 0.75,
+      "target_variants": [
+        "num:3"
+      ],
+      "canonical_id": "Al Kahera Walnas.sa",
+      "canonical_name": "Al Kahera Walnas.sa",
+      "canonical_variants": [],
+      "canonical_events": 47,
+      "score": 0.741,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -61,23 +77,29 @@
       "target_id": "AL.Kahera.Al.Kobra.ae",
       "target_name": "AL Kahera Al Kobra",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Kahera.Wal.Nas.ae",
       "canonical_name": "Al Kahera Wal Nas",
+      "canonical_variants": [],
       "canonical_events": 51,
-      "score": 0.821,
+      "score": 0.8,
       "same_logical_key": false,
-      "verdict": "REVIEW_CANONICAL_REPAIR"
+      "variant_match": true,
+      "verdict": "NO_CANONICAL_MATCH"
     },
     {
       "target_shard": "mena-eg",
       "target_id": "Al.Nada.TV.ae",
       "target_name": "Al Nada TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al Nahar TV.sa",
       "canonical_name": "Al Nahar TV.sa",
+      "canonical_variants": [],
       "canonical_events": 58,
       "score": 0.8,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -85,11 +107,14 @@
       "target_id": "Al.Nahar.Noor.ae",
       "target_name": "Al Nahar Noor",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al Nahar TV.sa",
       "canonical_name": "Al Nahar TV.sa",
+      "canonical_variants": [],
       "canonical_events": 58,
       "score": 0.762,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -97,11 +122,16 @@
       "target_id": "Al.Qahera.News.ae",
       "target_name": "Al Qahera News",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Kahera.Wal.Nas.ae",
-      "canonical_name": "Al Kahera Wal Nas",
-      "canonical_events": 51,
-      "score": 0.743,
+      "target_variants": [
+        "news"
+      ],
+      "canonical_id": "Al Kahera Walnas.sa",
+      "canonical_name": "Al Kahera Walnas.sa",
+      "canonical_variants": [],
+      "canonical_events": 47,
+      "score": 0.733,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -109,11 +139,14 @@
       "target_id": "Al.Saeedah.ae",
       "target_name": "Al Saeedah",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "AlSaeedah.eg@SD",
       "canonical_name": "السعيدة",
+      "canonical_variants": [],
       "canonical_events": 42,
       "score": 0.947,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "SAFE_CANONICAL_REPAIR"
     },
     {
@@ -121,11 +154,14 @@
       "target_id": "Al.Wathaeqya.ae",
       "target_name": "Al Wathaeqya",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Oula.ae",
-      "canonical_name": "Al Oula",
-      "canonical_events": 50,
-      "score": 0.667,
+      "target_variants": [],
+      "canonical_id": "Al Nahar TV.sa",
+      "canonical_name": "Al Nahar TV.sa",
+      "canonical_variants": [],
+      "canonical_events": 58,
+      "score": 0.6,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -133,11 +169,14 @@
       "target_id": "Alfath.TV.ae",
       "target_name": "Alfath TV",
       "target_feed_country": "ae",
-      "canonical_id": "Alhayat TV.eg",
-      "canonical_name": "Alhayat TV.eg",
-      "canonical_events": 21,
-      "score": 0.647,
+      "target_variants": [],
+      "canonical_id": "AlNahar.eg@SD",
+      "canonical_name": "النهار",
+      "canonical_variants": [],
+      "canonical_events": 40,
+      "score": 0.615,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -145,11 +184,14 @@
       "target_id": "AlHadath.Alyoum.ae",
       "target_name": "AlHadath Alyoum",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Alhayat TV.eg",
       "canonical_name": "Alhayat TV.eg",
+      "canonical_variants": [],
       "canonical_events": 21,
-      "score": 0.606,
+      "score": 0.545,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -157,11 +199,14 @@
       "target_id": "Aswan.ae",
       "target_name": "Aswan",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Shams.TV.ae",
-      "canonical_name": "Al Shams TV",
-      "canonical_events": 47,
-      "score": 0.588,
+      "target_variants": [],
+      "canonical_id": "MasperoZaman.eg@SD",
+      "canonical_name": "ماسبيرو زمان",
+      "canonical_variants": [],
+      "canonical_events": 50,
+      "score": 0.471,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -169,11 +214,14 @@
       "target_id": "Bakous.Alexandaria.ae",
       "target_name": "Bakous Alexandaria",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Masriyah.ae",
-      "canonical_name": "Al Masriyah",
+      "target_variants": [],
+      "canonical_id": "Al Masriya.sa",
+      "canonical_name": "Al Masriya.sa",
+      "canonical_variants": [],
       "canonical_events": 47,
-      "score": 0.485,
+      "score": 0.429,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -181,11 +229,14 @@
       "target_id": "El.Moled.ae",
       "target_name": "El Moled",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "El.Mehwar.HD.ae",
       "canonical_name": "El Mehwar HD",
+      "canonical_variants": [],
       "canonical_events": 45,
-      "score": 0.667,
+      "score": 0.588,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -193,11 +244,19 @@
       "target_id": "Extra.live.ae",
       "target_name": "Extra live",
       "target_feed_country": "ae",
+      "target_variants": [
+        "extra"
+      ],
       "canonical_id": "Extra.News.HD.ae",
       "canonical_name": "Extra News HD",
+      "canonical_variants": [
+        "extra",
+        "news"
+      ],
       "canonical_events": 65,
-      "score": 0.75,
+      "score": 0.7,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -205,11 +264,14 @@
       "target_id": "Huda.TV.ae",
       "target_name": "Huda TV",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Oula.ae",
-      "canonical_name": "Al Oula",
-      "canonical_events": 50,
-      "score": 0.533,
+      "target_variants": [],
+      "canonical_id": "Mehwar.eg",
+      "canonical_name": "Mehwar.eg",
+      "canonical_variants": [],
+      "canonical_events": 12,
+      "score": 0.4,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -217,11 +279,14 @@
       "target_id": "Koogi.TV.ae",
       "target_name": "Koogi TV",
       "target_feed_country": "ae",
-      "canonical_id": "Nile.TV.ae",
-      "canonical_name": "Nile TV",
-      "canonical_events": 91,
-      "score": 0.5,
+      "target_variants": [],
+      "canonical_id": "Egyptian TV.eg",
+      "canonical_name": "Egyptian TV.eg",
+      "canonical_variants": [],
+      "canonical_events": 23,
+      "score": 0.308,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -229,11 +294,16 @@
       "target_id": "Madrasetna.1.ae",
       "target_name": "Madrasetna 1",
       "target_feed_country": "ae",
-      "canonical_id": "DMC.Drama.ae",
-      "canonical_name": "DMC Drama",
-      "canonical_events": 47,
-      "score": 0.56,
+      "target_variants": [
+        "num:1"
+      ],
+      "canonical_id": "DMCDrama.eg@SD",
+      "canonical_name": "دي إم سي دراما",
+      "canonical_variants": [],
+      "canonical_events": 41,
+      "score": 0.5,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -241,11 +311,18 @@
       "target_id": "Madrasetna.2.ae",
       "target_name": "Madrasetna 2",
       "target_feed_country": "ae",
-      "canonical_id": "DMC.Drama.ae",
-      "canonical_name": "DMC Drama",
+      "target_variants": [
+        "num:2"
+      ],
+      "canonical_id": "Al Kahera Walnas 2.sa",
+      "canonical_name": "Al Kahera Walnas 2.sa",
+      "canonical_variants": [
+        "num:2"
+      ],
       "canonical_events": 47,
-      "score": 0.56,
+      "score": 0.467,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -253,11 +330,16 @@
       "target_id": "Madrasetna.3.ae",
       "target_name": "Madrasetna 3",
       "target_feed_country": "ae",
-      "canonical_id": "DMC.Drama.ae",
-      "canonical_name": "DMC Drama",
-      "canonical_events": 47,
-      "score": 0.56,
+      "target_variants": [
+        "num:3"
+      ],
+      "canonical_id": "DMCDrama.eg@SD",
+      "canonical_name": "دي إم سي دراما",
+      "canonical_variants": [],
+      "canonical_events": 41,
+      "score": 0.5,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -265,11 +347,14 @@
       "target_id": "Matrouh.ae",
       "target_name": "Matrouh",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Oula.ae",
-      "canonical_name": "Al Oula",
-      "canonical_events": 50,
-      "score": 0.556,
+      "target_variants": [],
+      "canonical_id": "AlMasriyah.eg@SD",
+      "canonical_name": "المصرية",
+      "canonical_variants": [],
+      "canonical_events": 36,
+      "score": 0.471,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -277,11 +362,14 @@
       "target_id": "Mazzika.ae",
       "target_name": "Mazzika",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Masriyah.ae",
-      "canonical_name": "Al Masriyah",
+      "target_variants": [],
+      "canonical_id": "Al Masriya.sa",
+      "canonical_name": "Al Masriya.sa",
+      "canonical_variants": [],
       "canonical_events": 47,
-      "score": 0.545,
+      "score": 0.471,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -289,11 +377,14 @@
       "target_id": "Mekameleen.ae",
       "target_name": "Mekameleen",
       "target_feed_country": "ae",
-      "canonical_id": "Nile.TV.ae",
-      "canonical_name": "Nile TV",
-      "canonical_events": 91,
-      "score": 0.5,
+      "target_variants": [],
+      "canonical_id": "MasperoZaman.eg@SD",
+      "canonical_name": "ماسبيرو زمان",
+      "canonical_variants": [],
+      "canonical_events": 50,
+      "score": 0.455,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -301,11 +392,14 @@
       "target_id": "Misr.Al.Zeraeey.ae",
       "target_name": "Misr Al Zeraeey",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Oula.ae",
-      "canonical_name": "Al Oula",
-      "canonical_events": 50,
-      "score": 0.5,
+      "target_variants": [],
+      "canonical_id": "MixBelAraby.eg@SD",
+      "canonical_name": "ميكس بالعربي",
+      "canonical_variants": [],
+      "canonical_events": 35,
+      "score": 0.462,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -313,11 +407,14 @@
       "target_id": "Misr.AlBalad.ae",
       "target_name": "Misr AlBalad",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "SadaElbalad.eg@SD",
       "canonical_name": "صدى البلد",
+      "canonical_variants": [],
       "canonical_events": 30,
       "score": 0.696,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -325,11 +422,18 @@
       "target_id": "Misr.Quran.Kareem.ae",
       "target_name": "Misr Quran Kareem",
       "target_feed_country": "ae",
+      "target_variants": [
+        "quran"
+      ],
       "canonical_id": "DMC.Drama.ae",
       "canonical_name": "DMC Drama",
+      "canonical_variants": [
+        "drama"
+      ],
       "canonical_events": 47,
-      "score": 0.467,
+      "score": 0.385,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -337,11 +441,14 @@
       "target_id": "Nile.Culture.ae",
       "target_name": "Nile Culture",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Nile Life.eg",
       "canonical_name": "Nile Life.eg",
+      "canonical_variants": [],
       "canonical_events": 24,
-      "score": 0.68,
+      "score": 0.667,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -349,11 +456,18 @@
       "target_id": "Nile.News.ae",
       "target_name": "Nile News",
       "target_feed_country": "ae",
+      "target_variants": [
+        "news"
+      ],
       "canonical_id": "Nile.Cinema.ae",
       "canonical_name": "Nile Cinema",
+      "canonical_variants": [
+        "cinema"
+      ],
       "canonical_events": 27,
-      "score": 0.75,
+      "score": 0.7,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -361,11 +475,18 @@
       "target_id": "Nile.Sport.ae",
       "target_name": "Nile Sport",
       "target_feed_country": "ae",
+      "target_variants": [
+        "sport"
+      ],
       "canonical_id": "On.Time.Sports.HD.ae",
       "canonical_name": "On Time Sports HD",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.786,
+      "score": 0.75,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -373,11 +494,14 @@
       "target_id": "North.Sinai.ae",
       "target_name": "North Sinai",
       "target_feed_country": "ae",
-      "canonical_id": "Nile.Cinema.ae",
-      "canonical_name": "Nile Cinema",
-      "canonical_events": 27,
-      "score": 0.538,
+      "target_variants": [],
+      "canonical_id": "OnDrama.eg@SD",
+      "canonical_name": "أون دراما",
+      "canonical_variants": [],
+      "canonical_events": 36,
+      "score": 0.333,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -385,11 +509,14 @@
       "target_id": "South.Sinai.ae",
       "target_name": "South Sinai",
       "target_feed_country": "ae",
-      "canonical_id": "Nile.Cinema.ae",
-      "canonical_name": "Nile Cinema",
-      "canonical_events": 27,
-      "score": 0.462,
+      "target_variants": [],
+      "canonical_id": "Al.Oula.ae",
+      "canonical_name": "Al Oula",
+      "canonical_variants": [],
+      "canonical_events": 50,
+      "score": 0.333,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -397,11 +524,14 @@
       "target_id": "The.Kingdom.Sat.ae",
       "target_name": "The Kingdom Sat",
       "target_feed_country": "ae",
-      "canonical_id": "Nile.Cinema.ae",
-      "canonical_name": "Nile Cinema",
-      "canonical_events": 27,
-      "score": 0.533,
+      "target_variants": [],
+      "canonical_id": "OnDrama.eg@SD",
+      "canonical_name": "أون دراما",
+      "canonical_variants": [],
+      "canonical_events": 36,
+      "score": 0.364,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -409,11 +539,14 @@
       "target_id": "Watan.TV.ae",
       "target_name": "Watan TV",
       "target_feed_country": "ae",
-      "canonical_id": "Egyptian TV.eg",
-      "canonical_name": "Egyptian TV.eg",
-      "canonical_events": 23,
-      "score": 0.529,
+      "target_variants": [],
+      "canonical_id": "TeN.eg@SD",
+      "canonical_name": "تن",
+      "canonical_variants": [],
+      "canonical_events": 35,
+      "score": 0.5,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -421,11 +554,14 @@
       "target_id": "Zamalek.TV.ae",
       "target_name": "Zamalek TV",
       "target_feed_country": "ae",
-      "canonical_id": "Nile.TV.ae",
-      "canonical_name": "Nile TV",
-      "canonical_events": 91,
-      "score": 0.533,
+      "target_variants": [],
+      "canonical_id": "OnDrama.eg@SD",
+      "canonical_name": "أون دراما",
+      "canonical_variants": [],
+      "canonical_events": 36,
+      "score": 0.429,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -433,11 +569,14 @@
       "target_id": "Zee.Alwan.Egypt.ae",
       "target_name": "Zee Alwan Egypt",
       "target_feed_country": "ae",
-      "canonical_id": "Egyptian TV.eg",
-      "canonical_name": "Egyptian TV.eg",
-      "canonical_events": 23,
-      "score": 0.514,
+      "target_variants": [],
+      "canonical_id": "Alhayat TV.eg",
+      "canonical_name": "Alhayat TV.eg",
+      "canonical_variants": [],
+      "canonical_events": 21,
+      "score": 0.455,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -445,11 +584,14 @@
       "target_id": "Al.Majd.ae",
       "target_name": "Al Majd",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "AlHadath.sa@SD",
       "canonical_name": "الحدث",
+      "canonical_variants": [],
       "canonical_events": 41,
       "score": 0.533,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -457,11 +599,18 @@
       "target_id": "Al.Majd.Holy.Quran.ae",
       "target_name": "Al Majd Holy Quran",
       "target_feed_country": "ae",
+      "target_variants": [
+        "quran"
+      ],
       "canonical_id": "Saudi Quran.sa",
       "canonical_name": "Saudi Quran.sa",
+      "canonical_variants": [
+        "quran"
+      ],
       "canonical_events": 47,
-      "score": 0.576,
+      "score": 0.552,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -469,11 +618,14 @@
       "target_id": "Al.Sahraa.TV.ae",
       "target_name": "Al Sahraa TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al Resalah.sa",
       "canonical_name": "Al Resalah.sa",
+      "canonical_variants": [],
       "canonical_events": 120,
       "score": 0.632,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -481,11 +633,14 @@
       "target_id": "Bin.Othaimeen.ae",
       "target_name": "Bin Othaimeen",
       "target_feed_country": "ae",
-      "canonical_id": "Saudi.Thikrayat.ae",
-      "canonical_name": "Saudi Thikrayat",
-      "canonical_events": 68,
-      "score": 0.438,
+      "target_variants": [],
+      "canonical_id": "MoviesThriller.sa@SD",
+      "canonical_name": "Movies Thriller",
+      "canonical_variants": [],
+      "canonical_events": 16,
+      "score": 0.429,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -493,11 +648,20 @@
       "target_id": "KSA.sports.2.HD.ae",
       "target_name": "KSA sports 2 HD",
       "target_feed_country": "ae",
-      "canonical_id": "KSA.Sports.3.HD.ae",
-      "canonical_name": "KSA Sports 3 HD",
-      "canonical_events": 34,
-      "score": 0.929,
+      "target_variants": [
+        "num:2",
+        "sport"
+      ],
+      "canonical_id": "Saudi Sports 2.sa",
+      "canonical_name": "Saudi Sports 2.sa",
+      "canonical_variants": [
+        "num:2",
+        "sport"
+      ],
+      "canonical_events": 47,
+      "score": 0.846,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "REVIEW_CANONICAL_REPAIR"
     },
     {
@@ -505,11 +669,14 @@
       "target_id": "Oyoun.Al.Watan.TV.ae",
       "target_name": "Oyoun Al Watan TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Saudi.Al.Ekhbariya.HD.ae",
       "canonical_name": "Saudi Al Ekhbariya HD",
+      "canonical_variants": [],
       "canonical_events": 105,
-      "score": 0.5,
+      "score": 0.438,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -517,11 +684,18 @@
       "target_id": "Saudi.Quran.TV.HD.ae",
       "target_name": "Saudi Quran TV HD",
       "target_feed_country": "ae",
+      "target_variants": [
+        "quran"
+      ],
       "canonical_id": "Saudi Quran.sa",
       "canonical_name": "Saudi Quran.sa",
+      "canonical_variants": [
+        "quran"
+      ],
       "canonical_events": 47,
       "score": 1.0,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "SAFE_CANONICAL_REPAIR"
     },
     {
@@ -529,11 +703,18 @@
       "target_id": "Saudi.Sunna.TV.HD.ae",
       "target_name": "Saudi Sunna TV HD",
       "target_feed_country": "ae",
+      "target_variants": [
+        "sunnah"
+      ],
       "canonical_id": "Saudi Sunnah.sa",
       "canonical_name": "Saudi Sunnah.sa",
+      "canonical_variants": [
+        "sunnah"
+      ],
       "canonical_events": 47,
       "score": 0.957,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "SAFE_CANONICAL_REPAIR"
     },
     {
@@ -541,11 +722,14 @@
       "target_id": "Saudia.Alaan.TV.ae",
       "target_name": "Saudia Alaan TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Saudi.Al.Ekhbariya.HD.ae",
       "canonical_name": "Saudi Al Ekhbariya HD",
+      "canonical_variants": [],
       "canonical_events": 105,
-      "score": 0.706,
+      "score": 0.667,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -553,11 +737,14 @@
       "target_id": "Zad.TV.ae",
       "target_name": "Zad TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Saudi.HD.ae",
       "canonical_name": "Saudi HD",
+      "canonical_variants": [],
       "canonical_events": 62,
-      "score": 0.667,
+      "score": 0.5,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -565,11 +752,19 @@
       "target_id": "Al.Jazeera.Documentary.HD.ae",
       "target_name": "Al Jazeera Documentary HD",
       "target_feed_country": "ae",
+      "target_variants": [
+        "documentary"
+      ],
       "canonical_id": "Aljazeera-Documentary-1.qa",
       "canonical_name": "Aljazeera-Documentary-1.qa",
+      "canonical_variants": [
+        "documentary",
+        "num:1"
+      ],
       "canonical_events": 55,
       "score": 0.933,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "REVIEW_CANONICAL_REPAIR"
     },
     {
@@ -577,11 +772,18 @@
       "target_id": "Al.Jazeera.English.HD.ae",
       "target_name": "Al Jazeera English HD",
       "target_feed_country": "ae",
-      "canonical_id": "AlJazeera.qa@Arabic",
-      "canonical_name": "Al Jazeera Arabic",
-      "canonical_events": 34,
-      "score": 1.0,
+      "target_variants": [
+        "english"
+      ],
+      "canonical_id": "AlJazeera.English.net",
+      "canonical_name": "AlJazeera English",
+      "canonical_variants": [
+        "english"
+      ],
+      "canonical_events": 75,
+      "score": 0.971,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "SAFE_CANONICAL_REPAIR"
     },
     {
@@ -589,11 +791,14 @@
       "target_id": "Al.Jazeera.HD.ae",
       "target_name": "Al Jazeera HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "AlJazeera.qa@Arabic",
       "canonical_name": "Al Jazeera Arabic",
+      "canonical_variants": [],
       "canonical_events": 34,
-      "score": 1.0,
+      "score": 0.947,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "SAFE_CANONICAL_REPAIR"
     },
     {
@@ -601,11 +806,14 @@
       "target_id": "Al.Maaref.TV.ae",
       "target_name": "Al Maaref TV",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Rayyan.HD.ae",
-      "canonical_name": "Al Rayyan HD",
-      "canonical_events": 49,
-      "score": 0.667,
+      "target_variants": [],
+      "canonical_id": "AlArabyTV.qa@SD",
+      "canonical_name": "Al Araby TV",
+      "canonical_variants": [],
+      "canonical_events": 53,
+      "score": 0.588,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -613,11 +821,14 @@
       "target_id": "Hola.Qatar.ae",
       "target_name": "Hola Qatar",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Qatar.TV.HD.ae",
       "canonical_name": "Qatar TV HD",
+      "canonical_variants": [],
       "canonical_events": 53,
-      "score": 0.737,
+      "score": 0.667,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -625,11 +836,19 @@
       "target_id": "Qatar.R.Quran.2.ae",
       "target_name": "Qatar R Quran 2",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:2",
+        "quran"
+      ],
       "canonical_id": "Qatar.2.HD.ae",
       "canonical_name": "Qatar 2 HD",
+      "canonical_variants": [
+        "num:2"
+      ],
       "canonical_events": 89,
-      "score": 0.692,
+      "score": 0.636,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -637,11 +856,18 @@
       "target_id": "Qatar.R.Quran.ae",
       "target_name": "Qatar R Quran",
       "target_feed_country": "ae",
+      "target_variants": [
+        "quran"
+      ],
       "canonical_id": "Qatar.2.HD.ae",
       "canonical_name": "Qatar 2 HD",
+      "canonical_variants": [
+        "num:2"
+      ],
       "canonical_events": 89,
-      "score": 0.667,
+      "score": 0.6,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -649,11 +875,14 @@
       "target_id": "Sout.Al.Islam.Doha.ae",
       "target_name": "Sout Al Islam Doha",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Jazeera.Mobasher.2.HD.ae",
-      "canonical_name": "Al Jazeera Mobasher 2 HD",
-      "canonical_events": 62,
-      "score": 0.4,
+      "target_variants": [],
+      "canonical_id": "AlArabyTV.qa@SD",
+      "canonical_name": "Al Araby TV",
+      "canonical_variants": [],
+      "canonical_events": 53,
+      "score": 0.385,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -661,11 +890,14 @@
       "target_id": "Sout.Al.Rayyan.ae",
       "target_name": "Sout Al Rayyan",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Rayyan.HD.ae",
       "canonical_name": "Al Rayyan HD",
+      "canonical_variants": [],
       "canonical_events": 49,
-      "score": 0.815,
+      "score": 0.783,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -673,11 +905,18 @@
       "target_id": "Sout.Alkhaleej.2.ae",
       "target_name": "Sout Alkhaleej 2",
       "target_feed_country": "ae",
-      "canonical_id": "Qatar.2.HD.ae",
-      "canonical_name": "Qatar 2 HD",
-      "canonical_events": 89,
-      "score": 0.5,
+      "target_variants": [
+        "num:2"
+      ],
+      "canonical_id": "Al.Jazeera.Mobasher.2.HD.ae",
+      "canonical_name": "Al Jazeera Mobasher 2 HD",
+      "canonical_variants": [
+        "num:2"
+      ],
+      "canonical_events": 62,
+      "score": 0.378,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -685,11 +924,16 @@
       "target_id": "Sout.Alkhaleej.3.ae",
       "target_name": "Sout Alkhaleej 3",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:3"
+      ],
       "canonical_id": "AlJazeera2.qa@HD",
       "canonical_name": "Al Jazeera 2",
+      "canonical_variants": [],
       "canonical_events": 20,
       "score": 0.429,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -697,11 +941,16 @@
       "target_id": "Sout.Alkhaleej.4.ae",
       "target_name": "Sout Alkhaleej 4",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:4"
+      ],
       "canonical_id": "AlJazeera2.qa@HD",
       "canonical_name": "Al Jazeera 2",
+      "canonical_variants": [],
       "canonical_events": 20,
       "score": 0.429,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -709,11 +958,14 @@
       "target_id": "Sout.Alkhaleej.Europe.ae",
       "target_name": "Sout Alkhaleej Europe",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Jazeera.Mobasher.HD.ae",
       "canonical_name": "Al Jazeera Mobasher HD",
+      "canonical_variants": [],
       "canonical_events": 62,
-      "score": 0.455,
+      "score": 0.4,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -721,11 +973,14 @@
       "target_id": "Al.Anwar.TV.ae",
       "target_name": "Al Anwar TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "AlraiTV.kw@SD",
       "canonical_name": "Al Rai TV",
+      "canonical_variants": [],
       "canonical_events": 78,
       "score": 0.571,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -733,11 +988,14 @@
       "target_id": "Al.Rai.TV.ae",
       "target_name": "Al Rai TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "AlraiTV.kw@SD",
       "canonical_name": "Al Rai TV",
+      "canonical_variants": [],
       "canonical_events": 78,
       "score": 1.0,
       "same_logical_key": true,
+      "variant_match": true,
       "verdict": "SAFE_CANONICAL_REPAIR"
     },
     {
@@ -745,11 +1003,14 @@
       "target_id": "Kuwait.Al.Akhbar.ae",
       "target_name": "Kuwait Al Akhbar",
       "target_feed_country": "ae",
-      "canonical_id": "Kuwait.TV.1.HD.ae",
-      "canonical_name": "Kuwait TV 1 HD",
-      "canonical_events": 63,
-      "score": 0.643,
+      "target_variants": [],
+      "canonical_id": "AlraiTV.kw@SD",
+      "canonical_name": "Al Rai TV",
+      "canonical_variants": [],
+      "canonical_events": 78,
+      "score": 0.364,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -757,11 +1018,14 @@
       "target_id": "Kuwait.Classical.ae",
       "target_name": "Kuwait Classical",
       "target_feed_country": "ae",
-      "canonical_id": "Kuwait.TV.1.HD.ae",
-      "canonical_name": "Kuwait TV 1 HD",
-      "canonical_events": 63,
-      "score": 0.667,
+      "target_variants": [],
+      "canonical_id": "AlraiTV.kw@SD",
+      "canonical_name": "Al Rai TV",
+      "canonical_variants": [],
+      "canonical_events": 78,
+      "score": 0.261,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -769,11 +1033,14 @@
       "target_id": "Kuwait.Easy.ae",
       "target_name": "Kuwait Easy",
       "target_feed_country": "ae",
-      "canonical_id": "Kuwait.TV.1.HD.ae",
-      "canonical_name": "Kuwait TV 1 HD",
-      "canonical_events": 63,
-      "score": 0.783,
+      "target_variants": [],
+      "canonical_id": "AlraiTV.kw@SD",
+      "canonical_name": "Al Rai TV",
+      "canonical_variants": [],
+      "canonical_events": 78,
+      "score": 0.333,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -781,11 +1048,18 @@
       "target_id": "Kuwait.Holy.Quran.ae",
       "target_name": "Kuwait Holy Quran",
       "target_feed_country": "ae",
+      "target_variants": [
+        "quran"
+      ],
       "canonical_id": "Kuwait.Sport.HD.ae",
       "canonical_name": "Kuwait Sport HD",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.667,
+      "score": 0.621,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -793,11 +1067,14 @@
       "target_id": "Kuwait.Shaabyia.ae",
       "target_name": "Kuwait Shaabyia",
       "target_feed_country": "ae",
-      "canonical_id": "Kuwait.TV.1.HD.ae",
-      "canonical_name": "Kuwait TV 1 HD",
-      "canonical_events": 63,
-      "score": 0.667,
+      "target_variants": [],
+      "canonical_id": "AlraiTV.kw@SD",
+      "canonical_name": "Al Rai TV",
+      "canonical_variants": [],
+      "canonical_events": 78,
+      "score": 0.273,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -805,23 +1082,33 @@
       "target_id": "Kuwait.Super.ae",
       "target_name": "Kuwait Super",
       "target_feed_country": "ae",
-      "canonical_id": "Kuwait.Sport.HD.ae",
-      "canonical_name": "Kuwait Sport HD",
-      "canonical_events": 34,
-      "score": 0.857,
+      "target_variants": [],
+      "canonical_id": "AlraiTV.kw@SD",
+      "canonical_name": "Al Rai TV",
+      "canonical_variants": [],
+      "canonical_events": 78,
+      "score": 0.316,
       "same_logical_key": false,
-      "verdict": "REVIEW_CANONICAL_REPAIR"
+      "variant_match": true,
+      "verdict": "NO_CANONICAL_MATCH"
     },
     {
       "target_shard": "mena-kw",
       "target_id": "Kuwait.TV.2.HD.ae",
       "target_name": "Kuwait TV 2 HD",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:2"
+      ],
       "canonical_id": "Kuwait.TV.1.HD.ae",
       "canonical_name": "Kuwait TV 1 HD",
+      "canonical_variants": [
+        "num:1"
+      ],
       "canonical_events": 63,
-      "score": 0.9,
+      "score": 0.875,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "REVIEW_CANONICAL_REPAIR"
     },
     {
@@ -829,23 +1116,31 @@
       "target_id": "Bahrain.International.ae",
       "target_name": "Bahrain International",
       "target_feed_country": "ae",
+      "target_variants": [
+        "international"
+      ],
       "canonical_id": "BahrainTV.bh@SD",
       "canonical_name": "Bahrain TV",
+      "canonical_variants": [],
       "canonical_events": 96,
-      "score": 1.0,
+      "score": 0.533,
       "same_logical_key": false,
-      "verdict": "SAFE_CANONICAL_REPAIR"
+      "variant_match": false,
+      "verdict": "NO_CANONICAL_MATCH"
     },
     {
       "target_shard": "mena-bh",
       "target_id": "LuaLua.TV.HD.ae",
       "target_name": "LuaLua TV HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "BahrainTV.bh@SD",
       "canonical_name": "Bahrain TV",
+      "canonical_variants": [],
       "canonical_events": 96,
       "score": 0.308,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -853,11 +1148,14 @@
       "target_id": "Alistiqama.TV.ae",
       "target_name": "Alistiqama TV",
       "target_feed_country": "ae",
-      "canonical_id": "Oman.eg",
-      "canonical_name": "Oman.eg",
-      "canonical_events": 46,
-      "score": 0.389,
+      "target_variants": [],
+      "canonical_id": "Oman Al Thakafeyah.sa",
+      "canonical_name": "Oman Al Thakafeyah.sa",
+      "canonical_variants": [],
+      "canonical_events": 98,
+      "score": 0.357,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -865,11 +1163,14 @@
       "target_id": "Oman.TV.Culture.HD.ae",
       "target_name": "Oman TV Culture HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "OmanTVCultural.om",
       "canonical_name": "قناة عمان الثقافية",
+      "canonical_variants": [],
       "canonical_events": 79,
       "score": 0.769,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -877,11 +1178,14 @@
       "target_id": "Azhari.TV.ae",
       "target_name": "Azhari TV",
       "target_feed_country": "ae",
-      "canonical_id": "Jordan.Sport.HD.ae",
-      "canonical_name": "Jordan Sport HD",
-      "canonical_events": 34,
-      "score": 0.364,
+      "target_variants": [],
+      "canonical_id": "AmmanTV.jo@SD",
+      "canonical_name": "عَمان",
+      "canonical_variants": [],
+      "canonical_events": 35,
+      "score": 0.308,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -889,11 +1193,14 @@
       "target_id": "Jordan.sama.ae",
       "target_name": "Jordan sama",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Jordan TV.sa",
       "canonical_name": "Jordan TV.sa",
+      "canonical_variants": [],
       "canonical_events": 47,
-      "score": 0.762,
+      "score": 0.706,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -901,11 +1208,14 @@
       "target_id": "Kaifa.TV.ae",
       "target_name": "Kaifa TV",
       "target_feed_country": "ae",
-      "canonical_id": "Al Mamlaka TV.sa",
-      "canonical_name": "Al Mamlaka TV.sa",
-      "canonical_events": 87,
-      "score": 0.421,
+      "target_variants": [],
+      "canonical_id": "AmmanTV.jo@SD",
+      "canonical_name": "عَمان",
+      "canonical_variants": [],
+      "canonical_events": 35,
+      "score": 0.333,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -913,11 +1223,14 @@
       "target_id": "Karameesh.ae",
       "target_name": "Karameesh",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "RoyaNews.jo@SD",
       "canonical_name": "Roya News",
+      "canonical_variants": [],
       "canonical_events": 57,
       "score": 0.353,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -925,11 +1238,16 @@
       "target_id": "Quran.Kareem.Jordan.ae",
       "target_name": "Quran Kareem Jordan",
       "target_feed_country": "ae",
+      "target_variants": [
+        "quran"
+      ],
       "canonical_id": "Jordan TV.sa",
       "canonical_name": "Jordan TV.sa",
+      "canonical_variants": [],
       "canonical_events": 47,
-      "score": 0.686,
+      "score": 0.48,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -937,11 +1255,14 @@
       "target_id": "Toyor.Aljanah.TV.ae",
       "target_name": "Toyor Aljanah TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Jordan TV.sa",
       "canonical_name": "Jordan TV.sa",
+      "canonical_variants": [],
       "canonical_events": 47,
-      "score": 0.435,
+      "score": 0.421,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -949,11 +1270,14 @@
       "target_id": "Al.Iman.TV.ae",
       "target_name": "Al Iman TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al Jadeed TV.eg",
       "canonical_name": "Al Jadeed TV.eg",
+      "canonical_variants": [],
       "canonical_events": 15,
-      "score": 0.55,
+      "score": 0.5,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -961,11 +1285,14 @@
       "target_id": "Al.Ittihad.TV.ae",
       "target_name": "Al Ittihad TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al Jadeed TV.eg",
       "canonical_name": "Al Jadeed TV.eg",
+      "canonical_variants": [],
       "canonical_events": 15,
-      "score": 0.565,
+      "score": 0.526,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -973,11 +1300,14 @@
       "target_id": "Al.Mayadeen.HD.ae",
       "target_name": "Al Mayadeen HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al Jadeed TV.eg",
       "canonical_name": "Al Jadeed TV.eg",
+      "canonical_variants": [],
       "canonical_events": 15,
-      "score": 0.708,
+      "score": 0.7,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -985,11 +1315,14 @@
       "target_id": "Beirut.Aflam.ae",
       "target_name": "Beirut Aflam",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "LBCInternational.lb@SD",
       "canonical_name": "إل بي سي آي",
+      "canonical_variants": [],
       "canonical_events": 36,
       "score": 0.357,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -997,11 +1330,14 @@
       "target_id": "Beirut.Alyoom.ae",
       "target_name": "Beirut Alyoom",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "LBCInternational.lb@SD",
       "canonical_name": "إل بي سي آي",
+      "canonical_variants": [],
       "canonical_events": 36,
       "score": 0.345,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1009,11 +1345,16 @@
       "target_id": "Beirut.Cinema.ae",
       "target_name": "Beirut Cinema",
       "target_feed_country": "ae",
+      "target_variants": [
+        "cinema"
+      ],
       "canonical_id": "LBCInternational.lb@SD",
       "canonical_name": "إل بي سي آي",
+      "canonical_variants": [],
       "canonical_events": 36,
       "score": 0.414,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1021,11 +1362,16 @@
       "target_id": "Beirut.Drama.ae",
       "target_name": "Beirut Drama",
       "target_feed_country": "ae",
+      "target_variants": [
+        "drama"
+      ],
       "canonical_id": "Aghani Aghani.sa",
       "canonical_name": "Aghani Aghani.sa",
+      "canonical_variants": [],
       "canonical_events": 47,
       "score": 0.32,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1033,11 +1379,14 @@
       "target_id": "Nabaa.TV.ae",
       "target_name": "Nabaa TV",
       "target_feed_country": "ae",
-      "canonical_id": "LBCI.eg",
-      "canonical_name": "LBCI.eg",
-      "canonical_events": 26,
-      "score": 0.385,
+      "target_variants": [],
+      "canonical_id": "LanaTV.lb@SD",
+      "canonical_name": "ال تي في",
+      "canonical_variants": [],
+      "canonical_events": 12,
+      "score": 0.364,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1045,11 +1394,14 @@
       "target_id": "Nour.Koddass.ae",
       "target_name": "Nour Koddass",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al Jadeed TV.eg",
       "canonical_name": "Al Jadeed TV.eg",
+      "canonical_variants": [],
       "canonical_events": 15,
       "score": 0.286,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1057,11 +1409,14 @@
       "target_id": "Noursat.TV.ae",
       "target_name": "Noursat TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "LanaTV.lb@SD",
       "canonical_name": "ال تي في",
+      "canonical_variants": [],
       "canonical_events": 12,
       "score": 0.462,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1069,11 +1424,14 @@
       "target_id": "Suboro.TV.ae",
       "target_name": "Suboro TV",
       "target_feed_country": "ae",
-      "canonical_id": "LBCI.eg",
-      "canonical_name": "LBCI.eg",
-      "canonical_events": 26,
-      "score": 0.357,
+      "target_variants": [],
+      "canonical_id": "MTV.lb@SD",
+      "canonical_name": "MTV Lebanon",
+      "canonical_variants": [],
+      "canonical_events": 16,
+      "score": 0.235,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1081,11 +1439,14 @@
       "target_id": "Afaq.TV.ae",
       "target_name": "Afaq TV",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Iraqiya.HD.ae",
-      "canonical_name": "Al Iraqiya HD",
-      "canonical_events": 61,
-      "score": 0.556,
+      "target_variants": [],
+      "canonical_id": "AlIraqia.iq@SD",
+      "canonical_name": "العراقية",
+      "canonical_variants": [],
+      "canonical_events": 45,
+      "score": 0.5,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1093,11 +1454,14 @@
       "target_id": "Al.Anbar.ae",
       "target_name": "Al Anbar",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sumaria.TV.ae",
       "canonical_name": "Al Sumaria TV",
+      "canonical_variants": [],
       "canonical_events": 64,
-      "score": 0.667,
+      "score": 0.556,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1105,11 +1469,14 @@
       "target_id": "Al.Ayyam.TV.ae",
       "target_name": "Al Ayyam TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Iraqiya.HD.ae",
       "canonical_name": "Al Iraqiya HD",
+      "canonical_variants": [],
       "canonical_events": 61,
-      "score": 0.727,
+      "score": 0.667,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1117,11 +1484,14 @@
       "target_id": "Al.Eshraq.TV.ae",
       "target_name": "Al Eshraq TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sharqiya.TV.HD.ae",
       "canonical_name": "Al Sharqiya TV HD",
+      "canonical_variants": [],
       "canonical_events": 61,
-      "score": 0.75,
+      "score": 0.7,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1129,11 +1499,14 @@
       "target_id": "Al.Fallujah.TV.ae",
       "target_name": "Al Fallujah TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sumaria.TV.ae",
       "canonical_name": "Al Sumaria TV",
+      "canonical_variants": [],
       "canonical_events": 64,
-      "score": 0.667,
+      "score": 0.5,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1141,11 +1514,14 @@
       "target_id": "Al.Forat.ae",
       "target_name": "Al Forat",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sumaria.TV.ae",
       "canonical_name": "Al Sumaria TV",
+      "canonical_variants": [],
       "canonical_events": 64,
-      "score": 0.667,
+      "score": 0.556,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1153,23 +1529,35 @@
       "target_id": "Al.Iraqiya.Kurd.ae",
       "target_name": "Al Iraqiya Kurd",
       "target_feed_country": "ae",
+      "target_variants": [
+        "kurd"
+      ],
       "canonical_id": "Al.Iraqiya.HD.ae",
       "canonical_name": "Al Iraqiya HD",
+      "canonical_variants": [],
       "canonical_events": 61,
-      "score": 0.828,
+      "score": 0.8,
       "same_logical_key": false,
-      "verdict": "REVIEW_CANONICAL_REPAIR"
+      "variant_match": false,
+      "verdict": "NO_CANONICAL_MATCH"
     },
     {
       "target_shard": "mena-iq",
       "target_id": "Al.Iraqiya.Sport.HD.ae",
       "target_name": "Al Iraqiya Sport HD",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Iraqiya.HD.ae",
-      "canonical_name": "Al Iraqiya HD",
-      "canonical_events": 61,
-      "score": 0.8,
+      "target_variants": [
+        "sport"
+      ],
+      "canonical_id": "Al.Iraqiya.News.HD.ae",
+      "canonical_name": "Al Iraqiya News HD",
+      "canonical_variants": [
+        "news"
+      ],
+      "canonical_events": 49,
+      "score": 0.774,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1177,11 +1565,18 @@
       "target_id": "Al.Iraqiya.Turkuman.ae",
       "target_name": "Al Iraqiya Turkuman",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Iraqiya.HD.ae",
-      "canonical_name": "Al Iraqiya HD",
-      "canonical_events": 61,
-      "score": 0.75,
+      "target_variants": [
+        "turkuman"
+      ],
+      "canonical_id": "Al.Iraqiya.News.HD.ae",
+      "canonical_name": "Al Iraqiya News HD",
+      "canonical_variants": [
+        "news"
+      ],
+      "canonical_events": 49,
+      "score": 0.706,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1189,11 +1584,14 @@
       "target_id": "Al.Kafeel.ae",
       "target_name": "Al Kafeel",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Rasheed.TV.HD.ae",
       "canonical_name": "Al Rasheed TV HD",
+      "canonical_variants": [],
       "canonical_events": 50,
-      "score": 0.696,
+      "score": 0.632,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1201,11 +1599,14 @@
       "target_id": "Al.Naeem.TV.ae",
       "target_name": "Al Naeem TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Rasheed.TV.HD.ae",
       "canonical_name": "Al Rasheed TV HD",
+      "canonical_variants": [],
       "canonical_events": 50,
-      "score": 0.727,
+      "score": 0.667,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1213,11 +1614,14 @@
       "target_id": "Al.Najaf.Al.Ashraf.TV.ae",
       "target_name": "Al Najaf Al Ashraf TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sharqiya.TV.HD.ae",
       "canonical_name": "Al Sharqiya TV HD",
+      "canonical_variants": [],
       "canonical_events": 61,
-      "score": 0.591,
+      "score": 0.483,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1225,11 +1629,14 @@
       "target_id": "Al.Salam.TV.ae",
       "target_name": "Al Salam TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sumaria.TV.ae",
       "canonical_name": "Al Sumaria TV",
+      "canonical_variants": [],
       "canonical_events": 64,
-      "score": 0.727,
+      "score": 0.667,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1237,11 +1644,14 @@
       "target_id": "Alahad.TV.HD.ae",
       "target_name": "Alahad TV HD",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Rasheed.TV.HD.ae",
-      "canonical_name": "Al Rasheed TV HD",
-      "canonical_events": 50,
-      "score": 0.7,
+      "target_variants": [],
+      "canonical_id": "Alrasheed.eg",
+      "canonical_name": "Alrasheed.eg",
+      "canonical_variants": [],
+      "canonical_events": 25,
+      "score": 0.667,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1249,11 +1659,14 @@
       "target_id": "Alghadeer.TV.ae",
       "target_name": "Alghadeer TV",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Rasheed.TV.HD.ae",
-      "canonical_name": "Al Rasheed TV HD",
-      "canonical_events": 50,
-      "score": 0.609,
+      "target_variants": [],
+      "canonical_id": "Alrasheed.eg",
+      "canonical_name": "Alrasheed.eg",
+      "canonical_variants": [],
+      "canonical_events": 25,
+      "score": 0.556,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1261,11 +1674,14 @@
       "target_id": "Alshaaer.TV.ae",
       "target_name": "Alshaaer TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sharqiya.TV.HD.ae",
       "canonical_name": "Al Sharqiya TV HD",
+      "canonical_variants": [],
       "canonical_events": 61,
-      "score": 0.696,
+      "score": 0.632,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1273,11 +1689,14 @@
       "target_id": "Altaleaa.TV.ae",
       "target_name": "Altaleaa TV",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Sumaria.TV.ae",
-      "canonical_name": "Al Sumaria TV",
-      "canonical_events": 64,
-      "score": 0.545,
+      "target_variants": [],
+      "canonical_id": "AlIraqia.iq@SD",
+      "canonical_name": "العراقية",
+      "canonical_variants": [],
+      "canonical_events": 45,
+      "score": 0.5,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1285,11 +1704,14 @@
       "target_id": "Amozhgary.TV.ae",
       "target_name": "Amozhgary TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sharqiya.TV.HD.ae",
       "canonical_name": "Al Sharqiya TV HD",
+      "canonical_variants": [],
       "canonical_events": 61,
-      "score": 0.583,
+      "score": 0.5,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1297,11 +1719,14 @@
       "target_id": "Baghdad.TV.ae",
       "target_name": "Baghdad TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Iraq.Al.Hadath.ae",
       "canonical_name": "Iraq Al Hadath",
+      "canonical_variants": [],
       "canonical_events": 50,
-      "score": 0.48,
+      "score": 0.381,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1309,11 +1734,14 @@
       "target_id": "Bangawaz.TV.ae",
       "target_name": "Bangawaz TV",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Sumaria.TV.ae",
-      "canonical_name": "Al Sumaria TV",
-      "canonical_events": 64,
-      "score": 0.455,
+      "target_variants": [],
+      "canonical_id": "AlIraqia.iq@SD",
+      "canonical_name": "العراقية",
+      "canonical_variants": [],
+      "canonical_events": 45,
+      "score": 0.375,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1321,11 +1749,14 @@
       "target_id": "Gali.Kurdistan.HD.ae",
       "target_name": "Gali Kurdistan HD",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Iraqiya.HD.ae",
-      "canonical_name": "Al Iraqiya HD",
-      "canonical_events": 61,
-      "score": 0.571,
+      "target_variants": [],
+      "canonical_id": "AlIraqia.iq@SD",
+      "canonical_name": "العراقية",
+      "canonical_variants": [],
+      "canonical_events": 45,
+      "score": 0.545,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1333,11 +1764,16 @@
       "target_id": "Imam.Hussein.TV.2.ae",
       "target_name": "Imam Hussein TV 2",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:2"
+      ],
       "canonical_id": "Al.Rasheed.TV.HD.ae",
       "canonical_name": "Al Rasheed TV HD",
+      "canonical_variants": [],
       "canonical_events": 50,
-      "score": 0.429,
+      "score": 0.333,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1345,11 +1781,14 @@
       "target_id": "Iraq.24.HD.ae",
       "target_name": "Iraq 24 HD",
       "target_feed_country": "ae",
-      "canonical_id": "Iraq.Al.Hadath.ae",
-      "canonical_name": "Iraq Al Hadath",
-      "canonical_events": 50,
-      "score": 0.56,
+      "target_variants": [],
+      "canonical_id": "AlIraqia.iq@SD",
+      "canonical_name": "العراقية",
+      "canonical_variants": [],
+      "canonical_events": 45,
+      "score": 0.533,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1357,11 +1796,14 @@
       "target_id": "Iraq.Future.TV.ae",
       "target_name": "Iraq Future TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Iraq.Al.Hadath.ae",
       "canonical_name": "Iraq Al Hadath",
+      "canonical_variants": [],
       "canonical_events": 50,
-      "score": 0.552,
+      "score": 0.48,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1369,11 +1811,14 @@
       "target_id": "Iraq.Now.ae",
       "target_name": "Iraq Now",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Iraqiya.News.HD.ae",
-      "canonical_name": "Al Iraqiya News HD",
-      "canonical_events": 49,
-      "score": 0.609,
+      "target_variants": [],
+      "canonical_id": "AlIraqia.iq@SD",
+      "canonical_name": "العراقية",
+      "canonical_variants": [],
+      "canonical_events": 45,
+      "score": 0.5,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1381,11 +1826,14 @@
       "target_id": "Karbala.TV.HD.ae",
       "target_name": "Karbala TV HD",
       "target_feed_country": "ae",
-      "canonical_id": "Sharqiya from Kalba.sa",
-      "canonical_name": "Sharqiya from Kalba.sa",
-      "canonical_events": 47,
-      "score": 0.486,
+      "target_variants": [],
+      "canonical_id": "AlIraqia.iq@SD",
+      "canonical_name": "العراقية",
+      "canonical_variants": [],
+      "canonical_events": 45,
+      "score": 0.4,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1393,11 +1841,14 @@
       "target_id": "Kirkuk.TV.ae",
       "target_name": "Kirkuk TV",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Iraqiya.HD.ae",
-      "canonical_name": "Al Iraqiya HD",
-      "canonical_events": 61,
-      "score": 0.4,
+      "target_variants": [],
+      "canonical_id": "AlIraqia.iq@SD",
+      "canonical_name": "العراقية",
+      "canonical_variants": [],
+      "canonical_events": 45,
+      "score": 0.286,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1405,11 +1856,14 @@
       "target_id": "Kurdistan.TV.ae",
       "target_name": "Kurdistan TV",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Sumaria.TV.ae",
-      "canonical_name": "Al Sumaria TV",
-      "canonical_events": 64,
-      "score": 0.522,
+      "target_variants": [],
+      "canonical_id": "Alsumaria.eg",
+      "canonical_name": "Alsumaria.eg",
+      "canonical_variants": [],
+      "canonical_events": 13,
+      "score": 0.444,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1417,11 +1871,14 @@
       "target_id": "KurdMax.HD.ae",
       "target_name": "KurdMax HD",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Sumaria.TV.ae",
-      "canonical_name": "Al Sumaria TV",
-      "canonical_events": 64,
-      "score": 0.476,
+      "target_variants": [],
+      "canonical_id": "Alsumaria.eg",
+      "canonical_name": "Alsumaria.eg",
+      "canonical_variants": [],
+      "canonical_events": 13,
+      "score": 0.375,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1429,11 +1886,14 @@
       "target_id": "Kurdsat.ae",
       "target_name": "Kurdsat",
       "target_feed_country": "ae",
-      "canonical_id": "Iraq.Al.Hadath.ae",
-      "canonical_name": "Iraq Al Hadath",
-      "canonical_events": 50,
-      "score": 0.48,
+      "target_variants": [],
+      "canonical_id": "DijlahTV.iq@SD",
+      "canonical_name": "دجلة",
+      "canonical_variants": [],
+      "canonical_events": 43,
+      "score": 0.4,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1441,11 +1901,18 @@
       "target_id": "Kurdsat.News.HD.ae",
       "target_name": "Kurdsat News HD",
       "target_feed_country": "ae",
+      "target_variants": [
+        "news"
+      ],
       "canonical_id": "Al.Iraqiya.News.HD.ae",
       "canonical_name": "Al Iraqiya News HD",
+      "canonical_variants": [
+        "news"
+      ],
       "canonical_events": 49,
-      "score": 0.581,
+      "score": 0.519,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1453,11 +1920,14 @@
       "target_id": "Manu.Chat.ae",
       "target_name": "Manu Chat",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Iraq.Al.Hadath.ae",
       "canonical_name": "Iraq Al Hadath",
+      "canonical_variants": [],
       "canonical_events": 50,
-      "score": 0.519,
+      "score": 0.435,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1465,11 +1935,16 @@
       "target_id": "NRT.2.HD.ae",
       "target_name": "NRT 2 HD",
       "target_feed_country": "ae",
-      "canonical_id": "Iraq.Al.Hadath.ae",
-      "canonical_name": "Iraq Al Hadath",
-      "canonical_events": 50,
-      "score": 0.357,
+      "target_variants": [
+        "num:2"
+      ],
+      "canonical_id": "AlRasheedTV.iq@SD",
+      "canonical_name": "الرشيد",
+      "canonical_variants": [],
+      "canonical_events": 37,
+      "score": 0.25,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1477,11 +1952,14 @@
       "target_id": "NRT.HD.ae",
       "target_name": "NRT HD",
       "target_feed_country": "ae",
-      "canonical_id": "Iraq.Al.Hadath.ae",
-      "canonical_name": "Iraq Al Hadath",
-      "canonical_events": 50,
-      "score": 0.417,
+      "target_variants": [],
+      "canonical_id": "UTV.iq@SD",
+      "canonical_name": "يو تي في",
+      "canonical_variants": [],
+      "canonical_events": 16,
+      "score": 0.333,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1489,11 +1967,14 @@
       "target_id": "Payam.TV.ae",
       "target_name": "Payam TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Iraqiya.HD.ae",
       "canonical_name": "Al Iraqiya HD",
+      "canonical_variants": [],
       "canonical_events": 61,
-      "score": 0.526,
+      "score": 0.4,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1501,11 +1982,14 @@
       "target_id": "Rûdaw.TV.HD.ae",
       "target_name": "Rûdaw TV HD",
       "target_feed_country": "ae",
-      "canonical_id": "Iraq.Al.Hadath.ae",
-      "canonical_name": "Iraq Al Hadath",
-      "canonical_events": 50,
-      "score": 0.522,
+      "target_variants": [],
+      "canonical_id": "Dijlah TV.eg",
+      "canonical_name": "Dijlah TV.eg",
+      "canonical_variants": [],
+      "canonical_events": 24,
+      "score": 0.364,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1513,11 +1997,14 @@
       "target_id": "Speda.HD.ae",
       "target_name": "Speda HD",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Rasheed.TV.HD.ae",
-      "canonical_name": "Al Rasheed TV HD",
-      "canonical_events": 50,
-      "score": 0.526,
+      "target_variants": [],
+      "canonical_id": "Alrasheed.eg",
+      "canonical_name": "Alrasheed.eg",
+      "canonical_variants": [],
+      "canonical_events": 25,
+      "score": 0.429,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1525,11 +2012,14 @@
       "target_id": "Türkmeneli.TV.HD.ae",
       "target_name": "Türkmeneli TV HD",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Rasheed.TV.HD.ae",
-      "canonical_name": "Al Rasheed TV HD",
-      "canonical_events": 50,
-      "score": 0.5,
+      "target_variants": [],
+      "canonical_id": "Alrasheed.eg",
+      "canonical_name": "Alrasheed.eg",
+      "canonical_variants": [],
+      "canonical_events": 25,
+      "score": 0.316,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1537,11 +2027,14 @@
       "target_id": "UTV.Iraq.ae",
       "target_name": "UTV Iraq",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Iraqiya.HD.ae",
       "canonical_name": "Al Iraqiya HD",
+      "canonical_variants": [],
       "canonical_events": 61,
-      "score": 0.636,
+      "score": 0.556,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1549,11 +2042,14 @@
       "target_id": "VOA.IRAQ.ae",
       "target_name": "VOA IRAQ",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Iraqiya.HD.ae",
       "canonical_name": "Al Iraqiya HD",
+      "canonical_variants": [],
       "canonical_events": 61,
-      "score": 0.727,
+      "score": 0.667,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1561,11 +2057,14 @@
       "target_id": "Waar.HD.ae",
       "target_name": "Waar HD",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Sumaria.TV.ae",
-      "canonical_name": "Al Sumaria TV",
-      "canonical_events": 64,
-      "score": 0.556,
+      "target_variants": [],
+      "canonical_id": "Alsumaria.eg",
+      "canonical_name": "Alsumaria.eg",
+      "canonical_variants": [],
+      "canonical_events": 13,
+      "score": 0.462,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1573,11 +2072,14 @@
       "target_id": "Zagros.ae",
       "target_name": "Zagros",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Rasheed.TV.HD.ae",
-      "canonical_name": "Al Rasheed TV HD",
-      "canonical_events": 50,
-      "score": 0.5,
+      "target_variants": [],
+      "canonical_id": "Alrasheed.eg",
+      "canonical_name": "Alrasheed.eg",
+      "canonical_variants": [],
+      "canonical_events": 25,
+      "score": 0.4,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1585,11 +2087,16 @@
       "target_id": "Al.Quds.Today.TV.ae",
       "target_name": "Al Quds Today TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.438,
+      "score": 0.357,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1597,11 +2104,16 @@
       "target_id": "Athan.Tulkarem.ae",
       "target_name": "Athan Tulkarem",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.424,
+      "score": 0.345,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1609,11 +2121,16 @@
       "target_id": "Falastini.TV.ae",
       "target_name": "Falastini TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.571,
+      "score": 0.5,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1621,11 +2138,16 @@
       "target_id": "falestinona.TV.ae",
       "target_name": "falestinona TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.667,
+      "score": 0.615,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1633,11 +2155,16 @@
       "target_id": "Hebron.Sat.ae",
       "target_name": "Hebron Sat",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.483,
+      "score": 0.4,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1645,11 +2172,16 @@
       "target_id": "Musawa.HD.ae",
       "target_name": "Musawa HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.333,
+      "score": 0.095,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1657,11 +2189,16 @@
       "target_id": "Palestine.Edu.HD.ae",
       "target_name": "Palestine Edu HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.75,
+      "score": 0.714,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1669,11 +2206,16 @@
       "target_id": "Palestine.HD.ae",
       "target_name": "Palestine HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.786,
+      "score": 0.75,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1681,11 +2223,16 @@
       "target_id": "Palestine.Live.HD.ae",
       "target_name": "Palestine Live HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.727,
+      "score": 0.69,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1693,11 +2240,18 @@
       "target_id": "Palestine.News.ae",
       "target_name": "Palestine News",
       "target_feed_country": "ae",
+      "target_variants": [
+        "news"
+      ],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.788,
+      "score": 0.759,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1705,11 +2259,18 @@
       "target_id": "Palestine.Quraan.ae",
       "target_name": "Palestine Quraan",
       "target_feed_country": "ae",
+      "target_variants": [
+        "quran"
+      ],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.743,
+      "score": 0.71,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1717,11 +2278,19 @@
       "target_id": "Palestine.Quran.2.ae",
       "target_name": "Palestine Quran 2",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:2",
+        "quran"
+      ],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.722,
+      "score": 0.688,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1729,11 +2298,16 @@
       "target_id": "Palestine.Today.ae",
       "target_name": "Palestine Today",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.765,
+      "score": 0.733,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1741,11 +2315,16 @@
       "target_id": "Voice.Of.Palestine.ae",
       "target_name": "Voice Of Palestine",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
       "score": 0.545,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1753,11 +2332,16 @@
       "target_id": "Wadi.Al-Neil.&.Palestine.ae",
       "target_name": "Wadi Al-Neil & Palestine",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Palestine.Sport.ae",
       "canonical_name": "Palestine Sport",
+      "canonical_variants": [
+        "sport"
+      ],
       "canonical_events": 34,
-      "score": 0.536,
+      "score": 0.486,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1765,11 +2349,14 @@
       "target_id": "Aden.TV.ae",
       "target_name": "Aden TV",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Sahat.TV.ae",
-      "canonical_name": "Al Sahat TV",
-      "canonical_events": 92,
-      "score": 0.4,
+      "target_variants": [],
+      "canonical_id": "HadhramautTV.ye@SD",
+      "canonical_name": "تلفزيون حضرموت",
+      "canonical_variants": [],
+      "canonical_events": 44,
+      "score": 0.25,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1777,11 +2364,14 @@
       "target_id": "Al.Hawyah.ae",
       "target_name": "Al Hawyah",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sahat.TV.ae",
       "canonical_name": "Al Sahat TV",
+      "canonical_variants": [],
       "canonical_events": 92,
-      "score": 0.667,
+      "score": 0.588,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1789,11 +2379,14 @@
       "target_id": "Allahdhah.TV.ae",
       "target_name": "Allahdhah TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sahat.TV.ae",
       "canonical_name": "Al Sahat TV",
+      "canonical_variants": [],
       "canonical_events": 92,
-      "score": 0.667,
+      "score": 0.588,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1801,11 +2394,14 @@
       "target_id": "Almasirah.TV.ae",
       "target_name": "Almasirah TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sahat.TV.ae",
       "canonical_name": "Al Sahat TV",
+      "canonical_variants": [],
       "canonical_events": 92,
-      "score": 0.667,
+      "score": 0.588,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1813,11 +2409,14 @@
       "target_id": "Almasirah.TV.Mubasher.ae",
       "target_name": "Almasirah TV Mubasher",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sahat.TV.ae",
       "canonical_name": "Al Sahat TV",
+      "canonical_variants": [],
       "canonical_events": 92,
-      "score": 0.533,
+      "score": 0.462,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1825,11 +2424,14 @@
       "target_id": "Reef.AlYemen.ae",
       "target_name": "Reef AlYemen",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Sahat.TV.ae",
-      "canonical_name": "Al Sahat TV",
-      "canonical_events": 92,
-      "score": 0.333,
+      "target_variants": [],
+      "canonical_id": "HadhramautTV.ye@SD",
+      "canonical_name": "تلفزيون حضرموت",
+      "canonical_variants": [],
+      "canonical_events": 44,
+      "score": 0.25,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1837,11 +2439,14 @@
       "target_id": "Sheba.TV.ae",
       "target_name": "Sheba TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sahat.TV.ae",
       "canonical_name": "Al Sahat TV",
+      "canonical_variants": [],
       "canonical_events": 92,
-      "score": 0.588,
+      "score": 0.462,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1849,11 +2454,14 @@
       "target_id": "Suhail.TV.ae",
       "target_name": "Suhail TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sahat.TV.ae",
       "canonical_name": "Al Sahat TV",
+      "canonical_variants": [],
       "canonical_events": 92,
-      "score": 0.556,
+      "score": 0.429,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1861,11 +2469,16 @@
       "target_id": "Yemen.Documentary.ae",
       "target_name": "Yemen Documentary",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Sahat.TV.ae",
-      "canonical_name": "Al Sahat TV",
-      "canonical_events": 92,
-      "score": 0.333,
+      "target_variants": [
+        "documentary"
+      ],
+      "canonical_id": "HadhramautTV.ye@SD",
+      "canonical_name": "تلفزيون حضرموت",
+      "canonical_variants": [],
+      "canonical_events": 44,
+      "score": 0.207,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1873,11 +2486,14 @@
       "target_id": "Yemen.Education.ae",
       "target_name": "Yemen Education",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sahat.TV.ae",
       "canonical_name": "Al Sahat TV",
+      "canonical_variants": [],
       "canonical_events": 92,
-      "score": 0.37,
+      "score": 0.261,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1885,11 +2501,14 @@
       "target_id": "Yemen.Shabab.ae",
       "target_name": "Yemen Shabab",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sahat.TV.ae",
       "canonical_name": "Al Sahat TV",
+      "canonical_variants": [],
       "canonical_events": 92,
-      "score": 0.5,
+      "score": 0.4,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1897,11 +2516,14 @@
       "target_id": "Yemen.Today.TV.ae",
       "target_name": "Yemen Today TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Al.Sahat.TV.ae",
       "canonical_name": "Al Sahat TV",
+      "canonical_variants": [],
       "canonical_events": 92,
-      "score": 0.348,
+      "score": 0.211,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1909,11 +2531,14 @@
       "target_id": "Yemen.TV.ae",
       "target_name": "Yemen TV",
       "target_feed_country": "ae",
-      "canonical_id": "Al.Sahat.TV.ae",
-      "canonical_name": "Al Sahat TV",
-      "canonical_events": 92,
-      "score": 0.333,
+      "target_variants": [],
+      "canonical_id": "HadhramautTV.ye@SD",
+      "canonical_name": "تلفزيون حضرموت",
+      "canonical_variants": [],
+      "canonical_events": 44,
+      "score": 0.118,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1921,11 +2546,16 @@
       "target_id": "Al.Djazair.N°1.ae",
       "target_name": "Al Djazair N°1",
       "target_feed_country": "ae",
-      "canonical_id": "EchoroukTV.dz@SD",
-      "canonical_name": "الشروق الجزائرية",
-      "canonical_events": 39,
-      "score": 0.227,
+      "target_variants": [
+        "num:1"
+      ],
+      "canonical_id": "Echorouk TV.eg",
+      "canonical_name": "Echorouk TV.eg",
+      "canonical_variants": [],
+      "canonical_events": 26,
+      "score": 0.091,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1933,11 +2563,16 @@
       "target_id": "Algérie.3.HD.ae",
       "target_name": "Algérie 3 HD",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:3"
+      ],
       "canonical_id": "Echorouk TV.eg",
       "canonical_name": "Echorouk TV.eg",
+      "canonical_variants": [],
       "canonical_events": 26,
       "score": 0.235,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1945,11 +2580,16 @@
       "target_id": "Algérie.4.ae",
       "target_name": "Algérie 4",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:4"
+      ],
       "canonical_id": "Echorouk TV.eg",
       "canonical_name": "Echorouk TV.eg",
+      "canonical_variants": [],
       "canonical_events": 26,
       "score": 0.235,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1957,11 +2597,16 @@
       "target_id": "Algérie.5.ae",
       "target_name": "Algérie 5",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:5"
+      ],
       "canonical_id": "Echorouk TV.eg",
       "canonical_name": "Echorouk TV.eg",
+      "canonical_variants": [],
       "canonical_events": 26,
       "score": 0.235,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1969,11 +2614,16 @@
       "target_id": "Algérie.6.HD.ae",
       "target_name": "Algérie 6 HD",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:6"
+      ],
       "canonical_id": "Echorouk TV.eg",
       "canonical_name": "Echorouk TV.eg",
+      "canonical_variants": [],
       "canonical_events": 26,
       "score": 0.235,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1981,11 +2631,16 @@
       "target_id": "Algérie.7.ae",
       "target_name": "Algérie 7",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:7"
+      ],
       "canonical_id": "Echorouk TV.eg",
       "canonical_name": "Echorouk TV.eg",
+      "canonical_variants": [],
       "canonical_events": 26,
       "score": 0.235,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -1993,11 +2648,16 @@
       "target_id": "Algérie.8.HD.ae",
       "target_name": "Algérie 8 HD",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:8"
+      ],
       "canonical_id": "Echorouk TV.eg",
       "canonical_name": "Echorouk TV.eg",
+      "canonical_variants": [],
       "canonical_events": 26,
       "score": 0.235,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2005,11 +2665,14 @@
       "target_id": "Bahia.TV.ae",
       "target_name": "Bahia TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Echorouk TV.eg",
       "canonical_name": "Echorouk TV.eg",
+      "canonical_variants": [],
       "canonical_events": 26,
-      "score": 0.294,
+      "score": 0.154,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2017,11 +2680,14 @@
       "target_id": "Canal.Algerie.ae",
       "target_name": "Canal Algerie",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Echorouk TV.eg",
       "canonical_name": "Echorouk TV.eg",
+      "canonical_variants": [],
       "canonical_events": 26,
-      "score": 0.303,
+      "score": 0.19,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2029,11 +2695,16 @@
       "target_id": "Echorouk.News.ae",
       "target_name": "Echorouk News",
       "target_feed_country": "ae",
+      "target_variants": [
+        "news"
+      ],
       "canonical_id": "Echorouk TV.eg",
       "canonical_name": "Echorouk TV.eg",
+      "canonical_variants": [],
       "canonical_events": 26,
       "score": 0.762,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2041,11 +2712,14 @@
       "target_id": "El.Hayat.TV.ae",
       "target_name": "El Hayat TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "EchoroukTV.dz@SD",
       "canonical_name": "الشروق الجزائرية",
+      "canonical_variants": [],
       "canonical_events": 39,
       "score": 0.333,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2053,11 +2727,14 @@
       "target_id": "Ennahar.TV.ae",
       "target_name": "Ennahar TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Echorouk TV.eg",
       "canonical_name": "Echorouk TV.eg",
+      "canonical_variants": [],
       "canonical_events": 26,
       "score": 0.4,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2065,11 +2742,14 @@
       "target_id": "Zahra.TV.ae",
       "target_name": "Zahra TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Echorouk TV.eg",
       "canonical_name": "Echorouk TV.eg",
+      "canonical_variants": [],
       "canonical_events": 26,
-      "score": 0.412,
+      "score": 0.308,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2077,11 +2757,16 @@
       "target_id": "Tunisia.Nat.1.ae",
       "target_name": "Tunisia Nat 1",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:1"
+      ],
       "canonical_id": "Nessma.eg",
       "canonical_name": "Nessma.eg",
+      "canonical_variants": [],
       "canonical_events": 30,
-      "score": 0.414,
+      "score": 0.316,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2089,11 +2774,16 @@
       "target_id": "Tunisia.Nat.2.ae",
       "target_name": "Tunisia Nat 2",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:2"
+      ],
       "canonical_id": "Nessma.eg",
       "canonical_name": "Nessma.eg",
+      "canonical_variants": [],
       "canonical_events": 30,
-      "score": 0.414,
+      "score": 0.316,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2101,11 +2791,14 @@
       "target_id": "Zaytoona.ae",
       "target_name": "Zaytoona",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "NessmaElJadida.tn@SD",
       "canonical_name": "نسمة",
+      "canonical_variants": [],
       "canonical_events": 16,
-      "score": 0.294,
+      "score": 0.182,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2113,11 +2806,14 @@
       "target_id": "Al.Jamahiriya.TV.ae",
       "target_name": "Al Jamahiriya TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "",
       "canonical_name": "",
+      "canonical_variants": [],
       "canonical_events": 0,
       "score": 0.0,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2125,11 +2821,14 @@
       "target_id": "Libya.Al.Ahrar.HD.ae",
       "target_name": "Libya Al Ahrar HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "",
       "canonical_name": "",
+      "canonical_variants": [],
       "canonical_events": 0,
       "score": 0.0,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2137,11 +2836,14 @@
       "target_id": "Libya.Al.Hedaya.ae",
       "target_name": "Libya Al Hedaya",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "",
       "canonical_name": "",
+      "canonical_variants": [],
       "canonical_events": 0,
       "score": 0.0,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2149,11 +2851,14 @@
       "target_id": "Libya.Alhadath.HD.ae",
       "target_name": "Libya Alhadath HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "",
       "canonical_name": "",
+      "canonical_variants": [],
       "canonical_events": 0,
       "score": 0.0,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2161,11 +2866,14 @@
       "target_id": "Libya.Alrasmia.Channel.ae",
       "target_name": "Libya Alrasmia Channel",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "",
       "canonical_name": "",
+      "canonical_variants": [],
       "canonical_events": 0,
       "score": 0.0,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2173,11 +2881,14 @@
       "target_id": "Libya.Future.TV.HD.ae",
       "target_name": "Libya Future TV HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "",
       "canonical_name": "",
+      "canonical_variants": [],
       "canonical_events": 0,
       "score": 0.0,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2185,11 +2896,14 @@
       "target_id": "Libya.Ifta.TV.ae",
       "target_name": "Libya Ifta TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "",
       "canonical_name": "",
+      "canonical_variants": [],
       "canonical_events": 0,
       "score": 0.0,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2197,11 +2911,17 @@
       "target_id": "Libya.Sport.2.HD.ae",
       "target_name": "Libya Sport 2 HD",
       "target_feed_country": "ae",
+      "target_variants": [
+        "num:2",
+        "sport"
+      ],
       "canonical_id": "",
       "canonical_name": "",
+      "canonical_variants": [],
       "canonical_events": 0,
       "score": 0.0,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2209,11 +2929,16 @@
       "target_id": "Libya.Sport.ae",
       "target_name": "Libya Sport",
       "target_feed_country": "ae",
+      "target_variants": [
+        "sport"
+      ],
       "canonical_id": "",
       "canonical_name": "",
+      "canonical_variants": [],
       "canonical_events": 0,
       "score": 0.0,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2221,11 +2946,14 @@
       "target_id": "Khartoum.TV.ae",
       "target_name": "Khartoum TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Sudan.TV.ae",
       "canonical_name": "Sudan TV",
+      "canonical_variants": [],
       "canonical_events": 47,
-      "score": 0.5,
+      "score": 0.154,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2233,11 +2961,14 @@
       "target_id": "Shamalia.TV.ae",
       "target_name": "Shamalia TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Sudan.TV.ae",
       "canonical_name": "Sudan TV",
+      "canonical_variants": [],
       "canonical_events": 47,
-      "score": 0.5,
+      "score": 0.308,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2245,11 +2976,14 @@
       "target_id": "Tayba.TV.ae",
       "target_name": "Tayba TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Sudan.TV.ae",
       "canonical_name": "Sudan TV",
+      "canonical_variants": [],
       "canonical_events": 47,
-      "score": 0.5,
+      "score": 0.2,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2257,11 +2991,14 @@
       "target_id": "Halab.Today.TV.ae",
       "target_name": "Halab Today TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Althania.sy@SD",
       "canonical_name": "الثانية",
+      "canonical_variants": [],
       "canonical_events": 33,
-      "score": 0.333,
+      "score": 0.316,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2269,11 +3006,14 @@
       "target_id": "Syria.One.TV.ae",
       "target_name": "Syria One TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Althania.sy@SD",
       "canonical_name": "الثانية",
+      "canonical_variants": [],
       "canonical_events": 33,
-      "score": 0.293,
+      "score": 0.235,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2281,11 +3021,14 @@
       "target_id": "Syria.TV.HD.ae",
       "target_name": "Syria TV HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "Althania.sy@SD",
       "canonical_name": "الثانية",
+      "canonical_variants": [],
       "canonical_events": 33,
       "score": 0.308,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "NO_CANONICAL_MATCH"
     },
     {
@@ -2293,11 +3036,14 @@
       "target_id": "Albarlemania.al.Mauritania.TV.ae",
       "target_name": "Albarlemania al Mauritania TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "",
       "canonical_name": "",
+      "canonical_variants": [],
       "canonical_events": 0,
       "score": 0.0,
       "same_logical_key": false,
+      "variant_match": false,
       "verdict": "NO_CANONICAL_MATCH"
     }
   ],
@@ -2307,11 +3053,14 @@
       "target_id": "Al.Saeedah.ae",
       "target_name": "Al Saeedah",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "AlSaeedah.eg@SD",
       "canonical_name": "السعيدة",
+      "canonical_variants": [],
       "canonical_events": 42,
       "score": 0.947,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "SAFE_CANONICAL_REPAIR"
     },
     {
@@ -2319,11 +3068,18 @@
       "target_id": "Saudi.Quran.TV.HD.ae",
       "target_name": "Saudi Quran TV HD",
       "target_feed_country": "ae",
+      "target_variants": [
+        "quran"
+      ],
       "canonical_id": "Saudi Quran.sa",
       "canonical_name": "Saudi Quran.sa",
+      "canonical_variants": [
+        "quran"
+      ],
       "canonical_events": 47,
       "score": 1.0,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "SAFE_CANONICAL_REPAIR"
     },
     {
@@ -2331,11 +3087,18 @@
       "target_id": "Saudi.Sunna.TV.HD.ae",
       "target_name": "Saudi Sunna TV HD",
       "target_feed_country": "ae",
+      "target_variants": [
+        "sunnah"
+      ],
       "canonical_id": "Saudi Sunnah.sa",
       "canonical_name": "Saudi Sunnah.sa",
+      "canonical_variants": [
+        "sunnah"
+      ],
       "canonical_events": 47,
       "score": 0.957,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "SAFE_CANONICAL_REPAIR"
     },
     {
@@ -2343,11 +3106,18 @@
       "target_id": "Al.Jazeera.English.HD.ae",
       "target_name": "Al Jazeera English HD",
       "target_feed_country": "ae",
-      "canonical_id": "AlJazeera.qa@Arabic",
-      "canonical_name": "Al Jazeera Arabic",
-      "canonical_events": 34,
-      "score": 1.0,
+      "target_variants": [
+        "english"
+      ],
+      "canonical_id": "AlJazeera.English.net",
+      "canonical_name": "AlJazeera English",
+      "canonical_variants": [
+        "english"
+      ],
+      "canonical_events": 75,
+      "score": 0.971,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "SAFE_CANONICAL_REPAIR"
     },
     {
@@ -2355,11 +3125,14 @@
       "target_id": "Al.Jazeera.HD.ae",
       "target_name": "Al Jazeera HD",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "AlJazeera.qa@Arabic",
       "canonical_name": "Al Jazeera Arabic",
+      "canonical_variants": [],
       "canonical_events": 34,
-      "score": 1.0,
+      "score": 0.947,
       "same_logical_key": false,
+      "variant_match": true,
       "verdict": "SAFE_CANONICAL_REPAIR"
     },
     {
@@ -2367,23 +3140,14 @@
       "target_id": "Al.Rai.TV.ae",
       "target_name": "Al Rai TV",
       "target_feed_country": "ae",
+      "target_variants": [],
       "canonical_id": "AlraiTV.kw@SD",
       "canonical_name": "Al Rai TV",
+      "canonical_variants": [],
       "canonical_events": 78,
       "score": 1.0,
       "same_logical_key": true,
-      "verdict": "SAFE_CANONICAL_REPAIR"
-    },
-    {
-      "target_shard": "mena-bh",
-      "target_id": "Bahrain.International.ae",
-      "target_name": "Bahrain International",
-      "target_feed_country": "ae",
-      "canonical_id": "BahrainTV.bh@SD",
-      "canonical_name": "Bahrain TV",
-      "canonical_events": 96,
-      "score": 1.0,
-      "same_logical_key": false,
+      "variant_match": true,
       "verdict": "SAFE_CANONICAL_REPAIR"
     }
   ]

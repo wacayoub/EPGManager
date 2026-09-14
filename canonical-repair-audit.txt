@@ -1,197 +1,197 @@
-FOREIGN ID CANONICAL REPAIR AUDIT
-foreign_no_epg=191 safe=7 review=6 unmatched=178
+FOREIGN ID CANONICAL REPAIR AUDIT V2
+foreign_no_epg=191 safe=6 review=3 unmatched=182
 
 SAFE REPAIRS
-- mena-eg | Al.Saeedah.ae -> AlSaeedah.eg@SD | score=0.947 events=42
-- mena-sa | Saudi.Quran.TV.HD.ae -> Saudi Quran.sa | score=1.000 events=47
-- mena-sa | Saudi.Sunna.TV.HD.ae -> Saudi Sunnah.sa | score=0.957 events=47
-- mena-qa | Al.Jazeera.English.HD.ae -> AlJazeera.qa@Arabic | score=1.000 events=34
-- mena-qa | Al.Jazeera.HD.ae -> AlJazeera.qa@Arabic | score=1.000 events=34
-- mena-kw | Al.Rai.TV.ae -> AlraiTV.kw@SD | score=1.000 events=78
-- mena-bh | Bahrain.International.ae -> BahrainTV.bh@SD | score=1.000 events=96
+- mena-eg | Al.Saeedah.ae -> AlSaeedah.eg@SD | score=0.947 variants=base events=42
+- mena-sa | Saudi.Quran.TV.HD.ae -> Saudi Quran.sa | score=1.000 variants=quran events=47
+- mena-sa | Saudi.Sunna.TV.HD.ae -> Saudi Sunnah.sa | score=0.957 variants=sunnah events=47
+- mena-qa | Al.Jazeera.English.HD.ae -> AlJazeera.English.net | score=0.971 variants=english events=75
+- mena-qa | Al.Jazeera.HD.ae -> AlJazeera.qa@Arabic | score=0.947 variants=base events=34
+- mena-kw | Al.Rai.TV.ae -> AlraiTV.kw@SD | score=1.000 variants=base events=78
 
 REVIEW / UNMATCHED
-- [NO_CANONICAL_MATCH] mena-eg | Aghapy.TV.ae -> Alhayat TV.eg | score=0.615
-- [NO_CANONICAL_MATCH] mena-eg | Al.Ahly.TV.HD.ae -> Al Nahar TV.sa | score=0.684
-- [NO_CANONICAL_MATCH] mena-eg | Al.Askandria.5.ae -> Al.Masriyah.ae | score=0.690
-- [NO_CANONICAL_MATCH] mena-eg | Al.Kahera.3.ae -> Al.Kahera.Wal.Nas.ae | score=0.750
-- [REVIEW_CANONICAL_REPAIR] mena-eg | AL.Kahera.Al.Kobra.ae -> Al.Kahera.Wal.Nas.ae | score=0.821
-- [NO_CANONICAL_MATCH] mena-eg | Al.Nada.TV.ae -> Al Nahar TV.sa | score=0.800
-- [NO_CANONICAL_MATCH] mena-eg | Al.Nahar.Noor.ae -> Al Nahar TV.sa | score=0.762
-- [NO_CANONICAL_MATCH] mena-eg | Al.Qahera.News.ae -> Al.Kahera.Wal.Nas.ae | score=0.743
-- [NO_CANONICAL_MATCH] mena-eg | Al.Wathaeqya.ae -> Al.Oula.ae | score=0.667
-- [NO_CANONICAL_MATCH] mena-eg | Alfath.TV.ae -> Alhayat TV.eg | score=0.647
-- [NO_CANONICAL_MATCH] mena-eg | AlHadath.Alyoum.ae -> Alhayat TV.eg | score=0.606
-- [NO_CANONICAL_MATCH] mena-eg | Aswan.ae -> Al.Shams.TV.ae | score=0.588
-- [NO_CANONICAL_MATCH] mena-eg | Bakous.Alexandaria.ae -> Al.Masriyah.ae | score=0.485
-- [NO_CANONICAL_MATCH] mena-eg | El.Moled.ae -> El.Mehwar.HD.ae | score=0.667
-- [NO_CANONICAL_MATCH] mena-eg | Extra.live.ae -> Extra.News.HD.ae | score=0.750
-- [NO_CANONICAL_MATCH] mena-eg | Huda.TV.ae -> Al.Oula.ae | score=0.533
-- [NO_CANONICAL_MATCH] mena-eg | Koogi.TV.ae -> Nile.TV.ae | score=0.500
-- [NO_CANONICAL_MATCH] mena-eg | Madrasetna.1.ae -> DMC.Drama.ae | score=0.560
-- [NO_CANONICAL_MATCH] mena-eg | Madrasetna.2.ae -> DMC.Drama.ae | score=0.560
-- [NO_CANONICAL_MATCH] mena-eg | Madrasetna.3.ae -> DMC.Drama.ae | score=0.560
-- [NO_CANONICAL_MATCH] mena-eg | Matrouh.ae -> Al.Oula.ae | score=0.556
-- [NO_CANONICAL_MATCH] mena-eg | Mazzika.ae -> Al.Masriyah.ae | score=0.545
-- [NO_CANONICAL_MATCH] mena-eg | Mekameleen.ae -> Nile.TV.ae | score=0.500
-- [NO_CANONICAL_MATCH] mena-eg | Misr.Al.Zeraeey.ae -> Al.Oula.ae | score=0.500
-- [NO_CANONICAL_MATCH] mena-eg | Misr.AlBalad.ae -> SadaElbalad.eg@SD | score=0.696
-- [NO_CANONICAL_MATCH] mena-eg | Misr.Quran.Kareem.ae -> DMC.Drama.ae | score=0.467
-- [NO_CANONICAL_MATCH] mena-eg | Nile.Culture.ae -> Nile Life.eg | score=0.680
-- [NO_CANONICAL_MATCH] mena-eg | Nile.News.ae -> Nile.Cinema.ae | score=0.750
-- [NO_CANONICAL_MATCH] mena-eg | Nile.Sport.ae -> On.Time.Sports.HD.ae | score=0.786
-- [NO_CANONICAL_MATCH] mena-eg | North.Sinai.ae -> Nile.Cinema.ae | score=0.538
-- [NO_CANONICAL_MATCH] mena-eg | South.Sinai.ae -> Nile.Cinema.ae | score=0.462
-- [NO_CANONICAL_MATCH] mena-eg | The.Kingdom.Sat.ae -> Nile.Cinema.ae | score=0.533
-- [NO_CANONICAL_MATCH] mena-eg | Watan.TV.ae -> Egyptian TV.eg | score=0.529
-- [NO_CANONICAL_MATCH] mena-eg | Zamalek.TV.ae -> Nile.TV.ae | score=0.533
-- [NO_CANONICAL_MATCH] mena-eg | Zee.Alwan.Egypt.ae -> Egyptian TV.eg | score=0.514
-- [NO_CANONICAL_MATCH] mena-sa | Al.Majd.ae -> AlHadath.sa@SD | score=0.533
-- [NO_CANONICAL_MATCH] mena-sa | Al.Majd.Holy.Quran.ae -> Saudi Quran.sa | score=0.576
-- [NO_CANONICAL_MATCH] mena-sa | Al.Sahraa.TV.ae -> Al Resalah.sa | score=0.632
-- [NO_CANONICAL_MATCH] mena-sa | Bin.Othaimeen.ae -> Saudi.Thikrayat.ae | score=0.438
-- [REVIEW_CANONICAL_REPAIR] mena-sa | KSA.sports.2.HD.ae -> KSA.Sports.3.HD.ae | score=0.929
-- [NO_CANONICAL_MATCH] mena-sa | Oyoun.Al.Watan.TV.ae -> Saudi.Al.Ekhbariya.HD.ae | score=0.500
-- [NO_CANONICAL_MATCH] mena-sa | Saudia.Alaan.TV.ae -> Saudi.Al.Ekhbariya.HD.ae | score=0.706
-- [NO_CANONICAL_MATCH] mena-sa | Zad.TV.ae -> Saudi.HD.ae | score=0.667
-- [REVIEW_CANONICAL_REPAIR] mena-qa | Al.Jazeera.Documentary.HD.ae -> Aljazeera-Documentary-1.qa | score=0.933
-- [NO_CANONICAL_MATCH] mena-qa | Al.Maaref.TV.ae -> Al.Rayyan.HD.ae | score=0.667
-- [NO_CANONICAL_MATCH] mena-qa | Hola.Qatar.ae -> Qatar.TV.HD.ae | score=0.737
-- [NO_CANONICAL_MATCH] mena-qa | Qatar.R.Quran.2.ae -> Qatar.2.HD.ae | score=0.692
-- [NO_CANONICAL_MATCH] mena-qa | Qatar.R.Quran.ae -> Qatar.2.HD.ae | score=0.667
-- [NO_CANONICAL_MATCH] mena-qa | Sout.Al.Islam.Doha.ae -> Al.Jazeera.Mobasher.2.HD.ae | score=0.400
-- [NO_CANONICAL_MATCH] mena-qa | Sout.Al.Rayyan.ae -> Al.Rayyan.HD.ae | score=0.815
-- [NO_CANONICAL_MATCH] mena-qa | Sout.Alkhaleej.2.ae -> Qatar.2.HD.ae | score=0.500
-- [NO_CANONICAL_MATCH] mena-qa | Sout.Alkhaleej.3.ae -> AlJazeera2.qa@HD | score=0.429
-- [NO_CANONICAL_MATCH] mena-qa | Sout.Alkhaleej.4.ae -> AlJazeera2.qa@HD | score=0.429
-- [NO_CANONICAL_MATCH] mena-qa | Sout.Alkhaleej.Europe.ae -> Al.Jazeera.Mobasher.HD.ae | score=0.455
-- [NO_CANONICAL_MATCH] mena-kw | Al.Anwar.TV.ae -> AlraiTV.kw@SD | score=0.571
-- [NO_CANONICAL_MATCH] mena-kw | Kuwait.Al.Akhbar.ae -> Kuwait.TV.1.HD.ae | score=0.643
-- [NO_CANONICAL_MATCH] mena-kw | Kuwait.Classical.ae -> Kuwait.TV.1.HD.ae | score=0.667
-- [NO_CANONICAL_MATCH] mena-kw | Kuwait.Easy.ae -> Kuwait.TV.1.HD.ae | score=0.783
-- [NO_CANONICAL_MATCH] mena-kw | Kuwait.Holy.Quran.ae -> Kuwait.Sport.HD.ae | score=0.667
-- [NO_CANONICAL_MATCH] mena-kw | Kuwait.Shaabyia.ae -> Kuwait.TV.1.HD.ae | score=0.667
-- [REVIEW_CANONICAL_REPAIR] mena-kw | Kuwait.Super.ae -> Kuwait.Sport.HD.ae | score=0.857
-- [REVIEW_CANONICAL_REPAIR] mena-kw | Kuwait.TV.2.HD.ae -> Kuwait.TV.1.HD.ae | score=0.900
-- [NO_CANONICAL_MATCH] mena-bh | LuaLua.TV.HD.ae -> BahrainTV.bh@SD | score=0.308
-- [NO_CANONICAL_MATCH] mena-om | Alistiqama.TV.ae -> Oman.eg | score=0.389
-- [NO_CANONICAL_MATCH] mena-om | Oman.TV.Culture.HD.ae -> OmanTVCultural.om | score=0.769
-- [NO_CANONICAL_MATCH] mena-jo | Azhari.TV.ae -> Jordan.Sport.HD.ae | score=0.364
-- [NO_CANONICAL_MATCH] mena-jo | Jordan.sama.ae -> Jordan TV.sa | score=0.762
-- [NO_CANONICAL_MATCH] mena-jo | Kaifa.TV.ae -> Al Mamlaka TV.sa | score=0.421
-- [NO_CANONICAL_MATCH] mena-jo | Karameesh.ae -> RoyaNews.jo@SD | score=0.353
-- [NO_CANONICAL_MATCH] mena-jo | Quran.Kareem.Jordan.ae -> Jordan TV.sa | score=0.686
-- [NO_CANONICAL_MATCH] mena-jo | Toyor.Aljanah.TV.ae -> Jordan TV.sa | score=0.435
-- [NO_CANONICAL_MATCH] mena-lb | Al.Iman.TV.ae -> Al Jadeed TV.eg | score=0.550
-- [NO_CANONICAL_MATCH] mena-lb | Al.Ittihad.TV.ae -> Al Jadeed TV.eg | score=0.565
-- [NO_CANONICAL_MATCH] mena-lb | Al.Mayadeen.HD.ae -> Al Jadeed TV.eg | score=0.708
-- [NO_CANONICAL_MATCH] mena-lb | Beirut.Aflam.ae -> LBCInternational.lb@SD | score=0.357
-- [NO_CANONICAL_MATCH] mena-lb | Beirut.Alyoom.ae -> LBCInternational.lb@SD | score=0.345
-- [NO_CANONICAL_MATCH] mena-lb | Beirut.Cinema.ae -> LBCInternational.lb@SD | score=0.414
-- [NO_CANONICAL_MATCH] mena-lb | Beirut.Drama.ae -> Aghani Aghani.sa | score=0.320
-- [NO_CANONICAL_MATCH] mena-lb | Nabaa.TV.ae -> LBCI.eg | score=0.385
-- [NO_CANONICAL_MATCH] mena-lb | Nour.Koddass.ae -> Al Jadeed TV.eg | score=0.286
-- [NO_CANONICAL_MATCH] mena-lb | Noursat.TV.ae -> LanaTV.lb@SD | score=0.462
-- [NO_CANONICAL_MATCH] mena-lb | Suboro.TV.ae -> LBCI.eg | score=0.357
-- [NO_CANONICAL_MATCH] mena-iq | Afaq.TV.ae -> Al.Iraqiya.HD.ae | score=0.556
-- [NO_CANONICAL_MATCH] mena-iq | Al.Anbar.ae -> Al.Sumaria.TV.ae | score=0.667
-- [NO_CANONICAL_MATCH] mena-iq | Al.Ayyam.TV.ae -> Al.Iraqiya.HD.ae | score=0.727
-- [NO_CANONICAL_MATCH] mena-iq | Al.Eshraq.TV.ae -> Al.Sharqiya.TV.HD.ae | score=0.750
-- [NO_CANONICAL_MATCH] mena-iq | Al.Fallujah.TV.ae -> Al.Sumaria.TV.ae | score=0.667
-- [NO_CANONICAL_MATCH] mena-iq | Al.Forat.ae -> Al.Sumaria.TV.ae | score=0.667
-- [REVIEW_CANONICAL_REPAIR] mena-iq | Al.Iraqiya.Kurd.ae -> Al.Iraqiya.HD.ae | score=0.828
-- [NO_CANONICAL_MATCH] mena-iq | Al.Iraqiya.Sport.HD.ae -> Al.Iraqiya.HD.ae | score=0.800
-- [NO_CANONICAL_MATCH] mena-iq | Al.Iraqiya.Turkuman.ae -> Al.Iraqiya.HD.ae | score=0.750
-- [NO_CANONICAL_MATCH] mena-iq | Al.Kafeel.ae -> Al.Rasheed.TV.HD.ae | score=0.696
-- [NO_CANONICAL_MATCH] mena-iq | Al.Naeem.TV.ae -> Al.Rasheed.TV.HD.ae | score=0.727
-- [NO_CANONICAL_MATCH] mena-iq | Al.Najaf.Al.Ashraf.TV.ae -> Al.Sharqiya.TV.HD.ae | score=0.591
-- [NO_CANONICAL_MATCH] mena-iq | Al.Salam.TV.ae -> Al.Sumaria.TV.ae | score=0.727
-- [NO_CANONICAL_MATCH] mena-iq | Alahad.TV.HD.ae -> Al.Rasheed.TV.HD.ae | score=0.700
-- [NO_CANONICAL_MATCH] mena-iq | Alghadeer.TV.ae -> Al.Rasheed.TV.HD.ae | score=0.609
-- [NO_CANONICAL_MATCH] mena-iq | Alshaaer.TV.ae -> Al.Sharqiya.TV.HD.ae | score=0.696
-- [NO_CANONICAL_MATCH] mena-iq | Altaleaa.TV.ae -> Al.Sumaria.TV.ae | score=0.545
-- [NO_CANONICAL_MATCH] mena-iq | Amozhgary.TV.ae -> Al.Sharqiya.TV.HD.ae | score=0.583
-- [NO_CANONICAL_MATCH] mena-iq | Baghdad.TV.ae -> Iraq.Al.Hadath.ae | score=0.480
-- [NO_CANONICAL_MATCH] mena-iq | Bangawaz.TV.ae -> Al.Sumaria.TV.ae | score=0.455
-- [NO_CANONICAL_MATCH] mena-iq | Gali.Kurdistan.HD.ae -> Al.Iraqiya.HD.ae | score=0.571
-- [NO_CANONICAL_MATCH] mena-iq | Imam.Hussein.TV.2.ae -> Al.Rasheed.TV.HD.ae | score=0.429
-- [NO_CANONICAL_MATCH] mena-iq | Iraq.24.HD.ae -> Iraq.Al.Hadath.ae | score=0.560
-- [NO_CANONICAL_MATCH] mena-iq | Iraq.Future.TV.ae -> Iraq.Al.Hadath.ae | score=0.552
-- [NO_CANONICAL_MATCH] mena-iq | Iraq.Now.ae -> Al.Iraqiya.News.HD.ae | score=0.609
-- [NO_CANONICAL_MATCH] mena-iq | Karbala.TV.HD.ae -> Sharqiya from Kalba.sa | score=0.486
-- [NO_CANONICAL_MATCH] mena-iq | Kirkuk.TV.ae -> Al.Iraqiya.HD.ae | score=0.400
-- [NO_CANONICAL_MATCH] mena-iq | Kurdistan.TV.ae -> Al.Sumaria.TV.ae | score=0.522
-- [NO_CANONICAL_MATCH] mena-iq | KurdMax.HD.ae -> Al.Sumaria.TV.ae | score=0.476
-- [NO_CANONICAL_MATCH] mena-iq | Kurdsat.ae -> Iraq.Al.Hadath.ae | score=0.480
-- [NO_CANONICAL_MATCH] mena-iq | Kurdsat.News.HD.ae -> Al.Iraqiya.News.HD.ae | score=0.581
-- [NO_CANONICAL_MATCH] mena-iq | Manu.Chat.ae -> Iraq.Al.Hadath.ae | score=0.519
-- [NO_CANONICAL_MATCH] mena-iq | NRT.2.HD.ae -> Iraq.Al.Hadath.ae | score=0.357
-- [NO_CANONICAL_MATCH] mena-iq | NRT.HD.ae -> Iraq.Al.Hadath.ae | score=0.417
-- [NO_CANONICAL_MATCH] mena-iq | Payam.TV.ae -> Al.Iraqiya.HD.ae | score=0.526
-- [NO_CANONICAL_MATCH] mena-iq | Rûdaw.TV.HD.ae -> Iraq.Al.Hadath.ae | score=0.522
-- [NO_CANONICAL_MATCH] mena-iq | Speda.HD.ae -> Al.Rasheed.TV.HD.ae | score=0.526
-- [NO_CANONICAL_MATCH] mena-iq | Türkmeneli.TV.HD.ae -> Al.Rasheed.TV.HD.ae | score=0.500
-- [NO_CANONICAL_MATCH] mena-iq | UTV.Iraq.ae -> Al.Iraqiya.HD.ae | score=0.636
-- [NO_CANONICAL_MATCH] mena-iq | VOA.IRAQ.ae -> Al.Iraqiya.HD.ae | score=0.727
-- [NO_CANONICAL_MATCH] mena-iq | Waar.HD.ae -> Al.Sumaria.TV.ae | score=0.556
-- [NO_CANONICAL_MATCH] mena-iq | Zagros.ae -> Al.Rasheed.TV.HD.ae | score=0.500
-- [NO_CANONICAL_MATCH] mena-ps | Al.Quds.Today.TV.ae -> Palestine.Sport.ae | score=0.438
-- [NO_CANONICAL_MATCH] mena-ps | Athan.Tulkarem.ae -> Palestine.Sport.ae | score=0.424
-- [NO_CANONICAL_MATCH] mena-ps | Falastini.TV.ae -> Palestine.Sport.ae | score=0.571
-- [NO_CANONICAL_MATCH] mena-ps | falestinona.TV.ae -> Palestine.Sport.ae | score=0.667
-- [NO_CANONICAL_MATCH] mena-ps | Hebron.Sat.ae -> Palestine.Sport.ae | score=0.483
-- [NO_CANONICAL_MATCH] mena-ps | Musawa.HD.ae -> Palestine.Sport.ae | score=0.333
-- [NO_CANONICAL_MATCH] mena-ps | Palestine.Edu.HD.ae -> Palestine.Sport.ae | score=0.750
-- [NO_CANONICAL_MATCH] mena-ps | Palestine.HD.ae -> Palestine.Sport.ae | score=0.786
-- [NO_CANONICAL_MATCH] mena-ps | Palestine.Live.HD.ae -> Palestine.Sport.ae | score=0.727
-- [NO_CANONICAL_MATCH] mena-ps | Palestine.News.ae -> Palestine.Sport.ae | score=0.788
-- [NO_CANONICAL_MATCH] mena-ps | Palestine.Quraan.ae -> Palestine.Sport.ae | score=0.743
-- [NO_CANONICAL_MATCH] mena-ps | Palestine.Quran.2.ae -> Palestine.Sport.ae | score=0.722
-- [NO_CANONICAL_MATCH] mena-ps | Palestine.Today.ae -> Palestine.Sport.ae | score=0.765
-- [NO_CANONICAL_MATCH] mena-ps | Voice.Of.Palestine.ae -> Palestine.Sport.ae | score=0.545
-- [NO_CANONICAL_MATCH] mena-ps | Wadi.Al-Neil.&.Palestine.ae -> Palestine.Sport.ae | score=0.536
-- [NO_CANONICAL_MATCH] mena-ye | Aden.TV.ae -> Al.Sahat.TV.ae | score=0.400
-- [NO_CANONICAL_MATCH] mena-ye | Al.Hawyah.ae -> Al.Sahat.TV.ae | score=0.667
-- [NO_CANONICAL_MATCH] mena-ye | Allahdhah.TV.ae -> Al.Sahat.TV.ae | score=0.667
-- [NO_CANONICAL_MATCH] mena-ye | Almasirah.TV.ae -> Al.Sahat.TV.ae | score=0.667
-- [NO_CANONICAL_MATCH] mena-ye | Almasirah.TV.Mubasher.ae -> Al.Sahat.TV.ae | score=0.533
-- [NO_CANONICAL_MATCH] mena-ye | Reef.AlYemen.ae -> Al.Sahat.TV.ae | score=0.333
-- [NO_CANONICAL_MATCH] mena-ye | Sheba.TV.ae -> Al.Sahat.TV.ae | score=0.588
-- [NO_CANONICAL_MATCH] mena-ye | Suhail.TV.ae -> Al.Sahat.TV.ae | score=0.556
-- [NO_CANONICAL_MATCH] mena-ye | Yemen.Documentary.ae -> Al.Sahat.TV.ae | score=0.333
-- [NO_CANONICAL_MATCH] mena-ye | Yemen.Education.ae -> Al.Sahat.TV.ae | score=0.370
-- [NO_CANONICAL_MATCH] mena-ye | Yemen.Shabab.ae -> Al.Sahat.TV.ae | score=0.500
-- [NO_CANONICAL_MATCH] mena-ye | Yemen.Today.TV.ae -> Al.Sahat.TV.ae | score=0.348
-- [NO_CANONICAL_MATCH] mena-ye | Yemen.TV.ae -> Al.Sahat.TV.ae | score=0.333
-- [NO_CANONICAL_MATCH] mena-dz | Al.Djazair.N°1.ae -> EchoroukTV.dz@SD | score=0.227
-- [NO_CANONICAL_MATCH] mena-dz | Algérie.3.HD.ae -> Echorouk TV.eg | score=0.235
-- [NO_CANONICAL_MATCH] mena-dz | Algérie.4.ae -> Echorouk TV.eg | score=0.235
-- [NO_CANONICAL_MATCH] mena-dz | Algérie.5.ae -> Echorouk TV.eg | score=0.235
-- [NO_CANONICAL_MATCH] mena-dz | Algérie.6.HD.ae -> Echorouk TV.eg | score=0.235
-- [NO_CANONICAL_MATCH] mena-dz | Algérie.7.ae -> Echorouk TV.eg | score=0.235
-- [NO_CANONICAL_MATCH] mena-dz | Algérie.8.HD.ae -> Echorouk TV.eg | score=0.235
-- [NO_CANONICAL_MATCH] mena-dz | Bahia.TV.ae -> Echorouk TV.eg | score=0.294
-- [NO_CANONICAL_MATCH] mena-dz | Canal.Algerie.ae -> Echorouk TV.eg | score=0.303
-- [NO_CANONICAL_MATCH] mena-dz | Echorouk.News.ae -> Echorouk TV.eg | score=0.762
-- [NO_CANONICAL_MATCH] mena-dz | El.Hayat.TV.ae -> EchoroukTV.dz@SD | score=0.333
-- [NO_CANONICAL_MATCH] mena-dz | Ennahar.TV.ae -> Echorouk TV.eg | score=0.400
-- [NO_CANONICAL_MATCH] mena-dz | Zahra.TV.ae -> Echorouk TV.eg | score=0.412
-- [NO_CANONICAL_MATCH] mena-tn | Tunisia.Nat.1.ae -> Nessma.eg | score=0.414
-- [NO_CANONICAL_MATCH] mena-tn | Tunisia.Nat.2.ae -> Nessma.eg | score=0.414
-- [NO_CANONICAL_MATCH] mena-tn | Zaytoona.ae -> NessmaElJadida.tn@SD | score=0.294
-- [NO_CANONICAL_MATCH] mena-ly | Al.Jamahiriya.TV.ae -> <none> | score=0.000
-- [NO_CANONICAL_MATCH] mena-ly | Libya.Al.Ahrar.HD.ae -> <none> | score=0.000
-- [NO_CANONICAL_MATCH] mena-ly | Libya.Al.Hedaya.ae -> <none> | score=0.000
-- [NO_CANONICAL_MATCH] mena-ly | Libya.Alhadath.HD.ae -> <none> | score=0.000
-- [NO_CANONICAL_MATCH] mena-ly | Libya.Alrasmia.Channel.ae -> <none> | score=0.000
-- [NO_CANONICAL_MATCH] mena-ly | Libya.Future.TV.HD.ae -> <none> | score=0.000
-- [NO_CANONICAL_MATCH] mena-ly | Libya.Ifta.TV.ae -> <none> | score=0.000
-- [NO_CANONICAL_MATCH] mena-ly | Libya.Sport.2.HD.ae -> <none> | score=0.000
-- [NO_CANONICAL_MATCH] mena-ly | Libya.Sport.ae -> <none> | score=0.000
-- [NO_CANONICAL_MATCH] mena-sd | Khartoum.TV.ae -> Sudan.TV.ae | score=0.500
-- [NO_CANONICAL_MATCH] mena-sd | Shamalia.TV.ae -> Sudan.TV.ae | score=0.500
-- [NO_CANONICAL_MATCH] mena-sd | Tayba.TV.ae -> Sudan.TV.ae | score=0.500
-- [NO_CANONICAL_MATCH] mena-sy | Halab.Today.TV.ae -> Althania.sy@SD | score=0.333
-- [NO_CANONICAL_MATCH] mena-sy | Syria.One.TV.ae -> Althania.sy@SD | score=0.293
-- [NO_CANONICAL_MATCH] mena-sy | Syria.TV.HD.ae -> Althania.sy@SD | score=0.308
-- [NO_CANONICAL_MATCH] mena-mr | Albarlemania.al.Mauritania.TV.ae -> <none> | score=0.000
+- [NO_CANONICAL_MATCH] mena-eg | Aghapy.TV.ae -> Alhayat TV.eg | score=0.615 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Al.Ahly.TV.HD.ae -> Al Nahar TV.sa | score=0.667 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Al.Askandria.5.ae -> Al Masriya.sa | score=0.667 variants=num:5/base
+- [NO_CANONICAL_MATCH] mena-eg | Al.Kahera.3.ae -> Al Kahera Walnas.sa | score=0.741 variants=num:3/base
+- [NO_CANONICAL_MATCH] mena-eg | AL.Kahera.Al.Kobra.ae -> Al.Kahera.Wal.Nas.ae | score=0.800 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Al.Nada.TV.ae -> Al Nahar TV.sa | score=0.800 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Al.Nahar.Noor.ae -> Al Nahar TV.sa | score=0.762 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Al.Qahera.News.ae -> Al Kahera Walnas.sa | score=0.733 variants=news/base
+- [NO_CANONICAL_MATCH] mena-eg | Al.Wathaeqya.ae -> Al Nahar TV.sa | score=0.600 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Alfath.TV.ae -> AlNahar.eg@SD | score=0.615 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | AlHadath.Alyoum.ae -> Alhayat TV.eg | score=0.545 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Aswan.ae -> MasperoZaman.eg@SD | score=0.471 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Bakous.Alexandaria.ae -> Al Masriya.sa | score=0.429 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | El.Moled.ae -> El.Mehwar.HD.ae | score=0.588 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Extra.live.ae -> Extra.News.HD.ae | score=0.700 variants=extra/extra/news
+- [NO_CANONICAL_MATCH] mena-eg | Huda.TV.ae -> Mehwar.eg | score=0.400 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Koogi.TV.ae -> Egyptian TV.eg | score=0.308 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Madrasetna.1.ae -> DMCDrama.eg@SD | score=0.500 variants=num:1/base
+- [NO_CANONICAL_MATCH] mena-eg | Madrasetna.2.ae -> Al Kahera Walnas 2.sa | score=0.467 variants=num:2/num:2
+- [NO_CANONICAL_MATCH] mena-eg | Madrasetna.3.ae -> DMCDrama.eg@SD | score=0.500 variants=num:3/base
+- [NO_CANONICAL_MATCH] mena-eg | Matrouh.ae -> AlMasriyah.eg@SD | score=0.471 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Mazzika.ae -> Al Masriya.sa | score=0.471 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Mekameleen.ae -> MasperoZaman.eg@SD | score=0.455 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Misr.Al.Zeraeey.ae -> MixBelAraby.eg@SD | score=0.462 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Misr.AlBalad.ae -> SadaElbalad.eg@SD | score=0.696 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Misr.Quran.Kareem.ae -> DMC.Drama.ae | score=0.385 variants=quran/drama
+- [NO_CANONICAL_MATCH] mena-eg | Nile.Culture.ae -> Nile Life.eg | score=0.667 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Nile.News.ae -> Nile.Cinema.ae | score=0.700 variants=news/cinema
+- [NO_CANONICAL_MATCH] mena-eg | Nile.Sport.ae -> On.Time.Sports.HD.ae | score=0.750 variants=sport/sport
+- [NO_CANONICAL_MATCH] mena-eg | North.Sinai.ae -> OnDrama.eg@SD | score=0.333 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | South.Sinai.ae -> Al.Oula.ae | score=0.333 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | The.Kingdom.Sat.ae -> OnDrama.eg@SD | score=0.364 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Watan.TV.ae -> TeN.eg@SD | score=0.500 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Zamalek.TV.ae -> OnDrama.eg@SD | score=0.429 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Zee.Alwan.Egypt.ae -> Alhayat TV.eg | score=0.455 variants=base/base
+- [NO_CANONICAL_MATCH] mena-sa | Al.Majd.ae -> AlHadath.sa@SD | score=0.533 variants=base/base
+- [NO_CANONICAL_MATCH] mena-sa | Al.Majd.Holy.Quran.ae -> Saudi Quran.sa | score=0.552 variants=quran/quran
+- [NO_CANONICAL_MATCH] mena-sa | Al.Sahraa.TV.ae -> Al Resalah.sa | score=0.632 variants=base/base
+- [NO_CANONICAL_MATCH] mena-sa | Bin.Othaimeen.ae -> MoviesThriller.sa@SD | score=0.429 variants=base/base
+- [REVIEW_CANONICAL_REPAIR] mena-sa | KSA.sports.2.HD.ae -> Saudi Sports 2.sa | score=0.846 variants=num:2/sport/num:2/sport
+- [NO_CANONICAL_MATCH] mena-sa | Oyoun.Al.Watan.TV.ae -> Saudi.Al.Ekhbariya.HD.ae | score=0.438 variants=base/base
+- [NO_CANONICAL_MATCH] mena-sa | Saudia.Alaan.TV.ae -> Saudi.Al.Ekhbariya.HD.ae | score=0.667 variants=base/base
+- [NO_CANONICAL_MATCH] mena-sa | Zad.TV.ae -> Saudi.HD.ae | score=0.500 variants=base/base
+- [REVIEW_CANONICAL_REPAIR] mena-qa | Al.Jazeera.Documentary.HD.ae -> Aljazeera-Documentary-1.qa | score=0.933 variants=documentary/documentary/num:1
+- [NO_CANONICAL_MATCH] mena-qa | Al.Maaref.TV.ae -> AlArabyTV.qa@SD | score=0.588 variants=base/base
+- [NO_CANONICAL_MATCH] mena-qa | Hola.Qatar.ae -> Qatar.TV.HD.ae | score=0.667 variants=base/base
+- [NO_CANONICAL_MATCH] mena-qa | Qatar.R.Quran.2.ae -> Qatar.2.HD.ae | score=0.636 variants=num:2/quran/num:2
+- [NO_CANONICAL_MATCH] mena-qa | Qatar.R.Quran.ae -> Qatar.2.HD.ae | score=0.600 variants=quran/num:2
+- [NO_CANONICAL_MATCH] mena-qa | Sout.Al.Islam.Doha.ae -> AlArabyTV.qa@SD | score=0.385 variants=base/base
+- [NO_CANONICAL_MATCH] mena-qa | Sout.Al.Rayyan.ae -> Al.Rayyan.HD.ae | score=0.783 variants=base/base
+- [NO_CANONICAL_MATCH] mena-qa | Sout.Alkhaleej.2.ae -> Al.Jazeera.Mobasher.2.HD.ae | score=0.378 variants=num:2/num:2
+- [NO_CANONICAL_MATCH] mena-qa | Sout.Alkhaleej.3.ae -> AlJazeera2.qa@HD | score=0.429 variants=num:3/base
+- [NO_CANONICAL_MATCH] mena-qa | Sout.Alkhaleej.4.ae -> AlJazeera2.qa@HD | score=0.429 variants=num:4/base
+- [NO_CANONICAL_MATCH] mena-qa | Sout.Alkhaleej.Europe.ae -> Al.Jazeera.Mobasher.HD.ae | score=0.400 variants=base/base
+- [NO_CANONICAL_MATCH] mena-kw | Al.Anwar.TV.ae -> AlraiTV.kw@SD | score=0.571 variants=base/base
+- [NO_CANONICAL_MATCH] mena-kw | Kuwait.Al.Akhbar.ae -> AlraiTV.kw@SD | score=0.364 variants=base/base
+- [NO_CANONICAL_MATCH] mena-kw | Kuwait.Classical.ae -> AlraiTV.kw@SD | score=0.261 variants=base/base
+- [NO_CANONICAL_MATCH] mena-kw | Kuwait.Easy.ae -> AlraiTV.kw@SD | score=0.333 variants=base/base
+- [NO_CANONICAL_MATCH] mena-kw | Kuwait.Holy.Quran.ae -> Kuwait.Sport.HD.ae | score=0.621 variants=quran/sport
+- [NO_CANONICAL_MATCH] mena-kw | Kuwait.Shaabyia.ae -> AlraiTV.kw@SD | score=0.273 variants=base/base
+- [NO_CANONICAL_MATCH] mena-kw | Kuwait.Super.ae -> AlraiTV.kw@SD | score=0.316 variants=base/base
+- [REVIEW_CANONICAL_REPAIR] mena-kw | Kuwait.TV.2.HD.ae -> Kuwait.TV.1.HD.ae | score=0.875 variants=num:2/num:1
+- [NO_CANONICAL_MATCH] mena-bh | Bahrain.International.ae -> BahrainTV.bh@SD | score=0.533 variants=international/base
+- [NO_CANONICAL_MATCH] mena-bh | LuaLua.TV.HD.ae -> BahrainTV.bh@SD | score=0.308 variants=base/base
+- [NO_CANONICAL_MATCH] mena-om | Alistiqama.TV.ae -> Oman Al Thakafeyah.sa | score=0.357 variants=base/base
+- [NO_CANONICAL_MATCH] mena-om | Oman.TV.Culture.HD.ae -> OmanTVCultural.om | score=0.769 variants=base/base
+- [NO_CANONICAL_MATCH] mena-jo | Azhari.TV.ae -> AmmanTV.jo@SD | score=0.308 variants=base/base
+- [NO_CANONICAL_MATCH] mena-jo | Jordan.sama.ae -> Jordan TV.sa | score=0.706 variants=base/base
+- [NO_CANONICAL_MATCH] mena-jo | Kaifa.TV.ae -> AmmanTV.jo@SD | score=0.333 variants=base/base
+- [NO_CANONICAL_MATCH] mena-jo | Karameesh.ae -> RoyaNews.jo@SD | score=0.353 variants=base/base
+- [NO_CANONICAL_MATCH] mena-jo | Quran.Kareem.Jordan.ae -> Jordan TV.sa | score=0.480 variants=quran/base
+- [NO_CANONICAL_MATCH] mena-jo | Toyor.Aljanah.TV.ae -> Jordan TV.sa | score=0.421 variants=base/base
+- [NO_CANONICAL_MATCH] mena-lb | Al.Iman.TV.ae -> Al Jadeed TV.eg | score=0.500 variants=base/base
+- [NO_CANONICAL_MATCH] mena-lb | Al.Ittihad.TV.ae -> Al Jadeed TV.eg | score=0.526 variants=base/base
+- [NO_CANONICAL_MATCH] mena-lb | Al.Mayadeen.HD.ae -> Al Jadeed TV.eg | score=0.700 variants=base/base
+- [NO_CANONICAL_MATCH] mena-lb | Beirut.Aflam.ae -> LBCInternational.lb@SD | score=0.357 variants=base/base
+- [NO_CANONICAL_MATCH] mena-lb | Beirut.Alyoom.ae -> LBCInternational.lb@SD | score=0.345 variants=base/base
+- [NO_CANONICAL_MATCH] mena-lb | Beirut.Cinema.ae -> LBCInternational.lb@SD | score=0.414 variants=cinema/base
+- [NO_CANONICAL_MATCH] mena-lb | Beirut.Drama.ae -> Aghani Aghani.sa | score=0.320 variants=drama/base
+- [NO_CANONICAL_MATCH] mena-lb | Nabaa.TV.ae -> LanaTV.lb@SD | score=0.364 variants=base/base
+- [NO_CANONICAL_MATCH] mena-lb | Nour.Koddass.ae -> Al Jadeed TV.eg | score=0.286 variants=base/base
+- [NO_CANONICAL_MATCH] mena-lb | Noursat.TV.ae -> LanaTV.lb@SD | score=0.462 variants=base/base
+- [NO_CANONICAL_MATCH] mena-lb | Suboro.TV.ae -> MTV.lb@SD | score=0.235 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Afaq.TV.ae -> AlIraqia.iq@SD | score=0.500 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Al.Anbar.ae -> Al.Sumaria.TV.ae | score=0.556 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Al.Ayyam.TV.ae -> Al.Iraqiya.HD.ae | score=0.667 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Al.Eshraq.TV.ae -> Al.Sharqiya.TV.HD.ae | score=0.700 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Al.Fallujah.TV.ae -> Al.Sumaria.TV.ae | score=0.500 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Al.Forat.ae -> Al.Sumaria.TV.ae | score=0.556 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Al.Iraqiya.Kurd.ae -> Al.Iraqiya.HD.ae | score=0.800 variants=kurd/base
+- [NO_CANONICAL_MATCH] mena-iq | Al.Iraqiya.Sport.HD.ae -> Al.Iraqiya.News.HD.ae | score=0.774 variants=sport/news
+- [NO_CANONICAL_MATCH] mena-iq | Al.Iraqiya.Turkuman.ae -> Al.Iraqiya.News.HD.ae | score=0.706 variants=turkuman/news
+- [NO_CANONICAL_MATCH] mena-iq | Al.Kafeel.ae -> Al.Rasheed.TV.HD.ae | score=0.632 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Al.Naeem.TV.ae -> Al.Rasheed.TV.HD.ae | score=0.667 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Al.Najaf.Al.Ashraf.TV.ae -> Al.Sharqiya.TV.HD.ae | score=0.483 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Al.Salam.TV.ae -> Al.Sumaria.TV.ae | score=0.667 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Alahad.TV.HD.ae -> Alrasheed.eg | score=0.667 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Alghadeer.TV.ae -> Alrasheed.eg | score=0.556 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Alshaaer.TV.ae -> Al.Sharqiya.TV.HD.ae | score=0.632 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Altaleaa.TV.ae -> AlIraqia.iq@SD | score=0.500 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Amozhgary.TV.ae -> Al.Sharqiya.TV.HD.ae | score=0.500 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Baghdad.TV.ae -> Iraq.Al.Hadath.ae | score=0.381 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Bangawaz.TV.ae -> AlIraqia.iq@SD | score=0.375 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Gali.Kurdistan.HD.ae -> AlIraqia.iq@SD | score=0.545 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Imam.Hussein.TV.2.ae -> Al.Rasheed.TV.HD.ae | score=0.333 variants=num:2/base
+- [NO_CANONICAL_MATCH] mena-iq | Iraq.24.HD.ae -> AlIraqia.iq@SD | score=0.533 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Iraq.Future.TV.ae -> Iraq.Al.Hadath.ae | score=0.480 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Iraq.Now.ae -> AlIraqia.iq@SD | score=0.500 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Karbala.TV.HD.ae -> AlIraqia.iq@SD | score=0.400 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Kirkuk.TV.ae -> AlIraqia.iq@SD | score=0.286 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Kurdistan.TV.ae -> Alsumaria.eg | score=0.444 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | KurdMax.HD.ae -> Alsumaria.eg | score=0.375 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Kurdsat.ae -> DijlahTV.iq@SD | score=0.400 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Kurdsat.News.HD.ae -> Al.Iraqiya.News.HD.ae | score=0.519 variants=news/news
+- [NO_CANONICAL_MATCH] mena-iq | Manu.Chat.ae -> Iraq.Al.Hadath.ae | score=0.435 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | NRT.2.HD.ae -> AlRasheedTV.iq@SD | score=0.250 variants=num:2/base
+- [NO_CANONICAL_MATCH] mena-iq | NRT.HD.ae -> UTV.iq@SD | score=0.333 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Payam.TV.ae -> Al.Iraqiya.HD.ae | score=0.400 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Rûdaw.TV.HD.ae -> Dijlah TV.eg | score=0.364 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Speda.HD.ae -> Alrasheed.eg | score=0.429 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Türkmeneli.TV.HD.ae -> Alrasheed.eg | score=0.316 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | UTV.Iraq.ae -> Al.Iraqiya.HD.ae | score=0.556 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | VOA.IRAQ.ae -> Al.Iraqiya.HD.ae | score=0.667 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Waar.HD.ae -> Alsumaria.eg | score=0.462 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Zagros.ae -> Alrasheed.eg | score=0.400 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ps | Al.Quds.Today.TV.ae -> Palestine.Sport.ae | score=0.357 variants=base/sport
+- [NO_CANONICAL_MATCH] mena-ps | Athan.Tulkarem.ae -> Palestine.Sport.ae | score=0.345 variants=base/sport
+- [NO_CANONICAL_MATCH] mena-ps | Falastini.TV.ae -> Palestine.Sport.ae | score=0.500 variants=base/sport
+- [NO_CANONICAL_MATCH] mena-ps | falestinona.TV.ae -> Palestine.Sport.ae | score=0.615 variants=base/sport
+- [NO_CANONICAL_MATCH] mena-ps | Hebron.Sat.ae -> Palestine.Sport.ae | score=0.400 variants=base/sport
+- [NO_CANONICAL_MATCH] mena-ps | Musawa.HD.ae -> Palestine.Sport.ae | score=0.095 variants=base/sport
+- [NO_CANONICAL_MATCH] mena-ps | Palestine.Edu.HD.ae -> Palestine.Sport.ae | score=0.714 variants=base/sport
+- [NO_CANONICAL_MATCH] mena-ps | Palestine.HD.ae -> Palestine.Sport.ae | score=0.750 variants=base/sport
+- [NO_CANONICAL_MATCH] mena-ps | Palestine.Live.HD.ae -> Palestine.Sport.ae | score=0.690 variants=base/sport
+- [NO_CANONICAL_MATCH] mena-ps | Palestine.News.ae -> Palestine.Sport.ae | score=0.759 variants=news/sport
+- [NO_CANONICAL_MATCH] mena-ps | Palestine.Quraan.ae -> Palestine.Sport.ae | score=0.710 variants=quran/sport
+- [NO_CANONICAL_MATCH] mena-ps | Palestine.Quran.2.ae -> Palestine.Sport.ae | score=0.688 variants=num:2/quran/sport
+- [NO_CANONICAL_MATCH] mena-ps | Palestine.Today.ae -> Palestine.Sport.ae | score=0.733 variants=base/sport
+- [NO_CANONICAL_MATCH] mena-ps | Voice.Of.Palestine.ae -> Palestine.Sport.ae | score=0.545 variants=base/sport
+- [NO_CANONICAL_MATCH] mena-ps | Wadi.Al-Neil.&.Palestine.ae -> Palestine.Sport.ae | score=0.486 variants=base/sport
+- [NO_CANONICAL_MATCH] mena-ye | Aden.TV.ae -> HadhramautTV.ye@SD | score=0.250 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ye | Al.Hawyah.ae -> Al.Sahat.TV.ae | score=0.588 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ye | Allahdhah.TV.ae -> Al.Sahat.TV.ae | score=0.588 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ye | Almasirah.TV.ae -> Al.Sahat.TV.ae | score=0.588 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ye | Almasirah.TV.Mubasher.ae -> Al.Sahat.TV.ae | score=0.462 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ye | Reef.AlYemen.ae -> HadhramautTV.ye@SD | score=0.250 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ye | Sheba.TV.ae -> Al.Sahat.TV.ae | score=0.462 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ye | Suhail.TV.ae -> Al.Sahat.TV.ae | score=0.429 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ye | Yemen.Documentary.ae -> HadhramautTV.ye@SD | score=0.207 variants=documentary/base
+- [NO_CANONICAL_MATCH] mena-ye | Yemen.Education.ae -> Al.Sahat.TV.ae | score=0.261 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ye | Yemen.Shabab.ae -> Al.Sahat.TV.ae | score=0.400 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ye | Yemen.Today.TV.ae -> Al.Sahat.TV.ae | score=0.211 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ye | Yemen.TV.ae -> HadhramautTV.ye@SD | score=0.118 variants=base/base
+- [NO_CANONICAL_MATCH] mena-dz | Al.Djazair.N°1.ae -> Echorouk TV.eg | score=0.091 variants=num:1/base
+- [NO_CANONICAL_MATCH] mena-dz | Algérie.3.HD.ae -> Echorouk TV.eg | score=0.235 variants=num:3/base
+- [NO_CANONICAL_MATCH] mena-dz | Algérie.4.ae -> Echorouk TV.eg | score=0.235 variants=num:4/base
+- [NO_CANONICAL_MATCH] mena-dz | Algérie.5.ae -> Echorouk TV.eg | score=0.235 variants=num:5/base
+- [NO_CANONICAL_MATCH] mena-dz | Algérie.6.HD.ae -> Echorouk TV.eg | score=0.235 variants=num:6/base
+- [NO_CANONICAL_MATCH] mena-dz | Algérie.7.ae -> Echorouk TV.eg | score=0.235 variants=num:7/base
+- [NO_CANONICAL_MATCH] mena-dz | Algérie.8.HD.ae -> Echorouk TV.eg | score=0.235 variants=num:8/base
+- [NO_CANONICAL_MATCH] mena-dz | Bahia.TV.ae -> Echorouk TV.eg | score=0.154 variants=base/base
+- [NO_CANONICAL_MATCH] mena-dz | Canal.Algerie.ae -> Echorouk TV.eg | score=0.190 variants=base/base
+- [NO_CANONICAL_MATCH] mena-dz | Echorouk.News.ae -> Echorouk TV.eg | score=0.762 variants=news/base
+- [NO_CANONICAL_MATCH] mena-dz | El.Hayat.TV.ae -> EchoroukTV.dz@SD | score=0.333 variants=base/base
+- [NO_CANONICAL_MATCH] mena-dz | Ennahar.TV.ae -> Echorouk TV.eg | score=0.400 variants=base/base
+- [NO_CANONICAL_MATCH] mena-dz | Zahra.TV.ae -> Echorouk TV.eg | score=0.308 variants=base/base
+- [NO_CANONICAL_MATCH] mena-tn | Tunisia.Nat.1.ae -> Nessma.eg | score=0.316 variants=num:1/base
+- [NO_CANONICAL_MATCH] mena-tn | Tunisia.Nat.2.ae -> Nessma.eg | score=0.316 variants=num:2/base
+- [NO_CANONICAL_MATCH] mena-tn | Zaytoona.ae -> NessmaElJadida.tn@SD | score=0.182 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ly | Al.Jamahiriya.TV.ae -> <none> | score=0.000 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ly | Libya.Al.Ahrar.HD.ae -> <none> | score=0.000 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ly | Libya.Al.Hedaya.ae -> <none> | score=0.000 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ly | Libya.Alhadath.HD.ae -> <none> | score=0.000 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ly | Libya.Alrasmia.Channel.ae -> <none> | score=0.000 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ly | Libya.Future.TV.HD.ae -> <none> | score=0.000 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ly | Libya.Ifta.TV.ae -> <none> | score=0.000 variants=base/base
+- [NO_CANONICAL_MATCH] mena-ly | Libya.Sport.2.HD.ae -> <none> | score=0.000 variants=num:2/sport/base
+- [NO_CANONICAL_MATCH] mena-ly | Libya.Sport.ae -> <none> | score=0.000 variants=sport/base
+- [NO_CANONICAL_MATCH] mena-sd | Khartoum.TV.ae -> Sudan.TV.ae | score=0.154 variants=base/base
+- [NO_CANONICAL_MATCH] mena-sd | Shamalia.TV.ae -> Sudan.TV.ae | score=0.308 variants=base/base
+- [NO_CANONICAL_MATCH] mena-sd | Tayba.TV.ae -> Sudan.TV.ae | score=0.200 variants=base/base
+- [NO_CANONICAL_MATCH] mena-sy | Halab.Today.TV.ae -> Althania.sy@SD | score=0.316 variants=base/base
+- [NO_CANONICAL_MATCH] mena-sy | Syria.One.TV.ae -> Althania.sy@SD | score=0.235 variants=base/base
+- [NO_CANONICAL_MATCH] mena-sy | Syria.TV.HD.ae -> Althania.sy@SD | score=0.308 variants=base/base
+- [NO_CANONICAL_MATCH] mena-mr | Albarlemania.al.Mauritania.TV.ae -> <none> | score=0.000 variants=base/base
