@@ -1,15 +1,15 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=1054
-programmes_scanned=32950
+channels_scanned=1046
+programmes_scanned=32811
 critical=0
-warnings=18603
+warnings=18475
 
 ISSUE COUNTS
-empty_description=15477
-very_short_event_lt_5m=2299
-arabic_provider_title_not_arabic=683
+empty_description=15346
+very_short_event_lt_5m=2302
+arabic_provider_title_not_arabic=682
 premium_title_not_english=116
-very_long_event_gt_6h=22
+very_long_event_gt_6h=23
 hybrid_arabic_latin_description=4
 arabic_provider_description_not_arabic=2
 
@@ -21,8 +21,7 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260916034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=683
-- provider-mbc | EN: MBC Iraq | 20260914044500 +0000 | Awdat Khalati
+[arabic_provider_title_not_arabic] count=682
 - provider-mbc | EN: MBC Iraq | 20260914053300 +0000 | Teebah
 - provider-mbc | EN: MBC Iraq | 20260914060500 +0000 | A'elati Tarbah
 - provider-mbc | EN: MBC Iraq | 20260914065500 +0000 | TV guide is not available
@@ -32,8 +31,9 @@ TOP SAMPLES
 - provider-mbc | EN: MBC Iraq | 20260914085000 +0000 | TV guide is not available
 - provider-mbc | EN: MBC Iraq | 20260914085500 +0000 | Al Motawahesh
 - provider-mbc | EN: MBC Iraq | 20260914093000 +0000 | Al A'ela
+- provider-mbc | EN: MBC Iraq | 20260914100500 +0000 | Awdat Khalati
 
-[empty_description] count=15477
+[empty_description] count=15346
 - provider-bein | beIN Drama.eg | 20260914050000 +0000 | Sarmasik Zamani
 - provider-bein | beIN Drama.eg | 20260914060000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260914070000 +0000 | Mazad El Shar
@@ -75,11 +75,13 @@ TOP SAMPLES
 - provider-bein | بي إن دراما | 20260914120000 +0000 | درب الذهب
   desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
 
-[very_long_event_gt_6h] count=22
+[very_long_event_gt_6h] count=23
 - provider-bein | beIN SPORTS.qa | 20260915193000 +0000 | Vietnam vs Kuwait - Football Men - Asian Games Aichi-Nagoya 2026 - FBL06
   desc: مباراة، موسم 2026.
 - provider-bein | beINSPORTS2 | 20260916002000 +0000 | São Paulo (BRA) vs Boca Juniors (ARG) - Conmebol Sudamericana - De Final 2nd Leg
   desc: مباراة، موسم 2026.
+- provider-mbc | MBC Mood | 20260914190200 +0000 | طرب
+  desc: موعدكم الليلي مع نجوم الطرب الأصيل، حيث الإحساس والسلطنة في مختارات من برامج MBC وحفلات موسم الرياض.
 - provider-adm | Yas TV HD | 20260914193000 +0100 | Camel Racing
 - provider-adm | Yas TV HD | 20260915210000 +0100 | Sharjah Arabian Horse Festival
 - provider-dmi | Dubai Racing | 20260914120000 +0000 | 14 SEPTEMBER 2026 RACE FROM RACING TV, UK
@@ -87,9 +89,8 @@ TOP SAMPLES
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
 - mena-qa | Qatar TV HD | 20260913214500 +0100 | Soil
 - mena-qa | Qatar TV HD | 20260914214500 +0100 | Soil
-- mena-qa | Qatar TV HD | 20260915214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2299
+[very_short_event_lt_5m] count=2302
 - provider-osn | OSNtv Kids | 20260914054600 +0000 | Barbie: Fashion Stories
   desc: مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!
 - provider-osn | OSNtv Kids | 20260914061400 +0000 | Barbie: Dream Besties

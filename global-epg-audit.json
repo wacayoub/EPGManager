@@ -1,38 +1,38 @@
 {
   "schema": 1,
   "scope": "all exclusive MENA country/provider shards",
-  "channels_scanned": 1054,
-  "programmes_scanned": 32950,
+  "channels_scanned": 1046,
+  "programmes_scanned": 32811,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 683,
-    "empty_description": 15477,
+    "arabic_provider_title_not_arabic": 682,
+    "empty_description": 15346,
     "hybrid_arabic_latin_description": 4,
     "premium_title_not_english": 116,
-    "severity_warning": 18603,
-    "very_long_event_gt_6h": 22,
-    "very_short_event_lt_5m": 2299
+    "severity_warning": 18475,
+    "very_long_event_gt_6h": 23,
+    "very_short_event_lt_5m": 2302
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 412,
+      "empty_description": 405,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
       "very_short_event_lt_5m": 13
     },
     "mena-dz": {
-      "empty_description": 42
+      "empty_description": 45
     },
     "mena-eg": {
-      "empty_description": 1301,
+      "empty_description": 1300,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 562
+      "empty_description": 568
     },
     "mena-jo": {
-      "empty_description": 107,
+      "empty_description": 112,
       "very_short_event_lt_5m": 6
     },
     "mena-kw": {
@@ -47,10 +47,10 @@
       "empty_description": 363
     },
     "mena-other": {
-      "empty_description": 7550,
+      "empty_description": 7407,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 10,
-      "very_short_event_lt_5m": 1197
+      "very_short_event_lt_5m": 1201
     },
     "mena-ps": {
       "empty_description": 35
@@ -61,17 +61,17 @@
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1560,
-      "very_short_event_lt_5m": 713
+      "empty_description": 1556,
+      "very_short_event_lt_5m": 712
     },
     "mena-sd": {
       "empty_description": 47
     },
     "mena-sy": {
-      "empty_description": 3
+      "empty_description": 7
     },
     "mena-tn": {
-      "empty_description": 50
+      "empty_description": 60
     },
     "mena-ye": {
       "empty_description": 125
@@ -84,7 +84,7 @@
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 9,
-      "empty_description": 703,
+      "empty_description": 701,
       "very_short_event_lt_5m": 278
     },
     "provider-bein": {
@@ -100,11 +100,12 @@
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
-      "arabic_provider_title_not_arabic": 266,
-      "empty_description": 383
+      "arabic_provider_title_not_arabic": 265,
+      "empty_description": 382,
+      "very_long_event_gt_6h": 1
     },
     "provider-osn": {
-      "empty_description": 349,
+      "empty_description": 348,
       "premium_title_not_english": 4,
       "very_short_event_lt_5m": 49
     },
@@ -944,6 +945,16 @@
         "duration_minutes": 400.0
       },
       {
+        "shard": "provider-mbc",
+        "channel_id": "MBCMood.sa@HD",
+        "channel": "MBC Mood",
+        "start": "20260914190200 +0000",
+        "stop": "20260915030200 +0000",
+        "title": "طرب",
+        "desc": "موعدكم الليلي مع نجوم الطرب الأصيل، حيث الإحساس والسلطنة في مختارات من برامج MBC وحفلات موسم الرياض.",
+        "duration_minutes": 480.0
+      },
+      {
         "shard": "provider-adm",
         "channel_id": "Yas.TV.HD.ae",
         "channel": "Yas TV HD",
@@ -1551,16 +1562,6 @@
         "shard": "provider-mbc",
         "channel_id": "EN:.MBC1.Iraq.sa",
         "channel": "EN: MBC Iraq",
-        "start": "20260914044500 +0000",
-        "stop": "20260914053300 +0000",
-        "title": "Awdat Khalati",
-        "desc": "",
-        "duration_minutes": 48.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
         "start": "20260914053300 +0000",
         "stop": "20260914060500 +0000",
         "title": "Teebah",
@@ -1946,6 +1947,16 @@
         "title": "Teebah",
         "desc": "",
         "duration_minutes": 47.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260915054700 +0000",
+        "stop": "20260915060000 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 13.0
       }
     ],
     "arabic_provider_description_not_arabic": [

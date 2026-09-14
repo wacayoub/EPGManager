@@ -1,24 +1,24 @@
 {
   "schema": 1,
   "policy": "exclusive provider-first, then country, then MENA Other; Morocco excluded to dedicated Morocco Cloud",
-  "input_channels": 1059,
-  "published_channels": 1054,
+  "input_channels": 1051,
+  "published_channels": 1046,
   "excluded_morocco_channels": 5,
-  "other_channels": 435,
+  "other_channels": 427,
   "provider_counts": {
     "alkass": 9,
     "bein": 66,
     "osn": 23,
     "mbc": 39,
     "rotana": 23,
-    "adm": 13,
+    "adm": 14,
     "dmi": 13,
     "art": 11,
     "ssc": 10,
     "starz": 5
   },
   "country_counts": {
-    "EG": 99,
+    "EG": 98,
     "SA": 56,
     "AE": 29,
     "QA": 30,
@@ -74,18 +74,18 @@
     "provider-osn": {
       "label": "OSN",
       "channels": 23,
-      "programmes": 1331,
-      "size_bytes": 56714,
-      "sha256": "dc11b0a0e044cfb47315c75342b22f26ec299a11c416d36922f7b5d5bafc6c74",
+      "programmes": 1327,
+      "size_bytes": 56675,
+      "sha256": "821c9f10279d81f57886456825efebaf4db2d51b885166ac1e54f66a886d9a56",
       "kind": "provider",
       "key": "osn"
     },
     "provider-mbc": {
       "label": "MBC Group",
       "channels": 39,
-      "programmes": 2049,
-      "size_bytes": 82625,
-      "sha256": "408a107eeea060206d457b340344aa2c72b9ac2a8df6596cb8be0ec0a6eae3cc",
+      "programmes": 2045,
+      "size_bytes": 82471,
+      "sha256": "82b0f78ae535852686f7f8683703b0a1bf331b43920b726f6da2e14f446ab28e",
       "kind": "provider",
       "key": "mbc"
     },
@@ -100,10 +100,10 @@
     },
     "provider-adm": {
       "label": "Abu Dhabi Media",
-      "channels": 13,
-      "programmes": 753,
-      "size_bytes": 21781,
-      "sha256": "9597eaa7e94d7045056c5c1a5029c479dd180f5e7af000db4134f41f8cf9fac0",
+      "channels": 14,
+      "programmes": 813,
+      "size_bytes": 23866,
+      "sha256": "332870ceb29470a4e451a2e4a40b4cc0317e8bd978bb092003db61aee0b68688",
       "kind": "provider",
       "key": "adm"
     },
@@ -119,9 +119,9 @@
     "provider-art": {
       "label": "ART / Alfa",
       "channels": 11,
-      "programmes": 703,
-      "size_bytes": 10175,
-      "sha256": "30fb3330b82b84b29b5947ad86452e9deeb537eed63e250f5306395d3cbfcb5c",
+      "programmes": 701,
+      "size_bytes": 10163,
+      "sha256": "8ea60c3128858f3e1d80df03a69b6e27642dd0a7a0872c30997ce360d59a50e2",
       "kind": "provider",
       "key": "art"
     },
@@ -145,28 +145,28 @@
     },
     "mena-eg": {
       "label": "Egypt",
-      "channels": 99,
-      "programmes": 2315,
-      "size_bytes": 82759,
-      "sha256": "15773903032531873598b08875b3fd486fd3829f195faa9d8be6621fb0624484",
+      "channels": 98,
+      "programmes": 2342,
+      "size_bytes": 81007,
+      "sha256": "77da2145950182002c5b62be86125c56f8ef4fe1d0a883b195d096e3ff0704b9",
       "kind": "country",
       "key": "EG"
     },
     "mena-sa": {
       "label": "Saudi Arabia",
       "channels": 56,
-      "programmes": 2538,
-      "size_bytes": 70968,
-      "sha256": "72c7ec0dd7b330d144ad200641ecd4644992d42499a672967b6f270f9f92676b",
+      "programmes": 2533,
+      "size_bytes": 70904,
+      "sha256": "bd9ea3a6db216647ab5839d45227a484dce21abaf87c6bdd82948d44496e0a9b",
       "kind": "country",
       "key": "SA"
     },
     "mena-ae": {
       "label": "United Arab Emirates",
       "channels": 29,
-      "programmes": 1238,
-      "size_bytes": 70115,
-      "sha256": "a578492c256bfee69dab52e607a5c7e56e80726bebbc9eeb56f4093ea76457eb",
+      "programmes": 1230,
+      "size_bytes": 69700,
+      "sha256": "04fc977c5f029b5266770781acdb83387caa4cb81096bbf29fbacc599a3efbd4",
       "kind": "country",
       "key": "AE"
     },
@@ -183,8 +183,8 @@
       "label": "Kuwait",
       "channels": 13,
       "programmes": 273,
-      "size_bytes": 5392,
-      "sha256": "27511e17c881832d0608b6908e739e5b5bf856112c888b9c6c03a2a4f90d8ab9",
+      "size_bytes": 5387,
+      "sha256": "9213a1fd56cd222ab87be9ffd1a5810316eb4569c0a330b0882be660002404a9",
       "kind": "country",
       "key": "KW"
     },
@@ -192,8 +192,8 @@
       "label": "Bahrain",
       "channels": 4,
       "programmes": 146,
-      "size_bytes": 5226,
-      "sha256": "7a2f2148e19d7b662cee364784125f3356f99be6ed6bed43b43c745af671b6e7",
+      "size_bytes": 5147,
+      "sha256": "4bb4d03e7f538ef67b9a4bc1a2f87f6e1d31a56d5dda6bea9ca77e5db03bcf27",
       "kind": "country",
       "key": "BH"
     },
@@ -209,27 +209,27 @@
     "mena-jo": {
       "label": "Jordan",
       "channels": 16,
-      "programmes": 631,
-      "size_bytes": 21950,
-      "sha256": "0c1fd67929bb6b6494766f7b91a04f4cc58d32e5cce8a0aa3b660a1042c99f37",
+      "programmes": 641,
+      "size_bytes": 22081,
+      "sha256": "6ca504442396fa89562aded23b0a308f8fe31736fe26fa19dac9a25ae0bf8a67",
       "kind": "country",
       "key": "JO"
     },
     "mena-lb": {
       "label": "Lebanon",
       "channels": 18,
-      "programmes": 177,
-      "size_bytes": 7893,
-      "sha256": "9125fbf65040e33f1e0e8850bbafe535739be613d598df51fe7ab17f246f40a0",
+      "programmes": 172,
+      "size_bytes": 7419,
+      "sha256": "df24076de166f278b7c428395d94efbac5ab5a4827d07736691c0a7cce4a1ede",
       "kind": "country",
       "key": "LB"
     },
     "mena-iq": {
       "label": "Iraq",
       "channels": 59,
-      "programmes": 649,
-      "size_bytes": 13690,
-      "sha256": "5bf6268e5e58596a4a4a7d4f6834bbd0e3d687fc8a135e7f0a9480d042fb5648",
+      "programmes": 656,
+      "size_bytes": 13674,
+      "sha256": "941cf1dd1cac25640e5918db586eeb25c197b668e977e64dcf1c694d6df5ab2c",
       "kind": "country",
       "key": "IQ"
     },
@@ -254,18 +254,18 @@
     "mena-dz": {
       "label": "Algeria",
       "channels": 15,
-      "programmes": 53,
-      "size_bytes": 3071,
-      "sha256": "817548af54e6c83c938d7fbdc2f8517e1d4dedff3e30ece29936bfb921cbf1a7",
+      "programmes": 66,
+      "size_bytes": 3249,
+      "sha256": "d670a4f3a7c7a4d06cfbd834284873c51491e6aa4ffbc3e9fe76b5ff2bfdb156",
       "kind": "country",
       "key": "DZ"
     },
     "mena-tn": {
       "label": "Tunisia",
       "channels": 5,
-      "programmes": 59,
-      "size_bytes": 2241,
-      "sha256": "ed2c83be175412401b2f3cd996568effb5ec8b62dfc60a99f89f5a3776708027",
+      "programmes": 75,
+      "size_bytes": 2407,
+      "sha256": "d35770791920a320720d8b123530e4d7bc890ee3ece0562a19a35f22b3a1d00e",
       "kind": "country",
       "key": "TN"
     },
@@ -290,9 +290,9 @@
     "mena-sy": {
       "label": "Syria",
       "channels": 5,
-      "programmes": 22,
-      "size_bytes": 2563,
-      "sha256": "62c77ca50256dc19cf73b3d8a29652c1ccea8be8c7ce0c4c657c8d54ae07ccb2",
+      "programmes": 34,
+      "size_bytes": 2740,
+      "sha256": "1c962f842077842fdfdfa190aae0d214fa6b94adf950de0614bfc4234fa977e6",
       "kind": "country",
       "key": "SY"
     },
@@ -307,10 +307,10 @@
     },
     "mena-other": {
       "label": "MENA Other",
-      "channels": 435,
-      "programmes": 15558,
-      "size_bytes": 548749,
-      "sha256": "94ff7cb5ddfb22f7e85aa54dc5daf76987ffcbd726ba38f1d21468b0659497c9",
+      "channels": 427,
+      "programmes": 15302,
+      "size_bytes": 539105,
+      "sha256": "6135e46bbf79dcfd3a7dead1e2cd0f675753895dd33e4faf77155354fb83ef0b",
       "kind": "other",
       "key": "MENA"
     }
