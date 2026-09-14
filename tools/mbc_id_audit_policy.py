@@ -11,9 +11,11 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter, defaultdict
+from datetime import datetime, timezone
 import gzip
 import json
 from pathlib import Path
+import re
 import xml.etree.ElementTree as ET
 
 import bein_id_audit as base
@@ -58,7 +60,10 @@ SECONDARY_REVIEW_IDS = {
 # source happens to return programmes. MBC1Egypt.eg@HD appeared upstream during
 # the 2026-09-14 audit with only one Shahid programme per day, so it is explicitly
 # quarantined rather than inherited as a canonical MBC1/Masr mapping target.
+# Al Arabiya.sa is an OpenEPG Saudi alias in the same logical Al Arabiya group;
+# it remains for compatibility but cannot compete with the audited core feed.
 QUARANTINED_IDS = {
+    "Al Arabiya.sa",
     "AlArabiyaBusiness.ae@SD",
     "AlarabiyaPortrait.ae@SD",
     "EN:.MBC1.Iraq.sa",
@@ -84,6 +89,7 @@ MIN_DESC_AR_PCT = 90.0
 # linear MBC guide. MBC1 currently has 6/49 empty descriptions (~12%) while all
 # populated descriptions remain Arabic and the timeline is structurally sound.
 MAX_EMPTY_DESC_RATIO = 0.15
+_XMLTV_DT = re.compile(r"^(\d{14})(?:\s*([+-]\d{4}))?")
 
 
 def load_root(path):
@@ -91,6 +97,53 @@ def load_root(path):
     if data[:2] == b"\x1f\x8b":
         data = gzip.decompress(data)
     return ET.fromstring(data)
+
+
+def _parse_dt(value):
+    m = _XMLTV_DT.match((value or "").strip())
+    if not m:
+        return None
+    stamp, offset = m.groups()
+    try:
+        if offset:
+            return datetime.strptime(stamp + offset, "%Y%m%d%H%M%S%z")
+        return datetime.strptime(stamp, "%Y%m%d%H%M%S").replace(tzinfo=timezone.utc)
+    except ValueError:
+        return None
+
+
+def _title(programme):
+    el = programme.find("title")
+    return (el.text or "").strip() if el is not None else ""
+
+
+def _gap_details(programmes):
+    """Return exact >2h timeline gaps with the adjacent programmes."""
+    rows = []
+    for programme in programmes:
+        start = _parse_dt(programme.get("start"))
+        stop = _parse_dt(programme.get("stop"))
+        if start is None or stop is None or stop <= start:
+            continue
+        rows.append((start, stop, _title(programme)))
+    rows.sort(key=lambda item: item[0])
+    gaps = []
+    previous = None
+    for start, stop, title in rows:
+        if previous is not None:
+            prev_start, prev_stop, prev_title = previous
+            delta = (start - prev_stop).total_seconds()
+            if delta > 7200:
+                gaps.append({
+                    "hours": round(delta / 3600.0, 3),
+                    "from_stop": prev_stop.isoformat(),
+                    "from_title": prev_title,
+                    "to_start": start.isoformat(),
+                    "to_title": title,
+                })
+        if previous is None or stop > previous[1]:
+            previous = (start, stop, title)
+    return gaps
 
 
 def core_policy(row):
@@ -167,6 +220,7 @@ def main():
     errors = []
     for cid in sorted(channels, key=str.casefold):
         row = base.build_profile(cid, channels[cid], events.get(cid, []))
+        row["gap_details"] = _gap_details(events.get(cid, []))
         if cid in FROZEN_CORE_IDS:
             issues, diagnostics = core_policy(row)
             row["class"] = "FROZEN_CORE"
@@ -232,6 +286,10 @@ def main():
         lines.append("    language: title_AR=%.0f%% title_Latin=%.0f%% desc_AR=%.0f%%" % (
             row["title_has_ar_pct"], row["title_has_latin_pct"], row["desc_ar_pct"]))
         lines.append("    notes=%s" % (", ".join(notes) if notes else "NONE"))
+        for gap in row.get("gap_details", []):
+            lines.append("    GAP %.1fh | %s [%s] -> %s [%s]" % (
+                gap["hours"], gap["from_stop"], gap["from_title"],
+                gap["to_start"], gap["to_title"]))
         for ev in row.get("preview", [])[:2]:
             lines.append("    • %s | %s" % (ev.get("start", ""), ev.get("title", "")))
         lines.append("")
@@ -242,7 +300,7 @@ def main():
         lines.extend("- %s" % x for x in errors)
 
     payload = {
-        "schema": 1,
+        "schema": 2,
         "mode": "virtual-epgmanager-exhaustive-mbc-production-policy",
         "summary": {
             "status": status,
@@ -267,6 +325,14 @@ def main():
     Path(args.text).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(lines[1])
     print("MBC FREEZE GATE: %s" % status)
+    if errors:
+        for row in rows:
+            if row.get("class") == "FROZEN_CORE" and row.get("verdict") == "FAIL":
+                print("FAIL %s: %s" % (row["id"], ", ".join(row.get("issues") or [])))
+                for gap in row.get("gap_details", []):
+                    print("  GAP %.1fh %s [%s] -> %s [%s]" % (
+                        gap["hours"], gap["from_stop"], gap["from_title"],
+                        gap["to_start"], gap["to_title"]))
     return 1 if errors else 0
 
 
