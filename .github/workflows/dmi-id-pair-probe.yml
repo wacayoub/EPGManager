@@ -1,0 +1,64 @@
+name: DMI ID Pair Probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/dmi-id-pair-probe.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  pairs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Compare current provider DMI IDs pair by pair
+        shell: bash
+        run: |
+          python - <<'PY'
+          import gzip,re,urllib.request,xml.etree.ElementTree as ET
+          from datetime import datetime,timezone,timedelta
+          url='https://raw.githubusercontent.com/wacayoub/EPGManager/mena-data/provider-dmi.xml.gz'
+          req=urllib.request.Request(url,headers={'User-Agent':'EPGManager-DMI-Pair/1.0'})
+          data=urllib.request.urlopen(req,timeout=30).read()
+          root=ET.fromstring(gzip.decompress(data))
+          pairs=[
+            ('Dubai Sports HD.sa','Dubai.Sports.1.ae'),
+            ('Sama Dubai.sa','SamaDubai.ae@SD'),
+            ('Dubai Zaman.eg','DubaiZaman.ae@SD'),
+            ('Dubai.Racing.1.HD.ae','Dubai.Racing.ae'),
+          ]
+          def dt(v):
+            m=re.match(r'^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?',(v or '').strip())
+            if not m:return None
+            raw=m.group(1);x=datetime.strptime(raw,'%Y%m%d%H%M%S' if len(raw)==14 else '%Y%m%d%H%M')
+            off=m.group(2)
+            if off=='Z':tz=timezone.utc
+            elif off:
+              s=1 if off[0]=='+' else -1;tz=timezone(s*timedelta(hours=int(off[1:3]),minutes=int(off[3:5])))
+            else:tz=timezone.utc
+            return x.replace(tzinfo=tz).astimezone(timezone.utc)
+          def text(p,tag):
+            n=p.find(tag);return ((n.text or '').strip() if n is not None else '')
+          def rows(cid):
+            out=[]
+            for p in root.findall('programme'):
+              if (p.get('channel') or '').strip()!=cid:continue
+              a,b=dt(p.get('start')),dt(p.get('stop'))
+              if a and b and b>a:out.append((a,b,text(p,'title'),text(p,'desc')))
+            return sorted(out)
+          for a,b in pairs:
+            A=rows(a);B=rows(b);sa={(x[0],x[1]) for x in A};sb={(x[0],x[1]) for x in B};inter=sa&sb
+            startA={x[0] for x in A};startB={x[0] for x in B}
+            print('\nPAIR',a,'<->',b)
+            print(' events',len(A),len(B),'exact',len(inter),'pctA=%.1f'% (100*len(inter)/max(1,len(A))),'pctB=%.1f'%(100*len(inter)/max(1,len(B))),'same_start',len(startA&startB))
+            for name,R in ((a,A),(b,B)):
+              empty=sum(1 for x in R if not x[3]);
+              print(' ',name,'empty_desc=%d/%d'%(empty,len(R)))
+              for x in R[:3]:print('   ',x[0].isoformat(),'->',x[1].isoformat(),'|',x[2])
+            onlyA=sorted(sa-sb)[:5];onlyB=sorted(sb-sa)[:5]
+            print(' onlyA',[(x[0].isoformat(),x[1].isoformat()) for x in onlyA])
+            print(' onlyB',[(x[0].isoformat(),x[1].isoformat()) for x in onlyB])
+          PY
