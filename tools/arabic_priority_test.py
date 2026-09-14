@@ -7,6 +7,10 @@ Disney and National Geographic were audited ID-by-ID on the receiver-facing
 future upstream changes cannot silently change language/feed identity or add a
 new unaudited family member. Weak alternate feeds stay quarantined until an
 explicit future audit promotes them.
+
+The same production step also launches the exhaustive MBC/Shahid audit and
+source-pin regression gate. This keeps the freeze blocking publication without
+adding another receiver-side or workflow dependency.
 """
 from __future__ import annotations
 
@@ -16,6 +20,8 @@ import gzip
 import json
 from pathlib import Path
 import re
+import subprocess
+import sys
 import xml.etree.ElementTree as ET
 
 AR = re.compile(r"[\u0600-\u06ff]")
@@ -272,6 +278,58 @@ def audit_frozen_families(directory):
     }
 
 
+def run_mbc_gate(directory):
+    directory = Path(directory)
+    tools = Path(__file__).resolve().parent
+    audit_json = directory / "mbc-id-audit-policy.json"
+    audit_text = directory / "mbc-id-audit-policy.txt"
+    regression_text = directory / "mbc-final-regression.txt"
+    provider_xml = directory / "provider-mbc.xml.gz"
+    catalogue = directory.parent / "catalog.json"
+
+    audit_cmd = [
+        sys.executable, str(tools / "mbc_id_audit_policy.py"),
+        "--xml", str(provider_xml),
+        "--json", str(audit_json),
+        "--text", str(audit_text),
+    ]
+    audit_run = subprocess.run(audit_cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+
+    regression_cmd = [
+        sys.executable, str(tools / "mbc_final_regression.py"),
+        "--xml", str(provider_xml),
+        "--audit-json", str(audit_json),
+        "--catalog-manifest", str(catalogue),
+        "--text", str(regression_text),
+    ]
+    if audit_json.exists():
+        regression_run = subprocess.run(
+            regression_cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
+        )
+    else:
+        regression_run = None
+
+    audit_payload = {}
+    if audit_json.exists():
+        try:
+            audit_payload = json.loads(audit_json.read_text(encoding="utf-8"))
+        except Exception:
+            audit_payload = {}
+
+    regression_output = regression_run.stdout.strip() if regression_run is not None else "audit JSON missing"
+    regression_rc = regression_run.returncode if regression_run is not None else 1
+    status = "PASS" if audit_run.returncode == 0 and regression_rc == 0 else "FAIL"
+    return {
+        "status": status,
+        "audit_rc": audit_run.returncode,
+        "regression_rc": regression_rc,
+        "audit_summary": audit_payload.get("summary") or {},
+        "audit_errors": audit_payload.get("errors") or [],
+        "audit_output": audit_run.stdout.strip(),
+        "regression_output": regression_output,
+    }
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", required=True)
@@ -363,15 +421,38 @@ def main():
     lines.append("")
     lines.append("frozen_family_gate=%s" % family["status"])
 
+    mbc = run_mbc_gate(args.dir)
+    if mbc["status"] != "PASS":
+        hard_fail = True
+    lines.extend(["", "MBC / SHAHID FROZEN PROVIDER GATE", ""])
+    lines.append("status=%s audit_rc=%d regression_rc=%d" % (
+        mbc["status"], mbc["audit_rc"], mbc["regression_rc"]))
+    s = mbc.get("audit_summary") or {}
+    lines.append("frozen=%s/%s secondary=%s quarantine=%s unclassified=%s" % (
+        s.get("frozen_ok", 0), s.get("frozen_expected", 0), s.get("secondary", 0),
+        s.get("quarantine", 0), s.get("unclassified", 0)))
+    for error in mbc.get("audit_errors") or []:
+        lines.append("- %s" % error)
+    if mbc["status"] != "PASS":
+        lines.append("audit_output=%s" % mbc.get("audit_output", "")[-1200:])
+        lines.append("regression_output=%s" % mbc.get("regression_output", "")[-1200:])
+
     payload = {
-        "schema": 2,
+        "schema": 3,
         "targets": out,
         "frozen_families": family,
+        "mbc_shahid_gate": {
+            "status": mbc["status"],
+            "audit_rc": mbc["audit_rc"],
+            "regression_rc": mbc["regression_rc"],
+            "audit_summary": mbc.get("audit_summary") or {},
+            "audit_errors": mbc.get("audit_errors") or [],
+        },
     }
     Path(args.json).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     Path(args.text).write_text("\n".join(lines) + "\n", encoding="utf-8")
     summary = " | ".join("%s=%s" % (x["label"], x["status"]) for x in out)
-    print(summary + " | Disney+NatGeo=" + family["status"])
+    print(summary + " | Disney+NatGeo=" + family["status"] + " | MBC+Shahid=" + mbc["status"])
     return 1 if hard_fail else 0
 
 
