@@ -1,0 +1,135 @@
+name: MENA Pipeline Trace
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/pipeline-trace.yml"
+      - "tools/pipeline_trace_audit.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mena-pipeline-trace
+  cancel-in-progress: true
+
+jobs:
+  trace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Checkout iptv-org EPG
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/epg
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/epg/package-lock.json
+
+      - name: Install grabber
+        working-directory: vendor/epg
+        shell: bash
+        run: npm ci --no-audit --no-fund
+
+      - name: Build current catalogue
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output previous output/final
+          python tools/mena_cloud_catalog.py \
+            --epg-root vendor/epg \
+            --output-channels output/mena.channels.xml \
+            --output-manifest output/catalog.json
+          curl -fL --retry 2 --connect-timeout 5 --max-time 30 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz" \
+            -o previous/mena-arabic.xml.gz || true
+
+      - name: Grab primary 48h
+        working-directory: vendor/epg
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        shell: bash
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=30s 1500s \
+            npm run grab --- \
+              --channels="${GITHUB_WORKSPACE}/output/mena.channels.xml" \
+              --output="${GITHUB_WORKSPACE}/output/raw.xml" \
+              --days=2 --maxConnections=3 --timeout=20000
+          test -s "${GITHUB_WORKSPACE}/output/raw.xml" || printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/raw.xml"
+          exit 0
+
+      - name: Merge exactly like production
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/mena_cloud_merge_arabic_first.py \
+            --primary output/raw.xml \
+            --catalog-manifest output/catalog.json \
+            --output output/merged.xml \
+            --report output/merge-report.json \
+            --cache-dir output/upstream \
+            --window-hours 48
+
+      - name: Finalize exactly like production
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/mena_cloud_finalize_strict.py \
+            --candidate output/merged.xml \
+            --catalog-manifest output/catalog.json \
+            --previous previous/mena-arabic.xml.gz \
+            --merge-report output/merge-report.json \
+            --window-hours 48 \
+            --output-dir output/final
+
+      - name: Trace critical IDs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/pipeline_trace_audit.py \
+            --catalog output/catalog.json \
+            --raw output/raw.xml \
+            --merged output/merged.xml \
+            --final output/final/mena-arabic.xml.gz \
+            --json output/pipeline-trace.json \
+            --text output/pipeline-trace.txt
+          cat output/pipeline-trace.txt
+
+      - name: Publish diagnostic
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin mena-data
+          git worktree add publish origin/mena-data
+          cd publish
+          git checkout -B mena-data origin/mena-data
+          cp ../output/pipeline-trace.json .
+          cp ../output/pipeline-trace.txt .
+          git config user.name "EPGManager Pipeline Trace"
+          git config user.email "actions@users.noreply.github.com"
+          git add pipeline-trace.json pipeline-trace.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Trace critical MENA IDs through production pipeline"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
