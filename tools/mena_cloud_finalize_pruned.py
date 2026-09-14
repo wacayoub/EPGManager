@@ -38,7 +38,7 @@ _strict_programme_groups = base.programme_groups
 
 _NEWS_EXACT_TITLES = {
     "al hassila": "الحصيلة",
-    "the issue of the day": "قضية اليوم",
+    "the issue of the day": "الشوط الثالث",
     "news bulletin": "نشرة الأخبار",
     "special interview": "مقابلة خاصة",
     "super monday": "سوبر الإثنين",
@@ -125,7 +125,7 @@ def _arabic_bein_news_title(title):
     # Hybrid Qatar1 formatter may already have appended the Arabic equivalent.
     for arabic in (
         "نشرة الأخبار", "المقابلة الكبرى", "مقابلة خاصة", "الحصيلة",
-        "الحصاد", "قضية اليوم", "الأخبار الرياضية", "موجز الأخبار",
+        "الحصاد", "الشوط الثالث", "الأخبار الرياضية", "موجز الأخبار",
     ):
         if arabic in core:
             return arabic + suffix
