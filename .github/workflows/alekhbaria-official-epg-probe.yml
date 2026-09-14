@@ -1,0 +1,43 @@
+name: Al Ekhbariya Official EPG Probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/alekhbaria_official_epg_probe.py"
+      - ".github/workflows/alekhbaria-official-epg-probe.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Probe official EPG
+        run: |
+          mkdir -p output
+          python tools/alekhbaria_official_epg_probe.py
+          cat output/alekhbaria-official-epg-probe.txt
+      - name: Publish diagnostic only
+        run: |
+          git fetch origin mena-data
+          git worktree add current-data origin/mena-data
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/alekhbaria-official-epg-probe.* .
+          git config user.name "EPGManager Al Ekhbariya EPG Probe"
+          git config user.email "actions@users.noreply.github.com"
+          git add alekhbaria-official-epg-probe.*
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Probe Al Ekhbariya official EPG endpoint"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
