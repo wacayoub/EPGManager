@@ -13,6 +13,11 @@ combined/internal MENA data for audit/recovery, but provider-mbc exposes only th
 reviewed MENA mapping targets. This keeps Smart Mapping deterministic: one real
 MBC service -> one receiver XMLTV ID.
 
+DMI uses the same receiver-facing canonical-only principle after the 2026-09-14
+provider audit. Regional guide variants (.sa/.eg/.ae), duplicate SD/HD guide
+identities and the sparse generic Dubai Racing guide stay internal unless they
+are the selected best receiver timeline. The combined MENA feed is untouched.
+
 beIN MAX/XTRA are event-channel sources and are deliberately preserved as source
 feeds even when the current guide is generic/repetitive outside a live event.
 They may stay REVIEW for mapping quality, but their source programmes must not be
@@ -102,6 +107,27 @@ MBC_RECEIVER_CANONICAL_IDS = {
     "MBCPersia.ae@SD",
     "MBCPlusDrama.sa@SD",
 }
+
+# DMI / Dubai Media receiver set audited 2026-09-14.  These nine identities are
+# the best current 48h timeline for each distinct linear service.  The discarded
+# receiver variants remain in the combined/internal MENA feed, so they can still
+# be compared and recovered later without creating duplicate Smart-Mapping hits.
+#
+# Dubai Sports 3 is a real current DMI service (official frequency list) but none
+# of the current MENA upstreams supplies a non-empty guide, so zero-EPG policy
+# deliberately keeps it out of the receiver XML until programmes become available.
+DMI_RECEIVER_CANONICAL_IDS = {
+    "Dubai One.sa",
+    "Dubai Sports 2.sa",
+    "Dubai Sports HD.sa",
+    "Dubai Zaman.eg",
+    "Dubai.Racing.1.HD.ae",
+    "Dubai.Racing.2.ae",
+    "DubaiTV.ae@SD",
+    "Noor.DubaiTV.ae",
+    "Sama Dubai.sa",
+}
+DMI_KNOWN_NO_EPG_SERVICES = ["Dubai Sports 3"]
 
 # IDs that should receive a negative recommendation score. They remain present
 # so an old manual mapping is not silently lost. Valid FTA and Box Office IDs are
@@ -228,6 +254,7 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
     event_sources_preserved = []
     news_titles_translated = 0
     mbc_internal_only = []
+    dmi_internal_only = []
 
     if stem == "provider-mbc":
         # Keep all upstream/merged identities in internal data, but publish only
@@ -236,6 +263,13 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
         original_ids = set(ids_set)
         ids_set &= MBC_RECEIVER_CANONICAL_IDS
         mbc_internal_only = sorted(original_ids - ids_set, key=str.casefold)
+
+    elif stem == "provider-dmi":
+        # One receiver ID per distinct current Dubai Media linear service.  Do not
+        # mutate or delete the alternate identities from the combined MENA data.
+        original_ids = set(ids_set)
+        ids_set &= DMI_RECEIVER_CANONICAL_IDS
+        dmi_internal_only = sorted(original_ids - ids_set, key=str.casefold)
 
     if stem == "provider-bein":
         # Work on copies. Repairs are metadata/schedule corrections limited to the
@@ -337,6 +371,21 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
         print(
             "MBC receiver cleanup: canonical=%d internal-only=%d" %
             (len(ids_set), len(mbc_internal_only))
+        )
+
+    elif stem == "provider-dmi":
+        result["receiver_policy"] = (
+            "canonical-only; duplicate/regional DMI guide identities stay internal"
+        )
+        result["canonical_ids"] = sorted(ids_set, key=str.casefold)
+        result["internal_only_ids"] = dmi_internal_only
+        result["internal_only_count"] = len(dmi_internal_only)
+        result["known_no_epg_services"] = DMI_KNOWN_NO_EPG_SERVICES
+        result["identity_status"] = "FROZEN"
+        result["content_status"] = "PER_CHANNEL_PASS_REVIEW"
+        print(
+            "DMI receiver cleanup: canonical=%d internal-only=%d known-no-epg=%d" %
+            (len(ids_set), len(dmi_internal_only), len(DMI_KNOWN_NO_EPG_SERVICES))
         )
 
     return result
