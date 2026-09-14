@@ -2,9 +2,14 @@
 # -*- coding: utf-8 -*-
 """beIN audit policy aligned with the production MENA language/source rules.
 
-A premium/sports beIN title may be English/Latin when the description is valid
-Arabic. Box Office and FTA are valid mapping targets and are not downgraded just
-because they are not ordinary sports-linear services.
+Descriptions are optional metadata: a valid schedule/title must not be downgraded
+just because <desc> is absent. When descriptions exist, their language/quality
+can still be reported diagnostically, but a channel with no descriptions at all
+is not REVIEW for that reason alone.
+
+A premium/sports beIN title may be English/Latin. Box Office and FTA are valid
+mapping targets and are not downgraded just because they are not ordinary
+sports-linear services.
 
 MAX/XTRA are event-channel sources. A generic/repeated holding guide between
 real events is a mapping-quality warning, not a reason to reject/remove the
@@ -27,8 +32,8 @@ def _text(node, tag):
 def policy_build_profile(cid, name, programmes):
     row = _original_build_profile(cid, name, programmes)
 
-    # Diagnostic-only detail: expose the exact events whose descriptions are
-    # missing so repairs can use an exact title/time donor rather than guesses.
+    # Diagnostic-only detail. Missing descriptions remain visible in reports but
+    # are optional metadata and do not by themselves make an ID REVIEW.
     missing = []
     for p in programmes or []:
         if _text(p, "desc"):
@@ -63,6 +68,15 @@ def policy_build_profile(cid, name, programmes):
 
 def policy_initial_verdict(row, non_recommended):
     verdict, issues, warnings = _original_initial_verdict(row, non_recommended)
+
+    # Description is optional. Keep EMPTY_DESC visible in the profile counters,
+    # but never use it as a REVIEW reason.
+    warnings = [w for w in warnings if not w.startswith("EMPTY_DESC=")]
+
+    # If the service publishes no descriptions at all, AR_DESC_LOW only means
+    # "metadata absent", not "bad EPG". Do not downgrade the mapping for it.
+    if row.get("events", 0) > 0 and row.get("empty_desc", 0) >= row.get("events", 0):
+        warnings = [w for w in warnings if not w.startswith("AR_DESC_LOW=")]
 
     # English/Latin premium titles + Arabic descriptions are intentional. Do not
     # demand Arabic text in the title when the title itself is a healthy Latin one.
