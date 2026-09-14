@@ -45,7 +45,9 @@ EXCLUDED_SITES = {"sat.tv"}
 # Overrides are exact-ID only. OSN rows had complete clean schedules where
 # Shahid had placeholder/all-day pollution. MBC Masr Drama is the targeted
 # Shahid -> ElCinema exception: the live comparison measured ~40h clean on
-# ElCinema versus a placeholder-polluted/short Shahid timetable.
+# ElCinema versus a placeholder-polluted/short Shahid timetable. The downstream
+# MBC freeze gate separately quarantines weak/foreign aliases, including the new
+# sparse MBC1 Egypt feed, before receiver publication can complete.
 CHANNEL_SITE_OVERRIDES = {
     "AlHadath.sa@SD": "osn.com",
     "AlQuranAlKareemTV.sa@SD": "osn.com",
