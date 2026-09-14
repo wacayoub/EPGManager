@@ -1,0 +1,55 @@
+name: Official LBCI MTV Ajman Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/official_lbci_mtv_ajman_audit.py"
+      - ".github/workflows/official-lbci-mtv-ajman-audit.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: official-lbci-mtv-ajman-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: current-data
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install --disable-pip-version-check --quiet beautifulsoup4
+      - name: Audit official schedules
+        run: |
+          mkdir -p output
+          python tools/official_lbci_mtv_ajman_audit.py \
+            --all-id-csv current-data/all-id-audit.csv \
+            --data-dir current-data \
+            --json output/official-lbci-mtv-ajman-audit.json \
+            --text output/official-lbci-mtv-ajman-audit.txt
+          cat output/official-lbci-mtv-ajman-audit.txt
+      - name: Publish diagnostic only
+        run: |
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/official-lbci-mtv-ajman-audit.* .
+          git config user.name "EPGManager Official Schedule Audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add official-lbci-mtv-ajman-audit.*
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Audit official LBCI MTV Ajman schedules"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
