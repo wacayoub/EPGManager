@@ -1,0 +1,433 @@
+{
+  "schema": 1,
+  "date_utc": "2026-09-14",
+  "sources": {
+    "lbci": {
+      "id": "LBCInternational.lb@SD",
+      "matched_row": {
+        "shard": "mena-lb",
+        "id": "LBCInternational.lb@SD",
+        "name": "إل بي سي آي",
+        "verdict": "REVIEW",
+        "score": "92",
+        "auto_lock": "0",
+        "events": "36",
+        "coverage_h": "38.0",
+        "span_h": "38.0",
+        "gaps_gt_2h": "0",
+        "empty_desc": "15",
+        "title_ar_pct": "100.0",
+        "title_latin_pct": "13.9",
+        "desc_ar_pct": "100.0",
+        "feed_country": "lb",
+        "issues": "",
+        "warnings": "EMPTY_DESC=15(42%)",
+        "preview_1": "برنامج شمس الصباح",
+        "preview_2": "نهاركم سعيد"
+      },
+      "verdict": "CANDIDATE_OFFICIAL",
+      "official_events": 15,
+      "unique_ratio": 0.6,
+      "official_samples": [
+        {
+          "time": "04:00",
+          "title": "Duration: 90 min"
+        },
+        {
+          "time": "05:30",
+          "title": "Duration: 150 min"
+        },
+        {
+          "time": "08:00",
+          "title": "Duration: 30 min"
+        },
+        {
+          "time": "08:30",
+          "title": "Duration: 30 min"
+        },
+        {
+          "time": "09:00",
+          "title": "Duration: 115 min"
+        },
+        {
+          "time": "10:55",
+          "title": "Duration: 5 min"
+        },
+        {
+          "time": "11:00",
+          "title": "Duration: 45 min"
+        },
+        {
+          "time": "11:45",
+          "title": "Duration: 45 min"
+        },
+        {
+          "time": "12:30",
+          "title": "Duration: 60 min"
+        },
+        {
+          "time": "13:30",
+          "title": "Duration: 15 min"
+        },
+        {
+          "time": "13:45",
+          "title": "Duration: 45 min"
+        },
+        {
+          "time": "14:30",
+          "title": "Duration: 60 min"
+        },
+        {
+          "time": "15:30",
+          "title": "Duration: 90 min"
+        },
+        {
+          "time": "17:00",
+          "title": "Duration: 30 min"
+        },
+        {
+          "time": "17:30",
+          "title": "Duration: 29 min"
+        }
+      ],
+      "current_unique_events": 36,
+      "current_samples": [
+        {
+          "start": "20260914060000 +0000",
+          "title": "برنامج شمس الصباح",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914080000 +0000",
+          "title": "نهاركم سعيد",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914093000 +0000",
+          "title": "برنامج صباحي morning talk",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914120000 +0000",
+          "title": "فيديو كليبات",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914123000 +0000",
+          "title": "نشرة الاخبار",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914130000 +0000",
+          "title": "برنامج catchy talk",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914145500 +0000",
+          "title": "برنامج yawmiyeh",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914150000 +0000",
+          "title": "ولاد البلد",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        }
+      ],
+      "fetches": [
+        {
+          "url": "https://www.lbcgroup.tv/schedule-channels/1/lbci/en",
+          "final": "https://www.lbcgroup.tv/schedule-channels/1/lbci/en",
+          "status": "OK",
+          "bytes": 124027,
+          "events": 15,
+          "samples": [
+            {
+              "time": "04:00",
+              "title": "Duration: 90 min"
+            },
+            {
+              "time": "05:30",
+              "title": "Duration: 150 min"
+            },
+            {
+              "time": "08:00",
+              "title": "Duration: 30 min"
+            },
+            {
+              "time": "08:30",
+              "title": "Duration: 30 min"
+            },
+            {
+              "time": "09:00",
+              "title": "Duration: 115 min"
+            },
+            {
+              "time": "10:55",
+              "title": "Duration: 5 min"
+            },
+            {
+              "time": "11:00",
+              "title": "Duration: 45 min"
+            },
+            {
+              "time": "11:45",
+              "title": "Duration: 45 min"
+            }
+          ]
+        }
+      ]
+    },
+    "mtv_lebanon": {
+      "id": "MTV.lb@SD",
+      "matched_row": {
+        "shard": "mena-lb",
+        "id": "MTV.lb@SD",
+        "name": "MTV Lebanon",
+        "verdict": "REVIEW",
+        "score": "92",
+        "auto_lock": "0",
+        "events": "16",
+        "coverage_h": "46.92",
+        "span_h": "46.92",
+        "gaps_gt_2h": "0",
+        "empty_desc": "0",
+        "title_ar_pct": "100.0",
+        "title_latin_pct": "100.0",
+        "desc_ar_pct": "100.0",
+        "feed_country": "lb",
+        "issues": "",
+        "warnings": "LONG_GT_6H=2",
+        "preview_1": "ALIVE",
+        "preview_2": "Midday News"
+      },
+      "verdict": "NO_DATA",
+      "official_events": 0,
+      "unique_ratio": 0,
+      "official_samples": [],
+      "current_unique_events": 16,
+      "current_samples": [
+        {
+          "start": "20260914053500 +0000",
+          "title": "ALIVE",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914110000 +0000",
+          "title": "Midday News",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914120000 +0000",
+          "title": "Beirut Al Yawm",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914154500 +0000",
+          "title": "Ebnati",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914164500 +0000",
+          "title": "Prime Time News",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914173000 +0000",
+          "title": "The 6 of us",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260914205900 +0000",
+          "title": "Midnight News",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        },
+        {
+          "start": "20260915043000 +0000",
+          "title": "Press Review",
+          "file": "mena-arabic.xml.gz,mena-lb.xml.gz,mena.xml.gz,premium.xml.gz"
+        }
+      ],
+      "fetches": [
+        {
+          "url": "https://www.mtv.com.lb/en/schedule",
+          "final": "https://www.mtv.com.lb/en/schedule",
+          "status": "OK",
+          "bytes": 58826,
+          "events": 0,
+          "samples": []
+        }
+      ]
+    },
+    "ajman": {
+      "id": "Ajman.TV.HD.ae",
+      "matched_row": {
+        "shard": "mena-ae",
+        "id": "Ajman.TV.HD.ae",
+        "name": "Ajman TV HD",
+        "verdict": "NO_EPG",
+        "score": "65",
+        "auto_lock": "0",
+        "events": "0",
+        "coverage_h": "0.0",
+        "span_h": "0.0",
+        "gaps_gt_2h": "0",
+        "empty_desc": "0",
+        "title_ar_pct": "0.0",
+        "title_latin_pct": "0.0",
+        "desc_ar_pct": "0.0",
+        "feed_country": "ae",
+        "issues": "NO_PROGRAMMES",
+        "warnings": "",
+        "preview_1": "",
+        "preview_2": ""
+      },
+      "verdict": "REVIEW",
+      "official_events": 14,
+      "unique_ratio": 0.071,
+      "official_samples": [
+        {
+          "time": "10:00",
+          "title": "[...]"
+        },
+        {
+          "time": "13:30",
+          "title": "[...]"
+        },
+        {
+          "time": "14:00",
+          "title": "[...]"
+        },
+        {
+          "time": "15:00",
+          "title": "[...]"
+        },
+        {
+          "time": "16:00",
+          "title": "[...]"
+        },
+        {
+          "time": "16:30",
+          "title": "[...]"
+        },
+        {
+          "time": "17:00",
+          "title": "[...]"
+        },
+        {
+          "time": "18:00",
+          "title": "[...]"
+        },
+        {
+          "time": "19:00",
+          "title": "[...]"
+        },
+        {
+          "time": "20:00",
+          "title": "[...]"
+        },
+        {
+          "time": "20:30",
+          "title": "[...]"
+        },
+        {
+          "time": "21:00",
+          "title": "[...]"
+        },
+        {
+          "time": "00:30",
+          "title": "[...]"
+        },
+        {
+          "time": "10:30",
+          "title": "[...]"
+        }
+      ],
+      "current_unique_events": 0,
+      "current_samples": [],
+      "fetches": [
+        {
+          "url": "https://www.ajmantv.com/schedule/monday/",
+          "final": "https://www.ajmantv.com/schedule/monday/",
+          "status": "OK",
+          "bytes": 74716,
+          "events": 13,
+          "samples": [
+            {
+              "time": "10:00",
+              "title": "[...]"
+            },
+            {
+              "time": "13:30",
+              "title": "[...]"
+            },
+            {
+              "time": "14:00",
+              "title": "[...]"
+            },
+            {
+              "time": "15:00",
+              "title": "[...]"
+            },
+            {
+              "time": "16:00",
+              "title": "[...]"
+            },
+            {
+              "time": "16:30",
+              "title": "[...]"
+            },
+            {
+              "time": "17:00",
+              "title": "[...]"
+            },
+            {
+              "time": "18:00",
+              "title": "[...]"
+            }
+          ]
+        },
+        {
+          "url": "https://www.ajmantv.com/schedule/tuesday/",
+          "final": "https://www.ajmantv.com/schedule/tuesday/",
+          "status": "OK",
+          "bytes": 74708,
+          "events": 13,
+          "samples": [
+            {
+              "time": "10:30",
+              "title": "[...]"
+            },
+            {
+              "time": "13:30",
+              "title": "[...]"
+            },
+            {
+              "time": "14:00",
+              "title": "[...]"
+            },
+            {
+              "time": "15:00",
+              "title": "[...]"
+            },
+            {
+              "time": "16:00",
+              "title": "[...]"
+            },
+            {
+              "time": "16:30",
+              "title": "[...]"
+            },
+            {
+              "time": "17:00",
+              "title": "[...]"
+            },
+            {
+              "time": "18:00",
+              "title": "[...]"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
