@@ -1,0 +1,66 @@
+name: Quarantine Invalid Sharqiya Identities and Rebuild
+
+on:
+  push:
+    paths:
+      - ".github/workflows/sharqiya-identity-fix-run.yml"
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  fix-and-dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Quarantine invalid Sharqiya Egypt legacy identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/mena_cloud_finalize_pruned.py')
+          text = p.read_text(encoding='utf-8')
+          anchor = 'RECEIVER_INTERNAL_ONLY_IDS = MBC_INTERNAL_ONLY_IDS | ROTANA_INTERNAL_ONLY_IDS | ADM_INTERNAL_ONLY_IDS\n'
+          replacement = '''# These two historical .eg identities are not valid current channels.  The real\n# channels are AlSharqiyaMinKabla.ae (Sharjah/Kalba, UAE) and AlSharqiya.iq\n# (Iraq).  Old LKG data had cloned the UAE timeline onto the .eg aliases.\nINVALID_LEGACY_IDENTITY_IDS = {\n    "AlSharqiya.eg",\n    "الشرقية.eg",\n}\n\nRECEIVER_INTERNAL_ONLY_IDS = (\n    MBC_INTERNAL_ONLY_IDS | ROTANA_INTERNAL_ONLY_IDS | ADM_INTERNAL_ONLY_IDS |\n    INVALID_LEGACY_IDENTITY_IDS\n)\n'''
+          if anchor in text:
+              text = text.replace(anchor, replacement, 1)
+          elif 'INVALID_LEGACY_IDENTITY_IDS = {' not in text:
+              raise SystemExit('receiver internal-only anchor missing')
+          p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Compile and verify exact quarantine
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/mena_cloud_finalize_pruned.py
+          grep -q '"AlSharqiya.eg"' tools/mena_cloud_finalize_pruned.py
+          grep -q '"الشرقية.eg"' tools/mena_cloud_finalize_pruned.py
+          grep -q 'INVALID_LEGACY_IDENTITY_IDS' tools/mena_cloud_finalize_pruned.py
+
+      - name: Commit receiver identity correction
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Cloud"
+          git config user.email "actions@users.noreply.github.com"
+          git add tools/mena_cloud_finalize_pruned.py
+          if ! git diff --cached --quiet; then
+            git commit -m "Quarantine invalid Sharqiya Egypt clone aliases"
+            git push origin HEAD:main
+          fi
+
+      - name: Dispatch clean MENA production rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh workflow run mena-epg.yml --ref main
