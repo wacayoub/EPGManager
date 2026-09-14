@@ -2,6 +2,9 @@ name: All ID Programme Audit
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["MENA Cloud EPG"]
+    types: [completed]
   push:
     paths:
       - ".github/workflows/all-id-audit.yml"
@@ -17,6 +20,7 @@ concurrency:
 
 jobs:
   audit:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -63,10 +67,11 @@ jobs:
           s=report['summary']
           assert not s['missing_shards'], s['missing_shards']
           assert s['channels'] == manifest['published_channels'], (s['channels'], manifest['published_channels'])
-          print('COMPLETE AUDIT:', s)
+          assert int(s.get('FAIL', 0) or 0) == 0, 'Production all-ID FAIL=%s' % s.get('FAIL')
+          print('COMPLETE PRODUCTION AUDIT:', s)
           PY
 
-      - name: Publish audit reports to mena-data
+      - name: Publish coherent audit reports to mena-data
         shell: bash
         run: |
           set -euo pipefail
@@ -82,5 +87,7 @@ jobs:
             exit 0
           fi
           stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
-          git commit -m "All-ID programme audit ${stamp}"
+          git commit -m "All-ID production audit ${stamp}"
+          git fetch origin mena-data
+          git rebase origin/mena-data
           git push origin HEAD:mena-data
