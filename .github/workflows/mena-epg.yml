@@ -31,6 +31,9 @@ on:
       - "tools/osn_id_audit_policy.py"
       - "tools/osn_final_regression.py"
       - "tools/osn_bilingual_enrich.py"
+      - "tools/mbc_id_audit_policy.py"
+      - "tools/mbc_final_regression.py"
+      - "tools/mbc_gap_repair.py"
 
 permissions:
   contents: write
@@ -118,7 +121,10 @@ jobs:
             tools/bein_final_regression.py \
             tools/osn_id_audit_policy.py \
             tools/osn_final_regression.py \
-            tools/osn_bilingual_enrich.py
+            tools/osn_bilingual_enrich.py \
+            tools/mbc_id_audit_policy.py \
+            tools/mbc_final_regression.py \
+            tools/mbc_gap_repair.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
