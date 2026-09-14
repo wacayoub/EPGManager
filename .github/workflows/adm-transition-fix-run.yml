@@ -1,0 +1,97 @@
+name: Fix ADM Legacy Transition and Rebuild
+
+on:
+  push:
+    paths:
+      - ".github/workflows/adm-transition-fix-run.yml"
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  fix-and-dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Prune legacy ADM receiver IDs at final boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/mena_cloud_finalize_pruned.py')
+          text = p.read_text(encoding='utf-8')
+          old = '''RECEIVER_INTERNAL_ONLY_IDS = MBC_INTERNAL_ONLY_IDS | ROTANA_INTERNAL_ONLY_IDS\n'''
+          block = '''# ADM transition aliases reviewed 2026-09-14.  The merge layer already emits\n# canonical UAE receiver IDs; these old source/LKG identities must stay internal\n# so the previous production LKG cannot resurrect a second receiver-facing copy.\nADM_INTERNAL_ONLY_IDS = {\n    "Abu Dhabi.sa",\n    "AbuDhabiSports1.ae@SD",\n    "AbuDhabiTV.ae@SD",\n    "AD Sports 2.sa",\n    "AD Sports Premium 1.sa",\n    "AD Sports Premium 2.sa",\n    "Al Emarat.sa",\n    "en:.AD.Sports.Extra.ae",\n    "en:.YAS.TV.Extra.ae",\n    "Majid.sa",\n    "Nat.Geo.Abu.Dhabi.HD.ae",\n    "Yas.TV.HD.ae",\n    "Emarat.HD.ae",\n}\n\nRECEIVER_INTERNAL_ONLY_IDS = MBC_INTERNAL_ONLY_IDS | ROTANA_INTERNAL_ONLY_IDS | ADM_INTERNAL_ONLY_IDS\n'''
+          if old in text:
+              text = text.replace(old, block, 1)
+          elif 'ADM_INTERNAL_ONLY_IDS = {' not in text:
+              raise SystemExit('ADM receiver-boundary insertion anchor missing')
+
+          old2 = '''    internal_mbc = requested_ids & MBC_INTERNAL_ONLY_IDS\n    internal_rotana = requested_ids & ROTANA_INTERNAL_ONLY_IDS\n    active_ids = {\n'''
+          new2 = '''    internal_mbc = requested_ids & MBC_INTERNAL_ONLY_IDS\n    internal_rotana = requested_ids & ROTANA_INTERNAL_ONLY_IDS\n    internal_adm = requested_ids & ADM_INTERNAL_ONLY_IDS\n    active_ids = {\n'''
+          if old2 in text:
+              text = text.replace(old2, new2, 1)
+          elif 'internal_adm = requested_ids & ADM_INTERNAL_ONLY_IDS' not in text:
+              raise SystemExit('ADM active-id prune anchor missing')
+
+          old3 = '''    if internal_rotana and "Legacy Combined" in generator_name:\n        print(\n            "Rotana receiver prune: removed %d internal-only IDs from combined XML: %s" %\n            (len(internal_rotana), ", ".join(sorted(internal_rotana, key=str.casefold)))\n        )\n    translated_programmes = _translate_bein_news_programmes(selected_programmes)\n'''
+          new3 = '''    if internal_rotana and "Legacy Combined" in generator_name:\n        print(\n            "Rotana receiver prune: removed %d internal-only IDs from combined XML: %s" %\n            (len(internal_rotana), ", ".join(sorted(internal_rotana, key=str.casefold)))\n        )\n    if internal_adm and "Legacy Combined" in generator_name:\n        print(\n            "ADM receiver prune: removed %d legacy/LKG IDs from combined XML: %s" %\n            (len(internal_adm), ", ".join(sorted(internal_adm, key=str.casefold)))\n        )\n    translated_programmes = _translate_bein_news_programmes(selected_programmes)\n'''
+          if old3 in text:
+              text = text.replace(old3, new3, 1)
+          elif 'ADM receiver prune:' not in text:
+              raise SystemExit('ADM prune-log anchor missing')
+          p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Improve all-ID blocker diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tools/mena_program_audit.py')
+          text = p.read_text(encoding='utf-8')
+          old = '''    if blockers:\n        raise SystemExit("RELEASE BLOCKED: hard all-ID programme integrity failures remain: %s" % blockers)\n'''
+          new = '''    if blockers:\n        failed = [\n            r for r in (audit.get("channels") or [])\n            if r.get("verdict") == "FAIL"\n        ]\n        for row in failed:\n            print("BLOCKER ID: %s | %s | shard=%s | issues=%s" % (\n                row.get("id"), row.get("name"), row.get("shard"),\n                ",".join(row.get("issues") or [])))\n        raise SystemExit("RELEASE BLOCKED: hard all-ID programme integrity failures remain: %s" % blockers)\n'''
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif 'BLOCKER ID:' not in text:
+              raise SystemExit('all-ID diagnostic anchor missing')
+          p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Compile and validate patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/mena_cloud_finalize_pruned.py tools/mena_program_audit.py tools/adm_identity_policy.py
+          grep -q 'ADM_INTERNAL_ONLY_IDS' tools/mena_cloud_finalize_pruned.py
+          grep -q 'BLOCKER ID:' tools/mena_program_audit.py
+          python tools/adm_identity_policy.py
+
+      - name: Commit safe transition fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Cloud"
+          git config user.email "actions@users.noreply.github.com"
+          git add tools/mena_cloud_finalize_pruned.py tools/mena_program_audit.py
+          if ! git diff --cached --quiet; then
+            git commit -m "Prevent ADM legacy LKG receiver duplicates"
+            git push origin HEAD:main
+          fi
+
+      - name: Dispatch MENA production rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh workflow run mena-epg.yml --ref main
