@@ -1,0 +1,382 @@
+{
+  "schema": 1,
+  "mode": "official-duplicate-source-health-compare",
+  "a": "shahid",
+  "b": "osn",
+  "ids": 11,
+  "counts": {
+    "SWITCH_TO_OSN": 9,
+    "KEEP_SHAHID": 1,
+    "REVIEW": 1
+  },
+  "results": [
+    {
+      "id": "AlHadath.sa@SD",
+      "name_a": "الحدث",
+      "name_b": "Al Hadath",
+      "shahid": {
+        "events": 95,
+        "distinct_starts": 94,
+        "coverage_h": 48.88,
+        "placeholders": 23,
+        "very_long": 0,
+        "distinct_titles": 5,
+        "samples": [
+          "أخبار الحدث",
+          "أخبار الحدث",
+          "أخبار الحدث"
+        ],
+        "quality": -400.5
+      },
+      "osn": {
+        "events": 70,
+        "distinct_starts": 70,
+        "coverage_h": 48.0,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 3,
+        "samples": [
+          "أخبار الحدث",
+          "أخبار الحدث",
+          "أخبار الحدث"
+        ],
+        "quality": 146.5
+      },
+      "verdict": "SWITCH_TO_OSN"
+    },
+    {
+      "id": "AlQuranAlKareemTV.sa@SD",
+      "name_a": "القرآن الكريم",
+      "name_b": "Al Quran Al Kareem TV HD",
+      "shahid": {
+        "events": 2,
+        "distinct_starts": 2,
+        "coverage_h": 47.97,
+        "placeholders": 2,
+        "very_long": 2,
+        "distinct_titles": 1,
+        "samples": [
+          "جدول البرامج غير متاح",
+          "جدول البرامج غير متاح"
+        ],
+        "quality": -25.55
+      },
+      "osn": {
+        "events": 44,
+        "distinct_starts": 44,
+        "coverage_h": 48.0,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 1,
+        "samples": [
+          "القرآن الكريم HD",
+          "القرآن الكريم HD",
+          "القرآن الكريم HD"
+        ],
+        "quality": 117.5
+      },
+      "verdict": "SWITCH_TO_OSN"
+    },
+    {
+      "id": "MBC1.ae@SD",
+      "name_a": "MBC1",
+      "name_b": "MBC 1",
+      "shahid": {
+        "events": 60,
+        "distinct_starts": 59,
+        "coverage_h": 52.2,
+        "placeholders": 1,
+        "very_long": 0,
+        "distinct_titles": 24,
+        "samples": [
+          "علي كلاي موسم 1 حلقة 16",
+          "ست شباب موسم 1 حلقة 1",
+          "النويلاتي موسم 1 حلقة 10"
+        ],
+        "quality": 143.0
+      },
+      "osn": {
+        "events": 58,
+        "distinct_starts": 58,
+        "coverage_h": 48.37,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 13,
+        "samples": [
+          "علي كلاي",
+          "ست شباب",
+          "النويلاتي"
+        ],
+        "quality": 149.5
+      },
+      "verdict": "KEEP_SHAHID"
+    },
+    {
+      "id": "MBC3.ae@SD",
+      "name_a": "MBC3",
+      "name_b": "MBC 3",
+      "shahid": {
+        "events": 181,
+        "distinct_starts": 179,
+        "coverage_h": 49.92,
+        "placeholders": 17,
+        "very_long": 0,
+        "distinct_titles": 97,
+        "samples": [
+          "سلاحف النينجا",
+          "أبطال الكرة موسم 1 حلقة 16",
+          "Pirate Academy موسم 1 حلقة 31"
+        ],
+        "quality": -212.0
+      },
+      "osn": {
+        "events": 160,
+        "distinct_starts": 160,
+        "coverage_h": 48.0,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 23,
+        "samples": [
+          "سلاحف النينجا",
+          "أبطال الكرة",
+          "أكاديمية القراصنة"
+        ],
+        "quality": 202.5
+      },
+      "verdict": "SWITCH_TO_OSN"
+    },
+    {
+      "id": "MBC5.ae@SD",
+      "name_a": "MBC5",
+      "name_b": "MBC 5",
+      "shahid": {
+        "events": 78,
+        "distinct_starts": 77,
+        "coverage_h": 49.32,
+        "placeholders": 17,
+        "very_long": 0,
+        "distinct_titles": 28,
+        "samples": [
+          "الهيبة: راس الجبل موسم 1 حلقة 23",
+          "الهيبة: راس الجبل موسم 1 حلقة 24",
+          "الهيبة: راس الجبل موسم 1 حلقة 25"
+        ],
+        "quality": -233.0
+      },
+      "osn": {
+        "events": 60,
+        "distinct_starts": 59,
+        "coverage_h": 48.42,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 13,
+        "samples": [
+          "الهيبة: راس الجبل",
+          "الهيبة: راس الجبل",
+          "الهيبة: راس الجبل"
+        ],
+        "quality": 151.5
+      },
+      "verdict": "SWITCH_TO_OSN"
+    },
+    {
+      "id": "MBCDrama.ae@SD",
+      "name_a": "MBC Drama",
+      "name_b": "MBC Drama",
+      "shahid": {
+        "events": 59,
+        "distinct_starts": 57,
+        "coverage_h": 50.95,
+        "placeholders": 8,
+        "very_long": 0,
+        "distinct_titles": 14,
+        "samples": [
+          "الحفرة",
+          "باب الحارة",
+          "المداح: أسطورة الوادي"
+        ],
+        "quality": -48.0
+      },
+      "osn": {
+        "events": 48,
+        "distinct_starts": 48,
+        "coverage_h": 48.02,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 9,
+        "samples": [
+          "سندس",
+          "الحفرة",
+          "باب الحارة"
+        ],
+        "quality": 133.5
+      },
+      "verdict": "SWITCH_TO_OSN"
+    },
+    {
+      "id": "MBCIraq.iq@SD",
+      "name_a": "MBC Iraq",
+      "name_b": "MBC Iraq",
+      "shahid": {
+        "events": 75,
+        "distinct_starts": 74,
+        "coverage_h": 51.53,
+        "placeholders": 17,
+        "very_long": 0,
+        "distinct_titles": 27,
+        "samples": [
+          "عودة خالتي موسم 1 حلقة 1",
+          "طيبة الموسم 1 الحلقة 5",
+          "عائلتي تربح"
+        ],
+        "quality": -237.5
+      },
+      "osn": {
+        "events": 56,
+        "distinct_starts": 56,
+        "coverage_h": 47.85,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 12,
+        "samples": [
+          "عودة خالتي",
+          "طيبة",
+          "عائلتي تربح"
+        ],
+        "quality": 145.78
+      },
+      "verdict": "SWITCH_TO_OSN"
+    },
+    {
+      "id": "MBCMasr.eg@SD",
+      "name_a": "MBC Masr",
+      "name_b": "MBC Masr",
+      "shahid": {
+        "events": 74,
+        "distinct_starts": 73,
+        "coverage_h": 49.88,
+        "placeholders": 32,
+        "very_long": 0,
+        "distinct_titles": 23,
+        "samples": [
+          "الست موناليزا موسم 1 حلقة 4",
+          "بارينيتي",
+          "أهلاً بالستات"
+        ],
+        "quality": -619.5
+      },
+      "osn": {
+        "events": 42,
+        "distinct_starts": 41,
+        "coverage_h": 50.3,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 12,
+        "samples": [
+          "الست موناليزا",
+          "بارينيتي",
+          "أهلاً بالستات"
+        ],
+        "quality": 132.0
+      },
+      "verdict": "SWITCH_TO_OSN"
+    },
+    {
+      "id": "MBCMasr2.eg@SD",
+      "name_a": "MBC Masr2",
+      "name_b": "MBC Masr2",
+      "shahid": {
+        "events": 83,
+        "distinct_starts": 82,
+        "coverage_h": 51.82,
+        "placeholders": 36,
+        "very_long": 0,
+        "distinct_titles": 22,
+        "samples": [
+          "قصر النيل الموسم 1 الحلقة 4",
+          "صباحك مصري",
+          "من القلب للقلب"
+        ],
+        "quality": -712.0
+      },
+      "osn": {
+        "events": 44,
+        "distinct_starts": 44,
+        "coverage_h": 47.52,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 9,
+        "samples": [
+          "قصر النيل",
+          "صباحك مصري",
+          "من القلب للقلب"
+        ],
+        "quality": 128.78
+      },
+      "verdict": "SWITCH_TO_OSN"
+    },
+    {
+      "id": "MBCPlusDrama.sa@SD",
+      "name_a": "MBC Plus Drama",
+      "name_b": "MBC+ Drama",
+      "shahid": {
+        "events": 80,
+        "distinct_starts": 79,
+        "coverage_h": 50.6,
+        "placeholders": 13,
+        "very_long": 0,
+        "distinct_titles": 22,
+        "samples": [
+          "شجر الحور",
+          "بارينيتي",
+          "الحصاد المر موسم 1 حلقة 1"
+        ],
+        "quality": -140.0
+      },
+      "osn": {
+        "events": 65,
+        "distinct_starts": 64,
+        "coverage_h": 48.87,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 8,
+        "samples": [
+          "الحصاد المر",
+          "امر إخلاء",
+          "اللعبة: ليفل الوحش"
+        ],
+        "quality": 149.0
+      },
+      "verdict": "SWITCH_TO_OSN"
+    },
+    {
+      "id": "SaudiThaqafiyaTV.sa@SD",
+      "name_a": "الثقافية",
+      "name_b": "Al Thaqafeya",
+      "shahid": {
+        "events": 2,
+        "distinct_starts": 2,
+        "coverage_h": 47.97,
+        "placeholders": 2,
+        "very_long": 2,
+        "distinct_titles": 1,
+        "samples": [
+          "جدول البرامج غير متاح",
+          "جدول البرامج غير متاح"
+        ],
+        "quality": -25.55
+      },
+      "osn": {
+        "events": 0,
+        "distinct_starts": 0,
+        "coverage_h": 0.0,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 0,
+        "samples": [],
+        "quality": -60.0
+      },
+      "verdict": "REVIEW"
+    }
+  ]
+}
