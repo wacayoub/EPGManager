@@ -28,15 +28,15 @@ ARABIC_CORE_IDS = {
     "AbuDhabiSports1.ae",
     "AbuDhabiSports2.ae",
     "Majid.ae",
+    # NatGeo Abu Dhabi freezes only with genuinely Arabic titles + descriptions.
+    "NationalGeographicAbuDhabi.ae",
 }
 PREMIUM_CORE_IDS = {
     "ADSportsPremium1.ae",
     "ADSportsPremium2.ae",
 }
-# NatGeo content policy was frozen in the earlier Disney/NatGeo phase.  ADM only
-# owns its receiver identity here; this gate therefore checks timeline integrity
-# but does not silently change that already-reviewed language policy.
-INHERITED_CORE_IDS = {"NationalGeographicAbuDhabi.ae"}
+# No inherited exemption: NatGeo must pass the same native-Arabic quality gate.
+INHERITED_CORE_IDS = set()
 # Yas is a core ADM brand, but the current public upstream guide is English-only.
 # Keep it visible, canonical and no-autolock until an Arabic-safe donor is found.
 REVIEW_CORE_IDS = {"YasTV.ae"}
