@@ -1,14 +1,14 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=622
-programmes_scanned=32341
+channels_scanned=620
+programmes_scanned=32239
 critical=0
-warnings=19589
+warnings=19439
 
 ISSUE COUNTS
-empty_description=16182
-very_short_event_lt_5m=2466
-arabic_provider_title_not_arabic=815
-premium_title_not_english=99
+empty_description=16041
+very_short_event_lt_5m=2457
+arabic_provider_title_not_arabic=816
+premium_title_not_english=98
 very_long_event_gt_6h=21
 hybrid_arabic_latin_description=4
 arabic_provider_description_not_arabic=2
@@ -21,7 +21,7 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260916034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=815
+[arabic_provider_title_not_arabic] count=816
 - provider-alkass | 2023 Alkass 2.qa | 20260914084500 +0000 | Ostudio Al Khayl
   desc: برنامج رياضي على قنوات الكأس.
 - provider-alkass | 2023 Alkass 2.qa | 20260914113000 +0000 | King of the Court Beach Volleyball Championship
@@ -43,7 +43,7 @@ TOP SAMPLES
 - provider-alkass | 2023 Alkass 2.qa | 20260914164500 +0000 | Sport Confidential
   desc: برنامج رياضي على قنوات الكأس.
 
-[empty_description] count=16182
+[empty_description] count=16041
 - provider-bein | beIN Drama.eg | 20260914100000 +0000 | El Qatel Allazy Ahabany
 - provider-bein | beIN Drama.eg | 20260914110000 +0000 | Sarmasik Zamani
 - provider-bein | beIN Drama.eg | 20260914120000 +0000 | Darb Al Thahab
@@ -65,7 +65,7 @@ TOP SAMPLES
 - mena-other | إم بي سي 2.eg | 20260915200000 +0000 | Zodiac
   desc: عدد جرائمه يبقى مجهولا و لكن كبير، فقد قام بقتل 5 ضحايا على الاقل في مدن Benicia و Vallejo و Napa و San Francisco ... ما بين شتنبر 1968 و اكتوبر 1969 ..في كتابه المخصص للقاتل، ينسب له Robert Graysmith تسع و اربعين جريمة.
 
-[premium_title_not_english] count=99
+[premium_title_not_english] count=98
 - provider-bein | BeIn Series HD 1.eg | 20260914150000 +0000 | 1883
 - provider-bein | بي إن دراما | 20260914100000 +0000 | القاتل الذي أحبني
   desc: الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.
@@ -102,7 +102,7 @@ TOP SAMPLES
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
 - mena-qa | Qatar TV HD | 20260914214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2466
+[very_short_event_lt_5m] count=2457
 - provider-osn | OSNtv Kids | 20260914111400 +0000 | Adam Wa Mishmish 2
   desc: يتعلمان آدم ومشمش عن كوكب الأرض والشمس والقمر، وكيف يتعاقب الليل والنهار من حولنا.
 - provider-osn | OSNtv Kids | 20260914111600 +0000 | Barbie: Fashion Stories
@@ -125,4 +125,4 @@ TOP SAMPLES
   desc: استعدوا للاضطرابات! ستكون الرحلة مليئة بالمطبات!
 
 ALL-ID RELEASE GATE
-{"FAIL": 0, "NO_EPG": 0, "PASS": 162, "REVIEW": 460, "auto_lock_safe": 162, "channels": 622, "missing_shards": [], "programmes": 32341}
+{"FAIL": 0, "NO_EPG": 0, "PASS": 162, "REVIEW": 458, "auto_lock_safe": 162, "channels": 620, "missing_shards": [], "programmes": 32239}

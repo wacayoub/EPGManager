@@ -1,21 +1,21 @@
 {
   "schema": 2,
   "scope": "all exclusive MENA country/provider shards + synchronous all-ID release gate",
-  "channels_scanned": 622,
-  "programmes_scanned": 32341,
+  "channels_scanned": 620,
+  "programmes_scanned": 32239,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 815,
-    "empty_description": 16182,
+    "arabic_provider_title_not_arabic": 816,
+    "empty_description": 16041,
     "hybrid_arabic_latin_description": 4,
-    "premium_title_not_english": 99,
-    "severity_warning": 19589,
+    "premium_title_not_english": 98,
+    "severity_warning": 19439,
     "very_long_event_gt_6h": 21,
-    "very_short_event_lt_5m": 2466
+    "very_short_event_lt_5m": 2457
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 422,
+      "empty_description": 434,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
@@ -25,18 +25,18 @@
       "empty_description": 41
     },
     "mena-eg": {
-      "empty_description": 1350,
+      "empty_description": 1318,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
       "empty_description": 585
     },
     "mena-jo": {
-      "empty_description": 97,
+      "empty_description": 65,
       "very_short_event_lt_5m": 6
     },
     "mena-kw": {
-      "empty_description": 279,
+      "empty_description": 215,
       "very_short_event_lt_5m": 3
     },
     "mena-lb": {
@@ -44,25 +44,22 @@
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 399
+      "empty_description": 398
     },
     "mena-other": {
-      "empty_description": 7903,
+      "empty_description": 7973,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 8,
-      "very_short_event_lt_5m": 1196
-    },
-    "mena-ps": {
-      "empty_description": 32
+      "very_short_event_lt_5m": 1193
     },
     "mena-qa": {
-      "empty_description": 662,
+      "empty_description": 663,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1420,
-      "very_short_event_lt_5m": 642
+      "empty_description": 1383,
+      "very_short_event_lt_5m": 640
     },
     "mena-sd": {
       "empty_description": 47
@@ -77,8 +74,8 @@
       "empty_description": 118
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 265,
-      "empty_description": 223,
+      "arabic_provider_title_not_arabic": 266,
+      "empty_description": 224,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 22
     },
@@ -88,24 +85,24 @@
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 17,
-      "empty_description": 1208,
-      "very_short_event_lt_5m": 469
+      "empty_description": 1204,
+      "very_short_event_lt_5m": 467
     },
     "provider-bein": {
-      "empty_description": 220,
-      "premium_title_not_english": 88,
+      "empty_description": 218,
+      "premium_title_not_english": 87,
       "very_long_event_gt_6h": 2
     },
     "provider-dmi": {
       "arabic_provider_title_not_arabic": 76,
-      "empty_description": 274,
+      "empty_description": 250,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 2
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
       "arabic_provider_title_not_arabic": 326,
-      "empty_description": 316,
+      "empty_description": 323,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
@@ -115,11 +112,11 @@
     },
     "provider-rotana": {
       "arabic_provider_title_not_arabic": 76,
-      "empty_description": 196,
-      "very_short_event_lt_5m": 55
+      "empty_description": 193,
+      "very_short_event_lt_5m": 53
     },
     "provider-starz": {
-      "empty_description": 153,
+      "empty_description": 152,
       "very_long_event_gt_6h": 1
     }
   },
@@ -1335,16 +1332,6 @@
         "shard": "provider-bein",
         "channel_id": "beINMovies1Premiere.qa@SD",
         "channel": "beINMOVIES1",
-        "start": "20260914082900 +0000",
-        "stop": "20260914101500 +0000",
-        "title": "البلوغ",
-        "desc": "",
-        "duration_minutes": 106.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
         "start": "20260914101500 +0000",
         "stop": "20260914120000 +0000",
         "title": "دير سانتا",
@@ -1540,6 +1527,16 @@
         "title": "ستار تريك إنتو داركنس",
         "desc": "",
         "duration_minutes": 135.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies2Action.qa@SD",
+        "channel": "beINMOVIES2",
+        "start": "20260914151500 +0000",
+        "stop": "20260914171500 +0000",
+        "title": "ستار تريك بيوند",
+        "desc": "",
+        "duration_minutes": 120.0
       }
     ],
     "very_short_event_lt_5m": [
@@ -2010,10 +2007,10 @@
     ]
   },
   "all_id_release_gate": {
-    "channels": 622,
-    "programmes": 32341,
+    "channels": 620,
+    "programmes": 32239,
     "PASS": 162,
-    "REVIEW": 460,
+    "REVIEW": 458,
     "NO_EPG": 0,
     "FAIL": 0,
     "auto_lock_safe": 162,
