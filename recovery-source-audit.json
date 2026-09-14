@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "mode": "diagnostic-only-recovery-source-audit",
   "window_hours": 48,
   "no_epg_input": 4,
@@ -13,7 +13,6 @@
       "raw_current_candidates": 86,
       "clean_current_candidates": 23,
       "quarantined_candidates": 63,
-      "quarantine_reasons": {},
       "recoveries": [],
       "exact_recoveries": 0,
       "fuzzy_review": 0
@@ -27,7 +26,6 @@
       "raw_current_candidates": 58,
       "clean_current_candidates": 6,
       "quarantined_candidates": 52,
-      "quarantine_reasons": {},
       "recoveries": [],
       "exact_recoveries": 0,
       "fuzzy_review": 0
@@ -41,7 +39,19 @@
       "raw_current_candidates": 58,
       "clean_current_candidates": 8,
       "quarantined_candidates": 50,
-      "quarantine_reasons": {},
+      "recoveries": [],
+      "exact_recoveries": 0,
+      "fuzzy_review": 0
+    },
+    {
+      "source": "ghaleb-arabic-epg",
+      "country": "mena",
+      "url": "https://raw.githubusercontent.com/GhalebAldoboni/EPG-Guide/master/ArabicEPG.xml",
+      "status": "ok",
+      "bytes": 3723701,
+      "raw_current_candidates": 125,
+      "clean_current_candidates": 121,
+      "quarantined_candidates": 4,
       "recoveries": [],
       "exact_recoveries": 0,
       "fuzzy_review": 0
