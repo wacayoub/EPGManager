@@ -6,10 +6,12 @@ This audit never mutates generated XMLTV. It checks structural quality,
 scheduling conflicts, suspicious duplicates, language policy, MBC title
 cleanliness and obvious placeholder/bad metadata.
 
-It also runs the exhaustive all-ID auditor as a synchronous release gate. The
-build is rejected if any published ID receives a FAIL verdict. The generated
-all-id-audit.{txt,json,csv} files are written beside the global audit so a
-post-build publisher can expose exactly the same production truth.
+It also runs the exhaustive alias-aware all-ID auditor as a synchronous release
+gate. The build is rejected if any published ID receives a real FAIL verdict or
+has no receiver-facing EPG. Explicit compatibility aliases are allowed but are
+never auto-locked. The generated all-id-audit.{txt,json,csv} files are written
+beside the global audit so a post-build publisher can expose exactly the same
+production truth.
 """
 from __future__ import annotations
 
@@ -127,8 +129,8 @@ def issue_sample(stem, cid, cname, p, title, desc, extra=None):
 
 
 def run_all_id_release_gate(root_dir: Path, manifest_path: Path, out_dir: Path):
-    """Generate exhaustive truth from exactly the shards being released."""
-    all_id_script = Path(__file__).with_name("all_id_audit.py")
+    """Generate alias-aware exhaustive truth from exactly the shards being released."""
+    all_id_script = Path(__file__).with_name("all_id_audit_alias_aware.py")
     out_json = out_dir / "all-id-audit.json"
     out_text = out_dir / "all-id-audit.txt"
     out_csv = out_dir / "all-id-audit.csv"
@@ -150,6 +152,8 @@ def run_all_id_release_gate(root_dir: Path, manifest_path: Path, out_dir: Path):
             summary.get("channels"), expected))
     if int(summary.get("FAIL", 0) or 0) != 0:
         raise SystemExit("ALL-ID RELEASE GATE: FAIL=%d; publication blocked" % int(summary.get("FAIL", 0)))
+    if int(summary.get("NO_EPG", 0) or 0) != 0:
+        raise SystemExit("ALL-ID RELEASE GATE: NO_EPG=%d; publication blocked" % int(summary.get("NO_EPG", 0)))
     print("ALL-ID RELEASE GATE: PASS channels=%d programmes=%d PASS=%d REVIEW=%d NO_EPG=%d FAIL=0" % (
         int(summary.get("channels", 0)), int(summary.get("programmes", 0)),
         int(summary.get("PASS", 0)), int(summary.get("REVIEW", 0)), int(summary.get("NO_EPG", 0))))
@@ -300,7 +304,7 @@ def main() -> int:
 
     result = {
         "schema": 2,
-        "scope": "all exclusive MENA country/provider shards + synchronous all-ID release gate",
+        "scope": "all exclusive MENA country/provider shards + synchronous alias-aware all-ID release gate",
         "channels_scanned": total_channels,
         "programmes_scanned": total_programmes,
         "issue_counts": dict(sorted(counts.items())),
