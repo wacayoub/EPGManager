@@ -7,6 +7,12 @@ catalogue so an existing receiver mapping never becomes invalid. Their
 programme timelines are copied from audited canonical IDs. New mappings prefer
 canonical IDs.
 
+MBC is intentionally different: receiver publication is canonical-only. Legacy,
+foreign, operator-specific and duplicate MBC identities remain available in the
+combined/internal MENA data for audit/recovery, but provider-mbc exposes only the
+reviewed MENA mapping targets. This keeps Smart Mapping deterministic: one real
+MBC service -> one receiver XMLTV ID.
+
 beIN MAX/XTRA are event-channel sources and are deliberately preserved as source
 feeds even when the current guide is generic/repetitive outside a live event.
 They may stay REVIEW for mapping quality, but their source programmes must not be
@@ -73,6 +79,28 @@ BEIN_COMPAT_ALIASES.update(bein_repair.RECOMMENDED_COMPAT_ALIASES)
 OSN_COMPAT_ALIASES = {
     "OSN Ya Hala.eg": "OSNYahala.ae@SD",
     "Osn Ya Hala Aflam.eg": "OSNYahalaAflam.ae@SD",
+}
+
+# Receiver-facing MBC strategy frozen on 2026-09-14 after ID-by-ID EPG tests.
+# Everything else in the MBC family remains internal-only for recovery/audit.
+MBC_RECEIVER_CANONICAL_IDS = {
+    "Alarabiya.ae@SD",
+    "AlHadath.sa@SD",
+    "MBC1.ae@SD",
+    "MBC2.ae@SD",
+    "MBC3.ae@SD",
+    "MBC4.ae@SD",
+    "MBC5.ae@SD",
+    "MBCAction.ae@SD",
+    "MBCBollywood.ae@SD",
+    "MBCDrama.ae@SD",
+    "MBCIraq.iq@SD",
+    "MBCMasr.eg@SD",
+    "MBCMasr2.eg@SD",
+    "MBCMasrDrama.sa@SD",
+    "MBCMax.ae@SD",
+    "MBCPersia.ae@SD",
+    "MBCPlusDrama.sa@SD",
 }
 
 # IDs that should receive a negative recommendation score. They remain present
@@ -199,6 +227,15 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
     shard_programmes = programmes
     event_sources_preserved = []
     news_titles_translated = 0
+    mbc_internal_only = []
+
+    if stem == "provider-mbc":
+        # Keep all upstream/merged identities in internal data, but publish only
+        # the audited receiver canonical set. This avoids duplicate USA/legacy/
+        # operator variants in Safe EPG Match while preserving recovery evidence.
+        original_ids = set(ids_set)
+        ids_set &= MBC_RECEIVER_CANONICAL_IDS
+        mbc_internal_only = sorted(original_ids - ids_set, key=str.casefold)
 
     if stem == "provider-bein":
         # Work on copies. Repairs are metadata/schedule corrections limited to the
@@ -291,6 +328,16 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
             "official OSN canonical timelines preferred; verified legacy Ya Hala IDs copy canonicals"
         )
         print("OSN compatibility: aliases=%d" % len(compat_applied))
+
+    elif stem == "provider-mbc":
+        result["receiver_policy"] = "canonical-only; aliases and secondary MBC identities stay internal"
+        result["canonical_ids"] = sorted(ids_set, key=str.casefold)
+        result["internal_only_ids"] = mbc_internal_only
+        result["internal_only_count"] = len(mbc_internal_only)
+        print(
+            "MBC receiver cleanup: canonical=%d internal-only=%d" %
+            (len(ids_set), len(mbc_internal_only))
+        )
 
     return result
 
