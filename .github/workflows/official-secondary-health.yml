@@ -1,0 +1,119 @@
+name: Official Secondary Source Health
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/official-secondary-health.yml"
+      - "tools/official_duplicate_health_compare.py"
+
+permissions:
+  contents: write
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Checkout iptv-org EPG
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/epg
+          fetch-depth: 1
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/epg/package-lock.json
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install grabber
+        working-directory: vendor/epg
+        shell: bash
+        run: npm ci --no-audit --no-fund
+
+      - name: Compare official providers to elCinema fallback
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output /tmp/source-health
+          compare_pair() {
+            pair="$1"; aname="$2"; afile="$3"; bname="$4"; bfile="$5"
+            python - "$afile" "$bfile" "$pair" <<'PY'
+          import sys, xml.etree.ElementTree as ET
+          from pathlib import Path
+          a,b,pair=sys.argv[1:]
+          maps=[]
+          for p in (a,b):
+              root=ET.parse(p).getroot()
+              maps.append({(c.get('xmltv_id') or '').strip():c for c in root.findall('channel') if (c.get('xmltv_id') or '').strip()})
+          shared=sorted(set(maps[0]) & set(maps[1]), key=str.casefold)
+          print(pair, 'shared=', len(shared))
+          for idx,label in enumerate(('a','b')):
+              out=ET.Element('channels')
+              for cid in shared:
+                  out.append(ET.fromstring(ET.tostring(maps[idx][cid], encoding='unicode')))
+              ET.indent(out, space='  ')
+              Path(f'/tmp/source-health/{pair}-{label}.channels.xml').write_bytes(ET.tostring(out, encoding='utf-8', xml_declaration=True))
+          PY
+            shared_count="$(grep -c '<channel ' "/tmp/source-health/${pair}-a.channels.xml" || true)"
+            if [ "$shared_count" -eq 0 ]; then
+              echo "${pair}: no shared IDs" > "output/${pair}.txt"
+              printf '%s\n' '{"ids":0,"results":[]}' > "output/${pair}.json"
+              return
+            fi
+            cd vendor/epg
+            set +e
+            timeout --signal=TERM --kill-after=20s 480s npm run grab --- --channels="/tmp/source-health/${pair}-a.channels.xml" --output="/tmp/source-health/${pair}-a.xml" --days=2 --maxConnections=1 --timeout=20000
+            timeout --signal=TERM --kill-after=20s 480s npm run grab --- --channels="/tmp/source-health/${pair}-b.channels.xml" --output="/tmp/source-health/${pair}-b.xml" --days=2 --maxConnections=1 --timeout=20000
+            set -e
+            test -s "/tmp/source-health/${pair}-a.xml" || printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "/tmp/source-health/${pair}-a.xml"
+            test -s "/tmp/source-health/${pair}-b.xml" || printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "/tmp/source-health/${pair}-b.xml"
+            cd ../..
+            python tools/official_duplicate_health_compare.py \
+              --a "/tmp/source-health/${pair}-a.xml" --b "/tmp/source-health/${pair}-b.xml" \
+              --a-name "$aname" --b-name "$bname" \
+              --json "output/${pair}.json" --text "output/${pair}.txt"
+          }
+
+          compare_pair shahid-elcinema shahid vendor/epg/sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml elcinema vendor/epg/sites/elcinema.com/elcinema.com_ar.channels.xml
+          compare_pair rotana-elcinema rotana vendor/epg/sites/rotana.net/rotana.net_ar.channels.xml elcinema vendor/epg/sites/elcinema.com/elcinema.com_ar.channels.xml
+          compare_pair art-elcinema art vendor/epg/sites/artonline.tv/artonline.tv.channels.xml elcinema vendor/epg/sites/elcinema.com/elcinema.com_ar.channels.xml
+          cat output/*.txt
+
+      - name: Publish diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin mena-data
+          git worktree add publish origin/mena-data
+          cd publish
+          git checkout -B mena-data origin/mena-data
+          cp ../output/shahid-elcinema.json official-shahid-elcinema-health.json
+          cp ../output/shahid-elcinema.txt official-shahid-elcinema-health.txt
+          cp ../output/rotana-elcinema.json official-rotana-elcinema-health.json
+          cp ../output/rotana-elcinema.txt official-rotana-elcinema-health.txt
+          cp ../output/art-elcinema.json official-art-elcinema-health.json
+          cp ../output/art-elcinema.txt official-art-elcinema-health.txt
+          git config user.name "EPGManager Official Source Audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add official-*-elcinema-health.*
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Audit official providers versus elCinema fallback"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
