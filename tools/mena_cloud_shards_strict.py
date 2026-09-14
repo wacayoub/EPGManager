@@ -3,13 +3,13 @@
 """Strict identity + compatibility layer on top of mena_cloud_shards_safe.
 
 Known beIN XMLTV aliases are kept in BOTH XML and the lightweight catalogue so
-an existing receiver mapping never becomes invalid.  Their programme timelines
-are copied from audited canonical IDs.  New-mapping preference for canonical IDs
-can be handled by the receiver suggestion score without deleting legacy IDs.
+an existing receiver mapping never becomes invalid. Their programme timelines
+are copied from audited canonical IDs. New mappings prefer canonical IDs.
 """
 from __future__ import annotations
 
 import mena_cloud_shards_safe as safe
+import bein_provider_repair as bein_repair
 
 _original_provider_group = safe.safe_provider_group
 _original_write_shard = safe.base.write_shard
@@ -18,12 +18,14 @@ _original_write_shard = safe.base.write_shard
 # Only mappings verified as the same logical linear service are included here.
 # Real EN/FR beIN linear variants are deliberately NOT collapsed into Arabic.
 BEIN_COMPAT_ALIASES = {
-    # Main sports / news / 4K
+    # Main sports / 4K
     "4k_DIGITAL_Mono_AR.bein": "beIN4K.qa@SD",
     "beINSports2.qa@MENA": "beIN SPORTS2 DIGITAL.qa",
     "beINSports4.qa@MENA": "beIN SPORTS4 DIGITAL.qa",
     "beINSports6.qa@MENA": "beIN SPORTS6 DIGITAL -d-1.qa",
     "beIN SPORTS7 DIGITAL.qa": "beINSports7.qa@MENA",
+
+    # Older NEWS canonical IDs may reappear in upstream feeds.
     "NEWS_DIGITAL_Mono_AR.bein": "beIN.Sports.News.ae",
     "NEWS_DIGITAL_Mono_EN.bein": "beIN.Sports.News.ae",
 
@@ -38,23 +40,30 @@ BEIN_COMPAT_ALIASES = {
     "beIN SPORTS XTRA 3.qa": "beINSPORTSXTRA3.qa",
     "logos-_beINSPORTSXTRA3_EN.bein": "beINSPORTSXTRA3.qa",
 }
+# Add current verified Arabic/Latin guide twins and current NEWS twin.
+BEIN_COMPAT_ALIASES.update(bein_repair.RECOMMENDED_COMPAT_ALIASES)
 
-# IDs that should receive a negative recommendation score in a future receiver
-# build.  They remain present here so an old manual mapping is not silently lost.
+# IDs that should receive a negative recommendation score. They remain present
+# so an old manual mapping is not silently lost. Valid FTA and Box Office IDs are
+# no longer penalized merely because they are not ordinary sports-linear services.
 BEIN_NON_RECOMMENDED_IDS = {
     "beIN SPORTS66 DIGITAL -01.qa",
     "beIN_SPORTS66_DIGITAL_Mono-01_EN.bein",
-    "beIN SPORTS-boxoffice-bein.com.qa",
     "bein.com-05.qa",
     "bein.com-06.qa",
     "bein.com-07.qa",
     "bein.com-08.qa",
-    "bein SPORTS FTA DIGITAL.qa",
 }
 
 
 def strict_provider_group(cid, name, meta):
-    probe = safe.compact("%s %s %s" % (cid or "", name or "", (meta or {}).get("name") or ""))
+    raw = "%s %s %s" % (cid or "", name or "", (meta or {}).get("name") or "")
+    # base.norm()/safe.compact intentionally strips non-Latin text. Detect the
+    # Arabic beIN identity first so rich Arabic guides do not fall into mena-eg.
+    if bein_repair.ARABIC_BEIN_RE.search(raw):
+        return "bein"
+
+    probe = safe.compact(raw)
 
     # Majid Al Mohandis is an artist/music service, not Majid Kids / Abu Dhabi Media.
     if "majidalmohandis" in probe:
@@ -77,16 +86,37 @@ def _copy_programmes_to_alias(alias, canonical, programmes):
 def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
     ids_set = set(ids)
     compat_applied = {}
+    repair_report = None
+    shard_programmes = programmes
 
     if stem == "provider-bein":
-        # Preserve old IDs and force their schedules to the audited canonical
-        # timeline. This is intentionally done BEFORE writing both XML and TXT.
+        # Work on copies. Repairs are metadata/schedule corrections limited to the
+        # provider-beIN shard; the combined source and all other providers stay untouched.
+        repaired, repair_report = bein_repair.repair_programme_map(
+            ids_set, programmes, safe.base.copy_element
+        )
+        # Future-proof zero guard: never let generic-event cleanup accidentally
+        # publish a channel with zero programmes. Current XTRA3 keeps real events.
+        restored = []
+        for cid in ids_set:
+            if programmes.get(cid) and not repaired.get(cid):
+                repaired[cid] = [safe.base.copy_element(p) for p in programmes.get(cid, [])]
+                restored.append(cid)
+        if restored:
+            repair_report["zero_guard_restored_ids"] = sorted(restored, key=str.casefold)
+            repair_report["summary"]["zero_guard_restored"] = len(restored)
+
+        shard_programmes = dict(programmes)
+        shard_programmes.update(repaired)
+
+        # Preserve aliases and force each to the audited canonical timeline AFTER
+        # the canonical schedule has received safe metadata repairs.
         for alias, canonical in BEIN_COMPAT_ALIASES.items():
-            if alias in ids_set and canonical in ids_set and canonical in programmes:
-                count = _copy_programmes_to_alias(alias, canonical, programmes)
+            if alias in ids_set and canonical in ids_set and canonical in shard_programmes:
+                count = _copy_programmes_to_alias(alias, canonical, shard_programmes)
                 compat_applied[alias] = {"canonical": canonical, "programmes": count}
 
-    result = _original_write_shard(out_dir, stem, ids_set, channels, programmes, label)
+    result = _original_write_shard(out_dir, stem, ids_set, channels, shard_programmes, label)
 
     if stem == "provider-bein":
         # Do not remove aliases from the .txt catalogue: current receiver mappings
@@ -96,8 +126,17 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
             [cid for cid in BEIN_NON_RECOMMENDED_IDS if cid in ids_set], key=str.casefold
         )
         result["catalog_preserves_legacy_ids"] = True
-        print("beIN compatibility: %d aliases refreshed from canonical; legacy catalogue IDs preserved" %
-              len(compat_applied))
+        result["repair"] = (repair_report or {}).get("summary", {})
+        result["repair_long_events"] = (repair_report or {}).get("long_event_repairs", [])
+        print(
+            "beIN repair: ArabicDesc=%d replayTitle=%d long=%d genericXTRA=%d; compatibility aliases=%d" % (
+                result["repair"].get("arabic_desc_fills", 0),
+                result["repair"].get("known_replay_title_fixes", 0),
+                result["repair"].get("long_event_repairs", 0),
+                result["repair"].get("generic_xtra_removed", 0),
+                len(compat_applied),
+            )
+        )
 
     return result
 
