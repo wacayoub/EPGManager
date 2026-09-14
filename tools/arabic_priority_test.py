@@ -453,6 +453,15 @@ def main():
     Path(args.text).write_text("\n".join(lines) + "\n", encoding="utf-8")
     summary = " | ".join("%s=%s" % (x["label"], x["status"]) for x in out)
     print(summary + " | Disney+NatGeo=" + family["status"] + " | MBC+Shahid=" + mbc["status"])
+    if mbc["status"] != "PASS":
+        print("MBC AUDIT DETAILS:")
+        print(mbc.get("audit_output", ""))
+        print("MBC REGRESSION DETAILS:")
+        print(mbc.get("regression_output", ""))
+        if mbc.get("audit_errors"):
+            print("MBC AUDIT ERRORS:")
+            for error in mbc["audit_errors"]:
+                print("- %s" % error)
     return 1 if hard_fail else 0
 
 
