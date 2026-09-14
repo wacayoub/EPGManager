@@ -23,6 +23,15 @@ jobs:
           - name: shahid
             channels: sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml
             targets: AlArabiyaEnglish.sa@SD,AlArabiyaPrograms.ae,Wanasah.ae@SD,AlEkhbariya.sa@SD,AlQuranAlKareemTV.sa@SD,AlSaudiyaAlaan.sa@SD,AlSunnahAlNabawiyahTV.sa@SD,SaudiThaqafiyaTV.sa@SD,Tarab.sa@SD,SpacetoonArabic.ae@SD
+          - name: bein-primary-sports6
+            channels: sites/bein.com/bein.com_ar.channels.xml
+            targets: beINSports6.qa@MENA
+          - name: beinsports-alt-sports6
+            channels: sites/beinsports.com/beinsports.com_mena-ar.channels.xml
+            targets: beINSports6.qa@MENA
+          - name: elcinema-series2
+            channels: sites/elcinema.com/elcinema.com_ar.channels.xml
+            targets: beINSeries2.qa@SD
 
     steps:
       - name: Checkout iptv-org EPG
@@ -61,7 +70,7 @@ jobs:
           fi
           exit 0
 
-      - name: Report requested IDs with timetable samples
+      - name: Report requested IDs with timetable health
         env:
           TARGETS: ${{ matrix.targets }}
           NAME: ${{ matrix.name }}
@@ -69,7 +78,7 @@ jobs:
         run: |
           python - <<'PY'
           import os, re, xml.etree.ElementTree as ET
-          from collections import Counter, defaultdict
+          from collections import defaultdict
           from datetime import datetime
 
           def txt(p, tag):
@@ -89,10 +98,26 @@ jobs:
           channels = {(c.get('id') or '').strip(): next(((n.text or '').strip() for n in c.findall('display-name') if (n.text or '').strip()), '') for c in root.findall('channel')}
           print(f"OFFICIAL_PROVIDER_PROBE provider={os.environ['NAME']} channels={len(channels)} programmes={sum(len(v) for v in rows.values())}")
           for cid in [x.strip() for x in os.environ['TARGETS'].split(',') if x.strip()]:
-              ps=rows.get(cid, [])
-              print(f"TARGET {cid} present={cid in channels} events={len(ps)} name={channels.get(cid,'')}")
-              for p in ps[:3]:
+              ps=sorted(rows.get(cid, []), key=lambda p: p.get('start') or '')
+              valid=[]
+              invalid=0
+              for p in ps:
                   a,b=dt(p.get('start')),dt(p.get('stop'))
-                  dur=((b-a).total_seconds()/3600.0) if a and b and b>a else 0
+                  if a is None or b is None or b <= a:
+                      invalid += 1
+                  else:
+                      valid.append((a,b,p))
+              coverage=sum((b-a).total_seconds() for a,b,_ in valid)/3600.0
+              span=((valid[-1][1]-valid[0][0]).total_seconds()/3600.0) if valid else 0.0
+              gaps=[]
+              for (_,prev_stop,_),(next_start,_,_) in zip(valid, valid[1:]):
+                  if next_start > prev_stop:
+                      gaps.append(((next_start-prev_stop).total_seconds()/3600.0, prev_stop, next_start))
+              biggest=max(gaps, default=(0.0,None,None), key=lambda x:x[0])
+              print(f"TARGET {cid} present={cid in channels} events={len(ps)} valid={len(valid)} invalid={invalid} coverage_h={coverage:.2f} span_h={span:.2f} gaps={len(gaps)} max_gap_h={biggest[0]:.2f} name={channels.get(cid,'')}")
+              if biggest[1] is not None:
+                  print(f"  MAX_GAP {biggest[1].isoformat()} -> {biggest[2].isoformat()} ({biggest[0]:.2f}h)")
+              for a,b,p in valid[:5]:
+                  dur=(b-a).total_seconds()/3600.0
                   print(f"  EVENT start={p.get('start','')} stop={p.get('stop','')} dur_h={dur:.2f} title={txt(p,'title')} desc={txt(p,'desc')[:120]}")
           PY
