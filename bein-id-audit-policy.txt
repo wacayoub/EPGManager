@@ -1,5 +1,5 @@
 VIRTUAL EPGMANAGER - EXHAUSTIVE beIN ID-BY-ID AUDIT
-channels=39 programmes=912 PASS=15 ALIAS_OK=1 REVIEW=23 FAIL=0
+channels=45 programmes=1070 PASS=20 ALIAS_OK=13 REVIEW=12 FAIL=0
 Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 01. [ALIAS_OK] 4k_DIGITAL_Mono_AR.bein -> beIN4K.qa@SD
@@ -12,59 +12,59 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 02. [REVIEW] beIN Drama.eg
     name=beIN Drama.eg | family=beIN Drama | kind=drama
-    events=11 coverage=10.0h span=10.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=9% Latin=100% hybrid=9% unique=64% | desc: AR=0% empty=11 same-as-title=0
-    notes=EMPTY_DESC=11, AR_DESC_LOW=0%
-    • El Qatel Allazy Ahabany
+    events=10 coverage=9.0h span=9.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=10% Latin=100% hybrid=10% unique=70% | desc: AR=0% empty=10 same-as-title=0
+    notes=EMPTY_DESC=10, AR_DESC_LOW=0%
     • Sarmasik Zamani
+    • Darb Al Thahab
 
 03. [REVIEW] BEIN MOVIES ACTION.eg
     name=BEIN MOVIES ACTION.eg | family=beIN Movies | kind=movies
-    events=24 coverage=46.2h span=46.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=79% | desc: AR=0% empty=24 same-as-title=0
-    notes=EMPTY_DESC=24, AR_DESC_LOW=0%
-    • Reawakening
+    events=23 coverage=44.7h span=44.7h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=83% | desc: AR=100% empty=1 same-as-title=0
+    notes=EMPTY_DESC=1
     • Star Trek
+    • Star Trek Into Darkness
 
 04. [REVIEW] BEIN MOVIES DRAMA.eg
     name=BEIN MOVIES DRAMA.eg | family=beIN Movies | kind=movies
-    events=26 coverage=47.8h span=47.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=77% | desc: AR=0% empty=26 same-as-title=0
-    notes=EMPTY_DESC=26, AR_DESC_LOW=0%
-    • Forrest Gump
+    events=25 coverage=45.3h span=45.3h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=76% | desc: AR=100% empty=1 same-as-title=0
+    notes=EMPTY_DESC=1
     • A Beautiful Mind
+    • The Addams Family
 
-05. [REVIEW] BEIN MOVIES FAMILY.eg
+05. [PASS] BEIN MOVIES FAMILY.eg
     name=BEIN MOVIES FAMILY.eg | family=beIN Movies | kind=movies
-    events=27 coverage=45.8h span=45.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=56% | desc: AR=0% empty=27 same-as-title=0
-    notes=EMPTY_DESC=27, AR_DESC_LOW=0%
-    • Goosebumps
+    events=26 coverage=44.0h span=44.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=54% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
     • The Smurfs
+    • Paddington in Peru
 
 06. [REVIEW] BEIN MOVIES PREMIERE.eg
     name=BEIN MOVIES PREMIERE.eg | family=beIN Movies | kind=movies
     events=24 coverage=44.5h span=44.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=75% | desc: AR=0% empty=24 same-as-title=0
-    notes=EMPTY_DESC=24, AR_DESC_LOW=0%
+    title: AR-presence=0% Latin=100% hybrid=0% unique=75% | desc: AR=100% empty=2 same-as-title=0
+    notes=EMPTY_DESC=2
     • Dear Santa
     • Legends of the Condor Heroes: The Gallants
 
-07. [REVIEW] BeIn Series HD 1.eg
+07. [PASS] BeIn Series HD 1.eg
     name=BeIn Series HD 1.eg | family=beIN Series | kind=series
-    events=10 coverage=10.0h span=10.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=90% hybrid=0% unique=80% | desc: AR=0% empty=10 same-as-title=0
-    notes=EMPTY_DESC=10, AR_DESC_LOW=0%
-    • Yellowjackets S2
+    events=9 coverage=9.0h span=9.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=89% hybrid=0% unique=89% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
     • Outlander S3
+    • Shark Tank
 
-08. [REVIEW] beIN Series HD 2.eg
+08. [PASS] beIN Series HD 2.eg
     name=beIN Series HD 2.eg | family=beIN Series | kind=series
-    events=12 coverage=10.4h span=10.4h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=58% | desc: AR=0% empty=12 same-as-title=0
-    notes=EMPTY_DESC=12, AR_DESC_LOW=0%
-    • From
+    events=11 coverage=9.4h span=9.4h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=64% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
     • Your Honor
+    • Black Clover S3
 
 09. [PASS] beIN SPORTS 1.qa
     name=beIN SPORTS 1.qa | family=beIN Sports 1 AR/MENA | kind=sports_ar
@@ -90,35 +90,35 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Chinese Taipei vs Vietnam - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01
     • EN ATP Tour: This Week 2026 Ep.35
 
-12. [REVIEW] bein SPORTS FTA DIGITAL.qa
+12. [PASS] bein SPORTS FTA DIGITAL.qa
     name=bein SPORTS FTA DIGITAL.qa | family=beIN Sports FTA | kind=sports_ar
     events=25 coverage=41.2h span=41.7h gaps>2h=0 gap_total=0.5h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=40% | desc: AR=100% empty=0 same-as-title=0
-    notes=NON_RECOMMENDED_ID
+    notes=NONE
     • Chinese Taipei vs Vietnam - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01
     • Arab Participation In Asian Games
 
 13. [PASS] beIN SPORTS NEWS.qa
     name=beIN SPORTS NEWS.qa | family=beIN Sports News | kind=news
-    events=74 coverage=42.0h span=42.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=32% Latin=100% hybrid=32% unique=28% | desc: AR=100% empty=0 same-as-title=0
+    events=72 coverage=40.5h span=40.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=32% Latin=100% hybrid=32% unique=29% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Al Hassad
-    • News Bulletin - نشرة الأخبار
+    • Al Hassila - 14/09/26
+    • The Issue of The Day
 
-14. [REVIEW] beIN SPORTS-boxoffice-bein.com.qa
+14. [PASS] beIN SPORTS-boxoffice-bein.com.qa
     name=beIN SPORTS-boxoffice-bein.com.qa | family=beIN Boxoffice | kind=boxoffice
-    events=25 coverage=41.7h span=42.8h gaps>2h=0 gap_total=1.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=52% | desc: AR=100% empty=0 same-as-title=0
-    notes=NON_RECOMMENDED_ID
-    • Echoes of War
+    events=24 coverage=40.0h span=41.1h gaps>2h=0 gap_total=1.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=54% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
     • Perrier's Bounty
+    • Detective Knight Rogue
 
-15. [REVIEW] beIN SPORTS.qa
+15. [PASS] beIN SPORTS.qa
     name=beIN SPORTS.qa | family=beIN SPORTS.qa | kind=other
-    events=19 coverage=41.4h span=41.4h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=1 >12h=0
+    events=19 coverage=35.4h span=35.4h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=68% | desc: AR=100% empty=0 same-as-title=0
-    notes=LONG_6H=1
+    notes=NONE
     • Japan vs Thailand - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01
     • Qatar's Weightlifting Team
 
@@ -132,19 +132,19 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 17. [REVIEW] beIN_SPORTS3_DIGITAL_Mono_EN.bein
     name=beIN_SPORTS3_DIGITAL_Mono_EN | family=beIN Sports 3 EN | kind=sports_en
-    events=13 coverage=28.8h span=50.8h gaps>2h=1 gap_total=22.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=54% | desc: AR=100% empty=0 same-as-title=0
+    events=14 coverage=30.8h span=52.8h gaps>2h=1 gap_total=22.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=50% | desc: AR=100% empty=0 same-as-title=0
     notes=GAPS_GT_2H=1
     • West Ham Utd vs Wrexham
     • Levante vs Barcelona
 
 18. [REVIEW] beIN_SPORTS4_DIGITAL_Mono_EN.bein
     name=beIN_SPORTS4_DIGITAL_Mono_EN | family=beIN Sports 4 EN | kind=sports_en
-    events=15 coverage=31.0h span=52.6h gaps>2h=1 gap_total=21.6h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=13% Latin=100% hybrid=13% unique=53% | desc: AR=100% empty=0 same-as-title=0
+    events=14 coverage=29.2h span=50.8h gaps>2h=1 gap_total=21.6h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=14% Latin=100% hybrid=14% unique=50% | desc: AR=100% empty=0 same-as-title=0
     notes=GAPS_GT_2H=1
-    • Al Qadsiah (KSA) vs Al Wasl (UAE)
     • Lorient vs Toulouse
+    • الدوري الفرنسي Weekly Review - مراجعة
 
 19. [PASS] beIN_SPORTS5_DIGITAL_Mono_EN.bein
     name=beIN_SPORTS5_DIGITAL_Mono_EN | family=beIN Sports 5 EN | kind=sports_en
@@ -156,81 +156,81 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 20. [REVIEW] beIN_SPORTS7_DIGITAL_Mono_EN.bein
     name=beIN_SPORTS7_DIGITAL_Mono_EN | family=beIN Sports 7 EN | kind=sports_en
-    events=12 coverage=30.2h span=51.2h gaps>2h=1 gap_total=21.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    events=12 coverage=29.2h span=50.2h gaps>2h=1 gap_total=21.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=75% | desc: AR=100% empty=0 same-as-title=0
     notes=GAPS_GT_2H=1
-    • Christian Harrison (USA) vs Xinran Sun (CHN) vs Neal Skupski (GBR) vs Kevin Krawietz (GER)
     • Katerina Siniakova (CZE) vs Taylor Townsend (USA) vs Ashlyn Krueger (USA) vs Robin Montgomery (USA)
+    • China vs Spain
 
-21. [REVIEW] beINDrama1.qa@SD
+21. [ALIAS_OK] beINDrama1.qa@SD -> beIN Drama.eg
     name=بي إن دراما | family=beIN Drama | kind=drama
-    events=11 coverage=10.0h span=10.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=9% hybrid=9% unique=64% | desc: AR=100% empty=1 same-as-title=0
-    notes=EMPTY_DESC=1
-    • القاتل الذي أحبني
-    • أوراق النسيان
+    events=10 coverage=9.0h span=9.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=10% Latin=100% hybrid=10% unique=70% | desc: AR=0% empty=10 same-as-title=0
+    notes=EMPTY_DESC=10, AR_DESC_LOW=0%
+    • Sarmasik Zamani
+    • Darb Al Thahab
 
 22. [REVIEW] beINGourmet.qa@SD
     name=beINGOURMET | family=beINGOURMET | kind=other
-    events=10 coverage=10.0h span=10.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=70% hybrid=70% unique=40% | desc: AR=0% empty=10 same-as-title=0
-    notes=EMPTY_DESC=10
-    • E8 | S1 عزابي
+    events=9 coverage=9.0h span=9.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=100% Latin=67% hybrid=67% unique=44% | desc: AR=0% empty=9 same-as-title=0
+    notes=EMPTY_DESC=9
     • سوبر موم S1
+    • Al Dar Alkabira S2 EP 8
 
-23. [REVIEW] beINMovies1Premiere.qa@SD
+23. [ALIAS_OK] beINMovies1Premiere.qa@SD -> BEIN MOVIES PREMIERE.eg
     name=beINMOVIES1 | family=beIN Movies | kind=movies
-    events=17 coverage=33.2h span=33.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=0% hybrid=0% unique=82% | desc: AR=0% empty=17 same-as-title=0
-    notes=EMPTY_DESC=17, AR_DESC_LOW=0%
-    • دير سانتا
-    • أساطير أبطال كوندور: الشجعان
+    events=24 coverage=44.5h span=44.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=75% | desc: AR=100% empty=2 same-as-title=0
+    notes=EMPTY_DESC=2
+    • Dear Santa
+    • Legends of the Condor Heroes: The Gallants
 
-24. [REVIEW] beINMovies2Action.qa@SD
+24. [ALIAS_OK] beINMovies2Action.qa@SD -> BEIN MOVIES ACTION.eg
     name=beINMOVIES2 | family=beIN Movies | kind=movies
-    events=19 coverage=35.5h span=35.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=0% hybrid=0% unique=74% | desc: AR=0% empty=19 same-as-title=0
-    notes=EMPTY_DESC=19, AR_DESC_LOW=0%
-    • عودة الشاردة
-    • ستار تريك
+    events=23 coverage=44.7h span=44.7h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=83% | desc: AR=100% empty=1 same-as-title=0
+    notes=EMPTY_DESC=1
+    • Star Trek
+    • Star Trek Into Darkness
 
-25. [REVIEW] beINMovies3Drama.qa@SD
+25. [ALIAS_OK] beINMovies3Drama.qa@SD -> BEIN MOVIES DRAMA.eg
     name=beINMOVIES3 | family=beIN Movies | kind=movies
-    events=19 coverage=36.0h span=36.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=16% hybrid=16% unique=79% | desc: AR=0% empty=19 same-as-title=0
-    notes=EMPTY_DESC=19, AR_DESC_LOW=0%
-    • فورست جامب
-    • العبقري
+    events=25 coverage=45.3h span=45.3h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=76% | desc: AR=100% empty=1 same-as-title=0
+    notes=EMPTY_DESC=1
+    • A Beautiful Mind
+    • The Addams Family
 
-26. [REVIEW] beINMovies4Family.qa@SD
+26. [ALIAS_OK] beINMovies4Family.qa@SD -> BEIN MOVIES FAMILY.eg
     name=beINMOVIES4 | family=beIN Movies | kind=movies
-    events=7 coverage=11.8h span=11.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=0% hybrid=0% unique=100% | desc: AR=0% empty=7 same-as-title=0
-    notes=EMPTY_DESC=7, AR_DESC_LOW=0%
-    • قشعريرة
-    • السنافر
+    events=26 coverage=44.0h span=44.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=54% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
+    • The Smurfs
+    • Paddington in Peru
 
 27. [REVIEW] beINSeries1.qa@SD
     name=beINSERIES1 | family=beIN Series | kind=series
-    events=11 coverage=10.2h span=10.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=82% hybrid=82% unique=82% | desc: AR=0% empty=11 same-as-title=0
-    notes=EMPTY_DESC=11, AR_DESC_LOW=0%
-    • يلوجاكيتس S2
+    events=10 coverage=9.2h span=9.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=100% Latin=90% hybrid=90% unique=90% | desc: AR=0% empty=10 same-as-title=0
+    notes=EMPTY_DESC=10, AR_DESC_LOW=0%
     • E6 | S3 دخيلة
+    • E7 | S8 كل أمريكي
 
-28. [PASS] beINSeries2.qa@SD
+28. [REVIEW] beINSeries2.qa@SD
     name=بي إن سيريس إتش... | family=beIN Series | kind=series
-    events=9 coverage=8.0h span=8.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=100% hybrid=100% unique=89% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • NCIS: Sydney S3
+    events=37 coverage=31.0h span=37.0h gaps>2h=1 gap_total=6.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=100% Latin=100% hybrid=100% unique=30% | desc: AR=100% empty=1 same-as-title=0
+    notes=EMPTY_DESC=1, GAPS_GT_2H=1
     • The Agency: Central Intelligence
+    • Dexter S6
 
-29. [REVIEW] beINSports2.qa@MENA
+29. [PASS] beINSports2.qa@MENA
     name=beINSPORTS2 | family=beIN Sports 2 AR/MENA | kind=sports_ar
-    events=21 coverage=44.7h span=44.7h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=1 >12h=0
+    events=21 coverage=40.2h span=40.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=86% Latin=100% hybrid=86% unique=76% | desc: AR=100% empty=0 same-as-title=0
-    notes=LONG_6H=1
+    notes=NONE
     • South Korea vs Myanmar - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL02
     • Sunderland vs Arsenal - الدوري الإنجليزي الممتاز
 
@@ -244,76 +244,131 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 31. [PASS] beINSports4.qa@MENA
     name=beINSPORT4 | family=beIN Sports 4 AR/MENA | kind=sports_ar
-    events=24 coverage=42.6h span=42.6h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=75% Latin=100% hybrid=75% unique=62% | desc: AR=100% empty=0 same-as-title=0
+    events=23 coverage=40.8h span=40.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=74% Latin=100% hybrid=74% unique=61% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Chelsea vs Hull City - الدوري الإنجليزي الممتاز
     • Osasuna vs Espanyol - الدوري الإسباني
+    • Coventry City vs Brighton - الدوري الإنجليزي الممتاز
 
 32. [PASS] beINSports5.qa@MENA
     name=beINSPORTS5 | family=beIN Sports 5 AR/MENA | kind=sports_ar
-    events=20 coverage=45.9h span=45.9h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=60% Latin=100% hybrid=60% unique=55% | desc: AR=100% empty=0 same-as-title=0
+    events=19 coverage=44.0h span=44.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=58% Latin=100% hybrid=58% unique=58% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Valladolid vs Oviedo - الدوري الإسباني Hypermotion
     • Getafe vs Deportivo La Coruna - الدوري الإسباني
+    • Colombia vs Korea Dpr - FIFA U-20 Women World Cup
 
 33. [REVIEW] beINSports6.qa@MENA
     name=beINSPORTS6 | family=beIN Sports 6 AR/MENA | kind=sports_ar
-    events=20 coverage=36.2h span=39.1h gaps>2h=1 gap_total=2.8h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=40% Latin=100% hybrid=40% unique=45% | desc: AR=100% empty=0 same-as-title=0
+    events=19 coverage=34.7h span=37.6h gaps>2h=1 gap_total=2.8h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=42% Latin=100% hybrid=42% unique=47% | desc: AR=100% empty=0 same-as-title=0
     notes=GAPS_GT_2H=1
-    • Premier Padel - Paris Major - Claudia Fernandez Sanchez Esp Martina Calvo Esp vs Ariana Sanchez Fall
     • Premier Padel - Paris Major - Agustin Tapia Arg Arturo Coello Esp vs Alejandro Galan Esp Federico C
+    • Havre AC vs Angers - الدوري الفرنسي
 
 34. [PASS] beINSports7.qa@MENA
     name=beINSPORTS7 | family=beIN Sports 7 AR/MENA | kind=sports_ar
-    events=18 coverage=44.6h span=44.6h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=56% | desc: AR=100% empty=0 same-as-title=0
+    events=17 coverage=42.7h span=42.7h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=53% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Ghana vs France - FIFA U-20 Women World Cup
     • China vs Spain - FIFA U-20 Women World Cup
+    • Zverev, Alexander (GER) vs Shelton, Ben (USA) - Arthur Ashe Court - Tennis US Open 2026 - Men's Sing
 
 35. [PASS] beINSports8.qa@MENA
     name=beINSPORTS8 | family=beIN Sports 8 AR/MENA | kind=sports_ar
-    events=29 coverage=41.9h span=41.9h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=7% Latin=100% hybrid=7% unique=69% | desc: AR=100% empty=0 same-as-title=0
+    events=28 coverage=40.6h span=40.6h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=7% Latin=100% hybrid=7% unique=68% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Sprint Race - Madrid Round - FIA Formula 2 Championship
     • Feature Race - Madrid Round - FIA Formula 2 Championship
+    • Qualifying - Moto 3 - San Marino GP
 
 36. [PASS] beINSports9.qa@MENA
     name=beINSPORTS9 | family=beIN Sports 9 AR/MENA | kind=sports_ar
-    events=32 coverage=41.8h span=41.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=84% | desc: AR=100% empty=0 same-as-title=0
+    events=30 coverage=40.3h span=40.3h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=90% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • M2 Qterminals Qatar Classic 2026 - Glass Court
-    • M3 Qterminals Qatar Classic 2026 - Glass Court
+    • M4 Qterminals Qatar Classic 2026 - Glass Court
+    • M1 Qterminals Qatar Classic 2026 - Glass Court
 
 37. [REVIEW] beINSPORTSXTRA3.qa
     name=beINSPORTSXTRA3.qa | family=beIN XTRA 3 | kind=xtra
-    events=13 coverage=16.0h span=17.0h gaps>2h=0 gap_total=1.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=31% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=77%, REPEATED_TITLE=77%
+    events=12 coverage=15.0h span=16.0h gaps>2h=0 gap_total=1.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=33% | desc: AR=100% empty=0 same-as-title=0
+    notes=GENERIC_GUIDE=75%, REPEATED_TITLE=75%
     • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
     • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
 
 38. [PASS] NEWS_DIGITAL_Mono_AR.bein
     name=NEWS_DIGITAL_Mono_AR | family=beIN Sports News | kind=news
-    events=68 coverage=38.0h span=38.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    events=66 coverage=36.5h span=36.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=100% hybrid=100% unique=24% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Al Hassad
-    • News Bulletin - نشرة الأخبار
+    • UEFA UCL Magazine - مجلة
+    • Super Monday
 
-39. [PASS] NEWS_DIGITAL_Mono_EN.bein
+39. [ALIAS_OK] NEWS_DIGITAL_Mono_EN.bein -> NEWS_DIGITAL_Mono_AR.bein
     name=NEWS_DIGITAL_Mono_EN | family=beIN Sports News | kind=news
-    events=68 coverage=38.0h span=38.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=34% Latin=100% hybrid=34% unique=24% | desc: AR=100% empty=0 same-as-title=0
+    events=66 coverage=36.5h span=36.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=100% Latin=100% hybrid=100% unique=24% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Al Hassad
-    • News Bulletin - نشرة الأخبار
+    • UEFA UCL Magazine - مجلة
+    • Super Monday
+
+40. [ALIAS_OK] بي إن سيريس إتش دي 2.eg -> beIN Series HD 2.eg
+    name=بي إن سيريس إتش دي 2.eg | family=بي إن سيريس إتش دي 2.eg | kind=other
+    events=11 coverage=9.4h span=9.4h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=64% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
+    • Your Honor
+    • Black Clover S3
+
+41. [ALIAS_OK] بي إن سيريس.eg -> BeIn Series HD 1.eg
+    name=بي إن سيريس.eg | family=بي إن سيريس.eg | kind=other
+    events=9 coverage=9.0h span=9.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=89% hybrid=0% unique=89% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
+    • Outlander S3
+    • Shark Tank
+
+42. [ALIAS_OK] بي إن موفيز أكشن.eg -> BEIN MOVIES ACTION.eg
+    name=بي إن موفيز أكشن.eg | family=بي إن موفيز أكشن.eg | kind=other
+    events=23 coverage=44.7h span=44.7h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=83% | desc: AR=100% empty=1 same-as-title=0
+    notes=EMPTY_DESC=1
+    • Star Trek
+    • Star Trek Into Darkness
+
+43. [ALIAS_OK] بي إن موفيز بريمير.eg -> BEIN MOVIES PREMIERE.eg
+    name=بي إن موفيز بريمير.eg | family=بي إن موفيز بريمير.eg | kind=other
+    events=24 coverage=44.5h span=44.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=75% | desc: AR=100% empty=2 same-as-title=0
+    notes=EMPTY_DESC=2
+    • Dear Santa
+    • Legends of the Condor Heroes: The Gallants
+
+44. [ALIAS_OK] بي إن موفيز دراما.eg -> BEIN MOVIES DRAMA.eg
+    name=بي إن موفيز دراما.eg | family=بي إن موفيز دراما.eg | kind=other
+    events=25 coverage=45.3h span=45.3h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=76% | desc: AR=100% empty=1 same-as-title=0
+    notes=EMPTY_DESC=1
+    • A Beautiful Mind
+    • The Addams Family
+
+45. [ALIAS_OK] بي إن موفيز فاميلي.eg -> BEIN MOVIES FAMILY.eg
+    name=بي إن موفيز فاميلي.eg | family=بي إن موفيز فاميلي.eg | kind=other
+    events=26 coverage=44.0h span=44.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=54% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
+    • The Smurfs
+    • Paddington in Peru
 
 EXACT DUPLICATE TIMELINE GROUPS
 - 4k_DIGITAL_Mono_AR.bein ; beIN4K.qa@SD | families=beIN 4K
+- beIN Drama.eg ; beINDrama1.qa@SD | families=beIN Drama
+- BEIN MOVIES ACTION.eg ; beINMovies2Action.qa@SD ; بي إن موفيز أكشن.eg | families=beIN Movies ; بي إن موفيز أكشن.eg
+- BEIN MOVIES DRAMA.eg ; beINMovies3Drama.qa@SD ; بي إن موفيز دراما.eg | families=beIN Movies ; بي إن موفيز دراما.eg
+- BEIN MOVIES FAMILY.eg ; beINMovies4Family.qa@SD ; بي إن موفيز فاميلي.eg | families=beIN Movies ; بي إن موفيز فاميلي.eg
+- BEIN MOVIES PREMIERE.eg ; beINMovies1Premiere.qa@SD ; بي إن موفيز بريمير.eg | families=beIN Movies ; بي إن موفيز بريمير.eg
+- BeIn Series HD 1.eg ; بي إن سيريس.eg | families=beIN Series ; بي إن سيريس.eg
+- beIN Series HD 2.eg ; بي إن سيريس إتش دي 2.eg | families=beIN Series ; بي إن سيريس إتش دي 2.eg
 - NEWS_DIGITAL_Mono_AR.bein ; NEWS_DIGITAL_Mono_EN.bein | families=beIN Sports News
