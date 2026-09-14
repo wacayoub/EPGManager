@@ -5,9 +5,11 @@
 The script scans every *.channels.xml shipped by iptv-org/epg and selects
 Arabic TV listings. Duplicate xmltv_id entries are resolved deterministically:
 broadcaster-owned/official sites first, broad Arabic TV guides second, and
-generic aggregators last. Morocco is intentionally excluded because the
-project already publishes a higher-quality dedicated morocco.xml.gz feed.
-Radio services are excluded because EPGManager's receiver-side mapping is TV-only.
+generic aggregators last. A very small per-ID override table is allowed only
+for official-vs-official duplicates that passed a live 48h health comparison.
+Morocco is intentionally excluded because the project already publishes a
+higher-quality dedicated morocco.xml.gz feed. Radio services are excluded
+because EPGManager's receiver-side mapping is TV-only.
 
 SAT.TV is intentionally excluded from the MENA Cloud catalogue. It may remain
 useful elsewhere, but MENA Cloud must not depend on it.
@@ -39,19 +41,47 @@ SITE_PRIORITY = {
 }
 EXCLUDED_SITES = {"sat.tv"}
 
+# Verified 2026-09-14 by the parallel official duplicate-source health audit.
+# In every row below, Shahid and OSN expose the same xmltv_id, but OSN had a
+# complete 48h timetable with zero placeholder rows while Shahid had significant
+# placeholder/all-day pollution. Keep this list explicit: no fuzzy override.
+CHANNEL_SITE_OVERRIDES = {
+    "AlHadath.sa@SD": "osn.com",
+    "AlQuranAlKareemTV.sa@SD": "osn.com",
+    "MBC3.ae@SD": "osn.com",
+    "MBC5.ae@SD": "osn.com",
+    "MBCDrama.ae@SD": "osn.com",
+    "MBCIraq.iq@SD": "osn.com",
+    "MBCMasr.eg@SD": "osn.com",
+    "MBCMasr2.eg@SD": "osn.com",
+    "MBCPlusDrama.sa@SD": "osn.com",
+}
+
 MOROCCO_ID_RE = re.compile(r"\.ma(?:@|$)", re.I)
 RADIO_ID_RE = re.compile(r"(?:^|[^a-z])(?:radio|fm)(?:[^a-z]|$)", re.I)
 ARABIC_RADIO_WORDS = ("إذاعة", "راديو")
 
+
 def site_score(site: str) -> tuple[int, str]:
     return (SITE_PRIORITY.get(site, 500), site)
+
+
+def channel_site_score(cid: str, site: str) -> tuple[int, int, str]:
+    wanted = CHANNEL_SITE_OVERRIDES.get(cid)
+    # An exact verified override outranks the ordinary official-site ranking.
+    if wanted and site == wanted:
+        return (-1, SITE_PRIORITY.get(site, 500), site)
+    return (0, SITE_PRIORITY.get(site, 500), site)
+
 
 def is_arabic_channel(node: ET.Element) -> bool:
     lang = (node.get("lang") or "").strip().lower()
     return lang == "ar" or lang.startswith("ar-")
 
+
 def channel_key(node: ET.Element) -> str:
     return (node.get("xmltv_id") or "").strip()
+
 
 def is_radio_service(node: ET.Element, cid: str) -> bool:
     name = (node.text or "").strip()
@@ -63,6 +93,7 @@ def is_radio_service(node: ET.Element, cid: str) -> bool:
         return True
     return any(word in name for word in ARABIC_RADIO_WORDS)
 
+
 def copy_channel(node: ET.Element) -> ET.Element:
     out = ET.Element("channel")
     for key in ("site", "site_id", "lang", "xmltv_id"):
@@ -71,6 +102,7 @@ def copy_channel(node: ET.Element) -> ET.Element:
             out.set(key, value)
     out.text = (node.text or "").strip()
     return out
+
 
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -85,7 +117,7 @@ def main() -> int:
     if not files:
         raise SystemExit("No iptv-org *.channels.xml files found under %s" % root)
 
-    winners: dict[str, tuple[tuple[int, str], ET.Element, str, str]] = {}
+    winners: dict[str, tuple[tuple[int, int, str], ET.Element, str, str]] = {}
     seen_ar = 0
     invalid = 0
     morocco_skipped = 0
@@ -117,7 +149,7 @@ def main() -> int:
             if is_radio_service(node, cid):
                 radio_skipped += 1
                 continue
-            score = site_score(site)
+            score = channel_site_score(cid, site)
             current = winners.get(cid)
             candidate = (score, copy_channel(node), site, str(path.relative_to(root)))
             if current is None or score < current[0]:
@@ -126,21 +158,30 @@ def main() -> int:
     channels = ET.Element("channels")
     selected = []
     source_counts = Counter()
+    applied_overrides = []
     for cid in sorted(winners, key=lambda x: x.casefold()):
         score, node, site, source_file = winners[cid]
         channels.append(node)
         source_counts[site] += 1
+        override_site = CHANNEL_SITE_OVERRIDES.get(cid, "")
+        if override_site and site == override_site:
+            applied_overrides.append(cid)
         selected.append({
             "xmltv_id": cid,
             "name": (node.text or cid).strip(),
             "site": site,
             "site_id": node.get("site_id") or "",
-            "priority": score[0],
+            "priority": SITE_PRIORITY.get(site, 500),
+            "override_site": override_site,
             "source_file": source_file,
         })
 
     if len(selected) < 25:
         raise SystemExit("Abnormally small Arabic TV catalogue: %d channels" % len(selected))
+
+    missing_overrides = sorted(set(CHANNEL_SITE_OVERRIDES) - set(applied_overrides), key=str.casefold)
+    if missing_overrides:
+        raise SystemExit("Verified source override missing from current upstream catalogue: %s" % ", ".join(missing_overrides))
 
     out_xml = Path(args.output_channels)
     out_xml.parent.mkdir(parents=True, exist_ok=True)
@@ -148,8 +189,8 @@ def main() -> int:
     out_xml.write_bytes(ET.tostring(channels, encoding="utf-8", xml_declaration=True))
 
     manifest = {
-        "schema": 3,
-        "strategy": "official-first-all-arabic-tv-no-sattv",
+        "schema": 4,
+        "strategy": "official-first-all-arabic-tv-no-sattv-with-verified-health-overrides",
         "source_project": "iptv-org/epg",
         "input_channel_files": len(files),
         "arabic_rows_seen": seen_ar,
@@ -158,6 +199,8 @@ def main() -> int:
         "radio_rows_skipped": radio_skipped,
         "excluded_site_rows_skipped": excluded_site_skipped,
         "excluded_sites": sorted(EXCLUDED_SITES),
+        "verified_site_overrides": dict(sorted(CHANNEL_SITE_OVERRIDES.items())),
+        "applied_site_overrides": sorted(applied_overrides, key=str.casefold),
         "unique_channels": len(selected),
         "morocco_excluded": not args.include_morocco,
         "tv_only": True,
@@ -172,9 +215,11 @@ def main() -> int:
           (len(selected), len(source_counts)))
     print("  skipped: Morocco=%d radio=%d excluded-site=%d" %
           (morocco_skipped, radio_skipped, excluded_site_skipped))
+    print("  verified source overrides applied=%d" % len(applied_overrides))
     for site, count in source_counts.most_common(20):
         print("  %-28s %4d" % (site, count))
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
