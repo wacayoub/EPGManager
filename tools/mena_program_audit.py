@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 """Generate human-readable programme samples for key MENA channels.
 
-This step also runs the exhaustive all-ID audit as a pre-publication release
-gate. Wrong cloned timelines, technical/asset IDs and known impossible IDs must
-be zero before the MENA data branch can be updated.
+This step also runs the exhaustive alias-aware all-ID audit as a pre-publication
+release gate. Wrong cloned timelines, technical/asset IDs and known impossible
+IDs must be zero before the MENA data branch can be updated. Explicit receiver
+compatibility aliases are intentionally allowed and never auto-locked.
 """
 from __future__ import annotations
 
@@ -120,10 +121,12 @@ def match_target(target, cid, name):
 
 
 def run_all_id_release_gate(base: Path) -> None:
-    script = Path(__file__).with_name("all_id_audit.py")
+    # Compatibility aliases deliberately duplicate a canonical timeline. The
+    # alias-aware wrapper distinguishes those from genuinely unrelated clones.
+    script = Path(__file__).with_name("all_id_audit_alias_aware.py")
     manifest = base / "shards.json"
     if not script.exists() or not manifest.exists():
-        raise RuntimeError("all-ID release gate prerequisites missing")
+        raise RuntimeError("alias-aware all-ID release gate prerequisites missing")
 
     json_path = base / "all-id-audit.json"
     text_path = base / "all-id-audit.txt"
@@ -147,6 +150,10 @@ def run_all_id_release_gate(base: Path) -> None:
         summary.get("NO_EPG"), summary.get("FAIL"), blockers or "none"))
     if blockers:
         raise SystemExit("RELEASE BLOCKED: hard all-ID programme integrity failures remain: %s" % blockers)
+    if int(summary.get("FAIL", 0) or 0) > 0:
+        raise SystemExit("RELEASE BLOCKED: alias-aware all-ID audit still has FAIL=%s" % summary.get("FAIL"))
+    if int(summary.get("NO_EPG", 0) or 0) > 0:
+        raise SystemExit("RELEASE BLOCKED: receiver-facing shards still contain NO_EPG=%s" % summary.get("NO_EPG"))
 
 
 def main():
