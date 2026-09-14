@@ -1,22 +1,22 @@
 {
   "schema": 2,
   "scope": "all exclusive MENA country/provider shards + synchronous alias-aware all-ID release gate",
-  "channels_scanned": 642,
-  "programmes_scanned": 31315,
+  "channels_scanned": 641,
+  "programmes_scanned": 31182,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 853,
-    "empty_description": 15068,
+    "arabic_provider_title_not_arabic": 849,
+    "empty_description": 14989,
     "hybrid_arabic_latin_description": 4,
     "mixed_timezone_offsets_same_day": 2,
     "premium_title_not_english": 154,
-    "severity_warning": 18436,
+    "severity_warning": 18344,
     "very_long_event_gt_6h": 21,
-    "very_short_event_lt_5m": 2332
+    "very_short_event_lt_5m": 2323
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 386,
+      "empty_description": 384,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
@@ -31,10 +31,10 @@
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 605
+      "empty_description": 609
     },
     "mena-jo": {
-      "empty_description": 59,
+      "empty_description": 41,
       "very_short_event_lt_5m": 5
     },
     "mena-kw": {
@@ -42,32 +42,32 @@
       "very_short_event_lt_5m": 3
     },
     "mena-lb": {
-      "empty_description": 54,
+      "empty_description": 55,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 349
+      "empty_description": 348
     },
     "mena-other": {
-      "empty_description": 7591,
+      "empty_description": 7552,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 7,
-      "very_short_event_lt_5m": 1165
+      "very_short_event_lt_5m": 1161
     },
     "mena-qa": {
-      "empty_description": 648,
+      "empty_description": 647,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1299,
-      "very_short_event_lt_5m": 591
+      "empty_description": 1294,
+      "very_short_event_lt_5m": 589
     },
     "mena-sd": {
       "empty_description": 47
     },
     "mena-sy": {
-      "empty_description": 1
+      "empty_description": 3
     },
     "mena-tn": {
       "empty_description": 107,
@@ -77,19 +77,19 @@
       "empty_description": 24
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 265,
-      "empty_description": 220,
+      "arabic_provider_title_not_arabic": 264,
+      "empty_description": 218,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 22
     },
     "provider-alkass": {
-      "arabic_provider_title_not_arabic": 112,
+      "arabic_provider_title_not_arabic": 110,
       "very_long_event_gt_6h": 2
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 16,
-      "empty_description": 1124,
-      "very_short_event_lt_5m": 436
+      "empty_description": 1118,
+      "very_short_event_lt_5m": 434
     },
     "provider-bein": {
       "empty_description": 44,
@@ -98,14 +98,14 @@
     },
     "provider-dmi": {
       "arabic_provider_title_not_arabic": 69,
-      "empty_description": 251,
+      "empty_description": 242,
       "very_long_event_gt_6h": 4,
       "very_short_event_lt_5m": 2
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
-      "arabic_provider_title_not_arabic": 316,
-      "empty_description": 309,
+      "arabic_provider_title_not_arabic": 315,
+      "empty_description": 308,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
@@ -115,8 +115,8 @@
     },
     "provider-rotana": {
       "arabic_provider_title_not_arabic": 75,
-      "empty_description": 156,
-      "very_short_event_lt_5m": 36
+      "empty_description": 154,
+      "very_short_event_lt_5m": 35
     },
     "provider-starz": {
       "empty_description": 143,
@@ -125,16 +125,6 @@
   },
   "samples": {
     "arabic_provider_title_not_arabic": [
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Five.qa",
-        "channel": "Alkass Five.qa",
-        "start": "20260914130000 +0000",
-        "stop": "20260914131500 +0000",
-        "title": "News",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 15.0
-      },
       {
         "shard": "provider-alkass",
         "channel_id": "Alkass Five.qa",
@@ -524,6 +514,16 @@
         "title": "News",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260914213000 +0000",
+        "stop": "20260914223000 +0000",
+        "title": "Thenten wnoss",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
       }
     ],
     "very_long_event_gt_6h": [
@@ -2032,13 +2032,13 @@
     ]
   },
   "all_id_release_gate": {
-    "channels": 642,
-    "programmes": 31315,
-    "PASS": 156,
-    "REVIEW": 486,
+    "channels": 641,
+    "programmes": 31182,
+    "PASS": 159,
+    "REVIEW": 482,
     "NO_EPG": 0,
     "FAIL": 0,
-    "auto_lock_safe": 156,
+    "auto_lock_safe": 159,
     "missing_shards": []
   }
 }

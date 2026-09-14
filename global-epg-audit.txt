@@ -1,13 +1,13 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=642
-programmes_scanned=31315
+channels_scanned=641
+programmes_scanned=31182
 critical=0
-warnings=18436
+warnings=18344
 
 ISSUE COUNTS
-empty_description=15068
-very_short_event_lt_5m=2332
-arabic_provider_title_not_arabic=853
+empty_description=14989
+very_short_event_lt_5m=2323
+arabic_provider_title_not_arabic=849
 premium_title_not_english=154
 very_long_event_gt_6h=21
 hybrid_arabic_latin_description=4
@@ -22,9 +22,7 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260916034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=853
-- provider-alkass | Alkass Five.qa | 20260914130000 +0000 | News
-  desc: برنامج رياضي على قنوات الكأس.
+[arabic_provider_title_not_arabic] count=849
 - provider-alkass | Alkass Five.qa | 20260914131500 +0000 | alhasila
   desc: برنامج رياضي على قنوات الكأس.
 - provider-alkass | Alkass Five.qa | 20260914141500 +0000 | Inside Line
@@ -43,8 +41,10 @@ TOP SAMPLES
   desc: برنامج رياضي على قنوات الكأس.
 - provider-alkass | Alkass Five.qa | 20260914223000 +0000 | 90 minutes
   desc: برنامج رياضي يقدم التحليل والنقاش حول أبرز الأحداث والمباريات.
+- provider-alkass | Alkass Five.qa | 20260914233000 +0000 | tawasol
+  desc: برنامج رياضي على قنوات الكأس.
 
-[empty_description] count=15068
+[empty_description] count=14989
 - provider-bein | beIN Drama.eg | 20260914130000 +0000 | Mazad El Shar
 - provider-bein | beIN Drama.eg | 20260914140000 +0000 | Sarab
 - provider-bein | beIN Drama.eg | 20260914150000 +0000 | Basmet Hada
@@ -109,7 +109,7 @@ TOP SAMPLES
 - provider-dmi | Dubai Racing | 20260915013000 +0000 | Dubai International Arabian Horse Championship - 04/04/2026
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
 
-[very_short_event_lt_5m] count=2332
+[very_short_event_lt_5m] count=2323
 - provider-osn | OSNtv Kids | 20260914150100 +0000 | Barbie and Barbie on Set
   desc: باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!
 - provider-osn | OSNtv Kids | 20260914152900 +0000 | Lego Duplo Adventures S3
@@ -132,4 +132,4 @@ TOP SAMPLES
   desc: يتّبع آدم روتينه المسائي من الاستحمام وقراءة القصص حتى يحين وقت النوم في أغنية هادئة تساعد الأطفال على الاسترخاء.
 
 ALL-ID RELEASE GATE
-{"FAIL": 0, "NO_EPG": 0, "PASS": 156, "REVIEW": 486, "auto_lock_safe": 156, "channels": 642, "missing_shards": [], "programmes": 31315}
+{"FAIL": 0, "NO_EPG": 0, "PASS": 159, "REVIEW": 482, "auto_lock_safe": 159, "channels": 641, "missing_shards": [], "programmes": 31182}
