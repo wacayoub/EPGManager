@@ -1,0 +1,108 @@
+name: TV Only MENA Shadow
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/mena_cloud_merge_tvonly_metadata_locked.py"
+      - ".github/workflows/tv-only-shadow.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tv-only-mena-shadow
+  cancel-in-progress: true
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Checkout current MENA data
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: current-data
+          fetch-depth: 0
+      - name: Checkout iptv-org EPG
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/epg
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/epg/package-lock.json
+      - name: Install grabber
+        working-directory: vendor/epg
+        run: npm ci --no-audit --no-fund
+      - name: Build catalogue
+        run: |
+          set -euo pipefail
+          mkdir -p output/final output/upstream previous
+          python tools/mena_cloud_catalog.py --epg-root vendor/epg --output-channels output/mena.channels.xml --output-manifest output/catalog.json
+          cp current-data/mena-arabic.xml.gz previous/mena-arabic.xml.gz || true
+          curl -fL --retry 2 --connect-timeout 5 --max-time 30 https://iptv-org.github.io/api/channels.json -o output/channels.json || echo '[]' > output/channels.json
+      - name: Grab primary 48h
+        working-directory: vendor/epg
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=30s 1500s npm run grab --- --channels="${GITHUB_WORKSPACE}/output/mena.channels.xml" --output="${GITHUB_WORKSPACE}/output/raw.xml" --days=2 --maxConnections=3 --timeout=20000
+          test -s "${GITHUB_WORKSPACE}/output/raw.xml" || printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/raw.xml"
+          exit 0
+      - name: Merge TV-only shadow
+        run: |
+          set -euo pipefail
+          python tools/mena_cloud_merge_tvonly_metadata_locked.py --primary output/raw.xml --catalog-manifest output/catalog.json --output output/merged.xml --report output/merge-report.json --cache-dir output/upstream --window-hours 48
+      - name: Finalize and shard
+        run: |
+          set -euo pipefail
+          python tools/mena_cloud_finalize_strict.py --candidate output/merged.xml --catalog-manifest output/catalog.json --previous previous/mena-arabic.xml.gz --merge-report output/merge-report.json --window-hours 48 --output-dir output/final
+          python tools/mena_cloud_shards_strict.py --source-cache-dir output/upstream --channel-metadata output/channels.json --input output/final/mena-arabic.xml.gz --catalog-manifest output/catalog.json --output-dir output/final --manifest output/final/shards.json
+      - name: Exhaustive All-ID gate
+        run: |
+          set -euo pipefail
+          python tools/all_id_audit.py --dir output/final --manifest output/final/shards.json --json output/tv-only-shadow-all-id.json --text output/tv-only-shadow-all-id.txt --csv output/tv-only-shadow-all-id.csv
+          python - <<'PY'
+          import csv,json
+          from pathlib import Path
+          r=json.loads(Path('output/tv-only-shadow-all-id.json').read_text(encoding='utf-8'))
+          s=r['summary']
+          print('TV-ONLY SHADOW:',s)
+          assert s['FAIL']==0,s
+          rows=list(csv.DictReader(Path('output/tv-only-shadow-all-id.csv').open(encoding='utf-8-sig')))
+          ids={x['id'] for x in rows}
+          assert 'Rotana.Tarab.Jordan.ae' not in ids, 'radio ID still published'
+          rot=[x for x in rows if x['shard']=='provider-rotana']
+          print('provider-rotana channels=',len(rot),'no_epg=',sum(x['verdict']=='NO_EPG' for x in rot))
+          PY
+      - name: Publish diagnostics only
+        run: |
+          set -euo pipefail
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/tv-only-shadow-all-id.json .
+          cp ../output/tv-only-shadow-all-id.txt .
+          cp ../output/tv-only-shadow-all-id.csv .
+          git config user.name "EPGManager TV Only Shadow"
+          git config user.email "actions@users.noreply.github.com"
+          git add tv-only-shadow-all-id.*
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Audit TV-only MENA filter"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
