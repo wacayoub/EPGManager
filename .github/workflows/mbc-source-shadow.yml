@@ -1,0 +1,149 @@
+name: MBC Source Shadow Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/mbc-source-shadow.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mbc-source-shadow
+  cancel-in-progress: true
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Checkout current iptv-org EPG
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/iptv-org-epg/package-lock.json
+
+      - name: Install grabber
+        working-directory: vendor/iptv-org-epg
+        run: npm ci --no-audit --no-fund
+
+      - name: Build exact Shahid shadow catalogue
+        shell: bash
+        run: |
+          mkdir -p shadow
+          cat > shadow/mbc-shahid.channels.xml <<'XML'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <channels>
+            <channel site="shahid.mbc.net" site_id="387288" lang="ar" xmltv_id="AlHadath.shadow">Al Hadath Shahid Shadow</channel>
+            <channel site="shahid.mbc.net" site_id="49923122575716" lang="ar" xmltv_id="MBCMasrDrama.shadow">MBC Masr Drama Shahid Shadow</channel>
+          </channels>
+          XML
+
+      - name: Grab Shahid donors for 2 days
+        working-directory: vendor/iptv-org-epg
+        env:
+          NODE_OPTIONS: --max-old-space-size=2048
+        run: |
+          npm run grab --- \
+            --channels="${GITHUB_WORKSPACE}/shadow/mbc-shahid.channels.xml" \
+            --output="${GITHUB_WORKSPACE}/shadow/mbc-shahid.xml" \
+            --days=2 \
+            --maxConnections=1 \
+            --timeout=20000
+
+      - name: Audit donor quality and Masr Drama gap candidates
+        shell: bash
+        run: |
+          python - <<'PY'
+          from collections import defaultdict, Counter
+          from datetime import datetime
+          import json, re, xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          root = ET.parse('shadow/mbc-shahid.xml').getroot()
+          by = defaultdict(list)
+          for p in root.findall('programme'):
+              by[(p.get('channel') or '').strip()].append(p)
+
+          placeholders = {
+              'tv guide is not available', 'programme schedule unavailable',
+              'program schedule unavailable', 'schedule unavailable', 'no information',
+              'no info', 'tba', 'جدول البرامج غير متاح', 'لا توجد معلومات', 'لا يوجد برنامج'
+          }
+          def dt(v):
+              v=(v or '').strip()
+              for fmt in ('%Y%m%d%H%M%S %z','%Y%m%d%H%M%S'):
+                  try: return datetime.strptime(v, fmt)
+                  except ValueError: pass
+              return None
+          def txt(p, tag):
+              x=p.find(tag)
+              return (x.text or '').strip() if x is not None else ''
+          def is_placeholder(p):
+              t=re.sub(r'\s+',' ',txt(p,'title').casefold()).strip()
+              d=re.sub(r'\s+',' ',txt(p,'desc').casefold()).strip()
+              return t in placeholders or d in placeholders or 'tv guide is not available' in t
+          def has_ar(s): return bool(re.search(r'[\u0600-\u06ff]', s or ''))
+          def profile(cid, rows):
+              parsed=[]
+              for p in rows:
+                  s,e=dt(p.get('start')),dt(p.get('stop'))
+                  if s and e and e>s: parsed.append((s,e,p))
+              parsed.sort(key=lambda x:x[0])
+              coverage=sum((e-s).total_seconds() for s,e,_ in parsed)/3600 if parsed else 0
+              gaps=[]
+              end=None
+              for s,e,p in parsed:
+                  if end and s>end and (s-end).total_seconds()>7200:
+                      gaps.append((end,s,(s-end).total_seconds()/3600))
+                  end=max(end,e) if end else e
+              desc=[txt(p,'desc') for _,_,p in parsed if txt(p,'desc')]
+              return {
+                  'id':cid,'events':len(parsed),'coverage_h':round(coverage,2),
+                  'gaps_gt_2h':len(gaps),'gap_hours':round(sum(x[2] for x in gaps),2),
+                  'placeholders':sum(is_placeholder(p) for _,_,p in parsed),
+                  'empty_desc':sum(not txt(p,'desc') for _,_,p in parsed),
+                  'title_ar_pct':round(100*sum(has_ar(txt(p,'title')) for _,_,p in parsed)/max(1,len(parsed)),1),
+                  'desc_ar_pct':round(100*sum(has_ar(x) for x in desc)/max(1,len(desc)),1),
+                  'gaps':[{'from':a.isoformat(),'to':b.isoformat(),'hours':round(h,2)} for a,b,h in gaps],
+              }
+
+          result={cid:profile(cid, rows) for cid,rows in by.items()}
+          gap_start=datetime.fromisoformat('2026-09-14T18:00:00+00:00')
+          gap_stop=datetime.fromisoformat('2026-09-15T00:10:00+00:00')
+          candidates=[]
+          for p in by.get('MBCMasrDrama.shadow',[]):
+              s,e=dt(p.get('start')),dt(p.get('stop'))
+              if not s or not e: continue
+              if e>gap_start and s<gap_stop:
+                  candidates.append({
+                      'start':s.isoformat(),'stop':e.isoformat(),
+                      'title':txt(p,'title'),'desc':txt(p,'desc'),
+                      'placeholder':is_placeholder(p),
+                  })
+          result['masr_drama_gap_candidates']=candidates
+          Path('shadow/mbc-shadow-audit.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(result,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Upload shadow evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: mbc-source-shadow
+          path: shadow/
+          if-no-files-found: error
