@@ -1,0 +1,104 @@
+name: Enforce ADM Native Arabic Freeze Policy
+
+on:
+  push:
+    paths:
+      - ".github/workflows/adm-native-arabic-freeze-policy.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Require native Arabic quality for NatGeo Abu Dhabi
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tools/adm_id_audit_policy.py')
+          s=p.read_text(encoding='utf-8')
+          old='''    "AbuDhabiSports2.ae",\n    "Majid.ae",\n}\nPREMIUM_CORE_IDS = {'''
+          new='''    "AbuDhabiSports2.ae",\n    "Majid.ae",\n    # User policy 2026-09-14: NatGeo Abu Dhabi may freeze only with\n    # genuinely Arabic programme titles and Arabic descriptions.\n    "NationalGeographicAbuDhabi.ae",\n}\nPREMIUM_CORE_IDS = {'''
+          if old in s:
+              s=s.replace(old,new,1)
+          elif '"NationalGeographicAbuDhabi.ae",\n}' not in s:
+              raise SystemExit('NatGeo ARABIC_CORE insertion anchor missing')
+
+          old2='''# NatGeo content policy was frozen in the earlier Disney/NatGeo phase.  ADM only\n# owns its receiver identity here; this gate therefore checks timeline integrity\n# but does not silently change that already-reviewed language policy.\nINHERITED_CORE_IDS = {"NationalGeographicAbuDhabi.ae"}\n'''
+          new2='''# No inherited exemption remains for NatGeo Abu Dhabi: receiver identity,\n# timeline integrity, Arabic title quality and Arabic description quality must\n# all pass before it can be labelled FROZEN.\nINHERITED_CORE_IDS = set()\n'''
+          if old2 in s:
+              s=s.replace(old2,new2,1)
+          elif 'INHERITED_CORE_IDS = set()' not in s:
+              raise SystemExit('NatGeo inherited-policy anchor missing')
+          p.write_text(s,encoding='utf-8')
+          PY
+
+      - name: Add fast ADM audit to MENA production workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/mena-epg.yml')
+          s=p.read_text(encoding='utf-8')
+
+          anchor='''      - "tools/mbc_gap_repair.py"\n'''
+          repl='''      - "tools/mbc_gap_repair.py"\n      - "tools/adm_id_audit_policy.py"\n      - "tools/adm_final_regression.py"\n'''
+          if anchor in s and '      - "tools/adm_id_audit_policy.py"' not in s:
+              s=s.replace(anchor,repl,1)
+
+          anchor2='''            tools/mbc_final_regression.py \\\n            tools/mbc_gap_repair.py\n'''
+          repl2='''            tools/mbc_final_regression.py \\\n            tools/mbc_gap_repair.py \\\n            tools/adm_id_audit_policy.py \\\n            tools/adm_final_regression.py\n'''
+          if anchor2 in s:
+              s=s.replace(anchor2,repl2,1)
+          elif '            tools/adm_final_regression.py' not in s:
+              raise SystemExit('compile-list ADM anchor missing')
+
+          split='''      - name: Enrich OSN with official English titles and preserve Arabic descriptions\n'''
+          adm='''      - name: Audit Abu Dhabi Media canonical provider early\n        if: steps.gate.outputs.run == 'true'\n        shell: bash\n        run: |\n          set -euo pipefail\n          python tools/adm_id_audit_policy.py \\\n            --xml output/final/provider-adm.xml.gz \\\n            --json output/final/adm-id-audit-policy.json \\\n            --text output/final/adm-id-audit-policy.txt\n\n      - name: Run final Abu Dhabi Media regression gate early\n        if: steps.gate.outputs.run == 'true'\n        shell: bash\n        run: |\n          set -euo pipefail\n          python tools/adm_final_regression.py \\\n            --audit-json output/final/adm-id-audit-policy.json \\\n            --text output/final/adm-final-regression.txt\n\n'''
+          if 'Audit Abu Dhabi Media canonical provider early' not in s:
+              if split not in s: raise SystemExit('ADM audit insertion anchor missing')
+              s=s.replace(split,adm+split,1)
+
+          copy_anchor='''          cp ../output/final/osn-bilingual-enrichment.json .\n'''
+          copy_repl='''          cp ../output/final/osn-bilingual-enrichment.json .\n          cp ../output/final/adm-id-audit-policy.json .\n          cp ../output/final/adm-id-audit-policy.txt .\n          cp ../output/final/adm-final-regression.txt .\n'''
+          if copy_anchor in s and 'cp ../output/final/adm-id-audit-policy.json .' not in s:
+              s=s.replace(copy_anchor,copy_repl,1)
+
+          add_anchor='''osn-bilingual-enrichment.json catalog.json merge-report.json README.md\n'''
+          add_repl='''osn-bilingual-enrichment.json adm-id-audit-policy.json adm-id-audit-policy.txt adm-final-regression.txt catalog.json merge-report.json README.md\n'''
+          if add_anchor in s and 'adm-final-regression.txt catalog.json' not in s:
+              s=s.replace(add_anchor,add_repl,1)
+
+          p.write_text(s,encoding='utf-8')
+          PY
+
+      - name: Validate policy and workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/adm_id_audit_policy.py tools/adm_final_regression.py
+          grep -q 'NationalGeographicAbuDhabi.ae' tools/adm_id_audit_policy.py
+          grep -q 'INHERITED_CORE_IDS = set()' tools/adm_id_audit_policy.py
+          grep -q 'Audit Abu Dhabi Media canonical provider early' .github/workflows/mena-epg.yml
+          grep -q 'adm-final-regression.txt' .github/workflows/mena-epg.yml
+
+      - name: Commit ADM native Arabic freeze policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Cloud"
+          git config user.email "actions@users.noreply.github.com"
+          git add tools/adm_id_audit_policy.py .github/workflows/mena-epg.yml
+          if ! git diff --cached --quiet; then
+            git commit -m "Require native Arabic NatGeo before ADM freeze"
+            git push origin HEAD:main
+          fi
