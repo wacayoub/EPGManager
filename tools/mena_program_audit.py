@@ -142,9 +142,9 @@ def run_all_id_release_gate(base: Path) -> None:
     blockers = {k: int(issue_counts.get(k, 0) or 0) for k in HARD_RELEASE_BLOCKERS}
     blockers = {k: v for k, v in blockers.items() if v > 0}
     summary = audit.get("summary") or {}
-    print("ALL-ID RELEASE GATE: channels=%s PASS=%s REVIEW=%s FAIL=%s blockers=%s" % (
+    print("ALL-ID RELEASE GATE: channels=%s PASS=%s REVIEW=%s NO_EPG=%s FAIL=%s blockers=%s" % (
         summary.get("channels"), summary.get("PASS"), summary.get("REVIEW"),
-        summary.get("FAIL"), blockers or "none"))
+        summary.get("NO_EPG"), summary.get("FAIL"), blockers or "none"))
     if blockers:
         raise SystemExit("RELEASE BLOCKED: hard all-ID programme integrity failures remain: %s" % blockers)
 
@@ -228,8 +228,6 @@ def main():
             "--events", str(max(1, args.events)),
         ], check=True)
 
-    # Must be the last pre-publication check: it scans every published ID, not a
-    # hand-picked sample, and hard-fails only on integrity blockers.
     run_all_id_release_gate(base)
     return 0
 
