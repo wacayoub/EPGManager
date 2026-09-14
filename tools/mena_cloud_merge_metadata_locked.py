@@ -1,25 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Shadow merge wrapper for trusted-primary timeline + metadata locking.
+"""Shadow merge wrapper for verified-primary timeline + metadata locking.
 
 Purpose:
-- for ordinary MENA channels, prefer a structurally safe broadcaster/official
-  primary timeline before OpenEPG/EPGShare alternatives;
-- fall back to the existing Arabic-first arbitration when that primary is empty,
-  placeholder-heavy, structurally unsafe, contaminated, or too sparse;
-- keep the chosen timeline's title authoritative;
+- prefer primary only for exact channel IDs whose source override has already
+  passed the dedicated live official-source comparison;
+- never give a blanket preference to all official primaries (that A/B test
+  regressed MBC4 and MBC Action);
+- fall back to the existing Arabic-first arbitration when the verified primary
+  is empty, placeholder-heavy, structurally unsafe, contaminated, or too sparse;
+- keep the chosen timeline's title authoritative for ordinary MENA channels;
 - never replace a regular-channel title merely because another feed has a close
   time slot;
 - allow Arabic-description enrichment only when the alternate event has the
   exact same normalized title as the chosen timeline event;
 - preserve the existing beIN/OSN premium bilingual enrichment policy.
 
-This wrapper remains shadow-only until its full All-ID gate passes.
+This wrapper remains shadow-only until its identical-input A/B gate passes.
 """
 from __future__ import annotations
 
 import re
 
+import mena_cloud_catalog as catalog_policy
 import mena_cloud_merge as base
 import mena_cloud_merge_arabic_first as arabic
 import mena_cloud_merge_safe as safe
@@ -65,14 +68,17 @@ def _coverage_hours(candidate):
     return sum((stop - start).total_seconds() for start, stop in merged) / 3600.0
 
 
-def official_primary_choose_timeline(candidates):
-    """Prefer a healthy broadcaster-owned primary for regular channels only."""
+def verified_primary_choose_timeline(candidates):
+    """Prefer only primaries covered by CHANNEL_SITE_OVERRIDES evidence."""
     if any(base.is_premium(c.cid, c.name) for c in candidates):
         return _previous_choose_timeline(candidates)
 
     eligible = []
     for c in candidates:
-        if c.origin != "primary" or c.site not in base.OFFICIAL_SITES or not c.programmes:
+        wanted_site = catalog_policy.CHANNEL_SITE_OVERRIDES.get(c.cid)
+        if not wanted_site:
+            continue
+        if c.origin != "primary" or c.site != wanted_site or not c.programmes:
             continue
         st = safe._candidate_stats(c, False)
         coverage = _coverage_hours(c)
@@ -92,7 +98,7 @@ def official_primary_choose_timeline(candidates):
     return _previous_choose_timeline(candidates)
 
 
-safe._choose_timeline = official_primary_choose_timeline
+safe._choose_timeline = verified_primary_choose_timeline
 
 
 def locked_choose_event(entries, premium):
@@ -104,9 +110,8 @@ def locked_choose_event(entries, premium):
     timeline_title, _timeline_lang = _first_text(timeline_programme, "title")
     title_key = _norm_title(timeline_title)
 
-    # The timeline title is authoritative. Only enrich a missing/non-Arabic
-    # description from an alternate feed when the programme title is exactly
-    # the same after conservative normalization.
+    # The selected timeline title is authoritative. Only enrich a missing or
+    # non-Arabic description when another feed agrees on the exact title.
     current_desc, current_desc_lang = _first_text(out, "desc")
     needs_ar_desc = not current_desc or (
         current_desc_lang != "ar" and base.language_of(current_desc) != "ar"
@@ -128,7 +133,6 @@ def locked_choose_event(entries, premium):
         elif current_desc and current_desc_lang == "en":
             _remove_role(out, "desc")
 
-    # Defensive: timestamps and title are always those of the selected timeline.
     out.set("start", timeline_programme.get("start") or "")
     if timeline_programme.get("stop"):
         out.set("stop", timeline_programme.get("stop") or "")
