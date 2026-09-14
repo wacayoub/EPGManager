@@ -209,7 +209,10 @@ def _structurally_safe(stats):
 def _arabic_tier(candidate, stats):
     title_ar, desc_ar, _title_en = _arabic_profile(candidate)
     if not _structurally_safe(stats):
-        return 0
+        # A one-event or otherwise unsafe Arabic fragment must never outrank a
+        # structurally valid English fallback. Arabic-first applies only after
+        # schedule integrity has been established.
+        return -1
     if title_ar >= 0.80:
         return 4
     if title_ar >= 0.55:
