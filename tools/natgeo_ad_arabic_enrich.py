@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 """Verified-only Arabic metadata enrichment for National Geographic Abu Dhabi.
 
-The EPG timeline is never replaced.  This tool changes title/description only
-when the repository cache contains an explicitly reviewed ``verified: true``
-row.  Network discoveries are REVIEW candidates and can never enter production
-without a second validation step.
+The EPG timeline and channel identity are never replaced. This tool changes
+only title/description when the repository cache contains an explicitly
+reviewed ``verified: true`` row. Network discoveries are REVIEW candidates and
+can never enter production without a second validation step.
 """
 from __future__ import annotations
 
@@ -21,6 +21,11 @@ from collections import Counter
 from pathlib import Path
 
 TARGET_ID = "NationalGeographicAbuDhabi.ae"
+TARGET_IDS = {
+    TARGET_ID,
+    "Nat.Geo.Abu.Dhabi.HD.ae",
+    "NationalGeographicAbuDhabi.ae@SD",
+}
 DEFAULT_CACHE = Path(__file__).resolve().parent.parent / "data" / "natgeo_ad_arabic_metadata.json"
 AR_RE = re.compile(r"[\u0600-\u06ff]")
 SPACE_RE = re.compile(r"\s+")
@@ -57,8 +62,35 @@ def _verified_row(row):
     return bool(title and desc and AR_RE.search(title) and AR_RE.search(desc))
 
 
+def _enrich_programme(programme, entries, quarantine, copy_element):
+    cp = copy_element(programme)
+    title_node = cp.find("title")
+    current_title = _clean_text(title_node.text if title_node is not None else "")
+    key = normalize_title(current_title)
+    row = entries.get(key) or {}
+    state = "unmatched"
+    source = None
+
+    if _verified_row(row):
+        if title_node is None:
+            title_node = ET.SubElement(cp, "title")
+        title_node.text = _clean_text(row["title_ar"])
+        title_node.set("lang", "ar")
+        desc_node = cp.find("desc")
+        if desc_node is None:
+            desc_node = ET.SubElement(cp, "desc")
+        desc_node.text = _clean_text(row["description_ar"])
+        desc_node.set("lang", "ar")
+        state = "matched"
+        source = _clean_text(row.get("source") or "unknown")
+    elif key in quarantine:
+        state = "quarantine"
+
+    return cp, current_title, state, source
+
+
 def apply_cached_metadata(programmes, target_id=TARGET_ID, cache_path=DEFAULT_CACHE, copy_element=None):
-    """Compatibility API: enrich one programme map with VERIFIED rows only."""
+    """Compatibility API: enrich one programme-map identity with VERIFIED rows."""
     if copy_element is None:
         copy_element = copy.deepcopy
     cache = load_cache(cache_path)
@@ -67,39 +99,22 @@ def apply_cached_metadata(programmes, target_id=TARGET_ID, cache_path=DEFAULT_CA
     source = list(programmes.get(target_id, []))
     out = dict(programmes)
     enriched = []
-    matched = 0
-    title_ar = 0
-    desc_ar = 0
+    matched = title_ar = desc_ar = 0
     unmatched = Counter()
     quarantined = Counter()
 
     for programme in source:
-        cp = copy_element(programme)
-        title_node = cp.find("title")
-        current_title = _clean_text(title_node.text if title_node is not None else "")
-        key = normalize_title(current_title)
-        row = entries.get(key) or {}
-        if _verified_row(row):
-            if title_node is None:
-                title_node = ET.SubElement(cp, "title")
-            title_node.text = _clean_text(row["title_ar"])
-            title_node.set("lang", "ar")
-            desc_node = cp.find("desc")
-            if desc_node is None:
-                desc_node = ET.SubElement(cp, "desc")
-            desc_node.text = _clean_text(row["description_ar"])
-            desc_node.set("lang", "ar")
+        cp, original_title, state, _ = _enrich_programme(programme, entries, quarantine, copy_element)
+        if state == "matched":
             matched += 1
-        elif key in quarantine:
-            quarantined[current_title or "<EMPTY>"] += 1
+        elif state == "quarantine":
+            quarantined[original_title or "<EMPTY>"] += 1
         else:
-            unmatched[current_title or "<EMPTY>"] += 1
-
-        final_title = _clean_text(title_node.text if title_node is not None else "")
+            unmatched[original_title or "<EMPTY>"] += 1
+        title_node = cp.find("title")
         desc_node = cp.find("desc")
-        final_desc = _clean_text(desc_node.text if desc_node is not None else "")
-        title_ar += bool(AR_RE.search(final_title))
-        desc_ar += bool(AR_RE.search(final_desc))
+        title_ar += bool(AR_RE.search(_clean_text(title_node.text if title_node is not None else "")))
+        desc_ar += bool(AR_RE.search(_clean_text(desc_node.text if desc_node is not None else "")))
         enriched.append(cp)
 
     if source:
@@ -150,31 +165,28 @@ def enrich_xml(input_path, output_path, cache_path=DEFAULT_CACHE):
     unmatched = Counter()
     quarantined = Counter()
     matched_sources = Counter()
+    ids_seen = Counter()
 
     for p in root.findall("programme"):
-        if (p.get("channel") or "").strip() != TARGET_ID:
+        cid = (p.get("channel") or "").strip()
+        if cid not in TARGET_IDS:
             continue
+        ids_seen[cid] += 1
         total += 1
-        title_node = p.find("title")
-        title = _clean_text(title_node.text if title_node is not None else "")
-        key = normalize_title(title)
-        row = entries.get(key) or {}
-        if _verified_row(row):
-            if title_node is None:
-                title_node = ET.SubElement(p, "title")
-            title_node.text = _clean_text(row["title_ar"])
-            title_node.set("lang", "ar")
-            desc_node = p.find("desc")
-            if desc_node is None:
-                desc_node = ET.SubElement(p, "desc")
-            desc_node.text = _clean_text(row["description_ar"])
-            desc_node.set("lang", "ar")
+        cp, original_title, state, source = _enrich_programme(p, entries, quarantine, copy.deepcopy)
+
+        # Replace only the event payload, keeping original schedule attributes and ID.
+        p.clear()
+        p.attrib.update(cp.attrib)
+        p.extend(list(cp))
+
+        if state == "matched":
             matched += 1
-            matched_sources[_clean_text(row.get("source") or "unknown")] += 1
-        elif key in quarantine:
-            quarantined[title or "<EMPTY>"] += 1
+            matched_sources[source or "unknown"] += 1
+        elif state == "quarantine":
+            quarantined[original_title or "<EMPTY>"] += 1
         else:
-            unmatched[title or "<EMPTY>"] += 1
+            unmatched[original_title or "<EMPTY>"] += 1
 
         final_title = p.find("title")
         final_desc = p.find("desc")
@@ -184,6 +196,8 @@ def enrich_xml(input_path, output_path, cache_path=DEFAULT_CACHE):
     _write_xml(root, output_path)
     return {
         "target_id": TARGET_ID,
+        "accepted_target_ids": sorted(TARGET_IDS),
+        "target_ids_seen": dict(ids_seen),
         "events": total,
         "metadata_matches": matched,
         "match_pct": round(100.0 * matched / total, 1) if total else 0.0,
@@ -195,6 +209,7 @@ def enrich_xml(input_path, output_path, cache_path=DEFAULT_CACHE):
         "quarantined_titles_seen": dict(quarantined.most_common()),
         "unmatched_titles": dict(unmatched.most_common()),
         "timeline_replaced": False,
+        "identity_replaced": False,
         "production_policy": "VERIFIED_ONLY",
     }
 
@@ -207,9 +222,11 @@ def _write_report(report, json_path=None, text_path=None):
         "events=%d matched=%d (%.1f%%) title_AR=%.1f%% desc_AR=%.1f%%" % (
             report["events"], report["metadata_matches"], report["match_pct"],
             report["title_ar_pct"], report["desc_ar_pct"]),
-        "verified_cache=%d quarantine=%d timeline_replaced=NO policy=%s" % (
+        "verified_cache=%d quarantine=%d timeline_replaced=NO identity_replaced=NO policy=%s" % (
             report["verified_cache_entries"], report["quarantine_entries"], report["production_policy"]),
     ]
+    if report.get("target_ids_seen"):
+        lines.append("ids_seen=" + json.dumps(report["target_ids_seen"], ensure_ascii=False, sort_keys=True))
     if report.get("matched_sources"):
         lines.append("sources=" + json.dumps(report["matched_sources"], ensure_ascii=False, sort_keys=True))
     if report.get("quarantined_titles_seen"):
