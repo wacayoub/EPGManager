@@ -1,0 +1,154 @@
+name: ADM Fast Shadow Freeze Audit
+
+on:
+  push:
+    paths:
+      - ".github/workflows/adm-fast-shadow-freeze.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Enforce native Arabic NatGeo freeze rule locally
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('tools/adm_id_audit_policy.py')
+          s=p.read_text(encoding='utf-8')
+          old='''    "AbuDhabiSports2.ae",\n    "Majid.ae",\n}\nPREMIUM_CORE_IDS = {'''
+          new='''    "AbuDhabiSports2.ae",\n    "Majid.ae",\n    # NatGeo Abu Dhabi freezes only with genuinely Arabic titles + descriptions.\n    "NationalGeographicAbuDhabi.ae",\n}\nPREMIUM_CORE_IDS = {'''
+          if old in s:
+              s=s.replace(old,new,1)
+          old2='''# NatGeo content policy was frozen in the earlier Disney/NatGeo phase.  ADM only\n# owns its receiver identity here; this gate therefore checks timeline integrity\n# but does not silently change that already-reviewed language policy.\nINHERITED_CORE_IDS = {"NationalGeographicAbuDhabi.ae"}\n'''
+          new2='''# No inherited exemption: NatGeo must pass the same native-Arabic quality gate.\nINHERITED_CORE_IDS = set()\n'''
+          if old2 in s:
+              s=s.replace(old2,new2,1)
+          if '"NationalGeographicAbuDhabi.ae",' not in s or 'INHERITED_CORE_IDS = set()' not in s:
+              raise SystemExit('NatGeo native-Arabic policy patch failed')
+          p.write_text(s,encoding='utf-8')
+          PY
+          python -m py_compile tools/adm_id_audit_policy.py tools/adm_final_regression.py tools/adm_identity_policy.py
+
+      - name: Persist NatGeo policy only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Cloud"
+          git config user.email "actions@users.noreply.github.com"
+          git add tools/adm_id_audit_policy.py
+          if ! git diff --cached --quiet; then
+            git commit -m "Require native Arabic NatGeo before ADM freeze"
+            git push origin HEAD:main
+          fi
+
+      - name: Checkout current iptv-org EPG adapters
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: vendor/iptv-org-epg/package-lock.json
+
+      - name: Install upstream grabber
+        working-directory: vendor/iptv-org-epg
+        run: npm ci --no-audit --no-fund
+
+      - name: Build ADM shadow inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output previous
+          python tools/mena_cloud_catalog.py \
+            --epg-root vendor/iptv-org-epg \
+            --output-channels output/mena.channels.xml \
+            --output-manifest output/catalog.json
+          curl -fL --retry 2 --connect-timeout 5 --max-time 30 \
+            https://iptv-org.github.io/api/channels.json -o output/channels.json || echo '[]' > output/channels.json
+          curl -fL --retry 2 --connect-timeout 5 --max-time 25 \
+            https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz \
+            -o previous/mena-arabic.xml.gz || true
+
+      - name: Grab only current 2-day primary schedule
+        working-directory: vendor/iptv-org-epg
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        shell: bash
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=30s 900s \
+            npm run grab --- \
+              --channels="${GITHUB_WORKSPACE}/output/mena.channels.xml" \
+              --output="${GITHUB_WORKSPACE}/output/raw.xml" \
+              --days=2 --maxConnections=3 --timeout=20000
+          rc=$?
+          echo "primary grab rc=${rc}"
+          if [ ! -s "${GITHUB_WORKSPACE}/output/raw.xml" ]; then
+            printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/raw.xml"
+          fi
+          exit 0
+
+      - name: Merge Arabic-first and canonicalize ADM
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/mena_cloud_merge_arabic_first.py \
+            --primary output/raw.xml \
+            --catalog-manifest output/catalog.json \
+            --output output/merged.xml \
+            --report output/merge-report.json \
+            --cache-dir output/upstream \
+            --window-hours 48
+          python tools/mena_cloud_finalize_pruned.py \
+            --candidate output/merged.xml \
+            --catalog-manifest output/catalog.json \
+            --previous previous/mena-arabic.xml.gz \
+            --merge-report output/merge-report.json \
+            --window-hours 48 \
+            --output-dir output/final
+          python tools/mena_cloud_shards_strict.py \
+            --source-cache-dir output/upstream \
+            --channel-metadata output/channels.json \
+            --input output/final/mena-arabic.xml.gz \
+            --catalog-manifest output/catalog.json \
+            --output-dir output/final \
+            --manifest output/final/shards.json
+
+      - name: Audit ADM ID by ID
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/adm_id_audit_policy.py \
+            --xml output/final/provider-adm.xml.gz \
+            --json output/final/adm-id-audit-policy.json \
+            --text output/final/adm-id-audit-policy.txt
+          python tools/adm_final_regression.py \
+            --audit-json output/final/adm-id-audit-policy.json \
+            --text output/final/adm-final-regression.txt
+          echo '===== ADM FINAL ====='
+          cat output/final/adm-final-regression.txt
+          echo '===== ADM IDS ====='
+          cat output/final/adm-id-audit-policy.txt
