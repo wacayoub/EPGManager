@@ -1,0 +1,71 @@
+name: MENA Recovery Source Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/recovery-source-audit.yml"
+      - "tools/recovery_source_audit.py"
+      - "tools/mena_integrity_guard.py"
+      - "tools/mena_cloud_merge.py"
+      - "tools/mena_cloud_merge_safe.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: recovery-source-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Load current all-ID verdicts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin mena-data
+          git show origin/mena-data:all-id-audit.json > /tmp/all-id-audit.json
+
+      - name: Audit recovery candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/recovery_source_audit.py tools/mena_integrity_guard.py tools/mena_cloud_merge.py tools/mena_cloud_merge_safe.py
+          mkdir -p output
+          python tools/recovery_source_audit.py \
+            --all-id-json /tmp/all-id-audit.json \
+            --output-json output/recovery-source-audit.json \
+            --output-text output/recovery-source-audit.txt \
+            --window-hours 48
+
+      - name: Publish diagnostics to mena-data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git worktree add publish origin/mena-data
+          cd publish
+          git checkout -B mena-data origin/mena-data
+          cp ../output/recovery-source-audit.json .
+          cp ../output/recovery-source-audit.txt .
+          git config user.name "EPGManager Recovery Audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add recovery-source-audit.json recovery-source-audit.txt
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Audit candidate MENA recovery sources"
+          git push origin HEAD:mena-data
