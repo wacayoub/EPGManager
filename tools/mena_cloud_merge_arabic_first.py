@@ -26,6 +26,9 @@ import sys
 import mena_cloud_merge as base
 import mena_cloud_merge_safe as safe
 import mena_integrity_guard as guard
+import adm_identity_policy as adm_identity
+
+adm_identity.install(base)
 
 _original_choose_timeline = safe._choose_timeline
 _original_clean_timeline = safe._clean_timeline

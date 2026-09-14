@@ -67,8 +67,8 @@ def safe_provider_group(cid, name, meta):
     if has_word(p, "rotana") or any(x.startswith("rotana") for x in tokens):
         return "rotana"
     if (has_word(p, "abu dhabi", "abudhabi", "ad sports", "ad sport", "yas sports",
-                 "yas tv", "majid", "national geographic abu dhabi", "al emarat")
-            or any(x.startswith(("abudhabi", "adsports", "yassports", "yastv", "majid")) for x in tokens)):
+                 "yas tv", "majid", "national geographic abu dhabi", "al emarat", "baynounah")
+            or any(x.startswith(("abudhabi", "adsports", "yassports", "yastv", "majid", "baynounah")) for x in tokens)):
         return "adm"
     if (has_word(p, "dubai tv", "dubai sports", "dubai one", "dubai racing",
                  "sama dubai", "noor dubai", "dubai zaman")
