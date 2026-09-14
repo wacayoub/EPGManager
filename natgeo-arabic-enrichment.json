@@ -9,42 +9,48 @@
     "Nat.Geo.Abu.Dhabi.HD.ae": 67
   },
   "events": 67,
-  "metadata_matches": 6,
-  "match_pct": 9.0,
+  "coverage_hours": 50.0,
+  "metadata_matches_new": 0,
+  "metadata_matches_existing": 57,
+  "metadata_verified_total": 57,
+  "verified_pct": 85.1,
   "title_ar_pct": 85.1,
   "desc_ar_pct": 85.1,
+  "empty_desc": 10,
+  "empty_desc_pct": 14.9,
   "verified_cache_entries": 24,
   "quarantine_entries": 3,
   "matched_sources": {
+    "admn.ae": 3,
+    "natgeotv.com/ae": 23,
+    "NatGeoAbuDhabi promo mirror": 2,
+    "youtube.com/@NatGeoAbuDhabi": 23,
+    "elcinema.com+natgeotv.com/ae": 3,
     "National Geographic Arabic + natgeotv.com": 2,
-    "youtube.com/@NatGeoAbuDhabi": 3,
     "Arabic NatGeo broadcast listings + natgeotv.com": 1
   },
   "quarantined_titles_seen": {
     "Gathering Storm": 2
   },
   "unmatched_titles": {
-    "المملكة المتوحشة": 6,
     "Australia's Wild Woodlands": 4,
-    "هجرات عظمى": 4,
-    "أسرار الاستواء البرية": 4,
-    "حافة المجهول مع جيمي تشين": 4,
-    "داخل مطار ملبورن": 3,
-    "الحياة في البرد الشديد: سكان ألاسكا الأوائل": 3,
-    "شيء ما عضني": 3,
     "Toronto Airport Uncovered": 3,
-    "علم البسطاء": 3,
-    "الحياة في البرد الشديد: الجزيرة المتمردة": 3,
-    "أوروبا من الأعلى": 3,
-    "وحدة إنقاذ السيارات": 3,
-    "السفن المفقودة في الحرب العالمية الثانية": 2,
-    "ما وراء الكوارث": 2,
-    "كنوز مصر المفقودة": 2,
-    "تحليل الكوارث": 2,
-    "خفايا المطارات: قسم المفقودات والمعثورات": 2,
-    "أساليب البقاء": 2,
     "Epcot Becoming: Inside The Transformation": 1
   },
+  "freeze_thresholds": {
+    "min_coverage_hours": 29.0,
+    "min_title_ar_pct": 85.0,
+    "min_desc_ar_pct": 80.0,
+    "max_empty_desc_pct": 20.0
+  },
+  "freeze_checks": {
+    "coverage_ok": true,
+    "title_ar_ok": true,
+    "desc_ar_ok": true,
+    "empty_desc_ok": true
+  },
+  "status": "FROZEN",
+  "auto_lock": true,
   "timeline_replaced": false,
   "identity_replaced": false,
   "production_policy": "VERIFIED_ONLY"
