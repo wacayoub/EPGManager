@@ -4,6 +4,12 @@ on:
   push:
     paths:
       - ".github/workflows/adm-fast-shadow-freeze.yml"
+      - "tools/adm_identity_policy.py"
+      - "tools/adm_id_audit_policy.py"
+      - "tools/adm_final_regression.py"
+      - "tools/mena_cloud_shards_strict.py"
+      - "tools/natgeo_ad_arabic_enrich.py"
+      - "data/natgeo_ad_arabic_metadata.json"
   workflow_dispatch:
 
 permissions:
@@ -50,6 +56,7 @@ jobs:
           git add tools/adm_id_audit_policy.py
           if ! git diff --cached --quiet; then
             git commit -m "Require native Arabic NatGeo before ADM freeze"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
 
