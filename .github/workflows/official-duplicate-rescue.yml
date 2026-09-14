@@ -1,0 +1,124 @@
+name: Official Exact-ID Duplicate Rescue
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/official-duplicate-rescue.yml"
+      - "tools/official_duplicate_rescue_audit.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: official-exact-id-rescue
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Checkout current MENA data
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: current-data
+          fetch-depth: 0
+
+      - name: Checkout iptv-org EPG
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/epg
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/epg/package-lock.json
+
+      - name: Install grabber
+        working-directory: vendor/epg
+        shell: bash
+        run: npm ci --no-audit --no-fund
+
+      - name: Rebuild current All-ID input privately
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/all_id_audit.py \
+            --dir current-data \
+            --manifest current-data/shards.json \
+            --json /tmp/rescue-all-id.json \
+            --text /tmp/rescue-all-id.txt \
+            --csv /tmp/rescue-all-id.csv
+
+      - name: Plan exact-ID alternative sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          python tools/official_duplicate_rescue_audit.py plan \
+            --epg-root vendor/epg \
+            --all-id-csv /tmp/rescue-all-id.csv \
+            --catalog current-data/catalog.json \
+            --channels-out /tmp/rescue.channels.xml \
+            --plan-json output/official-duplicate-rescue-plan.json
+          grep -c '<channel ' /tmp/rescue.channels.xml || true
+
+      - name: Grab alternate exact IDs - 48h
+        working-directory: vendor/epg
+        shell: bash
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=20s 900s \
+            npm run grab --- \
+              --channels=/tmp/rescue.channels.xml \
+              --output=/tmp/rescue.xml \
+              --days=2 --maxConnections=3 --timeout=20000
+          test -s /tmp/rescue.xml || printf '%s\n' '<?xml version="1.0"?><tv></tv>' >/tmp/rescue.xml
+          exit 0
+
+      - name: Evaluate alternative timelines
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/official_duplicate_rescue_audit.py evaluate \
+            --plan-json output/official-duplicate-rescue-plan.json \
+            --grabbed /tmp/rescue.xml \
+            --report-json output/official-duplicate-rescue-audit.json \
+            --report-text output/official-duplicate-rescue-audit.txt
+          cat output/official-duplicate-rescue-audit.txt
+
+      - name: Publish diagnostic only
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/official-duplicate-rescue-plan.json .
+          cp ../output/official-duplicate-rescue-audit.json .
+          cp ../output/official-duplicate-rescue-audit.txt .
+          git config user.name "EPGManager Duplicate Rescue Audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add official-duplicate-rescue-plan.json official-duplicate-rescue-audit.json official-duplicate-rescue-audit.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Audit exact-ID alternative official EPG sources"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
