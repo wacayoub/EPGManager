@@ -1,0 +1,33 @@
+STRICT EXACT-ID RESCUE VALIDATION
+targets=8 SAFE=0 REVIEW=0 REJECT=8
+
+- [REJECT] AlSunnahAlNabawiyahTV.sa@SD | shahid.mbc.net -> dens.tv | events=52 cov=48.0h unique=1.9% ph=52
+    reasons=INVALID_EVENTS=2; PLACEHOLDER=52/52; LOW_TITLE_DIVERSITY=1.9%
+    clone_group=AlSunnahAlNabawiyahTV.sa@SD
+    samples=The Schedule Is Not Available | The Schedule Is Not Available | The Schedule Is Not Available
+- [REJECT] beINSportsMax1.qa@MENA | bein.com -> beinsports.com | events=26 cov=52.0h unique=3.8% ph=0
+    reasons=LOW_TITLE_DIVERSITY=3.8%; GENERIC_BEIN_MAX_LABEL=26/26; CLONED_TIMELINE_GROUP=6
+    clone_group=beINSportsMax1.qa@MENA, beINSportsMax2.qa@MENA, beINSportsMax3.qa@MENA, beINSportsMax4.qa@MENA, beINSportsMax5.qa@MENA, beINSportsMax6.qa@MENA
+    samples=beIN Sports MAX | beIN Sports MAX | beIN Sports MAX
+- [REJECT] beINSportsMax2.qa@MENA | bein.com -> beinsports.com | events=26 cov=52.0h unique=3.8% ph=0
+    reasons=LOW_TITLE_DIVERSITY=3.8%; GENERIC_BEIN_MAX_LABEL=26/26; CLONED_TIMELINE_GROUP=6
+    clone_group=beINSportsMax1.qa@MENA, beINSportsMax2.qa@MENA, beINSportsMax3.qa@MENA, beINSportsMax4.qa@MENA, beINSportsMax5.qa@MENA, beINSportsMax6.qa@MENA
+    samples=beIN Sports MAX | beIN Sports MAX | beIN Sports MAX
+- [REJECT] beINSportsMax3.qa@MENA | bein.com -> beinsports.com | events=26 cov=52.0h unique=3.8% ph=0
+    reasons=LOW_TITLE_DIVERSITY=3.8%; GENERIC_BEIN_MAX_LABEL=26/26; CLONED_TIMELINE_GROUP=6
+    clone_group=beINSportsMax1.qa@MENA, beINSportsMax2.qa@MENA, beINSportsMax3.qa@MENA, beINSportsMax4.qa@MENA, beINSportsMax5.qa@MENA, beINSportsMax6.qa@MENA
+    samples=beIN Sports MAX | beIN Sports MAX | beIN Sports MAX
+- [REJECT] beINSportsMax4.qa@MENA | bein.com -> beinsports.com | events=26 cov=52.0h unique=3.8% ph=0
+    reasons=LOW_TITLE_DIVERSITY=3.8%; GENERIC_BEIN_MAX_LABEL=26/26; CLONED_TIMELINE_GROUP=6
+    clone_group=beINSportsMax1.qa@MENA, beINSportsMax2.qa@MENA, beINSportsMax3.qa@MENA, beINSportsMax4.qa@MENA, beINSportsMax5.qa@MENA, beINSportsMax6.qa@MENA
+    samples=beIN Sports MAX | beIN Sports MAX | beIN Sports MAX
+- [REJECT] beINSportsMax5.qa@MENA | bein.com -> beinsports.com | events=26 cov=52.0h unique=3.8% ph=0
+    reasons=LOW_TITLE_DIVERSITY=3.8%; GENERIC_BEIN_MAX_LABEL=26/26; CLONED_TIMELINE_GROUP=6
+    clone_group=beINSportsMax1.qa@MENA, beINSportsMax2.qa@MENA, beINSportsMax3.qa@MENA, beINSportsMax4.qa@MENA, beINSportsMax5.qa@MENA, beINSportsMax6.qa@MENA
+    samples=beIN Sports MAX | beIN Sports MAX | beIN Sports MAX
+- [REJECT] beINSportsMax6.qa@MENA | bein.com -> beinsports.com | events=26 cov=52.0h unique=3.8% ph=0
+    reasons=LOW_TITLE_DIVERSITY=3.8%; GENERIC_BEIN_MAX_LABEL=26/26; CLONED_TIMELINE_GROUP=6
+    clone_group=beINSportsMax1.qa@MENA, beINSportsMax2.qa@MENA, beINSportsMax3.qa@MENA, beINSportsMax4.qa@MENA, beINSportsMax5.qa@MENA, beINSportsMax6.qa@MENA
+    samples=beIN Sports MAX | beIN Sports MAX | beIN Sports MAX
+- [REJECT] SaudiThaqafiyaTV.sa@SD | shahid.mbc.net -> osn.com | events=0 cov=0.0h unique=0.0% ph=0
+    reasons=EMPTY
