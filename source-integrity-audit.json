@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "window_hours": 48,
   "sources": [
     {
@@ -7,13 +7,14 @@
       "origin": "openepg",
       "url": "https://www.open-epg.com/files/egypt1.xml.gz",
       "status": "ok",
-      "bytes": 341905,
+      "bytes": 346503,
       "channels": 128,
-      "channels_with_current_epg": 81,
-      "programmes": 2149,
+      "channels_with_current_epg": 108,
+      "programmes": 4113,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {}
     },
     {
       "source": "openepg-egypt2",
@@ -22,11 +23,12 @@
       "status": "ok",
       "bytes": 141447,
       "channels": 128,
-      "channels_with_current_epg": 84,
-      "programmes": 2440,
+      "channels_with_current_epg": 83,
+      "programmes": 1922,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {}
     },
     {
       "source": "openepg-palestine1",
@@ -36,33 +38,35 @@
       "bytes": 10915,
       "channels": 2,
       "channels_with_current_epg": 2,
-      "programmes": 145,
+      "programmes": 105,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {}
     },
     {
       "source": "openepg-qatar1",
       "origin": "openepg",
       "url": "https://www.open-epg.com/files/qatar1.xml.gz",
       "status": "ok",
-      "bytes": 27590,
+      "bytes": 24553,
       "channels": 39,
-      "channels_with_current_epg": 27,
-      "programmes": 93,
+      "channels_with_current_epg": 29,
+      "programmes": 939,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {}
     },
     {
       "source": "openepg-qatar2",
       "origin": "openepg",
       "url": "https://www.open-epg.com/files/qatar2.xml.gz",
       "status": "ok",
-      "bytes": 12501,
+      "bytes": 11434,
       "channels": 35,
       "channels_with_current_epg": 32,
-      "programmes": 605,
+      "programmes": 1022,
       "cloned_unrelated_groups": 1,
       "cloned_unrelated_channels": 6,
       "groups": [
@@ -92,7 +96,115 @@
             "bein sports max"
           ]
         }
-      ]
+      ],
+      "focus": {
+        "alkass": [
+          {
+            "id": "2023 Alkass 1.qa",
+            "name": "2023 Alkass 1.qa",
+            "current": true,
+            "events": 22,
+            "sample_titles": [
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX"
+            ]
+          },
+          {
+            "id": "2023 Alkass 2.qa",
+            "name": "2023 Alkass 2.qa",
+            "current": true,
+            "events": 22,
+            "sample_titles": [
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX"
+            ]
+          },
+          {
+            "id": "2023 Alkass 3.qa",
+            "name": "2023 Alkass 3.qa",
+            "current": true,
+            "events": 22,
+            "sample_titles": [
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX"
+            ]
+          },
+          {
+            "id": "2023 Alkass 4.qa",
+            "name": "2023 Alkass 4.qa",
+            "current": true,
+            "events": 22,
+            "sample_titles": [
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX"
+            ]
+          },
+          {
+            "id": "2023 Alkass 5.qa",
+            "name": "2023 Alkass 5.qa",
+            "current": true,
+            "events": 22,
+            "sample_titles": [
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX",
+              "beIN Sports MAX"
+            ]
+          },
+          {
+            "id": "2023 Alkass 6.qa",
+            "name": "2023 Alkass 6.qa",
+            "current": true,
+            "events": 44,
+            "sample_titles": [
+              "آيجن يوث هاندبول تشامبيونشيب",
+              "أخبار",
+              "دوري الدرجة الثانية القطري",
+              "فيبا وورلد باسكت بول",
+              "المجلس"
+            ]
+          },
+          {
+            "id": "2023 Alkass 7.qa",
+            "name": "2023 Alkass 7.qa",
+            "current": true,
+            "events": 44,
+            "sample_titles": [
+              "ذا فوتبول ريفيو",
+              "معرض كتارا الدولي للصيد والصقور سهيل",
+              "أخبار",
+              "جرايد",
+              "تواصل"
+            ]
+          },
+          {
+            "id": "2023 Alkass 8.qa",
+            "name": "2023 Alkass 8.qa",
+            "current": true,
+            "events": 34,
+            "sample_titles": [
+              "سباق الهجن",
+              "دوري نجوم قطر",
+              "سبورت كونفدينشيال",
+              "دوري نجوم قطر",
+              "أخبار"
+            ]
+          }
+        ]
+      }
     },
     {
       "source": "openepg-qatar3",
@@ -102,7 +214,7 @@
       "bytes": 13115,
       "channels": 40,
       "channels_with_current_epg": 37,
-      "programmes": 693,
+      "programmes": 582,
       "cloned_unrelated_groups": 1,
       "cloned_unrelated_channels": 6,
       "groups": [
@@ -132,33 +244,143 @@
             "bein sports max"
           ]
         }
-      ]
+      ],
+      "focus": {
+        "alkass": [
+          {
+            "id": "2023 Alkass 1.qa",
+            "name": "2023 Alkass 1.qa",
+            "current": true,
+            "events": 20,
+            "sample_titles": [
+              "Derby Tunis",
+              "Auto Mundial",
+              "King of the Court Beach Volleyball Championship",
+              "Botolat Al Alam Lejmal Al Khayl Al Arabyia Al Asela",
+              "Golmania"
+            ]
+          },
+          {
+            "id": "2023 Alkass 2.qa",
+            "name": "2023 Alkass 2.qa",
+            "current": true,
+            "events": 20,
+            "sample_titles": [
+              "FIBA World Basketball",
+              "Akhbar",
+              "Dawry Al Darajah Al Thanya Al Qatary",
+              "Sport Confidential",
+              "Ahdaf"
+            ]
+          },
+          {
+            "id": "2023 Alkass 3.qa",
+            "name": "2023 Alkass 3.qa",
+            "current": true,
+            "events": 20,
+            "sample_titles": [
+              "Al Hasila",
+              "Akhbar",
+              "Dawry Al Darajah Al Thanya Al Qatary",
+              "Golmania",
+              "Botoulat Asia Lel Shabab Lekorat Al Yad"
+            ]
+          },
+          {
+            "id": "2023 Alkass 4.qa",
+            "name": "2023 Alkass 4.qa",
+            "current": true,
+            "events": 15,
+            "sample_titles": [
+              "Derby Tunis",
+              "Auto Mundial",
+              "King of the Court Beach Volleyball Championship",
+              "Botolat Al Alam Lejmal Al Khayl Al Arabyia Al Asela",
+              "Golmania"
+            ]
+          },
+          {
+            "id": "2023 Alkass 5.qa",
+            "name": "2023 Alkass 5.qa",
+            "current": true,
+            "events": 20,
+            "sample_titles": [
+              "FIBA",
+              "NEWS",
+              "Second Division / Lusail VS Al Bidda",
+              "SPORT CONFIDENTIAL",
+              "Golas"
+            ]
+          },
+          {
+            "id": "2023 Alkass 6.qa",
+            "name": "2023 Alkass 6.qa",
+            "current": true,
+            "events": 15,
+            "sample_titles": [
+              "Qatar International Rally Studio 2026",
+              "4th West Asian Volleyball Club Championship Al Wakrah (Qatar) vs. Shabab Al Batroun (Lebanon)",
+              "Doha Bank Stars League Al Wakrah vs. Al Ahli",
+              "News",
+              "Jarayd"
+            ]
+          },
+          {
+            "id": "2023 Alkass 7.qa",
+            "name": "2023 Alkass 7.qa",
+            "current": true,
+            "events": 15,
+            "sample_titles": [
+              "4th West Asian Volleyball Club Championship Al Ittihad (Saudi Arabia) vs. Al Seeb (Oman)",
+              "Thenten wnoss",
+              "the Referee",
+              "Al Qalail",
+              "News"
+            ]
+          },
+          {
+            "id": "2023 Alkass 8.qa",
+            "name": "2023 Alkass 8.qa",
+            "current": true,
+            "events": 14,
+            "sample_titles": [
+              "Katara International Arabian Horse Festival Studio - Arabian Horse Tour",
+              "Marbit alfurs",
+              "News",
+              "Jarayd",
+              "tawasol"
+            ]
+          }
+        ]
+      }
     },
     {
       "source": "openepg-qatar4",
       "origin": "openepg",
       "url": "https://www.open-epg.com/files/qatar4.xml.gz",
       "status": "ok",
-      "bytes": 31777,
+      "bytes": 25228,
       "channels": 33,
-      "channels_with_current_epg": 33,
-      "programmes": 1631,
+      "channels_with_current_epg": 28,
+      "programmes": 2098,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {}
     },
     {
       "source": "openepg-qatar5",
       "origin": "openepg",
       "url": "https://www.open-epg.com/files/qatar5.xml.gz",
       "status": "ok",
-      "bytes": 43312,
+      "bytes": 29956,
       "channels": 33,
-      "channels_with_current_epg": 31,
-      "programmes": 1846,
+      "channels_with_current_epg": 27,
+      "programmes": 2253,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {}
     },
     {
       "source": "openepg-qatar6",
@@ -168,23 +390,130 @@
       "bytes": 2541,
       "channels": 9,
       "channels_with_current_epg": 6,
-      "programmes": 96,
+      "programmes": 80,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {
+        "alkass": [
+          {
+            "id": "Alkass Eight.qa",
+            "name": "Alkass Eight.qa",
+            "current": true,
+            "events": 16,
+            "sample_titles": [
+              "Fiba",
+              "Almajlis",
+              "alhasila",
+              "News",
+              "Jarayd"
+            ]
+          },
+          {
+            "id": "Alkass Five.qa",
+            "name": "Alkass Five.qa",
+            "current": true,
+            "events": 15,
+            "sample_titles": [
+              "Katara International Hunting and Falcons Exhibition (Suhail) 2026 Studio",
+              "News",
+              "Jarayd",
+              "tawasol",
+              "Doha Bank Stars League Al-Rayyan vs. Al-Ahli"
+            ]
+          },
+          {
+            "id": "Alkass Four.qa",
+            "name": "Alkass Four.qa",
+            "current": true,
+            "events": 10,
+            "sample_titles": [
+              "Jarayd",
+              "Jarayd",
+              "The 11th Asian Men’s Youth Handball Championship Qatar vs. Saudi Arabia",
+              "Saudi Crown Prince Camel Festival",
+              "Golmania"
+            ]
+          },
+          {
+            "id": "Alkass One.qa",
+            "name": "Alkass One.qa",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass Seven.qa",
+            "name": "Alkass Seven.qa",
+            "current": true,
+            "events": 15,
+            "sample_titles": [
+              "Katara International Hunting and Falcons Exhibition (Suhail) 2026 Studio",
+              "News",
+              "Jarayd",
+              "tawasol",
+              "Doha Bank Stars League Al-Rayyan vs. Al-Ahli"
+            ]
+          },
+          {
+            "id": "Alkass Six.qa",
+            "name": "Alkass Six.qa",
+            "current": true,
+            "events": 13,
+            "sample_titles": [
+              "Jarayd",
+              "Jarayd",
+              "Golmania",
+              "Katara International Hunting and Falcons Exhibition (Suhail) 2026 Studio",
+              "Thenten wnoss"
+            ]
+          },
+          {
+            "id": "Alkass Three.qa",
+            "name": "Alkass Three.qa",
+            "current": true,
+            "events": 11,
+            "sample_titles": [
+              "Doha Bank Stars League Al-Arabi vs. Qatar SC",
+              "SPORT CONFIDENTIAL",
+              "Doha Bank Stars League Al-Duhail vs. Al-Shahania",
+              "News",
+              "Jarayd"
+            ]
+          },
+          {
+            "id": "Alkass Two.qa",
+            "name": "Alkass Two.qa",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          }
+        ]
+      }
     },
     {
       "source": "openepg-saudi1",
       "origin": "openepg",
       "url": "https://www.open-epg.com/files/saudiarabia1.xml.gz",
       "status": "ok",
-      "bytes": 1172107,
+      "bytes": 1161221,
       "channels": 139,
       "channels_with_current_epg": 132,
-      "programmes": 5094,
+      "programmes": 8021,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {
+        "ssc": [
+          {
+            "id": "SSC News.sa",
+            "name": "SSC News.sa",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          }
+        ]
+      }
     },
     {
       "source": "openepg-saudi2",
@@ -194,23 +523,35 @@
       "bytes": 967150,
       "channels": 139,
       "channels_with_current_epg": 132,
-      "programmes": 6834,
+      "programmes": 5799,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {
+        "ssc": [
+          {
+            "id": "SSC News.sa",
+            "name": "SSC News.sa",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          }
+        ]
+      }
     },
     {
       "source": "openepg-saudi3",
       "origin": "openepg",
       "url": "https://www.open-epg.com/files/saudiarabia3.xml.gz",
       "status": "ok",
-      "bytes": 50405,
+      "bytes": 49224,
       "channels": 81,
       "channels_with_current_epg": 22,
-      "programmes": 810,
+      "programmes": 1255,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {}
     },
     {
       "source": "openepg-saudi4",
@@ -220,23 +561,41 @@
       "bytes": 72168,
       "channels": 81,
       "channels_with_current_epg": 22,
-      "programmes": 1094,
+      "programmes": 926,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {}
     },
     {
       "source": "openepg-saudi5",
       "origin": "openepg",
       "url": "https://www.open-epg.com/files/saudiarabia5.xml.gz",
       "status": "ok",
-      "bytes": 91747,
+      "bytes": 88010,
       "channels": 249,
       "channels_with_current_epg": 90,
-      "programmes": 3717,
+      "programmes": 6232,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {
+        "alkass": [
+          {
+            "id": "Al Kass One.sa",
+            "name": "Al Kass One.sa",
+            "current": true,
+            "events": 17,
+            "sample_titles": [
+              "FIBA World Basketball",
+              "The Council",
+              "Preview",
+              "News",
+              "Newspaper"
+            ]
+          }
+        ]
+      }
     },
     {
       "source": "openepg-saudi6",
@@ -245,11 +604,24 @@
       "status": "ok",
       "bytes": 97809,
       "channels": 249,
-      "channels_with_current_epg": 95,
-      "programmes": 4007,
+      "channels_with_current_epg": 90,
+      "programmes": 3224,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {
+        "alkass": [
+          {
+            "id": "Al Kass One.sa",
+            "name": "Al Kass One.sa",
+            "current": true,
+            "events": 1,
+            "sample_titles": [
+              "تواصل"
+            ]
+          }
+        ]
+      }
     },
     {
       "source": "openepg-uae6",
@@ -258,11 +630,78 @@
       "status": "ok",
       "bytes": 83494,
       "channels": 60,
-      "channels_with_current_epg": 23,
-      "programmes": 1721,
+      "channels_with_current_epg": 22,
+      "programmes": 1385,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {
+        "ssc": [
+          {
+            "id": "SSC Extra 1 HD.ae",
+            "name": "SSC Extra 1 HD.ae",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "SSC Extra 2 HD.ae",
+            "name": "SSC Extra 2 HD.ae",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "SSC Extra 3 HD.ae",
+            "name": "SSC Extra 3 HD.ae",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "SSC News.ae",
+            "name": "SSC News.ae",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "SSC1 HD.ae",
+            "name": "SSC1 HD.ae",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "SSC2 HD.ae",
+            "name": "SSC2 HD.ae",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "SSC3 HD.ae",
+            "name": "SSC3 HD.ae",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "SSC4 HD.ae",
+            "name": "SSC4 HD.ae",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "SSC5 HD.ae",
+            "name": "SSC5 HD.ae",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          }
+        ]
+      }
     },
     {
       "source": "epgshare-ae1",
@@ -272,7 +711,7 @@
       "bytes": 1818290,
       "channels": 813,
       "channels_with_current_epg": 636,
-      "programmes": 39075,
+      "programmes": 37493,
       "cloned_unrelated_groups": 26,
       "cloned_unrelated_channels": 466,
       "groups": [
@@ -749,11 +1188,11 @@
             "Çira TV"
           ],
           "sample_titles": [
-            "hidden worlds",
-            "the passage",
-            "my home my destiny",
-            "al raey s sons",
-            "the box"
+            "rhyme",
+            "news bulletin",
+            "waves",
+            "tastes",
+            "al raey s sons"
           ]
         },
         {
@@ -837,11 +1276,11 @@
             "Zarok TV"
           ],
           "sample_titles": [
-            "healthy life",
-            "imam nafea reading",
-            "fiqh",
-            "imam nafea reading",
-            "we learned from his morals"
+            "ask zad",
+            "the holy quran",
+            "the biography",
+            "the explanation",
+            "zad academy"
           ]
         },
         {
@@ -915,11 +1354,11 @@
             "TRT Kurdî"
           ],
           "sample_titles": [
-            "newshour",
+            "the listening post",
             "news live",
             "inside story",
-            "newshour",
-            "al jazeera world"
+            "news live",
+            "101 east"
           ]
         },
         {
@@ -989,11 +1428,11 @@
             "Sukariya Zaman"
           ],
           "sample_titles": [
-            "at the cross roads",
+            "the good spirit",
+            "after the rain",
             "gando",
             "we have a guest",
-            "4 apartments",
-            "the good spirit"
+            "4 apartments"
           ]
         },
         {
@@ -1063,11 +1502,11 @@
             "Sharjah Quran TV"
           ],
           "sample_titles": [
-            "uncle grandpa",
-            "be cool scooby doo",
-            "the powerpuff girls",
-            "ben 10",
-            "laith the king"
+            "grizzy and the lemmings",
+            "the tom and jerry show",
+            "bugs bunny builders",
+            "craig of the creek",
+            "grizzy and the lemmings"
           ]
         },
         {
@@ -1099,11 +1538,11 @@
             "Yemen Education"
           ],
           "sample_titles": [
-            "day 3 morning session world athletics u20 championships oregon 26",
-            "t100 triathlon vancouver 2026",
             "day 3 evening session world athletics u20 championships oregon 26",
             "n mes vs montpellier daikin starligue french handball 2026",
-            "day 4 morning session world athletics u20 championships oregon 26"
+            "day 4 morning session world athletics u20 championships oregon 26",
+            "t100 triathlon vancouver 2026",
+            "nantes vs aix daikin starligue french handball 2026"
           ]
         },
         {
@@ -1229,11 +1668,11 @@
             "Panorama Film"
           ],
           "sample_titles": [
-            "tv program",
-            "short story",
-            "arabic music",
-            "years of misery and love",
-            "naguib mahfouz s quintets"
+            "movies and festivals",
+            "historical stars",
+            "we recommend you",
+            "wanis s diaries",
+            "short story"
           ]
         },
         {
@@ -1255,11 +1694,11 @@
             "Zee Alwan Egypt"
           ],
           "sample_titles": [
-            "breakthrough",
-            "breakthrough",
-            "oddly satisfying science",
-            "oddly satisfying science",
-            "oddly satisfying science"
+            "harry meghan a very modern romance",
+            "royal documentaries",
+            "jim shockey s uncharted",
+            "wardens",
+            "wardens"
           ]
         },
         {
@@ -1281,11 +1720,11 @@
             "Zamalek TV"
           ],
           "sample_titles": [
-            "communication",
-            "star contender table tennis championship studio",
-            "fiba basketball world cup",
-            "athletics diamond league",
-            "the football review"
+            "the football review",
+            "qatar stars league",
+            "the council",
+            "news",
+            "newspaper"
           ]
         },
         {
@@ -1305,11 +1744,11 @@
             "Rotana Music"
           ],
           "sample_titles": [
-            "streets of gold mumbai",
+            "business today",
             "bbc news",
-            "global eye",
-            "bbc news",
-            "abandoned searching for soldier dad"
+            "business today",
+            "tech now",
+            "bbc news"
           ]
         },
         {
@@ -1329,11 +1768,11 @@
             "Zaytoona"
           ],
           "sample_titles": [
-            "documentaries",
-            "kingdom s voice",
-            "the 10th with tarek",
             "economic sunday",
-            "fiqh of life"
+            "traveler",
+            "kingdoms morning",
+            "news",
+            "economic sunday"
           ]
         },
         {
@@ -1353,11 +1792,11 @@
             "Zahra TV"
           ],
           "sample_titles": [
-            "crescent in the face of nazism",
-            "threads of gold",
-            "threads of gold",
-            "shepherds around the world",
-            "four seasons in the forests"
+            "the battle for survival in the mediterranean",
+            "in love with wild horses",
+            "arab digital community",
+            "arabic radio",
+            "the diabetes battle in australia"
           ]
         },
         {
@@ -1377,11 +1816,11 @@
             "Outdoor Channel"
           ],
           "sample_titles": [
-            "farming the wild s3 ep06 ibiza adventure part2",
-            "nordic wild hunter s1 ep23",
-            "nordic wild hunter s1 ep24",
-            "dead meat s1 ep1 socal w tommy gomes",
-            "dead meat s1 ep2 boars on the back nine"
+            "dead meat s1 ep2 boars on the back nine",
+            "dropped s3 ep3 windburnt seg1 4",
+            "dropped s3 ep3 windburnt seg2 4",
+            "dropped s3 ep3 windburnt seg3 4",
+            "dropped s3 ep3 windburnt seg4 4"
           ]
         },
         {
@@ -1399,11 +1838,11 @@
             "Saudia Alaan TV"
           ],
           "sample_titles": [
-            "be safe",
-            "what s marco cooking",
+            "tomorrow today",
             "the goodness of my people",
-            "savory and sweet",
-            "torque"
+            "what s marco cooking",
+            "be safe",
+            "stories and lessons"
           ]
         },
         {
@@ -1445,9 +1884,9 @@
           "sample_titles": [
             "tv program",
             "tv program",
+            "cartoon",
             "tv program",
-            "tv program",
-            "tv program"
+            "cartoon"
           ]
         },
         {
@@ -1467,9 +1906,9 @@
           "sample_titles": [
             "news bulletin",
             "news bulletin",
-            "behind the news",
-            "news summary",
-            "a story and follow up"
+            "news bulletin",
+            "news bulletin",
+            "news bulletin"
           ]
         },
         {
@@ -1485,11 +1924,11 @@
             "Oman TV HD"
           ],
           "sample_titles": [
-            "roxy nights",
-            "morning coffee",
             "as much as the love",
-            "lasting virtue",
-            "from oman"
+            "your health",
+            "morning coffee",
+            "eleventh news bulletin",
+            "sham perfume"
           ]
         },
         {
@@ -1505,11 +1944,11 @@
             "Tunisia Nat 1"
           ],
           "sample_titles": [
-            "maestro",
-            "midnight news",
-            "weather forecast",
             "love law",
-            "the national anthem"
+            "the national anthem",
+            "the holy quran",
+            "supplications",
+            "god s wisdom"
           ]
         },
         {
@@ -1525,11 +1964,11 @@
             "Palestine Edu HD"
           ],
           "sample_titles": [
-            "christina on the coast",
+            "reasonable doubt",
             "hidden frontiers arabia",
+            "designers",
             "misfit garage",
-            "man vs bear",
-            "life of a predator"
+            "innovation nation"
           ]
         },
         {
@@ -1545,11 +1984,11 @@
             "On Time Sport 2 HD"
           ],
           "sample_titles": [
+            "athletics diamond league",
+            "hasad al youm",
             "sabah al reyadah",
-            "challenge champions",
-            "stadium echoes",
-            "egypt cup",
-            "athletics diamond league"
+            "sports news",
+            "headline and memory"
           ]
         },
         {
@@ -1572,7 +2011,63 @@
             "أخبار الميادين"
           ]
         }
-      ]
+      ],
+      "focus": {
+        "alkass": [
+          {
+            "id": "Alkass.Four.ae",
+            "name": "Alkass Four",
+            "current": true,
+            "events": 286,
+            "sample_titles": [
+              "Dead Meat S1 EP2 - Boars on the Back Nine",
+              "Dropped_S3_EP3_WindBurnt_SEG1_4",
+              "Dropped_S3_EP3_WindBurnt_SEG2_4",
+              "Dropped_S3_EP3_WindBurnt_SEG3_4",
+              "Dropped_S3_EP3_WindBurnt_SEG4_4"
+            ]
+          },
+          {
+            "id": "Alkass.One.HD.ae",
+            "name": "Alkass One HD",
+            "current": true,
+            "events": 42,
+            "sample_titles": [
+              "The Football Review",
+              "Qatar Stars League",
+              "The Council",
+              "News",
+              "Newspaper"
+            ]
+          },
+          {
+            "id": "Alkass.Three.ae",
+            "name": "Alkass Three",
+            "current": true,
+            "events": 286,
+            "sample_titles": [
+              "Dead Meat S1 EP2 - Boars on the Back Nine",
+              "Dropped_S3_EP3_WindBurnt_SEG1_4",
+              "Dropped_S3_EP3_WindBurnt_SEG2_4",
+              "Dropped_S3_EP3_WindBurnt_SEG3_4",
+              "Dropped_S3_EP3_WindBurnt_SEG4_4"
+            ]
+          },
+          {
+            "id": "Alkass.Two.HD.ae",
+            "name": "Alkass Two HD",
+            "current": true,
+            "events": 286,
+            "sample_titles": [
+              "Dead Meat S1 EP2 - Boars on the Back Nine",
+              "Dropped_S3_EP3_WindBurnt_SEG1_4",
+              "Dropped_S3_EP3_WindBurnt_SEG2_4",
+              "Dropped_S3_EP3_WindBurnt_SEG3_4",
+              "Dropped_S3_EP3_WindBurnt_SEG4_4"
+            ]
+          }
+        ]
+      }
     },
     {
       "source": "epgshare-bein1",
@@ -1581,33 +2076,148 @@
       "status": "ok",
       "bytes": 33343,
       "channels": 68,
-      "channels_with_current_epg": 56,
-      "programmes": 1637,
+      "channels_with_current_epg": 46,
+      "programmes": 1479,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {
+        "alkass": [
+          {
+            "id": "Alkass_1_AR.bein",
+            "name": "Alkass_1_AR",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_1_EN.bein",
+            "name": "Alkass_1_EN",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_2_AR.bein",
+            "name": "Alkass_2_AR",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_2_EN.bein",
+            "name": "Alkass_2_EN",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_3_AR.bein",
+            "name": "Alkass_3_AR",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_3_EN.bein",
+            "name": "Alkass_3_EN",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_4_AR.bein",
+            "name": "Alkass_4_AR",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_4_EN.bein",
+            "name": "Alkass_4_EN",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_5_AR.bein",
+            "name": "Alkass_5_AR",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_5_En.bein",
+            "name": "Alkass_5_EN",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_6_AR.bein",
+            "name": "Alkass_6_AR",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_6_EN.bein",
+            "name": "Alkass_6_EN",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_7_AR.bein",
+            "name": "Alkass_7_AR",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_7_EN.bein",
+            "name": "Alkass_7_EN",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_8_AR.bein",
+            "name": "Alkass_8_AR",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          },
+          {
+            "id": "Alkass_8_EN.bein",
+            "name": "Alkass_8_EN",
+            "current": false,
+            "events": 0,
+            "sample_titles": []
+          }
+        ]
+      }
     },
     {
       "source": "epgshare-sa2",
       "origin": "epgshare",
       "url": "https://epgshare01.online/epgshare01/epg_ripper_SA2.xml.gz",
       "status": "ok",
-      "bytes": 97219,
+      "bytes": 88992,
       "channels": 41,
-      "channels_with_current_epg": 41,
-      "programmes": 2252,
+      "channels_with_current_epg": 40,
+      "programmes": 2333,
       "cloned_unrelated_groups": 1,
-      "cloned_unrelated_channels": 23,
+      "cloned_unrelated_channels": 22,
       "groups": [
         {
-          "count": 23,
+          "count": 22,
           "ids": [
             "EN:.Abdul.Majeed.Abdullah.sa",
             "EN:.Al.Hisn.Channel.sa",
             "EN:.Big.Time.Plus.sa",
             "EN:.BIG.TIME.sa",
             "EN:.El-Podcasters.Channel.sa",
-            "EN:.Hikayat.Ba'ed.Alfasl.sa",
             "EN:.Majid.Almohandis.sa",
             "EN:.Mohammed.Abdu.sa",
             "EN:.Red.Bull.TV.sa",
@@ -1632,7 +2242,6 @@
             "EN: Big Time Plus",
             "EN: BIG TIME",
             "EN: El-Podcasters Channel",
-            "EN: Hikayat Ba'ed Alfasl",
             "EN: Majid Almohandis",
             "EN: Mohammed Abdu",
             "EN: Red Bull TV",
@@ -1657,7 +2266,121 @@
             "tv guide is not available"
           ]
         }
-      ]
+      ],
+      "focus": {
+        "ssc": [
+          {
+            "id": "EN:.SSC.Extra.1.HD.sa",
+            "name": "EN: SSC Extra 1 HD",
+            "current": true,
+            "events": 3,
+            "sample_titles": [
+              "TV guide is not available",
+              "TV guide is not available",
+              "TV guide is not available"
+            ]
+          },
+          {
+            "id": "EN:.SSC.Extra.2.HD.sa",
+            "name": "EN: SSC Extra 2 HD",
+            "current": true,
+            "events": 3,
+            "sample_titles": [
+              "TV guide is not available",
+              "TV guide is not available",
+              "TV guide is not available"
+            ]
+          },
+          {
+            "id": "EN:.SSC.Extra.3.HD.sa",
+            "name": "EN: SSC Extra 3 HD",
+            "current": true,
+            "events": 3,
+            "sample_titles": [
+              "TV guide is not available",
+              "TV guide is not available",
+              "TV guide is not available"
+            ]
+          },
+          {
+            "id": "EN:.SSC.Extra.HD.sa",
+            "name": "EN: SSC Extra HD",
+            "current": true,
+            "events": 3,
+            "sample_titles": [
+              "TV guide is not available",
+              "TV guide is not available",
+              "TV guide is not available"
+            ]
+          },
+          {
+            "id": "EN:.SSC.News.sa",
+            "name": "EN: SSC News",
+            "current": true,
+            "events": 3,
+            "sample_titles": [
+              "TV guide is not available",
+              "TV guide is not available",
+              "TV guide is not available"
+            ]
+          },
+          {
+            "id": "EN:.SSC1.HD.sa",
+            "name": "EN: SSC1 HD",
+            "current": true,
+            "events": 3,
+            "sample_titles": [
+              "TV guide is not available",
+              "TV guide is not available",
+              "TV guide is not available"
+            ]
+          },
+          {
+            "id": "EN:.SSC2.HD.sa",
+            "name": "EN: SSC2 HD",
+            "current": true,
+            "events": 3,
+            "sample_titles": [
+              "TV guide is not available",
+              "TV guide is not available",
+              "TV guide is not available"
+            ]
+          },
+          {
+            "id": "EN:.SSC3.HD.sa",
+            "name": "EN: SSC3 HD",
+            "current": true,
+            "events": 3,
+            "sample_titles": [
+              "TV guide is not available",
+              "TV guide is not available",
+              "TV guide is not available"
+            ]
+          },
+          {
+            "id": "EN:.SSC4.HD.sa",
+            "name": "EN: SSC4 HD",
+            "current": true,
+            "events": 3,
+            "sample_titles": [
+              "TV guide is not available",
+              "TV guide is not available",
+              "TV guide is not available"
+            ]
+          },
+          {
+            "id": "EN:.SSC5.HD.sa",
+            "name": "EN: SSC5 HD",
+            "current": true,
+            "events": 3,
+            "sample_titles": [
+              "TV guide is not available",
+              "TV guide is not available",
+              "TV guide is not available"
+            ]
+          }
+        ]
+      }
     },
     {
       "source": "epgshare-aljazeera1",
@@ -1670,7 +2393,8 @@
       "programmes": 118,
       "cloned_unrelated_groups": 0,
       "cloned_unrelated_channels": 0,
-      "groups": []
+      "groups": [],
+      "focus": {}
     }
   ],
   "sources_with_cloned_unrelated_channels": [
@@ -1680,7 +2404,7 @@
     ],
     [
       "epgshare-sa2",
-      23
+      22
     ],
     [
       "openepg-qatar2",
