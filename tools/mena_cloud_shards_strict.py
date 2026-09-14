@@ -9,7 +9,10 @@ are copied from audited canonical IDs. New mappings prefer canonical IDs.
 beIN MAX/XTRA are event-channel sources and are deliberately preserved as source
 feeds even when the current guide is generic/repetitive outside a live event.
 They may stay REVIEW for mapping quality, but their source programmes must not be
-pruned merely because the guide is a placeholder between events.
+pruned merely because the guide is a placeholder between events. The integrity
+guard now preserves those event feeds before this shard layer, and this layer
+restores their untouched source timeline after beIN metadata repair as a second
+safety net.
 """
 from __future__ import annotations
 
@@ -152,6 +155,7 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
         result["catalog_preserves_legacy_ids"] = True
         result["event_source_policy"] = "MAX/XTRA source timelines preserved; generic/off-event rows are not pruned"
         result["event_sources_preserved"] = sorted(event_sources_preserved, key=str.casefold)
+        result["event_source_count"] = len(event_sources_preserved)
         result["repair"] = (repair_report or {}).get("summary", {})
         result["repair_long_events"] = (repair_report or {}).get("long_event_repairs", [])
         print(
