@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Final frozen-provider regression gate for canonical MBC receiver output."""
+"""Final frozen-provider regression gate for canonical MBC receiver output.
+
+The MBC gate is also the umbrella step for the already-audited Rotana provider
+and accepted upstream source adapters. Keeping these companion checks in the
+existing Arabic-first regression step makes publication atomic: MBC, Rotana and
+source-health must all be green before the later beIN/OSN gates can run.
+"""
 from __future__ import annotations
 
 import argparse
 import json
 from pathlib import Path
+import subprocess
+import sys
 
 import mbc_id_audit_policy as policy
 
@@ -31,6 +39,60 @@ EXPECTED_SOURCE_PINS = {
     "MBCPersia.ae@SD": "shahid.mbc.net",
     "MBCPlusDrama.sa@SD": "osn.com",
 }
+
+
+def run_companion_gates(xml_path: Path, catalog_path: Path):
+    tools = Path(__file__).resolve().parent
+    final_dir = xml_path.parent
+    output_dir = final_dir.parent
+    errors = []
+    notes = []
+
+    rotana_xml = final_dir / "provider-rotana.xml.gz"
+    rotana_json = final_dir / "rotana-id-audit-policy.json"
+    rotana_text = final_dir / "rotana-id-audit-policy.txt"
+    rotana_reg_text = final_dir / "rotana-final-regression.txt"
+    rotana_audit = subprocess.run([
+        sys.executable, str(tools / "rotana_id_audit_policy.py"),
+        "--xml", str(rotana_xml),
+        "--json", str(rotana_json),
+        "--text", str(rotana_text),
+    ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    if rotana_audit.returncode == 0:
+        rotana_reg = subprocess.run([
+            sys.executable, str(tools / "rotana_final_regression.py"),
+            "--xml", str(rotana_xml),
+            "--audit-json", str(rotana_json),
+            "--catalog-manifest", str(catalog_path),
+            "--text", str(rotana_reg_text),
+        ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    else:
+        rotana_reg = None
+    rotana_rc = rotana_reg.returncode if rotana_reg is not None else 1
+    rotana_output = rotana_reg.stdout.strip() if rotana_reg is not None else rotana_audit.stdout.strip()
+    if rotana_audit.returncode or rotana_rc:
+        errors.append("ROTANA_GATE_FAIL")
+    notes.append("Rotana=%s" % ("PASS" if not (rotana_audit.returncode or rotana_rc) else "FAIL"))
+
+    source_json = final_dir / "source-health.json"
+    source_text = final_dir / "source-health.txt"
+    source_run = subprocess.run([
+        sys.executable, str(tools / "source_health_regression.py"),
+        "--raw", str(output_dir / "raw.xml"),
+        "--catalog-manifest", str(catalog_path),
+        "--json", str(source_json),
+        "--text", str(source_text),
+    ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    if source_run.returncode:
+        errors.append("SOURCE_HEALTH_GATE_FAIL")
+    notes.append("SourceHealth=%s" % ("PASS" if source_run.returncode == 0 else "FAIL"))
+
+    return {
+        "errors": errors,
+        "notes": notes,
+        "rotana_output": rotana_output,
+        "source_output": source_run.stdout.strip(),
+    }
 
 
 def main():
@@ -82,7 +144,8 @@ def main():
         if row.get("auto_lock_safe") is not True:
             errors.append("FROZEN_ID_NOT_AUTOLOCK_SAFE=%s" % cid)
 
-    catalogue = json.loads(Path(args.catalog_manifest).read_text(encoding="utf-8"))
+    catalogue_path = Path(args.catalog_manifest)
+    catalogue = json.loads(catalogue_path.read_text(encoding="utf-8"))
     selected = {
         row.get("xmltv_id"): row
         for row in catalogue.get("channels", [])
@@ -99,15 +162,19 @@ def main():
 
     notes.append("canonical_receiver_ids=%d" % len(policy.FROZEN_CORE_IDS))
     notes.append("actual_provider_ids=%d" % len(rows))
-    notes.append("minimum_clean_coverage=%.0fh" % policy.MIN_COVERAGE_HOURS)
+    notes.append("minimum_clean_coverage=%.1fh" % policy.MIN_COVERAGE_HOURS)
     notes.append("source_pins=%d" % len(EXPECTED_SOURCE_PINS))
     notes.append("MBCMasrDrama_source=%s" % (
         (selected.get("MBCMasrDrama.sa@SD") or {}).get("site", "<missing>")))
 
+    companions = run_companion_gates(xml_path, catalogue_path)
+    errors.extend(companions["errors"])
+    notes.extend(companions["notes"])
+
     status = "FAIL" if errors else "PASS"
     lines = [
-        "MBC FINAL REGRESSION GATE: %s" % status,
-        "expected_core=%d actual_provider_ids=%d frozen_ok=%s" % (
+        "MBC + ROTANA + SOURCE HEALTH REGRESSION GATE: %s" % status,
+        "MBC expected_core=%d actual_provider_ids=%d frozen_ok=%s" % (
             len(policy.FROZEN_CORE_IDS), len(rows), summary.get("frozen_ok", 0)),
         "",
         "Checks:",
@@ -117,8 +184,12 @@ def main():
         lines.append("")
         lines.append("Errors:")
         lines.extend("- %s" % error for error in errors)
+        if "ROTANA_GATE_FAIL" in errors:
+            lines.extend(["", "Rotana details:", companions["rotana_output"][-2200:]])
+        if "SOURCE_HEALTH_GATE_FAIL" in errors:
+            lines.extend(["", "Source-health details:", companions["source_output"][-2200:]])
     else:
-        lines.append("- all canonical MBC receiver/source invariants passed")
+        lines.append("- all frozen MBC, Rotana and upstream source invariants passed")
 
     Path(args.text).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
