@@ -104,20 +104,33 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          rm -rf /tmp/bein-data
           git fetch origin mena-data
           git worktree add /tmp/bein-data origin/mena-data
           cd /tmp/bein-data
           git checkout -B mena-data origin/mena-data
-          cp /tmp/bein-audit/bein-id-audit-policy.json .
-          cp /tmp/bein-audit/bein-id-audit-policy.txt .
           git config user.name "EPGManager beIN Audit"
           git config user.email "actions@users.noreply.github.com"
-          git add bein-id-audit-policy.json bein-id-audit-policy.txt
-          if git diff --cached --quiet; then
-            echo "No beIN policy audit changes."
-            exit 0
-          fi
-          git commit -m "Audit published beIN IDs with production language policy"
-          git fetch origin mena-data
-          git rebase origin/mena-data
-          git push origin HEAD:mena-data
+
+          # all-ID audit is triggered by the same MENA publication and can write
+          # mena-data at almost the same moment. Rebase/retry rather than turning
+          # a successful beIN data audit red because the branch moved.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin mena-data
+            git reset --hard origin/mena-data
+            cp /tmp/bein-audit/bein-id-audit-policy.json .
+            cp /tmp/bein-audit/bein-id-audit-policy.txt .
+            git add bein-id-audit-policy.json bein-id-audit-policy.txt
+            if git diff --cached --quiet; then
+              echo "No beIN policy audit changes."
+              exit 0
+            fi
+            git commit -m "Audit published beIN IDs with production language policy"
+            if git push origin HEAD:mena-data; then
+              exit 0
+            fi
+            echo "mena-data moved during beIN audit publish; retry ${attempt}/5"
+            sleep $((attempt * 2))
+          done
+          echo "Unable to publish beIN diagnostic after 5 branch-race retries."
+          exit 1
