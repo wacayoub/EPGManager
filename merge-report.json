@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-14T06:53:13.156959+00:00",
+  "generated": "2026-09-14T06:55:55.527189+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -143,17 +143,17 @@
       "bytes": 4291
     }
   ],
-  "candidate_channel_rows": 1694,
+  "candidate_channel_rows": 1702,
   "unique_logical_channels": 1044,
-  "programmes": 33993,
-  "premium_hybrid_events": 958,
+  "programmes": 33102,
+  "premium_hybrid_events": 957,
   "stats": {
     "regular_channels": 959,
-    "source_epgshare": 511,
-    "logical_duplicate_groups": 357,
+    "source_epgshare": 510,
+    "logical_duplicate_groups": 362,
     "premium_channels": 85,
-    "source_openepg": 343,
-    "source_primary": 190
+    "source_openepg": 335,
+    "source_primary": 199
   },
   "aliases": [
     {
@@ -313,8 +313,8 @@
       "aliases": []
     },
     {
-      "canonical_id": "Al Arabiya.sa",
-      "canonical_name": "Al Arabiya.sa",
+      "canonical_id": "AlarabiyaPortrait.ae@SD",
+      "canonical_name": "Al Arabiya",
       "logical_key": "al arabiya",
       "aliases": [
         {
@@ -326,6 +326,16 @@
           "id": "Al Arabiya HD.sa",
           "name": "Al Arabiya HD.sa",
           "source": "openepg-saudi2"
+        },
+        {
+          "id": "Al Arabiya.sa",
+          "name": "Al Arabiya.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Al Arabiya.sa",
+          "name": "Al Arabiya.sa",
+          "source": "openepg-saudi6"
         },
         {
           "id": "Al.Arabiya.HD.ae",
@@ -347,10 +357,33 @@
       ]
     },
     {
-      "canonical_id": "Al Araby TV.sa",
-      "canonical_name": "Al Araby TV.sa",
+      "canonical_id": "AlArabyTV2.qa@SD",
+      "canonical_name": "Al Araby 2",
+      "logical_key": "al araby 2",
+      "aliases": [
+        {
+          "id": "Al.Araby.2.HD.ae",
+          "name": "Al Araby 2 HD",
+          "source": "epgshare-ae1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "AlArabyTV.qa@SD",
+      "canonical_name": "Al Araby TV",
       "logical_key": "al araby tv",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "Al Araby TV.sa",
+          "name": "Al Araby TV.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Al Araby TV.sa",
+          "name": "Al Araby TV.sa",
+          "source": "openepg-saudi6"
+        }
+      ]
     },
     {
       "canonical_id": "Al Dafrah.sa",
@@ -382,10 +415,30 @@
       "aliases": []
     },
     {
-      "canonical_id": "Al Hadath.sa",
-      "canonical_name": "Al Hadath.sa",
+      "canonical_id": "AlHadath.sa@SD",
+      "canonical_name": "Al Hadath",
       "logical_key": "al hadath",
       "aliases": [
+        {
+          "id": "Al Hadath.sa",
+          "name": "Al Hadath.sa",
+          "source": "openepg-saudi1"
+        },
+        {
+          "id": "Al Hadath.sa",
+          "name": "Al Hadath.sa",
+          "source": "openepg-saudi2"
+        },
+        {
+          "id": "Al Hadath.sa",
+          "name": "Al Hadath.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Al Hadath.sa",
+          "name": "Al Hadath.sa",
+          "source": "openepg-saudi6"
+        },
         {
           "id": "Al.Hadath.ae",
           "name": "Al Hadath",
@@ -2506,7 +2559,7 @@
       ]
     },
     {
-      "canonical_id": "MBCDrama.ae@SD",
+      "canonical_id": "MBCDramaUSA.us@SD",
       "canonical_name": "MBC Drama",
       "logical_key": "mbc drama",
       "aliases": [
@@ -2566,13 +2619,8 @@
           "source": "epgshare-ae1"
         },
         {
-          "id": "MBCDramaUSA.us@SD",
+          "id": "MBCDrama.ae@SD",
           "name": "MBC Drama",
-          "source": "primary"
-        },
-        {
-          "id": "MBCPlusDrama.sa@SD",
-          "name": "MBC+ Drama",
           "source": "primary"
         }
       ]
@@ -2617,7 +2665,7 @@
       "aliases": []
     },
     {
-      "canonical_id": "MBCMasr.eg@SD",
+      "canonical_id": "MBCMasrUSA.us@SD",
       "canonical_name": "MBC Masr",
       "logical_key": "mbc masr",
       "aliases": [
@@ -2637,7 +2685,7 @@
           "source": "epgshare-ae1"
         },
         {
-          "id": "MBCMasrUSA.us@SD",
+          "id": "MBCMasr.eg@SD",
           "name": "MBC Masr",
           "source": "primary"
         }
@@ -2737,10 +2785,21 @@
       ]
     },
     {
-      "canonical_id": "MBC Plus Drama HD.sa",
-      "canonical_name": "MBC Plus Drama HD.sa",
+      "canonical_id": "MBCPlusDrama.sa@SD",
+      "canonical_name": "MBC Plus Drama",
       "logical_key": "mbc plus drama",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "MBC Plus Drama HD.sa",
+          "name": "MBC Plus Drama HD.sa",
+          "source": "openepg-saudi3"
+        },
+        {
+          "id": "MBC Plus Drama HD.sa",
+          "name": "MBC Plus Drama HD.sa",
+          "source": "openepg-saudi4"
+        }
+      ]
     },
     {
       "canonical_id": "MBC Plus eLife HD.sa",
@@ -4209,6 +4268,18 @@
       ]
     },
     {
+      "canonical_id": "LanaTV.lb@SD",
+      "canonical_name": "ال تي في",
+      "logical_key": "ال تي في",
+      "aliases": [
+        {
+          "id": "ال تي في.eg",
+          "name": "ال تي في.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "JordanTV.jo@SD",
       "canonical_name": "الأردن",
       "logical_key": "الأردن",
@@ -4437,6 +4508,18 @@
       ]
     },
     {
+      "canonical_id": "ElMehwarChannel.eg@SD",
+      "canonical_name": "المحور",
+      "logical_key": "المحور",
+      "aliases": [
+        {
+          "id": "المحور.eg",
+          "name": "المحور.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "AlMasriyah.eg@SD",
       "canonical_name": "المصرية",
       "logical_key": "المصرية",
@@ -4629,6 +4712,18 @@
       ]
     },
     {
+      "canonical_id": "SamaDubai.ae@SD",
+      "canonical_name": "سما دبي",
+      "logical_key": "سما دبي",
+      "aliases": [
+        {
+          "id": "سما دبي.eg",
+          "name": "سما دبي.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "CBC.eg@SD",
       "canonical_name": "سي بي سي",
       "logical_key": "سي بي سي",
@@ -4797,6 +4892,18 @@
       ]
     },
     {
+      "canonical_id": "NileLife.eg@SD",
+      "canonical_name": "نايل لايف",
+      "logical_key": "نايل لايف",
+      "aliases": [
+        {
+          "id": "نايل لايف.eg",
+          "name": "نايل لايف.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "NessmaElJadida.tn@SD",
       "canonical_name": "نسمة",
       "logical_key": "نسمة",
@@ -4825,8 +4932,8 @@
     "sources": [
       {
         "source": "primary",
-        "input_candidates": 194,
-        "kept_candidates": 186,
+        "input_candidates": 202,
+        "kept_candidates": 194,
         "quarantined_candidates": 8,
         "quarantined": [
           {
@@ -5753,7 +5860,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 123
+            "programmes": 124
           },
           {
             "source": "epgshare-ae1",
@@ -5762,7 +5869,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 123
+            "programmes": 124
           },
           {
             "source": "epgshare-ae1",
@@ -5771,7 +5878,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 123
+            "programmes": 124
           },
           {
             "source": "epgshare-ae1",
@@ -5780,7 +5887,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 123
+            "programmes": 124
           },
           {
             "source": "epgshare-ae1",
@@ -5789,7 +5896,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 123
+            "programmes": 124
           },
           {
             "source": "epgshare-ae1",
@@ -6158,7 +6265,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=6"
             ],
-            "programmes": 66
+            "programmes": 67
           },
           {
             "source": "epgshare-ae1",
@@ -6167,7 +6274,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=6"
             ],
-            "programmes": 66
+            "programmes": 67
           },
           {
             "source": "epgshare-ae1",
@@ -6176,7 +6283,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=6"
             ],
-            "programmes": 66
+            "programmes": 67
           },
           {
             "source": "epgshare-ae1",
@@ -6185,7 +6292,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=6"
             ],
-            "programmes": 66
+            "programmes": 67
           },
           {
             "source": "epgshare-ae1",
@@ -6194,7 +6301,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=6"
             ],
-            "programmes": 66
+            "programmes": 67
           },
           {
             "source": "epgshare-ae1",
@@ -6203,7 +6310,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=6"
             ],
-            "programmes": 66
+            "programmes": 67
           },
           {
             "source": "epgshare-ae1",
@@ -6599,7 +6706,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=3"
             ],
-            "programmes": 54
+            "programmes": 53
           },
           {
             "source": "epgshare-ae1",
@@ -6608,7 +6715,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=3"
             ],
-            "programmes": 54
+            "programmes": 53
           },
           {
             "source": "epgshare-ae1",
@@ -6617,7 +6724,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=3"
             ],
-            "programmes": 54
+            "programmes": 53
           },
           {
             "source": "epgshare-ae1",
@@ -6806,7 +6913,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 287
+            "programmes": 286
           },
           {
             "source": "epgshare-ae1",
@@ -6815,7 +6922,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 287
+            "programmes": 286
           },
           {
             "source": "epgshare-ae1",
@@ -6824,7 +6931,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 287
+            "programmes": 286
           },
           {
             "source": "epgshare-ae1",
@@ -6833,7 +6940,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 287
+            "programmes": 286
           },
           {
             "source": "epgshare-ae1",
@@ -6842,7 +6949,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 287
+            "programmes": 286
           },
           {
             "source": "epgshare-ae1",

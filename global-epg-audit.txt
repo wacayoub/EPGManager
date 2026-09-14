@@ -1,13 +1,13 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=1050
-programmes_scanned=33808
+channels_scanned=1041
+programmes_scanned=32528
 critical=0
-warnings=19797
+warnings=19595
 
 ISSUE COUNTS
-empty_description=16550
-very_short_event_lt_5m=2251
-arabic_provider_title_not_arabic=857
+empty_description=16364
+very_short_event_lt_5m=2245
+arabic_provider_title_not_arabic=847
 premium_title_not_english=109
 very_long_event_gt_6h=24
 hybrid_arabic_latin_description=4
@@ -21,7 +21,7 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260916034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=857
+[arabic_provider_title_not_arabic] count=847
 - provider-alkass | 2023 Alkass 1.qa | 20260914060000 +0000 | The Council
   desc: برنامج رياضي على قنوات الكأس.
 - provider-alkass | 2023 Alkass 1.qa | 20260914080000 +0000 | Preview
@@ -43,7 +43,7 @@ TOP SAMPLES
 - provider-alkass | 2023 Alkass 1.qa | 20260914153000 +0000 | Golmania
   desc: برنامج رياضي على قنوات الكأس.
 
-[empty_description] count=16550
+[empty_description] count=16364
 - provider-bein | beIN Drama.eg | 20260914060000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260914070000 +0000 | Mazad El Shar
 - provider-bein | beIN Drama.eg | 20260914080000 +0000 | Sarab
@@ -101,7 +101,7 @@ TOP SAMPLES
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
 - mena-qa | Qatar TV HD | 20260913214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2251
+[very_short_event_lt_5m] count=2245
 - provider-osn | OSNtv Kids | 20260914080500 +0000 | Duplo Adventures
   desc: قطار البخار المزدان بالأضواء هو وسيلة النقل المثلى بينما ننقل مجموعة من المغنيين بجانب مشاهد مغطاة بالثلوج وزينة الموسم.
 - provider-osn | OSNtv Kids | 20260914091500 +0000 | Lego Duplo Adventures S3
@@ -124,4 +124,4 @@ TOP SAMPLES
   desc: بيب، ليو و هوبسي يزورون راي في مكان مربي النحل ليتعلموا عن النحل!
 
 ALL-ID RELEASE GATE
-{"FAIL": 0, "NO_EPG": 431, "PASS": 148, "REVIEW": 471, "auto_lock_safe": 148, "channels": 1050, "missing_shards": [], "programmes": 33808}
+{"FAIL": 0, "NO_EPG": 430, "PASS": 152, "REVIEW": 459, "auto_lock_safe": 152, "channels": 1041, "missing_shards": [], "programmes": 32528}

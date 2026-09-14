@@ -1,42 +1,42 @@
 {
   "schema": 2,
   "scope": "all exclusive MENA country/provider shards + synchronous all-ID release gate",
-  "channels_scanned": 1050,
-  "programmes_scanned": 33808,
+  "channels_scanned": 1041,
+  "programmes_scanned": 32528,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 857,
-    "empty_description": 16550,
+    "arabic_provider_title_not_arabic": 847,
+    "empty_description": 16364,
     "hybrid_arabic_latin_description": 4,
     "premium_title_not_english": 109,
-    "severity_warning": 19797,
+    "severity_warning": 19595,
     "very_long_event_gt_6h": 24,
-    "very_short_event_lt_5m": 2251
+    "very_short_event_lt_5m": 2245
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 431,
+      "empty_description": 429,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
-      "very_short_event_lt_5m": 12
+      "very_short_event_lt_5m": 6
     },
     "mena-dz": {
-      "empty_description": 43
+      "empty_description": 58
     },
     "mena-eg": {
-      "empty_description": 1437,
+      "empty_description": 1422,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 601
+      "empty_description": 589
     },
     "mena-jo": {
-      "empty_description": 108,
+      "empty_description": 101,
       "very_short_event_lt_5m": 6
     },
     "mena-kw": {
-      "empty_description": 238,
+      "empty_description": 212,
       "very_short_event_lt_5m": 1
     },
     "mena-lb": {
@@ -44,13 +44,13 @@
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 437
+      "empty_description": 436
     },
     "mena-other": {
-      "empty_description": 8179,
+      "empty_description": 8092,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 10,
-      "very_short_event_lt_5m": 1187
+      "very_short_event_lt_5m": 1188
     },
     "mena-ps": {
       "empty_description": 34
@@ -61,24 +61,24 @@
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1550,
+      "empty_description": 1547,
       "very_short_event_lt_5m": 691
     },
     "mena-sd": {
       "empty_description": 47
     },
     "mena-sy": {
-      "empty_description": 6
+      "empty_description": 3
     },
     "mena-tn": {
-      "empty_description": 76
+      "empty_description": 57
     },
     "mena-ye": {
       "empty_description": 123
     },
     "provider-adm": {
       "arabic_provider_title_not_arabic": 263,
-      "empty_description": 202,
+      "empty_description": 205,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 23
     },
@@ -87,9 +87,9 @@
       "very_long_event_gt_6h": 1
     },
     "provider-art": {
-      "arabic_provider_title_not_arabic": 9,
-      "empty_description": 671,
-      "very_short_event_lt_5m": 266
+      "arabic_provider_title_not_arabic": 8,
+      "empty_description": 670,
+      "very_short_event_lt_5m": 265
     },
     "provider-bein": {
       "empty_description": 252,
@@ -98,14 +98,14 @@
     },
     "provider-dmi": {
       "arabic_provider_title_not_arabic": 75,
-      "empty_description": 290,
+      "empty_description": 293,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 1
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
-      "arabic_provider_title_not_arabic": 346,
-      "empty_description": 425,
+      "arabic_provider_title_not_arabic": 337,
+      "empty_description": 394,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
@@ -2039,13 +2039,13 @@
     ]
   },
   "all_id_release_gate": {
-    "channels": 1050,
-    "programmes": 33808,
-    "PASS": 148,
-    "REVIEW": 471,
-    "NO_EPG": 431,
+    "channels": 1041,
+    "programmes": 32528,
+    "PASS": 152,
+    "REVIEW": 459,
+    "NO_EPG": 430,
     "FAIL": 0,
-    "auto_lock_safe": 148,
+    "auto_lock_safe": 152,
     "missing_shards": []
   }
 }
