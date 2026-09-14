@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 """Audit raw remote MENA EPG sources for cross-channel cloned schedules.
 Diagnostic only. It does not modify production data.
+
+The report also carries targeted probes for Al Kass and SSC so we can decide
+whether a candidate source has real, channel-specific 48-hour EPG before it is
+allowed into production.
 """
 from __future__ import annotations
 
@@ -13,6 +17,17 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 import mena_cloud_merge as base
+
+FOCUS = {
+    "alkass": re.compile(
+        r"(?:^|[^a-z0-9])(?:al\s*kass|alkass)[\s._-]*(?:[1-8]|one|two|three|four|five|six|seven|eight)(?:[^a-z0-9]|$)",
+        re.I,
+    ),
+    "ssc": re.compile(
+        r"(?:^|[^a-z0-9])ssc(?:[\s._-]*(?:[1-5]|extra(?:[\s._-]*[1-3])?|news))?(?:[^a-z0-9]|$)",
+        re.I,
+    ),
+}
 
 
 def norm(v):
@@ -48,6 +63,36 @@ def parse(data):
     if data[:2] == b"\x1f\x8b":
         data = gzip.decompress(data)
     return ET.fromstring(data)
+
+
+def first_titles(rows, limit=5):
+    out = []
+    for p in sorted(rows, key=lambda x: ((x.get("start") or ""), (x.get("stop") or ""))):
+        t = p.find("title")
+        title = (t.text or "").strip() if t is not None else ""
+        if title:
+            out.append(title)
+        if len(out) >= limit:
+            break
+    return out
+
+
+def focus_rows(names, programs):
+    out = {k: [] for k in FOCUS}
+    for cid, name in sorted(names.items(), key=lambda kv: kv[0].casefold()):
+        probe = "%s %s" % (cid, name)
+        for key, rx in FOCUS.items():
+            if not rx.search(probe):
+                continue
+            rows = programs.get(cid, [])
+            out[key].append({
+                "id": cid,
+                "name": name,
+                "current": bool(rows),
+                "events": len(rows),
+                "sample_titles": first_titles(rows),
+            })
+    return {k: v for k, v in out.items() if v}
 
 
 def main():
@@ -116,6 +161,7 @@ def main():
                 "cloned_unrelated_groups": len(bad_groups),
                 "cloned_unrelated_channels": len(bad_ids),
                 "groups": sorted(bad_groups, key=lambda x: -x["count"]),
+                "focus": focus_rows(names, programs),
             })
             if bad_ids:
                 all_bad.append((source_name, len(bad_ids)))
@@ -124,14 +170,14 @@ def main():
         results.append(row)
 
     out = {
-        "schema": 1,
+        "schema": 2,
         "window_hours": args.window_hours,
         "sources": results,
         "sources_with_cloned_unrelated_channels": sorted(all_bad, key=lambda x: -x[1]),
     }
     Path(args.output_json).write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    lines = ["RAW SOURCE INTEGRITY AUDIT", ""]
+    lines = ["RAW SOURCE INTEGRITY AUDIT V2", ""]
     for r in results:
         if r.get("status") != "ok":
             lines.append("- %s: ERROR %s" % (r["source"], r.get("error", "")))
@@ -142,6 +188,12 @@ def main():
         for g in r["groups"][:5]:
             lines.append("    group=%d sample_ids=%s" % (g["count"], "; ".join(g["ids"][:8])))
             lines.append("      titles=%s" % " | ".join(g["sample_titles"][:3]))
+        for focus_name, items in (r.get("focus") or {}).items():
+            lines.append("    FOCUS %s:" % focus_name.upper())
+            for item in items:
+                lines.append("      %s | current=%s events=%d | %s" % (
+                    item["id"], "YES" if item["current"] else "NO", item["events"],
+                    " | ".join(item["sample_titles"][:3]) or "<NO CURRENT PROGRAMMES>"))
     Path(args.output_text).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("source integrity:", sorted(all_bad, key=lambda x: -x[1]))
     return 0
