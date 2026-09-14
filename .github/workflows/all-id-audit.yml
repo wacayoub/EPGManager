@@ -9,7 +9,10 @@ on:
     paths:
       - ".github/workflows/all-id-audit.yml"
       - "tools/all_id_audit.py"
+      - "tools/all_id_audit_alias_aware.py"
       - "tools/bein_id_audit.py"
+      - "tools/bein_provider_repair.py"
+      - "tools/mena_cloud_shards_strict.py"
 
 permissions:
   contents: write
@@ -46,14 +49,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile tools/bein_id_audit.py tools/all_id_audit.py
+          python -m py_compile \
+            tools/bein_id_audit.py \
+            tools/all_id_audit.py \
+            tools/all_id_audit_alias_aware.py
 
       - name: Audit every published XMLTV ID and all programmes
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p audit-output
-          python tools/all_id_audit.py \
+          python tools/all_id_audit_alias_aware.py \
             --dir audit-data \
             --manifest audit-data/shards.json \
             --json audit-output/all-id-audit.json \
@@ -68,6 +74,7 @@ jobs:
           assert not s['missing_shards'], s['missing_shards']
           assert s['channels'] == manifest['published_channels'], (s['channels'], manifest['published_channels'])
           assert int(s.get('FAIL', 0) or 0) == 0, 'Production all-ID FAIL=%s' % s.get('FAIL')
+          assert int(s.get('NO_EPG', 0) or 0) == 0, 'Production all-ID NO_EPG=%s' % s.get('NO_EPG')
           print('COMPLETE PRODUCTION AUDIT:', s)
           PY
 
