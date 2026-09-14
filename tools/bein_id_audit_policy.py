@@ -15,6 +15,11 @@ MAX/XTRA are event-channel sources. A generic/repeated holding guide between
 real events is a mapping-quality warning, not a reason to reject/remove the
 source. Healthy canonical MAX/XTRA IDs therefore receive KEEP_SOURCE while
 remaining no-autolock/event-only candidates when their guide is generic.
+
+Legacy NEWS Mono IDs are compatibility/source identities, not preferred mapping
+targets. A structurally healthy Arabic NEWS source is retained as KEEP_SOURCE
+with auto-lock disabled; the EN twin remains handled by the strict sharder as a
+verified compatibility alias of the Arabic source.
 """
 from __future__ import annotations
 
@@ -22,6 +27,11 @@ import bein_id_audit as base
 
 _original_initial_verdict = base.initial_verdict
 _original_build_profile = base.build_profile
+
+LEGACY_NEWS_SOURCE_IDS = {
+    "NEWS_DIGITAL_Mono_AR.bein",
+    "NEWS_DIGITAL_Mono_EN.bein",
+}
 
 
 def _text(node, tag):
@@ -58,6 +68,12 @@ def policy_build_profile(cid, name, programmes):
         row["source_status"] = "KEEP_SOURCE" if row.get("events", 0) > 0 else "STANDBY_SOURCE"
         row["mapping_mode"] = mapping_mode
         row["auto_lock_safe"] = mapping_mode == "normal_candidate"
+    elif cid in LEGACY_NEWS_SOURCE_IDS:
+        # Keep legacy NEWS IDs for saved mappings/source continuity but never let
+        # them compete with the preferred canonical NEWS mapping during auto-lock.
+        row["source_status"] = "KEEP_SOURCE" if row.get("events", 0) > 0 else "STANDBY_SOURCE"
+        row["mapping_mode"] = "compat_only"
+        row["auto_lock_safe"] = False
     else:
         row["source_status"] = "NORMAL"
         row["mapping_mode"] = "normal_candidate"
@@ -89,6 +105,11 @@ def policy_initial_verdict(row, non_recommended):
 
     if issues:
         verdict = "FAIL"
+    elif row.get("id") in LEGACY_NEWS_SOURCE_IDS and row.get("events", 0) > 0:
+        # Known compatibility/source identity. Keep warnings visible (for example
+        # repetitive news labels) but do not turn a known safe source into a new
+        # release-blocking REVIEW. It remains no-autolock by policy_build_profile.
+        verdict = "KEEP_SOURCE"
     elif row.get("kind") in {"max", "xtra"} and row.get("events", 0) > 0:
         # Keep warnings visible for diagnostics, but do not equate an event-source
         # holding guide with a bad source. Alias handling in the base auditor may
