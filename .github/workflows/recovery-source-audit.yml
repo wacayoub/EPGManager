@@ -98,4 +98,6 @@ jobs:
             exit 0
           fi
           git commit -m "Audit candidate MENA recovery sources"
+          git fetch origin mena-data
+          git rebase origin/mena-data
           git push origin HEAD:mena-data
