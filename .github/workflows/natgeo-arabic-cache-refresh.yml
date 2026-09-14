@@ -46,7 +46,7 @@ jobs:
           print('entries=%s events=%s/%s' % (len(p.get('entries') or {}),p.get('matched_event_count'),p.get('source_event_count')))
           PY
 
-      - name: Commit verified cache
+      - name: Commit verified cache conflict-safely
         shell: bash
         run: |
           set -euo pipefail
@@ -55,5 +55,6 @@ jobs:
           git add data/natgeo_ad_arabic_metadata.json
           if ! git diff --cached --quiet; then
             git commit -m "Cache verified Arabic metadata for NatGeo Abu Dhabi"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
