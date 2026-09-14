@@ -1,0 +1,36 @@
+name: MENA Critical Rebuild Trigger
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/mena-critical-rebuild.yml"
+      - "tools/bein_provider_repair.py"
+      - "tools/bein_id_audit_policy.py"
+      - "tools/mena_integrity_guard.py"
+      - "tools/all_id_audit_alias_aware.py"
+      - "tools/bein_final_regression.py"
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: mena-critical-rebuild-trigger
+  cancel-in-progress: true
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Dispatch full MENA Cloud rebuild
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run mena-epg.yml \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref main
+          echo "Dispatched MENA Cloud EPG because a critical beIN/integrity file changed."
