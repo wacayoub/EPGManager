@@ -1,11 +1,11 @@
 VIRTUAL EPGMANAGER - EXHAUSTIVE ALL-ID PROGRAMME AUDIT V3
-channels=620 programmes=32239 PASS=162 REVIEW=458 NO_EPG=0 FAIL=0 AUTO_LOCK_SAFE=162
+channels=620 programmes=32239 PASS=161 REVIEW=459 NO_EPG=0 FAIL=0 AUTO_LOCK_SAFE=161
 
 ISSUE COUNTS
 
 SHARD SUMMARY
 - provider-alkass: channels=9 programmes=196 PASS=1 REVIEW=8 NO_EPG=0 FAIL=0
-- provider-bein: channels=39 programmes=912 PASS=14 REVIEW=25 NO_EPG=0 FAIL=0
+- provider-bein: channels=39 programmes=912 PASS=13 REVIEW=26 NO_EPG=0 FAIL=0
 - provider-osn: channels=22 programmes=1231 PASS=12 REVIEW=10 NO_EPG=0 FAIL=0
 - provider-mbc: channels=38 programmes=1877 PASS=23 REVIEW=15 NO_EPG=0 FAIL=0
 - provider-rotana: channels=23 programmes=912 PASS=15 REVIEW=8 NO_EPG=0 FAIL=0
@@ -102,7 +102,7 @@ ID-BY-ID RESULTS
 0010. [REVIEW] 4k_DIGITAL_Mono_AR.bein | 4k_DIGITAL_Mono_AR | shard=provider-bein | score=92 | auto_lock=NO
       events=17 coverage=33.3h span=33.3h gaps>2h=0 overlaps=0 invalid=0 empty_desc=0
       language: title_AR=76% title_Latin=100% desc_AR=100% feed_country=?
-      notes=DUPLICATE_TIMELINE_GROUP=2, DUPLICATE_TIMELINE_UNRELATED
+      notes=COMPAT_ALIAS_TO=beIN4K.qa@SD
       • 20260914101300 +0000 | Sunderland v Arsenal - الدوري الإنجليزي الممتاز
       • 20260914115600 +0000 | Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship
 
@@ -176,10 +176,10 @@ ID-BY-ID RESULTS
       • 20260914095000 +0000 | Chinese Taipei vs Vietnam - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01
       • 20260914120000 +0000 | EN ATP Tour: This Week 2026 Ep.35
 
-0021. [PASS] bein SPORTS FTA DIGITAL.qa | bein SPORTS FTA DIGITAL.qa | shard=provider-bein | score=100 | auto_lock=YES
+0021. [REVIEW] bein SPORTS FTA DIGITAL.qa | bein SPORTS FTA DIGITAL.qa | shard=provider-bein | score=92 | auto_lock=NO
       events=25 coverage=41.2h span=41.7h gaps>2h=0 overlaps=0 invalid=0 empty_desc=0
       language: title_AR=0% title_Latin=100% desc_AR=100% feed_country=qa
-      notes=NONE
+      notes=NON_RECOMMENDED_LEGACY_ID
       • 20260914095000 +0000 | Chinese Taipei vs Vietnam - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01
       • 20260914120000 +0000 | Arab Participation In Asian Games
 
@@ -190,10 +190,10 @@ ID-BY-ID RESULTS
       • 20260914100000 +0000 | Al Hassad
       • 20260914110000 +0000 | News Bulletin - نشرة الأخبار
 
-0023. [PASS] beIN SPORTS-boxoffice-bein.com.qa | beIN SPORTS-boxoffice-bein.com.qa | shard=provider-bein | score=100 | auto_lock=YES
+0023. [REVIEW] beIN SPORTS-boxoffice-bein.com.qa | beIN SPORTS-boxoffice-bein.com.qa | shard=provider-bein | score=92 | auto_lock=NO
       events=25 coverage=41.7h span=42.8h gaps>2h=0 overlaps=0 invalid=0 empty_desc=0
       language: title_AR=0% title_Latin=100% desc_AR=100% feed_country=qa
-      notes=NONE
+      notes=NON_RECOMMENDED_LEGACY_ID
       • 20260914093000 +0000 | Echoes of War
       • 20260914111000 +0000 | Perrier's Bounty
 
@@ -204,10 +204,10 @@ ID-BY-ID RESULTS
       • 20260914102000 +0000 | Japan vs Thailand - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01
       • 20260914123500 +0000 | Qatar's Weightlifting Team
 
-0025. [REVIEW] beIN4K.qa@SD | beIN 4K | shard=provider-bein | score=92 | auto_lock=NO
+0025. [PASS] beIN4K.qa@SD | beIN 4K | shard=provider-bein | score=100 | auto_lock=YES
       events=17 coverage=33.3h span=33.3h gaps>2h=0 overlaps=0 invalid=0 empty_desc=0
       language: title_AR=76% title_Latin=100% desc_AR=100% feed_country=qa
-      notes=DUPLICATE_TIMELINE_GROUP=2, DUPLICATE_TIMELINE_UNRELATED
+      notes=NONE
       • 20260914101300 +0000 | Sunderland v Arsenal - الدوري الإنجليزي الممتاز
       • 20260914115600 +0000 | Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship
 

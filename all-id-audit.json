@@ -4,11 +4,11 @@
   "summary": {
     "channels": 620,
     "programmes": 32239,
-    "PASS": 162,
-    "REVIEW": 458,
+    "PASS": 161,
+    "REVIEW": 459,
     "NO_EPG": 0,
     "FAIL": 0,
-    "auto_lock_safe": 162,
+    "auto_lock_safe": 161,
     "missing_shards": []
   },
   "issue_counts": {},
@@ -17,16 +17,18 @@
     "ARABIC_PROVIDER_TITLE_AR_LOW": 19,
     "LONG_GT_6H": 15,
     "GAPS_GT_2H": 28,
-    "DUPLICATE_TIMELINE_GROUP": 45,
-    "DUPLICATE_TIMELINE_UNRELATED": 20,
+    "COMPAT_ALIAS_TO": 1,
     "EMPTY_DESC": 326,
     "PREMIUM_AR_DESC_LOW": 15,
+    "NON_RECOMMENDED_LEGACY_ID": 2,
     "PREMIUM_TITLE_LATIN_LOW": 6,
     "GENERIC_GUIDE": 1,
     "REPEATED_TITLE": 80,
+    "DUPLICATE_TIMELINE_GROUP": 43,
     "LOW_TITLE_DIVERSITY": 169,
     "SHORT_LT_2M": 11,
     "FOREIGN_FEED_ID": 72,
+    "DUPLICATE_TIMELINE_UNRELATED": 18,
     "SPARSE_COVERAGE": 5
   },
   "by_shard": {
@@ -136,10 +138,10 @@
       "programmes": 1204
     },
     "provider-bein": {
-      "REVIEW": 25,
+      "REVIEW": 26,
       "channels": 39,
       "programmes": 912,
-      "PASS": 14
+      "PASS": 13
     },
     "provider-dmi": {
       "PASS": 5,
@@ -839,8 +841,7 @@
       "feed_country": "",
       "issues": [],
       "warnings": [
-        "DUPLICATE_TIMELINE_GROUP=2",
-        "DUPLICATE_TIMELINE_UNRELATED"
+        "COMPAT_ALIAS_TO=beIN4K.qa@SD"
       ],
       "score": 92,
       "verdict": "REVIEW",
@@ -1577,10 +1578,12 @@
       "shard": "provider-bein",
       "feed_country": "qa",
       "issues": [],
-      "warnings": [],
-      "score": 100,
-      "verdict": "PASS",
-      "auto_lock_safe": true
+      "warnings": [
+        "NON_RECOMMENDED_LEGACY_ID"
+      ],
+      "score": 92,
+      "verdict": "REVIEW",
+      "auto_lock_safe": false
     },
     {
       "id": "beIN SPORTS NEWS.qa",
@@ -1707,10 +1710,12 @@
       "shard": "provider-bein",
       "feed_country": "qa",
       "issues": [],
-      "warnings": [],
-      "score": 100,
-      "verdict": "PASS",
-      "auto_lock_safe": true
+      "warnings": [
+        "NON_RECOMMENDED_LEGACY_ID"
+      ],
+      "score": 92,
+      "verdict": "REVIEW",
+      "auto_lock_safe": false
     },
     {
       "id": "beIN SPORTS.qa",
@@ -1839,13 +1844,10 @@
       "shard": "provider-bein",
       "feed_country": "qa",
       "issues": [],
-      "warnings": [
-        "DUPLICATE_TIMELINE_GROUP=2",
-        "DUPLICATE_TIMELINE_UNRELATED"
-      ],
-      "score": 92,
-      "verdict": "REVIEW",
-      "auto_lock_safe": false
+      "warnings": [],
+      "score": 100,
+      "verdict": "PASS",
+      "auto_lock_safe": true
     },
     {
       "id": "beIN_SPORTS3_DIGITAL_Mono_EN.bein",
@@ -41726,7 +41728,9 @@
         "4k_DIGITAL_Mono_AR.bein",
         "beIN4K.qa@SD"
       ],
-      "unrelated": true
+      "unrelated": false,
+      "compatibility_alias": true,
+      "canonical_root": "beIN4K.qa@SD"
     },
     {
       "ids": [
