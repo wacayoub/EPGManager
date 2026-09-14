@@ -1,0 +1,43 @@
+name: Saudi Official API Probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/saudi_official_api_probe.py"
+      - ".github/workflows/saudi-official-api-probe.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Probe Saudi official apps
+        run: |
+          mkdir -p output
+          python -m py_compile tools/saudi_official_api_probe.py
+          python tools/saudi_official_api_probe.py
+      - name: Publish diagnostic only
+        run: |
+          git fetch origin mena-data
+          git worktree add current-data origin/mena-data
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/saudi-official-api-probe.* .
+          git config user.name "EPGManager Saudi API Probe"
+          git config user.email "actions@users.noreply.github.com"
+          git add saudi-official-api-probe.*
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Probe Saudi official EPG APIs"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
