@@ -1,0 +1,103 @@
+{
+  "schema": 2,
+  "mode": "verified-alias-to-existing-live-canonical-audit",
+  "no_epg_input": 433,
+  "live_input": 611,
+  "alias_entries": 114,
+  "counts": {
+    "REVIEW_ALIAS_TO_LIVE": 2,
+    "SAFE_ALIAS_TO_LIVE": 1
+  },
+  "matches": [
+    {
+      "target_shard": "mena-eg",
+      "target_id": "Al.Saeedah.ae",
+      "target_name": "Al Saeedah",
+      "alias_key": "AlSaeedah",
+      "alias_score": 0.947,
+      "exact_alias_id": false,
+      "exact_alias_name": false,
+      "canonical_shard": "mena-eg",
+      "canonical_id": "AlSaeedah.eg",
+      "canonical_name": "AlSaeedah.eg",
+      "canonical_events": 27,
+      "canonical_verdict": "REVIEW",
+      "live_score": 1.0,
+      "exact_live_id": false,
+      "exact_live_name": true,
+      "variants_target": [],
+      "variants_canonical": [],
+      "verdict": "REVIEW_ALIAS_TO_LIVE"
+    },
+    {
+      "target_shard": "mena-iq",
+      "target_id": "UTV.Iraq.ae",
+      "target_name": "UTV Iraq",
+      "alias_key": "Utv",
+      "alias_score": 1.0,
+      "exact_alias_id": false,
+      "exact_alias_name": true,
+      "canonical_shard": "mena-iq",
+      "canonical_id": "UTV.iq@SD",
+      "canonical_name": "يو تي في",
+      "canonical_events": 16,
+      "canonical_verdict": "REVIEW",
+      "live_score": 1.0,
+      "exact_live_id": false,
+      "exact_live_name": false,
+      "variants_target": [],
+      "variants_canonical": [],
+      "verdict": "REVIEW_ALIAS_TO_LIVE"
+    },
+    {
+      "target_shard": "mena-other",
+      "target_id": "Al.Araby.2.HD.ae",
+      "target_name": "Al Araby 2 HD",
+      "alias_key": "Alaraby TV 2",
+      "alias_score": 1.0,
+      "exact_alias_id": false,
+      "exact_alias_name": true,
+      "canonical_shard": "mena-other",
+      "canonical_id": "Alaraby TV 2.eg",
+      "canonical_name": "Alaraby TV 2.eg",
+      "canonical_events": 30,
+      "canonical_verdict": "REVIEW",
+      "live_score": 1.0,
+      "exact_live_id": false,
+      "exact_live_name": true,
+      "variants_target": [
+        "num:2"
+      ],
+      "variants_canonical": [
+        "num:2"
+      ],
+      "verdict": "SAFE_ALIAS_TO_LIVE"
+    }
+  ],
+  "safe": [
+    {
+      "target_shard": "mena-other",
+      "target_id": "Al.Araby.2.HD.ae",
+      "target_name": "Al Araby 2 HD",
+      "alias_key": "Alaraby TV 2",
+      "alias_score": 1.0,
+      "exact_alias_id": false,
+      "exact_alias_name": true,
+      "canonical_shard": "mena-other",
+      "canonical_id": "Alaraby TV 2.eg",
+      "canonical_name": "Alaraby TV 2.eg",
+      "canonical_events": 30,
+      "canonical_verdict": "REVIEW",
+      "live_score": 1.0,
+      "exact_live_id": false,
+      "exact_live_name": true,
+      "variants_target": [
+        "num:2"
+      ],
+      "variants_canonical": [
+        "num:2"
+      ],
+      "verdict": "SAFE_ALIAS_TO_LIVE"
+    }
+  ]
+}
