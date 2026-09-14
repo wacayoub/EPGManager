@@ -14,6 +14,7 @@ on:
       - "tools/mena_cloud_finalize.py"
       - "tools/mena_cloud_finalize_safe.py"
       - "tools/mena_cloud_finalize_strict.py"
+      - "tools/mena_cloud_finalize_pruned.py"
       - "tools/mena_cloud_shards.py"
       - "tools/mena_cloud_shards_safe.py"
       - "tools/mena_cloud_shards_strict.py"
@@ -93,6 +94,7 @@ jobs:
             tools/mena_cloud_finalize.py \
             tools/mena_cloud_finalize_safe.py \
             tools/mena_cloud_finalize_strict.py \
+            tools/mena_cloud_finalize_pruned.py \
             tools/mena_cloud_shards.py \
             tools/mena_cloud_shards_safe.py \
             tools/mena_cloud_shards_strict.py \
@@ -176,12 +178,12 @@ jobs:
             --cache-dir output/upstream \
             --window-hours 48
 
-      - name: Finalize combined MENA with strict LKG/provider quality gate
+      - name: Finalize combined MENA with strict LKG/provider quality gate and zero-EPG prune
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          python tools/mena_cloud_finalize_strict.py \
+          python tools/mena_cloud_finalize_pruned.py \
             --candidate output/merged.xml \
             --catalog-manifest output/catalog.json \
             --previous previous/mena-arabic.xml.gz \
@@ -219,14 +221,19 @@ jobs:
               assert len(ids) == len(set(ids)), '%s: duplicate channel ids' % stem
               events = root.findall('programme')
               keys = []
+              event_ids = set()
               for e in events:
                   key = ((e.get('channel') or '').strip(),
                          (e.get('start') or '').strip(),
                          (e.get('stop') or '').strip())
                   assert key[0] and key[1], '%s: invalid programme key' % stem
                   keys.append(key)
+                  event_ids.add(key[0])
               assert len(keys) == len(set(keys)), '%s: duplicate programme slots' % stem
-              assert set(e.get('channel') for e in events).issubset(set(ids)), '%s: orphan programme' % stem
+              assert event_ids.issubset(set(ids)), '%s: orphan programme' % stem
+              zero_programme_ids = set(ids) - event_ids
+              assert not zero_programme_ids, '%s: zero-programme channels: %s' % (
+                  stem, sorted(zero_programme_ids)[:20])
               return set(ids), len(events)
 
           combined_ids, combined_events = load('mena-arabic')
@@ -245,7 +252,7 @@ jobs:
           assert len(combined_ids) == shard_manifest['input_channels']
           assert len(seen) + shard_manifest['excluded_morocco_channels'] == len(combined_ids)
           assert shard_manifest['other_channels'] == shard_manifest['shards']['mena-other']['channels']
-          print('PASS: combined=%d/%d exclusive_shards=%d MoroccoExcluded=%d Other=%d' % (
+          print('PASS: combined=%d/%d exclusive_shards=%d MoroccoExcluded=%d Other=%d zeroEPG=0' % (
               len(combined_ids), combined_events, len(seen),
               shard_manifest['excluded_morocco_channels'], shard_manifest['other_channels']))
           PY
@@ -333,7 +340,7 @@ jobs:
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
           printf '%s\n' \
-            'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver sources are split exclusively by premium/provider identity first, then by authoritative/conservative channel country, then MENA Other. Arabic programme metadata is preferred before English/international fallback for regular MENA channels. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
+            'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver-facing XML omits channel identities with zero final programmes to reduce parsing and memory cost; the full internal catalogue remains available for audits and source recovery. Event channels reappear automatically when real EPG is available. Receiver sources are split exclusively by premium/provider identity first, then by authoritative/conservative channel country, then MENA Other. Arabic programme metadata is preferred before English/international fallback for regular MENA channels. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
             > README.md
           git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt virtual-epgmanager.json virtual-epgmanager.txt arabic-priority-test.json arabic-priority-test.txt bein-id-audit.json bein-id-audit.txt catalog.json merge-report.json README.md
           if git diff --cached --quiet; then
