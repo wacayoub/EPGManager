@@ -6,6 +6,10 @@ Compatibility aliases are intentionally duplicated from an audited canonical
 schedule. They must not make the canonical ID look like an unrelated clone.
 Aliases remain REVIEW/non-auto-lock so new mappings prefer the canonical ID.
 Multiple aliases may legitimately point to the same canonical schedule.
+
+When a release gate contains a FAIL, print the exact blocking ID(s), shard,
+issues and warnings to the Actions log.  This keeps future production failures
+diagnosable without weakening the zero-FAIL release policy.
 """
 from __future__ import annotations
 
@@ -15,13 +19,17 @@ import sys
 import all_id_audit as base
 
 
-def _manifest_arg():
+def _arg_value(name):
     for i, arg in enumerate(sys.argv):
-        if arg == "--manifest" and i + 1 < len(sys.argv):
+        if arg == name and i + 1 < len(sys.argv):
             return sys.argv[i + 1]
-        if arg.startswith("--manifest="):
+        if arg.startswith(name + "="):
             return arg.split("=", 1)[1]
     return ""
+
+
+def _manifest_arg():
+    return _arg_value("--manifest")
 
 
 def _load_policy():
@@ -64,7 +72,6 @@ def alias_aware_duplicate_verdicts(rows):
     for members in groups.values():
         if len(members) < 2:
             continue
-        ids = {x["id"] for x in members}
         roots = {_canonical_root(x["id"]) for x in members}
 
         # One canonical timeline with one or many explicitly declared aliases.
@@ -135,8 +142,39 @@ def alias_aware_duplicate_verdicts(rows):
     return duplicates
 
 
+def _print_blocking_failures():
+    path = _arg_value("--json")
+    if not path:
+        return
+    try:
+        report = json.load(open(path, "r", encoding="utf-8"))
+    except Exception as exc:
+        print("ALL-ID BLOCKER DETAIL unavailable: %s" % exc)
+        return
+
+    failures = [r for r in report.get("channels", []) if r.get("verdict") == "FAIL"]
+    if not failures:
+        print("ALL-ID BLOCKER DETAIL: none")
+        return
+
+    print("ALL-ID BLOCKER DETAIL: %d FAIL channel(s)" % len(failures))
+    for row in failures:
+        print(
+            "  [FAIL] shard=%s id=%s name=%s events=%s coverage=%sh score=%s" % (
+                row.get("shard", "?"), row.get("id", "?"), row.get("name", "?"),
+                row.get("events", "?"), row.get("coverage_hours", "?"), row.get("score", "?"),
+            )
+        )
+        print("    issues=%s" % (", ".join(row.get("issues") or []) or "NONE"))
+        print("    warnings=%s" % (", ".join(row.get("warnings") or []) or "NONE"))
+        for event in (row.get("preview") or [])[:3]:
+            print("    preview=%s | %s" % (event.get("start", ""), event.get("title", "")))
+
+
 base.apply_duplicate_verdicts = alias_aware_duplicate_verdicts
 
 
 if __name__ == "__main__":
-    raise SystemExit(base.main())
+    rc = base.main()
+    _print_blocking_failures()
+    raise SystemExit(rc)
