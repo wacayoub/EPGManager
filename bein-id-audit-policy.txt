@@ -1,5 +1,5 @@
 VIRTUAL EPGMANAGER - EXHAUSTIVE beIN ID-BY-ID AUDIT
-channels=72 programmes=1716 PASS=20 ALIAS_OK=20 REVIEW=11 FAIL=0
+channels=72 programmes=1716 PASS=26 ALIAS_OK=20 REVIEW=5 FAIL=0
 Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 01. [ALIAS_OK] 4k_DIGITAL_Mono_AR.bein -> beIN4K.qa@SD
@@ -10,27 +10,27 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Sunderland v Arsenal - الدوري الإنجليزي الممتاز
     • Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship
 
-02. [REVIEW] beIN Drama.eg
+02. [PASS] beIN Drama.eg
     name=beIN Drama.eg | family=beIN Drama | kind=drama
     events=10 coverage=9.0h span=9.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=10% Latin=100% hybrid=10% unique=70% | desc: AR=0% empty=10 same-as-title=0
-    notes=EMPTY_DESC=10, AR_DESC_LOW=0%
+    notes=NONE
     • Sarmasik Zamani
     • Darb Al Thahab
 
-03. [REVIEW] BEIN MOVIES ACTION.eg
+03. [PASS] BEIN MOVIES ACTION.eg
     name=BEIN MOVIES ACTION.eg | family=beIN Movies | kind=movies
     events=23 coverage=44.7h span=44.7h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=83% | desc: AR=100% empty=1 same-as-title=0
-    notes=EMPTY_DESC=1
+    notes=NONE
     • Star Trek
     • Star Trek Into Darkness
 
-04. [REVIEW] BEIN MOVIES DRAMA.eg
+04. [PASS] BEIN MOVIES DRAMA.eg
     name=BEIN MOVIES DRAMA.eg | family=beIN Movies | kind=movies
     events=25 coverage=45.3h span=45.3h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=76% | desc: AR=100% empty=1 same-as-title=0
-    notes=EMPTY_DESC=1
+    notes=NONE
     • A Beautiful Mind
     • The Addams Family
 
@@ -42,11 +42,11 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • The Smurfs
     • Paddington in Peru
 
-06. [REVIEW] BEIN MOVIES PREMIERE.eg
+06. [PASS] BEIN MOVIES PREMIERE.eg
     name=BEIN MOVIES PREMIERE.eg | family=beIN Movies | kind=movies
     events=24 coverage=44.5h span=44.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=75% | desc: AR=100% empty=2 same-as-title=0
-    notes=EMPTY_DESC=2
+    notes=NONE
     • Dear Santa
     • Legends of the Condor Heroes: The Gallants
 
@@ -318,15 +318,15 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     name=بي إن دراما | family=beIN Drama | kind=drama
     events=10 coverage=9.0h span=9.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=10% Latin=100% hybrid=10% unique=70% | desc: AR=0% empty=10 same-as-title=0
-    notes=EMPTY_DESC=10, AR_DESC_LOW=0%
+    notes=NONE
     • Sarmasik Zamani
     • Darb Al Thahab
 
-41. [REVIEW] beINGourmet.qa@SD
+41. [PASS] beINGourmet.qa@SD
     name=beINGOURMET | family=beINGOURMET | kind=other
     events=9 coverage=9.0h span=9.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=67% hybrid=67% unique=44% | desc: AR=0% empty=9 same-as-title=0
-    notes=EMPTY_DESC=9
+    notes=NONE
     • سوبر موم S1
     • Al Dar Alkabira S2 EP 8
 
@@ -334,7 +334,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     name=beINMOVIES1 | family=beIN Movies | kind=movies
     events=24 coverage=44.5h span=44.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=75% | desc: AR=100% empty=2 same-as-title=0
-    notes=EMPTY_DESC=2
+    notes=NONE
     • Dear Santa
     • Legends of the Condor Heroes: The Gallants
 
@@ -342,7 +342,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     name=beINMOVIES2 | family=beIN Movies | kind=movies
     events=23 coverage=44.7h span=44.7h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=83% | desc: AR=100% empty=1 same-as-title=0
-    notes=EMPTY_DESC=1
+    notes=NONE
     • Star Trek
     • Star Trek Into Darkness
 
@@ -350,7 +350,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     name=beINMOVIES3 | family=beIN Movies | kind=movies
     events=25 coverage=45.3h span=45.3h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=76% | desc: AR=100% empty=1 same-as-title=0
-    notes=EMPTY_DESC=1
+    notes=NONE
     • A Beautiful Mind
     • The Addams Family
 
@@ -362,11 +362,11 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • The Smurfs
     • Paddington in Peru
 
-46. [REVIEW] beINSeries1.qa@SD
+46. [PASS] beINSeries1.qa@SD
     name=beINSERIES1 | family=beIN Series | kind=series
     events=10 coverage=9.2h span=9.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=90% hybrid=90% unique=90% | desc: AR=0% empty=10 same-as-title=0
-    notes=EMPTY_DESC=10, AR_DESC_LOW=0%
+    notes=NONE
     • E6 | S3 دخيلة
     • E7 | S8 كل أمريكي
 
@@ -374,7 +374,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     name=بي إن سيريس إتش... | family=beIN Series | kind=series
     events=37 coverage=31.0h span=37.0h gaps>2h=1 gap_total=6.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=100% hybrid=100% unique=30% | desc: AR=100% empty=1 same-as-title=0
-    notes=EMPTY_DESC=1, GAPS_GT_2H=1
+    notes=GAPS_GT_2H=1
     • The Agency: Central Intelligence
     • Dexter S6
 
@@ -550,7 +550,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     name=بي إن موفيز أكشن.eg | family=بي إن موفيز أكشن.eg | kind=other
     events=23 coverage=44.7h span=44.7h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=83% | desc: AR=100% empty=1 same-as-title=0
-    notes=EMPTY_DESC=1
+    notes=NONE
     • Star Trek
     • Star Trek Into Darkness
 
@@ -558,7 +558,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     name=بي إن موفيز بريمير.eg | family=بي إن موفيز بريمير.eg | kind=other
     events=24 coverage=44.5h span=44.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=75% | desc: AR=100% empty=2 same-as-title=0
-    notes=EMPTY_DESC=2
+    notes=NONE
     • Dear Santa
     • Legends of the Condor Heroes: The Gallants
 
@@ -566,7 +566,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     name=بي إن موفيز دراما.eg | family=بي إن موفيز دراما.eg | kind=other
     events=25 coverage=45.3h span=45.3h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=76% | desc: AR=100% empty=1 same-as-title=0
-    notes=EMPTY_DESC=1
+    notes=NONE
     • A Beautiful Mind
     • The Addams Family
 
