@@ -1,0 +1,72 @@
+name: DMI Official Schedule Discovery
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/dmi-official-schedule-discovery.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Discover DMI schedule pages and programme markup
+        shell: bash
+        run: |
+          python - <<'PY'
+          import html,re,urllib.parse,urllib.request
+          from html.parser import HTMLParser
+
+          BASE='https://www.dmi.gov.ae'
+          PAGES={
+            'dubai-one':'/content/dubaione/en-ae/schedule.html',
+            'dubai-tv-ar':'/content/dubaitv/ar-ae/schedule.html',
+            'sama-ar':'/content/samadubai/ar-ae/schedule.html',
+            'sports-ar':'/content/dubaisports/ar-ae/schedule.html',
+            'racing-ar':'/content/dubairacing/ar-ae/schedule.html',
+            'noor-ar':'/content/noordubai/ar-ae/schedule.html',
+            'zaman-ar':'/content/dubaizaman/ar-ae/schedule.html',
+            'corporate-ar':'/content/corporate/ar-ae/schedule.html',
+          }
+          def get(url):
+            req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 EPGManager-DMI-Official/1.0'})
+            with urllib.request.urlopen(req,timeout=35) as r:return r.status,r.geturl(),r.read().decode('utf-8','ignore')
+          def visible(txt):
+            txt=re.sub(r'(?is)<script.*?</script>|<style.*?</style>',' ',txt)
+            txt=re.sub(r'(?s)<[^>]+>','\n',txt)
+            txt=html.unescape(txt)
+            lines=[re.sub(r'\s+',' ',x).strip() for x in txt.splitlines()]
+            return [x for x in lines if x]
+          for key,path in PAGES.items():
+            url=BASE+path
+            print('\n==========',key,url,'==========')
+            try:
+              status,final,text=get(url)
+              print('HTTP',status,'final',final,'bytes',len(text))
+              hrefs=[]
+              for h in re.findall(r'''href=["']([^"']+)["']''',text,re.I):
+                if 'schedule' in h.casefold():
+                  full=urllib.parse.urljoin(final,h)
+                  if full not in hrefs:hrefs.append(full)
+              print('SCHEDULE_LINKS',len(hrefs))
+              for h in hrefs[:20]:print('  LINK',h)
+              lines=visible(text)
+              interesting=[]
+              for i,line in enumerate(lines):
+                if (re.search(r'\b(?:GMT|UAE)\s*:',line,re.I)
+                    or re.search(r'\b(?:Sep|September)\s+1[345],\s*2026\b',line,re.I)
+                    or 'سبتمبر' in line):
+                  lo=max(0,i-2); hi=min(len(lines),i+4)
+                  interesting.extend(lines[lo:hi])
+              ded=[]
+              for x in interesting:
+                if not ded or x!=ded[-1]:ded.append(x)
+              print('LIVE_TEXT_SAMPLE')
+              for x in ded[:160]:print(' ',x)
+            except Exception as e:
+              print('ERROR',repr(e))
+          PY
