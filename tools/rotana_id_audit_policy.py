@@ -10,6 +10,14 @@ Strategy frozen after the 2026-09-14 ID-by-ID comparison:
   or intentionally sparse;
 - legacy Egypt/UAE/generic/US twins are removed earlier at the receiver boundary
   but remain available in internal merge/catalogue evidence.
+
+Coverage policy preserves the user's two-calendar-day grab. A Casablanca evening
+run starts late enough that only ~30 future hours remain inside today+tomorrow;
+official rotana.net services can therefore finish at 28-30 clean hours despite a
+continuous zero-gap guide. The narrow 27.5h floor applies only to those official
+IDs and only alongside the unchanged structural/language/gap checks. Other core
+Rotana services retain the 29.5h operational interpretation of the nominal 30h
+coverage target.
 """
 from __future__ import annotations
 
@@ -26,8 +34,6 @@ AR = re.compile(r"[\u0600-\u06ff]")
 LAT = re.compile(r"[A-Za-z]")
 XMLTV_RE = re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
 
-# High-confidence, useful linear guides. 30h is the nominal target; 29.5h is the
-# operational boundary tolerance used for a rolling 48h build launched mid-hour.
 FROZEN_CORE_IDS = {
     "Rotana + HD.sa",
     "Rotana Aflam +.sa",
@@ -40,8 +46,17 @@ FROZEN_CORE_IDS = {
     "RotanaKhalijia.sa@SD",
 }
 
-# Real services retained on the receiver, but guide shape is not suitable for
-# automatic mapping confidence. They must never silently become auto-lock safe.
+# Official adapters have the known two-calendar-day evening boundary described
+# above. No unrelated/legacy Rotana ID receives this narrower tolerance.
+OFFICIAL_ROTANA_CORE_IDS = {
+    "RotanaCinemaEgypt.eg@SD",
+    "RotanaCinemaKSA.sa@SD",
+    "RotanaClassic.sa@SD",
+    "RotanaComedy.sa@SD",
+    "RotanaDrama.sa@SD",
+    "RotanaKhalijia.sa@SD",
+}
+
 SECONDARY_IDS = {
     "RotanaClip.sa@SD",
     "Rotana M+ HD.sa",
@@ -50,6 +65,7 @@ SECONDARY_IDS = {
 
 EXPECTED_RECEIVER_IDS = FROZEN_CORE_IDS | SECONDARY_IDS
 MIN_COVERAGE_HOURS = 29.5
+OFFICIAL_MIN_COVERAGE_HOURS = 27.5
 MIN_AR_RATIO = 0.90
 MAX_EMPTY_DESC_RATIO = 0.15
 
@@ -171,12 +187,18 @@ def profile(cid, name, programmes):
     }
 
 
+def required_coverage(cid):
+    return OFFICIAL_MIN_COVERAGE_HOURS if cid in OFFICIAL_ROTANA_CORE_IDS else MIN_COVERAGE_HOURS
+
+
 def core_issues(row):
     issues = []
+    minimum = required_coverage(row["id"])
+    row["minimum_coverage_hours"] = minimum
     if row["events"] <= 0:
         issues.append("NO_PROGRAMMES")
-    if row["coverage_hours"] < MIN_COVERAGE_HOURS:
-        issues.append("LOW_COVERAGE=%.1fh" % row["coverage_hours"])
+    if row["coverage_hours"] < minimum:
+        issues.append("LOW_COVERAGE=%.1fh<%.1fh" % (row["coverage_hours"], minimum))
     if row["invalid"]:
         issues.append("INVALID=%d" % row["invalid"])
     if row["overlaps"]:
@@ -248,18 +270,18 @@ def main():
             row["auto_lock_safe"] = not row["issues"]
         elif cid in SECONDARY_IDS:
             row["class"] = "SECONDARY"
+            row["minimum_coverage_hours"] = None
             row["issues"] = secondary_issues(row)
             row["verdict"] = "SECONDARY" if not row["issues"] else "FAIL"
             row["auto_lock_safe"] = False
         else:
             row["class"] = "UNCLASSIFIED"
+            row["minimum_coverage_hours"] = None
             row["issues"] = ["UNEXPECTED_RECEIVER_ID"]
             row["verdict"] = "FAIL"
             row["auto_lock_safe"] = False
         rows.append(row)
-        if row["issues"] and row["class"] != "SECONDARY":
-            errors.append("%s:%s" % (cid, ",".join(row["issues"])))
-        elif row["class"] == "SECONDARY" and row["issues"]:
+        if row["issues"]:
             errors.append("%s:%s" % (cid, ",".join(row["issues"])))
 
     for cid in missing:
@@ -278,9 +300,10 @@ def main():
         "secondary_expected": len(SECONDARY_IDS),
         "secondary_ok": secondary_ok,
         "minimum_clean_coverage_h": MIN_COVERAGE_HOURS,
+        "official_evening_minimum_h": OFFICIAL_MIN_COVERAGE_HOURS,
     }
     payload = {
-        "schema": 1,
+        "schema": 2,
         "summary": summary,
         "channels": rows,
         "missing_ids": missing,
@@ -291,13 +314,16 @@ def main():
 
     lines = [
         "ROTANA CANONICAL PROVIDER AUDIT: %s" % status,
-        "channels=%d core=%d/%d secondary=%d/%d" % (
-            len(rows), core_ok, len(FROZEN_CORE_IDS), secondary_ok, len(SECONDARY_IDS)),
+        "channels=%d core=%d/%d secondary=%d/%d nominal_min=%.1fh official_evening_min=%.1fh" % (
+            len(rows), core_ok, len(FROZEN_CORE_IDS), secondary_ok, len(SECONDARY_IDS),
+            MIN_COVERAGE_HOURS, OFFICIAL_MIN_COVERAGE_HOURS),
         "",
     ]
     for row in rows:
-        lines.append("[%s] %s class=%s events=%d coverage=%.1fh gaps=%d title_AR=%.0f%% desc_AR=%.0f%% auto_lock=%s" % (
-            row["verdict"], row["id"], row["class"], row["events"], row["coverage_hours"],
+        min_cov = row.get("minimum_coverage_hours")
+        min_text = "n/a" if min_cov is None else "%.1fh" % min_cov
+        lines.append("[%s] %s class=%s events=%d coverage=%.1fh min=%s gaps=%d title_AR=%.0f%% desc_AR=%.0f%% auto_lock=%s" % (
+            row["verdict"], row["id"], row["class"], row["events"], row["coverage_hours"], min_text,
             row["gaps_gt_2h"], row["title_ar_ratio"] * 100.0, row["desc_ar_ratio"] * 100.0,
             "YES" if row["auto_lock_safe"] else "NO"))
         if row["issues"]:
