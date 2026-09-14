@@ -1,17 +1,17 @@
 {
   "schema": 1,
   "scope": "all exclusive MENA country/provider shards",
-  "channels_scanned": 1055,
-  "programmes_scanned": 33109,
+  "channels_scanned": 1038,
+  "programmes_scanned": 32774,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 681,
-    "empty_description": 15521,
+    "arabic_provider_title_not_arabic": 760,
+    "empty_description": 15368,
     "hybrid_arabic_latin_description": 4,
     "premium_title_not_english": 115,
-    "severity_warning": 18644,
-    "very_long_event_gt_6h": 23,
-    "very_short_event_lt_5m": 2298
+    "severity_warning": 18568,
+    "very_long_event_gt_6h": 24,
+    "very_short_event_lt_5m": 2295
   },
   "by_shard": {
     "mena-ae": {
@@ -22,17 +22,17 @@
       "very_short_event_lt_5m": 13
     },
     "mena-dz": {
-      "empty_description": 45
+      "empty_description": 30
     },
     "mena-eg": {
-      "empty_description": 1301,
+      "empty_description": 1337,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 590
+      "empty_description": 545
     },
     "mena-jo": {
-      "empty_description": 115,
+      "empty_description": 112,
       "very_short_event_lt_5m": 6
     },
     "mena-kw": {
@@ -44,10 +44,10 @@
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 363
+      "empty_description": 362
     },
     "mena-other": {
-      "empty_description": 7561,
+      "empty_description": 7447,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 10,
       "very_short_event_lt_5m": 1200
@@ -56,36 +56,40 @@
       "empty_description": 35
     },
     "mena-qa": {
-      "empty_description": 680,
+      "empty_description": 686,
       "very_long_event_gt_6h": 3,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1554,
-      "very_short_event_lt_5m": 711
+      "empty_description": 1552,
+      "very_short_event_lt_5m": 710
     },
     "mena-sd": {
-      "empty_description": 47
+      "empty_description": 48
     },
     "mena-sy": {
       "empty_description": 7
     },
     "mena-tn": {
-      "empty_description": 59
+      "empty_description": 49
     },
     "mena-ye": {
       "empty_description": 126
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 263,
-      "empty_description": 202,
+      "arabic_provider_title_not_arabic": 266,
+      "empty_description": 205,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 23
     },
+    "provider-alkass": {
+      "arabic_provider_title_not_arabic": 75,
+      "very_long_event_gt_6h": 1
+    },
     "provider-art": {
       "arabic_provider_title_not_arabic": 9,
-      "empty_description": 698,
-      "very_short_event_lt_5m": 276
+      "empty_description": 694,
+      "very_short_event_lt_5m": 275
     },
     "provider-bein": {
       "empty_description": 153,
@@ -94,31 +98,675 @@
     },
     "provider-dmi": {
       "arabic_provider_title_not_arabic": 74,
-      "empty_description": 297,
+      "empty_description": 293,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 1
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
       "arabic_provider_title_not_arabic": 264,
-      "empty_description": 385,
+      "empty_description": 381,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
-      "empty_description": 348,
+      "empty_description": 347,
       "premium_title_not_english": 4,
-      "very_short_event_lt_5m": 49
+      "very_short_event_lt_5m": 48
     },
     "provider-rotana": {
-      "arabic_provider_title_not_arabic": 71,
-      "empty_description": 82
+      "arabic_provider_title_not_arabic": 72,
+      "empty_description": 83
     },
     "provider-starz": {
-      "empty_description": 159,
+      "empty_description": 162,
       "very_long_event_gt_6h": 1
     }
   },
   "samples": {
+    "arabic_provider_title_not_arabic": [
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914053000 +0000",
+        "stop": "20260914060000 +0000",
+        "title": "FIBA World Basketball",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914060000 +0000",
+        "stop": "20260914063000 +0000",
+        "title": "Akhbar",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914063000 +0000",
+        "stop": "20260914080000 +0000",
+        "title": "Dawry Al Darajah Al Thanya Al Qatary",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914080000 +0000",
+        "stop": "20260914083000 +0000",
+        "title": "Sport Confidential",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914083000 +0000",
+        "stop": "20260914084500 +0000",
+        "title": "Ahdaf",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 15.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914084500 +0000",
+        "stop": "20260914113000 +0000",
+        "title": "Ostudio Al Khayl",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 165.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914113000 +0000",
+        "stop": "20260914120000 +0000",
+        "title": "King of the Court Beach Volleyball Championship",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914120000 +0000",
+        "stop": "20260914123000 +0000",
+        "title": "Akhbar",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914123000 +0000",
+        "stop": "20260914130000 +0000",
+        "title": "Jarayed",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914130000 +0000",
+        "stop": "20260914133000 +0000",
+        "title": "King of the Court Beach Volleyball Championship",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914133000 +0000",
+        "stop": "20260914140000 +0000",
+        "title": "The Football Review",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914140000 +0000",
+        "stop": "20260914160000 +0000",
+        "title": "Dawry Al Darajah Al Thanya Al Qatary",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 120.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914160000 +0000",
+        "stop": "20260914161500 +0000",
+        "title": "Akhbar",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 15.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914161500 +0000",
+        "stop": "20260914164500 +0000",
+        "title": "King of the Court Beach Volleyball Championship",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914164500 +0000",
+        "stop": "20260914171500 +0000",
+        "title": "Sport Confidential",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914171500 +0000",
+        "stop": "20260914190000 +0000",
+        "title": "Derby Tunis",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914190000 +0000",
+        "stop": "20260914220000 +0000",
+        "title": "Dawry Nojom Qatar",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 180.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914220000 +0000",
+        "stop": "20260914223000 +0000",
+        "title": "Marine Magazine",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914223000 +0000",
+        "stop": "20260914233000 +0000",
+        "title": "Al Hasad",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 2.qa",
+        "channel": "2023 Alkass 2.qa",
+        "start": "20260914233000 +0000",
+        "stop": "20260914235900 +0000",
+        "title": "King of the Court Beach Volleyball Championship",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 29.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914050000 +0000",
+        "stop": "20260914060000 +0000",
+        "title": "Al Hasila",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914060000 +0000",
+        "stop": "20260914063000 +0000",
+        "title": "Akhbar",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914063000 +0000",
+        "stop": "20260914070000 +0000",
+        "title": "Dawry Al Darajah Al Thanya Al Qatary",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914070000 +0000",
+        "stop": "20260914083000 +0000",
+        "title": "Golmania",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914083000 +0000",
+        "stop": "20260914100500 +0000",
+        "title": "Botoulat Asia Lel Shabab Lekorat Al Yad",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 95.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914100500 +0000",
+        "stop": "20260914120000 +0000",
+        "title": "Dawry Nojom Qatar",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 115.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914120000 +0000",
+        "stop": "20260914123000 +0000",
+        "title": "Akhbar",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914123000 +0000",
+        "stop": "20260914150000 +0000",
+        "title": "Jarayed",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 150.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914150000 +0000",
+        "stop": "20260914170000 +0000",
+        "title": "Golmania",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 120.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914170000 +0000",
+        "stop": "20260914173000 +0000",
+        "title": "The Inside Line",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914173000 +0000",
+        "stop": "20260914190000 +0000",
+        "title": "Botoulat Asia Lel Shabab Lekorat Al Yad",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914190000 +0000",
+        "stop": "20260914200000 +0000",
+        "title": "Review",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914200000 +0000",
+        "stop": "20260914210000 +0000",
+        "title": "Tisein Daqiqatan",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914210000 +0000",
+        "stop": "20260914213000 +0000",
+        "title": "Akhbar",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914213000 +0000",
+        "stop": "20260914223000 +0000",
+        "title": "Fad Fad",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914223000 +0000",
+        "stop": "20260914230000 +0000",
+        "title": "Sport Confidential",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914230000 +0000",
+        "stop": "20260914233000 +0000",
+        "title": "Marine Magazine",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914233000 +0000",
+        "stop": "20260914235900 +0000",
+        "title": "The Football Review",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 29.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260915003000 +0000",
+        "stop": "20260915010000 +0000",
+        "title": "Dawry Al Darajah Al Thanya Al Qatary",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260915010000 +0000",
+        "stop": "20260915043000 +0000",
+        "title": "Dawry Al Darajah Al Thanya Al Qatary",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 210.0
+      }
+    ],
+    "very_long_event_gt_6h": [
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 4.qa",
+        "channel": "2023 Alkass 4.qa",
+        "start": "20260914162000 +0000",
+        "stop": "20260914234500 +0000",
+        "title": "Botolat Qatar Al Dawlya Lel Khayl Al Arabia Al Aseel",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 445.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS.qa",
+        "channel": "beIN SPORTS.qa",
+        "start": "20260915193000 +0000",
+        "stop": "20260916034500 +0000",
+        "title": "Vietnam vs Kuwait - Football Men - Asian Games Aichi-Nagoya 2026 - FBL06",
+        "desc": "مباراة، موسم 2026.",
+        "duration_minutes": 495.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINSports2.qa@MENA",
+        "channel": "beINSPORTS2",
+        "start": "20260916002000 +0000",
+        "stop": "20260916070000 +0000",
+        "title": "São Paulo (BRA) vs Boca Juniors (ARG) - Conmebol Sudamericana - De Final 2nd Leg",
+        "desc": "مباراة، موسم 2026.",
+        "duration_minutes": 400.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "MBCMood.sa@HD",
+        "channel": "MBC Mood",
+        "start": "20260914190200 +0000",
+        "stop": "20260915030200 +0000",
+        "title": "طرب",
+        "desc": "موعدكم الليلي مع نجوم الطرب الأصيل، حيث الإحساس والسلطنة في مختارات من برامج MBC وحفلات موسم الرياض.",
+        "duration_minutes": 480.0
+      },
+      {
+        "shard": "provider-adm",
+        "channel_id": "Yas.TV.HD.ae",
+        "channel": "Yas TV HD",
+        "start": "20260914193000 +0100",
+        "stop": "20260915030900 +0100",
+        "title": "Camel Racing",
+        "desc": "",
+        "duration_minutes": 459.0
+      },
+      {
+        "shard": "provider-adm",
+        "channel_id": "Yas.TV.HD.ae",
+        "channel": "Yas TV HD",
+        "start": "20260915210000 +0100",
+        "stop": "20260916031200 +0100",
+        "title": "Sharjah Arabian Horse Festival",
+        "desc": "",
+        "duration_minutes": 372.0
+      },
+      {
+        "shard": "provider-dmi",
+        "channel_id": "Dubai.Racing.ae",
+        "channel": "Dubai Racing",
+        "start": "20260914120000 +0000",
+        "stop": "20260914182600 +0000",
+        "title": "14 SEPTEMBER 2026 RACE FROM RACING TV, UK",
+        "desc": "",
+        "duration_minutes": 386.0
+      },
+      {
+        "shard": "provider-dmi",
+        "channel_id": "Dubai.Racing.ae",
+        "channel": "Dubai Racing",
+        "start": "20260915013000 +0000",
+        "stop": "20260915120000 +0000",
+        "title": "Dubai International Arabian Horse Championship - 04/04/2026",
+        "desc": "",
+        "duration_minutes": 630.0
+      },
+      {
+        "shard": "provider-starz",
+        "channel_id": "en:.StarzPlay.Rugby.-.Live.ae",
+        "channel": "en: StarzPlay Rugby - Live",
+        "start": "20260914183600 +0000",
+        "stop": "20260915020000 +0000",
+        "title": "WOA STARZPLAY RUGBY",
+        "desc": "",
+        "duration_minutes": 444.0
+      },
+      {
+        "shard": "mena-qa",
+        "channel_id": "Qatar.TV.HD.ae",
+        "channel": "Qatar TV HD",
+        "start": "20260913214500 +0100",
+        "stop": "20260914070000 +0100",
+        "title": "Soil",
+        "desc": "",
+        "duration_minutes": 555.0
+      },
+      {
+        "shard": "mena-qa",
+        "channel_id": "Qatar.TV.HD.ae",
+        "channel": "Qatar TV HD",
+        "start": "20260914214500 +0100",
+        "stop": "20260915070000 +0100",
+        "title": "Soil",
+        "desc": "",
+        "duration_minutes": 555.0
+      },
+      {
+        "shard": "mena-qa",
+        "channel_id": "Qatar.TV.HD.ae",
+        "channel": "Qatar TV HD",
+        "start": "20260915214500 +0100",
+        "stop": "20260916070000 +0100",
+        "title": "Soil",
+        "desc": "",
+        "duration_minutes": 555.0
+      },
+      {
+        "shard": "mena-lb",
+        "channel_id": "MTV.lb@SD",
+        "channel": "MTV Lebanon",
+        "start": "20260914205900 +0000",
+        "stop": "20260915043000 +0000",
+        "title": "Midnight News",
+        "desc": "نشرة منتصف الليل",
+        "duration_minutes": 451.0
+      },
+      {
+        "shard": "mena-lb",
+        "channel_id": "MTV.lb@SD",
+        "channel": "MTV Lebanon",
+        "start": "20260915205900 +0000",
+        "stop": "20260916043000 +0000",
+        "title": "Midnight News",
+        "desc": "نشرة منتصف الليل",
+        "duration_minutes": 451.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "ar:.ستارزبلاي.رغبي.ae",
+        "channel": "ar: ستارزبلاي رغبي",
+        "start": "20260914183600 +0000",
+        "stop": "20260915020000 +0000",
+        "title": "WOA STARZPLAY RUGBY",
+        "desc": "‫‬.",
+        "duration_minutes": 444.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "EN:.Aflam.sa",
+        "channel": "EN: Aflam",
+        "start": "20260914115957 +0000",
+        "stop": "20260914235959 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 720.03
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "EN:.Maraya.Channel.sa",
+        "channel": "EN: Maraya Channel",
+        "start": "20260914120714 +0000",
+        "stop": "20260914235959 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 712.75
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Esport 24.sa",
+        "channel": "Esport 24.sa",
+        "start": "20260914005900 +0000",
+        "stop": "20260914100300 +0000",
+        "title": "بلاست بريمير",
+        "desc": "",
+        "duration_minutes": 544.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Esport 24.sa",
+        "channel": "Esport 24.sa",
+        "start": "20260914100300 +0000",
+        "stop": "20260914171400 +0000",
+        "title": "كأس العالم للرياضات الإلكترونية",
+        "desc": "",
+        "duration_minutes": 431.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Esport 24.sa",
+        "channel": "Esport 24.sa",
+        "start": "20260914171400 +0000",
+        "stop": "20260915000000 +0000",
+        "title": "بلاست بريمير",
+        "desc": "",
+        "duration_minutes": 406.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Samira.HD.ae",
+        "channel": "Samira HD",
+        "start": "20260914000000 +0100",
+        "stop": "20260914080000 +0100",
+        "title": "Fatma",
+        "desc": "",
+        "duration_minutes": 480.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Samira.HD.ae",
+        "channel": "Samira HD",
+        "start": "20260915000000 +0100",
+        "stop": "20260915072000 +0100",
+        "title": "Fatma",
+        "desc": "",
+        "duration_minutes": 440.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Samira.HD.ae",
+        "channel": "Samira HD",
+        "start": "20260916000000 +0100",
+        "stop": "20260916080000 +0100",
+        "title": "Fatma",
+        "desc": "",
+        "duration_minutes": 480.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "دي إم سي.eg",
+        "channel": "دي إم سي.eg",
+        "start": "20260914160000 +0000",
+        "stop": "20260915011800 +0000",
+        "title": "حفل غنائي",
+        "desc": "",
+        "duration_minutes": 558.0
+      }
+    ],
     "empty_description": [
       {
         "shard": "provider-bein",
@@ -923,249 +1571,7 @@
         "duration_minutes": 90.0
       }
     ],
-    "very_long_event_gt_6h": [
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN SPORTS.qa",
-        "channel": "beIN SPORTS.qa",
-        "start": "20260915193000 +0000",
-        "stop": "20260916034500 +0000",
-        "title": "Vietnam vs Kuwait - Football Men - Asian Games Aichi-Nagoya 2026 - FBL06",
-        "desc": "مباراة، موسم 2026.",
-        "duration_minutes": 495.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINSports2.qa@MENA",
-        "channel": "beINSPORTS2",
-        "start": "20260916002000 +0000",
-        "stop": "20260916070000 +0000",
-        "title": "São Paulo (BRA) vs Boca Juniors (ARG) - Conmebol Sudamericana - De Final 2nd Leg",
-        "desc": "مباراة، موسم 2026.",
-        "duration_minutes": 400.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "MBCMood.sa@HD",
-        "channel": "MBC Mood",
-        "start": "20260914190200 +0000",
-        "stop": "20260915030200 +0000",
-        "title": "طرب",
-        "desc": "موعدكم الليلي مع نجوم الطرب الأصيل، حيث الإحساس والسلطنة في مختارات من برامج MBC وحفلات موسم الرياض.",
-        "duration_minutes": 480.0
-      },
-      {
-        "shard": "provider-adm",
-        "channel_id": "Yas.TV.HD.ae",
-        "channel": "Yas TV HD",
-        "start": "20260914193000 +0100",
-        "stop": "20260915030900 +0100",
-        "title": "Camel Racing",
-        "desc": "",
-        "duration_minutes": 459.0
-      },
-      {
-        "shard": "provider-adm",
-        "channel_id": "Yas.TV.HD.ae",
-        "channel": "Yas TV HD",
-        "start": "20260915210000 +0100",
-        "stop": "20260916031200 +0100",
-        "title": "Sharjah Arabian Horse Festival",
-        "desc": "",
-        "duration_minutes": 372.0
-      },
-      {
-        "shard": "provider-dmi",
-        "channel_id": "Dubai.Racing.ae",
-        "channel": "Dubai Racing",
-        "start": "20260914120000 +0000",
-        "stop": "20260914182600 +0000",
-        "title": "14 SEPTEMBER 2026 RACE FROM RACING TV, UK",
-        "desc": "",
-        "duration_minutes": 386.0
-      },
-      {
-        "shard": "provider-dmi",
-        "channel_id": "Dubai.Racing.ae",
-        "channel": "Dubai Racing",
-        "start": "20260915013000 +0000",
-        "stop": "20260915120000 +0000",
-        "title": "Dubai International Arabian Horse Championship - 04/04/2026",
-        "desc": "",
-        "duration_minutes": 630.0
-      },
-      {
-        "shard": "provider-starz",
-        "channel_id": "en:.StarzPlay.Rugby.-.Live.ae",
-        "channel": "en: StarzPlay Rugby - Live",
-        "start": "20260914183600 +0000",
-        "stop": "20260915020000 +0000",
-        "title": "WOA STARZPLAY RUGBY",
-        "desc": "",
-        "duration_minutes": 444.0
-      },
-      {
-        "shard": "mena-qa",
-        "channel_id": "Qatar.TV.HD.ae",
-        "channel": "Qatar TV HD",
-        "start": "20260913214500 +0100",
-        "stop": "20260914070000 +0100",
-        "title": "Soil",
-        "desc": "",
-        "duration_minutes": 555.0
-      },
-      {
-        "shard": "mena-qa",
-        "channel_id": "Qatar.TV.HD.ae",
-        "channel": "Qatar TV HD",
-        "start": "20260914214500 +0100",
-        "stop": "20260915070000 +0100",
-        "title": "Soil",
-        "desc": "",
-        "duration_minutes": 555.0
-      },
-      {
-        "shard": "mena-qa",
-        "channel_id": "Qatar.TV.HD.ae",
-        "channel": "Qatar TV HD",
-        "start": "20260915214500 +0100",
-        "stop": "20260916070000 +0100",
-        "title": "Soil",
-        "desc": "",
-        "duration_minutes": 555.0
-      },
-      {
-        "shard": "mena-lb",
-        "channel_id": "MTV.lb@SD",
-        "channel": "MTV Lebanon",
-        "start": "20260914205900 +0000",
-        "stop": "20260915043000 +0000",
-        "title": "Midnight News",
-        "desc": "نشرة منتصف الليل",
-        "duration_minutes": 451.0
-      },
-      {
-        "shard": "mena-lb",
-        "channel_id": "MTV.lb@SD",
-        "channel": "MTV Lebanon",
-        "start": "20260915205900 +0000",
-        "stop": "20260916043000 +0000",
-        "title": "Midnight News",
-        "desc": "نشرة منتصف الليل",
-        "duration_minutes": 451.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "ar:.ستارزبلاي.رغبي.ae",
-        "channel": "ar: ستارزبلاي رغبي",
-        "start": "20260914183600 +0000",
-        "stop": "20260915020000 +0000",
-        "title": "WOA STARZPLAY RUGBY",
-        "desc": "‫‬.",
-        "duration_minutes": 444.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "EN:.Aflam.sa",
-        "channel": "EN: Aflam",
-        "start": "20260914115957 +0000",
-        "stop": "20260914235959 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 720.03
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "EN:.Maraya.Channel.sa",
-        "channel": "EN: Maraya Channel",
-        "start": "20260914120714 +0000",
-        "stop": "20260914235959 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 712.75
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Esport 24.sa",
-        "channel": "Esport 24.sa",
-        "start": "20260914005900 +0000",
-        "stop": "20260914100300 +0000",
-        "title": "بلاست بريمير",
-        "desc": "",
-        "duration_minutes": 544.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Esport 24.sa",
-        "channel": "Esport 24.sa",
-        "start": "20260914100300 +0000",
-        "stop": "20260914171400 +0000",
-        "title": "كأس العالم للرياضات الإلكترونية",
-        "desc": "",
-        "duration_minutes": 431.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Esport 24.sa",
-        "channel": "Esport 24.sa",
-        "start": "20260914171400 +0000",
-        "stop": "20260915000000 +0000",
-        "title": "بلاست بريمير",
-        "desc": "",
-        "duration_minutes": 406.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Samira.HD.ae",
-        "channel": "Samira HD",
-        "start": "20260914000000 +0100",
-        "stop": "20260914080000 +0100",
-        "title": "Fatma",
-        "desc": "",
-        "duration_minutes": 480.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Samira.HD.ae",
-        "channel": "Samira HD",
-        "start": "20260915000000 +0100",
-        "stop": "20260915072000 +0100",
-        "title": "Fatma",
-        "desc": "",
-        "duration_minutes": 440.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Samira.HD.ae",
-        "channel": "Samira HD",
-        "start": "20260916000000 +0100",
-        "stop": "20260916080000 +0100",
-        "title": "Fatma",
-        "desc": "",
-        "duration_minutes": 480.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "دي إم سي.eg",
-        "channel": "دي إم سي.eg",
-        "start": "20260914160000 +0000",
-        "stop": "20260915011800 +0000",
-        "title": "حفل غنائي",
-        "desc": "",
-        "duration_minutes": 558.0
-      }
-    ],
     "very_short_event_lt_5m": [
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914054600 +0000",
-        "stop": "20260914055000 +0000",
-        "title": "Barbie: Fashion Stories",
-        "desc": "مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!",
-        "duration_minutes": 4.0
-      },
       {
         "shard": "provider-osn",
         "channel_id": "OSNKids.ae@SD",
@@ -1555,408 +1961,16 @@
         "title": "Duplo Adventures",
         "desc": "بيب، ليو، وهوبسي متحمسون لقضاء اليوم مع صديقهم بن في حديقة الحياة البرية.",
         "duration_minutes": 2.0
-      }
-    ],
-    "arabic_provider_title_not_arabic": [
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914053300 +0000",
-        "stop": "20260914060500 +0000",
-        "title": "Teebah",
-        "desc": "",
-        "duration_minutes": 32.0
       },
       {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914060500 +0000",
-        "stop": "20260914065500 +0000",
-        "title": "A'elati Tarbah",
-        "desc": "",
-        "duration_minutes": 50.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914065500 +0000",
-        "stop": "20260914070000 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 5.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914070000 +0000",
-        "stop": "20260914074800 +0000",
-        "title": "Al Nowaylati",
-        "desc": "",
-        "duration_minutes": 48.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914074800 +0000",
-        "stop": "20260914075500 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914075500 +0000",
-        "stop": "20260914085000 +0000",
-        "title": "Ali Klay",
-        "desc": "",
-        "duration_minutes": 55.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914085000 +0000",
-        "stop": "20260914085500 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 5.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914085500 +0000",
-        "stop": "20260914093000 +0000",
-        "title": "Al Motawahesh",
-        "desc": "",
-        "duration_minutes": 35.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914093000 +0000",
-        "stop": "20260914100500 +0000",
-        "title": "Al A'ela",
-        "desc": "",
-        "duration_minutes": 35.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914100500 +0000",
-        "stop": "20260914110000 +0000",
-        "title": "Awdat Khalati",
-        "desc": "",
-        "duration_minutes": 55.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914110000 +0000",
-        "stop": "20260914115100 +0000",
-        "title": "A'elati Tarbah",
-        "desc": "",
-        "duration_minutes": 51.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914115100 +0000",
-        "stop": "20260914120000 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 9.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914120000 +0000",
-        "stop": "20260914125000 +0000",
-        "title": "Aa Amal",
-        "desc": "",
-        "duration_minutes": 50.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914125000 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 10.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914130000 +0000",
-        "stop": "20260914134800 +0000",
-        "title": "Al Nowaylati",
-        "desc": "",
-        "duration_minutes": 48.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914134800 +0000",
-        "stop": "20260914140000 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 12.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914140000 +0000",
-        "stop": "20260914145400 +0000",
-        "title": "Ali Klay",
-        "desc": "",
-        "duration_minutes": 54.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914145400 +0000",
-        "stop": "20260914150000 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 6.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914150000 +0000",
-        "stop": "20260914154700 +0000",
-        "title": "Awdat Khalati",
-        "desc": "",
-        "duration_minutes": 47.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914154700 +0000",
-        "stop": "20260914155500 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 8.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914155500 +0000",
-        "stop": "20260914163000 +0000",
-        "title": "Al Motawahesh",
-        "desc": "",
-        "duration_minutes": 35.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914163000 +0000",
-        "stop": "20260914170500 +0000",
-        "title": "Al A'ela",
-        "desc": "",
-        "duration_minutes": 35.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914170500 +0000",
-        "stop": "20260914175000 +0000",
-        "title": "A'elati Tarbah",
-        "desc": "",
-        "duration_minutes": 45.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914175000 +0000",
-        "stop": "20260914180000 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 10.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914180000 +0000",
-        "stop": "20260914185100 +0000",
-        "title": "Teebah",
-        "desc": "",
-        "duration_minutes": 51.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914185100 +0000",
-        "stop": "20260914190000 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 9.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914190000 +0000",
-        "stop": "20260914200000 +0000",
-        "title": "Layla Fontastic Ma' Abla Fahita",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914200000 +0000",
-        "stop": "20260914203500 +0000",
-        "title": "Al Motawahesh",
-        "desc": "",
-        "duration_minutes": 35.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914203500 +0000",
-        "stop": "20260914212300 +0000",
-        "title": "Fi Mithl Hatha Al Yawm",
-        "desc": "",
-        "duration_minutes": 48.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914212300 +0000",
-        "stop": "20260914213000 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 7.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914213000 +0000",
-        "stop": "20260914221500 +0000",
-        "title": "A'elati Tarbah",
-        "desc": "",
-        "duration_minutes": 45.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914221500 +0000",
-        "stop": "20260914230000 +0000",
-        "title": "Al Nowaylati",
-        "desc": "",
-        "duration_minutes": 45.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914230000 +0000",
-        "stop": "20260915000000 +0000",
-        "title": "78th Emmy Awards",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260915020900 +0000",
-        "stop": "20260915030000 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 51.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260915030000 +0000",
-        "stop": "20260915033000 +0000",
-        "title": "Al Motawahesh",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260915033000 +0000",
-        "stop": "20260915040000 +0000",
-        "title": "Al A'ela",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260915040000 +0000",
-        "stop": "20260915044700 +0000",
-        "title": "Awdat Khalati",
-        "desc": "",
-        "duration_minutes": 47.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260915044700 +0000",
-        "stop": "20260915050000 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 13.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260915050000 +0000",
-        "stop": "20260915054700 +0000",
-        "title": "Teebah",
-        "desc": "",
-        "duration_minutes": 47.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260915054700 +0000",
-        "stop": "20260915060000 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 13.0
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915173900 +0000",
+        "stop": "20260915174300 +0000",
+        "title": "Barbie Summer Adventure",
+        "desc": "باربي، باربي، وأصدقاؤها ينطلقون للبحث عن مغامرات الصيف المثيرة!",
+        "duration_minutes": 4.0
       }
     ],
     "arabic_provider_description_not_arabic": [

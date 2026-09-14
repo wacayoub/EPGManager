@@ -1,15 +1,15 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=1055
-programmes_scanned=33109
+channels_scanned=1038
+programmes_scanned=32774
 critical=0
-warnings=18644
+warnings=18568
 
 ISSUE COUNTS
-empty_description=15521
-very_short_event_lt_5m=2298
-arabic_provider_title_not_arabic=681
+empty_description=15368
+very_short_event_lt_5m=2295
+arabic_provider_title_not_arabic=760
 premium_title_not_english=115
-very_long_event_gt_6h=23
+very_long_event_gt_6h=24
 hybrid_arabic_latin_description=4
 arabic_provider_description_not_arabic=2
 
@@ -21,19 +21,29 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260916034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=681
-- provider-mbc | EN: MBC Iraq | 20260914053300 +0000 | Teebah
-- provider-mbc | EN: MBC Iraq | 20260914060500 +0000 | A'elati Tarbah
-- provider-mbc | EN: MBC Iraq | 20260914065500 +0000 | TV guide is not available
-- provider-mbc | EN: MBC Iraq | 20260914070000 +0000 | Al Nowaylati
-- provider-mbc | EN: MBC Iraq | 20260914074800 +0000 | TV guide is not available
-- provider-mbc | EN: MBC Iraq | 20260914075500 +0000 | Ali Klay
-- provider-mbc | EN: MBC Iraq | 20260914085000 +0000 | TV guide is not available
-- provider-mbc | EN: MBC Iraq | 20260914085500 +0000 | Al Motawahesh
-- provider-mbc | EN: MBC Iraq | 20260914093000 +0000 | Al A'ela
-- provider-mbc | EN: MBC Iraq | 20260914100500 +0000 | Awdat Khalati
+[arabic_provider_title_not_arabic] count=760
+- provider-alkass | 2023 Alkass 2.qa | 20260914053000 +0000 | FIBA World Basketball
+  desc: برنامج رياضي على قنوات الكأس.
+- provider-alkass | 2023 Alkass 2.qa | 20260914060000 +0000 | Akhbar
+  desc: برنامج رياضي على قنوات الكأس.
+- provider-alkass | 2023 Alkass 2.qa | 20260914063000 +0000 | Dawry Al Darajah Al Thanya Al Qatary
+  desc: برنامج رياضي على قنوات الكأس.
+- provider-alkass | 2023 Alkass 2.qa | 20260914080000 +0000 | Sport Confidential
+  desc: برنامج رياضي على قنوات الكأس.
+- provider-alkass | 2023 Alkass 2.qa | 20260914083000 +0000 | Ahdaf
+  desc: برنامج رياضي على قنوات الكأس.
+- provider-alkass | 2023 Alkass 2.qa | 20260914084500 +0000 | Ostudio Al Khayl
+  desc: برنامج رياضي على قنوات الكأس.
+- provider-alkass | 2023 Alkass 2.qa | 20260914113000 +0000 | King of the Court Beach Volleyball Championship
+  desc: برنامج رياضي على قنوات الكأس.
+- provider-alkass | 2023 Alkass 2.qa | 20260914120000 +0000 | Akhbar
+  desc: برنامج رياضي على قنوات الكأس.
+- provider-alkass | 2023 Alkass 2.qa | 20260914123000 +0000 | Jarayed
+  desc: برنامج رياضي على قنوات الكأس.
+- provider-alkass | 2023 Alkass 2.qa | 20260914130000 +0000 | King of the Court Beach Volleyball Championship
+  desc: برنامج رياضي على قنوات الكأس.
 
-[empty_description] count=15521
+[empty_description] count=15368
 - provider-bein | beIN Drama.eg | 20260914050000 +0000 | Sarmasik Zamani
 - provider-bein | beIN Drama.eg | 20260914060000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260914070000 +0000 | Mazad El Shar
@@ -75,7 +85,9 @@ TOP SAMPLES
 - provider-bein | بي إن دراما | 20260914120000 +0000 | درب الذهب
   desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
 
-[very_long_event_gt_6h] count=23
+[very_long_event_gt_6h] count=24
+- provider-alkass | 2023 Alkass 4.qa | 20260914162000 +0000 | Botolat Qatar Al Dawlya Lel Khayl Al Arabia Al Aseel
+  desc: برنامج رياضي على قنوات الكأس.
 - provider-bein | beIN SPORTS.qa | 20260915193000 +0000 | Vietnam vs Kuwait - Football Men - Asian Games Aichi-Nagoya 2026 - FBL06
   desc: مباراة، موسم 2026.
 - provider-bein | beINSPORTS2 | 20260916002000 +0000 | São Paulo (BRA) vs Boca Juniors (ARG) - Conmebol Sudamericana - De Final 2nd Leg
@@ -88,11 +100,8 @@ TOP SAMPLES
 - provider-dmi | Dubai Racing | 20260915013000 +0000 | Dubai International Arabian Horse Championship - 04/04/2026
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
 - mena-qa | Qatar TV HD | 20260913214500 +0100 | Soil
-- mena-qa | Qatar TV HD | 20260914214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2298
-- provider-osn | OSNtv Kids | 20260914054600 +0000 | Barbie: Fashion Stories
-  desc: مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!
+[very_short_event_lt_5m] count=2295
 - provider-osn | OSNtv Kids | 20260914061400 +0000 | Barbie: Dream Besties
   desc: تعرف على أفضل الصديقات الحالمات: باربي، باربي، تيريزا، رينيه، ديزي، وكين! يشاركن أحلامهن، ويقدمن حيواناتهن الأليفة، ويقمن بجولة في مساحاتهم الحلمية الرائعة.
 - provider-osn | OSNtv Kids | 20260914061800 +0000 | Duplo Adventures
@@ -111,3 +120,5 @@ TOP SAMPLES
   desc: باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!
 - provider-osn | OSNtv Kids | 20260914152900 +0000 | Duplo Adventures
   desc: يأخذ بيب وليو هوپسي والعديد من الحيوانات الأخرى التي تحتاج إلى الرعاية إلى مستشفى البيطري لتلقي العلاج وتحسن صحتهم.
+- provider-osn | OSNtv Kids | 20260914153200 +0000 | Duplo Adventures
+  desc: ينقسم بيب وليو إلى فرق لبناء شيء ما، لكنهما يقرران توحيد جهودهما لجعل الأمر أكثر متعة.
