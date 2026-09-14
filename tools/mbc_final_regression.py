@@ -6,6 +6,10 @@ The MBC gate is also the umbrella step for the already-audited Rotana provider
 and accepted upstream source adapters. Keeping these companion checks in the
 existing Arabic-first regression step makes publication atomic: MBC, Rotana and
 source-health must all be green before the later beIN/OSN gates can run.
+
+Rotana keeps the global two-day source strategy: its own companion gate applies
+the narrowly audited evening-boundary floor only to official rotana.net core IDs;
+this umbrella gate never relaxes MBC or source-health rules to accommodate it.
 """
 from __future__ import annotations
 
@@ -17,9 +21,6 @@ import sys
 
 import mbc_id_audit_policy as policy
 
-# Exact source decisions validated during the 2026-09-14 MBC provider audit.
-# Every receiver canonical is pinned so upstream priority changes cannot silently
-# switch a healthy mapping to a weaker guide.
 EXPECTED_SOURCE_PINS = {
     "Alarabiya.ae@SD": "shahid.mbc.net",
     "AlHadath.sa@SD": "osn.com",
@@ -170,6 +171,7 @@ def main():
     companions = run_companion_gates(xml_path, catalogue_path)
     errors.extend(companions["errors"])
     notes.extend(companions["notes"])
+    notes.append("RotanaPolicy=2-day official evening boundary guarded independently")
 
     status = "FAIL" if errors else "PASS"
     lines = [
