@@ -25,6 +25,10 @@ TECH_PATTERNS = [
     re.compile(r"\bdummy\b", re.I),
 ]
 TECH_ALLOWLIST = {"logos.tv.ae"}
+KNOWN_BAD_IDS = {
+    "bein sports66 digital -01.qa": "SUSPICIOUS_BEIN_SPORTS66_ID",
+    "bein_sports66_digital_mono-01_en.bein": "SUSPICIOUS_BEIN_SPORTS66_ID",
+}
 
 GENERIC_TITLE_PATTERNS = [
     re.compile(r"^(?:tv\s+)?guide\s+is\s+not\s+available$", re.I),
@@ -52,6 +56,10 @@ def _norm(value):
     value = (value or "").casefold()
     value = re.sub(r"[^0-9a-z\u0600-\u06ff]+", " ", value)
     return " ".join(value.split())
+
+
+def bad_id_reason(cid):
+    return KNOWN_BAD_IDS.get((cid or "").strip().casefold(), "")
 
 
 def is_technical_id(cid):
@@ -130,6 +138,9 @@ def sanitize_candidate_rows(rows, source_name="", detect_clones=True):
     for c in rows:
         cid = getattr(c, "cid", "") or ""
         programmes = getattr(c, "programmes", []) or []
+        bad = bad_id_reason(cid)
+        if bad:
+            reasons[id(c)].add(bad)
         if is_technical_id(cid):
             reasons[id(c)].add("TECHNICAL_OR_ASSET_ID")
         if len(programmes) >= 3 and generic_ratio(programmes) >= 0.80:
@@ -181,6 +192,9 @@ def sanitize_programme_groups(groups):
     blocked = defaultdict(set)
 
     for cid, programmes in groups.items():
+        bad = bad_id_reason(cid)
+        if bad:
+            blocked[cid].add(bad)
         if is_technical_id(cid):
             blocked[cid].add("TECHNICAL_OR_ASSET_ID")
         if len(programmes) >= 3 and generic_ratio(programmes) >= 0.80:
