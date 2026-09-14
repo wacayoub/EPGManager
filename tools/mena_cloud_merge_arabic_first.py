@@ -35,12 +35,10 @@ _QUARANTINE_FINDINGS = []
 _KNOWN_KEYS = set()
 _CLEAN_PROGRAMME_KEYS = set()
 
-# Generated feeds from sources already supported by iptv-org/EPG. Recovery-only:
-# they cannot introduce new channel identities or replace an existing clean guide.
-_RECOVERY_SOURCES = [
-    ("recovery-iptvorg-osn-ae", "iptvorg", "https://iptv-org.github.io/epg/guides/ae/osn.com.epg.xml"),
-    ("recovery-iptvorg-rotana-sa", "iptvorg", "https://iptv-org.github.io/epg/guides/sa/rotana.net.epg.xml"),
-]
+# Recovery framework intentionally starts empty. A recovery source is enabled
+# only after its live endpoint and identity mapping have passed an explicit
+# source-integrity audit. Dead/static legacy URLs must never remain here.
+_RECOVERY_SOURCES = []
 for _row in _RECOVERY_SOURCES:
     if _row not in base.REMOTE_SOURCES:
         base.REMOTE_SOURCES.append(_row)
@@ -128,7 +126,6 @@ def guarded_load_candidates(root, origin, source_name, site_by_id, now, end):
         _KNOWN_KEYS.update(c.key for c in result if c.key)
         _CLEAN_PROGRAMME_KEYS.update(c.key for c in clean if c.key and c.programmes)
     else:
-        # A later recovery source must not replace a guide recovered by an earlier one.
         _CLEAN_PROGRAMME_KEYS.update(c.key for c in clean if c.key and c.programmes)
 
     findings["identity_only_candidates"] = len(identity_only)
