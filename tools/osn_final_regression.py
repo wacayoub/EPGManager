@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 """Final regression gate for the production OSN provider shard.
 
-The gate blocks publication when OSN regresses structurally or when the exact
-official-source recovery introduced for OSN-owned channels is not useful. It does
-not invent programmes and it does not downgrade thematic channels merely because
-they repeat titles within the 48h window.
+The gate blocks publication when OSN regresses structurally, when the exact
+official-source recovery introduced for OSN-owned channels is not useful, or
+when the premium bilingual policy regresses. Canonical OSN channels must keep
+English/Latin titles and Arabic descriptions while preserving the audited
+schedule. Thematic title repetition alone is not a failure.
 """
 from __future__ import annotations
 
@@ -60,6 +61,9 @@ OFFICIAL_RECOVERED_IDS = {
     "OSNtv Showcase Classics.sa",
 }
 
+MIN_LATIN_TITLE_PCT = 90.0
+MIN_ARABIC_DESC_PCT = 95.0
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -105,15 +109,22 @@ def main():
         int(counts.get("PASS", 0) or 0), int(counts.get("ALIAS_OK", 0) or 0),
         int(counts.get("REVIEW", 0) or 0), int(counts.get("FAIL", 0) or 0)))
 
-    # Every canonical service should expose a useful receiver horizon. Legacy
-    # aliases are checked against their canonicals separately.
+    # Every canonical service should expose a useful receiver horizon and obey
+    # the premium bilingual contract. Legacy aliases are validated separately
+    # against their canonical copies, so they inherit the same language policy.
     coverages = []
+    latin_title_pcts = []
+    arabic_desc_pcts = []
     for cid, row in rows.items():
         if cid in EXPECTED_ALIASES:
             continue
         events = int(row.get("events", 0) or 0)
         coverage = float(row.get("coverage_hours", 0.0) or 0.0)
+        title_latin = float(row.get("title_has_latin_pct", 0.0) or 0.0)
+        desc_ar = float(row.get("desc_ar_pct", 0.0) or 0.0)
         coverages.append(coverage)
+        latin_title_pcts.append(title_latin)
+        arabic_desc_pcts.append(desc_ar)
         if events <= 0:
             errors.append("NO_EPG=%s" % cid)
         if coverage < 24.0:
@@ -126,9 +137,19 @@ def main():
             errors.append("VERY_LONG=%s:%s" % (cid, row.get("long_gt_12h")))
         if int(row.get("empty_title", 0) or 0):
             errors.append("EMPTY_TITLE=%s:%s" % (cid, row.get("empty_title")))
+        if title_latin < MIN_LATIN_TITLE_PCT:
+            errors.append("PREMIUM_TITLE_NOT_ENOUGH_EN=%s:%.1f%%" % (cid, title_latin))
+        if desc_ar < MIN_ARABIC_DESC_PCT:
+            errors.append("PREMIUM_DESC_NOT_ENOUGH_AR=%s:%.1f%%" % (cid, desc_ar))
 
     if coverages:
         notes.append("canonical_coverage=%.1f..%.1fh" % (min(coverages), max(coverages)))
+    if latin_title_pcts:
+        notes.append("premium_title_latin=%.1f..%.1f%% threshold>=%.0f%%" % (
+            min(latin_title_pcts), max(latin_title_pcts), MIN_LATIN_TITLE_PCT))
+    if arabic_desc_pcts:
+        notes.append("premium_desc_ar=%.1f..%.1f%% threshold>=%.0f%%" % (
+            min(arabic_desc_pcts), max(arabic_desc_pcts), MIN_ARABIC_DESC_PCT))
 
     # The ten rescued official rows must all be populated and clean. Documentary
     # was the main pre-fix defect (25h gap), so this explicitly prevents that bad
@@ -145,7 +166,7 @@ def main():
     notes.append("official_recovered_ids_checked=%d" % len(OFFICIAL_RECOVERED_IDS))
 
     # Saved Vu+ mappings to the two Egypt-era IDs remain valid but must now be
-    # byte-equivalent logical copies of the official canonical schedules.
+    # exact logical copies of the official canonical schedules and metadata.
     alias_ok = 0
     for alias, canonical in EXPECTED_ALIASES.items():
         row = rows.get(alias)
@@ -162,10 +183,11 @@ def main():
 
     documentary = rows.get("OSNtv Documentary.sa")
     if documentary:
-        notes.append("documentary=events:%d coverage:%.1fh gaps:%d empty_desc:%d desc_ar:%.0f%%" % (
+        notes.append("documentary=events:%d coverage:%.1fh gaps:%d title_latin:%.0f%% empty_desc:%d desc_ar:%.0f%%" % (
             int(documentary.get("events", 0) or 0),
             float(documentary.get("coverage_hours", 0.0) or 0.0),
             int(documentary.get("gaps_gt_2h", 0) or 0),
+            float(documentary.get("title_has_latin_pct", 0.0) or 0.0),
             int(documentary.get("empty_desc", 0) or 0),
             float(documentary.get("desc_ar_pct", 0.0) or 0.0),
         ))
