@@ -1,0 +1,58 @@
+name: A-B Event Count Detail
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/ab-event-count-detail.yml"
+      - "tools/ab_event_count_detail.py"
+
+permissions:
+  contents: write
+
+jobs:
+  detail:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Checkout MENA diagnostics
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: current-data
+          fetch-depth: 0
+
+      - name: Detail same-verdict count changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          python tools/ab_event_count_detail.py \
+            --before current-data/mena-merge-ab-baseline-all-id.json \
+            --after current-data/mena-merge-ab-candidate-all-id.json \
+            --json output/mena-merge-ab-event-count-detail.json \
+            --text output/mena-merge-ab-event-count-detail.txt
+          cat output/mena-merge-ab-event-count-detail.txt
+
+      - name: Publish diagnostic only
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/mena-merge-ab-event-count-detail.json .
+          cp ../output/mena-merge-ab-event-count-detail.txt .
+          git config user.name "EPGManager A-B Detail"
+          git config user.email "actions@users.noreply.github.com"
+          git add mena-merge-ab-event-count-detail.json mena-merge-ab-event-count-detail.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Detail A-B same-verdict event changes"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
