@@ -1,68 +1,69 @@
 {
   "schema": 2,
   "scope": "all exclusive MENA country/provider shards + synchronous alias-aware all-ID release gate",
-  "channels_scanned": 642,
-  "programmes_scanned": 30188,
+  "channels_scanned": 639,
+  "programmes_scanned": 29574,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 840,
-    "empty_description": 14502,
+    "arabic_provider_title_not_arabic": 829,
+    "empty_description": 14286,
     "hybrid_arabic_latin_description": 4,
     "mixed_timezone_offsets_same_day": 2,
-    "premium_title_not_english": 134,
-    "severity_warning": 17755,
+    "premium_title_not_english": 131,
+    "severity_warning": 17497,
     "very_long_event_gt_6h": 22,
-    "very_short_event_lt_5m": 2249
+    "very_short_event_lt_5m": 2221
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 349,
-      "hybrid_arabic_latin_description": 3
+      "empty_description": 347,
+      "hybrid_arabic_latin_description": 3,
+      "very_short_event_lt_5m": 1
     },
     "mena-bh": {
-      "very_short_event_lt_5m": 8
+      "very_short_event_lt_5m": 7
     },
     "mena-dz": {
       "empty_description": 83,
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 1250,
+      "empty_description": 1243,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 558
+      "empty_description": 550
     },
     "mena-jo": {
-      "empty_description": 30,
+      "empty_description": 56,
       "very_short_event_lt_5m": 5
     },
     "mena-kw": {
-      "empty_description": 200,
+      "empty_description": 195,
       "very_short_event_lt_5m": 3
     },
     "mena-lb": {
-      "empty_description": 53,
+      "empty_description": 50,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 332
+      "empty_description": 321
     },
     "mena-other": {
-      "empty_description": 7409,
+      "empty_description": 7291,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 7,
-      "very_short_event_lt_5m": 1154
+      "very_short_event_lt_5m": 1153
     },
     "mena-qa": {
-      "empty_description": 645,
+      "empty_description": 641,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1243,
-      "very_short_event_lt_5m": 560
+      "empty_description": 1221,
+      "very_short_event_lt_5m": 547
     },
     "mena-sd": {
       "empty_description": 47
@@ -71,69 +72,59 @@
       "empty_description": 4
     },
     "mena-tn": {
-      "empty_description": 121,
+      "empty_description": 117,
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
-      "empty_description": 24
+      "empty_description": 22
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 262,
-      "empty_description": 216,
+      "arabic_provider_title_not_arabic": 263,
+      "empty_description": 202,
       "very_long_event_gt_6h": 2,
-      "very_short_event_lt_5m": 20
+      "very_short_event_lt_5m": 19
     },
     "provider-alkass": {
-      "arabic_provider_title_not_arabic": 106,
+      "arabic_provider_title_not_arabic": 102,
       "very_long_event_gt_6h": 2
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 14,
-      "empty_description": 1071,
-      "very_short_event_lt_5m": 411
+      "empty_description": 1050,
+      "very_short_event_lt_5m": 403
     },
     "provider-bein": {
-      "empty_description": 40,
+      "empty_description": 36,
       "mixed_timezone_offsets_same_day": 2,
-      "premium_title_not_english": 134
+      "premium_title_not_english": 131
     },
     "provider-dmi": {
       "arabic_provider_title_not_arabic": 73,
-      "empty_description": 248,
+      "empty_description": 249,
       "very_long_event_gt_6h": 4,
       "very_short_event_lt_5m": 4
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
-      "arabic_provider_title_not_arabic": 311,
-      "empty_description": 305,
+      "arabic_provider_title_not_arabic": 305,
+      "empty_description": 300,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
-      "very_short_event_lt_5m": 40
+      "very_short_event_lt_5m": 38
     },
     "provider-rotana": {
-      "arabic_provider_title_not_arabic": 74,
-      "empty_description": 132,
-      "very_short_event_lt_5m": 22
+      "arabic_provider_title_not_arabic": 72,
+      "empty_description": 121,
+      "very_short_event_lt_5m": 19
     },
     "provider-starz": {
-      "empty_description": 142,
+      "empty_description": 140,
       "very_long_event_gt_6h": 1
     }
   },
   "samples": {
     "arabic_provider_title_not_arabic": [
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Five.qa",
-        "channel": "Alkass Five.qa",
-        "start": "20260914144500 +0000",
-        "stop": "20260914153000 +0000",
-        "title": "FOOTBALL REVIEW",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 45.0
-      },
       {
         "shard": "provider-alkass",
         "channel_id": "Alkass Five.qa",
@@ -398,26 +389,6 @@
         "shard": "provider-alkass",
         "channel_id": "Alkass Four.qa",
         "channel": "Alkass Four.qa",
-        "start": "20260914140000 +0000",
-        "stop": "20260914150000 +0000",
-        "title": "FADFA",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Four.qa",
-        "channel": "Alkass Four.qa",
-        "start": "20260914150000 +0000",
-        "stop": "20260914153000 +0000",
-        "title": "QSL magazine",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Four.qa",
-        "channel": "Alkass Four.qa",
         "start": "20260914153000 +0000",
         "stop": "20260914173000 +0000",
         "title": "Doha Bank Stars League Al-Rayyan vs. Al-Ahli",
@@ -523,6 +494,36 @@
         "title": "Local Camel Race",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 180.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260915053000 +0000",
+        "stop": "20260915060000 +0000",
+        "title": "Fiba",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260915060000 +0000",
+        "stop": "20260915080000 +0000",
+        "title": "Doha Bank Stars League Al-Shamal vs. Al-Wakrah",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 120.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260915080000 +0000",
+        "stop": "20260915090000 +0000",
+        "title": "alhasila",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
       }
     ],
     "very_long_event_gt_6h": [
@@ -752,16 +753,6 @@
         "shard": "provider-bein",
         "channel_id": "beIN Drama.eg",
         "channel": "beIN Drama.eg",
-        "start": "20260914140000 +0000",
-        "stop": "20260914150000 +0000",
-        "title": "Sarab",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
         "start": "20260914150000 +0000",
         "stop": "20260914160000 +0000",
         "title": "Basmet Hada",
@@ -862,16 +853,6 @@
         "shard": "provider-bein",
         "channel_id": "beINDrama1.qa@SD",
         "channel": "بي إن دراما",
-        "start": "20260914140000 +0000",
-        "stop": "20260914150000 +0000",
-        "title": "Sarab",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
         "start": "20260914150000 +0000",
         "stop": "20260914160000 +0000",
         "title": "Basmet Hada",
@@ -927,16 +908,6 @@
         "title": "برنامج beIN Action",
         "desc": "",
         "duration_minutes": 20.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914140000 +0000",
-        "stop": "20260914150000 +0000",
-        "title": "E8 | S1 عزابي",
-        "desc": "",
-        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
@@ -1027,16 +998,6 @@
         "title": "Beautiful Wedding",
         "desc": "",
         "duration_minutes": 90.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINSeries1.qa@SD",
-        "channel": "beINSERIES1",
-        "start": "20260914140000 +0000",
-        "stop": "20260914150000 +0000",
-        "title": "The Good Doctor S1 | E10",
-        "desc": "",
-        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
@@ -1147,6 +1108,46 @@
         "title": "Beautiful Wedding",
         "desc": "",
         "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "AlArabiyaBusiness.ae@SD",
+        "channel": "العربية Business",
+        "start": "20260915060000 +0000",
+        "stop": "20260915065900 +0000",
+        "title": "فتح السوق",
+        "desc": "",
+        "duration_minutes": 59.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "AlArabiyaBusiness.ae@SD",
+        "channel": "العربية Business",
+        "start": "20260916060000 +0000",
+        "stop": "20260916065900 +0000",
+        "title": "فتح السوق",
+        "desc": "",
+        "duration_minutes": 59.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914150000 +0000",
+        "stop": "20260914154700 +0000",
+        "title": "Awdat Khalati",
+        "desc": "",
+        "duration_minutes": 47.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914154700 +0000",
+        "stop": "20260914155500 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 8.0
       }
     ],
     "premium_title_not_english": [
@@ -1578,26 +1579,6 @@
         "shard": "provider-osn",
         "channel_id": "OSNKids.ae@SD",
         "channel": "OSNtv Kids",
-        "start": "20260914150100 +0000",
-        "stop": "20260914150400 +0000",
-        "title": "Barbie & Barbie On Set",
-        "desc": "باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914152900 +0000",
-        "stop": "20260914153200 +0000",
-        "title": "Duplo Adventures",
-        "desc": "يأخذ بيب وليو هوپسي والعديد من الحيوانات الأخرى التي تحتاج إلى الرعاية إلى مستشفى البيطري لتلقي العلاج وتحسن صحتهم.",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
         "start": "20260914153200 +0000",
         "stop": "20260914153500 +0000",
         "title": "Duplo Adventures",
@@ -1973,6 +1954,26 @@
         "title": "Adam Wa Mishmish",
         "desc": "يتّبع آدم روتينه المسائي من الاستحمام وقراءة القصص حتى يحين وقت النوم في أغنية هادئة تساعد الأطفال على الاسترخاء.",
         "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-rotana",
+        "channel_id": "RotanaClip.sa@SD",
+        "channel": "روتانا كليب",
+        "start": "20260914153300 +0000",
+        "stop": "20260914153700 +0000",
+        "title": "نقول ايه",
+        "desc": "",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-rotana",
+        "channel_id": "RotanaClip.sa@SD",
+        "channel": "روتانا كليب",
+        "start": "20260914153700 +0000",
+        "stop": "20260914154100 +0000",
+        "title": "غمرني",
+        "desc": "",
+        "duration_minutes": 4.0
       }
     ],
     "arabic_provider_description_not_arabic": [
@@ -2004,7 +2005,7 @@
         "channel": "Nickelodeon HD",
         "start": "20260915141500 +0000",
         "stop": "20260915144000 +0000",
-        "title": "سونك بانك",
+        "title": "Sonic Prime",
         "desc": "سونيك وطاقم رحلة الملاك ليسوا الوحيدين الذين يسعون وراء شظية اللا مكان - فقد استولى مجلس الفوضى على تقنية Shatterdrive الخاصة بناين وأرسل راستي روز وجيشًا من Eggforcers للاستيلاء عليها أيضًا!",
         "duration_minutes": 25.0
       },
@@ -2014,7 +2015,7 @@
         "channel": "Nick Jr HD",
         "start": "20260914160000 +0000",
         "stop": "20260914162000 +0000",
-        "title": "رابل آند كرو",
+        "title": "Rubble & Crew",
         "desc": "يتحول فريق Rubble & Crew إلى وضع التنظيف عندما يخرج البناء في مطعم الفشار الجديد في Cafe Carl عن السيطرة. // يتسبب حادث صابوني في حدوث فوضى زلقة في جميع أنحاء Builder Cove. هل يستطيع الجراء تنظيفه في الوقت المناسب للقفزة الكبيرة لرئيس البلدية Greatway؟",
         "duration_minutes": 20.0
       },
@@ -2024,7 +2025,7 @@
         "channel": "Nick Jr HD",
         "start": "20260914191500 +0000",
         "stop": "20260914194000 +0000",
-        "title": "رابل آند كرو",
+        "title": "Rubble & Crew",
         "desc": "تطلب رئيسة البلدية جريتوي من شركة Rubble & Crew بناء شيء خاص لصديقها السيد دكي دو. ولكن سرعان ما تظهر مشكلة في البناء... // تعمل شركة Rubble & Crew على بناء خزان مياه الأمطار للمزارعة زوي قبل العاصفة، حتى تظهر مشكلة الدجاج.",
         "duration_minutes": 25.0
       },
@@ -2041,13 +2042,13 @@
     ]
   },
   "all_id_release_gate": {
-    "channels": 642,
-    "programmes": 30188,
-    "PASS": 160,
-    "REVIEW": 482,
+    "channels": 639,
+    "programmes": 29574,
+    "PASS": 155,
+    "REVIEW": 484,
     "NO_EPG": 0,
     "FAIL": 0,
-    "auto_lock_safe": 160,
+    "auto_lock_safe": 155,
     "missing_shards": []
   }
 }

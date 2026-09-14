@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-14T14:56:36.355117+00:00",
+  "generated": "2026-09-14T15:37:36.045970+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -90,7 +90,7 @@
       "name": "openepg-saudi4",
       "origin": "openepg",
       "channels_with_current_48h_epg": 22,
-      "bytes": 72168
+      "bytes": 68281
     },
     {
       "name": "openepg-saudi5",
@@ -141,17 +141,17 @@
       "bytes": 4339
     }
   ],
-  "candidate_channel_rows": 1710,
-  "unique_logical_channels": 1045,
-  "programmes": 30949,
-  "premium_hybrid_events": 1024,
+  "candidate_channel_rows": 1712,
+  "unique_logical_channels": 1044,
+  "programmes": 30364,
+  "premium_hybrid_events": 1002,
   "stats": {
-    "regular_channels": 960,
+    "regular_channels": 959,
     "source_epgshare": 514,
-    "logical_duplicate_groups": 355,
+    "logical_duplicate_groups": 357,
     "premium_channels": 85,
-    "source_openepg": 327,
-    "source_primary": 204
+    "source_openepg": 324,
+    "source_primary": 206
   },
   "aliases": [
     {
@@ -249,10 +249,30 @@
       ]
     },
     {
-      "canonical_id": "Abu Dhabi TV HD.sa",
-      "canonical_name": "Abu Dhabi TV HD.sa",
+      "canonical_id": "AbuDhabiTV.ae@SD",
+      "canonical_name": "Abu Dhabi TV HD",
       "logical_key": "abu dhabi tv",
       "aliases": [
+        {
+          "id": "Abu Dhabi TV HD.sa",
+          "name": "Abu Dhabi TV HD.sa",
+          "source": "openepg-saudi3"
+        },
+        {
+          "id": "Abu Dhabi TV HD.sa",
+          "name": "Abu Dhabi TV HD.sa",
+          "source": "openepg-saudi4"
+        },
+        {
+          "id": "Abu Dhabi TV HD.sa",
+          "name": "Abu Dhabi TV HD.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Abu Dhabi TV HD.sa",
+          "name": "Abu Dhabi TV HD.sa",
+          "source": "openepg-saudi6"
+        },
         {
           "id": "Abu Dhabi TV.eg",
           "name": "Abu Dhabi TV.eg",
@@ -3613,14 +3633,19 @@
       ]
     },
     {
-      "canonical_id": "Rotana Comedy.sa",
-      "canonical_name": "Rotana Comedy.sa",
+      "canonical_id": "Rotana Comedy.eg",
+      "canonical_name": "Rotana Comedy.eg",
       "logical_key": "rotana comedy",
       "aliases": [
         {
-          "id": "Rotana Comedy.eg",
-          "name": "Rotana Comedy.eg",
-          "source": "openepg-egypt2"
+          "id": "Rotana Comedy.sa",
+          "name": "Rotana Comedy.sa",
+          "source": "openepg-saudi1"
+        },
+        {
+          "id": "Rotana Comedy.sa",
+          "name": "Rotana Comedy.sa",
+          "source": "openepg-saudi2"
         }
       ]
     },
@@ -4279,18 +4304,6 @@
       ]
     },
     {
-      "canonical_id": "LanaTV.lb@SD",
-      "canonical_name": "ال تي في",
-      "logical_key": "ال تي في",
-      "aliases": [
-        {
-          "id": "ال تي في.eg",
-          "name": "ال تي في.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "JordanTV.jo@SD",
       "canonical_name": "الأردن",
       "logical_key": "الأردن",
@@ -4382,18 +4395,6 @@
         {
           "id": "السومرية.eg",
           "name": "السومرية.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "SharjahTV.ae@SD",
-      "canonical_name": "الشارقة",
-      "logical_key": "الشارقة",
-      "aliases": [
-        {
-          "id": "الشارقة.eg",
-          "name": "الشارقة.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4507,6 +4508,18 @@
       ]
     },
     {
+      "canonical_id": "ElMehwarChannel.eg@SD",
+      "canonical_name": "المحور",
+      "logical_key": "المحور",
+      "aliases": [
+        {
+          "id": "المحور.eg",
+          "name": "المحور.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "AlMasriyah.eg@SD",
       "canonical_name": "المصرية",
       "logical_key": "المصرية",
@@ -4526,6 +4539,18 @@
         {
           "id": "النهار.eg",
           "name": "النهار.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "AlNaharDrama.eg@SD",
+      "canonical_name": "النهار دراما",
+      "logical_key": "النهار دراما",
+      "aliases": [
+        {
+          "id": "النهار دراما.eg",
+          "name": "النهار دراما.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4682,6 +4707,18 @@
         {
           "id": "زي ألوان.eg",
           "name": "زي ألوان.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "SamaDubai.ae@SD",
+      "canonical_name": "سما دبي",
+      "logical_key": "سما دبي",
+      "aliases": [
+        {
+          "id": "سما دبي.eg",
+          "name": "سما دبي.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4855,13 +4892,25 @@
       ]
     },
     {
-      "canonical_id": "NileLife.eg@SD",
-      "canonical_name": "نايل لايف",
-      "logical_key": "نايل لايف",
+      "canonical_id": "NessmaElJadida.tn@SD",
+      "canonical_name": "نسمة",
+      "logical_key": "نسمة",
       "aliases": [
         {
-          "id": "نايل لايف.eg",
-          "name": "نايل لايف.eg",
+          "id": "نسمة.eg",
+          "name": "نسمة.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "UTV.iq@SD",
+      "canonical_name": "يو تي في",
+      "logical_key": "يو تي في",
+      "aliases": [
+        {
+          "id": "يو تي في.eg",
+          "name": "يو تي في.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4932,7 +4981,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 35
+            "programmes": 34
           },
           {
             "source": "openepg-qatar2",
@@ -4941,7 +4990,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 35
+            "programmes": 34
           },
           {
             "source": "openepg-qatar2",
@@ -4950,7 +4999,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 35
+            "programmes": 34
           },
           {
             "source": "openepg-qatar2",
@@ -4959,7 +5008,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 35
+            "programmes": 34
           },
           {
             "source": "openepg-qatar2",
@@ -5030,7 +5079,7 @@
             "reasons": [
               "SUSPICIOUS_BEIN_SPORTS66_ID"
             ],
-            "programmes": 7
+            "programmes": 6
           },
           {
             "source": "openepg-qatar3",
@@ -5039,7 +5088,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 11
+            "programmes": 10
           },
           {
             "source": "openepg-qatar3",
@@ -5048,7 +5097,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 12
+            "programmes": 11
           },
           {
             "source": "openepg-qatar3",
@@ -5057,7 +5106,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 15
+            "programmes": 11
           },
           {
             "source": "openepg-qatar3",
@@ -5123,7 +5172,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 175
+            "programmes": 172
           },
           {
             "source": "openepg-qatar4",
@@ -5132,7 +5181,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 70
+            "programmes": 69
           },
           {
             "source": "openepg-qatar4",
@@ -5141,7 +5190,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 53
+            "programmes": 52
           },
           {
             "source": "openepg-qatar4",
@@ -5150,7 +5199,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 36
+            "programmes": 35
           },
           {
             "source": "openepg-qatar4",
@@ -5159,7 +5208,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 42
+            "programmes": 41
           },
           {
             "source": "openepg-qatar4",
@@ -5177,7 +5226,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 36
+            "programmes": 35
           },
           {
             "source": "openepg-qatar4",
@@ -5195,7 +5244,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 47
+            "programmes": 46
           }
         ],
         "clone_groups": [],
@@ -5233,7 +5282,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 151
+            "programmes": 146
           },
           {
             "source": "openepg-qatar5",
@@ -5242,7 +5291,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 199
+            "programmes": 195
           },
           {
             "source": "openepg-qatar5",
@@ -5251,7 +5300,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 49
+            "programmes": 48
           },
           {
             "source": "openepg-qatar5",
@@ -5260,7 +5309,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 172
+            "programmes": 167
           },
           {
             "source": "openepg-qatar5",
@@ -5269,7 +5318,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 37
+            "programmes": 36
           },
           {
             "source": "openepg-qatar5",
@@ -5278,7 +5327,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 43
+            "programmes": 42
           },
           {
             "source": "openepg-qatar5",
@@ -5296,7 +5345,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 37
+            "programmes": 36
           },
           {
             "source": "openepg-qatar5",
@@ -5305,7 +5354,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 45
+            "programmes": 44
           },
           {
             "source": "openepg-qatar5",
@@ -5314,7 +5363,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 133
+            "programmes": 130
           }
         ],
         "clone_groups": [],
@@ -5578,7 +5627,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=4"
             ],
-            "programmes": 73
+            "programmes": 72
           },
           {
             "source": "epgshare-ae1",
@@ -5587,7 +5636,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=4"
             ],
-            "programmes": 73
+            "programmes": 72
           },
           {
             "source": "epgshare-ae1",
@@ -5596,7 +5645,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=4"
             ],
-            "programmes": 73
+            "programmes": 72
           },
           {
             "source": "epgshare-ae1",
@@ -5605,7 +5654,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=4"
             ],
-            "programmes": 73
+            "programmes": 72
           },
           {
             "source": "epgshare-ae1",
@@ -5677,7 +5726,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 47
+            "programmes": 46
           },
           {
             "source": "epgshare-ae1",
@@ -5686,7 +5735,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 47
+            "programmes": 46
           },
           {
             "source": "epgshare-ae1",
@@ -5695,7 +5744,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 47
+            "programmes": 46
           },
           {
             "source": "epgshare-ae1",
@@ -5704,7 +5753,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 47
+            "programmes": 46
           },
           {
             "source": "epgshare-ae1",
@@ -5713,7 +5762,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 47
+            "programmes": 46
           },
           {
             "source": "epgshare-ae1",
@@ -6478,7 +6527,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 286
+            "programmes": 282
           },
           {
             "source": "epgshare-ae1",
@@ -6487,7 +6536,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 286
+            "programmes": 282
           },
           {
             "source": "epgshare-ae1",
@@ -6496,7 +6545,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 286
+            "programmes": 282
           },
           {
             "source": "epgshare-ae1",
@@ -6505,7 +6554,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 286
+            "programmes": 282
           },
           {
             "source": "epgshare-ae1",
@@ -6514,7 +6563,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 286
+            "programmes": 282
           },
           {
             "source": "epgshare-ae1",
@@ -9249,7 +9298,7 @@
             "reasons": [
               "SUSPICIOUS_BEIN_SPORTS66_ID"
             ],
-            "programmes": 11
+            "programmes": 12
           },
           {
             "source": "epgshare-bein1",
@@ -9258,7 +9307,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 34
+            "programmes": 33
           },
           {
             "source": "epgshare-bein1",
@@ -9276,7 +9325,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 25
+            "programmes": 24
           },
           {
             "source": "epgshare-bein1",
@@ -9294,7 +9343,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 35
+            "programmes": 34
           },
           {
             "source": "epgshare-bein1",
@@ -9303,7 +9352,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 35
+            "programmes": 34
           }
         ],
         "clone_groups": [],

@@ -1,0 +1,49 @@
+PREMIUM INTERNATIONAL MENA - EXACT FEED AUDIT
+channels=15 strict=11 source_review=4 PASS=11 REVIEW=4 FAIL=0 strict_bad=0
+policy=real MENA feed only; exact EN-title+AR-desc or Arabic-first; Nat Geo/Disney remain explicit REVIEW until proven
+
+[PASS] AnimalPlanetEurope.uk@SD | EN_TITLE_AR_DESC | shard=mena-other
+  events=38 coverage=33.2h gaps>2h=0 overlaps=0 invalid=0 titleLatin=100% titleAR=0% descAR=100% donorMatch=100%
+  notes=NONE
+[PASS] CartoonNetworkArabic.ae@SD | AR_TITLE_AR_DESC | shard=mena-ae
+  events=59 coverage=32.8h gaps>2h=0 overlaps=0 invalid=0 titleLatin=0% titleAR=100% descAR=100% donorMatch=0%
+  notes=NONE
+[PASS] CartoonNetworkMENA.uk@SD | EN_TITLE_AR_DESC | shard=mena-other
+  events=168 coverage=32.5h gaps>2h=0 overlaps=0 invalid=0 titleLatin=100% titleAR=0% descAR=100% donorMatch=100%
+  notes=NONE
+[PASS] DiscoveryChannelMiddleEastAfrica.us@SD | EN_TITLE_AR_DESC | shard=mena-other
+  events=42 coverage=33.1h gaps>2h=0 overlaps=0 invalid=0 titleLatin=100% titleAR=0% descAR=100% donorMatch=100%
+  notes=NONE
+[REVIEW] Disney Channel.sa | SOURCE_REVIEW_ONLY | shard=mena-other
+  events=100 coverage=36.8h gaps>2h=0 overlaps=0 invalid=0 titleLatin=0% titleAR=100% descAR=100% donorMatch=0%
+  notes=EXACT_MENA_SOURCE_NOT_PROVEN
+[REVIEW] Disney Junior.sa | SOURCE_REVIEW_ONLY | shard=mena-other
+  events=150 coverage=36.9h gaps>2h=0 overlaps=0 invalid=0 titleLatin=0% titleAR=100% descAR=100% donorMatch=0%
+  notes=EXACT_MENA_SOURCE_NOT_PROVEN
+[PASS] History2MiddleEast.us@SD | EN_TITLE_AR_DESC | shard=mena-other
+  events=44 coverage=33.0h gaps>2h=0 overlaps=0 invalid=0 titleLatin=100% titleAR=0% descAR=100% donorMatch=100%
+  notes=NONE
+[PASS] HistoryMiddleEast.us@SD | EN_TITLE_AR_DESC | shard=mena-other
+  events=50 coverage=33.0h gaps>2h=0 overlaps=0 invalid=0 titleLatin=100% titleAR=0% descAR=100% donorMatch=100%
+  notes=NONE
+[PASS] InvestigationDiscovery.uk@SD | EN_TITLE_AR_DESC | shard=mena-other
+  events=33 coverage=33.0h gaps>2h=0 overlaps=0 invalid=0 titleLatin=100% titleAR=0% descAR=100% donorMatch=100%
+  notes=NONE
+[REVIEW] NationalGeographicAbuDhabi.ae@SD | SOURCE_REVIEW_ONLY | shard=MISSING
+  events=0 coverage=0.0h gaps>2h=0 overlaps=0 invalid=0 titleLatin=0% titleAR=0% descAR=0% donorMatch=0%
+  notes=NO_EPG, NO_RELIABLE_EXACT_AR_MENA_GUIDE
+[REVIEW] NationalGeographicMiddleEast.uk@SD | SOURCE_REVIEW_ONLY | shard=mena-other
+  events=3 coverage=2.2h gaps>2h=0 overlaps=0 invalid=0 titleLatin=0% titleAR=100% descAR=0% donorMatch=0%
+  notes=UPSTREAM_ELCINEMA_INCOMPLETE_48H
+[PASS] NickelodeonArabia.ae@SD | EN_TITLE_AR_DESC | shard=mena-ae
+  events=92 coverage=32.6h gaps>2h=0 overlaps=0 invalid=0 titleLatin=100% titleAR=0% descAR=100% donorMatch=100%
+  notes=NONE
+[PASS] NickJrArabia.ae@SD | EN_TITLE_AR_DESC | shard=mena-ae
+  events=110 coverage=32.8h gaps>2h=0 overlaps=0 invalid=0 titleLatin=100% titleAR=0% descAR=100% donorMatch=100%
+  notes=NONE
+[PASS] NicktoonsArabia.ae@SD | EN_TITLE_AR_DESC | shard=mena-ae
+  events=98 coverage=33.2h gaps>2h=0 overlaps=0 invalid=0 titleLatin=100% titleAR=0% descAR=100% donorMatch=100%
+  notes=NONE
+[PASS] TLCArabia.us@SD | EN_TITLE_AR_DESC | shard=mena-other
+  events=44 coverage=33.9h gaps>2h=0 overlaps=0 invalid=0 titleLatin=100% titleAR=0% descAR=100% donorMatch=100%
+  notes=NONE
