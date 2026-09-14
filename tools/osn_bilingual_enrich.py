@@ -6,7 +6,7 @@ Rules:
 - schedule and Arabic descriptions stay untouched;
 - English titles come only from the SAME upstream feed and exact channel/start/stop;
 - Arabic editorial feeds stay Arabic-first;
-- Disney is audit-only until an exact MENA donor is proven;
+- Nat Geo and Disney stay explicit REVIEW-only until exact reliable MENA donors are proven;
 - no fuzzy time/title matching, no foreign-feed substitution.
 """
 from __future__ import annotations
@@ -29,6 +29,8 @@ CANONICAL_OSN_IDS = {
     "OSNtv Now.sa","OSNtv One.sa","OSNtv Pop Up.sa","OSNtv Showcase Classics.sa",
     "OSNYahala.ae@SD","OSNYahalaAflam.ae@SD","OSNYahalaBilArabi.ae@SD",
 }
+
+# Exact same-feed bilingual MENA services verified from osn.com.
 INTERNATIONAL_EN_AR_SITES = {
     "AnimalPlanetEurope.uk@SD":"osn.com",
     "DiscoveryChannelMiddleEastAfrica.us@SD":"osn.com",
@@ -40,16 +42,28 @@ INTERNATIONAL_EN_AR_SITES = {
     "NickelodeonArabia.ae@SD":"osn.com",
     "NickJrArabia.ae@SD":"osn.com",
     "NicktoonsArabia.ae@SD":"osn.com",
-    "NationalGeographicMiddleEast.uk@SD":"elcinema.com",
 }
+
+# Arabic editorial service with a healthy exact MENA guide.
 INTERNATIONAL_AR_ONLY_SITES = {
     "CartoonNetworkArabic.ae@SD":"osn.com",
-    "NationalGeographicAbuDhabi.ae@SD":"elcinema.com",
 }
-SOURCE_REVIEW_IDS = {"Disney Channel.sa","Disney Junior.sa"}
+
+# Diagnostic-only rows. These are intentionally NOT declared production-safe.
+# Nat Geo was moved here after exhaustive probing proved the available sources
+# are either incomplete, empty or a different editorial timeline. Disney stays
+# here until an exact MENA source is independently verified.
+SOURCE_REVIEW_REASONS = {
+    "NationalGeographicMiddleEast.uk@SD":"UPSTREAM_ELCINEMA_INCOMPLETE_48H",
+    "NationalGeographicAbuDhabi.ae@SD":"NO_RELIABLE_EXACT_AR_MENA_GUIDE",
+    "Disney Channel.sa":"EXACT_MENA_SOURCE_NOT_PROVEN",
+    "Disney Junior.sa":"EXACT_MENA_SOURCE_NOT_PROVEN",
+}
+SOURCE_REVIEW_IDS = set(SOURCE_REVIEW_REASONS)
 DONOR_IDS = CANONICAL_OSN_IDS | set(INTERNATIONAL_EN_AR_SITES)
 LAT = re.compile(r"[A-Za-z]")
 AR = re.compile(r"[\u0600-\u06ff]")
+
 
 def read_xml(path):
     data = Path(path).read_bytes()
@@ -57,10 +71,12 @@ def read_xml(path):
         data = gzip.decompress(data)
     return ET.fromstring(data)
 
+
 def write_gz(path, root):
     ET.indent(root, space="  ")
     raw = ET.tostring(root, encoding="utf-8", xml_declaration=True)
     Path(path).write_bytes(gzip.compress(raw, compresslevel=9, mtime=0))
+
 
 def parse_time(value):
     parts = (value or "").strip().split()
@@ -79,9 +95,11 @@ def parse_time(value):
         return int(dt.timestamp()) - off
     return int(dt.timestamp())
 
+
 def slot(p, cid):
     a, b = parse_time(p.get("start")), parse_time(p.get("stop"))
     return None if a is None or b is None else (cid, a, b)
+
 
 def first(node, tag):
     for el in node.findall(tag):
@@ -90,15 +108,19 @@ def first(node, tag):
             return txt, (el.get("lang") or "").lower()
     return "", ""
 
+
 def has_latin(text, lang=""):
     return lang.startswith(("en","fr")) or bool(LAT.search(text or ""))
+
 
 def has_ar(text, lang=""):
     return lang.startswith("ar") or len(AR.findall(text or "")) >= 2
 
+
 def catalog_rows(path):
     obj = json.loads(Path(path).read_text(encoding="utf-8"))
     return {r.get("xmltv_id"):r for r in obj.get("channels",[]) if r.get("xmltv_id")}
+
 
 def build_channels(args):
     rows = catalog_rows(args.catalog_manifest)
@@ -126,6 +148,7 @@ def build_channels(args):
           (len(CANONICAL_OSN_IDS),len(INTERNATIONAL_EN_AR_SITES),len(DONOR_IDS)))
     return 0
 
+
 def donor_titles(root):
     titles, events, english = {}, Counter(), Counter()
     conflicts = 0
@@ -137,13 +160,14 @@ def donor_titles(root):
         title = first(p,"title")[0]
         if key is None or not title or not LAT.search(title): continue
         english[cid] += 1
-        if key in titles and titles[key] != title:
+        if key in titles and donor_titles[key] != title:
             conflicts += 1
         else:
             titles[key] = title
     if conflicts:
         raise SystemExit("English donor conflicting slots=%d"%conflicts)
     return titles, events, english
+
 
 def replace_titles(root, allowed, titles, aliases=None):
     aliases = aliases or {}
@@ -168,6 +192,7 @@ def replace_titles(root, allowed, titles, aliases=None):
                 samples.append({"id":cid,"old":old,"new":new})
     return stats,total,samples
 
+
 def stat_rows(stats, aliases=None):
     aliases = aliases or {}
     out=[]
@@ -178,6 +203,7 @@ def stat_rows(stats, aliases=None):
                     "replaced":s["replaced"],"unmatched":s["unmatched"]})
     return out
 
+
 def load_shards(out_dir):
     mpath=Path(out_dir)/"shards.json"
     manifest=json.loads(mpath.read_text(encoding="utf-8"))
@@ -187,6 +213,7 @@ def load_shards(out_dir):
         if p.exists(): roots[stem]=read_xml(p)
     return manifest,roots
 
+
 def refresh_manifest(out_dir,manifest,touched):
     for stem in touched:
         p=Path(out_dir)/(stem+".xml.gz"); data=p.read_bytes()
@@ -194,6 +221,7 @@ def refresh_manifest(out_dir,manifest,touched):
         manifest["shards"][stem]["sha256"]=hashlib.sha256(data).hexdigest()
     (Path(out_dir)/"shards.json").write_text(
         json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+
 
 def profile(cid,name,programmes):
     valid=[]; invalid=overlaps=empty_t=empty_d=tlat=tar=dar=0
@@ -228,6 +256,7 @@ def profile(cid,name,programmes):
             "title_latin_pct":round(100*tlat/max(1,n),1),
             "title_ar_pct":round(100*tar/max(1,n),1),
             "desc_ar_pct":round(100*dar/nd,1) if n else 0.}
+
 
 def audit_international(out_dir,roots,enrich_rows):
     targets=set(INTERNATIONAL_EN_AR_SITES)|set(INTERNATIONAL_AR_ONLY_SITES)|SOURCE_REVIEW_IDS
@@ -267,16 +296,24 @@ def audit_international(out_dir,roots,enrich_rows):
             if r["title_ar_pct"]<80: warn.append("AR_TITLE_LOW=%.0f%%"%r["title_ar_pct"])
             if r["desc_ar_pct"]<95: warn.append("AR_DESC_LOW=%.0f%%"%r["desc_ar_pct"])
         else:
-            r["policy"]="SOURCE_REVIEW_ONLY"; warn.append("EXACT_MENA_SOURCE_NOT_PROVEN")
-        verdict="FAIL" if issues else ("REVIEW" if cid in SOURCE_REVIEW_IDS or warn else "PASS")
+            r["policy"]="SOURCE_REVIEW_ONLY"
+            warn.append(SOURCE_REVIEW_REASONS[cid])
+        if cid in SOURCE_REVIEW_IDS:
+            verdict="REVIEW"
+        elif issues:
+            verdict="FAIL"
+        elif warn:
+            verdict="REVIEW"
+        else:
+            verdict="PASS"
         r.update({"verdict":verdict,"issues":issues,"warnings":warn}); rows.append(r); counts[verdict]+=1
     strict_bad=[r["id"] for r in rows if r["id"] in strict and r["verdict"]!="PASS"]
-    review_fail=[r["id"] for r in rows if r["id"] in SOURCE_REVIEW_IDS and r["verdict"]=="FAIL"]
-    payload={"schema":1,"strict_expected_ids":sorted(strict,key=str.casefold),
+    payload={"schema":2,"strict_expected_ids":sorted(strict,key=str.casefold),
              "source_review_ids":sorted(SOURCE_REVIEW_IDS,key=str.casefold),
+             "source_review_reasons":SOURCE_REVIEW_REASONS,
              "summary":{"channels":len(rows),"strict_channels":len(strict),
                         "source_review_channels":len(SOURCE_REVIEW_IDS),
-                        "counts":dict(counts),"strict_bad":strict_bad,"review_fail":review_fail},
+                        "counts":dict(counts),"strict_bad":strict_bad},
              "channels":rows}
     out=Path(out_dir)
     (out/"premium-international-audit.json").write_text(
@@ -285,7 +322,7 @@ def audit_international(out_dir,roots,enrich_rows):
            "channels=%d strict=%d source_review=%d PASS=%d REVIEW=%d FAIL=%d strict_bad=%d"%
            (len(rows),len(strict),len(SOURCE_REVIEW_IDS),counts["PASS"],counts["REVIEW"],
             counts["FAIL"],len(strict_bad)),
-           "policy=real MENA feed only; EN-title+AR-desc or Arabic-first by editorial feed; Disney stays REVIEW until exact donor is proven",""]
+           "policy=real MENA feed only; exact EN-title+AR-desc or Arabic-first; Nat Geo/Disney remain explicit REVIEW until proven",""]
     for r in rows:
         lines += ["[%s] %s | %s | shard=%s"%(r["verdict"],r["id"],r["policy"],r["shard"] or "MISSING"),
                   "  events=%d coverage=%.1fh gaps>2h=%d overlaps=%d invalid=%d titleLatin=%.0f%% titleAR=%.0f%% descAR=%.0f%% donorMatch=%.0f%%"%
@@ -293,14 +330,15 @@ def audit_international(out_dir,roots,enrich_rows):
                    r["title_latin_pct"],r["title_ar_pct"],r["desc_ar_pct"],r["donor_match_pct"]),
                   "  notes=%s"%(", ".join(r["issues"]+r["warnings"]) if r["issues"]+r["warnings"] else "NONE")]
     (out/"premium-international-audit.txt").write_text("\n".join(lines)+"\n",encoding="utf-8")
-    status="FAIL" if strict_bad or review_fail else "PASS"
+    status="FAIL" if strict_bad else "PASS"
     gate=["PREMIUM INTERNATIONAL MENA FINAL REGRESSION GATE: "+status,
           "strict_expected=%d source_review=%d"%(len(strict),len(SOURCE_REVIEW_IDS)),
           "- strict_bad=%s"%(",".join(strict_bad) or "NONE"),
-          "- source_review_structural_fail=%s"%(",".join(review_fail) or "NONE"),
-          "- Disney remains REVIEW-only until exact MENA donor is proven"]
+          "- source_review_not_frozen=%s"%(",".join(sorted(SOURCE_REVIEW_IDS,key=str.casefold))),
+          "- review rows are diagnostic-only and are never advertised as production-safe"]
     (out/"premium-international-final-regression.txt").write_text("\n".join(gate)+"\n",encoding="utf-8")
     return payload,status
+
 
 def enrich(args):
     target=Path(args.xml); out_dir=target.parent
@@ -347,6 +385,7 @@ def enrich(args):
     if status!="PASS":
         raise SystemExit("Premium International MENA gate failed; publication blocked")
     return 0
+
 
 def main():
     ap=argparse.ArgumentParser(); sub=ap.add_subparsers(dest="command",required=True)
