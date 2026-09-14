@@ -149,6 +149,14 @@ def run_all_id_release_gate(base: Path) -> None:
         summary.get("channels"), summary.get("PASS"), summary.get("REVIEW"),
         summary.get("NO_EPG"), summary.get("FAIL"), blockers or "none"))
     if blockers:
+        failed = [
+            r for r in (audit.get("channels") or [])
+            if r.get("verdict") == "FAIL"
+        ]
+        for row in failed:
+            print("BLOCKER ID: %s | %s | shard=%s | issues=%s" % (
+                row.get("id"), row.get("name"), row.get("shard"),
+                ",".join(row.get("issues") or [])))
         raise SystemExit("RELEASE BLOCKED: hard all-ID programme integrity failures remain: %s" % blockers)
     if int(summary.get("FAIL", 0) or 0) > 0:
         raise SystemExit("RELEASE BLOCKED: alias-aware all-ID audit still has FAIL=%s" % summary.get("FAIL"))

@@ -99,7 +99,26 @@ ROTANA_INTERNAL_ONLY_IDS = {
     "Rotana.Cinema.KSA.ae",
 }
 
-RECEIVER_INTERNAL_ONLY_IDS = MBC_INTERNAL_ONLY_IDS | ROTANA_INTERNAL_ONLY_IDS
+# ADM transition aliases reviewed 2026-09-14.  The merge layer already emits
+# canonical UAE receiver IDs; these old source/LKG identities must stay internal
+# so the previous production LKG cannot resurrect a second receiver-facing copy.
+ADM_INTERNAL_ONLY_IDS = {
+    "Abu Dhabi.sa",
+    "AbuDhabiSports1.ae@SD",
+    "AbuDhabiTV.ae@SD",
+    "AD Sports 2.sa",
+    "AD Sports Premium 1.sa",
+    "AD Sports Premium 2.sa",
+    "Al Emarat.sa",
+    "en:.AD.Sports.Extra.ae",
+    "en:.YAS.TV.Extra.ae",
+    "Majid.sa",
+    "Nat.Geo.Abu.Dhabi.HD.ae",
+    "Yas.TV.HD.ae",
+    "Emarat.HD.ae",
+}
+
+RECEIVER_INTERNAL_ONLY_IDS = MBC_INTERNAL_ONLY_IDS | ROTANA_INTERNAL_ONLY_IDS | ADM_INTERNAL_ONLY_IDS
 
 # Importing strict has already installed the standard integrity/LKG wrapper.
 _strict_programme_groups = base.programme_groups
@@ -279,6 +298,7 @@ def pruned_build_feed(ids, selected_programmes, cand_channels, prev_channels, so
     requested_ids = set(ids or [])
     internal_mbc = requested_ids & MBC_INTERNAL_ONLY_IDS
     internal_rotana = requested_ids & ROTANA_INTERNAL_ONLY_IDS
+    internal_adm = requested_ids & ADM_INTERNAL_ONLY_IDS
     active_ids = {
         cid for cid in requested_ids
         if selected_programmes.get(cid) and cid not in RECEIVER_INTERNAL_ONLY_IDS
@@ -292,6 +312,11 @@ def pruned_build_feed(ids, selected_programmes, cand_channels, prev_channels, so
         print(
             "Rotana receiver prune: removed %d internal-only IDs from combined XML: %s" %
             (len(internal_rotana), ", ".join(sorted(internal_rotana, key=str.casefold)))
+        )
+    if internal_adm and "Legacy Combined" in generator_name:
+        print(
+            "ADM receiver prune: removed %d legacy/LKG IDs from combined XML: %s" %
+            (len(internal_adm), ", ".join(sorted(internal_adm, key=str.casefold)))
         )
     translated_programmes = _translate_bein_news_programmes(selected_programmes)
     return strict._original_build_feed(
