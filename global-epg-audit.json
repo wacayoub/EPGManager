@@ -1,68 +1,68 @@
 {
   "schema": 2,
   "scope": "all exclusive MENA country/provider shards + synchronous alias-aware all-ID release gate",
-  "channels_scanned": 637,
-  "programmes_scanned": 29645,
+  "channels_scanned": 642,
+  "programmes_scanned": 30188,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 844,
-    "empty_description": 14451,
+    "arabic_provider_title_not_arabic": 840,
+    "empty_description": 14502,
     "hybrid_arabic_latin_description": 4,
     "mixed_timezone_offsets_same_day": 2,
-    "premium_title_not_english": 165,
-    "severity_warning": 17756,
+    "premium_title_not_english": 134,
+    "severity_warning": 17755,
     "very_long_event_gt_6h": 22,
-    "very_short_event_lt_5m": 2266
+    "very_short_event_lt_5m": 2249
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 370,
+      "empty_description": 349,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
-      "very_short_event_lt_5m": 2
+      "very_short_event_lt_5m": 8
     },
     "mena-dz": {
       "empty_description": 83,
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 1234,
+      "empty_description": 1250,
       "very_long_event_gt_6h": 1,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 560
+      "empty_description": 558
     },
     "mena-jo": {
-      "empty_description": 41,
+      "empty_description": 30,
       "very_short_event_lt_5m": 5
     },
     "mena-kw": {
-      "empty_description": 175,
+      "empty_description": 200,
       "very_short_event_lt_5m": 3
     },
     "mena-lb": {
-      "empty_description": 56,
+      "empty_description": 53,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 333
+      "empty_description": 332
     },
     "mena-other": {
-      "empty_description": 7337,
+      "empty_description": 7409,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 7,
       "very_short_event_lt_5m": 1154
     },
     "mena-qa": {
-      "empty_description": 648,
+      "empty_description": 645,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1223,
-      "very_short_event_lt_5m": 562
+      "empty_description": 1243,
+      "very_short_event_lt_5m": 560
     },
     "mena-sd": {
       "empty_description": 47
@@ -71,26 +71,26 @@
       "empty_description": 4
     },
     "mena-tn": {
-      "empty_description": 122,
+      "empty_description": 121,
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
       "empty_description": 24
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 264,
-      "empty_description": 218,
+      "arabic_provider_title_not_arabic": 262,
+      "empty_description": 216,
       "very_long_event_gt_6h": 2,
-      "very_short_event_lt_5m": 22
+      "very_short_event_lt_5m": 20
     },
     "provider-alkass": {
-      "arabic_provider_title_not_arabic": 107,
+      "arabic_provider_title_not_arabic": 106,
       "very_long_event_gt_6h": 2
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 14,
-      "empty_description": 1075,
-      "very_short_event_lt_5m": 414
+      "empty_description": 1071,
+      "very_short_event_lt_5m": 411
     },
     "provider-bein": {
       "empty_description": 40,
@@ -99,42 +99,31 @@
     },
     "provider-dmi": {
       "arabic_provider_title_not_arabic": 73,
-      "empty_description": 251,
+      "empty_description": 248,
       "very_long_event_gt_6h": 4,
       "very_short_event_lt_5m": 4
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
-      "arabic_provider_title_not_arabic": 312,
-      "empty_description": 306,
+      "arabic_provider_title_not_arabic": 311,
+      "empty_description": 305,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
-      "premium_title_not_english": 31,
       "very_short_event_lt_5m": 40
     },
     "provider-rotana": {
       "arabic_provider_title_not_arabic": 74,
-      "empty_description": 160,
-      "very_short_event_lt_5m": 38
+      "empty_description": 132,
+      "very_short_event_lt_5m": 22
     },
     "provider-starz": {
-      "empty_description": 144,
+      "empty_description": 142,
       "very_long_event_gt_6h": 1
     }
   },
   "samples": {
     "arabic_provider_title_not_arabic": [
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Five.qa",
-        "channel": "Alkass Five.qa",
-        "start": "20260914141500 +0000",
-        "stop": "20260914144500 +0000",
-        "title": "Inside Line",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
       {
         "shard": "provider-alkass",
         "channel_id": "Alkass Five.qa",
@@ -524,6 +513,16 @@
         "title": "Golmania",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260915023000 +0000",
+        "stop": "20260915053000 +0000",
+        "title": "Local Camel Race",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 180.0
       }
     ],
     "very_long_event_gt_6h": [
@@ -1581,7 +1580,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914150100 +0000",
         "stop": "20260914150400 +0000",
-        "title": "Barbie and Barbie on Set",
+        "title": "Barbie & Barbie On Set",
         "desc": "باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!",
         "duration_minutes": 3.0
       },
@@ -1591,7 +1590,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914152900 +0000",
         "stop": "20260914153200 +0000",
-        "title": "Lego Duplo Adventures S3",
+        "title": "Duplo Adventures",
         "desc": "يأخذ بيب وليو هوپسي والعديد من الحيوانات الأخرى التي تحتاج إلى الرعاية إلى مستشفى البيطري لتلقي العلاج وتحسن صحتهم.",
         "duration_minutes": 3.0
       },
@@ -1601,7 +1600,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914153200 +0000",
         "stop": "20260914153500 +0000",
-        "title": "Lego Duplo Adventures S3",
+        "title": "Duplo Adventures",
         "desc": "ينقسم بيب وليو إلى فرق لبناء شيء ما، لكنهما يقرران توحيد جهودهما لجعل الأمر أكثر متعة.",
         "duration_minutes": 3.0
       },
@@ -1621,7 +1620,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914153800 +0000",
         "stop": "20260914154000 +0000",
-        "title": "Tee and Mo",
+        "title": "Duplo Adventures",
         "desc": "بيب، ليو و هوبسي يزورون راي في مكان مربي النحل ليتعلموا عن النحل!",
         "duration_minutes": 2.0
       },
@@ -1651,7 +1650,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914191400 +0000",
         "stop": "20260914191800 +0000",
-        "title": "Matchbox Adventures",
+        "title": "Matchbox Adventure",
         "desc": "استعدوا للاضطرابات! ستكون الرحلة مليئة بالمطبات!",
         "duration_minutes": 4.0
       },
@@ -1661,7 +1660,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914191800 +0000",
         "stop": "20260914192000 +0000",
-        "title": "Adam Wa Mishmish 2",
+        "title": "Adam Wa Mishmish",
         "desc": "يعرّفان آدم ومشمش الأطفال على الفصول الأربعة ويشرحان ما يحدث من تغييرات في الطقس خلال كل فصل.",
         "duration_minutes": 2.0
       },
@@ -1671,7 +1670,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914192000 +0000",
         "stop": "20260914192200 +0000",
-        "title": "Adam Wa Mishmish 2",
+        "title": "Adam Wa Mishmish",
         "desc": "يتّبع آدم روتينه المسائي من الاستحمام وقراءة القصص حتى يحين وقت النوم في أغنية هادئة تساعد الأطفال على الاسترخاء.",
         "duration_minutes": 2.0
       },
@@ -1851,7 +1850,7 @@
         "channel": "OSNtv Kids",
         "start": "20260915150100 +0000",
         "stop": "20260915150400 +0000",
-        "title": "Barbie And Barbie On Set",
+        "title": "Barbie & Barbie On Set",
         "desc": "بعد لقاء مصمم رقصات العرض، تبتكر باربي حركات رقص ملفتة للنظر خاصة بها!",
         "duration_minutes": 3.0
       },
@@ -2042,13 +2041,13 @@
     ]
   },
   "all_id_release_gate": {
-    "channels": 637,
-    "programmes": 29645,
-    "PASS": 162,
-    "REVIEW": 475,
+    "channels": 642,
+    "programmes": 30188,
+    "PASS": 160,
+    "REVIEW": 482,
     "NO_EPG": 0,
     "FAIL": 0,
-    "auto_lock_safe": 162,
+    "auto_lock_safe": 160,
     "missing_shards": []
   }
 }

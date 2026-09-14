@@ -1,14 +1,14 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=637
-programmes_scanned=29645
+channels_scanned=642
+programmes_scanned=30188
 critical=0
-warnings=17756
+warnings=17755
 
 ISSUE COUNTS
-empty_description=14451
-very_short_event_lt_5m=2266
-arabic_provider_title_not_arabic=844
-premium_title_not_english=165
+empty_description=14502
+very_short_event_lt_5m=2249
+arabic_provider_title_not_arabic=840
+premium_title_not_english=134
 very_long_event_gt_6h=22
 hybrid_arabic_latin_description=4
 arabic_provider_description_not_arabic=2
@@ -22,9 +22,7 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260916034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=844
-- provider-alkass | Alkass Five.qa | 20260914141500 +0000 | Inside Line
-  desc: برنامج رياضي على قنوات الكأس.
+[arabic_provider_title_not_arabic] count=840
 - provider-alkass | Alkass Five.qa | 20260914144500 +0000 | FOOTBALL REVIEW
   desc: برنامج رياضي على قنوات الكأس.
 - provider-alkass | Alkass Five.qa | 20260914153000 +0000 | Al Majlis AFC Champions League Elite
@@ -43,8 +41,10 @@ TOP SAMPLES
   desc: برنامج رياضي على قنوات الكأس.
 - provider-alkass | Alkass Five.qa | 20260915000000 +0000 | the Referee
   desc: برنامج رياضي على قنوات الكأس.
+- provider-alkass | Alkass Five.qa | 20260915013000 +0000 | FOOTBALL REVIEW
+  desc: برنامج رياضي على قنوات الكأس.
 
-[empty_description] count=14451
+[empty_description] count=14502
 - provider-bein | beIN Drama.eg | 20260914140000 +0000 | Sarab
 - provider-bein | beIN Drama.eg | 20260914150000 +0000 | Basmet Hada
 - provider-bein | beIN Drama.eg | 20260914160000 +0000 | El Qatel Allazy Ahabany
@@ -72,7 +72,7 @@ TOP SAMPLES
 - provider-bein | beINSPORTS2 | 2026-09-16 | 
   offsets: +0000,implicit-UTC
 
-[premium_title_not_english] count=165
+[premium_title_not_english] count=134
 - provider-bein | BeIn Series HD 1.eg | 20260914150000 +0000 | 1883
   desc: يسافر جيل ما بعد الحرب الأهلية من عائلة (داتون) إلى تكساس للقيام برحلة شاقة إلى أوريجون قبل أن يقرروا الاستقرار في مونتانا، حيث تقرر العائلة تأسيس مزرعة يلوستون.
 - provider-bein | beIN SPORTS NEWS.qa | 20260914163000 +0000 | مقابلة خاصة - 14/09/26
@@ -109,27 +109,27 @@ TOP SAMPLES
 - provider-dmi | Dubai Racing | 20260915013000 +0000 | Dubai International Arabian Horse Championship - 04/04/2026
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
 
-[very_short_event_lt_5m] count=2266
-- provider-osn | OSNtv Kids | 20260914150100 +0000 | Barbie and Barbie on Set
+[very_short_event_lt_5m] count=2249
+- provider-osn | OSNtv Kids | 20260914150100 +0000 | Barbie & Barbie On Set
   desc: باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!
-- provider-osn | OSNtv Kids | 20260914152900 +0000 | Lego Duplo Adventures S3
+- provider-osn | OSNtv Kids | 20260914152900 +0000 | Duplo Adventures
   desc: يأخذ بيب وليو هوپسي والعديد من الحيوانات الأخرى التي تحتاج إلى الرعاية إلى مستشفى البيطري لتلقي العلاج وتحسن صحتهم.
-- provider-osn | OSNtv Kids | 20260914153200 +0000 | Lego Duplo Adventures S3
+- provider-osn | OSNtv Kids | 20260914153200 +0000 | Duplo Adventures
   desc: ينقسم بيب وليو إلى فرق لبناء شيء ما، لكنهما يقرران توحيد جهودهما لجعل الأمر أكثر متعة.
 - provider-osn | OSNtv Kids | 20260914153500 +0000 | Duplo Adventures
   desc: يجد ليو وبيب وهوبسي خريطة مذهلة تحمل وجهة غامضة. هل يمكنهم العثور عليها؟
-- provider-osn | OSNtv Kids | 20260914153800 +0000 | Tee and Mo
+- provider-osn | OSNtv Kids | 20260914153800 +0000 | Duplo Adventures
   desc: بيب، ليو و هوبسي يزورون راي في مكان مربي النحل ليتعلموا عن النحل!
 - provider-osn | OSNtv Kids | 20260914173900 +0000 | Barbie Summer Adventure
   desc: انتهت المدرسة لفصل الصيف! باربي، باربي، سكيبر، ستايسي، وتشيلسي يحتفلون!
 - provider-osn | OSNtv Kids | 20260914185200 +0000 | Barbie: Fashion Stories
   desc: باربي و باربي تغنيان عن مدى روعة الأصدقاء أثناء تصوير فيديو استعد معي بنسخة حفلة
-- provider-osn | OSNtv Kids | 20260914191400 +0000 | Matchbox Adventures
+- provider-osn | OSNtv Kids | 20260914191400 +0000 | Matchbox Adventure
   desc: استعدوا للاضطرابات! ستكون الرحلة مليئة بالمطبات!
-- provider-osn | OSNtv Kids | 20260914191800 +0000 | Adam Wa Mishmish 2
+- provider-osn | OSNtv Kids | 20260914191800 +0000 | Adam Wa Mishmish
   desc: يعرّفان آدم ومشمش الأطفال على الفصول الأربعة ويشرحان ما يحدث من تغييرات في الطقس خلال كل فصل.
-- provider-osn | OSNtv Kids | 20260914192000 +0000 | Adam Wa Mishmish 2
+- provider-osn | OSNtv Kids | 20260914192000 +0000 | Adam Wa Mishmish
   desc: يتّبع آدم روتينه المسائي من الاستحمام وقراءة القصص حتى يحين وقت النوم في أغنية هادئة تساعد الأطفال على الاسترخاء.
 
 ALL-ID RELEASE GATE
-{"FAIL": 0, "NO_EPG": 0, "PASS": 162, "REVIEW": 475, "auto_lock_safe": 162, "channels": 637, "missing_shards": [], "programmes": 29645}
+{"FAIL": 0, "NO_EPG": 0, "PASS": 160, "REVIEW": 482, "auto_lock_safe": 160, "channels": 642, "missing_shards": [], "programmes": 30188}

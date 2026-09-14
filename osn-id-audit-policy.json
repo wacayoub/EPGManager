@@ -3,7 +3,7 @@
   "mode": "virtual-epgmanager-exhaustive-osn-production-policy",
   "summary": {
     "channels": 22,
-    "programmes": 1035,
+    "programmes": 1028,
     "counts": {
       "ALIAS_OK": 2,
       "PASS": 20
@@ -23,10 +23,10 @@
       "name": "Osn Ya Hala Aflam.eg",
       "family": "OSN Movies",
       "kind": "movies",
-      "events": 22,
-      "fingerprint": "57dd9ec922800f2f1618586e763711964d6656b7",
-      "coverage_hours": 36.25,
-      "span_hours": 36.25,
+      "events": 21,
+      "fingerprint": "960b52fd5446deb2bb27a1bcae9a1cc0cdf2df01",
+      "coverage_hours": 34.5,
+      "span_hours": 34.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -39,24 +39,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 4.5,
-      "title_has_latin_pct": 95.5,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 9.1,
-      "unique_title_pct": 68.2,
+      "top_title_pct": 9.5,
+      "unique_title_pct": 71.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914130000 +0000",
-          "stop": "20260914144500 +0000",
-          "title": "Anf wa Thalath Oyoun",
-          "desc": "تنهار حياة د. هاشم الهادئة حين تدخلها ثلاث نساء، كل واحدة تكشف نوعًا مختلفًا من الحب وتدفعه لمواجهة مشاعره ومعتقداته الخفية."
-        },
         {
           "start": "20260914144500 +0000",
           "stop": "20260914160500 +0000",
@@ -74,6 +68,12 @@
           "stop": "20260914193000 +0000",
           "title": "Farha",
           "desc": "أثناء النكبة عام 1948، تتحطّم أحلام فرحة بالتعليم وهي في الرابعة عشرة من عمرها، إذ تُجبَر على الاختباء في غرفة التخزين حيثُ تشهد تدمير قريتها العنيف."
+        },
+        {
+          "start": "20260914193000 +0000",
+          "stop": "20260914210500 +0000",
+          "title": "Hazer Tejwal AKA Curfew",
+          "desc": "يتابع الفيلم قصة فاتن التي يتم إطلاق سراحها بعد عشرين سنة من السجن بسبب إرتكابها جريمة فظيعة، وفي الوقت نفسه يتم فرض حظر تجول، تًجبر فاتن على المكوث مع ابنتها ليلى التي تقوم بمواجه"
         }
       ],
       "verdict": "ALIAS_OK",
@@ -162,7 +162,7 @@
       "family": "OSN Comedy",
       "kind": "comedy",
       "events": 73,
-      "fingerprint": "1688d0951ed9e999bfa92a001a21e190e88ad573",
+      "fingerprint": "f3a13099cb3f17b33aea76d46d6c4166833db73d",
       "coverage_hours": 33.5,
       "span_hours": 33.5,
       "gaps_gt_2h": 0,
@@ -182,8 +182,8 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 19.2,
-      "unique_title_pct": 16.4,
+      "top_title_pct": 20.5,
+      "unique_title_pct": 11.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -192,7 +192,7 @@
         {
           "start": "20260914143000 +0000",
           "stop": "20260914150500 +0000",
-          "title": "Silicon Valley S6",
+          "title": "Silicon Valley",
           "desc": "يواجه ريتشارد ودينيش وجيلفويل وجاريد التحدي الأكبر حتى الآن، حيث يختبر حدث ضخم قدرات بايبرنيت، في حين أن وجود لوري غير المتوقع يجعلهم يشعرون بالقلق من التخريب. تكتشف مونيكا أن جيان"
         },
         {
@@ -218,7 +218,7 @@
       "issues": [],
       "warnings": [],
       "diagnostic": [
-        "LOW_TITLE_DIVERSITY=16%"
+        "LOW_TITLE_DIVERSITY=11%"
       ],
       "source_status": "NORMAL",
       "mapping_mode": "normal_candidate",
@@ -231,10 +231,10 @@
       "name": "OSNtv Kids",
       "family": "OSN Kids",
       "kind": "kids",
-      "events": 171,
-      "fingerprint": "2935bc69a451d28556d5c6d4691251c84013aba6",
-      "coverage_hours": 33.65,
-      "span_hours": 33.65,
+      "events": 170,
+      "fingerprint": "10370968f437ec85b724c6170effe89418a26a02",
+      "coverage_hours": 33.45,
+      "span_hours": 33.45,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -252,19 +252,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 11.7,
-      "unique_title_pct": 16.4,
+      "top_title_pct": 11.8,
+      "unique_title_pct": 12.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914143000 +0000",
-          "stop": "20260914144200 +0000",
-          "title": "Charlie and Lola",
-          "desc": "من السهل جدًا على تشارلي جعل لولا تقفز."
-        },
         {
           "start": "20260914144200 +0000",
           "stop": "20260914150100 +0000",
@@ -274,21 +268,27 @@
         {
           "start": "20260914150100 +0000",
           "stop": "20260914150400 +0000",
-          "title": "Barbie and Barbie on Set",
+          "title": "Barbie & Barbie On Set",
           "desc": "باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!"
         },
         {
           "start": "20260914150400 +0000",
           "stop": "20260914152900 +0000",
-          "title": "Old Enough! Canada",
+          "title": "Old Enough!",
           "desc": "يحاول سايمون، البالغ من العمر خمس سنوات، أن يشق طريقه عبر سوق طعام يشبه المتاهة ليجمع كل المكونات اللازمة لعشاء عيد ميلاد شقيقته الكبرى. أما الشقيقان بيميسير وأوريوفي، فيواجهان صعو"
+        },
+        {
+          "start": "20260914152900 +0000",
+          "stop": "20260914153200 +0000",
+          "title": "Duplo Adventures",
+          "desc": "يأخذ بيب وليو هوپسي والعديد من الحيوانات الأخرى التي تحتاج إلى الرعاية إلى مستشفى البيطري لتلقي العلاج وتحسن صحتهم."
         }
       ],
       "verdict": "PASS",
       "issues": [],
       "warnings": [],
       "diagnostic": [
-        "LOW_TITLE_DIVERSITY=16%"
+        "LOW_TITLE_DIVERSITY=12%"
       ],
       "source_status": "NORMAL",
       "mapping_mode": "normal_candidate",
@@ -372,7 +372,7 @@
       "family": "OSN Movies",
       "kind": "movies",
       "events": 17,
-      "fingerprint": "5bb8db9600600ddd8a73f452fb886635bf40f0b9",
+      "fingerprint": "cd93ae794f27392d98497acbe8a9b6e204f2cec1",
       "coverage_hours": 34.5,
       "span_hours": 34.5,
       "gaps_gt_2h": 0,
@@ -387,8 +387,8 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 5.9,
-      "title_has_latin_pct": 94.1,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
@@ -439,10 +439,10 @@
       "name": "OSNtv Movies Hollywood",
       "family": "OSN Movies",
       "kind": "movies",
-      "events": 20,
-      "fingerprint": "1871a5db28859df4a01b9bcda8f18049cabb6af2",
-      "coverage_hours": 36.08,
-      "span_hours": 36.08,
+      "events": 19,
+      "fingerprint": "e195f4a55976b2c5ebb757415e2a9a9d10024450",
+      "coverage_hours": 34.67,
+      "span_hours": 34.67,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -455,24 +455,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 10.0,
-      "title_has_latin_pct": 90.0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 10.0,
-      "unique_title_pct": 85.0,
+      "top_title_pct": 15.8,
+      "unique_title_pct": 73.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914132000 +0000",
-          "stop": "20260914144500 +0000",
-          "title": "Song One",
-          "desc": "بعيدة عن عائلتها، تعود فراني إلى المنزل بعد أن يتعرض شقيقها لحادث يتركه في غيبوبة. في محاولة لفهم حياته كعازف موسيقي طموح، تتعقب فراني الموسيقي المفضل لشقيقها."
-        },
         {
           "start": "20260914144500 +0000",
           "stop": "20260914162000 +0000",
@@ -490,6 +484,12 @@
           "stop": "20260914195000 +0000",
           "title": "The Wrestler",
           "desc": "يُواجه مصارعٌ تقدّم به السن تحديات الحياة خارج الحلبة، بعدما أجبره جسده المنهك على الاعتزال، ليبدأ رحلة تصالح مع ما تبقّى له من العمر."
+        },
+        {
+          "start": "20260914195000 +0000",
+          "stop": "20260914215500 +0000",
+          "title": "Broken Embraces",
+          "desc": "يصل كاتب أعمى إلى لحظة لا مفر منها: يواجه فيها جراحاً تعود إلى أربعة عشر عاماً مضت، حين كان لا يزال يُعرف باسمه الحقيقي، ماتيو بلانكو."
         }
       ],
       "verdict": "PASS",
@@ -576,7 +576,7 @@
       "family": "OSN Showcase",
       "kind": "entertainment",
       "events": 51,
-      "fingerprint": "0bf30f3b8fdf5dcf415dfdd9ad3d948cf2f1ffd1",
+      "fingerprint": "138808fbe4581f35d4659387381125ff658da348",
       "coverage_hours": 33.67,
       "span_hours": 33.67,
       "gaps_gt_2h": 0,
@@ -597,7 +597,7 @@
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 11.8,
-      "unique_title_pct": 37.3,
+      "unique_title_pct": 31.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -606,7 +606,7 @@
         {
           "start": "20260914142000 +0000",
           "stop": "20260914150000 +0000",
-          "title": "Game Theory with Bomani Jones",
+          "title": "Game Theory With Bomani Jones",
           "desc": "تعرض الحلقة الثالثة تعليقًا موضعيًا على القضايا الرياضية الأكثر تداولًا هذا الأسبوع ، ومقابلة فردية مع الممثل الكوميدي روي وود جونيور ، وغوصًا عميقًا في الكليات والجامعات السوداء ت"
         },
         {
@@ -643,10 +643,10 @@
       "name": "OSNtv Crime",
       "family": "OSN Crime",
       "kind": "crime",
-      "events": 40,
-      "fingerprint": "f2e28b4cbce558e2466829e3ab88ea9086b5c983",
-      "coverage_hours": 34.5,
-      "span_hours": 34.5,
+      "events": 39,
+      "fingerprint": "02f397147e65b372aecb5aa2f2416b73274f1cac",
+      "coverage_hours": 33.67,
+      "span_hours": 33.67,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -659,28 +659,22 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 2.5,
-      "title_has_latin_pct": 97.5,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 12.5,
-      "unique_title_pct": 37.5,
+      "top_title_pct": 17.9,
+      "unique_title_pct": 20.5,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260914135500 +0000",
-          "stop": "20260914144500 +0000",
-          "title": "The Mentalist S7",
-          "desc": "يسافر حين وليزبون في مهمة خطيرة إلى بيروت حيث عليهم العمل مع خصم مألوف، الفتاة الفاتنة إيريكا فلاين، التي وافقت على مساعدة الإف بي آي في القبض على صديقها الحميم الذي يعمل كمراسل لل"
-        },
-        {
           "start": "20260914144500 +0000",
           "stop": "20260914153500 +0000",
-          "title": "Murder in a Small Town S2",
+          "title": "Murder In A Small Town",
           "desc": "تواجه كاساندرا العمدة كريستي هولمان بأدلة تثبت فسادها، وفي الوقت نفسه يعود مطارد من ماضي كاساندرا ليظهر مجدداً."
         },
         {
@@ -694,6 +688,12 @@
           "stop": "20260914171000 +0000",
           "title": "Chicago Fire",
           "desc": "يحقق سيفرايد في حريق مشبوه داخل مدرسة ثانوية. و تتلقى نوفاك مكالمة غير متوقعة. تجلب فيوليت أحد رجال الإطفاء من محطة 51 للعمل على سيارة الإسعاف بالتناوب."
+        },
+        {
+          "start": "20260914171000 +0000",
+          "stop": "20260914180000 +0000",
+          "title": "Major Crimes",
+          "desc": "يجب على الفرقة العمل بسرعة لتعقب قاتل متسلسل قبل أن يقتل مجدداً."
         }
       ],
       "verdict": "PASS",
@@ -711,10 +711,10 @@
       "name": "OSNtv Documentary",
       "family": "OSN Documentary",
       "kind": "documentary",
-      "events": 28,
-      "fingerprint": "6fe5b13617dc584f4cd4e87de37417f107ca3173",
-      "coverage_hours": 34.58,
-      "span_hours": 34.58,
+      "events": 27,
+      "fingerprint": "ab3ed7d4d974db3952326b9254ce662006794f62",
+      "coverage_hours": 33.33,
+      "span_hours": 33.33,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -727,24 +727,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 71.4,
-      "title_has_latin_pct": 28.6,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 10.7,
-      "unique_title_pct": 85.7,
+      "top_title_pct": 22.2,
+      "unique_title_pct": 66.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914133500 +0000",
-          "stop": "20260914145000 +0000",
-          "title": "Love Crimes Of Kabul",
-          "desc": "في كابول، وفي سجن أفغانستان المركزي للنساء، نصف السجينات هن نساء شابات مسجونات بسبب (جرائم أخلاقية) أو الزنا، أو الهروب من منازلهن وأزواجهن. يصور هذا الفيلم ثلاث نساء متهمات بارتكا"
-        },
         {
           "start": "20260914145000 +0000",
           "stop": "20260914163500 +0000",
@@ -762,6 +756,12 @@
           "stop": "20260914190000 +0000",
           "title": "The Murders At Starved Rock",
           "desc": "يعود ديفيد في تحقيقاته إلى لاسال، حيث ما زال السكان المحليون يتجادلون حول براءة تشستر بعد عقود من الجريمة الفظيعة."
+        },
+        {
+          "start": "20260914190000 +0000",
+          "stop": "20260914200000 +0000",
+          "title": "The Vow",
+          "desc": "يخطط الأعضاء السابقون مع كاثرين أوكسينبرغ حول كيفية إخراج ابنتها من مجموعة دوس السرية."
         }
       ],
       "verdict": "PASS",
@@ -780,7 +780,7 @@
       "family": "OSN iQIYI",
       "kind": "series",
       "events": 44,
-      "fingerprint": "28697d817d928c29b131c9434c851e400dda1acf",
+      "fingerprint": "8a58adbb71a6a12ad586fd1ffca663eec86c7480",
       "coverage_hours": 34.25,
       "span_hours": 34.25,
       "gaps_gt_2h": 0,
@@ -795,13 +795,13 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 4.5,
-      "title_has_latin_pct": 95.5,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 13.6,
-      "unique_title_pct": 22.7,
+      "unique_title_pct": 20.5,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -848,7 +848,7 @@
       "family": "OSN Movies",
       "kind": "movies",
       "events": 20,
-      "fingerprint": "f9ad0390619ed27ea3088bb7c24568caf853d0b3",
+      "fingerprint": "1468dbd3f74bf00f8e92b6d28361c86f561936e3",
       "coverage_hours": 35.33,
       "span_hours": 35.33,
       "gaps_gt_2h": 0,
@@ -878,7 +878,7 @@
         {
           "start": "20260914134500 +0000",
           "stop": "20260914151500 +0000",
-          "title": "For Richer or Poorer",
+          "title": "For Richer, For Poorer",
           "desc": "شاب يخرج حديثاً من الجامعة ويقضي وقته في كسل داخل منزل عائلته، مما يثير غضب والده، وهو مليونير عصامي يضع خطة للإفلاس على أمل أن يلهم ابنه للبحث عن عمل."
         },
         {
@@ -916,7 +916,7 @@
       "family": "OSN Movies",
       "kind": "movies",
       "events": 23,
-      "fingerprint": "63c276d5aec3d8a2dbedef2a00f7698e19720517",
+      "fingerprint": "03dee9ccc3d57240e591827527f1b8711b72470d",
       "coverage_hours": 34.92,
       "span_hours": 34.92,
       "gaps_gt_2h": 0,
@@ -931,13 +931,13 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 4.3,
-      "title_has_latin_pct": 95.7,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 13.0,
-      "unique_title_pct": 69.6,
+      "unique_title_pct": 60.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -958,7 +958,7 @@
         {
           "start": "20260914162500 +0000",
           "stop": "20260914175000 +0000",
-          "title": "Teen Titans Go! To the Movies",
+          "title": "Teen Titans Go To The Movies!",
           "desc": "ينشغل خمسة فتية من الأبطال الخارقين عن تحقيق حلمهم بتحقيق النجومية في عالم السينما عند التصدي لمخططات شرير مهووس بالسيطرة على العالم."
         },
         {
@@ -984,7 +984,7 @@
       "family": "OSN Movies",
       "kind": "movies",
       "events": 19,
-      "fingerprint": "3fac8e7476ad16d6d5c2c0795b1b18f313404e2f",
+      "fingerprint": "5ebcd3607b25ba18cc71557ba574f082f96601d5",
       "coverage_hours": 34.0,
       "span_hours": 34.0,
       "gaps_gt_2h": 0,
@@ -999,8 +999,8 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 5.3,
-      "title_has_latin_pct": 94.7,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
@@ -1052,7 +1052,7 @@
       "family": "OSN Now",
       "kind": "entertainment",
       "events": 43,
-      "fingerprint": "d1c0814826c79361f843d91a979d4ea7c662eb86",
+      "fingerprint": "0372f8e6e35bab2bed60dcc5a8254d5bf1abde51",
       "coverage_hours": 33.42,
       "span_hours": 33.42,
       "gaps_gt_2h": 0,
@@ -1072,8 +1072,8 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 9.3,
-      "unique_title_pct": 41.9,
+      "top_title_pct": 11.6,
+      "unique_title_pct": 27.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -1120,7 +1120,7 @@
       "family": "OSN One",
       "kind": "entertainment",
       "events": 48,
-      "fingerprint": "de42692e369d57f050f056d246632bdb53a5d2b0",
+      "fingerprint": "9f444003e2bd892331936684a5635d97261544c6",
       "coverage_hours": 33.67,
       "span_hours": 33.67,
       "gaps_gt_2h": 0,
@@ -1135,13 +1135,13 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 2.1,
-      "title_has_latin_pct": 97.9,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 29.2,
-      "unique_title_pct": 39.6,
+      "unique_title_pct": 27.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -1187,10 +1187,10 @@
       "name": "OSNtv Pop Up",
       "family": "OSN Pop Up",
       "kind": "thematic",
-      "events": 169,
-      "fingerprint": "3b84fb4aa31ec04b63283ec9c5ebefa93f652daa",
-      "coverage_hours": 33.37,
-      "span_hours": 33.37,
+      "events": 168,
+      "fingerprint": "d2c4503b48a44579895d5e2cb54bcb6caacda344",
+      "coverage_hours": 33.17,
+      "span_hours": 33.17,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1208,19 +1208,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 79.3,
+      "top_title_pct": 79.2,
       "unique_title_pct": 1.2,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914144000 +0000",
-          "stop": "20260914145200 +0000",
-          "title": "The Amazing World Of Gumball",
-          "desc": "تقرر نيكول دفع فاتورة الكابل شخصيًا في تشاناكس."
-        },
         {
           "start": "20260914145200 +0000",
           "stop": "20260914150400 +0000",
@@ -1238,6 +1232,12 @@
           "stop": "20260914152800 +0000",
           "title": "The Amazing World Of Gumball",
           "desc": "يستخدم غامبول وداروين جرعة سحرية لتقليص حجم هيكتور."
+        },
+        {
+          "start": "20260914152800 +0000",
+          "stop": "20260914154000 +0000",
+          "title": "The Amazing World Of Gumball",
+          "desc": "ادخل إلى العالم المدهش لغامبول حيث يتحد البعدين الثاني والثالث بينما ينطلق غامبول وصديقه داروين في مغامرات يومية مليئة بالضحك والجنون."
         }
       ],
       "verdict": "PASS",
@@ -1396,10 +1396,10 @@
       "name": "OSNtv Yahala Aflam",
       "family": "OSN Movies",
       "kind": "movies",
-      "events": 22,
-      "fingerprint": "57dd9ec922800f2f1618586e763711964d6656b7",
-      "coverage_hours": 36.25,
-      "span_hours": 36.25,
+      "events": 21,
+      "fingerprint": "960b52fd5446deb2bb27a1bcae9a1cc0cdf2df01",
+      "coverage_hours": 34.5,
+      "span_hours": 34.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1412,24 +1412,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 4.5,
-      "title_has_latin_pct": 95.5,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 9.1,
-      "unique_title_pct": 68.2,
+      "top_title_pct": 9.5,
+      "unique_title_pct": 71.4,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914130000 +0000",
-          "stop": "20260914144500 +0000",
-          "title": "Anf wa Thalath Oyoun",
-          "desc": "تنهار حياة د. هاشم الهادئة حين تدخلها ثلاث نساء، كل واحدة تكشف نوعًا مختلفًا من الحب وتدفعه لمواجهة مشاعره ومعتقداته الخفية."
-        },
         {
           "start": "20260914144500 +0000",
           "stop": "20260914160500 +0000",
@@ -1447,6 +1441,12 @@
           "stop": "20260914193000 +0000",
           "title": "Farha",
           "desc": "أثناء النكبة عام 1948، تتحطّم أحلام فرحة بالتعليم وهي في الرابعة عشرة من عمرها، إذ تُجبَر على الاختباء في غرفة التخزين حيثُ تشهد تدمير قريتها العنيف."
+        },
+        {
+          "start": "20260914193000 +0000",
+          "stop": "20260914210500 +0000",
+          "title": "Hazer Tejwal AKA Curfew",
+          "desc": "يتابع الفيلم قصة فاتن التي يتم إطلاق سراحها بعد عشرين سنة من السجن بسبب إرتكابها جريمة فظيعة، وفي الوقت نفسه يتم فرض حظر تجول، تًجبر فاتن على المكوث مع ابنتها ليلى التي تقوم بمواجه"
         }
       ],
       "verdict": "PASS",
@@ -1465,7 +1465,7 @@
       "family": "OSN Yahala",
       "kind": "arabic_entertainment",
       "events": 39,
-      "fingerprint": "bd92ac3646f20f06be0c279da1f3a6cac920332c",
+      "fingerprint": "56babdc95d766c2c8620258e01b660e42b9e0469",
       "coverage_hours": 33.75,
       "span_hours": 33.75,
       "gaps_gt_2h": 0,
@@ -1486,7 +1486,7 @@
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 23.1,
-      "unique_title_pct": 25.6,
+      "unique_title_pct": 20.5,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -1495,7 +1495,7 @@
         {
           "start": "20260914141500 +0000",
           "stop": "20260914150500 +0000",
-          "title": "Deep in Love",
+          "title": "Deep In Love",
           "desc": "عندما يُعتقل عادل، تتسابق أسمى وإيليني لإنقاذه قبل جلسة الطلاق."
         },
         {

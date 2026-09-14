@@ -3,8 +3,10 @@ expected_ids=22 actual_ids=22 REVIEW=0 FAIL=0
 
 Checks:
 - verdicts=PASS:20 ALIAS_OK:2 REVIEW:0 FAIL:0
-- canonical_coverage=33.4..36.2h
+- canonical_coverage=33.2..35.3h
+- premium_title_latin=100.0..100.0% threshold>=90%
+- premium_desc_ar=100.0..100.0% threshold>=95%
 - official_recovered_ids_checked=10
 - verified_legacy_aliases=2/2
-- documentary=events:28 coverage:34.6h gaps:0 empty_desc:0 desc_ar:100%
+- documentary=events:27 coverage:33.3h gaps:0 title_latin:100% empty_desc:0 desc_ar:100%
 - all frozen OSN invariants passed
