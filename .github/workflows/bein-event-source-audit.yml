@@ -1,0 +1,63 @@
+name: beIN Event Source Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/bein-event-source-audit.yml"
+      - "tools/bein_event_source_audit.py"
+      - "tools/mena_cloud_merge.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bein-event-source-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run cross-source MAX/XTRA audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          python -m py_compile tools/bein_event_source_audit.py
+          python tools/bein_event_source_audit.py \
+            --json output/bein-event-source-audit.json \
+            --text output/bein-event-source-audit.txt \
+            --window-hours 48
+          cat output/bein-event-source-audit.txt
+
+      - name: Publish diagnostic only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin mena-data
+          git worktree add current-data origin/mena-data
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/bein-event-source-audit.json .
+          cp ../output/bein-event-source-audit.txt .
+          git config user.name "EPGManager beIN Event Audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add bein-event-source-audit.json bein-event-source-audit.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Audit beIN MAX XTRA timelines across MENA sources"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
