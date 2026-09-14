@@ -10,6 +10,7 @@ on:
       - ".github/workflows/bein-virtual-audit.yml"
       - "tools/bein_id_audit.py"
       - "tools/bein_id_audit_policy.py"
+      - "tools/bein_final_regression.py"
 
 permissions:
   contents: write
@@ -56,6 +57,16 @@ jobs:
             --json /tmp/bein-audit/bein-id-audit-policy.json \
             --text /tmp/bein-audit/bein-id-audit-policy.txt
           cat /tmp/bein-audit/bein-id-audit-policy.txt
+
+      - name: Run final frozen beIN regression gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/bein_final_regression.py \
+            --xml /tmp/bein-audit/provider-bein.xml.gz \
+            --audit-json /tmp/bein-audit/bein-id-audit-policy.json \
+            --text /tmp/bein-audit/bein-final-regression.txt
+          cat /tmp/bein-audit/bein-final-regression.txt
 
       - name: Verify actual displayed scripts without trusting XML lang tags
         shell: bash
@@ -120,7 +131,8 @@ jobs:
             git reset --hard origin/mena-data
             cp /tmp/bein-audit/bein-id-audit-policy.json .
             cp /tmp/bein-audit/bein-id-audit-policy.txt .
-            git add bein-id-audit-policy.json bein-id-audit-policy.txt
+            cp /tmp/bein-audit/bein-final-regression.txt .
+            git add bein-id-audit-policy.json bein-id-audit-policy.txt bein-final-regression.txt
             if git diff --cached --quiet; then
               echo "No beIN policy audit changes."
               exit 0
