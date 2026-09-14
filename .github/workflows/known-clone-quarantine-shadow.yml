@@ -1,0 +1,140 @@
+name: Known Clone Quarantine Shadow
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/known-clone-quarantine-shadow.yml"
+      - "tools/quarantine_known_clone_group.py"
+      - "tools/known_clone_quarantine_ab_audit.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: known-clone-quarantine-shadow
+  cancel-in-progress: true
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: current-data
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/epg
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/epg/package-lock.json
+      - name: Verify scripts
+        run: |
+          python -m py_compile \
+            tools/quarantine_known_clone_group.py \
+            tools/known_clone_quarantine_ab_audit.py \
+            tools/all_id_audit.py
+      - name: Install grabber
+        working-directory: vendor/epg
+        run: npm ci --no-audit --no-fund
+      - name: Build inputs
+        run: |
+          set -euo pipefail
+          mkdir -p output/a output/b output/upstream previous
+          python tools/mena_cloud_catalog.py \
+            --epg-root vendor/epg \
+            --output-channels output/mena.channels.xml \
+            --output-manifest output/catalog.json
+          cp current-data/mena-arabic.xml.gz previous/mena-arabic.xml.gz
+          curl -fL --retry 2 --connect-timeout 5 --max-time 30 \
+            https://iptv-org.github.io/api/channels.json -o output/channels.json || echo '[]' > output/channels.json
+      - name: Grab primary 48h once
+        working-directory: vendor/epg
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=30s 1500s \
+            npm run grab --- \
+              --channels="${GITHUB_WORKSPACE}/output/mena.channels.xml" \
+              --output="${GITHUB_WORKSPACE}/output/raw.xml" \
+              --days=2 --maxConnections=3 --timeout=20000
+          test -s "${GITHUB_WORKSPACE}/output/raw.xml" || printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/raw.xml"
+          exit 0
+      - name: Merge once
+        run: |
+          set -euo pipefail
+          python tools/mena_cloud_merge_arabic_first.py \
+            --primary output/raw.xml \
+            --catalog-manifest output/catalog.json \
+            --output output/merged.xml \
+            --report output/merge-report.json \
+            --cache-dir output/upstream \
+            --window-hours 48
+      - name: Finalize A production policy
+        run: |
+          set -euo pipefail
+          python tools/mena_cloud_finalize_strict.py \
+            --candidate output/merged.xml --catalog-manifest output/catalog.json \
+            --previous previous/mena-arabic.xml.gz --merge-report output/merge-report.json \
+            --window-hours 48 --output-dir output/a
+          python tools/mena_cloud_shards_strict.py \
+            --source-cache-dir output/upstream --channel-metadata output/channels.json \
+            --input output/a/mena-arabic.xml.gz --catalog-manifest output/catalog.json \
+            --output-dir output/a --manifest output/a/shards.json
+          python tools/all_id_audit.py --dir output/a --manifest output/a/shards.json \
+            --json output/a/all-id.json --text output/a/all-id.txt --csv output/a/all-id.csv
+      - name: Finalize B targeted quarantine
+        run: |
+          set -euo pipefail
+          python tools/quarantine_known_clone_group.py \
+            --candidate output/merged.xml --catalog-manifest output/catalog.json \
+            --previous previous/mena-arabic.xml.gz --merge-report output/merge-report.json \
+            --window-hours 48 --output-dir output/b
+          python tools/mena_cloud_shards_strict.py \
+            --source-cache-dir output/upstream --channel-metadata output/channels.json \
+            --input output/b/mena-arabic.xml.gz --catalog-manifest output/catalog.json \
+            --output-dir output/b --manifest output/b/shards.json
+          python tools/all_id_audit.py --dir output/b --manifest output/b/shards.json \
+            --json output/b/all-id.json --text output/b/all-id.txt --csv output/b/all-id.csv
+      - name: Compare A-B with hard gates
+        run: |
+          set -euo pipefail
+          python tools/known_clone_quarantine_ab_audit.py \
+            --before output/a/mena-arabic.xml.gz --after output/b/mena-arabic.xml.gz \
+            --before-audit output/a/all-id.json --after-audit output/b/all-id.json \
+            --json output/known-clone-quarantine-shadow.json \
+            --text output/known-clone-quarantine-shadow.txt
+      - name: Publish diagnostics only
+        run: |
+          set -euo pipefail
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/known-clone-quarantine-shadow.json .
+          cp ../output/known-clone-quarantine-shadow.txt .
+          cp ../output/b/all-id.txt known-clone-quarantine-shadow-all-id.txt
+          cp ../output/b/all-id.csv known-clone-quarantine-shadow-all-id.csv
+          git config user.name "EPGManager Clone Shadow"
+          git config user.email "actions@users.noreply.github.com"
+          git add known-clone-quarantine-shadow*.*
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Test targeted national sports clone quarantine"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
