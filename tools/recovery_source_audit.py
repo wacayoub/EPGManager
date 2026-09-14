@@ -28,6 +28,8 @@ SOURCES = [
     {"name": "iptv-epg-eg", "scope": "country", "country": "eg", "trust": "candidate", "url": "https://iptv-epg.org/files/epg-eg.xml.gz"},
     {"name": "iptv-epg-lb", "scope": "country", "country": "lb", "trust": "candidate", "url": "https://iptv-epg.org/files/epg-lb.xml.gz"},
     {"name": "iptv-epg-ae", "scope": "country", "country": "ae", "trust": "candidate", "url": "https://iptv-epg.org/files/epg-ae.xml.gz"},
+    # EPGShare SA1 is audited independently from the placeholder-heavy SA2 feed.
+    {"name": "epgshare-sa1", "scope": "country", "country": "sa", "trust": "candidate", "url": "https://epgshare01.online/epgshare01/epg_ripper_SA1.xml.gz"},
     {"name": "ghaleb-arabic-epg", "scope": "mena", "country": "", "trust": "candidate", "url": "https://raw.githubusercontent.com/GhalebAldoboni/EPG-Guide/master/ArabicEPG.xml"},
     # Legacy/global sources are review-only even on an exact identity match.
     {"name": "legacy-guidearab", "scope": "mena", "country": "", "trust": "review", "url": "http://195.154.221.171/epg/guidearab.xml.gz"},
@@ -39,7 +41,7 @@ COUNTRY_SHARD_RE = re.compile(r"^mena-([a-z]{2})$", re.I)
 
 def download(url):
     req = urllib.request.Request(url, headers={
-        "User-Agent": "EPGManager-Recovery-Audit/1.2 (+https://github.com/wacayoub/EPGManager)",
+        "User-Agent": "EPGManager-Recovery-Audit/1.3 (+https://github.com/wacayoub/EPGManager)",
         "Accept": "application/xml,application/gzip,*/*",
     })
     with urllib.request.urlopen(req, timeout=55) as resp:
@@ -101,7 +103,6 @@ def country_compatible(target_row, candidate, source):
         return bool(tc and tc == source["country"])
     if scope == "mena":
         return bool(tc and cc and tc == cc)
-    # Global feeds may omit country metadata; no automatic country assumption.
     return False
 
 
@@ -202,7 +203,7 @@ def main():
     safe_total = sum(1 for x in all_recoveries if x["match_type"] in {"EXACT_ID", "EXACT_LOGICAL_KEY"})
     review_total = len(all_recoveries) - safe_total
     out = {
-        "schema": 3,
+        "schema": 4,
         "mode": "diagnostic-only-recovery-source-audit",
         "window_hours": args.window_hours,
         "no_epg_input": len(no_epg),
@@ -214,7 +215,7 @@ def main():
     Path(args.output_json).write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     lines = [
-        "MENA RECOVERY SOURCE AUDIT V3 - DIAGNOSTIC ONLY",
+        "MENA RECOVERY SOURCE AUDIT V4 - DIAGNOSTIC ONLY",
         "NO_EPG input=%d safe_exact=%d review_candidates=%d" % (len(no_epg), safe_total, review_total),
         "",
     ]
