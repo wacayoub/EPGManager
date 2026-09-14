@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 """Strict identity + compatibility layer on top of mena_cloud_shards_safe.
 
-Known beIN XMLTV aliases are kept in BOTH XML and the lightweight catalogue so
-an existing receiver mapping never becomes invalid. Their programme timelines
-are copied from audited canonical IDs. New mappings prefer canonical IDs.
+Known beIN and OSN XMLTV aliases are kept in BOTH XML and the lightweight
+catalogue so an existing receiver mapping never becomes invalid. Their
+programme timelines are copied from audited canonical IDs. New mappings prefer
+canonical IDs.
 
 beIN MAX/XTRA are event-channel sources and are deliberately preserved as source
 feeds even when the current guide is generic/repetitive outside a live event.
@@ -64,6 +65,15 @@ BEIN_COMPAT_ALIASES = {
 }
 # Add current verified Arabic/Latin guide twins and current NEWS twin.
 BEIN_COMPAT_ALIASES.update(bein_repair.RECOMMENDED_COMPAT_ALIASES)
+
+# Verified same-service compatibility bridges. The legacy Egypt IDs are retained
+# for saved receiver mappings, but their poorer metadata/timing is replaced by
+# the corresponding official OSN UAE guide. Verification used matching programme
+# sequence/times, not name similarity alone.
+OSN_COMPAT_ALIASES = {
+    "OSN Ya Hala.eg": "OSNYahala.ae@SD",
+    "Osn Ya Hala Aflam.eg": "OSNYahalaAflam.ae@SD",
+}
 
 # IDs that should receive a negative recommendation score. They remain present
 # so an old manual mapping is not silently lost. Valid FTA and Box Office IDs are
@@ -235,6 +245,16 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
         # Arabic exact-label policy to every receiver-facing beIN NEWS ID here.
         news_titles_translated = _translate_bein_news_sources(ids_set, shard_programmes)
 
+    elif stem == "provider-osn":
+        # Keep legacy Ya Hala mapping targets but always serve the richer official
+        # canonical OSN timeline. Work on a shallow map copy so other shards and
+        # the combined feed remain untouched.
+        shard_programmes = dict(programmes)
+        for alias, canonical in OSN_COMPAT_ALIASES.items():
+            if alias in ids_set and canonical in ids_set and canonical in shard_programmes:
+                count = _copy_programmes_to_alias(alias, canonical, shard_programmes)
+                compat_applied[alias] = {"canonical": canonical, "programmes": count}
+
     result = _original_write_shard(out_dir, stem, ids_set, channels, shard_programmes, label)
 
     if stem == "provider-bein":
@@ -263,6 +283,14 @@ def strict_write_shard(out_dir, stem, ids, channels, programmes, label):
                 news_titles_translated,
             )
         )
+
+    elif stem == "provider-osn":
+        result["compat_aliases"] = compat_applied
+        result["catalog_preserves_legacy_ids"] = True
+        result["source_policy"] = (
+            "official OSN canonical timelines preferred; verified legacy Ya Hala IDs copy canonicals"
+        )
+        print("OSN compatibility: aliases=%d" % len(compat_applied))
 
     return result
 
