@@ -11,6 +11,11 @@ A proven contaminated six-channel national-sports clone is also quarantined only
 while at least three of those services still carry the exact same timeline. This
 makes the guard self-releasing when upstream data is corrected.
 
+Known MBC legacy/foreign/operator aliases are internal-only. They remain in the
+catalogue/merge reports for recovery and audits but are never emitted into any
+receiver XML. The reviewed canonical MBC set is therefore the only MBC identity
+surface exposed to EPGManager.
+
 beIN SPORTS NEWS is Arabic-first at the final receiver-facing boundary: known
 recurring editorial titles are rendered in Arabic while IDs, dates, start/stop
 slots and programme counts remain untouched. Unknown titles are preserved rather
@@ -31,6 +36,34 @@ KNOWN_FALSE_SPORT_CLONE_IDS = {
     "Kuwait.TV.Sport.Plus.HD.ae",
     "Jordan.Sport.HD.ae",
     "Palestine.Sport.ae",
+}
+
+# Reviewed 2026-09-14. These identities are useful only for historical mapping,
+# source comparison and recovery. They must not compete with the canonical MENA
+# MBC identities in the receiver-facing combined, regular or provider feeds.
+MBC_INTERNAL_ONLY_IDS = {
+    "Al Arabiya.sa",
+    "Al Arabiya Business.sa",
+    "AlArabiyaBusiness.ae@SD",
+    "AlarabiyaPortrait.ae@SD",
+    "EN:.MBC1.Iraq.sa",
+    "EN:.MBC1.Masr.sa",
+    "MBC Egypt.eg",
+    "MBC Maser 2.sa",
+    "MBC Maser.sa",
+    "MBC MASR 2.sa",
+    "MBC Masr Drama.eg",
+    "MBC.eg",
+    "MBC1Egypt.eg@HD",
+    "MBC1USA.us@SD",
+    "MBC3USA.us@SD",
+    "MBCDramaUSA.us@SD",
+    "MBCMasrUSA.us@SD",
+    "MBC Plus eLife HD.sa",
+    "MBC Plus Variety HD.sa",
+    "MBC VARIETY.sa",
+    "MBCMood.sa@HD",
+    "Wanasah.sa",
 }
 
 # Importing strict has already installed the standard integrity/LKG wrapper.
@@ -208,10 +241,17 @@ def _translate_bein_news_programmes(programmes):
 
 
 def pruned_build_feed(ids, selected_programmes, cand_channels, prev_channels, source_by_id, generator_name):
+    requested_ids = set(ids or [])
+    internal_mbc = requested_ids & MBC_INTERNAL_ONLY_IDS
     active_ids = {
-        cid for cid in (ids or [])
-        if selected_programmes.get(cid)
+        cid for cid in requested_ids
+        if selected_programmes.get(cid) and cid not in MBC_INTERNAL_ONLY_IDS
     }
+    if internal_mbc and "Legacy Combined" in generator_name:
+        print(
+            "MBC receiver prune: removed %d internal-only IDs from combined XML: %s" %
+            (len(internal_mbc), ", ".join(sorted(internal_mbc, key=str.casefold)))
+        )
     translated_programmes = _translate_bein_news_programmes(selected_programmes)
     return strict._original_build_feed(
         sorted(active_ids, key=str.casefold),
@@ -224,7 +264,8 @@ def pruned_build_feed(ids, selected_programmes, cand_channels, prev_channels, so
 
 
 # Preserve all strict protections, then layer the targeted clone quarantine,
-# receiver-facing zero-EPG prune and beIN SPORTS NEWS Arabic-title policy.
+# receiver-facing zero-EPG prune, canonical-only MBC identity policy and
+# beIN SPORTS NEWS Arabic-title policy.
 base.programme_groups = quarantine_known_false_sport_clone
 base.build_feed = pruned_build_feed
 
