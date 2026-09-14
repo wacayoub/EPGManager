@@ -11,7 +11,7 @@ Rules:
 - quarantine technical IDs, placeholder guides and exact cloned timelines shared
   by unrelated channels before they can enter logical-channel arbitration;
 - keep legitimate quarantined channel identities as NO-EPG mapping candidates;
-- recovery feeds may only fill an identity already seen in the trusted MENA set;
+- recovery feeds may only fill an already-known identity that has no clean timetable;
 - obvious foreign-guide contamination (for example Al Jazeera English schedule on
   an unrelated local channel) is rejected rather than published as false EPG.
 """
@@ -33,10 +33,10 @@ _original_load_candidates = base.load_candidates
 _original_source_base = base.source_base
 _QUARANTINE_FINDINGS = []
 _KNOWN_KEYS = set()
+_CLEAN_PROGRAMME_KEYS = set()
 
-# These are generated XMLTV feeds from sources already supported by iptv-org/EPG.
-# They are deliberately recovery-only: they may fill an existing MENA identity,
-# but they cannot introduce a new channel ID by themselves.
+# Generated feeds from sources already supported by iptv-org/EPG. Recovery-only:
+# they cannot introduce new channel identities or replace an existing clean guide.
 _RECOVERY_SOURCES = [
     ("recovery-iptvorg-osn-ae", "iptvorg", "https://iptv-org.github.io/epg/guides/ae/osn.com.epg.xml"),
     ("recovery-iptvorg-rotana-sa", "iptvorg", "https://iptv-org.github.io/epg/guides/sa/rotana.net.epg.xml"),
@@ -80,7 +80,7 @@ base.logical_key = arabic_first_logical_key
 
 
 def guarded_load_candidates(root, origin, source_name, site_by_id, now, end):
-    """Quarantine bad programmes and constrain recovery feeds to known identities."""
+    """Quarantine bad programmes and constrain recovery to true NO-EPG gaps."""
     rows = _original_load_candidates(root, origin, source_name, site_by_id, now, end)
     is_recovery = source_name.startswith("recovery-")
     clean, findings = guard.sanitize_candidate_rows(
@@ -103,7 +103,6 @@ def guarded_load_candidates(root, origin, source_name, site_by_id, now, end):
         if "TECHNICAL_OR_ASSET_ID" in reasons or "SUSPICIOUS_BEIN_SPORTS66_ID" in reasons:
             dropped.append(c.cid)
             continue
-        # A recovery feed is never allowed to create an identity-only record.
         if is_recovery:
             dropped.append(c.cid)
             continue
@@ -111,30 +110,41 @@ def guarded_load_candidates(root, origin, source_name, site_by_id, now, end):
         identity_only.append(c)
 
     rejected_unknown = []
+    rejected_already_clean = []
     if is_recovery:
         accepted = []
         for c in clean:
-            if c.key and c.key in _KNOWN_KEYS:
-                accepted.append(c)
-            else:
+            if not c.key or c.key not in _KNOWN_KEYS:
                 rejected_unknown.append(c.cid)
+                continue
+            if c.key in _CLEAN_PROGRAMME_KEYS:
+                rejected_already_clean.append(c.cid)
+                continue
+            accepted.append(c)
         clean = accepted
 
     result = clean + identity_only
     if not is_recovery:
         _KNOWN_KEYS.update(c.key for c in result if c.key)
+        _CLEAN_PROGRAMME_KEYS.update(c.key for c in clean if c.key and c.programmes)
+    else:
+        # A later recovery source must not replace a guide recovered by an earlier one.
+        _CLEAN_PROGRAMME_KEYS.update(c.key for c in clean if c.key and c.programmes)
 
     findings["identity_only_candidates"] = len(identity_only)
     findings["dropped_ids"] = sorted(set(dropped), key=str.casefold)
     findings["recovery_rejected_unknown_identity"] = len(rejected_unknown)
     findings["recovery_rejected_unknown_ids"] = sorted(set(rejected_unknown), key=str.casefold)
+    findings["recovery_rejected_already_clean"] = len(rejected_already_clean)
+    findings["recovery_rejected_already_clean_ids"] = sorted(set(rejected_already_clean), key=str.casefold)
     findings["recovery_accepted"] = len(clean) if is_recovery else 0
 
     if findings.get("quarantined_candidates") or is_recovery:
         _QUARANTINE_FINDINGS.append(findings)
         if is_recovery:
-            print("Recovery source: %s accepted=%d unknown=%d quarantined=%d" % (
-                source_name, len(clean), len(rejected_unknown), findings["quarantined_candidates"]))
+            print("Recovery source: %s accepted=%d already-clean=%d unknown=%d quarantined=%d" % (
+                source_name, len(clean), len(rejected_already_clean), len(rejected_unknown),
+                findings["quarantined_candidates"]))
         else:
             print("Integrity quarantine: %s clean=%d identity-only=%d dropped=%d quarantined=%d" % (
                 source_name, len(clean), len(identity_only), len(dropped),
@@ -291,6 +301,7 @@ def _write_quarantine_report():
     dropped_ids = sorted({cid for x in _QUARANTINE_FINDINGS for cid in x.get("dropped_ids", [])}, key=str.casefold)
     recovery_accepted = sum(int(x.get("recovery_accepted", 0) or 0) for x in _QUARANTINE_FINDINGS)
     recovery_unknown = sum(int(x.get("recovery_rejected_unknown_identity", 0) or 0) for x in _QUARANTINE_FINDINGS)
+    recovery_already_clean = sum(int(x.get("recovery_rejected_already_clean", 0) or 0) for x in _QUARANTINE_FINDINGS)
 
     by_source = {x.get("source"): x for x in _QUARANTINE_FINDINGS}
     for row in report.get("source_stats", []):
@@ -305,6 +316,7 @@ def _write_quarantine_report():
         if row.get("name", "").startswith("recovery-"):
             row["recovery_accepted"] = int(finding.get("recovery_accepted", 0) or 0)
             row["recovery_rejected_unknown_identity"] = int(finding.get("recovery_rejected_unknown_identity", 0) or 0)
+            row["recovery_rejected_already_clean"] = int(finding.get("recovery_rejected_already_clean", 0) or 0)
             row["channels_with_current_48h_epg"] = int(finding.get("recovery_accepted", 0) or 0)
 
     report["integrity_quarantine"] = {
@@ -319,7 +331,8 @@ def _write_quarantine_report():
         "sources": [x[0] for x in _RECOVERY_SOURCES],
         "accepted_candidate_rows": recovery_accepted,
         "rejected_unknown_identity_rows": recovery_unknown,
-        "policy": "recovery feeds can only fill exact existing logical MENA identities and must pass the same integrity guard",
+        "rejected_already_clean_rows": recovery_already_clean,
+        "policy": "recovery feeds can only fill exact existing logical MENA identities with no clean timetable and must pass the same integrity guard",
     }
     path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
