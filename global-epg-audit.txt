@@ -1,17 +1,18 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=620
-programmes_scanned=32239
+channels_scanned=611
+programmes_scanned=31021
 critical=0
-warnings=19439
+warnings=18549
 
 ISSUE COUNTS
-empty_description=16041
-very_short_event_lt_5m=2457
-arabic_provider_title_not_arabic=816
-premium_title_not_english=98
+empty_description=15228
+very_short_event_lt_5m=2402
+arabic_provider_title_not_arabic=862
+premium_title_not_english=28
 very_long_event_gt_6h=21
 hybrid_arabic_latin_description=4
 arabic_provider_description_not_arabic=2
+mixed_timezone_offsets_same_day=2
 
 TOP SAMPLES
 
@@ -21,30 +22,29 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260916034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=816
-- provider-alkass | 2023 Alkass 2.qa | 20260914084500 +0000 | Ostudio Al Khayl
+[arabic_provider_title_not_arabic] count=862
+- provider-alkass | Alkass Five.qa | 20260914103000 +0000 | 22nd Asian Men's Handball Championship Saudi Arabia vs. Iran
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914113000 +0000 | King of the Court Beach Volleyball Championship
+- provider-alkass | Alkass Five.qa | 20260914120000 +0000 | Review
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914120000 +0000 | Akhbar
+- provider-alkass | Alkass Five.qa | 20260914130000 +0000 | News
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914123000 +0000 | Jarayed
+- provider-alkass | Alkass Five.qa | 20260914131500 +0000 | alhasila
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914130000 +0000 | King of the Court Beach Volleyball Championship
+- provider-alkass | Alkass Five.qa | 20260914141500 +0000 | Inside Line
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914133000 +0000 | The Football Review
+- provider-alkass | Alkass Five.qa | 20260914144500 +0000 | FOOTBALL REVIEW
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914140000 +0000 | Dawry Al Darajah Al Thanya Al Qatary
+- provider-alkass | Alkass Five.qa | 20260914153000 +0000 | Al Majlis AFC Champions League Elite
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914160000 +0000 | Akhbar
+- provider-alkass | Alkass Five.qa | 20260914160000 +0000 | AFC Champions League Elite Al-Shamal (Qatar) vs. Al-Ittihad (Saudi Arabia)
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914161500 +0000 | King of the Court Beach Volleyball Championship
+- provider-alkass | Alkass Five.qa | 20260914181500 +0000 | AFC Champions League Elite Esteghlal (Iran) vs. Al-Sadd (Qatar)
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914164500 +0000 | Sport Confidential
+- provider-alkass | Alkass Five.qa | 20260914210000 +0000 | News
   desc: برنامج رياضي على قنوات الكأس.
 
-[empty_description] count=16041
-- provider-bein | beIN Drama.eg | 20260914100000 +0000 | El Qatel Allazy Ahabany
+[empty_description] count=15228
 - provider-bein | beIN Drama.eg | 20260914110000 +0000 | Sarmasik Zamani
 - provider-bein | beIN Drama.eg | 20260914120000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260914130000 +0000 | Mazad El Shar
@@ -54,6 +54,7 @@ TOP SAMPLES
 - provider-bein | beIN Drama.eg | 20260914170000 +0000 | Sarmasik Zamani
 - provider-bein | beIN Drama.eg | 20260914180000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260914190000 +0000 | Mazad El Shar
+- provider-bein | beIN Drama.eg | 20260914194000 +0000 | برنامج beIN Action
 
 [hybrid_arabic_latin_description] count=4
 - mena-ae | Nickelodeon HD | 20260915141500 +0000 | سونك بانك
@@ -65,48 +66,41 @@ TOP SAMPLES
 - mena-other | إم بي سي 2.eg | 20260915200000 +0000 | Zodiac
   desc: عدد جرائمه يبقى مجهولا و لكن كبير، فقد قام بقتل 5 ضحايا على الاقل في مدن Benicia و Vallejo و Napa و San Francisco ... ما بين شتنبر 1968 و اكتوبر 1969 ..في كتابه المخصص للقاتل، ينسب له Robert Graysmith تسع و اربعين جريمة.
 
-[premium_title_not_english] count=98
+[mixed_timezone_offsets_same_day] count=2
+- provider-bein | beIN SPORTS.qa | 2026-09-15 | 
+  offsets: +0000,implicit-UTC
+- provider-bein | beINSPORTS2 | 2026-09-16 | 
+  offsets: +0000,implicit-UTC
+
+[premium_title_not_english] count=28
 - provider-bein | BeIn Series HD 1.eg | 20260914150000 +0000 | 1883
-- provider-bein | بي إن دراما | 20260914100000 +0000 | القاتل الذي أحبني
-  desc: الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.
-- provider-bein | بي إن دراما | 20260914110000 +0000 | أوراق النسيان
-  desc: يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب
-- provider-bein | بي إن دراما | 20260914120000 +0000 | درب الذهب
-  desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
-- provider-bein | بي إن دراما | 20260914130000 +0000 | مزاد الشر
-  desc: الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.
-- provider-bein | بي إن دراما | 20260914140000 +0000 | سراب
-  desc: يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب
-- provider-bein | بي إن دراما | 20260914150000 +0000 | بصمة حدا
-  desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
-- provider-bein | بي إن دراما | 20260914160000 +0000 | القاتل الذي أحبني
-  desc: الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.
-- provider-bein | بي إن دراما | 20260914170000 +0000 | أوراق النسيان
-  desc: يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب
-- provider-bein | بي إن دراما | 20260914180000 +0000 | درب الذهب
-  desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
+  desc: يسافر جيل ما بعد الحرب الأهلية من عائلة (داتون) إلى تكساس للقيام برحلة شاقة إلى أوريجون قبل أن يقرروا الاستقرار في مونتانا، حيث تقرر العائلة تأسيس مزرعة يلوستون.
+- provider-bein | beINGOURMET | 20260914110000 +0000 | سوبر موم S1
+- provider-bein | beINGOURMET | 20260914130000 +0000 | E25 | S1 طبلية
+- provider-bein | beINGOURMET | 20260914140000 +0000 | E8 | S1 عزابي
+- provider-bein | beINGOURMET | 20260914150000 +0000 | سوبر موم S1
+- provider-bein | beINGOURMET | 20260914170000 +0000 | E25 | S1 طبلية
+- provider-bein | beINGOURMET | 20260914180000 +0000 | E8 | S1 عزابي
+- provider-bein | beINGOURMET | 20260914190000 +0000 | سوبر موم S1
+- provider-bein | beINSERIES1 | 20260914110000 +0000 | E6 | S3 دخيلة
+- provider-bein | beINSERIES1 | 20260914120500 +0000 | E7 | S8 كل أمريكي
 
 [very_long_event_gt_6h] count=21
-- provider-alkass | 2023 Alkass 4.qa | 20260914162000 +0000 | Botolat Qatar Al Dawlya Lel Khayl Al Arabia Al Aseel
+- provider-alkass | Alkass Two.qa | 20260914103000 +0000 | Seashore Phoenix Championship
   desc: برنامج رياضي على قنوات الكأس.
-- provider-bein | beIN SPORTS.qa | 20260915193000 +0000 | Vietnam vs Kuwait - Football Men - Asian Games Aichi-Nagoya 2026 - FBL06
-  desc: مباراة، موسم 2026.
-- provider-bein | beINSPORTS2 | 20260916002000 +0000 | São Paulo (BRA) vs Boca Juniors (ARG) - Conmebol Sudamericana - De Final 2nd Leg
-  desc: مباراة، موسم 2026.
+- provider-alkass | Alkass Two.qa | 20260915103000 +0000 | Seashore Phoenix Championship
+  desc: برنامج رياضي على قنوات الكأس.
 - provider-mbc | MBC Mood | 20260914190200 +0000 | طرب
   desc: موعدكم الليلي مع نجوم الطرب الأصيل، حيث الإحساس والسلطنة في مختارات من برامج MBC وحفلات موسم الرياض.
 - provider-adm | Yas TV HD | 20260914193000 +0100 | Camel Racing
 - provider-adm | Yas TV HD | 20260915210000 +0100 | Sharjah Arabian Horse Festival
+- provider-dmi | Dubai Racing 1 HD | 20260914130000 +0100 | Race From Racing Tv
 - provider-dmi | Dubai Racing | 20260914120000 +0000 | 14 SEPTEMBER 2026 RACE FROM RACING TV, UK
 - provider-dmi | Dubai Racing | 20260915013000 +0000 | Dubai International Arabian Horse Championship - 04/04/2026
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
 - mena-qa | Qatar TV HD | 20260914214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2457
-- provider-osn | OSNtv Kids | 20260914111400 +0000 | Adam Wa Mishmish 2
-  desc: يتعلمان آدم ومشمش عن كوكب الأرض والشمس والقمر، وكيف يتعاقب الليل والنهار من حولنا.
-- provider-osn | OSNtv Kids | 20260914111600 +0000 | Barbie: Fashion Stories
-  desc: مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!
+[very_short_event_lt_5m] count=2402
 - provider-osn | OSNtv Kids | 20260914150100 +0000 | Barbie and Barbie on Set
   desc: باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!
 - provider-osn | OSNtv Kids | 20260914152900 +0000 | Lego Duplo Adventures S3
@@ -123,6 +117,10 @@ TOP SAMPLES
   desc: باربي و باربي تغنيان عن مدى روعة الأصدقاء أثناء تصوير فيديو استعد معي بنسخة حفلة
 - provider-osn | OSNtv Kids | 20260914191400 +0000 | Matchbox Adventures
   desc: استعدوا للاضطرابات! ستكون الرحلة مليئة بالمطبات!
+- provider-osn | OSNtv Kids | 20260914191800 +0000 | Adam Wa Mishmish 2
+  desc: يعرّفان آدم ومشمش الأطفال على الفصول الأربعة ويشرحان ما يحدث من تغييرات في الطقس خلال كل فصل.
+- provider-osn | OSNtv Kids | 20260914192000 +0000 | Adam Wa Mishmish 2
+  desc: يتّبع آدم روتينه المسائي من الاستحمام وقراءة القصص حتى يحين وقت النوم في أغنية هادئة تساعد الأطفال على الاسترخاء.
 
 ALL-ID RELEASE GATE
-{"FAIL": 0, "NO_EPG": 0, "PASS": 162, "REVIEW": 458, "auto_lock_safe": 162, "channels": 620, "missing_shards": [], "programmes": 32239}
+{"FAIL": 0, "NO_EPG": 0, "PASS": 164, "REVIEW": 447, "auto_lock_safe": 164, "channels": 611, "missing_shards": [], "programmes": 31021}

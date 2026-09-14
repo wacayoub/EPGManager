@@ -1,122 +1,125 @@
 {
   "schema": 2,
-  "scope": "all exclusive MENA country/provider shards + synchronous all-ID release gate",
-  "channels_scanned": 620,
-  "programmes_scanned": 32239,
+  "scope": "all exclusive MENA country/provider shards + synchronous alias-aware all-ID release gate",
+  "channels_scanned": 611,
+  "programmes_scanned": 31021,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 816,
-    "empty_description": 16041,
+    "arabic_provider_title_not_arabic": 862,
+    "empty_description": 15228,
     "hybrid_arabic_latin_description": 4,
-    "premium_title_not_english": 98,
-    "severity_warning": 19439,
+    "mixed_timezone_offsets_same_day": 2,
+    "premium_title_not_english": 28,
+    "severity_warning": 18549,
     "very_long_event_gt_6h": 21,
-    "very_short_event_lt_5m": 2457
+    "very_short_event_lt_5m": 2402
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 434,
+      "empty_description": 399,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
-      "very_short_event_lt_5m": 10
+      "very_short_event_lt_5m": 4
     },
     "mena-dz": {
-      "empty_description": 41
+      "empty_description": 88,
+      "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 1318,
+      "empty_description": 1256,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 585
+      "empty_description": 583
     },
     "mena-jo": {
-      "empty_description": 65,
+      "empty_description": 46,
       "very_short_event_lt_5m": 6
     },
     "mena-kw": {
-      "empty_description": 215,
+      "empty_description": 184,
       "very_short_event_lt_5m": 3
     },
     "mena-lb": {
-      "empty_description": 64,
+      "empty_description": 62,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 398
+      "empty_description": 368
     },
     "mena-other": {
-      "empty_description": 7973,
+      "empty_description": 7666,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 8,
-      "very_short_event_lt_5m": 1193
+      "very_short_event_lt_5m": 1188
     },
     "mena-qa": {
-      "empty_description": 663,
+      "empty_description": 655,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1383,
-      "very_short_event_lt_5m": 640
+      "empty_description": 1322,
+      "very_short_event_lt_5m": 619
     },
     "mena-sd": {
       "empty_description": 47
     },
     "mena-sy": {
-      "empty_description": 4
+      "empty_description": 1
     },
     "mena-tn": {
-      "empty_description": 74
+      "empty_description": 125,
+      "very_short_event_lt_5m": 2
     },
     "mena-ye": {
-      "empty_description": 118
+      "empty_description": 26
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 266,
-      "empty_description": 224,
+      "arabic_provider_title_not_arabic": 262,
+      "empty_description": 201,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 22
     },
     "provider-alkass": {
-      "arabic_provider_title_not_arabic": 55,
-      "very_long_event_gt_6h": 1
+      "arabic_provider_title_not_arabic": 117,
+      "very_long_event_gt_6h": 2
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 17,
-      "empty_description": 1204,
-      "very_short_event_lt_5m": 467
+      "empty_description": 1163,
+      "very_short_event_lt_5m": 449
     },
     "provider-bein": {
-      "empty_description": 218,
-      "premium_title_not_english": 87,
-      "very_long_event_gt_6h": 2
+      "empty_description": 52,
+      "mixed_timezone_offsets_same_day": 2,
+      "premium_title_not_english": 17
     },
     "provider-dmi": {
-      "arabic_provider_title_not_arabic": 76,
-      "empty_description": 250,
-      "very_long_event_gt_6h": 2,
+      "arabic_provider_title_not_arabic": 70,
+      "empty_description": 257,
+      "very_long_event_gt_6h": 3,
       "very_short_event_lt_5m": 2
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
-      "arabic_provider_title_not_arabic": 326,
-      "empty_description": 323,
+      "arabic_provider_title_not_arabic": 321,
+      "empty_description": 314,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
-      "empty_description": 95,
+      "empty_description": 92,
       "premium_title_not_english": 11,
-      "very_short_event_lt_5m": 43
+      "very_short_event_lt_5m": 41
     },
     "provider-rotana": {
-      "arabic_provider_title_not_arabic": 76,
-      "empty_description": 193,
-      "very_short_event_lt_5m": 53
+      "arabic_provider_title_not_arabic": 75,
+      "empty_description": 175,
+      "very_short_event_lt_5m": 46
     },
     "provider-starz": {
-      "empty_description": 152,
+      "empty_description": 146,
       "very_long_event_gt_6h": 1
     }
   },
@@ -124,435 +127,425 @@
     "arabic_provider_title_not_arabic": [
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914084500 +0000",
-        "stop": "20260914113000 +0000",
-        "title": "Ostudio Al Khayl",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 165.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914113000 +0000",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260914103000 +0000",
         "stop": "20260914120000 +0000",
-        "title": "King of the Court Beach Volleyball Championship",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914120000 +0000",
-        "stop": "20260914123000 +0000",
-        "title": "Akhbar",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914123000 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "Jarayed",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914130000 +0000",
-        "stop": "20260914133000 +0000",
-        "title": "King of the Court Beach Volleyball Championship",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914133000 +0000",
-        "stop": "20260914140000 +0000",
-        "title": "The Football Review",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914140000 +0000",
-        "stop": "20260914160000 +0000",
-        "title": "Dawry Al Darajah Al Thanya Al Qatary",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 120.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914160000 +0000",
-        "stop": "20260914161500 +0000",
-        "title": "Akhbar",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 15.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914161500 +0000",
-        "stop": "20260914164500 +0000",
-        "title": "King of the Court Beach Volleyball Championship",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914164500 +0000",
-        "stop": "20260914171500 +0000",
-        "title": "Sport Confidential",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914171500 +0000",
-        "stop": "20260914190000 +0000",
-        "title": "Derby Tunis",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914190000 +0000",
-        "stop": "20260914220000 +0000",
-        "title": "Dawry Nojom Qatar",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 180.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914220000 +0000",
-        "stop": "20260914223000 +0000",
-        "title": "Marine Magazine",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914223000 +0000",
-        "stop": "20260914233000 +0000",
-        "title": "Al Hasad",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914233000 +0000",
-        "stop": "20260914235900 +0000",
-        "title": "King of the Court Beach Volleyball Championship",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914100500 +0000",
-        "stop": "20260914120000 +0000",
-        "title": "Dawry Nojom Qatar",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 115.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914120000 +0000",
-        "stop": "20260914123000 +0000",
-        "title": "Akhbar",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914123000 +0000",
-        "stop": "20260914150000 +0000",
-        "title": "Jarayed",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 150.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914150000 +0000",
-        "stop": "20260914170000 +0000",
-        "title": "Golmania",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 120.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914170000 +0000",
-        "stop": "20260914173000 +0000",
-        "title": "The Inside Line",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914173000 +0000",
-        "stop": "20260914190000 +0000",
-        "title": "Botoulat Asia Lel Shabab Lekorat Al Yad",
+        "title": "22nd Asian Men's Handball Championship Saudi Arabia vs. Iran",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 90.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914190000 +0000",
-        "stop": "20260914200000 +0000",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260914120000 +0000",
+        "stop": "20260914130000 +0000",
         "title": "Review",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 60.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914200000 +0000",
-        "stop": "20260914210000 +0000",
-        "title": "Tisein Daqiqatan",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260914130000 +0000",
+        "stop": "20260914131500 +0000",
+        "title": "News",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 15.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260914131500 +0000",
+        "stop": "20260914141500 +0000",
+        "title": "alhasila",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 60.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260914141500 +0000",
+        "stop": "20260914144500 +0000",
+        "title": "Inside Line",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260914144500 +0000",
+        "stop": "20260914153000 +0000",
+        "title": "FOOTBALL REVIEW",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 45.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260914153000 +0000",
+        "stop": "20260914160000 +0000",
+        "title": "Al Majlis AFC Champions League Elite",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260914160000 +0000",
+        "stop": "20260914181500 +0000",
+        "title": "AFC Champions League Elite Al-Shamal (Qatar) vs. Al-Ittihad (Saudi Arabia)",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 135.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260914181500 +0000",
+        "stop": "20260914210000 +0000",
+        "title": "AFC Champions League Elite Esteghlal (Iran) vs. Al-Sadd (Qatar)",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 165.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
         "start": "20260914210000 +0000",
         "stop": "20260914213000 +0000",
-        "title": "Akhbar",
+        "title": "News",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 30.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
         "start": "20260914213000 +0000",
         "stop": "20260914223000 +0000",
-        "title": "Fad Fad",
+        "title": "alhasila",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 60.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
         "start": "20260914223000 +0000",
-        "stop": "20260914230000 +0000",
-        "title": "Sport Confidential",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914230000 +0000",
         "stop": "20260914233000 +0000",
-        "title": "Marine Magazine",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
+        "title": "90 minutes",
+        "desc": "برنامج رياضي يقدم التحليل والنقاش حول أبرز الأحداث والمباريات.",
+        "duration_minutes": 60.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
         "start": "20260914233000 +0000",
-        "stop": "20260914235900 +0000",
-        "title": "The Football Review",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260915003000 +0000",
-        "stop": "20260915010000 +0000",
-        "title": "Dawry Al Darajah Al Thanya Al Qatary",
+        "stop": "20260915000000 +0000",
+        "title": "tawasol",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 30.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260915010000 +0000",
-        "stop": "20260915043000 +0000",
-        "title": "Dawry Al Darajah Al Thanya Al Qatary",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915000000 +0000",
+        "stop": "20260915013000 +0000",
+        "title": "the Referee",
         "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 210.0
+        "duration_minutes": 90.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
-        "start": "20260914090000 +0000",
-        "stop": "20260914113000 +0000",
-        "title": "Dawry Al Darajah Al Thanya Al Qatary",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915013000 +0000",
+        "stop": "20260915020000 +0000",
+        "title": "FOOTBALL REVIEW",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915020000 +0000",
+        "stop": "20260915030000 +0000",
+        "title": "Thenten wnoss",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915030000 +0000",
+        "stop": "20260915033000 +0000",
+        "title": "News",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915033000 +0000",
+        "stop": "20260915043000 +0000",
+        "title": "FADFAD",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915043000 +0000",
+        "stop": "20260915070000 +0000",
+        "title": "Jetour League Etihad Al Gharafa vs. Muaither SC",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 150.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915070000 +0000",
+        "stop": "20260915073000 +0000",
+        "title": "Golmania",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915073000 +0000",
+        "stop": "20260915090000 +0000",
+        "title": "11th Asian Men's Youth Handball Championship India vs. Bahrain",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915090000 +0000",
+        "stop": "20260915093000 +0000",
+        "title": "News",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915093000 +0000",
+        "stop": "20260915100000 +0000",
+        "title": "Jarayd",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915100000 +0000",
+        "stop": "20260915103000 +0000",
+        "title": "SPORT CONFIDENTIAL",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915103000 +0000",
+        "stop": "20260915120000 +0000",
+        "title": "22nd Asian Men's Handball Championship Saudi Arabia vs. Iran",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915120000 +0000",
+        "stop": "20260915130000 +0000",
+        "title": "Review",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915130000 +0000",
+        "stop": "20260915131500 +0000",
+        "title": "News",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 15.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915131500 +0000",
+        "stop": "20260915141500 +0000",
+        "title": "alhasila",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915141500 +0000",
+        "stop": "20260915144500 +0000",
+        "title": "Inside Line",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915144500 +0000",
+        "stop": "20260915153000 +0000",
+        "title": "FOOTBALL REVIEW",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 45.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915153000 +0000",
+        "stop": "20260915160000 +0000",
+        "title": "Al Majlis AFC Champions League Elite",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Five.qa",
+        "channel": "Alkass Five.qa",
+        "start": "20260915160000 +0000",
+        "stop": "20260915181500 +0000",
+        "title": "AFC Champions League Elite Al-Shamal (Qatar) vs. Al-Ittihad (Saudi Arabia)",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 135.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
         "start": "20260914113000 +0000",
-        "stop": "20260914120000 +0000",
-        "title": "FIBA World Basketball",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
-        "start": "20260914120000 +0000",
         "stop": "20260914123000 +0000",
-        "title": "Akhbar",
+        "title": "Thenten wnoss",
         "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
+        "duration_minutes": 60.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
         "start": "20260914123000 +0000",
         "stop": "20260914130000 +0000",
-        "title": "Jarayed",
+        "title": "Golmania",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 30.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
         "start": "20260914130000 +0000",
         "stop": "20260914133000 +0000",
-        "title": "Tawasol",
+        "title": "News",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 30.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
         "start": "20260914133000 +0000",
         "stop": "20260914140000 +0000",
-        "title": "King of the Court Beach Volleyball Championship",
+        "title": "Fiba",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 30.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
         "start": "20260914140000 +0000",
-        "stop": "20260914160000 +0000",
-        "title": "Mahrajan Al Malek Abdulaziz Lemazaeen Al Ebel",
+        "stop": "20260914150000 +0000",
+        "title": "FADFA",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260914150000 +0000",
+        "stop": "20260914153000 +0000",
+        "title": "QSL magazine",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260914153000 +0000",
+        "stop": "20260914173000 +0000",
+        "title": "Doha Bank Stars League Al-Rayyan vs. Al-Ahli",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 120.0
       },
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
-        "start": "20260914160000 +0000",
-        "stop": "20260914162000 +0000",
-        "title": "Akhbar",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260914173000 +0000",
+        "stop": "20260914180000 +0000",
+        "title": "tawasol",
         "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 20.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
-        "start": "20260914162000 +0000",
-        "stop": "20260914234500 +0000",
-        "title": "Botolat Qatar Al Dawlya Lel Khayl Al Arabia Al Aseel",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 445.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
-        "start": "20260914234500 +0000",
-        "stop": "20260914235900 +0000",
-        "title": "Auto Mundial",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 14.0
+        "duration_minutes": 30.0
       }
     ],
     "very_long_event_gt_6h": [
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 4.qa",
-        "channel": "2023 Alkass 4.qa",
-        "start": "20260914162000 +0000",
-        "stop": "20260914234500 +0000",
-        "title": "Botolat Qatar Al Dawlya Lel Khayl Al Arabia Al Aseel",
+        "channel_id": "Alkass Two.qa",
+        "channel": "Alkass Two.qa",
+        "start": "20260914103000 +0000",
+        "stop": "20260914203000 +0000",
+        "title": "Seashore Phoenix Championship",
         "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 445.0
+        "duration_minutes": 600.0
       },
       {
-        "shard": "provider-bein",
-        "channel_id": "beIN SPORTS.qa",
-        "channel": "beIN SPORTS.qa",
-        "start": "20260915193000 +0000",
-        "stop": "20260916034500 +0000",
-        "title": "Vietnam vs Kuwait - Football Men - Asian Games Aichi-Nagoya 2026 - FBL06",
-        "desc": "مباراة، موسم 2026.",
-        "duration_minutes": 495.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINSports2.qa@MENA",
-        "channel": "beINSPORTS2",
-        "start": "20260916002000 +0000",
-        "stop": "20260916070000 +0000",
-        "title": "São Paulo (BRA) vs Boca Juniors (ARG) - Conmebol Sudamericana - De Final 2nd Leg",
-        "desc": "مباراة، موسم 2026.",
-        "duration_minutes": 400.0
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Two.qa",
+        "channel": "Alkass Two.qa",
+        "start": "20260915103000 +0000",
+        "stop": "20260915203000 +0000",
+        "title": "Seashore Phoenix Championship",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 600.0
       },
       {
         "shard": "provider-mbc",
@@ -583,6 +576,16 @@
         "title": "Sharjah Arabian Horse Festival",
         "desc": "",
         "duration_minutes": 372.0
+      },
+      {
+        "shard": "provider-dmi",
+        "channel_id": "Dubai.Racing.1.HD.ae",
+        "channel": "Dubai Racing 1 HD",
+        "start": "20260914130000 +0100",
+        "stop": "20260914192600 +0100",
+        "title": "Race From Racing Tv",
+        "desc": "",
+        "duration_minutes": 386.0
       },
       {
         "shard": "provider-dmi",
@@ -740,16 +743,6 @@
         "shard": "provider-bein",
         "channel_id": "beIN Drama.eg",
         "channel": "beIN Drama.eg",
-        "start": "20260914100000 +0000",
-        "stop": "20260914110000 +0000",
-        "title": "El Qatel Allazy Ahabany",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
         "start": "20260914110000 +0000",
         "stop": "20260914120000 +0000",
         "title": "Sarmasik Zamani",
@@ -850,236 +843,6 @@
         "shard": "provider-bein",
         "channel_id": "BEIN MOVIES ACTION.eg",
         "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260914091500 +0000",
-        "stop": "20260914105000 +0000",
-        "title": "Reawakening",
-        "desc": "",
-        "duration_minutes": 95.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260914105000 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "Star Trek",
-        "desc": "",
-        "duration_minutes": 130.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260914130000 +0000",
-        "stop": "20260914151500 +0000",
-        "title": "Star Trek Into Darkness",
-        "desc": "",
-        "duration_minutes": 135.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260914151500 +0000",
-        "stop": "20260914171500 +0000",
-        "title": "Star Trek Beyond",
-        "desc": "",
-        "duration_minutes": 120.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260914171500 +0000",
-        "stop": "20260914190000 +0000",
-        "title": "xXx: The Return of Xander Cage",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260914190000 +0000",
-        "stop": "20260914204500 +0000",
-        "title": "Shaft",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260914204500 +0000",
-        "stop": "20260914230000 +0000",
-        "title": "Pain & Gain",
-        "desc": "",
-        "duration_minutes": 135.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260914230000 +0000",
-        "stop": "20260915004500 +0000",
-        "title": "The Island",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915004500 +0000",
-        "stop": "20260915021500 +0000",
-        "title": "Fears",
-        "desc": "",
-        "duration_minutes": 90.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915021500 +0000",
-        "stop": "20260915040000 +0000",
-        "title": "All You Need Is Blood",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915040000 +0000",
-        "stop": "20260915053300 +0000",
-        "title": "Reawakening",
-        "desc": "",
-        "duration_minutes": 93.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915053300 +0000",
-        "stop": "20260915065900 +0000",
-        "title": "My Nanny Stole My Life",
-        "desc": "",
-        "duration_minutes": 86.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915065900 +0000",
-        "stop": "20260915093000 +0000",
-        "title": "The Da Vinci Code",
-        "desc": "",
-        "duration_minutes": 151.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915093000 +0000",
-        "stop": "20260915111500 +0000",
-        "title": "Shaft",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915111500 +0000",
-        "stop": "20260915130000 +0000",
-        "title": "xXx: The Return of Xander Cage",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915130000 +0000",
-        "stop": "20260915151500 +0000",
-        "title": "Pain & Gain",
-        "desc": "",
-        "duration_minutes": 135.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915151500 +0000",
-        "stop": "20260915170000 +0000",
-        "title": "Shaft",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915170000 +0000",
-        "stop": "20260915190000 +0000",
-        "title": "Black and Blue",
-        "desc": "",
-        "duration_minutes": 120.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915190000 +0000",
-        "stop": "20260915204500 +0000",
-        "title": "Top Gun",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915204500 +0000",
-        "stop": "20260915230000 +0000",
-        "title": "Shutter Island",
-        "desc": "",
-        "duration_minutes": 135.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260915230000 +0000",
-        "stop": "20260916004500 +0000",
-        "title": "I Know What You Did Last Summer",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260916004500 +0000",
-        "stop": "20260916023000 +0000",
-        "title": "Far Haven",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
-        "start": "20260916023000 +0000",
-        "stop": "20260916050000 +0000",
-        "title": "Black Hawk Down",
-        "desc": "",
-        "duration_minutes": 150.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES ACTION.eg",
-        "channel": "BEIN MOVIES ACTION.eg",
         "start": "20260916050000 +0000",
         "stop": "20260916073000 +0000",
         "title": "Angels & Demons",
@@ -1090,51 +853,291 @@
         "shard": "provider-bein",
         "channel_id": "BEIN MOVIES DRAMA.eg",
         "channel": "BEIN MOVIES DRAMA.eg",
-        "start": "20260914081400 +0000",
-        "stop": "20260914104400 +0000",
-        "title": "Forrest Gump",
+        "start": "20260916030000 +0000",
+        "stop": "20260916043000 +0000",
+        "title": "Beautiful Wedding",
+        "desc": "",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES PREMIERE.eg",
+        "channel": "BEIN MOVIES PREMIERE.eg",
+        "start": "20260916034500 +0000",
+        "stop": "20260916051500 +0000",
+        "title": "Hard Home",
+        "desc": "",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES PREMIERE.eg",
+        "channel": "BEIN MOVIES PREMIERE.eg",
+        "start": "20260916051500 +0000",
+        "stop": "20260916064500 +0000",
+        "title": "Desert Dawn",
+        "desc": "",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINDrama1.qa@SD",
+        "channel": "بي إن دراما",
+        "start": "20260914110000 +0000",
+        "stop": "20260914120000 +0000",
+        "title": "Sarmasik Zamani",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINDrama1.qa@SD",
+        "channel": "بي إن دراما",
+        "start": "20260914120000 +0000",
+        "stop": "20260914130000 +0000",
+        "title": "Darb Al Thahab",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINDrama1.qa@SD",
+        "channel": "بي إن دراما",
+        "start": "20260914130000 +0000",
+        "stop": "20260914140000 +0000",
+        "title": "Mazad El Shar",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINDrama1.qa@SD",
+        "channel": "بي إن دراما",
+        "start": "20260914140000 +0000",
+        "stop": "20260914150000 +0000",
+        "title": "Sarab",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINDrama1.qa@SD",
+        "channel": "بي إن دراما",
+        "start": "20260914150000 +0000",
+        "stop": "20260914160000 +0000",
+        "title": "Basmet Hada",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINDrama1.qa@SD",
+        "channel": "بي إن دراما",
+        "start": "20260914160000 +0000",
+        "stop": "20260914170000 +0000",
+        "title": "El Qatel Allazy Ahabany",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINDrama1.qa@SD",
+        "channel": "بي إن دراما",
+        "start": "20260914170000 +0000",
+        "stop": "20260914180000 +0000",
+        "title": "Sarmasik Zamani",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINDrama1.qa@SD",
+        "channel": "بي إن دراما",
+        "start": "20260914180000 +0000",
+        "stop": "20260914190000 +0000",
+        "title": "Darb Al Thahab",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINDrama1.qa@SD",
+        "channel": "بي إن دراما",
+        "start": "20260914190000 +0000",
+        "stop": "20260914194000 +0000",
+        "title": "Mazad El Shar",
+        "desc": "",
+        "duration_minutes": 40.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINDrama1.qa@SD",
+        "channel": "بي إن دراما",
+        "start": "20260914194000 +0000",
+        "stop": "20260914200000 +0000",
+        "title": "برنامج beIN Action",
+        "desc": "",
+        "duration_minutes": 20.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914110000 +0000",
+        "stop": "20260914120000 +0000",
+        "title": "سوبر موم S1",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914120000 +0000",
+        "stop": "20260914130000 +0000",
+        "title": "Al Dar Alkabira S2 EP 8",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914130000 +0000",
+        "stop": "20260914140000 +0000",
+        "title": "E25 | S1 طبلية",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914140000 +0000",
+        "stop": "20260914150000 +0000",
+        "title": "E8 | S1 عزابي",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914150000 +0000",
+        "stop": "20260914160000 +0000",
+        "title": "سوبر موم S1",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914160000 +0000",
+        "stop": "20260914170000 +0000",
+        "title": "Al Dar Alkabira S2 EP 8",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914170000 +0000",
+        "stop": "20260914180000 +0000",
+        "title": "E25 | S1 طبلية",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914180000 +0000",
+        "stop": "20260914190000 +0000",
+        "title": "E8 | S1 عزابي",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914190000 +0000",
+        "stop": "20260914200000 +0000",
+        "title": "سوبر موم S1",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260916034500 +0000",
+        "stop": "20260916051500 +0000",
+        "title": "Hard Home",
+        "desc": "",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260916051500 +0000",
+        "stop": "20260916064500 +0000",
+        "title": "Desert Dawn",
+        "desc": "",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies2Action.qa@SD",
+        "channel": "beINMOVIES2",
+        "start": "20260916050000 +0000",
+        "stop": "20260916073000 +0000",
+        "title": "Angels & Demons",
         "desc": "",
         "duration_minutes": 150.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES DRAMA.eg",
-        "channel": "BEIN MOVIES DRAMA.eg",
-        "start": "20260914104400 +0000",
+        "channel_id": "beINMovies3Drama.qa@SD",
+        "channel": "beINMOVIES3",
+        "start": "20260916030000 +0000",
+        "stop": "20260916043000 +0000",
+        "title": "Beautiful Wedding",
+        "desc": "",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914110000 +0000",
+        "stop": "20260914120500 +0000",
+        "title": "E6 | S3 دخيلة",
+        "desc": "",
+        "duration_minutes": 65.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914120500 +0000",
         "stop": "20260914130000 +0000",
-        "title": "A Beautiful Mind",
+        "title": "E7 | S8 كل أمريكي",
         "desc": "",
-        "duration_minutes": 136.0
+        "duration_minutes": 55.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES DRAMA.eg",
-        "channel": "BEIN MOVIES DRAMA.eg",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
         "start": "20260914130000 +0000",
-        "stop": "20260914144500 +0000",
-        "title": "The Addams Family",
+        "stop": "20260914140000 +0000",
+        "title": "E19 | S2 وثيقة",
         "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES DRAMA.eg",
-        "channel": "BEIN MOVIES DRAMA.eg",
-        "start": "20260914144500 +0000",
-        "stop": "20260914163000 +0000",
-        "title": "Addams Family Values",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BEIN MOVIES DRAMA.eg",
-        "channel": "BEIN MOVIES DRAMA.eg",
-        "start": "20260914163000 +0000",
-        "stop": "20260914183000 +0000",
-        "title": "Camera",
-        "desc": "",
-        "duration_minutes": 120.0
+        "duration_minutes": 60.0
       }
     ],
     "premium_title_not_english": [
@@ -1145,117 +1148,7 @@
         "start": "20260914150000 +0000",
         "stop": "20260914160000 +0000",
         "title": "1883",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914100000 +0000",
-        "stop": "20260914110000 +0000",
-        "title": "القاتل الذي أحبني",
-        "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914110000 +0000",
-        "stop": "20260914120000 +0000",
-        "title": "أوراق النسيان",
-        "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914120000 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "درب الذهب",
-        "desc": "بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتشابك فيه مصائر أبنائهما بمرارة الماضي.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914130000 +0000",
-        "stop": "20260914140000 +0000",
-        "title": "مزاد الشر",
-        "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914140000 +0000",
-        "stop": "20260914150000 +0000",
-        "title": "سراب",
-        "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914150000 +0000",
-        "stop": "20260914160000 +0000",
-        "title": "بصمة حدا",
-        "desc": "بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتشابك فيه مصائر أبنائهما بمرارة الماضي.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914160000 +0000",
-        "stop": "20260914170000 +0000",
-        "title": "القاتل الذي أحبني",
-        "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914170000 +0000",
-        "stop": "20260914180000 +0000",
-        "title": "أوراق النسيان",
-        "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914180000 +0000",
-        "stop": "20260914190000 +0000",
-        "title": "درب الذهب",
-        "desc": "بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتشابك فيه مصائر أبنائهما بمرارة الماضي.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914190000 +0000",
-        "stop": "20260914194000 +0000",
-        "title": "مزاد الشر",
-        "desc": "دراما صعيدية تتحدث عن صراع بين كبار عائلتي رضوان الكالح وابنه أحمد من جانب وشقيق زوجته خلاف من الجانب الأخر، بعد أن كانوا أصدقاء في الماضي.",
-        "duration_minutes": 40.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914100000 +0000",
-        "stop": "20260914110000 +0000",
-        "title": "E8 | S1 عزابي",
-        "desc": "",
+        "desc": "يسافر جيل ما بعد الحرب الأهلية من عائلة (داتون) إلى تكساس للقيام برحلة شاقة إلى أوريجون قبل أن يقرروا الاستقرار في مونتانا، حيث تقرر العائلة تأسيس مزرعة يلوستون.",
         "duration_minutes": 60.0
       },
       {
@@ -1330,236 +1223,228 @@
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260914101500 +0000",
-        "stop": "20260914120000 +0000",
-        "title": "دير سانتا",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914110000 +0000",
+        "stop": "20260914120500 +0000",
+        "title": "E6 | S3 دخيلة",
         "desc": "",
-        "duration_minutes": 105.0
+        "duration_minutes": 65.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260914120000 +0000",
-        "stop": "20260914143000 +0000",
-        "title": "أساطير أبطال كوندور: الشجعان",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914120500 +0000",
+        "stop": "20260914130000 +0000",
+        "title": "E7 | S8 كل أمريكي",
         "desc": "",
-        "duration_minutes": 150.0
+        "duration_minutes": 55.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260914143000 +0000",
-        "stop": "20260914161500 +0000",
-        "title": "البلوغ",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914130000 +0000",
+        "stop": "20260914140000 +0000",
+        "title": "E19 | S2 وثيقة",
         "desc": "",
-        "duration_minutes": 105.0
+        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260914161500 +0000",
-        "stop": "20260914180000 +0000",
-        "title": "تشبث بإيمانك!",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914150000 +0000",
+        "stop": "20260914155500 +0000",
+        "title": "E8 | S1 1883",
         "desc": "",
-        "duration_minutes": 105.0
+        "duration_minutes": 55.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260914180000 +0000",
-        "stop": "20260914194500 +0000",
-        "title": "الشيء ذو الريش",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914162000 +0000",
+        "stop": "20260914172000 +0000",
+        "title": "يلوجاكيتس S2",
         "desc": "",
-        "duration_minutes": 105.0
+        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260914194500 +0000",
-        "stop": "20260914224500 +0000",
-        "title": "الكونت دي مونت كريستو",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914172000 +0000",
+        "stop": "20260914182500 +0000",
+        "title": "E6 | S3 دخيلة",
         "desc": "",
-        "duration_minutes": 180.0
+        "duration_minutes": 65.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260914224500 +0000",
-        "stop": "20260915001400 +0000",
-        "title": "جزيرة القرش",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914182500 +0000",
+        "stop": "20260914191000 +0000",
+        "title": "E2 | S1 ماديسون",
         "desc": "",
-        "duration_minutes": 89.0
+        "duration_minutes": 45.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260915001400 +0000",
-        "stop": "20260915014400 +0000",
-        "title": "موجاي",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914191000 +0000",
+        "stop": "20260914201000 +0000",
+        "title": "E2 | S1 ليلة غرق تايتانيك",
         "desc": "",
-        "duration_minutes": 90.0
+        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260915014400 +0000",
-        "stop": "20260915034400 +0000",
-        "title": "قوة الطبيعة: الجفاف",
-        "desc": "",
+        "channel_id": "بي إن سيريس.eg",
+        "channel": "بي إن سيريس.eg",
+        "start": "20260914150000 +0000",
+        "stop": "20260914160000 +0000",
+        "title": "1883",
+        "desc": "يسافر جيل ما بعد الحرب الأهلية من عائلة (داتون) إلى تكساس للقيام برحلة شاقة إلى أوريجون قبل أن يقرروا الاستقرار في مونتانا، حيث تقرر العائلة تأسيس مزرعة يلوستون.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNMoviesAction.ae@SD",
+        "channel": "OSNtv Movies Action",
+        "start": "20260915220500 +0000",
+        "stop": "20260916002000 +0000",
+        "title": "ذا ماتريكس",
+        "desc": "عندما يقود شخص غريب الهاكر نيون إلى عالم سفلي مريب، يكتشف الحقيقة الصادمة - الحياة التي يعرفها هي خدعة متقنة من قِبَل ذكاء اصطناعي شرير.",
+        "duration_minutes": 135.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNMoviesHollywood.ae@SD",
+        "channel": "OSNtv Movies Hollywood",
+        "start": "20260914233000 +0000",
+        "stop": "20260915012000 +0000",
+        "title": "ذا ريسلر",
+        "desc": "يُواجه مصارعٌ تقدّم به السن تحديات الحياة خارج الحلبة، بعدما أجبره جسده المنهك على الاعتزال، ليبدأ رحلة تصالح مع ما تبقّى له من العمر.",
+        "duration_minutes": 110.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNMoviesHollywood.ae@SD",
+        "channel": "OSNtv Movies Hollywood",
+        "start": "20260915232500 +0000",
+        "stop": "20260916012500 +0000",
+        "title": "سلامدوغ مليونير",
+        "desc": "يُستجوب فتى من أحياء مومباي الفقيرة بعد أن أثار فوزه في برنامج أسئلة الشكوك، فيبدأ باسترجاع محطات من ماضيه تشرح كيف عرف كل الإجابات.",
         "duration_minutes": 120.0
       },
       {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260915034400 +0000",
-        "stop": "20260915052900 +0000",
-        "title": "ليدي سكوربيونز",
+        "shard": "provider-osn",
+        "channel_id": "OSNtv Documentary.sa",
+        "channel": "OSNtv Documentary.sa",
+        "start": "20260916000000 +0000",
+        "stop": "20260916001000 +0000",
+        "title": "آوتسايد ذا بابل: أون ذا راود ويذ أليكساندر بي",
         "desc": "",
-        "duration_minutes": 105.0
+        "duration_minutes": 10.0
       },
       {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260915052900 +0000",
-        "stop": "20260915065900 +0000",
-        "title": "السطو",
+        "shard": "provider-osn",
+        "channel_id": "OSNtv Documentary.sa",
+        "channel": "OSNtv Documentary.sa",
+        "start": "20260916001000 +0000",
+        "stop": "20260916011000 +0000",
+        "title": "غلادياتور دايز: أناتومي أوف أيه بريزن ميردر",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNtv Documentary.sa",
+        "channel": "OSNtv Documentary.sa",
+        "start": "20260916011000 +0000",
+        "stop": "20260916024000 +0000",
+        "title": "إت ويل بي كايوس",
         "desc": "",
         "duration_minutes": 90.0
       },
       {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260915065900 +0000",
-        "stop": "20260915092900 +0000",
-        "title": "ريجان",
+        "shard": "provider-osn",
+        "channel_id": "OSNtv Documentary.sa",
+        "channel": "OSNtv Documentary.sa",
+        "start": "20260916024000 +0000",
+        "stop": "20260916040500 +0000",
+        "title": "وايت لايت/بلاك رين: ذا ديستراكشن أوف هيروشي",
         "desc": "",
-        "duration_minutes": 150.0
+        "duration_minutes": 85.0
       },
       {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260915092900 +0000",
-        "stop": "20260915113000 +0000",
-        "title": "تشبث بإيمانك!",
-        "desc": "",
-        "duration_minutes": 121.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260915113000 +0000",
-        "stop": "20260915143000 +0000",
-        "title": "الكونت دي مونت كريستو",
-        "desc": "",
-        "duration_minutes": 180.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260915143000 +0000",
-        "stop": "20260915161500 +0000",
-        "title": "الشيء ذو الريش",
-        "desc": "",
-        "duration_minutes": 105.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260915161500 +0000",
-        "stop": "20260915175900 +0000",
-        "title": "إلينور العظيمة",
-        "desc": "",
-        "duration_minutes": 104.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260915175900 +0000",
-        "stop": "20260915193000 +0000",
-        "title": "فتى الكاراتيه: الأساطير",
-        "desc": "",
-        "duration_minutes": 91.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies2Action.qa@SD",
-        "channel": "beINMOVIES2",
-        "start": "20260914091500 +0000",
-        "stop": "20260914105000 +0000",
-        "title": "عودة الشاردة",
+        "shard": "provider-osn",
+        "channel_id": "OSNtv Documentary.sa",
+        "channel": "OSNtv Documentary.sa",
+        "start": "20260916040500 +0000",
+        "stop": "20260916054000 +0000",
+        "title": "أوباما: إن برسوت أوف ايه مور بيرفكت يونيون",
         "desc": "",
         "duration_minutes": 95.0
       },
       {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies2Action.qa@SD",
-        "channel": "beINMOVIES2",
-        "start": "20260914105000 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "ستار تريك",
+        "shard": "provider-osn",
+        "channel_id": "OSNtv Documentary.sa",
+        "channel": "OSNtv Documentary.sa",
+        "start": "20260916054000 +0000",
+        "stop": "20260916063500 +0000",
+        "title": "ذا آناركيستس",
         "desc": "",
-        "duration_minutes": 130.0
+        "duration_minutes": 55.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNtv Documentary.sa",
+        "channel": "OSNtv Documentary.sa",
+        "start": "20260916063500 +0000",
+        "stop": "20260916074500 +0000",
+        "title": "وان نيشن أندر سترس",
+        "desc": "",
+        "duration_minutes": 70.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNYahalaAflam.ae@SD",
+        "channel": "OSNtv Yahala Aflam",
+        "start": "20260915233500 +0000",
+        "stop": "20260916011500 +0000",
+        "title": "شوجر دادي",
+        "desc": "يقوم شوقي بأخذ حبيبته ناتاليا في رحلة إلى سهل حشيش. عندما يكتشف أبناؤه العلاقة، يتوجهون إلى هناك لمواجهته وإنقاذ زواج والديهم.",
+        "duration_minutes": 100.0
+      }
+    ],
+    "mixed_timezone_offsets_same_day": [
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN SPORTS.qa",
+        "channel": "beIN SPORTS.qa",
+        "day": "2026-09-15",
+        "offsets": [
+          "+0000",
+          "implicit-UTC"
+        ]
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies2Action.qa@SD",
-        "channel": "beINMOVIES2",
-        "start": "20260914130000 +0000",
-        "stop": "20260914151500 +0000",
-        "title": "ستار تريك إنتو داركنس",
-        "desc": "",
-        "duration_minutes": 135.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies2Action.qa@SD",
-        "channel": "beINMOVIES2",
-        "start": "20260914151500 +0000",
-        "stop": "20260914171500 +0000",
-        "title": "ستار تريك بيوند",
-        "desc": "",
-        "duration_minutes": 120.0
+        "channel_id": "beINSports2.qa@MENA",
+        "channel": "beINSPORTS2",
+        "day": "2026-09-16",
+        "offsets": [
+          "+0000",
+          "implicit-UTC"
+        ]
       }
     ],
     "very_short_event_lt_5m": [
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914111400 +0000",
-        "stop": "20260914111600 +0000",
-        "title": "Adam Wa Mishmish 2",
-        "desc": "يتعلمان آدم ومشمش عن كوكب الأرض والشمس والقمر، وكيف يتعاقب الليل والنهار من حولنا.",
-        "duration_minutes": 2.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914111600 +0000",
-        "stop": "20260914112000 +0000",
-        "title": "Barbie: Fashion Stories",
-        "desc": "مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!",
-        "duration_minutes": 4.0
-      },
       {
         "shard": "provider-osn",
         "channel_id": "OSNKids.ae@SD",
@@ -1939,6 +1824,26 @@
         "title": "Barbie Doll Adventures",
         "desc": "اليوم الكبير يصل أخيراً! تحضر باربي وأصدقاؤها موكب العطلة للاحتفال بالصداقة، المرح، والموضة.",
         "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915233900 +0000",
+        "stop": "20260915234200 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يعرّفان آدم ومشمش الأطفال على الفصول الأربعة ويشرحان ما يحدث من تغييرات في الطقس خلال كل فصل.",
+        "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915234200 +0000",
+        "stop": "20260915234400 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يتّبع آدم روتينه المسائي من الاستحمام وقراءة القصص حتى يحين وقت النوم في أغنية هادئة تساعد الأطفال على الاسترخاء.",
+        "duration_minutes": 2.0
       }
     ],
     "arabic_provider_description_not_arabic": [
@@ -2007,13 +1912,13 @@
     ]
   },
   "all_id_release_gate": {
-    "channels": 620,
-    "programmes": 32239,
-    "PASS": 162,
-    "REVIEW": 458,
+    "channels": 611,
+    "programmes": 31021,
+    "PASS": 164,
+    "REVIEW": 447,
     "NO_EPG": 0,
     "FAIL": 0,
-    "auto_lock_safe": 162,
+    "auto_lock_safe": 164,
     "missing_shards": []
   }
 }
