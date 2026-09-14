@@ -1,13 +1,12 @@
 FOREIGN ID CANONICAL REPAIR AUDIT V2
-foreign_no_epg=191 safe=6 review=3 unmatched=182
+foreign_no_epg=190 safe=5 review=3 unmatched=182
 
 SAFE REPAIRS
-- mena-eg | Al.Saeedah.ae -> AlSaeedah.eg@SD | score=0.947 variants=base events=42
+- mena-eg | Al.Saeedah.ae -> AlSaeedah.eg | score=0.947 variants=base events=42
 - mena-sa | Saudi.Quran.TV.HD.ae -> Saudi Quran.sa | score=1.000 variants=quran events=47
 - mena-sa | Saudi.Sunna.TV.HD.ae -> Saudi Sunnah.sa | score=0.957 variants=sunnah events=47
 - mena-qa | Al.Jazeera.English.HD.ae -> AlJazeera.English.net | score=0.971 variants=english events=75
 - mena-qa | Al.Jazeera.HD.ae -> AlJazeera.qa@Arabic | score=0.947 variants=base events=34
-- mena-kw | Al.Rai.TV.ae -> AlraiTV.kw@SD | score=1.000 variants=base events=78
 
 REVIEW / UNMATCHED
 - [NO_CANONICAL_MATCH] mena-eg | Aghapy.TV.ae -> Alhayat TV.eg | score=0.615 variants=base/base
@@ -19,7 +18,7 @@ REVIEW / UNMATCHED
 - [NO_CANONICAL_MATCH] mena-eg | Al.Nahar.Noor.ae -> Al Nahar TV.sa | score=0.762 variants=base/base
 - [NO_CANONICAL_MATCH] mena-eg | Al.Qahera.News.ae -> Al Kahera Walnas.sa | score=0.733 variants=news/base
 - [NO_CANONICAL_MATCH] mena-eg | Al.Wathaeqya.ae -> Al Nahar TV.sa | score=0.600 variants=base/base
-- [NO_CANONICAL_MATCH] mena-eg | Alfath.TV.ae -> AlNahar.eg@SD | score=0.615 variants=base/base
+- [NO_CANONICAL_MATCH] mena-eg | Alfath.TV.ae -> Alhayat TV.eg | score=0.615 variants=base/base
 - [NO_CANONICAL_MATCH] mena-eg | AlHadath.Alyoum.ae -> Alhayat TV.eg | score=0.545 variants=base/base
 - [NO_CANONICAL_MATCH] mena-eg | Aswan.ae -> MasperoZaman.eg@SD | score=0.471 variants=base/base
 - [NO_CANONICAL_MATCH] mena-eg | Bakous.Alexandaria.ae -> Al Masriya.sa | score=0.429 variants=base/base
@@ -35,7 +34,7 @@ REVIEW / UNMATCHED
 - [NO_CANONICAL_MATCH] mena-eg | Mekameleen.ae -> MasperoZaman.eg@SD | score=0.455 variants=base/base
 - [NO_CANONICAL_MATCH] mena-eg | Misr.Al.Zeraeey.ae -> MixBelAraby.eg@SD | score=0.462 variants=base/base
 - [NO_CANONICAL_MATCH] mena-eg | Misr.AlBalad.ae -> SadaElbalad.eg@SD | score=0.696 variants=base/base
-- [NO_CANONICAL_MATCH] mena-eg | Misr.Quran.Kareem.ae -> DMC.Drama.ae | score=0.385 variants=quran/drama
+- [NO_CANONICAL_MATCH] mena-eg | Misr.Quran.Kareem.ae -> DMC DRAMA.eg | score=0.385 variants=quran/drama
 - [NO_CANONICAL_MATCH] mena-eg | Nile.Culture.ae -> Nile Life.eg | score=0.667 variants=base/base
 - [NO_CANONICAL_MATCH] mena-eg | Nile.News.ae -> Nile.Cinema.ae | score=0.700 variants=news/cinema
 - [NO_CANONICAL_MATCH] mena-eg | Nile.Sport.ae -> On.Time.Sports.HD.ae | score=0.750 variants=sport/sport
@@ -45,7 +44,7 @@ REVIEW / UNMATCHED
 - [NO_CANONICAL_MATCH] mena-eg | Watan.TV.ae -> TeN.eg@SD | score=0.500 variants=base/base
 - [NO_CANONICAL_MATCH] mena-eg | Zamalek.TV.ae -> OnDrama.eg@SD | score=0.429 variants=base/base
 - [NO_CANONICAL_MATCH] mena-eg | Zee.Alwan.Egypt.ae -> Alhayat TV.eg | score=0.455 variants=base/base
-- [NO_CANONICAL_MATCH] mena-sa | Al.Majd.ae -> AlHadath.sa@SD | score=0.533 variants=base/base
+- [NO_CANONICAL_MATCH] mena-sa | Al.Majd.ae -> Al Resalah.sa | score=0.500 variants=base/base
 - [NO_CANONICAL_MATCH] mena-sa | Al.Majd.Holy.Quran.ae -> Saudi Quran.sa | score=0.552 variants=quran/quran
 - [NO_CANONICAL_MATCH] mena-sa | Al.Sahraa.TV.ae -> Al Resalah.sa | score=0.632 variants=base/base
 - [NO_CANONICAL_MATCH] mena-sa | Bin.Othaimeen.ae -> MoviesThriller.sa@SD | score=0.429 variants=base/base
@@ -122,7 +121,7 @@ REVIEW / UNMATCHED
 - [NO_CANONICAL_MATCH] mena-iq | Kirkuk.TV.ae -> AlIraqia.iq@SD | score=0.286 variants=base/base
 - [NO_CANONICAL_MATCH] mena-iq | Kurdistan.TV.ae -> Alsumaria.eg | score=0.444 variants=base/base
 - [NO_CANONICAL_MATCH] mena-iq | KurdMax.HD.ae -> Alsumaria.eg | score=0.375 variants=base/base
-- [NO_CANONICAL_MATCH] mena-iq | Kurdsat.ae -> DijlahTV.iq@SD | score=0.400 variants=base/base
+- [NO_CANONICAL_MATCH] mena-iq | Kurdsat.ae -> UTV.iq@SD | score=0.400 variants=base/base
 - [NO_CANONICAL_MATCH] mena-iq | Kurdsat.News.HD.ae -> Al.Iraqiya.News.HD.ae | score=0.519 variants=news/news
 - [NO_CANONICAL_MATCH] mena-iq | Manu.Chat.ae -> Iraq.Al.Hadath.ae | score=0.435 variants=base/base
 - [NO_CANONICAL_MATCH] mena-iq | NRT.2.HD.ae -> AlRasheedTV.iq@SD | score=0.250 variants=num:2/base

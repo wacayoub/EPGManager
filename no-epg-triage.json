@@ -1,13 +1,12 @@
 {
   "schema": 2,
   "mode": "no-epg-triage-diagnostic",
-  "total_no_epg": 433,
+  "total_no_epg": 430,
   "category_counts": {
     "DORMANT_EVENT_OR_COMPAT_ID": 32,
     "DORMANT_PROVIDER_UMBRELLA": 1,
-    "ACTIVE_CHANNEL_NEEDS_SOURCE": 209,
-    "FOREIGN_AGGREGATOR_ID_REVIEW": 190,
-    "LOGICAL_ALIAS_TO_LIVE": 1
+    "ACTIVE_CHANNEL_NEEDS_SOURCE": 207,
+    "FOREIGN_AGGREGATOR_ID_REVIEW": 190
   },
   "by_shard": {
     "mena-ae": {
@@ -29,8 +28,7 @@
       "FOREIGN_AGGREGATOR_ID_REVIEW": 6
     },
     "mena-kw": {
-      "FOREIGN_AGGREGATOR_ID_REVIEW": 8,
-      "LOGICAL_ALIAS_TO_LIVE": 1
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 8
     },
     "mena-lb": {
       "FOREIGN_AGGREGATOR_ID_REVIEW": 11
@@ -45,7 +43,7 @@
       "FOREIGN_AGGREGATOR_ID_REVIEW": 2
     },
     "mena-other": {
-      "ACTIVE_CHANNEL_NEEDS_SOURCE": 178
+      "ACTIVE_CHANNEL_NEEDS_SOURCE": 177
     },
     "mena-ps": {
       "FOREIGN_AGGREGATOR_ID_REVIEW": 15
@@ -54,7 +52,7 @@
       "FOREIGN_AGGREGATOR_ID_REVIEW": 13
     },
     "mena-sa": {
-      "ACTIVE_CHANNEL_NEEDS_SOURCE": 14,
+      "ACTIVE_CHANNEL_NEEDS_SOURCE": 13,
       "FOREIGN_AGGREGATOR_ID_REVIEW": 10
     },
     "mena-sd": {
@@ -830,15 +828,6 @@
     },
     {
       "shard": "mena-sa",
-      "id": "AlQuranAlKareemTV.sa@SD",
-      "name": "القرآن الكريم",
-      "feed_country": "sa",
-      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
-      "canonical_target": "",
-      "reason": "no live canonical/alias found"
-    },
-    {
-      "shard": "mena-sa",
       "id": "AlSaudiyaAlaan.sa@SD",
       "name": "السعودية الآن",
       "feed_country": "sa",
@@ -1196,15 +1185,6 @@
       "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
       "canonical_target": "",
       "reason": "feed suffix does not match authoritative country shard"
-    },
-    {
-      "shard": "mena-kw",
-      "id": "Al.Rai.TV.ae",
-      "name": "Al Rai TV",
-      "feed_country": "ae",
-      "category": "LOGICAL_ALIAS_TO_LIVE",
-      "canonical_target": "AlraiTV.kw@SD",
-      "reason": "same normalized channel identity already has EPG"
     },
     {
       "shard": "mena-kw",
@@ -2497,15 +2477,6 @@
       "shard": "mena-other",
       "id": "Al.Aqila.TV.ae",
       "name": "Al Aqila TV",
-      "feed_country": "ae",
-      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
-      "canonical_target": "",
-      "reason": "no live canonical/alias found"
-    },
-    {
-      "shard": "mena-other",
-      "id": "Al.Araby.2.HD.ae",
-      "name": "Al Araby 2 HD",
       "feed_country": "ae",
       "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
       "canonical_target": "",
@@ -4081,15 +4052,6 @@
     },
     {
       "shard": "mena-sa",
-      "id": "AlQuranAlKareemTV.sa@SD",
-      "name": "القرآن الكريم",
-      "feed_country": "sa",
-      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
-      "canonical_target": "",
-      "reason": "no live canonical/alias found"
-    },
-    {
-      "shard": "mena-sa",
       "id": "AlSaudiyaAlaan.sa@SD",
       "name": "السعودية الآن",
       "feed_country": "sa",
@@ -4380,15 +4342,6 @@
       "shard": "mena-other",
       "id": "Al.Aqila.TV.ae",
       "name": "Al Aqila TV",
-      "feed_country": "ae",
-      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
-      "canonical_target": "",
-      "reason": "no live canonical/alias found"
-    },
-    {
-      "shard": "mena-other",
-      "id": "Al.Araby.2.HD.ae",
-      "name": "Al Araby 2 HD",
       "feed_country": "ae",
       "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
       "canonical_target": "",

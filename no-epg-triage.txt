@@ -1,12 +1,11 @@
 NO_EPG TRIAGE - DIAGNOSTIC V2
-total=433 source_hunting=209
+total=430 source_hunting=207
 
 CATEGORY COUNTS
-- ACTIVE_CHANNEL_NEEDS_SOURCE: 209
+- ACTIVE_CHANNEL_NEEDS_SOURCE: 207
 - FOREIGN_AGGREGATOR_ID_REVIEW: 190
 - DORMANT_EVENT_OR_COMPAT_ID: 32
 - DORMANT_PROVIDER_UMBRELLA: 1
-- LOGICAL_ALIAS_TO_LIVE: 1
 
 BY SHARD
 - mena-ae: ACTIVE_CHANNEL_NEEDS_SOURCE=8
@@ -15,15 +14,15 @@ BY SHARD
 - mena-eg: FOREIGN_AGGREGATOR_ID_REVIEW=36
 - mena-iq: FOREIGN_AGGREGATOR_ID_REVIEW=42
 - mena-jo: FOREIGN_AGGREGATOR_ID_REVIEW=6
-- mena-kw: FOREIGN_AGGREGATOR_ID_REVIEW=8, LOGICAL_ALIAS_TO_LIVE=1
+- mena-kw: FOREIGN_AGGREGATOR_ID_REVIEW=8
 - mena-lb: FOREIGN_AGGREGATOR_ID_REVIEW=11
 - mena-ly: FOREIGN_AGGREGATOR_ID_REVIEW=9
 - mena-mr: FOREIGN_AGGREGATOR_ID_REVIEW=1
 - mena-om: FOREIGN_AGGREGATOR_ID_REVIEW=2
-- mena-other: ACTIVE_CHANNEL_NEEDS_SOURCE=178
+- mena-other: ACTIVE_CHANNEL_NEEDS_SOURCE=177
 - mena-ps: FOREIGN_AGGREGATOR_ID_REVIEW=15
 - mena-qa: FOREIGN_AGGREGATOR_ID_REVIEW=13
-- mena-sa: ACTIVE_CHANNEL_NEEDS_SOURCE=14, FOREIGN_AGGREGATOR_ID_REVIEW=10
+- mena-sa: ACTIVE_CHANNEL_NEEDS_SOURCE=13, FOREIGN_AGGREGATOR_ID_REVIEW=10
 - mena-sd: FOREIGN_AGGREGATOR_ID_REVIEW=3
 - mena-sy: ACTIVE_CHANNEL_NEEDS_SOURCE=1, FOREIGN_AGGREGATOR_ID_REVIEW=3
 - mena-tn: FOREIGN_AGGREGATOR_ID_REVIEW=3
@@ -46,7 +45,6 @@ SOURCE HUNTING QUEUE
 - provider-art | Alfa.Hekayat.ae | Alfa Hekayat
 - mena-sa | AbdulmajeedAbdullah.sa@SD | عبدالمجيد عبدالله
 - mena-sa | AlEkhbariya.sa@SD | الإخبارية
-- mena-sa | AlQuranAlKareemTV.sa@SD | القرآن الكريم
 - mena-sa | AlSaudiyaAlaan.sa@SD | السعودية الآن
 - mena-sa | AlSunnahAlNabawiyahTV.sa@SD | السنة النبوية
 - mena-sa | BabAlHara.sa@SD | قناة باب الحارة
@@ -80,7 +78,6 @@ SOURCE HUNTING QUEUE
 - mena-other | Al.Amal.ae | Al Amal
 - mena-other | Al.Anwar.TV.2.ae | Al Anwar TV 2
 - mena-other | Al.Aqila.TV.ae | Al Aqila TV
-- mena-other | Al.Araby.2.HD.ae | Al Araby 2 HD
 - mena-other | Al.Baghdadia.Now.ae | Al Baghdadia Now
 - mena-other | Al.Bernameg.Al.Aam.ae | Al Bernameg Al Aam
 - mena-other | Al.Bernameg.Al.Oropi.ae | Al Bernameg Al Oropi
@@ -340,7 +337,6 @@ ALIASES / DORMANT / REVIEW
 - [FOREIGN_AGGREGATOR_ID_REVIEW] mena-qa | Sout.Alkhaleej.4.ae
 - [FOREIGN_AGGREGATOR_ID_REVIEW] mena-qa | Sout.Alkhaleej.Europe.ae
 - [FOREIGN_AGGREGATOR_ID_REVIEW] mena-kw | Al.Anwar.TV.ae
-- [LOGICAL_ALIAS_TO_LIVE] mena-kw | Al.Rai.TV.ae -> AlraiTV.kw@SD
 - [FOREIGN_AGGREGATOR_ID_REVIEW] mena-kw | Kuwait.Al.Akhbar.ae
 - [FOREIGN_AGGREGATOR_ID_REVIEW] mena-kw | Kuwait.Classical.ae
 - [FOREIGN_AGGREGATOR_ID_REVIEW] mena-kw | Kuwait.Easy.ae
