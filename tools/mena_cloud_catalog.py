@@ -41,10 +41,11 @@ SITE_PRIORITY = {
 }
 EXCLUDED_SITES = {"sat.tv"}
 
-# Verified 2026-09-14 by the parallel official duplicate-source health audit.
-# In every row below, Shahid and OSN expose the same xmltv_id, but OSN had a
-# complete 48h timetable with zero placeholder rows while Shahid had significant
-# placeholder/all-day pollution. Keep this list explicit: no fuzzy override.
+# Verified 2026-09-14 by the parallel official duplicate-source health audits.
+# Overrides are exact-ID only. OSN rows had complete clean schedules where
+# Shahid had placeholder/all-day pollution. MBC Masr Drama is the targeted
+# Shahid -> ElCinema exception: the live comparison measured ~40h clean on
+# ElCinema versus a placeholder-polluted/short Shahid timetable.
 CHANNEL_SITE_OVERRIDES = {
     "AlHadath.sa@SD": "osn.com",
     "AlQuranAlKareemTV.sa@SD": "osn.com",
@@ -54,6 +55,7 @@ CHANNEL_SITE_OVERRIDES = {
     "MBCIraq.iq@SD": "osn.com",
     "MBCMasr.eg@SD": "osn.com",
     "MBCMasr2.eg@SD": "osn.com",
+    "MBCMasrDrama.sa@SD": "elcinema.com",
     "MBCPlusDrama.sa@SD": "osn.com",
 }
 
