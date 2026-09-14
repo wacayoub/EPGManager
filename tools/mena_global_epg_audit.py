@@ -2,9 +2,14 @@
 # -*- coding: utf-8 -*-
 """Audit every programme in the exclusive MENA Cloud shards.
 
-This is diagnostic only: it never mutates the generated XMLTV.  It checks
-structural quality, scheduling conflicts, suspicious duplicates, language
-policy, MBC title cleanliness and obvious placeholder/bad metadata.
+This audit never mutates generated XMLTV. It checks structural quality,
+scheduling conflicts, suspicious duplicates, language policy, MBC title
+cleanliness and obvious placeholder/bad metadata.
+
+It also runs the exhaustive all-ID auditor as a synchronous release gate. The
+build is rejected if any published ID receives a FAIL verdict. The generated
+all-id-audit.{txt,json,csv} files are written beside the global audit so a
+post-build publisher can expose exactly the same production truth.
 """
 from __future__ import annotations
 
@@ -15,6 +20,8 @@ import gzip
 import json
 from pathlib import Path
 import re
+import subprocess
+import sys
 import xml.etree.ElementTree as ET
 
 AR_RE = re.compile(r"[\u0600-\u06ff]")
@@ -67,8 +74,6 @@ def looks_english(text: str, lang: str = "") -> bool:
 
 def is_hybrid_desc(text: str) -> bool:
     ar, lat = text_stats(text)
-    # Avoid flagging an Arabic description merely because it contains a short
-    # acronym such as UEFA/VAR/HD.  Long bilingual/hybrid prose is suspicious.
     return ar >= 20 and lat >= 20 and min(ar, lat) / max(ar, lat) >= 0.12
 
 
@@ -76,7 +81,6 @@ def parse_xmltv_time(value: str):
     raw = (value or "").strip()
     if not raw:
         return None, None
-    # XMLTV commonly uses YYYYMMDDHHMMSS +0000, sometimes without seconds.
     for fmt in ("%Y%m%d%H%M%S %z", "%Y%m%d%H%M %z", "%Y%m%d%H%M%S", "%Y%m%d%H%M"):
         try:
             dt = datetime.strptime(raw, fmt)
@@ -122,6 +126,36 @@ def issue_sample(stem, cid, cname, p, title, desc, extra=None):
     return out
 
 
+def run_all_id_release_gate(root_dir: Path, manifest_path: Path, out_dir: Path):
+    """Generate exhaustive truth from exactly the shards being released."""
+    all_id_script = Path(__file__).with_name("all_id_audit.py")
+    out_json = out_dir / "all-id-audit.json"
+    out_text = out_dir / "all-id-audit.txt"
+    out_csv = out_dir / "all-id-audit.csv"
+    subprocess.run([
+        sys.executable, str(all_id_script),
+        "--dir", str(root_dir),
+        "--manifest", str(manifest_path),
+        "--json", str(out_json),
+        "--text", str(out_text),
+        "--csv", str(out_csv),
+    ], check=True)
+    report = json.loads(out_json.read_text(encoding="utf-8"))
+    summary = report.get("summary") or {}
+    expected = json.loads(manifest_path.read_text(encoding="utf-8")).get("published_channels")
+    if summary.get("missing_shards"):
+        raise SystemExit("ALL-ID RELEASE GATE: missing shards %s" % summary["missing_shards"])
+    if expected is not None and int(summary.get("channels", -1)) != int(expected):
+        raise SystemExit("ALL-ID RELEASE GATE: channel count mismatch %s != %s" % (
+            summary.get("channels"), expected))
+    if int(summary.get("FAIL", 0) or 0) != 0:
+        raise SystemExit("ALL-ID RELEASE GATE: FAIL=%d; publication blocked" % int(summary.get("FAIL", 0)))
+    print("ALL-ID RELEASE GATE: PASS channels=%d programmes=%d PASS=%d REVIEW=%d NO_EPG=%d FAIL=0" % (
+        int(summary.get("channels", 0)), int(summary.get("programmes", 0)),
+        int(summary.get("PASS", 0)), int(summary.get("REVIEW", 0)), int(summary.get("NO_EPG", 0))))
+    return summary
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", required=True)
@@ -132,7 +166,8 @@ def main() -> int:
     args = ap.parse_args()
 
     root_dir = Path(args.dir)
-    manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
+    manifest_path = Path(args.manifest)
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     stems = list((manifest.get("shards") or {}).keys())
 
     counts = Counter()
@@ -225,7 +260,6 @@ def main() -> int:
                 if desc and not looks_arabic(desc, desc_lang):
                     add("arabic_provider_description_not_arabic", stem, sample)
 
-        # Scheduling audit per channel. One overlap report per pair.
         for cid, rows in per_channel.items():
             rows.sort(key=lambda x: (x[0], x[1]))
             prev = None
@@ -248,7 +282,6 @@ def main() -> int:
                         if same and ((ce - cs).total_seconds() <= 10 * 60 or ce <= pe):
                             add("contained_or_short_duplicate_title", stem,
                                 issue_sample(stem, cid, channel_names.get(cid, cid), cp, ct, cd, extra))
-                    # Keep the event that extends furthest to catch nested overlaps.
                     if pe >= ce:
                         continue
                 prev = row
@@ -266,8 +299,8 @@ def main() -> int:
                     })
 
     result = {
-        "schema": 1,
-        "scope": "all exclusive MENA country/provider shards",
+        "schema": 2,
+        "scope": "all exclusive MENA country/provider shards + synchronous all-ID release gate",
         "channels_scanned": total_channels,
         "programmes_scanned": total_programmes,
         "issue_counts": dict(sorted(counts.items())),
@@ -302,6 +335,11 @@ def main() -> int:
                 lines.append("  desc: %s" % item["desc"][:220])
             if item.get("offsets"):
                 lines.append("  offsets: %s" % ",".join(item["offsets"]))
+
+    all_id_summary = run_all_id_release_gate(root_dir, manifest_path, Path(args.json).parent)
+    result["all_id_release_gate"] = all_id_summary
+    Path(args.json).write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    lines += ["", "ALL-ID RELEASE GATE", json.dumps(all_id_summary, ensure_ascii=False, sort_keys=True)]
     Path(args.text).write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     print("GLOBAL EPG AUDIT: channels=%d programmes=%d critical=%d warnings=%d issue_types=%d" % (
