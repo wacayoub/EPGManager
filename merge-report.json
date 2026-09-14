@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-14T05:27:46.201457+00:00",
+  "generated": "2026-09-14T05:35:54.271933+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -28,31 +28,36 @@
       "name": "openepg-qatar1",
       "origin": "openepg",
       "channels_with_current_48h_epg": 14,
-      "bytes": 24553
+      "bytes": 24553,
+      "quarantined_identity_only": 15
     },
     {
       "name": "openepg-qatar2",
       "origin": "openepg",
       "channels_with_current_48h_epg": 17,
-      "bytes": 11434
+      "bytes": 11434,
+      "quarantined_identity_only": 15
     },
     {
       "name": "openepg-qatar3",
       "origin": "openepg",
       "channels_with_current_48h_epg": 21,
-      "bytes": 13115
+      "bytes": 13115,
+      "quarantined_identity_only": 15
     },
     {
       "name": "openepg-qatar4",
       "origin": "openepg",
       "channels_with_current_48h_epg": 19,
-      "bytes": 25228
+      "bytes": 25228,
+      "quarantined_identity_only": 0
     },
     {
       "name": "openepg-qatar5",
       "origin": "openepg",
       "channels_with_current_48h_epg": 17,
-      "bytes": 29956
+      "bytes": 29956,
+      "quarantined_identity_only": 0
     },
     {
       "name": "openepg-qatar6",
@@ -106,19 +111,22 @@
       "name": "epgshare-ae1",
       "origin": "epgshare",
       "channels_with_current_48h_epg": 181,
-      "bytes": 1818290
+      "bytes": 1818290,
+      "quarantined_identity_only": 383
     },
     {
       "name": "epgshare-bein1",
       "origin": "epgshare",
       "channels_with_current_48h_epg": 23,
-      "bytes": 33343
+      "bytes": 33343,
+      "quarantined_identity_only": 16
     },
     {
       "name": "epgshare-sa2",
       "origin": "epgshare",
       "channels_with_current_48h_epg": 17,
-      "bytes": 88992
+      "bytes": 88992,
+      "quarantined_identity_only": 23
     },
     {
       "name": "epgshare-aljazeera1",
@@ -127,17 +135,17 @@
       "bytes": 4291
     }
   ],
-  "candidate_channel_rows": 1205,
-  "unique_logical_channels": 635,
-  "programmes": 33421,
-  "premium_hybrid_events": 999,
+  "candidate_channel_rows": 1677,
+  "unique_logical_channels": 1046,
+  "programmes": 33252,
+  "premium_hybrid_events": 998,
   "stats": {
-    "regular_channels": 587,
-    "source_epgshare": 143,
-    "logical_duplicate_groups": 321,
-    "premium_channels": 48,
-    "source_openepg": 308,
-    "source_primary": 184
+    "regular_channels": 965,
+    "source_epgshare": 524,
+    "logical_duplicate_groups": 348,
+    "premium_channels": 81,
+    "source_openepg": 333,
+    "source_primary": 189
   },
   "aliases": [
     {
@@ -279,6 +287,18 @@
       "aliases": []
     },
     {
+      "canonical_id": "Aden.TV.ae",
+      "canonical_name": "Aden TV",
+      "logical_key": "aden tv",
+      "aliases": [
+        {
+          "id": "Aden.Almustakillah.HD.ae",
+          "name": "Aden Almustakillah HD",
+          "source": "epgshare-ae1"
+        }
+      ]
+    },
+    {
       "canonical_id": "Aghani Aghani.sa",
       "canonical_name": "Aghani Aghani.sa",
       "logical_key": "aghani aghani",
@@ -324,6 +344,18 @@
         {
           "id": "Al.Arabiya.Business.ae",
           "name": "Al Arabiya Business",
+          "source": "epgshare-ae1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "AlArabyTV2.qa@SD",
+      "canonical_name": "Al Araby 2",
+      "logical_key": "al araby 2",
+      "aliases": [
+        {
+          "id": "Al.Araby.2.HD.ae",
+          "name": "Al Araby 2 HD",
           "source": "epgshare-ae1"
         }
       ]
@@ -390,7 +422,13 @@
       "canonical_id": "Al Hayat.sa",
       "canonical_name": "Al Hayat.sa",
       "logical_key": "al hayat",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "Al.Hayat.ae",
+          "name": "Al Hayat",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "Al Kahera Walnas.sa",
@@ -408,7 +446,13 @@
       "canonical_id": "Al Mamlaka TV.sa",
       "canonical_name": "Al Mamlaka TV.sa",
       "logical_key": "al mamlaka tv",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "Al.Mamlaka.TV.HD.ae",
+          "name": "Al Mamlaka TV HD",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "Al Masriya.sa",
@@ -456,6 +500,18 @@
       "canonical_name": "Al Quran Al Kareem TV HD.sa",
       "logical_key": "al quran al kareem tv",
       "aliases": []
+    },
+    {
+      "canonical_id": "AlraiTV.kw@SD",
+      "canonical_name": "Al Rai TV",
+      "logical_key": "al rai tv",
+      "aliases": [
+        {
+          "id": "Al.Rai.TV.ae",
+          "name": "Al Rai TV",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "Al Resalah.sa",
@@ -525,6 +581,23 @@
           "id": "Al Kass One.sa",
           "name": "Al Kass One.sa",
           "source": "openepg-saudi6"
+        },
+        {
+          "id": "Alkass.One.HD.ae",
+          "name": "Alkass One HD",
+          "source": "epgshare-ae1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "2023 Alkass 2.qa",
+      "canonical_name": "2023 Alkass 2.qa",
+      "logical_key": "alkass 2",
+      "aliases": [
+        {
+          "id": "Alkass.Two.HD.ae",
+          "name": "Alkass Two HD",
+          "source": "epgshare-ae1"
         }
       ]
     },
@@ -537,6 +610,11 @@
           "id": "Alkass Three.qa",
           "name": "Alkass Three.qa",
           "source": "openepg-qatar6"
+        },
+        {
+          "id": "Alkass.Three.ae",
+          "name": "Alkass Three",
+          "source": "epgshare-ae1"
         }
       ]
     },
@@ -549,6 +627,11 @@
           "id": "Alkass Four.qa",
           "name": "Alkass Four.qa",
           "source": "openepg-qatar6"
+        },
+        {
+          "id": "Alkass.Four.ae",
+          "name": "Alkass Four",
+          "source": "epgshare-ae1"
         }
       ]
     },
@@ -604,7 +687,13 @@
       "canonical_id": "Amman TV.sa",
       "canonical_name": "Amman TV.sa",
       "logical_key": "amman tv",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "Amman.TV.HD.ae",
+          "name": "Amman TV HD",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "ANC.sa",
@@ -655,7 +744,13 @@
       "canonical_id": "Asharq Discovery.sa",
       "canonical_name": "Asharq Discovery.sa",
       "logical_key": "asharq discovery",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "Asharq.Discovery.HD.ae",
+          "name": "Asharq Discovery HD",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "AsharqDocumentary.sa@SD",
@@ -671,6 +766,11 @@
           "id": "Asharq Documentary.sa",
           "name": "Asharq Documentary.sa",
           "source": "openepg-saudi2"
+        },
+        {
+          "id": "Asharq.Documentary.HD.ae",
+          "name": "Asharq Documentary HD",
+          "source": "epgshare-ae1"
         }
       ]
     },
@@ -710,6 +810,11 @@
           "id": "Bahrain TV.sa",
           "name": "Bahrain TV.sa",
           "source": "openepg-saudi6"
+        },
+        {
+          "id": "Bahrain.TV.HD.ae",
+          "name": "Bahrain TV HD",
+          "source": "epgshare-ae1"
         }
       ]
     },
@@ -746,6 +851,36 @@
       "canonical_id": "BBC World News.sa",
       "canonical_name": "BBC World News.sa",
       "logical_key": "bbc world news",
+      "aliases": [
+        {
+          "id": "BBC.World.News.ae",
+          "name": "BBC World News",
+          "source": "epgshare-ae1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "bein.com-05.qa",
+      "canonical_name": "bein.com-05.qa",
+      "logical_key": "bein 05",
+      "aliases": []
+    },
+    {
+      "canonical_id": "bein.com-06.qa",
+      "canonical_name": "bein.com-06.qa",
+      "logical_key": "bein 06",
+      "aliases": []
+    },
+    {
+      "canonical_id": "bein.com-07.qa",
+      "canonical_name": "bein.com-07.qa",
+      "logical_key": "bein 07",
+      "aliases": []
+    },
+    {
+      "canonical_id": "bein.com-08.qa",
+      "canonical_name": "bein.com-08.qa",
+      "logical_key": "bein 08",
       "aliases": []
     },
     {
@@ -757,6 +892,18 @@
           "id": "beIN 4K.qa",
           "name": "beIN 4K.qa",
           "source": "openepg-qatar1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS.qa",
+      "canonical_name": "beIN SPORTS.qa",
+      "logical_key": "bein sports",
+      "aliases": [
+        {
+          "id": "beIN.Sports.HD.ae",
+          "name": "beIN Sports HD",
+          "source": "epgshare-ae1"
         }
       ]
     },
@@ -1071,6 +1218,66 @@
       ]
     },
     {
+      "canonical_id": "beIN SPORTS MAX 1.qa",
+      "canonical_name": "beIN SPORTS MAX 1.qa",
+      "logical_key": "bein sports max 1",
+      "aliases": [
+        {
+          "id": "beIN SPORTS MAX1 DIGITAL.qa",
+          "name": "beIN SPORTS MAX1 DIGITAL.qa",
+          "source": "openepg-qatar3"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS MAX 2.qa",
+      "canonical_name": "beIN SPORTS MAX 2.qa",
+      "logical_key": "bein sports max 2",
+      "aliases": [
+        {
+          "id": "beIN SPORTS MAX2 DIGITAL.qa",
+          "name": "beIN SPORTS MAX2 DIGITAL.qa",
+          "source": "openepg-qatar3"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS MAX 3.qa",
+      "canonical_name": "beIN SPORTS MAX 3.qa",
+      "logical_key": "bein sports max 3",
+      "aliases": [
+        {
+          "id": "beIN SPORTS MAX3 DIGITAL.qa",
+          "name": "beIN SPORTS MAX3 DIGITAL.qa",
+          "source": "openepg-qatar3"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS MAX 4.qa",
+      "canonical_name": "beIN SPORTS MAX 4.qa",
+      "logical_key": "bein sports max 4",
+      "aliases": [
+        {
+          "id": "beIN SPORTS MAX4 DIGITAL.qa",
+          "name": "beIN SPORTS MAX4 DIGITAL.qa",
+          "source": "openepg-qatar3"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS MAX 5.qa",
+      "canonical_name": "beIN SPORTS MAX 5.qa",
+      "logical_key": "bein sports max 5",
+      "aliases": [
+        {
+          "id": "beIN SPORTS MAX5 DIGITAL.qa",
+          "name": "beIN SPORTS MAX5 DIGITAL.qa",
+          "source": "openepg-qatar3"
+        }
+      ]
+    },
+    {
       "canonical_id": "beIN SPORTS NEWS.qa",
       "canonical_name": "beIN SPORTS NEWS.qa",
       "logical_key": "bein sports news",
@@ -1083,6 +1290,158 @@
       ]
     },
     {
+      "canonical_id": "beIN SPORTS XTRA 04 bein.com.qa",
+      "canonical_name": "beIN SPORTS XTRA 04 bein.com.qa",
+      "logical_key": "bein sports xtra 04 bein",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS_XTRA_04_bein.com_AR.bein",
+          "name": "beIN_SPORTS_XTRA_04_bein.com_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS_XTRA_04_bein.com_EN.bein",
+          "name": "beIN_SPORTS_XTRA_04_bein.com_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN SPORTS XTRA 05 bein.com.qa",
+      "canonical_name": "beIN SPORTS XTRA 05 bein.com.qa",
+      "logical_key": "bein sports xtra 05 bein",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS_XTRA_05_bein.com_AR.bein",
+          "name": "beIN_SPORTS_XTRA_05_bein.com_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS_XTRA_05_bein.com_EN.bein",
+          "name": "beIN_SPORTS_XTRA_05_bein.com_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN_SPORTS_XTRA_06_bein.com_EN.bein",
+      "canonical_name": "beIN_SPORTS_XTRA_06_bein.com_EN",
+      "logical_key": "bein sports xtra 06 bein",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS_XTRA_06_bein.com_AR.bein",
+          "name": "beIN_SPORTS_XTRA_06_bein.com_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN_SPORTS_XTRA_07_bein.com_EN.bein",
+      "canonical_name": "beIN_SPORTS_XTRA_07_bein.com_EN",
+      "logical_key": "bein sports xtra 07 bein",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS_XTRA_07_bein.com_AR.bein",
+          "name": "beIN_SPORTS_XTRA_07_bein.com_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN_SPORTS_XTRA_08_Bein.com_EN.bein",
+      "canonical_name": "beIN_SPORTS_XTRA_08_Bein.com_EN",
+      "logical_key": "bein sports xtra 08 bein",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS_XTRA_08_Bein.com_AR.bein",
+          "name": "beIN_SPORTS_XTRA_08_Bein.com_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein",
+      "canonical_name": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN",
+      "logical_key": "bein sports xtra 09 bein",
+      "aliases": [
+        {
+          "id": "beIN_SPORTS_XTRA_Digital_09_Bein.com_AR.bein",
+          "name": "beIN_SPORTS_XTRA_Digital_09_Bein.com_AR",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beINSportsXtra1.qa@SD",
+      "canonical_name": "beIN SPORTS XTRA 1",
+      "logical_key": "bein sports xtra 1",
+      "aliases": [
+        {
+          "id": "beIN SPORTS XTRA 1.qa",
+          "name": "beIN SPORTS XTRA 1.qa",
+          "source": "openepg-qatar1"
+        },
+        {
+          "id": "beIN SPORTS XTRA1 Digital.qa",
+          "name": "beIN SPORTS XTRA1 Digital.qa",
+          "source": "openepg-qatar2"
+        },
+        {
+          "id": "beIN SPORTS XTRA1 Digital.qa",
+          "name": "beIN SPORTS XTRA1 Digital.qa",
+          "source": "openepg-qatar3"
+        },
+        {
+          "id": "beIN_SPORTS_XTRA1_Digital_Mono_AR.bein",
+          "name": "beIN_SPORTS_XTRA1_Digital_Mono_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS_XTRA1_Digital_Mono_EN.bein",
+          "name": "beIN_SPORTS_XTRA1_Digital_Mono_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beINSportsXtra2.qa@SD",
+      "canonical_name": "beIN SPORTS XTRA 2",
+      "logical_key": "bein sports xtra 2",
+      "aliases": [
+        {
+          "id": "beIN SPORTS XTRA 2.qa",
+          "name": "beIN SPORTS XTRA 2.qa",
+          "source": "openepg-qatar1"
+        },
+        {
+          "id": "beIN SPORTS XTRA2 Digital.qa",
+          "name": "beIN SPORTS XTRA2 Digital.qa",
+          "source": "openepg-qatar2"
+        },
+        {
+          "id": "beIN SPORTS XTRA2 Digital.qa",
+          "name": "beIN SPORTS XTRA2 Digital.qa",
+          "source": "openepg-qatar3"
+        },
+        {
+          "id": "beIN_SPORTS_XTRA2_Digital_Mono_AR.bein",
+          "name": "beIN_SPORTS_XTRA2_Digital_Mono_AR",
+          "source": "epgshare-bein1"
+        },
+        {
+          "id": "beIN_SPORTS_XTRA2_Digital_Mono_EN.bein",
+          "name": "beIN_SPORTS_XTRA2_Digital_Mono_EN",
+          "source": "epgshare-bein1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "beINSPORTSXTRA3.qa",
+      "canonical_name": "beINSPORTSXTRA3.qa",
+      "logical_key": "beinsportsxtra3",
+      "aliases": []
+    },
+    {
       "canonical_id": "BeJunior.qa@SD",
       "canonical_name": "21",
       "logical_key": "bejunior",
@@ -1091,6 +1450,18 @@
           "id": "beJUNIOR.qa",
           "name": "beJUNIOR.qa",
           "source": "openepg-qatar4"
+        }
+      ]
+    },
+    {
+      "canonical_id": "BigTimePlus.sa@SD",
+      "canonical_name": "Big Time Plus",
+      "logical_key": "big time plus",
+      "aliases": [
+        {
+          "id": "EN:.Big.Time.Plus.sa",
+          "name": "EN: Big Time Plus",
+          "source": "epgshare-sa2"
         }
       ]
     },
@@ -1301,7 +1672,13 @@
       "canonical_id": "CN Arabic.sa",
       "canonical_name": "CN Arabic.sa",
       "logical_key": "cn arabic",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "CN.Arabic.ae",
+          "name": "CN Arabic",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "CN English.sa",
@@ -1511,6 +1888,18 @@
       "aliases": []
     },
     {
+      "canonical_id": "Echorouk TV.eg",
+      "canonical_name": "Echorouk TV.eg",
+      "logical_key": "echorouk tv",
+      "aliases": [
+        {
+          "id": "Echorouk.TV.HD.ae",
+          "name": "Echorouk TV HD",
+          "source": "epgshare-ae1"
+        }
+      ]
+    },
+    {
       "canonical_id": "eClutch Access.sa",
       "canonical_name": "eClutch Access.sa",
       "logical_key": "eclutch access",
@@ -1533,6 +1922,18 @@
       "canonical_name": "eClutch LIVE 2.sa",
       "logical_key": "eclutch live 2",
       "aliases": []
+    },
+    {
+      "canonical_id": "Egyptian TV.eg",
+      "canonical_name": "Egyptian TV.eg",
+      "logical_key": "egyptian tv",
+      "aliases": [
+        {
+          "id": "Egyptian.TV.HD.ae",
+          "name": "Egyptian TV HD",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "Esport 24.sa",
@@ -1724,6 +2125,11 @@
           "id": "KSA Sports 1 HD.sa",
           "name": "KSA Sports 1 HD.sa",
           "source": "openepg-saudi6"
+        },
+        {
+          "id": "KSA.sports.1.ae",
+          "name": "KSA sports 1",
+          "source": "epgshare-ae1"
         }
       ]
     },
@@ -1767,6 +2173,18 @@
       "canonical_name": "Majid.sa",
       "logical_key": "majid",
       "aliases": []
+    },
+    {
+      "canonical_id": "Maspero Zaman.eg",
+      "canonical_name": "Maspero Zaman.eg",
+      "logical_key": "maspero zaman",
+      "aliases": [
+        {
+          "id": "Maspero.Zaman.ae",
+          "name": "Maspero Zaman",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "MBC1.ae@SD",
@@ -1896,6 +2314,11 @@
           "id": "MBC 3.sa",
           "name": "MBC 3.sa",
           "source": "openepg-saudi6"
+        },
+        {
+          "id": "MBC.3.ae",
+          "name": "MBC 3",
+          "source": "epgshare-ae1"
         },
         {
           "id": "MBC3.ae",
@@ -2450,6 +2873,12 @@
       "aliases": []
     },
     {
+      "canonical_id": "NBA DIGITAL.qa",
+      "canonical_name": "NBA DIGITAL.qa",
+      "logical_key": "nba digital",
+      "aliases": []
+    },
+    {
       "canonical_id": "NEWS DIGITAL.qa",
       "canonical_name": "NEWS DIGITAL.qa",
       "logical_key": "news digital",
@@ -2572,17 +3001,51 @@
           "id": "Oman TV.sa",
           "name": "Oman TV.sa",
           "source": "openepg-saudi6"
+        },
+        {
+          "id": "Oman.TV.HD.ae",
+          "name": "Oman TV HD",
+          "source": "epgshare-ae1"
         }
       ]
     },
     {
-      "canonical_id": "Oman TV Sport.sa",
-      "canonical_name": "Oman TV Sport.sa",
+      "canonical_id": "Oman.TV.Sport.HD.ae",
+      "canonical_name": "Oman TV Sport HD",
       "logical_key": "oman tv sport",
       "aliases": [
         {
-          "id": "Oman.TV.Sport.HD.ae",
-          "name": "Oman TV Sport HD",
+          "id": "Oman TV Sport.sa",
+          "name": "Oman TV Sport.sa",
+          "source": "openepg-saudi5"
+        },
+        {
+          "id": "Oman TV Sport.sa",
+          "name": "Oman TV Sport.sa",
+          "source": "openepg-saudi6"
+        }
+      ]
+    },
+    {
+      "canonical_id": "One Drama.eg",
+      "canonical_name": "One Drama.eg",
+      "logical_key": "one drama",
+      "aliases": [
+        {
+          "id": "One.Drama.ae",
+          "name": "One Drama",
+          "source": "epgshare-ae1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "One Movies.eg",
+      "canonical_name": "One Movies.eg",
+      "logical_key": "one movies",
+      "aliases": [
+        {
+          "id": "One.Movies.ae",
+          "name": "One Movies",
           "source": "epgshare-ae1"
         }
       ]
@@ -2595,6 +3058,11 @@
         {
           "id": "One.Tv.ae",
           "name": "One Tv",
+          "source": "epgshare-ae1"
+        },
+        {
+          "id": "One.TV.ae",
+          "name": "One TV",
           "source": "epgshare-ae1"
         }
       ]
@@ -2950,19 +3418,14 @@
       "aliases": []
     },
     {
-      "canonical_id": "Rotana Classic.eg",
-      "canonical_name": "Rotana Classic.eg",
+      "canonical_id": "Rotana Classic HD.sa",
+      "canonical_name": "Rotana Classic HD.sa",
       "logical_key": "rotana classic",
       "aliases": [
         {
-          "id": "Rotana Classic HD.sa",
-          "name": "Rotana Classic HD.sa",
-          "source": "openepg-saudi1"
-        },
-        {
-          "id": "Rotana Classic HD.sa",
-          "name": "Rotana Classic HD.sa",
-          "source": "openepg-saudi2"
+          "id": "Rotana Classic.eg",
+          "name": "Rotana Classic.eg",
+          "source": "openepg-egypt2"
         },
         {
           "id": "Rotana.Classic.ae",
@@ -2975,7 +3438,13 @@
       "canonical_id": "Rotana Clip.sa",
       "canonical_name": "Rotana Clip.sa",
       "logical_key": "rotana clip",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "Rotana.Clip.ae",
+          "name": "Rotana Clip",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "Rotana Comedy.sa",
@@ -3039,7 +3508,13 @@
       "canonical_id": "Rotana Music HD.sa",
       "canonical_name": "Rotana Music HD.sa",
       "logical_key": "rotana music",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "Rotana.Music.ae",
+          "name": "Rotana Music",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "Roya.sa",
@@ -3268,7 +3743,13 @@
       "canonical_id": "Sharjah Quran.sa",
       "canonical_name": "Sharjah Quran.sa",
       "logical_key": "sharjah quran",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "Sharjah.Quran.ae",
+          "name": "Sharjah Quran",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "Sharjah Sports.sa",
@@ -3298,7 +3779,13 @@
       "canonical_id": "Sharqiya from Kalba.sa",
       "canonical_name": "Sharqiya from Kalba.sa",
       "logical_key": "sharqiya from kalba",
-      "aliases": []
+      "aliases": [
+        {
+          "id": "Sharqiya.from.Kalba.HD.ae",
+          "name": "Sharqiya from Kalba HD",
+          "source": "epgshare-ae1"
+        }
+      ]
     },
     {
       "canonical_id": "SkyNewsArabia.ae@SD",
@@ -3615,18 +4102,6 @@
       ]
     },
     {
-      "canonical_id": "JordanTV.jo@SD",
-      "canonical_name": "الأردن",
-      "logical_key": "الأردن",
-      "aliases": [
-        {
-          "id": "الأردن.eg",
-          "name": "الأردن.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "Althania.sy@SD",
       "canonical_name": "الثانية",
       "logical_key": "الثانية",
@@ -3706,18 +4181,6 @@
         {
           "id": "السعيدة.eg",
           "name": "السعيدة.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "Alsumaria.iq@SD",
-      "canonical_name": "السومرية",
-      "logical_key": "السومرية",
-      "aliases": [
-        {
-          "id": "السومرية.eg",
-          "name": "السومرية.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -3903,6 +4366,18 @@
       ]
     },
     {
+      "canonical_id": "DubaiZaman.ae@SD",
+      "canonical_name": "دبي زمان",
+      "logical_key": "دبي زمان",
+      "aliases": [
+        {
+          "id": "دبي زمان.eg",
+          "name": "دبي زمان.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "DijlahTV.iq@SD",
       "canonical_name": "دجلة",
       "logical_key": "دجلة",
@@ -4023,18 +4498,6 @@
       ]
     },
     {
-      "canonical_id": "SamaDubai.ae@SD",
-      "canonical_name": "سما دبي",
-      "logical_key": "سما دبي",
-      "aliases": [
-        {
-          "id": "سما دبي.eg",
-          "name": "سما دبي.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "CBC.eg@SD",
       "canonical_name": "سي بي سي",
       "logical_key": "سي بي سي",
@@ -4054,6 +4517,18 @@
         {
           "id": "سي بي سي دراما.eg",
           "name": "سي بي سي دراما.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
+      "canonical_id": "Cima.eg@SD",
+      "canonical_name": "سيما",
+      "logical_key": "سيما",
+      "aliases": [
+        {
+          "id": "سيما.eg",
+          "name": "سيما.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4095,18 +4570,6 @@
       ]
     },
     {
-      "canonical_id": "AmmanTV.jo@SD",
-      "canonical_name": "عَمان",
-      "logical_key": "عَمان",
-      "aliases": [
-        {
-          "id": "عَمان.eg",
-          "name": "عَمان.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
       "canonical_id": "Fairuz.sa@HD",
       "canonical_name": "فيروز",
       "logical_key": "فيروز",
@@ -4127,18 +4590,6 @@
           "id": "قناة مرايا.ae",
           "name": "قناة مرايا.ae",
           "source": "openepg-uae6"
-        }
-      ]
-    },
-    {
-      "canonical_id": "ERTU1.eg@SD",
-      "canonical_name": "قناة مصر الأولى",
-      "logical_key": "قناة مصر الأولى",
-      "aliases": [
-        {
-          "id": "قناة مصر الأولى.eg",
-          "name": "قناة مصر الأولى.eg",
-          "source": "openepg-egypt1"
         }
       ]
     },
@@ -4179,25 +4630,25 @@
       ]
     },
     {
-      "canonical_id": "NileDrama.eg@SD",
-      "canonical_name": "نايل دراما",
-      "logical_key": "نايل دراما",
+      "canonical_id": "NileLife.eg@SD",
+      "canonical_name": "نايل لايف",
+      "logical_key": "نايل لايف",
       "aliases": [
         {
-          "id": "نايل دراما.eg",
-          "name": "نايل دراما.eg",
+          "id": "نايل لايف.eg",
+          "name": "نايل لايف.eg",
           "source": "openepg-egypt1"
         }
       ]
     },
     {
-      "canonical_id": "UTV.iq@SD",
-      "canonical_name": "يو تي في",
-      "logical_key": "يو تي في",
+      "canonical_id": "NessmaElJadida.tn@SD",
+      "canonical_name": "نسمة",
+      "logical_key": "نسمة",
       "aliases": [
         {
-          "id": "يو تي في.eg",
-          "name": "يو تي في.eg",
+          "id": "نسمة.eg",
+          "name": "نسمة.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4207,8 +4658,8 @@
     "sources": [
       {
         "source": "primary",
-        "input_candidates": 195,
-        "kept_candidates": 187,
+        "input_candidates": 192,
+        "kept_candidates": 184,
         "quarantined_candidates": 8,
         "quarantined": [
           {
@@ -4284,7 +4735,9 @@
             "programmes": 50
           }
         ],
-        "clone_groups": []
+        "clone_groups": [],
+        "identity_only_candidates": 8,
+        "dropped_ids": []
       },
       {
         "source": "openepg-qatar1",
@@ -4428,7 +4881,9 @@
             "programmes": 24
           }
         ],
-        "clone_groups": []
+        "clone_groups": [],
+        "identity_only_candidates": 15,
+        "dropped_ids": []
       },
       {
         "source": "openepg-qatar2",
@@ -4587,7 +5042,9 @@
             "2023 Alkass 5.qa",
             "NBA DIGITAL.qa"
           ]
-        ]
+        ],
+        "identity_only_candidates": 15,
+        "dropped_ids": []
       },
       {
         "source": "openepg-qatar3",
@@ -4755,6 +5212,10 @@
             "beIN SPORTS MAX5 DIGITAL.qa",
             "NBA DIGITAL.qa"
           ]
+        ],
+        "identity_only_candidates": 15,
+        "dropped_ids": [
+          "beIN SPORTS66 DIGITAL -01.qa"
         ]
       },
       {
@@ -4779,7 +5240,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 87
+            "programmes": 86
           },
           {
             "source": "openepg-qatar4",
@@ -4806,7 +5267,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 53
+            "programmes": 52
           },
           {
             "source": "openepg-qatar4",
@@ -4842,10 +5303,22 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 57
+            "programmes": 56
           }
         ],
-        "clone_groups": []
+        "clone_groups": [],
+        "identity_only_candidates": 0,
+        "dropped_ids": [
+          "0001 AWG CN Brand Logo 1color Black 4C.qa",
+          "0004 CNN International logo.svg.qa",
+          "BBCEarth-new 200x200.qa",
+          "Drama Stacked nov 2024 200x200.qa",
+          "food-network-logo-2018-1.qa",
+          "Star Action 2024-200x200-1.qa",
+          "Star Movies 2024-200x200-1.qa",
+          "Star World 2024-200x200-1.qa",
+          "UPDATEz-NGW Full Logo 20182.qa"
+        ]
       },
       {
         "source": "openepg-qatar5",
@@ -4860,7 +5333,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 194
+            "programmes": 193
           },
           {
             "source": "openepg-qatar5",
@@ -4905,7 +5378,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 54
+            "programmes": 53
           },
           {
             "source": "openepg-qatar5",
@@ -4941,10 +5414,23 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 165
+            "programmes": 164
           }
         ],
-        "clone_groups": []
+        "clone_groups": [],
+        "identity_only_candidates": 0,
+        "dropped_ids": [
+          "0001 AWG CN Brand Logo 1color Black 4C.qa",
+          "0004 CNN International logo.svg.qa",
+          "BBCEarth-new 200x200.qa",
+          "Discovery-logo-1.qa",
+          "Drama Stacked nov 2024 200x200.qa",
+          "food-network-logo-2018-1.qa",
+          "Star Action 2024-200x200-1.qa",
+          "Star Movies 2024-200x200-1.qa",
+          "Star World 2024-200x200-1.qa",
+          "UPDATEz-NGW Full Logo 20182.qa"
+        ]
       },
       {
         "source": "epgshare-ae1",
@@ -5220,7 +5706,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=3"
             ],
-            "programmes": 91
+            "programmes": 92
           },
           {
             "source": "epgshare-ae1",
@@ -5229,7 +5715,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=3"
             ],
-            "programmes": 91
+            "programmes": 92
           },
           {
             "source": "epgshare-ae1",
@@ -5238,7 +5724,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=3"
             ],
-            "programmes": 91
+            "programmes": 92
           },
           {
             "source": "epgshare-ae1",
@@ -5247,7 +5733,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=4"
             ],
-            "programmes": 68
+            "programmes": 69
           },
           {
             "source": "epgshare-ae1",
@@ -5256,7 +5742,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=4"
             ],
-            "programmes": 68
+            "programmes": 69
           },
           {
             "source": "epgshare-ae1",
@@ -5265,7 +5751,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=4"
             ],
-            "programmes": 68
+            "programmes": 69
           },
           {
             "source": "epgshare-ae1",
@@ -5274,7 +5760,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=4"
             ],
-            "programmes": 68
+            "programmes": 69
           },
           {
             "source": "epgshare-ae1",
@@ -5463,7 +5949,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=6"
             ],
-            "programmes": 65
+            "programmes": 66
           },
           {
             "source": "epgshare-ae1",
@@ -5472,7 +5958,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=6"
             ],
-            "programmes": 65
+            "programmes": 66
           },
           {
             "source": "epgshare-ae1",
@@ -5481,7 +5967,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=6"
             ],
-            "programmes": 65
+            "programmes": 66
           },
           {
             "source": "epgshare-ae1",
@@ -5490,7 +5976,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=6"
             ],
-            "programmes": 65
+            "programmes": 66
           },
           {
             "source": "epgshare-ae1",
@@ -5499,7 +5985,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=6"
             ],
-            "programmes": 65
+            "programmes": 66
           },
           {
             "source": "epgshare-ae1",
@@ -5508,7 +5994,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=6"
             ],
-            "programmes": 65
+            "programmes": 66
           },
           {
             "source": "epgshare-ae1",
@@ -6111,7 +6597,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 283
+            "programmes": 284
           },
           {
             "source": "epgshare-ae1",
@@ -6120,7 +6606,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 283
+            "programmes": 284
           },
           {
             "source": "epgshare-ae1",
@@ -6129,7 +6615,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 283
+            "programmes": 284
           },
           {
             "source": "epgshare-ae1",
@@ -6138,7 +6624,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 283
+            "programmes": 284
           },
           {
             "source": "epgshare-ae1",
@@ -6147,7 +6633,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 283
+            "programmes": 284
           },
           {
             "source": "epgshare-ae1",
@@ -8830,7 +9316,9 @@
             "DW.A2.ae",
             "DW05.ae"
           ]
-        ]
+        ],
+        "identity_only_candidates": 383,
+        "dropped_ids": []
       },
       {
         "source": "epgshare-bein1",
@@ -9048,7 +9536,17 @@
             "programmes": 44
           }
         ],
-        "clone_groups": []
+        "clone_groups": [],
+        "identity_only_candidates": 16,
+        "dropped_ids": [
+          "beIN_SPORTS66_DIGITAL_Mono-01_EN.bein",
+          "logos-_beINSPORTS8_AR.bein",
+          "logos-_beINSPORTS8_EN.bein",
+          "logos-_beINSPORTS9_AR.bein",
+          "logos-_beINSPORTS9_EN.bein",
+          "logos-_beINSPORTSXTRA3_AR.bein",
+          "logos-_beINSPORTSXTRA3_EN.bein"
+        ]
       },
       {
         "source": "epgshare-sa2",
@@ -9311,10 +9809,33 @@
             "EN:.SSC.Extra.2.HD.sa",
             "EN:.SSC.Extra.1.HD.sa"
           ]
-        ]
+        ],
+        "identity_only_candidates": 23,
+        "dropped_ids": []
       }
     ],
     "quarantined_candidates": 502,
+    "identity_only_candidates": 475,
+    "dropped_ids": [
+      "0001 AWG CN Brand Logo 1color Black 4C.qa",
+      "0004 CNN International logo.svg.qa",
+      "BBCEarth-new 200x200.qa",
+      "beIN SPORTS66 DIGITAL -01.qa",
+      "beIN_SPORTS66_DIGITAL_Mono-01_EN.bein",
+      "Discovery-logo-1.qa",
+      "Drama Stacked nov 2024 200x200.qa",
+      "food-network-logo-2018-1.qa",
+      "logos-_beINSPORTS8_AR.bein",
+      "logos-_beINSPORTS8_EN.bein",
+      "logos-_beINSPORTS9_AR.bein",
+      "logos-_beINSPORTS9_EN.bein",
+      "logos-_beINSPORTSXTRA3_AR.bein",
+      "logos-_beINSPORTSXTRA3_EN.bein",
+      "Star Action 2024-200x200-1.qa",
+      "Star Movies 2024-200x200-1.qa",
+      "Star World 2024-200x200-1.qa",
+      "UPDATEz-NGW Full Logo 20182.qa"
+    ],
     "quarantined_ids": [
       "0001 AWG CN Brand Logo 1color Black 4C.qa",
       "0004 CNN International logo.svg.qa",
@@ -9802,6 +10323,6 @@
       "Zee.Alwan.Egypt.ae",
       "Çira.TV.ae"
     ],
-    "policy": "technical IDs, generic placeholders and >=3 exact cloned unrelated timelines are rejected before merge"
+    "policy": "wrong/generic programmes are stripped but legitimate channel IDs are retained as NO EPG; technical/asset and known impossible IDs are dropped"
   }
 }

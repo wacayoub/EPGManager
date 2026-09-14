@@ -1,5 +1,5 @@
 VIRTUAL EPGMANAGER - EXHAUSTIVE beIN ID-BY-ID AUDIT
-channels=34 programmes=923 PASS=11 ALIAS_OK=1 REVIEW=22 FAIL=0
+channels=66 programmes=919 PASS=11 ALIAS_OK=1 REVIEW=22 FAIL=32
 Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 01. [ALIAS_OK] 4k_DIGITAL_Mono_AR.bein -> beIN4K.qa@SD
@@ -66,15 +66,105 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Bahrain vs Kazakhstan - Basketball Men - Asian Games Aichi-Nagoya 2026 -BKB05
     • China vs Philippines - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB06
 
-09. [PASS] beIN SPORTS NEWS.qa
-    name=beIN SPORTS NEWS.qa | family=beIN Sports News | kind=news
-    events=81 coverage=47.0h span=47.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=32% Latin=100% hybrid=32% unique=27% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • News Bulletin - نشرة الأخبار
-    • Al Hassila - 14/09/26
+09. [FAIL] beIN SPORTS MAX 1.qa
+    name=beIN SPORTS MAX 1.qa | family=beIN MAX 1 | kind=max
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
 
-10. [REVIEW] beIN SPORTS-boxoffice-bein.com.qa
+10. [FAIL] beIN SPORTS MAX 2.qa
+    name=beIN SPORTS MAX 2.qa | family=beIN MAX 2 | kind=max
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+11. [FAIL] beIN SPORTS MAX 3.qa
+    name=beIN SPORTS MAX 3.qa | family=beIN MAX 3 | kind=max
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+12. [FAIL] beIN SPORTS MAX 4.qa
+    name=beIN SPORTS MAX 4.qa | family=beIN MAX 4 | kind=max
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+13. [FAIL] beIN SPORTS MAX 5.qa
+    name=beIN SPORTS MAX 5.qa | family=beIN MAX 5 | kind=max
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+14. [FAIL] beIN SPORTS MAX 6.qa
+    name=beIN SPORTS MAX 6.qa | family=beIN MAX 6 | kind=max
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+15. [PASS] beIN SPORTS NEWS.qa
+    name=beIN SPORTS NEWS.qa | family=beIN Sports News | kind=news
+    events=80 coverage=46.5h span=46.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=31% Latin=100% hybrid=31% unique=28% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
+    • Al Hassila - 14/09/26
+    • The Issue of The Day
+
+16. [FAIL] beIN SPORTS XTRA 04 bein.com.qa
+    name=beIN SPORTS XTRA 04 bein.com.qa | family=beIN XTRA 4 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+17. [FAIL] beIN SPORTS XTRA 05 bein.com.qa
+    name=beIN SPORTS XTRA 05 bein.com.qa | family=beIN XTRA 5 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+18. [FAIL] beIN SPORTS XTRA 3.qa
+    name=beIN SPORTS XTRA 3.qa | family=beIN XTRA 3 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+19. [FAIL] beIN SPORTS XTRA 4.qa
+    name=beIN SPORTS XTRA 4.qa | family=beIN XTRA 4 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+20. [FAIL] beIN SPORTS XTRA 5.qa
+    name=beIN SPORTS XTRA 5.qa | family=beIN XTRA 5 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+21. [FAIL] beIN SPORTS XTRA 6.qa
+    name=beIN SPORTS XTRA 6.qa | family=beIN XTRA 6 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+22. [FAIL] beIN SPORTS XTRA 7.qa
+    name=beIN SPORTS XTRA 7.qa | family=beIN XTRA 7 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+23. [FAIL] beIN SPORTS XTRA 8.qa
+    name=beIN SPORTS XTRA 8.qa | family=beIN XTRA 8 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+24. [FAIL] beIN SPORTS XTRA 9.qa
+    name=beIN SPORTS XTRA 9.qa | family=beIN XTRA 9 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+25. [REVIEW] beIN SPORTS-boxoffice-bein.com.qa
     name=beIN SPORTS-boxoffice-bein.com.qa | family=beIN Boxoffice | kind=boxoffice
     events=28 coverage=47.0h span=48.0h gaps>2h=0 gap_total=1.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=46% | desc: AR=100% empty=0 same-as-title=0
@@ -82,7 +172,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Operation Fortune: Ruse De Guerre
     • Enhanced
 
-11. [REVIEW] beIN SPORTS.qa
+26. [REVIEW] beIN SPORTS.qa
     name=beIN SPORTS.qa | family=beIN SPORTS.qa | kind=other
     events=23 coverage=47.9h span=47.9h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=1 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=61% | desc: AR=100% empty=0 same-as-title=0
@@ -90,7 +180,31 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • China vs Philippines - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB06
     • Chinese Taipei vs Vietnam - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01
 
-12. [REVIEW] beIN4K.qa@SD
+27. [FAIL] bein.com-05.qa
+    name=bein.com-05.qa | family=Opaque beIN.com alias | kind=opaque
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES, OPAQUE_BEIN_COM_ID, NON_RECOMMENDED_ID
+
+28. [FAIL] bein.com-06.qa
+    name=bein.com-06.qa | family=Opaque beIN.com alias | kind=opaque
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES, OPAQUE_BEIN_COM_ID, NON_RECOMMENDED_ID
+
+29. [FAIL] bein.com-07.qa
+    name=bein.com-07.qa | family=Opaque beIN.com alias | kind=opaque
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES, OPAQUE_BEIN_COM_ID, NON_RECOMMENDED_ID
+
+30. [FAIL] bein.com-08.qa
+    name=bein.com-08.qa | family=Opaque beIN.com alias | kind=opaque
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES, OPAQUE_BEIN_COM_ID, NON_RECOMMENDED_ID
+
+31. [REVIEW] beIN4K.qa@SD
     name=beIN 4K | family=beIN 4K | kind=sports_ar
     events=20 coverage=38.8h span=38.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=75% Latin=100% hybrid=75% unique=20% | desc: AR=100% empty=0 same-as-title=0
@@ -98,7 +212,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Sunderland v Arsenal - الدوري الإنجليزي الممتاز
     • Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship
 
-13. [REVIEW] beIN_SPORTS3_DIGITAL_Mono_EN.bein
+32. [REVIEW] beIN_SPORTS3_DIGITAL_Mono_EN.bein
     name=beIN_SPORTS3_DIGITAL_Mono_EN | family=beIN Sports 3 EN | kind=sports_en
     events=13 coverage=29.0h span=51.0h gaps>2h=1 gap_total=22.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=62% | desc: AR=100% empty=0 same-as-title=0
@@ -106,7 +220,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Bournemouth vs Brentford
     • Levante vs Barcelona
 
-14. [REVIEW] beIN_SPORTS4_DIGITAL_Mono_EN.bein
+33. [REVIEW] beIN_SPORTS4_DIGITAL_Mono_EN.bein
     name=beIN_SPORTS4_DIGITAL_Mono_EN | family=beIN Sports 4 EN | kind=sports_en
     events=15 coverage=28.2h span=49.8h gaps>2h=1 gap_total=21.6h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=13% Latin=100% hybrid=13% unique=67% | desc: AR=100% empty=0 same-as-title=0
@@ -114,7 +228,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Portugal vs Costa Rica
     • Levante vs Barcelona
 
-15. [PASS] beIN_SPORTS5_DIGITAL_Mono_EN.bein
+34. [PASS] beIN_SPORTS5_DIGITAL_Mono_EN.bein
     name=beIN_SPORTS5_DIGITAL_Mono_EN | family=beIN Sports 5 EN | kind=sports_en
     events=19 coverage=44.0h span=44.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=5% Latin=100% hybrid=5% unique=84% | desc: AR=100% empty=0 same-as-title=0
@@ -122,15 +236,39 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • New Zealand vs USA
     • Korea Republic vs Ecuador
 
-16. [REVIEW] beIN_SPORTS7_DIGITAL_Mono_EN.bein
+35. [REVIEW] beIN_SPORTS7_DIGITAL_Mono_EN.bein
     name=beIN_SPORTS7_DIGITAL_Mono_EN | family=beIN Sports 7 EN | kind=sports_en
-    events=12 coverage=31.2h span=52.2h gaps>2h=1 gap_total=21.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=58% | desc: AR=100% empty=0 same-as-title=0
+    events=11 coverage=27.8h span=48.8h gaps>2h=1 gap_total=21.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=64% | desc: AR=100% empty=0 same-as-title=0
     notes=GAPS_GT_2H=1
-    • Day 15
     • Aryna Sabalenka vs Elena Rybakina
+    • Christian Harrison (USA) vs Xinran Sun (CHN) vs Neal Skupski (GBR) vs Kevin Krawietz (GER)
 
-17. [REVIEW] beINDrama1.qa@SD
+36. [FAIL] beIN_SPORTS_XTRA_06_bein.com_EN.bein
+    name=beIN_SPORTS_XTRA_06_bein.com_EN | family=beIN XTRA 6 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+37. [FAIL] beIN_SPORTS_XTRA_07_bein.com_EN.bein
+    name=beIN_SPORTS_XTRA_07_bein.com_EN | family=beIN XTRA 7 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+38. [FAIL] beIN_SPORTS_XTRA_08_Bein.com_EN.bein
+    name=beIN_SPORTS_XTRA_08_Bein.com_EN | family=beIN XTRA 8 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+39. [FAIL] beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein
+    name=beIN_SPORTS_XTRA_Digital_09_Bein.com_EN | family=beIN_SPORTS_XTRA_Digital_09_Bein.com_EN | kind=other
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+40. [REVIEW] beINDrama1.qa@SD
     name=بي إن دراما | family=beIN Drama | kind=drama
     events=16 coverage=15.0h span=15.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=6% hybrid=6% unique=44% | desc: AR=100% empty=1 same-as-title=0
@@ -138,7 +276,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • أوراق النسيان
     • درب الذهب
 
-18. [REVIEW] beINGourmet.qa@SD
+41. [REVIEW] beINGourmet.qa@SD
     name=beINGOURMET | family=beINGOURMET | kind=other
     events=15 coverage=15.0h span=15.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=73% hybrid=73% unique=47% | desc: AR=0% empty=15 same-as-title=0
@@ -146,7 +284,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • E24 | S1 طبلية
     • E7 | S1 عزابي
 
-19. [REVIEW] beINMovies1Premiere.qa@SD
+42. [REVIEW] beINMovies1Premiere.qa@SD
     name=beINMOVIES1 | family=beIN Movies | kind=movies
     events=20 coverage=38.5h span=38.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=0% hybrid=0% unique=75% | desc: AR=0% empty=20 same-as-title=0
@@ -154,7 +292,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • هاي غراوند
     • قوة الطبيعة: الجفاف
 
-20. [REVIEW] beINMovies2Action.qa@SD
+43. [REVIEW] beINMovies2Action.qa@SD
     name=beINMOVIES2 | family=beIN Movies | kind=movies
     events=22 coverage=40.8h span=40.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=0% hybrid=0% unique=73% | desc: AR=0% empty=22 same-as-title=0
@@ -162,7 +300,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • رجال البدلة السوداء 3
     • رجال بملابس السوداء: دوليين
 
-21. [REVIEW] beINMovies3Drama.qa@SD
+44. [REVIEW] beINMovies3Drama.qa@SD
     name=beINMOVIES3 | family=beIN Movies | kind=movies
     events=21 coverage=39.2h span=39.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=14% hybrid=14% unique=76% | desc: AR=0% empty=21 same-as-title=0
@@ -170,7 +308,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • إجازة تطوعية
     • عائلة آدامز
 
-22. [REVIEW] beINMovies4Family.qa@SD
+45. [REVIEW] beINMovies4Family.qa@SD
     name=beINMOVIES4 | family=beIN Movies | kind=movies
     events=10 coverage=16.0h span=16.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=0% hybrid=0% unique=100% | desc: AR=0% empty=10 same-as-title=0
@@ -178,7 +316,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • دورا ومدينة الذهب المفقودة
     • الموبتس يغزون مانهاتن
 
-23. [REVIEW] beINSeries1.qa@SD
+46. [REVIEW] beINSeries1.qa@SD
     name=beINSERIES1 | family=beIN Series | kind=series
     events=16 coverage=15.0h span=15.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=88% hybrid=88% unique=56% | desc: AR=0% empty=16 same-as-title=0
@@ -186,7 +324,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • E6 | S3 دخيلة
     • E7 | S8 كل أمريكي
 
-24. [PASS] beINSeries2.qa@SD
+47. [PASS] beINSeries2.qa@SD
     name=بي إن سيريس إتش... | family=beIN Series | kind=series
     events=15 coverage=13.0h span=13.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=100% hybrid=100% unique=60% | desc: AR=100% empty=0 same-as-title=0
@@ -194,7 +332,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • King & Conqueror
     • Dexter S6
 
-25. [REVIEW] beINSports2.qa@MENA
+48. [REVIEW] beINSports2.qa@MENA
     name=beINSPORTS2 | family=beIN Sports 2 AR/MENA | kind=sports_ar
     events=25 coverage=50.2h span=50.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=1 >12h=0
     title: AR-presence=84% Latin=100% hybrid=84% unique=68% | desc: AR=100% empty=0 same-as-title=0
@@ -202,7 +340,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Sheffield Utd vs Wolverhampton Wanderers - دوري البطولة الإنجليزية
     • North Korea vs Bangladesh - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL02
 
-26. [PASS] beINSports3.qa@MENA
+49. [PASS] beINSports3.qa@MENA
     name=beINSPORTS3 | family=beIN Sports 3 AR/MENA | kind=sports_ar
     events=27 coverage=48.1h span=48.1h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=96% Latin=100% hybrid=96% unique=56% | desc: AR=100% empty=0 same-as-title=0
@@ -210,7 +348,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Le Mans vs Lens - الدوري الفرنسي
     • Real Sociedad vs Atletico Madrid - الدوري الإسباني
 
-27. [PASS] beINSports4.qa@MENA
+50. [PASS] beINSports4.qa@MENA
     name=beINSPORT4 | family=beIN Sports 4 AR/MENA | kind=sports_ar
     events=27 coverage=47.9h span=47.9h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=74% Latin=100% hybrid=74% unique=59% | desc: AR=100% empty=0 same-as-title=0
@@ -218,7 +356,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Coventry City vs Brighton - الدوري الإنجليزي الممتاز
     • Portugal vs Costa Rica - FIFA U-20 Women World Cup
 
-28. [PASS] beINSports5.qa@MENA
+51. [PASS] beINSports5.qa@MENA
     name=beINSPORTS5 | family=beIN Sports 5 AR/MENA | kind=sports_ar
     events=22 coverage=49.9h span=49.9h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=59% Latin=100% hybrid=59% unique=54% | desc: AR=100% empty=0 same-as-title=0
@@ -226,7 +364,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Korea Republic vs Ecuador - FIFA U-20 Women World Cup
     • Celta Vigo vs Malaga - الدوري الإسباني
 
-29. [REVIEW] beINSports6.qa@MENA
+52. [REVIEW] beINSports6.qa@MENA
     name=beINSPORTS6 | family=beIN Sports 6 AR/MENA | kind=sports_ar
     events=23 coverage=40.6h span=43.4h gaps>2h=1 gap_total=2.8h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=39% Latin=100% hybrid=39% unique=39% | desc: AR=100% empty=0 same-as-title=0
@@ -234,7 +372,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Sprint Race - Madrid Round - FIA Formula 2 Championship
     • Trofeo Pirelli Race 1 - Hungaroring Round - Ferrari Challenge
 
-30. [REVIEW] beINSports7.qa@MENA
+53. [REVIEW] beINSports7.qa@MENA
     name=beINSPORTS7 | family=beIN Sports 7 AR/MENA | kind=sports_ar
     events=20 coverage=49.5h span=49.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=50% | desc: AR=100% empty=0 same-as-title=0
@@ -242,7 +380,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Aryna Sabalenka vs Elena Rybakina - Arthur Ashe Court - Tennis US Open 2026 - Women's Singles Final
     • Katerina Siniakova (CZE) / Taylor Townsend (USA) vs Ashlyn Krueger (USA) / Robin Montgomery (USA)
 
-31. [REVIEW] beINSports8.qa@MENA
+54. [REVIEW] beINSports8.qa@MENA
     name=beINSPORTS8 | family=beIN Sports 8 AR/MENA | kind=sports_ar
     events=34 coverage=47.0h span=47.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=6% Latin=100% hybrid=6% unique=62% | desc: AR=100% empty=0 same-as-title=0
@@ -250,7 +388,7 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Main Race - Moto GP - San Marino GP
     • Sprint Race - Madrid Round - FIA Formula 3 Championship
 
-32. [REVIEW] beINSports9.qa@MENA
+55. [REVIEW] beINSports9.qa@MENA
     name=beINSPORTS9 | family=beIN Sports 9 AR/MENA | kind=sports_ar
     events=35 coverage=46.8h span=46.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=83% | desc: AR=100% empty=0 same-as-title=0
@@ -258,21 +396,75 @@ Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
     • Longines Global Champions Tour - Madrid Jumping - LGCT GRAND PRIX
     • Longines Global Champions Tour - Cannes Jumping - Round 1 Competition Team
 
-33. [PASS] NEWS_DIGITAL_Mono_AR.bein
+56. [FAIL] beINSportsMax1.qa@MENA
+    name=beINSPORTSMAX1 | family=beIN MAX 1 | kind=max
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+57. [FAIL] beINSportsMax2.qa@MENA
+    name=beINSPORTSMAX2 | family=beIN MAX 2 | kind=max
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+58. [FAIL] beINSportsMax3.qa@MENA
+    name=beINSPORTSMAX3 | family=beIN MAX 3 | kind=max
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+59. [FAIL] beINSportsMax4.qa@MENA
+    name=beINSPORTSMAX4 | family=beIN MAX 4 | kind=max
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+60. [FAIL] beINSportsMax5.qa@MENA
+    name=beINSPORTSMAX5 | family=beIN MAX 5 | kind=max
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+61. [FAIL] beINSportsMax6.qa@MENA
+    name=beINSPORTSMAX6 | family=beIN MAX 6 | kind=max
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+62. [FAIL] beINSportsXtra1.qa@SD
+    name=beIN SPORTS XTRA 1 | family=beIN XTRA 1 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+63. [FAIL] beINSportsXtra2.qa@SD
+    name=beIN SPORTS XTRA 2 | family=beIN XTRA 2 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+64. [FAIL] beINSPORTSXTRA3.qa
+    name=beINSPORTSXTRA3.qa | family=beIN XTRA 3 | kind=xtra
+    events=0 coverage=0.0h span=0.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=0% hybrid=0% unique=0% | desc: AR=0% empty=0 same-as-title=0
+    notes=NO_PROGRAMMES
+
+65. [PASS] NEWS_DIGITAL_Mono_AR.bein
     name=NEWS_DIGITAL_Mono_AR | family=beIN Sports News | kind=news
-    events=77 coverage=43.0h span=43.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    events=76 coverage=42.5h span=42.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=100% hybrid=100% unique=21% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • News Bulletin - نشرة الأخبار
     • UEFA UCL Magazine - مجلة
+    • Al Hassad
 
-34. [PASS] NEWS_DIGITAL_Mono_EN.bein
+66. [PASS] NEWS_DIGITAL_Mono_EN.bein
     name=NEWS_DIGITAL_Mono_EN | family=beIN Sports News | kind=news
-    events=77 coverage=43.0h span=43.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=35% Latin=100% hybrid=35% unique=21% | desc: AR=100% empty=0 same-as-title=0
+    events=76 coverage=42.5h span=42.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=34% Latin=100% hybrid=34% unique=21% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • News Bulletin - نشرة الأخبار
     • UEFA UCL Magazine - مجلة
+    • Al Hassad
 
 EXACT DUPLICATE TIMELINE GROUPS
 - 4k_DIGITAL_Mono_AR.bein ; beIN4K.qa@SD | families=beIN 4K
