@@ -57,6 +57,15 @@ CHANNEL_SITE_OVERRIDES = {
     "MBCPlusDrama.sa@SD": "osn.com",
 }
 
+# Exact identity-name normalization. This is deliberately not fuzzy. Upstream
+# uses the branding "MBC+ Drama"; the generic merge normalizer historically
+# treated '+' as punctuation and collapsed it into the separate MBC Drama
+# channel. Writing "Plus" preserves the real channel identity all the way into
+# logical-key arbitration.
+CHANNEL_NAME_OVERRIDES = {
+    "MBCPlusDrama.sa@SD": "MBC Plus Drama",
+}
+
 MOROCCO_ID_RE = re.compile(r"\.ma(?:@|$)", re.I)
 RADIO_ID_RE = re.compile(r"(?:^|[^a-z])(?:radio|fm)(?:[^a-z]|$)", re.I)
 ARABIC_RADIO_WORDS = ("إذاعة", "راديو")
@@ -68,7 +77,6 @@ def site_score(site: str) -> tuple[int, str]:
 
 def channel_site_score(cid: str, site: str) -> tuple[int, int, str]:
     wanted = CHANNEL_SITE_OVERRIDES.get(cid)
-    # An exact verified override outranks the ordinary official-site ranking.
     if wanted and site == wanted:
         return (-1, SITE_PRIORITY.get(site, 500), site)
     return (0, SITE_PRIORITY.get(site, 500), site)
@@ -159,8 +167,13 @@ def main() -> int:
     selected = []
     source_counts = Counter()
     applied_overrides = []
+    applied_name_overrides = []
     for cid in sorted(winners, key=lambda x: x.casefold()):
         score, node, site, source_file = winners[cid]
+        forced_name = CHANNEL_NAME_OVERRIDES.get(cid)
+        if forced_name:
+            node.text = forced_name
+            applied_name_overrides.append(cid)
         channels.append(node)
         source_counts[site] += 1
         override_site = CHANNEL_SITE_OVERRIDES.get(cid, "")
@@ -173,6 +186,7 @@ def main() -> int:
             "site_id": node.get("site_id") or "",
             "priority": SITE_PRIORITY.get(site, 500),
             "override_site": override_site,
+            "name_override": CHANNEL_NAME_OVERRIDES.get(cid, ""),
             "source_file": source_file,
         })
 
@@ -182,6 +196,15 @@ def main() -> int:
     missing_overrides = sorted(set(CHANNEL_SITE_OVERRIDES) - set(applied_overrides), key=str.casefold)
     if missing_overrides:
         raise SystemExit("Verified source override missing from current upstream catalogue: %s" % ", ".join(missing_overrides))
+    missing_name_overrides = sorted(set(CHANNEL_NAME_OVERRIDES) - set(applied_name_overrides), key=str.casefold)
+    if missing_name_overrides:
+        raise SystemExit("Verified name override missing from current upstream catalogue: %s" % ", ".join(missing_name_overrides))
+
+    # Regression guard: MBC Plus Drama must remain a distinct identity string;
+    # otherwise the merge layer would collapse it with MBC Drama again.
+    plus_row = next((x for x in selected if x["xmltv_id"] == "MBCPlusDrama.sa@SD"), None)
+    if plus_row and "plus" not in plus_row["name"].casefold():
+        raise SystemExit("MBC Plus Drama identity regression: %s" % plus_row["name"])
 
     out_xml = Path(args.output_channels)
     out_xml.parent.mkdir(parents=True, exist_ok=True)
@@ -189,7 +212,7 @@ def main() -> int:
     out_xml.write_bytes(ET.tostring(channels, encoding="utf-8", xml_declaration=True))
 
     manifest = {
-        "schema": 4,
+        "schema": 5,
         "strategy": "official-first-all-arabic-tv-no-sattv-with-verified-health-overrides",
         "source_project": "iptv-org/epg",
         "input_channel_files": len(files),
@@ -201,6 +224,8 @@ def main() -> int:
         "excluded_sites": sorted(EXCLUDED_SITES),
         "verified_site_overrides": dict(sorted(CHANNEL_SITE_OVERRIDES.items())),
         "applied_site_overrides": sorted(applied_overrides, key=str.casefold),
+        "verified_name_overrides": dict(sorted(CHANNEL_NAME_OVERRIDES.items())),
+        "applied_name_overrides": sorted(applied_name_overrides, key=str.casefold),
         "unique_channels": len(selected),
         "morocco_excluded": not args.include_morocco,
         "tv_only": True,
@@ -216,6 +241,7 @@ def main() -> int:
     print("  skipped: Morocco=%d radio=%d excluded-site=%d" %
           (morocco_skipped, radio_skipped, excluded_site_skipped))
     print("  verified source overrides applied=%d" % len(applied_overrides))
+    print("  verified name overrides applied=%d" % len(applied_name_overrides))
     for site, count in source_counts.most_common(20):
         print("  %-28s %4d" % (site, count))
     return 0
