@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Generate human-readable programme samples for key MENA channels."""
+"""Generate human-readable programme samples for key MENA channels.
+
+This step also runs the exhaustive all-ID audit as a pre-publication release
+gate. Wrong cloned timelines, technical/asset IDs and known impossible IDs must
+be zero before the MENA data branch can be updated.
+"""
 from __future__ import annotations
 
 import argparse
@@ -46,6 +51,12 @@ TARGETS = [
         "exclude": [],
     },
 ]
+
+HARD_RELEASE_BLOCKERS = {
+    "WRONG_PROGRAMME_ASSIGNMENT_CLONED_TIMELINE",
+    "TECHNICAL_OR_ASSET_ID",
+    "SUSPICIOUS_BEIN_SPORTS66_ID",
+}
 
 
 def lang_of(text: str, declared: str = "") -> str:
@@ -106,6 +117,36 @@ def match_target(target, cid, name):
     if any(re.search(p, probe, re.I) for p in target["exclude"]):
         return False
     return True
+
+
+def run_all_id_release_gate(base: Path) -> None:
+    script = Path(__file__).with_name("all_id_audit.py")
+    manifest = base / "shards.json"
+    if not script.exists() or not manifest.exists():
+        raise RuntimeError("all-ID release gate prerequisites missing")
+
+    json_path = base / "all-id-audit.json"
+    text_path = base / "all-id-audit.txt"
+    csv_path = base / "all-id-audit.csv"
+    subprocess.run([
+        sys.executable, str(script),
+        "--dir", str(base),
+        "--manifest", str(manifest),
+        "--json", str(json_path),
+        "--text", str(text_path),
+        "--csv", str(csv_path),
+    ], check=True)
+
+    audit = json.loads(json_path.read_text(encoding="utf-8"))
+    issue_counts = audit.get("issue_counts") or {}
+    blockers = {k: int(issue_counts.get(k, 0) or 0) for k in HARD_RELEASE_BLOCKERS}
+    blockers = {k: v for k, v in blockers.items() if v > 0}
+    summary = audit.get("summary") or {}
+    print("ALL-ID RELEASE GATE: channels=%s PASS=%s REVIEW=%s FAIL=%s blockers=%s" % (
+        summary.get("channels"), summary.get("PASS"), summary.get("REVIEW"),
+        summary.get("FAIL"), blockers or "none"))
+    if blockers:
+        raise SystemExit("RELEASE BLOCKED: hard all-ID programme integrity failures remain: %s" % blockers)
 
 
 def main():
@@ -177,8 +218,6 @@ def main():
     Path(args.text).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
 
-    # Integration-level virtual EPGManager: same real generated shards, but with
-    # candidate scoring, canonical-ID selection and programme quality checks.
     virtual_script = Path(__file__).with_name("virtual_epgmanager_test.py")
     if virtual_script.exists():
         subprocess.run([
@@ -188,6 +227,10 @@ def main():
             "--text", str(base / "virtual-epgmanager.txt"),
             "--events", str(max(1, args.events)),
         ], check=True)
+
+    # Must be the last pre-publication check: it scans every published ID, not a
+    # hand-picked sample, and hard-fails only on integrity blockers.
+    run_all_id_release_gate(base)
     return 0
 
 
