@@ -14,12 +14,14 @@ import xml.etree.ElementTree as ET
 
 from bs4 import BeautifulSoup
 
-UA = "EPGManager-Official-Iraq-Lebanon-Audit/1.0"
+UA = "EPGManager-Official-Iraq-Lebanon-Audit/1.1"
 TIME_RE = re.compile(r"^(?:[01]?\d|2[0-3]):[0-5]\d(?:\s*(?:am|pm))?$", re.I)
 DURATION_RE = re.compile(r"^(?:المدة\s*:\s*)?(\d+)\s*(?:دقيقة|minute(?:s)?)$", re.I)
 GENERIC = {
     "view more", "live", "يعرض الان", "التالي", "جدول البرامج", "duration", "image",
     "facebook", "twitter", "whatsapp", "telegram", "share", "messenger", "print",
+    "الى", "إلى", "من", "دقيقة", "دقائق", "تفضيلاتي", "المدة", "التفاصيل", "تفاصيل",
+    "أضف إلى تفضيلاتي", "اضف الى تفضيلاتي", "مشاهدة", "شاهد", "المزيد",
 }
 TARGET_IDS = {
     "alsumaria": "Alsumaria.iq@SD",
@@ -41,9 +43,8 @@ def clean_lines(markup: str):
     out = []
     for x in raw:
         x = re.sub(r"\s+", " ", x).strip()
-        if not x:
-            continue
-        out.append(x)
+        if x:
+            out.append(x)
     return out
 
 
@@ -52,6 +53,8 @@ def is_noise(s: str):
     if low in GENERIC:
         return True
     if low.startswith(("image", "copyright", "حقوق التأليف", "حمّل تطبيق", "follow", "search")):
+        return True
+    if re.fullmatch(r"(?:إلى|الى|من)?\s*\d+\s*(?:دقيقة|دقائق)?", s):
         return True
     if len(s) > 180:
         return True
@@ -86,7 +89,6 @@ def extract_events(markup: str):
         if not tm:
             continue
         candidates = []
-        # Official pages vary: title may appear immediately before or after the time.
         for j in range(max(0, i - 4), min(len(lines), i + 7)):
             if j == i:
                 continue
@@ -100,7 +102,6 @@ def extract_events(markup: str):
             continue
         candidates.sort()
         title = candidates[0][3]
-        # Reject obvious nav/day/date labels.
         if re.search(r"^(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday|الاثنين|الثلاثاء|الأربعاء|الخميس|الجمعة|السبت|الأحد)$", title, re.I):
             continue
         key = (tm, title.casefold())
@@ -119,7 +120,7 @@ def read_xml(path: Path):
 
 
 def current_programs(data_dir: Path, cid: str):
-    rows = []
+    merged = {}
     for path in data_dir.glob("*.xml.gz"):
         try:
             root = read_xml(path)
@@ -129,7 +130,13 @@ def current_programs(data_dir: Path, cid: str):
             if (p.get("channel") or "").strip() != cid:
                 continue
             title = p.find("title")
-            rows.append({"start": p.get("start", ""), "title": ((title.text or "").strip() if title is not None else ""), "file": path.name})
+            t = ((title.text or "").strip() if title is not None else "")
+            start = p.get("start", "")
+            key = (start, t.casefold())
+            merged.setdefault(key, {"start": start, "title": t, "files": []})["files"].append(path.name)
+    rows = list(merged.values())
+    for r in rows:
+        r["file"] = ",".join(sorted(set(r.pop("files"))))
     rows.sort(key=lambda x: x["start"])
     return rows
 
@@ -137,6 +144,12 @@ def current_programs(data_dir: Path, cid: str):
 def unique_ratio(events):
     titles = [re.sub(r"\s+", " ", x["title"].casefold()).strip() for x in events if x.get("title")]
     return (len(set(titles)) / len(titles)) if titles else 0.0
+
+
+def bad_ratio(events):
+    if not events:
+        return 1.0
+    return sum(1 for e in events if is_noise(e.get("title", ""))) / len(events)
 
 
 def main():
@@ -154,7 +167,7 @@ def main():
             for d in (today, today + timedelta(days=1))
         ],
     }
-    out = {"schema": 1, "date_utc": today.isoformat(), "sources": {}}
+    out = {"schema": 2, "date_utc": today.isoformat(), "sources": {}}
     data_dir = Path(a.data_dir)
 
     for name, urls in sources.items():
@@ -174,26 +187,30 @@ def main():
             k = (e["time"], e["title"].casefold())
             if k in seen:
                 continue
-            seen.add(k); dedup.append(e)
+            seen.add(k)
+            dedup.append(e)
         cid = TARGET_IDS[name]
         current = current_programs(data_dir, cid)
-        verdict = "CANDIDATE_OFFICIAL" if len(dedup) >= 8 and unique_ratio(dedup) >= 0.25 else ("REVIEW" if dedup else "NO_DATA")
+        quality_ok = len(dedup) >= 8 and unique_ratio(dedup) >= 0.25 and bad_ratio(dedup) == 0
+        verdict = "CANDIDATE_OFFICIAL" if quality_ok else ("REVIEW" if dedup else "NO_DATA")
         out["sources"][name] = {
             "id": cid,
             "verdict": verdict,
             "official_events": len(dedup),
             "official_unique_ratio": round(unique_ratio(dedup), 3),
+            "official_bad_ratio": round(bad_ratio(dedup), 3),
             "official_samples": dedup[:12],
-            "current_events": len(current),
+            "current_unique_events": len(current),
             "current_samples": current[:6],
             "fetches": fetches,
         }
 
     Path(a.json).write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    lines = ["OFFICIAL IRAQ/LEBANON EPG AUDIT", "date_utc=%s" % out["date_utc"], ""]
+    lines = ["OFFICIAL IRAQ/LEBANON EPG AUDIT V2", "date_utc=%s" % out["date_utc"], ""]
     for name, x in out["sources"].items():
-        lines.append("[%s] %s | %s | official=%d current=%d unique=%.1f%%" % (
-            x["verdict"], x["id"], name, x["official_events"], x["current_events"], x["official_unique_ratio"] * 100.0))
+        lines.append("[%s] %s | %s | official=%d current_unique=%d unique=%.1f%% bad=%.1f%%" % (
+            x["verdict"], x["id"], name, x["official_events"], x["current_unique_events"],
+            x["official_unique_ratio"] * 100.0, x["official_bad_ratio"] * 100.0))
         lines.append("  OFFICIAL:")
         for e in x["official_samples"][:8]:
             lines.append("    %s | %s" % (e["time"], e["title"]))
