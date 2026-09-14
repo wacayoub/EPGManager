@@ -1,0 +1,41 @@
+name: ElCinema Work Search Probe
+
+on:
+  push:
+    paths:
+      - ".github/workflows/elcinema-work-search-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe ElCinema search endpoints
+        shell: bash
+        run: |
+          python - <<'PY'
+          import urllib.parse, urllib.request, re
+          q='Science of Stupid'
+          urls=[
+            'https://elcinema.com/search/?q='+urllib.parse.quote(q),
+            'https://elcinema.com/en/search/?q='+urllib.parse.quote(q),
+            'https://elcinema.com/search/?keyword='+urllib.parse.quote(q),
+            'https://elcinema.com/en/search/?keyword='+urllib.parse.quote(q),
+          ]
+          for u in urls:
+            print('\nURL',u)
+            try:
+              req=urllib.request.Request(u,headers={'User-Agent':'Mozilla/5.0'})
+              with urllib.request.urlopen(req,timeout=10) as r:
+                body=r.read().decode('utf-8','replace')
+                print('STATUS',r.status,'FINAL',r.geturl(),'BYTES',len(body))
+              print('WORKLINKS',re.findall(r'href=["\'](/(?:en/)?work/\d+/)["\']',body)[:10])
+              for needle in ['Science of Stupid','علم البسطاء','2077241']:
+                print(needle, needle in body)
+            except Exception as e: print('ERR',repr(e))
+          PY
