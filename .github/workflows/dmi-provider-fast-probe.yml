@@ -1,0 +1,175 @@
+name: DMI Provider Fast Probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/dmi-provider-fast-probe.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  dmi-provider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Verify DMI identities, timelines and Arabic metadata
+        shell: bash
+        run: |
+          python - <<'PY'
+          import gzip, itertools, re, urllib.request, xml.etree.ElementTree as ET
+          from datetime import datetime, timezone, timedelta
+
+          NOW=datetime.now(timezone.utc)
+          END=NOW+timedelta(hours=48)
+          AR=re.compile(r'[\u0600-\u06ff]')
+
+          OFFICIAL={
+            'brands':'https://www.dmi.gov.ae/content/corporate/en-ae/brands.html',
+            'dubai-tv':'https://www.dmi.gov.ae/content/dubaitv/ar-ae/about.html',
+            'dubai-one-schedule':'https://www.dmi.gov.ae/content/dubaione/en-ae/schedule.html',
+            'sama-schedule':'https://www.dmi.gov.ae/content/samadubai/ar-ae/schedule.html',
+            'dubai-sports-frequency':'https://www.dmi.gov.ae/content/dubaisports/frequency.html',
+            'corporate-schedule':'https://www.dmi.gov.ae/content/corporate/en-ae/schedule.html',
+          }
+          SOURCES={
+            'production':'https://raw.githubusercontent.com/wacayoub/EPGManager/mena-data/provider-dmi.xml.gz',
+            'openepg-saudi1':'https://www.open-epg.com/files/saudiarabia1.xml.gz',
+            'openepg-saudi2':'https://www.open-epg.com/files/saudiarabia2.xml.gz',
+            'openepg-uae6':'https://www.open-epg.com/files/uae6.xml.gz',
+            'openepg-egypt1':'https://www.open-epg.com/files/egypt1.xml.gz',
+            'openepg-egypt2':'https://www.open-epg.com/files/egypt2.xml.gz',
+            'epgshare-ae1':'https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz',
+          }
+
+          def get(url):
+            req=urllib.request.Request(url,headers={'User-Agent':'EPGManager-DMI-Probe/1.0','Accept':'*/*'})
+            with urllib.request.urlopen(req,timeout=45) as r:
+              return r.status,r.geturl(),r.read()
+
+          def dt(v):
+            m=re.match(r'^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?',(v or '').strip())
+            if not m:return None
+            raw=m.group(1); x=datetime.strptime(raw,'%Y%m%d%H%M%S' if len(raw)==14 else '%Y%m%d%H%M')
+            off=m.group(2)
+            if off=='Z':tz=timezone.utc
+            elif off:
+              sign=1 if off[0]=='+' else -1
+              tz=timezone(sign*timedelta(hours=int(off[1:3]),minutes=int(off[3:5])))
+            else:tz=timezone.utc
+            return x.replace(tzinfo=tz).astimezone(timezone.utc)
+
+          def txt(p,tag):
+            n=p.find(tag); return ((n.text or '').strip() if n is not None else '')
+
+          def clean(s):
+            s=(s or '').casefold()
+            s=re.sub(r'\.(?:sa|ae|eg|qa)(?:@.*)?$','',s)
+            s=re.sub(r'\b(?:uhd|fhd|full\s*hd|hd|sd)\b',' ',s)
+            s=s.replace('&',' and ')
+            s=re.sub(r'[^a-z0-9\u0600-\u06ff]+',' ',s)
+            return ' '.join(s.split())
+
+          def key(name,cid):
+            v=clean((name or '')+' '+(cid or ''))
+            # English/Arabic known DMI identities.
+            if 'dubai one' in v:return 'dubai one'
+            if 'sama dubai' in v or 'سما دبي' in v:return 'sama dubai'
+            if 'noor dubai' in v or 'نور دبي' in v:return 'noor dubai'
+            if 'dubai zaman' in v or 'دبي زمان' in v:return 'dubai zaman'
+            if 'dubai tv' in v or 'dubaitv' in v or 'تلفزيون دبي' in v:return 'dubai tv'
+            if 'dubai sports 2' in v or 'dubai sport 2' in v:return 'dubai sports 2'
+            if 'dubai sports 3' in v or 'dubai sport 3' in v:return 'dubai sports 3'
+            if 'dubai sports 1' in v or 'dubai sport 1' in v or 'dubai sports hd' in v:return 'dubai sports 1'
+            if 'dubai racing 2' in v:return 'dubai racing 2'
+            if 'dubai racing 1' in v:return 'dubai racing 1'
+            if 'dubai racing' in v:return 'dubai racing generic'
+            return ''
+
+          print('DMI OFFICIAL PRESENCE')
+          official_ok=True
+          for label,url in OFFICIAL.items():
+            try:
+              status,final,data=get(url); text=data.decode('utf-8','ignore')
+              markers={
+                'dmi': ('Dubai Media' in text or 'دبي للإعلام' in text or 'مؤسسة دبي للإعلام' in text),
+                'dubai_tv': ('Dubai TV' in text or 'تلفزيون دبي' in text),
+                'sama': ('Sama Dubai' in text or 'سما دبي' in text),
+                'sports': ('Dubai Sport' in text or 'Dubai Sports' in text or 'دبي الرياضية' in text),
+                'one': ('Dubai One' in text),
+                'racing': ('Dubai Racing' in text or 'دبي ريسينغ' in text),
+                'zaman': ('Dubai Zaman' in text or 'دبي زمان' in text),
+                'noor': ('Noor Dubai' in text or 'نور دبي' in text),
+              }
+              print(f'{label}: HTTP={status} bytes={len(data)} final={final} markers={markers}')
+              if status!=200:official_ok=False
+            except Exception as e:
+              official_ok=False; print(f'{label}: ERROR {e}')
+
+          allsrc={}
+          print('\nDMI CANDIDATES BY SOURCE')
+          for sname,url in SOURCES.items():
+            try:
+              status,final,data=get(url)
+              if data[:2]==b'\x1f\x8b':data=gzip.decompress(data)
+              root=ET.fromstring(data)
+              names={}
+              for ch in root.findall('channel'):
+                cid=(ch.get('id') or '').strip()
+                dns=ch.findall('display-name')
+                name=''
+                for dn in dns:
+                  t=(dn.text or '').strip()
+                  if t:name=t;break
+                names[cid]=name or cid
+              rows={}
+              for p in root.findall('programme'):
+                cid=(p.get('channel') or '').strip(); k=key(names.get(cid,cid),cid)
+                if not k:continue
+                a,b=dt(p.get('start')),dt(p.get('stop'))
+                if not a or not b or b<=a or b<=NOW or a>=END:continue
+                rows.setdefault(k,[]).append((a,b,txt(p,'title'),txt(p,'desc'),cid,names.get(cid,cid)))
+              allsrc[sname]=rows
+              print(f'[{sname}]')
+              for k in sorted(rows):
+                rr=sorted(rows[k]); n=len(rr)
+                cov=sum((b-a).total_seconds() for a,b,*_ in rr)/3600
+                gaps=sum(1 for x,y in zip(rr,rr[1:]) if (y[0]-x[1]).total_seconds()>7200)
+                ovs=sum(1 for x,y in zip(rr,rr[1:]) if y[0]<x[1])
+                empty=sum(1 for *_,d,cid,name in rr if not d)
+                art=sum(1 for *_,t,d,cid,name in rr if AR.search(t or ''))
+                ard=sum(1 for *_,t,d,cid,name in rr if d and AR.search(d))
+                ids=sorted({x[4] for x in rr})
+                print(f'  {k}: events={n} coverage={cov:.1f}h gaps>2h={gaps} overlaps={ovs} title_AR={100*art/n:.1f}% desc_AR={100*ard/n:.1f}% empty_desc={empty} ids={ids}')
+                for r in rr[:2]:print('    ',r[0].isoformat(),'->',r[1].isoformat(),'|',r[2])
+            except Exception as e:
+              print(f'{sname}: ERROR {e}')
+
+          print('\nCROSS-SOURCE EXACT TIMELINE AGREEMENT')
+          keys=sorted({k for rows in allsrc.values() for k in rows})
+          for k in keys:
+            sets={s:{(a,b) for a,b,*_ in rows.get(k,[])} for s,rows in allsrc.items() if rows.get(k)}
+            if not sets:continue
+            ranked=sorted(sets.items(),key=lambda kv:len(kv[1]),reverse=True)
+            base_name,base=ranked[0]
+            comps=[]
+            for oname,other in ranked[1:]:
+              inter=len(base&other); pct=100*inter/max(1,min(len(base),len(other)))
+              comps.append((round(pct,1),oname,inter,len(other)))
+            comps.sort(reverse=True)
+            print(f'{k}: base={base_name} events={len(base)} comparisons={comps}')
+
+          print('\nPRODUCTION INTERNAL TIMELINE RELATIONSHIPS')
+          prod=allsrc.get('production',{})
+          for a,b in itertools.combinations(sorted(prod),2):
+            sa={(x[0],x[1]) for x in prod[a]}; sb={(x[0],x[1]) for x in prod[b]}
+            inter=len(sa&sb)
+            if inter:
+              pct=100*inter/max(1,min(len(sa),len(sb)))
+              if pct>=50:
+                print(f'{a} <-> {b}: exact_overlap={inter} pct_of_smaller={pct:.1f}%')
+
+          print('\nDMI PROBE RESULT')
+          print('official_ok=',official_ok,'production_keys=',sorted(prod))
+          PY
