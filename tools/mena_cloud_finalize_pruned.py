@@ -171,28 +171,40 @@ def _arabic_bein_news_title(title):
     return original
 
 
-def _translate_bein_news_titles(root):
+def _translate_bein_news_programmes(programmes):
+    """Translate NEWS rows before build_feed serializes XML/GZ/TXT outputs.
+
+    base.build_feed returns a tuple of serialized artefacts, not only an XML root.
+    Therefore translation has to happen on copied programme elements before the
+    original builder runs; mutating the returned root would leave the gz/txt
+    payload stale and previously caused a tuple/findall crash.
+    """
+    translated = dict(programmes)
     changed = 0
     unresolved = 0
-    for programme in root.findall("programme"):
-        cid = (programme.get("channel") or "").strip()
-        if not _is_bein_news_id(cid):
+
+    for cid, rows in programmes.items():
+        if not _is_bein_news_id(cid) or not rows:
             continue
-        title = programme.find("title")
-        if title is None:
-            continue
-        old = (title.text or "").strip()
-        if not old:
-            continue
-        new = _arabic_bein_news_title(old)
-        if new != old:
-            title.text = new
-            title.set("lang", "ar")
-            changed += 1
-        elif re.search(r"[A-Za-z]", old) and not re.search(r"[\u0600-\u06ff]", old):
-            unresolved += 1
+        out = []
+        for programme in rows:
+            cp = base.copy_element(programme)
+            title = cp.find("title")
+            if title is not None:
+                old = (title.text or "").strip()
+                if old:
+                    new = _arabic_bein_news_title(old)
+                    if new != old:
+                        title.text = new
+                        title.set("lang", "ar")
+                        changed += 1
+                    elif re.search(r"[A-Za-z]", old) and not re.search(r"[\u0600-\u06ff]", old):
+                        unresolved += 1
+            out.append(cp)
+        translated[cid] = out
+
     print("beIN SPORTS NEWS Arabic titles: translated=%d unresolved_safe_keep=%d" % (changed, unresolved))
-    return root
+    return translated
 
 
 def pruned_build_feed(ids, selected_programmes, cand_channels, prev_channels, source_by_id, generator_name):
@@ -200,15 +212,15 @@ def pruned_build_feed(ids, selected_programmes, cand_channels, prev_channels, so
         cid for cid in (ids or [])
         if selected_programmes.get(cid)
     }
-    root = strict._original_build_feed(
+    translated_programmes = _translate_bein_news_programmes(selected_programmes)
+    return strict._original_build_feed(
         sorted(active_ids, key=str.casefold),
-        selected_programmes,
+        translated_programmes,
         cand_channels,
         prev_channels,
         source_by_id,
         generator_name,
     )
-    return _translate_bein_news_titles(root)
 
 
 # Preserve all strict protections, then layer the targeted clone quarantine,
