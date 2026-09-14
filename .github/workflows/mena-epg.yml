@@ -28,6 +28,8 @@ on:
       - "tools/mena_integrity_guard.py"
       - "tools/all_id_audit_alias_aware.py"
       - "tools/bein_final_regression.py"
+      - "tools/osn_id_audit_policy.py"
+      - "tools/osn_final_regression.py"
 
 permissions:
   contents: write
@@ -112,7 +114,9 @@ jobs:
             tools/bein_id_audit_policy.py \
             tools/mena_integrity_guard.py \
             tools/all_id_audit_alias_aware.py \
-            tools/bein_final_regression.py
+            tools/bein_final_regression.py \
+            tools/osn_id_audit_policy.py \
+            tools/osn_final_regression.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
@@ -341,6 +345,26 @@ jobs:
             --audit-json output/final/bein-id-audit-policy.json \
             --text output/final/bein-final-regression.txt
 
+      - name: Audit OSN with production source policy
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/osn_id_audit_policy.py \
+            --xml output/final/provider-osn.xml.gz \
+            --json output/final/osn-id-audit-policy.json \
+            --text output/final/osn-id-audit-policy.txt
+
+      - name: Run final OSN regression gate
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/osn_final_regression.py \
+            --xml output/final/provider-osn.xml.gz \
+            --audit-json output/final/osn-id-audit-policy.json \
+            --text output/final/osn-final-regression.txt
+
       - name: Publish atomically to mena-data
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -369,12 +393,14 @@ jobs:
           cp ../output/final/bein-id-audit.txt .
           cp ../output/final/bein-id-audit-policy.json .
           cp ../output/final/bein-id-audit-policy.txt .
+          cp ../output/final/osn-id-audit-policy.json .
+          cp ../output/final/osn-id-audit-policy.txt .
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
           printf '%s\n' \
             'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver-facing XML omits channel identities with zero final programmes to reduce parsing and memory cost; the full internal catalogue remains available for audits and source recovery. Event channels reappear automatically when real EPG is available. Receiver sources are split exclusively by premium/provider identity first, then by authoritative/conservative channel country, then MENA Other. Arabic programme metadata is preferred before English/international fallback for regular MENA channels. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
             > README.md
-          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt virtual-epgmanager.json virtual-epgmanager.txt arabic-priority-test.json arabic-priority-test.txt bein-id-audit.json bein-id-audit.txt bein-id-audit-policy.json bein-id-audit-policy.txt catalog.json merge-report.json README.md
+          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt virtual-epgmanager.json virtual-epgmanager.txt arabic-priority-test.json arabic-priority-test.txt bein-id-audit.json bein-id-audit.txt bein-id-audit-policy.json bein-id-audit-policy.txt osn-id-audit-policy.json osn-id-audit-policy.txt catalog.json merge-report.json README.md
           if git diff --cached --quiet; then
             echo "No MENA data changes."
             exit 0
