@@ -1,0 +1,194 @@
+name: Zero EPG Prune Shadow Test
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/zero-epg-prune-shadow.yml"
+      - "tools/mena_cloud_finalize_pruned_shadow.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zero-epg-prune-shadow
+  cancel-in-progress: true
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Checkout current MENA data
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: current-data
+          fetch-depth: 0
+
+      - name: Checkout iptv-org EPG
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/epg
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/epg/package-lock.json
+
+      - name: Verify scripts
+        run: |
+          python -m py_compile \
+            tools/mena_cloud_finalize_pruned_shadow.py \
+            tools/mena_cloud_merge_metadata_locked.py \
+            tools/all_id_audit.py
+
+      - name: Install grabber
+        working-directory: vendor/epg
+        run: npm ci --no-audit --no-fund
+
+      - name: Build catalogue
+        run: |
+          set -euo pipefail
+          mkdir -p output/final output/upstream previous
+          python tools/mena_cloud_catalog.py \
+            --epg-root vendor/epg \
+            --output-channels output/mena.channels.xml \
+            --output-manifest output/catalog.json
+          cp current-data/mena-arabic.xml.gz previous/mena-arabic.xml.gz || true
+          curl -fL --retry 2 --connect-timeout 5 --max-time 30 \
+            https://iptv-org.github.io/api/channels.json -o output/channels.json || echo '[]' > output/channels.json
+
+      - name: Grab primary 48h
+        working-directory: vendor/epg
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=30s 1500s \
+            npm run grab --- \
+              --channels="${GITHUB_WORKSPACE}/output/mena.channels.xml" \
+              --output="${GITHUB_WORKSPACE}/output/raw.xml" \
+              --days=2 --maxConnections=3 --timeout=20000
+          test -s "${GITHUB_WORKSPACE}/output/raw.xml" || printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/raw.xml"
+          exit 0
+
+      - name: Merge 48h
+        run: |
+          set -euo pipefail
+          python tools/mena_cloud_merge_metadata_locked.py \
+            --primary output/raw.xml \
+            --catalog-manifest output/catalog.json \
+            --output output/merged.xml \
+            --report output/merge-report.json \
+            --cache-dir output/upstream \
+            --window-hours 48
+
+      - name: Finalize with zero-EPG prune and shard
+        run: |
+          set -euo pipefail
+          python tools/mena_cloud_finalize_pruned_shadow.py \
+            --candidate output/merged.xml \
+            --catalog-manifest output/catalog.json \
+            --previous previous/mena-arabic.xml.gz \
+            --merge-report output/merge-report.json \
+            --window-hours 48 \
+            --output-dir output/final
+          python tools/mena_cloud_shards_strict.py \
+            --source-cache-dir output/upstream \
+            --channel-metadata output/channels.json \
+            --input output/final/mena-arabic.xml.gz \
+            --catalog-manifest output/catalog.json \
+            --output-dir output/final \
+            --manifest output/final/shards.json
+
+      - name: Audit pruned shadow
+        run: |
+          set -euo pipefail
+          python tools/all_id_audit.py \
+            --dir output/final \
+            --manifest output/final/shards.json \
+            --json output/zero-epg-prune-all-id.json \
+            --text output/zero-epg-prune-all-id.txt \
+            --csv output/zero-epg-prune-all-id.csv
+          python - <<'PY'
+          import csv, gzip, json, xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          def inspect(path):
+              data=Path(path).read_bytes()
+              if data[:2] == b'\x1f\x8b': data=gzip.decompress(data)
+              root=ET.fromstring(data)
+              channels={c.get('id') for c in root.findall('channel') if c.get('id')}
+              pcount={cid:0 for cid in channels}
+              for p in root.findall('programme'):
+                  cid=p.get('channel')
+                  if cid in pcount: pcount[cid]+=1
+              zero=sorted(cid for cid,n in pcount.items() if n == 0)
+              return len(channels), len(root.findall('programme')), len(data), zero
+
+          old_c, old_p, old_xml, old_zero = inspect('current-data/mena-arabic.xml.gz')
+          new_c, new_p, new_xml, new_zero = inspect('output/final/mena-arabic.xml.gz')
+          audit=json.loads(Path('output/zero-epg-prune-all-id.json').read_text(encoding='utf-8'))['summary']
+          assert not new_zero, 'zero-programme channels still published: %r' % new_zero[:20]
+          assert audit['FAIL'] == 0, audit
+
+          old_gz=Path('current-data/mena-arabic.xml.gz').stat().st_size
+          new_gz=Path('output/final/mena-arabic.xml.gz').stat().st_size
+          report={
+              'current_channels': old_c,
+              'shadow_channels': new_c,
+              'removed_channel_entries': old_c-new_c,
+              'current_programmes': old_p,
+              'shadow_programmes': new_p,
+              'current_zero_programme_channels': len(old_zero),
+              'shadow_zero_programme_channels': len(new_zero),
+              'current_gzip_bytes': old_gz,
+              'shadow_gzip_bytes': new_gz,
+              'gzip_saved_bytes': old_gz-new_gz,
+              'gzip_saved_pct': round((old_gz-new_gz)*100.0/old_gz,2) if old_gz else 0,
+              'xml_saved_bytes': old_xml-new_xml,
+              'all_id_summary': audit,
+          }
+          Path('output/zero-epg-prune-shadow.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+          lines=['ZERO EPG PRUNE SHADOW']+[f'{k}={v}' for k,v in report.items()]
+          Path('output/zero-epg-prune-shadow.txt').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          print('\n'.join(lines))
+          PY
+
+      - name: Publish diagnostics only
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/zero-epg-prune-shadow.json .
+          cp ../output/zero-epg-prune-shadow.txt .
+          cp ../output/zero-epg-prune-all-id.json .
+          cp ../output/zero-epg-prune-all-id.txt .
+          cp ../output/zero-epg-prune-all-id.csv .
+          git config user.name "EPGManager Zero EPG Prune Shadow"
+          git config user.email "actions@users.noreply.github.com"
+          git add zero-epg-prune-*.*
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Test zero-EPG receiver XML pruning"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
