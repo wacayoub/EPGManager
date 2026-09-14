@@ -45,7 +45,7 @@ jobs:
           git fetch origin mena-data
           git worktree add current-data origin/mena-data
 
-      - name: Rebuild exhaustive current all-ID verdicts
+      - name: Rebuild exhaustive current all-ID verdicts privately
         shell: bash
         run: |
           set -euo pipefail
@@ -83,7 +83,7 @@ jobs:
             --json output/official-catalog-canonical-audit.json \
             --text output/official-catalog-canonical-audit.txt
 
-      - name: Publish diagnostics to mena-data
+      - name: Publish diagnostics only to mena-data
         shell: bash
         run: |
           set -euo pipefail
@@ -97,11 +97,9 @@ jobs:
           cp ../output/canonical-repair-audit.txt .
           cp ../output/official-catalog-canonical-audit.json .
           cp ../output/official-catalog-canonical-audit.txt .
-          cp /tmp/recovery-all-id.json all-id-audit.json
-          cp /tmp/recovery-all-id.csv all-id-audit.csv
           git config user.name "EPGManager Recovery Audit"
           git config user.email "actions@users.noreply.github.com"
-          git add recovery-source-audit.json recovery-source-audit.txt no-epg-triage.json no-epg-triage.txt canonical-repair-audit.json canonical-repair-audit.txt official-catalog-canonical-audit.json official-catalog-canonical-audit.txt all-id-audit.json all-id-audit.csv
+          git add recovery-source-audit.json recovery-source-audit.txt no-epg-triage.json no-epg-triage.txt canonical-repair-audit.json canonical-repair-audit.txt official-catalog-canonical-audit.json official-catalog-canonical-audit.txt
           if git diff --cached --quiet; then
             exit 0
           fi
