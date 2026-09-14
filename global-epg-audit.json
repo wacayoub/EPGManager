@@ -1,111 +1,112 @@
 {
   "schema": 1,
   "scope": "all exclusive MENA country/provider shards",
-  "channels_scanned": 1038,
-  "programmes_scanned": 32774,
+  "channels_scanned": 1044,
+  "programmes_scanned": 33026,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 760,
-    "empty_description": 15368,
+    "arabic_provider_title_not_arabic": 767,
+    "empty_description": 15631,
     "hybrid_arabic_latin_description": 4,
-    "premium_title_not_english": 115,
-    "severity_warning": 18568,
+    "premium_title_not_english": 112,
+    "severity_warning": 18832,
     "very_long_event_gt_6h": 24,
-    "very_short_event_lt_5m": 2295
+    "very_short_event_lt_5m": 2292
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 405,
+      "empty_description": 391,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
-      "very_short_event_lt_5m": 13
+      "empty_description": 56,
+      "very_short_event_lt_5m": 22
     },
     "mena-dz": {
-      "empty_description": 30
+      "empty_description": 44
     },
     "mena-eg": {
-      "empty_description": 1337,
+      "empty_description": 1319,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 545
+      "empty_description": 583
     },
     "mena-jo": {
-      "empty_description": 112,
+      "empty_description": 110,
       "very_short_event_lt_5m": 6
     },
     "mena-kw": {
-      "empty_description": 242,
+      "empty_description": 239,
       "very_short_event_lt_5m": 1
     },
     "mena-lb": {
-      "empty_description": 67,
+      "empty_description": 65,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 362
+      "empty_description": 392
     },
     "mena-other": {
-      "empty_description": 7447,
+      "empty_description": 7641,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 10,
-      "very_short_event_lt_5m": 1200
+      "very_short_event_lt_5m": 1193
     },
     "mena-ps": {
-      "empty_description": 35
+      "empty_description": 34
     },
     "mena-qa": {
-      "empty_description": 686,
+      "empty_description": 679,
       "very_long_event_gt_6h": 3,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1552,
-      "very_short_event_lt_5m": 710
+      "empty_description": 1559,
+      "very_short_event_lt_5m": 706
     },
     "mena-sd": {
-      "empty_description": 48
+      "empty_description": 47
     },
     "mena-sy": {
-      "empty_description": 7
+      "empty_description": 6
     },
     "mena-tn": {
-      "empty_description": 49
+      "empty_description": 40
     },
     "mena-ye": {
-      "empty_description": 126
+      "empty_description": 124
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 266,
-      "empty_description": 205,
+      "arabic_provider_title_not_arabic": 263,
+      "empty_description": 202,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 23
     },
     "provider-alkass": {
-      "arabic_provider_title_not_arabic": 75,
+      "arabic_provider_title_not_arabic": 88,
       "very_long_event_gt_6h": 1
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 9,
-      "empty_description": 694,
-      "very_short_event_lt_5m": 275
+      "empty_description": 690,
+      "very_short_event_lt_5m": 274
     },
     "provider-bein": {
-      "empty_description": 153,
-      "premium_title_not_english": 111,
+      "empty_description": 148,
+      "premium_title_not_english": 108,
       "very_long_event_gt_6h": 2
     },
     "provider-dmi": {
       "arabic_provider_title_not_arabic": 74,
-      "empty_description": 293,
+      "empty_description": 291,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 1
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
-      "arabic_provider_title_not_arabic": 264,
-      "empty_description": 381,
+      "arabic_provider_title_not_arabic": 263,
+      "empty_description": 384,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
@@ -114,11 +115,11 @@
       "very_short_event_lt_5m": 48
     },
     "provider-rotana": {
-      "arabic_provider_title_not_arabic": 72,
-      "empty_description": 83
+      "arabic_provider_title_not_arabic": 70,
+      "empty_description": 81
     },
     "provider-starz": {
-      "empty_description": 162,
+      "empty_description": 159,
       "very_long_event_gt_6h": 1
     }
   },
@@ -126,13 +127,163 @@
     "arabic_provider_title_not_arabic": [
       {
         "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914053000 +0000",
-        "stop": "20260914060000 +0000",
-        "title": "FIBA World Basketball",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914060000 +0000",
+        "stop": "20260914080000 +0000",
+        "title": "The Council",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 120.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914080000 +0000",
+        "stop": "20260914090000 +0000",
+        "title": "Preview",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914090000 +0000",
+        "stop": "20260914093000 +0000",
+        "title": "News",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914093000 +0000",
+        "stop": "20260914100000 +0000",
+        "title": "Newspaper",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914100000 +0000",
+        "stop": "20260914113000 +0000",
+        "title": "Asian Youth Handball Championship",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914113000 +0000",
+        "stop": "20260914123000 +0000",
+        "title": "Two and a Half",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914123000 +0000",
+        "stop": "20260914130000 +0000",
+        "title": "The Inside Line",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914130000 +0000",
+        "stop": "20260914133000 +0000",
+        "title": "News",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914133000 +0000",
+        "stop": "20260914153000 +0000",
+        "title": "Qatar Stars League",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 120.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914153000 +0000",
+        "stop": "20260914160000 +0000",
+        "title": "Golmania",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914160000 +0000",
+        "stop": "20260914170000 +0000",
+        "title": "Meeting Football Fans",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914170000 +0000",
+        "stop": "20260914180000 +0000",
+        "title": "90 Minutes",
+        "desc": "برنامج رياضي يقدم التحليل والنقاش حول أبرز الأحداث والمباريات.",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914180000 +0000",
+        "stop": "20260914183000 +0000",
+        "title": "News",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914183000 +0000",
+        "stop": "20260914200000 +0000",
+        "title": "The Referee",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914200000 +0000",
+        "stop": "20260914203000 +0000",
+        "title": "Communication",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 1.qa",
+        "channel": "2023 Alkass 1.qa",
+        "start": "20260914203000 +0000",
+        "stop": "20260914235900 +0000",
+        "title": "Sport Confidential",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 209.0
       },
       {
         "shard": "provider-alkass",
@@ -328,16 +479,6 @@
         "shard": "provider-alkass",
         "channel_id": "2023 Alkass 3.qa",
         "channel": "2023 Alkass 3.qa",
-        "start": "20260914050000 +0000",
-        "stop": "20260914060000 +0000",
-        "title": "Al Hasila",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
         "start": "20260914060000 +0000",
         "stop": "20260914063000 +0000",
         "title": "Akhbar",
@@ -383,146 +524,6 @@
         "title": "Dawry Nojom Qatar",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 115.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914120000 +0000",
-        "stop": "20260914123000 +0000",
-        "title": "Akhbar",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914123000 +0000",
-        "stop": "20260914150000 +0000",
-        "title": "Jarayed",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 150.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914150000 +0000",
-        "stop": "20260914170000 +0000",
-        "title": "Golmania",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 120.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914170000 +0000",
-        "stop": "20260914173000 +0000",
-        "title": "The Inside Line",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914173000 +0000",
-        "stop": "20260914190000 +0000",
-        "title": "Botoulat Asia Lel Shabab Lekorat Al Yad",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 90.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914190000 +0000",
-        "stop": "20260914200000 +0000",
-        "title": "Review",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914200000 +0000",
-        "stop": "20260914210000 +0000",
-        "title": "Tisein Daqiqatan",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914210000 +0000",
-        "stop": "20260914213000 +0000",
-        "title": "Akhbar",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914213000 +0000",
-        "stop": "20260914223000 +0000",
-        "title": "Fad Fad",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914223000 +0000",
-        "stop": "20260914230000 +0000",
-        "title": "Sport Confidential",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914230000 +0000",
-        "stop": "20260914233000 +0000",
-        "title": "Marine Magazine",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914233000 +0000",
-        "stop": "20260914235900 +0000",
-        "title": "The Football Review",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260915003000 +0000",
-        "stop": "20260915010000 +0000",
-        "title": "Dawry Al Darajah Al Thanya Al Qatary",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260915010000 +0000",
-        "stop": "20260915043000 +0000",
-        "title": "Dawry Al Darajah Al Thanya Al Qatary",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 210.0
       }
     ],
     "very_long_event_gt_6h": [
@@ -772,16 +773,6 @@
         "shard": "provider-bein",
         "channel_id": "beIN Drama.eg",
         "channel": "beIN Drama.eg",
-        "start": "20260914050000 +0000",
-        "stop": "20260914060000 +0000",
-        "title": "Sarmasik Zamani",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
         "start": "20260914060000 +0000",
         "stop": "20260914070000 +0000",
         "title": "Darb Al Thahab",
@@ -932,16 +923,6 @@
         "shard": "provider-bein",
         "channel_id": "BeIn Series HD 1.eg",
         "channel": "BeIn Series HD 1.eg",
-        "start": "20260914050000 +0000",
-        "stop": "20260914060000 +0000",
-        "title": "Outlander S3",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
         "start": "20260914060000 +0000",
         "stop": "20260914070000 +0000",
         "title": "Shark Tank",
@@ -1082,16 +1063,6 @@
         "shard": "provider-bein",
         "channel_id": "beIN Series HD 2.eg",
         "channel": "beIN Series HD 2.eg",
-        "start": "20260914050000 +0000",
-        "stop": "20260914060000 +0000",
-        "title": "Your Honor",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Series HD 2.eg",
-        "channel": "beIN Series HD 2.eg",
         "start": "20260914060000 +0000",
         "stop": "20260914063000 +0000",
         "title": "Black Clover S3",
@@ -1167,6 +1138,36 @@
         "title": "Black Clover S3",
         "desc": "",
         "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Series HD 2.eg",
+        "channel": "beIN Series HD 2.eg",
+        "start": "20260914123000 +0000",
+        "stop": "20260914130000 +0000",
+        "title": "Black Clover S3",
+        "desc": "",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Series HD 2.eg",
+        "channel": "beIN Series HD 2.eg",
+        "start": "20260914130000 +0000",
+        "stop": "20260914140000 +0000",
+        "title": "NCIS: Sydney S3",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Series HD 2.eg",
+        "channel": "beIN Series HD 2.eg",
+        "start": "20260914140000 +0000",
+        "stop": "20260914150000 +0000",
+        "title": "The Agency: Central Intelligence",
+        "desc": "",
+        "duration_minutes": 60.0
       }
     ],
     "premium_title_not_english": [
@@ -1188,16 +1189,6 @@
         "stop": "20260914160000 +0000",
         "title": "1883",
         "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914050000 +0000",
-        "stop": "20260914060000 +0000",
-        "title": "أوراق النسيان",
-        "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب.",
         "duration_minutes": 60.0
       },
       {
@@ -1339,16 +1330,6 @@
         "title": "مزاد الشر",
         "desc": "دراما صعيدية تتحدث عن صراع بين كبار عائلتي رضوان الكالح وابنه أحمد من جانب وشقيق زوجته خلاف من الجانب الأخر، بعد أن كانوا أصدقاء في الماضي.",
         "duration_minutes": 40.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914050000 +0000",
-        "stop": "20260914060000 +0000",
-        "title": "E24 | S1 طبلية",
-        "desc": "",
-        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
@@ -1569,6 +1550,26 @@
         "title": "موجاي",
         "desc": "",
         "duration_minutes": 90.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260915014400 +0000",
+        "stop": "20260915034400 +0000",
+        "title": "قوة الطبيعة: الجفاف",
+        "desc": "",
+        "duration_minutes": 120.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260915034400 +0000",
+        "stop": "20260915052900 +0000",
+        "title": "ليدي سكوربيونز",
+        "desc": "",
+        "duration_minutes": 105.0
       }
     ],
     "very_short_event_lt_5m": [

@@ -27,15 +27,13 @@ Shard: provider-mbc | policy=arabic
 CANDIDATE 1: MBC1.ae@SD | PASS | score=100.0 | events=57
   language: title AR 100% / EN 0% ; desc AR 100% / EN 0%
   schedule: overlaps=0 short_dup=0 bad_duration=0 mixed_tz_days=0 empty_desc=0
-CANDIDATE 2: EN:.MBC1.Iraq.sa | FAIL | score=27.0 | events=87
+CANDIDATE 2: EN:.MBC1.Iraq.sa | FAIL | score=27.0 | events=88
   language: title AR 0% / EN 100% ; desc AR 0% / EN 0%
-  schedule: overlaps=0 short_dup=0 bad_duration=0 mixed_tz_days=0 empty_desc=87
-  notes: Arabic title coverage 0%; Arabic description coverage 0%; 87 empty description(s)
+  schedule: overlaps=0 short_dup=0 bad_duration=0 mixed_tz_days=0 empty_desc=88
+  notes: Arabic title coverage 0%; Arabic description coverage 0%; 88 empty description(s)
 BEST: MBC1.ae@SD [PASS]
 AUTO-LOCK: YES
 PROGRAMME PREVIEW (best candidate):
-  2026-09-14 06:39 -> 2026-09-14 07:06 | ست شباب
-    الموسم 1 • الحلقة 1 ينشر أحمد إعلاناً يعرض فيه تأجير بعض الغرف في شقته لطلبة آخرين.
   2026-09-14 07:06 -> 2026-09-14 07:30 | أصدقاء العمر
     الحلقة 46 تتخذ مجموعة من التلاميذ قرارا بتغيير حياتهم إلى مهمة استقصائية تبحث في حادثة وفاة غامضة لأحد أعز أصدقائهم.
   2026-09-14 07:30 -> 2026-09-14 08:15 | جدول البرامج غير متاح
@@ -44,12 +42,14 @@ PROGRAMME PREVIEW (best candidate):
     الموسم 1 • الحلقة 10 في قلب دمشق القديمة، تدور أحداث العمل حول مهنة النويلاتي وصراع مشيخة الكار، كاشفًا أسرار صناعة نول الحرير من دودة القز، في دراما مستوحاة من أحداث حقيقية تروي حكاية الصنعة والعزة والهوية.
   2026-09-14 09:00 -> 2026-09-14 11:00 | صباح الخير يا عرب
     الحلقة 157 أبرز أخبار الفن وأهم الأحداث الجارية حول العالم، إضافة إلى تقارير اجتماعية عن اهتمامات الناس الأسرية والصحية وآخر صيحات الموضة ونصائح للماكياج، بأجواء من المتعة والفائدة.
+  2026-09-14 11:00 -> 2026-09-14 11:45 | من كثر حبي لك
+    الموسم 1 • الحلقة 1 مسلسل كويتي، اجتماعي درامي مشوّق، يأتينا من داخل أروقة عمارة سكنية، حيث تنشأ بين شخصيات المسلسل علاقات المودة والإعجاب، فالزواج، تتبعها بضع حالات الطلاق؛ وعلى الطرف الآخر تحدث مشاكل عائلية وجرائم قتل وسرقة، تحمل المآسي والدموع.
 
 === MBC2 ===
 Receiver: MBC 2 HD
 Shard: provider-mbc | policy=arabic
-CANDIDATE 1: MBC2.ae@SD | PASS | score=100.0 | events=35
-  language: title AR 100% / EN 14% ; desc AR 100% / EN 0%
+CANDIDATE 1: MBC2.ae@SD | PASS | score=100.0 | events=34
+  language: title AR 100% / EN 15% ; desc AR 100% / EN 0%
   schedule: overlaps=0 short_dup=0 bad_duration=0 mixed_tz_days=0 empty_desc=0
 BEST: MBC2.ae@SD [PASS]
 AUTO-LOCK: YES
@@ -68,8 +68,8 @@ PROGRAMME PREVIEW (best candidate):
 === MBC Action ===
 Receiver: MBC ACTION HD
 Shard: provider-mbc | policy=arabic
-CANDIDATE 1: MBCAction.ae@SD | PASS | score=100.0 | events=74
-  language: title AR 100% / EN 35% ; desc AR 100% / EN 0%
+CANDIDATE 1: MBCAction.ae@SD | PASS | score=100.0 | events=73
+  language: title AR 100% / EN 36% ; desc AR 100% / EN 0%
   schedule: overlaps=0 short_dup=0 bad_duration=0 mixed_tz_days=0 empty_desc=0
 BEST: MBCAction.ae@SD [PASS]
 AUTO-LOCK: YES
@@ -189,11 +189,21 @@ PROGRAMME PREVIEW (best candidate):
 === Al Kass 1 ===
 Receiver: Al Kass 1 HD
 Shard: provider-alkass | policy=arabic
-CANDIDATE 1: 2023 Alkass 1.qa | FAIL | score=0.0 | events=0
-  language: title AR 0% / EN 0% ; desc AR 0% / EN 0%
+CANDIDATE 1: 2023 Alkass 1.qa | REVIEW | score=73.5 | events=16
+  language: title AR 0% / EN 100% ; desc AR 100% / EN 0%
   schedule: overlaps=0 short_dup=0 bad_duration=0 mixed_tz_days=0 empty_desc=0
-  notes: no programmes; Arabic title coverage 0%; Arabic description coverage 0%
-BEST: 2023 Alkass 1.qa [FAIL]
+  notes: Arabic title coverage 0%
+BEST: 2023 Alkass 1.qa [REVIEW]
 AUTO-LOCK: NO - keep REVIEW until cleaned
 PROGRAMME PREVIEW (best candidate):
+  2026-09-14 07:00 -> 2026-09-14 09:00 | The Council
+    برنامج رياضي على قنوات الكأس.
+  2026-09-14 09:00 -> 2026-09-14 10:00 | Preview
+    برنامج رياضي على قنوات الكأس.
+  2026-09-14 10:00 -> 2026-09-14 10:30 | News
+    برنامج رياضي على قنوات الكأس.
+  2026-09-14 10:30 -> 2026-09-14 11:00 | Newspaper
+    برنامج رياضي على قنوات الكأس.
+  2026-09-14 11:00 -> 2026-09-14 12:30 | Asian Youth Handball Championship
+    برنامج رياضي على قنوات الكأس.
 

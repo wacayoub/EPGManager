@@ -1,14 +1,14 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=1038
-programmes_scanned=32774
+channels_scanned=1044
+programmes_scanned=33026
 critical=0
-warnings=18568
+warnings=18832
 
 ISSUE COUNTS
-empty_description=15368
-very_short_event_lt_5m=2295
-arabic_provider_title_not_arabic=760
-premium_title_not_english=115
+empty_description=15631
+very_short_event_lt_5m=2292
+arabic_provider_title_not_arabic=767
+premium_title_not_english=112
 very_long_event_gt_6h=24
 hybrid_arabic_latin_description=4
 arabic_provider_description_not_arabic=2
@@ -21,30 +21,29 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260916034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=760
-- provider-alkass | 2023 Alkass 2.qa | 20260914053000 +0000 | FIBA World Basketball
+[arabic_provider_title_not_arabic] count=767
+- provider-alkass | 2023 Alkass 1.qa | 20260914060000 +0000 | The Council
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914060000 +0000 | Akhbar
+- provider-alkass | 2023 Alkass 1.qa | 20260914080000 +0000 | Preview
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914063000 +0000 | Dawry Al Darajah Al Thanya Al Qatary
+- provider-alkass | 2023 Alkass 1.qa | 20260914090000 +0000 | News
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914080000 +0000 | Sport Confidential
+- provider-alkass | 2023 Alkass 1.qa | 20260914093000 +0000 | Newspaper
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914083000 +0000 | Ahdaf
+- provider-alkass | 2023 Alkass 1.qa | 20260914100000 +0000 | Asian Youth Handball Championship
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914084500 +0000 | Ostudio Al Khayl
+- provider-alkass | 2023 Alkass 1.qa | 20260914113000 +0000 | Two and a Half
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914113000 +0000 | King of the Court Beach Volleyball Championship
+- provider-alkass | 2023 Alkass 1.qa | 20260914123000 +0000 | The Inside Line
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914120000 +0000 | Akhbar
+- provider-alkass | 2023 Alkass 1.qa | 20260914130000 +0000 | News
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914123000 +0000 | Jarayed
+- provider-alkass | 2023 Alkass 1.qa | 20260914133000 +0000 | Qatar Stars League
   desc: برنامج رياضي على قنوات الكأس.
-- provider-alkass | 2023 Alkass 2.qa | 20260914130000 +0000 | King of the Court Beach Volleyball Championship
+- provider-alkass | 2023 Alkass 1.qa | 20260914153000 +0000 | Golmania
   desc: برنامج رياضي على قنوات الكأس.
 
-[empty_description] count=15368
-- provider-bein | beIN Drama.eg | 20260914050000 +0000 | Sarmasik Zamani
+[empty_description] count=15631
 - provider-bein | beIN Drama.eg | 20260914060000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260914070000 +0000 | Mazad El Shar
 - provider-bein | beIN Drama.eg | 20260914080000 +0000 | Sarab
@@ -54,6 +53,7 @@ TOP SAMPLES
 - provider-bein | beIN Drama.eg | 20260914120000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260914130000 +0000 | Mazad El Shar
 - provider-bein | beIN Drama.eg | 20260914140000 +0000 | Sarab
+- provider-bein | beIN Drama.eg | 20260914150000 +0000 | Basmet Hada
 
 [hybrid_arabic_latin_description] count=4
 - mena-ae | Nickelodeon HD | 20260915141500 +0000 | سونك بانك
@@ -65,11 +65,9 @@ TOP SAMPLES
 - mena-other | إم بي سي 2.eg | 20260915200000 +0000 | Zodiac
   desc: عدد جرائمه يبقى مجهولا و لكن كبير، فقد قام بقتل 5 ضحايا على الاقل في مدن Benicia و Vallejo و Napa و San Francisco ... ما بين شتنبر 1968 و اكتوبر 1969 ..في كتابه المخصص للقاتل، ينسب له Robert Graysmith تسع و اربعين جريمة.
 
-[premium_title_not_english] count=115
+[premium_title_not_english] count=112
 - provider-bein | BeIn Series HD 1.eg | 20260914090000 +0000 | 1883
 - provider-bein | BeIn Series HD 1.eg | 20260914150000 +0000 | 1883
-- provider-bein | بي إن دراما | 20260914050000 +0000 | أوراق النسيان
-  desc: يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب
 - provider-bein | بي إن دراما | 20260914060000 +0000 | درب الذهب
   desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
 - provider-bein | بي إن دراما | 20260914070000 +0000 | مزاد الشر
@@ -84,6 +82,8 @@ TOP SAMPLES
   desc: يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب
 - provider-bein | بي إن دراما | 20260914120000 +0000 | درب الذهب
   desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
+- provider-bein | بي إن دراما | 20260914130000 +0000 | مزاد الشر
+  desc: الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.
 
 [very_long_event_gt_6h] count=24
 - provider-alkass | 2023 Alkass 4.qa | 20260914162000 +0000 | Botolat Qatar Al Dawlya Lel Khayl Al Arabia Al Aseel
@@ -101,7 +101,7 @@ TOP SAMPLES
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
 - mena-qa | Qatar TV HD | 20260913214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2295
+[very_short_event_lt_5m] count=2292
 - provider-osn | OSNtv Kids | 20260914061400 +0000 | Barbie: Dream Besties
   desc: تعرف على أفضل الصديقات الحالمات: باربي، باربي، تيريزا، رينيه، ديزي، وكين! يشاركن أحلامهن، ويقدمن حيواناتهن الأليفة، ويقمن بجولة في مساحاتهم الحلمية الرائعة.
 - provider-osn | OSNtv Kids | 20260914061800 +0000 | Duplo Adventures
