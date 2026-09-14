@@ -1,0 +1,69 @@
+name: Abu Dhabi Media Provider Audit
+
+on:
+  workflow_run:
+    workflows: ["MENA Cloud EPG"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: adm-provider-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout audit code
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Read latest published ADM shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin mena-data
+          git show origin/mena-data:provider-adm.xml.gz > /tmp/provider-adm.xml.gz
+          test -s /tmp/provider-adm.xml.gz
+
+      - name: Run canonical ADM quality audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/adm-audit
+          python tools/adm_id_audit_policy.py \
+            --xml /tmp/provider-adm.xml.gz \
+            --json /tmp/adm-audit/adm-id-audit-policy.json \
+            --text /tmp/adm-audit/adm-id-audit-policy.txt
+          python tools/adm_final_regression.py \
+            --audit-json /tmp/adm-audit/adm-id-audit-policy.json \
+            --text /tmp/adm-audit/adm-final-regression.txt
+
+      - name: Publish ADM audit reports to mena-data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Cloud"
+          git config user.email "actions@users.noreply.github.com"
+          rm -rf /tmp/adm-publish
+          git worktree add /tmp/adm-publish origin/mena-data
+          cd /tmp/adm-publish
+          git checkout -B mena-data origin/mena-data
+          cp /tmp/adm-audit/adm-id-audit-policy.json .
+          cp /tmp/adm-audit/adm-id-audit-policy.txt .
+          cp /tmp/adm-audit/adm-final-regression.txt .
+          git add adm-id-audit-policy.json adm-id-audit-policy.txt adm-final-regression.txt
+          if git diff --cached --quiet; then
+            echo "ADM audit reports unchanged."
+            exit 0
+          fi
+          stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
+          git commit -m "ADM canonical provider audit ${stamp}"
+          git push origin mena-data
