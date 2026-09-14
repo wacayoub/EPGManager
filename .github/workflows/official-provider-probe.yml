@@ -22,7 +22,7 @@ jobs:
             targets: AlQuranAlKareemTV.sa@SD,SaudiThaqafiyaTV.sa@SD,KSASports1.sa@SD,AlraiTV.kw@SD
           - name: shahid
             channels: sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml
-            targets: AlArabiyaEnglish.sa@SD,AlArabiyaPrograms.ae,Wanasah.ae@SD,SaudiThaqafiyaTV.sa@SD,Tarab.sa@SD,SpacetoonArabic.ae@SD
+            targets: AlArabiyaEnglish.sa@SD,AlArabiyaPrograms.ae,Wanasah.ae@SD,AlEkhbariya.sa@SD,AlQuranAlKareemTV.sa@SD,AlSaudiyaAlaan.sa@SD,AlSunnahAlNabawiyahTV.sa@SD,SaudiThaqafiyaTV.sa@SD,Tarab.sa@SD,SpacetoonArabic.ae@SD
 
     steps:
       - name: Checkout iptv-org EPG
@@ -61,20 +61,38 @@ jobs:
           fi
           exit 0
 
-      - name: Report requested IDs
+      - name: Report requested IDs with timetable samples
         env:
           TARGETS: ${{ matrix.targets }}
           NAME: ${{ matrix.name }}
         shell: bash
         run: |
           python - <<'PY'
-          import os, xml.etree.ElementTree as ET
-          from collections import Counter
+          import os, re, xml.etree.ElementTree as ET
+          from collections import Counter, defaultdict
+          from datetime import datetime
+
+          def txt(p, tag):
+              n=p.find(tag)
+              return ((n.text or '').strip() if n is not None else '')
+          def dt(v):
+              m=re.match(r'^(\d{12}|\d{14})', v or '')
+              if not m: return None
+              s=m.group(1)
+              return datetime.strptime(s, '%Y%m%d%H%M%S' if len(s)==14 else '%Y%m%d%H%M')
+
           path = f"out-{os.environ['NAME']}.xml"
           root = ET.parse(path).getroot()
-          counts = Counter((p.get('channel') or '').strip() for p in root.findall('programme'))
+          rows=defaultdict(list)
+          for p in root.findall('programme'):
+              rows[(p.get('channel') or '').strip()].append(p)
           channels = {(c.get('id') or '').strip(): next(((n.text or '').strip() for n in c.findall('display-name') if (n.text or '').strip()), '') for c in root.findall('channel')}
-          print(f"OFFICIAL_PROVIDER_PROBE provider={os.environ['NAME']} channels={len(channels)} programmes={sum(counts.values())}")
+          print(f"OFFICIAL_PROVIDER_PROBE provider={os.environ['NAME']} channels={len(channels)} programmes={sum(len(v) for v in rows.values())}")
           for cid in [x.strip() for x in os.environ['TARGETS'].split(',') if x.strip()]:
-              print(f"TARGET {cid} present={cid in channels} events={counts.get(cid,0)} name={channels.get(cid,'')}")
+              ps=rows.get(cid, [])
+              print(f"TARGET {cid} present={cid in channels} events={len(ps)} name={channels.get(cid,'')}")
+              for p in ps[:3]:
+                  a,b=dt(p.get('start')),dt(p.get('stop'))
+                  dur=((b-a).total_seconds()/3600.0) if a and b and b>a else 0
+                  print(f"  EVENT start={p.get('start','')} stop={p.get('stop','')} dur_h={dur:.2f} title={txt(p,'title')} desc={txt(p,'desc')[:120]}")
           PY
