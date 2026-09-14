@@ -6,8 +6,8 @@
     "programmes": 1533,
     "counts": {
       "ALIAS_OK": 24,
-      "PASS": 25,
-      "KEEP_SOURCE": 21,
+      "PASS": 24,
+      "KEEP_SOURCE": 22,
       "REVIEW": 2
     }
   },
@@ -4665,10 +4665,10 @@
         }
       ],
       "missing_desc_events": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "verdict": "PASS",
+      "source_status": "KEEP_SOURCE",
+      "mapping_mode": "compat_only",
+      "auto_lock_safe": false,
+      "verdict": "KEEP_SOURCE",
       "issues": [],
       "warnings": [],
       "compat_canonical": null,
@@ -4733,9 +4733,9 @@
         }
       ],
       "missing_desc_events": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
+      "source_status": "KEEP_SOURCE",
+      "mapping_mode": "compat_only",
+      "auto_lock_safe": false,
       "verdict": "ALIAS_OK",
       "issues": [],
       "warnings": [],
