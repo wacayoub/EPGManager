@@ -1,0 +1,77 @@
+name: NatGeo Abu Dhabi Arabic Schedule Probe
+
+on:
+  push:
+    paths:
+      - ".github/workflows/natgeo-ae-live-schedule-probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe NatGeo AE Arabic listings
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import re, html as htmlmod, urllib.request
+          from datetime import date, timedelta
+
+          def get(url):
+              req=urllib.request.Request(url,headers={
+                  'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36',
+                  'Accept-Language':'ar,en;q=0.8',
+              })
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  return r.geturl(), r.status, r.read().decode('utf-8','replace')
+
+          def clean(s):
+              s=re.sub(r'<script.*?</script>|<style.*?</style>',' ',s,flags=re.I|re.S)
+              s=re.sub(r'<[^>]+>',' ',s)
+              s=htmlmod.unescape(s)
+              return re.sub(r'\s+',' ',s).strip()
+
+          start=date(2026,9,14)
+          good=0
+          for i in range(4):
+              d=start+timedelta(days=i)
+              token=d.strftime('%d%m%y')
+              urls=[
+                  f'https://www.natgeotv.com/ae/listings/ngc/{token}',
+                  f'http://www.natgeotv.com/ae/listings/ngc/{token}',
+                  f'https://www.natgeotv.com/me/listings/ngc/{token}',
+              ]
+              print('\n=== DATE',d.isoformat(),'===')
+              for url in urls:
+                  try:
+                      final,status,body=get(url)
+                  except Exception as e:
+                      print('ERROR',url,repr(e)); continue
+                  arabic=len(re.findall(r'[\u0600-\u06ff]',body))
+                  print('URL',url,'FINAL',final,'STATUS',status,'BYTES',len(body),'ARABIC',arabic)
+                  low=body.casefold()
+                  flags=[x for x in ['listings','schedule','program','programme','ngc'] if x in low]
+                  print('FLAGS',','.join(flags))
+                  text=clean(body)
+                  # print useful Arabic schedule-looking contexts around times
+                  contexts=[]
+                  for m in re.finditer(r'(?:(?:[0-1]?\d|2[0-3])[:.]\d\d\s*(?:am|pm)?|(?:[0-1]?\d)\s*(?:am|pm))', text, re.I):
+                      a=max(0,m.start()-80); b=min(len(text),m.end()+260)
+                      ctx=text[a:b]
+                      if re.search(r'[\u0600-\u06ff]',ctx): contexts.append(ctx)
+                  for c in list(dict.fromkeys(contexts))[:18]:
+                      print('CTX',c)
+                  if arabic>150 and len(contexts)>=5:
+                      good+=1
+                      print('ARABIC_SCHEDULE_CANDIDATE=YES')
+                      break
+          print('\nGOOD_DAYS=',good)
+          if good < 2:
+              raise SystemExit('No stable live Arabic NatGeo AE schedule found for >=2 days')
+          PY
