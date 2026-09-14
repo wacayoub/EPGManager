@@ -1,0 +1,62 @@
+name: Shadow vs Production All-ID Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/shadow-vs-production-audit.yml"
+      - "tools/compare_all_id_reports.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shadow-vs-production-audit
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Checkout current MENA diagnostics
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: current-data
+          fetch-depth: 0
+
+      - name: Compare production to latest shadow
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          python tools/compare_all_id_reports.py \
+            --before current-data/all-id-audit.json \
+            --after current-data/metadata-lock-shadow-all-id.json \
+            --json output/shadow-vs-production.json \
+            --text output/shadow-vs-production.txt
+          cat output/shadow-vs-production.txt
+
+      - name: Publish diagnostic only
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/shadow-vs-production.json .
+          cp ../output/shadow-vs-production.txt .
+          git config user.name "EPGManager Shadow Comparator"
+          git config user.email "actions@users.noreply.github.com"
+          git add shadow-vs-production.json shadow-vs-production.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Compare metadata-lock shadow to production"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
