@@ -1,14 +1,14 @@
 MENA GLOBAL EPG AUDIT
 channels_scanned=1050
-programmes_scanned=33783
+programmes_scanned=33808
 critical=0
-warnings=19876
+warnings=19797
 
 ISSUE COUNTS
-empty_description=16625
-very_short_event_lt_5m=2256
-arabic_provider_title_not_arabic=855
-premium_title_not_english=110
+empty_description=16550
+very_short_event_lt_5m=2251
+arabic_provider_title_not_arabic=857
+premium_title_not_english=109
 very_long_event_gt_6h=24
 hybrid_arabic_latin_description=4
 arabic_provider_description_not_arabic=2
@@ -21,7 +21,7 @@ TOP SAMPLES
 - provider-mbc | MBC Maser.sa | 20260916034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=855
+[arabic_provider_title_not_arabic] count=857
 - provider-alkass | 2023 Alkass 1.qa | 20260914060000 +0000 | The Council
   desc: برنامج رياضي على قنوات الكأس.
 - provider-alkass | 2023 Alkass 1.qa | 20260914080000 +0000 | Preview
@@ -43,7 +43,7 @@ TOP SAMPLES
 - provider-alkass | 2023 Alkass 1.qa | 20260914153000 +0000 | Golmania
   desc: برنامج رياضي على قنوات الكأس.
 
-[empty_description] count=16625
+[empty_description] count=16550
 - provider-bein | beIN Drama.eg | 20260914060000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260914070000 +0000 | Mazad El Shar
 - provider-bein | beIN Drama.eg | 20260914080000 +0000 | Sarab
@@ -65,7 +65,7 @@ TOP SAMPLES
 - mena-other | إم بي سي 2.eg | 20260915200000 +0000 | Zodiac
   desc: عدد جرائمه يبقى مجهولا و لكن كبير، فقد قام بقتل 5 ضحايا على الاقل في مدن Benicia و Vallejo و Napa و San Francisco ... ما بين شتنبر 1968 و اكتوبر 1969 ..في كتابه المخصص للقاتل، ينسب له Robert Graysmith تسع و اربعين جريمة.
 
-[premium_title_not_english] count=110
+[premium_title_not_english] count=109
 - provider-bein | BeIn Series HD 1.eg | 20260914090000 +0000 | 1883
 - provider-bein | BeIn Series HD 1.eg | 20260914150000 +0000 | 1883
 - provider-bein | بي إن دراما | 20260914060000 +0000 | درب الذهب
@@ -101,7 +101,7 @@ TOP SAMPLES
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
 - mena-qa | Qatar TV HD | 20260913214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2256
+[very_short_event_lt_5m] count=2251
 - provider-osn | OSNtv Kids | 20260914080500 +0000 | Duplo Adventures
   desc: قطار البخار المزدان بالأضواء هو وسيلة النقل المثلى بينما ننقل مجموعة من المغنيين بجانب مشاهد مغطاة بالثلوج وزينة الموسم.
 - provider-osn | OSNtv Kids | 20260914091500 +0000 | Lego Duplo Adventures S3
@@ -122,3 +122,6 @@ TOP SAMPLES
   desc: يجد ليو وبيب وهوبسي خريطة مذهلة تحمل وجهة غامضة. هل يمكنهم العثور عليها؟
 - provider-osn | OSNtv Kids | 20260914153800 +0000 | Tee and Mo
   desc: بيب، ليو و هوبسي يزورون راي في مكان مربي النحل ليتعلموا عن النحل!
+
+ALL-ID RELEASE GATE
+{"FAIL": 0, "NO_EPG": 431, "PASS": 148, "REVIEW": 471, "auto_lock_safe": 148, "channels": 1050, "missing_shards": [], "programmes": 33808}
