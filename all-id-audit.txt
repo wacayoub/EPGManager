@@ -1,5 +1,5 @@
 VIRTUAL EPGMANAGER - EXHAUSTIVE ALL-ID PROGRAMME AUDIT V3
-channels=597 programmes=27384 PASS=139 REVIEW=458 NO_EPG=0 FAIL=0 AUTO_LOCK_SAFE=139
+channels=597 programmes=27384 PASS=140 REVIEW=457 NO_EPG=0 FAIL=0 AUTO_LOCK_SAFE=140
 
 ISSUE COUNTS
 
@@ -32,7 +32,7 @@ SHARD SUMMARY
 - mena-sd: channels=1 programmes=48 PASS=0 REVIEW=1 NO_EPG=0 FAIL=0
 - mena-sy: channels=1 programmes=23 PASS=0 REVIEW=1 NO_EPG=0 FAIL=0
 - mena-mr: channels=0 programmes=0 PASS=0 REVIEW=0 NO_EPG=0 FAIL=0
-- mena-other: channels=245 programmes=13327 PASS=62 REVIEW=183 NO_EPG=0 FAIL=0
+- mena-other: channels=245 programmes=13327 PASS=63 REVIEW=182 NO_EPG=0 FAIL=0
 
 ID-BY-ID RESULTS
 
@@ -988,12 +988,12 @@ ID-BY-ID RESULTS
       • 20260914175000 +0000 | ذا لودليز
       • 20260914180000 +0000 | مغامرات ميرا وسيف
 
-0137. [REVIEW] Nat.Geo.Abu.Dhabi.HD.ae | Nat Geo Abu Dhabi HD | shard=provider-adm | score=84 | auto_lock=NO
-      events=67 coverage=50.0h span=50.0h gaps>2h=0 overlaps=0 invalid=0 empty_desc=67
-      language: title_AR=0% title_Latin=100% desc_AR=0% feed_country=ae
-      notes=EMPTY_DESC=67(100%), ARABIC_PROVIDER_TITLE_AR_LOW=0%
+0137. [REVIEW] Nat.Geo.Abu.Dhabi.HD.ae | Nat Geo Abu Dhabi HD | shard=provider-adm | score=92 | auto_lock=NO
+      events=67 coverage=50.0h span=50.0h gaps>2h=0 overlaps=0 invalid=0 empty_desc=10
+      language: title_AR=85% title_Latin=15% desc_AR=100% feed_country=ae
+      notes=EMPTY_DESC=10(15%)
       • 20260914170000 +0100 | Australia's Wild Woodlands
-      • 20260914180000 +0100 | Inside Melbourne Airport
+      • 20260914180000 +0100 | داخل مطار ملبورن
 
 0138. [REVIEW] Yas.TV.HD.ae | Yas TV HD | shard=provider-adm | score=68 | auto_lock=NO
       events=38 coverage=49.0h span=49.0h gaps>2h=0 overlaps=0 invalid=0 empty_desc=38
@@ -2983,10 +2983,10 @@ ID-BY-ID RESULTS
       • 20260914174000 +0000 | بيغ هيرو 6: ذا سيريز:ذا إمبيشنت بيشنت
       • 20260914180500 +0000 | ميراكيوليس: تشيبي:ذا روز
 
-0422. [REVIEW] Disney Junior.sa | Disney Junior.sa | shard=mena-other | score=92 | auto_lock=NO
+0422. [PASS] Disney Junior.sa | Disney Junior.sa | shard=mena-other | score=100 | auto_lock=YES
       events=138 coverage=34.4h span=34.4h gaps>2h=0 overlaps=0 invalid=0 empty_desc=0
       language: title_AR=100% title_Latin=0% desc_AR=100% feed_country=sa
-      notes=SHORT_LT_2M=2
+      notes=NONE
       • 20260914175000 +0000 | صوفيا الأولى: سحر ملكي:ويلكم تو تشارمزويل
       • 20260914181500 +0000 | سوبركيتيز:ذا سوبركيتيز آند ذا بيرد بوبّ
 
