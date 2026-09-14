@@ -23,8 +23,6 @@ from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
 
-# Audit trigger: MBC gap-boundary diagnostic v2.
-
 SITE_PRIORITY = {
     "shahid.mbc.net": 10,
     "rotana.net": 11,
@@ -43,23 +41,28 @@ SITE_PRIORITY = {
 }
 EXCLUDED_SITES = {"sat.tv"}
 
-# Verified 2026-09-14 by the parallel official duplicate-source health audits.
-# Overrides are exact-ID only. OSN rows had complete clean schedules where
-# Shahid had placeholder/all-day pollution. MBC Masr Drama is the targeted
-# Shahid -> ElCinema exception: the live comparison measured ~40h clean on
-# ElCinema versus a placeholder-polluted/short Shahid timetable. The downstream
-# MBC freeze gate separately quarantines weak/foreign aliases, including the new
-# sparse MBC1 Egypt feed, before receiver publication can complete.
+# Verified 2026-09-14 by the official duplicate-source health audits. The MBC
+# receiver strategy is pinned per canonical ID: Shahid where its timeline is
+# cleanest, OSN where Shahid was weaker/placeholder-polluted, and ElCinema only
+# for MBC Masr Drama. These exact pins are also checked by mbc_final_regression.
 CHANNEL_SITE_OVERRIDES = {
+    "Alarabiya.ae@SD": "shahid.mbc.net",
     "AlHadath.sa@SD": "osn.com",
     "AlQuranAlKareemTV.sa@SD": "osn.com",
+    "MBC1.ae@SD": "shahid.mbc.net",
+    "MBC2.ae@SD": "shahid.mbc.net",
     "MBC3.ae@SD": "osn.com",
+    "MBC4.ae@SD": "shahid.mbc.net",
     "MBC5.ae@SD": "osn.com",
+    "MBCAction.ae@SD": "shahid.mbc.net",
+    "MBCBollywood.ae@SD": "shahid.mbc.net",
     "MBCDrama.ae@SD": "osn.com",
     "MBCIraq.iq@SD": "osn.com",
     "MBCMasr.eg@SD": "osn.com",
     "MBCMasr2.eg@SD": "osn.com",
     "MBCMasrDrama.sa@SD": "elcinema.com",
+    "MBCMax.ae@SD": "shahid.mbc.net",
+    "MBCPersia.ae@SD": "shahid.mbc.net",
     "MBCPlusDrama.sa@SD": "osn.com",
 }
 
