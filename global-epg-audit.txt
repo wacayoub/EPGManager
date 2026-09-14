@@ -1,116 +1,112 @@
 MENA GLOBAL EPG AUDIT
-channels_scanned=968
-programmes_scanned=46598
+channels_scanned=600
+programmes_scanned=32968
 critical=0
-warnings=37510
+warnings=18597
 
 ISSUE COUNTS
-empty_description=34369
-very_short_event_lt_5m=2053
-arabic_provider_title_not_arabic=946
-premium_title_not_english=83
-very_long_event_gt_6h=51
-hybrid_arabic_latin_description=5
-arabic_provider_description_not_arabic=3
+empty_description=15467
+very_short_event_lt_5m=2302
+arabic_provider_title_not_arabic=684
+premium_title_not_english=116
+very_long_event_gt_6h=22
+hybrid_arabic_latin_description=4
+arabic_provider_description_not_arabic=2
 
 TOP SAMPLES
 
-[arabic_provider_description_not_arabic] count=3
-- provider-mbc | MBC Maser.sa | 20260914034500 +0000 | Shaqet Faisal
+[arabic_provider_description_not_arabic] count=2
+- provider-mbc | MBC Maser.sa | 20260915130000 +0000 | Shaqet Faisal
   desc: ‫‬
-- provider-mbc | MBC Maser.sa | 20260914130000 +0000 | Shaqet Faisal
-  desc: ‫‬
-- provider-mbc | MBC Maser.sa | 20260915034500 +0000 | Shaqet Faisal
+- provider-mbc | MBC Maser.sa | 20260916034500 +0000 | Shaqet Faisal
   desc: ‫‬
 
-[arabic_provider_title_not_arabic] count=946
-- provider-mbc | EN: MBC Iraq | 20260913221500 +0000 | Al Nowaylati
-- provider-mbc | EN: MBC Iraq | 20260913230500 +0000 | Ali Klay
-- provider-mbc | EN: MBC Iraq | 20260913235000 +0000 | Awdat Khalati
-- provider-mbc | EN: MBC Iraq | 20260914000000 +0000 | Awdat Khalati
-- provider-mbc | EN: MBC Iraq | 20260914004000 +0000 | Teebah
-- provider-mbc | EN: MBC Iraq | 20260914012000 +0000 | A'elati Tarbah
-- provider-mbc | EN: MBC Iraq | 20260914021000 +0000 | Al Nowaylati
-- provider-mbc | EN: MBC Iraq | 20260914025500 +0000 | Ali Klay
-- provider-mbc | EN: MBC Iraq | 20260914033900 +0000 | Al Motawahesh
-- provider-mbc | EN: MBC Iraq | 20260914041500 +0000 | Al A'ela
+[arabic_provider_title_not_arabic] count=684
+- provider-mbc | EN: MBC Iraq | 20260914044500 +0000 | Awdat Khalati
+- provider-mbc | EN: MBC Iraq | 20260914053300 +0000 | Teebah
+- provider-mbc | EN: MBC Iraq | 20260914060500 +0000 | A'elati Tarbah
+- provider-mbc | EN: MBC Iraq | 20260914065500 +0000 | TV guide is not available
+- provider-mbc | EN: MBC Iraq | 20260914070000 +0000 | Al Nowaylati
+- provider-mbc | EN: MBC Iraq | 20260914074800 +0000 | TV guide is not available
+- provider-mbc | EN: MBC Iraq | 20260914075500 +0000 | Ali Klay
+- provider-mbc | EN: MBC Iraq | 20260914085000 +0000 | TV guide is not available
+- provider-mbc | EN: MBC Iraq | 20260914085500 +0000 | Al Motawahesh
+- provider-mbc | EN: MBC Iraq | 20260914093000 +0000 | Al A'ela
 
-[empty_description] count=34369
-- provider-bein | beIN Drama.eg | 20260913220000 +0000 | El Qatel Allazy Ahabany
-- provider-bein | beIN Drama.eg | 20260913230000 +0000 | Sarmasik Zamani
-- provider-bein | beIN Drama.eg | 20260914000000 +0000 | Darb Al Thahab
-- provider-bein | beIN Drama.eg | 20260914010000 +0000 | Mazad El Shar
-- provider-bein | beIN Drama.eg | 20260914020000 +0000 | Sarab
-- provider-bein | beIN Drama.eg | 20260914030000 +0000 | Basmet Hada
-- provider-bein | beIN Drama.eg | 20260914040000 +0000 | El Qatel Allazy Ahabany
+[empty_description] count=15467
 - provider-bein | beIN Drama.eg | 20260914050000 +0000 | Sarmasik Zamani
 - provider-bein | beIN Drama.eg | 20260914060000 +0000 | Darb Al Thahab
 - provider-bein | beIN Drama.eg | 20260914070000 +0000 | Mazad El Shar
+- provider-bein | beIN Drama.eg | 20260914080000 +0000 | Sarab
+- provider-bein | beIN Drama.eg | 20260914090000 +0000 | Basmet Hada
+- provider-bein | beIN Drama.eg | 20260914100000 +0000 | El Qatel Allazy Ahabany
+- provider-bein | beIN Drama.eg | 20260914110000 +0000 | Sarmasik Zamani
+- provider-bein | beIN Drama.eg | 20260914120000 +0000 | Darb Al Thahab
+- provider-bein | beIN Drama.eg | 20260914130000 +0000 | Mazad El Shar
+- provider-bein | beIN Drama.eg | 20260914140000 +0000 | Sarab
 
-[hybrid_arabic_latin_description] count=5
-- mena-ae | Nick Jr HD | 20260914010000 +0000 | رابل آند كرو
-  desc: يتحول فريق Rubble & Crew إلى وضع التنظيف عندما يخرج البناء في مطعم الفشار الجديد في Cafe Carl عن السيطرة. // يتسبب حادث صابوني في حدوث فوضى زلقة في جميع أنحاء Builder Cove. هل يستطيع الجراء تنظيفه في الوقت المناسب للقفزة
-- mena-ae | Nick Jr HD | 20260914044500 +0000 | رابل آند كرو
-  desc: إنه اليوم الأول من المدرسة في Builder Cove... إذا كان بإمكان Rubble & Crew إنهاء المبنى في الوقت المحدد! / تحتاج الجراء إلى حل إنشائي لإنقاذ محاصيل المزارعة Zoe ومنع Crunchy القندس من أخذ كل الماء!
+[hybrid_arabic_latin_description] count=4
+- mena-ae | Nickelodeon HD | 20260915141500 +0000 | سونك بانك
+  desc: سونيك وطاقم رحلة الملاك ليسوا الوحيدين الذين يسعون وراء شظية اللا مكان - فقد استولى مجلس الفوضى على تقنية Shatterdrive الخاصة بناين وأرسل راستي روز وجيشًا من Eggforcers للاستيلاء عليها أيضًا!
 - mena-ae | Nick Jr HD | 20260914160000 +0000 | رابل آند كرو
   desc: يتحول فريق Rubble & Crew إلى وضع التنظيف عندما يخرج البناء في مطعم الفشار الجديد في Cafe Carl عن السيطرة. // يتسبب حادث صابوني في حدوث فوضى زلقة في جميع أنحاء Builder Cove. هل يستطيع الجراء تنظيفه في الوقت المناسب للقفزة
 - mena-ae | Nick Jr HD | 20260914191500 +0000 | رابل آند كرو
   desc: تطلب رئيسة البلدية جريتوي من شركة Rubble & Crew بناء شيء خاص لصديقها السيد دكي دو. ولكن سرعان ما تظهر مشكلة في البناء... // تعمل شركة Rubble & Crew على بناء خزان مياه الأمطار للمزارعة زوي قبل العاصفة، حتى تظهر مشكلة الدج
-- mena-ae | NickToons HD | 20260914010000 +0000 | سانجاي أند كرايغ
-  desc: ينقلب الأطفال على سانجاي عندما يحاصرهم جميعًا على طريق سريع متوسط في "Traffical Island"، ثم في "Partybot"، يجد سانجاي وكريج روبوتًا قديمًا ويصبحان حيوانات احتفالية.
+- mena-other | إم بي سي 2.eg | 20260915200000 +0000 | Zodiac
+  desc: عدد جرائمه يبقى مجهولا و لكن كبير، فقد قام بقتل 5 ضحايا على الاقل في مدن Benicia و Vallejo و Napa و San Francisco ... ما بين شتنبر 1968 و اكتوبر 1969 ..في كتابه المخصص للقاتل، ينسب له Robert Graysmith تسع و اربعين جريمة.
 
-[premium_title_not_english] count=83
-- provider-bein | BeIn Series HD 1.eg | 20260914030000 +0000 | 1883
+[premium_title_not_english] count=116
 - provider-bein | BeIn Series HD 1.eg | 20260914090000 +0000 | 1883
 - provider-bein | BeIn Series HD 1.eg | 20260914150000 +0000 | 1883
-- provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260914165500 +0000 | 9 - 1
-  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
-- provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260914173500 +0000 | 9 - 1
-  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
-- provider-bein | beIN SPORTS-boxoffice-bein.com.qa | 20260914181500 +0000 | 9 - 1
-  desc: برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.
-- provider-bein | بي إن دراما | 20260914000000 +0000 | درب الذهب
-  desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
-- provider-bein | بي إن دراما | 20260914010000 +0000 | مزاد الشر
-  desc: الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.
-- provider-bein | بي إن دراما | 20260914020000 +0000 | سراب
+- provider-bein | بي إن دراما | 20260914050000 +0000 | أوراق النسيان
   desc: يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب
-- provider-bein | بي إن دراما | 20260914030000 +0000 | بصمة حدا
+- provider-bein | بي إن دراما | 20260914060000 +0000 | درب الذهب
+  desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
+- provider-bein | بي إن دراما | 20260914070000 +0000 | مزاد الشر
+  desc: الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.
+- provider-bein | بي إن دراما | 20260914080000 +0000 | سراب
+  desc: يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب
+- provider-bein | بي إن دراما | 20260914090000 +0000 | بصمة حدا
+  desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
+- provider-bein | بي إن دراما | 20260914100000 +0000 | القاتل الذي أحبني
+  desc: الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.
+- provider-bein | بي إن دراما | 20260914110000 +0000 | أوراق النسيان
+  desc: يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب
+- provider-bein | بي إن دراما | 20260914120000 +0000 | درب الذهب
   desc: بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتش
 
-[very_long_event_gt_6h] count=51
-- provider-bein | bein SPORTS FTA DIGITAL.qa | 20260913212500 +0100 | Saudi Arabia vs Indonesia - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB07
+[very_long_event_gt_6h] count=22
+- provider-bein | beIN SPORTS.qa | 20260915193000 +0000 | Vietnam vs Kuwait - Football Men - Asian Games Aichi-Nagoya 2026 - FBL06
   desc: مباراة، موسم 2026.
-- provider-bein | bein SPORTS FTA DIGITAL.qa | 20260914212500 +0100 | Saudi Arabia vs Indonesia
-  desc: مباراة.
-- provider-mbc | MBC Mood | 20260913190300 +0000 | طرب
-  desc: موعدكم الليلي مع نجوم الطرب الأصيل، حيث الإحساس والسلطنة في مختارات من برامج MBC وحفلات موسم الرياض.
+- provider-bein | beINSPORTS2 | 20260916002000 +0000 | São Paulo (BRA) vs Boca Juniors (ARG) - Conmebol Sudamericana - De Final 2nd Leg
+  desc: مباراة، موسم 2026.
 - provider-adm | Yas TV HD | 20260914193000 +0100 | Camel Racing
 - provider-adm | Yas TV HD | 20260915210000 +0100 | Sharjah Arabian Horse Festival
 - provider-dmi | Dubai Racing | 20260914120000 +0000 | 14 SEPTEMBER 2026 RACE FROM RACING TV, UK
 - provider-dmi | Dubai Racing | 20260915013000 +0000 | Dubai International Arabian Horse Championship - 04/04/2026
 - provider-starz | en: StarzPlay Rugby - Live | 20260914183600 +0000 | WOA STARZPLAY RUGBY
-- mena-eg | EN: Masrah Masr Channel | 20260914124848 +0000 | TV guide is not available
 - mena-qa | Qatar TV HD | 20260913214500 +0100 | Soil
+- mena-qa | Qatar TV HD | 20260914214500 +0100 | Soil
+- mena-qa | Qatar TV HD | 20260915214500 +0100 | Soil
 
-[very_short_event_lt_5m] count=2053
-- provider-osn | OSNtv Kids | 20260913223300 +0000 | Adam Wa Mishmish
-  desc: ينطلقان آدم ومشمش في رحلة ممتعة عبر الحروف الأبجدية، ويتعرفان على حيوان أو شيء ممتع لكل حرف من الألف إلى الياء.
-- provider-osn | OSNtv Kids | 20260913223600 +0000 | Adam Wa Mishmish
-  desc: يعُدّان آدم ومشمش من واحد إلى عشرة بطريقة ممتعة ومليئة بالمرح لتعليم الأطفال الأرقام.
-- provider-osn | OSNtv Kids | 20260913223900 +0000 | Adam Wa Mishmish
-  desc: يستمعان آدم ومشمش لأصوات الآلات الموسيقية الجميلة، من الطبلة والناي إلى البيانو والكمان - في رحلة ممتعة عبر الألحان.
-- provider-osn | OSNtv Kids | 20260913224200 +0000 | Adam Wa Mishmish
-  desc: يغنيان آدم ومشمش ويتحركان مع أغنية ممتعة لتعليم الأطفال أجزاء الجسم من خلال الموسيقى والتكرار.
-- provider-osn | OSNtv Kids | 20260913224400 +0000 | Adam Wa Mishmish
-  desc: يقدمان آدم ومشمش مجموعة من الحيوانات في مغامرة موسيقية ممتعة تساعد الأطفال على تعلم أسمائهم من خلال الإيقاع والتكرار.
-- provider-osn | OSNtv Kids | 20260914011900 +0000 | Adam Wa Mishmish
-  desc: يتعلمان آدم ومشمش أهمية اللطف مع الآخرين واستخدام الكلمات المهذبة مثل "شكرًا" و"عفوًا" في المواقف اليومية.
-- provider-osn | OSNtv Kids | 20260914014600 +0000 | Adam Wa Mishmish
-  desc: يعُدّان آدم ومشمش من واحد إلى عشرة بطريقة ممتعة ومليئة بالمرح لتعليم الأطفال الأرقام.
-- provider-osn | OSNtv Kids | 20260914021300 +0000 | Adam Wa Mishmish
-  desc: يغنيان آدم ومشمش ويتحركان مع أغنية ممتعة لتعليم الأطفال أجزاء الجسم من خلال الموسيقى والتكرار.
-- provider-osn | OSNtv Kids | 20260914021500 +0000 | Barbie: Fashion Stories
-  desc: مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!
+[very_short_event_lt_5m] count=2302
 - provider-osn | OSNtv Kids | 20260914054600 +0000 | Barbie: Fashion Stories
   desc: مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!
+- provider-osn | OSNtv Kids | 20260914061400 +0000 | Barbie: Dream Besties
+  desc: تعرف على أفضل الصديقات الحالمات: باربي، باربي، تيريزا، رينيه، ديزي، وكين! يشاركن أحلامهن، ويقدمن حيواناتهن الأليفة، ويقمن بجولة في مساحاتهم الحلمية الرائعة.
+- provider-osn | OSNtv Kids | 20260914061800 +0000 | Duplo Adventures
+  desc: قطار البخار المزدان بالأضواء هو وسيلة النقل المثلى بينما ننقل مجموعة من المغنيين بجانب مشاهد مغطاة بالثلوج وزينة الموسم.
+- provider-osn | OSNtv Kids | 20260914080500 +0000 | Duplo Adventures
+  desc: قطار البخار المزدان بالأضواء هو وسيلة النقل المثلى بينما ننقل مجموعة من المغنيين بجانب مشاهد مغطاة بالثلوج وزينة الموسم.
+- provider-osn | OSNtv Kids | 20260914091500 +0000 | Duplo Adventures
+  desc: يريد كل من بن، دوغي، هوبسي، راي وكيتي لعب ألعاب مختلفة، عليهم أن يتوصلوا إلى حل وسط.
+- provider-osn | OSNtv Kids | 20260914095900 +0000 | Matchbox Adventure
+  desc: عندما يندلع حريق في المدينة، ينطلق المستكشف الشهير عالميًا، ميسون جيمس، إلى العمل! يقود شاحنة الإطفاء عبر المدينة للمساعدة في إخماد الحريق! هل سيتمكن من اجتياز المدينة وإنقاذ اليوم؟
+- provider-osn | OSNtv Kids | 20260914111400 +0000 | Adam Wa Mishmish
+  desc: يتعلمان آدم ومشمش عن كوكب الأرض والشمس والقمر، وكيف يتعاقب الليل والنهار من حولنا.
+- provider-osn | OSNtv Kids | 20260914111600 +0000 | Barbie: Fashion Stories
+  desc: مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!
+- provider-osn | OSNtv Kids | 20260914150100 +0000 | Barbie And Barbie On Set
+  desc: باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!
+- provider-osn | OSNtv Kids | 20260914152900 +0000 | Duplo Adventures
+  desc: يأخذ بيب وليو هوپسي والعديد من الحيوانات الأخرى التي تحتاج إلى الرعاية إلى مستشفى البيطري لتلقي العلاج وتحسن صحتهم.

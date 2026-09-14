@@ -1,208 +1,124 @@
 {
   "schema": 1,
   "scope": "all exclusive MENA country/provider shards",
-  "channels_scanned": 968,
-  "programmes_scanned": 46598,
+  "channels_scanned": 600,
+  "programmes_scanned": 32968,
   "issue_counts": {
-    "arabic_provider_description_not_arabic": 3,
-    "arabic_provider_title_not_arabic": 946,
-    "empty_description": 34369,
-    "hybrid_arabic_latin_description": 5,
-    "premium_title_not_english": 83,
-    "severity_warning": 37510,
-    "very_long_event_gt_6h": 51,
-    "very_short_event_lt_5m": 2053
+    "arabic_provider_description_not_arabic": 2,
+    "arabic_provider_title_not_arabic": 684,
+    "empty_description": 15467,
+    "hybrid_arabic_latin_description": 4,
+    "premium_title_not_english": 116,
+    "severity_warning": 18597,
+    "very_long_event_gt_6h": 22,
+    "very_short_event_lt_5m": 2302
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 785,
-      "hybrid_arabic_latin_description": 5
+      "empty_description": 414,
+      "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
-      "empty_description": 142,
-      "very_long_event_gt_6h": 1,
-      "very_short_event_lt_5m": 16
+      "very_short_event_lt_5m": 13
     },
     "mena-dz": {
-      "empty_description": 720,
-      "very_long_event_gt_6h": 6,
-      "very_short_event_lt_5m": 2
+      "empty_description": 30
     },
     "mena-eg": {
-      "empty_description": 3235,
-      "very_long_event_gt_6h": 1,
+      "empty_description": 1305,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 2575,
-      "very_short_event_lt_5m": 6
+      "empty_description": 590
     },
     "mena-jo": {
-      "empty_description": 505
+      "empty_description": 107,
+      "very_short_event_lt_5m": 6
     },
     "mena-kw": {
-      "empty_description": 863,
+      "empty_description": 243,
       "very_short_event_lt_5m": 1
     },
     "mena-lb": {
-      "empty_description": 770,
-      "very_long_event_gt_6h": 2
-    },
-    "mena-ly": {
-      "empty_description": 220
-    },
-    "mena-mr": {
-      "empty_description": 61,
+      "empty_description": 67,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 360
+      "empty_description": 367
     },
     "mena-other": {
-      "empty_description": 16422,
-      "very_long_event_gt_6h": 22,
-      "very_short_event_lt_5m": 1180
+      "empty_description": 7521,
+      "hybrid_arabic_latin_description": 1,
+      "very_long_event_gt_6h": 10,
+      "very_short_event_lt_5m": 1197
     },
     "mena-ps": {
-      "empty_description": 764
+      "empty_description": 35
     },
     "mena-qa": {
-      "empty_description": 1381,
+      "empty_description": 681,
       "very_long_event_gt_6h": 3,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1773,
-      "very_short_event_lt_5m": 427
+      "empty_description": 1563,
+      "very_short_event_lt_5m": 715
     },
     "mena-sd": {
-      "empty_description": 246
+      "empty_description": 47
     },
     "mena-sy": {
-      "empty_description": 142
+      "empty_description": 4
     },
     "mena-tn": {
-      "empty_description": 207,
-      "very_short_event_lt_5m": 2
+      "empty_description": 45
     },
     "mena-ye": {
-      "empty_description": 569,
-      "very_long_event_gt_6h": 6
+      "empty_description": 125
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 340,
-      "empty_description": 303,
+      "arabic_provider_title_not_arabic": 263,
+      "empty_description": 205,
       "very_long_event_gt_6h": 2,
-      "very_short_event_lt_5m": 12
+      "very_short_event_lt_5m": 23
     },
     "provider-art": {
-      "arabic_provider_title_not_arabic": 122,
-      "empty_description": 1001,
-      "very_short_event_lt_5m": 355
+      "arabic_provider_title_not_arabic": 9,
+      "empty_description": 709,
+      "very_short_event_lt_5m": 279
     },
     "provider-bein": {
-      "empty_description": 238,
-      "premium_title_not_english": 79,
+      "empty_description": 154,
+      "premium_title_not_english": 112,
       "very_long_event_gt_6h": 2
     },
     "provider-dmi": {
       "arabic_provider_title_not_arabic": 75,
-      "empty_description": 287,
-      "very_long_event_gt_6h": 2
-    },
-    "provider-mbc": {
-      "arabic_provider_description_not_arabic": 3,
-      "arabic_provider_title_not_arabic": 275,
-      "empty_description": 354,
-      "very_long_event_gt_6h": 1,
+      "empty_description": 282,
+      "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 1
     },
+    "provider-mbc": {
+      "arabic_provider_description_not_arabic": 2,
+      "arabic_provider_title_not_arabic": 266,
+      "empty_description": 383
+    },
     "provider-osn": {
-      "empty_description": 124,
+      "empty_description": 349,
       "premium_title_not_english": 4,
-      "very_short_event_lt_5m": 33
+      "very_short_event_lt_5m": 49
     },
     "provider-rotana": {
-      "arabic_provider_title_not_arabic": 134,
-      "empty_description": 148
+      "arabic_provider_title_not_arabic": 71,
+      "empty_description": 82
     },
     "provider-starz": {
-      "empty_description": 174,
+      "empty_description": 159,
       "very_long_event_gt_6h": 1
     }
   },
   "samples": {
     "empty_description": [
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260913220000 +0000",
-        "stop": "20260913230000 +0000",
-        "title": "El Qatel Allazy Ahabany",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260913230000 +0000",
-        "stop": "20260914000000 +0000",
-        "title": "Sarmasik Zamani",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260914000000 +0000",
-        "stop": "20260914010000 +0000",
-        "title": "Darb Al Thahab",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260914010000 +0000",
-        "stop": "20260914020000 +0000",
-        "title": "Mazad El Shar",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260914020000 +0000",
-        "stop": "20260914030000 +0000",
-        "title": "Sarab",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260914030000 +0000",
-        "stop": "20260914040000 +0000",
-        "title": "Basmet Hada",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260914040000 +0000",
-        "stop": "20260914050000 +0000",
-        "title": "El Qatel Allazy Ahabany",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
       {
         "shard": "provider-bein",
         "channel_id": "beIN Drama.eg",
@@ -367,76 +283,6 @@
         "shard": "provider-bein",
         "channel_id": "BeIn Series HD 1.eg",
         "channel": "BeIn Series HD 1.eg",
-        "start": "20260913220000 +0000",
-        "stop": "20260913230000 +0000",
-        "title": "Yellowjackets S2",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260913230000 +0000",
-        "stop": "20260914000000 +0000",
-        "title": "Outlander S3",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914000000 +0000",
-        "stop": "20260914010000 +0000",
-        "title": "Shark Tank",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914010000 +0000",
-        "stop": "20260914020000 +0000",
-        "title": "Matlock S2",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914020000 +0000",
-        "stop": "20260914030000 +0000",
-        "title": "The Good Doctor S1",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914030000 +0000",
-        "stop": "20260914040000 +0000",
-        "title": "1883",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914040000 +0000",
-        "stop": "20260914050000 +0000",
-        "title": "Yellowjackets S2",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
         "start": "20260914050000 +0000",
         "stop": "20260914060000 +0000",
         "title": "Outlander S3",
@@ -532,19 +378,149 @@
         "title": "The Good Doctor S1",
         "desc": "",
         "duration_minutes": 60.0
-      }
-    ],
-    "premium_title_not_english": [
+      },
       {
         "shard": "provider-bein",
         "channel_id": "BeIn Series HD 1.eg",
         "channel": "BeIn Series HD 1.eg",
-        "start": "20260914030000 +0000",
-        "stop": "20260914040000 +0000",
+        "start": "20260914150000 +0000",
+        "stop": "20260914160000 +0000",
         "title": "1883",
         "desc": "",
         "duration_minutes": 60.0
       },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914160000 +0000",
+        "stop": "20260914170000 +0000",
+        "title": "Yellowjackets S2",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914170000 +0000",
+        "stop": "20260914180000 +0000",
+        "title": "Outlander S3",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914180000 +0000",
+        "stop": "20260914190000 +0000",
+        "title": "All American S8",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BeIn Series HD 1.eg",
+        "channel": "BeIn Series HD 1.eg",
+        "start": "20260914190000 +0000",
+        "stop": "20260914200000 +0000",
+        "title": "Doc S2",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Series HD 2.eg",
+        "channel": "beIN Series HD 2.eg",
+        "start": "20260914050000 +0000",
+        "stop": "20260914060000 +0000",
+        "title": "Your Honor",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Series HD 2.eg",
+        "channel": "beIN Series HD 2.eg",
+        "start": "20260914060000 +0000",
+        "stop": "20260914063000 +0000",
+        "title": "Black Clover S3",
+        "desc": "",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Series HD 2.eg",
+        "channel": "beIN Series HD 2.eg",
+        "start": "20260914063000 +0000",
+        "stop": "20260914070000 +0000",
+        "title": "Black Clover S3",
+        "desc": "",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Series HD 2.eg",
+        "channel": "beIN Series HD 2.eg",
+        "start": "20260914070000 +0000",
+        "stop": "20260914080000 +0000",
+        "title": "NCIS: Sydney S3",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Series HD 2.eg",
+        "channel": "beIN Series HD 2.eg",
+        "start": "20260914080000 +0000",
+        "stop": "20260914090000 +0000",
+        "title": "King & Conqueror",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Series HD 2.eg",
+        "channel": "beIN Series HD 2.eg",
+        "start": "20260914090000 +0000",
+        "stop": "20260914100000 +0000",
+        "title": "Dexter S6",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Series HD 2.eg",
+        "channel": "beIN Series HD 2.eg",
+        "start": "20260914100000 +0000",
+        "stop": "20260914110000 +0000",
+        "title": "From",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Series HD 2.eg",
+        "channel": "beIN Series HD 2.eg",
+        "start": "20260914110000 +0000",
+        "stop": "20260914120000 +0000",
+        "title": "Your Honor",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beIN Series HD 2.eg",
+        "channel": "beIN Series HD 2.eg",
+        "start": "20260914120000 +0000",
+        "stop": "20260914123000 +0000",
+        "title": "Black Clover S3",
+        "desc": "",
+        "duration_minutes": 30.0
+      }
+    ],
+    "premium_title_not_english": [
       {
         "shard": "provider-bein",
         "channel_id": "BeIn Series HD 1.eg",
@@ -563,86 +539,6 @@
         "stop": "20260914160000 +0000",
         "title": "1883",
         "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN SPORTS-boxoffice-bein.com.qa",
-        "channel": "beIN SPORTS-boxoffice-bein.com.qa",
-        "start": "20260914165500 +0000",
-        "stop": "20260914173500 +0000",
-        "title": "9 - 1",
-        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
-        "duration_minutes": 40.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN SPORTS-boxoffice-bein.com.qa",
-        "channel": "beIN SPORTS-boxoffice-bein.com.qa",
-        "start": "20260914173500 +0000",
-        "stop": "20260914181500 +0000",
-        "title": "9 - 1",
-        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
-        "duration_minutes": 40.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN SPORTS-boxoffice-bein.com.qa",
-        "channel": "beIN SPORTS-boxoffice-bein.com.qa",
-        "start": "20260914181500 +0000",
-        "stop": "20260914185500 +0000",
-        "title": "9 - 1",
-        "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس.",
-        "duration_minutes": 40.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914000000 +0000",
-        "stop": "20260914010000 +0000",
-        "title": "درب الذهب",
-        "desc": "بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتشابك فيه مصائر أبنائهما بمرارة الماضي.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914010000 +0000",
-        "stop": "20260914020000 +0000",
-        "title": "مزاد الشر",
-        "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914020000 +0000",
-        "stop": "20260914030000 +0000",
-        "title": "سراب",
-        "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914030000 +0000",
-        "stop": "20260914040000 +0000",
-        "title": "بصمة حدا",
-        "desc": "بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتشابك فيه مصائر أبنائهما بمرارة الماضي.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914040000 +0000",
-        "stop": "20260914050000 +0000",
-        "title": "القاتل الذي أحبني",
-        "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.",
         "duration_minutes": 60.0
       },
       {
@@ -760,10 +656,10 @@
         "channel_id": "beINDrama1.qa@SD",
         "channel": "بي إن دراما",
         "start": "20260914160000 +0000",
-        "stop": "20260914164000 +0000",
-        "title": "مزاد الشر",
-        "desc": "دراما صعيدية تتحدث عن صراع بين كبار عائلتي رضوان الكالح وابنه أحمد من جانب وشقيق زوجته خلاف من الجانب الأخر، بعد أن كانوا أصدقاء في الماضي.",
-        "duration_minutes": 40.0
+        "stop": "20260914170000 +0000",
+        "title": "القاتل الذي أحبني",
+        "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.",
+        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
@@ -790,90 +686,130 @@
         "channel_id": "beINDrama1.qa@SD",
         "channel": "بي إن دراما",
         "start": "20260914190000 +0000",
-        "stop": "20260914200000 +0000",
-        "title": "القاتل الذي أحبني",
-        "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914200000 +0000",
-        "stop": "20260914210000 +0000",
-        "title": "أوراق النسيان",
-        "desc": "تتسبب جريمة قتل في نشر الرعب بين سكّان أحد أحياء الأثرياء والنخبة، فيما تبدأ زوجة تحظى بزواج مضطرب في كشف أسرار العالم المظلم لزوجها الذي تعتقد بتورطه في الأمر.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914210000 +0000",
-        "stop": "20260914220000 +0000",
-        "title": "درب الذهب",
-        "desc": "بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتشابك فيه مصائر أبنائهما بمرارة الماضي.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914220000 +0000",
-        "stop": "20260914230000 +0000",
+        "stop": "20260914194000 +0000",
         "title": "مزاد الشر",
         "desc": "دراما صعيدية تتحدث عن صراع بين كبار عائلتي رضوان الكالح وابنه أحمد من جانب وشقيق زوجته خلاف من الجانب الأخر، بعد أن كانوا أصدقاء في الماضي.",
+        "duration_minutes": 40.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914050000 +0000",
+        "stop": "20260914060000 +0000",
+        "title": "E24 | S1 طبلية",
+        "desc": "",
         "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
-        "start": "20260914230000 +0000",
-        "stop": "20260915000000 +0000",
-        "title": "سراب",
-        "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب.",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914060000 +0000",
+        "stop": "20260914070000 +0000",
+        "title": "E7 | S1 عزابي",
+        "desc": "",
         "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260913221500 +0000",
-        "stop": "20260913235900 +0000",
-        "title": "عدالة الجدة",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914070000 +0000",
+        "stop": "20260914080000 +0000",
+        "title": "سوبر موم S1",
         "desc": "",
-        "duration_minutes": 104.0
+        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260913235900 +0000",
-        "stop": "20260914014400 +0000",
-        "title": "زوار الليل: المصحة",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914090000 +0000",
+        "stop": "20260914100000 +0000",
+        "title": "E25 | S1 طبلية",
         "desc": "",
-        "duration_minutes": 105.0
+        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260914014400 +0000",
-        "stop": "20260914032900 +0000",
-        "title": "الجذور",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914100000 +0000",
+        "stop": "20260914110000 +0000",
+        "title": "E8 | S1 عزابي",
         "desc": "",
-        "duration_minutes": 105.0
+        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
-        "start": "20260914032900 +0000",
-        "stop": "20260914045900 +0000",
-        "title": "المنزل آمن!",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914110000 +0000",
+        "stop": "20260914120000 +0000",
+        "title": "سوبر موم S1",
         "desc": "",
-        "duration_minutes": 90.0
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914130000 +0000",
+        "stop": "20260914140000 +0000",
+        "title": "E25 | S1 طبلية",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914140000 +0000",
+        "stop": "20260914150000 +0000",
+        "title": "E8 | S1 عزابي",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914150000 +0000",
+        "stop": "20260914160000 +0000",
+        "title": "سوبر موم S1",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914170000 +0000",
+        "stop": "20260914180000 +0000",
+        "title": "E25 | S1 طبلية",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914180000 +0000",
+        "stop": "20260914190000 +0000",
+        "title": "E8 | S1 عزابي",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINGourmet.qa@SD",
+        "channel": "beINGOURMET",
+        "start": "20260914190000 +0000",
+        "stop": "20260914200000 +0000",
+        "title": "سوبر موم S1",
+        "desc": "",
+        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
@@ -934,38 +870,78 @@
         "title": "البلوغ",
         "desc": "",
         "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260914161500 +0000",
+        "stop": "20260914180000 +0000",
+        "title": "تشبث بإيمانك!",
+        "desc": "",
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260914180000 +0000",
+        "stop": "20260914194500 +0000",
+        "title": "الشيء ذو الريش",
+        "desc": "",
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260914194500 +0000",
+        "stop": "20260914224500 +0000",
+        "title": "الكونت دي مونت كريستو",
+        "desc": "",
+        "duration_minutes": 180.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260914224500 +0000",
+        "stop": "20260915001400 +0000",
+        "title": "جزيرة القرش",
+        "desc": "",
+        "duration_minutes": 89.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260915001400 +0000",
+        "stop": "20260915014400 +0000",
+        "title": "موجاي",
+        "desc": "",
+        "duration_minutes": 90.0
       }
     ],
     "very_long_event_gt_6h": [
       {
         "shard": "provider-bein",
-        "channel_id": "bein SPORTS FTA DIGITAL.qa",
-        "channel": "bein SPORTS FTA DIGITAL.qa",
-        "start": "20260913212500 +0100",
-        "stop": "20260914035000 +0100",
-        "title": "Saudi Arabia vs Indonesia - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB07",
+        "channel_id": "beIN SPORTS.qa",
+        "channel": "beIN SPORTS.qa",
+        "start": "20260915193000 +0000",
+        "stop": "20260916034500 +0000",
+        "title": "Vietnam vs Kuwait - Football Men - Asian Games Aichi-Nagoya 2026 - FBL06",
         "desc": "مباراة، موسم 2026.",
-        "duration_minutes": 385.0
+        "duration_minutes": 495.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "bein SPORTS FTA DIGITAL.qa",
-        "channel": "bein SPORTS FTA DIGITAL.qa",
-        "start": "20260914212500 +0100",
-        "stop": "20260915035000 +0100",
-        "title": "Saudi Arabia vs Indonesia",
-        "desc": "مباراة.",
-        "duration_minutes": 385.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "MBCMood.sa@HD",
-        "channel": "MBC Mood",
-        "start": "20260913190300 +0000",
-        "stop": "20260914030300 +0000",
-        "title": "طرب",
-        "desc": "موعدكم الليلي مع نجوم الطرب الأصيل، حيث الإحساس والسلطنة في مختارات من برامج MBC وحفلات موسم الرياض.",
-        "duration_minutes": 480.0
+        "channel_id": "beINSports2.qa@MENA",
+        "channel": "beINSPORTS2",
+        "start": "20260916002000 +0000",
+        "stop": "20260916070000 +0000",
+        "title": "São Paulo (BRA) vs Boca Juniors (ARG) - Conmebol Sudamericana - De Final 2nd Leg",
+        "desc": "مباراة، موسم 2026.",
+        "duration_minutes": 400.0
       },
       {
         "shard": "provider-adm",
@@ -1018,16 +994,6 @@
         "duration_minutes": 444.0
       },
       {
-        "shard": "mena-eg",
-        "channel_id": "EN:.Masrah.Masr.Channel.sa",
-        "channel": "EN: Masrah Masr Channel",
-        "start": "20260914124848 +0000",
-        "stop": "20260914235959 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 671.18
-      },
-      {
         "shard": "mena-qa",
         "channel_id": "Qatar.TV.HD.ae",
         "channel": "Qatar TV HD",
@@ -1058,26 +1024,6 @@
         "duration_minutes": 555.0
       },
       {
-        "shard": "mena-bh",
-        "channel_id": "BahrainTV.bh@SD",
-        "channel": "Bahrain TV",
-        "start": "20260913210000 +0000",
-        "stop": "20260914030100 +0000",
-        "title": "نشرة الأخبار",
-        "desc": "تقدم المذيعة آخر تحديثات الأخبار والتطورات المتعلقة بالمجتمع والسياسة والاقتصاد والمالية من جميع أنحاء العالم.",
-        "duration_minutes": 361.0
-      },
-      {
-        "shard": "mena-lb",
-        "channel_id": "MTV.lb@SD",
-        "channel": "MTV Lebanon",
-        "start": "20260913205900 +0000",
-        "stop": "20260914043000 +0000",
-        "title": "Midnight News",
-        "desc": "نشرة منتصف الليل",
-        "duration_minutes": 451.0
-      },
-      {
         "shard": "mena-lb",
         "channel_id": "MTV.lb@SD",
         "channel": "MTV Lebanon",
@@ -1088,244 +1034,14 @@
         "duration_minutes": 451.0
       },
       {
-        "shard": "mena-ye",
-        "channel_id": "Reef.AlYemen.ae",
-        "channel": "Reef AlYemen",
-        "start": "20260913230000 +0100",
-        "stop": "20260914080000 +0100",
-        "title": "News",
-        "desc": "",
-        "duration_minutes": 540.0
-      },
-      {
-        "shard": "mena-ye",
-        "channel_id": "Reef.AlYemen.ae",
-        "channel": "Reef AlYemen",
-        "start": "20260914230000 +0100",
-        "stop": "20260915080000 +0100",
-        "title": "News",
-        "desc": "",
-        "duration_minutes": 540.0
-      },
-      {
-        "shard": "mena-ye",
-        "channel_id": "Yemen.Shabab.ae",
-        "channel": "Yemen Shabab",
-        "start": "20260913230000 +0100",
-        "stop": "20260914080000 +0100",
-        "title": "News",
-        "desc": "",
-        "duration_minutes": 540.0
-      },
-      {
-        "shard": "mena-ye",
-        "channel_id": "Yemen.Shabab.ae",
-        "channel": "Yemen Shabab",
-        "start": "20260914230000 +0100",
-        "stop": "20260915080000 +0100",
-        "title": "News",
-        "desc": "",
-        "duration_minutes": 540.0
-      },
-      {
-        "shard": "mena-ye",
-        "channel_id": "Yemen.TV.ae",
-        "channel": "Yemen TV",
-        "start": "20260913230000 +0100",
-        "stop": "20260914080000 +0100",
-        "title": "News",
-        "desc": "",
-        "duration_minutes": 540.0
-      },
-      {
-        "shard": "mena-ye",
-        "channel_id": "Yemen.TV.ae",
-        "channel": "Yemen TV",
-        "start": "20260914230000 +0100",
-        "stop": "20260915080000 +0100",
-        "title": "News",
-        "desc": "",
-        "duration_minutes": 540.0
-      },
-      {
-        "shard": "mena-dz",
-        "channel_id": "Algérie.3.HD.ae",
-        "channel": "Algérie 3 HD",
-        "start": "20260913234600 +0100",
-        "stop": "20260914060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-dz",
-        "channel_id": "Algérie.3.HD.ae",
-        "channel": "Algérie 3 HD",
-        "start": "20260914234600 +0100",
-        "stop": "20260915060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-dz",
-        "channel_id": "Echorouk.News.ae",
-        "channel": "Echorouk News",
-        "start": "20260913234600 +0100",
-        "stop": "20260914060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-dz",
-        "channel_id": "Echorouk.News.ae",
-        "channel": "Echorouk News",
-        "start": "20260914234600 +0100",
-        "stop": "20260915060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-dz",
-        "channel_id": "Ennahar.TV.ae",
-        "channel": "Ennahar TV",
-        "start": "20260913234600 +0100",
-        "stop": "20260914060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-dz",
-        "channel_id": "Ennahar.TV.ae",
-        "channel": "Ennahar TV",
-        "start": "20260914234600 +0100",
-        "stop": "20260915060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-mr",
-        "channel_id": "Albarlemania.al.Mauritania.TV.ae",
-        "channel": "Albarlemania al Mauritania TV",
-        "start": "20260913234600 +0100",
-        "stop": "20260914060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-mr",
-        "channel_id": "Albarlemania.al.Mauritania.TV.ae",
-        "channel": "Albarlemania al Mauritania TV",
-        "start": "20260914234600 +0100",
-        "stop": "20260915060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Al.Anwar.TV.2.ae",
-        "channel": "Al Anwar TV 2",
-        "start": "20260913234600 +0100",
-        "stop": "20260914060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Al.Anwar.TV.2.ae",
-        "channel": "Al Anwar TV 2",
-        "start": "20260914234600 +0100",
-        "stop": "20260915060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Al.Janoub.ae",
-        "channel": "Al Janoub",
-        "start": "20260913234600 +0100",
-        "stop": "20260914060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Al.Janoub.ae",
-        "channel": "Al Janoub",
-        "start": "20260914234600 +0100",
-        "stop": "20260915060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Al.Masar.TV.HD.ae",
-        "channel": "Al Masar TV HD",
-        "start": "20260913234600 +0100",
-        "stop": "20260914060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Al.Masar.TV.HD.ae",
-        "channel": "Al Masar TV HD",
-        "start": "20260914234600 +0100",
-        "stop": "20260915060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Al.Mawqef.ae",
-        "channel": "Al Mawqef",
-        "start": "20260913234600 +0100",
-        "stop": "20260914060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Al.Mawqef.ae",
-        "channel": "Al Mawqef",
-        "start": "20260914234600 +0100",
-        "stop": "20260915060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Al.Rabiaa.HD.ae",
-        "channel": "Al Rabiaa HD",
-        "start": "20260913234600 +0100",
-        "stop": "20260914060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Al.Rabiaa.HD.ae",
-        "channel": "Al Rabiaa HD",
-        "start": "20260914234600 +0100",
-        "stop": "20260915060000 +0100",
-        "title": "TV Program",
-        "desc": "",
-        "duration_minutes": 374.0
+        "shard": "mena-lb",
+        "channel_id": "MTV.lb@SD",
+        "channel": "MTV Lebanon",
+        "start": "20260915205900 +0000",
+        "stop": "20260916043000 +0000",
+        "title": "Midnight News",
+        "desc": "نشرة منتصف الليل",
+        "duration_minutes": 451.0
       },
       {
         "shard": "mena-other",
@@ -1336,99 +1052,99 @@
         "title": "WOA STARZPLAY RUGBY",
         "desc": "‫‬.",
         "duration_minutes": 444.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "EN:.Aflam.sa",
+        "channel": "EN: Aflam",
+        "start": "20260914115957 +0000",
+        "stop": "20260914235959 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 720.03
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "EN:.Maraya.Channel.sa",
+        "channel": "EN: Maraya Channel",
+        "start": "20260914120714 +0000",
+        "stop": "20260914235959 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 712.75
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Esport 24.sa",
+        "channel": "Esport 24.sa",
+        "start": "20260914005900 +0000",
+        "stop": "20260914100300 +0000",
+        "title": "بلاست بريمير",
+        "desc": "",
+        "duration_minutes": 544.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Esport 24.sa",
+        "channel": "Esport 24.sa",
+        "start": "20260914100300 +0000",
+        "stop": "20260914171400 +0000",
+        "title": "كأس العالم للرياضات الإلكترونية",
+        "desc": "",
+        "duration_minutes": 431.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Esport 24.sa",
+        "channel": "Esport 24.sa",
+        "start": "20260914171400 +0000",
+        "stop": "20260915000000 +0000",
+        "title": "بلاست بريمير",
+        "desc": "",
+        "duration_minutes": 406.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Samira.HD.ae",
+        "channel": "Samira HD",
+        "start": "20260914000000 +0100",
+        "stop": "20260914080000 +0100",
+        "title": "Fatma",
+        "desc": "",
+        "duration_minutes": 480.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Samira.HD.ae",
+        "channel": "Samira HD",
+        "start": "20260915000000 +0100",
+        "stop": "20260915072000 +0100",
+        "title": "Fatma",
+        "desc": "",
+        "duration_minutes": 440.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Samira.HD.ae",
+        "channel": "Samira HD",
+        "start": "20260916000000 +0100",
+        "stop": "20260916080000 +0100",
+        "title": "Fatma",
+        "desc": "",
+        "duration_minutes": 480.0
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "دي إم سي.eg",
+        "channel": "دي إم سي.eg",
+        "start": "20260914160000 +0000",
+        "stop": "20260915011800 +0000",
+        "title": "حفل غنائي",
+        "desc": "",
+        "duration_minutes": 558.0
       }
     ],
     "very_short_event_lt_5m": [
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913223300 +0000",
-        "stop": "20260913223600 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "ينطلقان آدم ومشمش في رحلة ممتعة عبر الحروف الأبجدية، ويتعرفان على حيوان أو شيء ممتع لكل حرف من الألف إلى الياء.",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913223600 +0000",
-        "stop": "20260913223900 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يعُدّان آدم ومشمش من واحد إلى عشرة بطريقة ممتعة ومليئة بالمرح لتعليم الأطفال الأرقام.",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913223900 +0000",
-        "stop": "20260913224200 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يستمعان آدم ومشمش لأصوات الآلات الموسيقية الجميلة، من الطبلة والناي إلى البيانو والكمان - في رحلة ممتعة عبر الألحان.",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913224200 +0000",
-        "stop": "20260913224400 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يغنيان آدم ومشمش ويتحركان مع أغنية ممتعة لتعليم الأطفال أجزاء الجسم من خلال الموسيقى والتكرار.",
-        "duration_minutes": 2.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260913224400 +0000",
-        "stop": "20260913224600 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يقدمان آدم ومشمش مجموعة من الحيوانات في مغامرة موسيقية ممتعة تساعد الأطفال على تعلم أسمائهم من خلال الإيقاع والتكرار.",
-        "duration_minutes": 2.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914011900 +0000",
-        "stop": "20260914012100 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يتعلمان آدم ومشمش أهمية اللطف مع الآخرين واستخدام الكلمات المهذبة مثل \"شكرًا\" و\"عفوًا\" في المواقف اليومية.",
-        "duration_minutes": 2.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914014600 +0000",
-        "stop": "20260914014900 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يعُدّان آدم ومشمش من واحد إلى عشرة بطريقة ممتعة ومليئة بالمرح لتعليم الأطفال الأرقام.",
-        "duration_minutes": 3.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914021300 +0000",
-        "stop": "20260914021500 +0000",
-        "title": "Adam Wa Mishmish",
-        "desc": "يغنيان آدم ومشمش ويتحركان مع أغنية ممتعة لتعليم الأطفال أجزاء الجسم من خلال الموسيقى والتكرار.",
-        "duration_minutes": 2.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914021500 +0000",
-        "stop": "20260914021900 +0000",
-        "title": "Barbie: Fashion Stories",
-        "desc": "مصمم أزياء يساعد باربي وباربي في تصميم إطلالات جديدة رائعة!",
-        "duration_minutes": 4.0
-      },
       {
         "shard": "provider-osn",
         "channel_id": "OSNKids.ae@SD",
@@ -1661,186 +1377,176 @@
       },
       {
         "shard": "provider-osn",
-        "channel_id": "OSNtv Pop Up.sa",
-        "channel": "OSNtv Pop Up.sa",
-        "start": "20260913235700 +0000",
-        "stop": "20260914000000 +0000",
-        "title": "The Amazing World Of Gumball",
-        "desc": "ذا أميزينج وورلد أوف جامبول - عالم غامبول المُدهش",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915011900 +0000",
+        "stop": "20260915012100 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "ينطلقان آدم ومشمش في رحلة ممتعة عبر الحروف الأبجدية، ويتعرفان على حيوان أو شيء ممتع لكل حرف من الألف إلى الياء.",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915014600 +0000",
+        "stop": "20260915014900 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يستمعان آدم ومشمش لأصوات الآلات الموسيقية الجميلة، من الطبلة والناي إلى البيانو والكمان - في رحلة ممتعة عبر الألحان.",
         "duration_minutes": 3.0
       },
       {
-        "shard": "provider-mbc",
-        "channel_id": "MBC3.ae@SD",
-        "channel": "MBC3",
-        "start": "20260914000000 +0000",
-        "stop": "20260914000100 +0000",
-        "title": "سلاحف النينجا",
-        "desc": "",
-        "duration_minutes": 1.0
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915021300 +0000",
+        "stop": "20260915021500 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يقدمان آدم ومشمش مجموعة من الحيوانات في مغامرة موسيقية ممتعة تساعد الأطفال على تعلم أسمائهم من خلال الإيقاع والتكرار.",
+        "duration_minutes": 2.0
       },
       {
-        "shard": "provider-adm",
-        "channel_id": "Majid.sa",
-        "channel": "Majid.sa",
-        "start": "20260913225000 +0000",
-        "stop": "20260913225300 +0000",
-        "title": "غارفيلد أوريجينالز",
-        "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915021500 +0000",
+        "stop": "20260915021900 +0000",
+        "title": "Barbie: Fashion Stories",
+        "desc": "أقامت باربي وباربي حفل نوم في خزانة الأحلام لدمى كيوتي ريفيل!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915054600 +0000",
+        "stop": "20260915055000 +0000",
+        "title": "Barbie: Fashion Stories",
+        "desc": "أقامت باربي وباربي حفل نوم في خزانة الأحلام لدمى كيوتي ريفيل!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915061400 +0000",
+        "stop": "20260915061800 +0000",
+        "title": "Barbie: Dream Besties",
+        "desc": "باربي تتلقى دعوة لحضور عرض أزياء المكياج في الأحلام! الجميع متحمسون لباربي، باستثناء زيا - الصديقة اللدودة لفريق الأحلام.",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915061800 +0000",
+        "stop": "20260915062000 +0000",
+        "title": "Duplo Adventures",
+        "desc": "يستخدم ليو، بيب وصبي صغير خيالهم لبناء مكوك فضائي. بمساعدة بعض الأصدقاء من الحيوانات، يصبح المكوك حقيقة!",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915080500 +0000",
+        "stop": "20260915080800 +0000",
+        "title": "Duplo Adventures",
+        "desc": "يستخدم ليو، بيب وصبي صغير خيالهم لبناء مكوك فضائي. بمساعدة بعض الأصدقاء من الحيوانات، يصبح المكوك حقيقة!",
         "duration_minutes": 3.0
       },
       {
-        "shard": "provider-adm",
-        "channel_id": "Majid.sa",
-        "channel": "Majid.sa",
-        "start": "20260914092000 +0000",
-        "stop": "20260914092300 +0000",
-        "title": "غارفيلد أوريجينالز",
-        "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915091500 +0000",
+        "stop": "20260915091800 +0000",
+        "title": "Duplo Adventures",
+        "desc": "ماذا تريد أن تصبح عندما تكبر؟ الهالوين هو عطلة ممتعة حيث يمكن للأطفال ارتداء ملابس أي شخصية يرغبون فيها ويكونوا من يريدون أن يكونوا.",
         "duration_minutes": 3.0
       },
       {
-        "shard": "provider-adm",
-        "channel_id": "Majid.sa",
-        "channel": "Majid.sa",
-        "start": "20260914144500 +0000",
-        "stop": "20260914144800 +0000",
-        "title": "غارفيلد أوريجينالز",
-        "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915095900 +0000",
+        "stop": "20260915100300 +0000",
+        "title": "Matchbox Adventure",
+        "desc": "مايسون جيمس يجد نفسه في ازدحام مروري غير متوقع عندما يبتلع حفرة ضخمة الطريق وتبتلع شاحنة الآيس كريم!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915111400 +0000",
+        "stop": "20260915111600 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يعرّفان آدم ومشمش الأطفال على أيام الأسبوع وترتيبها باللغة العربية.",
+        "duration_minutes": 2.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915111600 +0000",
+        "stop": "20260915112000 +0000",
+        "title": "Barbie: Fashion Stories",
+        "desc": "أقامت باربي وباربي حفل نوم في خزانة الأحلام لدمى كيوتي ريفيل!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915150100 +0000",
+        "stop": "20260915150400 +0000",
+        "title": "Barbie And Barbie On Set",
+        "desc": "بعد لقاء مصمم رقصات العرض، تبتكر باربي حركات رقص ملفتة للنظر خاصة بها!",
         "duration_minutes": 3.0
       },
       {
-        "shard": "provider-adm",
-        "channel_id": "Majid.sa",
-        "channel": "Majid.sa",
-        "start": "20260914144800 +0000",
-        "stop": "20260914145100 +0000",
-        "title": "غارفيلد أوريجينالز",
-        "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915152900 +0000",
+        "stop": "20260915153200 +0000",
+        "title": "Duplo Adventures",
+        "desc": "ينقسم بيب وليو إلى فرق لبناء شيء ما، لكنهما يقرران توحيد جهودهما لجعل الأمر أكثر متعة.",
         "duration_minutes": 3.0
       },
       {
-        "shard": "provider-adm",
-        "channel_id": "Majid.sa",
-        "channel": "Majid.sa",
-        "start": "20260914145100 +0000",
-        "stop": "20260914145400 +0000",
-        "title": "غارفيلد أوريجينالز",
-        "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915153200 +0000",
+        "stop": "20260915153500 +0000",
+        "title": "Duplo Adventures",
+        "desc": "يجد ليو وبيب وهوبسي خريطة مذهلة تحمل وجهة غامضة. هل يمكنهم العثور عليها؟",
         "duration_minutes": 3.0
       },
       {
-        "shard": "provider-adm",
-        "channel_id": "Majid.sa",
-        "channel": "Majid.sa",
-        "start": "20260914191500 +0000",
-        "stop": "20260914191800 +0000",
-        "title": "غارفيلد أوريجينالز",
-        "desc": "ترقبوا مشاهدة غارفيلد أوريجينالز.",
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915153500 +0000",
+        "stop": "20260915153800 +0000",
+        "title": "Duplo Adventures",
+        "desc": "بيب، ليو و هوبسي يزورون راي في مكان مربي النحل ليتعلموا عن النحل!",
         "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915153800 +0000",
+        "stop": "20260915154000 +0000",
+        "title": "Duplo Adventures",
+        "desc": "بيب، ليو، وهوبسي متحمسون لقضاء اليوم مع صديقهم بن في حديقة الحياة البرية.",
+        "duration_minutes": 2.0
       }
     ],
     "arabic_provider_title_not_arabic": [
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260913221500 +0000",
-        "stop": "20260913230500 +0000",
-        "title": "Al Nowaylati",
-        "desc": "",
-        "duration_minutes": 50.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260913230500 +0000",
-        "stop": "20260913235000 +0000",
-        "title": "Ali Klay",
-        "desc": "",
-        "duration_minutes": 45.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260913235000 +0000",
-        "stop": "20260913235959 +0000",
-        "title": "Awdat Khalati",
-        "desc": "",
-        "duration_minutes": 9.98
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914000000 +0000",
-        "stop": "20260914004000 +0000",
-        "title": "Awdat Khalati",
-        "desc": "",
-        "duration_minutes": 40.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914004000 +0000",
-        "stop": "20260914012000 +0000",
-        "title": "Teebah",
-        "desc": "",
-        "duration_minutes": 40.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914012000 +0000",
-        "stop": "20260914021000 +0000",
-        "title": "A'elati Tarbah",
-        "desc": "",
-        "duration_minutes": 50.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914021000 +0000",
-        "stop": "20260914025500 +0000",
-        "title": "Al Nowaylati",
-        "desc": "",
-        "duration_minutes": 45.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914025500 +0000",
-        "stop": "20260914033900 +0000",
-        "title": "Ali Klay",
-        "desc": "",
-        "duration_minutes": 44.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914033900 +0000",
-        "stop": "20260914041500 +0000",
-        "title": "Al Motawahesh",
-        "desc": "",
-        "duration_minutes": 36.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "EN:.MBC1.Iraq.sa",
-        "channel": "EN: MBC Iraq",
-        "start": "20260914041500 +0000",
-        "stop": "20260914044500 +0000",
-        "title": "Al A'ela",
-        "desc": "",
-        "duration_minutes": 30.0
-      },
       {
         "shard": "provider-mbc",
         "channel_id": "EN:.MBC1.Iraq.sa",
@@ -2140,6 +1846,106 @@
         "title": "Fi Mithl Hatha Al Yawm",
         "desc": "",
         "duration_minutes": 48.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914212300 +0000",
+        "stop": "20260914213000 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 7.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914213000 +0000",
+        "stop": "20260914221500 +0000",
+        "title": "A'elati Tarbah",
+        "desc": "",
+        "duration_minutes": 45.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914221500 +0000",
+        "stop": "20260914230000 +0000",
+        "title": "Al Nowaylati",
+        "desc": "",
+        "duration_minutes": 45.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260914230000 +0000",
+        "stop": "20260915000000 +0000",
+        "title": "78th Emmy Awards",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260915020900 +0000",
+        "stop": "20260915030000 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 51.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260915030000 +0000",
+        "stop": "20260915033000 +0000",
+        "title": "Al Motawahesh",
+        "desc": "",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260915033000 +0000",
+        "stop": "20260915040000 +0000",
+        "title": "Al A'ela",
+        "desc": "",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260915040000 +0000",
+        "stop": "20260915044700 +0000",
+        "title": "Awdat Khalati",
+        "desc": "",
+        "duration_minutes": 47.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260915044700 +0000",
+        "stop": "20260915050000 +0000",
+        "title": "TV guide is not available",
+        "desc": "",
+        "duration_minutes": 13.0
+      },
+      {
+        "shard": "provider-mbc",
+        "channel_id": "EN:.MBC1.Iraq.sa",
+        "channel": "EN: MBC Iraq",
+        "start": "20260915050000 +0000",
+        "stop": "20260915054700 +0000",
+        "title": "Teebah",
+        "desc": "",
+        "duration_minutes": 47.0
       }
     ],
     "arabic_provider_description_not_arabic": [
@@ -2147,18 +1953,8 @@
         "shard": "provider-mbc",
         "channel_id": "MBC Maser.sa",
         "channel": "MBC Maser.sa",
-        "start": "20260914034500 +0000",
-        "stop": "20260914043000 +0000",
-        "title": "Shaqet Faisal",
-        "desc": "‫‬",
-        "duration_minutes": 45.0
-      },
-      {
-        "shard": "provider-mbc",
-        "channel_id": "MBC Maser.sa",
-        "channel": "MBC Maser.sa",
-        "start": "20260914130000 +0000",
-        "stop": "20260914140000 +0000",
+        "start": "20260915130000 +0000",
+        "stop": "20260915140000 +0000",
         "title": "Shaqet Faisal",
         "desc": "‫‬",
         "duration_minutes": 60.0
@@ -2167,8 +1963,8 @@
         "shard": "provider-mbc",
         "channel_id": "MBC Maser.sa",
         "channel": "MBC Maser.sa",
-        "start": "20260915034500 +0000",
-        "stop": "20260915043500 +0000",
+        "start": "20260916034500 +0000",
+        "stop": "20260916043500 +0000",
         "title": "Shaqet Faisal",
         "desc": "‫‬",
         "duration_minutes": 50.0
@@ -2177,22 +1973,12 @@
     "hybrid_arabic_latin_description": [
       {
         "shard": "mena-ae",
-        "channel_id": "NickJrArabia.ae@SD",
-        "channel": "Nick Jr HD",
-        "start": "20260914010000 +0000",
-        "stop": "20260914012500 +0000",
-        "title": "رابل آند كرو",
-        "desc": "يتحول فريق Rubble & Crew إلى وضع التنظيف عندما يخرج البناء في مطعم الفشار الجديد في Cafe Carl عن السيطرة. // يتسبب حادث صابوني في حدوث فوضى زلقة في جميع أنحاء Builder Cove. هل يستطيع الجراء تنظيفه في الوقت المناسب للقفزة الكبيرة لرئيس البلدية Greatway؟",
-        "duration_minutes": 25.0
-      },
-      {
-        "shard": "mena-ae",
-        "channel_id": "NickJrArabia.ae@SD",
-        "channel": "Nick Jr HD",
-        "start": "20260914044500 +0000",
-        "stop": "20260914051000 +0000",
-        "title": "رابل آند كرو",
-        "desc": "إنه اليوم الأول من المدرسة في Builder Cove... إذا كان بإمكان Rubble & Crew إنهاء المبنى في الوقت المحدد! / تحتاج الجراء إلى حل إنشائي لإنقاذ محاصيل المزارعة Zoe ومنع Crunchy القندس من أخذ كل الماء!",
+        "channel_id": "NickelodeonArabia.ae@SD",
+        "channel": "Nickelodeon HD",
+        "start": "20260915141500 +0000",
+        "stop": "20260915144000 +0000",
+        "title": "سونك بانك",
+        "desc": "سونيك وطاقم رحلة الملاك ليسوا الوحيدين الذين يسعون وراء شظية اللا مكان - فقد استولى مجلس الفوضى على تقنية Shatterdrive الخاصة بناين وأرسل راستي روز وجيشًا من Eggforcers للاستيلاء عليها أيضًا!",
         "duration_minutes": 25.0
       },
       {
@@ -2216,14 +2002,14 @@
         "duration_minutes": 25.0
       },
       {
-        "shard": "mena-ae",
-        "channel_id": "NicktoonsArabia.ae@SD",
-        "channel": "NickToons HD",
-        "start": "20260914010000 +0000",
-        "stop": "20260914012000 +0000",
-        "title": "سانجاي أند كرايغ",
-        "desc": "ينقلب الأطفال على سانجاي عندما يحاصرهم جميعًا على طريق سريع متوسط في \"Traffical Island\"، ثم في \"Partybot\"، يجد سانجاي وكريج روبوتًا قديمًا ويصبحان حيوانات احتفالية.",
-        "duration_minutes": 20.0
+        "shard": "mena-other",
+        "channel_id": "إم بي سي 2.eg",
+        "channel": "إم بي سي 2.eg",
+        "start": "20260915200000 +0000",
+        "stop": "20260915223000 +0000",
+        "title": "Zodiac",
+        "desc": "عدد جرائمه يبقى مجهولا و لكن كبير، فقد قام بقتل 5 ضحايا على الاقل في مدن Benicia و Vallejo و Napa و San Francisco ... ما بين شتنبر 1968 و اكتوبر 1969 ..في كتابه المخصص للقاتل، ينسب له Robert Graysmith تسع و اربعين جريمة.. و لكن القاتل اعترف فقط ب 37..اغلبية ضحايا زودياك كانوا من الشباب الذين يتواجدون في سياراتهم ليلا ف",
+        "duration_minutes": 150.0
       }
     ]
   }

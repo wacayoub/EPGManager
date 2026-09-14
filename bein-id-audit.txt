@@ -1,543 +1,279 @@
 VIRTUAL EPGMANAGER - EXHAUSTIVE beIN ID-BY-ID AUDIT
-channels=66 programmes=1143 PASS=13 ALIAS_OK=15 REVIEW=36 FAIL=2
+channels=34 programmes=923 PASS=11 ALIAS_OK=1 REVIEW=22 FAIL=0
 Every provider-bein XMLTV ID is tested exactly as a receiver mapping target.
 
 01. [ALIAS_OK] 4k_DIGITAL_Mono_AR.bein -> beIN4K.qa@SD
     name=4k_DIGITAL_Mono_AR | family=beIN 4K | kind=sports_ar
-    events=24 coverage=45.8h span=45.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=75% Latin=100% hybrid=75% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=LOW_TITLE_DIVERSITY=17%
-    • Live : rpool v Fulham - الدوري الإنجليزي الممتاز
+    events=20 coverage=38.8h span=38.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=75% Latin=100% hybrid=75% unique=20% | desc: AR=100% empty=0 same-as-title=0
+    notes=LOW_TITLE_DIVERSITY=20%
     • Sunderland v Arsenal - الدوري الإنجليزي الممتاز
+    • Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship
 
 02. [REVIEW] beIN Drama.eg
     name=beIN Drama.eg | family=beIN Drama | kind=drama
-    events=23 coverage=22.0h span=22.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=4% Latin=100% hybrid=4% unique=30% | desc: AR=0% empty=23 same-as-title=0
-    notes=EMPTY_DESC=23, AR_DESC_LOW=0%
-    • El Qatel Allazy Ahabany
+    events=16 coverage=15.0h span=15.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=6% Latin=100% hybrid=6% unique=44% | desc: AR=0% empty=16 same-as-title=0
+    notes=EMPTY_DESC=16, AR_DESC_LOW=0%
     • Sarmasik Zamani
+    • Darb Al Thahab
 
 03. [REVIEW] BeIn Series HD 1.eg
     name=BeIn Series HD 1.eg | family=beIN Series | kind=series
-    events=22 coverage=22.0h span=22.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=86% hybrid=0% unique=36% | desc: AR=0% empty=22 same-as-title=0
-    notes=EMPTY_DESC=22, AR_DESC_LOW=0%
-    • Yellowjackets S2
+    events=15 coverage=15.0h span=15.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=87% hybrid=0% unique=53% | desc: AR=0% empty=15 same-as-title=0
+    notes=EMPTY_DESC=15, AR_DESC_LOW=0%
     • Outlander S3
+    • Shark Tank
 
 04. [REVIEW] beIN Series HD 2.eg
     name=beIN Series HD 2.eg | family=beIN Series | kind=series
-    events=26 coverage=22.4h span=22.4h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=31% | desc: AR=0% empty=26 same-as-title=0
-    notes=EMPTY_DESC=26, AR_DESC_LOW=0%
-    • From
+    events=18 coverage=15.4h span=15.4h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=44% | desc: AR=0% empty=18 same-as-title=0
+    notes=EMPTY_DESC=18, AR_DESC_LOW=0%
     • Your Honor
+    • Black Clover S3
 
-05. [REVIEW] bein SPORTS FTA DIGITAL.qa
+05. [PASS] beIN SPORTS 1.qa
+    name=beIN SPORTS 1.qa | family=beIN Sports 1 AR/MENA | kind=sports_ar
+    events=38 coverage=46.7h span=46.7h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=87% Latin=100% hybrid=87% unique=58% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
+    • Philippines vs Uzbekistan - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL03
+    • Manchester United vs Manchester City - الدوري الإنجليزي الممتاز
+
+06. [PASS] beIN SPORTS EN 1.qa
+    name=beIN SPORTS EN 1.qa | family=beIN SPORTS EN 1.qa | kind=other
+    events=40 coverage=47.0h span=47.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=78% Latin=100% hybrid=78% unique=68% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
+    • Coventry City vs Brighton - الدوري الإنجليزي الممتاز
+    • Manchester United vs Manchester City - الدوري الإنجليزي الممتاز
+
+07. [PASS] beIN SPORTS EN 2.qa
+    name=beIN SPORTS EN 2.qa | family=beIN SPORTS EN 2.qa | kind=other
+    events=36 coverage=48.8h span=48.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=28% Latin=100% hybrid=28% unique=64% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
+    • China vs Philippines - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB06
+    • Chinese Taipei vs Vietnam - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01
+
+08. [REVIEW] bein SPORTS FTA DIGITAL.qa
     name=bein SPORTS FTA DIGITAL.qa | family=beIN Sports FTA | kind=sports_ar
-    events=5 coverage=22.3h span=39.9h gaps>2h=1 gap_total=17.6h overlaps=0 invalid=0 >6h=2 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=100% | desc: AR=100% empty=0 same-as-title=0
-    notes=LONG_6H=2, GAPS_GT_2H=1, TITLE_AR_ENRICHMENT_LOW=0%, NON_RECOMMENDED_ID
-    • Saudi Arabia vs Indonesia - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB07
-    • Saudi Arabia vs Indonesia
+    events=27 coverage=47.2h span=47.7h gaps>2h=0 gap_total=0.5h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=37% | desc: AR=100% empty=0 same-as-title=0
+    notes=TITLE_AR_ENRICHMENT_LOW=0%, NON_RECOMMENDED_ID
+    • Bahrain vs Kazakhstan - Basketball Men - Asian Games Aichi-Nagoya 2026 -BKB05
+    • China vs Philippines - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB06
 
-06. [REVIEW] beIN SPORTS MAX1 DIGITAL.qa
-    name=beIN SPORTS MAX1 DIGITAL.qa | family=beIN MAX 1 | kind=max
-    events=13 coverage=26.0h span=30.0h gaps>2h=0 gap_total=4.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=8% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, REPEATED_TITLE=100%, LOW_TITLE_DIVERSITY=8%
-    • beIN Sports MAX
-    • beIN Sports MAX
+09. [PASS] beIN SPORTS NEWS.qa
+    name=beIN SPORTS NEWS.qa | family=beIN Sports News | kind=news
+    events=81 coverage=47.0h span=47.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=32% Latin=100% hybrid=32% unique=27% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
+    • News Bulletin - نشرة الأخبار
+    • Al Hassila - 14/09/26
 
-07. [REVIEW] beIN SPORTS MAX2 DIGITAL.qa
-    name=beIN SPORTS MAX2 DIGITAL.qa | family=beIN MAX 2 | kind=max
-    events=4 coverage=8.0h span=8.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=25% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, DUPLICATE_TIMELINE_OTHER_FAMILY
-    • beIN Sports MAX
-    • beIN Sports MAX
-
-08. [REVIEW] beIN SPORTS MAX3 DIGITAL.qa
-    name=beIN SPORTS MAX3 DIGITAL.qa | family=beIN MAX 3 | kind=max
-    events=4 coverage=8.0h span=8.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=25% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, DUPLICATE_TIMELINE_OTHER_FAMILY
-    • beIN Sports MAX
-    • beIN Sports MAX
-
-09. [REVIEW] beIN SPORTS MAX4 DIGITAL.qa
-    name=beIN SPORTS MAX4 DIGITAL.qa | family=beIN MAX 4 | kind=max
-    events=4 coverage=8.0h span=8.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=25% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, DUPLICATE_TIMELINE_OTHER_FAMILY
-    • beIN Sports MAX
-    • beIN Sports MAX
-
-10. [REVIEW] beIN SPORTS MAX5 DIGITAL.qa
-    name=beIN SPORTS MAX5 DIGITAL.qa | family=beIN MAX 5 | kind=max
-    events=4 coverage=8.0h span=8.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=25% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, DUPLICATE_TIMELINE_OTHER_FAMILY
-    • beIN Sports MAX
-    • beIN Sports MAX
-
-11. [ALIAS_OK] beIN SPORTS XTRA 04 bein.com.qa -> beIN SPORTS XTRA 4.qa
-    name=beIN SPORTS XTRA 04 bein.com.qa | family=beIN XTRA 4 | kind=xtra
-    events=6 coverage=6.0h span=6.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, REPEATED_TITLE=100%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-12. [ALIAS_OK] beIN SPORTS XTRA 05 bein.com.qa -> beIN SPORTS XTRA 5.qa
-    name=beIN SPORTS XTRA 05 bein.com.qa | family=beIN XTRA 5 | kind=xtra
-    events=6 coverage=6.0h span=6.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, REPEATED_TITLE=100%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-13. [ALIAS_OK] beIN SPORTS XTRA 3.qa -> beINSPORTSXTRA3.qa
-    name=beIN SPORTS XTRA 3.qa | family=beIN XTRA 3 | kind=xtra
-    events=24 coverage=27.0h span=29.0h gaps>2h=0 gap_total=2.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=88%, REPEATED_TITLE=88%, LOW_TITLE_DIVERSITY=17%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-14. [REVIEW] beIN SPORTS XTRA 4.qa
-    name=beIN SPORTS XTRA 4.qa | family=beIN XTRA 4 | kind=xtra
-    events=6 coverage=6.0h span=6.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, REPEATED_TITLE=100%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-15. [REVIEW] beIN SPORTS XTRA 5.qa
-    name=beIN SPORTS XTRA 5.qa | family=beIN XTRA 5 | kind=xtra
-    events=6 coverage=6.0h span=6.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, REPEATED_TITLE=100%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-16. [REVIEW] beIN SPORTS XTRA 6.qa
-    name=beIN SPORTS XTRA 6.qa | family=beIN XTRA 6 | kind=xtra
-    events=6 coverage=6.0h span=6.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, REPEATED_TITLE=100%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-17. [REVIEW] beIN SPORTS XTRA 7.qa
-    name=beIN SPORTS XTRA 7.qa | family=beIN XTRA 7 | kind=xtra
-    events=6 coverage=6.0h span=6.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, REPEATED_TITLE=100%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-18. [REVIEW] beIN SPORTS XTRA 8.qa
-    name=beIN SPORTS XTRA 8.qa | family=beIN XTRA 8 | kind=xtra
-    events=4 coverage=8.0h span=8.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=25% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%
-    • beIN Sports XTRA
-    • beIN Sports XTRA
-
-19. [REVIEW] beIN SPORTS XTRA 9.qa
-    name=beIN SPORTS XTRA 9.qa | family=beIN XTRA 9 | kind=xtra
-    events=6 coverage=6.0h span=6.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, REPEATED_TITLE=100%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-20. [REVIEW] beIN SPORTS-boxoffice-bein.com.qa
+10. [REVIEW] beIN SPORTS-boxoffice-bein.com.qa
     name=beIN SPORTS-boxoffice-bein.com.qa | family=beIN Boxoffice | kind=boxoffice
-    events=22 coverage=29.7h span=31.2h gaps>2h=0 gap_total=1.5h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=86% hybrid=0% unique=64% | desc: AR=100% empty=0 same-as-title=0
-    notes=BOXOFFICE_NOT_SPORTS_LINEAR, NON_RECOMMENDED_ID
-    • The Twilight Saga: New Moon
-    • The Walking Dead
-
-21. [PASS] beIN SPORTS1 DIGITAL.qa
-    name=beIN SPORTS1 DIGITAL.qa | family=beIN Sports 1 AR/MENA | kind=sports_ar
-    events=35 coverage=51.6h span=51.6h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=89% Latin=100% hybrid=89% unique=69% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • Brest vs PSG - الدوري الفرنسي
-    • EPL Stories - قصص الدوري الإنجليزي الممتاز 2026/2027 EP.9
-
-22. [PASS] beIN SPORTS1 ENGLISH Digital.qa
-    name=beIN SPORTS1 ENGLISH Digital.qa | family=beIN Sports 1 EN | kind=sports_en
-    events=41 coverage=50.4h span=50.4h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=29% Latin=100% hybrid=29% unique=73% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • Brest vs PSG - الدوري الفرنسي
-    • Live : rpool vs Fulham
-
-23. [PASS] beIN SPORTS2 DIGITAL.qa
-    name=beIN SPORTS2 DIGITAL.qa | family=beIN Sports 2 AR/MENA | kind=sports_ar
-    events=15 coverage=28.0h span=29.0h gaps>2h=0 gap_total=1.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=100% hybrid=100% unique=60% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • Sheffield Utd vs Wolverhampton Wanderers - دوري البطولة الإنجليزية
-    • Aston Villa vs Nottingham Forest - الدوري الإنجليزي الممتاز
-
-24. [PASS] beIN SPORTS2 ENGLISH Digital.qa
-    name=beIN SPORTS2 ENGLISH Digital.qa | family=beIN Sports 2 EN | kind=sports_en
-    events=23 coverage=25.3h span=29.3h gaps>2h=0 gap_total=4.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=9% Latin=100% hybrid=9% unique=70% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • Sheffield Utd vs Wolverhampton Wanderers
-    • EN ATP Tour: This Week 2026 Ep.35
-
-25. [PASS] beIN SPORTS4 DIGITAL.qa
-    name=beIN SPORTS4 DIGITAL.qa | family=beIN Sports 4 AR/MENA | kind=sports_ar
-    events=17 coverage=26.6h span=30.4h gaps>2h=0 gap_total=3.8h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=82% Latin=100% hybrid=82% unique=59% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • Chelsea vs Hull City - الدوري الإنجليزي الممتاز
-    • Rc Lens, Goal Miners & Footballers
-
-26. [PASS] beIN SPORTS6 DIGITAL -d-1.qa
-    name=beIN SPORTS6 DIGITAL -d-1.qa | family=beIN Sports 6 AR/MENA | kind=sports_ar
-    events=5 coverage=7.5h span=7.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=40% Latin=100% hybrid=40% unique=100% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • Premier Padel - Paris Major - Match 2
-    • Lorient vs Toulouse - الدوري الفرنسي
-
-27. [FAIL] beIN SPORTS66 DIGITAL -01.qa
-    name=beIN SPORTS66 DIGITAL -01.qa | family=beIN Sports 66 AR/MENA | kind=sports_ar
-    events=14 coverage=25.5h span=30.7h gaps>2h=2 gap_total=5.2h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=14% Latin=100% hybrid=14% unique=29% | desc: AR=100% empty=0 same-as-title=0
-    notes=SUSPICIOUS_SPORTS66_ID, GAPS_GT_2H=2, TITLE_AR_ENRICHMENT_LOW=14%, NON_RECOMMENDED_ID
-    • Premier Padel - Paris Major
-    • Premier Padel - Paris Major
-
-28. [ALIAS_OK] beIN SPORTS7 DIGITAL.qa -> beINSports7.qa@MENA
-    name=beIN SPORTS7 DIGITAL.qa | family=beIN Sports 7 AR/MENA | kind=sports_ar
-    events=12 coverage=27.1h span=31.4h gaps>2h=2 gap_total=4.2h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=67% | desc: AR=100% empty=0 same-as-title=0
-    notes=GAPS_GT_2H=2, TITLE_AR_ENRICHMENT_LOW=0%
-    • Day 15 - Arthur Ashe Court - Tennis US Open 2026 - Men's Singles Final
-    • Sochaux vs Nantes - French Ligue 2
-
-29. [REVIEW] bein.com-05.qa
-    name=bein.com-05.qa | family=Opaque beIN.com alias | kind=opaque
-    events=29 coverage=27.0h span=29.0h gaps>2h=0 gap_total=2.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=10% | desc: AR=0% empty=29 same-as-title=0
-    notes=EMPTY_DESC=29, GENERIC_GUIDE=93%, REPEATED_TITLE=93%, LOW_TITLE_DIVERSITY=10%, OPAQUE_BEIN_COM_ID, NON_RECOMMENDED_ID
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026
-
-30. [REVIEW] bein.com-06.qa
-    name=bein.com-06.qa | family=Opaque beIN.com alias | kind=opaque
-    events=31 coverage=27.0h span=29.0h gaps>2h=0 gap_total=2.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=10% | desc: AR=0% empty=31 same-as-title=0
-    notes=EMPTY_DESC=31, GENERIC_GUIDE=94%, REPEATED_TITLE=94%, LOW_TITLE_DIVERSITY=10%, OPAQUE_BEIN_COM_ID, NON_RECOMMENDED_ID
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-31. [REVIEW] bein.com-07.qa
-    name=bein.com-07.qa | family=Opaque beIN.com alias | kind=opaque
-    events=30 coverage=27.0h span=29.0h gaps>2h=0 gap_total=2.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=10% | desc: AR=0% empty=30 same-as-title=0
-    notes=EMPTY_DESC=30, GENERIC_GUIDE=93%, REPEATED_TITLE=93%, LOW_TITLE_DIVERSITY=10%, OPAQUE_BEIN_COM_ID, NON_RECOMMENDED_ID
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-32. [REVIEW] bein.com-08.qa
-    name=bein.com-08.qa | family=Opaque beIN.com alias | kind=opaque
-    events=26 coverage=27.0h span=29.0h gaps>2h=0 gap_total=2.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=8% | desc: AR=0% empty=26 same-as-title=0
-    notes=EMPTY_DESC=26, GENERIC_GUIDE=96%, REPEATED_TITLE=96%, LOW_TITLE_DIVERSITY=8%, OPAQUE_BEIN_COM_ID, NON_RECOMMENDED_ID
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026
-
-33. [PASS] beIN.Sports.HD.ae
-    name=beIN Sports HD | family=beIN Sports HD | kind=other
-    events=16 coverage=52.2h span=52.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=62% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • Day 3 - Morning Session - World Athletics U20 Championships - Oregon 26
-    • T100 Triathlon Vancouver
-
-34. [REVIEW] beIN.Sports.News.ae
-    name=beIN Sports News | family=beIN Sports News | kind=news
-    events=38 coverage=48.5h span=49.0h gaps>2h=0 gap_total=0.5h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=13% Latin=100% hybrid=13% unique=47% | desc: AR=100% empty=0 same-as-title=0
-    notes=TITLE_AR_ENRICHMENT_LOW=13%, PLACEHOLDER=2
-    • 24/7
-    • Football Match
-
-35. [REVIEW] beIN4K.qa@SD
-    name=beIN 4K | family=beIN 4K | kind=sports_ar
-    events=24 coverage=45.8h span=45.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=75% Latin=100% hybrid=75% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=LOW_TITLE_DIVERSITY=17%
-    • Live : rpool v Fulham - الدوري الإنجليزي الممتاز
-    • Sunderland v Arsenal - الدوري الإنجليزي الممتاز
-
-36. [PASS] beIN_SPORTS3_DIGITAL_Mono_EN.bein
-    name=beIN_SPORTS3_DIGITAL_Mono_EN | family=beIN Sports 3 EN | kind=sports_en
-    events=12 coverage=27.4h span=27.4h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=75% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • Real Sociedad vs Atletico Madrid
-    • Real Madrid vs Rayo Vallecono
-
-37. [REVIEW] beIN_SPORTS4_DIGITAL_Mono_EN.bein
-    name=beIN_SPORTS4_DIGITAL_Mono_EN | family=beIN Sports 4 EN | kind=sports_en
-    events=17 coverage=29.6h span=51.2h gaps>2h=1 gap_total=21.6h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=18% Latin=100% hybrid=18% unique=65% | desc: AR=100% empty=0 same-as-title=0
-    notes=GAPS_GT_2H=1
-    • Al Qadsiah (KSA) vs Al Wasl (UAE)
-    • الدوري الفرنسي Show
-
-38. [PASS] beIN_SPORTS5_DIGITAL_Mono_EN.bein
-    name=beIN_SPORTS5_DIGITAL_Mono_EN | family=beIN Sports 5 EN | kind=sports_en
-    events=22 coverage=50.2h span=50.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=4% Latin=100% hybrid=4% unique=73% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • Villarreal vs Real Betis
-    • Auxerre vs Nice
-
-39. [FAIL] beIN_SPORTS66_DIGITAL_Mono-01_EN.bein
-    name=beIN_SPORTS66_DIGITAL_Mono-01_EN | family=beIN Sports 66 EN | kind=sports_en
-    events=4 coverage=10.6h span=51.0h gaps>2h=2 gap_total=40.4h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=75% | desc: AR=100% empty=0 same-as-title=0
-    notes=SUSPICIOUS_SPORTS66_ID, GAPS_GT_2H=2, NON_RECOMMENDED_ID
-    • Sprint Race
-    • Trofeo Pirelli Race 1
-
-40. [REVIEW] beIN_SPORTS7_DIGITAL_Mono_EN.bein
-    name=beIN_SPORTS7_DIGITAL_Mono_EN | family=beIN Sports 7 EN | kind=sports_en
-    events=11 coverage=31.0h span=52.0h gaps>2h=1 gap_total=21.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    events=28 coverage=47.0h span=48.0h gaps>2h=0 gap_total=1.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=0% Latin=100% hybrid=0% unique=46% | desc: AR=100% empty=0 same-as-title=0
+    notes=BOXOFFICE_NOT_SPORTS_LINEAR, NON_RECOMMENDED_ID
+    • Operation Fortune: Ruse De Guerre
+    • Enhanced
+
+11. [REVIEW] beIN SPORTS.qa
+    name=beIN SPORTS.qa | family=beIN SPORTS.qa | kind=other
+    events=23 coverage=47.9h span=47.9h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=1 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=61% | desc: AR=100% empty=0 same-as-title=0
+    notes=LONG_6H=1
+    • China vs Philippines - Basketball Men - Asian Games Aichi-Nagoya 2026 - BKB06
+    • Chinese Taipei vs Vietnam - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL01
+
+12. [REVIEW] beIN4K.qa@SD
+    name=beIN 4K | family=beIN 4K | kind=sports_ar
+    events=20 coverage=38.8h span=38.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=75% Latin=100% hybrid=75% unique=20% | desc: AR=100% empty=0 same-as-title=0
+    notes=LOW_TITLE_DIVERSITY=20%
+    • Sunderland v Arsenal - الدوري الإنجليزي الممتاز
+    • Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship
+
+13. [REVIEW] beIN_SPORTS3_DIGITAL_Mono_EN.bein
+    name=beIN_SPORTS3_DIGITAL_Mono_EN | family=beIN Sports 3 EN | kind=sports_en
+    events=13 coverage=29.0h span=51.0h gaps>2h=1 gap_total=22.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=62% | desc: AR=100% empty=0 same-as-title=0
+    notes=GAPS_GT_2H=1
+    • Bournemouth vs Brentford
+    • Levante vs Barcelona
+
+14. [REVIEW] beIN_SPORTS4_DIGITAL_Mono_EN.bein
+    name=beIN_SPORTS4_DIGITAL_Mono_EN | family=beIN Sports 4 EN | kind=sports_en
+    events=15 coverage=28.2h span=49.8h gaps>2h=1 gap_total=21.6h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=13% Latin=100% hybrid=13% unique=67% | desc: AR=100% empty=0 same-as-title=0
+    notes=GAPS_GT_2H=1
+    • Portugal vs Costa Rica
+    • Levante vs Barcelona
+
+15. [PASS] beIN_SPORTS5_DIGITAL_Mono_EN.bein
+    name=beIN_SPORTS5_DIGITAL_Mono_EN | family=beIN Sports 5 EN | kind=sports_en
+    events=19 coverage=44.0h span=44.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=5% Latin=100% hybrid=5% unique=84% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
+    • New Zealand vs USA
+    • Korea Republic vs Ecuador
+
+16. [REVIEW] beIN_SPORTS7_DIGITAL_Mono_EN.bein
+    name=beIN_SPORTS7_DIGITAL_Mono_EN | family=beIN Sports 7 EN | kind=sports_en
+    events=12 coverage=31.2h span=52.2h gaps>2h=1 gap_total=21.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=58% | desc: AR=100% empty=0 same-as-title=0
     notes=GAPS_GT_2H=1
     • Day 15
-    • China vs Spain
+    • Aryna Sabalenka vs Elena Rybakina
 
-41. [ALIAS_OK] beIN_SPORTS_XTRA_06_bein.com_EN.bein -> beIN SPORTS XTRA 6.qa
-    name=beIN_SPORTS_XTRA_06_bein.com_EN | family=beIN XTRA 6 | kind=xtra
-    events=6 coverage=6.0h span=6.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, REPEATED_TITLE=100%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-42. [ALIAS_OK] beIN_SPORTS_XTRA_07_bein.com_EN.bein -> beIN SPORTS XTRA 7.qa
-    name=beIN_SPORTS_XTRA_07_bein.com_EN | family=beIN XTRA 7 | kind=xtra
-    events=6 coverage=6.0h span=6.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, REPEATED_TITLE=100%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-43. [ALIAS_OK] beIN_SPORTS_XTRA_08_Bein.com_EN.bein -> beIN SPORTS XTRA 8.qa
-    name=beIN_SPORTS_XTRA_08_Bein.com_EN | family=beIN XTRA 8 | kind=xtra
-    events=4 coverage=8.0h span=8.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=25% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%
-    • beIN Sports XTRA
-    • beIN Sports XTRA
-
-44. [ALIAS_OK] beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein -> beIN SPORTS XTRA 9.qa
-    name=beIN_SPORTS_XTRA_Digital_09_Bein.com_EN | family=beIN_SPORTS_XTRA_Digital_09_Bein.com_EN | kind=other
-    events=6 coverage=6.0h span=6.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, REPEATED_TITLE=100%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-45. [REVIEW] beINDrama1.qa@SD
+17. [REVIEW] beINDrama1.qa@SD
     name=بي إن دراما | family=beIN Drama | kind=drama
-    events=25 coverage=24.0h span=24.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=4% hybrid=4% unique=28% | desc: AR=100% empty=1 same-as-title=0
+    events=16 coverage=15.0h span=15.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=100% Latin=6% hybrid=6% unique=44% | desc: AR=100% empty=1 same-as-title=0
     notes=EMPTY_DESC=1
+    • أوراق النسيان
     • درب الذهب
-    • مزاد الشر
 
-46. [REVIEW] beINMovies1Premiere.qa@SD
+18. [REVIEW] beINGourmet.qa@SD
+    name=beINGOURMET | family=beINGOURMET | kind=other
+    events=15 coverage=15.0h span=15.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=100% Latin=73% hybrid=73% unique=47% | desc: AR=0% empty=15 same-as-title=0
+    notes=EMPTY_DESC=15
+    • E24 | S1 طبلية
+    • E7 | S1 عزابي
+
+19. [REVIEW] beINMovies1Premiere.qa@SD
     name=beINMOVIES1 | family=beIN Movies | kind=movies
-    events=12 coverage=21.5h span=21.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=0% hybrid=0% unique=92% | desc: AR=0% empty=12 same-as-title=0
-    notes=EMPTY_DESC=12, AR_DESC_LOW=0%
-    • عدالة الجدة
-    • زوار الليل: المصحة
+    events=20 coverage=38.5h span=38.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=100% Latin=0% hybrid=0% unique=75% | desc: AR=0% empty=20 same-as-title=0
+    notes=EMPTY_DESC=20, AR_DESC_LOW=0%
+    • هاي غراوند
+    • قوة الطبيعة: الجفاف
 
-47. [REVIEW] beINMovies2Action.qa@SD
+20. [REVIEW] beINMovies2Action.qa@SD
     name=beINMOVIES2 | family=beIN Movies | kind=movies
-    events=13 coverage=23.5h span=23.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=0% hybrid=0% unique=92% | desc: AR=0% empty=13 same-as-title=0
-    notes=EMPTY_DESC=13, AR_DESC_LOW=0%
-    • ستار تريك بيوند
-    • استحواذ
+    events=22 coverage=40.8h span=40.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=100% Latin=0% hybrid=0% unique=73% | desc: AR=0% empty=22 same-as-title=0
+    notes=EMPTY_DESC=22, AR_DESC_LOW=0%
+    • رجال البدلة السوداء 3
+    • رجال بملابس السوداء: دوليين
 
-48. [REVIEW] beINMovies3Drama.qa@SD
+21. [REVIEW] beINMovies3Drama.qa@SD
     name=beINMOVIES3 | family=beIN Movies | kind=movies
-    events=12 coverage=22.2h span=22.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=8% hybrid=8% unique=92% | desc: AR=0% empty=12 same-as-title=0
-    notes=EMPTY_DESC=12, AR_DESC_LOW=0%
-    • Men, Women & Children
-    • أمة الحيتان
+    events=21 coverage=39.2h span=39.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=100% Latin=14% hybrid=14% unique=76% | desc: AR=0% empty=21 same-as-title=0
+    notes=EMPTY_DESC=21, AR_DESC_LOW=0%
+    • إجازة تطوعية
+    • عائلة آدامز
 
-49. [REVIEW] beINMovies4Family.qa@SD
+22. [REVIEW] beINMovies4Family.qa@SD
     name=beINMOVIES4 | family=beIN Movies | kind=movies
-    events=13 coverage=20.8h span=20.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=0% hybrid=0% unique=69% | desc: AR=0% empty=13 same-as-title=0
-    notes=EMPTY_DESC=13, AR_DESC_LOW=0%
-    • أمواج عالية
-    • هل وصلنا بعد؟
+    events=10 coverage=16.0h span=16.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=100% Latin=0% hybrid=0% unique=100% | desc: AR=0% empty=10 same-as-title=0
+    notes=EMPTY_DESC=10, AR_DESC_LOW=0%
+    • دورا ومدينة الذهب المفقودة
+    • الموبتس يغزون مانهاتن
 
-50. [PASS] beINSeries2.qa@SD
+23. [REVIEW] beINSeries1.qa@SD
+    name=beINSERIES1 | family=beIN Series | kind=series
+    events=16 coverage=15.0h span=15.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=100% Latin=88% hybrid=88% unique=56% | desc: AR=0% empty=16 same-as-title=0
+    notes=EMPTY_DESC=16, AR_DESC_LOW=0%
+    • E6 | S3 دخيلة
+    • E7 | S8 كل أمريكي
+
+24. [PASS] beINSeries2.qa@SD
     name=بي إن سيريس إتش... | family=beIN Series | kind=series
-    events=28 coverage=24.0h span=24.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=100% hybrid=100% unique=32% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • Dexter S6
-    • From
-
-51. [ALIAS_OK] beINSports2.qa@MENA -> beIN SPORTS2 DIGITAL.qa
-    name=beINSPORTS2 | family=beIN Sports 2 AR/MENA | kind=sports_ar
-    events=15 coverage=28.0h span=29.0h gaps>2h=0 gap_total=1.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    events=15 coverage=13.0h span=13.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
     title: AR-presence=100% Latin=100% hybrid=100% unique=60% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
+    • King & Conqueror
+    • Dexter S6
+
+25. [REVIEW] beINSports2.qa@MENA
+    name=beINSPORTS2 | family=beIN Sports 2 AR/MENA | kind=sports_ar
+    events=25 coverage=50.2h span=50.2h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=1 >12h=0
+    title: AR-presence=84% Latin=100% hybrid=84% unique=68% | desc: AR=100% empty=0 same-as-title=0
+    notes=LONG_6H=1
     • Sheffield Utd vs Wolverhampton Wanderers - دوري البطولة الإنجليزية
-    • Aston Villa vs Nottingham Forest - الدوري الإنجليزي الممتاز
+    • North Korea vs Bangladesh - Football Women's - Asian Games Aichi-Nagoya 2026 - FBL02
 
-52. [PASS] beINSports3.qa@MENA
+26. [PASS] beINSports3.qa@MENA
     name=beINSPORTS3 | family=beIN Sports 3 AR/MENA | kind=sports_ar
-    events=4 coverage=7.8h span=7.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=100% Latin=100% hybrid=100% unique=100% | desc: AR=100% empty=0 same-as-title=0
+    events=27 coverage=48.1h span=48.1h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=96% Latin=100% hybrid=96% unique=56% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Real Madrid vs Rayo Vallecono - الدوري الإسباني
-    • Athletic Bilbao vs Elche - الدوري الإسباني
+    • Le Mans vs Lens - الدوري الفرنسي
+    • Real Sociedad vs Atletico Madrid - الدوري الإسباني
 
-53. [ALIAS_OK] beINSports4.qa@MENA -> beIN SPORTS4 DIGITAL.qa
+27. [PASS] beINSports4.qa@MENA
     name=beINSPORT4 | family=beIN Sports 4 AR/MENA | kind=sports_ar
-    events=17 coverage=26.6h span=30.4h gaps>2h=0 gap_total=3.8h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=82% Latin=100% hybrid=82% unique=59% | desc: AR=100% empty=0 same-as-title=0
+    events=27 coverage=47.9h span=47.9h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=74% Latin=100% hybrid=74% unique=59% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
-    • Chelsea vs Hull City - الدوري الإنجليزي الممتاز
-    • Rc Lens, Goal Miners & Footballers
+    • Coventry City vs Brighton - الدوري الإنجليزي الممتاز
+    • Portugal vs Costa Rica - FIFA U-20 Women World Cup
 
-54. [PASS] beINSports5.qa@MENA
+28. [PASS] beINSports5.qa@MENA
     name=beINSPORTS5 | family=beIN Sports 5 AR/MENA | kind=sports_ar
-    events=4 coverage=7.8h span=7.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=75% Latin=100% hybrid=75% unique=100% | desc: AR=100% empty=0 same-as-title=0
+    events=22 coverage=49.9h span=49.9h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=59% Latin=100% hybrid=59% unique=54% | desc: AR=100% empty=0 same-as-title=0
     notes=NONE
+    • Korea Republic vs Ecuador - FIFA U-20 Women World Cup
     • Celta Vigo vs Malaga - الدوري الإسباني
-    • Valladolid vs Oviedo - الدوري الإسباني Hypermotion
 
-55. [ALIAS_OK] beINSports6.qa@MENA -> beIN SPORTS6 DIGITAL -d-1.qa
+29. [REVIEW] beINSports6.qa@MENA
     name=beINSPORTS6 | family=beIN Sports 6 AR/MENA | kind=sports_ar
-    events=5 coverage=7.5h span=7.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=40% Latin=100% hybrid=40% unique=100% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • Premier Padel - Paris Major - Match 2
-    • Lorient vs Toulouse - الدوري الفرنسي
+    events=23 coverage=40.6h span=43.4h gaps>2h=1 gap_total=2.8h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=39% Latin=100% hybrid=39% unique=39% | desc: AR=100% empty=0 same-as-title=0
+    notes=GAPS_GT_2H=1
+    • Sprint Race - Madrid Round - FIA Formula 2 Championship
+    • Trofeo Pirelli Race 1 - Hungaroring Round - Ferrari Challenge
 
-56. [REVIEW] beINSports7.qa@MENA
+30. [REVIEW] beINSports7.qa@MENA
     name=beINSPORTS7 | family=beIN Sports 7 AR/MENA | kind=sports_ar
-    events=12 coverage=27.1h span=31.4h gaps>2h=2 gap_total=4.2h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=67% | desc: AR=100% empty=0 same-as-title=0
-    notes=GAPS_GT_2H=2, TITLE_AR_ENRICHMENT_LOW=0%
-    • Day 15 - Arthur Ashe Court - Tennis US Open 2026 - Men's Singles Final
-    • Sochaux vs Nantes - French Ligue 2
-
-57. [PASS] beINSports8.qa@MENA
-    name=beINSPORTS8 | family=beIN Sports 8 AR/MENA | kind=sports_ar
-    events=35 coverage=50.8h span=50.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=94% Latin=100% hybrid=94% unique=40% | desc: AR=100% empty=0 same-as-title=0
-    notes=NONE
-    • Tampa Bay Buccaneers @ Cincinatti Bengals - NFL -National Footbal League - 2026/27
-    • Green Bay Packers @ Minnesota Vikings - NFL -National Footbal League - 2026/27
-
-58. [REVIEW] beINSports9.qa@MENA
-    name=beINSPORTS9 | family=beIN Sports 9 AR/MENA | kind=sports_ar
-    events=21 coverage=29.2h span=32.0h gaps>2h=0 gap_total=2.8h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=81% | desc: AR=100% empty=0 same-as-title=0
+    events=20 coverage=49.5h span=49.5h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=50% | desc: AR=100% empty=0 same-as-title=0
     notes=TITLE_AR_ENRICHMENT_LOW=0%
-    • Longines Global Champions Tour - Shanghai Jumping - Grand Prix
-    • Longines Global Champions Tour - Mexico City Jumping - GCL R2 – Competition Team
+    • Aryna Sabalenka vs Elena Rybakina - Arthur Ashe Court - Tennis US Open 2026 - Women's Singles Final
+    • Katerina Siniakova (CZE) / Taylor Townsend (USA) vs Ashlyn Krueger (USA) / Robin Montgomery (USA)
 
-59. [REVIEW] beINSportsXtra1.qa@SD
-    name=beIN SPORTS XTRA 1 | family=beIN XTRA 1 | kind=xtra
-    events=49 coverage=49.0h span=49.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=4% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=100%, LOW_TITLE_DIVERSITY=4%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
+31. [REVIEW] beINSports8.qa@MENA
+    name=beINSPORTS8 | family=beIN Sports 8 AR/MENA | kind=sports_ar
+    events=34 coverage=47.0h span=47.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=6% Latin=100% hybrid=6% unique=62% | desc: AR=100% empty=0 same-as-title=0
+    notes=TITLE_AR_ENRICHMENT_LOW=6%
+    • Main Race - Moto GP - San Marino GP
+    • Sprint Race - Madrid Round - FIA Formula 3 Championship
 
-60. [REVIEW] beINSportsXtra2.qa@SD
-    name=beIN SPORTS XTRA 2 | family=beIN XTRA 2 | kind=xtra
-    events=49 coverage=49.0h span=49.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=6% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=98%, LOW_TITLE_DIVERSITY=6%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
+32. [REVIEW] beINSports9.qa@MENA
+    name=beINSPORTS9 | family=beIN Sports 9 AR/MENA | kind=sports_ar
+    events=35 coverage=46.8h span=46.8h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=0% Latin=100% hybrid=0% unique=83% | desc: AR=100% empty=0 same-as-title=0
+    notes=TITLE_AR_ENRICHMENT_LOW=0%
+    • Longines Global Champions Tour - Madrid Jumping - LGCT GRAND PRIX
+    • Longines Global Champions Tour - Cannes Jumping - Round 1 Competition Team
 
-61. [REVIEW] beINSPORTSXTRA3.qa
-    name=beINSPORTSXTRA3.qa | family=beIN XTRA 3 | kind=xtra
-    events=24 coverage=27.0h span=29.0h gaps>2h=0 gap_total=2.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=88%, REPEATED_TITLE=88%, LOW_TITLE_DIVERSITY=17%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-62. [REVIEW] logos-_beINSPORTS8_EN.bein
-    name=logos-_beINSPORTS8_EN | family=beIN Sports 8 EN | kind=sports_en
-    events=19 coverage=31.1h span=52.0h gaps>2h=1 gap_total=20.9h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=58% | desc: AR=100% empty=0 same-as-title=0
-    notes=GAPS_GT_2H=1, LOGO_PREFIX_ID
-    • Tampa Bay Buccaneers @ Cincinatti Bengals
-    • Green Bay Packers @ Minnesota Vikings
-
-63. [REVIEW] logos-_beINSPORTS9_EN.bein
-    name=logos-_beINSPORTS9_EN | family=beIN Sports 9 EN | kind=sports_en
-    events=21 coverage=29.5h span=51.2h gaps>2h=1 gap_total=21.8h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=52% | desc: AR=100% empty=0 same-as-title=0
-    notes=GAPS_GT_2H=1, LOGO_PREFIX_ID
-    • Longines Global Champions Tour
-    • Grand Prix Final with a Jump
-
-64. [ALIAS_OK] logos-_beINSPORTSXTRA3_EN.bein -> beINSPORTSXTRA3.qa
-    name=logos-_beINSPORTSXTRA3_EN | family=beIN XTRA 3 | kind=xtra
-    events=24 coverage=27.0h span=29.0h gaps>2h=0 gap_total=2.0h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=0% Latin=100% hybrid=0% unique=17% | desc: AR=100% empty=0 same-as-title=0
-    notes=GENERIC_GUIDE=88%, REPEATED_TITLE=88%, LOW_TITLE_DIVERSITY=17%
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-    • beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August
-
-65. [ALIAS_OK] NEWS_DIGITAL_Mono_AR.bein -> beIN.Sports.News.ae
+33. [PASS] NEWS_DIGITAL_Mono_AR.bein
     name=NEWS_DIGITAL_Mono_AR | family=beIN Sports News | kind=news
-    events=38 coverage=48.5h span=49.0h gaps>2h=0 gap_total=0.5h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=13% Latin=100% hybrid=13% unique=47% | desc: AR=100% empty=0 same-as-title=0
-    notes=TITLE_AR_ENRICHMENT_LOW=13%, PLACEHOLDER=2
-    • 24/7
-    • Football Match
+    events=77 coverage=43.0h span=43.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=100% Latin=100% hybrid=100% unique=21% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
+    • News Bulletin - نشرة الأخبار
+    • UEFA UCL Magazine - مجلة
 
-66. [ALIAS_OK] NEWS_DIGITAL_Mono_EN.bein -> beIN.Sports.News.ae
+34. [PASS] NEWS_DIGITAL_Mono_EN.bein
     name=NEWS_DIGITAL_Mono_EN | family=beIN Sports News | kind=news
-    events=38 coverage=48.5h span=49.0h gaps>2h=0 gap_total=0.5h overlaps=0 invalid=0 >6h=0 >12h=0
-    title: AR-presence=13% Latin=100% hybrid=13% unique=47% | desc: AR=100% empty=0 same-as-title=0
-    notes=TITLE_AR_ENRICHMENT_LOW=13%, PLACEHOLDER=2
-    • 24/7
-    • Football Match
+    events=77 coverage=43.0h span=43.0h gaps>2h=0 gap_total=0.0h overlaps=0 invalid=0 >6h=0 >12h=0
+    title: AR-presence=35% Latin=100% hybrid=35% unique=21% | desc: AR=100% empty=0 same-as-title=0
+    notes=NONE
+    • News Bulletin - نشرة الأخبار
+    • UEFA UCL Magazine - مجلة
 
 EXACT DUPLICATE TIMELINE GROUPS
 - 4k_DIGITAL_Mono_AR.bein ; beIN4K.qa@SD | families=beIN 4K
-- beIN SPORTS MAX2 DIGITAL.qa ; beIN SPORTS MAX3 DIGITAL.qa ; beIN SPORTS MAX4 DIGITAL.qa ; beIN SPORTS MAX5 DIGITAL.qa | families=beIN MAX 2 ; beIN MAX 3 ; beIN MAX 4 ; beIN MAX 5
-- beIN SPORTS XTRA 04 bein.com.qa ; beIN SPORTS XTRA 05 bein.com.qa ; beIN SPORTS XTRA 4.qa ; beIN SPORTS XTRA 5.qa ; beIN SPORTS XTRA 6.qa ; beIN SPORTS XTRA 7.qa ; beIN SPORTS XTRA 9.qa ; beIN_SPORTS_XTRA_06_bein.com_EN.bein ; beIN_SPORTS_XTRA_07_bein.com_EN.bein ; beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein | families=beIN XTRA 4 ; beIN XTRA 5 ; beIN XTRA 6 ; beIN XTRA 7 ; beIN XTRA 9 ; beIN_SPORTS_XTRA_Digital_09_Bein.com_EN
-- beIN SPORTS XTRA 3.qa ; beINSPORTSXTRA3.qa ; logos-_beINSPORTSXTRA3_EN.bein | families=beIN XTRA 3
-- beIN SPORTS XTRA 8.qa ; beIN_SPORTS_XTRA_08_Bein.com_EN.bein | families=beIN XTRA 8
-- beIN SPORTS2 DIGITAL.qa ; beINSports2.qa@MENA | families=beIN Sports 2 AR/MENA
-- beIN SPORTS4 DIGITAL.qa ; beINSports4.qa@MENA | families=beIN Sports 4 AR/MENA
-- beIN SPORTS6 DIGITAL -d-1.qa ; beINSports6.qa@MENA | families=beIN Sports 6 AR/MENA
-- beIN SPORTS7 DIGITAL.qa ; beINSports7.qa@MENA | families=beIN Sports 7 AR/MENA
-- beIN.Sports.News.ae ; NEWS_DIGITAL_Mono_AR.bein ; NEWS_DIGITAL_Mono_EN.bein | families=beIN Sports News
+- NEWS_DIGITAL_Mono_AR.bein ; NEWS_DIGITAL_Mono_EN.bein | families=beIN Sports News
