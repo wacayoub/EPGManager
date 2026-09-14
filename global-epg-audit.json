@@ -1,67 +1,67 @@
 {
   "schema": 2,
   "scope": "all exclusive MENA country/provider shards + synchronous alias-aware all-ID release gate",
-  "channels_scanned": 643,
-  "programmes_scanned": 32242,
+  "channels_scanned": 645,
+  "programmes_scanned": 32087,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
     "arabic_provider_title_not_arabic": 859,
-    "empty_description": 15350,
+    "empty_description": 15339,
     "hybrid_arabic_latin_description": 4,
     "mixed_timezone_offsets_same_day": 2,
-    "premium_title_not_english": 28,
-    "severity_warning": 18661,
-    "very_long_event_gt_6h": 21,
-    "very_short_event_lt_5m": 2395
+    "premium_title_not_english": 26,
+    "severity_warning": 18613,
+    "very_long_event_gt_6h": 20,
+    "very_short_event_lt_5m": 2361
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 386,
+      "empty_description": 404,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
-      "very_short_event_lt_5m": 10
+      "very_short_event_lt_5m": 9
     },
     "mena-dz": {
       "empty_description": 88,
       "very_short_event_lt_5m": 2
     },
     "mena-eg": {
-      "empty_description": 1271,
+      "empty_description": 1270,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 553
+      "empty_description": 598
     },
     "mena-jo": {
-      "empty_description": 67,
-      "very_short_event_lt_5m": 6
+      "empty_description": 62,
+      "very_short_event_lt_5m": 5
     },
     "mena-kw": {
       "empty_description": 210,
       "very_short_event_lt_5m": 3
     },
     "mena-lb": {
-      "empty_description": 58,
+      "empty_description": 57,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 368
+      "empty_description": 363
     },
     "mena-other": {
-      "empty_description": 7739,
+      "empty_description": 7712,
       "hybrid_arabic_latin_description": 1,
-      "very_long_event_gt_6h": 8,
-      "very_short_event_lt_5m": 1180
+      "very_long_event_gt_6h": 7,
+      "very_short_event_lt_5m": 1169
     },
     "mena-qa": {
-      "empty_description": 653,
+      "empty_description": 651,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1339,
-      "very_short_event_lt_5m": 615
+      "empty_description": 1330,
+      "very_short_event_lt_5m": 602
     },
     "mena-sd": {
       "empty_description": 47
@@ -70,71 +70,61 @@
       "empty_description": 4
     },
     "mena-tn": {
-      "empty_description": 132,
+      "empty_description": 130,
       "very_short_event_lt_5m": 2
     },
     "mena-ye": {
-      "empty_description": 26
+      "empty_description": 25
     },
     "provider-adm": {
-      "arabic_provider_title_not_arabic": 260,
-      "empty_description": 215,
+      "arabic_provider_title_not_arabic": 263,
+      "empty_description": 218,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 22
     },
     "provider-alkass": {
-      "arabic_provider_title_not_arabic": 117,
+      "arabic_provider_title_not_arabic": 116,
       "very_long_event_gt_6h": 2
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 17,
-      "empty_description": 1160,
-      "very_short_event_lt_5m": 448
+      "empty_description": 1145,
+      "very_short_event_lt_5m": 443
     },
     "provider-bein": {
-      "empty_description": 52,
+      "empty_description": 48,
       "mixed_timezone_offsets_same_day": 2,
-      "premium_title_not_english": 17
+      "premium_title_not_english": 15
     },
     "provider-dmi": {
-      "arabic_provider_title_not_arabic": 69,
-      "empty_description": 256,
+      "arabic_provider_title_not_arabic": 70,
+      "empty_description": 255,
       "very_long_event_gt_6h": 3,
       "very_short_event_lt_5m": 2
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
-      "arabic_provider_title_not_arabic": 321,
-      "empty_description": 314,
+      "arabic_provider_title_not_arabic": 318,
+      "empty_description": 318,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
-      "empty_description": 92,
+      "empty_description": 91,
       "premium_title_not_english": 11,
       "very_short_event_lt_5m": 41
     },
     "provider-rotana": {
       "arabic_provider_title_not_arabic": 75,
-      "empty_description": 174,
-      "very_short_event_lt_5m": 46
+      "empty_description": 166,
+      "very_short_event_lt_5m": 43
     },
     "provider-starz": {
-      "empty_description": 146,
+      "empty_description": 147,
       "very_long_event_gt_6h": 1
     }
   },
   "samples": {
     "arabic_provider_title_not_arabic": [
-      {
-        "shard": "provider-alkass",
-        "channel_id": "Alkass Five.qa",
-        "channel": "Alkass Five.qa",
-        "start": "20260914103000 +0000",
-        "stop": "20260914120000 +0000",
-        "title": "22nd Asian Men's Handball Championship Saudi Arabia vs. Iran",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 90.0
-      },
       {
         "shard": "provider-alkass",
         "channel_id": "Alkass Five.qa",
@@ -524,6 +514,16 @@
         "title": "tawasol",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "Alkass Four.qa",
+        "channel": "Alkass Four.qa",
+        "start": "20260914180000 +0000",
+        "stop": "20260914183000 +0000",
+        "title": "News",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
       }
     ],
     "very_long_event_gt_6h": [
@@ -669,23 +669,13 @@
       },
       {
         "shard": "mena-other",
-        "channel_id": "EN:.Aflam.sa",
-        "channel": "EN: Aflam",
-        "start": "20260914115957 +0000",
-        "stop": "20260914235959 +0000",
+        "channel_id": "EN:.El.Le'ba.Channel.sa",
+        "channel": "EN: El Le'ba Channel",
+        "start": "20260916120544 +0000",
+        "stop": "20260916235959 +0000",
         "title": "TV guide is not available",
         "desc": "",
-        "duration_minutes": 720.03
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "EN:.Maraya.Channel.sa",
-        "channel": "EN: Maraya Channel",
-        "start": "20260914120714 +0000",
-        "stop": "20260914235959 +0000",
-        "title": "TV guide is not available",
-        "desc": "",
-        "duration_minutes": 712.75
+        "duration_minutes": 714.25
       },
       {
         "shard": "mena-other",
@@ -739,16 +729,6 @@
       }
     ],
     "empty_description": [
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260914110000 +0000",
-        "stop": "20260914120000 +0000",
-        "title": "Sarmasik Zamani",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
       {
         "shard": "provider-bein",
         "channel_id": "beIN Drama.eg",
@@ -883,16 +863,6 @@
         "shard": "provider-bein",
         "channel_id": "beINDrama1.qa@SD",
         "channel": "بي إن دراما",
-        "start": "20260914110000 +0000",
-        "stop": "20260914120000 +0000",
-        "title": "Sarmasik Zamani",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
         "start": "20260914120000 +0000",
         "stop": "20260914130000 +0000",
         "title": "Darb Al Thahab",
@@ -978,16 +948,6 @@
         "title": "برنامج beIN Action",
         "desc": "",
         "duration_minutes": 20.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914110000 +0000",
-        "stop": "20260914120000 +0000",
-        "title": "سوبر موم S1",
-        "desc": "",
-        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
@@ -1113,16 +1073,6 @@
         "shard": "provider-bein",
         "channel_id": "beINSeries1.qa@SD",
         "channel": "beINSERIES1",
-        "start": "20260914110000 +0000",
-        "stop": "20260914120500 +0000",
-        "title": "E6 | S3 دخيلة",
-        "desc": "",
-        "duration_minutes": 65.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINSeries1.qa@SD",
-        "channel": "beINSERIES1",
         "start": "20260914120500 +0000",
         "stop": "20260914130000 +0000",
         "title": "E7 | S8 كل أمريكي",
@@ -1138,6 +1088,46 @@
         "title": "E19 | S2 وثيقة",
         "desc": "",
         "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914140000 +0000",
+        "stop": "20260914150000 +0000",
+        "title": "The Good Doctor S1 | E10",
+        "desc": "",
+        "duration_minutes": 60.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914150000 +0000",
+        "stop": "20260914155500 +0000",
+        "title": "E8 | S1 1883",
+        "desc": "",
+        "duration_minutes": 55.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914155500 +0000",
+        "stop": "20260914162000 +0000",
+        "title": "beIN Action | E358",
+        "desc": "",
+        "duration_minutes": 25.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINSeries1.qa@SD",
+        "channel": "beINSERIES1",
+        "start": "20260914162000 +0000",
+        "stop": "20260914172000 +0000",
+        "title": "يلوجاكيتس S2",
+        "desc": "",
+        "duration_minutes": 60.0
       }
     ],
     "premium_title_not_english": [
@@ -1149,16 +1139,6 @@
         "stop": "20260914160000 +0000",
         "title": "1883",
         "desc": "يسافر جيل ما بعد الحرب الأهلية من عائلة (داتون) إلى تكساس للقيام برحلة شاقة إلى أوريجون قبل أن يقرروا الاستقرار في مونتانا، حيث تقرر العائلة تأسيس مزرعة يلوستون.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914110000 +0000",
-        "stop": "20260914120000 +0000",
-        "title": "سوبر موم S1",
-        "desc": "",
         "duration_minutes": 60.0
       },
       {
@@ -1220,16 +1200,6 @@
         "title": "سوبر موم S1",
         "desc": "",
         "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINSeries1.qa@SD",
-        "channel": "beINSERIES1",
-        "start": "20260914110000 +0000",
-        "stop": "20260914120500 +0000",
-        "title": "E6 | S3 دخيلة",
-        "desc": "",
-        "duration_minutes": 65.0
       },
       {
         "shard": "provider-bein",
@@ -1912,13 +1882,13 @@
     ]
   },
   "all_id_release_gate": {
-    "channels": 643,
-    "programmes": 32242,
-    "PASS": 163,
-    "REVIEW": 480,
+    "channels": 645,
+    "programmes": 32087,
+    "PASS": 159,
+    "REVIEW": 486,
     "NO_EPG": 0,
     "FAIL": 0,
-    "auto_lock_safe": 163,
+    "auto_lock_safe": 159,
     "missing_shards": []
   }
 }

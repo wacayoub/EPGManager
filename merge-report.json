@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "generated": "2026-09-14T11:52:00.720501+00:00",
+  "generated": "2026-09-14T12:26:05.063358+00:00",
   "window_hours": 48,
   "sources_attempted": 21,
   "remote_sources_ok": 20,
@@ -107,7 +107,7 @@
     {
       "name": "openepg-uae6",
       "origin": "openepg",
-      "channels_with_current_48h_epg": 23,
+      "channels_with_current_48h_epg": 22,
       "bytes": 82508
     },
     {
@@ -129,9 +129,9 @@
     {
       "name": "epgshare-sa2",
       "origin": "epgshare",
-      "channels_with_current_48h_epg": 16,
+      "channels_with_current_48h_epg": 14,
       "bytes": 88992,
-      "quarantined_identity_only": 14,
+      "quarantined_identity_only": 16,
       "retired_ssc_dropped": 10
     },
     {
@@ -141,17 +141,17 @@
       "bytes": 4339
     }
   ],
-  "candidate_channel_rows": 1699,
+  "candidate_channel_rows": 1694,
   "unique_logical_channels": 1044,
-  "programmes": 32999,
-  "premium_hybrid_events": 1191,
+  "programmes": 32575,
+  "premium_hybrid_events": 1169,
   "stats": {
     "regular_channels": 959,
-    "source_epgshare": 513,
-    "logical_duplicate_groups": 355,
+    "source_epgshare": 515,
+    "logical_duplicate_groups": 354,
     "premium_channels": 85,
-    "source_openepg": 339,
-    "source_primary": 192
+    "source_openepg": 341,
+    "source_primary": 188
   },
   "aliases": [
     {
@@ -291,8 +291,8 @@
       "aliases": []
     },
     {
-      "canonical_id": "AlarabiyaPortrait.ae@SD",
-      "canonical_name": "Al Arabiya",
+      "canonical_id": "Al Arabiya.sa",
+      "canonical_name": "Al Arabiya.sa",
       "logical_key": "al arabiya",
       "aliases": [
         {
@@ -304,16 +304,6 @@
           "id": "Al Arabiya HD.sa",
           "name": "Al Arabiya HD.sa",
           "source": "openepg-saudi2"
-        },
-        {
-          "id": "Al Arabiya.sa",
-          "name": "Al Arabiya.sa",
-          "source": "openepg-saudi5"
-        },
-        {
-          "id": "Al Arabiya.sa",
-          "name": "Al Arabiya.sa",
-          "source": "openepg-saudi6"
         },
         {
           "id": "Al.Arabiya.HD.ae",
@@ -335,33 +325,10 @@
       ]
     },
     {
-      "canonical_id": "AlArabyTV2.qa@SD",
-      "canonical_name": "Al Araby 2",
-      "logical_key": "al araby 2",
-      "aliases": [
-        {
-          "id": "Al.Araby.2.HD.ae",
-          "name": "Al Araby 2 HD",
-          "source": "epgshare-ae1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "AlArabyTV.qa@SD",
-      "canonical_name": "Al Araby TV",
+      "canonical_id": "Al Araby TV.sa",
+      "canonical_name": "Al Araby TV.sa",
       "logical_key": "al araby tv",
-      "aliases": [
-        {
-          "id": "Al Araby TV.sa",
-          "name": "Al Araby TV.sa",
-          "source": "openepg-saudi5"
-        },
-        {
-          "id": "Al Araby TV.sa",
-          "name": "Al Araby TV.sa",
-          "source": "openepg-saudi6"
-        }
-      ]
+      "aliases": []
     },
     {
       "canonical_id": "Al Dafrah.sa",
@@ -393,30 +360,10 @@
       "aliases": []
     },
     {
-      "canonical_id": "AlHadath.sa@SD",
-      "canonical_name": "Al Hadath",
+      "canonical_id": "Al Hadath.sa",
+      "canonical_name": "Al Hadath.sa",
       "logical_key": "al hadath",
       "aliases": [
-        {
-          "id": "Al Hadath.sa",
-          "name": "Al Hadath.sa",
-          "source": "openepg-saudi1"
-        },
-        {
-          "id": "Al Hadath.sa",
-          "name": "Al Hadath.sa",
-          "source": "openepg-saudi2"
-        },
-        {
-          "id": "Al Hadath.sa",
-          "name": "Al Hadath.sa",
-          "source": "openepg-saudi5"
-        },
-        {
-          "id": "Al Hadath.sa",
-          "name": "Al Hadath.sa",
-          "source": "openepg-saudi6"
-        },
         {
           "id": "Al.Hadath.ae",
           "name": "Al Hadath",
@@ -507,21 +454,10 @@
       ]
     },
     {
-      "canonical_id": "AlQuranAlKareemTV.sa@SD",
-      "canonical_name": "Al Quran Al Kareem TV HD",
+      "canonical_id": "Al Quran Al Kareem TV HD.sa",
+      "canonical_name": "Al Quran Al Kareem TV HD.sa",
       "logical_key": "al quran al kareem tv",
-      "aliases": [
-        {
-          "id": "Al Quran Al Kareem TV HD.sa",
-          "name": "Al Quran Al Kareem TV HD.sa",
-          "source": "openepg-saudi5"
-        },
-        {
-          "id": "Al Quran Al Kareem TV HD.sa",
-          "name": "Al Quran Al Kareem TV HD.sa",
-          "source": "openepg-saudi6"
-        }
-      ]
+      "aliases": []
     },
     {
       "canonical_id": "AlraiTV.kw@SD",
@@ -781,14 +717,19 @@
       ]
     },
     {
-      "canonical_id": "Asharq.sa",
-      "canonical_name": "Asharq.sa",
+      "canonical_id": "EN:.Asharq.sa",
+      "canonical_name": "EN: Asharq",
       "logical_key": "asharq",
       "aliases": [
         {
-          "id": "EN:.Asharq.sa",
-          "name": "EN: Asharq",
-          "source": "epgshare-sa2"
+          "id": "Asharq.sa",
+          "name": "Asharq.sa",
+          "source": "openepg-saudi1"
+        },
+        {
+          "id": "Asharq.sa",
+          "name": "Asharq.sa",
+          "source": "openepg-saudi2"
         }
       ]
     },
@@ -4327,6 +4268,18 @@
       ]
     },
     {
+      "canonical_id": "AlRasheedTV.iq@SD",
+      "canonical_name": "الرشيد",
+      "logical_key": "الرشيد",
+      "aliases": [
+        {
+          "id": "الرشيد.eg",
+          "name": "الرشيد.eg",
+          "source": "openepg-egypt1"
+        }
+      ]
+    },
+    {
       "canonical_id": "AlSaudiya.sa@SD",
       "canonical_name": "السعودية",
       "logical_key": "السعودية",
@@ -4490,18 +4443,6 @@
         {
           "id": "القاهرة والناس 2.eg",
           "name": "القاهرة والناس 2.eg",
-          "source": "openepg-egypt1"
-        }
-      ]
-    },
-    {
-      "canonical_id": "ElMehwarChannel.eg@SD",
-      "canonical_name": "المحور",
-      "logical_key": "المحور",
-      "aliases": [
-        {
-          "id": "المحور.eg",
-          "name": "المحور.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4843,13 +4784,13 @@
       ]
     },
     {
-      "canonical_id": "NessmaElJadida.tn@SD",
-      "canonical_name": "نسمة",
-      "logical_key": "نسمة",
+      "canonical_id": "NileDrama.eg@SD",
+      "canonical_name": "نايل دراما",
+      "logical_key": "نايل دراما",
       "aliases": [
         {
-          "id": "نسمة.eg",
-          "name": "نسمة.eg",
+          "id": "نايل دراما.eg",
+          "name": "نايل دراما.eg",
           "source": "openepg-egypt1"
         }
       ]
@@ -4883,7 +4824,7 @@
               "CLONED_UNRELATED_TIMELINE=6",
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 19
+            "programmes": 18
           },
           {
             "source": "openepg-qatar2",
@@ -4893,7 +4834,7 @@
               "CLONED_UNRELATED_TIMELINE=6",
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 19
+            "programmes": 18
           },
           {
             "source": "openepg-qatar2",
@@ -4903,7 +4844,7 @@
               "CLONED_UNRELATED_TIMELINE=6",
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 19
+            "programmes": 18
           },
           {
             "source": "openepg-qatar2",
@@ -4913,7 +4854,7 @@
               "CLONED_UNRELATED_TIMELINE=6",
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 19
+            "programmes": 18
           },
           {
             "source": "openepg-qatar2",
@@ -4923,7 +4864,7 @@
               "CLONED_UNRELATED_TIMELINE=6",
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 19
+            "programmes": 18
           },
           {
             "source": "openepg-qatar2",
@@ -4932,7 +4873,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 38
+            "programmes": 37
           },
           {
             "source": "openepg-qatar2",
@@ -4941,7 +4882,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 38
+            "programmes": 37
           },
           {
             "source": "openepg-qatar2",
@@ -4950,7 +4891,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 38
+            "programmes": 37
           },
           {
             "source": "openepg-qatar2",
@@ -4959,7 +4900,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 38
+            "programmes": 37
           },
           {
             "source": "openepg-qatar2",
@@ -4969,7 +4910,7 @@
               "CLONED_UNRELATED_TIMELINE=6",
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 19
+            "programmes": 18
           }
         ],
         "clone_groups": [
@@ -5012,7 +4953,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 8
+            "programmes": 7
           },
           {
             "source": "openepg-qatar3",
@@ -5021,7 +4962,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 8
+            "programmes": 7
           },
           {
             "source": "openepg-qatar3",
@@ -5039,7 +4980,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 14
+            "programmes": 13
           },
           {
             "source": "openepg-qatar3",
@@ -5048,7 +4989,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 19
+            "programmes": 18
           },
           {
             "source": "openepg-qatar3",
@@ -5066,7 +5007,7 @@
             "reasons": [
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 8
+            "programmes": 7
           },
           {
             "source": "openepg-qatar3",
@@ -5076,7 +5017,7 @@
               "CLONED_UNRELATED_TIMELINE=6",
               "GENERIC_OR_PLACEHOLDER_GUIDE"
             ],
-            "programmes": 8
+            "programmes": 7
           }
         ],
         "clone_groups": [
@@ -5123,7 +5064,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 189
+            "programmes": 186
           },
           {
             "source": "openepg-qatar4",
@@ -5132,7 +5073,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 75
+            "programmes": 74
           },
           {
             "source": "openepg-qatar4",
@@ -5141,7 +5082,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 58
+            "programmes": 57
           },
           {
             "source": "openepg-qatar4",
@@ -5150,7 +5091,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 39
+            "programmes": 38
           },
           {
             "source": "openepg-qatar4",
@@ -5159,7 +5100,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 46
+            "programmes": 45
           },
           {
             "source": "openepg-qatar4",
@@ -5177,7 +5118,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 39
+            "programmes": 38
           },
           {
             "source": "openepg-qatar4",
@@ -5186,7 +5127,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 32
+            "programmes": 31
           },
           {
             "source": "openepg-qatar4",
@@ -5195,7 +5136,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 50
+            "programmes": 49
           }
         ],
         "clone_groups": [],
@@ -5233,7 +5174,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 167
+            "programmes": 162
           },
           {
             "source": "openepg-qatar5",
@@ -5242,7 +5183,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 215
+            "programmes": 212
           },
           {
             "source": "openepg-qatar5",
@@ -5251,7 +5192,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 53
+            "programmes": 52
           },
           {
             "source": "openepg-qatar5",
@@ -5260,7 +5201,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 190
+            "programmes": 186
           },
           {
             "source": "openepg-qatar5",
@@ -5269,7 +5210,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 40
+            "programmes": 39
           },
           {
             "source": "openepg-qatar5",
@@ -5278,7 +5219,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 47
+            "programmes": 46
           },
           {
             "source": "openepg-qatar5",
@@ -5296,7 +5237,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 40
+            "programmes": 39
           },
           {
             "source": "openepg-qatar5",
@@ -5314,7 +5255,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 143
+            "programmes": 140
           }
         ],
         "clone_groups": [],
@@ -5353,7 +5294,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 76
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -5362,7 +5303,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 76
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -5371,7 +5312,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 76
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -5380,7 +5321,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 76
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -5389,7 +5330,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 76
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -5398,7 +5339,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 76
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -5407,7 +5348,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 76
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -5416,7 +5357,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 76
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -5425,7 +5366,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 76
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -5434,7 +5375,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 76
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -5443,7 +5384,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 76
+            "programmes": 75
           },
           {
             "source": "epgshare-ae1",
@@ -5884,7 +5825,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 82
+            "programmes": 83
           },
           {
             "source": "epgshare-ae1",
@@ -5893,7 +5834,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 82
+            "programmes": 83
           },
           {
             "source": "epgshare-ae1",
@@ -5902,7 +5843,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 82
+            "programmes": 83
           },
           {
             "source": "epgshare-ae1",
@@ -5911,7 +5852,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 82
+            "programmes": 83
           },
           {
             "source": "epgshare-ae1",
@@ -5920,7 +5861,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 82
+            "programmes": 83
           },
           {
             "source": "epgshare-ae1",
@@ -5929,7 +5870,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 82
+            "programmes": 83
           },
           {
             "source": "epgshare-ae1",
@@ -5938,7 +5879,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 82
+            "programmes": 83
           },
           {
             "source": "epgshare-ae1",
@@ -5947,7 +5888,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=8"
             ],
-            "programmes": 82
+            "programmes": 83
           },
           {
             "source": "epgshare-ae1",
@@ -6298,7 +6239,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 17
+            "programmes": 18
           },
           {
             "source": "epgshare-ae1",
@@ -6307,7 +6248,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 17
+            "programmes": 18
           },
           {
             "source": "epgshare-ae1",
@@ -6316,7 +6257,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 17
+            "programmes": 18
           },
           {
             "source": "epgshare-ae1",
@@ -6325,7 +6266,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 17
+            "programmes": 18
           },
           {
             "source": "epgshare-ae1",
@@ -6334,7 +6275,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 17
+            "programmes": 18
           },
           {
             "source": "epgshare-ae1",
@@ -6343,7 +6284,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 17
+            "programmes": 18
           },
           {
             "source": "epgshare-ae1",
@@ -6352,7 +6293,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 17
+            "programmes": 18
           },
           {
             "source": "epgshare-ae1",
@@ -6361,7 +6302,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 17
+            "programmes": 18
           },
           {
             "source": "epgshare-ae1",
@@ -6370,7 +6311,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 17
+            "programmes": 18
           },
           {
             "source": "epgshare-ae1",
@@ -6379,7 +6320,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 17
+            "programmes": 18
           },
           {
             "source": "epgshare-ae1",
@@ -6388,7 +6329,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=11"
             ],
-            "programmes": 17
+            "programmes": 18
           },
           {
             "source": "epgshare-ae1",
@@ -6478,7 +6419,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 281
+            "programmes": 277
           },
           {
             "source": "epgshare-ae1",
@@ -6487,7 +6428,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 281
+            "programmes": 277
           },
           {
             "source": "epgshare-ae1",
@@ -6496,7 +6437,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 281
+            "programmes": 277
           },
           {
             "source": "epgshare-ae1",
@@ -6505,7 +6446,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 281
+            "programmes": 277
           },
           {
             "source": "epgshare-ae1",
@@ -6514,7 +6455,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=5"
             ],
-            "programmes": 281
+            "programmes": 277
           },
           {
             "source": "epgshare-ae1",
@@ -6703,7 +6644,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=3"
             ],
-            "programmes": 94
+            "programmes": 93
           },
           {
             "source": "epgshare-ae1",
@@ -6712,7 +6653,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=3"
             ],
-            "programmes": 94
+            "programmes": 93
           },
           {
             "source": "epgshare-ae1",
@@ -6721,7 +6662,7 @@
             "reasons": [
               "CLONED_UNRELATED_TIMELINE=3"
             ],
-            "programmes": 94
+            "programmes": 93
           },
           {
             "source": "epgshare-ae1",
@@ -9258,7 +9199,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 36
+            "programmes": 35
           },
           {
             "source": "epgshare-bein1",
@@ -9267,7 +9208,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 24
+            "programmes": 25
           },
           {
             "source": "epgshare-bein1",
@@ -9285,7 +9226,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 23
+            "programmes": 22
           },
           {
             "source": "epgshare-bein1",
@@ -9294,7 +9235,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 38
+            "programmes": 37
           },
           {
             "source": "epgshare-bein1",
@@ -9303,7 +9244,7 @@
             "reasons": [
               "TECHNICAL_OR_ASSET_ID"
             ],
-            "programmes": 38
+            "programmes": 37
           }
         ],
         "clone_groups": [],
@@ -9348,8 +9289,8 @@
       {
         "source": "epgshare-sa2",
         "input_candidates": 30,
-        "kept_candidates": 16,
-        "quarantined_candidates": 14,
+        "kept_candidates": 14,
+        "quarantined_candidates": 16,
         "quarantined": [
           {
             "source": "epgshare-sa2",
@@ -9432,6 +9373,24 @@
           },
           {
             "source": "epgshare-sa2",
+            "id": "EN:.Aflam.sa",
+            "name": "EN: Aflam",
+            "reasons": [
+              "GENERIC_OR_PLACEHOLDER_GUIDE"
+            ],
+            "programmes": 3
+          },
+          {
+            "source": "epgshare-sa2",
+            "id": "EN:.Maraya.Channel.sa",
+            "name": "EN: Maraya Channel",
+            "reasons": [
+              "GENERIC_OR_PLACEHOLDER_GUIDE"
+            ],
+            "programmes": 3
+          },
+          {
+            "source": "epgshare-sa2",
             "id": "EN:.Mohammed.Abdu.sa",
             "name": "EN: Mohammed Abdu",
             "reasons": [
@@ -9507,7 +9466,7 @@
           ]
         ],
         "bein_event_sources_preserved": [],
-        "identity_only_candidates": 14,
+        "identity_only_candidates": 16,
         "retired_ssc_ids": [
           "EN:.SSC.Extra.1.HD.sa",
           "EN:.SSC.Extra.2.HD.sa",
@@ -9540,8 +9499,8 @@
         "recovery_accepted": 0
       }
     ],
-    "quarantined_candidates": 441,
-    "identity_only_candidates": 414,
+    "quarantined_candidates": 443,
+    "identity_only_candidates": 416,
     "dropped_ids": [
       "0001 AWG CN Brand Logo 1color Black 4C.qa",
       "0004 CNN International logo.svg.qa",
@@ -9797,12 +9756,14 @@
       "Elzaeem.Cinema.ae",
       "Elzaeem.Drama.ae",
       "EN:.Abdul.Majeed.Abdullah.sa",
+      "EN:.Aflam.sa",
       "EN:.Al.Hisn.Channel.sa",
       "EN:.Bab.Al.Hara.Channel.sa",
       "EN:.Big.Time.Plus.sa",
       "EN:.BIG.TIME.sa",
       "EN:.El-Podcasters.Channel.sa",
       "EN:.Majid.Almohandis.sa",
+      "EN:.Maraya.Channel.sa",
       "EN:.MBC.Masr.Drama.sa",
       "EN:.Mohammed.Abdu.sa",
       "EN:.Red.Bull.TV.sa",
