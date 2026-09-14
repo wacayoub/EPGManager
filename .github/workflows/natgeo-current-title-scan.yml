@@ -1,0 +1,44 @@
+name: NatGeo Abu Dhabi Current Title Scan
+
+on:
+  push:
+    paths:
+      - ".github/workflows/natgeo-current-title-scan.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print current NatGeo Abu Dhabi titles
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import gzip, urllib.request, xml.etree.ElementTree as ET
+          from collections import Counter
+          url='https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz'
+          req=urllib.request.Request(url,headers={'User-Agent':'EPGManager/1.0'})
+          with urllib.request.urlopen(req,timeout=30) as r: data=r.read()
+          root=ET.fromstring(gzip.decompress(data))
+          target='Nat.Geo.Abu.Dhabi.HD.ae'
+          rows=[]
+          for p in root.findall('programme'):
+              if (p.get('channel') or '').strip()!=target: continue
+              t=p.find('title'); d=p.find('desc')
+              title=((t.text or '').strip() if t is not None else '')
+              desc=((d.text or '').strip() if d is not None else '')
+              rows.append((p.get('start',''),title,desc))
+          print('EVENTS',len(rows))
+          counts=Counter(t for _,t,_ in rows if t)
+          print('UNIQUE_TITLES',len(counts))
+          for title,n in counts.most_common():
+              sample=next((d for _,t,d in rows if t==title and d),'')
+              print(f'TITLE|{n}|{title}')
+              if sample: print('DESC|'+sample[:500])
+          PY
