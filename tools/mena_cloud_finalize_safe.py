@@ -188,7 +188,7 @@ def _clean_channel_rows(cid, name, rows):
         desc = _text(p, "desc")
         if duration > 12 * 3600:
             continue
-        if _PLACEHOLDER_RE.match(title) and duration > 60 * 60:
+        if _PLACEHOLDER_RE.match(title):
             continue
         if desc and _norm(desc) == _norm(title):
             _set_desc(p, "")
