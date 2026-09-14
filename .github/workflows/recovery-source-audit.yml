@@ -38,7 +38,7 @@ jobs:
         run: |
           set -euo pipefail
           git fetch origin mena-data
-          git show origin/mena-data:all-id-audit.json > /tmp/all-id-audit.json
+          git show origin/mena-data:all-id-audit.csv > /tmp/all-id-audit.csv
 
       - name: Audit recovery candidates
         shell: bash
@@ -47,7 +47,7 @@ jobs:
           python -m py_compile tools/recovery_source_audit.py tools/mena_integrity_guard.py tools/mena_cloud_merge.py tools/mena_cloud_merge_safe.py
           mkdir -p output
           python tools/recovery_source_audit.py \
-            --all-id-json /tmp/all-id-audit.json \
+            --all-id-csv /tmp/all-id-audit.csv \
             --output-json output/recovery-source-audit.json \
             --output-text output/recovery-source-audit.txt \
             --window-hours 48
