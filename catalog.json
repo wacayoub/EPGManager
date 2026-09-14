@@ -1,6 +1,6 @@
 {
-  "schema": 3,
-  "strategy": "official-first-all-arabic-tv-no-sattv",
+  "schema": 4,
+  "strategy": "official-first-all-arabic-tv-no-sattv-with-verified-health-overrides",
   "source_project": "iptv-org/epg",
   "input_channel_files": 538,
   "arabic_rows_seen": 16355,
@@ -11,14 +11,36 @@
   "excluded_sites": [
     "sat.tv"
   ],
+  "verified_site_overrides": {
+    "AlHadath.sa@SD": "osn.com",
+    "AlQuranAlKareemTV.sa@SD": "osn.com",
+    "MBC3.ae@SD": "osn.com",
+    "MBC5.ae@SD": "osn.com",
+    "MBCDrama.ae@SD": "osn.com",
+    "MBCIraq.iq@SD": "osn.com",
+    "MBCMasr.eg@SD": "osn.com",
+    "MBCMasr2.eg@SD": "osn.com",
+    "MBCPlusDrama.sa@SD": "osn.com"
+  },
+  "applied_site_overrides": [
+    "AlHadath.sa@SD",
+    "AlQuranAlKareemTV.sa@SD",
+    "MBC3.ae@SD",
+    "MBC5.ae@SD",
+    "MBCDrama.ae@SD",
+    "MBCIraq.iq@SD",
+    "MBCMasr.eg@SD",
+    "MBCMasr2.eg@SD",
+    "MBCPlusDrama.sa@SD"
+  ],
   "unique_channels": 246,
   "morocco_excluded": true,
   "tv_only": true,
   "source_counts": {
     "elcinema.com": 59,
-    "shahid.mbc.net": 56,
+    "osn.com": 55,
     "bein.com": 48,
-    "osn.com": 46,
+    "shahid.mbc.net": 47,
     "rotana.net": 9,
     "beinsports.com": 7,
     "roya-tv.com": 7,
@@ -37,6 +59,7 @@
       "site": "shahid.mbc.net",
       "site_id": "986014",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -45,6 +68,7 @@
       "site": "osn.com",
       "site_id": "9069",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -53,6 +77,7 @@
       "site": "osn.com",
       "site_id": "9939",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -61,6 +86,7 @@
       "site": "shahid.mbc.net",
       "site_id": "989622",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -69,6 +95,7 @@
       "site": "shahid.mbc.net",
       "site_id": "387286",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -77,6 +104,7 @@
       "site": "shahid.mbc.net",
       "site_id": "1003218",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -85,6 +113,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49923569816895",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -93,6 +122,7 @@
       "site": "osn.com",
       "site_id": "9970",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -101,6 +131,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49923733029294",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -109,6 +140,7 @@
       "site": "osn.com",
       "site_id": "3800",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -117,6 +149,7 @@
       "site": "osn.com",
       "site_id": "9844",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -125,6 +158,7 @@
       "site": "elcinema.com",
       "site_id": "1264",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -133,15 +167,17 @@
       "site": "shahid.mbc.net",
       "site_id": "946948",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
       "xmltv_id": "AlHadath.sa@SD",
-      "name": "الحدث",
-      "site": "shahid.mbc.net",
-      "site_id": "387288",
-      "priority": 10,
-      "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
+      "name": "Al Hadath",
+      "site": "osn.com",
+      "site_id": "9910",
+      "priority": 25,
+      "override_site": "osn.com",
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "AlhayatTV.eg@SD",
@@ -149,6 +185,7 @@
       "site": "elcinema.com",
       "site_id": "1137",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -157,6 +194,7 @@
       "site": "elcinema.com",
       "site_id": "1349",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -165,6 +203,7 @@
       "site": "elcinema.com",
       "site_id": "1216",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -173,6 +212,7 @@
       "site": "aljazeera.com",
       "site_id": "aja#",
       "priority": 13,
+      "override_site": "",
       "source_file": "sites/aljazeera.com/aljazeera.com.channels.xml"
     },
     {
@@ -181,6 +221,7 @@
       "site": "aljazeera.com",
       "site_id": "aja#aj2",
       "priority": 13,
+      "override_site": "",
       "source_file": "sites/aljazeera.com/aljazeera.com.channels.xml"
     },
     {
@@ -189,6 +230,7 @@
       "site": "bein.com",
       "site_id": "entertainment#26",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -197,6 +239,7 @@
       "site": "elcinema.com",
       "site_id": "1174",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -205,6 +248,7 @@
       "site": "elcinema.com",
       "site_id": "1252",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -213,6 +257,7 @@
       "site": "bein.com",
       "site_id": "sports#40",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -221,6 +266,7 @@
       "site": "bein.com",
       "site_id": "sports#37",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -229,6 +275,7 @@
       "site": "bein.com",
       "site_id": "sports#36",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -237,6 +284,7 @@
       "site": "bein.com",
       "site_id": "sports#33",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -245,6 +293,7 @@
       "site": "bein.com",
       "site_id": "sports#39",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -253,6 +302,7 @@
       "site": "bein.com",
       "site_id": "sports#38",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -261,6 +311,7 @@
       "site": "bein.com",
       "site_id": "sports#35",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -269,6 +320,7 @@
       "site": "bein.com",
       "site_id": "sports#34",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -277,6 +329,7 @@
       "site": "elcinema.com",
       "site_id": "1321",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -285,6 +338,7 @@
       "site": "elcinema.com",
       "site_id": "1119",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -293,6 +347,7 @@
       "site": "elcinema.com",
       "site_id": "1193",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -301,15 +356,17 @@
       "site": "elcinema.com",
       "site_id": "1223",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
       "xmltv_id": "AlQuranAlKareemTV.sa@SD",
-      "name": "القرآن الكريم",
-      "site": "shahid.mbc.net",
-      "site_id": "946946",
-      "priority": 10,
-      "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
+      "name": "Al Quran Al Kareem TV HD",
+      "site": "osn.com",
+      "site_id": "9963",
+      "priority": 25,
+      "override_site": "osn.com",
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "AlraiTV.kw@SD",
@@ -317,6 +374,7 @@
       "site": "osn.com",
       "site_id": "9043",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -325,6 +383,7 @@
       "site": "elcinema.com",
       "site_id": "1306",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -333,6 +392,7 @@
       "site": "rotana.net",
       "site_id": "446",
       "priority": 11,
+      "override_site": "",
       "source_file": "sites/rotana.net/rotana.net_ar.channels.xml"
     },
     {
@@ -341,6 +401,7 @@
       "site": "elcinema.com",
       "site_id": "1339",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -349,6 +410,7 @@
       "site": "shahid.mbc.net",
       "site_id": "946938",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -357,6 +419,7 @@
       "site": "shahid.mbc.net",
       "site_id": "999927",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -365,6 +428,7 @@
       "site": "elcinema.com",
       "site_id": "1269",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -373,6 +437,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49923775805582",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -381,6 +446,7 @@
       "site": "elcinema.com",
       "site_id": "1301",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -389,6 +455,7 @@
       "site": "shahid.mbc.net",
       "site_id": "946942",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -397,6 +464,7 @@
       "site": "elcinema.com",
       "site_id": "1398",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -405,6 +473,7 @@
       "site": "elcinema.com",
       "site_id": "1298",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -413,6 +482,7 @@
       "site": "osn.com",
       "site_id": "4505",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -421,6 +491,7 @@
       "site": "artonline.tv",
       "site_id": "#",
       "priority": 14,
+      "override_site": "",
       "source_file": "sites/artonline.tv/artonline.tv.channels.xml"
     },
     {
@@ -429,6 +500,7 @@
       "site": "artonline.tv",
       "site_id": "#Aflam2",
       "priority": 14,
+      "override_site": "",
       "source_file": "sites/artonline.tv/artonline.tv.channels.xml"
     },
     {
@@ -437,6 +509,7 @@
       "site": "artonline.tv",
       "site_id": "#Cinema",
       "priority": 14,
+      "override_site": "",
       "source_file": "sites/artonline.tv/artonline.tv.channels.xml"
     },
     {
@@ -445,6 +518,7 @@
       "site": "artonline.tv",
       "site_id": "#Hekayat",
       "priority": 14,
+      "override_site": "",
       "source_file": "sites/artonline.tv/artonline.tv.channels.xml"
     },
     {
@@ -453,6 +527,7 @@
       "site": "artonline.tv",
       "site_id": "#Hekayat2",
       "priority": 14,
+      "override_site": "",
       "source_file": "sites/artonline.tv/artonline.tv.channels.xml"
     },
     {
@@ -461,6 +536,7 @@
       "site": "shahid.mbc.net",
       "site_id": "1001845",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -469,6 +545,7 @@
       "site": "shahid.mbc.net",
       "site_id": "997605",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -477,6 +554,7 @@
       "site": "shahid.mbc.net",
       "site_id": "862837",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -485,6 +563,7 @@
       "site": "elcinema.com",
       "site_id": "1380",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -493,6 +572,7 @@
       "site": "shahid.mbc.net",
       "site_id": "975435",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -501,6 +581,7 @@
       "site": "osn.com",
       "site_id": "9013",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -509,6 +590,7 @@
       "site": "bein.com",
       "site_id": "entertainment#25",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -517,6 +599,7 @@
       "site": "osn.com",
       "site_id": "9099",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -525,6 +608,7 @@
       "site": "beinsports.com",
       "site_id": "67DD49E9-E3A2-4B3A-94B8-88C620A4DFB1",
       "priority": 17,
+      "override_site": "",
       "source_file": "sites/beinsports.com/beinsports.com_mena-ar.channels.xml"
     },
     {
@@ -533,6 +617,7 @@
       "site": "elcinema.com",
       "site_id": "1309",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -541,6 +626,7 @@
       "site": "bein.com",
       "site_id": "entertainment#12",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -549,6 +635,7 @@
       "site": "bein.com",
       "site_id": "entertainment#1",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -557,6 +644,7 @@
       "site": "bein.com",
       "site_id": "entertainment#2",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -565,6 +653,7 @@
       "site": "bein.com",
       "site_id": "entertainment#3",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -573,6 +662,7 @@
       "site": "bein.com",
       "site_id": "entertainment#4",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -581,6 +671,7 @@
       "site": "bein.com",
       "site_id": "entertainment#9",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -589,6 +680,7 @@
       "site": "elcinema.com",
       "site_id": "1328",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -597,6 +689,7 @@
       "site": "bein.com",
       "site_id": "sports#2",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -605,6 +698,7 @@
       "site": "bein.com",
       "site_id": "sports#3",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -613,6 +707,7 @@
       "site": "bein.com",
       "site_id": "sports#4",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -621,6 +716,7 @@
       "site": "bein.com",
       "site_id": "sports#26",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -629,6 +725,7 @@
       "site": "bein.com",
       "site_id": "sports#5",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -637,6 +734,7 @@
       "site": "bein.com",
       "site_id": "sports#6",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -645,6 +743,7 @@
       "site": "bein.com",
       "site_id": "sports#7",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -653,6 +752,7 @@
       "site": "bein.com",
       "site_id": "sports#8",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -661,6 +761,7 @@
       "site": "bein.com",
       "site_id": "sports#9",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -669,6 +770,7 @@
       "site": "beinsports.com",
       "site_id": "10A2A142-F98C-4706-9FD0-2D3C36045D63",
       "priority": 17,
+      "override_site": "",
       "source_file": "sites/beinsports.com/beinsports.com_mena-ar.channels.xml"
     },
     {
@@ -677,6 +779,7 @@
       "site": "beinsports.com",
       "site_id": "0CB3E227-4376-4545-AB64-D6C390F644D8",
       "priority": 17,
+      "override_site": "",
       "source_file": "sites/beinsports.com/beinsports.com_mena-ar.channels.xml"
     },
     {
@@ -685,6 +788,7 @@
       "site": "beinsports.com",
       "site_id": "EEB3E4E8-0F9D-4735-943C-AEA3E39C87DE",
       "priority": 17,
+      "override_site": "",
       "source_file": "sites/beinsports.com/beinsports.com_mena-ar.channels.xml"
     },
     {
@@ -693,6 +797,7 @@
       "site": "beinsports.com",
       "site_id": "A2D36A21-00D5-4001-A443-81CF2C06553F",
       "priority": 17,
+      "override_site": "",
       "source_file": "sites/beinsports.com/beinsports.com_mena-ar.channels.xml"
     },
     {
@@ -701,6 +806,7 @@
       "site": "bein.com",
       "site_id": "sports#27",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -709,6 +815,7 @@
       "site": "bein.com",
       "site_id": "sports#28",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -717,6 +824,7 @@
       "site": "bein.com",
       "site_id": "sports#29",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -725,6 +833,7 @@
       "site": "bein.com",
       "site_id": "sports#30",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -733,6 +842,7 @@
       "site": "bein.com",
       "site_id": "sports#31",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -741,6 +851,7 @@
       "site": "bein.com",
       "site_id": "sports#32",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -749,6 +860,7 @@
       "site": "beinsports.com",
       "site_id": "E3B37FA0-E582-45B2-BB8E-516E1A714EF6",
       "priority": 17,
+      "override_site": "",
       "source_file": "sites/beinsports.com/beinsports.com_mena-ar.channels.xml"
     },
     {
@@ -757,6 +869,7 @@
       "site": "beinsports.com",
       "site_id": "27E67022-B943-4913-9AF3-AFD3DAC9854B",
       "priority": 17,
+      "override_site": "",
       "source_file": "sites/beinsports.com/beinsports.com_mena-ar.channels.xml"
     },
     {
@@ -765,6 +878,7 @@
       "site": "bein.com",
       "site_id": "entertainment#21",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -773,6 +887,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49922904934759",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -781,6 +896,7 @@
       "site": "osn.com",
       "site_id": "4512",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -789,6 +905,7 @@
       "site": "bein.com",
       "site_id": "entertainment#22",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -797,6 +914,7 @@
       "site": "osn.com",
       "site_id": "9987",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -805,6 +923,7 @@
       "site": "osn.com",
       "site_id": "4507",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -813,6 +932,7 @@
       "site": "elcinema.com",
       "site_id": "1198",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -821,6 +941,7 @@
       "site": "elcinema.com",
       "site_id": "1199",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -829,6 +950,7 @@
       "site": "elcinema.com",
       "site_id": "1260",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -837,6 +959,7 @@
       "site": "bein.com",
       "site_id": "entertainment#31",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -845,6 +968,7 @@
       "site": "elcinema.com",
       "site_id": "1176",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -853,6 +977,7 @@
       "site": "bein.com",
       "site_id": "entertainment#20",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -861,6 +986,7 @@
       "site": "bein.com",
       "site_id": "entertainment#27",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -869,6 +995,7 @@
       "site": "osn.com",
       "site_id": "4504",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -877,6 +1004,7 @@
       "site": "osn.com",
       "site_id": "212",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -885,6 +1013,7 @@
       "site": "elcinema.com",
       "site_id": "1385",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -893,6 +1022,7 @@
       "site": "osn.com",
       "site_id": "5665",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -901,6 +1031,7 @@
       "site": "osn.com",
       "site_id": "9085",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -909,6 +1040,7 @@
       "site": "elcinema.com",
       "site_id": "1292",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -917,6 +1049,7 @@
       "site": "elcinema.com",
       "site_id": "1173",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -925,6 +1058,7 @@
       "site": "osn.com",
       "site_id": "6603",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -933,6 +1067,7 @@
       "site": "elcinema.com",
       "site_id": "1283",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -941,6 +1076,7 @@
       "site": "teleboy.ch",
       "site_id": "427",
       "priority": 500,
+      "override_site": "",
       "source_file": "sites/teleboy.ch/teleboy.ch.channels.xml"
     },
     {
@@ -949,6 +1085,7 @@
       "site": "elcinema.com",
       "site_id": "1315",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -957,6 +1094,7 @@
       "site": "elcinema.com",
       "site_id": "1145",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -965,6 +1103,7 @@
       "site": "elcinema.com",
       "site_id": "1308",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -973,6 +1112,7 @@
       "site": "elcinema.com",
       "site_id": "1334",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -981,6 +1121,7 @@
       "site": "elcinema.com",
       "site_id": "1101",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -989,6 +1130,7 @@
       "site": "bein.com",
       "site_id": "entertainment#28",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -997,6 +1139,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49923172215352",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1005,6 +1148,7 @@
       "site": "bein.com",
       "site_id": "entertainment#17",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -1013,6 +1157,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49923446898171",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1021,6 +1166,7 @@
       "site": "bein.com",
       "site_id": "entertainment#14",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -1029,6 +1175,7 @@
       "site": "bein.com",
       "site_id": "entertainment#6",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -1037,6 +1184,7 @@
       "site": "bein.com",
       "site_id": "entertainment#13",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -1045,6 +1193,7 @@
       "site": "bein.com",
       "site_id": "entertainment#5",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -1053,6 +1202,7 @@
       "site": "elcinema.com",
       "site_id": "1302",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1061,6 +1211,7 @@
       "site": "osn.com",
       "site_id": "6606",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1069,6 +1220,7 @@
       "site": "osn.com",
       "site_id": "6604",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1077,6 +1229,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49923639151416",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1085,6 +1238,7 @@
       "site": "elcinema.com",
       "site_id": "1374",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1093,6 +1247,7 @@
       "site": "bein.com",
       "site_id": "entertainment#15",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -1101,6 +1256,7 @@
       "site": "osn.com",
       "site_id": "5667",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1109,6 +1265,7 @@
       "site": "osn.com",
       "site_id": "5661",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1117,6 +1274,7 @@
       "site": "i24news.tv",
       "site_id": "ar",
       "priority": 500,
+      "override_site": "",
       "source_file": "sites/i24news.tv/i24news.tv.channels.xml"
     },
     {
@@ -1125,6 +1283,7 @@
       "site": "elcinema.com",
       "site_id": "1204",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1133,6 +1292,7 @@
       "site": "osn.com",
       "site_id": "5668",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1141,6 +1301,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49923697660442",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1149,6 +1310,7 @@
       "site": "bein.com",
       "site_id": "entertainment#29",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -1157,6 +1319,7 @@
       "site": "elcinema.com",
       "site_id": "1314",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1165,6 +1328,7 @@
       "site": "osn.com",
       "site_id": "9961",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1173,6 +1337,7 @@
       "site": "elcinema.com",
       "site_id": "1310",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1181,6 +1346,7 @@
       "site": "elcinema.com",
       "site_id": "1313",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1189,6 +1355,7 @@
       "site": "rotana.net",
       "site_id": "434",
       "priority": 11,
+      "override_site": "",
       "source_file": "sites/rotana.net/rotana.net_ar.channels.xml"
     },
     {
@@ -1197,6 +1364,7 @@
       "site": "elcinema.com",
       "site_id": "1168",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1205,6 +1373,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49922763891977",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1213,6 +1382,7 @@
       "site": "freetv.tv",
       "site_id": "3371021",
       "priority": 500,
+      "override_site": "",
       "source_file": "sites/freetv.tv/freetv.tv.channels.xml"
     },
     {
@@ -1221,6 +1391,7 @@
       "site": "shahid.mbc.net",
       "site_id": "988045",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1229,6 +1400,7 @@
       "site": "elcinema.com",
       "site_id": "1401",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1237,6 +1409,7 @@
       "site": "elcinema.com",
       "site_id": "1336",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1245,6 +1418,7 @@
       "site": "shahid.mbc.net",
       "site_id": "387238",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1253,6 +1427,7 @@
       "site": "shahid.mbc.net",
       "site_id": "387248",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1261,6 +1436,7 @@
       "site": "shahid.mbc.net",
       "site_id": "816764",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1269,15 +1445,17 @@
       "site": "shahid.mbc.net",
       "site_id": "400917",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
       "xmltv_id": "MBC3.ae@SD",
-      "name": "MBC3",
-      "site": "shahid.mbc.net",
-      "site_id": "409385",
-      "priority": 10,
-      "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
+      "name": "MBC 3",
+      "site": "osn.com",
+      "site_id": "9971",
+      "priority": 25,
+      "override_site": "osn.com",
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "MBC3USA.us@SD",
@@ -1285,6 +1463,7 @@
       "site": "shahid.mbc.net",
       "site_id": "816771",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1293,15 +1472,17 @@
       "site": "shahid.mbc.net",
       "site_id": "400919",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
       "xmltv_id": "MBC5.ae@SD",
-      "name": "MBC5",
-      "site": "shahid.mbc.net",
-      "site_id": "387937",
-      "priority": 10,
-      "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
+      "name": "MBC 5",
+      "site": "osn.com",
+      "site_id": "9995",
+      "priority": 25,
+      "override_site": "osn.com",
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "MBCAction.ae@SD",
@@ -1309,6 +1490,7 @@
       "site": "shahid.mbc.net",
       "site_id": "400921",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1317,15 +1499,17 @@
       "site": "shahid.mbc.net",
       "site_id": "409387",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
       "xmltv_id": "MBCDrama.ae@SD",
       "name": "MBC Drama",
-      "site": "shahid.mbc.net",
-      "site_id": "387251",
-      "priority": 10,
-      "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
+      "site": "osn.com",
+      "site_id": "9976",
+      "priority": 25,
+      "override_site": "osn.com",
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "MBCDramaUSA.us@SD",
@@ -1333,31 +1517,35 @@
       "site": "shahid.mbc.net",
       "site_id": "816781",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
       "xmltv_id": "MBCIraq.iq@SD",
       "name": "MBC Iraq",
-      "site": "shahid.mbc.net",
-      "site_id": "387294",
-      "priority": 10,
-      "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
+      "site": "osn.com",
+      "site_id": "9245",
+      "priority": 25,
+      "override_site": "osn.com",
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "MBCMasr.eg@SD",
       "name": "MBC Masr",
-      "site": "shahid.mbc.net",
-      "site_id": "387290",
-      "priority": 10,
-      "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
+      "site": "osn.com",
+      "site_id": "9933",
+      "priority": 25,
+      "override_site": "osn.com",
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "MBCMasr2.eg@SD",
       "name": "MBC Masr2",
-      "site": "shahid.mbc.net",
-      "site_id": "387293",
-      "priority": 10,
-      "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
+      "site": "osn.com",
+      "site_id": "9297",
+      "priority": 25,
+      "override_site": "osn.com",
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "MBCMasrDrama.sa@SD",
@@ -1365,6 +1553,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49923122575716",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1373,6 +1562,7 @@
       "site": "shahid.mbc.net",
       "site_id": "816776",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1381,6 +1571,7 @@
       "site": "shahid.mbc.net",
       "site_id": "400924",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1389,6 +1580,7 @@
       "site": "osn.com",
       "site_id": "411",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1397,15 +1589,17 @@
       "site": "shahid.mbc.net",
       "site_id": "418308",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
       "xmltv_id": "MBCPlusDrama.sa@SD",
-      "name": "MBC Plus Drama",
-      "site": "shahid.mbc.net",
-      "site_id": "387296",
-      "priority": 10,
-      "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
+      "name": "MBC+ Drama",
+      "site": "osn.com",
+      "site_id": "9699",
+      "priority": 25,
+      "override_site": "osn.com",
+      "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
       "xmltv_id": "MCMTop.fr@SD",
@@ -1413,6 +1607,7 @@
       "site": "osn.com",
       "site_id": "5664",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1421,6 +1616,7 @@
       "site": "elcinema.com",
       "site_id": "1371",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1429,6 +1625,7 @@
       "site": "shahid.mbc.net",
       "site_id": "986346",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1437,6 +1634,7 @@
       "site": "osn.com",
       "site_id": "310",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1445,6 +1643,7 @@
       "site": "osn.com",
       "site_id": "305",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1453,6 +1652,7 @@
       "site": "shahid.mbc.net",
       "site_id": "986064",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1461,6 +1661,7 @@
       "site": "shahid.mbc.net",
       "site_id": "986069",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1469,6 +1670,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49923518527492",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1477,6 +1679,7 @@
       "site": "bein.com",
       "site_id": "entertainment#18",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -1485,6 +1688,7 @@
       "site": "bein.com",
       "site_id": "entertainment#19",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -1493,6 +1697,7 @@
       "site": "elcinema.com",
       "site_id": "1266",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1501,6 +1706,7 @@
       "site": "elcinema.com",
       "site_id": "1275",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1509,6 +1715,7 @@
       "site": "elcinema.com",
       "site_id": "1304",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1517,6 +1724,7 @@
       "site": "osn.com",
       "site_id": "5663",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1525,6 +1733,7 @@
       "site": "osn.com",
       "site_id": "5670",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1533,6 +1742,7 @@
       "site": "osn.com",
       "site_id": "5671",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1541,6 +1751,7 @@
       "site": "elcinema.com",
       "site_id": "1156",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1549,6 +1760,7 @@
       "site": "elcinema.com",
       "site_id": "1159",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1557,6 +1769,7 @@
       "site": "ayn.om",
       "site_id": "159/قناة-عمان-الرياضية",
       "priority": 15,
+      "override_site": "",
       "source_file": "sites/ayn.om/ayn.om.channels.xml"
     },
     {
@@ -1565,6 +1778,7 @@
       "site": "ayn.om",
       "site_id": "158/قناة-عمان-العامة",
       "priority": 15,
+      "override_site": "",
       "source_file": "sites/ayn.om/ayn.om.channels.xml"
     },
     {
@@ -1573,6 +1787,7 @@
       "site": "osn.com",
       "site_id": "9983",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1581,6 +1796,7 @@
       "site": "ayn.om",
       "site_id": "160/قناة-عمان-الثقافية",
       "priority": 15,
+      "override_site": "",
       "source_file": "sites/ayn.om/ayn.om.channels.xml"
     },
     {
@@ -1589,6 +1805,7 @@
       "site": "ayn.om",
       "site_id": "161/قناة-عمان-مباشر",
       "priority": 15,
+      "override_site": "",
       "source_file": "sites/ayn.om/ayn.om.channels.xml"
     },
     {
@@ -1597,6 +1814,7 @@
       "site": "elcinema.com",
       "site_id": "1134",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1605,6 +1823,7 @@
       "site": "elcinema.com",
       "site_id": "1203",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1613,6 +1832,7 @@
       "site": "osn.com",
       "site_id": "4508",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1621,6 +1841,7 @@
       "site": "osn.com",
       "site_id": "4506",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1629,6 +1850,7 @@
       "site": "osn.com",
       "site_id": "4501",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1637,6 +1859,7 @@
       "site": "osn.com",
       "site_id": "302",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1645,6 +1868,7 @@
       "site": "osn.com",
       "site_id": "4503",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1653,6 +1877,7 @@
       "site": "osn.com",
       "site_id": "301",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1661,6 +1886,7 @@
       "site": "osn.com",
       "site_id": "304",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1669,6 +1895,7 @@
       "site": "osn.com",
       "site_id": "4509",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1677,6 +1904,7 @@
       "site": "osn.com",
       "site_id": "306",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1685,6 +1913,7 @@
       "site": "osn.com",
       "site_id": "309",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1693,6 +1922,7 @@
       "site": "elcinema.com",
       "site_id": "1319",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1701,6 +1931,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49923172117967",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1709,6 +1940,7 @@
       "site": "shahid.mbc.net",
       "site_id": "986024",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1717,6 +1949,7 @@
       "site": "osn.com",
       "site_id": "222",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1725,6 +1958,7 @@
       "site": "rotana.net",
       "site_id": "439",
       "priority": 11,
+      "override_site": "",
       "source_file": "sites/rotana.net/rotana.net_ar.channels.xml"
     },
     {
@@ -1733,6 +1967,7 @@
       "site": "rotana.net",
       "site_id": "431",
       "priority": 11,
+      "override_site": "",
       "source_file": "sites/rotana.net/rotana.net_ar.channels.xml"
     },
     {
@@ -1741,6 +1976,7 @@
       "site": "rotana.net",
       "site_id": "438",
       "priority": 11,
+      "override_site": "",
       "source_file": "sites/rotana.net/rotana.net_ar.channels.xml"
     },
     {
@@ -1749,6 +1985,7 @@
       "site": "rotana.net",
       "site_id": "443",
       "priority": 11,
+      "override_site": "",
       "source_file": "sites/rotana.net/rotana.net_ar.channels.xml"
     },
     {
@@ -1757,6 +1994,7 @@
       "site": "rotana.net",
       "site_id": "437",
       "priority": 11,
+      "override_site": "",
       "source_file": "sites/rotana.net/rotana.net_ar.channels.xml"
     },
     {
@@ -1765,6 +2003,7 @@
       "site": "rotana.net",
       "site_id": "436",
       "priority": 11,
+      "override_site": "",
       "source_file": "sites/rotana.net/rotana.net_ar.channels.xml"
     },
     {
@@ -1773,6 +2012,7 @@
       "site": "rotana.net",
       "site_id": "435",
       "priority": 11,
+      "override_site": "",
       "source_file": "sites/rotana.net/rotana.net_ar.channels.xml"
     },
     {
@@ -1781,6 +2021,7 @@
       "site": "roya-tv.com",
       "site_id": "3",
       "priority": 12,
+      "override_site": "",
       "source_file": "sites/roya-tv.com/roya-tv.com.channels.xml"
     },
     {
@@ -1789,6 +2030,7 @@
       "site": "roya-tv.com",
       "site_id": "2",
       "priority": 12,
+      "override_site": "",
       "source_file": "sites/roya-tv.com/roya-tv.com.channels.xml"
     },
     {
@@ -1797,6 +2039,7 @@
       "site": "roya-tv.com",
       "site_id": "14",
       "priority": 12,
+      "override_site": "",
       "source_file": "sites/roya-tv.com/roya-tv.com.channels.xml"
     },
     {
@@ -1805,6 +2048,7 @@
       "site": "roya-tv.com",
       "site_id": "27",
       "priority": 12,
+      "override_site": "",
       "source_file": "sites/roya-tv.com/roya-tv.com.channels.xml"
     },
     {
@@ -1813,6 +2057,7 @@
       "site": "roya-tv.com",
       "site_id": "4",
       "priority": 12,
+      "override_site": "",
       "source_file": "sites/roya-tv.com/roya-tv.com.channels.xml"
     },
     {
@@ -1821,6 +2066,7 @@
       "site": "roya-tv.com",
       "site_id": "21",
       "priority": 12,
+      "override_site": "",
       "source_file": "sites/roya-tv.com/roya-tv.com.channels.xml"
     },
     {
@@ -1829,6 +2075,7 @@
       "site": "roya-tv.com",
       "site_id": "1",
       "priority": 12,
+      "override_site": "",
       "source_file": "sites/roya-tv.com/roya-tv.com.channels.xml"
     },
     {
@@ -1837,6 +2084,7 @@
       "site": "osn.com",
       "site_id": "7114",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1845,6 +2093,7 @@
       "site": "osn.com",
       "site_id": "9396",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1853,6 +2102,7 @@
       "site": "elcinema.com",
       "site_id": "1226",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1861,6 +2111,7 @@
       "site": "elcinema.com",
       "site_id": "1279",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1869,6 +2120,7 @@
       "site": "elcinema.com",
       "site_id": "1227",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1877,6 +2129,7 @@
       "site": "elcinema.com",
       "site_id": "1360",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1885,6 +2138,7 @@
       "site": "elcinema.com",
       "site_id": "1177",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1893,6 +2147,7 @@
       "site": "shahid.mbc.net",
       "site_id": "995495",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1901,6 +2156,7 @@
       "site": "shahid.mbc.net",
       "site_id": "946940",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1909,6 +2165,7 @@
       "site": "elcinema.com",
       "site_id": "1188",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1917,6 +2174,7 @@
       "site": "osn.com",
       "site_id": "2015",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1925,6 +2183,7 @@
       "site": "shahid.mbc.net",
       "site_id": "409390",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1933,6 +2192,7 @@
       "site": "bein.com",
       "site_id": "entertainment#7",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -1941,6 +2201,7 @@
       "site": "bein.com",
       "site_id": "entertainment#16",
       "priority": 16,
+      "override_site": "",
       "source_file": "sites/bein.com/bein.com_ar.channels.xml"
     },
     {
@@ -1949,6 +2210,7 @@
       "site": "shahid.mbc.net",
       "site_id": "49922763510387",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1957,6 +2219,7 @@
       "site": "elcinema.com",
       "site_id": "1280",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1965,6 +2228,7 @@
       "site": "shahid.mbc.net",
       "site_id": "946945",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1973,6 +2237,7 @@
       "site": "osn.com",
       "site_id": "308",
       "priority": 25,
+      "override_site": "",
       "source_file": "sites/osn.com/osn.com_ar.channels.xml"
     },
     {
@@ -1981,6 +2246,7 @@
       "site": "elcinema.com",
       "site_id": "1367",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     },
     {
@@ -1989,6 +2255,7 @@
       "site": "shahid.mbc.net",
       "site_id": "414449",
       "priority": 10,
+      "override_site": "",
       "source_file": "sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml"
     },
     {
@@ -1997,6 +2264,7 @@
       "site": "elcinema.com",
       "site_id": "1261",
       "priority": 100,
+      "override_site": "",
       "source_file": "sites/elcinema.com/elcinema.com_ar.channels.xml"
     }
   ]

@@ -1,57 +1,56 @@
 {
   "schema": 1,
   "scope": "all exclusive MENA country/provider shards",
-  "channels_scanned": 1044,
-  "programmes_scanned": 33026,
+  "channels_scanned": 1050,
+  "programmes_scanned": 33783,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 767,
-    "empty_description": 15631,
+    "arabic_provider_title_not_arabic": 855,
+    "empty_description": 16625,
     "hybrid_arabic_latin_description": 4,
-    "premium_title_not_english": 112,
-    "severity_warning": 18832,
+    "premium_title_not_english": 110,
+    "severity_warning": 19876,
     "very_long_event_gt_6h": 24,
-    "very_short_event_lt_5m": 2292
+    "very_short_event_lt_5m": 2256
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 391,
+      "empty_description": 432,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
-      "empty_description": 56,
-      "very_short_event_lt_5m": 22
+      "very_short_event_lt_5m": 12
     },
     "mena-dz": {
-      "empty_description": 44
+      "empty_description": 59
     },
     "mena-eg": {
-      "empty_description": 1319,
+      "empty_description": 1437,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 583
+      "empty_description": 602
     },
     "mena-jo": {
-      "empty_description": 110,
+      "empty_description": 90,
       "very_short_event_lt_5m": 6
     },
     "mena-kw": {
-      "empty_description": 239,
+      "empty_description": 238,
       "very_short_event_lt_5m": 1
     },
     "mena-lb": {
-      "empty_description": 65,
+      "empty_description": 72,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 392
+      "empty_description": 437
     },
     "mena-other": {
-      "empty_description": 7641,
+      "empty_description": 8247,
       "hybrid_arabic_latin_description": 1,
       "very_long_event_gt_6h": 10,
-      "very_short_event_lt_5m": 1193
+      "very_short_event_lt_5m": 1188
     },
     "mena-ps": {
       "empty_description": 34
@@ -62,8 +61,8 @@
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1559,
-      "very_short_event_lt_5m": 706
+      "empty_description": 1577,
+      "very_short_event_lt_5m": 694
     },
     "mena-sd": {
       "empty_description": 47
@@ -72,10 +71,10 @@
       "empty_description": 6
     },
     "mena-tn": {
-      "empty_description": 40
+      "empty_description": 57
     },
     "mena-ye": {
-      "empty_description": 124
+      "empty_description": 123
     },
     "provider-adm": {
       "arabic_provider_title_not_arabic": 263,
@@ -84,39 +83,39 @@
       "very_short_event_lt_5m": 23
     },
     "provider-alkass": {
-      "arabic_provider_title_not_arabic": 88,
+      "arabic_provider_title_not_arabic": 85,
       "very_long_event_gt_6h": 1
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 9,
-      "empty_description": 690,
-      "very_short_event_lt_5m": 274
+      "empty_description": 674,
+      "very_short_event_lt_5m": 267
     },
     "provider-bein": {
-      "empty_description": 148,
-      "premium_title_not_english": 108,
+      "empty_description": 254,
+      "premium_title_not_english": 106,
       "very_long_event_gt_6h": 2
     },
     "provider-dmi": {
-      "arabic_provider_title_not_arabic": 74,
-      "empty_description": 291,
+      "arabic_provider_title_not_arabic": 75,
+      "empty_description": 290,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 1
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
-      "arabic_provider_title_not_arabic": 263,
-      "empty_description": 384,
+      "arabic_provider_title_not_arabic": 344,
+      "empty_description": 419,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
-      "empty_description": 347,
+      "empty_description": 391,
       "premium_title_not_english": 4,
-      "very_short_event_lt_5m": 48
+      "very_short_event_lt_5m": 46
     },
     "provider-rotana": {
-      "arabic_provider_title_not_arabic": 70,
-      "empty_description": 81
+      "arabic_provider_title_not_arabic": 79,
+      "empty_description": 99
     },
     "provider-starz": {
       "empty_description": 159,
@@ -284,16 +283,6 @@
         "title": "Sport Confidential",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 209.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 2.qa",
-        "channel": "2023 Alkass 2.qa",
-        "start": "20260914060000 +0000",
-        "stop": "20260914063000 +0000",
-        "title": "Akhbar",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
       },
       {
         "shard": "provider-alkass",
@@ -479,16 +468,6 @@
         "shard": "provider-alkass",
         "channel_id": "2023 Alkass 3.qa",
         "channel": "2023 Alkass 3.qa",
-        "start": "20260914060000 +0000",
-        "stop": "20260914063000 +0000",
-        "title": "Akhbar",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 30.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
         "start": "20260914063000 +0000",
         "stop": "20260914070000 +0000",
         "title": "Dawry Al Darajah Al Thanya Al Qatary",
@@ -524,6 +503,26 @@
         "title": "Dawry Nojom Qatar",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 115.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914120000 +0000",
+        "stop": "20260914123000 +0000",
+        "title": "Akhbar",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 30.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 3.qa",
+        "channel": "2023 Alkass 3.qa",
+        "start": "20260914123000 +0000",
+        "stop": "20260914150000 +0000",
+        "title": "Jarayed",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 150.0
       }
     ],
     "very_long_event_gt_6h": [
@@ -921,253 +920,253 @@
       },
       {
         "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914060000 +0000",
-        "stop": "20260914070000 +0000",
-        "title": "Shark Tank",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260914054400 +0000",
+        "stop": "20260914074500 +0000",
+        "title": "Men in Black: International",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 121.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914070000 +0000",
-        "stop": "20260914080000 +0000",
-        "title": "Matlock S2",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260914074500 +0000",
+        "stop": "20260914091500 +0000",
+        "title": "My Nanny Stole My Life",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 90.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914080000 +0000",
-        "stop": "20260914090000 +0000",
-        "title": "The Good Doctor S1",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260914091500 +0000",
+        "stop": "20260914105000 +0000",
+        "title": "Reawakening",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 95.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914090000 +0000",
-        "stop": "20260914100000 +0000",
-        "title": "1883",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914100000 +0000",
-        "stop": "20260914110000 +0000",
-        "title": "Yellowjackets S2",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914110000 +0000",
-        "stop": "20260914120000 +0000",
-        "title": "Outlander S3",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914120000 +0000",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260914105000 +0000",
         "stop": "20260914130000 +0000",
-        "title": "Shark Tank",
+        "title": "Star Trek",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 130.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
         "start": "20260914130000 +0000",
-        "stop": "20260914140000 +0000",
-        "title": "Matlock S2",
+        "stop": "20260914151500 +0000",
+        "title": "Star Trek Into Darkness",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 135.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914140000 +0000",
-        "stop": "20260914150000 +0000",
-        "title": "The Good Doctor S1",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260914151500 +0000",
+        "stop": "20260914171500 +0000",
+        "title": "Star Trek Beyond",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 120.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914150000 +0000",
-        "stop": "20260914160000 +0000",
-        "title": "1883",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914160000 +0000",
-        "stop": "20260914170000 +0000",
-        "title": "Yellowjackets S2",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914170000 +0000",
-        "stop": "20260914180000 +0000",
-        "title": "Outlander S3",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914180000 +0000",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260914171500 +0000",
         "stop": "20260914190000 +0000",
-        "title": "All American S8",
+        "title": "xXx: The Return of Xander Cage",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 105.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
         "start": "20260914190000 +0000",
-        "stop": "20260914200000 +0000",
-        "title": "Doc S2",
+        "stop": "20260914204500 +0000",
+        "title": "Shaft",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 105.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beIN Series HD 2.eg",
-        "channel": "beIN Series HD 2.eg",
-        "start": "20260914060000 +0000",
-        "stop": "20260914063000 +0000",
-        "title": "Black Clover S3",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260914204500 +0000",
+        "stop": "20260914230000 +0000",
+        "title": "Pain & Gain",
         "desc": "",
-        "duration_minutes": 30.0
+        "duration_minutes": 135.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beIN Series HD 2.eg",
-        "channel": "beIN Series HD 2.eg",
-        "start": "20260914063000 +0000",
-        "stop": "20260914070000 +0000",
-        "title": "Black Clover S3",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260914230000 +0000",
+        "stop": "20260915004500 +0000",
+        "title": "The Island",
         "desc": "",
-        "duration_minutes": 30.0
+        "duration_minutes": 105.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beIN Series HD 2.eg",
-        "channel": "beIN Series HD 2.eg",
-        "start": "20260914070000 +0000",
-        "stop": "20260914080000 +0000",
-        "title": "NCIS: Sydney S3",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915004500 +0000",
+        "stop": "20260915021500 +0000",
+        "title": "Fears",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 90.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beIN Series HD 2.eg",
-        "channel": "beIN Series HD 2.eg",
-        "start": "20260914080000 +0000",
-        "stop": "20260914090000 +0000",
-        "title": "King & Conqueror",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915021500 +0000",
+        "stop": "20260915040000 +0000",
+        "title": "All You Need Is Blood",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 105.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beIN Series HD 2.eg",
-        "channel": "beIN Series HD 2.eg",
-        "start": "20260914090000 +0000",
-        "stop": "20260914100000 +0000",
-        "title": "Dexter S6",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915040000 +0000",
+        "stop": "20260915053300 +0000",
+        "title": "Reawakening",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 93.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beIN Series HD 2.eg",
-        "channel": "beIN Series HD 2.eg",
-        "start": "20260914100000 +0000",
-        "stop": "20260914110000 +0000",
-        "title": "From",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915053300 +0000",
+        "stop": "20260915065900 +0000",
+        "title": "My Nanny Stole My Life",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 86.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beIN Series HD 2.eg",
-        "channel": "beIN Series HD 2.eg",
-        "start": "20260914110000 +0000",
-        "stop": "20260914120000 +0000",
-        "title": "Your Honor",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915065900 +0000",
+        "stop": "20260915093000 +0000",
+        "title": "The Da Vinci Code",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 151.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beIN Series HD 2.eg",
-        "channel": "beIN Series HD 2.eg",
-        "start": "20260914120000 +0000",
-        "stop": "20260914123000 +0000",
-        "title": "Black Clover S3",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915093000 +0000",
+        "stop": "20260915111500 +0000",
+        "title": "Shaft",
         "desc": "",
-        "duration_minutes": 30.0
+        "duration_minutes": 105.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beIN Series HD 2.eg",
-        "channel": "beIN Series HD 2.eg",
-        "start": "20260914123000 +0000",
-        "stop": "20260914130000 +0000",
-        "title": "Black Clover S3",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915111500 +0000",
+        "stop": "20260915130000 +0000",
+        "title": "xXx: The Return of Xander Cage",
         "desc": "",
-        "duration_minutes": 30.0
+        "duration_minutes": 105.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beIN Series HD 2.eg",
-        "channel": "beIN Series HD 2.eg",
-        "start": "20260914130000 +0000",
-        "stop": "20260914140000 +0000",
-        "title": "NCIS: Sydney S3",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915130000 +0000",
+        "stop": "20260915151500 +0000",
+        "title": "Pain & Gain",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 135.0
       },
       {
         "shard": "provider-bein",
-        "channel_id": "beIN Series HD 2.eg",
-        "channel": "beIN Series HD 2.eg",
-        "start": "20260914140000 +0000",
-        "stop": "20260914150000 +0000",
-        "title": "The Agency: Central Intelligence",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915151500 +0000",
+        "stop": "20260915170000 +0000",
+        "title": "Shaft",
         "desc": "",
-        "duration_minutes": 60.0
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915170000 +0000",
+        "stop": "20260915190000 +0000",
+        "title": "Black and Blue",
+        "desc": "",
+        "duration_minutes": 120.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915190000 +0000",
+        "stop": "20260915204500 +0000",
+        "title": "Top Gun",
+        "desc": "",
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915204500 +0000",
+        "stop": "20260915230000 +0000",
+        "title": "Shutter Island",
+        "desc": "",
+        "duration_minutes": 135.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260915230000 +0000",
+        "stop": "20260916004500 +0000",
+        "title": "I Know What You Did Last Summer",
+        "desc": "",
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260916004500 +0000",
+        "stop": "20260916023000 +0000",
+        "title": "Far Haven",
+        "desc": "",
+        "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES ACTION.eg",
+        "channel": "BEIN MOVIES ACTION.eg",
+        "start": "20260916023000 +0000",
+        "stop": "20260916050000 +0000",
+        "title": "Black Hawk Down",
+        "desc": "",
+        "duration_minutes": 150.0
       }
     ],
     "premium_title_not_english": [
@@ -1445,16 +1444,6 @@
         "shard": "provider-bein",
         "channel_id": "beINMovies1Premiere.qa@SD",
         "channel": "beINMOVIES1",
-        "start": "20260914045900 +0000",
-        "stop": "20260914062900 +0000",
-        "title": "هاي غراوند",
-        "desc": "",
-        "duration_minutes": 90.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINMovies1Premiere.qa@SD",
-        "channel": "beINMOVIES1",
         "start": "20260914062900 +0000",
         "stop": "20260914082900 +0000",
         "title": "قوة الطبيعة: الجفاف",
@@ -1570,29 +1559,19 @@
         "title": "ليدي سكوربيونز",
         "desc": "",
         "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies1Premiere.qa@SD",
+        "channel": "beINMOVIES1",
+        "start": "20260915052900 +0000",
+        "stop": "20260915065900 +0000",
+        "title": "السطو",
+        "desc": "",
+        "duration_minutes": 90.0
       }
     ],
     "very_short_event_lt_5m": [
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914061400 +0000",
-        "stop": "20260914061800 +0000",
-        "title": "Barbie: Dream Besties",
-        "desc": "تعرف على أفضل الصديقات الحالمات: باربي، باربي، تيريزا، رينيه، ديزي، وكين! يشاركن أحلامهن، ويقدمن حيواناتهن الأليفة، ويقمن بجولة في مساحاتهم الحلمية الرائعة.",
-        "duration_minutes": 4.0
-      },
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914061800 +0000",
-        "stop": "20260914062000 +0000",
-        "title": "Duplo Adventures",
-        "desc": "قطار البخار المزدان بالأضواء هو وسيلة النقل المثلى بينما ننقل مجموعة من المغنيين بجانب مشاهد مغطاة بالثلوج وزينة الموسم.",
-        "duration_minutes": 2.0
-      },
       {
         "shard": "provider-osn",
         "channel_id": "OSNKids.ae@SD",
@@ -1609,7 +1588,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914091500 +0000",
         "stop": "20260914091800 +0000",
-        "title": "Duplo Adventures",
+        "title": "Lego Duplo Adventures S3",
         "desc": "يريد كل من بن، دوغي، هوبسي، راي وكيتي لعب ألعاب مختلفة، عليهم أن يتوصلوا إلى حل وسط.",
         "duration_minutes": 3.0
       },
@@ -1619,7 +1598,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914095900 +0000",
         "stop": "20260914100300 +0000",
-        "title": "Matchbox Adventure",
+        "title": "Bing S3",
         "desc": "عندما يندلع حريق في المدينة، ينطلق المستكشف الشهير عالميًا، ميسون جيمس، إلى العمل! يقود شاحنة الإطفاء عبر المدينة للمساعدة في إخماد الحريق! هل سيتمكن من اجتياز المدينة وإنقاذ اليوم؟",
         "duration_minutes": 4.0
       },
@@ -1629,7 +1608,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914111400 +0000",
         "stop": "20260914111600 +0000",
-        "title": "Adam Wa Mishmish",
+        "title": "Adam Wa Mishmish 2",
         "desc": "يتعلمان آدم ومشمش عن كوكب الأرض والشمس والقمر، وكيف يتعاقب الليل والنهار من حولنا.",
         "duration_minutes": 2.0
       },
@@ -1649,7 +1628,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914150100 +0000",
         "stop": "20260914150400 +0000",
-        "title": "Barbie And Barbie On Set",
+        "title": "Barbie and Barbie on Set",
         "desc": "باربي وباربي تجريان حديثاً غير واضح ينتهي بعواقب غير متوقعة!",
         "duration_minutes": 3.0
       },
@@ -1659,7 +1638,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914152900 +0000",
         "stop": "20260914153200 +0000",
-        "title": "Duplo Adventures",
+        "title": "Lego Duplo Adventures S3",
         "desc": "يأخذ بيب وليو هوپسي والعديد من الحيوانات الأخرى التي تحتاج إلى الرعاية إلى مستشفى البيطري لتلقي العلاج وتحسن صحتهم.",
         "duration_minutes": 3.0
       },
@@ -1669,7 +1648,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914153200 +0000",
         "stop": "20260914153500 +0000",
-        "title": "Duplo Adventures",
+        "title": "Lego Duplo Adventures S3",
         "desc": "ينقسم بيب وليو إلى فرق لبناء شيء ما، لكنهما يقرران توحيد جهودهما لجعل الأمر أكثر متعة.",
         "duration_minutes": 3.0
       },
@@ -1689,7 +1668,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914153800 +0000",
         "stop": "20260914154000 +0000",
-        "title": "Duplo Adventures",
+        "title": "Tee and Mo",
         "desc": "بيب، ليو و هوبسي يزورون راي في مكان مربي النحل ليتعلموا عن النحل!",
         "duration_minutes": 2.0
       },
@@ -1719,7 +1698,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914191400 +0000",
         "stop": "20260914191800 +0000",
-        "title": "Matchbox Adventure",
+        "title": "Matchbox Adventures",
         "desc": "استعدوا للاضطرابات! ستكون الرحلة مليئة بالمطبات!",
         "duration_minutes": 4.0
       },
@@ -1729,7 +1708,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914191800 +0000",
         "stop": "20260914192000 +0000",
-        "title": "Adam Wa Mishmish",
+        "title": "Adam Wa Mishmish 2",
         "desc": "يعرّفان آدم ومشمش الأطفال على الفصول الأربعة ويشرحان ما يحدث من تغييرات في الطقس خلال كل فصل.",
         "duration_minutes": 2.0
       },
@@ -1739,7 +1718,7 @@
         "channel": "OSNtv Kids",
         "start": "20260914192000 +0000",
         "stop": "20260914192200 +0000",
-        "title": "Adam Wa Mishmish",
+        "title": "Adam Wa Mishmish 2",
         "desc": "يتّبع آدم روتينه المسائي من الاستحمام وقراءة القصص حتى يحين وقت النوم في أغنية هادئة تساعد الأطفال على الاسترخاء.",
         "duration_minutes": 2.0
       },
@@ -1972,6 +1951,26 @@
         "title": "Barbie Summer Adventure",
         "desc": "باربي، باربي، وأصدقاؤها ينطلقون للبحث عن مغامرات الصيف المثيرة!",
         "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915191500 +0000",
+        "stop": "20260915191900 +0000",
+        "title": "Matchbox Adventure",
+        "desc": "ينضم المتسابقون من جميع أنحاء العالم إلى سباق لو ماتشبوكس 5000 للحصول على فرصة لتحقيق الشهرة!",
+        "duration_minutes": 4.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915191900 +0000",
+        "stop": "20260915192200 +0000",
+        "title": "Adam Wa Mishmish",
+        "desc": "يستكشفان آدم ومشمش الحواس الخمس وكيف يساعدنا البصر والسمع والشم والذوق واللمس للتعرّف على ما يحيط بنا.",
+        "duration_minutes": 3.0
       }
     ],
     "arabic_provider_description_not_arabic": [

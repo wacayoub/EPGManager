@@ -2,12 +2,12 @@
   "schema": 2,
   "mode": "virtual-epgmanager-exhaustive-bein",
   "summary": {
-    "channels": 66,
-    "programmes": 903,
+    "channels": 70,
+    "programmes": 1007,
     "counts": {
       "ALIAS_OK": 1,
-      "REVIEW": 22,
-      "PASS": 11,
+      "REVIEW": 25,
+      "PASS": 12,
       "FAIL": 32
     }
   },
@@ -28,10 +28,10 @@
       "name": "4k_DIGITAL_Mono_AR",
       "family": "beIN 4K",
       "kind": "sports_ar",
-      "events": 20,
-      "fingerprint": "8524d32331992cdd9dce127b1cf2de1c7b6bec5c",
-      "coverage_hours": 38.78,
-      "span_hours": 38.78,
+      "events": 19,
+      "fingerprint": "42cd24601f52cd21156d97ae75546678c2df5cc1",
+      "coverage_hours": 37.05,
+      "span_hours": 37.05,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -44,24 +44,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 75.0,
+      "title_has_ar_pct": 73.7,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 75.0,
+      "title_hybrid_pct": 73.7,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 30.0,
-      "unique_title_pct": 20.0,
+      "top_title_pct": 26.3,
+      "unique_title_pct": 21.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914044500 +0000",
-          "stop": "20260914062900 +0000",
-          "title": "Sunderland v Arsenal - الدوري الإنجليزي الممتاز",
-          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
-        },
         {
           "start": "20260914062900 +0000",
           "stop": "20260914083300 +0000",
@@ -79,13 +73,17 @@
           "stop": "20260914115600 +0000",
           "title": "Sunderland v Arsenal - الدوري الإنجليزي الممتاز",
           "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        },
+        {
+          "start": "20260914115600 +0000",
+          "stop": "20260914140100 +0000",
+          "title": "Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
         }
       ],
       "verdict": "ALIAS_OK",
       "issues": [],
-      "warnings": [
-        "LOW_TITLE_DIVERSITY=20%"
-      ],
+      "warnings": [],
       "compat_canonical": "beIN4K.qa@SD",
       "alias_exact_match": true
     },
@@ -151,6 +149,274 @@
       "issues": [],
       "warnings": [
         "EMPTY_DESC=15",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "BEIN MOVIES ACTION.eg",
+      "name": "BEIN MOVIES ACTION.eg",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 26,
+      "fingerprint": "2aed000269743cf51adc1f150fdfb2d66750e5d9",
+      "coverage_hours": 49.77,
+      "span_hours": 49.77,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 26,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 11.5,
+      "unique_title_pct": 76.9,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914054400 +0000",
+          "stop": "20260914074500 +0000",
+          "title": "Men in Black: International",
+          "desc": ""
+        },
+        {
+          "start": "20260914074500 +0000",
+          "stop": "20260914091500 +0000",
+          "title": "My Nanny Stole My Life",
+          "desc": ""
+        },
+        {
+          "start": "20260914091500 +0000",
+          "stop": "20260914105000 +0000",
+          "title": "Reawakening",
+          "desc": ""
+        },
+        {
+          "start": "20260914105000 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "Star Trek",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=26",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "BEIN MOVIES DRAMA.eg",
+      "name": "BEIN MOVIES DRAMA.eg",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 27,
+      "fingerprint": "239efcd0d8198908e8936104b72b1b8adae687a2",
+      "coverage_hours": 49.48,
+      "span_hours": 49.48,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 27,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 11.1,
+      "unique_title_pct": 74.1,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914063100 +0000",
+          "stop": "20260914081400 +0000",
+          "title": "The Addams Family",
+          "desc": ""
+        },
+        {
+          "start": "20260914081400 +0000",
+          "stop": "20260914104400 +0000",
+          "title": "Forrest Gump",
+          "desc": ""
+        },
+        {
+          "start": "20260914104400 +0000",
+          "stop": "20260914130000 +0000",
+          "title": "A Beautiful Mind",
+          "desc": ""
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914144500 +0000",
+          "title": "The Addams Family",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=27",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "BEIN MOVIES FAMILY.eg",
+      "name": "BEIN MOVIES FAMILY.eg",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 30,
+      "fingerprint": "1b048ddab2a8d86005c421871396602c671b3b66",
+      "coverage_hours": 49.77,
+      "span_hours": 49.77,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 30,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 10.0,
+      "unique_title_pct": 53.3,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914045900 +0000",
+          "stop": "20260914064500 +0000",
+          "title": "Paddington in Peru",
+          "desc": ""
+        },
+        {
+          "start": "20260914064500 +0000",
+          "stop": "20260914081500 +0000",
+          "title": "Are We Done Yet?",
+          "desc": ""
+        },
+        {
+          "start": "20260914081500 +0000",
+          "stop": "20260914090000 +0000",
+          "title": "Paw Patrol: Jet to the Rescue",
+          "desc": ""
+        },
+        {
+          "start": "20260914090000 +0000",
+          "stop": "20260914104500 +0000",
+          "title": "Goosebumps",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=30",
+        "AR_DESC_LOW=0%"
+      ],
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "BEIN MOVIES PREMIERE.eg",
+      "name": "BEIN MOVIES PREMIERE.eg",
+      "family": "beIN Movies",
+      "kind": "movies",
+      "events": 26,
+      "fingerprint": "146aa0a74bd40d74b8a138beb2683d3bb52ee3df",
+      "coverage_hours": 48.27,
+      "span_hours": 48.27,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 26,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 0.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 7.7,
+      "unique_title_pct": 69.2,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20260914062900 +0000",
+          "stop": "20260914082900 +0000",
+          "title": "Force of Nature: The Dry 2",
+          "desc": ""
+        },
+        {
+          "start": "20260914082900 +0000",
+          "stop": "20260914101500 +0000",
+          "title": "Adulthood",
+          "desc": ""
+        },
+        {
+          "start": "20260914101500 +0000",
+          "stop": "20260914120000 +0000",
+          "title": "Dear Santa",
+          "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914143000 +0000",
+          "title": "Legends of the Condor Heroes: The Gallants",
+          "desc": ""
+        }
+      ],
+      "verdict": "REVIEW",
+      "issues": [],
+      "warnings": [
+        "EMPTY_DESC=26",
         "AR_DESC_LOW=0%"
       ],
       "compat_canonical": null,
@@ -228,10 +494,10 @@
       "name": "beIN Series HD 2.eg",
       "family": "beIN Series",
       "kind": "series",
-      "events": 17,
-      "fingerprint": "e8c155b8de87ab0cab9547042a28c37dbc65b084",
-      "coverage_hours": 14.42,
-      "span_hours": 14.42,
+      "events": 16,
+      "fingerprint": "8714008a0a628a48645daef552649de23431e383",
+      "coverage_hours": 13.92,
+      "span_hours": 13.92,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -240,7 +506,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 17,
+      "empty_desc": 16,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -249,19 +515,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 35.3,
-      "unique_title_pct": 47.1,
+      "top_title_pct": 31.2,
+      "unique_title_pct": 50.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914060000 +0000",
-          "stop": "20260914063000 +0000",
-          "title": "Black Clover S3",
-          "desc": ""
-        },
         {
           "start": "20260914063000 +0000",
           "stop": "20260914070000 +0000",
@@ -279,12 +539,18 @@
           "stop": "20260914090000 +0000",
           "title": "King & Conqueror",
           "desc": ""
+        },
+        {
+          "start": "20260914090000 +0000",
+          "stop": "20260914100000 +0000",
+          "title": "Dexter S6",
+          "desc": ""
         }
       ],
       "verdict": "REVIEW",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=17",
+        "EMPTY_DESC=16",
         "AR_DESC_LOW=0%"
       ],
       "compat_canonical": null,
@@ -1203,10 +1469,10 @@
       "name": "beIN SPORTS-boxoffice-bein.com.qa",
       "family": "beIN Boxoffice",
       "kind": "boxoffice",
-      "events": 28,
-      "fingerprint": "b2036ee2190161ab26852612f596ffd3403df3e5",
-      "coverage_hours": 46.97,
-      "span_hours": 48.0,
+      "events": 27,
+      "fingerprint": "df00b8e43d33fbe447da6e475920b2aafc34d658",
+      "coverage_hours": 45.13,
+      "span_hours": 46.17,
       "gaps_gt_2h": 0,
       "gap_hours": 1.03,
       "invalid": 0,
@@ -1224,19 +1490,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 14.3,
-      "unique_title_pct": 46.4,
+      "top_title_pct": 14.8,
+      "unique_title_pct": 48.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914041500 +0000",
-          "stop": "20260914060500 +0000",
-          "title": "Operation Fortune: Ruse De Guerre",
-          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
-        },
         {
           "start": "20260914060500 +0000",
           "stop": "20260914074000 +0000",
@@ -1253,6 +1513,12 @@
           "start": "20260914093000 +0000",
           "stop": "20260914111000 +0000",
           "title": "Echoes of War",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
+        },
+        {
+          "start": "20260914111000 +0000",
+          "stop": "20260914123500 +0000",
+          "title": "Perrier's Bounty",
           "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس."
         }
       ],
@@ -1504,10 +1770,10 @@
       "name": "beIN 4K",
       "family": "beIN 4K",
       "kind": "sports_ar",
-      "events": 20,
-      "fingerprint": "8524d32331992cdd9dce127b1cf2de1c7b6bec5c",
-      "coverage_hours": 38.78,
-      "span_hours": 38.78,
+      "events": 19,
+      "fingerprint": "42cd24601f52cd21156d97ae75546678c2df5cc1",
+      "coverage_hours": 37.05,
+      "span_hours": 37.05,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1520,24 +1786,18 @@
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
-      "title_has_ar_pct": 75.0,
+      "title_has_ar_pct": 73.7,
       "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 75.0,
+      "title_hybrid_pct": 73.7,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 30.0,
-      "unique_title_pct": 20.0,
+      "top_title_pct": 26.3,
+      "unique_title_pct": 21.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914044500 +0000",
-          "stop": "20260914062900 +0000",
-          "title": "Sunderland v Arsenal - الدوري الإنجليزي الممتاز",
-          "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
-        },
         {
           "start": "20260914062900 +0000",
           "stop": "20260914083300 +0000",
@@ -1555,13 +1815,17 @@
           "stop": "20260914115600 +0000",
           "title": "Sunderland v Arsenal - الدوري الإنجليزي الممتاز",
           "desc": "مباراة ضمن منافسات الدوري الإنجليزي الممتاز، موسم 2026/2027."
+        },
+        {
+          "start": "20260914115600 +0000",
+          "stop": "20260914140100 +0000",
+          "title": "Main Race - F1 Spanish Grand Prix - FIA Formula 1 World Championship",
+          "desc": "برنامج رياضي ضمن تغطية قنوات بي إن سبورتس، موسم 2026."
         }
       ],
-      "verdict": "REVIEW",
+      "verdict": "PASS",
       "issues": [],
-      "warnings": [
-        "LOW_TITLE_DIVERSITY=20%"
-      ],
+      "warnings": [],
       "compat_canonical": null,
       "alias_exact_match": null
     },
@@ -1766,10 +2030,10 @@
       "name": "beIN_SPORTS7_DIGITAL_Mono_EN",
       "family": "beIN Sports 7 EN",
       "kind": "sports_en",
-      "events": 11,
-      "fingerprint": "96e866271bd96257090843bfb0f0806ad5a043ed",
-      "coverage_hours": 27.75,
-      "span_hours": 48.75,
+      "events": 12,
+      "fingerprint": "cac47628a1216ff3167406f2f3921cd4d1a23b38",
+      "coverage_hours": 30.0,
+      "span_hours": 51.0,
       "gaps_gt_2h": 1,
       "gap_hours": 21.0,
       "invalid": 0,
@@ -1787,8 +2051,8 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 27.3,
-      "unique_title_pct": 63.6,
+      "top_title_pct": 25.0,
+      "unique_title_pct": 66.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
@@ -2120,10 +2384,10 @@
       "name": "beINMOVIES1",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 20,
-      "fingerprint": "b6ce05ebffa7c58fd23bf054f6c0e8076b66806a",
-      "coverage_hours": 38.52,
-      "span_hours": 38.52,
+      "events": 19,
+      "fingerprint": "1b252c9edb3589eeea64632d70ef3d9c084a96ff",
+      "coverage_hours": 37.02,
+      "span_hours": 37.02,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2132,7 +2396,7 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 20,
+      "empty_desc": 19,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
@@ -2141,19 +2405,13 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 10.0,
-      "unique_title_pct": 75.0,
+      "top_title_pct": 10.5,
+      "unique_title_pct": 73.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914045900 +0000",
-          "stop": "20260914062900 +0000",
-          "title": "هاي غراوند",
-          "desc": ""
-        },
         {
           "start": "20260914062900 +0000",
           "stop": "20260914082900 +0000",
@@ -2171,12 +2429,18 @@
           "stop": "20260914120000 +0000",
           "title": "دير سانتا",
           "desc": ""
+        },
+        {
+          "start": "20260914120000 +0000",
+          "stop": "20260914143000 +0000",
+          "title": "أساطير أبطال كوندور: الشجعان",
+          "desc": ""
         }
       ],
       "verdict": "REVIEW",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=20",
+        "EMPTY_DESC=19",
         "AR_DESC_LOW=0%"
       ],
       "compat_canonical": null,
@@ -2254,10 +2518,10 @@
       "name": "beINMOVIES3",
       "family": "beIN Movies",
       "kind": "movies",
-      "events": 21,
-      "fingerprint": "6dbb2c2b8729f9e798450e8b12336f39ec493703",
-      "coverage_hours": 39.23,
-      "span_hours": 39.23,
+      "events": 20,
+      "fingerprint": "3c6f805019ffcaee4a240d28e8648c63d78c6805",
+      "coverage_hours": 37.72,
+      "span_hours": 37.72,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2266,28 +2530,22 @@
       "long_gt_12h": 0,
       "short_lt_2m": 0,
       "empty_title": 0,
-      "empty_desc": 21,
+      "empty_desc": 20,
       "desc_same_title": 0,
       "placeholder": 0,
       "generic": 0,
       "title_has_ar_pct": 100.0,
-      "title_has_latin_pct": 14.3,
-      "title_hybrid_pct": 14.3,
+      "title_has_latin_pct": 15.0,
+      "title_hybrid_pct": 15.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 14.3,
-      "unique_title_pct": 76.2,
+      "top_title_pct": 15.0,
+      "unique_title_pct": 75.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
-        {
-          "start": "20260914050000 +0000",
-          "stop": "20260914063100 +0000",
-          "title": "إجازة تطوعية",
-          "desc": ""
-        },
         {
           "start": "20260914063100 +0000",
           "stop": "20260914081400 +0000",
@@ -2305,12 +2563,18 @@
           "stop": "20260914130000 +0000",
           "title": "العبقري",
           "desc": ""
+        },
+        {
+          "start": "20260914130000 +0000",
+          "stop": "20260914144500 +0000",
+          "title": "عائلة آدامز",
+          "desc": ""
         }
       ],
       "verdict": "REVIEW",
       "issues": [],
       "warnings": [
-        "EMPTY_DESC=21",
+        "EMPTY_DESC=20",
         "AR_DESC_LOW=0%"
       ],
       "compat_canonical": null,
@@ -2322,9 +2586,9 @@
       "family": "beIN Movies",
       "kind": "movies",
       "events": 10,
-      "fingerprint": "6b6598c06fd5db6073879949104cfe5fd8db613c",
-      "coverage_hours": 16.0,
-      "span_hours": 16.0,
+      "fingerprint": "d602fe08260e3fab9616acc181c595b66f2f6692",
+      "coverage_hours": 15.77,
+      "span_hours": 15.77,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -2342,23 +2606,23 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 0.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 10.0,
-      "unique_title_pct": 100.0,
+      "top_title_pct": 20.0,
+      "unique_title_pct": 80.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260914044500 +0000",
-          "stop": "20260914063000 +0000",
-          "title": "دورا ومدينة الذهب المفقودة",
+          "start": "20260914045900 +0000",
+          "stop": "20260914064500 +0000",
+          "title": "بادينجتون في بيرو",
           "desc": ""
         },
         {
-          "start": "20260914063000 +0000",
+          "start": "20260914064500 +0000",
           "stop": "20260914081500 +0000",
-          "title": "الموبتس يغزون مانهاتن",
+          "title": "هل إنتهينا بعد؟",
           "desc": ""
         },
         {
