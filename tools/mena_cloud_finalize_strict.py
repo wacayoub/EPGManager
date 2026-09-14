@@ -7,6 +7,10 @@ an integrity gate to BOTH the fresh candidate and previous LKG programme maps,
 so a polluted historical feed cannot reintroduce cloned/wrong schedules.
 Legitimate quarantined channel identities are retained with zero programmes so
 Smart Mapping can expose them as NO EPG instead of silently losing the ID.
+
+Audited DMI duplicate/regional identities are removed at the receiver boundary
+from both fresh and LKG programme maps. They remain in source/catalogue evidence
+for recovery, but cannot reappear in combined/provider receiver XML through LKG.
 """
 from __future__ import annotations
 
@@ -21,9 +25,20 @@ _original_programme_groups = base.programme_groups
 _original_build_feed = base.build_feed
 _INTEGRITY_GROUP_CALL = 0
 
+# DMI receiver identity audit 2026-09-14. These are alternate guide identities,
+# not additional receiver mapping targets. Keeping the suppression here (before
+# fresh/LKG selection) makes the normal zero-programme publication rule remove
+# them from every receiver XML while preserving upstream/catalogue evidence.
+DMI_INTERNAL_ONLY_IDS = {
+    "Dubai.Racing.ae",
+    "Dubai.Sports.1.ae",
+    "DubaiZaman.ae@SD",
+    "SamaDubai.ae@SD",
+}
+
 
 def strict_programme_groups(root, now, end):
-    """Reject bad final/LKG channel timelines before fresh-vs-LKG selection."""
+    """Reject bad final/LKG timelines and receiver-internal DMI aliases."""
     global _INTEGRITY_GROUP_CALL
     groups = _original_programme_groups(root, now, end)
     clean, findings = guard.sanitize_programme_groups(groups)
@@ -36,6 +51,15 @@ def strict_programme_groups(root, now, end):
             findings.get("blocked_channels", 0),
             findings.get("reason_counts", {}),
         ))
+
+    dmi_removed = sorted(set(clean) & DMI_INTERNAL_ONLY_IDS, key=str.casefold)
+    for cid in dmi_removed:
+        clean.pop(cid, None)
+    if dmi_removed:
+        print(
+            "DMI receiver prune (%s): removed %d internal-only timelines: %s" %
+            (label, len(dmi_removed), ", ".join(dmi_removed))
+        )
     return clean
 
 
