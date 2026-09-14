@@ -46,4 +46,15 @@ jobs:
             for p in rows[:8]:
               t=p.find('title');d=p.find('desc')
               print('ROW|%s|%s|%s|%s'%(p.get('start',''),p.get('stop',''),(t.text or '').strip() if t is not None else '',(d.text or '').strip()[:180] if d is not None else ''))
+
+          ar_id='ar:.ياس.تي.في.إكسترا.ae'
+          en_id='en:.YAS.TV.Extra.ae'
+          ar_slots=[((p.get('start') or '').strip(),(p.get('stop') or '').strip()) for p in ps[ar_id]]
+          en_slots=[((p.get('start') or '').strip(),(p.get('stop') or '').strip()) for p in ps[en_id]]
+          exact=sum(1 for a,b in zip(ar_slots,en_slots) if a==b)
+          print('\nYAS_EXTRA_AR_EVENTS=%d' % len(ar_slots))
+          print('YAS_EXTRA_EN_EVENTS=%d' % len(en_slots))
+          print('YAS_EXTRA_SLOT_MATCH=%d/%d' % (exact,max(len(ar_slots),len(en_slots))))
+          print('YAS_EXTRA_TIMELINE_IDENTICAL=%s' % ('YES' if ar_slots==en_slots and len(ar_slots)>0 else 'NO'))
+          assert ar_slots and ar_slots == en_slots, 'Arabic/English Yas Extra timelines are not identical'
           PY
