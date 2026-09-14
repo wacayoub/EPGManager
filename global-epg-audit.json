@@ -1,78 +1,77 @@
 {
   "schema": 2,
   "scope": "all exclusive MENA country/provider shards + synchronous all-ID release gate",
-  "channels_scanned": 628,
-  "programmes_scanned": 32937,
+  "channels_scanned": 622,
+  "programmes_scanned": 32341,
   "issue_counts": {
     "arabic_provider_description_not_arabic": 2,
-    "arabic_provider_title_not_arabic": 817,
-    "empty_description": 16718,
+    "arabic_provider_title_not_arabic": 815,
+    "empty_description": 16182,
     "hybrid_arabic_latin_description": 4,
-    "premium_title_not_english": 103,
-    "severity_warning": 20153,
-    "very_long_event_gt_6h": 22,
-    "very_short_event_lt_5m": 2487
+    "premium_title_not_english": 99,
+    "severity_warning": 19589,
+    "very_long_event_gt_6h": 21,
+    "very_short_event_lt_5m": 2466
   },
   "by_shard": {
     "mena-ae": {
-      "empty_description": 451,
+      "empty_description": 422,
       "hybrid_arabic_latin_description": 3
     },
     "mena-bh": {
-      "empty_description": 96,
-      "very_short_event_lt_5m": 18
+      "very_short_event_lt_5m": 10
     },
     "mena-dz": {
-      "empty_description": 58
+      "empty_description": 41
     },
     "mena-eg": {
-      "empty_description": 1342,
+      "empty_description": 1350,
       "very_short_event_lt_5m": 1
     },
     "mena-iq": {
-      "empty_description": 606
+      "empty_description": 585
     },
     "mena-jo": {
-      "empty_description": 103,
+      "empty_description": 97,
       "very_short_event_lt_5m": 6
     },
     "mena-kw": {
-      "empty_description": 257,
+      "empty_description": 279,
       "very_short_event_lt_5m": 3
     },
     "mena-lb": {
-      "empty_description": 63,
+      "empty_description": 64,
       "very_long_event_gt_6h": 2
     },
     "mena-om": {
-      "empty_description": 405
+      "empty_description": 399
     },
     "mena-other": {
-      "empty_description": 8156,
+      "empty_description": 7903,
       "hybrid_arabic_latin_description": 1,
-      "very_long_event_gt_6h": 9,
-      "very_short_event_lt_5m": 1195
+      "very_long_event_gt_6h": 8,
+      "very_short_event_lt_5m": 1196
     },
     "mena-ps": {
-      "empty_description": 33
+      "empty_description": 32
     },
     "mena-qa": {
-      "empty_description": 665,
+      "empty_description": 662,
       "very_long_event_gt_6h": 2,
       "very_short_event_lt_5m": 17
     },
     "mena-sa": {
-      "empty_description": 1473,
-      "very_short_event_lt_5m": 646
+      "empty_description": 1420,
+      "very_short_event_lt_5m": 642
     },
     "mena-sd": {
       "empty_description": 47
     },
     "mena-sy": {
-      "empty_description": 5
+      "empty_description": 4
     },
     "mena-tn": {
-      "empty_description": 62
+      "empty_description": 74
     },
     "mena-ye": {
       "empty_description": 118
@@ -84,43 +83,43 @@
       "very_short_event_lt_5m": 22
     },
     "provider-alkass": {
-      "arabic_provider_title_not_arabic": 56,
+      "arabic_provider_title_not_arabic": 55,
       "very_long_event_gt_6h": 1
     },
     "provider-art": {
       "arabic_provider_title_not_arabic": 17,
-      "empty_description": 1218,
-      "very_short_event_lt_5m": 474
+      "empty_description": 1208,
+      "very_short_event_lt_5m": 469
     },
     "provider-bein": {
-      "empty_description": 225,
-      "premium_title_not_english": 92,
+      "empty_description": 220,
+      "premium_title_not_english": 88,
       "very_long_event_gt_6h": 2
     },
     "provider-dmi": {
-      "arabic_provider_title_not_arabic": 73,
-      "empty_description": 273,
+      "arabic_provider_title_not_arabic": 76,
+      "empty_description": 274,
       "very_long_event_gt_6h": 2,
-      "very_short_event_lt_5m": 1
+      "very_short_event_lt_5m": 2
     },
     "provider-mbc": {
       "arabic_provider_description_not_arabic": 2,
-      "arabic_provider_title_not_arabic": 329,
-      "empty_description": 389,
+      "arabic_provider_title_not_arabic": 326,
+      "empty_description": 316,
       "very_long_event_gt_6h": 1
     },
     "provider-osn": {
       "empty_description": 95,
       "premium_title_not_english": 11,
-      "very_short_event_lt_5m": 44
+      "very_short_event_lt_5m": 43
     },
     "provider-rotana": {
-      "arabic_provider_title_not_arabic": 77,
-      "empty_description": 203,
-      "very_short_event_lt_5m": 60
+      "arabic_provider_title_not_arabic": 76,
+      "empty_description": 196,
+      "very_short_event_lt_5m": 55
     },
     "provider-starz": {
-      "empty_description": 152,
+      "empty_description": 153,
       "very_long_event_gt_6h": 1
     }
   },
@@ -275,16 +274,6 @@
         "title": "King of the Court Beach Volleyball Championship",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 29.0
-      },
-      {
-        "shard": "provider-alkass",
-        "channel_id": "2023 Alkass 3.qa",
-        "channel": "2023 Alkass 3.qa",
-        "start": "20260914083000 +0000",
-        "stop": "20260914100500 +0000",
-        "title": "Botoulat Asia Lel Shabab Lekorat Al Yad",
-        "desc": "برنامج رياضي على قنوات الكأس.",
-        "duration_minutes": 95.0
       },
       {
         "shard": "provider-alkass",
@@ -525,6 +514,16 @@
         "title": "Botolat Qatar Al Dawlya Lel Khayl Al Arabia Al Aseel",
         "desc": "برنامج رياضي على قنوات الكأس.",
         "duration_minutes": 445.0
+      },
+      {
+        "shard": "provider-alkass",
+        "channel_id": "2023 Alkass 4.qa",
+        "channel": "2023 Alkass 4.qa",
+        "start": "20260914234500 +0000",
+        "stop": "20260914235900 +0000",
+        "title": "Auto Mundial",
+        "desc": "برنامج رياضي على قنوات الكأس.",
+        "duration_minutes": 14.0
       }
     ],
     "very_long_event_gt_6h": [
@@ -692,16 +691,6 @@
         "shard": "mena-other",
         "channel_id": "Esport 24.sa",
         "channel": "Esport 24.sa",
-        "start": "20260914005900 +0000",
-        "stop": "20260914100300 +0000",
-        "title": "بلاست بريمير",
-        "desc": "",
-        "duration_minutes": 544.0
-      },
-      {
-        "shard": "mena-other",
-        "channel_id": "Esport 24.sa",
-        "channel": "Esport 24.sa",
         "start": "20260914100300 +0000",
         "stop": "20260914171400 +0000",
         "title": "كأس العالم للرياضات الإلكترونية",
@@ -750,16 +739,6 @@
       }
     ],
     "empty_description": [
-      {
-        "shard": "provider-bein",
-        "channel_id": "beIN Drama.eg",
-        "channel": "beIN Drama.eg",
-        "start": "20260914090000 +0000",
-        "stop": "20260914100000 +0000",
-        "title": "Basmet Hada",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
       {
         "shard": "provider-bein",
         "channel_id": "beIN Drama.eg",
@@ -1149,19 +1128,19 @@
         "title": "Addams Family Values",
         "desc": "",
         "duration_minutes": 105.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "BEIN MOVIES DRAMA.eg",
+        "channel": "BEIN MOVIES DRAMA.eg",
+        "start": "20260914163000 +0000",
+        "stop": "20260914183000 +0000",
+        "title": "Camera",
+        "desc": "",
+        "duration_minutes": 120.0
       }
     ],
     "premium_title_not_english": [
-      {
-        "shard": "provider-bein",
-        "channel_id": "BeIn Series HD 1.eg",
-        "channel": "BeIn Series HD 1.eg",
-        "start": "20260914090000 +0000",
-        "stop": "20260914100000 +0000",
-        "title": "1883",
-        "desc": "",
-        "duration_minutes": 60.0
-      },
       {
         "shard": "provider-bein",
         "channel_id": "BeIn Series HD 1.eg",
@@ -1176,20 +1155,10 @@
         "shard": "provider-bein",
         "channel_id": "beINDrama1.qa@SD",
         "channel": "بي إن دراما",
-        "start": "20260914090000 +0000",
-        "stop": "20260914100000 +0000",
-        "title": "بصمة حدا",
-        "desc": "مسلسل يتكون من قصص (طبق الأصل - برزخ - انتقام بارد) حيث تدور الأحداث في نقطة اشتباك الواجب مع الحب بين الخطأ والصواب، وحول واجهة خادعة من الحياة الرتيبة التي تظهر في بادئ الأمر، قبل البدء في اكتشاف الحقيقة شيئاً فشيئاّ.",
-        "duration_minutes": 60.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINDrama1.qa@SD",
-        "channel": "بي إن دراما",
         "start": "20260914100000 +0000",
         "stop": "20260914110000 +0000",
         "title": "القاتل الذي أحبني",
-        "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب.",
+        "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.",
         "duration_minutes": 60.0
       },
       {
@@ -1199,7 +1168,7 @@
         "start": "20260914110000 +0000",
         "stop": "20260914120000 +0000",
         "title": "أوراق النسيان",
-        "desc": "مسلسل يتكون من قصص (طبق الأصل - برزخ - انتقام بارد) حيث تدور الأحداث في نقطة اشتباك الواجب مع الحب بين الخطأ والصواب، وحول واجهة خادعة من الحياة الرتيبة التي تظهر في بادئ الأمر، قبل البدء في اكتشاف الحقيقة شيئاً فشيئاّ.",
+        "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب.",
         "duration_minutes": 60.0
       },
       {
@@ -1219,7 +1188,7 @@
         "start": "20260914130000 +0000",
         "stop": "20260914140000 +0000",
         "title": "مزاد الشر",
-        "desc": "تتسبب جريمة قتل في نشر الرعب بين سكّان أحد أحياء الأثرياء والنخبة، فيما تبدأ زوجة تحظى بزواج مضطرب في كشف أسرار العالم المظلم لزوجها الذي تعتقد بتورطه في الأمر.",
+        "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.",
         "duration_minutes": 60.0
       },
       {
@@ -1229,7 +1198,7 @@
         "start": "20260914140000 +0000",
         "stop": "20260914150000 +0000",
         "title": "سراب",
-        "desc": "بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتشابك فيه مصائر أبنائهما بمرارة الماضي.",
+        "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب.",
         "duration_minutes": 60.0
       },
       {
@@ -1239,7 +1208,7 @@
         "start": "20260914150000 +0000",
         "stop": "20260914160000 +0000",
         "title": "بصمة حدا",
-        "desc": "مسلسل يتكون من قصص (طبق الأصل - برزخ - انتقام بارد) حيث تدور الأحداث في نقطة اشتباك الواجب مع الحب بين الخطأ والصواب، وحول واجهة خادعة من الحياة الرتيبة التي تظهر في بادئ الأمر، قبل البدء في اكتشاف الحقيقة شيئاً فشيئاّ.",
+        "desc": "بعد سنوات من غدرٍ أودى بها خلف القضبان، تخرج فايزة من عتمة السجن إلى عالم الثراء، فتجد سعد الذي خانها يوماً قد شيد إمبراطوريته من حطام صفقتهما القديمة. وبينما تتصادم طموحاتهما في صفقات مشبوهة جديدة، يشتعل فتيل انتقام تتشابك فيه مصائر أبنائهما بمرارة الماضي.",
         "duration_minutes": 60.0
       },
       {
@@ -1249,7 +1218,7 @@
         "start": "20260914160000 +0000",
         "stop": "20260914170000 +0000",
         "title": "القاتل الذي أحبني",
-        "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب.",
+        "desc": "الرسام الجنائي الذي يكره الدماء (معتز) يعمل في المباحث. يحاول الجميع التقرب منه نظرا للصيت الذي يشتهر به معتز وهو (موت كل من يكرههم أو يغضبونه)، فهو ليس بقاتل ولا ساحر ولكن أشيع أن كل من يغضب معتز يموت.",
         "duration_minutes": 60.0
       },
       {
@@ -1259,7 +1228,7 @@
         "start": "20260914170000 +0000",
         "stop": "20260914180000 +0000",
         "title": "أوراق النسيان",
-        "desc": "تتسبب جريمة قتل في نشر الرعب بين سكّان أحد أحياء الأثرياء والنخبة، فيما تبدأ زوجة تحظى بزواج مضطرب في كشف أسرار العالم المظلم لزوجها الذي تعتقد بتورطه في الأمر.",
+        "desc": "يختفي طفل في السابعة من عمره في ظروف غامضة ويحاول والداه كشف ملابسات ما حدث، ثم يعود الطفل سالمًا لكن يبقى الغموض مستمرًا، بينما تتوالى التحقيقات حول هذا الاختفاء، لتكشف عن حقائق وعلاقات متشابكة تقلب كل شيء رأسًا على عقب.",
         "duration_minutes": 60.0
       },
       {
@@ -1281,16 +1250,6 @@
         "title": "مزاد الشر",
         "desc": "دراما صعيدية تتحدث عن صراع بين كبار عائلتي رضوان الكالح وابنه أحمد من جانب وشقيق زوجته خلاف من الجانب الأخر، بعد أن كانوا أصدقاء في الماضي.",
         "duration_minutes": 40.0
-      },
-      {
-        "shard": "provider-bein",
-        "channel_id": "beINGourmet.qa@SD",
-        "channel": "beINGOURMET",
-        "start": "20260914090000 +0000",
-        "stop": "20260914100000 +0000",
-        "title": "E25 | S1 طبلية",
-        "desc": "",
-        "duration_minutes": 60.0
       },
       {
         "shard": "provider-bein",
@@ -1551,19 +1510,39 @@
         "title": "فتى الكاراتيه: الأساطير",
         "desc": "",
         "duration_minutes": 91.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies2Action.qa@SD",
+        "channel": "beINMOVIES2",
+        "start": "20260914091500 +0000",
+        "stop": "20260914105000 +0000",
+        "title": "عودة الشاردة",
+        "desc": "",
+        "duration_minutes": 95.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies2Action.qa@SD",
+        "channel": "beINMOVIES2",
+        "start": "20260914105000 +0000",
+        "stop": "20260914130000 +0000",
+        "title": "ستار تريك",
+        "desc": "",
+        "duration_minutes": 130.0
+      },
+      {
+        "shard": "provider-bein",
+        "channel_id": "beINMovies2Action.qa@SD",
+        "channel": "beINMOVIES2",
+        "start": "20260914130000 +0000",
+        "stop": "20260914151500 +0000",
+        "title": "ستار تريك إنتو داركنس",
+        "desc": "",
+        "duration_minutes": 135.0
       }
     ],
     "very_short_event_lt_5m": [
-      {
-        "shard": "provider-osn",
-        "channel_id": "OSNKids.ae@SD",
-        "channel": "OSNtv Kids",
-        "start": "20260914095900 +0000",
-        "stop": "20260914100300 +0000",
-        "title": "Bing S3",
-        "desc": "عندما يندلع حريق في المدينة، ينطلق المستكشف الشهير عالميًا، ميسون جيمس، إلى العمل! يقود شاحنة الإطفاء عبر المدينة للمساعدة في إخماد الحريق! هل سيتمكن من اجتياز المدينة وإنقاذ اليوم؟",
-        "duration_minutes": 4.0
-      },
       {
         "shard": "provider-osn",
         "channel_id": "OSNKids.ae@SD",
@@ -1953,6 +1932,16 @@
         "title": "Duplo Adventures",
         "desc": "ماذا تريد أن تصبح عندما تكبر؟ الهالوين هو عطلة ممتعة حيث يمكن للأطفال ارتداء ملابس أي شخصية يرغبون فيها ويكونوا من يريدون أن يكونوا.",
         "duration_minutes": 3.0
+      },
+      {
+        "shard": "provider-osn",
+        "channel_id": "OSNKids.ae@SD",
+        "channel": "OSNtv Kids",
+        "start": "20260915231200 +0000",
+        "stop": "20260915231500 +0000",
+        "title": "Barbie Doll Adventures",
+        "desc": "اليوم الكبير يصل أخيراً! تحضر باربي وأصدقاؤها موكب العطلة للاحتفال بالصداقة، المرح، والموضة.",
+        "duration_minutes": 3.0
       }
     ],
     "arabic_provider_description_not_arabic": [
@@ -2021,13 +2010,13 @@
     ]
   },
   "all_id_release_gate": {
-    "channels": 628,
-    "programmes": 32937,
-    "PASS": 160,
-    "REVIEW": 468,
+    "channels": 622,
+    "programmes": 32341,
+    "PASS": 162,
+    "REVIEW": 460,
     "NO_EPG": 0,
     "FAIL": 0,
-    "auto_lock_safe": 160,
+    "auto_lock_safe": 162,
     "missing_shards": []
   }
 }
