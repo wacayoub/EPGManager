@@ -1,0 +1,5882 @@
+{
+  "schema": 1,
+  "mode": "no-epg-triage-diagnostic",
+  "total_no_epg": 433,
+  "category_counts": {
+    "DORMANT_EVENT_OR_COMPAT_ID": 32,
+    "ACTIVE_CHANNEL_NEEDS_SOURCE": 210,
+    "FOREIGN_AGGREGATOR_ID_REVIEW": 190,
+    "LOGICAL_ALIAS_TO_LIVE": 1
+  },
+  "by_shard": {
+    "mena-ae": {
+      "ACTIVE_CHANNEL_NEEDS_SOURCE": 8
+    },
+    "mena-bh": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 2
+    },
+    "mena-dz": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 13
+    },
+    "mena-eg": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 36
+    },
+    "mena-iq": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 42
+    },
+    "mena-jo": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 6
+    },
+    "mena-kw": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 8,
+      "LOGICAL_ALIAS_TO_LIVE": 1
+    },
+    "mena-lb": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 11
+    },
+    "mena-ly": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 9
+    },
+    "mena-mr": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 1
+    },
+    "mena-om": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 2
+    },
+    "mena-other": {
+      "ACTIVE_CHANNEL_NEEDS_SOURCE": 178
+    },
+    "mena-ps": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 15
+    },
+    "mena-qa": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 13
+    },
+    "mena-sa": {
+      "ACTIVE_CHANNEL_NEEDS_SOURCE": 14,
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 10
+    },
+    "mena-sd": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 3
+    },
+    "mena-sy": {
+      "ACTIVE_CHANNEL_NEEDS_SOURCE": 1,
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 3
+    },
+    "mena-tn": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 3
+    },
+    "mena-ye": {
+      "FOREIGN_AGGREGATOR_ID_REVIEW": 13
+    },
+    "provider-adm": {
+      "ACTIVE_CHANNEL_NEEDS_SOURCE": 1
+    },
+    "provider-art": {
+      "ACTIVE_CHANNEL_NEEDS_SOURCE": 3
+    },
+    "provider-bein": {
+      "DORMANT_EVENT_OR_COMPAT_ID": 32
+    },
+    "provider-mbc": {
+      "ACTIVE_CHANNEL_NEEDS_SOURCE": 3
+    },
+    "provider-osn": {
+      "ACTIVE_CHANNEL_NEEDS_SOURCE": 1
+    },
+    "provider-rotana": {
+      "ACTIVE_CHANNEL_NEEDS_SOURCE": 1
+    }
+  },
+  "channels": [
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS MAX 1.qa",
+      "name": "beIN SPORTS MAX 1.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS MAX 2.qa",
+      "name": "beIN SPORTS MAX 2.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS MAX 3.qa",
+      "name": "beIN SPORTS MAX 3.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS MAX 4.qa",
+      "name": "beIN SPORTS MAX 4.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS MAX 5.qa",
+      "name": "beIN SPORTS MAX 5.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS MAX 6.qa",
+      "name": "beIN SPORTS MAX 6.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS XTRA 04 bein.com.qa",
+      "name": "beIN SPORTS XTRA 04 bein.com.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS XTRA 05 bein.com.qa",
+      "name": "beIN SPORTS XTRA 05 bein.com.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS XTRA 3.qa",
+      "name": "beIN SPORTS XTRA 3.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS XTRA 4.qa",
+      "name": "beIN SPORTS XTRA 4.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS XTRA 5.qa",
+      "name": "beIN SPORTS XTRA 5.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS XTRA 6.qa",
+      "name": "beIN SPORTS XTRA 6.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS XTRA 7.qa",
+      "name": "beIN SPORTS XTRA 7.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS XTRA 8.qa",
+      "name": "beIN SPORTS XTRA 8.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN SPORTS XTRA 9.qa",
+      "name": "beIN SPORTS XTRA 9.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "bein.com-05.qa",
+      "name": "bein.com-05.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "bein.com-06.qa",
+      "name": "bein.com-06.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "bein.com-07.qa",
+      "name": "bein.com-07.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "bein.com-08.qa",
+      "name": "bein.com-08.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN_SPORTS_XTRA_06_bein.com_EN.bein",
+      "name": "beIN_SPORTS_XTRA_06_bein.com_EN",
+      "feed_country": "",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN_SPORTS_XTRA_07_bein.com_EN.bein",
+      "name": "beIN_SPORTS_XTRA_07_bein.com_EN",
+      "feed_country": "",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN_SPORTS_XTRA_08_Bein.com_EN.bein",
+      "name": "beIN_SPORTS_XTRA_08_Bein.com_EN",
+      "feed_country": "",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN.bein",
+      "name": "beIN_SPORTS_XTRA_Digital_09_Bein.com_EN",
+      "feed_country": "",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beINSportsMax1.qa@MENA",
+      "name": "beINSPORTSMAX1",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beINSportsMax2.qa@MENA",
+      "name": "beINSPORTSMAX2",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beINSportsMax3.qa@MENA",
+      "name": "beINSPORTSMAX3",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beINSportsMax4.qa@MENA",
+      "name": "beINSPORTSMAX4",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beINSportsMax5.qa@MENA",
+      "name": "beINSPORTSMAX5",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beINSportsMax6.qa@MENA",
+      "name": "beINSPORTSMAX6",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beINSportsXtra1.qa@SD",
+      "name": "beIN SPORTS XTRA 1",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beINSportsXtra2.qa@SD",
+      "name": "beIN SPORTS XTRA 2",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-bein",
+      "id": "beINSPORTSXTRA3.qa",
+      "name": "beINSPORTSXTRA3.qa",
+      "feed_country": "qa",
+      "category": "DORMANT_EVENT_OR_COMPAT_ID",
+      "canonical_target": "",
+      "reason": "beIN MAX/XTRA/bein.com event/compatibility identity with no current schedule"
+    },
+    {
+      "shard": "provider-osn",
+      "id": "OSN.TV.ae",
+      "name": "OSN TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-mbc",
+      "id": "AlArabiyaEnglish.sa@SD",
+      "name": "AL Arabiya English",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-mbc",
+      "id": "AlArabiyaPrograms.ae",
+      "name": "العربية برامج",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-mbc",
+      "id": "Wanasah.ae@SD",
+      "name": "وناسه",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-rotana",
+      "id": "Rotana.Tarab.Jordan.ae",
+      "name": "Rotana Tarab Jordan",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-adm",
+      "id": "Majid.Kids.TV.HD.ae",
+      "name": "Majid Kids TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-art",
+      "id": "Alfa.Cinema.ae",
+      "name": "Alfa Cinema",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-art",
+      "id": "Alfa.Drama.ae",
+      "name": "Alfa Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-art",
+      "id": "Alfa.Hekayat.ae",
+      "name": "Alfa Hekayat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Aghapy.TV.ae",
+      "name": "Aghapy TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Al.Ahly.TV.HD.ae",
+      "name": "Al Ahly TV HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Al.Askandria.5.ae",
+      "name": "Al Askandria 5",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Al.Kahera.3.ae",
+      "name": "Al Kahera 3",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "AL.Kahera.Al.Kobra.ae",
+      "name": "AL Kahera Al Kobra",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Al.Nada.TV.ae",
+      "name": "Al Nada TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Al.Nahar.Noor.ae",
+      "name": "Al Nahar Noor",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Al.Qahera.News.ae",
+      "name": "Al Qahera News",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Al.Saeedah.ae",
+      "name": "Al Saeedah",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Al.Wathaeqya.ae",
+      "name": "Al Wathaeqya",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Alfath.TV.ae",
+      "name": "Alfath TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "AlHadath.Alyoum.ae",
+      "name": "AlHadath Alyoum",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Aswan.ae",
+      "name": "Aswan",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Bakous.Alexandaria.ae",
+      "name": "Bakous Alexandaria",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "El.Moled.ae",
+      "name": "El Moled",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Extra.live.ae",
+      "name": "Extra live",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Huda.TV.ae",
+      "name": "Huda TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Koogi.TV.ae",
+      "name": "Koogi TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Madrasetna.1.ae",
+      "name": "Madrasetna 1",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Madrasetna.2.ae",
+      "name": "Madrasetna 2",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Madrasetna.3.ae",
+      "name": "Madrasetna 3",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Matrouh.ae",
+      "name": "Matrouh",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Mazzika.ae",
+      "name": "Mazzika",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Mekameleen.ae",
+      "name": "Mekameleen",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Misr.Al.Zeraeey.ae",
+      "name": "Misr Al Zeraeey",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Misr.AlBalad.ae",
+      "name": "Misr AlBalad",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Misr.Quran.Kareem.ae",
+      "name": "Misr Quran Kareem",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Nile.Culture.ae",
+      "name": "Nile Culture",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Nile.News.ae",
+      "name": "Nile News",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Nile.Sport.ae",
+      "name": "Nile Sport",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "North.Sinai.ae",
+      "name": "North Sinai",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "South.Sinai.ae",
+      "name": "South Sinai",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "The.Kingdom.Sat.ae",
+      "name": "The Kingdom Sat",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Watan.TV.ae",
+      "name": "Watan TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Zamalek.TV.ae",
+      "name": "Zamalek TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-eg",
+      "id": "Zee.Alwan.Egypt.ae",
+      "name": "Zee Alwan Egypt",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "AbdulmajeedAbdullah.sa@SD",
+      "name": "عبدالمجيد عبدالله",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "Al.Majd.ae",
+      "name": "Al Majd",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "Al.Majd.Holy.Quran.ae",
+      "name": "Al Majd Holy Quran",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "Al.Sahraa.TV.ae",
+      "name": "Al Sahraa TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "AlEkhbariya.sa@SD",
+      "name": "الإخبارية",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "AlQuranAlKareemTV.sa@SD",
+      "name": "القرآن الكريم",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "AlSaudiyaAlaan.sa@SD",
+      "name": "السعودية الآن",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "AlSunnahAlNabawiyahTV.sa@SD",
+      "name": "السنة النبوية",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "BabAlHara.sa@SD",
+      "name": "قناة باب الحارة",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "BigTimePlus.sa@SD",
+      "name": "Big Time Plus",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "Bin.Othaimeen.ae",
+      "name": "Bin Othaimeen",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "GoalZone.sa",
+      "name": "Goal Zone",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "IqraaArabic.sa",
+      "name": "إقرأ",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "KSA.sports.2.HD.ae",
+      "name": "KSA sports 2 HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "MajidAlMohandis.sa@SD",
+      "name": "ماجد المهندس",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "MohammedAbdo.sa@SD",
+      "name": "محمد عبده",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "Oyoun.Al.Watan.TV.ae",
+      "name": "Oyoun Al Watan TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "RashidAlMajed.sa@SD",
+      "name": "راشد الماجد",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "Saudi.Quran.TV.HD.ae",
+      "name": "Saudi Quran TV HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "Saudi.Sunna.TV.HD.ae",
+      "name": "Saudi Sunna TV HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "Saudia.Alaan.TV.ae",
+      "name": "Saudia Alaan TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "SaudiThaqafiyaTV.sa@SD",
+      "name": "الثقافية",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "Tarab.sa@SD",
+      "name": "طرب",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "Zad.TV.ae",
+      "name": "Zad TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "Ajman.TV.HD.ae",
+      "name": "Ajman TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "Al.Mashhad.ae",
+      "name": "Al Mashhad",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "Al.Qamar.TV.ae",
+      "name": "Al Qamar TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "Baynounah.TV.HD.ae",
+      "name": "Baynounah TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "China.Arab.TV.ae",
+      "name": "China Arab TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "Sharjah.Quran.TV.ae",
+      "name": "Sharjah Quran TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "SpacetoonArabic.ae@SD",
+      "name": "Spacetoon",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "Zayed.Quran.ae",
+      "name": "Zayed Quran",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Al.Jazeera.Documentary.HD.ae",
+      "name": "Al Jazeera Documentary HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Al.Jazeera.English.HD.ae",
+      "name": "Al Jazeera English HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Al.Jazeera.HD.ae",
+      "name": "Al Jazeera HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Al.Maaref.TV.ae",
+      "name": "Al Maaref TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Hola.Qatar.ae",
+      "name": "Hola Qatar",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Qatar.R.Quran.2.ae",
+      "name": "Qatar R Quran 2",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Qatar.R.Quran.ae",
+      "name": "Qatar R Quran",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Sout.Al.Islam.Doha.ae",
+      "name": "Sout Al Islam Doha",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Sout.Al.Rayyan.ae",
+      "name": "Sout Al Rayyan",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Sout.Alkhaleej.2.ae",
+      "name": "Sout Alkhaleej 2",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Sout.Alkhaleej.3.ae",
+      "name": "Sout Alkhaleej 3",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Sout.Alkhaleej.4.ae",
+      "name": "Sout Alkhaleej 4",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-qa",
+      "id": "Sout.Alkhaleej.Europe.ae",
+      "name": "Sout Alkhaleej Europe",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-kw",
+      "id": "Al.Anwar.TV.ae",
+      "name": "Al Anwar TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-kw",
+      "id": "Al.Rai.TV.ae",
+      "name": "Al Rai TV",
+      "feed_country": "ae",
+      "category": "LOGICAL_ALIAS_TO_LIVE",
+      "canonical_target": "AlraiTV.kw@SD",
+      "reason": "same normalized channel identity already has EPG"
+    },
+    {
+      "shard": "mena-kw",
+      "id": "Kuwait.Al.Akhbar.ae",
+      "name": "Kuwait Al Akhbar",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-kw",
+      "id": "Kuwait.Classical.ae",
+      "name": "Kuwait Classical",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-kw",
+      "id": "Kuwait.Easy.ae",
+      "name": "Kuwait Easy",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-kw",
+      "id": "Kuwait.Holy.Quran.ae",
+      "name": "Kuwait Holy Quran",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-kw",
+      "id": "Kuwait.Shaabyia.ae",
+      "name": "Kuwait Shaabyia",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-kw",
+      "id": "Kuwait.Super.ae",
+      "name": "Kuwait Super",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-kw",
+      "id": "Kuwait.TV.2.HD.ae",
+      "name": "Kuwait TV 2 HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-bh",
+      "id": "Bahrain.International.ae",
+      "name": "Bahrain International",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-bh",
+      "id": "LuaLua.TV.HD.ae",
+      "name": "LuaLua TV HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-om",
+      "id": "Alistiqama.TV.ae",
+      "name": "Alistiqama TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-om",
+      "id": "Oman.TV.Culture.HD.ae",
+      "name": "Oman TV Culture HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-jo",
+      "id": "Azhari.TV.ae",
+      "name": "Azhari TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-jo",
+      "id": "Jordan.sama.ae",
+      "name": "Jordan sama",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-jo",
+      "id": "Kaifa.TV.ae",
+      "name": "Kaifa TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-jo",
+      "id": "Karameesh.ae",
+      "name": "Karameesh",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-jo",
+      "id": "Quran.Kareem.Jordan.ae",
+      "name": "Quran Kareem Jordan",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-jo",
+      "id": "Toyor.Aljanah.TV.ae",
+      "name": "Toyor Aljanah TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-lb",
+      "id": "Al.Iman.TV.ae",
+      "name": "Al Iman TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-lb",
+      "id": "Al.Ittihad.TV.ae",
+      "name": "Al Ittihad TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-lb",
+      "id": "Al.Mayadeen.HD.ae",
+      "name": "Al Mayadeen HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-lb",
+      "id": "Beirut.Aflam.ae",
+      "name": "Beirut Aflam",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-lb",
+      "id": "Beirut.Alyoom.ae",
+      "name": "Beirut Alyoom",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-lb",
+      "id": "Beirut.Cinema.ae",
+      "name": "Beirut Cinema",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-lb",
+      "id": "Beirut.Drama.ae",
+      "name": "Beirut Drama",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-lb",
+      "id": "Nabaa.TV.ae",
+      "name": "Nabaa TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-lb",
+      "id": "Nour.Koddass.ae",
+      "name": "Nour Koddass",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-lb",
+      "id": "Noursat.TV.ae",
+      "name": "Noursat TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-lb",
+      "id": "Suboro.TV.ae",
+      "name": "Suboro TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Afaq.TV.ae",
+      "name": "Afaq TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Al.Anbar.ae",
+      "name": "Al Anbar",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Al.Ayyam.TV.ae",
+      "name": "Al Ayyam TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Al.Eshraq.TV.ae",
+      "name": "Al Eshraq TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Al.Fallujah.TV.ae",
+      "name": "Al Fallujah TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Al.Forat.ae",
+      "name": "Al Forat",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Al.Iraqiya.Kurd.ae",
+      "name": "Al Iraqiya Kurd",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Al.Iraqiya.Sport.HD.ae",
+      "name": "Al Iraqiya Sport HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Al.Iraqiya.Turkuman.ae",
+      "name": "Al Iraqiya Turkuman",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Al.Kafeel.ae",
+      "name": "Al Kafeel",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Al.Naeem.TV.ae",
+      "name": "Al Naeem TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Al.Najaf.Al.Ashraf.TV.ae",
+      "name": "Al Najaf Al Ashraf TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Al.Salam.TV.ae",
+      "name": "Al Salam TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Alahad.TV.HD.ae",
+      "name": "Alahad TV HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Alghadeer.TV.ae",
+      "name": "Alghadeer TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Alshaaer.TV.ae",
+      "name": "Alshaaer TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Altaleaa.TV.ae",
+      "name": "Altaleaa TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Amozhgary.TV.ae",
+      "name": "Amozhgary TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Baghdad.TV.ae",
+      "name": "Baghdad TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Bangawaz.TV.ae",
+      "name": "Bangawaz TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Gali.Kurdistan.HD.ae",
+      "name": "Gali Kurdistan HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Imam.Hussein.TV.2.ae",
+      "name": "Imam Hussein TV 2",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Iraq.24.HD.ae",
+      "name": "Iraq 24 HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Iraq.Future.TV.ae",
+      "name": "Iraq Future TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Iraq.Now.ae",
+      "name": "Iraq Now",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Karbala.TV.HD.ae",
+      "name": "Karbala TV HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Kirkuk.TV.ae",
+      "name": "Kirkuk TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Kurdistan.TV.ae",
+      "name": "Kurdistan TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "KurdMax.HD.ae",
+      "name": "KurdMax HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Kurdsat.ae",
+      "name": "Kurdsat",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Kurdsat.News.HD.ae",
+      "name": "Kurdsat News HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Manu.Chat.ae",
+      "name": "Manu Chat",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "NRT.2.HD.ae",
+      "name": "NRT 2 HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "NRT.HD.ae",
+      "name": "NRT HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Payam.TV.ae",
+      "name": "Payam TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Rûdaw.TV.HD.ae",
+      "name": "Rûdaw TV HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Speda.HD.ae",
+      "name": "Speda HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Türkmeneli.TV.HD.ae",
+      "name": "Türkmeneli TV HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "UTV.Iraq.ae",
+      "name": "UTV Iraq",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "VOA.IRAQ.ae",
+      "name": "VOA IRAQ",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Waar.HD.ae",
+      "name": "Waar HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-iq",
+      "id": "Zagros.ae",
+      "name": "Zagros",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Al.Quds.Today.TV.ae",
+      "name": "Al Quds Today TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Athan.Tulkarem.ae",
+      "name": "Athan Tulkarem",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Falastini.TV.ae",
+      "name": "Falastini TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "falestinona.TV.ae",
+      "name": "falestinona TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Hebron.Sat.ae",
+      "name": "Hebron Sat",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Musawa.HD.ae",
+      "name": "Musawa HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Palestine.Edu.HD.ae",
+      "name": "Palestine Edu HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Palestine.HD.ae",
+      "name": "Palestine HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Palestine.Live.HD.ae",
+      "name": "Palestine Live HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Palestine.News.ae",
+      "name": "Palestine News",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Palestine.Quraan.ae",
+      "name": "Palestine Quraan",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Palestine.Quran.2.ae",
+      "name": "Palestine Quran 2",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Palestine.Today.ae",
+      "name": "Palestine Today",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Voice.Of.Palestine.ae",
+      "name": "Voice Of Palestine",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ps",
+      "id": "Wadi.Al-Neil.&.Palestine.ae",
+      "name": "Wadi Al-Neil & Palestine",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Aden.TV.ae",
+      "name": "Aden TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Al.Hawyah.ae",
+      "name": "Al Hawyah",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Allahdhah.TV.ae",
+      "name": "Allahdhah TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Almasirah.TV.ae",
+      "name": "Almasirah TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Almasirah.TV.Mubasher.ae",
+      "name": "Almasirah TV Mubasher",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Reef.AlYemen.ae",
+      "name": "Reef AlYemen",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Sheba.TV.ae",
+      "name": "Sheba TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Suhail.TV.ae",
+      "name": "Suhail TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Yemen.Documentary.ae",
+      "name": "Yemen Documentary",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Yemen.Education.ae",
+      "name": "Yemen Education",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Yemen.Shabab.ae",
+      "name": "Yemen Shabab",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Yemen.Today.TV.ae",
+      "name": "Yemen Today TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ye",
+      "id": "Yemen.TV.ae",
+      "name": "Yemen TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "Al.Djazair.N°1.ae",
+      "name": "Al Djazair N°1",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "Algérie.3.HD.ae",
+      "name": "Algérie 3 HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "Algérie.4.ae",
+      "name": "Algérie 4",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "Algérie.5.ae",
+      "name": "Algérie 5",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "Algérie.6.HD.ae",
+      "name": "Algérie 6 HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "Algérie.7.ae",
+      "name": "Algérie 7",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "Algérie.8.HD.ae",
+      "name": "Algérie 8 HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "Bahia.TV.ae",
+      "name": "Bahia TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "Canal.Algerie.ae",
+      "name": "Canal Algerie",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "Echorouk.News.ae",
+      "name": "Echorouk News",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "El.Hayat.TV.ae",
+      "name": "El Hayat TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "Ennahar.TV.ae",
+      "name": "Ennahar TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-dz",
+      "id": "Zahra.TV.ae",
+      "name": "Zahra TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-tn",
+      "id": "Tunisia.Nat.1.ae",
+      "name": "Tunisia Nat 1",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-tn",
+      "id": "Tunisia.Nat.2.ae",
+      "name": "Tunisia Nat 2",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-tn",
+      "id": "Zaytoona.ae",
+      "name": "Zaytoona",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ly",
+      "id": "Al.Jamahiriya.TV.ae",
+      "name": "Al Jamahiriya TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ly",
+      "id": "Libya.Al.Ahrar.HD.ae",
+      "name": "Libya Al Ahrar HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ly",
+      "id": "Libya.Al.Hedaya.ae",
+      "name": "Libya Al Hedaya",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ly",
+      "id": "Libya.Alhadath.HD.ae",
+      "name": "Libya Alhadath HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ly",
+      "id": "Libya.Alrasmia.Channel.ae",
+      "name": "Libya Alrasmia Channel",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ly",
+      "id": "Libya.Future.TV.HD.ae",
+      "name": "Libya Future TV HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ly",
+      "id": "Libya.Ifta.TV.ae",
+      "name": "Libya Ifta TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ly",
+      "id": "Libya.Sport.2.HD.ae",
+      "name": "Libya Sport 2 HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-ly",
+      "id": "Libya.Sport.ae",
+      "name": "Libya Sport",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sd",
+      "id": "Khartoum.TV.ae",
+      "name": "Khartoum TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sd",
+      "id": "Shamalia.TV.ae",
+      "name": "Shamalia TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sd",
+      "id": "Tayba.TV.ae",
+      "name": "Tayba TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sy",
+      "id": "AlSouriyaTV.sy@HD",
+      "name": "السورية",
+      "feed_country": "sy",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sy",
+      "id": "Halab.Today.TV.ae",
+      "name": "Halab Today TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sy",
+      "id": "Syria.One.TV.ae",
+      "name": "Syria One TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-sy",
+      "id": "Syria.TV.HD.ae",
+      "name": "Syria TV HD",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-mr",
+      "id": "Albarlemania.al.Mauritania.TV.ae",
+      "name": "Albarlemania al Mauritania TV",
+      "feed_country": "ae",
+      "category": "FOREIGN_AGGREGATOR_ID_REVIEW",
+      "canonical_target": "",
+      "reason": "feed suffix does not match authoritative country shard"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Adala.TV.HD.ae",
+      "name": "Adala TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "ADM.R3.ae",
+      "name": "ADM R3",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "ADM.R4.ae",
+      "name": "ADM R4",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "AFC 4.qa",
+      "name": "AFC 4.qa",
+      "feed_country": "qa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "AFC 5.qa",
+      "name": "AFC 5.qa",
+      "feed_country": "qa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Ahadu.TV.ae",
+      "name": "Ahadu TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "AL-Bernameg.AL-moussekey.ae",
+      "name": "AL-Bernameg AL-moussekey",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.24.News.ae",
+      "name": "Al 24 News",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Aghani.ae",
+      "name": "Al Aghani",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Ahvaz.TV.ae",
+      "name": "Al Ahvaz TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Amal.ae",
+      "name": "Al Amal",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Anwar.TV.2.ae",
+      "name": "Al Anwar TV 2",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Aqila.TV.ae",
+      "name": "Al Aqila TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Araby.2.HD.ae",
+      "name": "Al Araby 2 HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Baghdadia.Now.ae",
+      "name": "Al Baghdadia Now",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Bernameg.Al.Aam.ae",
+      "name": "Al Bernameg Al Aam",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Bernameg.Al.Oropi.ae",
+      "name": "Al Bernameg Al Oropi",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Dawaar.ae",
+      "name": "Al Dawaar",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Dawla.TV.ae",
+      "name": "Al Dawla TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Delta.6.ae",
+      "name": "Al Delta 6",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Ghad.ae",
+      "name": "Al Ghad",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Haqeqa.Al.Dawliah.(Fact.Int'l).ae",
+      "name": "Al Haqeqa Al Dawliah (Fact Int'l)",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Hiwar.TV.HD.ae",
+      "name": "Al Hiwar TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Horreya.TV.ae",
+      "name": "Al Horreya TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Janoub.ae",
+      "name": "Al Janoub",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Kalema.ae",
+      "name": "Al Kalema",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Kanal.4.ae",
+      "name": "Al Kanal 4",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Karma.NewGen.ae",
+      "name": "Al Karma NewGen",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Kawthar.TV.ae",
+      "name": "Al Kawthar TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Kawther.ae",
+      "name": "Al Kawther",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Madeeh.ae",
+      "name": "Al Madeeh",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Mahdi.TV.ae",
+      "name": "Al Mahdi TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Masar.TV.HD.ae",
+      "name": "Al Masar TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Mawqef.ae",
+      "name": "Al Mawqef",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Menia.ae",
+      "name": "Al Menia",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Nas.ae",
+      "name": "Al Nas",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Qanat.9.ae",
+      "name": "Al Qanat 9",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Quran.Al.Karem.ae",
+      "name": "Al Quran Al Karem",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Rabiaa.HD.ae",
+      "name": "Al Rabiaa HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Resala.ae",
+      "name": "Al Resala",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Saeed.7.ae",
+      "name": "Al Saeed 7",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shabab.W.Al.Reyadah.ae",
+      "name": "Al Shabab W Al Reyadah",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "AL.Sharg.Al.Awsat.ae",
+      "name": "AL Sharg Al Awsat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Sharq.TV.ae",
+      "name": "Al Sharq TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shasha.Alwan.ae",
+      "name": "Al Shasha Alwan",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shasha.Cinema.ae",
+      "name": "Al Shasha Cinema",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shasha.Drama.ae",
+      "name": "Al Shasha Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shasha.Film.ae",
+      "name": "Al Shasha Film",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shasha.Hekayat.ae",
+      "name": "Al Shasha Hekayat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shasha.Musalsalat.ae",
+      "name": "Al Shasha Musalsalat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Tanasuh.TV.ae",
+      "name": "Al Tanasuh TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Waqie.ae",
+      "name": "Al Waqie",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Wousta.TV.HD.ae",
+      "name": "Al Wousta TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Alawla.ae",
+      "name": "Alawla",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Alerth.Alnabawi.ae",
+      "name": "Alerth Alnabawi",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Alkarma.Praise.ae",
+      "name": "Alkarma Praise",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Alkarma.TV.Middle.East.1.ae",
+      "name": "Alkarma TV Middle East 1",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Alking.Drama.TV.ae",
+      "name": "Alking Drama TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Almagd.TV.ae",
+      "name": "Almagd TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Almustakillah.TV.ae",
+      "name": "Almustakillah TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Als3yda.Madeeh.ae",
+      "name": "Als3yda Madeeh",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "AlSukariya.Drama.ae",
+      "name": "AlSukariya Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "ALWadi.ALGaded.ae",
+      "name": "ALWadi ALGaded",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Alzrga.ae",
+      "name": "Alzrga",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Asharq.News.HD.ae",
+      "name": "Asharq News HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Asil.TV.ae",
+      "name": "Asil TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Ava.TV.ae",
+      "name": "Ava TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Awdeh.HD.ae",
+      "name": "Awdeh HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "BBC.E.ae",
+      "name": "BBC E",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "BBC.Horn.of.Africa.ae",
+      "name": "BBC Horn of Africa",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Bengali.ae",
+      "name": "Bengali",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Bilad.ae",
+      "name": "Bilad",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "C.Sat.ae",
+      "name": "C Sat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Calssic.ae",
+      "name": "Calssic",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "CHAINE.1.ae",
+      "name": "CHAINE 1",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "CHAINE.2.ae",
+      "name": "CHAINE 2",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "CHAINE.3.ae",
+      "name": "CHAINE 3",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Channel.8.ae",
+      "name": "Channel 8",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Cookies.TV.ae",
+      "name": "Cookies TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "CTV.ae",
+      "name": "CTV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Daewa.TV.ae",
+      "name": "Daewa TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Dolly.Alyoom.ae",
+      "name": "Dolly Alyoom",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Dolly.Cinema.ae",
+      "name": "Dolly Cinema",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Dolly.Drama.ae",
+      "name": "Dolly Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Dolly.Mosalsalat.ae",
+      "name": "Dolly Mosalsalat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Dolly.Movies.ae",
+      "name": "Dolly Movies",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Dua.Channel.ae",
+      "name": "Dua Channel",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "DW.A2.ae",
+      "name": "DW A2",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "DW05.ae",
+      "name": "DW05",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Educational.Channel.ae",
+      "name": "Educational Channel",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Ekhbaria.ae",
+      "name": "Ekhbaria",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EL.FadjrDrama.DZ.HD.ae",
+      "name": "EL FadjrDrama DZ HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "El.Omda.Al.yom.ae",
+      "name": "El Omda Al yom",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "El.Omda.Drama.ae",
+      "name": "El Omda Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "El.Omda.Hekayat.Film.ae",
+      "name": "El Omda Hekayat Film",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Elasema.welanas.ae",
+      "name": "Elasema welanas",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Elzaeem.Cinema.ae",
+      "name": "Elzaeem Cinema",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Elzaeem.Drama.ae",
+      "name": "Elzaeem Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Abdul.Majeed.Abdullah.sa",
+      "name": "EN: Abdul Majeed Abdullah",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Al.Hisn.Channel.sa",
+      "name": "EN: Al Hisn Channel",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Bab.Al.Hara.Channel.sa",
+      "name": "EN: Bab Al Hara Channel",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.BIG.TIME.sa",
+      "name": "EN: BIG TIME",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.El-Podcasters.Channel.sa",
+      "name": "EN: El-Podcasters Channel",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Majid.Almohandis.sa",
+      "name": "EN: Majid Almohandis",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Mohammed.Abdu.sa",
+      "name": "EN: Mohammed Abdu",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Red.Bull.TV.sa",
+      "name": "EN: Red Bull TV",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Sikkat.Safar.Channel.sa",
+      "name": "EN: Sikkat Safar Channel",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Tarab.sa",
+      "name": "EN: Tarab",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Wanasa.sa",
+      "name": "EN: Wanasa",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.WIZZO.Esports.World.Cup.sa",
+      "name": "EN: WIZZO Esports World Cup",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "FIFAPlus.uk",
+      "name": "FIFA+",
+      "feed_country": "",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "French.ae",
+      "name": "French",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Haq.TV.ae",
+      "name": "Haq TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "HodHod.TV.ae",
+      "name": "HodHod TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Hogan.TV.ae",
+      "name": "Hogan TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Holly.Quran.ae",
+      "name": "Holly Quran",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Home.TV.ae",
+      "name": "Home TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Houna.alazm.ae",
+      "name": "Houna alazm",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "I.News.HD.ae",
+      "name": "I News HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "iFilm.Arabic.ae",
+      "name": "iFilm Arabic",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "iKA.TV.ae",
+      "name": "iKA TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Imam.Ali.Shrine.TV.ae",
+      "name": "Imam Ali Shrine TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Iraqia.Syriac.ae",
+      "name": "Iraqia Syriac",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Jin.TV.HD.ae",
+      "name": "Jin TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Kadak.ae",
+      "name": "Kadak",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "KTO.ae",
+      "name": "KTO",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Logos.TV.ae",
+      "name": "Logos TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Marina.HD.ae",
+      "name": "Marina HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "MarjaeyatTV.2.HD.ae",
+      "name": "MarjaeyatTV 2 HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Med.Muzîk.ae",
+      "name": "Med Muzîk",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Mowagahat-1.ae",
+      "name": "Mowagahat-1",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Mowagahat-2.ae",
+      "name": "Mowagahat-2",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Mowagahat-8.ae",
+      "name": "Mowagahat-8",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Mowajahat.ae",
+      "name": "Mowajahat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "MTA.3.ae",
+      "name": "MTA 3",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "NBA DIGITAL.qa",
+      "name": "NBA DIGITAL.qa",
+      "feed_country": "qa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Nedaa.El.Islam.ae",
+      "name": "Nedaa El Islam",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "On.Time.Sport.2.HD.ae",
+      "name": "On Time Sport 2 HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "One Movies.eg",
+      "name": "One Movies.eg",
+      "feed_country": "eg",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "One.America.News.Network.ae",
+      "name": "One America News Network",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Outdoor.Channel.ae",
+      "name": "Outdoor Channel",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Panorama.Drama.2.ae",
+      "name": "Panorama Drama 2",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Panorama.Drama.ae",
+      "name": "Panorama Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Panorama.Film.ae",
+      "name": "Panorama Film",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Pishto.ae",
+      "name": "Pishto",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "PraiseLive.Global.ae",
+      "name": "PraiseLive Global",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Quran.Kareem.ae",
+      "name": "Quran Kareem",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "RDK.ae",
+      "name": "RDK",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Rojava.TV.HD.ae",
+      "name": "Rojava TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Ronahε.TV.ae",
+      "name": "Ronahε TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sahar.Kurdi.ae",
+      "name": "Sahar Kurdi",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Salam.HD.ae",
+      "name": "Salam HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Saout.Alaqila.ae",
+      "name": "Saout Alaqila",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sat-7.Arabic.ae",
+      "name": "Sat-7 Arabic",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sat-7.Kids.ae",
+      "name": "Sat-7 Kids",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sawt.Al-alam.ae",
+      "name": "Sawt Al-alam",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "SBN.ae",
+      "name": "SBN",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Shehab.TV.HD.ae",
+      "name": "Shehab TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sout.AL.Arab.ae",
+      "name": "Sout AL Arab",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Stêrk.TV.HD.ae",
+      "name": "Stêrk TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sukariya.Cinema.ae",
+      "name": "Sukariya Cinema",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sukariya.Classic.ae",
+      "name": "Sukariya Classic",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sukariya.Hekayat.ae",
+      "name": "Sukariya Hekayat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sukariya.Zaman.ae",
+      "name": "Sukariya Zaman",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Taha.ae",
+      "name": "Taha",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Teba.8.ae",
+      "name": "Teba 8",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Thaqalayn.TV.ae",
+      "name": "Thaqalayn TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "TRT.Kurdî.ae",
+      "name": "TRT Kurdî",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "TWR.ARABIC.ae",
+      "name": "TWR ARABIC",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Télé.Tchad.ae",
+      "name": "Télé Tchad",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "WATAR.SHJ.ae",
+      "name": "WATAR SHJ",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Wedotv.Big.Stories.ae",
+      "name": "Wedotv Big Stories",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "West.Elbalad.Zaman.ae",
+      "name": "West Elbalad Zaman",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Yalla.Mosar3a.ae",
+      "name": "Yalla Mosar3a",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Zarok.TV.ae",
+      "name": "Zarok TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Çira.TV.ae",
+      "name": "Çira TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "ميكس.eg",
+      "name": "ميكس.eg",
+      "feed_country": "eg",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "وان موفيز.eg",
+      "name": "وان موفيز.eg",
+      "feed_country": "eg",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    }
+  ],
+  "source_hunting_queue": [
+    {
+      "shard": "provider-osn",
+      "id": "OSN.TV.ae",
+      "name": "OSN TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-mbc",
+      "id": "AlArabiyaEnglish.sa@SD",
+      "name": "AL Arabiya English",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-mbc",
+      "id": "AlArabiyaPrograms.ae",
+      "name": "العربية برامج",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-mbc",
+      "id": "Wanasah.ae@SD",
+      "name": "وناسه",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-rotana",
+      "id": "Rotana.Tarab.Jordan.ae",
+      "name": "Rotana Tarab Jordan",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-adm",
+      "id": "Majid.Kids.TV.HD.ae",
+      "name": "Majid Kids TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-art",
+      "id": "Alfa.Cinema.ae",
+      "name": "Alfa Cinema",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-art",
+      "id": "Alfa.Drama.ae",
+      "name": "Alfa Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "provider-art",
+      "id": "Alfa.Hekayat.ae",
+      "name": "Alfa Hekayat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "AbdulmajeedAbdullah.sa@SD",
+      "name": "عبدالمجيد عبدالله",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "AlEkhbariya.sa@SD",
+      "name": "الإخبارية",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "AlQuranAlKareemTV.sa@SD",
+      "name": "القرآن الكريم",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "AlSaudiyaAlaan.sa@SD",
+      "name": "السعودية الآن",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "AlSunnahAlNabawiyahTV.sa@SD",
+      "name": "السنة النبوية",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "BabAlHara.sa@SD",
+      "name": "قناة باب الحارة",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "BigTimePlus.sa@SD",
+      "name": "Big Time Plus",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "GoalZone.sa",
+      "name": "Goal Zone",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "IqraaArabic.sa",
+      "name": "إقرأ",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "MajidAlMohandis.sa@SD",
+      "name": "ماجد المهندس",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "MohammedAbdo.sa@SD",
+      "name": "محمد عبده",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "RashidAlMajed.sa@SD",
+      "name": "راشد الماجد",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "SaudiThaqafiyaTV.sa@SD",
+      "name": "الثقافية",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sa",
+      "id": "Tarab.sa@SD",
+      "name": "طرب",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "Ajman.TV.HD.ae",
+      "name": "Ajman TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "Al.Mashhad.ae",
+      "name": "Al Mashhad",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "Al.Qamar.TV.ae",
+      "name": "Al Qamar TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "Baynounah.TV.HD.ae",
+      "name": "Baynounah TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "China.Arab.TV.ae",
+      "name": "China Arab TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "Sharjah.Quran.TV.ae",
+      "name": "Sharjah Quran TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "SpacetoonArabic.ae@SD",
+      "name": "Spacetoon",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-ae",
+      "id": "Zayed.Quran.ae",
+      "name": "Zayed Quran",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-sy",
+      "id": "AlSouriyaTV.sy@HD",
+      "name": "السورية",
+      "feed_country": "sy",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Adala.TV.HD.ae",
+      "name": "Adala TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "ADM.R3.ae",
+      "name": "ADM R3",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "ADM.R4.ae",
+      "name": "ADM R4",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "AFC 4.qa",
+      "name": "AFC 4.qa",
+      "feed_country": "qa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "AFC 5.qa",
+      "name": "AFC 5.qa",
+      "feed_country": "qa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Ahadu.TV.ae",
+      "name": "Ahadu TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "AL-Bernameg.AL-moussekey.ae",
+      "name": "AL-Bernameg AL-moussekey",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.24.News.ae",
+      "name": "Al 24 News",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Aghani.ae",
+      "name": "Al Aghani",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Ahvaz.TV.ae",
+      "name": "Al Ahvaz TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Amal.ae",
+      "name": "Al Amal",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Anwar.TV.2.ae",
+      "name": "Al Anwar TV 2",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Aqila.TV.ae",
+      "name": "Al Aqila TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Araby.2.HD.ae",
+      "name": "Al Araby 2 HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Baghdadia.Now.ae",
+      "name": "Al Baghdadia Now",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Bernameg.Al.Aam.ae",
+      "name": "Al Bernameg Al Aam",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Bernameg.Al.Oropi.ae",
+      "name": "Al Bernameg Al Oropi",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Dawaar.ae",
+      "name": "Al Dawaar",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Dawla.TV.ae",
+      "name": "Al Dawla TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Delta.6.ae",
+      "name": "Al Delta 6",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Ghad.ae",
+      "name": "Al Ghad",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Haqeqa.Al.Dawliah.(Fact.Int'l).ae",
+      "name": "Al Haqeqa Al Dawliah (Fact Int'l)",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Hiwar.TV.HD.ae",
+      "name": "Al Hiwar TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Horreya.TV.ae",
+      "name": "Al Horreya TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Janoub.ae",
+      "name": "Al Janoub",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Kalema.ae",
+      "name": "Al Kalema",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Kanal.4.ae",
+      "name": "Al Kanal 4",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Karma.NewGen.ae",
+      "name": "Al Karma NewGen",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Kawthar.TV.ae",
+      "name": "Al Kawthar TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Kawther.ae",
+      "name": "Al Kawther",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Madeeh.ae",
+      "name": "Al Madeeh",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Mahdi.TV.ae",
+      "name": "Al Mahdi TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Masar.TV.HD.ae",
+      "name": "Al Masar TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Mawqef.ae",
+      "name": "Al Mawqef",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Menia.ae",
+      "name": "Al Menia",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Nas.ae",
+      "name": "Al Nas",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Qanat.9.ae",
+      "name": "Al Qanat 9",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Quran.Al.Karem.ae",
+      "name": "Al Quran Al Karem",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Rabiaa.HD.ae",
+      "name": "Al Rabiaa HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Resala.ae",
+      "name": "Al Resala",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Saeed.7.ae",
+      "name": "Al Saeed 7",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shabab.W.Al.Reyadah.ae",
+      "name": "Al Shabab W Al Reyadah",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "AL.Sharg.Al.Awsat.ae",
+      "name": "AL Sharg Al Awsat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Sharq.TV.ae",
+      "name": "Al Sharq TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shasha.Alwan.ae",
+      "name": "Al Shasha Alwan",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shasha.Cinema.ae",
+      "name": "Al Shasha Cinema",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shasha.Drama.ae",
+      "name": "Al Shasha Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shasha.Film.ae",
+      "name": "Al Shasha Film",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shasha.Hekayat.ae",
+      "name": "Al Shasha Hekayat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Shasha.Musalsalat.ae",
+      "name": "Al Shasha Musalsalat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Tanasuh.TV.ae",
+      "name": "Al Tanasuh TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Waqie.ae",
+      "name": "Al Waqie",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Al.Wousta.TV.HD.ae",
+      "name": "Al Wousta TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Alawla.ae",
+      "name": "Alawla",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Alerth.Alnabawi.ae",
+      "name": "Alerth Alnabawi",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Alkarma.Praise.ae",
+      "name": "Alkarma Praise",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Alkarma.TV.Middle.East.1.ae",
+      "name": "Alkarma TV Middle East 1",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Alking.Drama.TV.ae",
+      "name": "Alking Drama TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Almagd.TV.ae",
+      "name": "Almagd TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Almustakillah.TV.ae",
+      "name": "Almustakillah TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Als3yda.Madeeh.ae",
+      "name": "Als3yda Madeeh",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "AlSukariya.Drama.ae",
+      "name": "AlSukariya Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "ALWadi.ALGaded.ae",
+      "name": "ALWadi ALGaded",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Alzrga.ae",
+      "name": "Alzrga",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Asharq.News.HD.ae",
+      "name": "Asharq News HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Asil.TV.ae",
+      "name": "Asil TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Ava.TV.ae",
+      "name": "Ava TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Awdeh.HD.ae",
+      "name": "Awdeh HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "BBC.E.ae",
+      "name": "BBC E",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "BBC.Horn.of.Africa.ae",
+      "name": "BBC Horn of Africa",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Bengali.ae",
+      "name": "Bengali",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Bilad.ae",
+      "name": "Bilad",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "C.Sat.ae",
+      "name": "C Sat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Calssic.ae",
+      "name": "Calssic",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "CHAINE.1.ae",
+      "name": "CHAINE 1",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "CHAINE.2.ae",
+      "name": "CHAINE 2",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "CHAINE.3.ae",
+      "name": "CHAINE 3",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Channel.8.ae",
+      "name": "Channel 8",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Cookies.TV.ae",
+      "name": "Cookies TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "CTV.ae",
+      "name": "CTV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Daewa.TV.ae",
+      "name": "Daewa TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Dolly.Alyoom.ae",
+      "name": "Dolly Alyoom",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Dolly.Cinema.ae",
+      "name": "Dolly Cinema",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Dolly.Drama.ae",
+      "name": "Dolly Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Dolly.Mosalsalat.ae",
+      "name": "Dolly Mosalsalat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Dolly.Movies.ae",
+      "name": "Dolly Movies",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Dua.Channel.ae",
+      "name": "Dua Channel",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "DW.A2.ae",
+      "name": "DW A2",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "DW05.ae",
+      "name": "DW05",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Educational.Channel.ae",
+      "name": "Educational Channel",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Ekhbaria.ae",
+      "name": "Ekhbaria",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EL.FadjrDrama.DZ.HD.ae",
+      "name": "EL FadjrDrama DZ HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "El.Omda.Al.yom.ae",
+      "name": "El Omda Al yom",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "El.Omda.Drama.ae",
+      "name": "El Omda Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "El.Omda.Hekayat.Film.ae",
+      "name": "El Omda Hekayat Film",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Elasema.welanas.ae",
+      "name": "Elasema welanas",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Elzaeem.Cinema.ae",
+      "name": "Elzaeem Cinema",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Elzaeem.Drama.ae",
+      "name": "Elzaeem Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Abdul.Majeed.Abdullah.sa",
+      "name": "EN: Abdul Majeed Abdullah",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Al.Hisn.Channel.sa",
+      "name": "EN: Al Hisn Channel",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Bab.Al.Hara.Channel.sa",
+      "name": "EN: Bab Al Hara Channel",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.BIG.TIME.sa",
+      "name": "EN: BIG TIME",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.El-Podcasters.Channel.sa",
+      "name": "EN: El-Podcasters Channel",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Majid.Almohandis.sa",
+      "name": "EN: Majid Almohandis",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Mohammed.Abdu.sa",
+      "name": "EN: Mohammed Abdu",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Red.Bull.TV.sa",
+      "name": "EN: Red Bull TV",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Sikkat.Safar.Channel.sa",
+      "name": "EN: Sikkat Safar Channel",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Tarab.sa",
+      "name": "EN: Tarab",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.Wanasa.sa",
+      "name": "EN: Wanasa",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "EN:.WIZZO.Esports.World.Cup.sa",
+      "name": "EN: WIZZO Esports World Cup",
+      "feed_country": "sa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "FIFAPlus.uk",
+      "name": "FIFA+",
+      "feed_country": "",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "French.ae",
+      "name": "French",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Haq.TV.ae",
+      "name": "Haq TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "HodHod.TV.ae",
+      "name": "HodHod TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Hogan.TV.ae",
+      "name": "Hogan TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Holly.Quran.ae",
+      "name": "Holly Quran",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Home.TV.ae",
+      "name": "Home TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Houna.alazm.ae",
+      "name": "Houna alazm",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "I.News.HD.ae",
+      "name": "I News HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "iFilm.Arabic.ae",
+      "name": "iFilm Arabic",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "iKA.TV.ae",
+      "name": "iKA TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Imam.Ali.Shrine.TV.ae",
+      "name": "Imam Ali Shrine TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Iraqia.Syriac.ae",
+      "name": "Iraqia Syriac",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Jin.TV.HD.ae",
+      "name": "Jin TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Kadak.ae",
+      "name": "Kadak",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "KTO.ae",
+      "name": "KTO",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Logos.TV.ae",
+      "name": "Logos TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Marina.HD.ae",
+      "name": "Marina HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "MarjaeyatTV.2.HD.ae",
+      "name": "MarjaeyatTV 2 HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Med.Muzîk.ae",
+      "name": "Med Muzîk",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Mowagahat-1.ae",
+      "name": "Mowagahat-1",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Mowagahat-2.ae",
+      "name": "Mowagahat-2",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Mowagahat-8.ae",
+      "name": "Mowagahat-8",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Mowajahat.ae",
+      "name": "Mowajahat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "MTA.3.ae",
+      "name": "MTA 3",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "NBA DIGITAL.qa",
+      "name": "NBA DIGITAL.qa",
+      "feed_country": "qa",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Nedaa.El.Islam.ae",
+      "name": "Nedaa El Islam",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "On.Time.Sport.2.HD.ae",
+      "name": "On Time Sport 2 HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "One Movies.eg",
+      "name": "One Movies.eg",
+      "feed_country": "eg",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "One.America.News.Network.ae",
+      "name": "One America News Network",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Outdoor.Channel.ae",
+      "name": "Outdoor Channel",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Panorama.Drama.2.ae",
+      "name": "Panorama Drama 2",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Panorama.Drama.ae",
+      "name": "Panorama Drama",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Panorama.Film.ae",
+      "name": "Panorama Film",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Pishto.ae",
+      "name": "Pishto",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "PraiseLive.Global.ae",
+      "name": "PraiseLive Global",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Quran.Kareem.ae",
+      "name": "Quran Kareem",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "RDK.ae",
+      "name": "RDK",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Rojava.TV.HD.ae",
+      "name": "Rojava TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Ronahε.TV.ae",
+      "name": "Ronahε TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sahar.Kurdi.ae",
+      "name": "Sahar Kurdi",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Salam.HD.ae",
+      "name": "Salam HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Saout.Alaqila.ae",
+      "name": "Saout Alaqila",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sat-7.Arabic.ae",
+      "name": "Sat-7 Arabic",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sat-7.Kids.ae",
+      "name": "Sat-7 Kids",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sawt.Al-alam.ae",
+      "name": "Sawt Al-alam",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "SBN.ae",
+      "name": "SBN",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Shehab.TV.HD.ae",
+      "name": "Shehab TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sout.AL.Arab.ae",
+      "name": "Sout AL Arab",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Stêrk.TV.HD.ae",
+      "name": "Stêrk TV HD",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sukariya.Cinema.ae",
+      "name": "Sukariya Cinema",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sukariya.Classic.ae",
+      "name": "Sukariya Classic",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sukariya.Hekayat.ae",
+      "name": "Sukariya Hekayat",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Sukariya.Zaman.ae",
+      "name": "Sukariya Zaman",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Taha.ae",
+      "name": "Taha",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Teba.8.ae",
+      "name": "Teba 8",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Thaqalayn.TV.ae",
+      "name": "Thaqalayn TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "TRT.Kurdî.ae",
+      "name": "TRT Kurdî",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "TWR.ARABIC.ae",
+      "name": "TWR ARABIC",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Télé.Tchad.ae",
+      "name": "Télé Tchad",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "WATAR.SHJ.ae",
+      "name": "WATAR SHJ",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Wedotv.Big.Stories.ae",
+      "name": "Wedotv Big Stories",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "West.Elbalad.Zaman.ae",
+      "name": "West Elbalad Zaman",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Yalla.Mosar3a.ae",
+      "name": "Yalla Mosar3a",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Zarok.TV.ae",
+      "name": "Zarok TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "Çira.TV.ae",
+      "name": "Çira TV",
+      "feed_country": "ae",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "ميكس.eg",
+      "name": "ميكس.eg",
+      "feed_country": "eg",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    },
+    {
+      "shard": "mena-other",
+      "id": "وان موفيز.eg",
+      "name": "وان موفيز.eg",
+      "feed_country": "eg",
+      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "canonical_target": "",
+      "reason": "no live canonical/alias found"
+    }
+  ]
+}
