@@ -1,10 +1,11 @@
-NO_EPG TRIAGE - DIAGNOSTIC
-total=433 source_hunting=210
+NO_EPG TRIAGE - DIAGNOSTIC V2
+total=433 source_hunting=209
 
 CATEGORY COUNTS
-- ACTIVE_CHANNEL_NEEDS_SOURCE: 210
+- ACTIVE_CHANNEL_NEEDS_SOURCE: 209
 - FOREIGN_AGGREGATOR_ID_REVIEW: 190
 - DORMANT_EVENT_OR_COMPAT_ID: 32
+- DORMANT_PROVIDER_UMBRELLA: 1
 - LOGICAL_ALIAS_TO_LIVE: 1
 
 BY SHARD
@@ -31,11 +32,10 @@ BY SHARD
 - provider-art: ACTIVE_CHANNEL_NEEDS_SOURCE=3
 - provider-bein: DORMANT_EVENT_OR_COMPAT_ID=32
 - provider-mbc: ACTIVE_CHANNEL_NEEDS_SOURCE=3
-- provider-osn: ACTIVE_CHANNEL_NEEDS_SOURCE=1
+- provider-osn: DORMANT_PROVIDER_UMBRELLA=1
 - provider-rotana: ACTIVE_CHANNEL_NEEDS_SOURCE=1
 
 SOURCE HUNTING QUEUE
-- provider-osn | OSN.TV.ae | OSN TV
 - provider-mbc | AlArabiyaEnglish.sa@SD | AL Arabiya English
 - provider-mbc | AlArabiyaPrograms.ae | العربية برامج
 - provider-mbc | Wanasah.ae@SD | وناسه
@@ -279,6 +279,7 @@ ALIASES / DORMANT / REVIEW
 - [DORMANT_EVENT_OR_COMPAT_ID] provider-bein | beINSportsXtra1.qa@SD
 - [DORMANT_EVENT_OR_COMPAT_ID] provider-bein | beINSportsXtra2.qa@SD
 - [DORMANT_EVENT_OR_COMPAT_ID] provider-bein | beINSPORTSXTRA3.qa
+- [DORMANT_PROVIDER_UMBRELLA] provider-osn | OSN.TV.ae
 - [FOREIGN_AGGREGATOR_ID_REVIEW] mena-eg | Aghapy.TV.ae
 - [FOREIGN_AGGREGATOR_ID_REVIEW] mena-eg | Al.Ahly.TV.HD.ae
 - [FOREIGN_AGGREGATOR_ID_REVIEW] mena-eg | Al.Askandria.5.ae

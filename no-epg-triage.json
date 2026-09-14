@@ -1,10 +1,11 @@
 {
-  "schema": 1,
+  "schema": 2,
   "mode": "no-epg-triage-diagnostic",
   "total_no_epg": 433,
   "category_counts": {
     "DORMANT_EVENT_OR_COMPAT_ID": 32,
-    "ACTIVE_CHANNEL_NEEDS_SOURCE": 210,
+    "DORMANT_PROVIDER_UMBRELLA": 1,
+    "ACTIVE_CHANNEL_NEEDS_SOURCE": 209,
     "FOREIGN_AGGREGATOR_ID_REVIEW": 190,
     "LOGICAL_ALIAS_TO_LIVE": 1
   },
@@ -82,7 +83,7 @@
       "ACTIVE_CHANNEL_NEEDS_SOURCE": 3
     },
     "provider-osn": {
-      "ACTIVE_CHANNEL_NEEDS_SOURCE": 1
+      "DORMANT_PROVIDER_UMBRELLA": 1
     },
     "provider-rotana": {
       "ACTIVE_CHANNEL_NEEDS_SOURCE": 1
@@ -382,9 +383,9 @@
       "id": "OSN.TV.ae",
       "name": "OSN TV",
       "feed_country": "ae",
-      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
+      "category": "DORMANT_PROVIDER_UMBRELLA",
       "canonical_target": "",
-      "reason": "no live canonical/alias found"
+      "reason": "OSN's current catalogue exposes individual OSNtv linear channels, not a generic OSN TV channel"
     },
     {
       "shard": "provider-mbc",
@@ -3988,15 +3989,6 @@
     }
   ],
   "source_hunting_queue": [
-    {
-      "shard": "provider-osn",
-      "id": "OSN.TV.ae",
-      "name": "OSN TV",
-      "feed_country": "ae",
-      "category": "ACTIVE_CHANNEL_NEEDS_SOURCE",
-      "canonical_target": "",
-      "reason": "no live canonical/alias found"
-    },
     {
       "shard": "provider-mbc",
       "id": "AlArabiyaEnglish.sa@SD",

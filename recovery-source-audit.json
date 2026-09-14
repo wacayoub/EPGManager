@@ -1,5 +1,5 @@
 {
-  "schema": 3,
+  "schema": 4,
   "mode": "diagnostic-only-recovery-source-audit",
   "window_hours": 48,
   "no_epg_input": 433,
@@ -45,6 +45,21 @@
       "raw_current_candidates": 58,
       "clean_current_candidates": 9,
       "quarantined_candidates": 49,
+      "recoveries": [],
+      "safe_exact_recoveries": 0,
+      "review_candidates": 0
+    },
+    {
+      "source": "epgshare-sa1",
+      "scope": "country",
+      "country": "sa",
+      "trust": "candidate",
+      "url": "https://epgshare01.online/epgshare01/epg_ripper_SA1.xml.gz",
+      "status": "ok",
+      "bytes": 1888,
+      "raw_current_candidates": 0,
+      "clean_current_candidates": 0,
+      "quarantined_candidates": 0,
       "recoveries": [],
       "safe_exact_recoveries": 0,
       "review_candidates": 0
