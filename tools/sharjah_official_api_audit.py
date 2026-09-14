@@ -2,12 +2,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
-import argparse, csv, gzip, json, re, urllib.request
+import argparse, csv, json, re, urllib.request
 from pathlib import Path
-import xml.etree.ElementTree as ET
 
 URL = "https://sbauae.faulio.com/api/v1/programgrid"
-UA = "EPGManager-Sharjah-Official-Audit/1.0"
+UA = "EPGManager-Sharjah-Official-Audit/1.1"
 
 
 def fetch_json(url):
@@ -34,21 +33,29 @@ def scalar_summary(obj, depth=0):
     return {}
 
 
+def shape(obj, depth=0):
+    if depth>=4:
+        return type(obj).__name__
+    if isinstance(obj,dict):
+        return {str(k):shape(v,depth+1) for k,v in list(obj.items())[:12]}
+    if isinstance(obj,list):
+        return {"type":"list","len":len(obj),"first":shape(obj[0],depth+1) if obj else None}
+    return type(obj).__name__
+
+
 def likely_event_lists(obj, path=""):
     out=[]
     if isinstance(obj,dict):
         for k,v in obj.items():
-            p=(path+"."+k).strip(".")
+            p=(path+"."+str(k)).strip(".")
             if isinstance(v,list) and v and isinstance(v[0],dict):
-                score=0
                 keys=set().union(*(set(x.keys()) for x in v[:5] if isinstance(x,dict)))
                 low={str(x).casefold() for x in keys}
-                for marker in ("title","name","program","programme","start","end","date","time","from","to"):
-                    if any(marker in x for x in low): score+=1
-                if score>=2: out.append((p,v,score))
+                score=sum(1 for marker in ("title","name","program","programme","start","end","date","time","from","to") if any(marker in x for x in low))
+                if score>=1: out.append((p,v,score))
             out.extend(likely_event_lists(v,p))
     elif isinstance(obj,list):
-        for i,v in enumerate(obj[:10]): out.extend(likely_event_lists(v,f"{path}[{i}]"))
+        for i,v in enumerate(obj[:100]): out.extend(likely_event_lists(v,f"{path}[{i}]"))
     return out
 
 
@@ -60,9 +67,8 @@ def event_title(e):
             for kk in ("title","name"):
                 vv=v.get(kk)
                 if isinstance(vv,str) and vv.strip(): return vv.strip()
-    # nested project/program
     for k,v in e.items():
-        if isinstance(v,dict) and any(x in k.casefold() for x in ("program","project","episode","vod")):
+        if isinstance(v,dict) and any(x in str(k).casefold() for x in ("program","project","episode","vod")):
             for kk in ("title","name"):
                 vv=v.get(kk)
                 if isinstance(vv,str) and vv.strip(): return vv.strip()
@@ -72,17 +78,16 @@ def event_title(e):
 def event_time(e):
     vals=[]
     for k,v in e.items():
-        lk=k.casefold()
+        lk=str(k).casefold()
         if isinstance(v,(str,int,float)) and any(x in lk for x in ("start","from","time","date","end","to")):
             vals.append(f"{k}={v}")
-    return ", ".join(vals[:5])
+    return ", ".join(vals[:6])
 
 
 def load_cloud_ids(csv_path):
     rows=[]
     with Path(csv_path).open("r",encoding="utf-8-sig",newline="") as f:
-        for r in csv.DictReader(f):
-            rows.append(r)
+        rows.extend(csv.DictReader(f))
     return rows
 
 
@@ -104,35 +109,35 @@ def main():
     results=[]
     for ch in channels:
         title=str(ch.get("title") or ch.get("name") or "").strip()
-        lists=likely_event_lists(ch)
+        grid=ch.get("grid")
+        lists=likely_event_lists(grid,"grid")
         lists.sort(key=lambda x:(x[2],len(x[1])),reverse=True)
         path,events,score=(lists[0] if lists else ("",[],0))
         samples=[]
-        for e in events[:8]:
+        for e in events[:12]:
             samples.append({"title":event_title(e),"time":event_time(e),"raw":scalar_summary(e)})
         best=[]
         for r in cloud:
             s=max(sim(title,r.get("name","")),sim(title,r.get("id","")))
-            if s>=0.45:
-                best.append((s,r))
+            if s>=0.45: best.append((s,r))
         best.sort(key=lambda x:x[0],reverse=True)
+        preview=json.dumps(grid,ensure_ascii=False)[:5000] if grid is not None else "null"
         results.append({
             "api_id":ch.get("id"),"title":title,"url":ch.get("url"),"has_grid":ch.get("has_grid"),
+            "grid_type":type(grid).__name__,"grid_len":len(grid) if isinstance(grid,(list,dict)) else None,
+            "grid_shape":shape(grid),"grid_preview":preview,
             "grid_field":path,"events":len(events),"samples":samples,
             "cloud_matches":[{"similarity":round(s,3),"id":r.get("id"),"name":r.get("name"),"verdict":r.get("verdict"),"shard":r.get("shard")} for s,r in best[:5]],
-            "channel_keys":sorted(ch.keys()),
         })
-    out={"schema":1,"source":URL,"top_keys":sorted(data.keys()) if isinstance(data,dict) else [],"channels":results}
+    out={"schema":2,"source":URL,"ts_start":data.get("ts_start"),"ts_end":data.get("ts_end"),"channels":results}
     Path(a.json).write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    lines=["SHARJAH OFFICIAL API AUDIT",f"source={URL} channels={len(results)}",""]
+    lines=["SHARJAH OFFICIAL API AUDIT V2",f"source={URL} channels={len(results)} ts_start={out['ts_start']} ts_end={out['ts_end']}",""]
     for x in results:
-        lines.append(f"- API#{x['api_id']} {x['title']} | has_grid={x['has_grid']} events={x['events']} field={x['grid_field']}")
-        for s in x['samples'][:5]:
-            lines.append(f"    PROGRAM {s['time']} | {s['title']}")
-        for m in x['cloud_matches'][:3]:
-            lines.append(f"    CLOUD {m['similarity']:.3f} | {m['id']} | {m['verdict']} | {m['shard']}")
-        if not x['samples']:
-            lines.append("    NO GRID EVENTS DETECTED")
+        lines.append(f"- API#{x['api_id']} {x['title']} | has_grid={x['has_grid']} grid={x['grid_type']} len={x['grid_len']} events={x['events']} field={x['grid_field']}")
+        lines.append(f"    SHAPE {json.dumps(x['grid_shape'],ensure_ascii=False)[:1000]}")
+        lines.append(f"    PREVIEW {x['grid_preview'][:1200]}")
+        for s in x['samples'][:5]: lines.append(f"    PROGRAM {s['time']} | {s['title']}")
+        for m in x['cloud_matches'][:3]: lines.append(f"    CLOUD {m['similarity']:.3f} | {m['id']} | {m['verdict']} | {m['shard']}")
         lines.append("")
     Path(a.text).write_text("\n".join(lines)+"\n",encoding="utf-8")
     print("\n".join(lines))
