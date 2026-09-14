@@ -1,0 +1,56 @@
+name: Source ID Status Report
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - tools/source_id_status_report.py
+      - .github/workflows/source-id-status-report.yml
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout EPGManager
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Checkout published MENA data
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: current-data
+          fetch-depth: 0
+
+      - name: Build source ID report
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          python tools/source_id_status_report.py \
+            --data-dir current-data \
+            --out-prefix output/source-id-status-report
+          head -40 output/source-id-status-report-summary.csv
+
+      - name: Publish report to mena-data
+        run: |
+          set -euo pipefail
+          cd current-data
+          git checkout -B mena-data origin/mena-data
+          cp ../output/source-id-status-report.csv .
+          cp ../output/source-id-status-report-summary.csv .
+          cp ../output/source-id-status-report-secondary.csv .
+          cp ../output/source-id-status-report.json .
+          cp ../output/source-id-status-report.md .
+          git config user.name "EPGManager Source Audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add source-id-status-report*
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Publish source ID status report"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
