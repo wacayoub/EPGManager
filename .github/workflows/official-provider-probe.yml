@@ -1,0 +1,80 @@
+name: Official Provider Probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/official-provider-probe.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: osn
+            channels: sites/osn.com/osn.com_ar.channels.xml
+            targets: AlQuranAlKareemTV.sa@SD,SaudiThaqafiyaTV.sa@SD,KSASports1.sa@SD,AlraiTV.kw@SD
+          - name: shahid
+            channels: sites/shahid.mbc.net/shahid.mbc.net_ar.channels.xml
+            targets: AlArabiyaEnglish.sa@SD,AlArabiyaPrograms.ae,Wanasah.ae@SD,SaudiThaqafiyaTV.sa@SD,Tarab.sa@SD,SpacetoonArabic.ae@SD
+
+    steps:
+      - name: Checkout iptv-org EPG
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          fetch-depth: 1
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install grabber
+        shell: bash
+        run: npm ci --no-audit --no-fund
+
+      - name: Grab 48h from official provider
+        shell: bash
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=20s 600s \
+            npm run grab --- \
+              --channels="${{ matrix.channels }}" \
+              --output="out-${{ matrix.name }}.xml" \
+              --days=2 \
+              --maxConnections=1 \
+              --timeout=20000
+          rc=$?
+          echo "grab_rc=$rc"
+          if [ ! -s "out-${{ matrix.name }}.xml" ]; then
+            printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?><tv></tv>' > "out-${{ matrix.name }}.xml"
+          fi
+          exit 0
+
+      - name: Report requested IDs
+        env:
+          TARGETS: ${{ matrix.targets }}
+          NAME: ${{ matrix.name }}
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os, xml.etree.ElementTree as ET
+          from collections import Counter
+          path = f"out-{os.environ['NAME']}.xml"
+          root = ET.parse(path).getroot()
+          counts = Counter((p.get('channel') or '').strip() for p in root.findall('programme'))
+          channels = {(c.get('id') or '').strip(): next(((n.text or '').strip() for n in c.findall('display-name') if (n.text or '').strip()), '') for c in root.findall('channel')}
+          print(f"OFFICIAL_PROVIDER_PROBE provider={os.environ['NAME']} channels={len(channels)} programmes={sum(counts.values())}")
+          for cid in [x.strip() for x in os.environ['TARGETS'].split(',') if x.strip()]:
+              print(f"TARGET {cid} present={cid in channels} events={counts.get(cid,0)} name={channels.get(cid,'')}")
+          PY
