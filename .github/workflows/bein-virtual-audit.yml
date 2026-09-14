@@ -2,13 +2,17 @@ name: beIN Virtual EPG Audit
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["MENA Cloud EPG"]
+    types: [completed]
   push:
     paths:
       - ".github/workflows/bein-virtual-audit.yml"
       - "tools/bein_id_audit.py"
+      - "tools/bein_id_audit_policy.py"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: bein-virtual-audit
@@ -16,11 +20,15 @@ concurrency:
 
 jobs:
   audit:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - name: Checkout audit code
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -39,15 +47,15 @@ jobs:
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/shards.json" \
             -o /tmp/bein-audit/shards.json
 
-      - name: Run exhaustive Virtual EPGManager ID-by-ID audit
+      - name: Run exhaustive policy-aware Virtual EPGManager ID-by-ID audit
         shell: bash
         run: |
           set -euo pipefail
-          python tools/bein_id_audit.py \
+          python tools/bein_id_audit_policy.py \
             --xml /tmp/bein-audit/provider-bein.xml.gz \
-            --json /tmp/bein-audit/bein-id-audit.json \
-            --text /tmp/bein-audit/bein-id-audit.txt
-          cat /tmp/bein-audit/bein-id-audit.txt
+            --json /tmp/bein-audit/bein-id-audit-policy.json \
+            --text /tmp/bein-audit/bein-id-audit-policy.txt
+          cat /tmp/bein-audit/bein-id-audit-policy.txt
 
       - name: Verify actual displayed scripts without trusting XML lang tags
         shell: bash
@@ -91,3 +99,25 @@ jobs:
               print('SCRIPT|%s|events=%d|title_AR=%.0f%%|title_Latin=%.0f%%|hybrid=%.0f%%|desc_AR=%.0f%%|lang_tag_mismatch=%d' % (
                   cid, len(rows), ta*100.0/n, tl*100.0/n, th*100.0/n, da*100.0/n, mismatch))
           PY
+
+      - name: Publish policy-aware diagnostic to mena-data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin mena-data
+          git worktree add /tmp/bein-data origin/mena-data
+          cd /tmp/bein-data
+          git checkout -B mena-data origin/mena-data
+          cp /tmp/bein-audit/bein-id-audit-policy.json .
+          cp /tmp/bein-audit/bein-id-audit-policy.txt .
+          git config user.name "EPGManager beIN Audit"
+          git config user.email "actions@users.noreply.github.com"
+          git add bein-id-audit-policy.json bein-id-audit-policy.txt
+          if git diff --cached --quiet; then
+            echo "No beIN policy audit changes."
+            exit 0
+          fi
+          git commit -m "Audit published beIN IDs with production language policy"
+          git fetch origin mena-data
+          git rebase origin/mena-data
+          git push origin HEAD:mena-data
