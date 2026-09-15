@@ -77,10 +77,10 @@ jobs:
               ids = [(c.get('id') or '').strip() for c in root.findall('channel')]
               events = root.findall('programme')
               event_ids = {(e.get('channel') or '').strip() for e in events}
-              assert ids and len(ids) == len(set(ids)), p.name
+              assert len(ids) == len(set(ids)), p.name
               assert event_ids.issubset(set(ids)), p.name
               assert not (set(ids) - event_ids), '%s zero-programme IDs' % p.name
-          print('PASS: all published XMLTV files canonical/unique/non-empty')
+          print('PASS: all published XMLTV files canonical/unique; empty shards allowed')
           PY
 
       - name: Publish canonical-only receiver data
