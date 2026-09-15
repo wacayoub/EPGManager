@@ -6,6 +6,8 @@ The receiver shard must contain exactly the 17 reviewed canonical MBC IDs.
 Coverage length is informational only: the production generator already caps the
 receiver window at 48 hours, and any shorter real guide is accepted. Structural,
 identity, language, placeholder and source-quality failures remain hard blockers.
+This file is also a watched MENA workflow path so policy changes are validated
+against the complete current HEAD before publication.
 """
 from __future__ import annotations
 
@@ -39,9 +41,6 @@ QUARANTINED_IDS = {
     "MBCDramaUSA.us@SD", "MBCMasrUSA.us@SD",
 }
 EXPECTED_IDS = FROZEN_CORE_IDS | SECONDARY_REVIEW_IDS | QUARANTINED_IDS
-
-# Kept as reference values for backward-compatible reports only. They do not
-# participate in PASS/FAIL decisions.
 MIN_COVERAGE_HOURS = 28.0
 COVERAGE_FLOOR_BY_ID = {"MBCMasrDrama.sa@SD": 27.5}
 MIN_TITLE_AR_PCT = 60.0
@@ -112,7 +111,6 @@ def core_policy(row):
     reference = _coverage_floor(row.get("id") or "")
     row["minimum_coverage_hours"] = reference
     row["coverage_gate"] = "INFORMATIONAL_ONLY"
-
     if n <= 0:
         issues.append("NO_PROGRAMMES")
     if coverage < reference:
@@ -132,21 +130,18 @@ def core_policy(row):
             int(row["gaps_gt_2h"]), float(row.get("gap_hours", 0.0) or 0.0)))
     if int(row.get("placeholder", 0) or 0):
         issues.append("PLACEHOLDER=%d" % int(row["placeholder"]))
-
     empty_desc = int(row.get("empty_desc", 0) or 0)
     empty_ratio = empty_desc / float(max(1, n))
     if empty_ratio > MAX_EMPTY_DESC_RATIO:
         issues.append("EMPTY_DESC_HIGH=%d(%.0f%%)" % (empty_desc, empty_ratio * 100.0))
     elif empty_desc:
         diagnostics.append("EMPTY_DESC=%d(%.0f%%)" % (empty_desc, empty_ratio * 100.0))
-
     title_ar = float(row.get("title_has_ar_pct", 0.0) or 0.0)
     desc_ar = float(row.get("desc_ar_pct", 0.0) or 0.0)
     if title_ar < MIN_TITLE_AR_PCT:
         issues.append("TITLE_AR_LOW=%.0f%%" % title_ar)
     if desc_ar < MIN_DESC_AR_PCT:
         issues.append("DESC_AR_LOW=%.0f%%" % desc_ar)
-
     if int(row.get("long_gt_6h", 0) or 0):
         diagnostics.append("LONG_GT_6H=%d" % int(row["long_gt_6h"]))
     if int(row.get("short_lt_2m", 0) or 0):
@@ -164,7 +159,6 @@ def main():
     ap.add_argument("--json", required=True)
     ap.add_argument("--text", required=True)
     args = ap.parse_args()
-
     root = load_root(args.xml)
     channels = {}
     for ch in root.findall("channel"):
@@ -176,7 +170,6 @@ def main():
         cid = (p.get("channel") or "").strip()
         if cid:
             events[cid].append(p)
-
     rows, errors = [], []
     for cid in sorted(channels, key=str.casefold):
         row = base.build_profile(cid, channels[cid], events.get(cid, []))
@@ -205,7 +198,6 @@ def main():
         row["issues"] = issues
         row["diagnostic"] = diagnostics
         rows.append(row)
-
     actual = set(channels)
     missing_core = sorted(FROZEN_CORE_IDS - actual, key=str.casefold)
     receiver_extras = sorted(actual - FROZEN_CORE_IDS, key=str.casefold)
@@ -216,12 +208,10 @@ def main():
         errors.append("NONCANONICAL_RECEIVER_IDS=%s" % ",".join(receiver_extras))
     if unexpected:
         errors.append("NEW_UNAUDITED_MBC_IDS=%s" % ",".join(unexpected))
-
     counts = Counter(row["class"] for row in rows)
     frozen_ok = sum(1 for row in rows if row.get("verdict") == "FROZEN")
     frozen_fail = sum(1 for row in rows if row.get("class") == "FROZEN_CORE" and row.get("verdict") == "FAIL")
     status = "FAIL" if errors else "PASS"
-
     lines = [
         "VIRTUAL EPGMANAGER - EXHAUSTIVE MBC CANONICAL RECEIVER AUDIT",
         "channels=%d programmes=%d frozen=%d/%d frozen_fail=%d secondary=%d quarantine=%d unclassified=%d" % (
@@ -247,12 +237,9 @@ def main():
     lines.append("MBC FREEZE GATE: %s" % status)
     if errors:
         lines.extend("- %s" % x for x in errors)
-
     payload = {
-        "schema": 5,
-        "mode": "virtual-epgmanager-canonical-mbc-receiver-policy",
-        "coverage_gate": "informational_only",
-        "receiver_window_max_hours": 48,
+        "schema": 5, "mode": "virtual-epgmanager-canonical-mbc-receiver-policy",
+        "coverage_gate": "informational_only", "receiver_window_max_hours": 48,
         "summary": {
             "status": status, "channels": len(rows),
             "programmes": sum(int(r.get("events", 0) or 0) for r in rows),
