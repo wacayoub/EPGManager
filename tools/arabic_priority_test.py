@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Focused regression tests for Arabic-first local MENA channels and frozen families.
+"""Focused regression tests for Arabic-first local MENA channels and provider families.
 
-Disney and National Geographic were audited ID-by-ID on the receiver-facing
-48-hour production output. Their validated Arabic MENA feeds are frozen here so
-future upstream changes cannot silently change language/feed identity or add a
-new unaudited family member. Weak alternate feeds stay quarantined until an
-explicit future audit promotes them.
+Disney and National Geographic are currently REVIEW/quarantine families: known
+identities may remain visible for diagnostics but they are not auto-lock/frozen
+production targets until a reliable exact MENA guide is re-verified. Unknown new
+family identities still block publication so a source change cannot silently
+become a receiver mapping candidate.
 
 The same production step also launches the exhaustive MBC/Shahid audit and
-source-pin regression gate. This keeps the freeze blocking publication without
-adding another receiver-side or workflow dependency.
+source-pin regression gate.
 """
 from __future__ import annotations
 
@@ -38,23 +37,22 @@ TARGETS = [
     ("mena-eg", r"^Al\.Nada\.TV\.ae$", "Al Nada TV"),
 ]
 
-# Receiver-facing IDs verified clean on 2026-09-14. These are deliberately
-# exact: a renamed/replaced feed must be reviewed instead of silently inherited.
-FROZEN_FAMILY_IDS = {
+# NatGeo/Disney were moved back to REVIEW/quarantine after later source audits.
+# No family member is currently a frozen auto-lock target.
+FROZEN_FAMILY_IDS = set()
+
+# Known family identities. They may be absent after zero-EPG pruning or present
+# as REVIEW, but cannot become frozen/auto-lock without a future explicit audit.
+QUARANTINED_FAMILY_IDS = {
     ("mena-other", "Disney Channel.sa"),
     ("mena-other", "Disney Junior.sa"),
     ("mena-other", "Nat. Geo. AD.sa"),
     ("mena-other", "Nat. Geo. Wild HD.sa"),
     ("mena-other", "Nat. Geographic.sa"),
-}
-
-# These variants are known but intentionally not trusted as canonical MENA
-# mapping targets. Their current defects are respectively gaps/no descriptions,
-# sparse coverage/no descriptions, and an English/no-description ADM feed.
-QUARANTINED_FAMILY_IDS = {
     ("mena-other", "Nat geo hd.qa"),
     ("mena-other", "NationalGeographicMiddleEast.uk@SD"),
     ("provider-adm", "Nat.Geo.Abu.Dhabi.HD.ae"),
+    ("provider-adm", "NationalGeographicAbuDhabi.ae@SD"),
 }
 
 FAMILY_SHARDS = ("mena-other", "provider-adm")
@@ -259,8 +257,6 @@ def audit_frozen_families(directory):
         issues = frozen_issues(row)
         row = dict(row)
         row["issues"] = issues
-        # Even if an upstream feed becomes clean later, explicit review is required
-        # before promotion so a transient source change cannot bypass the freeze.
         row["status"] = "QUARANTINE_REVIEW" if issues else "QUARANTINE_PENDING_PROMOTION"
         quarantine_rows.append(row)
 
@@ -395,7 +391,7 @@ def main():
     if family["errors"]:
         hard_fail = True
 
-    lines.extend(["DISNEY + NATIONAL GEOGRAPHIC FROZEN FAMILY GATE", ""])
+    lines.extend(["DISNEY + NATIONAL GEOGRAPHIC REVIEW / QUARANTINE GATE", ""])
     for row in family["frozen"]:
         lines.append("[%s] %s/%s" % (row["status"], row["shard"], row["channel_id"]))
         if row["status"] != "MISSING":
@@ -419,7 +415,7 @@ def main():
         for row in family["new_unaudited"]:
             lines.append("- %s/%s" % (row["shard"], row["channel_id"]))
     lines.append("")
-    lines.append("frozen_family_gate=%s" % family["status"])
+    lines.append("family_review_gate=%s" % family["status"])
 
     mbc = run_mbc_gate(args.dir)
     if mbc["status"] != "PASS":
@@ -438,7 +434,7 @@ def main():
         lines.append("regression_output=%s" % mbc.get("regression_output", "")[-1200:])
 
     payload = {
-        "schema": 3,
+        "schema": 4,
         "targets": out,
         "frozen_families": family,
         "mbc_shahid_gate": {
