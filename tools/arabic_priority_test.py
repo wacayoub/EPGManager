@@ -2,14 +2,13 @@
 # -*- coding: utf-8 -*-
 """Focused regression tests for Arabic-first local MENA channels and provider families.
 
-Disney and National Geographic are currently REVIEW/quarantine families: known
-identities may remain visible for diagnostics but they are not auto-lock/frozen
-production targets until a reliable exact MENA guide is re-verified. Unknown new
-family identities still block publication so a source change cannot silently
-become a receiver mapping candidate.
+Disney and National Geographic are REVIEW/quarantine families: known identities
+may remain visible for diagnostics but are not auto-lock/frozen targets until an
+exact MENA guide is explicitly re-verified. Unknown family identities remain a
+hard release blocker and are printed explicitly to Actions logs.
 
-The same production step also launches the exhaustive MBC/Shahid audit and
-source-pin regression gate.
+The same step launches the exhaustive MBC/Shahid audit and the MBC/Rotana/source
+regression umbrella gate.
 """
 from __future__ import annotations
 
@@ -37,12 +36,10 @@ TARGETS = [
     ("mena-eg", r"^Al\.Nada\.TV\.ae$", "Al Nada TV"),
 ]
 
-# NatGeo/Disney were moved back to REVIEW/quarantine after later source audits.
-# No family member is currently a frozen auto-lock target.
+# Later source audits returned Disney/NatGeo to REVIEW. Nothing in this family is
+# currently eligible for automatic FROZEN promotion.
 FROZEN_FAMILY_IDS = set()
 
-# Known family identities. They may be absent after zero-EPG pruning or present
-# as REVIEW, but cannot become frozen/auto-lock without a future explicit audit.
 QUARANTINED_FAMILY_IDS = {
     ("mena-other", "Disney Channel.sa"),
     ("mena-other", "Disney Junior.sa"),
@@ -74,7 +71,7 @@ def text(node, tag):
 
 def display_name(node):
     names = [(el.text or "").strip() for el in node.findall("display-name")]
-    return next((x for x in names if x), "")
+    return next((value for value in names if value), "")
 
 
 def lang(value):
@@ -88,10 +85,10 @@ def lang(value):
 
 
 def parse_xmltv_dt(value):
-    m = XMLTV_DT.match((value or "").strip())
-    if not m:
+    match = XMLTV_DT.match((value or "").strip())
+    if not match:
         return None
-    stamp, offset = m.groups()
+    stamp, offset = match.groups()
     try:
         if offset:
             return datetime.strptime(stamp + offset, "%Y%m%d%H%M%S%z")
@@ -121,25 +118,25 @@ def family_profile(shard, cid, name, events):
     empty_desc = 0
     titles = []
     descs = []
-    for p in events:
-        start = parse_xmltv_dt(p.get("start"))
-        stop = parse_xmltv_dt(p.get("stop"))
-        title = text(p, "title")
-        desc = text(p, "desc")
-        if not title:
-            empty_title += 1
-        else:
+    for programme in events:
+        start = parse_xmltv_dt(programme.get("start"))
+        stop = parse_xmltv_dt(programme.get("stop"))
+        title = text(programme, "title")
+        desc = text(programme, "desc")
+        if title:
             titles.append(title)
-        if not desc:
-            empty_desc += 1
         else:
+            empty_title += 1
+        if desc:
             descs.append(desc)
+        else:
+            empty_desc += 1
         if start is None or stop is None or stop <= start:
             invalid += 1
             continue
         rows.append((start, stop))
 
-    rows.sort(key=lambda x: x[0])
+    rows.sort(key=lambda item: item[0])
     coverage_seconds = sum((stop - start).total_seconds() for start, stop in rows)
     gaps_gt_2h = 0
     gap_hours = 0.0
@@ -156,12 +153,8 @@ def family_profile(shard, cid, name, events):
         if previous_stop is None or stop > previous_stop:
             previous_stop = stop
 
-    title_ar_ratio = (
-        sum(lang(x) == "ar" for x in titles) / float(len(titles)) if titles else 0.0
-    )
-    desc_ar_ratio = (
-        sum(lang(x) == "ar" for x in descs) / float(len(descs)) if descs else 0.0
-    )
+    title_ar_ratio = sum(lang(value) == "ar" for value in titles) / float(len(titles)) if titles else 0.0
+    desc_ar_ratio = sum(lang(value) == "ar" for value in descs) / float(len(descs)) if descs else 0.0
     return {
         "shard": shard,
         "channel_id": cid,
@@ -209,17 +202,17 @@ def audit_frozen_families(directory):
         path = Path(directory) / (shard + ".xml.gz")
         if not path.exists():
             continue
-        r = root(path)
+        parsed = root(path)
         names = {
-            (c.get("id") or "").strip(): display_name(c)
-            for c in r.findall("channel")
-            if (c.get("id") or "").strip()
+            (channel.get("id") or "").strip(): display_name(channel)
+            for channel in parsed.findall("channel")
+            if (channel.get("id") or "").strip()
         }
         events = {}
-        for p in r.findall("programme"):
-            cid = (p.get("channel") or "").strip()
+        for programme in parsed.findall("programme"):
+            cid = (programme.get("channel") or "").strip()
             if cid:
-                events.setdefault(cid, []).append(p)
+                events.setdefault(cid, []).append(programme)
         for cid, name in names.items():
             if not family_match(cid, name):
                 continue
@@ -228,12 +221,12 @@ def audit_frozen_families(directory):
             indexed[key] = family_profile(shard, cid, name, events.get(cid, []))
 
     expected = FROZEN_FAMILY_IDS | QUARANTINED_FAMILY_IDS
-    new_unaudited = sorted(discovered - expected, key=lambda x: (x[0], x[1].casefold()))
+    new_unaudited = sorted(discovered - expected, key=lambda item: (item[0], item[1].casefold()))
     frozen_rows = []
     quarantine_rows = []
     errors = []
 
-    for key in sorted(FROZEN_FAMILY_IDS, key=lambda x: (x[0], x[1].casefold())):
+    for key in sorted(FROZEN_FAMILY_IDS, key=lambda item: (item[0], item[1].casefold())):
         row = indexed.get(key)
         if row is None:
             errors.append("MISSING_FROZEN_ID=%s/%s" % key)
@@ -247,12 +240,10 @@ def audit_frozen_families(directory):
         if issues:
             errors.append("FROZEN_REGRESSION=%s/%s:%s" % (key[0], key[1], ",".join(issues)))
 
-    for key in sorted(QUARANTINED_FAMILY_IDS, key=lambda x: (x[0], x[1].casefold())):
+    for key in sorted(QUARANTINED_FAMILY_IDS, key=lambda item: (item[0], item[1].casefold())):
         row = indexed.get(key)
         if row is None:
-            quarantine_rows.append({
-                "shard": key[0], "channel_id": key[1], "status": "QUARANTINE_HIDDEN"
-            })
+            quarantine_rows.append({"shard": key[0], "channel_id": key[1], "status": "QUARANTINE_HIDDEN"})
             continue
         issues = frozen_issues(row)
         row = dict(row)
@@ -266,8 +257,10 @@ def audit_frozen_families(directory):
     return {
         "frozen": frozen_rows,
         "quarantined": quarantine_rows,
-        "new_unaudited": [
-            {"shard": shard, "channel_id": cid} for shard, cid in new_unaudited
+        "new_unaudited": [{"shard": shard, "channel_id": cid} for shard, cid in new_unaudited],
+        "discovered": [
+            {"shard": shard, "channel_id": cid}
+            for shard, cid in sorted(discovered, key=lambda item: (item[0], item[1].casefold()))
         ],
         "errors": errors,
         "status": "FAIL" if errors else "PASS",
@@ -283,27 +276,22 @@ def run_mbc_gate(directory):
     provider_xml = directory / "provider-mbc.xml.gz"
     catalogue = directory.parent / "catalog.json"
 
-    audit_cmd = [
+    audit_run = subprocess.run([
         sys.executable, str(tools / "mbc_id_audit_policy.py"),
         "--xml", str(provider_xml),
         "--json", str(audit_json),
         "--text", str(audit_text),
-    ]
-    audit_run = subprocess.run(audit_cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
-    regression_cmd = [
-        sys.executable, str(tools / "mbc_final_regression.py"),
-        "--xml", str(provider_xml),
-        "--audit-json", str(audit_json),
-        "--catalog-manifest", str(catalogue),
-        "--text", str(regression_text),
-    ]
+    regression_run = None
     if audit_json.exists():
-        regression_run = subprocess.run(
-            regression_cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
-        )
-    else:
-        regression_run = None
+        regression_run = subprocess.run([
+            sys.executable, str(tools / "mbc_final_regression.py"),
+            "--xml", str(provider_xml),
+            "--audit-json", str(audit_json),
+            "--catalog-manifest", str(catalogue),
+            "--text", str(regression_text),
+        ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
     audit_payload = {}
     if audit_json.exists():
@@ -338,19 +326,22 @@ def main():
     hard_fail = False
 
     for shard, id_rx, label in TARGETS:
-        r = root(Path(args.dir) / (shard + ".xml.gz"))
-        channels = [(c.get("id") or "").strip() for c in r.findall("channel")]
-        ids = [cid for cid in channels if re.search(id_rx, cid, re.I)]
+        parsed = root(Path(args.dir) / (shard + ".xml.gz"))
+        channel_ids = [(channel.get("id") or "").strip() for channel in parsed.findall("channel")]
+        ids = [cid for cid in channel_ids if re.search(id_rx, cid, re.I)]
         cid = ids[0] if ids else ""
-        events = [p for p in r.findall("programme") if (p.get("channel") or "").strip() == cid] if cid else []
-        titles = [text(p, "title") for p in events if text(p, "title")]
-        descs = [text(p, "desc") for p in events if text(p, "desc")]
-        ar_title = sum(lang(x) == "ar" for x in titles)
-        en_title = sum(lang(x) == "en" for x in titles)
-        ar_desc = sum(lang(x) == "ar" for x in descs)
+        events = [
+            programme for programme in parsed.findall("programme")
+            if cid and (programme.get("channel") or "").strip() == cid
+        ]
+        titles = [text(programme, "title") for programme in events if text(programme, "title")]
+        descs = [text(programme, "desc") for programme in events if text(programme, "desc")]
+        ar_title = sum(lang(value) == "ar" for value in titles)
+        en_title = sum(lang(value) == "en" for value in titles)
+        ar_desc = sum(lang(value) == "ar" for value in descs)
         title_ar_ratio = ar_title / float(len(titles)) if titles else 0.0
         desc_ar_ratio = ar_desc / float(len(descs)) if descs else 0.0
-        aje_hits = sorted({x for x in titles if AJE.match(x)})
+        aje_hits = sorted({value for value in titles if AJE.match(value)})
 
         if not cid:
             status = "MISSING_ID"
@@ -360,31 +351,35 @@ def main():
             status = "PASS_ARABIC"
         else:
             status = "EN_FALLBACK"
-
         if label == "AFAQ TV" and len(aje_hits) >= 3:
             status = "FAIL_WRONG_AJE_GUIDE"
             hard_fail = True
 
         row = {
-            "label": label, "shard": shard, "channel_id": cid, "events": len(events),
+            "label": label,
+            "shard": shard,
+            "channel_id": cid,
+            "events": len(events),
             "title_ar_ratio": round(title_ar_ratio, 4),
             "title_en_ratio": round(en_title / float(len(titles)), 4) if titles else 0.0,
             "desc_ar_ratio": round(desc_ar_ratio, 4),
-            "status": status, "foreign_signature": aje_hits,
-            "preview": [{"title": text(p, "title"), "desc": text(p, "desc")} for p in events[:8]],
+            "status": status,
+            "foreign_signature": aje_hits,
+            "preview": [
+                {"title": text(programme, "title"), "desc": text(programme, "desc")}
+                for programme in events[:8]
+            ],
         }
         out.append(row)
         lines.append("=== %s ===" % label)
         lines.append("shard=%s id=%s events=%d status=%s" % (shard, cid or "<missing>", len(events), status))
         lines.append("title AR=%.0f%% EN=%.0f%% | desc AR=%.0f%%" % (
-            row["title_ar_ratio"] * 100, row["title_en_ratio"] * 100, row["desc_ar_ratio"] * 100))
+            row["title_ar_ratio"] * 100.0,
+            row["title_en_ratio"] * 100.0,
+            row["desc_ar_ratio"] * 100.0,
+        ))
         if aje_hits:
             lines.append("foreign_signature=%s" % ", ".join(aje_hits))
-        for p in events[:8]:
-            lines.append("- %s" % (text(p, "title") or "<NO TITLE>"))
-            d = text(p, "desc")
-            if d:
-                lines.append("  %s" % d[:240])
         lines.append("")
 
     family = audit_frozen_families(args.dir)
@@ -392,30 +387,15 @@ def main():
         hard_fail = True
 
     lines.extend(["DISNEY + NATIONAL GEOGRAPHIC REVIEW / QUARANTINE GATE", ""])
-    for row in family["frozen"]:
-        lines.append("[%s] %s/%s" % (row["status"], row["shard"], row["channel_id"]))
-        if row["status"] != "MISSING":
-            lines.append(
-                "  events=%d coverage=%.1fh gaps>2h=%d overlaps=%d invalid=%d title_AR=%.0f%% desc_AR=%.0f%% empty_desc=%d"
-                % (
-                    row["events"], row["coverage_hours"], row["gaps_gt_2h"], row["overlaps"],
-                    row["invalid"], row["title_ar_ratio"] * 100.0,
-                    row["desc_ar_ratio"] * 100.0, row["empty_desc"],
-                )
-            )
-            lines.append("  issues=%s" % (", ".join(row["issues"]) if row["issues"] else "NONE"))
-    lines.append("")
     for row in family["quarantined"]:
         lines.append("[%s] %s/%s" % (row["status"], row["shard"], row["channel_id"]))
         if row["status"] != "QUARANTINE_HIDDEN":
             lines.append("  issues=%s" % (", ".join(row["issues"]) if row["issues"] else "NONE"))
     if family["new_unaudited"]:
-        lines.append("")
-        lines.append("NEW UNAUDITED FAMILY IDS")
+        lines.extend(["", "NEW UNAUDITED FAMILY IDS"])
         for row in family["new_unaudited"]:
             lines.append("- %s/%s" % (row["shard"], row["channel_id"]))
-    lines.append("")
-    lines.append("family_review_gate=%s" % family["status"])
+    lines.extend(["", "family_review_gate=%s" % family["status"]])
 
     mbc = run_mbc_gate(args.dir)
     if mbc["status"] != "PASS":
@@ -423,18 +403,20 @@ def main():
     lines.extend(["", "MBC / SHAHID FROZEN PROVIDER GATE", ""])
     lines.append("status=%s audit_rc=%d regression_rc=%d" % (
         mbc["status"], mbc["audit_rc"], mbc["regression_rc"]))
-    s = mbc.get("audit_summary") or {}
+    summary = mbc.get("audit_summary") or {}
     lines.append("frozen=%s/%s secondary=%s quarantine=%s unclassified=%s" % (
-        s.get("frozen_ok", 0), s.get("frozen_expected", 0), s.get("secondary", 0),
-        s.get("quarantine", 0), s.get("unclassified", 0)))
+        summary.get("frozen_ok", 0), summary.get("frozen_expected", 0),
+        summary.get("secondary", 0), summary.get("quarantine", 0),
+        summary.get("unclassified", 0),
+    ))
     for error in mbc.get("audit_errors") or []:
         lines.append("- %s" % error)
     if mbc["status"] != "PASS":
-        lines.append("audit_output=%s" % mbc.get("audit_output", "")[-1200:])
-        lines.append("regression_output=%s" % mbc.get("regression_output", "")[-1200:])
+        lines.append("audit_output=%s" % mbc.get("audit_output", "")[-1600:])
+        lines.append("regression_output=%s" % mbc.get("regression_output", "")[-1600:])
 
     payload = {
-        "schema": 4,
+        "schema": 5,
         "targets": out,
         "frozen_families": family,
         "mbc_shahid_gate": {
@@ -447,8 +429,16 @@ def main():
     }
     Path(args.json).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     Path(args.text).write_text("\n".join(lines) + "\n", encoding="utf-8")
-    summary = " | ".join("%s=%s" % (x["label"], x["status"]) for x in out)
-    print(summary + " | Disney+NatGeo=" + family["status"] + " | MBC+Shahid=" + mbc["status"])
+
+    result_summary = " | ".join("%s=%s" % (row["label"], row["status"]) for row in out)
+    print(result_summary + " | Disney+NatGeo=" + family["status"] + " | MBC+Shahid=" + mbc["status"])
+    if family["errors"]:
+        print("FAMILY AUDIT ERRORS:")
+        for error in family["errors"]:
+            print("- %s" % error)
+        print("FAMILY DISCOVERED IDS:")
+        for row in family["discovered"]:
+            print("- %s/%s" % (row["shard"], row["channel_id"]))
     if mbc["status"] != "PASS":
         print("MBC AUDIT DETAILS:")
         print(mbc.get("audit_output", ""))
