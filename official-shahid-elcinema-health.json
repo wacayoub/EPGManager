@@ -5,8 +5,8 @@
   "b": "elcinema",
   "ids": 18,
   "counts": {
-    "SWITCH_TO_ELCINEMA": 17,
-    "KEEP_SHAHID": 1
+    "SWITCH_TO_ELCINEMA": 12,
+    "KEEP_SHAHID": 6
   },
   "results": [
     {
@@ -27,18 +27,18 @@
         "quality": -25.55
       },
       "elcinema": {
-        "events": 53,
-        "distinct_starts": 53,
-        "coverage_h": 40.5,
+        "events": 39,
+        "distinct_starts": 39,
+        "coverage_h": 28.33,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 16,
+        "distinct_titles": 15,
         "samples": [
           "الشارع السعودي",
-          "ديرتنا",
-          "صباح السعودية"
+          "برنامج آنذاك",
+          "أخبار"
         ],
-        "quality": 137.75
+        "quality": 104.0
       },
       "verdict": "SWITCH_TO_ELCINEMA"
     },
@@ -49,30 +49,30 @@
       "shahid": {
         "events": 60,
         "distinct_starts": 59,
-        "coverage_h": 52.2,
-        "placeholders": 1,
-        "very_long": 0,
-        "distinct_titles": 24,
-        "samples": [
-          "علي كلاي موسم 1 حلقة 16",
-          "ست شباب موسم 1 حلقة 1",
-          "النويلاتي موسم 1 حلقة 10"
-        ],
-        "quality": 143.0
-      },
-      "elcinema": {
-        "events": 47,
-        "distinct_starts": 47,
-        "coverage_h": 39.75,
+        "coverage_h": 49.33,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 13,
+        "distinct_titles": 23,
         "samples": [
-          "ست شباب",
-          "Tozluyaka",
-          "علي كلاي"
+          "جوائز الإيمي",
+          "أصدقاء العمر",
+          "نادينا"
         ],
-        "quality": 126.12
+        "quality": 166.5
+      },
+      "elcinema": {
+        "events": 36,
+        "distinct_starts": 36,
+        "coverage_h": 28.5,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 12,
+        "samples": [
+          "البيت الملعون",
+          "أخبار MBC",
+          "أحلى ما طاش"
+        ],
+        "quality": 96.75
       },
       "verdict": "KEEP_SHAHID"
     },
@@ -81,32 +81,32 @@
       "name_a": "MBC2",
       "name_b": "إم بي سي 2",
       "shahid": {
-        "events": 40,
+        "events": 39,
         "distinct_starts": 38,
-        "coverage_h": 51.62,
-        "placeholders": 4,
+        "coverage_h": 50.35,
+        "placeholders": 6,
         "very_long": 0,
-        "distinct_titles": 25,
+        "distinct_titles": 27,
         "samples": [
-          "دكتور سليب",
-          "تاج",
-          "Action Zone موسم 9 حلقة 37"
+          "Films & Stars موسم 9 حلقة 39",
+          "ذا مان فروم يو.إن.سي.إل.إي",
+          "دكتور سليب"
         ],
-        "quality": 49.5
+        "quality": 1.5
       },
       "elcinema": {
-        "events": 29,
-        "distinct_starts": 29,
-        "coverage_h": 42.33,
+        "events": 21,
+        "distinct_starts": 21,
+        "coverage_h": 29.0,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 20,
+        "distinct_titles": 17,
         "samples": [
-          "Get Smart",
-          "سكووب مع ريا",
-          "Batman Begins"
+          "Pride and Glory",
+          "برنامج Celebrity Scoop 9",
+          "Zodiac"
         ],
-        "quality": 122.5
+        "quality": 90.0
       },
       "verdict": "SWITCH_TO_ELCINEMA"
     },
@@ -115,66 +115,66 @@
       "name_a": "MBC3",
       "name_b": "إم بي سي 3",
       "shahid": {
-        "events": 181,
-        "distinct_starts": 179,
-        "coverage_h": 49.92,
-        "placeholders": 17,
+        "events": 164,
+        "distinct_starts": 162,
+        "coverage_h": 50.0,
+        "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 97,
+        "distinct_titles": 94,
         "samples": [
           "سلاحف النينجا",
-          "أبطال الكرة موسم 1 حلقة 16",
-          "Pirate Academy موسم 1 حلقة 31"
+          "أبطال الكرة موسم 1 حلقة 17",
+          "Pirate Academy موسم 1 حلقة 33"
         ],
-        "quality": -212.0
+        "quality": 213.0
       },
       "elcinema": {
-        "events": 79,
-        "distinct_starts": 79,
-        "coverage_h": 39.5,
+        "events": 55,
+        "distinct_starts": 55,
+        "coverage_h": 27.5,
         "placeholders": 0,
         "very_long": 0,
         "distinct_titles": 21,
         "samples": [
-          "Bubble Guppies",
-          "PAW Patrol",
-          "برنامج أهلا سمسم"
+          "Space Nova",
+          "Yu-Gi-Oh! Sevens",
+          "Pirate Academy"
         ],
-        "quality": 169.75
+        "quality": 127.75
       },
-      "verdict": "SWITCH_TO_ELCINEMA"
+      "verdict": "KEEP_SHAHID"
     },
     {
       "id": "MBC4.ae@SD",
       "name_a": "MBC4",
       "name_b": "إم بي سي 4",
       "shahid": {
-        "events": 76,
-        "distinct_starts": 75,
-        "coverage_h": 52.47,
-        "placeholders": 9,
+        "events": 77,
+        "distinct_starts": 76,
+        "coverage_h": 48.92,
+        "placeholders": 10,
         "very_long": 0,
-        "distinct_titles": 37,
+        "distinct_titles": 36,
         "samples": [
-          "إش إش موسم 1 حلقة 6",
-          "المتوحش موسم 1 حلقة 76",
-          "ورود وذنوب موسم 1 حلقة 66"
+          "جوائز الإيمي",
+          "للموت موسم 3 حلقة 12",
+          "ليلى موسم 1 حلقة 193"
         ],
-        "quality": -32.0
+        "quality": -56.0
       },
       "elcinema": {
-        "events": 48,
-        "distinct_starts": 48,
-        "coverage_h": 40.32,
+        "events": 36,
+        "distinct_starts": 36,
+        "coverage_h": 28.12,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 14,
+        "distinct_titles": 12,
         "samples": [
-          "وسط البلد",
+          "Only 17 Years Old",
           "Wild Heart",
-          "Güller ve Günahlar"
+          "إش إش"
         ],
-        "quality": 129.48
+        "quality": 96.18
       },
       "verdict": "SWITCH_TO_ELCINEMA"
     },
@@ -183,34 +183,34 @@
       "name_a": "MBC5",
       "name_b": "إم بي سي 5",
       "shahid": {
-        "events": 78,
-        "distinct_starts": 77,
-        "coverage_h": 49.32,
-        "placeholders": 17,
-        "very_long": 0,
-        "distinct_titles": 28,
-        "samples": [
-          "الهيبة: راس الجبل موسم 1 حلقة 23",
-          "الهيبة: راس الجبل موسم 1 حلقة 24",
-          "الهيبة: راس الجبل موسم 1 حلقة 25"
-        ],
-        "quality": -233.0
-      },
-      "elcinema": {
-        "events": 45,
-        "distinct_starts": 45,
-        "coverage_h": 41.08,
+        "events": 64,
+        "distinct_starts": 63,
+        "coverage_h": 49.5,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 13,
+        "distinct_titles": 25,
         "samples": [
-          "معلش إحنا بنتبهدل",
-          "Vanshaj",
-          "بصراحة مع"
+          "حياة",
+          "شهادة ميلاد الموسم 2 الحلقة 4",
+          "أنا بنت أبي موسم 1 حلقة 21"
         ],
-        "quality": 126.12
+        "quality": 173.5
       },
-      "verdict": "SWITCH_TO_ELCINEMA"
+      "elcinema": {
+        "events": 36,
+        "distinct_starts": 36,
+        "coverage_h": 28.0,
+        "placeholders": 0,
+        "very_long": 0,
+        "distinct_titles": 9,
+        "samples": [
+          "برنامج شهيوة توندونس",
+          "جوابك ذهب",
+          "برنامج براد و صينية موسم 2"
+        ],
+        "quality": 91.5
+      },
+      "verdict": "KEEP_SHAHID"
     },
     {
       "id": "MBCAction.ae@SD",
@@ -219,64 +219,64 @@
       "shahid": {
         "events": 80,
         "distinct_starts": 79,
-        "coverage_h": 49.12,
-        "placeholders": 4,
+        "coverage_h": 49.03,
+        "placeholders": 2,
         "very_long": 0,
-        "distinct_titles": 36,
+        "distinct_titles": 42,
         "samples": [
-          "ملخص بطولة العالم للتزلج الانحداري على السكيت بورد موسم 2025 حلقة 5",
-          "ملخص بطولة العالم للتزلج الانحداري على السكيت بورد موسم 2025 حلقة 6",
-          "ملخص بطولة العالم للتزلج الانحداري على السكيت بورد موسم 2025 حلقة 7"
+          "ملخص بطولة العالم للتزلج الانحداري على السكيت بورد موسم 2025 حلقة 8",
+          "ملخص بطولة العالم للتزلج الانحداري على السكيت بورد موسم 2025 حلقة 9",
+          "ملخص بطولة العالم للتزلج الانحداري على السكيت بورد موسم 2025 حلقة 10"
         ],
-        "quality": 97.0
+        "quality": 147.0
       },
       "elcinema": {
-        "events": 40,
-        "distinct_starts": 40,
-        "coverage_h": 40.5,
+        "events": 28,
+        "distinct_starts": 28,
+        "coverage_h": 28.5,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 16,
+        "distinct_titles": 13,
         "samples": [
-          "برنامج get out a life with bear gryls",
-          "أكشن مع وليد",
-          "برنامج bear grylls"
+          "Kinnikuman: Perfect Origin Arc",
+          "برنامج action bodcast",
+          "بودكاست ملح الدوري"
         ],
-        "quality": 124.75
+        "quality": 90.25
       },
-      "verdict": "SWITCH_TO_ELCINEMA"
+      "verdict": "KEEP_SHAHID"
     },
     {
       "id": "MBCBollywood.ae@SD",
       "name_a": "MBC Bollywood",
       "name_b": "إم بي سي بوليوود",
       "shahid": {
-        "events": 56,
-        "distinct_starts": 55,
-        "coverage_h": 50.02,
-        "placeholders": 10,
+        "events": 54,
+        "distinct_starts": 53,
+        "coverage_h": 49.93,
+        "placeholders": 7,
         "very_long": 0,
-        "distinct_titles": 23,
+        "distinct_titles": 22,
         "samples": [
           "سر الحنين",
           "ماهنور",
-          "بادماش كومباني"
+          "روكيت سينج: سيلزمان أوف ذا يير"
         ],
-        "quality": -87.5
+        "quality": -16.0
       },
       "elcinema": {
-        "events": 29,
-        "distinct_starts": 29,
-        "coverage_h": 40.0,
+        "events": 20,
+        "distinct_starts": 20,
+        "coverage_h": 28.25,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 10,
+        "distinct_titles": 9,
         "samples": [
-          "Parineetii",
-          "Mannat: Harr Khushi Paane Ki",
-          "Mahnoor"
+          "على صدى الخلخال",
+          "Yeh Rishta Kya Kehlata Hai",
+          "Saand Ki Aankh"
         ],
-        "quality": 104.0
+        "quality": 75.88
       },
       "verdict": "SWITCH_TO_ELCINEMA"
     },
@@ -285,66 +285,66 @@
       "name_a": "MBC Drama",
       "name_b": "إم بي سي دراما",
       "shahid": {
-        "events": 59,
-        "distinct_starts": 57,
-        "coverage_h": 50.95,
-        "placeholders": 8,
+        "events": 52,
+        "distinct_starts": 50,
+        "coverage_h": 53.0,
+        "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 14,
+        "distinct_titles": 13,
         "samples": [
+          "سندس",
           "الحفرة",
-          "باب الحارة",
-          "المداح: أسطورة الوادي"
+          "باب الحارة"
         ],
-        "quality": -48.0
+        "quality": 143.5
       },
       "elcinema": {
-        "events": 40,
-        "distinct_starts": 40,
-        "coverage_h": 40.0,
+        "events": 28,
+        "distinct_starts": 28,
+        "coverage_h": 28.0,
         "placeholders": 0,
         "very_long": 0,
         "distinct_titles": 9,
         "samples": [
-          "منطقة آمنة",
-          "باب الحارة ج3",
-          "المداح ج2: أسطورة الوادي"
+          "الحفرة ج1",
+          "بيت العنكبوت",
+          "Lost in Someone's Love"
         ],
-        "quality": 113.5
+        "quality": 83.5
       },
-      "verdict": "SWITCH_TO_ELCINEMA"
+      "verdict": "KEEP_SHAHID"
     },
     {
       "id": "MBCIraq.iq@SD",
       "name_a": "MBC Iraq",
       "name_b": "إم بي سي العراق",
       "shahid": {
-        "events": 75,
-        "distinct_starts": 74,
-        "coverage_h": 51.53,
-        "placeholders": 17,
+        "events": 73,
+        "distinct_starts": 72,
+        "coverage_h": 49.22,
+        "placeholders": 15,
         "very_long": 0,
         "distinct_titles": 27,
         "samples": [
-          "عودة خالتي موسم 1 حلقة 1",
-          "طيبة الموسم 1 الحلقة 5",
-          "عائلتي تربح"
+          "جوائز الإيمي",
+          "المتوحش موسم 1 حلقة 156",
+          "جدول البرامج غير متاح"
         ],
-        "quality": -237.5
+        "quality": -189.5
       },
       "elcinema": {
-        "events": 45,
-        "distinct_starts": 45,
-        "coverage_h": 40.25,
+        "events": 35,
+        "distinct_starts": 35,
+        "coverage_h": 28.33,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 12,
+        "distinct_titles": 11,
         "samples": [
-          "طيبة",
           "عائلتي تربح",
-          "النويلاتي"
+          "طيبة",
+          "برنامج أرض المليون موسم 2"
         ],
-        "quality": 123.38
+        "quality": 94.0
       },
       "verdict": "SWITCH_TO_ELCINEMA"
     },
@@ -353,32 +353,32 @@
       "name_a": "MBC Masr",
       "name_b": "إم بي سي مصر",
       "shahid": {
-        "events": 74,
-        "distinct_starts": 73,
-        "coverage_h": 49.88,
-        "placeholders": 32,
+        "events": 78,
+        "distinct_starts": 77,
+        "coverage_h": 50.07,
+        "placeholders": 35,
         "very_long": 0,
-        "distinct_titles": 23,
+        "distinct_titles": 22,
         "samples": [
-          "الست موناليزا موسم 1 حلقة 4",
-          "بارينيتي",
-          "أهلاً بالستات"
+          "الست موناليزا موسم 1 حلقة 5",
+          "جدول البرامج غير متاح",
+          "بارينيتي"
         ],
-        "quality": -619.5
+        "quality": -692.0
       },
       "elcinema": {
-        "events": 32,
-        "distinct_starts": 32,
-        "coverage_h": 39.67,
+        "events": 24,
+        "distinct_starts": 24,
+        "coverage_h": 28.0,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 11,
+        "distinct_titles": 10,
         "samples": [
-          "الحكاية مع عمرو أديب",
-          "كلام الناس",
-          "المداح ج4: أسطورة العودة"
+          "Golden Boy S2",
+          "الست موناليزا",
+          "يحدث في مصر"
         ],
-        "quality": 108.0
+        "quality": 81.0
       },
       "verdict": "SWITCH_TO_ELCINEMA"
     },
@@ -389,30 +389,30 @@
       "shahid": {
         "events": 83,
         "distinct_starts": 82,
-        "coverage_h": 51.82,
-        "placeholders": 36,
+        "coverage_h": 51.33,
+        "placeholders": 37,
         "very_long": 0,
-        "distinct_titles": 22,
+        "distinct_titles": 23,
         "samples": [
-          "قصر النيل الموسم 1 الحلقة 4",
           "صباحك مصري",
+          "جدول البرامج غير متاح",
           "من القلب للقلب"
         ],
-        "quality": -712.0
+        "quality": -735.5
       },
       "elcinema": {
-        "events": 37,
-        "distinct_starts": 37,
-        "coverage_h": 40.5,
+        "events": 26,
+        "distinct_starts": 26,
+        "coverage_h": 28.0,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 9,
+        "distinct_titles": 11,
         "samples": [
+          "صلة رحم",
           "الخائن",
-          "قصر النيل",
-          "صباحك مصري"
+          "سك على إخواتك"
         ],
-        "quality": 111.25
+        "quality": 84.5
       },
       "verdict": "SWITCH_TO_ELCINEMA"
     },
@@ -421,32 +421,32 @@
       "name_a": "مصر دراما",
       "name_b": "إم بي سي مصر دراما",
       "shahid": {
-        "events": 62,
-        "distinct_starts": 61,
-        "coverage_h": 49.65,
-        "placeholders": 24,
+        "events": 69,
+        "distinct_starts": 68,
+        "coverage_h": 49.28,
+        "placeholders": 31,
         "very_long": 1,
         "distinct_titles": 13,
         "samples": [
-          "الأسطورة موسم 1 حلقة 28",
-          "بين السطور موسم 1 حلقة 13",
-          "أفراح إبليس موسم 2 حلقة 28"
+          "الأسطورة موسم 1 حلقة 29",
+          "جدول البرامج غير متاح",
+          "بين السطور موسم 1 حلقة 14"
         ],
-        "quality": -454.5
+        "quality": -622.5
       },
       "elcinema": {
-        "events": 48,
-        "distinct_starts": 48,
-        "coverage_h": 40.0,
+        "events": 33,
+        "distinct_starts": 33,
+        "coverage_h": 28.0,
         "placeholders": 0,
         "very_long": 0,
         "distinct_titles": 6,
         "samples": [
-          "أفراح إبليس ج2",
-          "Bahar",
-          "فكرة بمليون جنيه"
+          "ع الحلوة والمرة",
+          "الأسطورة",
+          "بين السطور"
         ],
-        "quality": 117.0
+        "quality": 84.0
       },
       "verdict": "SWITCH_TO_ELCINEMA"
     },
@@ -455,32 +455,32 @@
       "name_a": "MBC MAX",
       "name_b": "إم بي سي ماكس",
       "shahid": {
-        "events": 44,
-        "distinct_starts": 43,
-        "coverage_h": 50.68,
-        "placeholders": 7,
+        "events": 40,
+        "distinct_starts": 39,
+        "coverage_h": 52.43,
+        "placeholders": 5,
         "very_long": 0,
-        "distinct_titles": 26,
+        "distinct_titles": 25,
         "samples": [
-          "بلايد",
-          "Celebrity Scoop موسم 9 حلقة 37",
-          "ريزيدنت إيفل: ويلكم تو راكون سيتي"
+          "Playing For Keeps",
+          "Hollywood Buzz موسم 9 حلقة 39",
+          "لايف آز وي نو إت"
         ],
-        "quality": -20.0
+        "quality": 24.5
       },
       "elcinema": {
-        "events": 30,
-        "distinct_starts": 30,
-        "coverage_h": 40.5,
+        "events": 17,
+        "distinct_starts": 17,
+        "coverage_h": 28.0,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 21,
+        "distinct_titles": 13,
         "samples": [
-          "Hotel Transylvania 3: Summer Vacation",
-          "New Year's Eve",
-          "Crazy Stupid Love"
+          "Laggies",
+          "Hollywood Buzz",
+          "Valentine's Day"
         ],
-        "quality": 122.25
+        "quality": 78.5
       },
       "verdict": "SWITCH_TO_ELCINEMA"
     },
@@ -489,66 +489,66 @@
       "name_a": "MBC Plus Drama",
       "name_b": "إم بي سي دراما +",
       "shahid": {
-        "events": 80,
-        "distinct_starts": 79,
-        "coverage_h": 50.6,
-        "placeholders": 13,
+        "events": 66,
+        "distinct_starts": 65,
+        "coverage_h": 50.2,
+        "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 22,
+        "distinct_titles": 21,
         "samples": [
           "شجر الحور",
           "بارينيتي",
-          "الحصاد المر موسم 1 حلقة 1"
+          "الحصاد المر موسم 1 حلقة 2"
         ],
-        "quality": -140.0
+        "quality": 169.5
       },
       "elcinema": {
-        "events": 53,
-        "distinct_starts": 53,
-        "coverage_h": 39.7,
+        "events": 37,
+        "distinct_starts": 37,
+        "coverage_h": 27.75,
         "placeholders": 0,
         "very_long": 0,
         "distinct_titles": 8,
         "samples": [
-          "اللعبة 2: ليفل الوحش",
-          "الهيبة (جبل)",
-          "Parineetii"
+          "كذبة إبريل",
+          "Parineetii",
+          "Wild Bees"
         ],
-        "quality": 124.55
+        "quality": 90.62
       },
-      "verdict": "SWITCH_TO_ELCINEMA"
+      "verdict": "KEEP_SHAHID"
     },
     {
       "id": "MTV.lb@SD",
       "name_a": "MTV Lebanon",
       "name_b": "إم تي في",
       "shahid": {
-        "events": 20,
-        "distinct_starts": 19,
+        "events": 21,
+        "distinct_starts": 20,
         "coverage_h": 63.03,
-        "placeholders": 0,
+        "placeholders": 1,
         "very_long": 4,
-        "distinct_titles": 9,
+        "distinct_titles": 11,
         "samples": [
           "Midnight News",
           "Press Review",
           "Morning News"
         ],
-        "quality": 73.5
+        "quality": 52.5
       },
       "elcinema": {
-        "events": 49,
-        "distinct_starts": 49,
-        "coverage_h": 39.17,
+        "events": 33,
+        "distinct_starts": 33,
+        "coverage_h": 27.5,
         "placeholders": 0,
         "very_long": 0,
         "distinct_titles": 17,
         "samples": [
-          "برنامج مشوار",
-          "أخبار",
-          "فترة دينية"
+          "Six of Us",
+          "خطيئة أخيرة",
+          "أنا"
         ],
-        "quality": 133.25
+        "quality": 99.75
       },
       "verdict": "SWITCH_TO_ELCINEMA"
     },
@@ -570,18 +570,18 @@
         "quality": -25.55
       },
       "elcinema": {
-        "events": 17,
-        "distinct_starts": 17,
-        "coverage_h": 17.0,
+        "events": 31,
+        "distinct_starts": 31,
+        "coverage_h": 28.0,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 9,
+        "distinct_titles": 11,
         "samples": [
-          "هارون الرشيد",
-          "ولاد ناس",
-          "برنامج مطبخ ضحي"
+          "أنا وهي وهيا",
+          "برنامج جو السعودية",
+          "برنامج موسيقاتنا"
         ],
-        "quality": 56.0
+        "quality": 89.5
       },
       "verdict": "SWITCH_TO_ELCINEMA"
     },
@@ -603,18 +603,18 @@
         "quality": -25.55
       },
       "elcinema": {
-        "events": 48,
-        "distinct_starts": 48,
-        "coverage_h": 39.5,
+        "events": 33,
+        "distinct_starts": 33,
+        "coverage_h": 27.5,
         "placeholders": 0,
         "very_long": 0,
-        "distinct_titles": 11,
+        "distinct_titles": 10,
         "samples": [
-          "الخروج من الدائرة / الخلاص",
-          "ريمي الفتى الشريد",
-          "أبناء الغد ج3"
+          "برنامج إختلاف على الهواء",
+          "خطوات على الجبال",
+          "الخروج من الدائرة / الخلاص"
         ],
-        "quality": 123.75
+        "quality": 89.25
       },
       "verdict": "SWITCH_TO_ELCINEMA"
     }
