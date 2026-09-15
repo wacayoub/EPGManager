@@ -44,6 +44,24 @@ PROVIDER_SHARDS = [
 COUNTRY_BY_CODE = {code: (label, stem) for code, label, stem in COUNTRY_SHARDS}
 ALL_STEMS = [x[2] for x in PROVIDER_SHARDS] + [x[2] for x in COUNTRY_SHARDS] + ["mena-other"]
 
+# Receiver-facing Rotana identities frozen after the provider audit. Alternate
+# HD/generic aliases remain in the internal combined feed, but must not create
+# duplicate Safe EPG Match candidates on the receiver.
+ROTANA_RECEIVER_ALLOWED_IDS = {
+    "Rotana + HD.sa",
+    "Rotana Aflam +.sa",
+    "Rotana Kids.sa",
+    "RotanaCinemaEgypt.eg@SD",
+    "RotanaCinemaKSA.sa@SD",
+    "RotanaClassic.sa@SD",
+    "RotanaComedy.sa@SD",
+    "RotanaDrama.sa@SD",
+    "RotanaKhalijia.sa@SD",
+    "Rotana M+ HD.sa",
+    "Rotana Music HD.sa",
+    "RotanaClip.sa@SD",
+}
+
 
 def read_xml(path: Path) -> ET.Element:
     data = path.read_bytes()
@@ -245,8 +263,19 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     stats = {}
     for key, label, stem in PROVIDER_SHARDS:
-        stats[stem] = write_shard(out_dir, stem, buckets[stem], channels, programmes, label)
+        publish_ids = set(buckets[stem])
+        internal_only_ids = []
+        if key == "rotana":
+            internal_only_ids = sorted(publish_ids - ROTANA_RECEIVER_ALLOWED_IDS, key=str.casefold)
+            publish_ids &= ROTANA_RECEIVER_ALLOWED_IDS
+        stats[stem] = write_shard(out_dir, stem, publish_ids, channels, programmes, label)
         stats[stem].update({"kind": "provider", "key": key})
+        if internal_only_ids:
+            stats[stem]["internal_only_ids"] = internal_only_ids
+            stats[stem]["internal_only_count"] = len(internal_only_ids)
+            stats[stem]["receiver_policy"] = "canonical-only; duplicate/legacy Rotana identities stay internal"
+            print("Rotana receiver cleanup: canonical=%d internal-only=%d" % (
+                len(publish_ids), len(internal_only_ids)))
     for code, label, stem in COUNTRY_SHARDS:
         stats[stem] = write_shard(out_dir, stem, buckets[stem], channels, programmes, label)
         stats[stem].update({"kind": "country", "key": code})
@@ -257,10 +286,10 @@ def main() -> int:
     country_counts = {code: stats[stem]["channels"] for code, _label, stem in COUNTRY_SHARDS}
 
     # write_shard can apply a strict receiver-facing canonical filter (for
-    # example DMI/MBC) after the initial exclusive buckets were built.  The
-    # manifest must describe the XML files that were actually written, not the
-    # pre-filter bucket size, otherwise the production invariant rejects a
-    # perfectly valid feed and prevents publication.
+    # example DMI/MBC in the strict layer and Rotana here) after the initial
+    # exclusive buckets were built. The manifest must describe the XML files
+    # actually written, not the pre-filter bucket size, otherwise a valid feed
+    # can be rejected before publication.
     actual_published = sum(int(row.get("channels", 0)) for row in stats.values())
     receiver_internal_only_ids = sorted({
         cid
