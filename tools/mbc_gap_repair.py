@@ -2,23 +2,24 @@
 # -*- coding: utf-8 -*-
 """Targeted MBC schedule-gap repair using Shahid as a donor only.
 
-This module does NOT replace the selected primary source.  It is deliberately
-limited to two audited receiver IDs where the selected primary occasionally
+This module does NOT replace the selected primary source. It is deliberately
+limited to audited receiver IDs where the selected primary occasionally
 publishes a short/incomplete rolling 48-hour window:
 
 - AlHadath.sa@SD: OSN remains primary; Shahid may fill uncovered time only.
+- MBC3.ae@SD: OSN remains primary; Shahid may fill uncovered time only.
 - MBCMasrDrama.sa@SD: ElCinema remains primary; Shahid may fill uncovered time only.
 
 Only real Arabic Shahid events with non-empty Arabic descriptions are eligible.
 Known placeholder rows are rejected, existing primary timestamps are never
 modified, and any donor event that overlaps a primary/already-accepted event is
-rejected.  This preserves the one-primary-timeline architecture while providing
+rejected. This preserves the one-primary-timeline architecture while providing
 a narrow, evidence-backed gap fallback.
 
 Important: a rolling 48-hour receiver window normally spans three UTC calendar
-dates when the workflow runs after midnight.  Donor fetches therefore cover
+dates when the workflow runs after midnight. Donor fetches therefore cover
 every UTC date touched by [now, now + window_hours], then trim events back to the
-exact rolling window.  Fetching only today + tomorrow can cap usable donor
+exact rolling window. Fetching only today + tomorrow can cap usable donor
 coverage below 30 hours late in the day even when Shahid has a healthy guide.
 """
 from __future__ import annotations
@@ -36,6 +37,11 @@ TARGETS = {
         "site_id": "387288",
         "primary": "osn.com",
         "min_coverage_h": 30.0,
+    },
+    "MBC3.ae@SD": {
+        "site_id": "409385",
+        "primary": "osn.com",
+        "min_coverage_h": 28.0,
     },
     "MBCMasrDrama.sa@SD": {
         "site_id": "49923122575716",
@@ -205,7 +211,6 @@ def _fetch_shahid(site_id: str, day, timeout: int = 15):
                 continue
             if not title or not desc or _placeholder(title, desc):
                 continue
-            # Donor additions must improve the Arabic MENA guide, never dilute it.
             if not AR_RE.search(title) or not AR_RE.search(desc):
                 continue
             out.append({
