@@ -1,5 +1,5 @@
 GLOBAL RECEIVER ID NORMALIZATION
-renamed=460 dropped_proven_duplicates=0 collisions_repaired=20
+renamed=497 dropped_proven_duplicates=0 collisions_repaired=20
 policy=one real service -> one stable canonical receiver ID
 
 === provider-alkass | 8 IDs ===
@@ -14,38 +14,81 @@ Alkass Two.qa -> AlKass.Two.qa | Alkass Two.qa
 
 === provider-osn | 20 IDs ===
 OSNComedy.ae@SD -> OSN.OS.Ntv.Comedy.ae | OSNtv Comedy
-OSNtv Crime.sa -> OSN.OS.Ntv.Crime.ae | OSNtv Crime
-OSNtv Documentary.sa -> OSN.OS.Ntv.Documentary.ae | OSNtv Documentary
 OSNKids.ae@SD -> OSN.OS.Ntv.Kids.ae | OSNtv Kids
 OSNMezze.ae@SD -> OSN.OS.Ntv.Mezze.ae | OSNtv Mezze
 OSNMoviesAction.ae@SD -> OSN.OS.Ntv.Movies.Action.ae | OSNtv Movies Action
+OSNMoviesHollywood.ae@SD -> OSN.OS.Ntv.Movies.Hollywood.ae | OSNtv Movies Hollywood
+OSNMoviesPremiere.ae@SD -> OSN.OS.Ntv.Movies.Premiere.ae | OSNtv Movies Premiere
+OSNShowcase.ae@SD -> OSN.OS.Ntv.Showcase.ae | OSNtv Showcase
+OSNYahala.ae@SD -> OSN.OS.Ntv.Yahala.ae | OSNtv Yahala
+OSNYahalaAflam.ae@SD -> OSN.OS.Ntv.Yahala.Aflam.ae | OSNtv Yahala Aflam
+OSNYahalaBilArabi.ae@SD -> OSN.OS.Ntv.Yahala.Bil.Arabi.ae | OSNtv Yahala Bil Arabi
+OSNtv Crime.sa -> OSN.OS.Ntv.Crime.ae | OSNtv Crime
+OSNtv Documentary.sa -> OSN.OS.Ntv.Documentary.ae | OSNtv Documentary
 OSNtv Movies Comedy.sa -> OSN.OS.Ntv.Movies.Comedy.ae | OSNtv Movies Comedy
 OSNtv Movies Family.sa -> OSN.OS.Ntv.Movies.Family.ae | OSNtv Movies Family
-OSNMoviesHollywood.ae@SD -> OSN.OS.Ntv.Movies.Hollywood.ae | OSNtv Movies Hollywood
 OSNtv Movies Horror.sa -> OSN.OS.Ntv.Movies.Horror.ae | OSNtv Movies Horror
-OSNMoviesPremiere.ae@SD -> OSN.OS.Ntv.Movies.Premiere.ae | OSNtv Movies Premiere
 OSNtv Now.sa -> OSN.OS.Ntv.Now.ae | OSNtv Now
 OSNtv One.sa -> OSN.OS.Ntv.One.ae | OSNtv One
 OSNtv Pop Up.sa -> OSN.OS.Ntv.Pop.Up.ae | OSNtv Pop Up
 OSNtv Showcase Classics.sa -> OSN.OS.Ntv.Showcase.Classics.ae | OSNtv Showcase Classics
-OSNShowcase.ae@SD -> OSN.OS.Ntv.Showcase.ae | OSNtv Showcase
-OSNYahalaAflam.ae@SD -> OSN.OS.Ntv.Yahala.Aflam.ae | OSNtv Yahala Aflam
-OSNYahalaBilArabi.ae@SD -> OSN.OS.Ntv.Yahala.Bil.Arabi.ae | OSNtv Yahala Bil Arabi
-OSNYahala.ae@SD -> OSN.OS.Ntv.Yahala.ae | OSNtv Yahala
 OSNtv iQIYI.sa -> OSN.OS.Ntv.i.QIYI.ae | OSNtv iQIYI
+
+=== provider-mbc | 17 IDs ===
+AlHadath.sa@SD -> MBC.Al.Hadath.mena | Al Hadath
+Alarabiya.ae@SD -> MBC.Alarabiya.mena | العربية
+MBC1.ae@SD -> MBC.1.mena | MBC1
+MBC2.ae@SD -> MBC.2.mena | MBC2
+MBC3.ae@SD -> MBC.3.mena | MBC 3
+MBC4.ae@SD -> MBC.4.mena | MBC4
+MBC5.ae@SD -> MBC.5.mena | MBC 5
+MBCAction.ae@SD -> MBC.Action.mena | MBC Action
+MBCBollywood.ae@SD -> MBC.Bollywood.mena | MBC Bollywood
+MBCDrama.ae@SD -> MBC.Drama.mena | MBC Drama
+MBCIraq.iq@SD -> MBC.Iraq.mena | MBC Iraq
+MBCMasr.eg@SD -> MBC.Masr.mena | MBC Masr
+MBCMasr2.eg@SD -> MBC.Masr2.mena | MBC Masr2
+MBCMasrDrama.sa@SD -> MBC.Masr.Drama.mena | إم بي سي مصر دراما
+MBCMax.ae@SD -> MBC.MAX.mena | MBC MAX
+MBCPersia.ae@SD -> MBC.Persia.mena | MBC Persia
+MBCPlusDrama.sa@SD -> MBC.Plus.Drama.mena | MBC Plus Drama
+
+=== provider-rotana | 11 IDs ===
+Rotana + HD.sa -> Rotana.Plus.mena | Rotana + HD.sa
+Rotana Aflam +.sa -> Rotana.Aflam.Plus.mena | Rotana Aflam +.sa
+Rotana Kids.sa -> Rotana.Kids.mena | Rotana Kids.sa
+Rotana M+ HD.sa -> Rotana.M.Plus.mena | Rotana M+ HD.sa
+Rotana Music HD.sa -> Rotana.Music.mena | Rotana Music HD.sa
+RotanaCinemaEgypt.eg@SD -> Rotana.Cinema.Egypt.mena | روتانا سينما مصر
+RotanaCinemaKSA.sa@SD -> Rotana.Cinema.KSA.mena | روتانا سينما السعودية
+RotanaClassic.sa@SD -> Rotana.Classic.mena | روتانا كلاسيك
+RotanaComedy.sa@SD -> Rotana.Comedy.mena | روتانا كوميدي
+RotanaDrama.sa@SD -> Rotana.Drama.mena | روتانا دراما
+RotanaKhalijia.sa@SD -> Rotana.Khalijia.mena | روتانا خليجية
 
 === provider-adm | 11 IDs ===
 ADSportsExtra.ae -> ADM.AD.Sports.Extra.ae | AD Sports Extra
 ADSportsPremium1.ae -> ADM.AD.Sports.Premium.1.ae | AD Sports Premium 1
 ADSportsPremium2.ae -> ADM.AD.Sports.Premium.2.ae | AD Sports Premium 2
+AbuDhabiEmirates.ae -> ADM.Al.Emarat.TV.ae | Al Emarat TV
 AbuDhabiSports1.ae -> ADM.Abu.Dhabi.Sports.1.ae | Abu Dhabi Sports 1
 AbuDhabiSports2.ae -> ADM.Abu.Dhabi.Sports.2.ae | Abu Dhabi Sports 2
 AbuDhabiTV.ae -> ADM.Abu.Dhabi.TV.ae | Abu Dhabi TV
-AbuDhabiEmirates.ae -> ADM.Al.Emarat.TV.ae | Al Emarat TV
 Majid.ae -> ADM.Majid.ae | Majid
 NationalGeographicAbuDhabi.ae -> ADM.National.Geographic.Abu.Dhabi.ae | National Geographic Abu Dhabi
-YasTVExtra.ae -> ADM.YAS.TV.Extra.ae | YAS TV Extra
 YasTV.ae -> ADM.Yas.TV.ae | Yas TV
+YasTVExtra.ae -> ADM.YAS.TV.Extra.ae | YAS TV Extra
+
+=== provider-dmi | 9 IDs ===
+Dubai One.sa -> DMI.Dubai.One.ae | Dubai One.sa
+Dubai Sports 2.sa -> DMI.Dubai.Sports.2.ae | Dubai Sports 2.sa
+Dubai Sports HD.sa -> DMI.Dubai.Sports.ae | Dubai Sports HD.sa
+Dubai Zaman.eg -> DMI.Dubai.Zaman.ae | Dubai Zaman.eg
+Dubai.Racing.1.HD.ae -> DMI.Dubai.Racing.1.ae | Dubai Racing 1 HD
+Dubai.Racing.2.ae -> DMI.Dubai.Racing.2.ae | Dubai Racing 2
+DubaiTV.ae@SD -> DMI.Dubai.TV.ae | Dubai TV HD
+Noor.DubaiTV.ae -> DMI.Noor.Dubai.TV.ae | Noor DubaiTV
+Sama Dubai.sa -> DMI.Sama.Dubai.ae | Sama Dubai.sa
 
 === provider-art | 8 IDs ===
 Alfa Al Safwa.sa -> ART.Alfa.Al.Safwa.mena | Alfa Al Safwa.sa
@@ -58,30 +101,29 @@ Alfa Series +2 HD.sa -> ART.Alfa.Series.Plus.2.mena | Alfa Series +2 HD.sa
 Alfa Series HD.sa -> ART.Alfa.Series.mena | Alfa Series HD.sa
 
 === provider-starz | 5 IDs ===
+STARZPLAY Sports.sa -> STARZ.PLAY.Sports.mena | STARZPLAY Sports.sa
 en:.STARZPLAY.Cricket.1.ae -> STARZ.PLAY.Cricket.1.mena | en: STARZPLAY Cricket 1
-en:.StarzPlay.Rugby.-.Live.ae -> STARZ.Play.Rugby.Live.mena | en: StarzPlay Rugby - Live
 en:.STARZPLAY.Sports.1.ae -> STARZ.PLAY.Sports.1.mena | en: STARZPLAY Sports 1
 en:.STARZPLAY.Sports.2.ae -> STARZ.PLAY.Sports.2.mena | en: STARZPLAY Sports 2
-STARZPLAY Sports.sa -> STARZ.PLAY.Sports.mena | STARZPLAY Sports.sa
+en:.StarzPlay.Rugby.-.Live.ae -> STARZ.Play.Rugby.Live.mena | en: StarzPlay Rugby - Live
 
 === mena-eg | 58 IDs ===
-SadaElbalad2.eg@SD -> Sada.Elbalad2.eg | صدى البلد 2
-AlKaheraWalNas2.eg@SD -> Al.Kahera.Wal.Nas2.eg | القاهرة والناس 2
 Al Hayat.sa -> Al.Hayat.eg | Al Hayat.sa
-Al.Kahera.Wal.Nas.2.ae -> Al.Kahera.Wal.Nas.2.eg | Al Kahera Wal Nas 2
 Al Kahera Wal Nas TV 2.eg -> Al.Kahera.Wal.Nas.TV.2.eg | Al Kahera Wal Nas TV 2.eg
 Al Kahera Wal Nas TV.eg -> Al.Kahera.Wal.Nas.TV.eg | Al Kahera Wal Nas TV.eg
-Al.Kahera.Wal.Nas.ae -> Al.Kahera.Wal.Nas.eg | Al Kahera Wal Nas
 Al Kahera Walnas 2.sa -> Al.Kahera.Walnas.2.eg | Al Kahera Walnas 2.sa
 Al Kahera Walnas.sa -> Al.Kahera.Walnas.eg | Al Kahera Walnas.sa
 Al Masriya.sa -> Al.Masriya.eg | Al Masriya.sa
-Al.Masriyah.ae -> Al.Masriyah.eg | Al Masriyah
 Al Nahar Drama.sa -> Al.Nahar.Drama.eg | Al Nahar Drama.sa
 Al Nahar TV.sa -> Al.Nahar.TV.eg | Al Nahar TV.sa
 Al Nahar.sa -> Al.Nahar.eg | Al Nahar.sa
+Al.Kahera.Wal.Nas.2.ae -> Al.Kahera.Wal.Nas.2.eg | Al Kahera Wal Nas 2
+Al.Kahera.Wal.Nas.ae -> Al.Kahera.Wal.Nas.eg | Al Kahera Wal Nas
+Al.Masriyah.ae -> Al.Masriyah.eg | Al Masriyah
 Al.Oula.ae -> Al.Oula.eg | Al Oula
 Al.Shams.TV.ae -> Al.Shams.TV.eg | Al Shams TV
 AlKaheraWalNas.eg@SD -> Al.Kahera.Wal.Nas.3.eg | القاهرة والناس
+AlKaheraWalNas2.eg@SD -> Al.Kahera.Wal.Nas2.eg | القاهرة والناس 2
 AlMasriyah.eg@SD -> Al.Masriyah.2.eg | المصرية
 AlNahar.eg@SD -> Al.Nahar.2.eg | النهار
 AlNaharDrama.eg@SD -> Al.Nahar.Drama.2.eg | النهار دراما
@@ -94,20 +136,20 @@ CBC Sofra.sa -> CBC.Sofra.eg | CBC Sofra.sa
 CBC.eg@SD -> CBC.eg | سي بي سي
 CBC.sa -> CBC.2.eg | CBC.sa
 CBCDrama.eg@SD -> CBC.Drama.2.eg | سي بي سي دراما
-Cima.eg@SD -> Cima.eg | سيما
-Cima.eg -> Cima.2.eg | Cima.eg
+Cima.eg -> Cima.eg | Cima.eg
+Cima.eg@SD -> Cima.2.eg | سيما
 DMC DRAMA.eg -> DMC.DRAMA.eg | DMC DRAMA.eg
 DMC.eg@SD -> DMC.eg | DMC HD
 DMCDrama.eg@SD -> DMC.Drama.eg | دي إم سي دراما
+EN:.Masrah.Masr.Channel.sa -> Masrah.Masr.Channel.eg | EN: Masrah Masr Channel
 El.Mehwar.HD.ae -> El.Mehwar.eg | El Mehwar HD
 Extra.News.HD.ae -> Extra.News.eg | Extra News HD
 MasperoZaman.eg@SD -> Maspero.Zaman.eg | ماسبيرو زمان
-EN:.Masrah.Masr.Channel.sa -> Masrah.Masr.Channel.eg | EN: Masrah Masr Channel
 Mehwar.eg -> Mehwar.eg | Mehwar.eg
 MixBelAraby.eg@SD -> Mix.Bel.Araby.eg | ميكس بالعربي
+Nile Drama.eg -> Nile.Drama.eg | Nile Drama.eg
 Nile.Cinema.ae -> Nile.Cinema.eg | Nile Cinema
 Nile.Comedy.ae -> Nile.Comedy.eg | Nile Comedy
-Nile Drama.eg -> Nile.Drama.eg | Nile Drama.eg
 Nile.Family.ae -> Nile.Family.eg | Nile Family
 Nile.Life.ae -> Nile.Life.eg | Nile Life
 Nile.TV.ae -> Nile.TV.eg | Nile TV
@@ -121,24 +163,25 @@ Sada El Balad 2.eg -> Sada.El.Balad.2.eg | Sada El Balad 2.eg
 Sada El Balad Drama.eg -> Sada.El.Balad.Drama.eg | Sada El Balad Drama.eg
 Sada El Balad.eg -> Sada.El.Balad.eg | Sada El Balad.eg
 SadaElbalad.eg@SD -> Sada.Elbalad.eg | صدى البلد
+SadaElbalad2.eg@SD -> Sada.Elbalad2.eg | صدى البلد 2
 SadaElbaladDrama.eg@SD -> Sada.Elbalad.Drama.eg | صدى البلد دراما
 TeN.eg@SD -> Te.N.eg | تن
 
 === mena-sa | 31 IDs ===
 Aflam.sa@SD -> Aflam.sa | أفلام
-AlQuranAlKareemTV.sa@SD -> Al.Quran.Al.Kareem.TV.sa | Al Quran Al Kareem TV HD
 Al Resalah.sa -> Al.Resalah.sa | Al Resalah.sa
+AlQuranAlKareemTV.sa@SD -> Al.Quran.Al.Kareem.TV.sa | Al Quran Al Kareem TV HD
 AlResalah.sa@SD -> Al.Resalah.2.sa | الرساله
 AlSaudiya.sa@SD -> Al.Saudiya.sa | السعودية
-AsharqDocumentary.sa@SD -> Asharq.Documentary.sa | Asharq Documentary
 AsharqDiscovery.sa@SD -> Asharq.Discovery.sa | الشرق ديسكفري
+AsharqDocumentary.sa@SD -> Asharq.Documentary.sa | Asharq Documentary
 AsharqNews.sa@SD -> Asharq.News.sa | الشرق
 BabAlHara.sa@SD -> Bab.Al.Hara.sa | قناة باب الحارة
 Fairuz.sa@HD -> Fairuz.sa | فيروز
 KSA Now.sa -> KSA.Now.sa | KSA Now.sa
 KSASports1.sa@SD -> KSA.Sports.1.sa | KSA Sports 1 HD
-LBC.sa@SD -> LBC.sa | إل بي سي
-LBC.sa -> LBC.2.sa | LBC.sa
+LBC.sa -> LBC.sa | LBC.sa
+LBC.sa@SD -> LBC.2.sa | إل بي سي
 Maraya.sa@HD -> Maraya.sa | قناة مرايا
 Masah.sa@SD -> Masah.sa | ماسة
 MoviesAction.sa@SD -> Movies.Action.sa | Movies Action
@@ -146,29 +189,29 @@ MoviesThriller.sa@SD -> Movies.Thriller.sa | Movies Thriller
 RabehSaqer.sa@HD -> Rabeh.Saqer.sa | رابح صقر
 SBC.sa@SD -> SBC.sa | SBC
 Saudi 1.sa -> Saudi.1.sa | Saudi 1.sa
-Saudi.Al.Ekhbariya.HD.ae -> Saudi.Al.Ekhbariya.sa | Saudi Al Ekhbariya HD
 Saudi Quran.sa -> Saudi.Quran.sa | Saudi Quran.sa
 Saudi Sports 1.sa -> Saudi.Sports.1.sa | Saudi Sports 1.sa
 Saudi Sports 2.sa -> Saudi.Sports.2.sa | Saudi Sports 2.sa
 Saudi Sports 3.sa -> Saudi.Sports.3.sa | Saudi Sports 3.sa
 Saudi Sunnah.sa -> Saudi.Sunnah.sa | Saudi Sunnah.sa
-Saudi.Thikrayat.ae -> Saudi.Thikrayat.sa | Saudi Thikrayat
+Saudi.Al.Ekhbariya.HD.ae -> Saudi.Al.Ekhbariya.sa | Saudi Al Ekhbariya HD
 Saudi.HD.ae -> Saudi.sa | Saudi HD
+Saudi.Thikrayat.ae -> Saudi.Thikrayat.sa | Saudi Thikrayat
 Saudiya TV.eg -> Saudiya.TV.sa | Saudiya TV.eg
 ThikrayatTV.sa@SD -> Thikrayat.TV.sa | ذكريات
 
 === mena-ae | 16 IDs ===
 AlDafrahTV.ae@SD -> Al.Dafrah.TV.ae | الظفرة
 AlSharqiyaMinKabla.ae@SD -> Al.Sharqiya.Min.Kabla.ae | الشرقية
-CartoonNetworkArabic.ae@SD -> CN.Arabia.ae | CN Arabia
 CNBC.Arabiya.ae -> CNBC.Arabiya.ae | CNBC Arabiya
+CartoonNetworkArabic.ae@SD -> CN.Arabia.ae | CN Arabia
 Emirates.eg -> Emirates.ae | Emirates.eg
 Fujairah TV.sa -> Fujairah.TV.ae | Fujairah TV.sa
 Fujairah.eg -> Fujairah.ae | Fujairah.eg
 FujairahTV.ae@SD -> Fujairah.TV.2.ae | الفجيرة
 NickJrArabia.ae@SD -> Nick.Jr.ae | Nick Jr HD
-NicktoonsArabia.ae@SD -> Nick.Toons.ae | NickToons HD
 NickelodeonArabia.ae@SD -> Nickelodeon.ae | Nickelodeon HD
+NicktoonsArabia.ae@SD -> Nick.Toons.ae | NickToons HD
 Sharjah Quran.sa -> Sharjah.Quran.ae | Sharjah Quran.sa
 Sharjah Sports.sa -> Sharjah.Sports.ae | Sharjah Sports.sa
 Sharjah TV.sa -> Sharjah.TV.ae | Sharjah TV.sa
@@ -176,16 +219,16 @@ Sharjah.HD.ae -> Sharjah.ae | Sharjah HD
 SkyNewsArabia.ae@SD -> Sky.News.Arabia.ae | Sky News Arabia HD
 
 === mena-qa | 14 IDs ===
-AlArabyTV2.qa@SD -> Al.Araby.2.qa | Al Araby 2
-AlArabyTV.qa@SD -> Al.Araby.TV.qa | Al Araby TV
-AlJazeera2.qa@HD -> Al.Jazeera.2.qa | Al Jazeera 2
-AlJazeera.qa@Arabic -> Al.Jazeera.Arabic.qa | Al Jazeera Arabic
 Al.Jazeera.Mobasher.2.HD.ae -> Al.Jazeera.Mobasher.2.qa | Al Jazeera Mobasher 2 HD
 Al.Jazeera.Mobasher.HD.ae -> Al.Jazeera.Mobasher.qa | Al Jazeera Mobasher HD
 Al.Rayyan.Al.Qadeem.HD.ae -> Al.Rayyan.Al.Qadeem.qa | Al Rayyan Al Qadeem HD
 Al.Rayyan.HD.ae -> Al.Rayyan.qa | Al Rayyan HD
-AlJazeera.Arabic.net -> Al.Jazeera.Arabic.2.qa | AlJazeera Arabic
+AlArabyTV.qa@SD -> Al.Araby.TV.qa | Al Araby TV
+AlArabyTV2.qa@SD -> Al.Araby.2.qa | Al Araby 2
+AlJazeera.Arabic.net -> Al.Jazeera.Arabic.qa | AlJazeera Arabic
 AlJazeera.English.net -> Al.Jazeera.English.qa | AlJazeera English
+AlJazeera.qa@Arabic -> Al.Jazeera.Arabic.2.qa | Al Jazeera Arabic
+AlJazeera2.qa@HD -> Al.Jazeera.2.qa | Al Jazeera 2
 Aljazeera-Documentary-1.qa -> Aljazeera.Documentary.1.qa | Aljazeera-Documentary-1.qa
 BeJunior.qa@SD -> Be.Junior.qa | Be Junior
 Qatar.2.HD.ae -> Qatar.2.qa | Qatar 2 HD
@@ -204,13 +247,13 @@ BahrainTV.bh@SD -> Bahrain.TV.bh | Bahrain TV
 Oman Al Thakafeyah.sa -> Oman.Al.Thakafeyah.om | Oman Al Thakafeyah.sa
 Oman Mubasher.sa -> Oman.Mubasher.om | Oman Mubasher.sa
 Oman Sport.sa -> Oman.Sport.om | Oman Sport.sa
-Oman.TV.Mubasher.HD.ae -> Oman.TV.Mubasher.om | Oman TV Mubasher HD
 Oman TV Mubashir.sa -> Oman.TV.Mubashir.om | Oman TV Mubashir.sa
+Oman.TV.Mubasher.HD.ae -> Oman.TV.Mubasher.om | Oman TV Mubasher HD
 Oman.TV.Sport.HD.ae -> Oman.TV.Sport.om | Oman TV Sport HD
-OmanTV.om@SD -> Oman.TV.om | Oman TV
 Oman.eg -> Oman.om | Oman.eg
 OmanSportsTV.om -> Oman.Sports.TV.om | قناة عمان الرياضية
-OmanTV.om -> Oman.TV.2.om | قناة عمان العامة
+OmanTV.om -> Oman.TV.om | قناة عمان العامة
+OmanTV.om@SD -> Oman.TV.2.om | Oman TV
 OmanTVCultural.om -> Oman.TV.Cultural.om | قناة عمان الثقافية
 OmanTVMubashir.om -> Oman.TV.Mubashir.2.om | قناة عمان مباشر
 
@@ -233,8 +276,8 @@ LBCInternational.lb@SD -> LBC.International.lb | إل بي سي آي
 MTV.lb@SD -> MTV.Lebanon.lb | MTV Lebanon
 
 === mena-iq | 16 IDs ===
-Al.Iraqiya.News.HD.ae -> Al.Iraqiya.News.iq | Al Iraqiya News HD
 Al.Iraqiya.HD.ae -> Al.Iraqiya.iq | Al Iraqiya HD
+Al.Iraqiya.News.HD.ae -> Al.Iraqiya.News.iq | Al Iraqiya News HD
 Al.Rasheed.TV.HD.ae -> Al.Rasheed.TV.iq | Al Rasheed TV HD
 Al.Sharqiya.TV.HD.ae -> Al.Sharqiya.TV.iq | Al Sharqiya TV HD
 Al.Sumaria.TV.ae -> Al.Sumaria.TV.iq | Al Sumaria TV
@@ -270,26 +313,14 @@ Sudan.TV.ae -> Sudan.TV.sd | Sudan TV
 Althania.sy@SD -> Althania.sy | الثانية
 
 === mena-other | 233 IDs ===
-ar:.ستارزبلاي.كريكيت.1.ae -> Channel5db7bc24.mena | ar: ستارزبلاي كريكيت 1
-ar:.ستارز.بلاي.سبورتس.1.ae -> Channel45487c51.mena | ar: ستارز بلاي سبورتس 1
-إم بي سي مصر 2.eg -> Channeld1780d8e.mena | إم بي سي مصر 2.eg
-التلفزيون العربي 2.eg -> Channel6a97f476.mena | التلفزيون العربي 2.eg
-إم بي سي 2.eg -> Channelfc4c27da.mena | إم بي سي 2.eg
-إم بي سي 3.eg -> Channel45a1eb2c.mena | إم بي سي 3.eg
-إم بي سي 4.eg -> Channelae6d894c.mena | إم بي سي 4.eg
 4k DIGITAL.qa -> Channel997aa0c4.mena | 4k DIGITAL.qa
-إم بي سي 5.eg -> Channel502edecb.mena | إم بي سي 5.eg
 ANC.sa -> ANC.mena | ANC.sa
-EN:.Aflam.sa -> Aflam.mena | EN: Aflam
-en:.Al.Arabiya.Business.-.Live.ae -> Al.Arabiya.Business.Live.mena | en: Al Arabiya Business - Live
-Al.Araby.HD.ae -> Al.Araby.mena | Al Araby HD
-EN:.Al.Asouf.Channel.sa -> Al.Asouf.Channel.mena | EN: Al Asouf Channel
 Al Dafrah.sa -> Al.Dafrah.mena | Al Dafrah.sa
 Al Ekhbariya.sa -> Al.Ekhbariya.mena | Al Ekhbariya.sa
-en:.Al.Hadath.Live.ae -> Al.Hadath.Live.mena | en: Al Hadath Live
+Al.Araby.HD.ae -> Al.Araby.mena | Al Araby HD
 Al.Hayah.2.ae -> Al.Hayah.2.mena | Al Hayah 2
-Al.Hayah.Mosalsalat.ae -> Al.Hayah.Mosalsalat.mena | Al Hayah Mosalsalat
 Al.Hayah.HD.ae -> Al.Hayah.mena | Al Hayah HD
+Al.Hayah.Mosalsalat.ae -> Al.Hayah.Mosalsalat.mena | Al Hayah Mosalsalat
 Al.Thanya.ae -> Al.Thanya.mena | Al Thanya
 Alaraby TV 2.eg -> Alaraby.TV.2.mena | Alaraby TV 2.eg
 Althania.eg -> Althania.mena | Althania.eg
@@ -298,23 +329,16 @@ Amman.eg -> Amman.mena | Amman.eg
 AnimalPlanetEurope.uk@SD -> Animal.Planet.mena | Animal Planet HD
 Arirang.World.ae -> Arirang.World.mena | Arirang World
 Asharq Discovery.sa -> Asharq.Discovery.mena | Asharq Discovery.sa
-EN:.Asharq.sa -> Asharq.mena | EN: Asharq
-en:.Asianet.ME.ae -> Asianet.ME.mena | en: Asianet ME
-en:.Asianet.Movies.HD.ae -> Asianet.Movies.mena | en: Asianet Movies HD
-en:.Asianet.Plus.HD.ae -> Asianet.Plus.mena | en: Asianet Plus HD
 BBC Arabic.sa -> BBC.Arabic.mena | BBC Arabic.sa
 BBC World News.sa -> BBC.World.News.mena | BBC World News.sa
 BBCArabic.uk@SD -> BBC.World.mena | BBC World
-EN:.Bab.Al.Hara.Channel.sa -> Bab.Al.Hara.Channel.mena | EN: Bab Al Hara Channel
 Baby-TV-2.qa -> Baby.TV.2.mena | Baby-TV-2.qa
 Bigg.sa -> Bigg.mena | Bigg.sa
 Blippi And Friends.sa -> Blippi.And.Friends.mena | Blippi And Friends.sa
-en:.Bloom.ae -> Bloom.mena | en: Bloom
-BloombergOriginals.us@SD -> Bloomberg.Originals.mena | Bloomberg Originals
 Bloomberg.sa -> Bloomberg.mena | Bloomberg.sa
+BloombergOriginals.us@SD -> Bloomberg.Originals.mena | Bloomberg Originals
 BoxOffice1 DIGITAL.qa -> Box.Office1.mena | BoxOffice1 DIGITAL.qa
 BoxOffice2 DIGITAL.qa -> Box.Office2.mena | BoxOffice2 DIGITAL.qa
-CrimePlusInvestigation.us@SD -> C.I.mena | C & I
 CBeebies-1.qa -> C.Beebies.1.mena | CBeebies-1.qa
 CGTN.Arabic.ae -> CGTN.Arabic.mena | CGTN Arabic
 CGTN.ae -> CGTN.mena | CGTN
@@ -323,73 +347,65 @@ CN English.sa -> CN.English.mena | CN English.sa
 CNBC Arabia.sa -> CNBC.Arabia.mena | CNBC Arabia.sa
 CNN.International.ae -> CNN.International.mena | CNN International
 CNNInternational.us@MENA -> CNN.mena | CNN HD
-Cartoon-Network-Arabic-1.qa -> Cartoon.Network.Arabic.1.mena | Cartoon-Network-Arabic-1.qa
 Cartoon Network Arabic.sa -> Cartoon.Network.Arabic.mena | Cartoon Network Arabic.sa
+Cartoon-Network-Arabic-1.qa -> Cartoon.Network.Arabic.1.mena | Cartoon-Network-Arabic-1.qa
 CartoonNetworkMENA.uk@SD -> Cartoon.Network.mena | Cartoon Network HD
 Cartoonito.sa -> Cartoonito.mena | Cartoonito.sa
-ar:.زي.تي.في.ae -> Channel0934af23.mena | ar: زي تي في
-ar:.ستار.بلس.ae -> Channel162112a0.mena | ar: ستار بلس
-ar:.ست.ماكس.ae -> Channel45cfb016.mena | ar: ست ماكس
-ar:.كلرز.إتش.دي.ae -> Channel4f814635.mena | ar: كلرز إتش دي
-ar:.قناة.الحدث.-.مباشر.ae -> Channel67f3ff43.mena | ar: قناة الحدث - مباشر
-ar:.آسيا.نت.موفيز.ae -> Channel69c28ae9.mena | ar: آسيا نت موفيز
-ar:.سوني.تي.في.ae -> Channel94dd3547.mena | ar: سوني تي في
-ar:.بلوم.ae -> Channela4867439.mena | ar: بلوم
-ar:.العربية.بيزنس.-.مباشر.ae -> Channeld4040993.mena | ar: العربية بيزنس - مباشر
-ar:.آسيا.نت.بلس.ae -> Channele0e91f1b.mena | ar: آسيا نت بلس
-ar:.ستارزبلاي.رغبي.ae -> Channele3522405.mena | ar: ستارزبلاي رغبي
-ar:.آسيا.نت.ae -> Channelf512f3f0.mena | ar: آسيا نت
 Cinema One Global.sa -> Cinema.One.Global.mena | Cinema One Global.sa
-en:.Colors.HD.ae -> Colors.mena | en: Colors HD
+CrimePlusInvestigation.us@SD -> C.I.mena | C & I
 DW.Arabia.HD.ae -> DW.Arabia.mena | DW Arabia HD
 DZMM TeleRadyo.sa -> DZMM.Tele.Radyo.mena | DZMM TeleRadyo.sa
-DiscoveryChannelMiddleEastAfrica.us@SD -> Discovery.Channel.mena | Discovery Channel HD
 Discovery Family HD.sa -> Discovery.Family.mena | Discovery Family HD.sa
-Discovery ID.sa -> Discovery.ID.mena | Discovery ID.sa
-InvestigationDiscovery.uk@SD -> Discovery.IDX.mena | Discovery IDX HD
 Discovery HD.sa -> Discovery.mena | Discovery HD.sa
+Discovery ID.sa -> Discovery.ID.mena | Discovery ID.sa
+DiscoveryChannelMiddleEastAfrica.us@SD -> Discovery.Channel.mena | Discovery Channel HD
 Disney Channel.sa -> Disney.Channel.mena | Disney Channel.sa
 Disney Junior.sa -> Disney.Junior.mena | Disney Junior.sa
 Dubai.sa -> Dubai.mena | Dubai.sa
+EN:.Aflam.sa -> Aflam.mena | EN: Aflam
+EN:.Al.Asouf.Channel.sa -> Al.Asouf.Channel.mena | EN: Al Asouf Channel
+EN:.Asharq.sa -> Asharq.mena | EN: Asharq
+EN:.Bab.Al.Hara.Channel.sa -> Bab.Al.Hara.Channel.mena | EN: Bab Al Hara Channel
 EN:.El.Le'ba.Channel.sa -> El.Le.ba.Channel.mena | EN: El Le'ba Channel
+EN:.Fairuz.sa -> Fairuz.mena | EN: Fairuz
+EN:.Maraya.Channel.sa -> Maraya.Channel.mena | EN: Maraya Channel
+EN:.Rabeh.Saqer.sa -> Rabeh.Saqer.mena | EN: Rabeh Saqer
 Esport 24.sa -> Esport.24.mena | Esport 24.sa
 Euro-News.qa -> Euro.News.mena | Euro-News.qa
-EN:.Fairuz.sa -> Fairuz.mena | EN: Fairuz
 Fatafeat.sa -> Fatafeat.mena | Fatafeat.sa
 Food Network.sa -> Food.Network.mena | Food Network.sa
+France 24.sa -> France.24.mena | France 24.sa
 France.24.Arabic.ae -> France.24.Arabic.mena | France 24 Arabic
 France.24.English.ae -> France.24.English.mena | France 24 English
-France 24.sa -> France.24.mena | France 24.sa
+GINXTV.uk@SD -> Ginx.mena | Ginx
 GMA Life TV.sa -> GMA.Life.TV.mena | GMA Life TV.sa
 GMA News TV.sa -> GMA.News.TV.mena | GMA News TV.sa
 GMA Pinoy TV.sa -> GMA.Pinoy.TV.mena | GMA Pinoy TV.sa
 Gametoon.nl@SD -> Gametoon.mena | Gametoon
-GINXTV.uk@SD -> Ginx.mena | Ginx
-History2MiddleEast.us@SD -> History2.Middle.East.mena | H2 HD
 H2 HD.sa -> Channelf42809d5.mena | H2 HD.sa
 HGTV.sa -> HGTV.mena | HGTV.sa
 Hadhramaut TV.eg -> Hadhramaut.TV.mena | Hadhramaut TV.eg
+History2MiddleEast.us@SD -> History2.Middle.East.mena | H2 HD
 HistoryMiddleEast.us@SD -> History.mena | History HD
-i24NEWSArabic.il@SD -> I24.NEWS.mena | I24NEWS عربى
+InvestigationDiscovery.uk@SD -> Discovery.IDX.mena | Discovery IDX HD
 Iraqia TV.eg -> Iraqia.TV.mena | Iraqia TV.eg
 KBS.World.ae -> KBS.World.mena | KBS World
 KidZone Max.sa -> Kid.Zone.Max.mena | KidZone Max.sa
 LTV.sa -> LTV.mena | LTV.sa
 MCMTop.fr@SD -> MCM.TOP.mena | MCM TOP
-MotorvisionPlus.de@SD -> MOTORVISION.mena | MOTORVISION
 MOVIES1 PREMIERE DIGITAL.qa -> MOVIES1.PREMIERE.mena | MOVIES1 PREMIERE DIGITAL.qa
 MOVIES2 ACTION DIGITAL.qa -> MOVIES2.ACTION.mena | MOVIES2 ACTION DIGITAL.qa
 MOVIES3 DRAMA DIGITAL.qa -> MOVIES3.DRAMA.mena | MOVIES3 DRAMA DIGITAL.qa
 MOVIES4 FAMILY DIGITAL.qa -> MOVIES4.FAMILY.mena | MOVIES4 FAMILY DIGITAL.qa
 MTV.eg -> MTV.mena | MTV.eg
 Makan33.il@SD -> Makan33.mena | مكان
-EN:.Maraya.Channel.sa -> Maraya.Channel.mena | EN: Maraya Channel
 Masah.eg -> Masah.mena | Masah.eg
 Mix Bel Araby.eg -> Mix.Bel.Araby.mena | Mix Bel Araby.eg
 Mix ONE.eg -> Mix.ONE.mena | Mix ONE.eg
-Mix.bel.Araby.TV.ae -> Mix.bel.Araby.TV.mena | Mix bel Araby TV
 Mix.ae -> Mix.mena | Mix
+Mix.bel.Araby.TV.ae -> Mix.bel.Araby.TV.mena | Mix bel Araby TV
 MoonbugKids.uk@SD -> Moonbug.Kids.mena | Moonbug Kids
+MotorvisionPlus.de@SD -> MOTORVISION.mena | MOTORVISION
 Myx.sa -> Myx.mena | Myx.sa
 NEWS DIGITAL.qa -> NEWS.mena | NEWS DIGITAL.qa
 NHK.World.Japan.ae -> NHK.World.Japan.mena | NHK World Japan
@@ -403,26 +419,22 @@ Padel TV.sa -> Padel.TV.mena | Padel TV.sa
 Panorama.Food.ae -> Panorama.Food.mena | Panorama Food
 Press.TV.HD.ae -> Press.TV.mena | Press TV HD
 RFMTV.fr@SD -> RFM.TV.mena | RFM TV
-RTArabic.ru@SD -> RT.Arabic.mena | RT Arabic
 RT Documentary.sa -> RT.Documentary.mena | RT Documentary.sa
-RT.ru@SD -> RT.English.mena | RT English
 RT News.sa -> RT.News.mena | RT News.sa
-EN:.Rabeh.Saqer.sa -> Rabeh.Saqer.mena | EN: Rabeh Saqer
+RT.ru@SD -> RT.English.mena | RT English
+RTArabic.ru@SD -> RT.Arabic.mena | RT Arabic
 Riyadh Season.sa -> Riyadh.Season.mena | Riyadh Season.sa
 Roya.sa -> Roya.mena | Roya.sa
 SERIES1 DIGITAL.qa -> SERIES1.mena | SERIES1 DIGITAL.qa
 SERIES2 DIGITAL.qa -> SERIES2.mena | SERIES2 DIGITAL.qa
-en:.SET.Max.ae -> SET.Max.mena | en: SET Max
 STV1 HD.sa -> STV1.mena | STV1 HD.sa
 Samira.HD.ae -> Samira.mena | Samira HD
 SmartZone.sa -> Smart.Zone.mena | SmartZone.sa
-en:.Sony.TV.ae -> Sony.TV.mena | en: Sony TV
 Space Toon.sa -> Space.Toon.mena | Space Toon.sa
 Sport 24.sa -> Sport.24.mena | Sport 24.sa
 Sports.First.ae -> Sports.First.mena | Sports First
 Star Action.sa -> Star.Action.mena | Star Action.sa
 Star Movies HD.sa -> Star.Movies.mena | Star Movies HD.sa
-en:.Star.Plus.HD.ae -> Star.Plus.mena | en: Star Plus HD
 Star World HD.sa -> Star.World.mena | Star World HD.sa
 TCM.sa -> TCM.mena | TCM.sa
 TFC HD.sa -> TFC.mena | TFC HD.sa
@@ -438,42 +450,82 @@ World.Fishing.Network.ae -> World.Fishing.Network.mena | World Fishing Network
 Wousta from Al Dhaid.sa -> Wousta.from.Al.Dhaid.mena | Wousta from Al Dhaid.sa
 Zee Aflam.sa -> Zee.Aflam.mena | Zee Aflam.sa
 Zee Alwan.sa -> Zee.Alwan.mena | Zee Alwan.sa
-en:.Zee.TV.HD.ae -> Zee.TV.mena | en: Zee TV HD
 Zekrayat.sa -> Zekrayat.mena | Zekrayat.sa
-قناة العاصوف.ae -> Channel19bf90da.mena | قناة العاصوف.ae
-قناة الكبير أوي.ae -> Channel31aefb0e.mena | قناة الكبير أوي.ae
-قناة اللعبة.ae -> Channel3e10bfcc.mena | قناة اللعبة.ae
-قناة طاش.ae -> Channel270630d8.mena | قناة طاش.ae
-قناة مسرح مصر.ae -> Channel91371325.mena | قناة مسرح مصر.ae
-مصر دراما.ae -> Channelfad2f3eb.mena | مصر دراما.ae
-ناصر القصبي.ae -> Channelb14d05a0.mena | ناصر القصبي.ae
-الحدث.ae -> Channelc56bf7db.mena | الحدث.ae
+ar:.آسيا.نت.ae -> Channelf512f3f0.mena | ar: آسيا نت
+ar:.آسيا.نت.بلس.ae -> Channele0e91f1b.mena | ar: آسيا نت بلس
+ar:.آسيا.نت.موفيز.ae -> Channel69c28ae9.mena | ar: آسيا نت موفيز
+ar:.العربية.بيزنس.-.مباشر.ae -> Channeld4040993.mena | ar: العربية بيزنس - مباشر
+ar:.بلوم.ae -> Channela4867439.mena | ar: بلوم
+ar:.زي.تي.في.ae -> Channel0934af23.mena | ar: زي تي في
+ar:.ست.ماكس.ae -> Channel45cfb016.mena | ar: ست ماكس
+ar:.ستار.بلس.ae -> Channel162112a0.mena | ar: ستار بلس
+ar:.ستارز.بلاي.سبورتس.1.ae -> Channel45487c51.mena | ar: ستارز بلاي سبورتس 1
+ar:.ستارزبلاي.رغبي.ae -> Channele3522405.mena | ar: ستارزبلاي رغبي
+ar:.ستارزبلاي.كريكيت.1.ae -> Channel5db7bc24.mena | ar: ستارزبلاي كريكيت 1
+ar:.سوني.تي.في.ae -> Channel94dd3547.mena | ar: سوني تي في
+ar:.قناة.الحدث.-.مباشر.ae -> Channel67f3ff43.mena | ar: قناة الحدث - مباشر
+ar:.كلرز.إتش.دي.ae -> Channel4f814635.mena | ar: كلرز إتش دي
 eClutch Access.sa -> e.Clutch.Access.mena | eClutch Access.sa
 eClutch Arabic.sa -> e.Clutch.Arabic.mena | eClutch Arabic.sa
 eClutch LIVE 2.sa -> e.Clutch.LIVE.2.mena | eClutch LIVE 2.sa
 eClutch LIVE.sa -> e.Clutch.LIVE.mena | eClutch LIVE.sa
+en:.Al.Arabiya.Business.-.Live.ae -> Al.Arabiya.Business.Live.mena | en: Al Arabiya Business - Live
+en:.Al.Hadath.Live.ae -> Al.Hadath.Live.mena | en: Al Hadath Live
+en:.Asianet.ME.ae -> Asianet.ME.mena | en: Asianet ME
+en:.Asianet.Movies.HD.ae -> Asianet.Movies.mena | en: Asianet Movies HD
+en:.Asianet.Plus.HD.ae -> Asianet.Plus.mena | en: Asianet Plus HD
+en:.Bloom.ae -> Bloom.mena | en: Bloom
+en:.Colors.HD.ae -> Colors.mena | en: Colors HD
+en:.SET.Max.ae -> SET.Max.mena | en: SET Max
+en:.Sony.TV.ae -> Sony.TV.mena | en: Sony TV
+en:.Star.Plus.HD.ae -> Star.Plus.mena | en: Star Plus HD
+en:.Zee.TV.HD.ae -> Zee.TV.mena | en: Zee TV HD
+i24NEWSArabic.il@SD -> I24.NEWS.mena | I24NEWS عربى
+iFILM TV.eg -> i.FILM.TV.mena | iFILM TV.eg
+iFilmArabic.ir@SD -> i.Film.Arabic.mena | آي فيلم
+stc tv cinema.sa -> stc.tv.cinema.mena | stc tv cinema.sa
+stc tv drama.sa -> stc.tv.drama.mena | stc tv drama.sa
+stc tv family.sa -> stc.tv.family.mena | stc tv family.sa
+stc tv sports 1 HD.sa -> stc.tv.sports.1.mena | stc tv sports 1 HD.sa
+stc tv sports HD.sa -> stc.tv.sports.mena | stc tv sports HD.sa
+أبو ظبي.eg -> Channel75de85ac.mena | أبو ظبي.eg
+أو إس إن شو كايس.eg -> Channel7ba4e119.mena | أو إس إن شو كايس.eg
+أو إس إن فاميلي موفيز.eg -> Channelad8c2d78.mena | أو إس إن فاميلي موفيز.eg
+أو إس إن كرايم.eg -> Channeld9ae1b03.mena | أو إس إن كرايم.eg
+أو إس إن كيدز.eg -> Channel188b5ef0.mena | أو إس إن كيدز.eg
+أو إس إن موفيز أكشن.eg -> Channel8b149713.mena | أو إس إن موفيز أكشن.eg
+أو إس إن موفيز بريميير.eg -> Channelcdcdb21c.mena | أو إس إن موفيز بريميير.eg
+أو إس إن موفيز كوميدي.eg -> Channel01c1c0f2.mena | أو إس إن موفيز كوميدي.eg
+أو إس إن موفيز هوليوود.eg -> Channel1f4827c2.mena | أو إس إن موفيز هوليوود.eg
 أو إس إن ياهلا أفلام.eg -> Channelb7e6edcf.mena | أو إس إن ياهلا أفلام.eg
 أو إس إن ياهلا بالعربي.eg -> Channel9cee129a.mena | أو إس إن ياهلا بالعربي.eg
 أو إس إن ياهلا.eg -> Channel250b6bb6.mena | أو إس إن ياهلا.eg
 إس بي سي.eg -> Channel6d17a27d.mena | إس بي سي.eg
+إم بي سي 2.eg -> Channelfc4c27da.mena | إم بي سي 2.eg
+إم بي سي 3.eg -> Channel45a1eb2c.mena | إم بي سي 3.eg
+إم بي سي 4.eg -> Channelae6d894c.mena | إم بي سي 4.eg
+إم بي سي 5.eg -> Channel502edecb.mena | إم بي سي 5.eg
 إم بي سي أكشن.eg -> Channele5847ae4.mena | إم بي سي أكشن.eg
 إم بي سي العراق.eg -> Channelf1923375.mena | إم بي سي العراق.eg
 إم بي سي بوليوود.eg -> Channele4a82bb8.mena | إم بي سي بوليوود.eg
 إم بي سي دراما.eg -> Channel2eef258c.mena | إم بي سي دراما.eg
 إم بي سي ماكس.eg -> Channel26ad76a1.mena | إم بي سي ماكس.eg
+إم بي سي مصر 2.eg -> Channeld1780d8e.mena | إم بي سي مصر 2.eg
 إم بي سي مصر.eg -> Channela20b835a.mena | إم بي سي مصر.eg
-أو إس إن شو كايس.eg -> Channel7ba4e119.mena | أو إس إن شو كايس.eg
 إم بي سي.eg -> Channela8335b64.mena | إم بي سي.eg
 إم تي في.eg -> Channeld9df140d.mena | إم تي في.eg
 ال تي في.eg -> Channel519d6998.mena | ال تي في.eg
 الأولى المغربية.eg -> Channel31a228df.mena | الأولى المغربية.eg
+التلفزيون العربي 2.eg -> Channel6a97f476.mena | التلفزيون العربي 2.eg
+الحدث.ae -> Channelc56bf7db.mena | الحدث.ae
 الرشيد.eg -> Channel3a130ce4.mena | الرشيد.eg
 الشارقة.eg -> Channel16bc8790.mena | الشارقة.eg
 المحور.eg -> Channelf643876a.mena | المحور.eg
 الوسط.eg -> Channel5d28414c.mena | الوسط.eg
+ان ايتش كي الدولي.ps -> Channelc43d23ce.mena | ان ايتش كي الدولي.ps
 اﻹمارات.eg -> Channele2c12489.mena | اﻹمارات.eg
+بي بي سي وورلد نيوز.ps -> Channel9041a1c9.mena | بي بي سي وورلد نيوز.ps
 تن.eg -> Channel58aa36ca.mena | تن.eg
-أو إس إن فاميلي موفيز.eg -> Channelad8c2d78.mena | أو إس إن فاميلي موفيز.eg
 دي إم سي دراما.eg -> Channelf56bb503.mena | دي إم سي دراما.eg
 دي إم سي.eg -> Channel33056805.mena | دي إم سي.eg
 رؤيا.eg -> Channelc665fb29.mena | رؤيا.eg
@@ -482,25 +534,16 @@ eClutch LIVE.sa -> e.Clutch.LIVE.mena | eClutch LIVE.sa
 سيما.eg -> Channel166a6482.mena | سيما.eg
 صدى البلد دراما.eg -> Channelc1584aa2.mena | صدى البلد دراما.eg
 عمان.eg -> Channela3488de0.mena | عمان.eg
+قناة العاصوف.ae -> Channel19bf90da.mena | قناة العاصوف.ae
+قناة الكبير أوي.ae -> Channel31aefb0e.mena | قناة الكبير أوي.ae
+قناة اللعبة.ae -> Channel3e10bfcc.mena | قناة اللعبة.ae
+قناة طاش.ae -> Channel270630d8.mena | قناة طاش.ae
+قناة مسرح مصر.ae -> Channel91371325.mena | قناة مسرح مصر.ae
+مصر دراما.ae -> Channelfad2f3eb.mena | مصر دراما.ae
 ميكس وان.eg -> Channel54e96bee.mena | ميكس وان.eg
+ناصر القصبي.ae -> Channelb14d05a0.mena | ناصر القصبي.ae
 نايل دراما.eg -> Channel40c60089.mena | نايل دراما.eg
-أو إس إن كرايم.eg -> Channeld9ae1b03.mena | أو إس إن كرايم.eg
 نتورك بالعربية.eg -> Channel84e1abc7.mena | نتورك بالعربية.eg
 وان دراما.eg -> Channel9d272d41.mena | وان دراما.eg
 يو تي في.eg -> Channel2954e263.mena | يو تي في.eg
-أو إس إن كيدز.eg -> Channel188b5ef0.mena | أو إس إن كيدز.eg
-أو إس إن موفيز أكشن.eg -> Channel8b149713.mena | أو إس إن موفيز أكشن.eg
-أو إس إن موفيز بريميير.eg -> Channelcdcdb21c.mena | أو إس إن موفيز بريميير.eg
-أو إس إن موفيز كوميدي.eg -> Channel01c1c0f2.mena | أو إس إن موفيز كوميدي.eg
-أو إس إن موفيز هوليوود.eg -> Channel1f4827c2.mena | أو إس إن موفيز هوليوود.eg
-أبو ظبي.eg -> Channel75de85ac.mena | أبو ظبي.eg
-iFILM TV.eg -> i.FILM.TV.mena | iFILM TV.eg
-iFilmArabic.ir@SD -> i.Film.Arabic.mena | آي فيلم
-بي بي سي وورلد نيوز.ps -> Channel9041a1c9.mena | بي بي سي وورلد نيوز.ps
-ان ايتش كي الدولي.ps -> Channelc43d23ce.mena | ان ايتش كي الدولي.ps
-stc tv cinema.sa -> stc.tv.cinema.mena | stc tv cinema.sa
-stc tv drama.sa -> stc.tv.drama.mena | stc tv drama.sa
-stc tv family.sa -> stc.tv.family.mena | stc tv family.sa
-stc tv sports 1 HD.sa -> stc.tv.sports.1.mena | stc tv sports 1 HD.sa
-stc tv sports HD.sa -> stc.tv.sports.mena | stc tv sports HD.sa
 
