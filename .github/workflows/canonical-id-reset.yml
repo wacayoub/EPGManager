@@ -9,6 +9,7 @@ on:
     paths:
       - ".github/workflows/canonical-id-reset.yml"
       - "tools/canonical_receiver_cleanup.py"
+      - "tools/bein_receiver_id_normalize.py"
   schedule:
     - cron: "30 5,6,17,18 * * *"
 
@@ -63,6 +64,13 @@ jobs:
           set -euo pipefail
           python generator/tools/canonical_receiver_cleanup.py --dir publish
 
+      - name: Normalize definitive beIN receiver namespace
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python generator/tools/bein_receiver_id_normalize.py --dir publish
+
       - name: Validate cleaned XMLTV
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -91,7 +99,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add *.xml.gz *.txt manifest.json shards.json catalog.json canonical-id-reset.json canonical-id-reset.txt
+          git add *.xml.gz *.txt *.json
           if git diff --cached --quiet; then
             echo "No canonical ID changes."
             exit 0
