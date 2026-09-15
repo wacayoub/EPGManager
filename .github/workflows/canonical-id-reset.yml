@@ -10,6 +10,7 @@ on:
       - ".github/workflows/canonical-id-reset.yml"
       - "tools/canonical_receiver_cleanup.py"
       - "tools/bein_receiver_id_normalize.py"
+      - "tools/global_receiver_id_normalize.py"
   schedule:
     - cron: "30 5,6,17,18 * * *"
 
@@ -57,7 +58,7 @@ jobs:
           path: publish
           fetch-depth: 1
 
-      - name: Canonicalize all receiver-facing XMLTV IDs
+      - name: Canonicalize legacy aliases and zero-programme IDs
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
@@ -71,24 +72,35 @@ jobs:
           set -euo pipefail
           python generator/tools/bein_receiver_id_normalize.py --dir publish
 
-      - name: Validate cleaned XMLTV
+      - name: Normalize every other receiver namespace
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python generator/tools/global_receiver_id_normalize.py --dir publish
+
+      - name: Validate global receiver identities
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
           import gzip
+          import re
           import xml.etree.ElementTree as ET
           from pathlib import Path
+          total = 0
           for p in sorted(Path('publish').glob('*.xml.gz')):
               root = ET.fromstring(gzip.decompress(p.read_bytes()))
               ids = [(c.get('id') or '').strip() for c in root.findall('channel')]
               events = root.findall('programme')
               event_ids = {(e.get('channel') or '').strip() for e in events}
-              assert len(ids) == len(set(ids)), p.name
-              assert event_ids.issubset(set(ids)), p.name
-              assert not (set(ids) - event_ids), '%s zero-programme IDs' % p.name
-          print('PASS: all published XMLTV files canonical/unique; empty shards allowed')
+              assert len(ids) == len(set(ids)), f'{p.name}: duplicate IDs'
+              assert event_ids.issubset(set(ids)), f'{p.name}: programme points to missing channel'
+              assert not (set(ids) - event_ids), f'{p.name}: zero-programme IDs'
+              assert all('@SD' not in x and '@HD' not in x and '@MENA' not in x for x in ids), f'{p.name}: old @-style IDs remain'
+              total += len(ids)
+          print(f'PASS: all published XMLTV files globally normalized; channel rows checked={total}')
           PY
 
       - name: Publish canonical-only receiver data
@@ -105,5 +117,5 @@ jobs:
             exit 0
           fi
           stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
-          git commit -m "Canonical receiver IDs ${stamp}"
+          git commit -m "Global canonical receiver IDs ${stamp}"
           git push origin mena-data
