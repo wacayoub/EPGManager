@@ -153,6 +153,12 @@ def core_policy(row):
     return issues, diagnostics
 
 
+def _json_default(value):
+    if isinstance(value, datetime):
+        return value.isoformat()
+    raise TypeError("Object of type %s is not JSON serializable" % type(value).__name__)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--xml", required=True)
@@ -255,7 +261,7 @@ def main():
         "missing_core_ids": missing_core, "receiver_extra_ids": receiver_extras,
         "unexpected_ids": unexpected, "errors": errors, "channels": rows,
     }
-    Path(args.json).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    Path(args.json).write_text(json.dumps(payload, ensure_ascii=False, indent=2, default=_json_default) + "\n", encoding="utf-8")
     Path(args.text).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(lines[1])
     print("MBC FREEZE GATE: %s" % status)
