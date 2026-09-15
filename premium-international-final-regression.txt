@@ -1,5 +1,6 @@
 PREMIUM INTERNATIONAL MENA FINAL REGRESSION GATE: PASS
 strict_expected=11 source_review=4
-- strict_bad=NONE
+- strict_fail=NONE
+- strict_review=NONE
 - source_review_not_frozen=Disney Channel.sa,Disney Junior.sa,NationalGeographicAbuDhabi.ae@SD,NationalGeographicMiddleEast.uk@SD
-- review rows are diagnostic-only and are never advertised as production-safe
+- REVIEW rows remain diagnostic; only hard structural FAIL blocks publication

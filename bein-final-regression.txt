@@ -1,10 +1,13 @@
 beIN FINAL REGRESSION GATE: PASS
-FAIL=0 REVIEW=2 review_diagnostic=0
+FAIL=0 REVIEW=2 review_diagnostic=2
 
 Checks:
-- review_ids=beINSeries2.qa@SD,beINSports6.qa@MENA
-- sports_1_9_coverage=28.1..40.3h
+- review_ids=beIN Drama.eg,beIN4K.qa@SD
+- new_review_ids_diagnostic=beIN Drama.eg,beIN4K.qa@SD
+- sports_5_coverage_info=12.2h<legacy-ref-30.0h
+- sports_1_9_coverage=12.2..34.3h
+- sports_1_9_horizon_drift_info=22.2h
 - coverage_gate=INFORMATIONAL_ONLY receiver_max=48h
-- news_events_checked=230
+- news_events_checked=210
 - max_xtra_sources_checked=21
 - all hard beIN invariants passed

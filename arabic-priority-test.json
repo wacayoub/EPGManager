@@ -1,5 +1,5 @@
 {
-  "schema": 3,
+  "schema": 5,
   "targets": [
     {
       "label": "Aden TV",
@@ -39,13 +39,14 @@
     }
   ],
   "frozen_families": {
-    "frozen": [
+    "frozen": [],
+    "quarantined": [
       {
         "shard": "mena-other",
         "channel_id": "Disney Channel.sa",
         "name": "Disney Channel.sa",
-        "events": 94,
-        "coverage_hours": 34.5,
+        "events": 86,
+        "coverage_hours": 31.667,
         "gaps_gt_2h": 0,
         "gap_hours": 0.0,
         "overlaps": 0,
@@ -55,14 +56,14 @@
         "title_ar_ratio": 1.0,
         "desc_ar_ratio": 1.0,
         "issues": [],
-        "status": "PASS_FROZEN"
+        "status": "QUARANTINE_PENDING_PROMOTION"
       },
       {
         "shard": "mena-other",
         "channel_id": "Disney Junior.sa",
         "name": "Disney Junior.sa",
-        "events": 138,
-        "coverage_hours": 34.417,
+        "events": 127,
+        "coverage_hours": 31.833,
         "gaps_gt_2h": 0,
         "gap_hours": 0.0,
         "overlaps": 0,
@@ -72,14 +73,19 @@
         "title_ar_ratio": 1.0,
         "desc_ar_ratio": 1.0,
         "issues": [],
-        "status": "PASS_FROZEN"
+        "status": "QUARANTINE_PENDING_PROMOTION"
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Nat geo hd.qa",
+        "status": "QUARANTINE_HIDDEN"
       },
       {
         "shard": "mena-other",
         "channel_id": "Nat. Geo. AD.sa",
         "name": "Nat. Geo. AD.sa",
         "events": 46,
-        "coverage_hours": 35.25,
+        "coverage_hours": 32.417,
         "gaps_gt_2h": 0,
         "gap_hours": 0.0,
         "overlaps": 0,
@@ -89,14 +95,14 @@
         "title_ar_ratio": 1.0,
         "desc_ar_ratio": 1.0,
         "issues": [],
-        "status": "PASS_FROZEN"
+        "status": "QUARANTINE_PENDING_PROMOTION"
       },
       {
         "shard": "mena-other",
         "channel_id": "Nat. Geo. Wild HD.sa",
         "name": "Nat. Geo. Wild HD.sa",
-        "events": 49,
-        "coverage_hours": 35.75,
+        "events": 45,
+        "coverage_hours": 32.333,
         "gaps_gt_2h": 0,
         "gap_hours": 0.0,
         "overlaps": 0,
@@ -106,14 +112,14 @@
         "title_ar_ratio": 1.0,
         "desc_ar_ratio": 1.0,
         "issues": [],
-        "status": "PASS_FROZEN"
+        "status": "QUARANTINE_PENDING_PROMOTION"
       },
       {
         "shard": "mena-other",
         "channel_id": "Nat. Geographic.sa",
         "name": "Nat. Geographic.sa",
-        "events": 47,
-        "coverage_hours": 35.25,
+        "events": 42,
+        "coverage_hours": 32.25,
         "gaps_gt_2h": 0,
         "gap_hours": 0.0,
         "overlaps": 0,
@@ -123,30 +129,7 @@
         "title_ar_ratio": 1.0,
         "desc_ar_ratio": 1.0,
         "issues": [],
-        "status": "PASS_FROZEN"
-      }
-    ],
-    "quarantined": [
-      {
-        "shard": "mena-other",
-        "channel_id": "Nat geo hd.qa",
-        "name": "Nat geo hd.qa",
-        "events": 31,
-        "coverage_hours": 28.967,
-        "gaps_gt_2h": 2,
-        "gap_hours": 6.033,
-        "overlaps": 0,
-        "invalid": 0,
-        "empty_title": 0,
-        "empty_desc": 31,
-        "title_ar_ratio": 1.0,
-        "desc_ar_ratio": 0.0,
-        "issues": [
-          "GAPS_GT_2H=2/TOTAL=6.0h",
-          "EMPTY_DESC=31",
-          "DESC_AR_LOW=0%"
-        ],
-        "status": "QUARANTINE_REVIEW"
+        "status": "QUARANTINE_PENDING_PROMOTION"
       },
       {
         "shard": "mena-other",
@@ -156,26 +139,62 @@
       {
         "shard": "provider-adm",
         "channel_id": "Nat.Geo.Abu.Dhabi.HD.ae",
-        "name": "Nat Geo Abu Dhabi HD",
-        "events": 67,
-        "coverage_hours": 50.0,
+        "status": "QUARANTINE_HIDDEN"
+      },
+      {
+        "shard": "provider-adm",
+        "channel_id": "NationalGeographicAbuDhabi.ae",
+        "name": "National Geographic Abu Dhabi",
+        "events": 68,
+        "coverage_hours": 53.383,
         "gaps_gt_2h": 0,
         "gap_hours": 0.0,
         "overlaps": 0,
         "invalid": 0,
         "empty_title": 0,
-        "empty_desc": 67,
+        "empty_desc": 68,
         "title_ar_ratio": 0.0,
         "desc_ar_ratio": 0.0,
         "issues": [
-          "EMPTY_DESC=67",
+          "EMPTY_DESC=68",
           "TITLE_AR_LOW=0%",
           "DESC_AR_LOW=0%"
         ],
         "status": "QUARANTINE_REVIEW"
+      },
+      {
+        "shard": "provider-adm",
+        "channel_id": "NationalGeographicAbuDhabi.ae@SD",
+        "status": "QUARANTINE_HIDDEN"
       }
     ],
     "new_unaudited": [],
+    "discovered": [
+      {
+        "shard": "mena-other",
+        "channel_id": "Disney Channel.sa"
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Disney Junior.sa"
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Nat. Geo. AD.sa"
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Nat. Geo. Wild HD.sa"
+      },
+      {
+        "shard": "mena-other",
+        "channel_id": "Nat. Geographic.sa"
+      },
+      {
+        "shard": "provider-adm",
+        "channel_id": "NationalGeographicAbuDhabi.ae"
+      }
+    ],
     "errors": [],
     "status": "PASS"
   },
@@ -186,7 +205,7 @@
     "audit_summary": {
       "status": "PASS",
       "channels": 17,
-      "programmes": 778,
+      "programmes": 794,
       "frozen_expected": 17,
       "frozen_ok": 17,
       "frozen_fail": 0,

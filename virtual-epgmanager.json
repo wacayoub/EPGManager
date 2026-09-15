@@ -15,7 +15,7 @@
         {
           "id": "MBC5.ae@SD",
           "name": "MBC 5",
-          "events": 39,
+          "events": 35,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 100.0,
@@ -45,21 +45,21 @@
         {
           "id": "MBC1.ae@SD",
           "name": "MBC1",
-          "events": 47,
-          "score": 99.2,
+          "events": 48,
+          "score": 98.9,
           "status": "PASS",
           "title_ar_pct": 100.0,
           "title_en_pct": 0.0,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
-          "empty_desc": 6,
+          "empty_desc": 7,
           "overlaps": 0,
           "short_duplicates": 0,
           "nonpositive": 0,
           "mixed_tz_days": 0,
           "mbc_meta_titles": 0,
           "reasons": [
-            "6 empty description(s)"
+            "7 empty description(s)"
           ]
         }
       ]
@@ -77,11 +77,11 @@
         {
           "id": "MBC2.ae@SD",
           "name": "MBC2",
-          "events": 26,
+          "events": 24,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 100.0,
-          "title_en_pct": 15.4,
+          "title_en_pct": 12.5,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
           "empty_desc": 0,
@@ -107,11 +107,11 @@
         {
           "id": "MBCAction.ae@SD",
           "name": "MBC Action",
-          "events": 66,
+          "events": 53,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 100.0,
-          "title_en_pct": 37.9,
+          "title_en_pct": 47.2,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
           "empty_desc": 0,
@@ -137,10 +137,10 @@
         {
           "id": "beIN SPORTS 1.qa",
           "name": "beIN SPORTS 1.qa",
-          "events": 27,
-          "score": 99.5,
+          "events": 26,
+          "score": 93.5,
           "status": "PASS",
-          "title_ar_pct": 18.5,
+          "title_ar_pct": 15.4,
           "title_en_pct": 100.0,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
@@ -149,9 +149,9 @@
           "short_duplicates": 0,
           "nonpositive": 0,
           "mixed_tz_days": 0,
-          "mbc_meta_titles": 1,
+          "mbc_meta_titles": 4,
           "reasons": [
-            "1 title(s) still contain season/episode"
+            "4 title(s) still contain season/episode"
           ]
         }
       ]
@@ -169,10 +169,10 @@
         {
           "id": "beINSports2.qa@MENA",
           "name": "beINSPORTS2",
-          "events": 18,
-          "score": 94.0,
+          "events": 15,
+          "score": 100.0,
           "status": "PASS",
-          "title_ar_pct": 11.1,
+          "title_ar_pct": 13.3,
           "title_en_pct": 100.0,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
@@ -180,11 +180,9 @@
           "overlaps": 0,
           "short_duplicates": 0,
           "nonpositive": 0,
-          "mixed_tz_days": 1,
+          "mixed_tz_days": 0,
           "mbc_meta_titles": 0,
-          "reasons": [
-            "mixed timezone offsets on 1 day(s)"
-          ]
+          "reasons": []
         }
       ]
     },
@@ -195,26 +193,28 @@
       "shard": "provider-adm",
       "policy": "arabic",
       "safe_lock": true,
-      "best_id": "AbuDhabiSports1.ae@SD",
+      "best_id": "AbuDhabiSports1.ae",
       "best_status": "PASS",
       "candidates": [
         {
-          "id": "AbuDhabiSports1.ae@SD",
-          "name": "AD Sports 1 HD",
-          "events": 35,
-          "score": 100.0,
+          "id": "AbuDhabiSports1.ae",
+          "name": "Abu Dhabi Sports 1",
+          "events": 23,
+          "score": 89.8,
           "status": "PASS",
           "title_ar_pct": 100.0,
           "title_en_pct": 0.0,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
-          "empty_desc": 0,
+          "empty_desc": 13,
           "overlaps": 0,
           "short_duplicates": 0,
           "nonpositive": 0,
           "mixed_tz_days": 0,
           "mbc_meta_titles": 0,
-          "reasons": []
+          "reasons": [
+            "13 empty description(s)"
+          ]
         }
       ]
     },
@@ -231,7 +231,7 @@
         {
           "id": "OSNMoviesAction.ae@SD",
           "name": "OSNtv Movies Action",
-          "events": 16,
+          "events": 15,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 0.0,
@@ -261,7 +261,7 @@
         {
           "id": "OSNMoviesPremiere.ae@SD",
           "name": "OSNtv Movies Premiere",
-          "events": 17,
+          "events": 16,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 0.0,
@@ -285,13 +285,13 @@
       "shard": "provider-alkass",
       "policy": "arabic",
       "safe_lock": true,
-      "best_id": "Al Kass One.sa",
+      "best_id": "Alkass One.qa",
       "best_status": "PASS",
       "candidates": [
         {
-          "id": "Al Kass One.sa",
-          "name": "Al Kass One.sa",
-          "events": 11,
+          "id": "Alkass One.qa",
+          "name": "Alkass One.qa",
+          "events": 21,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 100.0,

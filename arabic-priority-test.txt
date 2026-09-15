@@ -12,31 +12,26 @@ title AR=0% EN=0% | desc AR=0%
 shard=mena-eg id=<missing> events=0 status=MISSING_ID
 title AR=0% EN=0% | desc AR=0%
 
-DISNEY + NATIONAL GEOGRAPHIC FROZEN FAMILY GATE
+DISNEY + NATIONAL GEOGRAPHIC REVIEW / QUARANTINE GATE
 
-[PASS_FROZEN] mena-other/Disney Channel.sa
-  events=94 coverage=34.5h gaps>2h=0 overlaps=0 invalid=0 title_AR=100% desc_AR=100% empty_desc=0
+[QUARANTINE_PENDING_PROMOTION] mena-other/Disney Channel.sa
   issues=NONE
-[PASS_FROZEN] mena-other/Disney Junior.sa
-  events=138 coverage=34.4h gaps>2h=0 overlaps=0 invalid=0 title_AR=100% desc_AR=100% empty_desc=0
+[QUARANTINE_PENDING_PROMOTION] mena-other/Disney Junior.sa
   issues=NONE
-[PASS_FROZEN] mena-other/Nat. Geo. AD.sa
-  events=46 coverage=35.2h gaps>2h=0 overlaps=0 invalid=0 title_AR=100% desc_AR=100% empty_desc=0
+[QUARANTINE_HIDDEN] mena-other/Nat geo hd.qa
+[QUARANTINE_PENDING_PROMOTION] mena-other/Nat. Geo. AD.sa
   issues=NONE
-[PASS_FROZEN] mena-other/Nat. Geo. Wild HD.sa
-  events=49 coverage=35.8h gaps>2h=0 overlaps=0 invalid=0 title_AR=100% desc_AR=100% empty_desc=0
+[QUARANTINE_PENDING_PROMOTION] mena-other/Nat. Geo. Wild HD.sa
   issues=NONE
-[PASS_FROZEN] mena-other/Nat. Geographic.sa
-  events=47 coverage=35.2h gaps>2h=0 overlaps=0 invalid=0 title_AR=100% desc_AR=100% empty_desc=0
+[QUARANTINE_PENDING_PROMOTION] mena-other/Nat. Geographic.sa
   issues=NONE
-
-[QUARANTINE_REVIEW] mena-other/Nat geo hd.qa
-  issues=GAPS_GT_2H=2/TOTAL=6.0h, EMPTY_DESC=31, DESC_AR_LOW=0%
 [QUARANTINE_HIDDEN] mena-other/NationalGeographicMiddleEast.uk@SD
-[QUARANTINE_REVIEW] provider-adm/Nat.Geo.Abu.Dhabi.HD.ae
-  issues=EMPTY_DESC=67, TITLE_AR_LOW=0%, DESC_AR_LOW=0%
+[QUARANTINE_HIDDEN] provider-adm/Nat.Geo.Abu.Dhabi.HD.ae
+[QUARANTINE_REVIEW] provider-adm/NationalGeographicAbuDhabi.ae
+  issues=EMPTY_DESC=68, TITLE_AR_LOW=0%, DESC_AR_LOW=0%
+[QUARANTINE_HIDDEN] provider-adm/NationalGeographicAbuDhabi.ae@SD
 
-frozen_family_gate=PASS
+family_review_gate=PASS
 
 MBC / SHAHID FROZEN PROVIDER GATE
 
