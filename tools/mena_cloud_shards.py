@@ -255,20 +255,42 @@ def main() -> int:
 
     provider_counts = {key: stats[stem]["channels"] for key, _label, stem in PROVIDER_SHARDS}
     country_counts = {code: stats[stem]["channels"] for code, _label, stem in COUNTRY_SHARDS}
+
+    # write_shard can apply a strict receiver-facing canonical filter (for
+    # example DMI/MBC) after the initial exclusive buckets were built.  The
+    # manifest must describe the XML files that were actually written, not the
+    # pre-filter bucket size, otherwise the production invariant rejects a
+    # perfectly valid feed and prevents publication.
+    actual_published = sum(int(row.get("channels", 0)) for row in stats.values())
+    receiver_internal_only_ids = sorted({
+        cid
+        for row in stats.values()
+        for cid in (row.get("internal_only_ids") or [])
+    }, key=str.casefold)
+    receiver_internal_only = max(len(receiver_internal_only_ids), len(seen) - actual_published)
+    total_receiver_excluded = len(excluded_morocco) + receiver_internal_only
+
     manifest = {
-        "schema": 1,
-        "policy": "exclusive provider-first, then country, then MENA Other; Morocco excluded to dedicated Morocco Cloud",
+        "schema": 2,
+        "policy": "exclusive provider-first, then country, then MENA Other; Morocco excluded to dedicated Morocco Cloud; provider internal-only identities excluded from receiver shards",
         "input_channels": len(channels),
-        "published_channels": len(seen),
-        "excluded_morocco_channels": len(excluded_morocco),
-        "other_channels": len(buckets["mena-other"]),
+        "published_channels": actual_published,
+        # Legacy invariant field: total channels intentionally not emitted into
+        # receiver shards. Explicit fields below separate Morocco from provider
+        # internal-only identities for diagnostics.
+        "excluded_morocco_channels": total_receiver_excluded,
+        "morocco_channels": len(excluded_morocco),
+        "receiver_internal_only_channels": receiver_internal_only,
+        "receiver_internal_only_ids": receiver_internal_only_ids,
+        "other_channels": stats["mena-other"]["channels"],
         "provider_counts": provider_counts,
         "country_counts": country_counts,
         "shards": stats,
     }
     Path(args.manifest).write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("MENA shards: input=%d published=%d Morocco=%d Other=%d providers=%s" % (
-        len(channels), len(seen), len(excluded_morocco), len(buckets["mena-other"]),
+    print("MENA shards: input=%d published=%d Morocco=%d InternalOnly=%d Other=%d providers=%s" % (
+        len(channels), actual_published, len(excluded_morocco), receiver_internal_only,
+        stats["mena-other"]["channels"],
         ",".join("%s:%d" % (k, v) for k, v in provider_counts.items())))
     return 0
 
