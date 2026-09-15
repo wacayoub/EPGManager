@@ -38,6 +38,7 @@ TARGETS = {
         "primary": "osn.com",
         "min_coverage_h": 30.0,
     },
+    # Exact Shahid Arabic service; donor-only and aligned with the 28h MBC gate.
     "MBC3.ae@SD": {
         "site_id": "409385",
         "primary": "osn.com",
