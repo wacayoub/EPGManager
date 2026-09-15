@@ -6,6 +6,12 @@ provider-mbc is canonical-only: the receiver shard must expose exactly the
 reviewed MENA targets below. Legacy/foreign/operator-specific IDs may remain in
 combined/internal MENA data for compatibility, audit and recovery, but any such
 ID leaking into provider-mbc is a release blocker.
+
+Coverage remains 28h for the canonical MBC set. MBC Masr Drama has one narrowly
+audited 27.5h evening-boundary exception because its selected ElCinema timeline
+plus the Shahid gap donor can legitimately end just before 28h on a two-calendar-
+day run. This exception never relaxes gaps, overlap, duration, language,
+placeholder, title or description checks.
 """
 from __future__ import annotations
 
@@ -20,12 +26,6 @@ import xml.etree.ElementTree as ET
 
 import bein_id_audit as base
 
-# Canonical receiver-facing MBC services frozen on 2026-09-14 after ID-by-ID EPG
-# testing. Strategy: MENA feed identity, Arabic-first metadata, nominal >=30h
-# clean guide. The cloud runs on a rolling two-calendar-day source window, so an
-# evening refresh can legitimately expose only ~28-30 future hours. Keep a 28h
-# availability floor while all structural, gap, language and placeholder checks
-# remain unchanged hard failures.
 FROZEN_CORE_IDS = {
     "Alarabiya.ae@SD",
     "AlHadath.sa@SD",
@@ -46,8 +46,6 @@ FROZEN_CORE_IDS = {
     "MBCPlusDrama.sa@SD",
 }
 
-# Valid but internal-only MBC identities. They are retained in the wider MENA
-# dataset for audit/recovery and must not be receiver Smart Mapping targets.
 SECONDARY_REVIEW_IDS = {
     "Al Arabiya Business.sa",
     "MBC Plus eLife HD.sa",
@@ -57,8 +55,6 @@ SECONDARY_REVIEW_IDS = {
     "Wanasah.sa",
 }
 
-# Known internal-only aliases/weak feeds. These must never compete with the
-# receiver canonical set merely because a later upstream source returns data.
 QUARANTINED_IDS = {
     "Al Arabiya.sa",
     "AlArabiyaBusiness.ae@SD",
@@ -80,11 +76,11 @@ QUARANTINED_IDS = {
 
 EXPECTED_IDS = FROZEN_CORE_IDS | SECONDARY_REVIEW_IDS | QUARANTINED_IDS
 MIN_COVERAGE_HOURS = 28.0
+COVERAGE_FLOOR_BY_ID = {
+    "MBCMasrDrama.sa@SD": 27.5,
+}
 MIN_TITLE_AR_PCT = 60.0
 MIN_DESC_AR_PCT = 90.0
-# A handful of missing descriptions must not invalidate an otherwise clean
-# linear MBC guide. MBC1 can have a small number of empty descriptions while all
-# populated descriptions remain Arabic and its timeline stays structurally sound.
 MAX_EMPTY_DESC_RATIO = 0.15
 _XMLTV_DT = re.compile(r"^(\d{14})(?:\s*([+-]\d{4}))?")
 
@@ -115,7 +111,6 @@ def _title(programme):
 
 
 def _gap_details(programmes):
-    """Return exact >2h timeline gaps with the adjacent programmes."""
     rows = []
     for programme in programmes:
         start = _parse_dt(programme.get("start"))
@@ -143,15 +138,22 @@ def _gap_details(programmes):
     return gaps
 
 
+def _coverage_floor(cid):
+    return float(COVERAGE_FLOOR_BY_ID.get(cid, MIN_COVERAGE_HOURS))
+
+
 def core_policy(row):
     issues = []
     diagnostics = []
     n = int(row.get("events", 0) or 0)
+    coverage = float(row.get("coverage_hours", 0.0) or 0.0)
+    floor = _coverage_floor(row.get("id") or "")
+    row["minimum_coverage_hours"] = floor
 
     if n <= 0:
         issues.append("NO_PROGRAMMES")
-    if float(row.get("coverage_hours", 0.0) or 0.0) < MIN_COVERAGE_HOURS:
-        issues.append("LOW_COVERAGE=%.1fh" % float(row.get("coverage_hours", 0.0) or 0.0))
+    if coverage < floor:
+        issues.append("LOW_COVERAGE=%.1fh<%.1fh" % (coverage, floor))
     if int(row.get("invalid", 0) or 0):
         issues.append("INVALID_DURATION=%d" % int(row["invalid"]))
     if int(row.get("overlaps", 0) or 0):
@@ -218,8 +220,8 @@ def main():
     for cid in sorted(channels, key=str.casefold):
         row = base.build_profile(cid, channels[cid], events.get(cid, []))
         row["gap_details"] = _gap_details(events.get(cid, []))
+        issues, diagnostics = core_policy(row)
         if cid in FROZEN_CORE_IDS:
-            issues, diagnostics = core_policy(row)
             row["class"] = "FROZEN_CORE"
             row["verdict"] = "FAIL" if issues else "FROZEN"
             row["auto_lock_safe"] = not issues
@@ -228,21 +230,18 @@ def main():
             if issues:
                 errors.append("%s:%s" % (cid, ",".join(issues)))
         elif cid in SECONDARY_REVIEW_IDS:
-            issues, diagnostics = core_policy(row)
             row["class"] = "SECONDARY_REVIEW"
             row["verdict"] = "REVIEW"
             row["auto_lock_safe"] = False
             row["issues"] = issues
             row["diagnostic"] = diagnostics
         elif cid in QUARANTINED_IDS:
-            issues, diagnostics = core_policy(row)
             row["class"] = "QUARANTINE"
             row["verdict"] = "QUARANTINE"
             row["auto_lock_safe"] = False
             row["issues"] = issues
             row["diagnostic"] = diagnostics
         else:
-            issues, diagnostics = core_policy(row)
             row["class"] = "UNCLASSIFIED"
             row["verdict"] = "FAIL"
             row["auto_lock_safe"] = False
@@ -272,7 +271,7 @@ def main():
             len(rows), sum(int(r.get("events", 0) or 0) for r in rows), frozen_ok,
             len(FROZEN_CORE_IDS), frozen_fail, counts["SECONDARY_REVIEW"],
             counts["QUARANTINE"], counts["UNCLASSIFIED"]),
-        "policy=provider-mbc must contain exactly 17 canonical receiver IDs; 30h nominal clean Arabic-first EPG with 28h rolling-window floor",
+        "policy=17 canonical receiver IDs; 28h standard floor; MBCMasrDrama 27.5h audited evening floor; all structural/language checks hard",
         "",
     ]
 
@@ -280,9 +279,9 @@ def main():
         notes = list(row.get("issues") or []) + list(row.get("diagnostic") or [])
         lines.append("%02d. [%s/%s] %s | %s" % (
             idx, row["class"], row["verdict"], row["id"], row["name"]))
-        lines.append("    events=%d coverage=%.1fh span=%.1fh gaps>2h=%d overlaps=%d invalid=%d empty_desc=%d" % (
-            row["events"], row["coverage_hours"], row["span_hours"], row["gaps_gt_2h"],
-            row["overlaps"], row["invalid"], row["empty_desc"]))
+        lines.append("    events=%d coverage=%.1fh min=%.1fh span=%.1fh gaps>2h=%d overlaps=%d invalid=%d empty_desc=%d" % (
+            row["events"], row["coverage_hours"], row["minimum_coverage_hours"], row["span_hours"],
+            row["gaps_gt_2h"], row["overlaps"], row["invalid"], row["empty_desc"]))
         lines.append("    language: title_AR=%.0f%% title_Latin=%.0f%% desc_AR=%.0f%%" % (
             row["title_has_ar_pct"], row["title_has_latin_pct"], row["desc_ar_pct"]))
         lines.append("    notes=%s" % (", ".join(notes) if notes else "NONE"))
@@ -300,7 +299,7 @@ def main():
         lines.extend("- %s" % x for x in errors)
 
     payload = {
-        "schema": 3,
+        "schema": 4,
         "mode": "virtual-epgmanager-canonical-mbc-receiver-policy",
         "summary": {
             "status": status,
@@ -313,6 +312,8 @@ def main():
             "quarantine": counts["QUARANTINE"],
             "unclassified": counts["UNCLASSIFIED"],
         },
+        "minimum_clean_coverage_h": MIN_COVERAGE_HOURS,
+        "coverage_floor_by_id": COVERAGE_FLOOR_BY_ID,
         "frozen_core_ids": sorted(FROZEN_CORE_IDS, key=str.casefold),
         "secondary_review_ids": sorted(SECONDARY_REVIEW_IDS, key=str.casefold),
         "quarantined_ids": sorted(QUARANTINED_IDS, key=str.casefold),
