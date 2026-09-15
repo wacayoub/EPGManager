@@ -56,14 +56,41 @@ jobs:
         with:
           ref: mena-data
           path: publish
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Canonicalize legacy aliases and zero-programme IDs
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          python generator/tools/canonical_receiver_cleanup.py --dir publish
+          already_normalized="$(python - <<'PY'
+          import gzip, xml.etree.ElementTree as ET
+          from pathlib import Path
+          checks = [
+              ('provider-mbc.xml.gz', 'MBC.'),
+              ('provider-rotana.xml.gz', 'Rotana.'),
+              ('provider-dmi.xml.gz', 'DMI.'),
+          ]
+          ok = True
+          for fn, prefix in checks:
+              p = Path('publish') / fn
+              if not p.exists():
+                  ok = False; break
+              try:
+                  root = ET.fromstring(gzip.decompress(p.read_bytes()))
+              except Exception:
+                  ok = False; break
+              ids = [(c.get('id') or '').strip() for c in root.findall('channel')]
+              if not ids or not all(x.startswith(prefix) for x in ids):
+                  ok = False; break
+          print('yes' if ok else 'no')
+          PY
+          )"
+          if [ "$already_normalized" = "yes" ]; then
+            echo "Already globally normalized: skipping legacy whitelist cleanup."
+          else
+            python generator/tools/canonical_receiver_cleanup.py --dir publish
+          fi
 
       - name: Normalize definitive beIN receiver namespace
         if: steps.gate.outputs.run == 'true'
@@ -99,7 +126,19 @@ jobs:
               assert event_ids.issubset(set(ids)), f'{p.name}: programme points to missing channel'
               assert not (set(ids) - event_ids), f'{p.name}: zero-programme IDs'
               assert all('@SD' not in x and '@HD' not in x and '@MENA' not in x for x in ids), f'{p.name}: old @-style IDs remain'
+              assert not any(re.search(r'\.(ae|sa|eg|qa|iq|jo|lb|kw|bh|om|ye|dz|tn|ly|sd|sy|mr|ps|mena)\.\1$', x, re.I) for x in ids), f'{p.name}: duplicated country suffix'
               total += len(ids)
+          for fn, prefix, minimum in [
+              ('provider-mbc.xml.gz','MBC.',17),
+              ('provider-rotana.xml.gz','Rotana.',11),
+              ('provider-dmi.xml.gz','DMI.',9),
+              ('provider-bein.xml.gz','beIN.',30),
+          ]:
+              p = Path('publish') / fn
+              root = ET.fromstring(gzip.decompress(p.read_bytes()))
+              ids = [(c.get('id') or '').strip() for c in root.findall('channel')]
+              assert len(ids) >= minimum, f'{fn}: provider unexpectedly empty/short ({len(ids)})'
+              assert all(x.startswith(prefix) for x in ids), f'{fn}: namespace mismatch'
           print(f'PASS: all published XMLTV files globally normalized; channel rows checked={total}')
           PY
 
