@@ -52,9 +52,6 @@ KNOWN_FALSE_SPORT_CLONE_IDS = {
     "Palestine.Sport.ae",
 }
 
-# Reviewed 2026-09-14. These identities are useful only for historical mapping,
-# source comparison and recovery. They must not compete with the canonical MENA
-# MBC identities in the receiver-facing combined, regular or provider feeds.
 MBC_INTERNAL_ONLY_IDS = {
     "Al Arabiya.sa",
     "Al Arabiya Business.sa",
@@ -80,11 +77,6 @@ MBC_INTERNAL_ONLY_IDS = {
     "Wanasah.sa",
 }
 
-# Rotana receiver policy reviewed 2026-09-14. The official rotana.net identities
-# for Cinema Egypt/KSA, Classic, Comedy, Drama, Khalijia and Clip remain visible,
-# together with unique MENA services Rotana+, Aflam+, Kids, M+ and Music. These
-# older/foreign/ambiguous twins stay internal so Smart Mapping gets one preferred
-# identity per real MENA service instead of several competing names.
 ROTANA_INTERNAL_ONLY_IDS = {
     "Rotana Cinema + US.sa",
     "Rotana Cinema HD.sa",
@@ -99,9 +91,6 @@ ROTANA_INTERNAL_ONLY_IDS = {
     "Rotana.Cinema.KSA.ae",
 }
 
-# ADM transition aliases reviewed 2026-09-14.  The merge layer already emits
-# canonical UAE receiver IDs; these old source/LKG identities must stay internal
-# so the previous production LKG cannot resurrect a second receiver-facing copy.
 ADM_INTERNAL_ONLY_IDS = {
     "Abu Dhabi.sa",
     "AbuDhabiSports1.ae@SD",
@@ -118,9 +107,6 @@ ADM_INTERNAL_ONLY_IDS = {
     "Emarat.HD.ae",
 }
 
-# These two historical .eg identities are not valid current channels.  The real
-# channels are AlSharqiyaMinKabla.ae (Sharjah/Kalba, UAE) and AlSharqiya.iq
-# (Iraq).  Old LKG data had cloned the UAE timeline onto the .eg aliases.
 INVALID_LEGACY_IDENTITY_IDS = {
     "AlSharqiya.eg",
     "الشرقية.eg",
@@ -131,7 +117,6 @@ RECEIVER_INTERNAL_ONLY_IDS = (
     INVALID_LEGACY_IDENTITY_IDS
 )
 
-# Importing strict has already installed the standard integrity/LKG wrapper.
 _strict_programme_groups = base.programme_groups
 
 _NEWS_EXACT_TITLES = {
@@ -165,14 +150,8 @@ def quarantine_known_false_sport_clone(root, now, end):
     if len(present) < 3:
         return groups
 
-    fingerprints = [
-        guard.timeline_fingerprint(rows)
-        for rows in present.values()
-    ]
+    fingerprints = [guard.timeline_fingerprint(rows) for rows in present.values()]
     fingerprints = [fp for fp in fingerprints if fp is not None]
-
-    # Conservative fail-safe: quarantine only while at least three known target
-    # services are exactly identical. A corrected source automatically escapes.
     if len(fingerprints) >= 3 and len(set(fingerprints)) == 1:
         for cid in present:
             groups.pop(cid, None)
@@ -189,7 +168,6 @@ def _is_bein_news_id(cid):
 
 
 def _news_competition(title):
-    # Reuse the Qatar1-style competition dictionary from the strict beIN layer.
     for rx, arabic in strict._BEIN_TITLE_COMPETITIONS:
         if rx.search(title or ""):
             return arabic
@@ -201,17 +179,10 @@ def _news_competition(title):
 
 
 def _arabic_bein_news_title(title):
-    """Translate safe recurring beIN SPORTS NEWS labels to Arabic.
-
-    This is deliberately deterministic and conservative. It translates known
-    editorial labels and competition-programme patterns, keeps date suffixes,
-    and leaves an unknown title unchanged instead of guessing.
-    """
     original = re.sub(r"\s+", " ", title or "").strip()
     if not original:
         return original
 
-    # Preserve a trailing date used by beIN News editorial programmes.
     suffix = ""
     m = re.search(r"\s*[-–—|]\s*(\d{1,2}/\d{1,2}/\d{2,4})\s*$", original)
     if m:
@@ -220,7 +191,6 @@ def _arabic_bein_news_title(title):
     else:
         core = original
 
-    # Hybrid Qatar1 formatter may already have appended the Arabic equivalent.
     for arabic in (
         "نشرة الأخبار", "المقابلة الكبرى", "مقابلة خاصة", "الحصيلة",
         "الحصاد", "الشوط الثالث", "الأخبار الرياضية", "موجز الأخبار",
@@ -232,7 +202,6 @@ def _arabic_bein_news_title(title):
     if norm in _NEWS_EXACT_TITLES:
         return _NEWS_EXACT_TITLES[norm] + suffix
 
-    # Common branded UEFA magazine spelling seen in the Qatar1/beIN feeds.
     if re.search(r"\bUEFA\s+(?:UCL|Champions\s+League)\s+Magazine\b", core, re.I):
         return "مجلة دوري أبطال أوروبا" + suffix
     if re.search(r"\bUEFA\s+(?:UEL|Europa\s+League)\s+Magazine\b", core, re.I):
@@ -249,7 +218,6 @@ def _arabic_bein_news_title(title):
         if re.search(r"\bmagazine\b", core, re.I):
             return "مجلة " + comp + suffix
 
-    # Other safe editorial programme classes.
     patterns = (
         (r"\bnews\s+bulletin\b", "نشرة الأخبار"),
         (r"\bsports?\s+bulletin\b", "النشرة الرياضية"),
@@ -270,13 +238,6 @@ def _arabic_bein_news_title(title):
 
 
 def _translate_bein_news_programmes(programmes):
-    """Translate NEWS rows before build_feed serializes XML/GZ/TXT outputs.
-
-    base.build_feed returns a tuple of serialized artefacts, not only an XML root.
-    Therefore translation has to happen on copied programme elements before the
-    original builder runs; mutating the returned root would leave the gz/txt
-    payload stale and previously caused a tuple/findall crash.
-    """
     translated = dict(programmes)
     changed = 0
     unresolved = 0
@@ -305,14 +266,47 @@ def _translate_bein_news_programmes(programmes):
     return translated
 
 
+def _prune_titleless_programmes(programmes):
+    """Drop receiver-facing XMLTV events that have no usable title.
+
+    A programme without a title is not useful to EPGManager and is treated as a
+    malformed source row.  We drop only that row, never invent metadata, and keep
+    the channel whenever other real programmes remain.
+    """
+    cleaned = {}
+    dropped = 0
+    affected = []
+    for cid, rows in programmes.items():
+        kept = []
+        local_dropped = 0
+        for programme in rows or []:
+            titles = programme.findall("title")
+            if not any((title.text or "").strip() for title in titles):
+                local_dropped += 1
+                dropped += 1
+                continue
+            kept.append(programme)
+        cleaned[cid] = kept
+        if local_dropped:
+            affected.append("%s:%d" % (cid, local_dropped))
+    if dropped:
+        print(
+            "Receiver invalid-title prune: dropped=%d channels=%s" %
+            (dropped, ", ".join(affected[:20]))
+        )
+    return cleaned
+
+
 def pruned_build_feed(ids, selected_programmes, cand_channels, prev_channels, source_by_id, generator_name):
     requested_ids = set(ids or [])
     internal_mbc = requested_ids & MBC_INTERNAL_ONLY_IDS
     internal_rotana = requested_ids & ROTANA_INTERNAL_ONLY_IDS
     internal_adm = requested_ids & ADM_INTERNAL_ONLY_IDS
+
+    cleaned_programmes = _prune_titleless_programmes(selected_programmes)
     active_ids = {
         cid for cid in requested_ids
-        if selected_programmes.get(cid) and cid not in RECEIVER_INTERNAL_ONLY_IDS
+        if cleaned_programmes.get(cid) and cid not in RECEIVER_INTERNAL_ONLY_IDS
     }
     if internal_mbc and "Legacy Combined" in generator_name:
         print(
@@ -329,7 +323,7 @@ def pruned_build_feed(ids, selected_programmes, cand_channels, prev_channels, so
             "ADM receiver prune: removed %d legacy/LKG IDs from combined XML: %s" %
             (len(internal_adm), ", ".join(sorted(internal_adm, key=str.casefold)))
         )
-    translated_programmes = _translate_bein_news_programmes(selected_programmes)
+    translated_programmes = _translate_bein_news_programmes(cleaned_programmes)
     return strict._original_build_feed(
         sorted(active_ids, key=str.casefold),
         translated_programmes,
@@ -340,9 +334,6 @@ def pruned_build_feed(ids, selected_programmes, cand_channels, prev_channels, so
     )
 
 
-# Preserve all strict protections, then layer the targeted clone quarantine,
-# receiver-facing zero-EPG prune, canonical MBC/Rotana identity policy and
-# beIN SPORTS NEWS Arabic-title policy.
 base.programme_groups = quarantine_known_false_sport_clone
 base.build_feed = pruned_build_feed
 
@@ -357,9 +348,6 @@ def _arg_value(name, default=None):
 
 
 def main():
-    # Repair only the merged candidate, before strict finalization/LKG selection.
-    # Network failure is non-fatal here: the later MBC freeze gate remains the
-    # authority and will block publication if the primary guide is still weak.
     candidate = _arg_value("--candidate")
     window_hours = int(_arg_value("--window-hours", "48") or 48)
     if candidate:
