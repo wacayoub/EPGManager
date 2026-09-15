@@ -1,0 +1,101 @@
+name: Canonical Receiver ID Reset
+
+on:
+  workflow_run:
+    workflows: ["MENA Cloud EPG"]
+    types: [completed]
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/canonical-id-reset.yml"
+      - "tools/canonical_receiver_cleanup.py"
+  schedule:
+    - cron: "30 5,6,17,18 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: canonical-receiver-id-reset
+  cancel-in-progress: true
+
+jobs:
+  canonicalize:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Casablanca schedule gate
+        id: gate
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            hour="$(TZ=Africa/Casablanca date +%H)"
+            if [ "$hour" = "06" ] || [ "$hour" = "18" ]; then
+              echo "run=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "run=false" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - name: Checkout canonicalizer
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: generator
+          fetch-depth: 1
+
+      - name: Checkout published MENA data
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: publish
+          fetch-depth: 1
+
+      - name: Canonicalize all receiver-facing XMLTV IDs
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python generator/tools/canonical_receiver_cleanup.py --dir publish
+
+      - name: Validate cleaned XMLTV
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import gzip
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          for p in sorted(Path('publish').glob('*.xml.gz')):
+              root = ET.fromstring(gzip.decompress(p.read_bytes()))
+              ids = [(c.get('id') or '').strip() for c in root.findall('channel')]
+              events = root.findall('programme')
+              event_ids = {(e.get('channel') or '').strip() for e in events}
+              assert ids and len(ids) == len(set(ids)), p.name
+              assert event_ids.issubset(set(ids)), p.name
+              assert not (set(ids) - event_ids), '%s zero-programme IDs' % p.name
+          print('PASS: all published XMLTV files canonical/unique/non-empty')
+          PY
+
+      - name: Publish canonical-only receiver data
+        if: steps.gate.outputs.run == 'true'
+        working-directory: publish
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add *.xml.gz *.txt manifest.json shards.json catalog.json canonical-id-reset.json canonical-id-reset.txt
+          if git diff --cached --quiet; then
+            echo "No canonical ID changes."
+            exit 0
+          fi
+          stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
+          git commit -m "Canonical receiver IDs ${stamp}"
+          git push origin mena-data
