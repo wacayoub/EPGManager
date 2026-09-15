@@ -11,6 +11,7 @@ on:
       - "tools/canonical_receiver_cleanup.py"
       - "tools/bein_receiver_id_normalize.py"
       - "tools/global_receiver_id_normalize.py"
+      - "tools/provider_namespace_polish.py"
   schedule:
     - cron: "30 5,6,17,18 * * *"
 
@@ -106,6 +107,13 @@ jobs:
           set -euo pipefail
           python generator/tools/global_receiver_id_normalize.py --dir publish
 
+      - name: Polish provider namespaces
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python generator/tools/provider_namespace_polish.py --dir publish
+
       - name: Validate global receiver identities
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -129,10 +137,12 @@ jobs:
               assert not any(re.search(r'\.(ae|sa|eg|qa|iq|jo|lb|kw|bh|om|ye|dz|tn|ly|sd|sy|mr|ps|mena)\.\1$', x, re.I) for x in ids), f'{p.name}: duplicated country suffix'
               total += len(ids)
           for fn, prefix, minimum in [
+              ('provider-bein.xml.gz','beIN.',30),
+              ('provider-osn.xml.gz','OSN.',20),
               ('provider-mbc.xml.gz','MBC.',17),
               ('provider-rotana.xml.gz','Rotana.',11),
               ('provider-dmi.xml.gz','DMI.',9),
-              ('provider-bein.xml.gz','beIN.',30),
+              ('provider-adm.xml.gz','ADM.',11),
           ]:
               p = Path('publish') / fn
               root = ET.fromstring(gzip.decompress(p.read_bytes()))
