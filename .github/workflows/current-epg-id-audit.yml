@@ -1,0 +1,57 @@
+name: Current EPG ID Audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/current_epg_id_audit.py"
+      - ".github/workflows/current-epg-id-audit.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: current-epg-id-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout auditor
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: generator
+          fetch-depth: 1
+
+      - name: Checkout MENA data
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: publish
+          fetch-depth: 1
+
+      - name: Audit every receiver-facing ID now
+        shell: bash
+        run: |
+          set -euo pipefail
+          python generator/tools/current_epg_id_audit.py \
+            --dir publish \
+            --json publish/current-epg-id-audit.json \
+            --txt publish/current-epg-id-audit.txt
+
+      - name: Publish live audit
+        working-directory: publish
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add current-epg-id-audit.json current-epg-id-audit.txt
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Current EPG ID audit $(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
+          git push origin mena-data
