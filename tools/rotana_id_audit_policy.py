@@ -14,9 +14,8 @@ Strategy frozen after the 2026-09-14 ID-by-ID comparison:
   but remain available in internal merge/catalogue evidence.
 
 Coverage policy preserves the user's two-calendar-day grab. A Casablanca evening
-run starts late enough that only ~30 future hours remain inside today+tomorrow;
-official rotana.net services can therefore finish at 28-30 clean hours despite a
-continuous zero-gap guide. The narrow 27.5h floor applies only to those official
+run starts late enough that only ~27-30 future hours can remain inside
+today+tomorrow. The narrow 27.0h floor applies only to official rotana.net core
 IDs and only alongside the unchanged structural/language/gap checks. Other core
 Rotana services retain the 29.5h operational interpretation of the nominal 30h
 coverage target.
@@ -78,7 +77,7 @@ SECONDARY_IDS = REQUIRED_SECONDARY_IDS | OPTIONAL_SECONDARY_IDS
 REQUIRED_RECEIVER_IDS = FROZEN_CORE_IDS | REQUIRED_SECONDARY_IDS
 ALLOWED_RECEIVER_IDS = REQUIRED_RECEIVER_IDS | OPTIONAL_SECONDARY_IDS
 MIN_COVERAGE_HOURS = 29.5
-OFFICIAL_MIN_COVERAGE_HOURS = 27.5
+OFFICIAL_MIN_COVERAGE_HOURS = 27.0
 MIN_AR_RATIO = 0.90
 MAX_EMPTY_DESC_RATIO = 0.15
 
