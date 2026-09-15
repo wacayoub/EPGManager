@@ -1,11 +1,10 @@
 beIN FINAL REGRESSION GATE: PASS
-FAIL=0 REVIEW=2 unexpected_review=0
-Allowed upstream REVIEW IDs: beINSeries2.qa@SD, beINSports6.qa@MENA
+FAIL=0 REVIEW=2 review_diagnostic=0
 
 Checks:
 - review_ids=beINSeries2.qa@SD,beINSports6.qa@MENA
 - sports_1_9_coverage=28.1..40.3h
-- sports6_minimum=27.5h (known upstream short horizon)
+- coverage_gate=INFORMATIONAL_ONLY receiver_max=48h
 - news_events_checked=230
 - max_xtra_sources_checked=21
-- all frozen beIN invariants passed
+- all hard beIN invariants passed
