@@ -50,6 +50,7 @@ QUARANTINED_FAMILY_IDS = {
     ("mena-other", "NationalGeographicMiddleEast.uk@SD"),
     ("provider-adm", "Nat.Geo.Abu.Dhabi.HD.ae"),
     ("provider-adm", "NationalGeographicAbuDhabi.ae@SD"),
+    ("provider-adm", "NationalGeographicAbuDhabi.ae"),
 }
 
 FAMILY_SHARDS = ("mena-other", "provider-adm")
