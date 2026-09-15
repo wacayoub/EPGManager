@@ -1,0 +1,115 @@
+name: Recover Global Canonical Baseline
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/recover-global-canonical-baseline.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: canonical-receiver-id-reset
+  cancel-in-progress: true
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout generator
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: generator
+          fetch-depth: 1
+
+      - name: Checkout MENA data with history
+        uses: actions/checkout@v4
+        with:
+          ref: mena-data
+          path: publish
+          fetch-depth: 0
+
+      - name: Restore last healthy pre-global baseline
+        working-directory: publish
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="f51a9a5e2fafc2273a8c47a3f0c19ba3bd7dd073"
+          git cat-file -e "$BASE^{commit}"
+          while IFS= read -r f; do
+            git show "$BASE:$f" > "$f"
+            txt="${f%.xml.gz}.txt"
+            if git cat-file -e "$BASE:$txt" 2>/dev/null; then
+              git show "$BASE:$txt" > "$txt"
+            fi
+          done < <(git ls-tree -r --name-only "$BASE" | grep -E '\.xml\.gz$')
+          for f in manifest.json shards.json catalog.json; do
+            if git cat-file -e "$BASE:$f" 2>/dev/null; then
+              git show "$BASE:$f" > "$f"
+            fi
+          done
+          echo "Restored baseline $BASE"
+
+      - name: Remove legacy aliases
+        shell: bash
+        run: |
+          set -euo pipefail
+          python generator/tools/canonical_receiver_cleanup.py --dir publish
+
+      - name: Normalize beIN namespace
+        shell: bash
+        run: |
+          set -euo pipefail
+          python generator/tools/bein_receiver_id_normalize.py --dir publish
+
+      - name: Normalize all other namespaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          python generator/tools/global_receiver_id_normalize.py --dir publish
+
+      - name: Validate recovered global set
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import gzip, re
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          for p in sorted(Path('publish').glob('*.xml.gz')):
+              root = ET.fromstring(gzip.decompress(p.read_bytes()))
+              ids = [(c.get('id') or '').strip() for c in root.findall('channel')]
+              event_ids = {(e.get('channel') or '').strip() for e in root.findall('programme')}
+              assert len(ids) == len(set(ids)), f'{p.name}: duplicate ids'
+              assert event_ids.issubset(set(ids)), f'{p.name}: orphan programmes'
+              assert not (set(ids) - event_ids), f'{p.name}: zero-programme channels'
+              assert all('@SD' not in x and '@HD' not in x and '@MENA' not in x for x in ids), f'{p.name}: legacy @ IDs remain'
+          checks = [
+              ('provider-bein.xml.gz','beIN.',30),
+              ('provider-mbc.xml.gz','MBC.',17),
+              ('provider-rotana.xml.gz','Rotana.',11),
+              ('provider-dmi.xml.gz','DMI.',9),
+              ('provider-osn.xml.gz','OSN.',20),
+          ]
+          for fn,prefix,minimum in checks:
+              root = ET.fromstring(gzip.decompress((Path('publish')/fn).read_bytes()))
+              ids = [(c.get('id') or '').strip() for c in root.findall('channel')]
+              assert len(ids) >= minimum, f'{fn}: short {len(ids)}'
+              assert all(x.startswith(prefix) for x in ids), f'{fn}: bad namespace'
+          print('PASS recovered provider counts and global canonical namespaces')
+          PY
+
+      - name: Publish recovered canonical dataset
+        working-directory: publish
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add *.xml.gz *.txt *.json
+          stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
+          git commit -m "Recover global canonical receiver IDs ${stamp}"
+          git push origin mena-data
