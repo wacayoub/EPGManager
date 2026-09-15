@@ -1,6 +1,10 @@
-name: Dispatch MENA Cloud Latest
+name: EPG Daily Master Refresh
 
 on:
+  # GitHub cron is UTC. Run both possible UTC slots and keep only
+  # 06:00 Africa/Casablanca so DST/Ramadan offset changes stay correct.
+  schedule:
+    - cron: "0 5,6 * * *"
   workflow_dispatch:
   push:
     paths:
@@ -10,12 +14,77 @@ permissions:
   actions: write
   contents: read
 
+concurrency:
+  group: epg-daily-master-refresh
+  cancel-in-progress: false
+
 jobs:
   dispatch:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
-      - name: Dispatch MENA Cloud on current main
+      - name: Casablanca 06:00 gate
+        id: gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          hour="$(TZ=Africa/Casablanca date +%H)"
+          if [ "$hour" = "06" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping UTC duplicate slot; Casablanca hour=${hour}."
+          fi
+
+      - name: Dispatch production refresh and source checks
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run mena-epg.yml --repo "${GITHUB_REPOSITORY}" --ref main
+        run: |
+          set -u
+          repo="${GITHUB_REPOSITORY}"
+
+          # Production generators first. These are the feeds consumed by receivers.
+          workflows=(
+            "mena-epg.yml"
+            "morocco-epg.yml"
+
+            # Premium/provider freshness checks used to catch stale upstream data.
+            "dmi-official-daily-probe.yml"
+            "disney-mena-fast-probe.yml"
+            "natgeo-ae-fast-probe.yml"
+            "natgeo-arabic-cache-refresh.yml"
+            "bein-event-source-audit.yml"
+            "mbc-source-shadow.yml"
+            "rotana-identity-shadow.yml"
+            "premium-international-probe.yml"
+
+            # External source / catalogue health.
+            "alfa-epgshare-audit.yml"
+            "official-provider-probe.yml"
+            "official-secondary-health.yml"
+            "source-integrity-audit.yml"
+            "source-id-status-report.yml"
+            "all-id-audit.yml"
+          )
+
+          failed=0
+          for wf in "${workflows[@]}"; do
+            echo "::group::Dispatch ${wf}"
+            if gh workflow run "$wf" --repo "$repo" --ref main; then
+              echo "DISPATCHED ${wf}"
+            else
+              echo "WARNING: could not dispatch ${wf}"
+              failed=$((failed + 1))
+            fi
+            echo "::endgroup::"
+          done
+
+          echo "Requested ${#workflows[@]} daily refresh/check workflows; dispatch failures=${failed}."
+          # A missing optional probe must not block the two production generators.
+          exit 0
