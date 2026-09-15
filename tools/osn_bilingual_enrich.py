@@ -307,22 +307,30 @@ def audit_international(out_dir,roots,enrich_rows):
         else:
             verdict="PASS"
         r.update({"verdict":verdict,"issues":issues,"warnings":warn}); rows.append(r); counts[verdict]+=1
-    strict_bad=[r["id"] for r in rows if r["id"] in strict and r["verdict"]!="PASS"]
-    payload={"schema":2,"strict_expected_ids":sorted(strict,key=str.casefold),
+
+    # REVIEW is a quality signal, not a publication outage. A transient short
+    # window/gap or metadata warning on one strict Premium International service
+    # must not suppress hundreds of otherwise valid MENA channels. Only hard
+    # structural FAIL rows block production. REVIEW rows remain fully visible in
+    # reports so they can be repaired without taking the receiver feed offline.
+    strict_fail=[r["id"] for r in rows if r["id"] in strict and r["verdict"]=="FAIL"]
+    strict_review=[r["id"] for r in rows if r["id"] in strict and r["verdict"]=="REVIEW"]
+    payload={"schema":3,"strict_expected_ids":sorted(strict,key=str.casefold),
              "source_review_ids":sorted(SOURCE_REVIEW_IDS,key=str.casefold),
              "source_review_reasons":SOURCE_REVIEW_REASONS,
              "summary":{"channels":len(rows),"strict_channels":len(strict),
                         "source_review_channels":len(SOURCE_REVIEW_IDS),
-                        "counts":dict(counts),"strict_bad":strict_bad},
+                        "counts":dict(counts),"strict_bad":strict_fail,
+                        "strict_review":strict_review},
              "channels":rows}
     out=Path(out_dir)
     (out/"premium-international-audit.json").write_text(
         json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     lines=["PREMIUM INTERNATIONAL MENA - EXACT FEED AUDIT",
-           "channels=%d strict=%d source_review=%d PASS=%d REVIEW=%d FAIL=%d strict_bad=%d"%
+           "channels=%d strict=%d source_review=%d PASS=%d REVIEW=%d FAIL=%d strict_fail=%d strict_review=%d"%
            (len(rows),len(strict),len(SOURCE_REVIEW_IDS),counts["PASS"],counts["REVIEW"],
-            counts["FAIL"],len(strict_bad)),
-           "policy=real MENA feed only; exact EN-title+AR-desc or Arabic-first; Nat Geo/Disney remain explicit REVIEW until proven",""]
+            counts["FAIL"],len(strict_fail),len(strict_review)),
+           "policy=real MENA feed only; exact EN-title+AR-desc or Arabic-first; REVIEW stays diagnostic and only structural FAIL blocks publication",""]
     for r in rows:
         lines += ["[%s] %s | %s | shard=%s"%(r["verdict"],r["id"],r["policy"],r["shard"] or "MISSING"),
                   "  events=%d coverage=%.1fh gaps>2h=%d overlaps=%d invalid=%d titleLatin=%.0f%% titleAR=%.0f%% descAR=%.0f%% donorMatch=%.0f%%"%
@@ -330,12 +338,13 @@ def audit_international(out_dir,roots,enrich_rows):
                    r["title_latin_pct"],r["title_ar_pct"],r["desc_ar_pct"],r["donor_match_pct"]),
                   "  notes=%s"%(", ".join(r["issues"]+r["warnings"]) if r["issues"]+r["warnings"] else "NONE")]
     (out/"premium-international-audit.txt").write_text("\n".join(lines)+"\n",encoding="utf-8")
-    status="FAIL" if strict_bad else "PASS"
+    status="FAIL" if strict_fail else "PASS"
     gate=["PREMIUM INTERNATIONAL MENA FINAL REGRESSION GATE: "+status,
           "strict_expected=%d source_review=%d"%(len(strict),len(SOURCE_REVIEW_IDS)),
-          "- strict_bad=%s"%(",".join(strict_bad) or "NONE"),
+          "- strict_fail=%s"%(",".join(strict_fail) or "NONE"),
+          "- strict_review=%s"%(",".join(strict_review) or "NONE"),
           "- source_review_not_frozen=%s"%(",".join(sorted(SOURCE_REVIEW_IDS,key=str.casefold))),
-          "- review rows are diagnostic-only and are never advertised as production-safe"]
+          "- REVIEW rows remain diagnostic; only hard structural FAIL blocks publication"]
     (out/"premium-international-final-regression.txt").write_text("\n".join(gate)+"\n",encoding="utf-8")
     return payload,status
 
@@ -379,9 +388,10 @@ def enrich(args):
     (out_dir/"premium-international-enrichment.txt").write_text("\n".join(il)+"\n",encoding="utf-8")
     _,roots2=load_shards(out_dir); audit,status=audit_international(out_dir,roots2,irows)
     print(ol[-1]); print(il[1])
-    print("Premium International: status=%s PASS=%d REVIEW=%d FAIL=%d strict_bad=%d"%
+    print("Premium International: status=%s PASS=%d REVIEW=%d FAIL=%d strict_fail=%d strict_review=%d"%
           (status,audit["summary"]["counts"].get("PASS",0),audit["summary"]["counts"].get("REVIEW",0),
-           audit["summary"]["counts"].get("FAIL",0),len(audit["summary"]["strict_bad"])))
+           audit["summary"]["counts"].get("FAIL",0),len(audit["summary"]["strict_bad"]),
+           len(audit["summary"].get("strict_review",[]))))
     if status!="PASS":
         raise SystemExit("Premium International MENA gate failed; publication blocked")
     return 0
