@@ -49,3 +49,5 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+# Rebuild marker 2026-09-16: trigger corrected MENA production pipeline without changing test behavior.
