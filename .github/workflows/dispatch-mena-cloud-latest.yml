@@ -1,11 +1,11 @@
 name: EPG Daily Master Refresh
 
 on:
-  # Production MENA/Morocco workflows already own their 06:00/18:00
-  # Casablanca schedules. The master schedule only launches health/probe jobs
-  # so it never starts a second production scraper that could cancel the first.
+  # Production MENA/Morocco workflows own the 06:00 Casablanca refresh.
+  # The master schedule launches health/probe jobs only, so it never starts a
+  # duplicate production scraper.
   schedule:
-    - cron: "0 5,6,17,18 * * *"
+    - cron: "0 5,6 * * *"
   workflow_dispatch:
   push:
     paths:
@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
-      - name: Casablanca 06:00 / 18:00 gate
+      - name: Casablanca 06:00 gate
         id: gate
         shell: bash
         run: |
@@ -36,10 +36,10 @@ jobs:
           fi
 
           hour="$(TZ=Africa/Casablanca date +%H)"
-          if [ "$hour" = "06" ] || [ "$hour" = "18" ]; then
+          if [ "$hour" = "06" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
             echo "production=false" >> "$GITHUB_OUTPUT"
-            echo "Scheduled master: health checks only; production workflows use their own ${hour}:00 schedule."
+            echo "Scheduled master: health checks only; production workflows use their own 06:00 schedule."
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
             echo "production=false" >> "$GITHUB_OUTPUT"
