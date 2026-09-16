@@ -1,4 +1,4 @@
-name: Apply MENA Other retirement fix
+name: Fix retired MENA Other bootstrap
 
 on:
   push:
@@ -18,144 +18,31 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Patch receiver routing
+      - name: Patch legacy bootstrap handling
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
           from pathlib import Path
 
-          def replace(path, old, new, count=1):
-              p = Path(path)
-              text = p.read_text(encoding='utf-8')
-              if old not in text:
-                  raise SystemExit(f'needle not found in {path}: {old[:120]!r}')
-              p.write_text(text.replace(old, new, count), encoding='utf-8')
-
-          p = 'tools/bein_receiver_id_normalize.py'
-          repl = {
-              '"beIN.Movies.Premiere.qa": {"beIN.Movies.Premiere.qa", "BEIN MOVIES PREMIERE.eg", "beINMovies1Premiere.qa@SD"},':
-              '"beIN.Movies.Premiere.qa": {"beIN.Movies.Premiere.qa", "BEIN MOVIES PREMIERE.eg", "beINMovies1Premiere.qa@SD", "MOVIES1 PREMIERE DIGITAL.qa"},',
-              '"beIN.Movies.Action.qa": {"beIN.Movies.Action.qa", "BEIN MOVIES ACTION.eg", "beINMovies2Action.qa@SD"},':
-              '"beIN.Movies.Action.qa": {"beIN.Movies.Action.qa", "BEIN MOVIES ACTION.eg", "beINMovies2Action.qa@SD", "MOVIES2 ACTION DIGITAL.qa"},',
-              '"beIN.Movies.Drama.qa": {"beIN.Movies.Drama.qa", "BEIN MOVIES DRAMA.eg", "beINMovies3Drama.qa@SD"},':
-              '"beIN.Movies.Drama.qa": {"beIN.Movies.Drama.qa", "BEIN MOVIES DRAMA.eg", "beINMovies3Drama.qa@SD", "MOVIES3 DRAMA DIGITAL.qa"},',
-              '"beIN.Movies.Family.qa": {"beIN.Movies.Family.qa", "BEIN MOVIES FAMILY.eg", "beINMovies4Family.qa@SD"},':
-              '"beIN.Movies.Family.qa": {"beIN.Movies.Family.qa", "BEIN MOVIES FAMILY.eg", "beINMovies4Family.qa@SD", "MOVIES4 FAMILY DIGITAL.qa"},',
-              '"beIN.Series.1.qa": {"beIN.Series.1.qa", "BeIn Series HD 1.eg", "beINSeries1.qa@SD"},':
-              '"beIN.Series.1.qa": {"beIN.Series.1.qa", "BeIn Series HD 1.eg", "beINSeries1.qa@SD", "SERIES1 DIGITAL.qa"},',
-              '"beIN.Series.2.qa": {"beIN.Series.2.qa", "beIN Series HD 2.eg", "beINSeries2.qa@SD"},':
-              '"beIN.Series.2.qa": {"beIN.Series.2.qa", "beIN Series HD 2.eg", "beINSeries2.qa@SD", "SERIES2 DIGITAL.qa"},',
-              '"beIN.4K.qa": {"beIN.4K.qa", "beIN4K.qa@SD"},':
-              '"beIN.4K.qa": {"beIN.4K.qa", "beIN4K.qa@SD", "4k DIGITAL.qa"},',
-              '"beIN.Sports.News.qa": {"beIN.Sports.News.qa", "beIN SPORTS NEWS.qa"},':
-              '"beIN.Sports.News.qa": {"beIN.Sports.News.qa", "beIN SPORTS NEWS.qa", "NEWS DIGITAL.qa"},',
-          }
-          for old, new in repl.items():
-              replace(p, old, new)
-
-          p = 'tools/mena_cloud_finalize.py'
-          old = 'PREMIUM_RE = re.compile(r"(?:^|[^a-z0-9])(?:be\\s*in|bein|osn|osntv)(?:[^a-z0-9]|$)", re.I)\n'
-          new = old + '''BEIN_LEGACY_PREMIUM_RE = re.compile(\n    r"^(?:4k\\s+digital|movies1\\s+premiere\\s+digital|movies2\\s+action\\s+digital|"\n    r"movies3\\s+drama\\s+digital|movies4\\s+family\\s+digital|series1\\s+digital|"\n    r"series2\\s+digital|news\\s+digital)\\.qa(?:@sd)?$",\n    re.I,\n)\n'''
-          replace(p, old, new)
-          replace(
-              p,
-              'def is_premium_identity(cid: str, mapping_name: str) -> bool:\n    return bool(PREMIUM_RE.search("%s %s" % (cid or "", mapping_name or "")))\n',
-              '''def is_premium_identity(cid: str, mapping_name: str) -> bool:\n    if PREMIUM_RE.search("%s %s" % (cid or "", mapping_name or "")):\n        return True\n    return any(\n        BEIN_LEGACY_PREMIUM_RE.match(str(value or "").strip())\n        for value in (cid, mapping_name)\n    )\n'''
-          )
-
-          p = 'tools/mena_cloud_shards_safe.py'
-          marker = 'def safe_provider_group(cid, name, meta):\n'
-          const = '''BEIN_LEGACY_PACKAGE_KEYS = {\n    "4kdigitalqa",\n    "movies1premieredigitalqa",\n    "movies2actiondigitalqa",\n    "movies3dramadigitalqa",\n    "movies4familydigitalqa",\n    "series1digitalqa",\n    "series2digitalqa",\n    "newsdigitalqa",\n}\n\n\n'''
-          replace(p, marker, const + marker)
-          replace(
-              p,
-              '''    c_id = compact(cid)\n    c_name = compact(name)\n    tokens = (c_id, c_name)\n\n    if has_word(p, "alkass", "al kass") or any(x.startswith("alkass") for x in tokens):\n''',
-              '''    c_id = compact(cid)\n    c_name = compact(name)\n    c_meta = compact((meta or {}).get("name") or "")\n    tokens = (c_id, c_name)\n\n    if {c_id, c_name, c_meta} & BEIN_LEGACY_PACKAGE_KEYS:\n        return "bein"\n    if has_word(p, "alkass", "al kass") or any(x.startswith("alkass") for x in tokens):\n'''
-          )
-
-          p = 'tools/mena_cloud_shards.py'
-          replace(
-              p,
-              'One channel is published in exactly one shard: premium/provider group first,\nthen a conservatively detected home country, otherwise MENA Other. Morocco is\nexcluded because EPGManager publishes a dedicated Morocco Cloud feed.\n',
-              'One channel is published in exactly one receiver shard: premium/provider group first,\nthen a conservatively detected home country. Unclassified MENA identities remain\ninternal-only for audit/recovery and are not exposed as an auto-mapping source.\nMorocco is excluded because EPGManager publishes a dedicated Morocco Cloud feed.\n'
-          )
-          replace(
-              p,
-              '    stats["mena-other"] = write_shard(out_dir, "mena-other", buckets["mena-other"], channels, programmes, "MENA Other")\n    stats["mena-other"].update({"kind": "other", "key": "MENA"})\n\n',
-              '    unclassified_internal_ids = sorted(buckets["mena-other"], key=str.casefold)\n\n'
-          )
-          replace(
-              p,
-              '''    receiver_internal_only_ids = sorted({\n        cid\n        for row in stats.values()\n        for cid in (row.get("internal_only_ids") or [])\n    }, key=str.casefold)\n''',
-              '''    receiver_internal_only_ids = sorted(\n        set(unclassified_internal_ids) | {\n            cid\n            for row in stats.values()\n            for cid in (row.get("internal_only_ids") or [])\n        },\n        key=str.casefold,\n    )\n'''
-          )
-          replace(
-              p,
-              '        "policy": "exclusive provider-first, then country, then MENA Other; Morocco excluded to dedicated Morocco Cloud; provider internal-only identities excluded from receiver shards",\n',
-              '        "policy": "exclusive provider-first, then country; unclassified MENA identities are internal-only; Morocco excluded to dedicated Morocco Cloud; provider internal-only identities excluded from receiver shards",\n'
-          )
-          replace(
-              p,
-              '        "other_channels": stats["mena-other"]["channels"],\n',
-              '        "other_channels": len(unclassified_internal_ids),\n        "other_receiver_published": False,\n        "unclassified_internal_channels": len(unclassified_internal_ids),\n        "unclassified_internal_ids": unclassified_internal_ids,\n'
-          )
-          replace(
-              p,
-              '        stats["mena-other"]["channels"],\n',
-              '        len(unclassified_internal_ids),\n'
-          )
-
-          p = 'tools/receiver_release_gate.py'
-          replace(
-              p,
-              '    errors = []\n    profiles = {}\n',
-              '    errors = []\n    profiles = {}\n    if (base / "mena-other.xml.gz").exists() or (base / "mena-other.txt").exists():\n        errors.append("MENA_OTHER_RECEIVER_SHARD_PRESENT")\n'
-          )
+          path = Path('tools/canonical_publish_finalize.py')
+          text = path.read_text(encoding='utf-8')
+          needle = '''    base = Path(args.dir)\n    script_dir = Path(__file__).resolve().parent\n\n    if not args.skip_normalizers:\n'''
+          replacement = '''    base = Path(args.dir)\n    script_dir = Path(__file__).resolve().parent\n\n    # The retained pre-normalization snapshot can still contain the historical\n    # receiver-facing MENA Other shard.  After MENA Other retirement, canonical\n    # beIN aliases inside that old shard intentionally collide with provider-bein.\n    # Drop only that historical bootstrap surface; the alias tables themselves\n    # still preserve exact raw -> canonical continuity.  Normal production output\n    # is never silently altered here and remains protected by receiver_release_gate.\n    if base.name == "bootstrap" and base.parent.name == "previous":\n        for suffix in ("xml.gz", "txt"):\n            stale = base / ("mena-other." + suffix)\n            if stale.exists():\n                stale.unlink()\n        stale_manifest = base / "shards.json"\n        if stale_manifest.exists():\n            payload = load_json(stale_manifest, {})\n            rows = payload.get("shards") or {}\n            if "mena-other" in rows:\n                rows.pop("mena-other", None)\n                payload["shards"] = rows\n                payload["other_receiver_published"] = False\n                stale_manifest.write_text(\n                    json.dumps(payload, ensure_ascii=False, indent=2) + "\\n",\n                    encoding="utf-8",\n                )\n                print("Legacy bootstrap: retired historical mena-other shard before canonical replay")\n\n    if not args.skip_normalizers:\n'''
+          if needle not in text:
+              raise SystemExit('canonical bootstrap insertion point not found')
+          path.write_text(text.replace(needle, replacement, 1), encoding='utf-8')
           PY
 
-      - name: Validate routing patch
+      - name: Validate bootstrap patch
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile \
-            tools/bein_receiver_id_normalize.py \
-            tools/mena_cloud_finalize.py \
-            tools/mena_cloud_shards.py \
-            tools/mena_cloud_shards_safe.py \
-            tools/receiver_release_gate.py
-          python - <<'PY'
-          import sys
-          from pathlib import Path
-          sys.path.insert(0, 'tools')
-          import bein_receiver_id_normalize as ids
-          import mena_cloud_finalize as finalize
-          import mena_cloud_shards_safe as shards
+          python -m py_compile tools/canonical_publish_finalize.py
+          grep -q "Legacy bootstrap: retired historical mena-other shard" tools/canonical_publish_finalize.py
+          echo "LEGACY_BOOTSTRAP_RETIREMENT PASS"
 
-          expected = {
-              'MOVIES1 PREMIERE DIGITAL.qa': 'beIN.Movies.Premiere.qa',
-              'MOVIES2 ACTION DIGITAL.qa': 'beIN.Movies.Action.qa',
-              'MOVIES3 DRAMA DIGITAL.qa': 'beIN.Movies.Drama.qa',
-              'MOVIES4 FAMILY DIGITAL.qa': 'beIN.Movies.Family.qa',
-              'SERIES1 DIGITAL.qa': 'beIN.Series.1.qa',
-              'SERIES2 DIGITAL.qa': 'beIN.Series.2.qa',
-              'NEWS DIGITAL.qa': 'beIN.Sports.News.qa',
-              '4k DIGITAL.qa': 'beIN.4K.qa',
-          }
-          for raw, canon in expected.items():
-              assert ids.RAW_TO_CANON.get(raw) == canon
-              assert finalize.is_premium_identity(raw, raw)
-              assert shards.safe_provider_group(raw, raw, {}) == 'bein'
-
-          text = Path('tools/mena_cloud_shards.py').read_text(encoding='utf-8')
-          assert 'stats["mena-other"] = write_shard' not in text
-          assert '"other_receiver_published": False' in text
-          gate = Path('tools/receiver_release_gate.py').read_text(encoding='utf-8')
-          assert 'MENA_OTHER_RECEIVER_SHARD_PRESENT' in gate
-          print('MENA_OTHER_RETIREMENT PASS')
-          PY
-
-      - name: Commit fix and dispatch production rebuild
+      - name: Commit and rebuild
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -163,8 +50,8 @@ jobs:
           set -euo pipefail
           git config user.name "EPGManager Routing Fix"
           git config user.email "actions@users.noreply.github.com"
-          git add tools/bein_receiver_id_normalize.py tools/mena_cloud_finalize.py tools/mena_cloud_shards.py tools/mena_cloud_shards_safe.py tools/receiver_release_gate.py
-          git commit -m "Retire MENA Other receiver shard and route legacy beIN package IDs"
+          git add tools/canonical_publish_finalize.py
+          git commit -m "Ignore retired MENA Other during legacy alias bootstrap"
           git push origin HEAD:main
           curl -fsSL -X POST \
             -H "Accept: application/vnd.github+json" \
