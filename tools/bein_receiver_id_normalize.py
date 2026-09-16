@@ -56,11 +56,15 @@ ALIASES = {
     "beIN.Sports.XTRA7.qa": {"beIN.Sports.XTRA7.qa", "beIN SPORTS XTRA 7.qa"},
     "beIN.Sports.XTRA8.qa": {"beIN.Sports.XTRA8.qa", "beIN SPORTS XTRA 8.qa"},
     "beIN.Sports.XTRA9.qa": {"beIN.Sports.XTRA9.qa", "beIN SPORTS XTRA 9.qa"},
-    # Legitimate beIN lifestyle service; optional because it is not always carried.
     "beIN.Gourmet.qa": {"beIN.Gourmet.qa", "beINGourmet.qa@SD"},
 }
 
 RAW_TO_CANON = {raw: canon for canon, raws in ALIASES.items() for raw in raws}
+# Backward-compatible alias map consumed by canonical_publish_finalize.py.
+# Keep this as an alias to the authoritative RAW_TO_CANON mapping so bootstrap
+# and LKG bridge generation follow the same canonical namespace as the normalizer.
+RENAME = RAW_TO_CANON
+
 OPTIONAL_EVENT_IDS = (
     {f"beIN.Sports.MAX{n}.qa" for n in range(1, 7)} |
     {f"beIN.Sports.XTRA{n}.qa" for n in range(1, 10)} |
@@ -112,8 +116,6 @@ def choose_aliases(root: ET.Element):
         present = [raw for raw in aliases if raw in channels]
         if not present:
             continue
-        # Prefer the richest real timeline.  On an exact tie prefer an already
-        # canonical ID, then a stable lexical order for deterministic replay.
         present.sort(key=lambda raw: (-counts[raw], 0 if raw == canon else 1, raw.casefold()))
         winner = present[0]
         chosen[winner] = canon
