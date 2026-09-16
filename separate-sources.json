@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "policy": "standalone sources; no source can override the MENA authoritative feed; publish/LKG is isolated per source",
+  "sources": [
+    {
+      "key": "elcinema",
+      "label": "ElCinema",
+      "xml": "source-elcinema.xml.gz",
+      "channels": 88,
+      "programmes": 1978,
+      "healthy": true,
+      "window_hours": 48
+    },
+    {
+      "key": "sport24",
+      "label": "Sport24",
+      "xml": "source-sport24.xml.gz",
+      "channels": 0,
+      "programmes": 0,
+      "healthy": false,
+      "window_hours": 48
+    },
+    {
+      "key": "osn",
+      "label": "OSN Official",
+      "xml": "source-osn.xml.gz",
+      "channels": 59,
+      "programmes": 2518,
+      "healthy": true,
+      "window_hours": 48
+    }
+  ]
+}
