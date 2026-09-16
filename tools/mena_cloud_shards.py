@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 """Split the legacy combined MENA Cloud XMLTV into exclusive country/provider shards.
 
-One channel is published in exactly one shard: premium/provider group first,
-then a conservatively detected home country, otherwise MENA Other. Morocco is
-excluded because EPGManager publishes a dedicated Morocco Cloud feed.
+One channel is published in exactly one receiver shard: premium/provider group first,
+then a conservatively detected home country. Unclassified MENA identities remain
+internal-only for audit/recovery and are not exposed as an auto-mapping source.
+Morocco is excluded because EPGManager publishes a dedicated Morocco Cloud feed.
 """
 from __future__ import annotations
 
@@ -279,8 +280,7 @@ def main() -> int:
     for code, label, stem in COUNTRY_SHARDS:
         stats[stem] = write_shard(out_dir, stem, buckets[stem], channels, programmes, label)
         stats[stem].update({"kind": "country", "key": code})
-    stats["mena-other"] = write_shard(out_dir, "mena-other", buckets["mena-other"], channels, programmes, "MENA Other")
-    stats["mena-other"].update({"kind": "other", "key": "MENA"})
+    unclassified_internal_ids = sorted(buckets["mena-other"], key=str.casefold)
 
     provider_counts = {key: stats[stem]["channels"] for key, _label, stem in PROVIDER_SHARDS}
     country_counts = {code: stats[stem]["channels"] for code, _label, stem in COUNTRY_SHARDS}
@@ -291,17 +291,20 @@ def main() -> int:
     # actually written, not the pre-filter bucket size, otherwise a valid feed
     # can be rejected before publication.
     actual_published = sum(int(row.get("channels", 0)) for row in stats.values())
-    receiver_internal_only_ids = sorted({
-        cid
-        for row in stats.values()
-        for cid in (row.get("internal_only_ids") or [])
-    }, key=str.casefold)
+    receiver_internal_only_ids = sorted(
+        set(unclassified_internal_ids) | {
+            cid
+            for row in stats.values()
+            for cid in (row.get("internal_only_ids") or [])
+        },
+        key=str.casefold,
+    )
     receiver_internal_only = max(len(receiver_internal_only_ids), len(seen) - actual_published)
     total_receiver_excluded = len(excluded_morocco) + receiver_internal_only
 
     manifest = {
         "schema": 2,
-        "policy": "exclusive provider-first, then country, then MENA Other; Morocco excluded to dedicated Morocco Cloud; provider internal-only identities excluded from receiver shards",
+        "policy": "exclusive provider-first, then country; unclassified MENA identities are internal-only; Morocco excluded to dedicated Morocco Cloud; provider internal-only identities excluded from receiver shards",
         "input_channels": len(channels),
         "published_channels": actual_published,
         # Legacy invariant field: total channels intentionally not emitted into
@@ -311,7 +314,10 @@ def main() -> int:
         "morocco_channels": len(excluded_morocco),
         "receiver_internal_only_channels": receiver_internal_only,
         "receiver_internal_only_ids": receiver_internal_only_ids,
-        "other_channels": stats["mena-other"]["channels"],
+        "other_channels": len(unclassified_internal_ids),
+        "other_receiver_published": False,
+        "unclassified_internal_channels": len(unclassified_internal_ids),
+        "unclassified_internal_ids": unclassified_internal_ids,
         "provider_counts": provider_counts,
         "country_counts": country_counts,
         "shards": stats,
@@ -319,7 +325,7 @@ def main() -> int:
     Path(args.manifest).write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("MENA shards: input=%d published=%d Morocco=%d InternalOnly=%d Other=%d providers=%s" % (
         len(channels), actual_published, len(excluded_morocco), receiver_internal_only,
-        stats["mena-other"]["channels"],
+        len(unclassified_internal_ids),
         ",".join("%s:%d" % (k, v) for k, v in provider_counts.items())))
     return 0
 

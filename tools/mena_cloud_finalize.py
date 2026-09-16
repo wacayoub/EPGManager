@@ -24,6 +24,12 @@ AR_RE = re.compile(r"[\u0600-\u06ff]")
 LATIN_RE = re.compile(r"[A-Za-z]")
 WORD_RE = re.compile(r"[A-Za-z\u0600-\u06ff]")
 PREMIUM_RE = re.compile(r"(?:^|[^a-z0-9])(?:be\s*in|bein|osn|osntv)(?:[^a-z0-9]|$)", re.I)
+BEIN_LEGACY_PREMIUM_RE = re.compile(
+    r"^(?:4k\s+digital|movies1\s+premiere\s+digital|movies2\s+action\s+digital|"
+    r"movies3\s+drama\s+digital|movies4\s+family\s+digital|series1\s+digital|"
+    r"series2\s+digital|news\s+digital)\.qa(?:@sd)?$",
+    re.I,
+)
 
 
 def read_xml(path: Path):
@@ -218,7 +224,12 @@ def language_of(text: str) -> str:
 
 
 def is_premium_identity(cid: str, mapping_name: str) -> bool:
-    return bool(PREMIUM_RE.search("%s %s" % (cid or "", mapping_name or "")))
+    if PREMIUM_RE.search("%s %s" % (cid or "", mapping_name or "")):
+        return True
+    return any(
+        BEIN_LEGACY_PREMIUM_RE.match(str(value or "").strip())
+        for value in (cid, mapping_name)
+    )
 
 
 def build_feed(ids, selected_programmes, cand_channels, prev_channels, source_by_id, generator_name):

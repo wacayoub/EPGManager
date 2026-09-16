@@ -168,6 +168,8 @@ def main() -> int:
     base = Path(args.dir)
     errors = []
     profiles = {}
+    if (base / "mena-other.xml.gz").exists() or (base / "mena-other.txt").exists():
+        errors.append("MENA_OTHER_RECEIVER_SHARD_PRESENT")
 
     for path in sorted(base.glob("*.xml.gz")):
         profiles[path.name[:-7]] = check_xml(path, errors)

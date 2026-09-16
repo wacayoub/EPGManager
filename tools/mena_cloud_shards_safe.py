@@ -44,12 +44,27 @@ def has_word(text, *words):
     return any((" " + base.norm(word) + " ") in padded for word in words)
 
 
+BEIN_LEGACY_PACKAGE_KEYS = {
+    "4kdigitalqa",
+    "movies1premieredigitalqa",
+    "movies2actiondigitalqa",
+    "movies3dramadigitalqa",
+    "movies4familydigitalqa",
+    "series1digitalqa",
+    "series2digitalqa",
+    "newsdigitalqa",
+}
+
+
 def safe_provider_group(cid, name, meta):
     p = identity_probe(cid, name, meta)
     c_id = compact(cid)
     c_name = compact(name)
+    c_meta = compact((meta or {}).get("name") or "")
     tokens = (c_id, c_name)
 
+    if {c_id, c_name, c_meta} & BEIN_LEGACY_PACKAGE_KEYS:
+        return "bein"
     if has_word(p, "alkass", "al kass") or any(x.startswith("alkass") for x in tokens):
         return "alkass"
     if has_word(p, "bein", "be in", "bein sports", "beinsports") or any(x.startswith("bein") for x in tokens):
