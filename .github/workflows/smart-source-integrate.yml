@@ -1,0 +1,173 @@
+name: Integrate Smart Source Cloud Feeds
+
+on:
+  push:
+    paths:
+      - ".github/workflows/smart-source-integrate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch current EPGManager source package
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE_FILE="$(tr -d '\r\n' < source/current.txt)"
+          rm -rf buildsrc
+          mkdir -p buildsrc
+          unzip -q "source/$SOURCE_FILE" -d buildsrc
+          ROOT="$(find buildsrc -maxdepth 3 -type f -name version.py -printf '%h\n' | head -n1)"
+          test -n "$ROOT"
+          echo "SOURCE_ROOT=$ROOT" >> "$GITHUB_ENV"
+
+          python - "$ROOT" <<'PY'
+          from pathlib import Path
+          import re, sys
+
+          root = Path(sys.argv[1])
+          p = root / 'core' / 'external_sources.py'
+          text = p.read_text(encoding='utf-8')
+
+          rows = [
+              '("EPGManager - ElCinema","https://raw.githubusercontent.com/wacayoub/EPGManager/mena-data/source-elcinema.xml.gz","MENA Cloud"),',
+              '("EPGManager - Sport24","https://raw.githubusercontent.com/wacayoub/EPGManager/mena-data/source-sport24.xml.gz","MENA Cloud"),',
+              '("EPGManager - OSN Official","https://raw.githubusercontent.com/wacayoub/EPGManager/mena-data/source-osn.xml.gz","MENA Cloud"),',
+          ]
+          marker = '_RAW = [\n'
+          if marker not in text:
+              raise SystemExit('external_sources.py: _RAW marker not found')
+          for row in reversed(rows):
+              if row not in text:
+                  text = text.replace(marker, marker + row + '\n', 1)
+          p.write_text(text, encoding='utf-8')
+
+          v = root / 'version.py'
+          vt = v.read_text(encoding='utf-8')
+          vt, n = re.subn(r'__version__\s*=\s*["\'][^"\']+["\']', '__version__ = "6.1.1"', vt, count=1)
+          if n != 1:
+              raise SystemExit('version.py: version marker not found')
+          vt = re.sub(r'__build__\s*=\s*["\'][^"\']+["\']', '__build__ = "2026.09.17"', vt, count=1)
+          v.write_text(vt, encoding='utf-8')
+          PY
+
+          grep -n "EPGManager - ElCinema\|EPGManager - Sport24\|EPGManager - OSN Official" "$ROOT/core/external_sources.py"
+          grep -n '__version__\|__build__' "$ROOT/version.py"
+
+      - name: Validate patched Smart Source catalogue
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            "$SOURCE_ROOT/core/external_sources.py" \
+            "$SOURCE_ROOT/core/source_catalog.py" \
+            "$SOURCE_ROOT/ui/native_sources.py" \
+            "$SOURCE_ROOT/version.py"
+
+          python - "$SOURCE_ROOT" <<'PY'
+          from pathlib import Path
+          import ast, sys
+          root = Path(sys.argv[1])
+          text = (root/'core'/'external_sources.py').read_text(encoding='utf-8')
+          tree = ast.parse(text)
+          raw = None
+          for node in tree.body:
+              if isinstance(node, ast.Assign):
+                  if any(isinstance(t, ast.Name) and t.id == '_RAW' for t in node.targets):
+                      raw = ast.literal_eval(node.value)
+                      break
+          assert raw is not None
+          by_name = {r[0]: r for r in raw}
+          wanted = {
+              'EPGManager - ElCinema': 'source-elcinema.xml.gz',
+              'EPGManager - Sport24': 'source-sport24.xml.gz',
+              'EPGManager - OSN Official': 'source-osn.xml.gz',
+          }
+          for name, suffix in wanted.items():
+              assert name in by_name, name
+              assert by_name[name][1].endswith('/mena-data/' + suffix), by_name[name]
+              assert by_name[name][2] == 'MENA Cloud'
+          print('SMART_SOURCE_STATIC PASS', {k: by_name[k] for k in wanted})
+          PY
+
+      - name: Repack source v6.1.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          NEW_SOURCE="EPGManager_source_v6.1.1.zip"
+          rm -f "source/$NEW_SOURCE"
+          (cd buildsrc && zip -qr "../source/$NEW_SOURCE" .)
+          unzip -tq "source/$NEW_SOURCE"
+          printf '%s\n' "$NEW_SOURCE" > source/current.txt
+          echo "NEW_SOURCE=$NEW_SOURCE" >> "$GITHUB_ENV"
+
+      - name: Build IPK and smoke test package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$SOURCE_ROOT"
+          chmod +x installer/build_ipk.sh
+          ./installer/build_ipk.sh
+          IPK="enigma2-plugin-extensions-epgmanager_6.1.1_all.ipk"
+          test -s "$IPK"
+          echo "IPK=$IPK" >> "$GITHUB_ENV"
+          ar t "$IPK"
+
+      - name: Commit updated source package
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Smart Source"
+          git config user.email "actions@users.noreply.github.com"
+          git add "source/$NEW_SOURCE" source/current.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "EPGManager 6.1.1 add ElCinema Sport24 OSN Smart Sources"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Publish v6.1.1 release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          ASSET="$SOURCE_ROOT/$IPK"
+          TAG="v6.1.1"
+          NOTES="Smart Source: add standalone ElCinema, Sport24 and OSN Official cloud feeds. Existing mappings are preserved; source refresh only updates the source catalogue. Sport24 remains isolated and cannot affect MENA/OSN/ElCinema if its upstream timeline is unavailable."
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$ASSET" --clobber
+          else
+            gh release create "$TAG" "$ASSET" --title "EPG Manager 6.1.1" --notes "$NOTES"
+          fi
+          SHA="$(sha256sum "$ASSET" | awk '{print $1}')"
+          SIZE="$(stat -c%s "$ASSET")"
+          python - "$SHA" "$SIZE" <<'PY'
+          from pathlib import Path
+          import json, sys
+          sha, size = sys.argv[1], int(sys.argv[2])
+          data = {
+              'version': '6.1.1',
+              'build': 'github-actions',
+              'url': 'https://github.com/wacayoub/EPGManager/releases/download/v6.1.1/enigma2-plugin-extensions-epgmanager_6.1.1_all.ipk',
+              'sha256': sha,
+              'size': size,
+              'notes': 'Smart Source adds separate ElCinema, Sport24 and OSN Official cloud sources; mappings are preserved.'
+          }
+          Path('update.json').write_text(json.dumps(data, indent=2) + '\n', encoding='utf-8')
+          PY
+          git add update.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update manifest for v6.1.1"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
