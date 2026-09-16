@@ -2,11 +2,9 @@
 # -*- coding: utf-8 -*-
 """Normalize receiver-facing beIN XMLTV IDs to one stable canonical namespace.
 
-All known raw/legacy aliases for the same real service are grouped under one
-canonical receiver ID.  When several aliases are present in a build, the alias
-with the richest actual programme timeline wins; the others are removed.  This
-keeps fallback sources usable when a normally preferred source is temporarily
-missing (notably beIN Sports 5 and MAX services).
+Known raw/legacy aliases for the same real service are grouped under one
+canonical receiver ID. Unsupported legacy foreign-feed IDs are quarantined
+before the strict canonical provider gate so they cannot poison the MENA feed.
 """
 from __future__ import annotations
 
@@ -14,7 +12,8 @@ import argparse
 import gzip
 import hashlib
 import json
-from collections import Counter, defaultdict
+import re
+from collections import Counter
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -60,10 +59,20 @@ ALIASES = {
 }
 
 RAW_TO_CANON = {raw: canon for canon, raws in ALIASES.items() for raw in raws}
-# Backward-compatible alias map consumed by canonical_publish_finalize.py.
-# Keep this as an alias to the authoritative RAW_TO_CANON mapping so bootstrap
-# and LKG bridge generation follow the same canonical namespace as the normalizer.
 RENAME = RAW_TO_CANON
+
+# These are upstream legacy foreign-feed IDs, not receiver-facing MENA services.
+# Do not alias them onto Arabic beIN Sports because that could replace a good
+# MENA timeline with a French one when the legacy feed has more events.
+DROP_ONLY_EXACT = {
+    "beIN_SPORTS1_FRENCH_Digital_Mono_AR.bein",
+}
+DROP_ONLY_PATTERNS = (
+    re.compile(r"^beIN[_ .-]*SPORTS\d+[_ .-]*FRENCH[_ .-].*\.bein$", re.I),
+)
+
+def is_drop_only(cid: str) -> bool:
+    return cid in DROP_ONLY_EXACT or any(rx.match(cid) for rx in DROP_ONLY_PATTERNS)
 
 OPTIONAL_EVENT_IDS = (
     {f"beIN.Sports.MAX{n}.qa" for n in range(1, 7)} |
@@ -111,7 +120,7 @@ def choose_aliases(root: ET.Element):
     channels = {(c.get("id") or "").strip(): c for c in root.findall("channel")}
     counts = Counter((p.get("channel") or "").strip() for p in root.findall("programme"))
     chosen = {}
-    dropped = set()
+    dropped = {cid for cid in channels if is_drop_only(cid)}
     for canon, aliases in ALIASES.items():
         present = [raw for raw in aliases if raw in channels]
         if not present:
@@ -128,7 +137,7 @@ def normalize_file(path: Path):
     channels = root.findall("channel")
     programmes = root.findall("programme")
     present = {(c.get("id") or "").strip() for c in channels}
-    if not (present & set(RAW_TO_CANON)):
+    if not (present & set(RAW_TO_CANON)) and not any(is_drop_only(cid) for cid in present):
         return None
 
     chosen, dropped = choose_aliases(root)
@@ -201,7 +210,7 @@ def update_metadata(base: Path, reports):
                 row[key] = r[key]
             if stem == "provider-bein":
                 row["receiver_id_namespace"] = "beIN.*.qa"
-                row["receiver_policy"] = "definitive canonical IDs; richest available alias wins"
+                row["receiver_policy"] = "definitive canonical IDs; richest available alias wins; unsupported foreign legacy feeds quarantined"
                 row["canonical_ids"] = sorted(ALIASES, key=str.casefold)
         shards.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -242,8 +251,8 @@ def main():
 
     dropped = sorted({x for r in reports for x in r["removed"]}, key=str.casefold)
     report = {
-        "schema": 2,
-        "policy": "one real service -> one stable canonical receiver ID; richest available alias wins",
+        "schema": 3,
+        "policy": "one real service -> one stable canonical receiver ID; richest available alias wins; unsupported foreign legacy feeds quarantined",
         "provider_channels": len(ids),
         "provider_programmes": len(root.findall("programme")),
         "canonical_ids": ids,
@@ -254,13 +263,13 @@ def main():
     lines = [
         "BEIN RECEIVER ID NORMALIZATION\n",
         f"channels={len(ids)} programmes={report['provider_programmes']}\n",
-        "policy=one real service -> one stable canonical receiver ID; richest available alias wins\n\n",
+        "policy=canonical MENA IDs; unsupported foreign legacy feeds quarantined\n\n",
     ]
     lines.extend(cid + "\n" for cid in ids)
-    lines.append("\nDROPPED DUPLICATE ALIASES\n")
+    lines.append("\nDROPPED / QUARANTINED LEGACY IDS\n")
     lines.extend(cid + "\n" for cid in dropped)
     (base / "bein-receiver-id-normalization.txt").write_text("".join(lines), encoding="utf-8")
-    print(f"PASS beIN normalized channels={len(ids)} programmes={report['provider_programmes']}")
+    print(f"PASS beIN normalized channels={len(ids)} programmes={report['provider_programmes']} quarantined={len(dropped)}")
 
 
 if __name__ == "__main__":
