@@ -317,6 +317,31 @@ def main() -> int:
     base = Path(args.dir)
     script_dir = Path(__file__).resolve().parent
 
+    # The retained pre-normalization snapshot can still contain the historical
+    # receiver-facing MENA Other shard.  After MENA Other retirement, canonical
+    # beIN aliases inside that old shard intentionally collide with provider-bein.
+    # Drop only that historical bootstrap surface; the alias tables themselves
+    # still preserve exact raw -> canonical continuity.  Normal production output
+    # is never silently altered here and remains protected by receiver_release_gate.
+    if base.name == "bootstrap" and base.parent.name == "previous":
+        for suffix in ("xml.gz", "txt"):
+            stale = base / ("mena-other." + suffix)
+            if stale.exists():
+                stale.unlink()
+        stale_manifest = base / "shards.json"
+        if stale_manifest.exists():
+            payload = load_json(stale_manifest, {})
+            rows = payload.get("shards") or {}
+            if "mena-other" in rows:
+                rows.pop("mena-other", None)
+                payload["shards"] = rows
+                payload["other_receiver_published"] = False
+                stale_manifest.write_text(
+                    json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+                    encoding="utf-8",
+                )
+                print("Legacy bootstrap: retired historical mena-other shard before canonical replay")
+
     if not args.skip_normalizers:
         run_transform(script_dir, "canonical_receiver_cleanup.py", base)
         run_transform(script_dir, "bein_receiver_id_normalize.py", base)
