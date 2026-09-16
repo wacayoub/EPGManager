@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Build an official-first Arabic XMLTV channel catalogue from iptv-org/epg.
+"""Build an Arabic-first XMLTV channel catalogue from iptv-org/epg.
 
 The script scans every *.channels.xml shipped by iptv-org/epg and selects
-Arabic TV listings. Duplicate xmltv_id entries are resolved deterministically:
-broadcaster-owned/official sites first, broad Arabic TV guides second, and
-generic aggregators last. A very small per-ID override table is allowed only
-for official-vs-official duplicates that passed a live 48h health comparison.
+Arabic TV listings. Duplicate xmltv_id entries are resolved deterministically.
+ElCinema is the default donor for Arabic general-entertainment, cinema, drama
+and local channels because it usually provides the strongest Arabic titles and
+synopses. Broadcaster-owned sources remain first for live/sports and other
+provider-critical services, and exact verified per-ID overrides always win.
 Morocco is intentionally excluded because the project already publishes a
 higher-quality dedicated morocco.xml.gz feed. Radio services are excluded
 because EPGManager's receiver-side mapping is TV-only.
@@ -24,6 +25,10 @@ import re
 import xml.etree.ElementTree as ET
 
 SITE_PRIORITY = {
+    # Default Arabic metadata donor for generalist / cinema / drama services.
+    "elcinema.com": 8,
+    # Broadcaster-owned sources. Exact overrides and the live/sports protection
+    # below can keep these ahead of ElCinema when timeline freshness matters.
     "shahid.mbc.net": 10,
     "rotana.net": 11,
     "roya-tv.com": 12,
@@ -36,10 +41,22 @@ SITE_PRIORITY = {
     "sba.net.ae": 19,
     "dmi.gov.ae": 20,
     "osn.com": 25,
-    "elcinema.com": 100,
     "epgshare01.online": 900,
 }
 EXCLUDED_SITES = {"sat.tv"}
+
+# Live/sports/provider-critical identities must prefer the broadcaster-owned
+# timetable over ElCinema. ElCinema remains a fallback when no official row is
+# available. Matching is intentionally conservative and ID-based.
+OFFICIAL_FIRST_ID_RE = re.compile(
+    r"(?:^|[._-])(?:"
+    r"bein|beinsports|osn|osntv|alkass|"
+    r"abudhabisports|adsports|ad\.sports|"
+    r"dubaisports|dubai\.sports|dubairacing|dubai\.racing|"
+    r"ssc|thmanyah|saudisports|saudi\.sports"
+    r")(?:[._-]|$)",
+    re.I,
+)
 
 # Verified 2026-09-14 by the official duplicate-source health audits. The MBC
 # receiver strategy is pinned per canonical ID: Shahid where its timeline is
@@ -101,10 +118,20 @@ def site_score(site: str) -> tuple[int, str]:
     return (SITE_PRIORITY.get(site, 500), site)
 
 
+def official_first_channel(cid: str) -> bool:
+    folded = re.sub(r"([a-z])([A-Z])", r"\1.\2", cid)
+    return bool(OFFICIAL_FIRST_ID_RE.search(folded))
+
+
 def channel_site_score(cid: str, site: str) -> tuple[int, int, str]:
     wanted = CHANNEL_SITE_OVERRIDES.get(cid)
     if wanted and site == wanted:
         return (-1, SITE_PRIORITY.get(site, 500), site)
+    # For sports/live and provider-critical IDs, keep official adapters ahead
+    # of ElCinema while still allowing ElCinema as a fallback if official data
+    # disappears from the upstream catalogue.
+    if site == "elcinema.com" and official_first_channel(cid):
+        return (1, 700, site)
     return (0, SITE_PRIORITY.get(site, 500), site)
 
 
@@ -207,6 +234,7 @@ def main() -> int:
     applied_overrides = []
     applied_name_overrides = []
     applied_blank_id_overrides = []
+    protected_official_count = 0
     for cid in sorted(winners, key=lambda x: x.casefold()):
         score, node, site, source_file, recovered_blank_id = winners[cid]
         forced_name = CHANNEL_NAME_OVERRIDES.get(cid)
@@ -220,6 +248,8 @@ def main() -> int:
             applied_overrides.append(cid)
         if recovered_blank_id:
             applied_blank_id_overrides.append(cid)
+        if official_first_channel(cid) and site != "elcinema.com":
+            protected_official_count += 1
         selected.append({
             "xmltv_id": cid,
             "name": (node.text or cid).strip(),
@@ -227,6 +257,7 @@ def main() -> int:
             "site_id": node.get("site_id") or "",
             "priority": SITE_PRIORITY.get(site, 500),
             "override_site": override_site,
+            "official_first_protected": official_first_channel(cid),
             "name_override": CHANNEL_NAME_OVERRIDES.get(cid, ""),
             "blank_id_recovered": recovered_blank_id,
             "source_file": source_file,
@@ -266,8 +297,8 @@ def main() -> int:
     out_xml.write_bytes(ET.tostring(channels, encoding="utf-8", xml_declaration=True))
 
     manifest = {
-        "schema": 6,
-        "strategy": "official-first-all-arabic-tv-no-sattv-with-verified-health-and-osn-id-recovery",
+        "schema": 7,
+        "strategy": "elcinema-default-arabic-entertainment-official-first-live-sports-no-sattv",
         "source_project": "iptv-org/epg",
         "input_channel_files": len(files),
         "arabic_rows_seen": seen_ar,
@@ -276,6 +307,9 @@ def main() -> int:
         "radio_rows_skipped": radio_skipped,
         "excluded_site_rows_skipped": excluded_site_skipped,
         "excluded_sites": sorted(EXCLUDED_SITES),
+        "elcinema_default_policy": True,
+        "official_first_live_sports_policy": True,
+        "official_first_protected_selected": protected_official_count,
         "verified_site_overrides": dict(sorted(CHANNEL_SITE_OVERRIDES.items())),
         "applied_site_overrides": sorted(applied_overrides, key=str.casefold),
         "verified_name_overrides": dict(sorted(CHANNEL_NAME_OVERRIDES.items())),
@@ -302,6 +336,7 @@ def main() -> int:
     print("  verified source overrides applied=%d" % len(applied_overrides))
     print("  verified name overrides applied=%d" % len(applied_name_overrides))
     print("  OSN exact blank-ID recoveries applied=%d" % len(applied_blank_id_overrides))
+    print("  protected official live/sports selected=%d" % protected_official_count)
     for site, count in source_counts.most_common(20):
         print("  %-28s %4d" % (site, count))
     return 0
