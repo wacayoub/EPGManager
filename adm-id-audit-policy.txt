@@ -1,45 +1,42 @@
 ABU DHABI MEDIA CANONICAL PROVIDER AUDIT: FAIL
-channels=12 core_frozen=0/9 core_review=0 secondary=0/2 optional_present=0/1
+channels=11 core_frozen=0/9 core_review=0 secondary=0/2 optional_present=0/1
 
-- [FAIL] Abu Dhabi.sa | UNEXPECTED | events=44 coverage=35.5h auto_lock=NO
+- [FAIL] ADM.Abu.Dhabi.Sports.1.ae | UNEXPECTED | events=23 coverage=20.2h auto_lock=NO
     issues=UNEXPECTED_RECEIVER_ID
-- [FAIL] AbuDhabiSports1.ae@SD | UNEXPECTED | events=35 coverage=35.5h auto_lock=NO
+- [FAIL] ADM.Abu.Dhabi.Sports.2.ae | UNEXPECTED | events=33 coverage=34.0h auto_lock=NO
     issues=UNEXPECTED_RECEIVER_ID
-- [FAIL] AbuDhabiTV.ae@SD | UNEXPECTED | events=10 coverage=7.0h auto_lock=NO
+- [FAIL] ADM.Abu.Dhabi.TV.ae | UNEXPECTED | events=5 coverage=4.5h auto_lock=NO
     issues=UNEXPECTED_RECEIVER_ID
-- [FAIL] AD Sports 2.sa | UNEXPECTED | events=35 coverage=35.5h auto_lock=NO
+- [FAIL] ADM.AD.Sports.Extra.ae | UNEXPECTED | events=48 coverage=49.0h auto_lock=NO
     issues=UNEXPECTED_RECEIVER_ID
-- [FAIL] AD Sports Premium 1.sa | UNEXPECTED | events=34 coverage=35.2h auto_lock=NO
+- [FAIL] ADM.AD.Sports.Premium.1.ae | UNEXPECTED | events=33 coverage=33.1h auto_lock=NO
     issues=UNEXPECTED_RECEIVER_ID
-- [FAIL] AD Sports Premium 2.sa | UNEXPECTED | events=35 coverage=36.8h auto_lock=NO
+- [FAIL] ADM.AD.Sports.Premium.2.ae | UNEXPECTED | events=33 coverage=32.8h auto_lock=NO
     issues=UNEXPECTED_RECEIVER_ID
-- [FAIL] Al Emarat.sa | UNEXPECTED | events=34 coverage=36.0h auto_lock=NO
+- [FAIL] ADM.Al.Emarat.TV.ae | UNEXPECTED | events=38 coverage=33.0h auto_lock=NO
     issues=UNEXPECTED_RECEIVER_ID
-- [FAIL] en:.AD.Sports.Extra.ae | UNEXPECTED | events=48 coverage=49.8h auto_lock=NO
+- [FAIL] ADM.Majid.ae | UNEXPECTED | events=154 coverage=31.7h auto_lock=NO
     issues=UNEXPECTED_RECEIVER_ID
-- [FAIL] en:.YAS.TV.Extra.ae | UNEXPECTED | events=48 coverage=49.5h auto_lock=NO
+- [FAIL] ADM.National.Geographic.Abu.Dhabi.ae | UNEXPECTED | events=68 coverage=53.4h auto_lock=NO
     issues=UNEXPECTED_RECEIVER_ID
-- [FAIL] Majid.sa | UNEXPECTED | events=170 coverage=34.3h auto_lock=NO
+- [FAIL] ADM.Yas.TV.ae | UNEXPECTED | events=39 coverage=49.1h auto_lock=NO
     issues=UNEXPECTED_RECEIVER_ID
-- [FAIL] Nat.Geo.Abu.Dhabi.HD.ae | UNEXPECTED | events=67 coverage=50.0h auto_lock=NO
-    issues=UNEXPECTED_RECEIVER_ID
-- [FAIL] Yas.TV.HD.ae | UNEXPECTED | events=38 coverage=49.0h auto_lock=NO
+- [FAIL] ADM.YAS.TV.Extra.ae | UNEXPECTED | events=48 coverage=49.0h auto_lock=NO
     issues=UNEXPECTED_RECEIVER_ID
 - optional standby absent (healthy): BaynounahTV.ae
 
 Errors:
-- Abu Dhabi.sa:UNEXPECTED_RECEIVER_ID
-- AbuDhabiSports1.ae@SD:UNEXPECTED_RECEIVER_ID
-- AbuDhabiTV.ae@SD:UNEXPECTED_RECEIVER_ID
-- AD Sports 2.sa:UNEXPECTED_RECEIVER_ID
-- AD Sports Premium 1.sa:UNEXPECTED_RECEIVER_ID
-- AD Sports Premium 2.sa:UNEXPECTED_RECEIVER_ID
-- Al Emarat.sa:UNEXPECTED_RECEIVER_ID
-- en:.AD.Sports.Extra.ae:UNEXPECTED_RECEIVER_ID
-- en:.YAS.TV.Extra.ae:UNEXPECTED_RECEIVER_ID
-- Majid.sa:UNEXPECTED_RECEIVER_ID
-- Nat.Geo.Abu.Dhabi.HD.ae:UNEXPECTED_RECEIVER_ID
-- Yas.TV.HD.ae:UNEXPECTED_RECEIVER_ID
+- ADM.Abu.Dhabi.Sports.1.ae:UNEXPECTED_RECEIVER_ID
+- ADM.Abu.Dhabi.Sports.2.ae:UNEXPECTED_RECEIVER_ID
+- ADM.Abu.Dhabi.TV.ae:UNEXPECTED_RECEIVER_ID
+- ADM.AD.Sports.Extra.ae:UNEXPECTED_RECEIVER_ID
+- ADM.AD.Sports.Premium.1.ae:UNEXPECTED_RECEIVER_ID
+- ADM.AD.Sports.Premium.2.ae:UNEXPECTED_RECEIVER_ID
+- ADM.Al.Emarat.TV.ae:UNEXPECTED_RECEIVER_ID
+- ADM.Majid.ae:UNEXPECTED_RECEIVER_ID
+- ADM.National.Geographic.Abu.Dhabi.ae:UNEXPECTED_RECEIVER_ID
+- ADM.Yas.TV.ae:UNEXPECTED_RECEIVER_ID
+- ADM.YAS.TV.Extra.ae:UNEXPECTED_RECEIVER_ID
 - MISSING_REQUIRED_ADM_ID=AbuDhabiEmirates.ae
 - MISSING_REQUIRED_ADM_ID=AbuDhabiSports1.ae
 - MISSING_REQUIRED_ADM_ID=AbuDhabiSports2.ae
@@ -49,27 +46,14 @@ Errors:
 - MISSING_REQUIRED_ADM_ID=Majid.ae
 - MISSING_REQUIRED_ADM_ID=NationalGeographicAbuDhabi.ae
 - MISSING_REQUIRED_ADM_ID=YasTV.ae
-- NEW_UNAUDITED_ADM_ID=Abu Dhabi.sa
-- NEW_UNAUDITED_ADM_ID=AbuDhabiSports1.ae@SD
-- NEW_UNAUDITED_ADM_ID=AbuDhabiTV.ae@SD
-- NEW_UNAUDITED_ADM_ID=AD Sports 2.sa
-- NEW_UNAUDITED_ADM_ID=AD Sports Premium 1.sa
-- NEW_UNAUDITED_ADM_ID=AD Sports Premium 2.sa
-- NEW_UNAUDITED_ADM_ID=Al Emarat.sa
-- NEW_UNAUDITED_ADM_ID=en:.AD.Sports.Extra.ae
-- NEW_UNAUDITED_ADM_ID=en:.YAS.TV.Extra.ae
-- NEW_UNAUDITED_ADM_ID=Majid.sa
-- NEW_UNAUDITED_ADM_ID=Nat.Geo.Abu.Dhabi.HD.ae
-- NEW_UNAUDITED_ADM_ID=Yas.TV.HD.ae
-- LEGACY_ADM_ID_STILL_PUBLISHED=Abu Dhabi.sa
-- LEGACY_ADM_ID_STILL_PUBLISHED=AbuDhabiSports1.ae@SD
-- LEGACY_ADM_ID_STILL_PUBLISHED=AbuDhabiTV.ae@SD
-- LEGACY_ADM_ID_STILL_PUBLISHED=AD Sports 2.sa
-- LEGACY_ADM_ID_STILL_PUBLISHED=AD Sports Premium 1.sa
-- LEGACY_ADM_ID_STILL_PUBLISHED=AD Sports Premium 2.sa
-- LEGACY_ADM_ID_STILL_PUBLISHED=Al Emarat.sa
-- LEGACY_ADM_ID_STILL_PUBLISHED=en:.AD.Sports.Extra.ae
-- LEGACY_ADM_ID_STILL_PUBLISHED=en:.YAS.TV.Extra.ae
-- LEGACY_ADM_ID_STILL_PUBLISHED=Majid.sa
-- LEGACY_ADM_ID_STILL_PUBLISHED=Nat.Geo.Abu.Dhabi.HD.ae
-- LEGACY_ADM_ID_STILL_PUBLISHED=Yas.TV.HD.ae
+- NEW_UNAUDITED_ADM_ID=ADM.Abu.Dhabi.Sports.1.ae
+- NEW_UNAUDITED_ADM_ID=ADM.Abu.Dhabi.Sports.2.ae
+- NEW_UNAUDITED_ADM_ID=ADM.Abu.Dhabi.TV.ae
+- NEW_UNAUDITED_ADM_ID=ADM.AD.Sports.Extra.ae
+- NEW_UNAUDITED_ADM_ID=ADM.AD.Sports.Premium.1.ae
+- NEW_UNAUDITED_ADM_ID=ADM.AD.Sports.Premium.2.ae
+- NEW_UNAUDITED_ADM_ID=ADM.Al.Emarat.TV.ae
+- NEW_UNAUDITED_ADM_ID=ADM.Majid.ae
+- NEW_UNAUDITED_ADM_ID=ADM.National.Geographic.Abu.Dhabi.ae
+- NEW_UNAUDITED_ADM_ID=ADM.Yas.TV.ae
+- NEW_UNAUDITED_ADM_ID=ADM.YAS.TV.Extra.ae
