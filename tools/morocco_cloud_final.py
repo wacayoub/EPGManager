@@ -22,7 +22,7 @@ from xml.etree import ElementTree as ET
 import morocco_epg as base
 import morocco_cloud_runner as runner
 import morocco_cloud_legacy_logic as legacy
-import morocco_cloud_runner_ar2 as final2m
+import morocco_cloud_runner_ar2_quality as final2m
 
 TZ = runner.TZ
 
