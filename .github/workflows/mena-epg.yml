@@ -2,12 +2,13 @@ name: MENA Cloud EPG
 
 on:
   schedule:
-    - cron: "0 5,6,17,18 * * *"
+    - cron: "0 5,6 * * *"
   workflow_dispatch:
   push:
     paths:
       - ".github/workflows/mena-epg.yml"
       - "tools/mena_cloud_catalog.py"
+      - "tools/elcinema_arabic_overlay.py"
       - "tools/mena_cloud_merge.py"
       - "tools/mena_cloud_merge_safe.py"
       - "tools/mena_cloud_merge_arabic_first.py"
@@ -65,7 +66,7 @@ jobs:
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             hour="$(TZ=Africa/Casablanca date +%H)"
-            if [ "$hour" = "06" ] || [ "$hour" = "18" ]; then
+            if [ "$hour" = "06" ]; then
               echo "run=true" >> "$GITHUB_OUTPUT"
             else
               echo "run=false" >> "$GITHUB_OUTPUT"
@@ -109,6 +110,7 @@ jobs:
           set -euo pipefail
           python -m py_compile \
             tools/mena_cloud_catalog.py \
+            tools/elcinema_arabic_overlay.py \
             tools/mena_cloud_merge.py \
             tools/mena_cloud_merge_safe.py \
             tools/mena_cloud_merge_arabic_first.py \
@@ -170,6 +172,16 @@ jobs:
           python tools/osn_bilingual_enrich.py build-channels \
             --catalog-manifest output/catalog.json \
             --output output/osn-en.channels.xml
+
+      - name: Build throttled ElCinema Arabic donor catalogue
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/elcinema_arabic_overlay.py build-channels \
+            --catalog-manifest output/catalog.json \
+            --upstream-channels vendor/iptv-org-epg/sites/elcinema.com/elcinema.com_ar.channels.xml \
+            --output output/elcinema-ar.channels.xml
 
       - name: Download authoritative channel-country metadata
         if: steps.gate.outputs.run == 'true'
@@ -255,6 +267,42 @@ jobs:
             printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/osn-en.xml"
           fi
           exit 0
+
+      - name: Grab ElCinema Arabic donor - 3 input days throttled
+        if: steps.gate.outputs.run == 'true'
+        working-directory: vendor/iptv-org-epg
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=2048
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=30s 900s \
+            npm run grab --- \
+              --channels="${GITHUB_WORKSPACE}/output/elcinema-ar.channels.xml" \
+              --output="${GITHUB_WORKSPACE}/output/elcinema-ar.xml" \
+              --days=3 \
+              --maxConnections=1 \
+              --delay=1000 \
+              --timeout=20000
+          rc=$?
+          echo "ElCinema donor grab rc=${rc}"
+          if [ ! -s "${GITHUB_WORKSPACE}/output/elcinema-ar.xml" ]; then
+            printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/elcinema-ar.xml"
+          fi
+          exit 0
+
+      - name: Overlay ElCinema Arabic donor without changing official clocks
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/elcinema_arabic_overlay.py overlay \
+            --catalog-manifest output/catalog.json \
+            --primary output/raw.xml \
+            --donor output/elcinema-ar.xml \
+            --output output/raw-elcinema.xml \
+            --report output/elcinema-overlay.json
+          mv output/raw-elcinema.xml output/raw.xml
 
       - name: Merge MENA feeds with Arabic-first language arbitration
         if: steps.gate.outputs.run == 'true'
@@ -485,10 +533,11 @@ jobs:
           cp ../output/final/*.csv .
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
+          cp ../output/elcinema-overlay.json elcinema-overlay.json
           printf '%s\n' \
-            'EPGManager MENA Cloud data branch. TV-only guide requested up to 48 hours; the measured future horizon is recorded and release-gated in manifest.json. Receiver-facing XML omits channel identities with zero final programmes to reduce parsing and memory cost. Event channels reappear automatically when real EPG is available. Receiver sources use one canonical ID namespace and are split exclusively by premium/provider identity first, then country, then MENA Other. Arabic programme metadata is preferred before English/international fallback for regular MENA channels. Premium OSN uses official English titles with official Arabic descriptions when exact bilingual slots are available. Morocco stays on its dedicated Morocco Cloud. mena plus premium are an exact disjoint union of mena-arabic for compatibility.' \
+            'EPGManager MENA Cloud data branch. TV-only guide requested up to 48 hours; the measured future horizon is recorded and release-gated in manifest.json. Receiver-facing XML omits channel identities with zero final programmes to reduce parsing and memory cost. Event channels reappear automatically when real EPG is available. Receiver sources use one canonical ID namespace and are split exclusively by premium/provider identity first, then country; unclassified MENA identities are internal-only. Arabic programme metadata is preferred before English/international fallback for regular MENA channels. Official providers retain schedule authority; ElCinema is a throttled Arabic metadata/fallback donor. Premium OSN uses official English titles with official Arabic descriptions when exact bilingual slots are available. Morocco stays on its dedicated Morocco Cloud. mena plus premium are an exact disjoint union of mena-arabic for compatibility.' \
             > README.md
-          git add *.xml.gz *.txt *.json *.csv README.md
+          git add -A
           if git diff --cached --quiet; then
             echo "No MENA data changes."
             exit 0
