@@ -1,0 +1,315 @@
+name: Separate EPG Sources
+
+on:
+  schedule:
+    - cron: "0 5,6 * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/separate-source-feeds.yml"
+      - "tools/source_feed_pack.py"
+      - "tools/sport24_source.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: separate-epg-sources-writer
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Casablanca 06:00 gate
+        id: gate
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            hour="$(TZ=Africa/Casablanca date +%H)"
+            if [ "$hour" = "06" ]; then
+              echo "run=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "Skipping duplicate UTC slot; Casablanca hour=${hour}."
+            fi
+          fi
+
+      - name: Checkout EPGManager
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout iptv-org EPG adapters
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - name: Set up Python
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js 24
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/iptv-org-epg/package-lock.json
+
+      - name: Verify source scripts
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/source_feed_pack.py tools/sport24_source.py
+          python -m pip install --disable-pip-version-check --no-cache-dir requests beautifulsoup4
+
+      - name: Install upstream grabber
+        if: steps.gate.outputs.run == 'true'
+        working-directory: vendor/iptv-org-epg
+        shell: bash
+        run: npm ci --no-audit --no-fund
+
+      - name: Build ElCinema and OSN channel catalogues
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output/source-build
+          python - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          root = Path('vendor/iptv-org-epg/sites')
+
+          # ElCinema Arabic is intentionally standalone here. The main MENA
+          # pipeline still treats it only as a metadata/fallback donor.
+          src = root / 'elcinema.com' / 'elcinema.com_ar.channels.xml'
+          if not src.exists():
+              raise SystemExit('Missing current iptv-org ElCinema Arabic catalogue')
+          eroot = ET.parse(src).getroot()
+          eout = ET.Element('channels')
+          seen = set()
+          for c in eroot.findall('channel'):
+              cid = (c.get('xmltv_id') or '').strip()
+              if not cid or cid in seen:
+                  continue
+              seen.add(cid)
+              eout.append(ET.fromstring(ET.tostring(c, encoding='utf-8')))
+          ET.indent(eout, space='  ')
+          Path('output/source-build/elcinema.channels.xml').write_bytes(
+              ET.tostring(eout, encoding='utf-8', xml_declaration=True))
+
+          # OSN official source: prefer Arabic row per xmltv_id, then English.
+          candidates = []
+          for path in sorted((root / 'osn.com').glob('*.channels.xml')):
+              try:
+                  parsed = ET.parse(path).getroot()
+              except Exception:
+                  continue
+              for c in parsed.findall('channel'):
+                  cid = (c.get('xmltv_id') or '').strip()
+                  site_id = (c.get('site_id') or '').strip()
+                  if not cid or not site_id:
+                      continue
+                  lang = (c.get('lang') or '').strip().lower()
+                  rank = 0 if lang.startswith('ar') else (1 if lang.startswith('en') else 2)
+                  candidates.append((cid, rank, path.name, c))
+          best = {}
+          for cid, rank, path_name, c in candidates:
+              key = (rank, path_name)
+              if cid not in best or key < best[cid][0]:
+                  best[cid] = (key, c)
+          oout = ET.Element('channels')
+          for cid in sorted(best, key=str.casefold):
+              oout.append(ET.fromstring(ET.tostring(best[cid][1], encoding='utf-8')))
+          ET.indent(oout, space='  ')
+          Path('output/source-build/osn.channels.xml').write_bytes(
+              ET.tostring(oout, encoding='utf-8', xml_declaration=True))
+          print('ElCinema channels=', len(eout), 'OSN channels=', len(oout))
+          PY
+
+      - name: Grab ElCinema standalone source - 2 days
+        if: steps.gate.outputs.run == 'true'
+        working-directory: vendor/iptv-org-epg
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=2048
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=30s 900s npm run grab --- \
+            --channels="${GITHUB_WORKSPACE}/output/source-build/elcinema.channels.xml" \
+            --output="${GITHUB_WORKSPACE}/output/source-build/elcinema.raw.xml" \
+            --days=2 --maxConnections=1 --delay=1000 --timeout=20000
+          rc=$?
+          echo "ElCinema source grab rc=${rc}"
+          test -s "${GITHUB_WORKSPACE}/output/source-build/elcinema.raw.xml" || \
+            printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/source-build/elcinema.raw.xml"
+          exit 0
+
+      - name: Grab OSN official standalone source - 2 days
+        if: steps.gate.outputs.run == 'true'
+        working-directory: vendor/iptv-org-epg
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=2048
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=30s 900s npm run grab --- \
+            --channels="${GITHUB_WORKSPACE}/output/source-build/osn.channels.xml" \
+            --output="${GITHUB_WORKSPACE}/output/source-build/osn.raw.xml" \
+            --days=2 --maxConnections=1 --timeout=20000
+          rc=$?
+          echo "OSN source grab rc=${rc}"
+          test -s "${GITHUB_WORKSPACE}/output/source-build/osn.raw.xml" || \
+            printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/source-build/osn.raw.xml"
+          exit 0
+
+      - name: Scrape Sport24 standalone source safely
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          python tools/sport24_source.py \
+            --output output/source-build/sport24.raw.xml \
+            --report output/source-build/sport24-scrape.json \
+            --window-hours 48
+          rc=$?
+          echo "Sport24 scrape rc=${rc}"
+          test -s output/source-build/sport24.raw.xml || \
+            printf '%s\n' '<?xml version="1.0"?><tv></tv>' > output/source-build/sport24.raw.xml
+          exit 0
+
+      - name: Pack receiver-safe standalone feeds
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set +e
+          mkdir -p output/final-sources
+          python tools/source_feed_pack.py \
+            --input output/source-build/elcinema.raw.xml \
+            --output-gz output/final-sources/source-elcinema.xml.gz \
+            --output-txt output/final-sources/source-elcinema.txt \
+            --stats output/final-sources/source-elcinema.json \
+            --label ElCinema --window-hours 48
+          echo "ElCinema pack rc=$?"
+          python tools/source_feed_pack.py \
+            --input output/source-build/osn.raw.xml \
+            --output-gz output/final-sources/source-osn.xml.gz \
+            --output-txt output/final-sources/source-osn.txt \
+            --stats output/final-sources/source-osn.json \
+            --label 'OSN Official' --window-hours 48
+          echo "OSN pack rc=$?"
+          python tools/source_feed_pack.py \
+            --input output/source-build/sport24.raw.xml \
+            --output-gz output/final-sources/source-sport24.xml.gz \
+            --output-txt output/final-sources/source-sport24.txt \
+            --stats output/final-sources/source-sport24.json \
+            --label Sport24 --window-hours 48
+          echo "Sport24 pack rc=$?"
+          cp output/source-build/sport24-scrape.json output/final-sources/sport24-scrape.json
+          exit 0
+
+      - name: Validate and build source registry
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import gzip, json, xml.etree.ElementTree as ET
+
+          out = Path('output/final-sources')
+          rows = []
+          for key, label in [('elcinema','ElCinema'), ('sport24','Sport24'), ('osn','OSN Official')]:
+              stats_path = out / f'source-{key}.json'
+              stats = json.loads(stats_path.read_text(encoding='utf-8')) if stats_path.exists() else {}
+              gz = out / f'source-{key}.xml.gz'
+              healthy = False
+              if gz.exists() and gz.stat().st_size:
+                  try:
+                      root = ET.fromstring(gzip.decompress(gz.read_bytes()))
+                      healthy = bool(root.findall('channel')) and bool(root.findall('programme'))
+                  except Exception:
+                      healthy = False
+              rows.append({
+                  'key': key,
+                  'label': label,
+                  'xml': f'source-{key}.xml.gz',
+                  'channels': int(stats.get('channels', 0) or 0),
+                  'programmes': int(stats.get('programmes', 0) or 0),
+                  'healthy': healthy,
+                  'window_hours': 48,
+              })
+          registry = {
+              'schema': 1,
+              'policy': 'standalone sources; no source can override the MENA authoritative feed; publish/LKG is isolated per source',
+              'sources': rows,
+          }
+          (out / 'separate-sources.json').write_text(json.dumps(registry, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(json.dumps(registry, ensure_ascii=False))
+          PY
+
+      - name: Publish each healthy source independently with LKG protection
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Source Cloud"
+          git config user.email "actions@users.noreply.github.com"
+          git fetch origin mena-data
+          rm -rf publish-sources
+          git worktree add publish-sources origin/mena-data
+          cd publish-sources
+          git checkout -B mena-data origin/mena-data
+
+          python - <<'PY'
+          from pathlib import Path
+          import json, shutil
+          src = Path('../output/final-sources')
+          dst = Path('.')
+          registry = json.loads((src / 'separate-sources.json').read_text(encoding='utf-8'))
+          published = []
+          for row in registry['sources']:
+              key = row['key']
+              if not row['healthy']:
+                  print('KEEP_LKG', key, 'channels=', row['channels'], 'programmes=', row['programmes'])
+                  continue
+              for ext in ('xml.gz', 'txt', 'json'):
+                  name = f'source-{key}.{ext}'
+                  shutil.copy2(src / name, dst / name)
+              published.append(key)
+              print('PUBLISH', key, row['channels'], row['programmes'])
+          # Registry and diagnostics are always current; receiver XML is LKG-protected.
+          shutil.copy2(src / 'separate-sources.json', dst / 'separate-sources.json')
+          if (src / 'sport24-scrape.json').exists():
+              shutil.copy2(src / 'sport24-scrape.json', dst / 'sport24-scrape.json')
+          print('published=', published)
+          PY
+
+          cat > separate-sources.txt <<'EOF'
+          ElCinema|source-elcinema.xml.gz|Arabic entertainment metadata/EPG source
+          Sport24|source-sport24.xml.gz|Sports guide; publishes only when explicit trustworthy programme times are available
+          OSN Official|source-osn.xml.gz|Official OSN source, Arabic preferred then English fallback
+          EOF
+
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No standalone source changes."
+            exit 0
+          fi
+          stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
+          git commit -m "Update separate ElCinema Sport24 OSN sources ${stamp}"
+          git pull --rebase origin mena-data
+          git push origin HEAD:mena-data
