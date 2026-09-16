@@ -1,19 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Build an Arabic-first XMLTV channel catalogue from iptv-org/epg.
+"""Build a safe Arabic-first XMLTV channel catalogue from iptv-org/epg.
 
-The script scans every *.channels.xml shipped by iptv-org/epg and selects
-Arabic TV listings. Duplicate xmltv_id entries are resolved deterministically.
-ElCinema is the default donor for Arabic general-entertainment, cinema, drama
-and local channels because it usually provides the strongest Arabic titles and
-synopses. Broadcaster-owned sources remain first for live/sports and other
-provider-critical services, and exact verified per-ID overrides always win.
-Morocco is intentionally excluded because the project already publishes a
-higher-quality dedicated morocco.xml.gz feed. Radio services are excluded
-because EPGManager's receiver-side mapping is TV-only.
+Broadcaster-owned/official sources remain the timeline authority when present.
+ElCinema is the preferred Arabic entertainment metadata/fallback source, but it
+must not replace a healthy official timeline merely because its Arabic synopsis
+is richer. This separation protects real coverage from rate limits/date-window
+quirks while preserving ElCinema as the strongest Arabic enrichment candidate.
+Morocco is excluded because the project publishes a dedicated higher-quality
+morocco.xml.gz feed. Radio services are excluded; receiver mapping is TV-only.
 
-SAT.TV is intentionally excluded from the MENA Cloud catalogue. It may remain
-useful elsewhere, but MENA Cloud must not depend on it.
+SAT.TV is intentionally excluded from MENA Cloud.
 """
 from __future__ import annotations
 
@@ -25,10 +22,6 @@ import re
 import xml.etree.ElementTree as ET
 
 SITE_PRIORITY = {
-    # Default Arabic metadata donor for generalist / cinema / drama services.
-    "elcinema.com": 8,
-    # Broadcaster-owned sources. Exact overrides and the live/sports protection
-    # below can keep these ahead of ElCinema when timeline freshness matters.
     "shahid.mbc.net": 10,
     "rotana.net": 11,
     "roya-tv.com": 12,
@@ -41,16 +34,17 @@ SITE_PRIORITY = {
     "sba.net.ae": 19,
     "dmi.gov.ae": 20,
     "osn.com": 25,
+    # Preferred Arabic entertainment metadata / fallback donor. It deliberately
+    # stays behind official timeline sources after live production proved that
+    # making it the clock source can trigger 429s and reduce receiver coverage.
+    "elcinema.com": 100,
     "epgshare01.online": 900,
 }
 EXCLUDED_SITES = {"sat.tv"}
 
-# Live/sports/provider-critical identities must prefer the broadcaster-owned
-# timetable over ElCinema. ElCinema remains a fallback when no official row is
-# available. Matching is intentionally conservative and ID-based.
 OFFICIAL_FIRST_ID_RE = re.compile(
     r"(?:^|[._-])(?:"
-    r"bein|beinsports|osn|osntv|alkass|"
+    r"bein|beinsports|osn|osntv|alkass|rotana|"
     r"abudhabisports|adsports|ad\.sports|"
     r"dubaisports|dubai\.sports|dubairacing|dubai\.racing|"
     r"ssc|thmanyah|saudisports|saudi\.sports|"
@@ -59,12 +53,6 @@ OFFICIAL_FIRST_ID_RE = re.compile(
     re.I,
 )
 
-# Verified 2026-09-14 by the official duplicate-source health audits. The MBC
-# receiver strategy is pinned per canonical ID: Shahid where its timeline is
-# cleanest, OSN where Shahid was weaker/placeholder-polluted, and ElCinema only
-# for MBC Masr Drama. Premium International rows used by the exact bilingual
-# donor are also pinned to osn.com so ElCinema-default selection cannot break
-# the donor identity contract.
 CHANNEL_SITE_OVERRIDES = {
     "Alarabiya.ae@SD": "shahid.mbc.net",
     "AlHadath.sa@SD": "osn.com",
@@ -97,19 +85,10 @@ CHANNEL_SITE_OVERRIDES = {
     "NicktoonsArabia.ae@SD": "osn.com",
 }
 
-# Exact identity-name normalization. This is deliberately not fuzzy. Upstream
-# uses the branding "MBC+ Drama"; the generic merge normalizer historically
-# treated '+' as punctuation and collapsed it into the separate MBC Drama
-# channel. Writing "Plus" preserves the real channel identity all the way into
-# logical-key arbitration.
 CHANNEL_NAME_OVERRIDES = {
     "MBCPlusDrama.sa@SD": "MBC Plus Drama",
 }
 
-# iptv-org's current OSN adapter exposes these exact broadcaster-owned channels
-# with a valid site_id but an empty xmltv_id. Every target below is an XMLTV ID
-# already published by EPGManager for that same named OSN linear service. This is
-# an exact-name/site recovery table, never a fuzzy alias or invented identity.
 BLANK_XMLTV_ID_OVERRIDES = {
     ("osn.com", "OSNtv One"): "OSNtv One.sa",
     ("osn.com", "OSNtv Showcase Classics"): "OSNtv Showcase Classics.sa",
@@ -133,6 +112,9 @@ def site_score(site: str) -> tuple[int, str]:
 
 
 def official_first_channel(cid: str) -> bool:
+    raw = cid.casefold()
+    if raw.startswith("bein") or raw.startswith("rotana") or raw.startswith("osn"):
+        return True
     folded = re.sub(r"([a-z])([A-Z])", r"\1.\2", cid)
     return bool(OFFICIAL_FIRST_ID_RE.search(folded))
 
@@ -141,9 +123,6 @@ def channel_site_score(cid: str, site: str) -> tuple[int, int, str]:
     wanted = CHANNEL_SITE_OVERRIDES.get(cid)
     if wanted and site == wanted:
         return (-1, SITE_PRIORITY.get(site, 500), site)
-    # For sports/live and provider-critical IDs, keep official adapters ahead
-    # of ElCinema while still allowing ElCinema as a fallback if official data
-    # disappears from the upstream catalogue.
     if site == "elcinema.com" and official_first_channel(cid):
         return (1, 700, site)
     return (0, SITE_PRIORITY.get(site, 500), site)
@@ -287,9 +266,6 @@ def main() -> int:
     if missing_name_overrides:
         raise SystemExit("Verified name override missing from current upstream catalogue: %s" % ", ".join(missing_name_overrides))
 
-    # Future-proof guard: the exact OSN services must resolve to osn.com even if
-    # upstream later fills xmltv_id itself. That future change should stop needing
-    # blank-ID recovery without turning a healthy catalogue red.
     selected_by_id = {row["xmltv_id"]: row for row in selected}
     missing_osn_identity = []
     for (site, name), cid in BLANK_XMLTV_ID_OVERRIDES.items():
@@ -299,8 +275,6 @@ def main() -> int:
     if missing_osn_identity:
         raise SystemExit("Verified OSN official identity recovery missing: %s" % ", ".join(missing_osn_identity))
 
-    # Regression guard: MBC Plus Drama must remain a distinct identity string;
-    # otherwise the merge layer would collapse it with MBC Drama again.
     plus_row = next((x for x in selected if x["xmltv_id"] == "MBCPlusDrama.sa@SD"), None)
     if plus_row and "plus" not in plus_row["name"].casefold():
         raise SystemExit("MBC Plus Drama identity regression: %s" % plus_row["name"])
@@ -311,8 +285,8 @@ def main() -> int:
     out_xml.write_bytes(ET.tostring(channels, encoding="utf-8", xml_declaration=True))
 
     manifest = {
-        "schema": 7,
-        "strategy": "elcinema-default-arabic-entertainment-official-first-live-sports-no-sattv",
+        "schema": 8,
+        "strategy": "official-timeline-first-elcinema-preferred-arabic-metadata-fallback-no-sattv",
         "source_project": "iptv-org/epg",
         "input_channel_files": len(files),
         "arabic_rows_seen": seen_ar,
@@ -321,7 +295,8 @@ def main() -> int:
         "radio_rows_skipped": radio_skipped,
         "excluded_site_rows_skipped": excluded_site_skipped,
         "excluded_sites": sorted(EXCLUDED_SITES),
-        "elcinema_default_policy": True,
+        "elcinema_metadata_default_policy": True,
+        "elcinema_timeline_authority": False,
         "official_first_live_sports_policy": True,
         "official_first_protected_selected": protected_official_count,
         "verified_site_overrides": dict(sorted(CHANNEL_SITE_OVERRIDES.items())),
