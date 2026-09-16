@@ -1,0 +1,392 @@
+=== SOURCE ROOT ===
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/__init__.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/config/defaults.json
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/__init__.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/cache.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/config.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/dependencies.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/downloader.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/epgimport_export.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/health.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/logger.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/manager.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/mapping_store.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/native_importer.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/native_source_store.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/parser.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/performance_cache.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/plugin_launcher.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/scheduler.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/source_catalog.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/timezone_manager.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/updater.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/utils.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/validation.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/xmltv.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/data/custom_dictionary.json
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/data/translation_cache.json
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/data/unknown_shows.json
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/online_update/update.json
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/plugin.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/__init__.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/almajd.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/arryadia.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/base.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/bein_sports.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/chada_2m.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/medi1tv.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/snrt.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/__init__.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_bein_parser.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_channel_mapper.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_config.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_epgimport_export.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_health.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_jedi_mapping_ui.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_logs_screen_compat.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_medi1tv_parser.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_plugin_launcher.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_scheduler.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_settings_wiring.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_sources.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_standalone_v4.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_theme.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_timezone.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_translation.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_ui_alignment.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v420_sources_bouquets.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v430_mapping_perf_tree.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v440_mapping_navigation_speed.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v500_performance_satellite.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v520_manual_satellite_restart.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v530_mapping_ux.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v540_auto_channel_online.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v550_fast_start.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v560_native_import_epgimport_style.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v570_sources_and_selection.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v580_native_sources.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v590_progress_sources.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v600_online_update.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v601_github_default.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v610_native_ai_import.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_xmltv.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/translators/__init__.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/translators/arabic.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/translators/darija.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/translators/sports.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/__init__.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/health_check.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/main.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/native_import.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/native_sources.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/online_update.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/screens.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/settings.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/theme.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/widgets.py
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/update.json
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/version.py
+=== SMART/SOURCE MATCHES ===
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_channel_mapper.py:73:        catalog = cm.scan_bouquets(self.tmpdir)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_channel_mapper.py:74:        names = [e["name"] for e in catalog]
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_channel_mapper.py:81:        catalog = cm.scan_bouquets(self.tmpdir)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_channel_mapper.py:84:        self.assertEqual(len(catalog), 5)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_channel_mapper.py:87:        catalog = cm.scan_bouquets(self.tmpdir)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_channel_mapper.py:88:        nilesat_entries = [e for e in catalog if e["name"] == "2M Maroc HD"]
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_channel_mapper.py:135:        self.catalog = cm.scan_bouquets(self.bouquet_dir)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_channel_mapper.py:146:        results = cm.match_channels(epg_channels, self.catalog)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_channel_mapper.py:159:        results = cm.match_channels(epg_channels, self.catalog)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_channel_mapper.py:169:        results = cm.match_channels(epg_channels, self.catalog)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_standalone_v4.py:18:    catalog = [
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_standalone_v4.py:22:    result = smart_match_channels(epg, catalog, min_score=82)[0]
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v500_performance_satellite.py:34:    def test_persistent_catalog_cache(self):
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v500_performance_satellite.py:44:            self.assertTrue(os.path.exists(os.path.join(td, '.epgmanager_catalog_cache.json')))
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v500_performance_satellite.py:47:        catalog = [{'ref':'a'}, {'ref':'b'}, {'ref':'c'}]
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v500_performance_satellite.py:48:        cov = channel_mapper.mapping_coverage(catalog, {'a','c'})
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v570_sources_and_selection.py:9:def test_unified_catalog_has_local_external_and_epgimport_discovery():
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v570_sources_and_selection.py:10:    text = (ROOT / 'core' / 'source_catalog.py').read_text(encoding='utf-8')
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v420_sources_bouquets.py:7:def test_external_catalog_contains_requested_groups():
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v420_sources_bouquets.py:28:    catalog = channel_mapper.scan_bouquets(str(tmp_path))
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v420_sources_bouquets.py:29:    assert {x['name'] for x in catalog} == {'Main Channel', 'Sub Channel'}
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:166:        self.catalog = []
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:258:        elif not self.catalog and not self.epg_channels:
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:381:        sat_count = len({x.get("ref") for x in self.catalog if (x.get("service_type") or channel_mapper.classify_service_ref(x.get("ref"))) == "SAT"})
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:431:        # grouped into collapsible folders so a catalogue with 100+ feeds does
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:484:        This avoids parsing every cached OpenEPG/EPGShare/Rytec feed just to
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:489:            self.catalog = channel_mapper.scan_bouquets(use_cache=True, fast_cache=True)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:492:            self.catalog = []
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:511:        # remains instant even with many cached OpenEPG/Rytec/EPGShare feeds.
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:527:            for item in self.catalog:
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:537:            self.bouquet_services = [x for x in self.catalog if x.get("bouquet_file") == bfile]
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:564:        # Remote catalogue. Status checks are lazy: only expanded region rows
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:631:                                log.warning("Lazy stale-source refresh failed for %s", src.get("source_name"), exc_info=True)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:821:                                (len(self.catalog), total, manual_count))
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:970:            # instant even with very large IPTV bouquets/source catalogues.
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1457:            results = channel_mapper.smart_match_channels(target, self.catalog, min_score=threshold, store=None)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1485:            results = channel_mapper.smart_match_channels(self.epg_channels, self.catalog, min_score=threshold, store=None)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1512:        unmapped = [x for x in self.catalog if x.get('ref') not in self._mapped_refs]
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1513:        cov = channel_mapper.mapping_coverage(self.catalog, self._mapped_refs)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1526:            results = channel_mapper.smart_match_channels(self.epg_channels, self.catalog, min_score=82, store=self.store)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/native_sources.py:16:from ..core import external_sources, source_catalog
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/native_sources.py:101:        for key, text in (("red", "Close"), ("green", "Update Selected"), ("yellow", "Refresh Catalogue"), ("blue", "Smart Mapping")):
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/native_sources.py:110:            "green": self.update_selected, "yellow": self.reload_catalogue, "blue": self.open_mapping,
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/native_sources.py:116:        self.reload_catalogue()
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/native_sources.py:122:    def reload_catalogue(self):
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/native_sources.py:124:        self._all_items = source_catalog.all_sources()
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/native_sources.py:148:        # Mapped providers first, then selected providers, then normal catalogue order.
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/native_sources.py:251:            self.reload_catalogue()
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/manager.py:5:The orchestrator. Owns the source registry, runs updates in a background
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/source_catalog.py:2:"""Unified EPG source catalogue.
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/source_catalog.py:6:- EPG Manager's bundled OpenEPG / EPGShare / Rytec catalogue
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/source_catalog.py:130:        # naming first, then the bundled fallback catalogue.
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:2:"""External XMLTV source catalogue for standalone Smart Mapping.
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:32:("ALJAZEERA","https://epgshare01.online/epgshare01/epg_ripper_ALJAZEERA1.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:74:("Albania","https://epgshare01.online/epgshare01/epg_ripper_AL1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:75:("Austria","https://epgshare01.online/epgshare01/epg_ripper_AT1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:76:("Belgium","https://epgshare01.online/epgshare01/epg_ripper_BE1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:77:("Bosnia_Herzegovina","https://epgshare01.online/epgshare01/epg_ripper_BA1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:78:("Bulgaria","https://epgshare01.online/epgshare01/epg_ripper_BG1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:79:("Croatia","https://epgshare01.online/epgshare01/epg_ripper_HR1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:80:("Cyprus","https://epgshare01.online/epgshare01/epg_ripper_CY1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:81:("Czech_Republic","https://epgshare01.online/epgshare01/epg_ripper_CZ1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:82:("Denmark","https://epgshare01.online/epgshare01/epg_ripper_DK1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:83:("Estonia","https://epgshare01.online/epgshare01/epg_ripper_EE1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:84:("Finland","https://epgshare01.online/epgshare01/epg_ripper_FI1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:85:("France-EPGShare","https://epgshare01.online/epgshare01/epg_ripper_FR1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:89:("Germany","https://epgshare01.online/epgshare01/epg_ripper_DE1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:90:("Greece","https://epgshare01.online/epgshare01/epg_ripper_GR1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:91:("Hungary","https://epgshare01.online/epgshare01/epg_ripper_HU1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:92:("Iceland","https://epgshare01.online/epgshare01/epg_ripper_IS1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:93:("Ireland","https://epgshare01.online/epgshare01/epg_ripper_IE1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:94:("Italy","https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:95:("Latvia","https://epgshare01.online/epgshare01/epg_ripper_LV1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:96:("Lithuania","https://epgshare01.online/epgshare01/epg_ripper_LT1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:97:("Netherlands","https://epgshare01.online/epgshare01/epg_ripper_NL1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:98:("Norway","https://epgshare01.online/epgshare01/epg_ripper_NO1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:99:("Poland","https://epgshare01.online/epgshare01/epg_ripper_PL1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:100:("Portugal","https://epgshare01.online/epgshare01/epg_ripper_PT1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:101:("Romania","https://epgshare01.online/epgshare01/epg_ripper_RO1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:102:("Serbia","https://epgshare01.online/epgshare01/epg_ripper_RS1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:103:("Slovakia","https://epgshare01.online/epgshare01/epg_ripper_SK1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:104:("Slovenia","https://epgshare01.online/epgshare01/epg_ripper_SI1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:105:("Spain","https://epgshare01.online/epgshare01/epg_ripper_ES1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:107:("Sweden","https://epgshare01.online/epgshare01/epg_ripper_SE1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:108:("Switzerland","https://epgshare01.online/epgshare01/epg_ripper_CH1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:109:("UK","https://epgshare01.online/epgshare01/epg_ripper_UK1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:110:("Egypt-EPGShare","https://epgshare01.online/epgshare01/epg_ripper_EG1.xml.gz","Africa"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:111:("Kenya","https://epgshare01.online/epgshare01/epg_ripper_KE1.xml.gz","Africa"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:112:("Nigeria","https://epgshare01.online/epgshare01/epg_ripper_NG1.xml.gz","Africa"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:113:("South_Africa","https://epgshare01.online/epgshare01/epg_ripper_ZA1.xml.gz","Africa"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:114:("China","https://epgshare01.online/epgshare01/epg_ripper_CN1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:115:("India","https://epgshare01.online/epgshare01/epg_ripper_IN1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:116:("Indonesia","https://epgshare01.online/epgshare01/epg_ripper_ID1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:117:("Israel","https://epgshare01.online/epgshare01/epg_ripper_IL1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:118:("Hong_Kong","https://epgshare01.online/epgshare01/epg_ripper_HK1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:119:("Japan","https://epgshare01.online/epgshare01/epg_ripper_JP1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:120:("South_Korea","https://epgshare01.online/epgshare01/epg_ripper_KR1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:121:("Malaysia","https://epgshare01.online/epgshare01/epg_ripper_MY1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:122:("Pakistan","https://epgshare01.online/epgshare01/epg_ripper_PK1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:123:("Philippines","https://epgshare01.online/epgshare01/epg_ripper_PH1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:124:("Singapore","https://epgshare01.online/epgshare01/epg_ripper_SG1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:125:("Thailand","https://epgshare01.online/epgshare01/epg_ripper_TH1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:126:("Turkey","https://epgshare01.online/epgshare01/epg_ripper_TR1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:127:("Vietnam","https://epgshare01.online/epgshare01/epg_ripper_VN1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:128:("Canada","https://epgshare01.online/epgshare01/epg_ripper_CA1.xml.gz","North America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:129:("Mexico","https://epgshare01.online/epgshare01/epg_ripper_MX1.xml.gz","North America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:130:("USA","https://epgshare01.online/epgshare01/epg_ripper_US1.xml.gz","North America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:131:("Argentina","https://epgshare01.online/epgshare01/epg_ripper_AR1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:132:("Brazil","https://epgshare01.online/epgshare01/epg_ripper_BR1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:133:("Chile","https://epgshare01.online/epgshare01/epg_ripper_CL1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:134:("Colombia","https://epgshare01.online/epgshare01/epg_ripper_CO1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:135:("Ecuador","https://epgshare01.online/epgshare01/epg_ripper_EC1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:136:("Peru","https://epgshare01.online/epgshare01/epg_ripper_PE1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:137:("Uruguay","https://epgshare01.online/epgshare01/epg_ripper_UY1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:138:("Venezuela","https://epgshare01.online/epgshare01/epg_ripper_VE1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:139:("Australia","https://epgshare01.online/epgshare01/epg_ripper_AU1.xml.gz","Oceania"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:140:("New_Zealand","https://epgshare01.online/epgshare01/epg_ripper_NZ1.xml.gz","Oceania"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/native_importer.py:103:    catalog = channel_mapper.scan_bouquets(bouquet_dir=bouquet_dir)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/native_importer.py:104:    results = channel_mapper.smart_match_channels(epg_channels, catalog, min_score=min_score, store=store)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:16:     build a catalog of every real service the receiver knows about, with
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:20:  3. Matches EPG channel names against that catalog by normalized name
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:144:    source_ids uses the IDs from the unified Native Sources catalogue. Local
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:160:    # Unified catalogue cache/download paths, including installed EPG-Importer providers.
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:162:        from . import source_catalog
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:163:        for src in source_catalog.all_sources():
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:282:    startup. A recent catalog cache is returned immediately and rebuilt only
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:285:    cache_path = os.path.join(bouquet_dir, ".epgmanager_catalog_cache.json")
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:302:    catalog = []
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:335:                    catalog.append({
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:350:            catalog.append({
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:358:    log.info("Scanned %d bouquet(s), found %d service(s)", len(bouquets), len(catalog))
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:360:        save_cache(cache_path, signature, catalog)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:361:    return catalog
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:367:def match_channels(epg_channels, catalog):
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:369:    catalog entry whose normalized name matches (exact, or one contains
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:380:        for entry in catalog:
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:427:def smart_match_channels(epg_channels, catalog, min_score=82, store=None, max_candidates=8):
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:437:        for entry in catalog:
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:479:def resolve_service(epg_channel, catalog, store=None, auto_threshold=95, max_candidates=5):
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:485:    rows = smart_match_channels([epg_channel], catalog, min_score=auto_threshold,
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:490:def mapping_coverage(catalog, mapped_refs):
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:492:    total = len(catalog or [])
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:493:    mapped = sum(1 for row in (catalog or []) if row.get('ref') in refs)
+=== URL MATCHES ===
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/translators/darija.py:57:GOOGLE_TRANSLATE_URL = "https://translate.googleapis.com/translate_a/single"
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_medi1tv_parser.py:7:https://www.medi1tv.com/fr/programme.aspx) - a flat, ordered sequence of
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v500_performance_satellite.py:30:            store.set('src', 'chan', ['4097:0:1:0:0:0:0:0:0:0:http://x'])
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_sources.py:282:        resp = d.get("https://example.invalid/test")
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_sources.py:297:            d.get("https://example.invalid/test")
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v601_github_default.py:4:    assert DEFAULT_SETTINGS["manifest_url"] == "https://raw.githubusercontent.com/wacayoub/EPGManager/main/update.json"
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_bein_parser.py:42:<li live="1" data-img="https://cdn.bein.com/icons/beIN_Sports_1_HD.png">
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_bein_parser.py:48:<li live="0" data-img="https://cdn.bein.com/icons/beIN_Sports_2_HD.png">
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_bein_parser.py:112:            '<li data-img="https://cdn.bein.com/icons/beIN_Sports_1_HD.png" live="1">'
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v600_online_update.py:19:    }, "https://example.com/epg/update.json")
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v600_online_update.py:20:    assert data["url"] == "https://example.com/epg/enigma2-plugin-extensions-epgmanager_6.0.1_all.ipk"
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v600_online_update.py:26:    save_updater_settings({"manifest_url": "https://example.com/update.json"}, path)
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/tests/test_v600_online_update.py:28:    assert loaded["manifest_url"] == "https://example.com/update.json"
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/snrt.py:39:    "AlAoula": "https://www.snrt.ma/ar/node/1208",
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/snrt.py:40:    "Arrabiaa": "https://www.snrt.ma/ar/node/4071",
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/snrt.py:41:    "AlMaghribiya": "https://www.snrt.ma/ar/node/4072",
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/snrt.py:42:    "Assadisa": "https://www.snrt.ma/ar/node/4073",
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/snrt.py:43:    "Tamazight": "https://www.snrt.ma/ar/node/4075",
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/snrt.py:173:                prog_url = "https://www.snrt.ma" + prog_url
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/arryadia.py:32:MAIN_ARRYADIA_URL = "https://www.snrt.ma/ar/node/4070"
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/chada_2m.py:92:        base_url = "https://tv-programme.telecablesat.fr/chaine/340/2m-monde.html"
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/chada_2m.py:221:        resp = downloader.get_or_none("https://chada.ma/fr/chada-tv/grille-tv/")
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/almajd.py:22:BASE_FETCH_URL = "https://almajdtv.com/tvguide/Channels/fetch-programs.php"
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/almajd.py:69:            icon = ("https://almajdtv.com/tvguide/assets/images/channels/logo/%s.webp"
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/almajd.py:91:            extra_headers={"Referer": "https://almajdtv.com/tvguide/"})
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/bein_sports.py:81:                    "https://www.bein.com/ar/epg-ajax-template/?action=epg_fetch"
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/bein_sports.py:86:                    url, extra_headers={"Referer": "https://www.bein.com/ar/epg/"})
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/medi1tv.py:8:    actually https://www.medi1tv.com/ar/grille/arabic/<dd-mm-yyyy>, not
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/medi1tv.py:9:    https://www.medi1tv.com/ar/grille/<dd-mm-yyyy> as the original script
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/medi1tv.py:50:BASE_URL = "https://www.medi1tv.com/ar/grille/arabic"
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/sources/medi1tv.py:82:                url, extra_headers={"Referer": "https://www.medi1tv.com/ar/"})
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/ui/online_update.py:202:                text=self.settings.get("manifest_url") or "https://")
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/timezone_manager.py:49:_HIJRI_API = "http://api.aladhan.com/v1/gToH?date={date}"
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:24:("PALESTINE1","https://www.open-epg.com/files/palestine1.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:25:("EGYPT","https://www.open-epg.com/files/egypt1.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:26:("QATAR1","https://www.open-epg.com/files/qatar1.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:27:("QATAR2","https://www.open-epg.com/files/qatar2.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:28:("QATAR3","https://www.open-epg.com/files/qatar3.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:29:("QATAR4","https://www.open-epg.com/files/qatar4.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:30:("QATAR5","https://www.open-epg.com/files/qatar5.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:31:("QATAR6","https://www.open-epg.com/files/qatar6.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:32:("ALJAZEERA","https://epgshare01.online/epgshare01/epg_ripper_ALJAZEERA1.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:33:("SAUDI1","https://www.open-epg.com/files/saudiarabia1.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:34:("SAUDI2","https://www.open-epg.com/files/saudiarabia2.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:35:("SAUDI3","https://www.open-epg.com/files/saudiarabia3.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:36:("SAUDI4","https://www.open-epg.com/files/saudiarabia4.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:37:("SAUDI5","https://www.open-epg.com/files/saudiarabia5.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:38:("UAE6","https://www.open-epg.com/files/uae6.xml.gz","Middle East"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:39:("FRANCE","https://www.open-epg.com/files/france.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:40:("MOROCCO","https://www.open-epg.com/files/morocco1.xml.gz","Africa"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:41:("Rytec-News","http://www.xmltvepg.nl/rytecNWS.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:42:("Rytec-IPTV","http://www.xmltvepg.nl/rytecIPTV.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:43:("Rytec-Miscellaneous","http://www.xmltvepg.nl/rytecMisc.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:44:("Rytec-Vlaanderen-Basic","http://www.xmltvepg.nl/rytecBE_VL_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:45:("Rytec-Vlaanderen-Nederland","http://www.xmltvepg.nl/rytecBE_NL_Common.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:46:("Rytec-Nederland-Basis","http://www.xmltvepg.nl/rytecNL_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:47:("Rytec-Nederland-Sport-Movies","http://www.xmltvepg.nl/rytecNL_Extra.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:48:("Rytec-Wallonie-Telesat-Base","http://www.xmltvepg.nl/rytecBE_FR_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:49:("Rytec-France-TNT","http://www.xmltvepg.nl/rytecTNT_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:50:("Rytec-France-Wallonie-Commun","http://www.xmltvepg.nl/rytecBE_FR_Common.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:51:("Rytec-France-Mixte","http://www.xmltvepg.nl/rytecFR_Mixte.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:52:("Rytec-France-Sport-Cinema","http://www.xmltvepg.nl/rytecFR_SportMovies.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:53:("Rytec-Bulgaria","http://www.xmltvepg.nl/rytecBG.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:54:("Rytec-Slovensko-Bazicky","http://www.xmltvepg.nl/rytecSK_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:55:("Rytec-Ceska-Bazicky","http://www.xmltvepg.nl/rytecCZ_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:56:("Rytec-Ceska-Slovensko-Rozdeleny","http://www.xmltvepg.nl/rytecCZ_SK_Common.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:57:("Rytec-Ceska-Slovensko-Sportove-Filmy","http://www.xmltvepg.nl/rytecCZ_SK_SportMovies.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:58:("Rytec-Danmark-Grundleggende","http://www.xmltvepg.nl/rytecDK_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:59:("Rytec-Danmark-Delt","http://www.xmltvepg.nl/rytecDK_Misc.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:60:("Rytec-Danmark-Sport-Movies","http://www.xmltvepg.nl/rytecDK_SportMovies.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:61:("Rytec-Deutschland-Basis","http://www.xmltvepg.nl/rytecDE_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:62:("Rytec-Osterreich-Basis","http://www.xmltvepg.nl/rytecAT_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:63:("Rytec-Switzerland-Basis","http://www.xmltvepg.nl/rytecCH_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:64:("Rytec-Deutsch-Osterreich-Switz-Gemeinsam","http://www.xmltvepg.nl/rytecDE_Common.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:65:("Rytec-Deutsch-Osterreich-Switz-Sports-Film","http://www.xmltvepg.nl/rytecDE_SportMovies.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:66:("Rytec-Ellada-Genikos","http://www.xmltvepg.nl/rytecGR_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:67:("Rytec-Ellada-Athlitismos-Kinimatografou","http://www.xmltvepg.nl/rytecGR_SportMovies.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:68:("Rytec-Italia-Basis","http://www.xmltvepg.nl/rytecIT_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:69:("Rytec-Italia-Sky","http://www.xmltvepg.nl/rytecIT_Sky.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:70:("Rytec-Italia-Sports-Film-Premium","http://www.xmltvepg.nl/rytecIT_SportMovies.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:71:("Rytec-Portugal","http://www.xmltvepg.nl/rytecPT.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:72:("Rytec-UK-Basic","http://www.xmltvepg.nl/rytecUK_Basic.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:73:("Rytec-UK-Sports-Movies","http://www.xmltvepg.nl/rytecUK_SportMovies.xz","Rytec"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:74:("Albania","https://epgshare01.online/epgshare01/epg_ripper_AL1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:75:("Austria","https://epgshare01.online/epgshare01/epg_ripper_AT1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:76:("Belgium","https://epgshare01.online/epgshare01/epg_ripper_BE1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:77:("Bosnia_Herzegovina","https://epgshare01.online/epgshare01/epg_ripper_BA1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:78:("Bulgaria","https://epgshare01.online/epgshare01/epg_ripper_BG1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:79:("Croatia","https://epgshare01.online/epgshare01/epg_ripper_HR1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:80:("Cyprus","https://epgshare01.online/epgshare01/epg_ripper_CY1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:81:("Czech_Republic","https://epgshare01.online/epgshare01/epg_ripper_CZ1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:82:("Denmark","https://epgshare01.online/epgshare01/epg_ripper_DK1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:83:("Estonia","https://epgshare01.online/epgshare01/epg_ripper_EE1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:84:("Finland","https://epgshare01.online/epgshare01/epg_ripper_FI1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:85:("France-EPGShare","https://epgshare01.online/epgshare01/epg_ripper_FR1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:86:("France1","https://www.open-epg.com/files/france1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:87:("France2","https://www.open-epg.com/files/france2.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:88:("France3","https://www.open-epg.com/files/france3.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:89:("Germany","https://epgshare01.online/epgshare01/epg_ripper_DE1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:90:("Greece","https://epgshare01.online/epgshare01/epg_ripper_GR1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:91:("Hungary","https://epgshare01.online/epgshare01/epg_ripper_HU1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:92:("Iceland","https://epgshare01.online/epgshare01/epg_ripper_IS1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:93:("Ireland","https://epgshare01.online/epgshare01/epg_ripper_IE1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:94:("Italy","https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:95:("Latvia","https://epgshare01.online/epgshare01/epg_ripper_LV1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:96:("Lithuania","https://epgshare01.online/epgshare01/epg_ripper_LT1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:97:("Netherlands","https://epgshare01.online/epgshare01/epg_ripper_NL1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:98:("Norway","https://epgshare01.online/epgshare01/epg_ripper_NO1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:99:("Poland","https://epgshare01.online/epgshare01/epg_ripper_PL1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:100:("Portugal","https://epgshare01.online/epgshare01/epg_ripper_PT1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:101:("Romania","https://epgshare01.online/epgshare01/epg_ripper_RO1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:102:("Serbia","https://epgshare01.online/epgshare01/epg_ripper_RS1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:103:("Slovakia","https://epgshare01.online/epgshare01/epg_ripper_SK1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:104:("Slovenia","https://epgshare01.online/epgshare01/epg_ripper_SI1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:105:("Spain","https://epgshare01.online/epgshare01/epg_ripper_ES1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:106:("Spain2","https://www.open-epg.com/files/spain1.xml","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:107:("Sweden","https://epgshare01.online/epgshare01/epg_ripper_SE1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:108:("Switzerland","https://epgshare01.online/epgshare01/epg_ripper_CH1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:109:("UK","https://epgshare01.online/epgshare01/epg_ripper_UK1.xml.gz","Europe"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:110:("Egypt-EPGShare","https://epgshare01.online/epgshare01/epg_ripper_EG1.xml.gz","Africa"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:111:("Kenya","https://epgshare01.online/epgshare01/epg_ripper_KE1.xml.gz","Africa"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:112:("Nigeria","https://epgshare01.online/epgshare01/epg_ripper_NG1.xml.gz","Africa"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:113:("South_Africa","https://epgshare01.online/epgshare01/epg_ripper_ZA1.xml.gz","Africa"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:114:("China","https://epgshare01.online/epgshare01/epg_ripper_CN1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:115:("India","https://epgshare01.online/epgshare01/epg_ripper_IN1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:116:("Indonesia","https://epgshare01.online/epgshare01/epg_ripper_ID1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:117:("Israel","https://epgshare01.online/epgshare01/epg_ripper_IL1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:118:("Hong_Kong","https://epgshare01.online/epgshare01/epg_ripper_HK1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:119:("Japan","https://epgshare01.online/epgshare01/epg_ripper_JP1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:120:("South_Korea","https://epgshare01.online/epgshare01/epg_ripper_KR1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:121:("Malaysia","https://epgshare01.online/epgshare01/epg_ripper_MY1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:122:("Pakistan","https://epgshare01.online/epgshare01/epg_ripper_PK1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:123:("Philippines","https://epgshare01.online/epgshare01/epg_ripper_PH1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:124:("Singapore","https://epgshare01.online/epgshare01/epg_ripper_SG1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:125:("Thailand","https://epgshare01.online/epgshare01/epg_ripper_TH1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:126:("Turkey","https://epgshare01.online/epgshare01/epg_ripper_TR1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:127:("Vietnam","https://epgshare01.online/epgshare01/epg_ripper_VN1.xml.gz","Asia"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:128:("Canada","https://epgshare01.online/epgshare01/epg_ripper_CA1.xml.gz","North America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:129:("Mexico","https://epgshare01.online/epgshare01/epg_ripper_MX1.xml.gz","North America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:130:("USA","https://epgshare01.online/epgshare01/epg_ripper_US1.xml.gz","North America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:131:("Argentina","https://epgshare01.online/epgshare01/epg_ripper_AR1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:132:("Brazil","https://epgshare01.online/epgshare01/epg_ripper_BR1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:133:("Chile","https://epgshare01.online/epgshare01/epg_ripper_CL1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:134:("Colombia","https://epgshare01.online/epgshare01/epg_ripper_CO1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:135:("Ecuador","https://epgshare01.online/epgshare01/epg_ripper_EC1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:136:("Peru","https://epgshare01.online/epgshare01/epg_ripper_PE1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:137:("Uruguay","https://epgshare01.online/epgshare01/epg_ripper_UY1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:138:("Venezuela","https://epgshare01.online/epgshare01/epg_ripper_VE1.xml.gz","South America"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:139:("Australia","https://epgshare01.online/epgshare01/epg_ripper_AU1.xml.gz","Oceania"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/external_sources.py:140:("New_Zealand","https://epgshare01.online/epgshare01/epg_ripper_NZ1.xml.gz","Oceania"),
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/updater.py:29:    "manifest_url": "https://raw.githubusercontent.com/wacayoub/EPGManager/main/update.json",
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/updater.py:132:        if not manifest_url.lower().startswith(("https://", "http://")):
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/updater.py:133:            raise UpdateError("Manifest URL must start with https:// or http://")
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/core/channel_mapper.py:74:    if 'http://' in low or 'https://' in low or '%3a//' in low or '%3a%2f%2f' in low:
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/online_update/update.json:4:  "url": "https://github.com/wacayoub/EPGManager/releases/download/v6.0.1/enigma2-plugin-extensions-epgmanager_6.0.1_all.ipk",
+/tmp/epgsrc/EPGManager_v6.0.1_GitHub/update.json:4:  "url": "https://github.com/wacayoub/EPGManager/releases/download/v6.0.1/enigma2-plugin-extensions-epgmanager_6.0.1_all.ipk",
