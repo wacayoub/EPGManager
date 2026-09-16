@@ -3,11 +3,11 @@
   "mode": "bein-max-xtra-source-retention-audit",
   "policy": "MAX/XTRA are retained event-channel sources; generic/cloned off-event guides lower mapping confidence but never cause source rejection",
   "summary": {
-    "KEEP_SOURCE": 17,
+    "KEEP_SOURCE": 19,
     "REVIEW": 1
   },
   "mapping_modes": {
-    "event_only_or_manual": 17,
+    "event_only_or_manual": 19,
     "standby_no_autolock": 1
   },
   "source_errors": [],
@@ -17,11 +17,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 1.qa",
       "name": "beIN SPORTS MAX 1.qa",
-      "events": 14,
+      "events": 13,
       "unique_titles": 1,
-      "unique_title_pct": 7.1,
+      "unique_title_pct": 7.7,
       "top_title_pct": 100.0,
-      "generic_events": 14,
+      "generic_events": 13,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -33,13 +33,15 @@
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE"
+        "GENERIC_OFF_EVENT_GUIDE",
+        "CLONED_TIMELINE_GROUP=3"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
         "beIN SPORTS MAX 1.qa",
+        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 6.qa"
       ]
     },
@@ -48,11 +50,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 2.qa",
       "name": "beIN SPORTS MAX 2.qa",
-      "events": 18,
+      "events": 13,
       "unique_titles": 1,
-      "unique_title_pct": 5.6,
+      "unique_title_pct": 7.7,
       "top_title_pct": 100.0,
-      "generic_events": 18,
+      "generic_events": 13,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -65,16 +67,15 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=3"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS MAX 1.qa",
         "beIN SPORTS MAX 2.qa",
-        "beIN SPORTS MAX 3.qa",
-        "beIN SPORTS MAX 4.qa",
-        "beIN SPORTS MAX 5.qa"
+        "beIN SPORTS MAX 6.qa"
       ]
     },
     {
@@ -82,11 +83,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 3.qa",
       "name": "beIN SPORTS MAX 3.qa",
-      "events": 18,
+      "events": 17,
       "unique_titles": 1,
-      "unique_title_pct": 5.6,
+      "unique_title_pct": 5.9,
       "top_title_pct": 100.0,
-      "generic_events": 18,
+      "generic_events": 17,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -99,13 +100,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=3"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 3.qa",
         "beIN SPORTS MAX 4.qa",
         "beIN SPORTS MAX 5.qa"
@@ -116,11 +116,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 4.qa",
       "name": "beIN SPORTS MAX 4.qa",
-      "events": 18,
+      "events": 17,
       "unique_titles": 1,
-      "unique_title_pct": 5.6,
+      "unique_title_pct": 5.9,
       "top_title_pct": 100.0,
-      "generic_events": 18,
+      "generic_events": 17,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -133,13 +133,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=3"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 3.qa",
         "beIN SPORTS MAX 4.qa",
         "beIN SPORTS MAX 5.qa"
@@ -150,11 +149,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 5.qa",
       "name": "beIN SPORTS MAX 5.qa",
-      "events": 18,
+      "events": 17,
       "unique_titles": 1,
-      "unique_title_pct": 5.6,
+      "unique_title_pct": 5.9,
       "top_title_pct": 100.0,
-      "generic_events": 18,
+      "generic_events": 17,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -167,13 +166,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=3"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 3.qa",
         "beIN SPORTS MAX 4.qa",
         "beIN SPORTS MAX 5.qa"
@@ -184,11 +182,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 6.qa",
       "name": "beIN SPORTS MAX 6.qa",
-      "events": 14,
+      "events": 13,
       "unique_titles": 1,
-      "unique_title_pct": 7.1,
+      "unique_title_pct": 7.7,
       "top_title_pct": 100.0,
-      "generic_events": 14,
+      "generic_events": 13,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -200,13 +198,15 @@
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE"
+        "GENERIC_OFF_EVENT_GUIDE",
+        "CLONED_TIMELINE_GROUP=3"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
         "beIN SPORTS MAX 1.qa",
+        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 6.qa"
       ]
     },
@@ -215,14 +215,14 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 1.qa",
       "name": "beIN SPORTS XTRA 1.qa",
-      "events": 29,
-      "unique_titles": 4,
-      "unique_title_pct": 13.8,
-      "top_title_pct": 89.7,
-      "generic_events": 26,
-      "generic_pct": 89.7,
+      "events": 35,
+      "unique_titles": 3,
+      "unique_title_pct": 8.6,
+      "top_title_pct": 94.3,
+      "generic_events": 33,
+      "generic_pct": 94.3,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+        "Levante vs Athletic Bilbao -Spanish LaLiga 2026/2027 - Week 6",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
@@ -245,14 +245,14 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 2.qa",
       "name": "beIN SPORTS XTRA 2.qa",
-      "events": 31,
-      "unique_titles": 3,
-      "unique_title_pct": 9.7,
-      "top_title_pct": 93.5,
-      "generic_events": 29,
-      "generic_pct": 93.5,
+      "events": 32,
+      "unique_titles": 2,
+      "unique_title_pct": 6.2,
+      "top_title_pct": 96.9,
+      "generic_events": 31,
+      "generic_pct": 96.9,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+        "Sturm Graz vs Rennes - UEFA Europa League 2026/2027 - MD1",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
@@ -275,14 +275,14 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 3.qa",
       "name": "beIN SPORTS XTRA 3.qa",
-      "events": 33,
+      "events": 32,
       "unique_titles": 2,
-      "unique_title_pct": 6.1,
-      "top_title_pct": 97.0,
-      "generic_events": 32,
-      "generic_pct": 97.0,
+      "unique_title_pct": 6.2,
+      "top_title_pct": 96.9,
+      "generic_events": 31,
+      "generic_pct": 96.9,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+        "Bayer Leverkusen vs Celje - UEFA Europa League 2026/2027 - MD1",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
@@ -305,14 +305,14 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 4.qa",
       "name": "beIN SPORTS XTRA 4.qa",
-      "events": 34,
-      "unique_titles": 1,
-      "unique_title_pct": 2.9,
-      "top_title_pct": 100.0,
-      "generic_events": 34,
-      "generic_pct": 100.0,
+      "events": 32,
+      "unique_titles": 2,
+      "unique_title_pct": 6.2,
+      "top_title_pct": 96.9,
+      "generic_events": 31,
+      "generic_pct": 96.9,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+        "Olympiacos Piraeus vs Jagiellonia - UEFA Europa League 2026/2027 - MD1",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
@@ -321,18 +321,13 @@
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=5"
+        "GENERIC_OFF_EVENT_GUIDE"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 4.qa",
-        "beIN SPORTS XTRA 5.qa",
-        "beIN SPORTS XTRA 6.qa",
-        "beIN SPORTS XTRA 7.qa",
-        "beIN SPORTS XTRA 9.qa"
+        "beIN SPORTS XTRA 4.qa"
       ]
     },
     {
@@ -340,11 +335,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 5.qa",
       "name": "beIN SPORTS XTRA 5.qa",
-      "events": 34,
+      "events": 32,
       "unique_titles": 1,
-      "unique_title_pct": 2.9,
+      "unique_title_pct": 3.1,
       "top_title_pct": 100.0,
-      "generic_events": 34,
+      "generic_events": 32,
       "generic_pct": 100.0,
       "samples": [
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
@@ -357,13 +352,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=5"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
@@ -375,11 +369,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 6.qa",
       "name": "beIN SPORTS XTRA 6.qa",
-      "events": 34,
+      "events": 32,
       "unique_titles": 1,
-      "unique_title_pct": 2.9,
+      "unique_title_pct": 3.1,
       "top_title_pct": 100.0,
-      "generic_events": 34,
+      "generic_events": 32,
       "generic_pct": 100.0,
       "samples": [
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
@@ -392,13 +386,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=5"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
@@ -410,11 +403,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 7.qa",
       "name": "beIN SPORTS XTRA 7.qa",
-      "events": 34,
+      "events": 32,
       "unique_titles": 1,
-      "unique_title_pct": 2.9,
+      "unique_title_pct": 3.1,
       "top_title_pct": 100.0,
-      "generic_events": 34,
+      "generic_events": 32,
       "generic_pct": 100.0,
       "samples": [
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
@@ -427,13 +420,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=5"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
@@ -445,11 +437,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 8.qa",
       "name": "beIN SPORTS XTRA 8.qa",
-      "events": 18,
+      "events": 17,
       "unique_titles": 1,
-      "unique_title_pct": 5.6,
+      "unique_title_pct": 5.9,
       "top_title_pct": 100.0,
-      "generic_events": 18,
+      "generic_events": 17,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports XTRA",
@@ -475,11 +467,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 9.qa",
       "name": "beIN SPORTS XTRA 9.qa",
-      "events": 34,
+      "events": 32,
       "unique_titles": 1,
-      "unique_title_pct": 2.9,
+      "unique_title_pct": 3.1,
       "top_title_pct": 100.0,
-      "generic_events": 34,
+      "generic_events": 32,
       "generic_pct": 100.0,
       "samples": [
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
@@ -492,13 +484,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=5"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
@@ -510,11 +501,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 04 bein.com.qa",
       "name": "beIN SPORTS XTRA 04 bein.com.qa",
-      "events": 15,
+      "events": 14,
       "unique_titles": 1,
-      "unique_title_pct": 6.7,
+      "unique_title_pct": 7.1,
       "top_title_pct": 100.0,
-      "generic_events": 15,
+      "generic_events": 14,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports XTRA",
@@ -541,11 +532,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 05 bein.com.qa",
       "name": "beIN SPORTS XTRA 05 bein.com.qa",
-      "events": 15,
+      "events": 14,
       "unique_titles": 1,
-      "unique_title_pct": 6.7,
+      "unique_title_pct": 7.1,
       "top_title_pct": 100.0,
-      "generic_events": 15,
+      "generic_events": 14,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports XTRA",
@@ -587,15 +578,12 @@
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": []
-    }
-  ],
-  "normal_candidates": [],
-  "event_only_or_manual": [
+    },
     {
-      "source": "openepg-qatar1",
-      "origin": "openepg",
-      "id": "beIN SPORTS MAX 1.qa",
-      "name": "beIN SPORTS MAX 1.qa",
+      "source": "epgshare-bein1",
+      "origin": "epgshare",
+      "id": "NEW_beIN-SPORTS-MAX-05_AR.bein",
+      "name": "NEW_beIN-SPORTS-MAX-05_AR",
       "events": 14,
       "unique_titles": 1,
       "unique_title_pct": 7.1,
@@ -618,7 +606,74 @@
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "NEW_beIN-SPORTS-MAX-05_AR.bein",
+        "NEW_beIN-SPORTS-MAX-06_AR.bein"
+      ]
+    },
+    {
+      "source": "epgshare-bein1",
+      "origin": "epgshare",
+      "id": "NEW_beIN-SPORTS-MAX-06_AR.bein",
+      "name": "NEW_beIN-SPORTS-MAX-06_AR",
+      "events": 14,
+      "unique_titles": 1,
+      "unique_title_pct": 7.1,
+      "top_title_pct": 100.0,
+      "generic_events": 14,
+      "generic_pct": 100.0,
+      "samples": [
+        "beIN Sports MAX",
+        "beIN Sports MAX",
+        "beIN Sports MAX",
+        "beIN Sports MAX"
+      ],
+      "verdict": "KEEP_SOURCE",
+      "warnings": [
+        "LOW_TITLE_DIVERSITY",
+        "REPEATED_GENERIC_TITLE",
+        "GENERIC_OFF_EVENT_GUIDE"
+      ],
+      "mapping_mode": "event_only_or_manual",
+      "source_retained": true,
+      "auto_lock_safe": false,
+      "clone_ids": [
+        "NEW_beIN-SPORTS-MAX-05_AR.bein",
+        "NEW_beIN-SPORTS-MAX-06_AR.bein"
+      ]
+    }
+  ],
+  "normal_candidates": [],
+  "event_only_or_manual": [
+    {
+      "source": "openepg-qatar1",
+      "origin": "openepg",
+      "id": "beIN SPORTS MAX 1.qa",
+      "name": "beIN SPORTS MAX 1.qa",
+      "events": 13,
+      "unique_titles": 1,
+      "unique_title_pct": 7.7,
+      "top_title_pct": 100.0,
+      "generic_events": 13,
+      "generic_pct": 100.0,
+      "samples": [
+        "beIN Sports MAX",
+        "beIN Sports MAX",
+        "beIN Sports MAX",
+        "beIN Sports MAX"
+      ],
+      "verdict": "KEEP_SOURCE",
+      "warnings": [
+        "LOW_TITLE_DIVERSITY",
+        "REPEATED_GENERIC_TITLE",
+        "GENERIC_OFF_EVENT_GUIDE",
+        "CLONED_TIMELINE_GROUP=3"
+      ],
+      "mapping_mode": "event_only_or_manual",
+      "source_retained": true,
+      "auto_lock_safe": false,
+      "clone_ids": [
         "beIN SPORTS MAX 1.qa",
+        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 6.qa"
       ]
     },
@@ -627,11 +682,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 2.qa",
       "name": "beIN SPORTS MAX 2.qa",
-      "events": 18,
+      "events": 13,
       "unique_titles": 1,
-      "unique_title_pct": 5.6,
+      "unique_title_pct": 7.7,
       "top_title_pct": 100.0,
-      "generic_events": 18,
+      "generic_events": 13,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -644,16 +699,15 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=3"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS MAX 1.qa",
         "beIN SPORTS MAX 2.qa",
-        "beIN SPORTS MAX 3.qa",
-        "beIN SPORTS MAX 4.qa",
-        "beIN SPORTS MAX 5.qa"
+        "beIN SPORTS MAX 6.qa"
       ]
     },
     {
@@ -661,11 +715,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 3.qa",
       "name": "beIN SPORTS MAX 3.qa",
-      "events": 18,
+      "events": 17,
       "unique_titles": 1,
-      "unique_title_pct": 5.6,
+      "unique_title_pct": 5.9,
       "top_title_pct": 100.0,
-      "generic_events": 18,
+      "generic_events": 17,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -678,13 +732,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=3"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 3.qa",
         "beIN SPORTS MAX 4.qa",
         "beIN SPORTS MAX 5.qa"
@@ -695,11 +748,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 4.qa",
       "name": "beIN SPORTS MAX 4.qa",
-      "events": 18,
+      "events": 17,
       "unique_titles": 1,
-      "unique_title_pct": 5.6,
+      "unique_title_pct": 5.9,
       "top_title_pct": 100.0,
-      "generic_events": 18,
+      "generic_events": 17,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -712,13 +765,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=3"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 3.qa",
         "beIN SPORTS MAX 4.qa",
         "beIN SPORTS MAX 5.qa"
@@ -729,11 +781,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 5.qa",
       "name": "beIN SPORTS MAX 5.qa",
-      "events": 18,
+      "events": 17,
       "unique_titles": 1,
-      "unique_title_pct": 5.6,
+      "unique_title_pct": 5.9,
       "top_title_pct": 100.0,
-      "generic_events": 18,
+      "generic_events": 17,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -746,13 +798,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=3"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 3.qa",
         "beIN SPORTS MAX 4.qa",
         "beIN SPORTS MAX 5.qa"
@@ -763,11 +814,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 6.qa",
       "name": "beIN SPORTS MAX 6.qa",
-      "events": 14,
+      "events": 13,
       "unique_titles": 1,
-      "unique_title_pct": 7.1,
+      "unique_title_pct": 7.7,
       "top_title_pct": 100.0,
-      "generic_events": 14,
+      "generic_events": 13,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -779,13 +830,15 @@
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE"
+        "GENERIC_OFF_EVENT_GUIDE",
+        "CLONED_TIMELINE_GROUP=3"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
         "beIN SPORTS MAX 1.qa",
+        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 6.qa"
       ]
     },
@@ -794,14 +847,14 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 1.qa",
       "name": "beIN SPORTS XTRA 1.qa",
-      "events": 29,
-      "unique_titles": 4,
-      "unique_title_pct": 13.8,
-      "top_title_pct": 89.7,
-      "generic_events": 26,
-      "generic_pct": 89.7,
+      "events": 35,
+      "unique_titles": 3,
+      "unique_title_pct": 8.6,
+      "top_title_pct": 94.3,
+      "generic_events": 33,
+      "generic_pct": 94.3,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+        "Levante vs Athletic Bilbao -Spanish LaLiga 2026/2027 - Week 6",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
@@ -824,14 +877,14 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 2.qa",
       "name": "beIN SPORTS XTRA 2.qa",
-      "events": 31,
-      "unique_titles": 3,
-      "unique_title_pct": 9.7,
-      "top_title_pct": 93.5,
-      "generic_events": 29,
-      "generic_pct": 93.5,
+      "events": 32,
+      "unique_titles": 2,
+      "unique_title_pct": 6.2,
+      "top_title_pct": 96.9,
+      "generic_events": 31,
+      "generic_pct": 96.9,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+        "Sturm Graz vs Rennes - UEFA Europa League 2026/2027 - MD1",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
@@ -854,14 +907,14 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 3.qa",
       "name": "beIN SPORTS XTRA 3.qa",
-      "events": 33,
+      "events": 32,
       "unique_titles": 2,
-      "unique_title_pct": 6.1,
-      "top_title_pct": 97.0,
-      "generic_events": 32,
-      "generic_pct": 97.0,
+      "unique_title_pct": 6.2,
+      "top_title_pct": 96.9,
+      "generic_events": 31,
+      "generic_pct": 96.9,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+        "Bayer Leverkusen vs Celje - UEFA Europa League 2026/2027 - MD1",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
@@ -884,14 +937,14 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 4.qa",
       "name": "beIN SPORTS XTRA 4.qa",
-      "events": 34,
-      "unique_titles": 1,
-      "unique_title_pct": 2.9,
-      "top_title_pct": 100.0,
-      "generic_events": 34,
-      "generic_pct": 100.0,
+      "events": 32,
+      "unique_titles": 2,
+      "unique_title_pct": 6.2,
+      "top_title_pct": 96.9,
+      "generic_events": 31,
+      "generic_pct": 96.9,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
+        "Olympiacos Piraeus vs Jagiellonia - UEFA Europa League 2026/2027 - MD1",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
@@ -900,18 +953,13 @@
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=5"
+        "GENERIC_OFF_EVENT_GUIDE"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 4.qa",
-        "beIN SPORTS XTRA 5.qa",
-        "beIN SPORTS XTRA 6.qa",
-        "beIN SPORTS XTRA 7.qa",
-        "beIN SPORTS XTRA 9.qa"
+        "beIN SPORTS XTRA 4.qa"
       ]
     },
     {
@@ -919,11 +967,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 5.qa",
       "name": "beIN SPORTS XTRA 5.qa",
-      "events": 34,
+      "events": 32,
       "unique_titles": 1,
-      "unique_title_pct": 2.9,
+      "unique_title_pct": 3.1,
       "top_title_pct": 100.0,
-      "generic_events": 34,
+      "generic_events": 32,
       "generic_pct": 100.0,
       "samples": [
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
@@ -936,13 +984,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=5"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
@@ -954,11 +1001,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 6.qa",
       "name": "beIN SPORTS XTRA 6.qa",
-      "events": 34,
+      "events": 32,
       "unique_titles": 1,
-      "unique_title_pct": 2.9,
+      "unique_title_pct": 3.1,
       "top_title_pct": 100.0,
-      "generic_events": 34,
+      "generic_events": 32,
       "generic_pct": 100.0,
       "samples": [
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
@@ -971,13 +1018,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=5"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
@@ -989,11 +1035,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 7.qa",
       "name": "beIN SPORTS XTRA 7.qa",
-      "events": 34,
+      "events": 32,
       "unique_titles": 1,
-      "unique_title_pct": 2.9,
+      "unique_title_pct": 3.1,
       "top_title_pct": 100.0,
-      "generic_events": 34,
+      "generic_events": 32,
       "generic_pct": 100.0,
       "samples": [
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
@@ -1006,13 +1052,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=5"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
@@ -1024,11 +1069,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 8.qa",
       "name": "beIN SPORTS XTRA 8.qa",
-      "events": 18,
+      "events": 17,
       "unique_titles": 1,
-      "unique_title_pct": 5.6,
+      "unique_title_pct": 5.9,
       "top_title_pct": 100.0,
-      "generic_events": 18,
+      "generic_events": 17,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports XTRA",
@@ -1054,11 +1099,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 9.qa",
       "name": "beIN SPORTS XTRA 9.qa",
-      "events": 34,
+      "events": 32,
       "unique_titles": 1,
-      "unique_title_pct": 2.9,
+      "unique_title_pct": 3.1,
       "top_title_pct": 100.0,
-      "generic_events": 34,
+      "generic_events": 32,
       "generic_pct": 100.0,
       "samples": [
         "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
@@ -1071,13 +1116,12 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=5"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
@@ -1089,11 +1133,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 04 bein.com.qa",
       "name": "beIN SPORTS XTRA 04 bein.com.qa",
-      "events": 15,
+      "events": 14,
       "unique_titles": 1,
-      "unique_title_pct": 6.7,
+      "unique_title_pct": 7.1,
       "top_title_pct": 100.0,
-      "generic_events": 15,
+      "generic_events": 14,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports XTRA",
@@ -1120,11 +1164,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 05 bein.com.qa",
       "name": "beIN SPORTS XTRA 05 bein.com.qa",
-      "events": 15,
+      "events": 14,
       "unique_titles": 1,
-      "unique_title_pct": 6.7,
+      "unique_title_pct": 7.1,
       "top_title_pct": 100.0,
-      "generic_events": 15,
+      "generic_events": 14,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports XTRA",
@@ -1144,6 +1188,68 @@
       "clone_ids": [
         "beIN SPORTS XTRA 04 bein.com.qa",
         "beIN SPORTS XTRA 05 bein.com.qa"
+      ]
+    },
+    {
+      "source": "epgshare-bein1",
+      "origin": "epgshare",
+      "id": "NEW_beIN-SPORTS-MAX-05_AR.bein",
+      "name": "NEW_beIN-SPORTS-MAX-05_AR",
+      "events": 14,
+      "unique_titles": 1,
+      "unique_title_pct": 7.1,
+      "top_title_pct": 100.0,
+      "generic_events": 14,
+      "generic_pct": 100.0,
+      "samples": [
+        "beIN Sports MAX",
+        "beIN Sports MAX",
+        "beIN Sports MAX",
+        "beIN Sports MAX"
+      ],
+      "verdict": "KEEP_SOURCE",
+      "warnings": [
+        "LOW_TITLE_DIVERSITY",
+        "REPEATED_GENERIC_TITLE",
+        "GENERIC_OFF_EVENT_GUIDE"
+      ],
+      "mapping_mode": "event_only_or_manual",
+      "source_retained": true,
+      "auto_lock_safe": false,
+      "clone_ids": [
+        "NEW_beIN-SPORTS-MAX-05_AR.bein",
+        "NEW_beIN-SPORTS-MAX-06_AR.bein"
+      ]
+    },
+    {
+      "source": "epgshare-bein1",
+      "origin": "epgshare",
+      "id": "NEW_beIN-SPORTS-MAX-06_AR.bein",
+      "name": "NEW_beIN-SPORTS-MAX-06_AR",
+      "events": 14,
+      "unique_titles": 1,
+      "unique_title_pct": 7.1,
+      "top_title_pct": 100.0,
+      "generic_events": 14,
+      "generic_pct": 100.0,
+      "samples": [
+        "beIN Sports MAX",
+        "beIN Sports MAX",
+        "beIN Sports MAX",
+        "beIN Sports MAX"
+      ],
+      "verdict": "KEEP_SOURCE",
+      "warnings": [
+        "LOW_TITLE_DIVERSITY",
+        "REPEATED_GENERIC_TITLE",
+        "GENERIC_OFF_EVENT_GUIDE"
+      ],
+      "mapping_mode": "event_only_or_manual",
+      "source_retained": true,
+      "auto_lock_safe": false,
+      "clone_ids": [
+        "NEW_beIN-SPORTS-MAX-05_AR.bein",
+        "NEW_beIN-SPORTS-MAX-06_AR.bein"
       ]
     }
   ]
