@@ -53,7 +53,8 @@ OFFICIAL_FIRST_ID_RE = re.compile(
     r"bein|beinsports|osn|osntv|alkass|"
     r"abudhabisports|adsports|ad\.sports|"
     r"dubaisports|dubai\.sports|dubairacing|dubai\.racing|"
-    r"ssc|thmanyah|saudisports|saudi\.sports"
+    r"ssc|thmanyah|saudisports|saudi\.sports|"
+    r"nationalgeographic|natgeo|disney"
     r")(?:[._-]|$)",
     re.I,
 )
@@ -61,7 +62,9 @@ OFFICIAL_FIRST_ID_RE = re.compile(
 # Verified 2026-09-14 by the official duplicate-source health audits. The MBC
 # receiver strategy is pinned per canonical ID: Shahid where its timeline is
 # cleanest, OSN where Shahid was weaker/placeholder-polluted, and ElCinema only
-# for MBC Masr Drama. These exact pins are also checked by mbc_final_regression.
+# for MBC Masr Drama. Premium International rows used by the exact bilingual
+# donor are also pinned to osn.com so ElCinema-default selection cannot break
+# the donor identity contract.
 CHANNEL_SITE_OVERRIDES = {
     "Alarabiya.ae@SD": "shahid.mbc.net",
     "AlHadath.sa@SD": "osn.com",
@@ -81,6 +84,17 @@ CHANNEL_SITE_OVERRIDES = {
     "MBCMax.ae@SD": "shahid.mbc.net",
     "MBCPersia.ae@SD": "shahid.mbc.net",
     "MBCPlusDrama.sa@SD": "osn.com",
+    "AnimalPlanetEurope.uk@SD": "osn.com",
+    "DiscoveryChannelMiddleEastAfrica.us@SD": "osn.com",
+    "InvestigationDiscovery.uk@SD": "osn.com",
+    "HistoryMiddleEast.us@SD": "osn.com",
+    "History2MiddleEast.us@SD": "osn.com",
+    "TLCArabia.us@SD": "osn.com",
+    "CartoonNetworkMENA.uk@SD": "osn.com",
+    "CartoonNetworkArabic.ae@SD": "osn.com",
+    "NickelodeonArabia.ae@SD": "osn.com",
+    "NickJrArabia.ae@SD": "osn.com",
+    "NicktoonsArabia.ae@SD": "osn.com",
 }
 
 # Exact identity-name normalization. This is deliberately not fuzzy. Upstream
