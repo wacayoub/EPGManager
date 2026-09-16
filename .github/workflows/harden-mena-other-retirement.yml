@@ -1,0 +1,99 @@
+name: Harden MENA Other retirement
+
+on:
+  push:
+    paths:
+      - ".github/workflows/harden-mena-other-retirement.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch atomic publish and add routing guard
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('.github/workflows/mena-epg.yml')
+          text = path.read_text(encoding='utf-8')
+
+          # Retiring generation is not enough: mena-data is a persistent branch,
+          # so an old mena-other file must be explicitly removed on each publish.
+          if 'rm -f mena-other.xml.gz mena-other.txt' not in text:
+              needle = '''          cd publish\n          git checkout -B mena-data origin/mena-data\n          cp ../output/final/*.xml.gz .\n'''
+              replacement = '''          cd publish\n          git checkout -B mena-data origin/mena-data\n          rm -f mena-other.xml.gz mena-other.txt\n          cp ../output/final/*.xml.gz .\n'''
+              if needle not in text:
+                  raise SystemExit('atomic publish insertion point not found')
+              text = text.replace(needle, replacement, 1)
+
+          # Stage deletions as well as new/modified feed files.
+          text = text.replace(
+              '          git add *.xml.gz *.txt *.json *.csv README.md\n',
+              '          git add -A\n',
+              1,
+          )
+
+          # Do not advertise a generic receiver bucket that is now internal-only.
+          text = text.replace(
+              'then country, then MENA Other. Arabic programme metadata',
+              'then country. Unclassified MENA identities remain internal-only and are never exposed as a receiver auto-mapping source. Arabic programme metadata',
+          )
+
+          # Assert the exact receiver behavior before the data branch can move.
+          marker = 'MENA_OTHER_RETIREMENT_AND_BEIN_MOVIES_ROUTING PASS'
+          if marker not in text:
+              needle = '''          cp ../output/catalog.json catalog.json\n          cp ../output/merge-report.json merge-report.json\n          printf '%s\\n' \\\n'''
+              replacement = '''          cp ../output/catalog.json catalog.json\n          cp ../output/merge-report.json merge-report.json\n          test ! -e mena-other.xml.gz\n          test ! -e mena-other.txt\n          python - <<'PYGUARD'\n          import json\n          from pathlib import Path\n\n          manifest = json.loads(Path('shards.json').read_text(encoding='utf-8'))\n          assert manifest.get('other_receiver_published') is False, manifest.get('other_receiver_published')\n          assert 'mena-other' not in (manifest.get('shards') or {}), 'mena-other still receiver-published'\n\n          provider = Path('provider-bein.txt').read_text(encoding='utf-8', errors='replace')\n          expected = [\n              'beIN.Movies.Premiere.qa',\n              'beIN.Movies.Action.qa',\n              'beIN.Movies.Drama.qa',\n              'beIN.Movies.Family.qa',\n          ]\n          missing = [cid for cid in expected if cid not in provider]\n          assert not missing, 'beIN Movies missing from provider-bein: %s' % missing\n          print('MENA_OTHER_RETIREMENT_AND_BEIN_MOVIES_ROUTING PASS')\n          PYGUARD\n          printf '%s\\n' \\\n'''
+              if needle not in text:
+                  raise SystemExit('publish guard insertion point not found')
+              text = text.replace(needle, replacement, 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "rm -f mena-other.xml.gz mena-other.txt" .github/workflows/mena-epg.yml
+          grep -q "MENA_OTHER_RETIREMENT_AND_BEIN_MOVIES_ROUTING PASS" .github/workflows/mena-epg.yml
+          grep -q "git add -A" .github/workflows/mena-epg.yml
+          if grep -q "then country, then MENA Other" .github/workflows/mena-epg.yml; then
+            echo "Retired MENA Other still advertised" >&2
+            exit 1
+          fi
+          echo "MENA_OTHER_PUBLISH_HARDENING PASS"
+
+      - name: Commit patch and dispatch production rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Routing Guard"
+          git config user.email "actions@users.noreply.github.com"
+          git add .github/workflows/mena-epg.yml
+          if ! git diff --cached --quiet; then
+            git commit -m "Delete retired MENA Other and guard beIN Movies routing"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          else
+            echo "MENA Other retirement hardening already present."
+          fi
+          curl -fsSL -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/mena-epg.yml/dispatches" \
+            -d '{"ref":"main"}'
