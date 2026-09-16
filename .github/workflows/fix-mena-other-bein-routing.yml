@@ -1,0 +1,199 @@
+name: Apply MENA Other retirement fix
+
+on:
+  push:
+    paths:
+      - ".github/workflows/fix-mena-other-bein-routing.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch receiver routing
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace(path, old, new, count=1):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              if old not in text:
+                  raise SystemExit(f'needle not found in {path}: {old[:120]!r}')
+              p.write_text(text.replace(old, new, count), encoding='utf-8')
+
+          # 1) Canonical beIN alias table: absorb old Qatar DIGITAL IDs into the
+          # canonical provider namespace instead of leaving duplicate receiver IDs.
+          p = 'tools/bein_receiver_id_normalize.py'
+          repl = {
+              '"beIN.Movies.Premiere.qa": {"beIN.Movies.Premiere.qa", "BEIN MOVIES PREMIERE.eg", "beINMovies1Premiere.qa@SD"},':
+              '"beIN.Movies.Premiere.qa": {"beIN.Movies.Premiere.qa", "BEIN MOVIES PREMIERE.eg", "beINMovies1Premiere.qa@SD", "MOVIES1 PREMIERE DIGITAL.qa"},',
+              '"beIN.Movies.Action.qa": {"beIN.Movies.Action.qa", "BEIN MOVIES ACTION.eg", "beINMovies2Action.qa@SD"},':
+              '"beIN.Movies.Action.qa": {"beIN.Movies.Action.qa", "BEIN MOVIES ACTION.eg", "beINMovies2Action.qa@SD", "MOVIES2 ACTION DIGITAL.qa"},',
+              '"beIN.Movies.Drama.qa": {"beIN.Movies.Drama.qa", "BEIN MOVIES DRAMA.eg", "beINMovies3Drama.qa@SD"},':
+              '"beIN.Movies.Drama.qa": {"beIN.Movies.Drama.qa", "BEIN MOVIES DRAMA.eg", "beINMovies3Drama.qa@SD", "MOVIES3 DRAMA DIGITAL.qa"},',
+              '"beIN.Movies.Family.qa": {"beIN.Movies.Family.qa", "BEIN MOVIES FAMILY.eg", "beINMovies4Family.qa@SD"},':
+              '"beIN.Movies.Family.qa": {"beIN.Movies.Family.qa", "BEIN MOVIES FAMILY.eg", "beINMovies4Family.qa@SD", "MOVIES4 FAMILY DIGITAL.qa"},',
+              '"beIN.Series.1.qa": {"beIN.Series.1.qa", "BeIn Series HD 1.eg", "beINSeries1.qa@SD"},':
+              '"beIN.Series.1.qa": {"beIN.Series.1.qa", "BeIn Series HD 1.eg", "beINSeries1.qa@SD", "SERIES1 DIGITAL.qa"},',
+              '"beIN.Series.2.qa": {"beIN.Series.2.qa", "beIN Series HD 2.eg", "beINSeries2.qa@SD"},':
+              '"beIN.Series.2.qa": {"beIN.Series.2.qa", "beIN Series HD 2.eg", "beINSeries2.qa@SD", "SERIES2 DIGITAL.qa"},',
+              '"beIN.4K.qa": {"beIN.4K.qa", "beIN4K.qa@SD"},':
+              '"beIN.4K.qa": {"beIN.4K.qa", "beIN4K.qa@SD", "4k DIGITAL.qa"},',
+              '"beIN.Sports.News.qa": {"beIN.Sports.News.qa", "beIN SPORTS NEWS.qa"},':
+              '"beIN.Sports.News.qa": {"beIN.Sports.News.qa", "beIN SPORTS NEWS.qa", "NEWS DIGITAL.qa"},',
+          }
+          for old, new in repl.items():
+              replace(p, old, new)
+
+          # 2) Premium split: old Qatar DIGITAL identities must never leak into
+          # regular MENA just because their legacy name omits the word "beIN".
+          p = 'tools/mena_cloud_finalize.py'
+          old = 'PREMIUM_RE = re.compile(r"(?:^|[^a-z0-9])(?:be\\s*in|bein|osn|osntv)(?:[^a-z0-9]|$)", re.I)\n'
+          new = old + '''BEIN_LEGACY_PREMIUM_RE = re.compile(\n    r"^(?:4k\\s+digital|movies1\\s+premiere\\s+digital|movies2\\s+action\\s+digital|"\n    r"movies3\\s+drama\\s+digital|movies4\\s+family\\s+digital|series1\\s+digital|"\n    r"series2\\s+digital|news\\s+digital)\\.qa(?:@sd)?$",\n    re.I,\n)\n'''
+          replace(p, old, new)
+          replace(
+              p,
+              'def is_premium_identity(cid: str, mapping_name: str) -> bool:\n    return bool(PREMIUM_RE.search("%s %s" % (cid or "", mapping_name or "")))\n',
+              '''def is_premium_identity(cid: str, mapping_name: str) -> bool:\n    if PREMIUM_RE.search("%s %s" % (cid or "", mapping_name or "")):\n        return True\n    return any(\n        BEIN_LEGACY_PREMIUM_RE.match(str(value or "").strip())\n        for value in (cid, mapping_name)\n    )\n'''
+          )
+
+          # 3) Provider shard routing: claim exact legacy beIN package identities
+          # before country/Other classification.
+          p = 'tools/mena_cloud_shards_safe.py'
+          marker = 'def safe_provider_group(cid, name, meta):\n'
+          const = '''BEIN_LEGACY_PACKAGE_KEYS = {\n    "4kdigitalqa",\n    "movies1premieredigitalqa",\n    "movies2actiondigitalqa",\n    "movies3dramadigitalqa",\n    "movies4familydigitalqa",\n    "series1digitalqa",\n    "series2digitalqa",\n    "newsdigitalqa",\n}\n\n\n'''
+          replace(p, marker, const + marker)
+          old = '''    c_id = compact(cid)\n    c_name = compact(name)\n    tokens = (c_id, c_name)\n\n    if has_word(p, "alkass", "al kass") or any(x.startswith("alkass") for x in tokens):\n'''
+          new = '''    c_id = compact(cid)\n    c_name = compact(name)\n    c_meta = compact((meta or {}).get("name") or "")\n    tokens = (c_id, c_name)\n\n    if {c_id, c_name, c_meta} & BEIN_LEGACY_PACKAGE_KEYS:\n        return "bein"\n    if has_word(p, "alkass", "al kass") or any(x.startswith("alkass") for x in tokens):\n'''
+          replace(p, old, new)
+
+          # 4) Retire MENA Other from the receiver surface. Keep its identities in
+          # the internal bucket so coverage/accounting remains auditable.
+          p = 'tools/mena_cloud_shards.py'
+          replace(
+              p,
+              'One channel is published in exactly one shard: premium/provider group first,\nthen a conservatively detected home country, otherwise MENA Other. Morocco is\nexcluded because EPGManager publishes a dedicated Morocco Cloud feed.\n',
+              'One channel is published in exactly one receiver shard: premium/provider group first,\nthen a conservatively detected home country. Unclassified MENA identities remain\ninternal-only for audit/recovery and are not exposed as an auto-mapping source.\nMorocco is excluded because EPGManager publishes a dedicated Morocco Cloud feed.\n'
+          )
+          replace(
+              p,
+              '    stats["mena-other"] = write_shard(out_dir, "mena-other", buckets["mena-other"], channels, programmes, "MENA Other")\n    stats["mena-other"].update({"kind": "other", "key": "MENA"})\n\n',
+              '    unclassified_internal_ids = sorted(buckets["mena-other"], key=str.casefold)\n\n'
+          )
+          replace(
+              p,
+              '''    receiver_internal_only_ids = sorted({\n        cid\n        for row in stats.values()\n        for cid in (row.get("internal_only_ids") or [])\n    }, key=str.casefold)\n''',
+              '''    receiver_internal_only_ids = sorted(\n        set(unclassified_internal_ids) | {\n            cid\n            for row in stats.values()\n            for cid in (row.get("internal_only_ids") or [])\n        },\n        key=str.casefold,\n    )\n'''
+          )
+          replace(
+              p,
+              '        "policy": "exclusive provider-first, then country, then MENA Other; Morocco excluded to dedicated Morocco Cloud; provider internal-only identities excluded from receiver shards",\n',
+              '        "policy": "exclusive provider-first, then country; unclassified MENA identities are internal-only; Morocco excluded to dedicated Morocco Cloud; provider internal-only identities excluded from receiver shards",\n'
+          )
+          replace(
+              p,
+              '        "other_channels": stats["mena-other"]["channels"],\n',
+              '        "other_channels": len(unclassified_internal_ids),\n        "other_receiver_published": False,\n        "unclassified_internal_channels": len(unclassified_internal_ids),\n        "unclassified_internal_ids": unclassified_internal_ids,\n'
+          )
+          replace(
+              p,
+              '        stats["mena-other"]["channels"],\n',
+              '        len(unclassified_internal_ids),\n'
+          )
+
+          # 5) Publication must actively remove the old files from mena-data, or
+          # an obsolete mena-other shard would survive because the branch is reused.
+          p = '.github/workflows/mena-epg.yml'
+          replace(
+              p,
+              '          cp ../output/final/*.xml.gz .\n',
+              '          rm -f mena-other.xml.gz mena-other.txt\n          cp ../output/final/*.xml.gz .\n'
+          )
+          replace(
+              p,
+              'then country, then MENA Other. Arabic programme metadata',
+              'then country; unclassified identities stay internal-only and are not exposed as receiver mapping candidates. Arabic programme metadata'
+          )
+
+          # 6) Hard release gate: MENA Other may exist internally, but never as a
+          # receiver-facing artifact again.
+          p = 'tools/receiver_release_gate.py'
+          replace(
+              p,
+              '    errors = []\n    profiles = {}\n',
+              '    errors = []\n    profiles = {}\n    if (base / "mena-other.xml.gz").exists() or (base / "mena-other.txt").exists():\n        errors.append("MENA_OTHER_RECEIVER_SHARD_PRESENT")\n'
+          )
+          PY
+
+      - name: Validate routing patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            tools/bein_receiver_id_normalize.py \
+            tools/mena_cloud_finalize.py \
+            tools/mena_cloud_shards.py \
+            tools/mena_cloud_shards_safe.py \
+            tools/receiver_release_gate.py
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'tools')
+          import bein_receiver_id_normalize as ids
+          import mena_cloud_finalize as finalize
+          import mena_cloud_shards_safe as shards
+
+          expected = {
+              'MOVIES1 PREMIERE DIGITAL.qa': 'beIN.Movies.Premiere.qa',
+              'MOVIES2 ACTION DIGITAL.qa': 'beIN.Movies.Action.qa',
+              'MOVIES3 DRAMA DIGITAL.qa': 'beIN.Movies.Drama.qa',
+              'MOVIES4 FAMILY DIGITAL.qa': 'beIN.Movies.Family.qa',
+              'SERIES1 DIGITAL.qa': 'beIN.Series.1.qa',
+              'SERIES2 DIGITAL.qa': 'beIN.Series.2.qa',
+              'NEWS DIGITAL.qa': 'beIN.Sports.News.qa',
+              '4k DIGITAL.qa': 'beIN.4K.qa',
+          }
+          for raw, canon in expected.items():
+              assert ids.RAW_TO_CANON.get(raw) == canon, (raw, ids.RAW_TO_CANON.get(raw))
+              assert finalize.is_premium_identity(raw, raw), raw
+              assert shards.safe_provider_group(raw, raw, {}) == 'bein', raw
+
+          text = Path('tools/mena_cloud_shards.py').read_text(encoding='utf-8')
+          assert 'stats["mena-other"] = write_shard' not in text
+          assert '"other_receiver_published": False' in text
+          gate = Path('tools/receiver_release_gate.py').read_text(encoding='utf-8')
+          assert 'MENA_OTHER_RECEIVER_SHARD_PRESENT' in gate
+          wf = Path('.github/workflows/mena-epg.yml').read_text(encoding='utf-8')
+          assert 'rm -f mena-other.xml.gz mena-other.txt' in wf
+          print('MENA_OTHER_RETIREMENT PASS')
+          PY
+
+      - name: Commit fix and dispatch production rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Routing Fix"
+          git config user.email "actions@users.noreply.github.com"
+          rm -f .github/workflows/fix-mena-other-bein-routing.yml
+          git add tools/bein_receiver_id_normalize.py tools/mena_cloud_finalize.py tools/mena_cloud_shards.py tools/mena_cloud_shards_safe.py tools/receiver_release_gate.py .github/workflows/mena-epg.yml .github/workflows/fix-mena-other-bein-routing.yml
+          git commit -m "Retire MENA Other receiver shard and route legacy beIN package IDs"
+          git push origin HEAD:main
+          curl -fsSL -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/mena-epg.yml/dispatches" \
+            -d '{"ref":"main"}'
