@@ -57,6 +57,8 @@ BEIN_LEGACY_PACKAGE_KEYS = {
 
 
 def safe_provider_group(cid, name, meta):
+    if cid in base.PREMIUM_INTERNATIONAL_IDS:
+        return "international"
     p = identity_probe(cid, name, meta)
     c_id = compact(cid)
     c_name = compact(name)

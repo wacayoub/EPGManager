@@ -41,9 +41,24 @@ PROVIDER_SHARDS = [
     ("art", "ART / Alfa", "provider-art"),
     ("ssc", "SSC", "provider-ssc"),
     ("starz", "STARZPLAY", "provider-starz"),
+    ("international", "Premium International", "provider-international"),
 ]
 COUNTRY_BY_CODE = {code: (label, stem) for code, label, stem in COUNTRY_SHARDS}
 ALL_STEMS = [x[2] for x in PROVIDER_SHARDS] + [x[2] for x in COUNTRY_SHARDS] + ["mena-other"]
+
+PREMIUM_INTERNATIONAL_IDS = {
+    "AnimalPlanetEurope.uk@SD",
+    "DiscoveryChannelMiddleEastAfrica.us@SD",
+    "InvestigationDiscovery.uk@SD",
+    "HistoryMiddleEast.us@SD",
+    "History2MiddleEast.us@SD",
+    "TLCArabia.us@SD",
+    "CartoonNetworkMENA.uk@SD",
+    "NickelodeonArabia.ae@SD",
+    "NickJrArabia.ae@SD",
+    "NicktoonsArabia.ae@SD",
+    "CartoonNetworkArabic.ae@SD",
+}
 
 # Receiver-facing Rotana identities frozen after the provider audit. Alternate
 # HD/generic aliases remain in the internal combined feed, but must not create
@@ -96,6 +111,8 @@ def has_word(text: str, *words: str) -> bool:
 
 
 def provider_group(cid: str, name: str, meta: dict):
+    if cid in PREMIUM_INTERNATIONAL_IDS:
+        return "international"
     p = probe(cid, name, meta)
     site = str(meta.get("site") or "").casefold()
     # Order matters: Al Kass IDs can originate from a beIN catalogue.

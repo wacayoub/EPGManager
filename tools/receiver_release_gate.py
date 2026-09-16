@@ -60,6 +60,19 @@ ADM = {
     "ADM.AD.Sports.Premium.2.ae", "ADM.Majid.ae",
     "ADM.National.Geographic.Abu.Dhabi.ae", "ADM.Yas.TV.ae", "ADM.YAS.TV.Extra.ae",
 }
+PREMIUM_INTERNATIONAL = {
+    "AnimalPlanetEurope.uk@SD",
+    "DiscoveryChannelMiddleEastAfrica.us@SD",
+    "InvestigationDiscovery.uk@SD",
+    "HistoryMiddleEast.us@SD",
+    "History2MiddleEast.us@SD",
+    "TLCArabia.us@SD",
+    "CartoonNetworkMENA.uk@SD",
+    "NickelodeonArabia.ae@SD",
+    "NickJrArabia.ae@SD",
+    "NicktoonsArabia.ae@SD",
+    "CartoonNetworkArabic.ae@SD",
+}
 PROVIDERS = {
     "provider-bein": ("beIN.", BEIN_CORE, BEIN_EVENTS),
     "provider-osn": ("OSN.", OSN, set()),
@@ -174,7 +187,7 @@ def main() -> int:
     for path in sorted(base.glob("*.xml.gz")):
         profiles[path.name[:-7]] = check_xml(path, errors)
 
-    required_files = {"mena-arabic", "mena", "premium"} | set(PROVIDERS)
+    required_files = {"mena-arabic", "mena", "premium", "provider-international"} | set(PROVIDERS)
     missing_files = sorted(required_files - set(profiles))
     if missing_files:
         errors.append("MISSING_FILES=%s" % missing_files)
@@ -209,6 +222,15 @@ def main() -> int:
             errors.append("%s: UNREVIEWED_IDS=%s" % (stem, sorted(extra)))
         if any(not cid.startswith(prefix) for cid in actual):
             errors.append("%s: NAMESPACE_MISMATCH" % stem)
+
+    if "provider-international" in profiles:
+        actual = profiles["provider-international"]["ids"]
+        missing = PREMIUM_INTERNATIONAL - actual
+        extra = actual - PREMIUM_INTERNATIONAL
+        if missing:
+            errors.append("provider-international: MISSING_CORE_IDS=%s" % sorted(missing))
+        if extra:
+            errors.append("provider-international: UNREVIEWED_IDS=%s" % sorted(extra))
 
     if "mena" in profiles:
         require_ratio("mena", profiles["mena"]["language"], "title_ar", 0.55, errors)

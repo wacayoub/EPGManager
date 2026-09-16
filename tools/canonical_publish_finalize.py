@@ -40,6 +40,7 @@ PROVIDER_STEMS = {
     "art": "provider-art",
     "ssc": "provider-ssc",
     "starz": "provider-starz",
+    "international": "provider-international",
 }
 BEIN_DROP_BRIDGE = {
     "beINSports5.qa@MENA": "beIN.Sports.5.qa",
