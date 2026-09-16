@@ -6,21 +6,40 @@ on:
       - ".github/workflows/smart-source-inspect.yml"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   inspect:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Inspect Smart Source code in current package
         shell: bash
         run: |
           set -euo pipefail
           SOURCE_FILE="$(tr -d '\r\n' < source/current.txt)"
-          rm -rf /tmp/epgsrc && mkdir -p /tmp/epgsrc
+          rm -rf /tmp/epgsrc && mkdir -p /tmp/epgsrc data
           unzip -q "source/$SOURCE_FILE" -d /tmp/epgsrc
-          echo '=== SOURCE ROOT ==='
-          find /tmp/epgsrc -maxdepth 4 -type f -name '*.py' | sort
-          echo '=== SMART/SOURCE MATCHES ==='
-          grep -RniE 'Smart Source|SmartSource|smart source|source(s)? refresh|refresh source|epgshare|openepg|mena-data|morocco.xml|provider-osn|source registry' /tmp/epgsrc --include='*.py' --include='*.json' --include='*.xml' | head -n 400 || true
-          echo '=== URL MATCHES ==='
-          grep -RniE 'raw.githubusercontent.com|http[s]?://' /tmp/epgsrc --include='*.py' --include='*.json' --include='*.xml' | head -n 300 || true
+          {
+            echo '=== SOURCE ROOT ==='
+            find /tmp/epgsrc -maxdepth 5 -type f \( -name '*.py' -o -name '*.json' -o -name '*.xml' \) | sort
+            echo '=== SMART/SOURCE MATCHES ==='
+            grep -RniE 'Smart Source|SmartSource|smart source|source(s)? refresh|refresh source|epgshare|openepg|mena-data|morocco.xml|provider-osn|source registry|catalog' /tmp/epgsrc --include='*.py' --include='*.json' --include='*.xml' | head -n 600 || true
+            echo '=== URL MATCHES ==='
+            grep -RniE 'raw.githubusercontent.com|http[s]?://' /tmp/epgsrc --include='*.py' --include='*.json' --include='*.xml' | head -n 500 || true
+          } | tee data/smart-source-inspect.txt
+
+      - name: Persist inspection report
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Inspector"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/smart-source-inspect.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record Smart Source integration points"
+          git pull --rebase origin main
+          git push origin HEAD:main
