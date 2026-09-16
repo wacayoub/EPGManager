@@ -1,28 +1,17 @@
 name: NatGeo Arabic Fast Enrichment
 
 on:
-  workflow_run:
-    workflows: ["MENA Cloud EPG"]
-    types: [completed]
-  push:
-    paths:
-      - ".github/workflows/natgeo-arabic-fast-enrichment.yml"
-      - "tools/natgeo_ad_arabic_enrich.py"
-      - "data/natgeo_ad_arabic_metadata.json"
-      - "tools/adm_id_audit_policy.py"
-      - "tools/adm_final_regression.py"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: natgeo-arabic-fast-enrichment
-  cancel-in-progress: true
+  group: mena-data-writer
+  cancel-in-progress: false
 
 jobs:
   enrich:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -70,75 +59,17 @@ jobs:
             fi
           done
 
-      - name: Recalculate production manifests
+      - name: Rebuild and gate all artifacts after enrichment
         shell: bash
         run: |
           set -euo pipefail
-          python - <<'PY'
-          import gzip, hashlib, json, re, xml.etree.ElementTree as ET
-          from pathlib import Path
-
-          AR = re.compile(r'[\u0600-\u06ff]')
-          LAT = re.compile(r'[A-Za-z]')
-          root = Path('publish')
-
-          def profile(name):
-              p = root / name
-              data = p.read_bytes()
-              xml = ET.fromstring(gzip.decompress(data))
-              channels = xml.findall('channel')
-              programmes = xml.findall('programme')
-              titles = []
-              descs = []
-              for event in programmes:
-                  t = event.find('title')
-                  d = event.find('desc')
-                  titles.append(((t.text or '').strip() if t is not None else ''))
-                  descs.append(((d.text or '').strip() if d is not None else ''))
-              n = float(len(programmes) or 1)
-              return {
-                  'channels': len(channels),
-                  'programmes': len(programmes),
-                  'size_bytes': len(data),
-                  'sha256': hashlib.sha256(data).hexdigest(),
-                  'arabic_title_ratio': round(sum(bool(AR.search(x)) for x in titles) / n, 4),
-                  'english_title_ratio': round(sum(bool(LAT.search(x)) for x in titles) / n, 4),
-                  'arabic_desc_ratio': round(sum(bool(AR.search(x)) for x in descs) / n, 4),
-              }
-
-          shard_path = root / 'shards.json'
-          if shard_path.exists():
-              shards = json.loads(shard_path.read_text(encoding='utf-8'))
-              row = shards.get('shards', {}).get('provider-adm')
-              if isinstance(row, dict):
-                  p = profile('provider-adm.xml.gz')
-                  for key in ('channels', 'programmes', 'size_bytes', 'sha256'):
-                      row[key] = p[key]
-                  row['natgeo_metadata_policy'] = 'verified Arabic provider metadata only; ambiguous matches quarantined'
-                  shard_path.write_text(json.dumps(shards, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-
-          manifest_path = root / 'manifest.json'
-          if manifest_path.exists():
-              manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
-              if (root / 'mena-arabic.xml.gz').exists():
-                  p = profile('mena-arabic.xml.gz')
-                  for key in ('channels', 'programmes', 'size_bytes', 'sha256', 'arabic_title_ratio', 'english_title_ratio', 'arabic_desc_ratio'):
-                      manifest[key] = p[key]
-                  legacy = manifest.get('splits', {}).get('legacy_combined')
-                  if isinstance(legacy, dict):
-                      legacy.update(p)
-              if (root / 'mena.xml.gz').exists():
-                  p = profile('mena.xml.gz')
-                  row = manifest.get('splits', {}).get('mena')
-                  if isinstance(row, dict):
-                      row.update(p)
-              if (root / 'premium.xml.gz').exists():
-                  p = profile('premium.xml.gz')
-                  row = manifest.get('splits', {}).get('premium')
-                  if isinstance(row, dict):
-                      row.update(p)
-              manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-          PY
+          python tools/canonical_publish_finalize.py --dir publish --skip-normalizers
+          python tools/receiver_release_gate.py \
+            --dir publish \
+            --minimum-median-future-hours 30 \
+            --json publish/receiver-release-gate.json \
+            --text publish/receiver-release-gate.txt
+          python tools/namespace_replay_test.py --dir publish
 
       - name: Publish per-ID ADM REVIEW FROZEN audit
         shell: bash
@@ -166,7 +97,9 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add provider-adm.xml.gz mena-arabic.xml.gz manifest.json shards.json \
             natgeo-arabic-enrichment.json natgeo-arabic-enrichment.txt \
-            adm-id-audit-policy.json adm-id-audit-policy.txt adm-final-regression.txt
+            adm-id-audit-policy.json adm-id-audit-policy.txt adm-final-regression.txt \
+            canonical-publish-finalize.json receiver-id-aliases.json \
+            receiver-release-gate.json receiver-release-gate.txt
           [ ! -e mena.xml.gz ] || git add mena.xml.gz
           [ ! -e premium.xml.gz ] || git add premium.xml.gz
           if git diff --cached --quiet; then

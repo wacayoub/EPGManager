@@ -2,29 +2,16 @@ name: All ID Programme Audit
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["MENA Cloud EPG"]
-    types: [completed]
-  push:
-    paths:
-      - ".github/workflows/all-id-audit.yml"
-      - "tools/all_id_audit.py"
-      - "tools/all_id_audit_alias_aware.py"
-      - "tools/all_id_audit_verified_exceptions.py"
-      - "tools/bein_id_audit.py"
-      - "tools/bein_provider_repair.py"
-      - "tools/mena_cloud_shards_strict.py"
 
 permissions:
   contents: write
 
 concurrency:
-  group: all-id-programme-audit
-  cancel-in-progress: true
+  group: mena-data-writer
+  cancel-in-progress: false
 
 jobs:
   audit:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

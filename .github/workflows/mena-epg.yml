@@ -27,6 +27,7 @@ on:
       - "tools/bein_id_audit_policy.py"
       - "tools/mena_integrity_guard.py"
       - "tools/all_id_audit_alias_aware.py"
+      - "tools/all_id_audit_verified_exceptions.py"
       - "tools/bein_final_regression.py"
       - "tools/osn_id_audit_policy.py"
       - "tools/osn_final_regression.py"
@@ -34,13 +35,22 @@ on:
       - "tools/mbc_id_audit_policy.py"
       - "tools/mbc_final_regression.py"
       - "tools/mbc_gap_repair.py"
+      - "tools/canonical_receiver_cleanup.py"
+      - "tools/bein_receiver_id_normalize.py"
+      - "tools/global_receiver_id_normalize.py"
+      - "tools/provider_namespace_polish.py"
+      - "tools/canonical_publish_finalize.py"
+      - "tools/receiver_release_gate.py"
+      - "tools/namespace_replay_test.py"
+      - "tools/natgeo_ad_arabic_enrich.py"
+      - "data/natgeo_ad_arabic_metadata.json"
 
 permissions:
   contents: write
 
 concurrency:
-  group: mena-cloud-epg
-  cancel-in-progress: true
+  group: mena-data-writer
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -118,13 +128,22 @@ jobs:
             tools/bein_id_audit_policy.py \
             tools/mena_integrity_guard.py \
             tools/all_id_audit_alias_aware.py \
+            tools/all_id_audit_verified_exceptions.py \
             tools/bein_final_regression.py \
             tools/osn_id_audit_policy.py \
             tools/osn_final_regression.py \
             tools/osn_bilingual_enrich.py \
             tools/mbc_id_audit_policy.py \
             tools/mbc_final_regression.py \
-            tools/mbc_gap_repair.py
+            tools/mbc_gap_repair.py \
+            tools/canonical_receiver_cleanup.py \
+            tools/bein_receiver_id_normalize.py \
+            tools/global_receiver_id_normalize.py \
+            tools/provider_namespace_polish.py \
+            tools/canonical_publish_finalize.py \
+            tools/receiver_release_gate.py \
+            tools/namespace_replay_test.py \
+            tools/natgeo_ad_arabic_enrich.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
@@ -171,6 +190,25 @@ jobs:
           curl -fL --retry 2 --retry-delay 1 --connect-timeout 5 --max-time 25 \
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz" \
             -o previous/mena-arabic.xml.gz || true
+          curl -fL --retry 2 --retry-delay 1 --connect-timeout 5 --max-time 25 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/receiver-id-aliases.json" \
+            -o previous/receiver-id-aliases.json || true
+
+      - name: Bootstrap exact pre-normalization LKG aliases when absent
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -s previous/receiver-id-aliases.json ]; then
+            echo "Published receiver alias bridge is available."
+            exit 0
+          fi
+          git fetch origin mena-data
+          git worktree add previous/bootstrap ed60528727ef8a579db63eefc4f2e7fd5ea90db5
+          python tools/canonical_publish_finalize.py --dir previous/bootstrap
+          cp previous/bootstrap/receiver-id-aliases.json previous/receiver-id-aliases.json
+          test -s previous/receiver-id-aliases.json
+          echo "Bootstrapped exact raw-to-canonical LKG aliases from the retained pre-normalization snapshot."
 
       - name: Grab primary programme data - 2 days only
         if: steps.gate.outputs.run == 'true'
@@ -240,6 +278,7 @@ jobs:
             --candidate output/merged.xml \
             --catalog-manifest output/catalog.json \
             --previous previous/mena-arabic.xml.gz \
+            --receiver-aliases previous/receiver-id-aliases.json \
             --merge-report output/merge-report.json \
             --window-hours 48 \
             --output-dir output/final
@@ -267,72 +306,48 @@ jobs:
             --donor output/osn-en.xml \
             --report-json output/final/osn-bilingual-enrichment.json \
             --report-text output/final/osn-bilingual-enrichment.txt
-          python - <<'PY'
-          import hashlib, json
-          from pathlib import Path
-          p = Path('output/final/provider-osn.xml.gz')
-          data = p.read_bytes()
-          mpath = Path('output/final/shards.json')
-          manifest = json.loads(mpath.read_text(encoding='utf-8'))
-          row = manifest['shards']['provider-osn']
-          row['size_bytes'] = len(data)
-          row['sha256'] = hashlib.sha256(data).hexdigest()
-          mpath.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-          print('OSN shard manifest refreshed: bytes=%d sha256=%s' % (len(data), row['sha256']))
-          PY
 
-      - name: Validate production feeds and exclusive shard invariants
+      - name: Enrich verified NatGeo Arabic metadata before canonical publication
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          python - <<'PY'
-          import gzip, json, xml.etree.ElementTree as ET
-          from pathlib import Path
+          python tools/natgeo_ad_arabic_enrich.py audit-cache \
+            --cache data/natgeo_ad_arabic_metadata.json
+          python tools/natgeo_ad_arabic_enrich.py enrich \
+            --xml output/final/provider-adm.xml.gz \
+            --output output/final/provider-adm.xml.gz \
+            --cache data/natgeo_ad_arabic_metadata.json \
+            --report-json output/final/natgeo-arabic-enrichment.json \
+            --report-text output/final/natgeo-arabic-enrichment.txt
+          for f in mena-arabic.xml.gz mena.xml.gz premium.xml.gz; do
+            python tools/natgeo_ad_arabic_enrich.py enrich \
+              --xml "output/final/$f" \
+              --output "output/final/$f" \
+              --cache data/natgeo_ad_arabic_metadata.json
+          done
 
-          def load(stem):
-              p = Path('output/final/%s.xml.gz' % stem)
-              root = ET.fromstring(gzip.decompress(p.read_bytes()))
-              ids = [(c.get('id') or '').strip() for c in root.findall('channel')]
-              assert all(ids), '%s: empty channel id' % stem
-              assert len(ids) == len(set(ids)), '%s: duplicate channel ids' % stem
-              events = root.findall('programme')
-              keys = []
-              event_ids = set()
-              for e in events:
-                  key = ((e.get('channel') or '').strip(),
-                         (e.get('start') or '').strip(),
-                         (e.get('stop') or '').strip())
-                  assert key[0] and key[1], '%s: invalid programme key' % stem
-                  keys.append(key)
-                  event_ids.add(key[0])
-              assert len(keys) == len(set(keys)), '%s: duplicate programme slots' % stem
-              assert event_ids.issubset(set(ids)), '%s: orphan programme' % stem
-              zero_programme_ids = set(ids) - event_ids
-              assert not zero_programme_ids, '%s: zero-programme channels: %s' % (
-                  stem, sorted(zero_programme_ids)[:20])
-              return set(ids), len(events)
+      - name: Canonicalize once and rebuild every publish artifact from final bytes
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -s previous/receiver-id-aliases.json ]; then
+            cp previous/receiver-id-aliases.json output/final/receiver-id-aliases.json
+          fi
+          python tools/canonical_publish_finalize.py --dir output/final
 
-          combined_ids, combined_events = load('mena-arabic')
-          main_manifest = json.loads(Path('output/final/manifest.json').read_text(encoding='utf-8'))
-          shard_manifest = json.loads(Path('output/final/shards.json').read_text(encoding='utf-8'))
-          assert main_manifest['window_hours'] == 48
-          assert combined_events >= 100
-          seen = set()
-          for stem, expected in shard_manifest['shards'].items():
-              ids, events = load(stem)
-              assert len(ids) == expected['channels'], (stem, len(ids), expected['channels'])
-              assert events == expected['programmes'], (stem, events, expected['programmes'])
-              assert not (seen & ids), 'exclusive shard overlap: %s' % stem
-              seen.update(ids)
-          assert len(seen) == shard_manifest['published_channels']
-          assert len(combined_ids) == shard_manifest['input_channels']
-          assert len(seen) + shard_manifest['excluded_morocco_channels'] == len(combined_ids)
-          assert shard_manifest['other_channels'] == shard_manifest['shards']['mena-other']['channels']
-          print('PASS: combined=%d/%d exclusive_shards=%d MoroccoExcluded=%d Other=%d zeroEPG=0' % (
-              len(combined_ids), combined_events, len(seen),
-              shard_manifest['excluded_morocco_channels'], shard_manifest['other_channels']))
-          PY
+      - name: Gate canonical receiver release and real coverage
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/receiver_release_gate.py \
+            --dir output/final \
+            --minimum-median-future-hours 30 \
+            --json output/final/receiver-release-gate.json \
+            --text output/final/receiver-release-gate.txt
+          python tools/namespace_replay_test.py --dir output/final
 
       - name: Audit key programme display samples
         if: steps.gate.outputs.run == 'true'
@@ -428,6 +443,30 @@ jobs:
             --audit-json output/final/osn-id-audit-policy.json \
             --text output/final/osn-final-regression.txt
 
+      - name: Run coherent all-ID release audit before publication
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/all_id_audit_verified_exceptions.py \
+            --dir output/final \
+            --manifest output/final/shards.json \
+            --json output/final/all-id-audit.json \
+            --text output/final/all-id-audit.txt \
+            --csv output/final/all-id-audit.csv
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('output/final/all-id-audit.json').read_text(encoding='utf-8'))
+          manifest = json.loads(Path('output/final/shards.json').read_text(encoding='utf-8'))
+          summary = report['summary']
+          assert not summary['missing_shards'], summary['missing_shards']
+          assert summary['channels'] == manifest['published_channels']
+          assert int(summary.get('FAIL', 0) or 0) == 0, summary
+          assert int(summary.get('NO_EPG', 0) or 0) == 0, summary
+          print('ALL_ID_RELEASE PASS', summary)
+          PY
+
       - name: Publish atomically to mena-data
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -442,33 +481,19 @@ jobs:
           git checkout -B mena-data origin/mena-data
           cp ../output/final/*.xml.gz .
           cp ../output/final/*.txt .
-          cp ../output/final/manifest.json .
-          cp ../output/final/shards.json .
-          cp ../output/final/program-audit.json .
-          cp ../output/final/program-audit.txt .
-          cp ../output/final/global-epg-audit.json .
-          cp ../output/final/global-epg-audit.txt .
-          cp ../output/final/virtual-epgmanager.json .
-          cp ../output/final/virtual-epgmanager.txt .
-          cp ../output/final/arabic-priority-test.json .
-          cp ../output/final/arabic-priority-test.txt .
-          cp ../output/final/bein-id-audit.json .
-          cp ../output/final/bein-id-audit.txt .
-          cp ../output/final/bein-id-audit-policy.json .
-          cp ../output/final/bein-id-audit-policy.txt .
-          cp ../output/final/osn-id-audit-policy.json .
-          cp ../output/final/osn-id-audit-policy.txt .
-          cp ../output/final/osn-bilingual-enrichment.json .
+          cp ../output/final/*.json .
+          cp ../output/final/*.csv .
           cp ../output/catalog.json catalog.json
           cp ../output/merge-report.json merge-report.json
           printf '%s\n' \
-            'EPGManager MENA Cloud data branch. TV-only rolling 48-hour guide. Receiver-facing XML omits channel identities with zero final programmes to reduce parsing and memory cost; the full internal catalogue remains available for audits and source recovery. Event channels reappear automatically when real EPG is available. Receiver sources are split exclusively by premium/provider identity first, then by authoritative/conservative channel country, then MENA Other. Arabic programme metadata is preferred before English/international fallback for regular MENA channels. Premium OSN uses official English titles with official Arabic descriptions when exact bilingual slots are available. Morocco stays on its dedicated Morocco Cloud. Legacy mena-arabic/mena/premium files remain for compatibility.' \
+            'EPGManager MENA Cloud data branch. TV-only guide requested up to 48 hours; the measured future horizon is recorded and release-gated in manifest.json. Receiver-facing XML omits channel identities with zero final programmes to reduce parsing and memory cost. Event channels reappear automatically when real EPG is available. Receiver sources use one canonical ID namespace and are split exclusively by premium/provider identity first, then country, then MENA Other. Arabic programme metadata is preferred before English/international fallback for regular MENA channels. Premium OSN uses official English titles with official Arabic descriptions when exact bilingual slots are available. Morocco stays on its dedicated Morocco Cloud. mena plus premium are an exact disjoint union of mena-arabic for compatibility.' \
             > README.md
-          git add *.xml.gz *.txt manifest.json shards.json program-audit.json program-audit.txt global-epg-audit.json global-epg-audit.txt virtual-epgmanager.json virtual-epgmanager.txt arabic-priority-test.json arabic-priority-test.txt bein-id-audit.json bein-id-audit.txt bein-id-audit-policy.json bein-id-audit-policy.txt osn-id-audit-policy.json osn-id-audit-policy.txt osn-bilingual-enrichment.json catalog.json merge-report.json README.md
+          git add *.xml.gz *.txt *.json *.csv README.md
           if git diff --cached --quiet; then
             echo "No MENA data changes."
             exit 0
           fi
           stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
           git commit -m "MENA Cloud authoritative country/provider shards ${stamp}"
-          git push origin mena-data
+          git pull --rebase origin mena-data
+          git push origin HEAD:mena-data

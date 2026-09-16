@@ -222,7 +222,9 @@ def main():
                 desc = descs[0] if descs else {"text": "", "lang": "other"}
                 lines.append("  %s -> %s" % (p.get("start") or "?", p.get("stop") or "?"))
                 lines.append("    TITLE[%s]: %s" % (title["lang"], title["text"]))
-                lines.append("    DESC[%s]: %s" % (desc["lang"], desc["text"][:500]))
+                lines.append("    DESC[%s]: %s" % (
+                    desc["lang"], desc["text"][:500] or "<EMPTY>"
+                ))
             if not rows:
                 lines.append("  NO UPCOMING PROGRAMMES")
             lines.append("")

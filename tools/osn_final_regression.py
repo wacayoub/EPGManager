@@ -14,6 +14,8 @@ import argparse
 import json
 from pathlib import Path
 
+from receiver_release_gate import OSN as CANONICAL_EXPECTED_IDS
+
 
 EXPECTED_IDS = {
     "Osn Ya Hala Aflam.eg",
@@ -80,14 +82,17 @@ def main():
 
     audit = json.loads(Path(args.audit_json).read_text(encoding="utf-8"))
     rows = {row.get("id"): row for row in audit.get("channels", []) if row.get("id")}
+    canonical_namespace = bool(rows) and all(str(cid).startswith("OSN.") for cid in rows)
+    expected_ids = CANONICAL_EXPECTED_IDS if canonical_namespace else EXPECTED_IDS
+    expected_aliases = {} if canonical_namespace else EXPECTED_ALIASES
     counts = ((audit.get("summary") or {}).get("counts") or {})
     errors = []
     notes = []
 
-    missing = sorted(EXPECTED_IDS - set(rows), key=str.casefold)
+    missing = sorted(expected_ids - set(rows), key=str.casefold)
     if missing:
         errors.append("MISSING_EXPECTED_IDS=%s" % ",".join(missing))
-    unexpected = sorted(set(rows) - EXPECTED_IDS, key=str.casefold)
+    unexpected = sorted(set(rows) - expected_ids, key=str.casefold)
     if unexpected:
         # New OSN channels are not inherently bad, but adding them without an
         # explicit provider audit would defeat the frozen-provider guarantee.
@@ -116,7 +121,7 @@ def main():
     latin_title_pcts = []
     arabic_desc_pcts = []
     for cid, row in rows.items():
-        if cid in EXPECTED_ALIASES:
+        if cid in expected_aliases:
             continue
         events = int(row.get("events", 0) or 0)
         coverage = float(row.get("coverage_hours", 0.0) or 0.0)
@@ -154,7 +159,8 @@ def main():
     # The ten rescued official rows must all be populated and clean. Documentary
     # was the main pre-fix defect (25h gap), so this explicitly prevents that bad
     # secondary-source timeline from being published again.
-    for cid in sorted(OFFICIAL_RECOVERED_IDS, key=str.casefold):
+    recovered_ids = set() if canonical_namespace else OFFICIAL_RECOVERED_IDS
+    for cid in sorted(recovered_ids, key=str.casefold):
         row = rows.get(cid)
         if not row:
             continue
@@ -163,12 +169,12 @@ def main():
                 cid, float(row.get("coverage_hours", 0.0) or 0.0)))
         if int(row.get("gaps_gt_2h", 0) or 0):
             errors.append("OFFICIAL_RECOVERY_GAP=%s:%s" % (cid, row.get("gaps_gt_2h")))
-    notes.append("official_recovered_ids_checked=%d" % len(OFFICIAL_RECOVERED_IDS))
+    notes.append("official_recovered_ids_checked=%d" % len(recovered_ids))
 
     # Saved Vu+ mappings to the two Egypt-era IDs remain valid but must now be
     # exact logical copies of the official canonical schedules and metadata.
     alias_ok = 0
-    for alias, canonical in EXPECTED_ALIASES.items():
+    for alias, canonical in expected_aliases.items():
         row = rows.get(alias)
         if not row:
             errors.append("ALIAS_MISSING=%s" % alias)
@@ -179,7 +185,7 @@ def main():
             errors.append("ALIAS_NOT_EXACT=%s" % alias)
         else:
             alias_ok += 1
-    notes.append("verified_legacy_aliases=%d/%d" % (alias_ok, len(EXPECTED_ALIASES)))
+    notes.append("verified_legacy_aliases=%d/%d" % (alias_ok, len(expected_aliases)))
 
     documentary = rows.get("OSNtv Documentary.sa")
     if documentary:
@@ -196,7 +202,7 @@ def main():
     lines = [
         "OSN FINAL REGRESSION GATE: %s" % status,
         "expected_ids=%d actual_ids=%d REVIEW=%d FAIL=%d" % (
-            len(EXPECTED_IDS), len(rows), len(review_ids), len(fail_ids)),
+            len(expected_ids), len(rows), len(review_ids), len(fail_ids)),
         "",
         "Checks:",
     ]

@@ -85,6 +85,12 @@ def main():
     root = load_xml(Path(args.xml))
     audit = json.loads(Path(args.audit_json).read_text(encoding="utf-8"))
     rows = {r.get("id"): r for r in audit.get("channels", []) if r.get("id")}
+    canonical_namespace = bool(rows) and all(str(cid).startswith("beIN.") for cid in rows)
+    sports_ids = (
+        {number: "beIN.Sports.%d.qa" % number for number in range(1, 10)}
+        if canonical_namespace else SPORTS_CANONICAL
+    )
+    expected_aliases = {} if canonical_namespace else EXPECTED_ALIASES
     errors = []
     notes = []
 
@@ -100,7 +106,7 @@ def main():
         notes.append("new_review_ids_diagnostic=%s" % ",".join(unexpected_reviews))
 
     coverages = []
-    for number, cid in SPORTS_CANONICAL.items():
+    for number, cid in sports_ids.items():
         row = rows.get(cid)
         if not row:
             errors.append("SPORTS_%d_MISSING=%s" % (number, cid))
@@ -134,7 +140,7 @@ def main():
             notes.append("sports_1_9_horizon_drift_info=%.1fh" % drift)
     notes.append("coverage_gate=INFORMATIONAL_ONLY receiver_max=48h")
 
-    for alias, canonical in EXPECTED_ALIASES.items():
+    for alias, canonical in expected_aliases.items():
         row = rows.get(alias)
         if not row:
             errors.append("ALIAS_MISSING=%s" % alias)

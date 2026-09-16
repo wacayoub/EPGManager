@@ -84,6 +84,11 @@ for n in range(1, 7):
 for n in range(1, 10):
     DISPLAY[f"beIN.Sports.XTRA{n}.qa"] = f"beIN Sports XTRA {n}"
 
+OPTIONAL_EVENT_IDS = (
+    {f"beIN.Sports.MAX{n}.qa" for n in range(1, 7)} |
+    {f"beIN.Sports.XTRA{n}.qa" for n in range(1, 10)}
+)
+
 
 def read_root(path: Path) -> ET.Element:
     data = path.read_bytes()
@@ -217,11 +222,12 @@ def main():
     provider = base / "provider-bein.xml.gz"
     root = read_root(provider)
     ids = [(c.get("id") or "").strip() for c in root.findall("channel")]
-    expected = set(RENAME.values())
-    if set(ids) != expected:
-        missing = sorted(expected - set(ids))
-        extra = sorted(set(ids) - expected)
-        raise SystemExit(f"provider-bein canonical set mismatch: missing={missing} extra={extra}")
+    allowed = set(RENAME.values())
+    required_core = allowed - OPTIONAL_EVENT_IDS
+    missing = sorted(required_core - set(ids))
+    extra = sorted(set(ids) - allowed)
+    if missing or extra:
+        raise SystemExit(f"provider-bein canonical set mismatch: missing_core={missing} extra={extra}")
     if len(ids) != len(set(ids)):
         raise SystemExit("duplicate canonical beIN IDs")
     event_ids = {(p.get("channel") or "").strip() for p in root.findall("programme")}

@@ -1,50 +1,21 @@
 name: Canonical Receiver ID Reset
 
 on:
-  workflow_run:
-    workflows: ["MENA Cloud EPG"]
-    types: [completed]
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/canonical-id-reset.yml"
-      - "tools/canonical_receiver_cleanup.py"
-      - "tools/bein_receiver_id_normalize.py"
-      - "tools/global_receiver_id_normalize.py"
-      - "tools/provider_namespace_polish.py"
-  schedule:
-    - cron: "30 5,6,17,18 * * *"
 
 permissions:
   contents: write
 
 concurrency:
-  group: canonical-receiver-id-reset
-  cancel-in-progress: true
+  group: mena-data-writer
+  cancel-in-progress: false
 
 jobs:
   canonicalize:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Casablanca schedule gate
-        id: gate
-        shell: bash
-        run: |
-          if [ "${{ github.event_name }}" != "schedule" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          else
-            hour="$(TZ=Africa/Casablanca date +%H)"
-            if [ "$hour" = "06" ] || [ "$hour" = "18" ]; then
-              echo "run=true" >> "$GITHUB_OUTPUT"
-            else
-              echo "run=false" >> "$GITHUB_OUTPUT"
-            fi
-          fi
-
       - name: Checkout canonicalizer
-        if: steps.gate.outputs.run == 'true'
         uses: actions/checkout@v4
         with:
           ref: main
@@ -52,108 +23,25 @@ jobs:
           fetch-depth: 1
 
       - name: Checkout published MENA data
-        if: steps.gate.outputs.run == 'true'
         uses: actions/checkout@v4
         with:
           ref: mena-data
           path: publish
           fetch-depth: 0
 
-      - name: Canonicalize legacy aliases and zero-programme IDs
-        if: steps.gate.outputs.run == 'true'
+      - name: Rebuild one coherent canonical publication
         shell: bash
         run: |
           set -euo pipefail
-          already_normalized="$(python - <<'PY'
-          import gzip, xml.etree.ElementTree as ET
-          from pathlib import Path
-          checks = [
-              ('provider-mbc.xml.gz', 'MBC.'),
-              ('provider-rotana.xml.gz', 'Rotana.'),
-              ('provider-dmi.xml.gz', 'DMI.'),
-          ]
-          ok = True
-          for fn, prefix in checks:
-              p = Path('publish') / fn
-              if not p.exists():
-                  ok = False; break
-              try:
-                  root = ET.fromstring(gzip.decompress(p.read_bytes()))
-              except Exception:
-                  ok = False; break
-              ids = [(c.get('id') or '').strip() for c in root.findall('channel')]
-              if not ids or not all(x.startswith(prefix) for x in ids):
-                  ok = False; break
-          print('yes' if ok else 'no')
-          PY
-          )"
-          if [ "$already_normalized" = "yes" ]; then
-            echo "Already globally normalized: skipping legacy whitelist cleanup."
-          else
-            python generator/tools/canonical_receiver_cleanup.py --dir publish
-          fi
-
-      - name: Normalize definitive beIN receiver namespace
-        if: steps.gate.outputs.run == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          python generator/tools/bein_receiver_id_normalize.py --dir publish
-
-      - name: Normalize every other receiver namespace
-        if: steps.gate.outputs.run == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          python generator/tools/global_receiver_id_normalize.py --dir publish
-
-      - name: Polish provider namespaces
-        if: steps.gate.outputs.run == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          python generator/tools/provider_namespace_polish.py --dir publish
-
-      - name: Validate global receiver identities
-        if: steps.gate.outputs.run == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          import gzip
-          import re
-          import xml.etree.ElementTree as ET
-          from pathlib import Path
-          total = 0
-          for p in sorted(Path('publish').glob('*.xml.gz')):
-              root = ET.fromstring(gzip.decompress(p.read_bytes()))
-              ids = [(c.get('id') or '').strip() for c in root.findall('channel')]
-              events = root.findall('programme')
-              event_ids = {(e.get('channel') or '').strip() for e in events}
-              assert len(ids) == len(set(ids)), f'{p.name}: duplicate IDs'
-              assert event_ids.issubset(set(ids)), f'{p.name}: programme points to missing channel'
-              assert not (set(ids) - event_ids), f'{p.name}: zero-programme IDs'
-              assert all('@SD' not in x and '@HD' not in x and '@MENA' not in x for x in ids), f'{p.name}: old @-style IDs remain'
-              assert not any(re.search(r'\.(ae|sa|eg|qa|iq|jo|lb|kw|bh|om|ye|dz|tn|ly|sd|sy|mr|ps|mena)\.\1$', x, re.I) for x in ids), f'{p.name}: duplicated country suffix'
-              total += len(ids)
-          for fn, prefix, minimum in [
-              ('provider-bein.xml.gz','beIN.',30),
-              ('provider-osn.xml.gz','OSN.',20),
-              ('provider-mbc.xml.gz','MBC.',17),
-              ('provider-rotana.xml.gz','Rotana.',11),
-              ('provider-dmi.xml.gz','DMI.',9),
-              ('provider-adm.xml.gz','ADM.',11),
-          ]:
-              p = Path('publish') / fn
-              root = ET.fromstring(gzip.decompress(p.read_bytes()))
-              ids = [(c.get('id') or '').strip() for c in root.findall('channel')]
-              assert len(ids) >= minimum, f'{fn}: provider unexpectedly empty/short ({len(ids)})'
-              assert all(x.startswith(prefix) for x in ids), f'{fn}: namespace mismatch'
-          print(f'PASS: all published XMLTV files globally normalized; channel rows checked={total}')
-          PY
+          python generator/tools/canonical_publish_finalize.py --dir publish
+          python generator/tools/receiver_release_gate.py \
+            --dir publish \
+            --minimum-median-future-hours 30 \
+            --json publish/receiver-release-gate.json \
+            --text publish/receiver-release-gate.txt
+          python generator/tools/namespace_replay_test.py --dir publish
 
       - name: Publish canonical-only receiver data
-        if: steps.gate.outputs.run == 'true'
         working-directory: publish
         shell: bash
         run: |
@@ -167,4 +55,5 @@ jobs:
           fi
           stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
           git commit -m "Global canonical receiver IDs ${stamp}"
-          git push origin mena-data
+          git pull --rebase origin mena-data
+          git push origin HEAD:mena-data

@@ -91,7 +91,8 @@ MBC_INTERNAL_ONLY = {
 
 ROTANA_INTERNAL_ONLY = {
     "Rotana Cinema + US.sa", "Rotana Cinema HD.sa", "Rotana Cinema Masr.sa",
-    "Rotana Classic.eg", "Rotana Clip.sa", "Rotana Comedy.eg", "Rotana Drama.eg",
+    "Rotana Classic.eg", "Rotana Classic HD.sa", "Rotana Clip.sa",
+    "Rotana Comedy.eg", "Rotana Comedy.sa", "Rotana Drama.eg", "Rotana Drama HD.sa",
     "Rotana Khalejia.eg", "Rotana Khalijia HD.sa", "Rotana.Cinema.Egypt.ae",
     "Rotana.Cinema.KSA.ae",
 }
@@ -118,6 +119,15 @@ PROVIDER_ALLOWED = {
     "provider-mbc": MBC_CANONICAL,
     "provider-rotana": ROTANA_CANONICAL,
     "provider-dmi": DMI_CANONICAL,
+}
+
+# The cleanup is also used by the manual recovery workflow.  A second pass over
+# globally-normalized shards must not compare MBC.* / Rotana.* / DMI.* IDs with
+# the pre-normalization whitelist and delete the whole provider.
+NORMALIZED_PROVIDER_PREFIX = {
+    "provider-mbc": "MBC.",
+    "provider-rotana": "Rotana.",
+    "provider-dmi": "DMI.",
 }
 
 CANONICAL_TARGETS = set(BEIN_ALIAS_TO_CANONICAL.values()) | set(OSN_ALIAS_TO_CANONICAL.values()) | MBC_CANONICAL | ROTANA_CANONICAL | DMI_CANONICAL
@@ -195,7 +205,12 @@ def cleanup_xml(path: Path):
 
     stem = path.name[:-7] if path.name.endswith(".xml.gz") else path.stem
     allowed = PROVIDER_ALLOWED.get(stem)
-    if allowed is not None:
+    normalized_prefix = NORMALIZED_PROVIDER_PREFIX.get(stem)
+    already_normalized = bool(
+        normalized_prefix and channels and
+        all(cid.startswith(normalized_prefix) for cid in channels)
+    )
+    if allowed is not None and not already_normalized:
         drop.update(cid for cid in channels if cid not in allowed)
 
     # Conservative generic dedupe: only collapse IDs when both normalized display
@@ -218,7 +233,7 @@ def cleanup_xml(path: Path):
 
     # Zero-programme IDs never belong in receiver XML.
     drop.update(cid for cid in channels if not programmes.get(cid))
-    keep = sorted(set(channels) - drop, key=str.casefold)
+    keep = sorted(set(channels) - drop, key=lambda value: (value.casefold(), value))
 
     out = ET.Element("tv", dict(root.attrib))
     for cid in keep:
@@ -294,6 +309,13 @@ def update_manifests(base: Path, reports):
 
 
 def prune_catalog(base: Path, published_ids):
+    """Keep the upstream source catalogue intact.
+
+    The catalogue is recovery/provenance input, not a receiver-ID allow-list.
+    Pruning raw source IDs after receiver canonicalization destroyed the exact
+    bridge needed by the next LKG run.  Receiver membership now lives in
+    shards.json and receiver-id-aliases.json.
+    """
     path = base / "catalog.json"
     if not path.exists():
         return 0
@@ -304,12 +326,9 @@ def prune_catalog(base: Path, published_ids):
     rows = data.get("channels") if isinstance(data, dict) else None
     if not isinstance(rows, list):
         return 0
-    before = len(rows)
-    data["channels"] = [r for r in rows if str(r.get("xmltv_id") or "") in published_ids]
-    data["canonical_receiver_ids"] = True
-    data["legacy_aliases_published"] = False
+    data["receiver_catalog_policy"] = "source IDs preserved; receiver aliases stored separately"
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    return before - len(data["channels"])
+    return 0
 
 
 def main():

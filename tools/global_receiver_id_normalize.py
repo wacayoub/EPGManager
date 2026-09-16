@@ -217,7 +217,13 @@ def previous_origins(base: Path) -> dict[str, str]:
     out = {}
     for row in data.get("mapping", []):
         new = str(row.get("new_id") or "").strip()
-        old = str(row.get("old_id") or "").strip()
+        # Schema 2 renamed old_id to origin_id/input_id.  Reading only the
+        # removed schema-1 key made a replay treat already-canonical IDs as new
+        # origins.  Collision suffixes could then move to another service on
+        # every reset (Al Jazeera Arabic was the first visible casualty).
+        old = str(
+            row.get("origin_id") or row.get("old_id") or row.get("input_id") or ""
+        ).strip()
         if new and old:
             out[new] = old
     return out
@@ -236,7 +242,14 @@ def main() -> int:
     collisions = []
     for stem, (_, _, chans, _) in shards.items():
         used = set()
-        for cid, c in sorted(chans.items(), key=lambda kv: kv[0].casefold()):
+        ordered = sorted(
+            chans.items(),
+            key=lambda kv: (
+                origins.get(kv[0], kv[0]).casefold(), origins.get(kv[0], kv[0]),
+                kv[0].casefold(), kv[0],
+            ),
+        )
+        for cid, c in ordered:
             origin = origins.get(cid, cid)
             candidate = canonical_id(stem, origin, dname(c))
             base_candidate = candidate

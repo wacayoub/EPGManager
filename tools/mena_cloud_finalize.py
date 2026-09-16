@@ -17,6 +17,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import unicodedata
 import xml.etree.ElementTree as ET
 
 AR_RE = re.compile(r"[\u0600-\u06ff]")
@@ -119,6 +120,79 @@ def channel_map(root):
     return out
 
 
+def identity_key(value: str) -> str:
+    """Conservative exact display-identity key used only as an LKG fallback."""
+    value = unicodedata.normalize("NFKD", value or "")
+    value = "".join(ch for ch in value if not unicodedata.combining(ch))
+    value = value.casefold().replace("&", " and ")
+    value = re.sub(r"\b(?:uhd|fhd|hd|sd|digital|mono|tv|channel)\b", " ", value)
+    value = re.sub(r"[^0-9a-z\u0600-\u06ff]+", " ", value)
+    return " ".join(value.split())
+
+
+def load_receiver_aliases(path: Path | None) -> dict[str, str]:
+    if path is None or not path.is_file():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    mapping = payload.get("mapping") if isinstance(payload, dict) else None
+    if not isinstance(mapping, dict):
+        return {}
+    return {
+        str(source).strip(): str(canonical).strip()
+        for source, canonical in mapping.items()
+        if str(source).strip() and str(canonical).strip()
+    }
+
+
+def bridge_previous_ids(current_ids, cand_channels, source_by_id, prev_channels, aliases):
+    """Resolve current raw/catalogue IDs to the prior canonical receiver IDs.
+
+    Exact source->canonical aliases are authoritative.  A display-name fallback
+    is accepted only when that normalized name is unique on both sides; ambiguous
+    identities are deliberately left unresolved rather than borrowing EPG from
+    the wrong service.
+    """
+    prior_by_name = defaultdict(list)
+    for cid, channel in prev_channels.items():
+        key = identity_key(display_name(channel))
+        if key:
+            prior_by_name[key].append(cid)
+
+    current_by_name = defaultdict(list)
+    current_names = {}
+    for cid in current_ids:
+        channel = cand_channels.get(cid)
+        name = display_name(channel) if channel is not None else str((source_by_id.get(cid) or {}).get("name") or "")
+        key = identity_key(name)
+        current_names[cid] = key
+        if key:
+            current_by_name[key].append(cid)
+
+    bridged = {}
+    methods = Counter()
+    for cid in sorted(current_ids, key=str.casefold):
+        if cid in prev_channels:
+            bridged[cid] = cid
+            methods["exact_id"] += 1
+            continue
+        canonical = aliases.get(cid, "")
+        if canonical in prev_channels:
+            bridged[cid] = canonical
+            methods["receiver_alias"] += 1
+            continue
+        key = current_names.get(cid, "")
+        matches = prior_by_name.get(key, [])
+        if key and len(matches) == 1 and len(current_by_name.get(key, [])) == 1:
+            bridged[cid] = matches[0]
+            methods["unique_display_identity"] += 1
+        else:
+            methods["unresolved"] += 1
+    return bridged, methods
+
+
 def event_key(p: ET.Element):
     return ((p.get("channel") or "").strip(), (p.get("start") or "").strip(), (p.get("stop") or "").strip())
 
@@ -169,6 +243,11 @@ def build_feed(ids, selected_programmes, cand_channels, prev_channels, source_by
             c = ET.Element("channel", {"id": cid})
         else:
             c = copy_element(c)
+        # A bridged LKG channel element carries the prior canonical ID.  The
+        # pre-publication normalizer owns the final namespace, so this build
+        # boundary must keep the current candidate/catalogue ID consistent with
+        # the programme references it emits.
+        c.set("id", cid)
         mapping_name = best_mapping_name(cid, source_meta, c)
         existing = c.findall("display-name")
         if not existing:
@@ -229,6 +308,7 @@ def main() -> int:
     ap.add_argument("--previous")
     ap.add_argument("--output-dir", required=True)
     ap.add_argument("--merge-report")
+    ap.add_argument("--receiver-aliases")
     ap.add_argument("--window-hours", type=int, default=48)
     args = ap.parse_args()
 
@@ -245,13 +325,28 @@ def main() -> int:
     cand_programmes = programme_groups(candidate, now, end)
     prev_programmes = programme_groups(previous, now, end)
 
+    aliases_path = Path(args.receiver_aliases) if args.receiver_aliases else None
+    receiver_aliases = load_receiver_aliases(aliases_path)
+    current_ids = set(cand_programmes) | set(source_by_id)
+    previous_id_by_current, bridge_methods = bridge_previous_ids(
+        current_ids, cand_channels, source_by_id, prev_channels, receiver_aliases
+    )
+    bridged_prev_channels = {
+        cid: prev_channels[prior]
+        for cid, prior in previous_id_by_current.items()
+        if prior in prev_channels
+    }
+    bridged_prev_programmes = {
+        cid: prev_programmes.get(prior, [])
+        for cid, prior in previous_id_by_current.items()
+    }
+
     selected_programmes = {}
     states = Counter()
-    ids = set(cand_programmes)
-    ids.update(source_by_id)
+    ids = set(current_ids)
     for cid in sorted(ids, key=str.casefold):
         fresh = cand_programmes.get(cid, [])
-        old = prev_programmes.get(cid, [])
+        old = bridged_prev_programmes.get(cid, [])
         if useful(fresh):
             selected_programmes[cid] = fresh
             states["fresh"] += 1
@@ -267,7 +362,7 @@ def main() -> int:
         source_meta = source_by_id.get(cid, {})
         c = cand_channels.get(cid)
         if c is None:
-            c = prev_channels.get(cid)
+            c = bridged_prev_channels.get(cid)
         if c is None:
             c = ET.Element("channel", {"id": cid})
         mapping_name = best_mapping_name(cid, source_meta, c)
@@ -284,13 +379,13 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     _, combined_gz, combined_txt, combined_stats = build_feed(
-        all_ids, selected_programmes, cand_channels, prev_channels, source_by_id,
+        all_ids, selected_programmes, cand_channels, bridged_prev_channels, source_by_id,
         "EPGManager MENA Cloud (Legacy Combined)")
     _, mena_gz, mena_txt, mena_stats = build_feed(
-        mena_ids, selected_programmes, cand_channels, prev_channels, source_by_id,
+        mena_ids, selected_programmes, cand_channels, bridged_prev_channels, source_by_id,
         "EPGManager MENA Cloud")
     _, premium_gz, premium_txt, premium_stats = build_feed(
-        premium_ids, selected_programmes, cand_channels, prev_channels, source_by_id,
+        premium_ids, selected_programmes, cand_channels, bridged_prev_channels, source_by_id,
         "EPGManager Premium Cloud")
 
     if combined_stats["channels"] < 25 or combined_stats["programmes"] < 100:
@@ -327,6 +422,17 @@ def main() -> int:
         "fresh_channels": states["fresh"],
         "lkg_channels": states["lkg"],
         "no_epg_channels": states["no_epg"],
+        "lkg_bridge": {
+            "previous_channels": len(prev_channels),
+            "current_ids": len(current_ids),
+            "resolved_current_ids": len(previous_id_by_current),
+            "resolved_previous_channels": len(set(previous_id_by_current.values())),
+            "exact_id": bridge_methods["exact_id"],
+            "receiver_alias": bridge_methods["receiver_alias"],
+            "unique_display_identity": bridge_methods["unique_display_identity"],
+            "unresolved": bridge_methods["unresolved"],
+            "alias_file_loaded": bool(receiver_aliases),
+        },
         "arabic_title_ratio": combined_stats["arabic_title_ratio"],
         "english_title_ratio": combined_stats["english_title_ratio"],
         "arabic_desc_ratio": combined_stats["arabic_desc_ratio"],
