@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 """Normalize receiver-facing beIN XMLTV IDs to one stable canonical namespace.
 
-This is intentionally receiver-facing only. Programme content is preserved; only
-channel IDs/display names are normalized. Known weaker duplicate identities are
-removed before rename so one real service maps to one receiver XMLTV ID.
+All known raw/legacy aliases for the same real service are grouped under one
+canonical receiver ID.  When several aliases are present in a build, the alias
+with the richest actual programme timeline wins; the others are removed.  This
+keeps fallback sources usable when a normally preferred source is temporarily
+missing (notably beIN Sports 5 and MAX services).
 """
 from __future__ import annotations
 
@@ -12,55 +14,58 @@ import argparse
 import gzip
 import hashlib
 import json
+from collections import Counter, defaultdict
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-# Current post-cleanup IDs -> definitive receiver IDs.
-RENAME = {
-    "beIN Drama.eg": "beIN.Drama.qa",
-    "BEIN MOVIES PREMIERE.eg": "beIN.Movies.Premiere.qa",
-    "BEIN MOVIES ACTION.eg": "beIN.Movies.Action.qa",
-    "BEIN MOVIES DRAMA.eg": "beIN.Movies.Drama.qa",
-    "BEIN MOVIES FAMILY.eg": "beIN.Movies.Family.qa",
-    "BeIn Series HD 1.eg": "beIN.Series.1.qa",
-    "beIN Series HD 2.eg": "beIN.Series.2.qa",
-    "beIN SPORTS 1.qa": "beIN.Sports.1.qa",
-    "beINSports2.qa@MENA": "beIN.Sports.2.qa",
-    "beINSports3.qa@MENA": "beIN.Sports.3.qa",
-    "beINSports4.qa@MENA": "beIN.Sports.4.qa",
-    "beIN SPORTS 5.qa": "beIN.Sports.5.qa",
-    "beINSports6.qa@MENA": "beIN.Sports.6.qa",
-    "beINSports7.qa@MENA": "beIN.Sports.7.qa",
-    "beINSports8.qa@MENA": "beIN.Sports.8.qa",
-    "beINSports9.qa@MENA": "beIN.Sports.9.qa",
-    "beIN SPORTS EN 1.qa": "beIN.Sports.EN1.qa",
-    "beIN SPORTS EN 2.qa": "beIN.Sports.EN2.qa",
-    "bein SPORTS FTA DIGITAL.qa": "beIN.Sports.FTA.qa",
-    "beIN SPORTS.qa": "beIN.Sports.qa",
-    "beIN4K.qa@SD": "beIN.4K.qa",
-    "beIN SPORTS NEWS.qa": "beIN.Sports.News.qa",
-    "beIN SPORTS MAX1 DIGITAL.qa": "beIN.Sports.MAX1.qa",
-    "beIN SPORTS MAX 2.qa": "beIN.Sports.MAX2.qa",
-    "beIN SPORTS MAX 3.qa": "beIN.Sports.MAX3.qa",
-    "beIN SPORTS MAX 4.qa": "beIN.Sports.MAX4.qa",
-    "beIN SPORTS MAX 5.qa": "beIN.Sports.MAX5.qa",
-    "beIN SPORTS MAX 6.qa": "beIN.Sports.MAX6.qa",
-    "beINSportsXtra1.qa@SD": "beIN.Sports.XTRA1.qa",
-    "beINSportsXtra2.qa@SD": "beIN.Sports.XTRA2.qa",
-    "beINSPORTSXTRA3.qa": "beIN.Sports.XTRA3.qa",
-    "beIN SPORTS XTRA 4.qa": "beIN.Sports.XTRA4.qa",
-    "beIN SPORTS XTRA 5.qa": "beIN.Sports.XTRA5.qa",
-    "beIN SPORTS XTRA 6.qa": "beIN.Sports.XTRA6.qa",
-    "beIN SPORTS XTRA 7.qa": "beIN.Sports.XTRA7.qa",
-    "beIN SPORTS XTRA 8.qa": "beIN.Sports.XTRA8.qa",
-    "beIN SPORTS XTRA 9.qa": "beIN.Sports.XTRA9.qa",
+ALIASES = {
+    "beIN.Drama.qa": {"beIN.Drama.qa", "beIN Drama.eg", "beINDrama1.qa@SD"},
+    "beIN.Movies.Premiere.qa": {"beIN.Movies.Premiere.qa", "BEIN MOVIES PREMIERE.eg", "beINMovies1Premiere.qa@SD"},
+    "beIN.Movies.Action.qa": {"beIN.Movies.Action.qa", "BEIN MOVIES ACTION.eg", "beINMovies2Action.qa@SD"},
+    "beIN.Movies.Drama.qa": {"beIN.Movies.Drama.qa", "BEIN MOVIES DRAMA.eg", "beINMovies3Drama.qa@SD"},
+    "beIN.Movies.Family.qa": {"beIN.Movies.Family.qa", "BEIN MOVIES FAMILY.eg", "beINMovies4Family.qa@SD"},
+    "beIN.Series.1.qa": {"beIN.Series.1.qa", "BeIn Series HD 1.eg", "beINSeries1.qa@SD"},
+    "beIN.Series.2.qa": {"beIN.Series.2.qa", "beIN Series HD 2.eg", "beINSeries2.qa@SD"},
+    "beIN.Sports.1.qa": {"beIN.Sports.1.qa", "beIN SPORTS 1.qa", "beINSports1.qa@MENA"},
+    "beIN.Sports.2.qa": {"beIN.Sports.2.qa", "beINSports2.qa@MENA"},
+    "beIN.Sports.3.qa": {"beIN.Sports.3.qa", "beINSports3.qa@MENA"},
+    "beIN.Sports.4.qa": {"beIN.Sports.4.qa", "beINSports4.qa@MENA"},
+    "beIN.Sports.5.qa": {"beIN.Sports.5.qa", "beIN SPORTS 5.qa", "beINSports5.qa@MENA"},
+    "beIN.Sports.6.qa": {"beIN.Sports.6.qa", "beINSports6.qa@MENA"},
+    "beIN.Sports.7.qa": {"beIN.Sports.7.qa", "beINSports7.qa@MENA"},
+    "beIN.Sports.8.qa": {"beIN.Sports.8.qa", "beINSports8.qa@MENA"},
+    "beIN.Sports.9.qa": {"beIN.Sports.9.qa", "beINSports9.qa@MENA"},
+    "beIN.Sports.EN1.qa": {"beIN.Sports.EN1.qa", "beIN SPORTS EN 1.qa"},
+    "beIN.Sports.EN2.qa": {"beIN.Sports.EN2.qa", "beIN SPORTS EN 2.qa"},
+    "beIN.Sports.FTA.qa": {"beIN.Sports.FTA.qa", "bein SPORTS FTA DIGITAL.qa"},
+    "beIN.Sports.qa": {"beIN.Sports.qa", "beIN SPORTS.qa"},
+    "beIN.4K.qa": {"beIN.4K.qa", "beIN4K.qa@SD"},
+    "beIN.Sports.News.qa": {"beIN.Sports.News.qa", "beIN SPORTS NEWS.qa"},
+    "beIN.Sports.MAX1.qa": {"beIN.Sports.MAX1.qa", "beIN SPORTS MAX1 DIGITAL.qa", "beIN SPORTS MAX 1.qa", "beINSportsMax1.qa@MENA"},
+    "beIN.Sports.MAX2.qa": {"beIN.Sports.MAX2.qa", "beIN SPORTS MAX 2.qa", "beINSportsMax2.qa@MENA"},
+    "beIN.Sports.MAX3.qa": {"beIN.Sports.MAX3.qa", "beIN SPORTS MAX 3.qa", "beINSportsMax3.qa@MENA"},
+    "beIN.Sports.MAX4.qa": {"beIN.Sports.MAX4.qa", "beIN SPORTS MAX 4.qa", "beINSportsMax4.qa@MENA"},
+    "beIN.Sports.MAX5.qa": {"beIN.Sports.MAX5.qa", "beIN SPORTS MAX 5.qa", "beINSportsMax5.qa@MENA", "NEW_beIN-SPORTS-MAX-05_AR.bein"},
+    "beIN.Sports.MAX6.qa": {"beIN.Sports.MAX6.qa", "beIN SPORTS MAX 6.qa", "beINSportsMax6.qa@MENA", "NEW_beIN-SPORTS-MAX-06_AR.bein"},
+    "beIN.Sports.XTRA1.qa": {"beIN.Sports.XTRA1.qa", "beINSportsXtra1.qa@SD"},
+    "beIN.Sports.XTRA2.qa": {"beIN.Sports.XTRA2.qa", "beINSportsXtra2.qa@SD"},
+    "beIN.Sports.XTRA3.qa": {"beIN.Sports.XTRA3.qa", "beINSPORTSXTRA3.qa"},
+    "beIN.Sports.XTRA4.qa": {"beIN.Sports.XTRA4.qa", "beIN SPORTS XTRA 4.qa"},
+    "beIN.Sports.XTRA5.qa": {"beIN.Sports.XTRA5.qa", "beIN SPORTS XTRA 5.qa"},
+    "beIN.Sports.XTRA6.qa": {"beIN.Sports.XTRA6.qa", "beIN SPORTS XTRA 6.qa"},
+    "beIN.Sports.XTRA7.qa": {"beIN.Sports.XTRA7.qa", "beIN SPORTS XTRA 7.qa"},
+    "beIN.Sports.XTRA8.qa": {"beIN.Sports.XTRA8.qa", "beIN SPORTS XTRA 8.qa"},
+    "beIN.Sports.XTRA9.qa": {"beIN.Sports.XTRA9.qa", "beIN SPORTS XTRA 9.qa"},
+    # Legitimate beIN lifestyle service; optional because it is not always carried.
+    "beIN.Gourmet.qa": {"beIN.Gourmet.qa", "beINGourmet.qa@SD"},
 }
 
-# Same real service, weaker/incomplete timeline than the selected canonical source.
-DROP = {
-    "beINSports5.qa@MENA",   # 5 events / 12.2h vs beIN SPORTS 5.qa 17 / 34.4h
-    "beINSeries2.qa@SD",     # 29 events / 24h vs beIN Series HD 2.eg 41 / 34.5h
-}
+RAW_TO_CANON = {raw: canon for canon, raws in ALIASES.items() for raw in raws}
+OPTIONAL_EVENT_IDS = (
+    {f"beIN.Sports.MAX{n}.qa" for n in range(1, 7)} |
+    {f"beIN.Sports.XTRA{n}.qa" for n in range(1, 10)} |
+    {"beIN.Gourmet.qa"}
+)
 
 DISPLAY = {
     "beIN.Drama.qa": "beIN Drama",
@@ -74,6 +79,7 @@ DISPLAY = {
     "beIN.Sports.qa": "beIN Sports",
     "beIN.4K.qa": "beIN 4K",
     "beIN.Sports.News.qa": "beIN Sports News",
+    "beIN.Gourmet.qa": "beIN Gourmet",
 }
 for n in range(1, 10):
     DISPLAY[f"beIN.Sports.{n}.qa"] = f"beIN Sports {n}"
@@ -84,11 +90,6 @@ for n in range(1, 7):
 for n in range(1, 10):
     DISPLAY[f"beIN.Sports.XTRA{n}.qa"] = f"beIN Sports XTRA {n}"
 
-OPTIONAL_EVENT_IDS = (
-    {f"beIN.Sports.MAX{n}.qa" for n in range(1, 7)} |
-    {f"beIN.Sports.XTRA{n}.qa" for n in range(1, 10)}
-)
-
 
 def read_root(path: Path) -> ET.Element:
     data = path.read_bytes()
@@ -97,9 +98,27 @@ def read_root(path: Path) -> ET.Element:
     return ET.fromstring(data)
 
 
-def disp(c: ET.Element) -> str:
+def display_name(c: ET.Element) -> str:
     n = c.find("display-name")
     return ((n.text if n is not None else "") or c.get("id") or "").strip()
+
+
+def choose_aliases(root: ET.Element):
+    channels = {(c.get("id") or "").strip(): c for c in root.findall("channel")}
+    counts = Counter((p.get("channel") or "").strip() for p in root.findall("programme"))
+    chosen = {}
+    dropped = set()
+    for canon, aliases in ALIASES.items():
+        present = [raw for raw in aliases if raw in channels]
+        if not present:
+            continue
+        # Prefer the richest real timeline.  On an exact tie prefer an already
+        # canonical ID, then a stable lexical order for deterministic replay.
+        present.sort(key=lambda raw: (-counts[raw], 0 if raw == canon else 1, raw.casefold()))
+        winner = present[0]
+        chosen[winner] = canon
+        dropped.update(present[1:])
+    return chosen, dropped
 
 
 def normalize_file(path: Path):
@@ -107,31 +126,21 @@ def normalize_file(path: Path):
     channels = root.findall("channel")
     programmes = root.findall("programme")
     present = {(c.get("id") or "").strip() for c in channels}
-    relevant = bool(present & (set(RENAME) | DROP))
-    if not relevant:
+    if not (present & set(RAW_TO_CANON)):
         return None
 
-    removed = sorted(present & DROP, key=str.casefold)
-    rename_used = {k: v for k, v in RENAME.items() if k in present and k not in DROP}
-
-    # Reject collisions before touching the file.
-    targets = list(rename_used.values())
-    if len(targets) != len(set(targets)):
-        raise RuntimeError(f"rename target collision in {path.name}")
-    existing_unrenamed = present - set(rename_used) - DROP
-    collisions = existing_unrenamed & set(targets)
-    if collisions:
-        raise RuntimeError(f"existing canonical collision in {path.name}: {sorted(collisions)}")
-
+    chosen, dropped = choose_aliases(root)
     out = ET.Element("tv", dict(root.attrib))
     kept_ids = set()
-    channel_by_old = {}
+    renamed = {}
+
     for c in channels:
         old = (c.get("id") or "").strip()
-        channel_by_old[old] = c
-        if old in DROP:
+        if old in dropped:
             continue
-        new = rename_used.get(old, old)
+        new = chosen.get(old, old)
+        if old != new:
+            renamed[old] = new
         c.set("id", new)
         if new in DISPLAY:
             names = c.findall("display-name")
@@ -139,15 +148,17 @@ def normalize_file(path: Path):
                 names[0].text = DISPLAY[new]
             else:
                 ET.SubElement(c, "display-name").text = DISPLAY[new]
+        if new in kept_ids:
+            raise RuntimeError(f"duplicate normalized channel {new} in {path.name}")
         kept_ids.add(new)
         out.append(c)
 
     kept_programmes = 0
     for p in programmes:
         old = (p.get("channel") or "").strip()
-        if old in DROP:
+        if old in dropped:
             continue
-        new = rename_used.get(old, old)
+        new = chosen.get(old, old)
         if new not in kept_ids:
             continue
         p.set("channel", new)
@@ -161,17 +172,13 @@ def normalize_file(path: Path):
 
     txt = path.with_suffix("").with_suffix(".txt")
     if txt.exists():
-        rows = []
-        for c in out.findall("channel"):
-            cid = (c.get("id") or "").strip()
-            rows.append((cid, disp(c)))
-        rows.sort(key=lambda x: x[0].casefold())
+        rows = sorted(((c.get("id") or "", display_name(c)) for c in out.findall("channel")), key=lambda x: x[0].casefold())
         txt.write_text("".join(f"{cid}|{name}\n" for cid, name in rows), encoding="utf-8")
 
     return {
         "file": path.name,
-        "renamed": rename_used,
-        "removed": removed,
+        "renamed": renamed,
+        "removed": sorted(dropped, key=str.casefold),
         "channels": len(out.findall("channel")),
         "programmes": kept_programmes,
         "size_bytes": len(gz),
@@ -188,14 +195,12 @@ def update_metadata(base: Path, reports):
             row = (data.get("shards") or {}).get(stem)
             if not row:
                 continue
-            row["channels"] = r["channels"]
-            row["programmes"] = r["programmes"]
-            row["size_bytes"] = r["size_bytes"]
-            row["sha256"] = r["sha256"]
+            for key in ("channels", "programmes", "size_bytes", "sha256"):
+                row[key] = r[key]
             if stem == "provider-bein":
                 row["receiver_id_namespace"] = "beIN.*.qa"
-                row["receiver_policy"] = "definitive normalized canonical IDs; no legacy aliases"
-                row["canonical_ids"] = sorted(RENAME.values(), key=str.casefold)
+                row["receiver_policy"] = "definitive canonical IDs; richest available alias wins"
+                row["canonical_ids"] = sorted(ALIASES, key=str.casefold)
         shards.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     manifest = base / "manifest.json"
@@ -212,17 +217,16 @@ def main():
     args = ap.parse_args()
     base = Path(args.dir)
     reports = []
-    for p in sorted(base.glob("*.xml.gz")):
-        r = normalize_file(p)
-        if r:
-            reports.append(r)
+    for path in sorted(base.glob("*.xml.gz")):
+        report = normalize_file(path)
+        if report:
+            reports.append(report)
     update_metadata(base, reports)
 
-    # Hard validation of definitive provider-bein identity set.
     provider = base / "provider-bein.xml.gz"
     root = read_root(provider)
     ids = [(c.get("id") or "").strip() for c in root.findall("channel")]
-    allowed = set(RENAME.values())
+    allowed = set(ALIASES)
     required_core = allowed - OPTIONAL_EVENT_IDS
     missing = sorted(required_core - set(ids))
     extra = sorted(set(ids) - allowed)
@@ -234,26 +238,25 @@ def main():
     if not event_ids.issubset(set(ids)):
         raise SystemExit("orphan beIN programme channel references")
 
+    dropped = sorted({x for r in reports for x in r["removed"]}, key=str.casefold)
     report = {
-        "schema": 1,
-        "policy": "definitive receiver beIN namespace; one service one ID; weaker duplicate feeds removed",
+        "schema": 2,
+        "policy": "one real service -> one stable canonical receiver ID; richest available alias wins",
         "provider_channels": len(ids),
         "provider_programmes": len(root.findall("programme")),
         "canonical_ids": ids,
-        "dropped_duplicates": sorted(DROP),
+        "dropped_duplicate_aliases": dropped,
         "files": reports,
     }
     (base / "bein-receiver-id-normalization.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     lines = [
         "BEIN RECEIVER ID NORMALIZATION\n",
         f"channels={len(ids)} programmes={report['provider_programmes']}\n",
-        "policy=one real service -> one stable canonical receiver ID\n\n",
+        "policy=one real service -> one stable canonical receiver ID; richest available alias wins\n\n",
     ]
-    for cid in ids:
-        lines.append(cid + "\n")
-    lines.append("\nDROPPED DUPLICATE IDENTITIES\n")
-    for cid in sorted(DROP):
-        lines.append(cid + "\n")
+    lines.extend(cid + "\n" for cid in ids)
+    lines.append("\nDROPPED DUPLICATE ALIASES\n")
+    lines.extend(cid + "\n" for cid in dropped)
     (base / "bein-receiver-id-normalization.txt").write_text("".join(lines), encoding="utf-8")
     print(f"PASS beIN normalized channels={len(ids)} programmes={report['provider_programmes']}")
 
