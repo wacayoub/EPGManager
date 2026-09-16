@@ -21,8 +21,14 @@ jobs:
         run: |
           set -euo pipefail
           SOURCE_FILE="$(tr -d '\r\n' < source/current.txt)"
-          rm -rf /tmp/epgsrc && mkdir -p /tmp/epgsrc data
+          rm -rf /tmp/epgsrc && mkdir -p /tmp/epgsrc data/current-plugin-inspect
           unzip -q "source/$SOURCE_FILE" -d /tmp/epgsrc
+          ROOT="$(find /tmp/epgsrc -maxdepth 3 -type f -name version.py -printf '%h\n' | head -n1)"
+          test -n "$ROOT"
+          cp "$ROOT/core/source_catalog.py" data/current-plugin-inspect/source_catalog.py
+          cp "$ROOT/core/external_sources.py" data/current-plugin-inspect/external_sources.py
+          cp "$ROOT/ui/native_sources.py" data/current-plugin-inspect/native_sources.py
+          cp "$ROOT/version.py" data/current-plugin-inspect/version.py
           {
             echo '=== SOURCE ROOT ==='
             find /tmp/epgsrc -maxdepth 5 -type f \( -name '*.py' -o -name '*.json' -o -name '*.xml' \) | sort
@@ -38,8 +44,8 @@ jobs:
           set -euo pipefail
           git config user.name "EPGManager Inspector"
           git config user.email "actions@users.noreply.github.com"
-          git add data/smart-source-inspect.txt
+          git add data/smart-source-inspect.txt data/current-plugin-inspect/
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Record Smart Source integration points"
+          git commit -m "Record Smart Source patching context"
           git pull --rebase origin main
           git push origin HEAD:main
