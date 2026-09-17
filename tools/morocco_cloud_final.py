@@ -143,6 +143,113 @@ def _snrt_cloud_cleanup(rows, days):
     return clean
 
 
+def _valid_horizon(rows):
+    """Return receiver-useful rows using the cloud runner's own LKG horizon."""
+    now = datetime.now(TZ)
+    return [
+        e for e in rows
+        if e.start < now + timedelta(days=8)
+        and (e.stop or e.start + timedelta(hours=1)) > now - timedelta(hours=12)
+    ]
+
+
+def _install_per_channel_lkg():
+    """Upgrade provider-level LKG to channel-level completion.
+
+    A provider group can have enough total events while one stable channel is
+    empty (the AlAoula regression). Keep the provider decision, then recover
+    only missing channel IDs from the previous receiver feed when useful LKG
+    rows exist. No EPG is invented.
+    """
+    historical_choose = runner.choose
+
+    def choose_channel_complete(name, fresh, old, channel_ids, minimum):
+        rows, mode = historical_choose(name, fresh, old, channel_ids, minimum)
+        present = {e.channel for e in _valid_horizon(rows)}
+        recovered = {}
+        for cid in sorted(set(channel_ids) - present):
+            lkg = [e for e in _valid_horizon(old) if e.channel == cid]
+            if not lkg:
+                continue
+            rows.extend(lkg)
+            recovered[cid] = len(lkg)
+        if recovered:
+            mode = "%s+channel-lkg" % mode
+            runner.log("%s: per-channel LKG recovered %s" % (name, recovered))
+        return rows, mode
+
+    runner.choose = choose_channel_complete
+
+
+def _strict_cloud_timeline(rows):
+    """Collapse same-start duplicates and guarantee stop > start on every channel."""
+    exact = {}
+    collapsed = 0
+    for e in rows:
+        if not getattr(e, "channel", "") or not getattr(e, "start", None):
+            continue
+        key = (e.channel, e.start)
+        old = exact.get(key)
+        if old is None:
+            exact[key] = e
+            continue
+        collapsed += 1
+        old_valid_stop = bool(old.stop and old.stop > old.start)
+        new_valid_stop = bool(e.stop and e.stop > e.start)
+        old_score = len(str(old.desc or "")) * 2 + len(str(old.title or "")) + (20 if old_valid_stop else 0)
+        new_score = len(str(e.desc or "")) * 2 + len(str(e.title or "")) + (20 if new_valid_stop else 0)
+        if new_score > old_score:
+            exact[key] = e
+
+    by_channel = defaultdict(list)
+    for e in exact.values():
+        by_channel[e.channel].append(e)
+
+    clean = []
+    repaired = 0
+    for cid, channel_rows in by_channel.items():
+        channel_rows.sort(key=lambda x: x.start)
+        for i, e in enumerate(channel_rows):
+            next_start = channel_rows[i + 1].start if i + 1 < len(channel_rows) else None
+            if not e.stop or e.stop <= e.start:
+                e.stop = next_start if next_start and next_start > e.start else e.start + timedelta(hours=1)
+                repaired += 1
+            elif next_start and e.stop > next_start:
+                # Linear-TV programmes cannot overlap the next event. Trim only
+                # at serialization time; programme title/description stay intact.
+                e.stop = next_start
+                repaired += 1
+            if e.stop <= e.start:
+                e.stop = e.start + timedelta(hours=1)
+                repaired += 1
+            clean.append(e)
+
+    clean.sort(key=lambda x: (x.channel, x.start, x.title.casefold()))
+    runner.log(
+        "Global Morocco timeline cleanup: input=%d final=%d collapsed=%d stops-repaired=%d"
+        % (len(rows), len(clean), collapsed, repaired)
+    )
+    return clean
+
+
+def _install_strict_writer():
+    """Refuse a receiver candidate containing any zero-EPG stable channel."""
+    historical_write = runner.write_xml
+
+    def strict_write(rows, path):
+        clean = _strict_cloud_timeline(rows)
+        useful_ids = {e.channel for e in _valid_horizon(clean)}
+        missing = sorted(set(base.CHANNELS) - useful_ids)
+        if missing:
+            raise RuntimeError(
+                "Refusing Morocco candidate with zero useful EPG for: %s"
+                % ", ".join(missing)
+            )
+        return historical_write(clean, path)
+
+    runner.write_xml = strict_write
+
+
 def main():
     # Install receiver-proven Moroccan source behaviour before runner.main()
     # builds its parallel provider jobs.
@@ -151,9 +258,17 @@ def main():
     # Wrap the historical SNRT result only at the cloud serialization boundary:
     # title/description/news/TNT/weather logic stays untouched.
     historical_snrt = base.scrape_snrt
+
     def cloud_snrt(days):
         return _snrt_cloud_cleanup(historical_snrt(days), days)
+
     base.scrape_snrt = cloud_snrt
+
+    # Global safety overlays: provider groups may use LKG per channel, and the
+    # final receiver timeline must be strict across SNRT, Arryadia, 2M, Chada
+    # and Medi1 before the candidate can be serialized.
+    _install_per_channel_lkg()
+    _install_strict_writer()
 
     runner.read_previous = tolerant_previous
     return final2m.main()
