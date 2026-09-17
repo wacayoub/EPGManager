@@ -6,6 +6,9 @@ Provider-specific canonical IDs that are already part of the receiver contract
 must survive the generic global namespace pass.  In particular ADM has a proven
 canonical identity policy used by EPGManager mappings; the generic ``ADM.*``
 slugs are therefore translated back to those stable receiver IDs here.
+
+The ADM Arabic identity repair happens upstream, before timeline arbitration;
+this final layer only restores the stable receiver namespace afterwards.
 """
 import argparse, gzip, json, re
 import xml.etree.ElementTree as ET
