@@ -1,17 +1,19 @@
-name: Sport24 Fast Probe
+name: Sport24 Fast Source
 
 on:
   workflow_dispatch:
   push:
     paths:
       - "tools/sport24_probe.py"
+      - "tools/sport24_source.py"
+      - "tools/source_feed_pack.py"
       - ".github/workflows/sport24-probe.yml"
 
 permissions:
   contents: write
 
 jobs:
-  probe:
+  sport24:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -20,20 +22,50 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install --disable-pip-version-check requests beautifulsoup4
-      - run: python tools/sport24_probe.py
-      - name: Publish probe report
+      - name: Build Sport24 feed
         shell: bash
         run: |
           set -euo pipefail
+          mkdir -p output
+          python tools/sport24_source.py --output output/sport24.raw.xml --report output/sport24-scrape.json --window-hours 48
+          set +e
+          python tools/source_feed_pack.py \
+            --input output/sport24.raw.xml \
+            --output-gz output/source-sport24.xml.gz \
+            --output-txt output/source-sport24.txt \
+            --stats output/source-sport24.json \
+            --label Sport24 --window-hours 48
+          echo "pack_rc=$?"
+      - name: Publish only healthy Sport24
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import gzip, json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          gz=Path('output/source-sport24.xml.gz')
+          healthy=False
+          if gz.exists() and gz.stat().st_size:
+              try:
+                  root=ET.fromstring(gzip.decompress(gz.read_bytes()))
+                  healthy=bool(root.findall('channel')) and bool(root.findall('programme'))
+              except Exception:
+                  pass
+          print('healthy=', healthy)
+          Path('output/HEALTHY').write_text('1' if healthy else '0')
+          PY
           git config user.name "EPGManager Source Cloud"
           git config user.email "actions@users.noreply.github.com"
           git fetch origin mena-data
-          git worktree add publish-probe origin/mena-data
-          cd publish-probe
+          git worktree add publish-sport24 origin/mena-data
+          cd publish-sport24
           git checkout -B mena-data origin/mena-data
-          cp ../sport24-probe.json ./sport24-probe.json
-          git add sport24-probe.json
+          cp ../output/sport24-scrape.json ./sport24-scrape.json
+          if [ "$(cat ../output/HEALTHY)" = "1" ]; then
+            cp ../output/source-sport24.xml.gz ../output/source-sport24.txt ../output/source-sport24.json .
+          fi
+          git add sport24-scrape.json source-sport24.* 2>/dev/null || true
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Update Sport24 probe"
+          git commit -m "Update fast Sport24 source"
           git pull --rebase origin mena-data
           git push origin HEAD:mena-data
