@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """Build a safe standalone Sport24 XMLTV feed.
 
-The site changes markup often. We accept only source-provided absolute timestamps
-(ISO with offset/Z or Unix epoch). No local clock/timezone is guessed.
+Sport24 programme cards expose source-provided UTC ISO timestamps in pairs of
+``data-time`` spans. We parse the enclosing card so title, description, start
+and stop stay attached to the same programme. No local timezone is guessed.
 """
 from __future__ import annotations
 import argparse, html as html_lib, json, re, time
@@ -28,7 +29,7 @@ TARGETS = [
     ("sport24.bein.0", "beIN SPORTS Free", f"{BASE}/bein/0"),
 ] + [(f"sport24.bein.{n}", f"beIN SPORTS {n}", f"{BASE}/bein/{n}") for n in range(1, 10)]
 
-UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36 EPGManager/1.2"
+UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36 EPGManager/1.3"
 TITLE_KEYS = ("title","name","program","programme","program_title","programme_title","eventTitle","event_name","eventName")
 DESC_KEYS = ("description","desc","summary","details","subtitle","synopsis")
 START_HINTS = ("start","begin","from","airtime","air_time","airdate","air_date","broadcaststart","broadcast_start","datetime","date_time","timestamp")
@@ -143,22 +144,35 @@ def attr_absolute_time(node,start=True):
 
 def node_title_desc(node):
     title=""; desc=""
-    for sel in (".title",".program-title",".programme-title",".event-title","[class*='title']","h2","h3","h4","strong"):
+    for sel in (".card-title",".title",".program-title",".programme-title",".event-title","[class*='title']","h2","h3","h4","h5","h6","strong"):
         hit=node.select_one(sel)
         if hit and clean(hit.get_text(" ",strip=True)):
             title=clean(hit.get_text(" ",strip=True)); break
-    for sel in (".description",".program-description",".programme-description",".event-description","[class*='description']","p"):
+    for sel in (".card-text",".description",".program-description",".programme-description",".event-description","[class*='description']","p"):
         hit=node.select_one(sel)
         if hit and clean(hit.get_text(" ",strip=True)):
-            desc=clean(hit.get_text(" ",strip=True)); break
+            txt=clean(hit.get_text(" ",strip=True))
+            if txt != title:
+                desc=txt; break
     if not title: title=clean(node.get("data-title") or node.get("aria-label") or "")
     return title,desc
 
 
 def event_from_node(node):
-    start,start_key=attr_absolute_time(node,True)
+    # Sport24 cards carry exact UTC start/stop as the first two data-time spans.
+    pair=[]
+    for span in node.select("[data-time]"):
+        dt=parse_dt(span.get("data-time"))
+        if dt: pair.append(dt)
+    if pair:
+        start=pair[0]; start_key="data-time[0]"
+        stop=pair[1] if len(pair)>1 else None
+        stop_key="data-time[1]" if len(pair)>1 else None
+    else:
+        start,start_key=attr_absolute_time(node,True)
+        if not start: return None
+        stop,stop_key=attr_absolute_time(node,False)
     if not start: return None
-    stop,stop_key=attr_absolute_time(node,False)
     title,desc=node_title_desc(node)
     if not title: return None
     return {"start":start,"stop":stop,"title":title,"desc":desc,"via":"dom","start_key":start_key,"stop_key":stop_key}
@@ -169,7 +183,8 @@ def scrape(session,url):
     soup=BeautifulSoup(r.text,"html.parser")
     events=[]; parsed_blobs=0; key_samples=set()
 
-    selectors=("[data-start]","[data-start-time]","[data-begin]","[data-time]","[data-timestamp]","time[datetime]",".program",".programme",".schedule-item",".event","article")
+    # Critical: parse the enclosing programme card, not the isolated data-time span.
+    selectors=("section.card","article.card",".schedule-item",".program",".programme",".event")
     seen=set()
     for sel in selectors:
         for node in soup.select(sel):
@@ -197,15 +212,7 @@ def scrape(session,url):
         if row.get("stop") is None and rows[i+1]["start"]>row["start"]: row["stop"]=rows[i+1]["start"]
     valid=[x for x in rows if x.get("stop") and x["stop"]>x["start"]]
 
-    schedule_keys=set()
-    for data in json_blobs(soup):
-        for row in walk_json(data):
-            if isinstance(row,dict):
-                for k in row:
-                    nk=normkey(k)
-                    if any(h in nk for h in ("time","date","start","end","begin","stop","air","broadcast")):
-                        schedule_keys.add(str(k))
-    return valid,{"http_status":r.status_code,"html_bytes":len(r.content),"candidate_events":len(events),"parsed_json_blobs":parsed_blobs,"valid_timeline_events":len(valid),"used_time_keys":sorted(key_samples)[:20],"schedule_key_samples":sorted(schedule_keys)[:40]}
+    return valid,{"http_status":r.status_code,"html_bytes":len(r.content),"candidate_events":len(events),"parsed_json_blobs":parsed_blobs,"valid_timeline_events":len(valid),"used_time_keys":sorted(key_samples)[:20]}
 
 
 def main():
@@ -213,7 +220,7 @@ def main():
     root=ET.Element("tv",{"generator-info-name":"EPGManager Sport24 standalone source","generator-info-url":"https://github.com/wacayoub/EPGManager"})
     session=requests.Session(); session.headers.update({"User-Agent":UA,"Accept-Language":"ar,en;q=0.8","Accept":"text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8"})
     now=datetime.now(timezone.utc); max_start=now+timedelta(hours=max(1,args.window_hours))
-    report={"source":"https://www.sport24.rest","policy":"source-provided absolute timestamps only; no guessed timezone/local clocks","channels":[],"programmes":0}
+    report={"source":"https://www.sport24.rest","policy":"source-provided UTC data-time timestamps; no guessed timezone/local clocks","channels":[],"programmes":0}
     active=0
     for cid,name,url in TARGETS:
         row={"id":cid,"name":name,"url":url,"programmes":0,"status":"NO_TIMELINE"}
