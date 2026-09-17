@@ -1,0 +1,94 @@
+name: Global EPG Health Gate Shadow
+
+on:
+  workflow_run:
+    workflows:
+      - "MENA Cloud EPG"
+      - "Morocco EPG Cloud"
+    types:
+      - completed
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/global-health-gate.yml"
+      - "tools/global_health_gate.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: global-epg-health-gate-shadow
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout auditor
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify global gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/global_health_gate.py
+
+      - name: Download currently published receiver feeds
+        shell: bash
+        run: |
+          set -u
+          mkdir -p health-input/mena health-input/morocco health-output
+
+          curl -fL --retry 2 --retry-delay 1 --connect-timeout 5 --max-time 45 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz" \
+            -o health-input/mena/mena-arabic.xml.gz || true
+          curl -fL --retry 2 --retry-delay 1 --connect-timeout 5 --max-time 20 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/manifest.json" \
+            -o health-input/mena/manifest.json || true
+
+          curl -fL --retry 2 --retry-delay 1 --connect-timeout 5 --max-time 45 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
+            -o health-input/morocco/morocco.xml.gz || true
+          curl -fL --retry 2 --retry-delay 1 --connect-timeout 5 --max-time 20 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/manifest.json" \
+            -o health-input/morocco/manifest.json || true
+
+      - name: Run unified health gate in shadow mode
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/global_health_gate.py \
+            --mena-dir health-input/mena \
+            --morocco-dir health-input/morocco \
+            --mode shadow \
+            --minimum-mena-future-hours 30 \
+            --minimum-morocco-future-hours 30 \
+            --json health-output/global-health-gate.json \
+            --text health-output/global-health-gate.txt
+
+      - name: Publish audit summary to Actions UI
+        if: always()
+        shell: bash
+        run: |
+          if [ -s health-output/global-health-gate.txt ]; then
+            cat health-output/global-health-gate.txt >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Global health gate did not produce a report." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload shadow audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: global-epg-health-gate-shadow
+          path: health-output/
+          if-no-files-found: warn
+          retention-days: 14
