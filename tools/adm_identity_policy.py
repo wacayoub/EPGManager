@@ -30,14 +30,32 @@ CANONICAL = {
     "baynounah tv": ("BaynounahTV.ae", "Baynounah TV"),
 }
 
+_ARABIC_DIGITS = str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789")
+
 
 def _flat(value):
-    value = (value or "").casefold().strip()
+    value = (value or "").casefold().strip().translate(_ARABIC_DIGITS)
     value = re.sub(r"^(?:ar|ara|arabic|en|eng|english)\s*[:|_-]\s*", "", value, flags=re.I)
     value = re.sub(r"\.(?:ae|sa|qa|eg|bh|kw|om|jo|lb|iq|ps|ye|mena)(?:@[^\s]*)?$", "", value, flags=re.I)
     value = re.sub(r"\b(?:uhd|fhd|full\s*hd|hd|sd|digital|mono)\b", " ", value, flags=re.I)
     value = re.sub(r"[^a-z0-9\u0600-\u06ff]+", " ", value)
     return " ".join(value.split())
+
+
+def _arabic_ad_sports(probe):
+    """Return the proven ADM sports logical key for Arabic display names/IDs."""
+    if not re.search(r"(?:أبوظبي|ابوظبي).*?(?:الرياضية|رياضية)", probe):
+        return None
+    if re.search(r"(?:إكسترا|اكسترا|إكستره|اكستره)", probe):
+        return "ad sports extra"
+    if "بريميوم" in probe:
+        m = re.search(r"بريميوم\s*([12])\b", probe)
+        if m:
+            return "abu dhabi sports premium %s" % m.group(1)
+    m = re.search(r"(?:الرياضية|رياضية)\s*([12])\b", probe)
+    if m:
+        return "abu dhabi sports %s" % m.group(1)
+    return None
 
 
 def adm_key(cid, name):
@@ -47,13 +65,21 @@ def adm_key(cid, name):
     probe = " %s %s " % (rid, rname)
     compact = re.sub(r"\s+", "", probe)
 
+    # Arabic ADM sports identities must be resolved before the generic Arabic
+    # "Abu Dhabi" TV rule.  Otherwise e.g. أبوظبي الرياضية إكسترا / بريميوم
+    # gets folded into AbuDhabiTV and a short event schedule can win the Arabic-
+    # first timeline arbitration for the entertainment channel.
+    ar_sports_key = _arabic_ad_sports(probe)
+    if ar_sports_key:
+        return ar_sports_key
+
     # Event-only feeds must be identified before the ordinary sports/Yas rules.
     if ("ad sports extra" in probe or "adsportsextra" in compact
             or "abu dhabi sports extra" in probe):
         return "ad sports extra"
     # EPGShare exposes verified slot-identical AR/EN twins for YAS TV Extra.
     # The Arabic identity is explicitly grouped with the English source so the
-    # normal Arabic-first event merger can retain the same 94/94 timeline while
+    # normal Arabic-first event merger can retain the same timeline while
     # selecting native Arabic titles and descriptions.
     if ("yas tv extra" in probe or "yastvextra" in compact
             or "ياس تي في إكسترا" in probe or "ياس تي في اكسترا" in probe):
@@ -98,13 +124,17 @@ def adm_key(cid, name):
         return "abu dhabi emirates"
 
     # Plain "Abu Dhabi" source ids, Abu Dhabi HD and Abu Dhabi TV are one linear
-    # entertainment service.  This intentionally collapses the current duplicate
-    # ``Abu Dhabi.sa`` + ``AbuDhabiTV.ae@SD`` while retaining the richer timeline.
+    # entertainment service.  Arabic sports terms are explicitly excluded as a
+    # final safety net even though they are normally caught above.
     if ("abu dhabi tv" in probe or "abudhabi tv" in probe or "abudhabitv" in compact
             or rid in {"abu dhabi", "abu dhabi tv"}
             or rname in {"abu dhabi", "abu dhabi tv"}
             or "أبوظبي" in probe or "ابوظبي" in probe):
-        if not any(x in probe for x in ("sports", "sport", "premium", "yas", "national geographic", "nat geo")):
+        excluded = (
+            "sports", "sport", "premium", "yas", "national geographic", "nat geo",
+            "الرياضية", "رياضية", "بريميوم", "إكسترا", "اكسترا",
+        )
+        if not any(x in probe for x in excluded):
             return "abu dhabi tv"
 
     return None
@@ -172,6 +202,10 @@ if __name__ == "__main__":
         ("AD Sports 2.sa", "AD Sports 2.sa"): "abu dhabi sports 2",
         ("AD Sports Premium 1.sa", "AD Sports Premium 1.sa"): "abu dhabi sports premium 1",
         ("en:.AD.Sports.Extra.ae", "en: AD Sports Extra"): "ad sports extra",
+        ("ar:.أبوظبي.الرياضية.إكسترا.ae", "ar: أبوظبي الرياضية إكسترا"): "ad sports extra",
+        ("ar:.أبوظبي.الرياضية.بريميوم.2.-.الدوري.الإيطالي.ae", "ar: أبوظبي الرياضية بريميوم 2 - الدوري الإيطالي"): "abu dhabi sports premium 2",
+        ("ar:.أبوظبي.الرياضية.1.ae", "ar: أبوظبي الرياضية ١"): "abu dhabi sports 1",
+        ("ar:.أبوظبي.الرياضية.2.ae", "ar: أبوظبي الرياضية ٢"): "abu dhabi sports 2",
         ("en:.YAS.TV.Extra.ae", "en: YAS TV Extra"): "yas tv extra",
         ("ar:.ياس.تي.في.إكسترا.ae", "ar: ياس تي في إكسترا"): "yas tv extra",
         ("Majid.sa", "Majid.sa"): "majid",
