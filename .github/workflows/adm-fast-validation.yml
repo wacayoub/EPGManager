@@ -1,0 +1,52 @@
+name: ADM Fast Validation
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/provider_namespace_polish.py"
+      - "tools/adm_id_audit_policy.py"
+      - "tools/adm_final_regression.py"
+      - ".github/workflows/adm-fast-validation.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: adm-fast-validation
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Download current published ADM shard
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p work
+          curl -fL --retry 2 --connect-timeout 5 --max-time 20 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/provider-adm.xml.gz" \
+            -o work/provider-adm.xml.gz
+      - name: Apply final namespace polish
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/provider_namespace_polish.py --dir work
+      - name: Run ADM production audit and final gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/adm_id_audit_policy.py \
+            --xml work/provider-adm.xml.gz \
+            --json work/adm-id-audit-policy.json \
+            --text work/adm-id-audit-policy.txt
+          python tools/adm_final_regression.py \
+            --audit-json work/adm-id-audit-policy.json \
+            --text work/adm-final-regression.txt
+          cat work/adm-final-regression.txt
