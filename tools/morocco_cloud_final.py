@@ -23,6 +23,7 @@ import morocco_epg as base
 import morocco_cloud_runner as runner
 import morocco_cloud_legacy_logic as legacy
 import morocco_cloud_runner_ar2_quality as final2m
+import morocco_alaoula_fallback as alaoula_fallback
 
 TZ = runner.TZ
 
@@ -252,8 +253,8 @@ def _install_strict_writer():
 
 def main():
     # The legacy /ar/node/1208 and /fr/programmes/alaoula grids can expose stale
-    # cache rows. The active channel page currently carries the live Al Aoula
-    # grid, while preserving SNRT's same programme-card markup.
+    # cache rows. Keep the active official page as primary; if it still has no
+    # useful dated programme, a guarded TeleNews fallback is injected below.
     legacy.SNRT_CHANNELS["AlAoula"] = "https://www.snrt.ma/ar/al-aoula"
 
     # Install receiver-proven Moroccan source behaviour before runner.main()
@@ -265,7 +266,24 @@ def main():
     historical_snrt = base.scrape_snrt
 
     def cloud_snrt(days):
-        return _snrt_cloud_cleanup(historical_snrt(days), days)
+        rows = historical_snrt(days)
+        current_alaoula = [
+            e for e in _valid_horizon(rows)
+            if e.channel == "AlAoula"
+        ]
+        if not current_alaoula:
+            runner.log("AlAoula official SNRT has zero useful events; trying guarded fallback")
+            try:
+                backup = alaoula_fallback.scrape(min(days, 3))
+            except Exception as exc:
+                runner.log("AlAoula guarded fallback failed: %s" % exc)
+                backup = []
+            if backup:
+                rows.extend(backup)
+                runner.log("AlAoula guarded fallback accepted: %d events" % len(backup))
+            else:
+                runner.log("AlAoula guarded fallback returned zero events")
+        return _snrt_cloud_cleanup(rows, days)
 
     base.scrape_snrt = cloud_snrt
 
