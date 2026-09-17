@@ -38,6 +38,7 @@ _original_source_base = base.source_base
 _QUARANTINE_FINDINGS = []
 _KNOWN_KEYS = set()
 _CLEAN_PROGRAMME_KEYS = set()
+_CLOCK_DECISIONS = {}
 
 # Recovery framework intentionally starts empty. A recovery source is enabled
 # only after its live endpoint and identity mapping have passed an explicit
@@ -251,10 +252,73 @@ def _foreign_contamination(candidate):
     return len(hits) >= 3
 
 
+def _adm_clock_authority(candidates):
+    """Use a proven clean clock for AD Sports 1, never merely a language-rich clock.
+
+    Live donor probes on 2026-09-17 found the EPGShare UAE AD.Sports.1.HD.ae
+    schedule structurally clean and substantially deeper than the OSN/OpenEPG
+    fallback clocks. Arabic OpenEPG/Sport24 candidates remain in the same logical
+    group and can enrich matching event text through safe_choose_event; only the
+    timestamps come from this authority.
+
+    This is deliberately fail-open: if that exact donor disappears or becomes
+    structurally suspicious, normal Arabic-first arbitration resumes unchanged.
+    """
+    target = "abu dhabi sports 1"
+    if not any(adm_identity.adm_key(c.cid, c.name) == target for c in candidates):
+        return None
+
+    eligible = []
+    for c in candidates:
+        if adm_identity.adm_key(c.cid, c.name) != target:
+            continue
+        if c.origin != "epgshare" or c.source_name != "epgshare-ae1":
+            continue
+        if safe._compact(c.cid) not in {"ad sports 1", "ad sports 1 hd"}:
+            continue
+        st = safe._candidate_stats(c, False)
+        valid = int(st.get("valid", 0) or 0)
+        if valid < 16:
+            continue
+        if int(st.get("invalid", 0) or 0):
+            continue
+        if int(st.get("long", 0) or 0):
+            continue
+        if int(st.get("mixed_tz", 0) or 0):
+            continue
+        if int(st.get("overlaps", 0) or 0) > max(1, int(valid * 0.03)):
+            continue
+        eligible.append((valid, float(st.get("score", 0.0) or 0.0), c.cid.casefold(), c, st))
+
+    if not eligible:
+        return None
+
+    eligible.sort(reverse=True, key=lambda x: (x[0], x[1], x[2]))
+    chosen = eligible[0]
+    _CLOCK_DECISIONS[target] = {
+        "logical_key": target,
+        "source": chosen[3].source_name,
+        "origin": chosen[3].origin,
+        "id": chosen[3].cid,
+        "valid_events": chosen[0],
+        "long_gt_12h": int(chosen[4].get("long", 0) or 0),
+        "invalid": int(chosen[4].get("invalid", 0) or 0),
+        "overlaps": int(chosen[4].get("overlaps", 0) or 0),
+        "policy": "clock only; Arabic metadata may be enriched from slot-aligned candidates",
+    }
+    print("ADM clock authority: %s <- %s/%s events=%d" % (
+        target, chosen[3].source_name, chosen[3].cid, chosen[0]))
+    return chosen[3], chosen[4]
+
+
 def arabic_first_choose_timeline(candidates):
     with_programmes = [c for c in candidates if c.programmes]
     if with_programmes:
         candidates = with_programmes
+
+    authority = _adm_clock_authority(candidates)
+    if authority is not None:
+        return authority
 
     premium = any(base.is_premium(c.cid, c.name) for c in candidates)
     if premium:
@@ -360,6 +424,9 @@ def _write_quarantine_report():
         "rejected_already_clean_rows": recovery_already_clean,
         "policy": "recovery feeds can only fill exact existing logical MENA identities with no clean timetable and must pass the same integrity guard",
     }
+    report["clock_authorities"] = [
+        _CLOCK_DECISIONS[key] for key in sorted(_CLOCK_DECISIONS, key=str.casefold)
+    ]
     path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
