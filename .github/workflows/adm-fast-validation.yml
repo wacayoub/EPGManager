@@ -7,6 +7,8 @@ on:
       - "tools/provider_namespace_polish.py"
       - "tools/adm_id_audit_policy.py"
       - "tools/adm_final_regression.py"
+      - "tools/natgeo_ad_arabic_enrich.py"
+      - "data/natgeo_ad_arabic_metadata.json"
       - ".github/workflows/adm-fast-validation.yml"
 
 permissions:
@@ -25,7 +27,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Download current published ADM shard
+      - name: Download current ADM shard and healthy OSN donor
         shell: bash
         run: |
           set -euo pipefail
@@ -33,11 +35,57 @@ jobs:
           curl -fL --retry 2 --connect-timeout 5 --max-time 20 \
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/provider-adm.xml.gz" \
             -o work/provider-adm.xml.gz
-      - name: Apply final namespace polish
+          curl -fL --retry 2 --connect-timeout 5 --max-time 20 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/source-osn.xml.gz" \
+            -o work/source-osn.xml.gz
+      - name: Simulate verified OSN clock authority for weak ADM core channels
         shell: bash
         run: |
           set -euo pipefail
+          python - <<'PY'
+          import gzip, xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          target_path=Path('work/provider-adm.xml.gz')
+          donor_path=Path('work/source-osn.xml.gz')
+          target=ET.fromstring(gzip.decompress(target_path.read_bytes()))
+          donor=ET.fromstring(gzip.decompress(donor_path.read_bytes()))
+          mapping={
+              'ADM.Abu.Dhabi.Sports.1.ae':'AbuDhabiSports1.ae@SD',
+              'ADM.Abu.Dhabi.TV.ae':'AbuDhabiTV.ae@SD',
+          }
+          donor_channels={c.get('id'):c for c in donor.findall('channel')}
+          donor_programmes={cid:[] for cid in mapping.values()}
+          for p in donor.findall('programme'):
+              cid=p.get('channel')
+              if cid in donor_programmes: donor_programmes[cid].append(p)
+          for target_id, donor_id in mapping.items():
+              if donor_id not in donor_channels or not donor_programmes[donor_id]:
+                  raise SystemExit(f'missing verified donor {donor_id}')
+              for p in list(target.findall('programme')):
+                  if p.get('channel') == target_id: target.remove(p)
+              for p in donor_programmes[donor_id]:
+                  clone=ET.fromstring(ET.tostring(p,encoding='utf-8'))
+                  clone.set('channel',target_id)
+                  target.append(clone)
+              print(f'ADM_RESCUE {target_id} <= {donor_id} programmes={len(donor_programmes[donor_id])}')
+          ET.indent(target,space='  ')
+          xml=ET.tostring(target,encoding='utf-8',xml_declaration=True)
+          target_path.write_bytes(gzip.compress(xml,compresslevel=9,mtime=0))
+          PY
+      - name: Apply canonical namespace and verified NatGeo Arabic enrichment
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f work/source-osn.xml.gz
           python tools/provider_namespace_polish.py --dir work
+          python tools/natgeo_ad_arabic_enrich.py enrich \
+            --xml work/provider-adm.xml.gz \
+            --output work/provider-adm.xml.gz \
+            --cache data/natgeo_ad_arabic_metadata.json \
+            --report-json work/natgeo-arabic-enrichment.json \
+            --report-text work/natgeo-arabic-enrichment.txt
+          cat work/natgeo-arabic-enrichment.txt
       - name: Run ADM production audit and final gate
         shell: bash
         run: |
@@ -46,6 +94,7 @@ jobs:
             --xml work/provider-adm.xml.gz \
             --json work/adm-id-audit-policy.json \
             --text work/adm-id-audit-policy.txt
+          cat work/adm-id-audit-policy.txt
           python tools/adm_final_regression.py \
             --audit-json work/adm-id-audit-policy.json \
             --text work/adm-final-regression.txt
