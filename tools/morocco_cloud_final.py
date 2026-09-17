@@ -251,9 +251,10 @@ def _install_strict_writer():
 
 
 def main():
-    # Al Aoula moved away from the legacy /ar/node/1208 page. Keep the proven
-    # SNRT historical parser, but point only this channel at the current grid.
-    legacy.SNRT_CHANNELS["AlAoula"] = "https://www.snrt.ma/fr/programmes/alaoula"
+    # The legacy /ar/node/1208 and /fr/programmes/alaoula grids can expose stale
+    # cache rows. The active channel page currently carries the live Al Aoula
+    # grid, while preserving SNRT's same programme-card markup.
+    legacy.SNRT_CHANNELS["AlAoula"] = "https://www.snrt.ma/ar/al-aoula"
 
     # Install receiver-proven Moroccan source behaviour before runner.main()
     # builds its parallel provider jobs.
