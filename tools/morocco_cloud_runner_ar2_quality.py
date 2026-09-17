@@ -3,9 +3,12 @@
 """2M title-quality overlay for the Morocco Cloud runner.
 
 This module keeps the existing multi-source/timing policy from
-morocco_cloud_runner_ar2, but fixes one important arbitration case: a generic
-primary title such as "Programme on 2M" / "برنامج على 2M" must never beat a
-specific title from Telerama, Sudinfo or TVMag for the same linear-TV slot.
+morocco_cloud_runner_ar2, but fixes two important title-quality cases:
+1. a generic primary title such as "Programme on 2M" / "برنامج على 2M" must
+   never beat a specific title from Telerama, Sudinfo or TVMag for the same slot;
+2. if the Arabic translation layer cannot translate a real source title, the
+   real programme name must be preserved instead of being replaced by a generic
+   "برنامج على 2M" label.
 """
 from __future__ import annotations
 
@@ -36,6 +39,27 @@ _GENERIC_EXACT = {
     "كل البرامج على 2إم",
 }
 
+# Canonical spellings for current/recurrent 2M shows which were previously
+# falling through to the generic label. Keep this list deliberately explicit:
+# an unknown title is preserved verbatim rather than guessed.
+_KNOWN_2M_TITLES = {
+    "aqba lik": "عقبا ليك",
+    "al akhawat attalat": "الأخوات الثلاث",
+    "3ailti": "عائلتي",
+    "moughamarat": "مغامرات",
+    "hikayat fi al adghal": "حكايات في الأدغال",
+    "bahr addalam": "بحر الظلام",
+    "mama 3roussa": "ماما عروسة",
+    "abtal al bihar": "أبطال البحار",
+    "oueld annas": "ولد الناس",
+    "addam al machrouk": "الدم المشروك",
+    "tourouq al 3arifine": "طرق العارفين",
+    "al islam 3amal wa soulouk": "الإسلام عمل وسلوك",
+    "addine wa annass": "الدين والناس",
+    "yassar would annass": "يسار: ولد الناس",
+    "akhir tamane": "آخر تمان",
+}
+
 
 def _generic_key(value):
     text = ar1.clean(value or "")
@@ -60,6 +84,29 @@ def is_generic_title(value):
         if key in {"film", "movie", "فيلم", "serie", "series", "مسلسل"}:
             return True
     return False
+
+
+_original_translate_title = ar1.translate_title
+
+
+def translate_title_keep_real_name(value):
+    """Never destroy a specific 2M programme name with a generic fallback."""
+    raw = ar1.clean(value or "")
+    if not raw:
+        return _original_translate_title(value)
+
+    known = _KNOWN_2M_TITLES.get(ar1.norm(raw))
+    if known:
+        return known
+
+    translated = _original_translate_title(raw)
+    if not is_generic_title(translated):
+        return translated
+
+    # Translation service/dictionary had no Arabic result. Preserve the exact
+    # broadcaster/source title. The Arabic suffix keeps the existing receiver
+    # language-quality gate satisfied while making the real name visible.
+    return "%s — برنامج 2M" % raw
 
 
 def merge_prefer_specific(primary, backup):
@@ -96,7 +143,8 @@ def merge_prefer_specific(primary, backup):
     return sorted(merged.values(), key=lambda x: x.start)
 
 
-# Install the narrow quality fix into the existing, otherwise unchanged runner.
+# Install the quality fixes into the existing, otherwise unchanged runner.
+ar1.translate_title = translate_title_keep_real_name
 base._merge_prefer = merge_prefer_specific
 
 
