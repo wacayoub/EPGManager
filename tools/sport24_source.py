@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 """Build a standalone Sport24 XMLTV feed without affecting MENA authority.
 
-Only explicit machine-readable start/stop times are accepted. If Sport24
-returns programme cards without trustworthy clock data, the channel is kept in
-the diagnostic report but no programme is invented. This makes the source safe
-for receiver use and suitable as an independent candidate source.
+Only explicit machine-readable start/stop times are accepted. Sport24 changes
+its frontend regularly, so the extractor understands ISO datetimes, Unix epoch
+seconds/milliseconds, common data-* timestamp attributes and recursively nested
+JSON state. Programme cards without a trustworthy clock remain diagnostic-only:
+no schedule time is invented.
 """
 from __future__ import annotations
 
@@ -38,22 +39,68 @@ TARGETS = [
     (f"sport24.bein.{n}", f"beIN SPORTS {n}", f"{BASE}/bein/{n}") for n in range(1, 10)
 ]
 
-UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36 EPGManager/1.0"
+UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36 EPGManager/1.1"
+
+START_KEYS = (
+    "start", "start_time", "startTime", "start_at", "startAt", "starts_at",
+    "startsAt", "begin", "begin_at", "beginAt", "datetime", "dateTime",
+    "timestamp", "time", "utc", "start_timestamp", "startTimestamp",
+)
+STOP_KEYS = (
+    "stop", "end", "end_time", "endTime", "end_at", "endAt", "ends_at",
+    "endsAt", "finish", "finish_at", "finishAt", "stop_timestamp", "endTimestamp",
+)
+TITLE_KEYS = ("title", "name", "program", "programme", "program_title", "eventTitle", "event_name")
+DESC_KEYS = ("description", "desc", "summary", "details", "subtitle")
 
 
-def parse_iso(value: str):
-    raw = (value or "").strip()
+def parse_dt(value):
+    """Parse only timezone-aware/absolute values; never assume a local timezone."""
+    if value is None or isinstance(value, bool):
+        return None
+
+    if isinstance(value, (int, float)):
+        number = float(value)
+        # Current web timestamps are normally seconds or milliseconds.
+        if number > 10_000_000_000:
+            number /= 1000.0
+        if 500_000_000 <= number <= 5_000_000_000:
+            try:
+                return datetime.fromtimestamp(number, tz=timezone.utc)
+            except (OverflowError, OSError, ValueError):
+                return None
+        return None
+
+    raw = str(value).strip()
     if not raw:
         return None
-    try:
-        if raw.endswith("Z"):
-            raw = raw[:-1] + "+00:00"
-        dt = datetime.fromisoformat(raw)
-        if dt.tzinfo is None:
+
+    if re.fullmatch(r"\d{10,13}(?:\.0+)?", raw):
+        try:
+            return parse_dt(float(raw))
+        except ValueError:
             return None
-        return dt.astimezone(timezone.utc)
+
+    # Normalise common JS/ISO variants. A timezone/offset is mandatory.
+    candidate = raw
+    if candidate.endswith("Z"):
+        candidate = candidate[:-1] + "+00:00"
+    try:
+        dt = datetime.fromisoformat(candidate)
+        if dt.tzinfo is not None:
+            return dt.astimezone(timezone.utc)
     except Exception:
-        return None
+        pass
+
+    # RFC/JS strings such as "Thu, 17 Sep 2026 18:00:00 GMT".
+    try:
+        from email.utils import parsedate_to_datetime
+        dt = parsedate_to_datetime(raw)
+        if dt and dt.tzinfo is not None:
+            return dt.astimezone(timezone.utc)
+    except Exception:
+        pass
+    return None
 
 
 def xmltv_dt(dt: datetime) -> str:
@@ -64,74 +111,141 @@ def clean(text: str) -> str:
     return re.sub(r"\s+", " ", html_lib.unescape(text or "")).strip()
 
 
+def first_value(mapping, keys):
+    if not isinstance(mapping, dict):
+        return None
+    for key in keys:
+        if key in mapping and mapping[key] not in (None, ""):
+            return mapping[key]
+    # Case-insensitive / punctuation-insensitive fallback.
+    normalized = {re.sub(r"[^a-z0-9]", "", str(k).casefold()): v for k, v in mapping.items()}
+    for key in keys:
+        hit = normalized.get(re.sub(r"[^a-z0-9]", "", key.casefold()))
+        if hit not in (None, ""):
+            return hit
+    return None
+
+
+def node_absolute_time(node, start=True):
+    attrs = (
+        ("data-start", "data-start-time", "data-begin", "datetime",
+         "data-time", "data-timestamp", "data-date", "data-utc",
+         "data-start-ts", "data-start-timestamp", "data-start-date")
+        if start else
+        ("data-stop", "data-end", "data-end-time", "data-finish",
+         "data-stop-ts", "data-end-ts", "data-end-timestamp", "data-end-date")
+    )
+    for attr in attrs:
+        dt = parse_dt(node.get(attr))
+        if dt:
+            return dt
+
+    # The clock can be attached to a descendant rather than the programme card.
+    for child in node.find_all(True):
+        for attr in attrs:
+            dt = parse_dt(child.get(attr))
+            if dt:
+                return dt
+    return None
+
+
 def event_from_node(node):
-    start = None
-    stop = None
-    for attr in ("data-start", "data-start-time", "data-begin", "datetime"):
-        start = parse_iso(node.get(attr))
-        if start:
-            break
-    for attr in ("data-stop", "data-end", "data-end-time"):
-        stop = parse_iso(node.get(attr))
-        if stop:
-            break
-    if not start:
-        time_node = node.find("time", attrs={"datetime": True})
-        if time_node:
-            start = parse_iso(time_node.get("datetime"))
+    start = node_absolute_time(node, start=True)
     if not start:
         return None
-    if not stop:
-        stop_node = node.find("time", attrs={"data-end": True})
-        if stop_node:
-            stop = parse_iso(stop_node.get("data-end"))
+    stop = node_absolute_time(node, start=False)
+
     title = ""
     desc = ""
-    for sel in (".title", ".program-title", ".programme-title", "h2", "h3", "h4", "strong"):
+    for sel in (
+        ".title", ".program-title", ".programme-title", ".event-title",
+        "[class*='title']", "h2", "h3", "h4", "strong",
+    ):
         hit = node.select_one(sel)
         if hit and clean(hit.get_text(" ", strip=True)):
             title = clean(hit.get_text(" ", strip=True))
             break
-    for sel in (".description", ".program-description", ".programme-description", "p"):
+    for sel in (
+        ".description", ".program-description", ".programme-description",
+        ".event-description", "[class*='description']", "p",
+    ):
         hit = node.select_one(sel)
         if hit and clean(hit.get_text(" ", strip=True)):
             desc = clean(hit.get_text(" ", strip=True))
             break
     if not title:
-        title = clean(node.get("data-title") or "")
+        title = clean(node.get("data-title") or node.get("aria-label") or "")
     if not title:
         return None
-    return {"start": start, "stop": stop, "title": title, "desc": desc}
+    return {"start": start, "stop": stop, "title": title, "desc": desc, "via": "dom"}
+
+
+def event_from_mapping(row):
+    if not isinstance(row, dict):
+        return None
+    start = parse_dt(first_value(row, START_KEYS))
+    if not start:
+        return None
+    stop = parse_dt(first_value(row, STOP_KEYS))
+    title = clean(str(first_value(row, TITLE_KEYS) or ""))
+    desc = clean(str(first_value(row, DESC_KEYS) or ""))
+    if not title:
+        return None
+    return {"start": start, "stop": stop, "title": title, "desc": desc, "via": "json"}
+
+
+def walk_json(value):
+    """Yield every nested mapping/list item without assuming a frontend schema."""
+    if isinstance(value, dict):
+        yield value
+        for child in value.values():
+            yield from walk_json(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from walk_json(child)
+
+
+def json_blobs_from_script(raw: str, script_type: str):
+    raw = raw.strip()
+    if not raw:
+        return []
+
+    blobs = []
+    if "json" in script_type:
+        blobs.append(raw)
+
+    # Common SSR/app state assignments.
+    patterns = (
+        r"__NEXT_DATA__\s*=\s*({[\s\S]*?})\s*;?\s*$",
+        r"__NUXT__\s*=\s*({[\s\S]*?})\s*;?\s*$",
+        r"(?:programs|programmes|schedule|events)\s*[:=]\s*(\[[\s\S]*?\])\s*[;,<]",
+        r"(?:programs|programmes|schedule|events)\s*[:=]\s*({[\s\S]*?})\s*[;,<]",
+    )
+    for pattern in patterns:
+        for match in re.finditer(pattern, raw, re.I):
+            blobs.append(match.group(1))
+    return blobs
 
 
 def embedded_json_events(soup):
     out = []
+    parsed_blobs = 0
     for script in soup.find_all("script"):
         raw = script.string or script.get_text("", strip=False) or ""
-        if not raw or ("start" not in raw.casefold() and "date" not in raw.casefold()):
+        if not raw:
             continue
-        candidates = []
         stype = (script.get("type") or "").casefold()
-        if "json" in stype:
-            candidates.append(raw.strip())
-        for m in re.finditer(r"(?:programs|programmes|schedule|events)\s*[:=]\s*(\[[\s\S]*?\])\s*[;,<]", raw, re.I):
-            candidates.append(m.group(1))
-        for blob in candidates:
+        for blob in json_blobs_from_script(raw, stype):
             try:
                 data = json.loads(blob)
             except Exception:
                 continue
-            stack = data if isinstance(data, list) else []
-            for row in stack:
-                if not isinstance(row, dict):
-                    continue
-                start = parse_iso(str(row.get("start") or row.get("start_time") or row.get("datetime") or ""))
-                stop = parse_iso(str(row.get("stop") or row.get("end") or row.get("end_time") or ""))
-                title = clean(str(row.get("title") or row.get("name") or row.get("program") or ""))
-                desc = clean(str(row.get("description") or row.get("desc") or ""))
-                if start and title:
-                    out.append({"start": start, "stop": stop, "title": title, "desc": desc})
-    return out
+            parsed_blobs += 1
+            for row in walk_json(data):
+                ev = event_from_mapping(row)
+                if ev:
+                    out.append(ev)
+    return out, parsed_blobs
 
 
 def scrape(session: requests.Session, url: str):
@@ -139,8 +253,10 @@ def scrape(session: requests.Session, url: str):
     r.raise_for_status()
     soup = BeautifulSoup(r.text, "html.parser")
     events = []
+
     selectors = [
         "[data-start]", "[data-start-time]", "[data-begin]",
+        "[data-time]", "[data-timestamp]", "[data-start-ts]",
         ".program", ".programme", ".schedule-item", ".event", "article",
     ]
     seen_nodes = set()
@@ -153,18 +269,34 @@ def scrape(session: requests.Session, url: str):
             ev = event_from_node(node)
             if ev:
                 events.append(ev)
-    events.extend(embedded_json_events(soup))
+
+    json_events, parsed_json_blobs = embedded_json_events(soup)
+    events.extend(json_events)
+
     dedup = {}
     for ev in events:
         key = (ev["start"].isoformat(), ev["title"].casefold())
-        dedup[key] = ev
+        old = dedup.get(key)
+        # Prefer records that carry an explicit stop.
+        if old is None or (old.get("stop") is None and ev.get("stop") is not None):
+            dedup[key] = ev
+
     rows = sorted(dedup.values(), key=lambda x: x["start"])
-    # Fill only a missing stop from the next explicit event. Never create a
-    # synthetic clock for the first/last event.
+    # Fill only a missing stop from the next explicit event. The start times
+    # remain source-provided, and no duration is guessed for the last event.
     for i, row in enumerate(rows[:-1]):
         if row.get("stop") is None and rows[i + 1]["start"] > row["start"]:
             row["stop"] = rows[i + 1]["start"]
-    return [x for x in rows if x.get("stop") and x["stop"] > x["start"]]
+
+    valid = [x for x in rows if x.get("stop") and x["stop"] > x["start"]]
+    diagnostics = {
+        "http_status": r.status_code,
+        "html_bytes": len(r.content),
+        "candidate_events": len(events),
+        "parsed_json_blobs": parsed_json_blobs,
+        "valid_timeline_events": len(valid),
+    }
+    return valid, diagnostics
 
 
 def main() -> int:
@@ -180,17 +312,30 @@ def main() -> int:
         "generator-info-url": "https://github.com/wacayoub/EPGManager",
     })
     session = requests.Session()
-    session.headers.update({"User-Agent": UA, "Accept-Language": "ar,en;q=0.8"})
+    session.headers.update({
+        "User-Agent": UA,
+        "Accept-Language": "ar,en;q=0.8",
+        "Accept": "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
+    })
     now = datetime.now(timezone.utc)
     max_start = now + timedelta(hours=max(1, args.window_hours))
-    report = {"source": "https://www.sport24.rest", "channels": [], "programmes": 0}
+    report = {
+        "source": "https://www.sport24.rest",
+        "policy": "explicit absolute timestamps only; no guessed local clocks",
+        "channels": [],
+        "programmes": 0,
+    }
     channel_rows = []
 
     for cid, name, url in TARGETS:
         row = {"id": cid, "name": name, "url": url, "programmes": 0, "status": "NO_TIMELINE"}
         try:
-            events = scrape(session, url)
-            events = [e for e in events if e["stop"] > now - timedelta(hours=2) and e["start"] < max_start]
+            events, diagnostics = scrape(session, url)
+            row.update(diagnostics)
+            events = [
+                e for e in events
+                if e["stop"] > now - timedelta(hours=2) and e["start"] < max_start
+            ]
             if events:
                 c = ET.Element("channel", {"id": cid})
                 ET.SubElement(c, "display-name", {"lang": "en"}).text = name
@@ -219,8 +364,14 @@ def main() -> int:
     Path(args.output).write_bytes(ET.tostring(root, encoding="utf-8", xml_declaration=True))
     report["active_channels"] = len(channel_rows)
     report["generated_utc"] = datetime.now(timezone.utc).isoformat()
-    Path(args.report).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"active_channels": report["active_channels"], "programmes": report["programmes"]}))
+    Path(args.report).write_text(
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    print(json.dumps({
+        "active_channels": report["active_channels"],
+        "programmes": report["programmes"],
+    }))
     return 0
 
 
