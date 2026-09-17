@@ -26,6 +26,9 @@ import morocco_cloud_runner_ar2_quality as final2m
 
 TZ = runner.TZ
 
+# Keep this entry point tied to the final 2M title-quality overlay so changes to
+# the overlay are exercised by the production Morocco workflow.
+
 
 def _xmltv_dt(value):
     """Parse normal XMLTV offsets and tolerate legacy '+010' style offsets."""
