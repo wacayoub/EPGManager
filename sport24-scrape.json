@@ -1,90 +1,96 @@
 {
   "source": "https://www.sport24.rest",
-  "policy": "source-provided absolute timestamps only; no guessed timezone/local clocks",
+  "policy": "source-provided UTC data-time timestamps; no guessed timezone/local clocks",
   "channels": [
     {
       "id": "sport24.adsports.1",
       "name": "Abu Dhabi Sports 1",
       "url": "https://www.sport24.rest/channels/adsports/1",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 14,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 86959,
-      "candidate_events": 0,
+      "candidate_events": 22,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 22,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.adsports.2",
       "name": "Abu Dhabi Sports 2",
       "url": "https://www.sport24.rest/channels/adsports/2",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 11,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 87685,
-      "candidate_events": 0,
+      "candidate_events": 21,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 21,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.adsports.3",
       "name": "Abu Dhabi Sports 3",
       "url": "https://www.sport24.rest/channels/adsports/3",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 19,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 104883,
-      "candidate_events": 0,
+      "candidate_events": 32,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 32,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.adsports.4",
       "name": "Abu Dhabi Sports 4",
       "url": "https://www.sport24.rest/channels/adsports/4",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 16,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 99897,
-      "candidate_events": 0,
+      "candidate_events": 29,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 29,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.dubaisports.1",
       "name": "Dubai Sports 1",
       "url": "https://www.sport24.rest/channels/dubaisports/1",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 12,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 83093,
-      "candidate_events": 0,
+      "candidate_events": 17,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 17,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.dubaisports.2",
       "name": "Dubai Sports 2",
       "url": "https://www.sport24.rest/channels/dubaisports/2",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 13,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 91589,
-      "candidate_events": 0,
+      "candidate_events": 22,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 22,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.thmanyah.1",
@@ -97,193 +103,205 @@
       "candidate_events": 0,
       "parsed_json_blobs": 1,
       "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "used_time_keys": []
     },
     {
       "id": "sport24.thmanyah.2",
       "name": "Thmanyah 2",
       "url": "https://www.sport24.rest/channels/thmanyah/2",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 14,
+      "status": "OK",
       "http_status": 200,
-      "html_bytes": 59772,
-      "candidate_events": 0,
+      "html_bytes": 80847,
+      "candidate_events": 15,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 15,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.thmanyah.3",
       "name": "Thmanyah 3",
       "url": "https://www.sport24.rest/channels/thmanyah/3",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 14,
+      "status": "OK",
       "http_status": 200,
-      "html_bytes": 59772,
-      "candidate_events": 0,
+      "html_bytes": 80847,
+      "candidate_events": 15,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 15,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.bein.news",
       "name": "beIN SPORTS News",
       "url": "https://www.sport24.rest/channels/bein/news",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 28,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 101213,
-      "candidate_events": 0,
+      "candidate_events": 43,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 43,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.bein.0",
       "name": "beIN SPORTS Free",
       "url": "https://www.sport24.rest/channels/bein/0",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 9,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 84260,
-      "candidate_events": 0,
+      "candidate_events": 20,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 20,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.bein.1",
       "name": "beIN SPORTS 1",
       "url": "https://www.sport24.rest/channels/bein/1",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 14,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 85181,
-      "candidate_events": 0,
+      "candidate_events": 22,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 22,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.bein.2",
       "name": "beIN SPORTS 2",
       "url": "https://www.sport24.rest/channels/bein/2",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 10,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 79238,
-      "candidate_events": 0,
+      "candidate_events": 15,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 15,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.bein.3",
       "name": "beIN SPORTS 3",
       "url": "https://www.sport24.rest/channels/bein/3",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 7,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 79338,
-      "candidate_events": 0,
+      "candidate_events": 15,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 15,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.bein.4",
       "name": "beIN SPORTS 4",
       "url": "https://www.sport24.rest/channels/bein/4",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 9,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 80487,
-      "candidate_events": 0,
+      "candidate_events": 17,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 17,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.bein.5",
       "name": "beIN SPORTS 5",
       "url": "https://www.sport24.rest/channels/bein/5",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 10,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 80100,
-      "candidate_events": 0,
+      "candidate_events": 17,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 17,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.bein.6",
       "name": "beIN SPORTS 6",
       "url": "https://www.sport24.rest/channels/bein/6",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 10,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 80164,
-      "candidate_events": 0,
+      "candidate_events": 16,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 16,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.bein.7",
       "name": "beIN SPORTS 7",
       "url": "https://www.sport24.rest/channels/bein/7",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 7,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 74777,
-      "candidate_events": 0,
+      "candidate_events": 12,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 12,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.bein.8",
       "name": "beIN SPORTS 8",
       "url": "https://www.sport24.rest/channels/bein/8",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 10,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 81310,
-      "candidate_events": 0,
+      "candidate_events": 17,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 17,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     },
     {
       "id": "sport24.bein.9",
       "name": "beIN SPORTS 9",
       "url": "https://www.sport24.rest/channels/bein/9",
-      "programmes": 0,
-      "status": "NO_TIMELINE",
+      "programmes": 11,
+      "status": "OK",
       "http_status": 200,
       "html_bytes": 79781,
-      "candidate_events": 0,
+      "candidate_events": 18,
       "parsed_json_blobs": 1,
-      "valid_timeline_events": 0,
-      "used_time_keys": [],
-      "schedule_key_samples": []
+      "valid_timeline_events": 18,
+      "used_time_keys": [
+        "dom:data-time[0]"
+      ]
     }
   ],
-  "programmes": 0,
-  "active_channels": 0,
-  "generated_utc": "2026-09-17T12:48:51.665037+00:00"
+  "programmes": 238,
+  "active_channels": 19,
+  "generated_utc": "2026-09-17T12:56:31.759265+00:00"
 }
