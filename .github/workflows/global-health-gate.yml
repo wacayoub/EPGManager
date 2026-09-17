@@ -13,7 +13,9 @@ on:
       - main
     paths:
       - ".github/workflows/global-health-gate.yml"
+      - ".github/workflows/global-auto-repair.yml"
       - "tools/global_health_gate.py"
+      - "tools/global_auto_repair.py"
 
 permissions:
   contents: read
