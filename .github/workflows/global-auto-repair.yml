@@ -1,0 +1,304 @@
+name: Global Auto-Repair
+
+on:
+  workflow_run:
+    workflows:
+      - "Global EPG Health Gate Shadow"
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      max_attempts:
+        description: "Maximum repair/re-audit cycles"
+        required: true
+        default: "2"
+        type: choice
+        options:
+          - "1"
+          - "2"
+          - "3"
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: global-epg-auto-repair
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      GH_TOKEN: ${{ github.token }}
+      AUTO_MAX_ATTEMPTS: ${{ inputs.max_attempts || '2' }}
+
+    steps:
+      - name: Checkout repair controller
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify controller
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m py_compile tools/global_health_gate.py tools/global_auto_repair.py
+
+      - name: Prevent recursive repair storms
+        id: cooldown
+        if: github.event_name == 'workflow_run'
+        shell: bash
+        run: |
+          set -euo pipefail
+          rows="$(gh run list \
+            --workflow global-auto-repair.yml \
+            --limit 30 \
+            --json databaseId,createdAt,updatedAt,event,conclusion)"
+          export ROWS="$rows"
+          if python - <<'PY'
+          import json, os
+          from datetime import datetime, timezone, timedelta
+
+          now = datetime.now(timezone.utc)
+          current = int(os.environ["GITHUB_RUN_ID"])
+          rows = json.loads(os.environ.get("ROWS") or "[]")
+          for row in rows:
+              if int(row.get("databaseId") or 0) == current:
+                  continue
+              if row.get("event") != "workflow_run":
+                  continue
+              created = datetime.fromisoformat(row["createdAt"].replace("Z", "+00:00"))
+              updated = datetime.fromisoformat(row["updatedAt"].replace("Z", "+00:00"))
+              if now - created > timedelta(hours=2):
+                  continue
+              duration = (updated - created).total_seconds()
+              substantive = row.get("conclusion") in {"failure", "cancelled"} or duration >= 30
+              if substantive:
+                  print("A substantive auto-repair already ran in the last 2h:", row["databaseId"])
+                  raise SystemExit(0)
+          raise SystemExit(1)
+          PY
+          then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Repair until FAIL=0 or attempt limit
+        if: steps.cooldown.outputs.skip != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p auto-repair-history
+
+          fetch_feeds() {
+            local nonce
+            nonce="$(date +%s)"
+            rm -rf health-input health-output
+            mkdir -p health-input/mena health-input/morocco health-output
+
+            curl -fL --retry 3 --retry-delay 2 --connect-timeout 8 --max-time 60 \
+              -H 'Cache-Control: no-cache' \
+              "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz?v=${nonce}" \
+              -o health-input/mena/mena-arabic.xml.gz
+            curl -fL --retry 3 --retry-delay 2 --connect-timeout 8 --max-time 30 \
+              -H 'Cache-Control: no-cache' \
+              "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/manifest.json?v=${nonce}" \
+              -o health-input/mena/manifest.json
+
+            curl -fL --retry 3 --retry-delay 2 --connect-timeout 8 --max-time 60 \
+              -H 'Cache-Control: no-cache' \
+              "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz?v=${nonce}" \
+              -o health-input/morocco/morocco.xml.gz
+            curl -fL --retry 3 --retry-delay 2 --connect-timeout 8 --max-time 30 \
+              -H 'Cache-Control: no-cache' \
+              "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/manifest.json?v=${nonce}" \
+              -o health-input/morocco/manifest.json
+          }
+
+          run_gate() {
+            python tools/global_health_gate.py \
+              --mena-dir health-input/mena \
+              --morocco-dir health-input/morocco \
+              --mode shadow \
+              --minimum-mena-future-hours 30 \
+              --minimum-morocco-future-hours 30 \
+              --json health-output/global-health-gate.json \
+              --text health-output/global-health-gate.txt
+          }
+
+          dispatch_and_wait() {
+            local workflow="$1"
+            shift
+            local marker run_id
+            marker="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "Dispatching ${workflow} ..."
+            gh workflow run "$workflow" --ref main "$@"
+
+            run_id=""
+            for _ in $(seq 1 30); do
+              export RUN_ROWS
+              RUN_ROWS="$(gh run list \
+                --workflow "$workflow" \
+                --event workflow_dispatch \
+                --limit 20 \
+                --json databaseId,createdAt,status,conclusion)"
+              export RUN_ROWS marker
+              run_id="$(python - <<'PY'
+          import json, os
+          from datetime import datetime
+          marker = datetime.fromisoformat(os.environ["marker"].replace("Z", "+00:00"))
+          rows = json.loads(os.environ.get("RUN_ROWS") or "[]")
+          candidates = []
+          for row in rows:
+              created = datetime.fromisoformat(row["createdAt"].replace("Z", "+00:00"))
+              if created >= marker:
+                  candidates.append((created, int(row["databaseId"])))
+          if candidates:
+              print(max(candidates)[1])
+          PY
+              )"
+              if [ -n "$run_id" ]; then
+                break
+              fi
+              sleep 4
+            done
+
+            if [ -z "$run_id" ]; then
+              echo "::error::Could not identify workflow_dispatch run for ${workflow}"
+              return 1
+            fi
+            echo "Watching ${workflow} run ${run_id}"
+            gh run watch "$run_id" --exit-status
+          }
+
+          max_attempts="${AUTO_MAX_ATTEMPTS}"
+          case "$max_attempts" in
+            1|2|3) ;;
+            *) max_attempts=2 ;;
+          esac
+
+          final_ok=false
+          for attempt in $(seq 1 "$max_attempts"); do
+            echo "=== Global auto-repair cycle ${attempt}/${max_attempts} ==="
+            fetch_feeds
+            run_gate
+
+            cp health-output/global-health-gate.json \
+              "auto-repair-history/gate-${attempt}-before.json"
+            cp health-output/global-health-gate.txt \
+              "auto-repair-history/gate-${attempt}-before.txt"
+
+            status="$(python - <<'PY'
+          import json
+          print(json.load(open("health-output/global-health-gate.json", encoding="utf-8"))["status"])
+          PY
+            )"
+            if [ "$status" != "FAIL" ]; then
+              echo "Global gate already has FAIL=0 (${status})."
+              final_ok=true
+              break
+            fi
+
+            set +e
+            python tools/global_auto_repair.py \
+              --report health-output/global-health-gate.json \
+              --json "auto-repair-history/plan-${attempt}.json"
+            plan_rc=$?
+            set -e
+            if [ "$plan_rc" -ne 0 ]; then
+              echo "::error::Unknown/unsafe FAIL family; automatic mutation stopped."
+              cat "auto-repair-history/plan-${attempt}.json" || true
+              break
+            fi
+
+            mapfile -t actions < <(python - "$attempt" <<'PY'
+          import json, sys
+          p = json.load(open("auto-repair-history/plan-%s.json" % sys.argv[1], encoding="utf-8"))
+          for row in p.get("actions", []):
+              print(row["id"])
+          PY
+            )
+
+            if [ "${#actions[@]}" -eq 0 ]; then
+              echo "::error::FAIL remains but planner produced no repair action."
+              break
+            fi
+
+            for action in "${actions[@]}"; do
+              case "$action" in
+                mena_refresh)
+                  dispatch_and_wait mena-epg.yml
+                  ;;
+                morocco_refresh)
+                  dispatch_and_wait morocco-epg.yml
+                  ;;
+                canonical_reset_mena)
+                  dispatch_and_wait canonical-id-reset.yml \
+                    -f scope=MENA \
+                    -f dry_run=false
+                  ;;
+                *)
+                  echo "::error::Unsupported planner action: $action"
+                  exit 2
+                  ;;
+              esac
+            done
+
+            sleep 8
+            fetch_feeds
+            run_gate
+            cp health-output/global-health-gate.json \
+              "auto-repair-history/gate-${attempt}-after.json"
+            cp health-output/global-health-gate.txt \
+              "auto-repair-history/gate-${attempt}-after.txt"
+
+            status="$(python - <<'PY'
+          import json
+          print(json.load(open("health-output/global-health-gate.json", encoding="utf-8"))["status"])
+          PY
+            )"
+            if [ "$status" != "FAIL" ]; then
+              final_ok=true
+              break
+            fi
+          done
+
+          if [ "$final_ok" != "true" ]; then
+            fetch_feeds
+            run_gate
+            echo "### Global Auto-Repair: unresolved" >> "$GITHUB_STEP_SUMMARY"
+            cat health-output/global-health-gate.txt >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+
+          echo "### Global Auto-Repair: FAIL=0" >> "$GITHUB_STEP_SUMMARY"
+          cat health-output/global-health-gate.txt >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Report cooldown skip
+        if: steps.cooldown.outputs.skip == 'true'
+        shell: bash
+        run: |
+          {
+            echo "### Global Auto-Repair skipped"
+            echo
+            echo "A substantive automatic repair cycle already ran within the 2-hour safety window."
+            echo "Manual workflow_dispatch remains available at any time."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload repair history
+        if: always() && steps.cooldown.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: global-auto-repair-${{ github.run_id }}
+          path: |
+            auto-repair-history/
+            health-output/
+          if-no-files-found: warn
+          retention-days: 14
