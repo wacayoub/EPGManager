@@ -8,9 +8,10 @@ on:
     paths:
       - ".github/workflows/canonical-id-reset.yml"
       - "tools/canonical_publish_finalize.py"
-      - "tools/adm_receiver_namespace_audit.py"
+      - "tools/provider_namespace_polish.py"
       - "tools/adm_id_audit_policy.py"
       - "tools/adm_final_regression.py"
+      - "tools/bein_final_regression.py"
 
 permissions:
   contents: write
@@ -43,11 +44,26 @@ jobs:
         run: |
           set -euo pipefail
           python generator/tools/canonical_publish_finalize.py --dir publish
-          python generator/tools/adm_receiver_namespace_audit.py \
+
+          # ADM: after the generic normalizer, provider_namespace_polish restores
+          # the long-lived receiver contract (AbuDhabiTV.ae, YasTV.ae, ...).
+          # Re-run the strict provider audit on those final bytes so stale
+          # pre-polish ADM.* diagnostics can never be published again.
+          python generator/tools/adm_id_audit_policy.py \
             --xml publish/provider-adm.xml.gz \
             --json publish/adm-id-audit-policy.json \
-            --text publish/adm-id-audit-policy.txt \
-            --final-text publish/adm-final-regression.txt
+            --text publish/adm-id-audit-policy.txt
+          python generator/tools/adm_final_regression.py \
+            --audit-json publish/adm-id-audit-policy.json \
+            --text publish/adm-final-regression.txt
+
+          # beIN: refresh the final regression report from the current canonical
+          # audit so the former 4K/Drama REVIEW diagnostics cannot remain stale.
+          python generator/tools/bein_final_regression.py \
+            --xml publish/provider-bein.xml.gz \
+            --audit-json publish/bein-id-audit-policy.json \
+            --text publish/bein-final-regression.txt
+
           python generator/tools/receiver_release_gate.py \
             --dir publish \
             --minimum-median-future-hours 30 \
