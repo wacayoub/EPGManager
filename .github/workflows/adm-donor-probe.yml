@@ -15,42 +15,59 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Download standalone donor feeds and current ADM shard
+      - name: Download current donor feeds
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p donors
-          for name in sport24 elcinema osn; do
+          for name in sport24 osn; do
             curl -fL --retry 2 --connect-timeout 5 --max-time 20 \
               "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/source-${name}.xml.gz" \
               -o "donors/${name}.xml.gz"
           done
-          curl -fL --retry 2 --connect-timeout 5 --max-time 20 \
-            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/provider-adm.xml.gz" \
-            -o donors/current-adm.xml.gz
-      - name: Compare AD Sports 1 timelines
+          curl -fL --retry 2 --connect-timeout 5 --max-time 30 \
+            "https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz" \
+            -o donors/epgshare-ae1.xml.gz
+      - name: Inspect Abu Dhabi Sports 1, Yas and NatGeo identities
         shell: bash
         run: |
           python - <<'PY'
           import gzip,re,xml.etree.ElementTree as ET
           from pathlib import Path
           from datetime import datetime,timezone
-
+          AR=re.compile(r'[\u0600-\u06ff]')
           def dt(s):
               m=re.match(r'^(\d{14})',s or '')
               return datetime.strptime(m.group(1),'%Y%m%d%H%M%S').replace(tzinfo=timezone.utc) if m else None
-          ids={'osn.xml.gz':{'AbuDhabiSports1.ae@SD'},'sport24.xml.gz':{'sport24.adsports.1'},'current-adm.xml.gz':{'ADM.Abu.Dhabi.Sports.1.ae','AbuDhabiSports1.ae'}}
           for path in sorted(Path('donors').glob('*.xml.gz')):
-              wanted=ids.get(path.name)
-              if not wanted: continue
               root=ET.fromstring(gzip.decompress(path.read_bytes()))
+              names={}
+              for c in root.findall('channel'):
+                  cid=c.get('id') or ''
+                  dns=[(n.text or '').strip() for n in c.findall('display-name') if (n.text or '').strip()]
+                  names[cid]=' | '.join(dns) or cid
               print('\n###',path.name)
-              for cid in wanted:
+              for cid,name in names.items():
+                  probe=(cid+' '+name).casefold()
+                  if not (('abu' in probe and ('sport' in probe or 'dhabi' in probe)) or 'ياس' in probe or 'yas' in probe or ('national' in probe and 'geographic' in probe) or 'ناشيونال' in probe):
+                      continue
                   rows=sorted([p for p in root.findall('programme') if p.get('channel')==cid],key=lambda p:p.get('start') or '')
                   if not rows: continue
+                  titles=[];descs=[]
+                  starts=[];stops=[]
                   for p in rows:
-                      s=dt(p.get('start')); e=dt(p.get('stop'))
-                      dur=(e-s).total_seconds()/3600 if s and e else -1
-                      t=p.find('title'); title=(t.text or '').strip() if t is not None else ''
-                      print(f'{cid} | {s.isoformat() if s else p.get("start")} -> {e.isoformat() if e else p.get("stop")} | {dur:.2f}h | {title}')
+                      t=p.find('title');d=p.find('desc')
+                      titles.append((t.text or '').strip() if t is not None else '')
+                      descs.append((d.text or '').strip() if d is not None else '')
+                      s=dt(p.get('start'));e=dt(p.get('stop'))
+                      if s: starts.append(s)
+                      if e: stops.append(e)
+                  span=(max(stops)-min(starts)).total_seconds()/3600 if starts and stops else 0
+                  ta=sum(bool(AR.search(x)) for x in titles); da=sum(bool(AR.search(x)) for x in descs)
+                  print(f'ID {cid} | {name} | events={len(rows)} span={span:.1f}h title_AR={ta}/{len(rows)} desc_AR={da}/{len(rows)}')
+                  if ('sports.1' in probe or 'sports 1' in probe or 'سبورتس.1' in probe or 'قناة ياس' in probe or 'yas.tv' in probe):
+                      for p in rows[:40]:
+                          s=dt(p.get('start'));e=dt(p.get('stop')); dur=(e-s).total_seconds()/3600 if s and e else -1
+                          t=p.find('title'); title=(t.text or '').strip() if t is not None else ''
+                          print(f' ROW {s.isoformat() if s else p.get("start")} -> {e.isoformat() if e else p.get("stop")} {dur:.2f}h | {title}')
           PY
