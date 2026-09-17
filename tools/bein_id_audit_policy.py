@@ -82,6 +82,28 @@ def policy_build_profile(cid, name, programmes):
     return row
 
 
+def _healthy_linear_low_diversity(row):
+    """Low diversity alone is normal for repeating linear schedules.
+
+    Do not hide real holding-guide/event-channel problems: this exemption applies
+    only to ordinary linear services with non-generic titles and a structurally
+    clean timeline.  MAX/XTRA keep their stricter event-source handling above.
+    """
+    if row.get("kind") in {"max", "xtra"}:
+        return False
+    if int(row.get("events", 0) or 0) < 8:
+        return False
+    if int(row.get("generic", 0) or 0) or int(row.get("placeholder", 0) or 0):
+        return False
+    if float(row.get("top_title_pct", 100.0) or 100.0) >= 50.0:
+        return False
+    if int(row.get("invalid", 0) or 0) or int(row.get("overlaps", 0) or 0):
+        return False
+    if int(row.get("gaps_gt_2h", 0) or 0):
+        return False
+    return float(row.get("coverage_hours", 0.0) or 0.0) >= 24.0
+
+
 def policy_initial_verdict(row, non_recommended):
     verdict, issues, warnings = _original_initial_verdict(row, non_recommended)
 
@@ -98,6 +120,13 @@ def policy_initial_verdict(row, non_recommended):
     # demand Arabic text in the title when the title itself is a healthy Latin one.
     if row.get("title_has_latin_pct", 0.0) >= 80.0 and row.get("desc_ar_pct", 0.0) >= 75.0:
         warnings = [w for w in warnings if not w.startswith("TITLE_AR_ENRICHMENT_LOW=")]
+
+    # Repeating linear channels such as beIN 4K and beIN Drama can legitimately
+    # have few unique titles across a 24-48h window.  If the schedule is otherwise
+    # clean and contains no generic placeholders, diversity remains diagnostic
+    # rather than a mapping/release REVIEW reason.
+    if _healthy_linear_low_diversity(row):
+        warnings = [w for w in warnings if not w.startswith("LOW_TITLE_DIVERSITY=")]
 
     # Box Office is a legitimate beIN EPG/mapping target even though it is not a
     # conventional sports-linear channel.
