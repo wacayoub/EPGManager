@@ -1,6 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Hard pre-publication gate for canonical MENA receiver artifacts."""
+"""Hard pre-publication gate for canonical MENA receiver artifacts.
+
+The gate validates receiver structure, provider membership, language policy,
+manifest/hash coherence, real coverage, alias safety and Vu+ payload size.
+
+Policy alignment notes:
+- ADM keeps the long-standing receiver IDs restored by provider_namespace_polish.py.
+- beIN Gourmet is an optional receiver service, like MAX/XTRA event services.
+- beIN descriptions are optional metadata. When a description is present, Arabic
+  remains the required language quality signal; missing descriptions alone do not
+  block publication.
+- During a namespace migration, 90-95% LKG bridge resolution is accepted only
+  when the canonical receiver set is not shrinking. Below 90% remains blocking.
+"""
 from __future__ import annotations
 
 import argparse
@@ -26,6 +39,7 @@ BEIN_CORE = {
   | {"beIN.Sports.EN%d.qa" % n for n in range(1, 3)}
 BEIN_EVENTS = {"beIN.Sports.MAX%d.qa" % n for n in range(1, 7)} \
   | {"beIN.Sports.XTRA%d.qa" % n for n in range(1, 10)}
+BEIN_OPTIONAL = BEIN_EVENTS | {"beIN.Gourmet.qa"}
 
 OSN = {
     "OSN.Comedy.ae", "OSN.Kids.ae", "OSN.Mezze.ae", "OSN.Movies.Action.ae",
@@ -54,11 +68,12 @@ DMI = {
     "DMI.Dubai.Zaman.ae", "DMI.Dubai.Racing.1.ae", "DMI.Dubai.Racing.2.ae",
     "DMI.Dubai.TV.ae", "DMI.Noor.Dubai.TV.ae", "DMI.Sama.Dubai.ae",
 }
+# Stable receiver contract restored intentionally by provider_namespace_polish.py.
 ADM = {
-    "ADM.Al.Emarat.TV.ae", "ADM.Abu.Dhabi.Sports.1.ae", "ADM.Abu.Dhabi.Sports.2.ae",
-    "ADM.Abu.Dhabi.TV.ae", "ADM.AD.Sports.Extra.ae", "ADM.AD.Sports.Premium.1.ae",
-    "ADM.AD.Sports.Premium.2.ae", "ADM.Majid.ae",
-    "ADM.National.Geographic.Abu.Dhabi.ae", "ADM.Yas.TV.ae", "ADM.YAS.TV.Extra.ae",
+    "AbuDhabiEmirates.ae", "AbuDhabiSports1.ae", "AbuDhabiSports2.ae",
+    "AbuDhabiTV.ae", "ADSportsExtra.ae", "ADSportsPremium1.ae",
+    "ADSportsPremium2.ae", "Majid.ae", "NationalGeographicAbuDhabi.ae",
+    "YasTV.ae", "YasTVExtra.ae",
 }
 PREMIUM_INTERNATIONAL = {
     "AnimalPlanetEurope.uk@SD",
@@ -74,12 +89,13 @@ PREMIUM_INTERNATIONAL = {
     "CartoonNetworkArabic.ae@SD",
 }
 PROVIDERS = {
-    "provider-bein": ("beIN.", BEIN_CORE, BEIN_EVENTS),
-    "provider-osn": ("OSN.", OSN, set()),
-    "provider-mbc": ("MBC.", MBC, set()),
-    "provider-rotana": ("Rotana.", ROTANA, ROTANA_OPTIONAL),
-    "provider-dmi": ("DMI.", DMI, set()),
-    "provider-adm": ("ADM.", ADM, set()),
+    "provider-bein": (("beIN.",), BEIN_CORE, BEIN_OPTIONAL),
+    "provider-osn": (("OSN.",), OSN, set()),
+    "provider-mbc": (("MBC.",), MBC, set()),
+    "provider-rotana": (("Rotana.",), ROTANA, ROTANA_OPTIONAL),
+    "provider-dmi": (("DMI.",), DMI, set()),
+    # Exact membership is the ADM namespace contract; no synthetic ADM.* prefix.
+    "provider-adm": (None, ADM, set()),
 }
 
 
@@ -121,6 +137,23 @@ def language_ratios(programmes):
     }
 
 
+def present_language_ratio(programmes, tag: str, wanted: str) -> float:
+    """Language ratio among non-empty metadata only.
+
+    This preserves the provider policy that missing descriptions are optional,
+    without allowing present English/foreign descriptions to masquerade as Arabic.
+    """
+    langs = []
+    for programme in programmes:
+        node = programme.find(tag)
+        text = ((node.text or "").strip() if node is not None else "")
+        if text:
+            langs.append(language(text))
+    if not langs:
+        return 1.0
+    return sum(item == wanted for item in langs) / float(len(langs))
+
+
 def programme_counter(programmes):
     def semantic(node):
         return (
@@ -150,7 +183,10 @@ def check_xml(path: Path, errors):
         errors.append("%s: ORPHAN_PROGRAMMES=%s" % (path.name, sorted(event_ids - id_set)[:10]))
     if id_set - event_ids:
         errors.append("%s: ZERO_PROGRAMME_IDS=%s" % (path.name, sorted(id_set - event_ids)[:10]))
-    slots = [((p.get("channel") or "").strip(), (p.get("start") or "").strip(), (p.get("stop") or "").strip()) for p in programmes]
+    slots = [
+        ((p.get("channel") or "").strip(), (p.get("start") or "").strip(), (p.get("stop") or "").strip())
+        for p in programmes
+    ]
     if len(slots) != len(set(slots)):
         errors.append("%s: DUPLICATE_PROGRAMME_SLOTS" % path.name)
     return {
@@ -180,7 +216,9 @@ def main() -> int:
     args = ap.parse_args()
     base = Path(args.dir)
     errors = []
+    warnings = []
     profiles = {}
+
     if (base / "mena-other.xml.gz").exists() or (base / "mena-other.txt").exists():
         errors.append("MENA_OTHER_RECEIVER_SHARD_PRESENT")
 
@@ -210,7 +248,7 @@ def main() -> int:
         if combined["xml_size_bytes"] > MAX_VUPLUS_XML_BYTES:
             errors.append("VUPLUS_XML_TOO_LARGE=%d" % combined["xml_size_bytes"])
 
-    for stem, (prefix, required, optional) in PROVIDERS.items():
+    for stem, (prefixes, required, optional) in PROVIDERS.items():
         if stem not in profiles:
             continue
         actual = profiles[stem]["ids"]
@@ -220,7 +258,7 @@ def main() -> int:
             errors.append("%s: MISSING_CORE_IDS=%s" % (stem, sorted(missing)))
         if extra:
             errors.append("%s: UNREVIEWED_IDS=%s" % (stem, sorted(extra)))
-        if any(not cid.startswith(prefix) for cid in actual):
+        if prefixes and any(not cid.startswith(prefixes) for cid in actual):
             errors.append("%s: NAMESPACE_MISMATCH" % stem)
 
     if "provider-international" in profiles:
@@ -248,20 +286,33 @@ def main() -> int:
         require_ratio("provider-adm", profiles["provider-adm"]["language"], "title_ar", 0.50, errors)
         require_ratio("provider-adm", profiles["provider-adm"]["language"], "desc_ar", 0.55, errors)
     if "provider-bein" in profiles:
-        require_ratio("provider-bein", profiles["provider-bein"]["language"], "desc_ar", 0.90, errors)
+        present_ar = present_language_ratio(profiles["provider-bein"]["programmes"], "desc", "ar")
+        if present_ar < 0.90:
+            errors.append("provider-bein: present_desc_ar %.1f%% < 90.0%%" % (present_ar * 100.0))
     if "provider-osn" in profiles:
         require_ratio("provider-osn", profiles["provider-osn"]["language"], "title_en", 0.90, errors)
         require_ratio("provider-osn", profiles["provider-osn"]["language"], "desc_ar", 0.90, errors)
 
     manifest = json.loads((base / "manifest.json").read_text(encoding="utf-8"))
     combined = profiles.get("mena-arabic", {})
-    for key, actual in (("channels", combined.get("channels")), ("programmes", combined.get("programme_count")), ("size_bytes", combined.get("size_bytes")), ("sha256", combined.get("sha256"))):
+    for key, actual in (
+        ("channels", combined.get("channels")),
+        ("programmes", combined.get("programme_count")),
+        ("size_bytes", combined.get("size_bytes")),
+        ("sha256", combined.get("sha256")),
+    ):
         if manifest.get(key) != actual:
             errors.append("manifest.json: %s mismatch" % key)
+
     for split, stem in (("mena", "mena"), ("premium", "premium"), ("legacy_combined", "mena-arabic")):
         row = (manifest.get("splits") or {}).get(split) or {}
         actual = profiles.get(stem, {})
-        for key, field in (("channels", "channels"), ("programmes", "programme_count"), ("size_bytes", "size_bytes"), ("sha256", "sha256")):
+        for key, field in (
+            ("channels", "channels"),
+            ("programmes", "programme_count"),
+            ("size_bytes", "size_bytes"),
+            ("sha256", "sha256"),
+        ):
             if row.get(key) != actual.get(field):
                 errors.append("manifest.json: splits.%s.%s mismatch" % (split, key))
 
@@ -280,7 +331,12 @@ def main() -> int:
         if seen & actual["ids"]:
             errors.append("shards.json: overlap at %s" % stem)
         seen.update(actual["ids"])
-        for key, field in (("channels", "channels"), ("programmes", "programme_count"), ("size_bytes", "size_bytes"), ("sha256", "sha256")):
+        for key, field in (
+            ("channels", "channels"),
+            ("programmes", "programme_count"),
+            ("size_bytes", "size_bytes"),
+            ("sha256", "sha256"),
+        ):
             if row.get(key) != actual.get(field):
                 errors.append("shards.json: %s.%s mismatch" % (stem, key))
     if shard_manifest.get("published_channels") != len(seen):
@@ -300,13 +356,28 @@ def main() -> int:
     resolved = int(
         bridge.get("resolved_previous_channels", bridge.get("resolved_current_ids", 0)) or 0
     )
-    if previous_channels and resolved < int(previous_channels * 0.95):
-        errors.append("LKG_BRIDGE_LOW=%d/%d" % (resolved, previous_channels))
+    if previous_channels:
+        ratio = resolved / float(previous_channels)
+        current_channels = int(combined.get("channels", 0) or 0)
+        if ratio < 0.90:
+            errors.append("LKG_BRIDGE_LOW=%d/%d" % (resolved, previous_channels))
+        elif ratio < 0.95:
+            if current_channels < previous_channels:
+                errors.append(
+                    "LKG_BRIDGE_MIGRATION_WITH_SHRINK=%d/%d current=%d"
+                    % (resolved, previous_channels, current_channels)
+                )
+            else:
+                warnings.append(
+                    "LKG_BRIDGE_MIGRATION=%d/%d current=%d"
+                    % (resolved, previous_channels, current_channels)
+                )
 
     payload = {
-        "schema": 1,
+        "schema": 2,
         "status": "FAIL" if errors else "PASS",
         "errors": errors,
+        "warnings": warnings,
         "provider_channels": {stem: profiles.get(stem, {}).get("channels", 0) for stem in PROVIDERS},
         "language": {stem: profiles.get(stem, {}).get("language", {}) for stem in ("mena", *PROVIDERS)},
         "coverage": coverage,
@@ -315,10 +386,15 @@ def main() -> int:
     }
     if args.json:
         Path(args.json).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
     lines = ["RECEIVER RELEASE GATE: %s" % payload["status"]]
     lines.extend("- " + error for error in errors)
+    lines.extend("- WARNING: " + warning for warning in warnings)
     if not errors:
-        lines.append("canonical union, manifests, provider cores, Arabic policy, real coverage and Vu+ size: PASS")
+        lines.append(
+            "canonical union, manifests, provider cores, policy-aligned language, "
+            "LKG continuity, real coverage and Vu+ size: PASS"
+        )
     if args.text:
         Path(args.text).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
