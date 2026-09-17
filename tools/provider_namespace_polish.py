@@ -67,9 +67,9 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--dir', required=True); a = ap.parse_args()
     base = Path(a.dir); changes = {}
 
-    # Fail fast if the known ADM contract ever becomes internally ambiguous.
-    if len(set(ADM_CANONICAL.values())) != len(ADM_CANONICAL.values()):
-        raise SystemExit('ADM canonical polish table contains a collision')
+    # Several historical spelling/case aliases intentionally converge to the
+    # same canonical receiver ID (for example YAS/Yas).  Real collisions are
+    # checked below per published XML after the mapping is applied.
 
     # Build mapping from every published channel ID.
     for p in sorted(base.glob('*.xml.gz')):
