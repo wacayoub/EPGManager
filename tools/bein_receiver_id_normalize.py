@@ -3,8 +3,9 @@
 """Normalize receiver-facing beIN XMLTV IDs to one stable canonical namespace.
 
 Known raw/legacy aliases for the same real service are grouped under one
-canonical receiver ID. Unsupported legacy foreign-feed IDs are quarantined
-before the strict canonical provider gate so they cannot poison the MENA feed.
+canonical receiver ID. Unsupported legacy/foreign/non-receiver IDs are
+quarantined before the strict canonical provider gate so they cannot poison the
+MENA feed.
 """
 from __future__ import annotations
 
@@ -41,7 +42,7 @@ ALIASES = {
     "beIN.4K.qa": {"beIN.4K.qa", "beIN4K.qa@SD", "4k DIGITAL.qa"},
     "beIN.Sports.News.qa": {"beIN.Sports.News.qa", "beIN SPORTS NEWS.qa", "NEWS DIGITAL.qa"},
     "beIN.Sports.MAX1.qa": {"beIN.Sports.MAX1.qa", "beIN SPORTS MAX1 DIGITAL.qa", "beIN SPORTS MAX 1.qa", "beINSportsMax1.qa@MENA"},
-    "beIN.Sports.MAX2.qa": {"beIN.Sports.MAX2.qa", "beIN SPORTS MAX 2.qa", "beINSportsMax2.qa@MENA"},
+    "beIN.Sports.MAX2.qa": {"beIN.Sports.MAX2.qa", "beIN SPORTS MAX2 DIGITAL.qa", "beIN SPORTS MAX 2.qa", "beINSportsMax2.qa@MENA"},
     "beIN.Sports.MAX3.qa": {"beIN.Sports.MAX3.qa", "beIN SPORTS MAX 3.qa", "beINSportsMax3.qa@MENA"},
     "beIN.Sports.MAX4.qa": {"beIN.Sports.MAX4.qa", "beIN SPORTS MAX 4.qa", "beINSportsMax4.qa@MENA"},
     "beIN.Sports.MAX5.qa": {"beIN.Sports.MAX5.qa", "beIN SPORTS MAX 5.qa", "beINSportsMax5.qa@MENA", "NEW_beIN-SPORTS-MAX-05_AR.bein"},
@@ -51,7 +52,7 @@ ALIASES = {
     "beIN.Sports.XTRA3.qa": {"beIN.Sports.XTRA3.qa", "beINSPORTSXTRA3.qa"},
     "beIN.Sports.XTRA4.qa": {"beIN.Sports.XTRA4.qa", "beIN SPORTS XTRA 4.qa"},
     "beIN.Sports.XTRA5.qa": {"beIN.Sports.XTRA5.qa", "beIN SPORTS XTRA 5.qa"},
-    "beIN.Sports.XTRA6.qa": {"beIN.Sports.XTRA6.qa", "beIN SPORTS XTRA 6.qa"},
+    "beIN.Sports.XTRA6.qa": {"beIN.Sports.XTRA6.qa", "beIN SPORTS XTRA 6.qa", "beIN SPORTS XTRA 06 bein.com.qa"},
     "beIN.Sports.XTRA7.qa": {"beIN.Sports.XTRA7.qa", "beIN SPORTS XTRA 7.qa"},
     "beIN.Sports.XTRA8.qa": {"beIN.Sports.XTRA8.qa", "beIN SPORTS XTRA 8.qa"},
     "beIN.Sports.XTRA9.qa": {"beIN.Sports.XTRA9.qa", "beIN SPORTS XTRA 9.qa"},
@@ -61,18 +62,20 @@ ALIASES = {
 RAW_TO_CANON = {raw: canon for canon, raws in ALIASES.items() for raw in raws}
 RENAME = RAW_TO_CANON
 
-# These are upstream legacy foreign-feed IDs, not receiver-facing MENA services.
-# Do not alias them onto Arabic beIN Sports because that could replace a good
-# MENA timeline with a French one when the legacy feed has more events.
+# Upstream IDs that are not valid receiver-facing MENA services. Never let them
+# replace a canonical Arabic/MENA service merely because they carry more rows.
 DROP_ONLY_EXACT = {
     "beIN_SPORTS1_FRENCH_Digital_Mono_AR.bein",
+    "beIN SPORTS-boxoffice-bein.com.qa",
 }
 DROP_ONLY_PATTERNS = (
     re.compile(r"^beIN[_ .-]*SPORTS\d+[_ .-]*FRENCH[_ .-].*\.bein$", re.I),
 )
 
+
 def is_drop_only(cid: str) -> bool:
     return cid in DROP_ONLY_EXACT or any(rx.match(cid) for rx in DROP_ONLY_PATTERNS)
+
 
 OPTIONAL_EVENT_IDS = (
     {f"beIN.Sports.MAX{n}.qa" for n in range(1, 7)} |
@@ -183,7 +186,10 @@ def normalize_file(path: Path):
 
     txt = path.with_suffix("").with_suffix(".txt")
     if txt.exists():
-        rows = sorted(((c.get("id") or "", display_name(c)) for c in out.findall("channel")), key=lambda x: x[0].casefold())
+        rows = sorted(
+            ((c.get("id") or "", display_name(c)) for c in out.findall("channel")),
+            key=lambda x: x[0].casefold(),
+        )
         txt.write_text("".join(f"{cid}|{name}\n" for cid, name in rows), encoding="utf-8")
 
     return {
@@ -210,7 +216,7 @@ def update_metadata(base: Path, reports):
                 row[key] = r[key]
             if stem == "provider-bein":
                 row["receiver_id_namespace"] = "beIN.*.qa"
-                row["receiver_policy"] = "definitive canonical IDs; richest available alias wins; unsupported foreign legacy feeds quarantined"
+                row["receiver_policy"] = "definitive canonical IDs; richest available alias wins; unsupported foreign/non-receiver IDs quarantined"
                 row["canonical_ids"] = sorted(ALIASES, key=str.casefold)
         shards.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -252,24 +258,30 @@ def main():
     dropped = sorted({x for r in reports for x in r["removed"]}, key=str.casefold)
     report = {
         "schema": 3,
-        "policy": "one real service -> one stable canonical receiver ID; richest available alias wins; unsupported foreign legacy feeds quarantined",
+        "policy": "one real service -> one stable canonical receiver ID; richest available alias wins; unsupported foreign/non-receiver IDs quarantined",
         "provider_channels": len(ids),
         "provider_programmes": len(root.findall("programme")),
         "canonical_ids": ids,
         "dropped_duplicate_aliases": dropped,
         "files": reports,
     }
-    (base / "bein-receiver-id-normalization.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (base / "bein-receiver-id-normalization.json").write_text(
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     lines = [
         "BEIN RECEIVER ID NORMALIZATION\n",
         f"channels={len(ids)} programmes={report['provider_programmes']}\n",
-        "policy=canonical MENA IDs; unsupported foreign legacy feeds quarantined\n\n",
+        "policy=canonical MENA IDs; unsupported foreign/non-receiver IDs quarantined\n\n",
     ]
     lines.extend(cid + "\n" for cid in ids)
     lines.append("\nDROPPED / QUARANTINED LEGACY IDS\n")
     lines.extend(cid + "\n" for cid in dropped)
     (base / "bein-receiver-id-normalization.txt").write_text("".join(lines), encoding="utf-8")
-    print(f"PASS beIN normalized channels={len(ids)} programmes={report['provider_programmes']} quarantined={len(dropped)}")
+    print(
+        f"PASS beIN normalized channels={len(ids)} "
+        f"programmes={report['provider_programmes']} quarantined={len(dropped)}"
+    )
 
 
 if __name__ == "__main__":
