@@ -136,7 +136,43 @@ jobs:
           dispatch_and_wait() {
             local workflow="$1"
             shift
-            local marker run_id
+            local marker run_id target_sha rows
+
+            # Do not start a second expensive refresh when the exact current main
+            # revision already has a queued/pending/running refresh. Reuse and watch
+            # that run instead. This is especially important for the throttled
+            # ElCinema donor and keeps auto-repair from creating stale duplicate runs.
+            target_sha="$(gh api "repos/${GITHUB_REPOSITORY}/commits/main" --jq '.sha')"
+            rows="$(gh run list \
+              --workflow "$workflow" \
+              --branch main \
+              --limit 30 \
+              --json databaseId,headSha,status,createdAt,event)"
+            export ACTIVE_ROWS="$rows" TARGET_SHA="$target_sha"
+            run_id="$(python - <<'PY'
+          import json, os
+          from datetime import datetime
+
+          active = {"queued", "pending", "in_progress", "waiting", "requested"}
+          target = os.environ.get("TARGET_SHA", "")
+          rows = json.loads(os.environ.get("ACTIVE_ROWS") or "[]")
+          candidates = []
+          for row in rows:
+              if row.get("headSha") != target or row.get("status") not in active:
+                  continue
+              created = datetime.fromisoformat(row["createdAt"].replace("Z", "+00:00"))
+              candidates.append((created, int(row["databaseId"])))
+          if candidates:
+              print(max(candidates)[1])
+          PY
+            )"
+
+            if [ -n "$run_id" ]; then
+              echo "Reusing active ${workflow} run ${run_id} for main@${target_sha}."
+              gh run watch "$run_id" --exit-status
+              return
+            fi
+
             marker="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
             echo "Dispatching ${workflow} ..."
             gh workflow run "$workflow" --ref main "$@"
