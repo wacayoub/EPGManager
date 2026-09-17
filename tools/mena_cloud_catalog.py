@@ -57,6 +57,13 @@ CHANNEL_SITE_OVERRIDES = {
     "Alarabiya.ae@SD": "shahid.mbc.net",
     "AlHadath.sa@SD": "osn.com",
     "AlQuranAlKareemTV.sa@SD": "osn.com",
+    # Verified on 2026-09-17 against the standalone official OSN grab: these two
+    # exact Abu Dhabi identities have materially better real coverage on OSN
+    # (Sports 1 ~50h, Abu Dhabi TV ~37.5h) than the alternate MENA candidates.
+    # Keep OSN as their clock authority; Arabic metadata donors may enrich later
+    # but must not replace these timings.
+    "AbuDhabiSports1.ae@SD": "osn.com",
+    "AbuDhabiTV.ae@SD": "osn.com",
     "MBC1.ae@SD": "shahid.mbc.net",
     "MBC2.ae@SD": "shahid.mbc.net",
     "MBC3.ae@SD": "osn.com",
