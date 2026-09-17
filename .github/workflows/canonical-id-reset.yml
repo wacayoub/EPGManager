@@ -2,6 +2,15 @@ name: Canonical Receiver ID Reset
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/canonical-id-reset.yml"
+      - "tools/canonical_publish_finalize.py"
+      - "tools/adm_receiver_namespace_audit.py"
+      - "tools/adm_id_audit_policy.py"
+      - "tools/adm_final_regression.py"
 
 permissions:
   contents: write
@@ -34,6 +43,11 @@ jobs:
         run: |
           set -euo pipefail
           python generator/tools/canonical_publish_finalize.py --dir publish
+          python generator/tools/adm_receiver_namespace_audit.py \
+            --xml publish/provider-adm.xml.gz \
+            --json publish/adm-id-audit-policy.json \
+            --text publish/adm-id-audit-policy.txt \
+            --final-text publish/adm-final-regression.txt
           python generator/tools/receiver_release_gate.py \
             --dir publish \
             --minimum-median-future-hours 30 \
