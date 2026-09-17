@@ -5,6 +5,8 @@ on:
   push:
     paths:
       - "tools/provider_namespace_polish.py"
+      - "tools/adm_identity_policy.py"
+      - "tools/mena_cloud_merge_arabic_first.py"
       - "tools/adm_id_audit_policy.py"
       - "tools/adm_final_regression.py"
       - "tools/natgeo_ad_arabic_enrich.py"
@@ -27,7 +29,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Download current ADM shard and healthy OSN donor
+      - name: Download current ADM shard and verified donors
         shell: bash
         run: |
           set -euo pipefail
@@ -38,37 +40,101 @@ jobs:
           curl -fL --retry 2 --connect-timeout 5 --max-time 20 \
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/source-osn.xml.gz" \
             -o work/source-osn.xml.gz
-      - name: Simulate verified OSN clock authority for weak ADM core channels
+          curl -fL --retry 2 --connect-timeout 5 --max-time 30 \
+            "https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz" \
+            -o work/epgshare-ae1.xml.gz
+          curl -fL --retry 2 --connect-timeout 5 --max-time 30 \
+            "https://www.open-epg.com/files/saudiarabia1.xml.gz" \
+            -o work/openepg-saudi1.xml.gz
+      - name: Simulate production ADM clock authorities
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
-          import gzip, xml.etree.ElementTree as ET
+          import gzip,re,xml.etree.ElementTree as ET
+          from copy import deepcopy
+          from datetime import datetime,timezone,timedelta
           from pathlib import Path
 
+          def read(path):
+              return ET.fromstring(gzip.decompress(Path(path).read_bytes()))
+          def dt(value):
+              m=re.match(r'^(\d{14})',value or '')
+              return datetime.strptime(m.group(1),'%Y%m%d%H%M%S').replace(tzinfo=timezone.utc) if m else None
+          def first_text(p,role):
+              node=p.find(role)
+              return (node.text or '').strip() if node is not None else ''
+          def arabic(text):
+              return bool(re.search(r'[\u0600-\u06ff]',text or ''))
+          def replace_role(p,role,text,lang='ar'):
+              for node in list(p.findall(role)): p.remove(node)
+              node=ET.SubElement(p,role); node.text=text; node.set('lang',lang)
+
+          now=datetime.now(timezone.utc)-timedelta(hours=1)
+          end=now+timedelta(hours=49)
           target_path=Path('work/provider-adm.xml.gz')
-          donor_path=Path('work/source-osn.xml.gz')
-          target=ET.fromstring(gzip.decompress(target_path.read_bytes()))
-          donor=ET.fromstring(gzip.decompress(donor_path.read_bytes()))
-          mapping={
-              'ADM.Abu.Dhabi.Sports.1.ae':'AbuDhabiSports1.ae@SD',
-              'ADM.Abu.Dhabi.TV.ae':'AbuDhabiTV.ae@SD',
-          }
-          donor_channels={c.get('id'):c for c in donor.findall('channel')}
-          donor_programmes={cid:[] for cid in mapping.values()}
-          for p in donor.findall('programme'):
-              cid=p.get('channel')
-              if cid in donor_programmes: donor_programmes[cid].append(p)
-          for target_id, donor_id in mapping.items():
-              if donor_id not in donor_channels or not donor_programmes[donor_id]:
-                  raise SystemExit(f'missing verified donor {donor_id}')
+          target=read(target_path)
+          epgshare=read('work/epgshare-ae1.xml.gz')
+          openepg=read('work/openepg-saudi1.xml.gz')
+          osn=read('work/source-osn.xml.gz')
+
+          target_ids={c.get('id') for c in target.findall('channel')}
+          sports_target='ADM.Abu.Dhabi.Sports.1.ae' if 'ADM.Abu.Dhabi.Sports.1.ae' in target_ids else 'AbuDhabiSports1.ae'
+          tv_target='ADM.Abu.Dhabi.TV.ae' if 'ADM.Abu.Dhabi.TV.ae' in target_ids else 'AbuDhabiTV.ae'
+
+          def donor_rows(root,cid):
+              rows=[]
+              for p in root.findall('programme'):
+                  if p.get('channel') != cid: continue
+                  s=dt(p.get('start')); e=dt(p.get('stop'))
+                  if not s or not e or e <= s or e < now or s > end: continue
+                  rows.append(p)
+              return sorted(rows,key=lambda p:p.get('start') or '')
+
+          sports_rows=donor_rows(epgshare,'AD.Sports.1.HD.ae')
+          ar_rows=donor_rows(openepg,'AD Sports 1.sa')
+          if len(sports_rows) < 16:
+              raise SystemExit(f'EPGShare Sports1 authority too shallow: {len(sports_rows)}')
+
+          # Enrich only slot-aligned Arabic metadata; never move EPGShare clocks.
+          enriched=0
+          for p in sports_rows:
+              s=dt(p.get('start')); e=dt(p.get('stop')); dur=(e-s).total_seconds()
+              best=None
+              for a in ar_rows:
+                  a_s=dt(a.get('start')); a_e=dt(a.get('stop'))
+                  delta=abs((a_s-s).total_seconds())
+                  if delta > 120: continue
+                  if abs((a_e-a_s).total_seconds()-dur) > 900: continue
+                  title=first_text(a,'title'); desc=first_text(a,'desc')
+                  quality=(1 if arabic(title) else 0)+(1 if arabic(desc) else 0)
+                  if best is None or quality > best[0]: best=(quality,a)
+              if best:
+                  title=first_text(best[1],'title'); desc=first_text(best[1],'desc')
+                  if arabic(title): replace_role(p,'title',title,'ar')
+                  if arabic(desc): replace_role(p,'desc',desc,'ar')
+                  enriched += 1
+
+          tv_rows=donor_rows(osn,'AbuDhabiTV.ae@SD')
+          if len(tv_rows) < 12:
+              raise SystemExit(f'OSN AbuDhabiTV authority too shallow: {len(tv_rows)}')
+
+          for target_id,rows,label in ((sports_target,sports_rows,'EPGShare'),(tv_target,tv_rows,'OSN')):
               for p in list(target.findall('programme')):
                   if p.get('channel') == target_id: target.remove(p)
-              for p in donor_programmes[donor_id]:
-                  clone=ET.fromstring(ET.tostring(p,encoding='utf-8'))
-                  clone.set('channel',target_id)
-                  target.append(clone)
-              print(f'ADM_RESCUE {target_id} <= {donor_id} programmes={len(donor_programmes[donor_id])}')
+              for p in rows:
+                  clone=deepcopy(p); clone.set('channel',target_id); target.append(clone)
+              print(f'ADM_CLOCK {target_id} <= {label} programmes={len(rows)}')
+
+          # Hard structural proof for Sports1 before the provider audit.
+          invalid=longs=0
+          for p in sports_rows:
+              s=dt(p.get('start')); e=dt(p.get('stop'))
+              if not s or not e or e <= s: invalid += 1
+              elif (e-s).total_seconds() > 12*3600: longs += 1
+          print(f'ADM_SPORTS1_PROOF events={len(sports_rows)} invalid={invalid} long_gt12={longs} arabic_slot_enriched={enriched}')
+          if invalid or longs: raise SystemExit('Sports1 authority structural regression')
+
           ET.indent(target,space='  ')
           xml=ET.tostring(target,encoding='utf-8',xml_declaration=True)
           target_path.write_bytes(gzip.compress(xml,compresslevel=9,mtime=0))
@@ -77,7 +143,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -f work/source-osn.xml.gz
+          rm -f work/source-osn.xml.gz work/epgshare-ae1.xml.gz work/openepg-saudi1.xml.gz
           python tools/provider_namespace_polish.py --dir work
           python tools/natgeo_ad_arabic_enrich.py enrich \
             --xml work/provider-adm.xml.gz \
