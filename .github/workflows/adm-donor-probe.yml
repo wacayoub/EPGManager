@@ -1,0 +1,63 @@
+name: ADM Donor Probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/adm-donor-probe.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download standalone donor feeds
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p donors
+          for name in sport24 elcinema osn; do
+            curl -fL --retry 2 --connect-timeout 5 --max-time 20 \
+              "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/source-${name}.xml.gz" \
+              -o "donors/${name}.xml.gz"
+          done
+      - name: Scan ADM candidates and coverage
+        shell: bash
+        run: |
+          python - <<'PY'
+          import gzip,re,xml.etree.ElementTree as ET
+          from pathlib import Path
+          from datetime import datetime,timezone
+
+          def dt(s):
+              m=re.match(r'^(\d{14})',s or '')
+              return datetime.strptime(m.group(1),'%Y%m%d%H%M%S').replace(tzinfo=timezone.utc) if m else None
+          keys=('abu dhabi','abudhabi','ad sports','adsports','yas','national geographic abu','nat geo abu')
+          for path in sorted(Path('donors').glob('*.xml.gz')):
+              root=ET.fromstring(gzip.decompress(path.read_bytes()))
+              names={}
+              for c in root.findall('channel'):
+                  cid=c.get('id') or ''
+                  name=' '.join((n.text or '') for n in c.findall('display-name')).strip() or cid
+                  names[cid]=name
+              progs={cid:[] for cid in names}
+              for p in root.findall('programme'):
+                  cid=p.get('channel') or ''
+                  if cid in progs: progs[cid].append(p)
+              print('\n###',path.name)
+              for cid,name in names.items():
+                  hay=(cid+' '+name).casefold()
+                  if not any(k in hay for k in keys): continue
+                  rows=progs.get(cid,[])
+                  starts=[dt(p.get('start')) for p in rows]; stops=[dt(p.get('stop')) for p in rows]
+                  starts=[x for x in starts if x]; stops=[x for x in stops if x]
+                  span=(max(stops)-min(starts)).total_seconds()/3600 if starts and stops else 0
+                  sample=[]
+                  for p in rows[:3]:
+                      t=p.find('title'); sample.append((t.text or '').strip() if t is not None else '')
+                  print(f'{cid} | {name} | events={len(rows)} span={span:.1f}h | sample={sample}')
+          PY
