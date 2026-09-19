@@ -306,6 +306,18 @@ jobs:
           mv output/elcinema-ar.channels.filtered.xml output/elcinema-ar.channels.xml
           mv output/elcinema-ar.filtered.xml output/elcinema-ar.xml
 
+      - name: Upload ElCinema diagnostics
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: elcinema-diagnostics
+          path: |
+            output/elcinema-prune.json
+            output/elcinema-ar.xml
+            output/elcinema-ar.channels.xml
+          if-no-files-found: error
+          retention-days: 3
+
       - name: Overlay ElCinema Arabic donor without changing official clocks
         if: steps.gate.outputs.run == 'true'
         shell: bash
