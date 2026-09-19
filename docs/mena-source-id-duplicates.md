@@ -97,7 +97,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Suggested | **OSN** | NOW | صادرات | يُجري المضيف مقابلات مع شخصيات حول تاريخ الواردات والصادرات في البحرين. |
+| ✅ Suggested | **OSN** | NOW | عهد وولاء | نقدم لكم أفضل ما في عالم التلفزيون |
 | Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -158,7 +158,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Suggested | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
-| Alternative | **beIN** | NOW | رحلة كبيرة جريئة جميلة | — |
+| Alternative | **beIN** | NO_CURRENT_EVENT | No current programme | — |
 
 ---
 
@@ -547,7 +547,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Suggested | **OSN** | NOW | أدفانتشر تايم | حان وقت المغامرة! هيا اصطحبوا أصدقاءكم، سنذهب إلى بلاد بعيدة جدًا. مع جيك الكلب وفين الإنسان، لن تنتهي المتعة أبدًا. |
+| ✅ Suggested | **OSN** | NOW | بالعربية CN | بالعربية CN |
 | Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
 
 ---
@@ -562,7 +562,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Suggested | **OSN** | NOW | اوتباك اوبال هانترز | يُطلق رجال الأدغال عن غير قصد تهديدًا قد يكون مميتًا للفريق. يتواصل مات وكوزا مع ديل غروبن لرفع معنويات الفريق. |
+| ✅ Suggested | **OSN** | NOW | دادلياست كاتش | تتسبب مشكلة في سن تود في إجبار القبطان ريك على العودة إلى الميناء. وسيغ يعطي صوفيا دفة القيادة. |
 | Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -607,7 +607,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Suggested | **OSN** | NOW | حكايات مطبخ | يعود البرنامج هذا العام للاحتفال بالذكرى العشرين لقناة "فتافيت"، متناولاً مواضيع متنوعة تشمل شهر رمضان، ونكهات الخليج، والعودة إلى المدارس. |
+| ✅ Suggested | **OSN** | NOW | 100 لحمة | برنامج "100 لحمة" هو برنامج طبخ من إنتاج "فتافيت" يركز على وصفات اللحوم، بدءًا من المشاوي اليومية وصولًا إلى الأطباق الرئيسية الفاخرة، ويشارك نصائح ونكهات وتقنيات خطوة بخطوة لعشاق اللحوم. |
 | Alternative | **beIN** | NOW | بلوم بيرج تشيف فيوتشر اوفيسر | — |
 
 ---
@@ -729,7 +729,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Suggested | **OSN** | NOW | حبيبتي.. من تكون؟ | يستمر البحث عن فيناياك وسافي، وتستوعب العائلة مدى خطورة الأمر عند اكتشافها أن إحدى العصابات المحلية تلاحق الطفلين الضائعين. |
+| ✅ Suggested | **OSN** | NEXT_ONLY | Future EPG only | — |
 | Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
@@ -792,7 +792,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Suggested | **OSN** | NOW | سك على إخواتك | يجن جنون شريف بعد قيام سعادة بفعل ما يحلو له، ضارباً كلامه عرض الحائط، فيما زينة تحذر يوسف من شريف، بينما تواجه جود موقفاً محرجاً في المدرسة. |
+| ✅ Suggested | **OSN** | NEXT_ONLY | Future EPG only | — |
 | Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
@@ -838,7 +838,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Suggested | **OSN** | NOW | امر إخلاء | تستقبل عمشة نوال وعادل وأولادهما في المنزل وتضع خطة خبيثة لاستهدافهم، فيما تكتشف بدرية خطة عمشة وتخبرها بأنها تعارضها كليا. أما زوجة جمال، فتشجعه على بناء علاقة جدية مع دلال. |
+| ✅ Suggested | **OSN** | NEXT_ONLY | Future EPG only | — |
 | Alternative | **ElCinema** | NOW | Parineetii | تدور الأحداث في إطار درامي، حيث يقود القدر صديقتين مقربتين للزواج من نفس الرجل، مما يؤدي إلى العديد من الصعوبات مع ظهور مثلث حب معقد، وتتوالى الأحداث. |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
@@ -856,7 +856,7 @@
 |---|---|---|---|---|
 | ✅ Suggested | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 | Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
-| Alternative | **OSN** | NOW | تحت الضغط | تضع نادية الزعبي المشاهير تحت الضغط... لقمة تلو الأخرى. وكلما اشتد تحدي الطعام، ازدادت الأسئلة جرأة. ومع انعدام سبل الهروب، لا يبقى أمام الضيف سوى خيارين: إما أن يقول الحقيقة... أو يتذوقها! |
+| Alternative | **OSN** | NEXT_ONLY | Future EPG only | — |
 
 ---
 
@@ -915,7 +915,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Suggested | **OSN** | NOW | عطر الشام | يخوض الشعب السوري خلال عشرينيات القرن الماضي معارك متواصلة ضد الاحتلال الفرنسي، وهو ما يخلف آثاراً عميقة في بيئته ومجتمعه، ويساهم بصورة كبيرة في تشكيل ملامح مستقبله وتحديد مسار تطوره السياسي والاجتماعي. |
+| ✅ Suggested | **OSN** | NOW | البحث عن المعرفة | يكشف عشاق العلوم عن أسرار العلوم الرائعة في مختلف المجالات، مثل علم الوراثة والنباتات وكيفية عمل العلم في عالمنا. |
 | Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
 
 ---
