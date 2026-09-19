@@ -185,6 +185,7 @@ jobs:
             --days=1 --maxConnections=1 --delay=1000 --timeout=20000
           rc=$?
           echo "ElCinema source grab rc=${rc}"
+          echo "${rc}" > "${GITHUB_WORKSPACE}/output/source-build/elcinema.grab.rc"
           test -s "${GITHUB_WORKSPACE}/output/source-build/elcinema.raw.xml" || \
             printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/source-build/elcinema.raw.xml"
           exit 0
@@ -203,6 +204,7 @@ jobs:
             --days=1 --maxConnections=1 --timeout=20000
           rc=$?
           echo "OSN source grab rc=${rc}"
+          echo "${rc}" > "${GITHUB_WORKSPACE}/output/source-build/osn.grab.rc"
           test -s "${GITHUB_WORKSPACE}/output/source-build/osn.raw.xml" || \
             printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/source-build/osn.raw.xml"
           exit 0
@@ -221,6 +223,7 @@ jobs:
             --days=1 --maxConnections=1 --timeout=20000
           rc=$?
           echo "beIN source grab rc=${rc}"
+          echo "${rc}" > "${GITHUB_WORKSPACE}/output/source-build/bein.grab.rc"
           test -s "${GITHUB_WORKSPACE}/output/source-build/bein.raw.xml" || \
             printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/source-build/bein.raw.xml"
           exit 0
@@ -236,6 +239,7 @@ jobs:
             --window-hours 3
           rc=$?
           echo "Sport24 scrape rc=${rc}"
+          echo "${rc}" > output/source-build/sport24.grab.rc
           test -s output/source-build/sport24.raw.xml || \
             printf '%s\n' '<?xml version="1.0"?><tv></tv>' > output/source-build/sport24.raw.xml
           exit 0
@@ -315,9 +319,17 @@ jobs:
                       healthy = False
               active_channels = int(stats.get('channels', 0) or 0)
               total_channels = int(catalogue_counts.get(key, 0) or 0)
-              scrap_pct = round((active_channels * 100.0 / total_channels), 1) if total_channels else 0.0
+              coverage_pct = round((active_channels * 100.0 / total_channels), 1) if total_channels else 0.0
+              rc_path = Path(f'output/source-build/{key}.grab.rc')
+              try:
+                  grab_rc = int(rc_path.read_text(encoding='utf-8').strip()) if rc_path.exists() else 1
+              except Exception:
+                  grab_rc = 1
+              scrape_pct = 100.0 if grab_rc == 0 and total_channels else 0.0
               stats['catalogue_channels'] = total_channels
-              stats['scrap_pct'] = scrap_pct
+              stats['scrape_pct'] = scrape_pct
+              stats['coverage_pct'] = coverage_pct
+              stats['grab_rc'] = grab_rc
               stats_path.write_text(json.dumps(stats, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
               rows.append({
                   'key': key,
@@ -325,9 +337,11 @@ jobs:
                   'xml': f'source-{key}.xml.gz',
                   'channels': active_channels,
                   'catalogue_channels': total_channels,
-                  'scrap_pct': scrap_pct,
+                  'scrape_pct': scrape_pct,
+                  'coverage_pct': coverage_pct,
                   'programmes': int(stats.get('programmes', 0) or 0),
                   'healthy': healthy,
+                  'grab_rc': grab_rc,
                   'window_hours': 3,
               })
           registry = {
