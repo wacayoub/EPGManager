@@ -63,17 +63,64 @@ def main() -> int:
     ap.add_argument("--master", required=True)
     ap.add_argument("--xml", required=True)
     ap.add_argument("--aliases")
+    ap.add_argument("--source-feed", action="append", default=[],
+                    help="winner source override as SITE=XML_PATH; may be repeated")
     ap.add_argument("--reference-utc")
     args = ap.parse_args()
 
     master = Path(args.master)
     root = read_xml(Path(args.xml))
+    now = (
+        datetime.fromisoformat(args.reference_utc.replace("Z", "+00:00")).astimezone(timezone.utc)
+        if args.reference_utc
+        else datetime.now(timezone.utc)
+    )
     mapping = {}
     if args.aliases and Path(args.aliases).exists():
         aliases = json.loads(Path(args.aliases).read_text(encoding="utf-8"))
         rawmap = aliases.get("mapping") if isinstance(aliases, dict) else {}
         if isinstance(rawmap, dict):
             mapping.update(rawmap)
+
+    direct_source_indexes = {}
+    for item in args.source_feed:
+        if "=" not in item:
+            continue
+        site, path_text = item.split("=", 1)
+        site = site.strip()
+        path = Path(path_text.strip())
+        if not site or not path.exists():
+            continue
+        try:
+            droot = read_xml(path)
+        except Exception:
+            continue
+        dchannels = {(c.get("id") or "").strip() for c in droot.findall("channel")}
+        devents = {}
+        dnext = {}
+        dlatest = None
+        for p in droot.findall("programme"):
+            cid = (p.get("channel") or "").strip()
+            start = parse_dt(p.get("start") or "")
+            stop = parse_dt(p.get("stop") or "")
+            if not cid or not start:
+                continue
+            if stop and (dlatest is None or stop > dlatest):
+                dlatest = stop
+            if stop and start <= now < stop:
+                old = devents.get(cid)
+                if old is None or start > old[0]:
+                    devents[cid] = (start, stop, p)
+            elif start > now:
+                old = dnext.get(cid)
+                if old is None or start < old[0]:
+                    dnext[cid] = (start, stop, p)
+        direct_source_indexes[site] = {
+            "channels": dchannels,
+            "events": devents,
+            "next": dnext,
+            "latest_stop": dlatest,
+        }
 
     site_to_stem = {
         "osn.com": "provider-osn",
@@ -90,12 +137,6 @@ def main() -> int:
     def country_stem(cid: str):
         m = re.search(r"\.([a-z]{2})(?:@[^.]*)?$", cid or "", re.I)
         return ("mena-" + m.group(1).lower()) if m else "mena-other"
-
-    now = (
-        datetime.fromisoformat(args.reference_utc.replace("Z", "+00:00")).astimezone(timezone.utc)
-        if args.reference_utc
-        else datetime.now(timezone.utc)
-    )
 
     channel_nodes = {(c.get("id") or "").strip(): c for c in root.findall("channel")}
     channels = set(channel_nodes)
@@ -197,8 +238,23 @@ def main() -> int:
                     canonical = country_matches[0]
         row["receiver_canonical_id"] = canonical
 
-        current = events.get(canonical) or events.get(raw)
-        nxt = next_events.get(canonical) or next_events.get(raw)
+        winner_source = (row.get("winner_source") or row.get("source") or "").strip()
+        direct = direct_source_indexes.get(winner_source) or {}
+        direct_events = direct.get("events") or {}
+        direct_next = direct.get("next") or {}
+        direct_channels = direct.get("channels") or set()
+        direct_latest = direct.get("latest_stop")
+
+        # Morocco-Cloud principle: when the selected winning source has its own
+        # healthy standalone feed, use that source directly for live monitoring.
+        current = direct_events.get(raw) or direct_events.get(canonical)
+        nxt = direct_next.get(raw) or direct_next.get(canonical)
+        used_direct = bool(current or nxt or raw in direct_channels or canonical in direct_channels)
+        if not current:
+            current = events.get(canonical) or events.get(raw)
+        if not nxt:
+            nxt = next_events.get(canonical) or next_events.get(raw)
+
         if not raw:
             row["now_status"] = "NO_XMLTV_ID"
             unresolved_count += 1
@@ -208,6 +264,9 @@ def main() -> int:
         elif nxt:
             row["now_status"] = "NEXT_ONLY"
             next_count += 1
+        elif used_direct and raw not in direct_events and canonical not in direct_events and direct_latest and direct_latest <= now:
+            row["now_status"] = "STALE_SOURCE_FEED"
+            missing_count += 1
         elif canonical not in channels and raw not in channels:
             if latest_stop and latest_stop <= now:
                 row["now_status"] = "STALE_RELEASE_MISSING_ID"
