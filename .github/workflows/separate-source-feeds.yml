@@ -172,7 +172,7 @@ jobs:
           print('ElCinema channels=', len(eout), 'OSN channels=', len(oout), 'beIN channels=', len(bout))
           PY
 
-      - name: Grab ElCinema standalone source - 2 days
+      - name: Grab ElCinema standalone source - 1 day
         if: steps.gate.outputs.run == 'true'
         working-directory: vendor/iptv-org-epg
         shell: bash
@@ -191,7 +191,7 @@ jobs:
             printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/source-build/elcinema.raw.xml"
           exit 0
 
-      - name: Grab OSN official standalone source - 2 days
+      - name: Grab OSN official standalone source - 1 day
         if: steps.gate.outputs.run == 'true'
         working-directory: vendor/iptv-org-epg
         shell: bash
@@ -210,7 +210,7 @@ jobs:
             printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/source-build/osn.raw.xml"
           exit 0
 
-      - name: Grab beIN official standalone source - 2 days
+      - name: Grab beIN official standalone source - 1 day
         if: steps.gate.outputs.run == 'true'
         working-directory: vendor/iptv-org-epg
         shell: bash
