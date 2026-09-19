@@ -7,12 +7,12 @@
 
 | Metric | Value |
 |---|---:|
-| Winner channels monitored | 283 |
+| Winner channels monitored | 302 |
 | 🟢 ON | 15 |
-| 🔴 STALE FEED | 184 |
+| 🔴 STALE FEED | 203 |
 | 🔴 NOT PUBLISHED | 84 |
 | 🔴 NO CURRENT EVENT | 0 |
-| Snapshot UTC | 2026-09-19T18:27:01.027055+00:00 |
+| Snapshot UTC | 2026-09-19T18:28:21.204388+00:00 |
 
 ## Winners by source
 
@@ -29,6 +29,7 @@
 | Rotana | 9 |
 | Roya | 7 |
 | Shahid | 45 |
+| Sport24 | 19 |
 
 ## All winner IDs — alphabetical
 
@@ -70,6 +71,10 @@
 <tr><td><b>🔴 OFF</b></td><td><b>5</b></td><td><code>FoxMoviesMiddleEast.us@SD</code></td><td><b>beIN</b></td><td align="center">1</td><td><code>FoxMoviesMiddleEast.us@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>6</b></td><td><code>FoxActionMoviesMENA.hk@SD</code></td><td><b>beIN</b></td><td align="center">2</td><td><code>FoxActionMoviesMENA.hk@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>7</b></td><td><code>StarMoviesMiddleEast.ae@SD</code></td><td><b>beIN</b></td><td align="center">2</td><td><code>StarMoviesMiddleEast.ae@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Abu Dhabi Sports 1</b></td><td><code>sport24.adsports.1</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.adsports.1</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Abu Dhabi Sports 2</b></td><td><code>sport24.adsports.2</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.adsports.2</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Abu Dhabi Sports 3</b></td><td><code>sport24.adsports.3</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.adsports.3</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Abu Dhabi Sports 4</b></td><td><code>sport24.adsports.4</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.adsports.4</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>Abu Dhabi TV HD</b></td><td><code>AbuDhabiTV.ae@SD</code></td><td><b>OSN</b></td><td align="center">2</td><td><code>ADM.Abu.Dhabi.TV.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>AD Sports 1 HD</b></td><td><code>AbuDhabiSports1.ae@SD</code></td><td><b>OSN</b></td><td align="center">1</td><td><code>OSN.AD.Sports.1.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
 <tr><td><b>🟢 ON</b></td><td><b>Aflam TV</b></td><td><code>AFLAM.ma</code></td><td><b>Morocco Cloud</b></td><td align="center">1</td><td><code>AFLAM.ma</code></td><td>برامج قناة السابعة AFLAM</td><td>أفضل الأفلام والبرامج السينمائية على القناة السابعة المغربية</td><td>EPG current</td></tr>
@@ -97,10 +102,21 @@
 <tr><td><b>🔴 OFF</b></td><td><b>BaraemTV</b></td><td><code>Baraem.qa@SD</code></td><td><b>beIN</b></td><td align="center">1</td><td><code>Baraem.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>BBC World</b></td><td><code>BBCArabic.uk@SD</code></td><td><b>OSN</b></td><td align="center">1</td><td><code>BBC.World.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>beIN 4K</b></td><td><code>beIN4K.qa@SD</code></td><td><b>beIN Sports</b></td><td align="center">1</td><td><code>beIN.4K.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 1</b></td><td><code>sport24.bein.1</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.bein.1</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 1 AFC</b></td><td><code>beINSportsAFC1.qa@SD</code></td><td><b>beIN Sports</b></td><td align="center">1</td><td><code>beINSportsAFC1.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 2</b></td><td><code>sport24.bein.2</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.bein.2</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 2 AFC</b></td><td><code>beINSportsAFC2.qa@SD</code></td><td><b>beIN Sports</b></td><td align="center">1</td><td><code>beINSportsAFC2.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 3</b></td><td><code>sport24.bein.3</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.bein.3</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 3 AFC</b></td><td><code>beINSportsAFC3.qa@SD</code></td><td><b>beIN Sports</b></td><td align="center">1</td><td><code>beINSportsAFC3.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 4</b></td><td><code>sport24.bein.4</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.bein.4</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 5</b></td><td><code>sport24.bein.5</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.bein.5</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 6</b></td><td><code>sport24.bein.6</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.bein.6</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 7</b></td><td><code>sport24.bein.7</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.bein.7</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 8</b></td><td><code>sport24.bein.8</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.bein.8</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 9</b></td><td><code>sport24.bein.9</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.bein.9</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS AFC</b></td><td><code>beINSportsAFC.qa@SD</code></td><td><b>beIN Sports</b></td><td align="center">1</td><td><code>beINSportsAFC.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS Free</b></td><td><code>sport24.bein.0</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.bein.0</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS News</b></td><td><code>sport24.bein.news</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.bein.news</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>beINGOURMET</b></td><td><code>beINGourmet.qa@SD</code></td><td><b>beIN</b></td><td align="center">1</td><td><code>beIN.Gourmet.qa</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>beINMOVIES4</b></td><td><code>beINMovies4Family.qa@SD</code></td><td><b>beIN</b></td><td align="center">1</td><td><code>beIN.Movies.Family.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>beINSPORT4</b></td><td><code>beINSports4.qa@MENA</code></td><td><b>beIN</b></td><td align="center">1</td><td><code>beIN.Sports.4.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
@@ -145,6 +161,8 @@
 <tr><td><b>🔴 OFF</b></td><td><b>Discovery Channel HD</b></td><td><code>DiscoveryChannelMiddleEastAfrica.us@SD</code></td><td><b>OSN</b></td><td align="center">2</td><td><code>OSN.Discovery.Channel.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>Discovery IDX HD</b></td><td><code>InvestigationDiscovery.uk@SD</code></td><td><b>OSN</b></td><td align="center">1</td><td><code>Discovery.IDX.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>DMC HD</b></td><td><code>DMC.eg@SD</code></td><td><b>OSN</b></td><td align="center">2</td><td><code>DMC.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Dubai Sports 1</b></td><td><code>sport24.dubaisports.1</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.dubaisports.1</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Dubai Sports 2</b></td><td><code>sport24.dubaisports.2</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.dubaisports.2</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>Dubai TV HD</b></td><td><code>DubaiTV.ae@SD</code></td><td><b>OSN</b></td><td align="center">2</td><td><code>DMI.Dubai.TV.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>Fatafeat</b></td><td><code>Fatafeat.ae@SD</code></td><td><b>OSN</b></td><td align="center">2</td><td><code>Fatafeat.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>FIFA+</b></td><td><code>FIFAPlus.uk</code></td><td><b>Shahid</b></td><td align="center">1</td><td><code>MBC.FIFA.Plus.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
@@ -219,6 +237,8 @@
 <tr><td><b>🔴 OFF</b></td><td><b>Sky News Arabia HD</b></td><td><code>SkyNewsArabia.ae@SD</code></td><td><b>OSN</b></td><td align="center">1</td><td><code>Sky.News.Arabia.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>Spacetoon</b></td><td><code>SpacetoonArabic.ae@SD</code></td><td><b>Shahid</b></td><td align="center">1</td><td><code>MBC.Spacetoon.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
 <tr><td><b>🟢 ON</b></td><td><b>Tamazight</b></td><td><code>Tamazight</code></td><td><b>Morocco Cloud</b></td><td align="center">1</td><td><code>Tamazight</code></td><td>للاحذية وجوه</td><td>حصة من الذكر الحكيم</td><td>EPG current</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Thmanyah 2</b></td><td><code>sport24.thmanyah.2</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.thmanyah.2</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Thmanyah 3</b></td><td><code>sport24.thmanyah.3</code></td><td><b>Sport24</b></td><td align="center">1</td><td><code>sport24.thmanyah.3</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>TLC HD</b></td><td><code>TLCArabia.us@SD</code></td><td><b>OSN</b></td><td align="center">1</td><td><code>TLC.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>آي فيلم</b></td><td><code>iFilmArabic.ir@SD</code></td><td><b>ElCinema</b></td><td align="center">1</td><td><code>i.Film.Arabic.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><b>أفلام</b></td><td><code>Aflam.sa@SD</code></td><td><b>Shahid</b></td><td align="center">1</td><td><code>Aflam.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
