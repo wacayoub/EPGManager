@@ -118,6 +118,36 @@ def sat_aliases(row):
     return sorted(aliases, key=lambda x: (-len(x), x))
 
 
+def satellite_channel_name(row):
+    """Prefer a receiver/satellite-style Latin service name.
+
+    Upstream source catalogues sometimes expose Arabic names or bare numeric
+    slots (for example beIN rows 1, 2, 13). For monitoring we instead derive a
+    stable service label from the receiver canonical/XMLTV identity.
+    """
+    current = (row.get("channel_name") or "").strip()
+    if current and not current.isdigit() and not re.search(r"[\u0600-\u06ff]", current):
+        return current
+
+    raw = (row.get("receiver_canonical_id") or row.get("xmltv_id") or "").strip()
+    raw = re.sub(r"@(?:SD|HD|MENA|Arabic)$", "", raw, flags=re.I)
+    raw = re.sub(r"\.(?:ae|sa|eg|qa|iq|jo|lb|kw|bh|om|ye|dz|tn|ly|sd|sy|mr|ps|ma|uk|us|fr)$", "", raw, flags=re.I)
+    raw = re.sub(r"([a-z])([A-Z])", r"\1 \2", raw)
+    raw = raw.replace("_", " ").replace(".", " ")
+    raw = re.sub(r"\s+", " ", raw).strip()
+
+    replacements = {
+        "be IN": "beIN",
+        "MBC Masr": "MBC Masr",
+        "Al Jazeera": "Al Jazeera",
+        "Abu Dhabi": "Abu Dhabi",
+        "Cartoon Network": "Cartoon Network",
+    }
+    for old, new in replacements.items():
+        raw = raw.replace(old, new)
+    return raw or current or "Unknown"
+
+
 def satellite_positions(row, sat_index):
     if not sat_index:
         return []
@@ -233,10 +263,18 @@ def main() -> int:
     ap.add_argument("--sport24-list")
     ap.add_argument("--sport24-xml")
     ap.add_argument("--sat-index")
+    ap.add_argument("--source-registry")
     args = ap.parse_args()
 
     with Path(args.csv).open("r", encoding="utf-8-sig", newline="") as fh:
         all_rows = list(csv.DictReader(fh))
+
+    source_registry = {}
+    if args.source_registry and Path(args.source_registry).exists():
+        try:
+            source_registry = json.loads(Path(args.source_registry).read_text(encoding="utf-8"))
+        except Exception:
+            source_registry = {}
 
     sat_index = {}
     if args.sat_index and Path(args.sat_index).exists():
@@ -321,6 +359,28 @@ def main() -> int:
     for src, count in sorted(source_counts.items(), key=lambda kv: kv[0].casefold()):
         out.append(f"| {esc(src)} | {count} |")
 
+    direct_rows = (source_registry.get("sources") or []) if isinstance(source_registry, dict) else []
+    if direct_rows:
+        out += [
+            "",
+            "## Direct source scrape progress",
+            "",
+            "> Real 3h scrape result = channels with usable EPG / channels in that source catalogue.",
+            "",
+            "| Source | Progress | Active / Catalogue | Programmes | Health |",
+            "|---|---:|---:|---:|---|",
+        ]
+        for item in sorted(direct_rows, key=lambda x: str(x.get("label") or "").casefold()):
+            active = int(item.get("channels", 0) or 0)
+            total = int(item.get("catalogue_channels", 0) or 0)
+            pct = float(item.get("scrap_pct", 0.0) or 0.0)
+            programs = int(item.get("programmes", 0) or 0)
+            health = "🟢 HEALTHY" if item.get("healthy") else "🔴 FAILED"
+            out.append(
+                f"| {esc(item.get('label') or item.get('key') or '')} | **{pct:.1f}%** | "
+                f"{active} / {total} | {programs} | {health} |"
+            )
+
     out += [
         "",
         "## All winner IDs — alphabetical",
@@ -333,7 +393,6 @@ def main() -> int:
         '<th width="120">Source</th>',
         '<th width="230">XMLTV ID</th>',
         '<th width="330">Current programme</th>',
-        '<th width="210">Monitoring</th>',
         "</tr></thead>",
         "<tbody>",
     ]
@@ -358,23 +417,16 @@ def main() -> int:
         else:
             programme_html = "—"
 
-        reason = off_reason(r)
-        if (r.get("now_status") or "").strip() == "NOW":
-            reason_html = "<b>EPG current</b>"
-        else:
-            reason_html = esc(reason)
-
         sats = satellite_positions(r, sat_index)
         sat_html = " · ".join(sats) if sats else "—"
         out.append(
             "<tr>"
             f"<td><b>{esc(monitor_status(r))}</b></td>"
             f"<td><small><b>{esc(sat_html)}</b></small></td>"
-            f"<td><b>{esc(r.get('channel_name') or '')}</b></td>"
+            f"<td><b>{esc(satellite_channel_name(r))}</b></td>"
             f"<td><b>{esc(src)}</b></td>"
             f"<td>{id_html}</td>"
             f"<td>{programme_html}</td>"
-            f"<td>{reason_html}</td>"
             "</tr>"
         )
     out += ["</tbody>", "</table>"]
