@@ -81,18 +81,36 @@ def main() -> int:
     max_start = now + timedelta(hours=max(1, args.window_hours))
     programmes = defaultdict(list)
     rejected_time = 0
+    inferred_stop = 0
+
+    raw_by_channel = defaultdict(list)
     for p in root.findall("programme"):
         cid = (p.get("channel") or "").strip()
         if cid not in channels:
             continue
         start = parse_xmltv_dt(p.get("start") or "")
-        stop = parse_xmltv_dt(p.get("stop") or "")
-        if not start or not stop or stop <= start:
+        if not start:
             rejected_time += 1
             continue
-        if stop <= min_stop or start >= max_start:
-            continue
-        programmes[cid].append(p)
+        raw_by_channel[cid].append((start, p))
+
+    for cid, items in raw_by_channel.items():
+        items.sort(key=lambda x: x[0])
+        for idx, (start, p) in enumerate(items):
+            stop = parse_xmltv_dt(p.get("stop") or "")
+            if not stop or stop <= start:
+                next_start = items[idx + 1][0] if idx + 1 < len(items) else None
+                if next_start and next_start > start:
+                    p = copy_node(p)
+                    p.set("stop", next_start.strftime("%Y%m%d%H%M%S +0000"))
+                    stop = next_start
+                    inferred_stop += 1
+                else:
+                    rejected_time += 1
+                    continue
+            if stop <= min_stop or start >= max_start:
+                continue
+            programmes[cid].append(p)
 
     active_ids = sorted((cid for cid in channels if programmes.get(cid)), key=str.casefold)
     out = ET.Element("tv", {
@@ -129,6 +147,7 @@ def main() -> int:
         "coverage_pct": round((len(active_ids) * 100.0 / len(channels)), 1) if channels else 0.0,
         "programmes": event_count,
         "rejected_invalid_time": rejected_time,
+        "inferred_stop": inferred_stop,
         "window_hours": args.window_hours,
         "size_bytes": len(gz_bytes),
         "sha256": hashlib.sha256(gz_bytes).hexdigest(),
