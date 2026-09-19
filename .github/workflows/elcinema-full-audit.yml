@@ -1,0 +1,81 @@
+name: ElCinema Full Audit
+
+on:
+  push:
+    paths:
+      - ".github/workflows/elcinema-full-audit.yml"
+      - "tools/elcinema_donor_prune.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/iptv-org-epg/package-lock.json
+      - name: Install grabber
+        working-directory: vendor/iptv-org-epg
+        run: npm ci --no-audit --no-fund
+      - name: Prepare ElCinema channels
+        shell: bash
+        run: |
+          mkdir -p output
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          src='vendor/iptv-org-epg/sites/elcinema.com/elcinema.com_ar.channels.xml'
+          root=ET.parse(src).getroot()
+          out=ET.Element('channels')
+          for ch in root.findall('channel'):
+              cid=(ch.get('xmltv_id') or '').strip()
+              if not cid or '.ma@' in cid or cid.endswith('.ma'):
+                  continue
+              out.append(ch)
+          ET.indent(out, space='  ')
+          ET.ElementTree(out).write('output/elcinema-ar.channels.xml', encoding='utf-8', xml_declaration=True)
+          print('CHANNELS', len(out.findall('channel')))
+          PY
+      - name: Grab ElCinema 2 days
+        working-directory: vendor/iptv-org-epg
+        env:
+          NODE_OPTIONS: --max-old-space-size=2048
+        shell: bash
+        run: |
+          npm run grab --- \
+            --channels="\${GITHUB_WORKSPACE}/output/elcinema-ar.channels.xml" \
+            --output="\${GITHUB_WORKSPACE}/output/elcinema-ar.xml" \
+            --days=2 \
+            --maxConnections=1 \
+            --delay=1000 \
+            --timeout=20000
+      - name: Build audit report
+        shell: bash
+        run: |
+          python tools/elcinema_donor_prune.py \
+            --channels output/elcinema-ar.channels.xml \
+            --programmes output/elcinema-ar.xml \
+            --output-channels output/elcinema-ar.channels.filtered.xml \
+            --output-programmes output/elcinema-ar.filtered.xml \
+            --report output/elcinema-prune.json
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: elcinema-full-audit
+          path: |
+            output/elcinema-prune.json
+            output/elcinema-ar.filtered.xml
+            output/elcinema-ar.channels.filtered.xml
+          retention-days: 3
