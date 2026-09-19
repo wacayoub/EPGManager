@@ -8,6 +8,7 @@ on:
     paths:
       - ".github/workflows/separate-source-feeds.yml"
       - "tools/source_feed_pack.py"
+      - "tools/source_gap_retry.py"
       - "tools/sport24_source.py"
 
 permissions:
@@ -73,7 +74,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m py_compile tools/source_feed_pack.py tools/sport24_source.py
+          python -m py_compile tools/source_feed_pack.py tools/source_gap_retry.py tools/sport24_source.py
           python -m pip install --disable-pip-version-check --no-cache-dir requests beautifulsoup4
 
       - name: Install upstream grabber
@@ -227,6 +228,58 @@ jobs:
           test -s "${GITHUB_WORKSPACE}/output/source-build/bein.raw.xml" || \
             printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/source-build/bein.raw.xml"
           exit 0
+
+      - name: Retry zero-EPG channels only
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          retry_source() {
+            key="$1"
+            extra="$2"
+            python tools/source_gap_retry.py build \
+              --catalogue "output/source-build/${key}.channels.xml" \
+              --raw "output/source-build/${key}.raw.xml" \
+              --output "output/source-build/${key}.retry.channels.xml"
+
+            gaps="$(python - "${key}" <<'PY'
+import sys, xml.etree.ElementTree as ET
+key=sys.argv[1]
+root=ET.parse(f"output/source-build/{key}.retry.channels.xml").getroot()
+print(len(root.findall("channel")))
+PY
+)"
+            echo "${key} zero-EPG first-pass channels=${gaps}"
+            if [ "${gaps}" -eq 0 ]; then
+              return 0
+            fi
+
+            set +e
+            (
+              cd vendor/iptv-org-epg
+              timeout --signal=TERM --kill-after=20s 420s npm run grab --- \
+                --channels="${GITHUB_WORKSPACE}/output/source-build/${key}.retry.channels.xml" \
+                --output="${GITHUB_WORKSPACE}/output/source-build/${key}.retry.raw.xml" \
+                --days=1 --maxConnections=1 ${extra} --timeout=20000
+            )
+            retry_rc=$?
+            set -e
+            echo "${key} focused retry rc=${retry_rc}"
+            if [ "${retry_rc}" -ne 0 ] || [ ! -s "output/source-build/${key}.retry.raw.xml" ]; then
+              return 0
+            fi
+
+            python tools/source_gap_retry.py merge \
+              --primary "output/source-build/${key}.raw.xml" \
+              --retry "output/source-build/${key}.retry.raw.xml" \
+              --output "output/source-build/${key}.merged.xml"
+            mv "output/source-build/${key}.merged.xml" "output/source-build/${key}.raw.xml"
+          }
+
+          retry_source elcinema "--delay=1000"
+          retry_source osn ""
+          retry_source bein ""
 
       - name: Scrape Sport24 standalone source safely
         if: steps.gate.outputs.run == 'true'
