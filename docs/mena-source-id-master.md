@@ -16,7 +16,7 @@
 | 🔴 STALE RELEASE / MISSING ID | 64 |
 | 🔴 NOT PUBLISHED | 0 |
 | 🔴 NO CURRENT EVENT | 0 |
-| Snapshot UTC | 2026-09-19T19:56:24.880365+00:00 |
+| Snapshot UTC | 2026-09-19T19:58:06.367014+00:00 |
 
 ## Winners by source
 
@@ -218,7 +218,7 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Crime</b></td><td><b>OSN</b></td><td><code>OSNtv Crime.sa</code><br><small>↳ OSN.Crime.ae</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Documentary</b></td><td><b>OSN</b></td><td><code>OSNtv Documentary.sa</code><br><small>↳ OSN.Documentary.ae</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>OSNtv iQIYI</b></td><td><b>OSN</b></td><td><code>OSNtv iQIYI.sa</code><br><small>↳ OSN.iQIYI.ae</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Kids</b></td><td><b>OSN</b></td><td><code>OSNKids.ae@SD</code><br><small>↳ OSN.Kids.ae</small></td><td><b>شارلي أند لولا</b><details><summary>description</summary><small>فاز تشارلي بالجائزة الأولى في المدرسة عن صاروخه الرائع الذي صنعه بنفسه باستخدام 10 عبوات من الزبادي وبعض رقائق القصدير العريضة.</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Kids</b></td><td><b>OSN</b></td><td><code>OSNKids.ae@SD</code><br><small>↳ OSN.Kids.ae</small></td><td><b>شارلي أند لولا</b><details><summary>description</summary><small>يتعين على لولا أن تحافظ على سر مفاجأة عيد ميلاد تشارلي.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Mezze</b></td><td><b>OSN</b></td><td><code>OSNMezze.ae@SD</code><br><small>↳ OSN.Mezze.ae</small></td><td><b>ماي كيتشن رولز استراليا</b><details><summary>description</summary><small>نعود إلى بريزبين في ثالث تحدي المطعم الفوري النهائي، حيث يأملان الإيطاليان العصريان سيمون وفيفيانا في الحفاظ على سمعتهما القياسية.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Action</b></td><td><b>OSN</b></td><td><code>OSNMoviesAction.ae@SD</code><br><small>↳ OSN.Movies.Action.ae</small></td><td><b>جاستيس ليغ</b><details><summary>description</summary><small>بعد استعادته الثقة بوجود الخير في النفس البشرية واستلهامه من تضحيات سوبرمان، يستعين بروس واين بحليفته الجديدة، ديانا برينس، لمواجهة تهديد أشد خطراً وفتكاً</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Comedy</b></td><td><b>OSN</b></td><td><code>OSNtv Movies Comedy.sa</code><br><small>↳ OSN.Movies.Comedy.ae</small></td><td>—</td></tr>
