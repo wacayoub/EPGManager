@@ -7,7 +7,6 @@ on:
       - "tools/enrich_mena_source_id_master.py"
       - "tools/render_mena_source_id_master_md.py"
       - "data/receiver-sat-index.json.gz.b64"
-      - "tools/render_mena_source_id_master_md.py"
   workflow_dispatch:
 
 permissions:
@@ -58,6 +57,26 @@ jobs:
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/source-sport24.xml.gz" \
             -o /tmp/source-sport24.xml.gz
 
+      - name: Decode receiver lamedb SAT index
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import base64, gzip, json
+          from pathlib import Path
+          src = Path("data/receiver-sat-index.json.gz.b64")
+          raw = gzip.decompress(base64.b64decode(src.read_text(encoding="utf-8").strip()))
+          data = json.loads(raw.decode("utf-8"))
+          assert data.get("source") == "Vu+ receiver scan lamedb5", data.get("source")
+          counts = data.get("counts") or {}
+          assert counts.get("7W") == 810
+          assert counts.get("8W") == 296
+          assert counts.get("25.5E") == 61
+          assert counts.get("26E") == 677
+          Path("/tmp/receiver-sat-index.json").write_bytes(raw)
+          print("LAMEDB_SAT_INDEX PASS", counts, "channels=", len(data.get("channels") or {}))
+          PY
+
       - name: Enrich master with current real EPG
         shell: bash
         run: |
@@ -77,7 +96,7 @@ jobs:
             --morocco-xml /tmp/morocco.xml.gz \
             --sport24-list /tmp/source-sport24.txt \
             --sport24-xml /tmp/source-sport24.xml.gz \
-            --sat-index data/receiver-sat-index.json.gz.b64
+            --sat-index /tmp/receiver-sat-index.json
 
       - name: Verify required live columns
         shell: bash
