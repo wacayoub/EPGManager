@@ -380,7 +380,17 @@ def _merge_prefer(primary, backup):
 
 
 def scrape_2m_full_day(days):
-    s = runner.session()
+    # Keep one browser-like Sudinfo session for the whole horizon so any
+    # Cloudflare cookies/challenge state are reused across today + future days.
+    s = cloudscraper.create_scraper(
+        browser={"browser": "chrome", "platform": "linux", "desktop": True}
+    )
+    s.headers.update({
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.7",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+    })
     today = datetime.now(TZ).date()
     out = []
     source_stats = defaultdict(int)
