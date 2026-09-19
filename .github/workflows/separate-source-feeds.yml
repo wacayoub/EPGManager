@@ -81,7 +81,7 @@ jobs:
         shell: bash
         run: npm ci --no-audit --no-fund
 
-      - name: Build ElCinema and OSN channel catalogues
+      - name: Build ElCinema OSN and beIN channel catalogues
         if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
@@ -137,7 +137,37 @@ jobs:
           ET.indent(oout, space='  ')
           Path('output/source-build/osn.channels.xml').write_bytes(
               ET.tostring(oout, encoding='utf-8', xml_declaration=True))
-          print('ElCinema channels=', len(eout), 'OSN channels=', len(oout))
+          # beIN official sources: prefer bein.com, then beinsports.com,
+          # Arabic row first when duplicate identities exist.
+          candidates = []
+          for site_rank, site in enumerate(('bein.com', 'beinsports.com')):
+              site_dir = root / site
+              for path in sorted(site_dir.glob('*.channels.xml')):
+                  try:
+                      parsed = ET.parse(path).getroot()
+                  except Exception:
+                      continue
+                  for ch in parsed.findall('channel'):
+                      cid = (ch.get('xmltv_id') or '').strip()
+                      site_id = (ch.get('site_id') or '').strip()
+                      if not cid or not site_id:
+                          continue
+                      lang = (ch.get('lang') or '').strip().lower()
+                      lang_rank = 0 if lang.startswith('ar') else (1 if lang.startswith('en') else 2)
+                      candidates.append((cid, site_rank, lang_rank, path.name, ch))
+          best = {}
+          for cid, site_rank, lang_rank, path_name, ch in candidates:
+              key = (site_rank, lang_rank, path_name)
+              if cid not in best or key < best[cid][0]:
+                  best[cid] = (key, ch)
+          bout = ET.Element('channels')
+          for cid in sorted(best, key=str.casefold):
+              bout.append(ET.fromstring(ET.tostring(best[cid][1], encoding='utf-8')))
+          ET.indent(bout, space='  ')
+          Path('output/source-build/bein.channels.xml').write_bytes(
+              ET.tostring(bout, encoding='utf-8', xml_declaration=True))
+
+          print('ElCinema channels=', len(eout), 'OSN channels=', len(oout), 'beIN channels=', len(bout))
           PY
 
       - name: Grab ElCinema standalone source - 2 days
@@ -176,6 +206,24 @@ jobs:
             printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/source-build/osn.raw.xml"
           exit 0
 
+      - name: Grab beIN official standalone source - 2 days
+        if: steps.gate.outputs.run == 'true'
+        working-directory: vendor/iptv-org-epg
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=2048
+        run: |
+          set +e
+          timeout --signal=TERM --kill-after=30s 900s npm run grab --- \
+            --channels="${GITHUB_WORKSPACE}/output/source-build/bein.channels.xml" \
+            --output="${GITHUB_WORKSPACE}/output/source-build/bein.raw.xml" \
+            --days=2 --maxConnections=1 --timeout=20000
+          rc=$?
+          echo "beIN source grab rc=${rc}"
+          test -s "${GITHUB_WORKSPACE}/output/source-build/bein.raw.xml" || \
+            printf '%s\n' '<?xml version="1.0"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/source-build/bein.raw.xml"
+          exit 0
+
       - name: Scrape Sport24 standalone source safely
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -212,6 +260,13 @@ jobs:
             --label 'OSN Official' --window-hours 48
           echo "OSN pack rc=$?"
           python tools/source_feed_pack.py \
+            --input output/source-build/bein.raw.xml \
+            --output-gz output/final-sources/source-bein.xml.gz \
+            --output-txt output/final-sources/source-bein.txt \
+            --stats output/final-sources/source-bein.json \
+            --label beIN --window-hours 48
+          echo "beIN pack rc=$?"
+          python tools/source_feed_pack.py \
             --input output/source-build/sport24.raw.xml \
             --output-gz output/final-sources/source-sport24.xml.gz \
             --output-txt output/final-sources/source-sport24.txt \
@@ -232,7 +287,7 @@ jobs:
 
           out = Path('output/final-sources')
           rows = []
-          for key, label in [('elcinema','ElCinema'), ('sport24','Sport24'), ('osn','OSN Official')]:
+          for key, label in [('elcinema','ElCinema'), ('sport24','Sport24'), ('osn','OSN Official'), ('bein','beIN')]:
               stats_path = out / f'source-{key}.json'
               stats = json.loads(stats_path.read_text(encoding='utf-8')) if stats_path.exists() else {}
               gz = out / f'source-{key}.xml.gz'
@@ -302,6 +357,7 @@ jobs:
           ElCinema|source-elcinema.xml.gz|Arabic entertainment metadata/EPG source
           Sport24|source-sport24.xml.gz|Sports guide; publishes only when explicit trustworthy programme times are available
           OSN Official|source-osn.xml.gz|Official OSN source, Arabic preferred then English fallback
+          beIN|source-bein.xml.gz|Official beIN source feed, direct and LKG-protected
           EOF
 
           git add -A
@@ -310,6 +366,6 @@ jobs:
             exit 0
           fi
           stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
-          git commit -m "Update separate ElCinema Sport24 OSN sources ${stamp}"
+          git commit -m "Update separate ElCinema Sport24 OSN beIN sources ${stamp}"
           git pull --rebase origin mena-data
           git push origin HEAD:mena-data
