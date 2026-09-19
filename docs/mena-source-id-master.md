@@ -14,7 +14,7 @@
 | 🔴 STALE RELEASE / MISSING ID | 62 |
 | 🔴 NOT PUBLISHED | 0 |
 | 🔴 NO CURRENT EVENT | 0 |
-| Snapshot UTC | 2026-09-19T19:18:02.430865+00:00 |
+| Snapshot UTC | 2026-09-19T19:19:48.041333+00:00 |
 
 ## Winners by source
 
@@ -39,10 +39,10 @@
 
 | Source | Progress | Active / Catalogue | Programmes | Health |
 |---|---:|---:|---:|---|
-| beIN | **0.0%** | 53 / 0 | 181 | 🟢 HEALTHY |
-| ElCinema | **0.0%** | 86 / 0 | 108 | 🟢 HEALTHY |
-| OSN Official | **0.0%** | 58 / 0 | 499 | 🟢 HEALTHY |
-| Sport24 | **0.0%** | 19 / 0 | 89 | 🟢 HEALTHY |
+| beIN | **62.4%** | 53 / 85 | 181 | 🟢 HEALTHY |
+| ElCinema | **84.3%** | 86 / 102 | 108 | 🟢 HEALTHY |
+| OSN Official | **96.7%** | 58 / 60 | 499 | 🟢 HEALTHY |
+| Sport24 | **100.0%** | 19 / 19 | 89 | 🟢 HEALTHY |
 
 ## All winner IDs — alphabetical
 
@@ -68,7 +68,7 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>CNNArabic</b></td><td><b>beIN</b></td><td><code>CNNArabic.ae@SD</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Euronews English</b></td><td><b>beIN</b></td><td><code>EuronewsEnglish.fr@SD</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E</b></small></td><td><b>Jeem TV</b></td><td><b>beIN</b></td><td><code>JeemTV.qa@SD</code></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>2M</b></td><td><b>Morocco Cloud</b></td><td><code>2M</code></td><td><b>زور بلادك</b><details><summary>description</summary><small>برنامج يعرّف بالمؤهلات السياحية لمختلف مناطق المغرب ويشجع على اكتشاف المدن والوجهات الوطنية.</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>2M NATIONAL HD</b></td><td><b>Morocco Cloud</b></td><td><code>2M</code></td><td><b>زور بلادك</b><details><summary>description</summary><small>برنامج يعرّف بالمؤهلات السياحية لمختلف مناطق المغرب ويشجع على اكتشاف المدن والوجهات الوطنية.</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>CBeebies Middle East</b></td><td><b>beIN</b></td><td><code>CBeebiesMiddleEast.uk@SD</code></td><td>—</td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>26E · 7W</b></small></td><td><b>Alkass One</b></td><td><b>beIN</b></td><td><code>AlkassOne.qa@SD</code></td><td><b>القلايل</b></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E · 7W</b></small></td><td><b>Alkass Two</b></td><td><b>beIN</b></td><td><code>AlkassTwo.qa@SD</code></td><td>—</td></tr>
@@ -86,9 +86,9 @@
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>Abu Dhabi Sports 3</b></td><td><b>Sport24</b></td><td><code>sport24.adsports.3</code></td><td><b>الدوري الإيطالي:فينيسيا × لاتسيو</b><details><summary>description</summary><small>ترقّبوا منافسات الدوري الإيطالي لكرة القدم Serie A، حيث تتصارع أعرق الأندية على لقب السكوديتو، والمقاعد الأوروبية، فيما تخوض فرق أخرى معركة البقاء وتفادي الهبوط.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>Abu Dhabi Sports 4</b></td><td><b>Sport24</b></td><td><code>sport24.adsports.4</code></td><td><b>الدوري الإيطالي:فينيسيا × لاتسيو</b><details><summary>description</summary><small>ترقّبوا منافسات الدوري الإيطالي لكرة القدم Serie A، حيث تتصارع أعرق الأندية على لقب السكوديتو، والمقاعد الأوروبية، فيما تخوض فرق أخرى معركة البقاء وتفادي الهبوط.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>26E · 7W</b></small></td><td><b>Abu Dhabi TV HD</b></td><td><b>OSN</b></td><td><code>AbuDhabiTV.ae@SD</code><br><small>↳ ADM.Abu.Dhabi.TV.ae</small></td><td><b>تلفزيون أبوظبي HD</b><details><summary>description</summary><small>تلفزيون أبوظبي HD</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>26E · 7W</b></small></td><td><b>AD Sports 1 HD</b></td><td><b>OSN</b></td><td><code>AbuDhabiSports1.ae@SD</code><br><small>↳ OSN.AD.Sports.1.ae</small></td><td><b>غولاسيمو 2025</b><details><summary>description</summary><small>غولاسيمو 2025</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Aflam TV</b></td><td><b>Morocco Cloud</b></td><td><code>AFLAM.ma</code></td><td><b>برامج قناة السابعة AFLAM</b><details><summary>description</summary><small>أفضل الأفلام والبرامج السينمائية على القناة السابعة المغربية</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Al Aoula</b></td><td><b>Morocco Cloud</b></td><td><code>AlAoula</code></td><td><b>Saad W Lahna</b><details><summary>description</summary><small>برنامج ضمن شبكة قناة الأولى المغربية.</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>26E · 7W</b></small></td><td><b>AD Sport 1 HD</b></td><td><b>OSN</b></td><td><code>AbuDhabiSports1.ae@SD</code><br><small>↳ OSN.AD.Sports.1.ae</small></td><td><b>غولاسيمو 2025</b><details><summary>description</summary><small>غولاسيمو 2025</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Aflam HD</b></td><td><b>Morocco Cloud</b></td><td><code>AFLAM.ma</code></td><td><b>برامج قناة السابعة AFLAM</b><details><summary>description</summary><small>أفضل الأفلام والبرامج السينمائية على القناة السابعة المغربية</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Al Aoula Inter</b></td><td><b>Morocco Cloud</b></td><td><code>AlAoula</code></td><td><b>Saad W Lahna</b><details><summary>description</summary><small>برنامج ضمن شبكة قناة الأولى المغربية.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>26E · 7W</b></small></td><td><b>Al Arabiya</b></td><td><b>OSN</b></td><td><code>AlarabiyaPortrait.ae@SD</code><br><small>↳ OSN.Al.Arabiya.ae</small></td><td><b>أخبار العربية</b><details><summary>description</summary><small>كن في الطليعة مع آخر الأخبار العاجلة وأهم الأحداث الجارية، بالإضافة إلى معرفة كل ما يدور حولك من أحداث سواء كانت في المنطقة العربية أو حول العالم.</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>AL Arabiya English</b></td><td><b>Shahid</b></td><td><code>AlArabiyaEnglish.sa@SD</code><br><small>↳ MBC.AL.Arabiya.English.mena</small></td><td>—</td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>Al Araby 2</b></td><td><b>OSN</b></td><td><code>AlArabyTV2.qa@SD</code><br><small>↳ Al.Araby.2.qa</small></td><td><b>فيلم وثائقي</b><details><summary>description</summary><small>رحلة عرض ممتعة لأقوى الأفلام التسجيلية وأبرز الأعمال الوثائقية العالمية، والتي تضيف قدراً كبيراً من المعرفة الممزوجة بعناصر المتعة والتشويق حول أماكن أو أحداث أو أشخاص.</small></details></td></tr>
@@ -100,7 +100,7 @@
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>Al Quran Al Kareem TV HD</b></td><td><b>OSN</b></td><td><code>AlQuranAlKareemTV.sa@SD</code><br><small>↳ Al.Quran.Al.Kareem.TV.sa</small></td><td><b>القرآن الكريم HD</b><details><summary>description</summary><small>القرآن الكريم HD</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>Al Rai TV</b></td><td><b>OSN</b></td><td><code>AlraiTV.kw@SD</code><br><small>↳ Al.Rai.TV.kw</small></td><td><b>الراي</b><details><summary>description</summary><small>الراي</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>Animal Planet HD</b></td><td><b>OSN</b></td><td><code>AnimalPlanetEurope.uk@SD</code><br><small>↳ Animal.Planet.mena</small></td><td><b>تانكد</b><details><summary>description</summary><small>طلبت تيريزا كابوتو ذات الشهرة العالمية في لونغ آيلاند المتوسطة من وايد وبريت بناء حوضي أسماك خاصين بها - خزان حورية البحر وبركة كوي.</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Arryadia HD</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD</code></td><td><b>كراطي.. الدوري الممتاز للكراطي 1 - الرباط</b><details><summary>description</summary><small>كراطي.. الدوري الممتاز للكراطي 1 - الرباط 2026</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Arryadia</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD</code></td><td><b>كراطي.. الدوري الممتاز للكراطي 1 - الرباط</b><details><summary>description</summary><small>كراطي.. الدوري الممتاز للكراطي 1 - الرباط 2026</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W</b></small></td><td><b>Arryadia HD1</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD1</code></td><td><b>Programmes Arryadia HD1</b><details><summary>description</summary><small>Suivez le meilleur du sport marocain et international sur Arryadia HD1.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Arryadia HD2</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD2</code></td><td><b>Programmes Arryadia HD2</b><details><summary>description</summary><small>Suivez le meilleur du sport marocain et international sur Arryadia HD2.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Arryadia HD3</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD3</code></td><td><b>Programmes Arryadia HD3</b><details><summary>description</summary><small>Suivez le meilleur du sport marocain et international sur Arryadia HD3.</small></details></td></tr>
@@ -150,7 +150,7 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>beINSPORTSMAX4</b></td><td><b>beIN</b></td><td><code>beINSportsMax4.qa@MENA</code><br><small>↳ beIN.Sports.MAX4.qa</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>beINSPORTSMAX5</b></td><td><b>beIN</b></td><td><code>beINSportsMax5.qa@MENA</code><br><small>↳ beIN.Sports.MAX5.qa</small></td><td>—</td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>beINSPORTSMAX6</b></td><td><b>beIN</b></td><td><code>beINSportsMax6.qa@MENA</code><br><small>↳ beIN.Sports.MAX6.qa</small></td><td><b>الكرة العربية</b></td></tr>
-<tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>beINSPORTSNews</b></td><td><b>beIN</b></td><td><code>beIN.Sports.News.qa</code></td><td>—</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>beIN SPORTS NEWS</b></td><td><b>beIN</b></td><td><code>beIN.Sports.News.qa</code></td><td>—</td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>beINSPORTSXTRA1</b></td><td><b>beIN</b></td><td><code>beINSportsXtra1.qa@SD</code><br><small>↳ beIN.Sports.XTRA1.qa</small></td><td><b>beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026</b><details><summary>description</summary><small>beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>beINSPORTSXTRA2</b></td><td><b>beIN</b></td><td><code>beINSportsXtra2.qa@SD</code><br><small>↳ beIN.Sports.XTRA2.qa</small></td><td><b>Canada vs France - Doubles - Davis Cup 2nd Qualifier - 2026 - MD2</b></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>beINSPORTSXTRA3</b></td><td><b>beIN</b></td><td><code>beIN.Sports.XTRA3.qa</code></td><td>—</td></tr>
@@ -226,7 +226,7 @@
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Premiere</b></td><td><b>OSN</b></td><td><code>OSNMoviesPremiere.ae@SD</code><br><small>↳ OSN.Movies.Premiere.ae</small></td><td><b>وان باتل أفتر أناذر</b><details><summary>description</summary><small>بوب، الثوري السابق الذي يعيش خارج الشبكة مع ابنته المستقلة ويلا. عندما يظهر عدوه القديم وتختفي ابنته، يجب عليه مواجهة ماضيه لإنقاذها.</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Now</b></td><td><b>OSN</b></td><td><code>OSNtv Now.sa</code><br><small>↳ OSN.Now.ae</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv One</b></td><td><b>OSN</b></td><td><code>OSNtv One.sa</code><br><small>↳ OSN.One.ae</small></td><td>—</td></tr>
-<tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Pop Up</b></td><td><b>OSN</b></td><td><code>OSNtv Pop Up.sa</code><br><small>↳ OSN.Pop.Up.ae</small></td><td>—</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv POP UP</b></td><td><b>OSN</b></td><td><code>OSNtv Pop Up.sa</code><br><small>↳ OSN.Pop.Up.ae</small></td><td>—</td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Showcase</b></td><td><b>OSN</b></td><td><code>OSNShowcase.ae@SD</code><br><small>↳ OSN.Showcase.ae</small></td><td><b>أكاذيب كبيرة صغيرة - بيغ ليتل لايز</b><details><summary>description</summary><small>تقوم ماريز لويز بالتهجم على سيليست. يستمر جوردون في إزعاج ريناتا. بوني تفكر في حل لمعاناة والدتها وذنبها المستمر. يقبل إيد باقتراح غير عادي قبل ضبط مادلين في موقف مفاجئ</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Showcase Classics</b></td><td><b>OSN</b></td><td><code>OSNtv Showcase Classics.sa</code><br><small>↳ OSN.Showcase.Classics.ae</small></td><td>—</td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Yahala</b></td><td><b>OSN</b></td><td><code>OSNYahala.ae@SD</code><br><small>↳ OSN.Yahala.ae</small></td><td><b>مجاريح</b><details><summary>description</summary><small>تكتشف غنيمة محاولة غازي سرقة ذهبها، وزواجه من منيرة عقب دخولها السجن، ويتم إيقاف فوزية عن العمل بالرغم من انتهاء قضيتها.</small></details></td></tr>
