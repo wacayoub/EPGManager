@@ -21,7 +21,7 @@ from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
 
-from global_receiver_id_normalize import canonical_id
+from global_receiver_id_normalize import canonical_id, identity_name
 from bein_receiver_id_normalize import RAW_TO_CANON
 
 DT_RE = re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
@@ -97,7 +97,18 @@ def main() -> int:
         else datetime.now(timezone.utc)
     )
 
-    channels = {(c.get("id") or "").strip() for c in root.findall("channel")}
+    channel_nodes = {(c.get("id") or "").strip(): c for c in root.findall("channel")}
+    channels = set(channel_nodes)
+    name_to_ids = {}
+    for cid, ch in channel_nodes.items():
+        names = [(n.text or "").strip() for n in ch.findall("display-name") if (n.text or "").strip()]
+        if not names:
+            names = [cid]
+        for nm in names:
+            key = identity_name(nm)
+            if key:
+                name_to_ids.setdefault(key, set()).add(cid)
+
     events = {}
     next_events = {}
     for p in root.findall("programme"):
@@ -163,6 +174,19 @@ def main() -> int:
     for row in rows:
         raw = (row.get("xmltv_id") or "").strip()
         canonical = resolve_canonical(row)
+        if canonical not in channels and raw not in channels and raw:
+            wname = winner_name.get(raw) or (row.get("channel_name") or "").strip()
+            key = identity_name(wname)
+            matches = sorted(name_to_ids.get(key, set()))
+            if len(matches) == 1:
+                canonical = matches[0]
+            elif len(matches) > 1:
+                # Prefer a candidate sharing the raw country suffix when possible.
+                m = re.search(r"\.([a-z]{2})(?:@[^.]*)?$", raw, re.I)
+                cc = m.group(1).lower() if m else ""
+                country_matches = [x for x in matches if x.casefold().endswith("." + cc)] if cc else []
+                if len(country_matches) == 1:
+                    canonical = country_matches[0]
         row["receiver_canonical_id"] = canonical
 
         current = events.get(canonical) or events.get(raw)
