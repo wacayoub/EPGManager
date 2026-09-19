@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: separate-epg-sources-writer
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -182,7 +182,7 @@ jobs:
           timeout --signal=TERM --kill-after=30s 900s npm run grab --- \
             --channels="${GITHUB_WORKSPACE}/output/source-build/elcinema.channels.xml" \
             --output="${GITHUB_WORKSPACE}/output/source-build/elcinema.raw.xml" \
-            --days=2 --maxConnections=1 --delay=1000 --timeout=20000
+            --days=1 --maxConnections=1 --delay=1000 --timeout=20000
           rc=$?
           echo "ElCinema source grab rc=${rc}"
           test -s "${GITHUB_WORKSPACE}/output/source-build/elcinema.raw.xml" || \
@@ -200,7 +200,7 @@ jobs:
           timeout --signal=TERM --kill-after=30s 900s npm run grab --- \
             --channels="${GITHUB_WORKSPACE}/output/source-build/osn.channels.xml" \
             --output="${GITHUB_WORKSPACE}/output/source-build/osn.raw.xml" \
-            --days=2 --maxConnections=1 --timeout=20000
+            --days=1 --maxConnections=1 --timeout=20000
           rc=$?
           echo "OSN source grab rc=${rc}"
           test -s "${GITHUB_WORKSPACE}/output/source-build/osn.raw.xml" || \
@@ -218,7 +218,7 @@ jobs:
           timeout --signal=TERM --kill-after=30s 900s npm run grab --- \
             --channels="${GITHUB_WORKSPACE}/output/source-build/bein.channels.xml" \
             --output="${GITHUB_WORKSPACE}/output/source-build/bein.raw.xml" \
-            --days=2 --maxConnections=1 --timeout=20000
+            --days=1 --maxConnections=1 --timeout=20000
           rc=$?
           echo "beIN source grab rc=${rc}"
           test -s "${GITHUB_WORKSPACE}/output/source-build/bein.raw.xml" || \
@@ -233,7 +233,7 @@ jobs:
           python tools/sport24_source.py \
             --output output/source-build/sport24.raw.xml \
             --report output/source-build/sport24-scrape.json \
-            --window-hours 48
+            --window-hours 24
           rc=$?
           echo "Sport24 scrape rc=${rc}"
           test -s output/source-build/sport24.raw.xml || \
@@ -251,28 +251,28 @@ jobs:
             --output-gz output/final-sources/source-elcinema.xml.gz \
             --output-txt output/final-sources/source-elcinema.txt \
             --stats output/final-sources/source-elcinema.json \
-            --label ElCinema --window-hours 48
+            --label ElCinema --window-hours 24
           echo "ElCinema pack rc=$?"
           python tools/source_feed_pack.py \
             --input output/source-build/osn.raw.xml \
             --output-gz output/final-sources/source-osn.xml.gz \
             --output-txt output/final-sources/source-osn.txt \
             --stats output/final-sources/source-osn.json \
-            --label 'OSN Official' --window-hours 48
+            --label 'OSN Official' --window-hours 24
           echo "OSN pack rc=$?"
           python tools/source_feed_pack.py \
             --input output/source-build/bein.raw.xml \
             --output-gz output/final-sources/source-bein.xml.gz \
             --output-txt output/final-sources/source-bein.txt \
             --stats output/final-sources/source-bein.json \
-            --label beIN --window-hours 48
+            --label beIN --window-hours 24
           echo "beIN pack rc=$?"
           python tools/source_feed_pack.py \
             --input output/source-build/sport24.raw.xml \
             --output-gz output/final-sources/source-sport24.xml.gz \
             --output-txt output/final-sources/source-sport24.txt \
             --stats output/final-sources/source-sport24.json \
-            --label Sport24 --window-hours 48
+            --label Sport24 --window-hours 24
           echo "Sport24 pack rc=$?"
           cp output/source-build/sport24-scrape.json output/final-sources/sport24-scrape.json
           exit 0
@@ -306,7 +306,7 @@ jobs:
                   'channels': int(stats.get('channels', 0) or 0),
                   'programmes': int(stats.get('programmes', 0) or 0),
                   'healthy': healthy,
-                  'window_hours': 48,
+                  'window_hours': 24,
               })
           registry = {
               'schema': 1,
