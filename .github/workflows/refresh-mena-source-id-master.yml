@@ -44,6 +44,17 @@ jobs:
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
             -o /tmp/morocco.xml.gz
 
+      - name: Download Sport24 monitoring inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --retry-delay 1 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/source-sport24.txt" \
+            -o /tmp/source-sport24.txt
+          curl -fL --retry 3 --retry-delay 1 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/source-sport24.xml.gz" \
+            -o /tmp/source-sport24.xml.gz
+
       - name: Enrich master with current real EPG
         shell: bash
         run: |
@@ -60,7 +71,9 @@ jobs:
             --csv docs/mena-source-id-master.csv \
             --md docs/mena-source-id-master.md \
             --morocco-list /tmp/morocco.txt \
-            --morocco-xml /tmp/morocco.xml.gz
+            --morocco-xml /tmp/morocco.xml.gz \
+            --sport24-list /tmp/source-sport24.txt \
+            --sport24-xml /tmp/source-sport24.xml.gz
 
       - name: Verify required live columns
         shell: bash
