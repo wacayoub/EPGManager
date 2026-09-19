@@ -35,6 +35,16 @@ jobs:
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz" \
             -o /tmp/mena-arabic.xml.gz
 
+      - name: Download direct winner source feeds
+        shell: bash
+        run: |
+          set -euo pipefail
+          for key in osn elcinema bein; do
+            curl -fL --retry 3 --retry-delay 1 \
+              "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/source-${key}.xml.gz" \
+              -o "/tmp/source-${key}.xml.gz" || rm -f "/tmp/source-${key}.xml.gz"
+          done
+
       - name: Download Morocco Cloud monitoring inputs
         shell: bash
         run: |
@@ -81,9 +91,17 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python tools/enrich_mena_source_id_master.py \
-            --master docs/mena-source-id-master.csv \
+          args=(
+            --master docs/mena-source-id-master.csv
             --xml /tmp/mena-arabic.xml.gz
+          )
+          [ -s /tmp/source-osn.xml.gz ] && args+=(--source-feed "osn.com=/tmp/source-osn.xml.gz")
+          [ -s /tmp/source-elcinema.xml.gz ] && args+=(--source-feed "elcinema.com=/tmp/source-elcinema.xml.gz")
+          if [ -s /tmp/source-bein.xml.gz ]; then
+            args+=(--source-feed "bein.com=/tmp/source-bein.xml.gz")
+            args+=(--source-feed "beinsports.com=/tmp/source-bein.xml.gz")
+          fi
+          python tools/enrich_mena_source_id_master.py "${args[@]}"
 
       - name: Render Markdown monitoring page
         shell: bash
