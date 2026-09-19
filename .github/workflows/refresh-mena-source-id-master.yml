@@ -1,0 +1,76 @@
+name: Refresh MENA Source ID Master
+
+on:
+  push:
+    paths:
+      - ".github/workflows/refresh-mena-source-id-master.yml"
+      - "tools/enrich_mena_source_id_master.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-mena-source-id-master
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Download published MENA feed
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --retry-delay 1 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz" \
+            -o /tmp/mena-arabic.xml.gz
+
+      - name: Enrich master with current real EPG
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/enrich_mena_source_id_master.py \
+            --master docs/mena-source-id-master.csv \
+            --xml /tmp/mena-arabic.xml.gz
+
+      - name: Verify required live columns
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p=Path("docs/mena-source-id-master.csv")
+          with p.open("r",encoding="utf-8-sig",newline="") as f:
+              r=csv.DictReader(f)
+              need={"receiver_canonical_id","now_status","now_title","now_desc","now_start_utc","now_stop_utc","next_title","next_start_utc","epg_snapshot_utc"}
+              missing=need-set(r.fieldnames or [])
+              assert not missing, missing
+              rows=list(r)
+          assert rows, "empty master"
+          print("MASTER_LIVE_COLUMNS PASS rows=",len(rows),"now=",sum(1 for x in rows if x.get("now_status")=="NOW"))
+          PY
+
+      - name: Commit refreshed master
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Cloud"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/mena-source-id-master.csv
+          if git diff --cached --quiet; then
+            echo "No master changes."
+            exit 0
+          fi
+          stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
+          git commit -m "Refresh MENA source ID live EPG ${stamp}"
+          git pull --rebase origin main
+          git push origin HEAD:main
