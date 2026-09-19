@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: separate-epg-sources-writer
@@ -369,3 +370,13 @@ jobs:
           git commit -m "Update separate ElCinema Sport24 OSN beIN sources ${stamp}"
           git pull --rebase origin mena-data
           git push origin HEAD:mena-data
+
+
+      - name: Refresh source monitoring immediately
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run refresh-mena-source-id-master.yml --ref main
