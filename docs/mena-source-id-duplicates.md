@@ -1,6 +1,7 @@
 # Duplicate EPG ID Comparison
 
-⬅️ **[Back to main monitoring](mena-source-id-master.md)**
+⬅️ **[Back to main monitoring](mena-source-id-master.md)**  
+➡️ **[Open zero-EPG channels](mena-source-zero-epg.md)**
 
 > Only channels/IDs available from **2 or more sources** are listed here.
 > Use this page to compare the real current programme from every candidate before changing the winner.
@@ -11,7 +12,7 @@
 |---|---:|
 | Duplicate IDs | 71 |
 | Candidate source rows | 151 |
-| Current winner gaps recoverable from another direct source | **3** |
+| Current winner gaps recoverable from another direct source | **4** |
 
 ## Abu Dhabi TV HD
 
@@ -24,7 +25,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **OSN** | NOW | تلفزيون أبوظبي HD | تلفزيون أبوظبي HD |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
 
@@ -38,8 +39,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | العربي تك | تتوغل التكنولوجيا الآن في كثير من تفاصيلنا وتقدم أيضاً حلول غير تقليدية لبعض المواضيع مثل الخلود الأبدي وتأخر موت الإنسان وغيرها. |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **OSN** | NOW | التحليق فوق سور الصين ... | فيلم وثائقي جوي يمتد على مسافة 2,500 كيلومتر، يعرض سور الصين العظيم بأكمله من أعلى. ويركز على روعة الهندسة المعمارية العسكرية وأسرار بناء السور في عهد أسرة مينغ. |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
 
@@ -98,7 +99,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | عهد وولاء | نقدم لكم أفضل ما في عالم التلفزيون |
+| ✅ Keep winner | **OSN** | NOW | تغطية خاصة من الأخبار | يستعرض المذيع أحدث الأخبار والمستجدات من جميع أنحاء العالم. |
 | Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -113,7 +114,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 | Alternative | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -128,7 +129,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 | Alternative | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -173,7 +174,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 | Alternative | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -188,7 +189,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 | Alternative | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -293,8 +294,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOW | Metz vs Stvsetienne - French Ligue 2 - 2026/2027 | — |
-| Alternative | **beIN Sports** | NOW | Metz vs Stvsetienne - French Ligue 2 - 2026/2027 | — |
+| ✅ Keep winner | **beIN** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **beIN Sports** | NO_CURRENT_EVENT | No current programme | — |
 
 ---
 
@@ -413,8 +414,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOW | Canada vs France - Doubles - Davis Cup 2nd Qualifier - 2026 - MD2 | — |
-| Alternative | **beIN Sports** | NOW | Canada vs France - Doubles - Davis Cup 2nd Qualifier - 2026 - MD2 | — |
+| ✅ Keep winner | **beIN** | NOW | Canada vs France - Singles - Davis Cup 2nd Qualifier - 2026 - MD2 | — |
+| Alternative | **beIN Sports** | NOW | Canada vs France - Singles - Davis Cup 2nd Qualifier - 2026 - MD2 | — |
 
 ---
 
@@ -533,7 +534,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | ذا سيركويت | إميلي تقابل رائدة الذكاء الاصطناعي فاي-فاي لي لمناقشة ابتكاراتها في هذا المجال، وشركة وورلد لابز الناشئة بقيمة مليار دولار، ولماذا تعتقد أن مستقبل الذكاء الاصطناعي يتجاوز الدردشة الآلية. |
+| ✅ Keep winner | **OSN** | NOW | ليدرز ويذ فرانسين لاكوا: ذا بودكاست | يعكس رئيس بلاكستون جون غراي تجربته في القيادة خلال الأزمات، مسلطًا الضوء على صفقة هيلتون الصعبة للشركة كدرس في المحافظة على الهدوء، ودعم الأعمال القوية، والتفكير على المدى الطويل. |
 | Alternative | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -549,7 +550,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **OSN** | NOW | بالعربية CN | بالعربية CN |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
 
@@ -609,7 +610,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **OSN** | NOW | 100 لحمة | برنامج "100 لحمة" هو برنامج طبخ من إنتاج "فتافيت" يركز على وصفات اللحوم، بدءًا من المشاوي اليومية وصولًا إلى الأطباق الرئيسية الفاخرة، ويشارك نصائح ونكهات وتقنيات خطوة بخطوة لعشاق اللحوم. |
-| Alternative | **beIN** | NOW | بلوم بيرج تشيف فيوتشر اوفيسر | — |
+| Alternative | **beIN** | NOW | بلوم بيرج تشيف فيوتشر اوفيسر (موسم 6، حلقة1) | — |
 
 ---
 
@@ -668,8 +669,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | كوكونت: التنين الصغير | انضموا إلى التنين الصغير كوكونت وأصدقائه الطريفين في مغامرات نارية! من توحيد التنانين إلى حل الألغاز الجنونية، يثبتون أن الحجم الصغير لا يتنافى مع امتلاك قلب كبير وخيال أكبر بكثير. |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **OSN** | NOW | جايميز جوت تينتكلز | أمير شاب من كوكب بلارب يدعى جيمي، هارب من المخلوقات الفضائية، يفر إلى كوكب الأرض ويتنكر في هيئة صبي بشري. |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -685,7 +686,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **OSN** | NOW | تحت سابع أرض | يجد موسى نفسه في موقف صعب أمام فجر يستدعي الإتيان بخطة على عجل لتجنب الدخول إلى السجن. |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -730,8 +731,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NEXT_ONLY | Future EPG only | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **OSN** | NOW | المداح: أسطورة الوادي | حلم غريب يراود صابر المداح يغير مسار حياته، وعندما يحاول البحث عن تفسير له، يجد نفسه على أعتاب حرب سيخوضها مع الجن. |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -746,7 +747,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | حامض حلو | برنامج بنكهة عراقية يجسد شخصيات مختلفة من المجتمع، من خلال مشاهد كوميدية متنوعة تتعلق بمشاكل تمر بها الأسرة العراقية بشكل عام. |
+| ✅ Keep winner | **OSN** | NOW | ذا رينتال | تأخذ عطلة زوجين في منزل جميل مستأجر منحى خطرا عندما يشتبهان أن مضيفهما قد يكون يتجسس عليهما. |
 | Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
@@ -778,7 +779,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -793,8 +794,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NEXT_ONLY | Future EPG only | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **OSN** | NOW | الكورة مع فايق | عشاق الكرة على موعد مع برنامج يكشف النقاب عن الكثير من التصريحات والتحليلات الغنية للمباريات مع أكبر المحللين الرياضيين في الوطن العربي لما يحدث في الساحة المصرية والعربية والعالمية. |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -810,7 +811,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
 
@@ -855,9 +856,9 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
+| ⭐ Recommended now | **OSN** | NOW | نادينا | المنصة المثالية للمشجعين للتعبير عن آرائهم، ومشاركة شغفهم، ومناقشة كل ما يتعلق بمباريات الدوري السعودي وأنديتهم المفضلة. |
+| Current winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 | Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
-| Alternative | **OSN** | NEXT_ONLY | Future EPG only | — |
 
 ---
 
@@ -902,7 +903,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
 
@@ -917,7 +918,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **OSN** | NOW | البحث عن المعرفة | يكشف عشاق العلوم عن أسرار العلوم الرائعة في مختلف المجالات، مثل علم الوراثة والنباتات وكيفية عمل العلم في عالمنا. |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
 
@@ -947,7 +948,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Rotana** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
 
@@ -962,7 +963,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Rotana** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
 
@@ -977,7 +978,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Rotana** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
 
@@ -992,7 +993,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Rotana** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
 
@@ -1021,7 +1022,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ⭐ Recommended now | **OSN** | NOW | بين قوسين | يدعو المضيفُ أفراداً لتسليط الضوء على قضايا مثيرة للجدل في الأردن. |
+| ⭐ Recommended now | **OSN** | NOW | أمن 911 | تُتاح للجمهور فرصة التعرف على دور مديرية الأمن العام. |
 | Current winner | **Roya** | NOT_MONITORED | No direct source feed monitored | — |
 | Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
 
@@ -1038,7 +1039,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
 
@@ -1052,7 +1053,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOW | فلايت أوف ذا فيينكس | — |
+| ✅ Keep winner | **beIN** | NOW | ذا واكينج ديد (موسم 9) | — |
 | Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -1083,7 +1084,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
 
