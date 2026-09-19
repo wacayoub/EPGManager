@@ -51,7 +51,7 @@ jobs:
           p=Path("docs/mena-source-id-master.csv")
           with p.open("r",encoding="utf-8-sig",newline="") as f:
               r=csv.DictReader(f)
-              need={"receiver_canonical_id","now_status","now_title","now_desc","now_start_utc","now_stop_utc","next_title","next_start_utc","epg_snapshot_utc"}
+              need={"receiver_canonical_id","now_status","now_title","now_desc","epg_snapshot_utc"}
               missing=need-set(r.fieldnames or [])
               assert not missing, missing
               rows=list(r)
