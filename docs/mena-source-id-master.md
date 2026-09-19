@@ -14,7 +14,7 @@
 | 🔴 STALE RELEASE / MISSING ID | 62 |
 | 🔴 NOT PUBLISHED | 0 |
 | 🔴 NO CURRENT EVENT | 0 |
-| Snapshot UTC | 2026-09-19T19:17:46.705108+00:00 |
+| Snapshot UTC | 2026-09-19T19:18:02.430865+00:00 |
 
 ## Winners by source
 
@@ -32,6 +32,17 @@
 | Roya | 7 |
 | Shahid | 45 |
 | Sport24 | 19 |
+
+## Direct source scrape progress
+
+> Real 3h scrape result = channels with usable EPG / channels in that source catalogue.
+
+| Source | Progress | Active / Catalogue | Programmes | Health |
+|---|---:|---:|---:|---|
+| beIN | **0.0%** | 53 / 0 | 181 | 🟢 HEALTHY |
+| ElCinema | **0.0%** | 86 / 0 | 108 | 🟢 HEALTHY |
+| OSN Official | **0.0%** | 58 / 0 | 499 | 🟢 HEALTHY |
+| Sport24 | **0.0%** | 19 / 0 | 89 | 🟢 HEALTHY |
 
 ## All winner IDs — alphabetical
 
@@ -192,7 +203,7 @@
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>MCM TOP</b></td><td><b>OSN</b></td><td><code>MCMTop.fr@SD</code><br><small>↳ MCM.TOP.mena</small></td><td><b>توب ميكس</b><details><summary>description</summary><small>توب ميكس</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W</b></small></td><td><b>Medi1 TV Arabic</b></td><td><b>Morocco Cloud</b></td><td><code>MEDI1TV_AR.ma</code></td><td><b>نافذة</b><details><summary>description</summary><small>نافذة</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>Medi1 TV Maghreb</b></td><td><b>Morocco Cloud</b></td><td><code>MEDI1TV_MAGHREB.ma</code></td><td><b>LE DEBRIEF AFRIQUE</b><details><summary>description</summary><small>LE DEBRIEF AFRIQUE</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>Moonbug Kids</b></td><td><b>OSN</b></td><td><code>MoonbugKids.uk@SD</code><br><small>↳ Moonbug.Kids.mena</small></td><td><b>ليتل أنجل</b><details><summary>description</summary><small>تقدم قناة Moonbug أفضل البرامج المخصصة للأطفال لمرحلة ما قبل المدرسة بما في ذلك بليبي، كوكوميليون، ليتل بيبي بام والمزيد! حان الوقت للغناء، الضحك والتعلم مع قناة Moonbug Kids.</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>Moonbug Kids</b></td><td><b>OSN</b></td><td><code>MoonbugKids.uk@SD</code><br><small>↳ Moonbug.Kids.mena</small></td><td><b>ليلي بايبي بام: لولابيز</b><details><summary>description</summary><small>ليتل بيبي بام هنا لمساعدتك على النوم؛ من خلال تهويدات متحركة مهدئة ومريحة.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>MOTORVISION</b></td><td><b>OSN</b></td><td><code>MotorvisionPlus.de@SD</code><br><small>↳ MOTORVISION.mena</small></td><td><b>بطولة نيوزيلندا للرالي 2026</b><details><summary>description</summary><small>تستعرض بطولة نيوزيلندا للرالي، المقدَّمة من "براين غرين بروبرتي غروب"، أفضل سائقي الراليات في نيوزيلندا على طرقها الحصوية الشهيرة، مع منافسات محتدمة على اللقب، وقصص حول الفرق، وتحليلات الخبراء</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Movies Action</b></td><td><b>Shahid</b></td><td><code>MoviesAction.sa@SD</code><br><small>↳ Movies.Action.sa</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Movies Thriller</b></td><td><b>Shahid</b></td><td><code>MoviesThriller.sa@SD</code><br><small>↳ Movies.Thriller.sa</small></td><td>—</td></tr>
