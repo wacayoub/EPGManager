@@ -170,6 +170,22 @@ def satellite_positions(row, sat_index):
     return [p for p in order if p in found]
 
 
+def candidate_programme_text(row):
+    state = (row.get("source_now_status") or "").strip()
+    title = (row.get("source_now_title") or "").strip()
+    if state == "NOW" and title:
+        return title
+    if state == "NEXT_ONLY":
+        return "Future EPG only"
+    if state == "NO_CURRENT_EVENT":
+        return "No current programme"
+    if state == "STALE_SOURCE_FEED":
+        return "Source feed expired"
+    if state == "NOT_MONITORED":
+        return "No direct source feed monitored"
+    return state or "No current programme"
+
+
 def monitor_status(row):
     return "🟢 ON" if (row.get("now_status") or "").strip() == "NOW" else "🔴 OFF"
 
@@ -306,6 +322,17 @@ def main() -> int:
         except Exception:
             sat_index = {}
 
+    # Keep all provenance rows for multi-source comparison, while the main
+    # monitoring table still renders only one selected winner row per channel.
+    candidates_by_id = {}
+    for candidate in all_rows:
+        cid = (candidate.get("xmltv_id") or "").strip()
+        src = (candidate.get("source") or "").strip()
+        if not cid or not src:
+            continue
+        bucket = candidates_by_id.setdefault(cid, {})
+        bucket.setdefault(src, candidate)
+
     # Only the selected winning source row for each channel survives monitoring.
     rows = [
         r for r in all_rows
@@ -440,6 +467,29 @@ def main() -> int:
                 )
         else:
             programme_html = "—"
+
+        candidate_rows = list((candidates_by_id.get(raw_id) or {}).values())
+        if len(candidate_rows) > 1:
+            winner_site = (r.get("winner_source") or r.get("source") or "").strip()
+            ordered = sorted(
+                candidate_rows,
+                key=lambda x: (
+                    0 if (x.get("source") or "").strip() == winner_site else 1,
+                    source_label((x.get("source") or "").strip()).casefold(),
+                ),
+            )
+            compare_lines = []
+            for cand in ordered:
+                cand_site = (cand.get("source") or "").strip()
+                cand_label = source_label(cand_site)
+                prefix = "✅ Suggested — " if cand_site == winner_site else ""
+                compare_lines.append(
+                    f"<b>{esc(prefix + cand_label)}</b> — {esc(candidate_programme_text(cand))}"
+                )
+            programme_html += (
+                f"<details><summary>Compare {len(ordered)} sources</summary>"
+                f"<small>{'<br>'.join(compare_lines)}</small></details>"
+            )
 
         sats = satellite_positions(r, sat_index)
         sat_html = " · ".join(sats) if sats else "—"
