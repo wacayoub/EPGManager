@@ -293,6 +293,7 @@ def main() -> int:
     ap.add_argument("--sat-names")
     ap.add_argument("--duplicates-md")
     ap.add_argument("--zero-epg-md")
+    ap.add_argument("--zero-epg-report")
     args = ap.parse_args()
 
     with Path(args.csv).open("r", encoding="utf-8-sig", newline="") as fh:
@@ -646,25 +647,45 @@ def main() -> int:
         )
 
     if args.zero_epg_md:
-        zero_rows = []
+        exact_zero = []
+        if args.zero_epg_report and Path(args.zero_epg_report).exists():
+            try:
+                report = json.loads(Path(args.zero_epg_report).read_text(encoding="utf-8"))
+                exact_zero = list(report.get("rows") or [])
+            except Exception:
+                exact_zero = []
+
+        by_source_id = {}
         for r in all_rows:
             raw_id = (r.get("xmltv_id") or "").strip()
             src = (r.get("source") or "").strip()
-            if not raw_id or not src:
-                continue
-            state = (r.get("source_now_status") or "").strip()
-            # Zero-EPG report is source-level: no direct current event and no
-            # usable direct programme for that source candidate right now.
-            if state not in {"NO_CURRENT_EVENT", "NOT_MONITORED", "STALE_SOURCE_FEED", "NEXT_ONLY"}:
-                continue
-            zero_rows.append(r)
+            if raw_id and src:
+                by_source_id[(src, raw_id)] = r
 
-        # Prefer actual source-level zero rows and keep one row per source/id.
-        uniq = {}
-        for r in zero_rows:
-            key = ((r.get("xmltv_id") or "").strip(), (r.get("source") or "").strip())
-            uniq[key] = r
-        zero_rows = list(uniq.values())
+        source_key_map = {
+            "elcinema": "elcinema.com",
+            "osn": "osn.com",
+            "bein": "bein.com",
+        }
+        zero_rows = []
+        for item in exact_zero:
+            raw_id = (item.get("xmltv_id") or "").strip()
+            src_key = (item.get("source_key") or "").strip()
+            src = source_key_map.get(src_key, (item.get("source") or "").strip())
+            base = by_source_id.get((src, raw_id))
+            if base is None and src_key == "bein":
+                base = by_source_id.get(("beinsports.com", raw_id))
+            if base is None:
+                base = {
+                    "xmltv_id": raw_id,
+                    "source": src,
+                    "channel_name": (item.get("channel_name") or raw_id).strip(),
+                    "receiver_canonical_id": raw_id,
+                }
+            row = dict(base)
+            row["zero_reason"] = (item.get("reason") or "0 programmes returned by upstream after retry").strip()
+            zero_rows.append(row)
+
         zero_rows.sort(key=lambda r: (
             satellite_channel_name(r, sat_names).casefold(),
             source_label((r.get("source") or "").strip()).casefold(),
@@ -696,20 +717,14 @@ def main() -> int:
             canonical = (r.get("receiver_canonical_id") or "").strip() or raw_id
             sats = satellite_positions(r, sat_index)
             sat_text = " · ".join(sats) if sats else "—"
-            state = (r.get("source_now_status") or "").strip() or "UNKNOWN"
-
-            if state == "NEXT_ONLY":
-                next_step = "Keep for later check; future EPG exists but nothing current"
-            elif state == "STALE_SOURCE_FEED":
-                next_step = "Refresh/repair this source feed"
-            elif state == "NOT_MONITORED":
-                next_step = "Add direct source monitoring or replace with another healthy source"
-            else:
-                next_step = "Check alternative source / remap / provider site"
+            state = "0 PROGRAMMES"
+            next_step = "Check alternative source / remap / provider site later"
+            reason = (r.get("zero_reason") or "0 programmes returned by upstream after retry").strip()
 
             z.append(
                 f"| **SKIP** | {esc(sat_text)} | **{esc(satellite_channel_name(r, sat_names))}** | "
-                f"{esc(src)} | `{esc(raw_id)}` | `{esc(canonical)}` | {esc(state)} | {esc(next_step)} |"
+                f"{esc(src)} | `{esc(raw_id)}` | `{esc(canonical)}` | {esc(state)} | "
+                f"{esc(reason)} — {esc(next_step)} |"
             )
 
         Path(args.zero_epg_md).write_text("\n".join(z) + "\n", encoding="utf-8")
