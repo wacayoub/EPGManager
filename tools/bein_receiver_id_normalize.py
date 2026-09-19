@@ -91,7 +91,7 @@ def is_drop_only(cid: str) -> bool:
 OPTIONAL_EVENT_IDS = (
     {f"beIN.Sports.MAX{n}.qa" for n in range(1, 7)} |
     {f"beIN.Sports.XTRA{n}.qa" for n in range(1, 10)} |
-    {"beIN.Gourmet.qa"}
+    {"beIN.Gourmet.qa", "beIN.Sports.FR1.qa", "beIN.Sports.FR2.qa"}
 )
 
 DISPLAY = {
