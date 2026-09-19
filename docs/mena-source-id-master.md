@@ -12,7 +12,7 @@
 | 🔴 STALE FEED | 203 |
 | 🔴 NOT PUBLISHED | 84 |
 | 🔴 NO CURRENT EVENT | 0 |
-| Snapshot UTC | 2026-09-19T18:39:11.030302+00:00 |
+| Snapshot UTC | 2026-09-19T18:42:00.939619+00:00 |
 
 ## Winners by source
 
