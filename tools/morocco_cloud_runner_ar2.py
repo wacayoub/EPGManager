@@ -361,7 +361,18 @@ def _fetch_sudinfo_day(s, day, today):
             r.raise_for_status()
             runner.log("Sudinfo 403 recovered through curl_cffi Chrome impersonation")
     if not _page_matches_day(r.text, day):
-        raise ValueError("Sudinfo returned a page for another date")
+        delta = (day - today).days
+        page_text = ar1.norm(BeautifulSoup(r.text, "lxml").get_text(" ", strip=True))
+        # Sudinfo labels the two nearest pages as "Aujourd'hui" / "Demain"
+        # instead of always printing an explicit calendar date. Accept those
+        # labels only for the matching relative day; future weekday pages still
+        # require the strict date token above.
+        relative_ok = (
+            (delta == 0 and "aujourd hui" in page_text)
+            or (delta == 1 and "demain" in page_text)
+        )
+        if not relative_ok:
+            raise ValueError("Sudinfo returned a page for another date")
     candidates = _heading_cards(r.text)
     if len(candidates) < 8:
         candidates = runner.generic_programme_cards(r.text)
