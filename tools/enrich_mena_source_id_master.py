@@ -209,7 +209,10 @@ def main() -> int:
             row["now_status"] = "NEXT_ONLY"
             next_count += 1
         elif canonical not in channels and raw not in channels:
-            row["now_status"] = "NOT_PUBLISHED"
+            if latest_stop and latest_stop <= now:
+                row["now_status"] = "STALE_RELEASE_MISSING_ID"
+            else:
+                row["now_status"] = "NOT_PUBLISHED"
             missing_count += 1
         elif latest_stop and latest_stop <= now:
             row["now_status"] = "STALE_FEED"
