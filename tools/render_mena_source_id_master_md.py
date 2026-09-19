@@ -140,8 +140,10 @@ def off_reason(row):
         return "EPG current"
     if state == "STALE_FEED":
         return "Published feed expired"
+    if state == "STALE_RELEASE_MISSING_ID":
+        return "Current source ID absent only because published release is stale"
     if state == "NOT_PUBLISHED":
-        return "ID not present in final feed"
+        return "ID not present in current fresh final feed"
     if state == "NO_XMLTV_ID":
         return "No XMLTV ID"
     if state == "NEXT_ONLY":
@@ -303,6 +305,7 @@ def main() -> int:
         f"| Winner channels monitored | {len(rows)} |",
         f"| 🟢 ON | {counts.get('NOW', 0)} |",
         f"| 🔴 STALE FEED | {counts.get('STALE_FEED', 0)} |",
+        f"| 🔴 STALE RELEASE / MISSING ID | {counts.get('STALE_RELEASE_MISSING_ID', 0)} |",
         f"| 🔴 NOT PUBLISHED | {counts.get('NOT_PUBLISHED', 0)} |",
         f"| 🔴 NO CURRENT EVENT | {counts.get('NO_CURRENT_EVENT', 0)} |",
         f"| Snapshot UTC | {esc(snapshot)} |",
