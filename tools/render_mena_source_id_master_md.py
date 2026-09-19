@@ -79,6 +79,7 @@ def source_label(site: str) -> str:
         "artonline.tv": "ART",
         "ayn.om": "Ayn Oman",
         "Morocco Cloud": "Morocco Cloud",
+        "Sport24": "Sport24",
     }
     return labels.get(site, site)
 
@@ -104,7 +105,7 @@ def off_reason(row):
     return state or "Unknown"
 
 
-def morocco_rows(txt_path: Path, xml_path: Path):
+def external_feed_rows(txt_path: Path, xml_path: Path, source_name: str):
     now = datetime.now(timezone.utc)
     root = read_xml(xml_path)
     events = {}
@@ -157,9 +158,9 @@ def morocco_rows(txt_path: Path, xml_path: Path):
         rows.append({
             "xmltv_id": cid,
             "channel_name": name,
-            "source": "Morocco Cloud",
+            "source": source_name,
             "candidate_count": "1",
-            "winner_source": "Morocco Cloud",
+            "winner_source": source_name,
             "receiver_canonical_id": cid,
             "now_status": status,
             "now_title": title,
@@ -169,12 +170,18 @@ def morocco_rows(txt_path: Path, xml_path: Path):
     return rows
 
 
+def morocco_rows(txt_path: Path, xml_path: Path):
+    return external_feed_rows(txt_path, xml_path, "Morocco Cloud")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", required=True)
     ap.add_argument("--md", required=True)
     ap.add_argument("--morocco-list")
     ap.add_argument("--morocco-xml")
+    ap.add_argument("--sport24-list")
+    ap.add_argument("--sport24-xml")
     args = ap.parse_args()
 
     with Path(args.csv).open("r", encoding="utf-8-sig", newline="") as fh:
@@ -194,6 +201,11 @@ def main() -> int:
         if lp.exists() and xp.exists():
             rows.extend(morocco_rows(lp, xp))
 
+    if args.sport24_list and args.sport24_xml:
+        lp, xp = Path(args.sport24_list), Path(args.sport24_xml)
+        if lp.exists() and xp.exists():
+            rows.extend(external_feed_rows(lp, xp, "Sport24"))
+
     # De-duplicate exact monitoring IDs, preferring Morocco Cloud for .ma dedicated IDs.
     dedup = {}
     for r in rows:
@@ -201,7 +213,9 @@ def main() -> int:
         if not key:
             continue
         current = dedup.get(key)
-        if current is None or (r.get("source") == "Morocco Cloud" and current.get("source") != "Morocco Cloud"):
+        if current is None:
+            dedup[key] = r
+        elif r.get("source") == "Morocco Cloud" and current.get("source") != "Morocco Cloud":
             dedup[key] = r
     rows = list(dedup.values())
 
@@ -283,7 +297,7 @@ def main() -> int:
     Path(args.md).write_text("\n".join(out) + "\n", encoding="utf-8")
     print(
         f"EPG_MASTER_MD PASS winners={len(rows)} on={counts.get('NOW',0)} "
-        f"morocco={source_counts.get('Morocco Cloud',0)}"
+        f"morocco={source_counts.get('Morocco Cloud',0)} sport24={source_counts.get('Sport24',0)}"
     )
     return 0
 
