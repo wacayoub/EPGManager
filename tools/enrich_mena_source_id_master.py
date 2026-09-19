@@ -133,7 +133,7 @@ def main() -> int:
     winner_name = {}
     for row in rows:
         cid = (row.get("xmltv_id") or "").strip()
-        if cid and (row.get("status") or "").strip() == "WINNER":
+        if cid and (row.get("source") or "").strip() == (row.get("winner_source") or "").strip():
             winner_name[cid] = (row.get("channel_name") or cid).strip()
 
     def resolve_canonical(row):
@@ -157,18 +157,23 @@ def main() -> int:
             return canonical_id(stem, raw, name)
         return raw
 
+    drop_fields = {
+        "site_id",
+        "recovered_from_blank",
+        "status",
+        "now_start_utc",
+        "now_stop_utc",
+        "next_title",
+        "next_start_utc",
+    }
     extra = [
         "receiver_canonical_id",
         "now_status",
         "now_title",
         "now_desc",
-        "now_start_utc",
-        "now_stop_utc",
-        "next_title",
-        "next_start_utc",
         "epg_snapshot_utc",
     ]
-    fields = [x for x in base_fields if x not in extra] + extra
+    fields = [x for x in base_fields if x not in drop_fields and x not in extra] + extra
 
     current_count = next_count = missing_count = unresolved_count = 0
     for row in rows:
