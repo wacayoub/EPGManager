@@ -47,6 +47,8 @@ def main() -> int:
             return "No XMLTV ID"
         if state == "NOT_PUBLISHED":
             return "ID not present in final feed"
+        if state == "STALE_FEED":
+            return "Published feed expired / no current window"
         if state == "NEXT_ONLY":
             return "No current event; future EPG exists"
         if state == "NO_CURRENT_EVENT":
@@ -68,7 +70,7 @@ def main() -> int:
         f"| Rows without XMLTV ID | {unresolved} |",
         f"| Multi-source candidates | {multi} |",
     ]
-    for key in ("NOW", "NEXT_ONLY", "NO_CURRENT_EVENT", "NOT_PUBLISHED", "NO_XMLTV_ID", "UNKNOWN"):
+    for key in ("NOW", "STALE_FEED", "NEXT_ONLY", "NO_CURRENT_EVENT", "NOT_PUBLISHED", "NO_XMLTV_ID", "UNKNOWN"):
         if counts.get(key):
             out.append(f"| {key} | {counts[key]} |")
     out += [
