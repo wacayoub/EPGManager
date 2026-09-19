@@ -533,6 +533,18 @@ def main() -> int:
             dup_groups.append((satellite_channel_name(winner_row, sat_names), cid, winner_site, candidates))
 
         dup_groups.sort(key=lambda item: (item[0].casefold(), item[1].casefold()))
+        recoverable_now = 0
+        for _display_name, _cid, winner_site, candidates in dup_groups:
+            winner_row = next((x for x in candidates if (x.get("source") or "").strip() == winner_site), None)
+            winner_now = bool(winner_row and (winner_row.get("source_now_status") or "").strip() == "NOW")
+            alt_now = any(
+                (x.get("source") or "").strip() != winner_site
+                and (x.get("source_now_status") or "").strip() == "NOW"
+                for x in candidates
+            )
+            if (not winner_now) and alt_now:
+                recoverable_now += 1
+
         dup_out = [
             "# Duplicate EPG ID Comparison",
             "",
@@ -547,6 +559,7 @@ def main() -> int:
             "|---|---:|",
             f"| Duplicate IDs | {len(dup_groups)} |",
             f"| Candidate source rows | {sum(len(x[3]) for x in dup_groups)} |",
+            f"| Current winner gaps recoverable from another direct source | **{recoverable_now}** |",
             "",
         ]
 
@@ -572,16 +585,43 @@ def main() -> int:
                 "|---|---|---|---|---|",
             ]
 
+            winner_candidate = next(
+                (x for x in candidates if (x.get("source") or "").strip() == winner_site),
+                None,
+            )
+            winner_has_now = bool(
+                winner_candidate and (winner_candidate.get("source_now_status") or "").strip() == "NOW"
+            )
+            now_alternatives = [
+                x for x in candidates
+                if (x.get("source") or "").strip() != winner_site
+                and (x.get("source_now_status") or "").strip() == "NOW"
+            ]
+            recommended_site = winner_site
+            if not winner_has_now and now_alternatives:
+                recommended_site = sorted(
+                    now_alternatives,
+                    key=lambda x: source_label((x.get("source") or "").strip()).casefold()
+                )[0].get("source") or ""
+
             ordered = sorted(
                 candidates,
                 key=lambda x: (
-                    0 if (x.get("source") or "").strip() == winner_site else 1,
+                    0 if (x.get("source") or "").strip() == recommended_site else
+                    1 if (x.get("source") or "").strip() == winner_site else 2,
                     source_label((x.get("source") or "").strip()).casefold(),
                 ),
             )
             for cand in ordered:
                 site = (cand.get("source") or "").strip()
-                choice = "✅ Suggested" if site == winner_site else "Alternative"
+                if site == recommended_site and site != winner_site:
+                    choice = "⭐ Recommended now"
+                elif site == winner_site and site == recommended_site:
+                    choice = "✅ Keep winner"
+                elif site == winner_site:
+                    choice = "Current winner"
+                else:
+                    choice = "Alternative"
                 state = (cand.get("source_now_status") or "").strip() or "NOT_MONITORED"
                 title = candidate_programme_text(cand)
                 desc = (cand.get("source_now_desc") or "").strip() or "—"
