@@ -7,14 +7,14 @@
 
 | Metric | Value |
 |---|---:|
-| Winner channels monitored | 302 |
-| 🟢 ON | 108 |
+| Winner channels monitored | 303 |
+| 🟢 ON | 109 |
 | 🔴 STALE SOURCE FEED | 0 |
 | 🔴 STALE FEED | 129 |
 | 🔴 STALE RELEASE / MISSING ID | 62 |
 | 🔴 NOT PUBLISHED | 0 |
 | 🔴 NO CURRENT EVENT | 0 |
-| Snapshot UTC | 2026-09-19T19:19:48.041333+00:00 |
+| Snapshot UTC | 2026-09-19T19:21:06.815467+00:00 |
 
 ## Winners by source
 
@@ -31,7 +31,7 @@
 | Rotana | 9 |
 | Roya | 7 |
 | Shahid | 45 |
-| Sport24 | 19 |
+| Sport24 | 20 |
 
 ## Direct source scrape progress
 
@@ -39,10 +39,10 @@
 
 | Source | Progress | Active / Catalogue | Programmes | Health |
 |---|---:|---:|---:|---|
-| beIN | **62.4%** | 53 / 85 | 181 | 🟢 HEALTHY |
-| ElCinema | **84.3%** | 86 / 102 | 108 | 🟢 HEALTHY |
-| OSN Official | **96.7%** | 58 / 60 | 499 | 🟢 HEALTHY |
-| Sport24 | **100.0%** | 19 / 19 | 89 | 🟢 HEALTHY |
+| beIN | **62.4%** | 53 / 85 | 178 | 🟢 HEALTHY |
+| ElCinema | **84.3%** | 86 / 102 | 106 | 🟢 HEALTHY |
+| OSN Official | **96.7%** | 58 / 60 | 498 | 🟢 HEALTHY |
+| Sport24 | **100.0%** | 20 / 20 | 94 | 🟢 HEALTHY |
 
 ## All winner IDs — alphabetical
 
@@ -88,7 +88,7 @@
 <tr><td><b>🟢 ON</b></td><td><small><b>26E · 7W</b></small></td><td><b>Abu Dhabi TV HD</b></td><td><b>OSN</b></td><td><code>AbuDhabiTV.ae@SD</code><br><small>↳ ADM.Abu.Dhabi.TV.ae</small></td><td><b>تلفزيون أبوظبي HD</b><details><summary>description</summary><small>تلفزيون أبوظبي HD</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>26E · 7W</b></small></td><td><b>AD Sport 1 HD</b></td><td><b>OSN</b></td><td><code>AbuDhabiSports1.ae@SD</code><br><small>↳ OSN.AD.Sports.1.ae</small></td><td><b>غولاسيمو 2025</b><details><summary>description</summary><small>غولاسيمو 2025</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Aflam HD</b></td><td><b>Morocco Cloud</b></td><td><code>AFLAM.ma</code></td><td><b>برامج قناة السابعة AFLAM</b><details><summary>description</summary><small>أفضل الأفلام والبرامج السينمائية على القناة السابعة المغربية</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Al Aoula Inter</b></td><td><b>Morocco Cloud</b></td><td><code>AlAoula</code></td><td><b>Saad W Lahna</b><details><summary>description</summary><small>برنامج ضمن شبكة قناة الأولى المغربية.</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Al Aoula Inter</b></td><td><b>Morocco Cloud</b></td><td><code>AlAoula</code></td><td><b>Bat Banto</b><details><summary>description</summary><small>برنامج ضمن شبكة قناة الأولى المغربية.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>26E · 7W</b></small></td><td><b>Al Arabiya</b></td><td><b>OSN</b></td><td><code>AlarabiyaPortrait.ae@SD</code><br><small>↳ OSN.Al.Arabiya.ae</small></td><td><b>أخبار العربية</b><details><summary>description</summary><small>كن في الطليعة مع آخر الأخبار العاجلة وأهم الأحداث الجارية، بالإضافة إلى معرفة كل ما يدور حولك من أحداث سواء كانت في المنطقة العربية أو حول العالم.</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>AL Arabiya English</b></td><td><b>Shahid</b></td><td><code>AlArabiyaEnglish.sa@SD</code><br><small>↳ MBC.AL.Arabiya.English.mena</small></td><td>—</td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>Al Araby 2</b></td><td><b>OSN</b></td><td><code>AlArabyTV2.qa@SD</code><br><small>↳ Al.Araby.2.qa</small></td><td><b>فيلم وثائقي</b><details><summary>description</summary><small>رحلة عرض ممتعة لأقوى الأفلام التسجيلية وأبرز الأعمال الوثائقية العالمية، والتي تضيف قدراً كبيراً من المعرفة الممزوجة بعناصر المتعة والتشويق حول أماكن أو أحداث أو أشخاص.</small></details></td></tr>
@@ -164,7 +164,7 @@
 <tr><td><b>🟢 ON</b></td><td><small><b>26E · 7W</b></small></td><td><b>Bloomberg</b></td><td><b>OSN</b></td><td><code>BloombergTV.us@MiddleEast</code><br><small>↳ Bloomberg.mena</small></td><td><b>بلومبيرغ تشيف فيوتشر أوفيسر</b><details><summary>description</summary><small>كيت غوليفر، شركة وايفير. تقود كيت غوليفر، المديرة المالية لشركة وايفير، جهود متاجر التجزئة للسلع المنزلية لتحقيق نمو مربح خلال فترة صعبة يمر بها سوق الإسكان.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>Bloomberg Originals</b></td><td><b>OSN</b></td><td><code>BloombergOriginals.us@SD</code><br><small>↳ Bloomberg.Originals.mena</small></td><td><b>بلومبرج برايمر</b><details><summary>description</summary><small>ظلت السيارات الطائرة إلى حد كبير ضربًا من الخيال العلمي حتى الآن. أما الجيل الجديد من الطائرات الكهربائية، فيجذب انتباه المستثمرين وأصحاب رؤوس الأموال المغامرة حول العالم.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>C &amp;amp; I</b></td><td><b>OSN</b></td><td><code>CrimePlusInvestigation.us@SD</code><br><small>↳ OSN.C.amp.I.ae</small></td><td><b>تشيك إن تو ميردر</b><details><summary>description</summary><small>في يناير 2013، عُثر على فيرجينيا يوركيني التي تبلغ من العمر 49 عاماً من ليتوانيا وكانت تقيم في ويزبيتش بمقاطعة كامبريدجشير- ميتةً في غرفة بفندق "هير آند هاوندز" وذلك بعد لقائها بداينوتاس دوبليس.</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>26E · 7W · 8W</b></small></td><td><b>Cartoon Network HD</b></td><td><b>OSN</b></td><td><code>CartoonNetworkMENA.uk@SD</code><br><small>↳ Cartoon.Network.mena</small></td><td><b>وقت المغامرة</b><details><summary>description</summary><small>عندما تلقي ساحرة تعويذة تسرق بها قوى جيك، يجب على فين وجيك أن ينطلقا في رحلة لاستعادتها.</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>26E · 7W · 8W</b></small></td><td><b>Cartoon Network HD</b></td><td><b>OSN</b></td><td><code>CartoonNetworkMENA.uk@SD</code><br><small>↳ Cartoon.Network.mena</small></td><td><b>ريغولار شو: لوست تيبس</b><details><summary>description</summary><small>لا يستطيع موردكاي وريغبي النوم بسبب صوت الصفير.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>Chada TV</b></td><td><b>Morocco Cloud</b></td><td><code>Chada TV</code></td><td><b>موسيقى شدى تي في</b><details><summary>description</summary><small>فقرات موسيقية مختارة على شدى تي في تضم أعمالاً مغربية وعربية متنوعة.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>26E · 7W · 8W</b></small></td><td><b>CN Arabia</b></td><td><b>OSN</b></td><td><code>CartoonNetworkArabic.ae@SD</code><br><small>↳ CN.Arabia.ae</small></td><td><b>أدفانتشر تايم</b><details><summary>description</summary><small>حان وقت المغامرة! هيا اصطحبوا أصدقاءكم، سنذهب إلى بلاد بعيدة جدًا. مع جيك الكلب وفين الإنسان، لن تنتهي المتعة أبدًا.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>CNN HD</b></td><td><b>OSN</b></td><td><code>CNNInternational.us@MENA</code><br><small>↳ CNN.mena</small></td><td><b>سي ان ان نيوزروم سترداي</b><details><summary>description</summary><small>يقدم البرامج تحديثًا لأحدث الأخبار من جميع أنحاء العالم.</small></details></td></tr>
@@ -216,7 +216,7 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Crime</b></td><td><b>OSN</b></td><td><code>OSNtv Crime.sa</code><br><small>↳ OSN.Crime.ae</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Documentary</b></td><td><b>OSN</b></td><td><code>OSNtv Documentary.sa</code><br><small>↳ OSN.Documentary.ae</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>OSNtv iQIYI</b></td><td><b>OSN</b></td><td><code>OSNtv iQIYI.sa</code><br><small>↳ OSN.iQIYI.ae</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Kids</b></td><td><b>OSN</b></td><td><code>OSNKids.ae@SD</code><br><small>↳ OSN.Kids.ae</small></td><td><b>أولد إناف!</b><details><summary>description</summary><small>يواجه كارتير، البالغ من العمر ثلاث سنوات، مخاوفه من الغرباء ويذهب لشراء الغداء لعائلته بمفرده. أما أليان، البالغ من العمر خمس سنوات، فيستقل الحافلة وحده لأول مرة في حياته ليساعد والدته في شراء كل ما تحتاجه لتحضير المافن لمناسبة في العمل.</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Kids</b></td><td><b>OSN</b></td><td><code>OSNKids.ae@SD</code><br><small>↳ OSN.Kids.ae</small></td><td><b>شارلي أند لولا</b><details><summary>description</summary><small>من السهل جدًا على تشارلي جعل لولا تقفز.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Mezze</b></td><td><b>OSN</b></td><td><code>OSNMezze.ae@SD</code><br><small>↳ OSN.Mezze.ae</small></td><td><b>جيسون أثيرتونز دبي ديشز</b><details><summary>description</summary><small>يكتشف جيسون مفهوم الفخامة المتاحة في نخلة دبي، واحدة من أرقى مناطق المدينة، ويُحضّر أطباقاً تخطف الأنظار ببساطتها، مثل طماطم محشوة بجبنة البوراتا، ونسخته الخاصة من "بيكد ألاسكا".</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Action</b></td><td><b>OSN</b></td><td><code>OSNMoviesAction.ae@SD</code><br><small>↳ OSN.Movies.Action.ae</small></td><td><b>جاستيس ليغ</b><details><summary>description</summary><small>بعد استعادته الثقة بوجود الخير في النفس البشرية واستلهامه من تضحيات سوبرمان، يستعين بروس واين بحليفته الجديدة، ديانا برينس، لمواجهة تهديد أشد خطراً وفتكاً</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Comedy</b></td><td><b>OSN</b></td><td><code>OSNtv Movies Comedy.sa</code><br><small>↳ OSN.Movies.Comedy.ae</small></td><td>—</td></tr>
@@ -229,7 +229,7 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv POP UP</b></td><td><b>OSN</b></td><td><code>OSNtv Pop Up.sa</code><br><small>↳ OSN.Pop.Up.ae</small></td><td>—</td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Showcase</b></td><td><b>OSN</b></td><td><code>OSNShowcase.ae@SD</code><br><small>↳ OSN.Showcase.ae</small></td><td><b>أكاذيب كبيرة صغيرة - بيغ ليتل لايز</b><details><summary>description</summary><small>تقوم ماريز لويز بالتهجم على سيليست. يستمر جوردون في إزعاج ريناتا. بوني تفكر في حل لمعاناة والدتها وذنبها المستمر. يقبل إيد باقتراح غير عادي قبل ضبط مادلين في موقف مفاجئ</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Showcase Classics</b></td><td><b>OSN</b></td><td><code>OSNtv Showcase Classics.sa</code><br><small>↳ OSN.Showcase.Classics.ae</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Yahala</b></td><td><b>OSN</b></td><td><code>OSNYahala.ae@SD</code><br><small>↳ OSN.Yahala.ae</small></td><td><b>مجاريح</b><details><summary>description</summary><small>تكتشف غنيمة محاولة غازي سرقة ذهبها، وزواجه من منيرة عقب دخولها السجن، ويتم إيقاف فوزية عن العمل بالرغم من انتهاء قضيتها.</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Yahala</b></td><td><b>OSN</b></td><td><code>OSNYahala.ae@SD</code><br><small>↳ OSN.Yahala.ae</small></td><td><b>مجاريح</b><details><summary>description</summary><small>يقرر منصور التقدم لخطبة ياسمين، في حين تواجه غنيمة منيرة بزواجها من غازي.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Yahala Aflam</b></td><td><b>OSN</b></td><td><code>OSNYahalaAflam.ae@SD</code><br><small>↳ OSN.Yahala.Aflam.ae</small></td><td><b>رحلة 404</b><details><summary>description</summary><small>قبل أيام من سفرها إلى مكة لأداء فريضة الحج، تتورط غادة في مشكلة طارئة وتحتاج إلى مبلغ كبير من المال، ويجب عليها العودة إلى ماضي سيئ ومنعه من التأثر عليها.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Yahala Bil Arabi</b></td><td><b>OSN</b></td><td><code>OSNYahalaBilArabi.ae@SD</code><br><small>↳ OSN.Yahala.Bil.Arabi.ae</small></td><td><b>هذا البحر سوف يفيض</b><details><summary>description</summary><small>يمسك عادل بيد أسماء أمام شريف، فيشتعل غضب الأخير. فيقرر شريف سجن أسماء وحرمانها من رؤية ابنتها</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Panorama FM</b></td><td><b>Shahid</b></td><td><code>PanoramaFM.sa@SD</code><br><small>↳ MBC.Panorama.FM.mena</small></td><td>—</td></tr>
@@ -249,6 +249,7 @@
 <tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Tamazight</b></td><td><b>Morocco Cloud</b></td><td><code>Tamazight</code></td><td><b>تاونزا</b><details><summary>description</summary><small>تاونزا</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>26E</b></small></td><td><b>Thmanyah 1</b></td><td><b>Sport24</b></td><td><code>sport24.thmanyah.1</code></td><td><b>تغطيـة إقليميـة متميّزة لكرة القدم</b><details><summary>description</summary><small>بثّ البطولات الكروية الإقليمية المميّزة، بما في ذلك دوري روشن السعودي، دوري يلو، كأس خادم الحرمين الشريفين، وكأس السوبر السعودي</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>26E</b></small></td><td><b>Thmanyah 2</b></td><td><b>Sport24</b></td><td><code>sport24.thmanyah.2</code></td><td><b>دوري يلو:الأنوار × النجمة</b><details><summary>description</summary><small>دوري يلو- الدرجة الأولى السعودي</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>26E</b></small></td><td><b>Thmanyah 3</b></td><td><b>Sport24</b></td><td><code>sport24.thmanyah.3</code></td><td><b>تغطيـة إقليميـة متميّزة لكرة القدم</b><details><summary>description</summary><small>بثّ البطولات الكروية الإقليمية المميّزة، بما في ذلك دوري روشن السعودي، دوري يلو، كأس خادم الحرمين الشريفين، وكأس السوبر السعودي</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>TLC HD</b></td><td><b>OSN</b></td><td><code>TLCArabia.us@SD</code><br><small>↳ TLC.mena</small></td><td><b>ون داي إن ماي بودي</b><details><summary>description</summary><small>يعاني لوكاس من متلازمة باري-رومبرج، التي تسبب تقلص نصف وجهه نحو الداخل. بينما تعاني ستيفني من ضمور عضلي نادر يتركها تعتمد على والدتها.</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>i Film Arabic mena</b></td><td><b>ElCinema</b></td><td><code>iFilmArabic.ir@SD</code><br><small>↳ i.Film.Arabic.mena</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>25.5E</b></small></td><td><b>Aflam</b></td><td><b>Shahid</b></td><td><code>Aflam.sa@SD</code><br><small>↳ Aflam.sa</small></td><td>—</td></tr>
