@@ -114,6 +114,7 @@ jobs:
           python tools/render_mena_source_id_master_md.py \
             --csv docs/mena-source-id-master.csv \
             --md docs/mena-source-id-master.md \
+            --duplicates-md docs/mena-source-id-duplicates.md \
             --morocco-list /tmp/morocco.txt \
             --morocco-xml /tmp/morocco.xml.gz \
             --sport24-list /tmp/source-sport24.txt \
@@ -146,7 +147,7 @@ jobs:
           set -euo pipefail
           git config user.name "EPGManager Cloud"
           git config user.email "actions@users.noreply.github.com"
-          git add docs/mena-source-id-master.csv docs/mena-source-id-master.md
+          git add docs/mena-source-id-master.csv docs/mena-source-id-master.md docs/mena-source-id-duplicates.md
           if git diff --cached --quiet; then
             echo "No master changes."
             exit 0
