@@ -118,13 +118,23 @@ def sat_aliases(row):
     return sorted(aliases, key=lambda x: (-len(x), x))
 
 
-def satellite_channel_name(row):
+def satellite_channel_name(row, sat_names=None):
     """Prefer a receiver/satellite-style Latin service name.
 
     Upstream source catalogues sometimes expose Arabic names or bare numeric
     slots (for example beIN rows 1, 2, 13). For monitoring we instead derive a
     stable service label from the receiver canonical/XMLTV identity.
     """
+    sat_names = sat_names or {}
+    probes = [
+        (row.get("xmltv_id") or "").strip(),
+        (row.get("receiver_canonical_id") or "").strip(),
+        (row.get("channel_name") or "").strip(),
+    ]
+    for probe in probes:
+        if probe and probe.casefold() in sat_names:
+            return sat_names[probe.casefold()]
+
     current = (row.get("channel_name") or "").strip()
     if current and not current.isdigit() and not re.search(r"[\u0600-\u06ff]", current):
         return current
@@ -264,10 +274,20 @@ def main() -> int:
     ap.add_argument("--sport24-xml")
     ap.add_argument("--sat-index")
     ap.add_argument("--source-registry")
+    ap.add_argument("--sat-names")
     args = ap.parse_args()
 
     with Path(args.csv).open("r", encoding="utf-8-sig", newline="") as fh:
         all_rows = list(csv.DictReader(fh))
+
+    sat_names = {}
+    if args.sat_names and Path(args.sat_names).exists():
+        try:
+            raw_names = json.loads(Path(args.sat_names).read_text(encoding="utf-8"))
+            if isinstance(raw_names, dict):
+                sat_names = {str(k).casefold(): str(v) for k, v in raw_names.items() if str(v).strip()}
+        except Exception:
+            sat_names = {}
 
     source_registry = {}
     if args.source_registry and Path(args.source_registry).exists():
@@ -372,8 +392,12 @@ def main() -> int:
         ]
         for item in sorted(direct_rows, key=lambda x: str(x.get("label") or "").casefold()):
             active = int(item.get("channels", 0) or 0)
-            total = int(item.get("catalogue_channels", 0) or 0)
+            fallback_totals = {"elcinema": 102, "osn": 60, "bein": 85, "sport24": 19}
+            key = str(item.get("key") or "").strip().casefold()
+            total = int(item.get("catalogue_channels", 0) or fallback_totals.get(key, 0) or 0)
             pct = float(item.get("scrap_pct", 0.0) or 0.0)
+            if not pct and total:
+                pct = round(active * 100.0 / total, 1)
             programs = int(item.get("programmes", 0) or 0)
             health = "🟢 HEALTHY" if item.get("healthy") else "🔴 FAILED"
             out.append(
@@ -423,7 +447,7 @@ def main() -> int:
             "<tr>"
             f"<td><b>{esc(monitor_status(r))}</b></td>"
             f"<td><small><b>{esc(sat_html)}</b></small></td>"
-            f"<td><b>{esc(satellite_channel_name(r))}</b></td>"
+            f"<td><b>{esc(satellite_channel_name(r, sat_names))}</b></td>"
             f"<td><b>{esc(src)}</b></td>"
             f"<td>{id_html}</td>"
             f"<td>{programme_html}</td>"
