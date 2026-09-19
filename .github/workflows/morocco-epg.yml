@@ -1,9 +1,10 @@
 name: Morocco EPG Cloud
 
 on:
-  # GitHub cron is UTC. The generator itself keeps only 06:00/18:00 Africa/Casablanca.
+  # GitHub cron is UTC.  Morocco changes its UTC offset around Ramadan, so
+  # trigger both possible UTC hours; the generator accepts only 06:00 local.
   schedule:
-    - cron: "0 5,6,17,18 * * *"
+    - cron: "0 5,6 * * *"
   workflow_dispatch:
   push:
     branches:
