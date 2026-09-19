@@ -460,6 +460,18 @@ jobs:
             --text output/final/virtual-epgmanager.txt \
             --events 5
 
+      - name: Checkpoint fresh receiver feed
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: fresh-receiver-feed
+          path: |
+            output/final/*.xml.gz
+            output/final/*.txt
+            output/final/*.json
+          if-no-files-found: error
+          retention-days: 3
+
       - name: Run Arabic-first local-channel regression test
         if: steps.gate.outputs.run == 'true'
         shell: bash
