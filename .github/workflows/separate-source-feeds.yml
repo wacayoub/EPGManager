@@ -22,6 +22,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TEST_WINDOW_HOURS: 3
     timeout-minutes: 30
     steps:
       - name: Casablanca 06:00 gate
@@ -338,7 +340,7 @@ jobs:
           python tools/sport24_source.py \
             --output output/source-build/sport24.raw.xml \
             --report output/source-build/sport24-scrape.json \
-            --window-hours 3
+            --window-hours "${TEST_WINDOW_HOURS}"
           rc=$?
           echo "Sport24 scrape rc=${rc}"
           echo "${rc}" > output/source-build/sport24.grab.rc
@@ -357,28 +359,28 @@ jobs:
             --output-gz output/final-sources/source-elcinema.xml.gz \
             --output-txt output/final-sources/source-elcinema.txt \
             --stats output/final-sources/source-elcinema.json \
-            --label ElCinema --window-hours 3
+            --label ElCinema --window-hours "${TEST_WINDOW_HOURS}"
           echo "ElCinema pack rc=$?"
           python tools/source_feed_pack.py \
             --input output/source-build/osn.raw.xml \
             --output-gz output/final-sources/source-osn.xml.gz \
             --output-txt output/final-sources/source-osn.txt \
             --stats output/final-sources/source-osn.json \
-            --label 'OSN Official' --window-hours 3
+            --label 'OSN Official' --window-hours "${TEST_WINDOW_HOURS}"
           echo "OSN pack rc=$?"
           python tools/source_feed_pack.py \
             --input output/source-build/bein.raw.xml \
             --output-gz output/final-sources/source-bein.xml.gz \
             --output-txt output/final-sources/source-bein.txt \
             --stats output/final-sources/source-bein.json \
-            --label beIN --window-hours 3
+            --label beIN --window-hours "${TEST_WINDOW_HOURS}"
           echo "beIN pack rc=$?"
           python tools/source_feed_pack.py \
             --input output/source-build/sport24.raw.xml \
             --output-gz output/final-sources/source-sport24.xml.gz \
             --output-txt output/final-sources/source-sport24.txt \
             --stats output/final-sources/source-sport24.json \
-            --label Sport24 --window-hours 3
+            --label Sport24 --window-hours "${TEST_WINDOW_HOURS}"
           echo "Sport24 pack rc=$?"
           cp output/source-build/sport24-scrape.json output/final-sources/sport24-scrape.json
           exit 0
@@ -444,7 +446,7 @@ jobs:
                   'programmes': int(stats.get('programmes', 0) or 0),
                   'healthy': healthy,
                   'grab_rc': grab_rc,
-                  'window_hours': 3,
+                  'window_hours': int(__import__('os').environ.get('TEST_WINDOW_HOURS','3')),
               })
           registry = {
               'schema': 1,
