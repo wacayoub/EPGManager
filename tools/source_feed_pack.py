@@ -28,10 +28,12 @@ def read_xml(path: Path) -> ET.Element:
 
 def parse_xmltv_dt(value: str):
     value = (value or "").strip()
-    m = re.match(r"^(\d{14})(?:\s*([+-]\d{4}|Z))?", value)
+    m = re.match(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?", value)
     if not m:
         return None
-    dt = datetime.strptime(m.group(1), "%Y%m%d%H%M%S")
+    digits = m.group(1)
+    fmt = "%Y%m%d%H%M%S" if len(digits) == 14 else "%Y%m%d%H%M"
+    dt = datetime.strptime(digits, fmt)
     off = m.group(2)
     if not off or off == "Z":
         return dt.replace(tzinfo=timezone.utc)
@@ -123,6 +125,8 @@ def main() -> int:
     stats = {
         "label": args.label,
         "channels": len(active_ids),
+        "input_channels": len(channels),
+        "coverage_pct": round((len(active_ids) * 100.0 / len(channels)), 1) if channels else 0.0,
         "programmes": event_count,
         "rejected_invalid_time": rejected_time,
         "window_hours": args.window_hours,
