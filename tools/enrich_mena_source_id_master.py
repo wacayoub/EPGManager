@@ -21,6 +21,9 @@ from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
 
+from global_receiver_id_normalize import canonical_id
+from bein_receiver_id_normalize import RAW_TO_CANON
+
 DT_RE = re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
 
 
@@ -59,15 +62,34 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--master", required=True)
     ap.add_argument("--xml", required=True)
-    ap.add_argument("--aliases", required=True)
+    ap.add_argument("--aliases")
     ap.add_argument("--reference-utc")
     args = ap.parse_args()
 
     master = Path(args.master)
     root = read_xml(Path(args.xml))
-    aliases = json.loads(Path(args.aliases).read_text(encoding="utf-8"))
-    mapping = aliases.get("mapping") if isinstance(aliases, dict) else {}
-    mapping = mapping if isinstance(mapping, dict) else {}
+    mapping = {}
+    if args.aliases and Path(args.aliases).exists():
+        aliases = json.loads(Path(args.aliases).read_text(encoding="utf-8"))
+        rawmap = aliases.get("mapping") if isinstance(aliases, dict) else {}
+        if isinstance(rawmap, dict):
+            mapping.update(rawmap)
+
+    site_to_stem = {
+        "osn.com": "provider-osn",
+        "shahid.mbc.net": "provider-mbc",
+        "rotana.net": "provider-rotana",
+        "artonline.tv": "provider-art",
+        "bein.com": "provider-bein",
+        "beinsports.com": "provider-bein",
+        "roya-tv.com": "mena-jo",
+        "aljazeera.com": "mena-qa",
+        "ayn.om": "mena-om",
+    }
+
+    def country_stem(cid: str):
+        m = re.search(r"\.([a-z]{2})(?:@[^.]*)?$", cid or "", re.I)
+        return ("mena-" + m.group(1).lower()) if m else "mena-other"
 
     now = (
         datetime.fromisoformat(args.reference_utc.replace("Z", "+00:00")).astimezone(timezone.utc)
@@ -97,6 +119,33 @@ def main() -> int:
         rows = list(csv.DictReader(fh))
         base_fields = list(rows[0].keys()) if rows else []
 
+    winner_name = {}
+    for row in rows:
+        cid = (row.get("xmltv_id") or "").strip()
+        if cid and (row.get("status") or "").strip() == "WINNER":
+            winner_name[cid] = (row.get("channel_name") or cid).strip()
+
+    def resolve_canonical(row):
+        raw = (row.get("xmltv_id") or "").strip()
+        if not raw:
+            return ""
+        if raw in mapping:
+            return str(mapping[raw]).strip()
+        if raw in RAW_TO_CANON:
+            return RAW_TO_CANON[raw]
+        if raw.startswith("beIN.") and raw.endswith(".qa"):
+            return raw
+        source = (row.get("winner_source") or row.get("source") or "").strip()
+        name = winner_name.get(raw) or (row.get("channel_name") or raw).strip()
+        stem = site_to_stem.get(source)
+        if source == "elcinema.com":
+            stem = country_stem(raw)
+        if stem == "provider-bein":
+            return RAW_TO_CANON.get(raw, raw)
+        if stem:
+            return canonical_id(stem, raw, name)
+        return raw
+
     extra = [
         "receiver_canonical_id",
         "now_status",
@@ -113,7 +162,7 @@ def main() -> int:
     current_count = next_count = missing_count = unresolved_count = 0
     for row in rows:
         raw = (row.get("xmltv_id") or "").strip()
-        canonical = str(mapping.get(raw) or raw).strip()
+        canonical = resolve_canonical(row)
         row["receiver_canonical_id"] = canonical
 
         current = events.get(canonical) or events.get(raw)
