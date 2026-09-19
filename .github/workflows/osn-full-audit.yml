@@ -1,0 +1,78 @@
+name: OSN Full Audit
+
+on:
+  push:
+    paths:
+      - ".github/workflows/osn-full-audit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: vendor/iptv-org-epg/package-lock.json
+      - name: Install grabber
+        working-directory: vendor/iptv-org-epg
+        run: npm ci --no-audit --no-fund
+      - name: Prepare OSN Arabic channels
+        shell: bash
+        run: |
+          mkdir -p output
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          src='vendor/iptv-org-epg/sites/osn.com/osn.com_ar.channels.xml'
+          root=ET.parse(src).getroot()
+          out=ET.Element('channels')
+          for ch in root.findall('channel'):
+              if not (ch.get('xmltv_id') or '').strip():
+                  ch.set('xmltv_id', 'OSNAudit.%s' % (ch.get('site_id') or 'unknown'))
+              out.append(ch)
+          ET.indent(out, space='  ')
+          ET.ElementTree(out).write('output/osn-ar.channels.xml', encoding='utf-8', xml_declaration=True)
+          print('CHANNELS', len(out.findall('channel')))
+          PY
+      - name: Grab OSN Arabic 2 days
+        working-directory: vendor/iptv-org-epg
+        env:
+          NODE_OPTIONS: --max-old-space-size=2048
+        shell: bash
+        run: |
+          npm run grab --- \
+            --channels="${GITHUB_WORKSPACE}/output/osn-ar.channels.xml" \
+            --output="${GITHUB_WORKSPACE}/output/osn-ar.xml" \
+            --days=2 \
+            --maxConnections=1 \
+            --timeout=20000
+      - name: Build OSN audit report
+        shell: bash
+        run: |
+          python tools/elcinema_donor_prune.py \
+            --channels output/osn-ar.channels.xml \
+            --programmes output/osn-ar.xml \
+            --output-channels output/osn-ar.channels.filtered.xml \
+            --output-programmes output/osn-ar.filtered.xml \
+            --report output/osn-audit.json
+      - name: Upload OSN report
+        uses: actions/upload-artifact@v4
+        with:
+          name: osn-full-audit
+          path: |
+            output/osn-audit.json
+            output/osn-ar.filtered.xml
+            output/osn-ar.channels.filtered.xml
+          retention-days: 3
