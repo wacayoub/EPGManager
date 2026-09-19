@@ -121,13 +121,13 @@ def sat_aliases(row):
 def satellite_positions(row, sat_index):
     if not sat_index:
         return []
-    found = []
-    for pos in ("26E", "7W", "8W", "25.8E"):
-        blob = ((sat_index.get("positions") or {}).get(pos) or {}).get("text") or ""
-        hay = " " + blob + " "
-        if any((" " + alias + " ") in hay for alias in sat_aliases(row)):
-            found.append(pos)
-    return found
+    channels = sat_index.get("channels") or {}
+    found = set()
+    for alias in sat_aliases(row):
+        for pos in channels.get(alias, []):
+            found.add(pos)
+    order = ["26E", "25.5E", "7W", "8W"]
+    return [p for p in order if p in found]
 
 
 def monitor_status(row):
@@ -237,7 +237,10 @@ def main() -> int:
     sat_index = {}
     if args.sat_index and Path(args.sat_index).exists():
         try:
-            sat_index = json.loads(Path(args.sat_index).read_text(encoding="utf-8"))
+            raw = Path(args.sat_index).read_text(encoding="utf-8").strip()
+            if args.sat_index.endswith(".b64"):
+                raw = gzip.decompress(base64.b64decode(raw)).decode("utf-8")
+            sat_index = json.loads(raw)
         except Exception:
             sat_index = {}
 
