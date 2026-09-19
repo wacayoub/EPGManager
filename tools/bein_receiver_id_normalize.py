@@ -35,7 +35,7 @@ ALIASES = {
     "beIN.Sports.7.qa": {"beIN.Sports.7.qa", "beIN SPORTS 7.qa", "beINSports7.qa@MENA"},
     "beIN.Sports.8.qa": {"beIN.Sports.8.qa", "beIN SPORTS 8.qa", "beINSPORTS8.qa", "beINSports8.qa@MENA"},
     "beIN.Sports.9.qa": {"beIN.Sports.9.qa", "beINSPORTS9.qa", "beINSports9.qa@MENA"},
-    "beIN.Sports.EN1.qa": {"beIN.Sports.EN1.qa", "beIN SPORTS EN 1.qa"},
+    "beIN.Sports.EN1.qa": {"beIN.Sports.EN1.qa", "beIN SPORTS EN 1.qa", "beIN SPORTS1 ENGLISH Digital.qa"},
     "beIN.Sports.EN2.qa": {"beIN.Sports.EN2.qa", "beIN SPORTS EN 2.qa"},
     "beIN.Sports.FTA.qa": {"beIN.Sports.FTA.qa", "bein SPORTS FTA DIGITAL.qa"},
     "beIN.Sports.qa": {"beIN.Sports.qa", "beIN SPORTS.qa"},
@@ -66,11 +66,20 @@ RENAME = RAW_TO_CANON
 # replace a canonical Arabic/MENA service merely because they carry more rows.
 DROP_ONLY_EXACT = {
     "beIN_SPORTS1_FRENCH_Digital_Mono_AR.bein",
+    "beIN SPORTS1 FRENCH Digital.qa",
+    "beIN SPORTS2 FRENCH Digital.qa",
     "beIN SPORTS-boxoffice-bein.com.qa",
 }
 DROP_ONLY_PATTERNS = (
     re.compile(r"^beIN[_ .-]*SPORTS\d+[_ .-]*FRENCH[_ .-].*\.bein$", re.I),
 )
+
+# Non-beIN rows observed leaking into the provider-bein shard from broad MENA
+# source aggregation. They must never survive the provider-specific release.
+PROVIDER_BEIN_FOREIGN_EXACT = {
+    "آر تي بي إنترناشيونال.ps",
+    "تي في بي إنفو.ps",
+}
 
 
 def is_drop_only(cid: str) -> bool:
@@ -242,6 +251,22 @@ def main():
 
     provider = base / "provider-bein.xml.gz"
     root = read_root(provider)
+
+    # Provider shard safety: remove known foreign rows before strict beIN
+    # namespace validation. This is intentionally provider-file-only and does
+    # not remove those services from their proper country shards.
+    foreign = PROVIDER_BEIN_FOREIGN_EXACT
+    if foreign:
+        for node in list(root.findall("channel")):
+            if (node.get("id") or "").strip() in foreign:
+                root.remove(node)
+        for node in list(root.findall("programme")):
+            if (node.get("channel") or "").strip() in foreign:
+                root.remove(node)
+        ET.indent(root, space="  ")
+        xml = ET.tostring(root, encoding="utf-8", xml_declaration=True)
+        provider.write_bytes(gzip.compress(xml, compresslevel=9, mtime=0))
+
     ids = [(c.get("id") or "").strip() for c in root.findall("channel")]
     allowed = set(ALIASES)
     required_core = allowed - OPTIONAL_EVENT_IDS
