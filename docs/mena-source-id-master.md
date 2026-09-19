@@ -10,398 +10,413 @@
 | Source rows | 385 |
 | Rows with XMLTV ID | 355 |
 | Rows without XMLTV ID | 30 |
-| Multi-source candidates | 157 |
-| NO_CURRENT_EVENT | 256 |
-| NOT_PUBLISHED | 99 |
-| NO_XMLTV_ID | 30 |
+| Multi-source rows | 157 |
+| 🟢 ON | 0 |
+| 🔴 STALE FEED | 256 |
+| 🔴 NOT PUBLISHED | 99 |
+| 🔴 NO XMLTV ID | 30 |
 | Snapshot UTC | 2026-09-19T18:21:18.932522+00:00 |
 
 ## All monitored IDs
 
-| XMLTV ID | Channel | Source | Candidates | Winner source | Receiver canonical ID | EPG status | Now title | Now description |
-|---|---|---|---:|---|---|---|---|---|
-| 2MMonde.ma@SD | المغربية الثانية | elcinema.com | 1 | elcinema.com | 2.M.Monde.ma.mena | NOT_PUBLISHED |  |  |
-| AbdulmajeedAbdullah.sa@SD | عبدالمجيد عبدالله | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Abdulmajeed.Abdullah.mena | NOT_PUBLISHED |  |  |
-| AbuDhabiSports1.ae@SD | AD Sports 1 HD | osn.com | 1 | osn.com | OSN.AD.Sports.1.ae | NOT_PUBLISHED |  |  |
-| AbuDhabiTV.ae@SD | أبو ظبي | elcinema.com | 2 | osn.com | ADM.Abu.Dhabi.TV.ae | NO_CURRENT_EVENT |  |  |
-| AbuDhabiTV.ae@SD | Abu Dhabi TV HD | osn.com | 2 | osn.com | ADM.Abu.Dhabi.TV.ae | NO_CURRENT_EVENT |  |  |
-| Aflam.sa@SD | أفلام | shahid.mbc.net | 1 | shahid.mbc.net | Aflam.sa | NO_CURRENT_EVENT |  |  |
-| AlAoula.ma@MiddleEast | الأولى المغربية | elcinema.com | 1 | elcinema.com | Channel31a228df.mena | NO_CURRENT_EVENT |  |  |
-| Alarabiya.ae@SD | العربية | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Alarabiya.mena | NO_CURRENT_EVENT |  |  |
-| AlArabiyaBusiness.ae@SD | العربية Business | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Business.mena | NOT_PUBLISHED |  |  |
-| AlArabiyaEnglish.sa@SD | AL Arabiya English | shahid.mbc.net | 1 | shahid.mbc.net | MBC.AL.Arabiya.English.mena | NOT_PUBLISHED |  |  |
-| AlarabiyaPortrait.ae@SD | Al Arabiya | osn.com | 1 | osn.com | OSN.Al.Arabiya.ae | NOT_PUBLISHED |  |  |
-| AlArabiyaPrograms.ae | العربية برامج | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Al.Arabiya.Programs.mena | NOT_PUBLISHED |  |  |
-| AlArabyTV.qa@SD | Al Araby TV | osn.com | 1 | osn.com | Al.Araby.TV.qa | NO_CURRENT_EVENT |  |  |
-| AlArabyTV2.qa@SD | التلفزيون العربي 2 | elcinema.com | 2 | osn.com | Al.Araby.2.qa | NO_CURRENT_EVENT |  |  |
-| AlArabyTV2.qa@SD | Al Araby 2 | osn.com | 2 | osn.com | Al.Araby.2.qa | NO_CURRENT_EVENT |  |  |
-| AlDafrahTV.ae@SD | الظفرة | elcinema.com | 1 | elcinema.com | Al.Dafrah.TV.ae | NO_CURRENT_EVENT |  |  |
-| AlEkhbariya.sa@SD | الإخبارية | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Al.Ekhbariya.mena | NOT_PUBLISHED |  |  |
-| AlHadath.sa@SD | Al Hadath | osn.com | 2 | osn.com | MBC.Al.Hadath.mena | NO_CURRENT_EVENT |  |  |
-| AlHadath.sa@SD | الحدث | shahid.mbc.net | 2 | osn.com | MBC.Al.Hadath.mena | NO_CURRENT_EVENT |  |  |
-| AlhayatTV.eg@SD | الحياة | elcinema.com | 1 | elcinema.com | Alhayat.TV.eg | NO_CURRENT_EVENT |  |  |
-| AlIraqia.iq@SD | العراقية | elcinema.com | 1 | elcinema.com | Al.Iraqia.iq | NO_CURRENT_EVENT |  |  |
-| AlJadeed.lb@SD | الجديد | elcinema.com | 1 | elcinema.com | Al.Jadeed.lb | NO_CURRENT_EVENT |  |  |
-| AlJazeera.qa@Arabic | Al Jazeera Arabic | aljazeera.com | 1 | aljazeera.com | Al.Jazeera.Arabic.qa | NO_CURRENT_EVENT |  |  |
-| AlJazeera2.qa@HD | Al Jazeera 2 | aljazeera.com | 1 | aljazeera.com | Al.Jazeera.2.qa | NO_CURRENT_EVENT |  |  |
-| AlJazeeraDocumentary.qa@SD | 26 | bein.com | 1 | bein.com | AlJazeeraDocumentary.qa@SD | NOT_PUBLISHED |  |  |
-| AlKaheraWalNas.eg@SD | القاهرة والناس | elcinema.com | 1 | elcinema.com | Al.Kahera.Wal.Nas.eg | NO_CURRENT_EVENT |  |  |
-| AlKaheraWalNas2.eg@SD | القاهرة والناس 2 | elcinema.com | 1 | elcinema.com | Al.Kahera.Wal.Nas2.eg | NO_CURRENT_EVENT |  |  |
-| AlkassEight.qa@SD | 40 | bein.com | 1 | bein.com | AlkassEight.qa@SD | NOT_PUBLISHED |  |  |
-| AlkassFive.qa@SD | 37 | bein.com | 1 | bein.com | AlkassFive.qa@SD | NOT_PUBLISHED |  |  |
-| AlkassFour.qa@SD | 36 | bein.com | 1 | bein.com | AlkassFour.qa@SD | NOT_PUBLISHED |  |  |
-| AlkassOne.qa@SD | 33 | bein.com | 1 | bein.com | AlkassOne.qa@SD | NOT_PUBLISHED |  |  |
-| AlkassSeven.qa@SD | 39 | bein.com | 1 | bein.com | AlkassSeven.qa@SD | NOT_PUBLISHED |  |  |
-| AlkassSix.qa@SD | 38 | bein.com | 1 | bein.com | AlkassSix.qa@SD | NOT_PUBLISHED |  |  |
-| AlkassThree.qa@SD | 35 | bein.com | 1 | bein.com | AlkassThree.qa@SD | NOT_PUBLISHED |  |  |
-| AlkassTwo.qa@SD | 34 | bein.com | 1 | bein.com | AlkassTwo.qa@SD | NOT_PUBLISHED |  |  |
-| AlkhuzamaRadio.sa@SD | إذاعة خزامى | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Alkhuzama.Radio.mena | NOT_PUBLISHED |  |  |
-| AlManar.lb@SD | المنار | elcinema.com | 1 | elcinema.com | Al.Manar.lb | NOT_PUBLISHED |  |  |
-| AlMasriyah.eg@SD | المصرية | elcinema.com | 1 | elcinema.com | Al.Masriyah.eg | NO_CURRENT_EVENT |  |  |
-| AlNahar.eg@SD | النهار | elcinema.com | 1 | elcinema.com | Al.Nahar.eg | NO_CURRENT_EVENT |  |  |
-| AlNaharDrama.eg@SD | النهار دراما | elcinema.com | 1 | elcinema.com | Al.Nahar.Drama.eg | NO_CURRENT_EVENT |  |  |
-| AlQuranAlKareemTV.sa@SD | Al Quran Al Kareem TV HD | osn.com | 2 | osn.com | Al.Quran.Al.Kareem.TV.sa | NO_CURRENT_EVENT |  |  |
-| AlQuranAlKareemTV.sa@SD | القرآن الكريم | shahid.mbc.net | 2 | osn.com | Al.Quran.Al.Kareem.TV.sa | NO_CURRENT_EVENT |  |  |
-| AlraiTV.kw@SD | Al Rai TV | osn.com | 1 | osn.com | Al.Rai.TV.kw | NO_CURRENT_EVENT |  |  |
-| AlRasheedTV.iq@SD | الرشيد | elcinema.com | 1 | elcinema.com | Al.Rasheed.TV.iq | NO_CURRENT_EVENT |  |  |
-| AlResalah.sa@SD | الرساله | rotana.net | 1 | rotana.net | Al.Resalah.2.sa | NO_CURRENT_EVENT |  |  |
-| AlSaeedah.eg@SD | السعيدة | elcinema.com | 1 | elcinema.com | Al.Saeedah.eg | NO_CURRENT_EVENT |  |  |
-| AlSaudiya.sa@SD | السعودية | elcinema.com | 2 | shahid.mbc.net | Al.Saudiya.sa | NO_CURRENT_EVENT |  |  |
-| AlSaudiya.sa@SD | السعودية | shahid.mbc.net | 2 | shahid.mbc.net | Al.Saudiya.sa | NO_CURRENT_EVENT |  |  |
-| AlSaudiyaAlaan.sa@SD | السعودية الآن | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Al.Saudiya.Alaan.mena | NOT_PUBLISHED |  |  |
-| AlSharqiyaMinKabla.ae@SD | الشرقية | elcinema.com | 1 | elcinema.com | Al.Sharqiya.Min.Kabla.ae | NO_CURRENT_EVENT |  |  |
-| AlSouriyaTV.sy@HD | السورية | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Al.Souriya.TV.mena | NOT_PUBLISHED |  |  |
-| Alsumaria.iq@SD | السومرية | elcinema.com | 1 | elcinema.com | Alsumaria.iq | NO_CURRENT_EVENT |  |  |
-| AlSunnahAlNabawiyahTV.sa@SD | السنة النبوية | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Al.Sunnah.Al.Nabawiyah.TV.mena | NOT_PUBLISHED |  |  |
-| Althania.sy@SD | الثانية | elcinema.com | 1 | elcinema.com | Althania.sy | NO_CURRENT_EVENT |  |  |
-| AmmanTV.jo@SD | عَمان | elcinema.com | 1 | elcinema.com | Amman.TV.jo | NO_CURRENT_EVENT |  |  |
-| AnimalPlanetEurope.uk@SD | Animal Planet HD | osn.com | 1 | osn.com | Animal.Planet.mena | NO_CURRENT_EVENT |  |  |
-| ARTAflam1.sa@SD | افلام 1 | artonline.tv | 1 | artonline.tv | ART.Aflam1.mena | NOT_PUBLISHED |  |  |
-| ARTAflam2.sa@SD | افلام 2 | artonline.tv | 1 | artonline.tv | ART.Aflam2.mena | NOT_PUBLISHED |  |  |
-| ARTCinema.sa@SD | سينما | artonline.tv | 1 | artonline.tv | ART.Cinema.mena | NOT_PUBLISHED |  |  |
-| ARTHekayat.sa@SD | حكايات | artonline.tv | 1 | artonline.tv | ART.Hekayat.mena | NOT_PUBLISHED |  |  |
-| ARTHekayat2.sa@SD | حكايات 2 | artonline.tv | 1 | artonline.tv | ART.Hekayat2.mena | NOT_PUBLISHED |  |  |
-| AsharqDiscovery.sa@SD | الشرق ديسكفري | shahid.mbc.net | 1 | shahid.mbc.net | Asharq.Discovery.sa | NO_CURRENT_EVENT |  |  |
-| AsharqDocumentary.sa@SD | Asharq Documentary | shahid.mbc.net | 1 | shahid.mbc.net | Asharq.Documentary.sa | NO_CURRENT_EVENT |  |  |
-| AsharqNews.sa@SD | الشرق | shahid.mbc.net | 1 | shahid.mbc.net | Asharq.News.sa | NO_CURRENT_EVENT |  |  |
-| ATV.kw@SD | إيه تي في | elcinema.com | 1 | elcinema.com | ATV.kw | NOT_PUBLISHED |  |  |
-| BabAlHara.sa@SD | قناة باب الحارة | shahid.mbc.net | 1 | shahid.mbc.net | Bab.Al.Hara.sa | NO_CURRENT_EVENT |  |  |
-| BahrainTV.bh@SD | البحرين | elcinema.com | 2 | osn.com | Bahrain.TV.bh | NO_CURRENT_EVENT |  |  |
-| BahrainTV.bh@SD | Bahrain TV | osn.com | 2 | osn.com | Bahrain.TV.bh | NO_CURRENT_EVENT |  |  |
-| Baraem.qa@SD | BaraemTV | bein.com | 1 | bein.com | Baraem.qa@SD | NOT_PUBLISHED |  |  |
-| BBCArabic.uk@SD | BBC World | osn.com | 1 | osn.com | BBC.World.mena | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.EN1.qa | beINSPORTS1EN | bein.com | 2 | bein.com | beIN.Sports.EN1.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.EN1.qa | beIN SPORTS EN 1 | beinsports.com | 2 | bein.com | beIN.Sports.EN1.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.EN2.qa | beINSPORTS2EN | bein.com | 2 | bein.com | beIN.Sports.EN2.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.EN2.qa | beIN SPORTS EN 2 | beinsports.com | 2 | bein.com | beIN.Sports.EN2.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.FR1.qa | beINSPORTS1FR | bein.com | 2 | bein.com | beIN.Sports.FR1.qa | NOT_PUBLISHED |  |  |
-| beIN.Sports.FR1.qa | beIN SPORTS FR 1 | beinsports.com | 2 | bein.com | beIN.Sports.FR1.qa | NOT_PUBLISHED |  |  |
-| beIN.Sports.FR2.qa | beINSPORTS2FR | bein.com | 2 | bein.com | beIN.Sports.FR2.qa | NOT_PUBLISHED |  |  |
-| beIN.Sports.FR2.qa | beIN SPORTS FR 2 | beinsports.com | 2 | bein.com | beIN.Sports.FR2.qa | NOT_PUBLISHED |  |  |
-| beIN.Sports.News.qa | beINSPORTSNews | bein.com | 1 | bein.com | beIN.Sports.News.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.qa | beINSPORTS | bein.com | 1 | bein.com | beIN.Sports.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA3.qa | beINSPORTSXTRA3 | bein.com | 2 | bein.com | beIN.Sports.XTRA3.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA3.qa | beIN SPORTS XTRA 3 | beinsports.com | 2 | bein.com | beIN.Sports.XTRA3.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA4.qa | beINSPORTSXTRA4 | bein.com | 2 | bein.com | beIN.Sports.XTRA4.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA4.qa | beIN SPORTS XTRA 4 | beinsports.com | 2 | bein.com | beIN.Sports.XTRA4.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA5.qa | beINSPORTSXTRA5 | bein.com | 2 | bein.com | beIN.Sports.XTRA5.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA5.qa | beIN SPORTS XTRA 5 | beinsports.com | 2 | bein.com | beIN.Sports.XTRA5.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA6.qa | beINSPORTSXTRA6 | bein.com | 2 | bein.com | beIN.Sports.XTRA6.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA6.qa | beIN SPORTS XTRA 6 | beinsports.com | 2 | bein.com | beIN.Sports.XTRA6.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA7.qa | beINSPORTSXTRA7 | bein.com | 2 | bein.com | beIN.Sports.XTRA7.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA7.qa | beIN SPORTS XTRA 7 | beinsports.com | 2 | bein.com | beIN.Sports.XTRA7.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA8.qa | beINSPORTSXTRA8 | bein.com | 2 | bein.com | beIN.Sports.XTRA8.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA8.qa | beIN SPORTS XTRA 8 | beinsports.com | 2 | bein.com | beIN.Sports.XTRA8.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA9.qa | beINSPORTSXTRA9 | bein.com | 2 | bein.com | beIN.Sports.XTRA9.qa | NO_CURRENT_EVENT |  |  |
-| beIN.Sports.XTRA9.qa | beIN SPORTS XTRA 9 | beinsports.com | 2 | bein.com | beIN.Sports.XTRA9.qa | NO_CURRENT_EVENT |  |  |
-| beIN4K.qa@SD | beIN 4K | beinsports.com | 1 | beinsports.com | beIN.4K.qa | NO_CURRENT_EVENT |  |  |
-| beINDrama1.qa@SD | beINDRAMA | bein.com | 2 | elcinema.com | beIN.Drama.qa | NO_CURRENT_EVENT |  |  |
-| beINDrama1.qa@SD | بي إن دراما | elcinema.com | 2 | elcinema.com | beIN.Drama.qa | NO_CURRENT_EVENT |  |  |
-| beINGourmet.qa@SD | beINGOURMET | bein.com | 1 | bein.com | beIN.Gourmet.qa | NOT_PUBLISHED |  |  |
-| beINMovies1Premiere.qa@SD | beINMOVIES1 | bein.com | 2 | elcinema.com | beIN.Movies.Premiere.qa | NO_CURRENT_EVENT |  |  |
-| beINMovies1Premiere.qa@SD | بي إن موفيز بريمير | elcinema.com | 2 | elcinema.com | beIN.Movies.Premiere.qa | NO_CURRENT_EVENT |  |  |
-| beINMovies2Action.qa@SD | beINMOVIES2 | bein.com | 2 | elcinema.com | beIN.Movies.Action.qa | NO_CURRENT_EVENT |  |  |
-| beINMovies2Action.qa@SD | بي إن موفيز أكشن | elcinema.com | 2 | elcinema.com | beIN.Movies.Action.qa | NO_CURRENT_EVENT |  |  |
-| beINMovies3Drama.qa@SD | beINMOVIES3 | bein.com | 2 | elcinema.com | beIN.Movies.Drama.qa | NO_CURRENT_EVENT |  |  |
-| beINMovies3Drama.qa@SD | بي إن موفيز دراما | elcinema.com | 2 | elcinema.com | beIN.Movies.Drama.qa | NO_CURRENT_EVENT |  |  |
-| beINMovies4Family.qa@SD | beINMOVIES4 | bein.com | 1 | bein.com | beIN.Movies.Family.qa | NO_CURRENT_EVENT |  |  |
-| beINSeries1.qa@SD | beINSERIES1 | bein.com | 2 | elcinema.com | beIN.Series.1.qa | NO_CURRENT_EVENT |  |  |
-| beINSeries1.qa@SD | بي إن سيريس | elcinema.com | 2 | elcinema.com | beIN.Series.1.qa | NO_CURRENT_EVENT |  |  |
-| beINSeries2.qa@SD | beINSERIES2 | bein.com | 2 | elcinema.com | beIN.Series.2.qa | NO_CURRENT_EVENT |  |  |
-| beINSeries2.qa@SD | بي إن سيريس إتش... | elcinema.com | 2 | elcinema.com | beIN.Series.2.qa | NO_CURRENT_EVENT |  |  |
-| beINSports1.qa@MENA | beINSPORTS1 | bein.com | 2 | bein.com | beIN.Sports.1.qa | NO_CURRENT_EVENT |  |  |
-| beINSports1.qa@MENA | beIN SPORTS 1 | beinsports.com | 2 | bein.com | beIN.Sports.1.qa | NO_CURRENT_EVENT |  |  |
-| beINSports2.qa@MENA | beINSPORTS2 | bein.com | 1 | bein.com | beIN.Sports.2.qa | NO_CURRENT_EVENT |  |  |
-| beINSports3.qa@MENA | beINSPORTS3 | bein.com | 2 | bein.com | beIN.Sports.3.qa | NO_CURRENT_EVENT |  |  |
-| beINSports3.qa@MENA | beIN SPORTS 3 | beinsports.com | 2 | bein.com | beIN.Sports.3.qa | NO_CURRENT_EVENT |  |  |
-| beINSports4.qa@MENA | beINSPORT4 | bein.com | 1 | bein.com | beIN.Sports.4.qa | NO_CURRENT_EVENT |  |  |
-| beINSports4KHDR.qa | beINSPORTS4KHDR | bein.com | 1 | bein.com | beINSports4KHDR.qa | NOT_PUBLISHED |  |  |
-| beINSports5.qa@MENA | beINSPORTS5 | bein.com | 1 | bein.com | beIN.Sports.5.qa | NO_CURRENT_EVENT |  |  |
-| beINSports6.qa@MENA | beINSPORTS6 | bein.com | 1 | bein.com | beIN.Sports.6.qa | NO_CURRENT_EVENT |  |  |
-| beINSports7.qa@MENA | beINSPORTS7 | bein.com | 1 | bein.com | beIN.Sports.7.qa | NO_CURRENT_EVENT |  |  |
-| beINSports8.qa@MENA | beINSPORTS8 | bein.com | 1 | bein.com | beIN.Sports.8.qa | NO_CURRENT_EVENT |  |  |
-| beINSports9.qa@MENA | beINSPORTS9 | bein.com | 2 | bein.com | beIN.Sports.9.qa | NO_CURRENT_EVENT |  |  |
-| beINSports9.qa@MENA | beIN SPORTS 9 | beinsports.com | 2 | bein.com | beIN.Sports.9.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsAFC.qa@SD | beIN SPORTS AFC | beinsports.com | 1 | beinsports.com | beINSportsAFC.qa@SD | NOT_PUBLISHED |  |  |
-| beINSportsAFC1.qa@SD | beIN SPORTS 1 AFC | beinsports.com | 1 | beinsports.com | beINSportsAFC1.qa@SD | NOT_PUBLISHED |  |  |
-| beINSportsAFC2.qa@SD | beIN SPORTS 2 AFC | beinsports.com | 1 | beinsports.com | beINSportsAFC2.qa@SD | NOT_PUBLISHED |  |  |
-| beINSportsAFC3.qa@SD | beIN SPORTS 3 AFC | beinsports.com | 1 | beinsports.com | beINSportsAFC3.qa@SD | NOT_PUBLISHED |  |  |
-| beINSportsMax1.qa@MENA | beINSPORTSMAX1 | bein.com | 2 | bein.com | beIN.Sports.MAX1.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsMax1.qa@MENA | beIN SPORTS MAX 1 | beinsports.com | 2 | bein.com | beIN.Sports.MAX1.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsMax2.qa@MENA | beINSPORTSMAX2 | bein.com | 2 | bein.com | beIN.Sports.MAX2.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsMax2.qa@MENA | beIN SPORTS MAX 2 | beinsports.com | 2 | bein.com | beIN.Sports.MAX2.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsMax3.qa@MENA | beINSPORTSMAX3 | bein.com | 2 | bein.com | beIN.Sports.MAX3.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsMax3.qa@MENA | beIN SPORTS MAX 3 | beinsports.com | 2 | bein.com | beIN.Sports.MAX3.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsMax4.qa@MENA | beINSPORTSMAX4 | bein.com | 2 | bein.com | beIN.Sports.MAX4.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsMax4.qa@MENA | beIN SPORTS MAX 4 | beinsports.com | 2 | bein.com | beIN.Sports.MAX4.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsMax5.qa@MENA | beINSPORTSMAX5 | bein.com | 2 | bein.com | beIN.Sports.MAX5.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsMax5.qa@MENA | beIN SPORTS MAX 5 | beinsports.com | 2 | bein.com | beIN.Sports.MAX5.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsMax6.qa@MENA | beINSPORTSMAX6 | bein.com | 2 | bein.com | beIN.Sports.MAX6.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsMax6.qa@MENA | beIN SPORTS MAX 6 | beinsports.com | 2 | bein.com | beIN.Sports.MAX6.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsXtra1.qa@SD | beINSPORTSXTRA1 | bein.com | 2 | bein.com | beIN.Sports.XTRA1.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsXtra1.qa@SD | beIN SPORTS XTRA 1 | beinsports.com | 2 | bein.com | beIN.Sports.XTRA1.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsXtra2.qa@SD | beINSPORTSXTRA2 | bein.com | 2 | bein.com | beIN.Sports.XTRA2.qa | NO_CURRENT_EVENT |  |  |
-| beINSportsXtra2.qa@SD | beIN SPORTS XTRA 2 | beinsports.com | 2 | bein.com | beIN.Sports.XTRA2.qa | NO_CURRENT_EVENT |  |  |
-| BeJunior.qa@SD | 21 | bein.com | 2 | bein.com | BeJunior.qa@SD | NOT_PUBLISHED |  |  |
-| BeJunior.qa@SD | beINJUNIOR | bein.com | 2 | bein.com | BeJunior.qa@SD | NOT_PUBLISHED |  |  |
-| BigTimePlus.sa@SD | Big Time Plus | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Big.Time.Plus.mena | NOT_PUBLISHED |  |  |
-| BloombergOriginals.us@SD | Bloomberg Originals | osn.com | 1 | osn.com | Bloomberg.Originals.mena | NO_CURRENT_EVENT |  |  |
-| BloombergTV.us@MiddleEast | 22 | bein.com | 2 | osn.com | Bloomberg.mena | NO_CURRENT_EVENT |  |  |
-| BloombergTV.us@MiddleEast | Bloomberg | osn.com | 2 | osn.com | Bloomberg.mena | NO_CURRENT_EVENT |  |  |
-| CartoonNetworkArabic.ae@SD | نتورك بالعربية | elcinema.com | 2 | osn.com | CN.Arabia.ae | NO_CURRENT_EVENT |  |  |
-| CartoonNetworkArabic.ae@SD | CN Arabia | osn.com | 2 | osn.com | CN.Arabia.ae | NO_CURRENT_EVENT |  |  |
-| CartoonNetworkMENA.uk@SD | Cartoon Network HD | osn.com | 1 | osn.com | Cartoon.Network.mena | NO_CURRENT_EVENT |  |  |
-| CBC.eg@SD | سي بي سي | elcinema.com | 1 | elcinema.com | CBC.eg | NO_CURRENT_EVENT |  |  |
-| CBCDrama.eg@SD | سي بي سي دراما | elcinema.com | 1 | elcinema.com | CBC.Drama.eg | NO_CURRENT_EVENT |  |  |
-| CBCSofra.eg@SD | سي بي سي سفرة | elcinema.com | 1 | elcinema.com | CBC.Sofra.eg | NO_CURRENT_EVENT |  |  |
-| CBeebiesMiddleEast.uk@SD | 31 | bein.com | 1 | bein.com | CBeebiesMiddleEast.uk@SD | NOT_PUBLISHED |  |  |
-| Cima.eg@SD | سيما | elcinema.com | 1 | elcinema.com | Cima.eg | NO_CURRENT_EVENT |  |  |
-| ClubMTVEurope.uk@SD | 20 | bein.com | 1 | bein.com | ClubMTVEurope.uk@SD | NOT_PUBLISHED |  |  |
-| CNNArabic.ae@SD | 27 | bein.com | 1 | bein.com | CNNArabic.ae@SD | NOT_PUBLISHED |  |  |
-| CNNInternational.us@MENA | CNN HD | osn.com | 1 | osn.com | CNN.mena | NO_CURRENT_EVENT |  |  |
-| CrimePlusInvestigation.us@SD | C &amp; I | osn.com | 1 | osn.com | OSN.C.amp.I.ae | NOT_PUBLISHED |  |  |
-| DijlahTV.iq@SD | دجلة | elcinema.com | 1 | elcinema.com | Dijlah.TV.iq | NO_CURRENT_EVENT |  |  |
-| DiscoveryChannelMiddleEastAfrica.us@SD | ديسكفري | elcinema.com | 2 | osn.com | OSN.Discovery.Channel.ae | NOT_PUBLISHED |  |  |
-| DiscoveryChannelMiddleEastAfrica.us@SD | Discovery Channel HD | osn.com | 2 | osn.com | OSN.Discovery.Channel.ae | NOT_PUBLISHED |  |  |
-| DMC.eg@SD | دي إم سي | elcinema.com | 2 | osn.com | DMC.eg | NO_CURRENT_EVENT |  |  |
-| DMC.eg@SD | DMC HD | osn.com | 2 | osn.com | DMC.eg | NO_CURRENT_EVENT |  |  |
-| DMCDrama.eg@SD | دي إم سي دراما | elcinema.com | 1 | elcinema.com | DMC.Drama.eg | NO_CURRENT_EVENT |  |  |
-| DubaiOne.ae@SD | دبي وان | elcinema.com | 1 | elcinema.com | Dubai.One.ae | NOT_PUBLISHED |  |  |
-| DubaiTV.ae@SD | دبي | elcinema.com | 2 | osn.com | DMI.Dubai.TV.ae | NO_CURRENT_EVENT |  |  |
-| DubaiTV.ae@SD | Dubai TV HD | osn.com | 2 | osn.com | DMI.Dubai.TV.ae | NO_CURRENT_EVENT |  |  |
-| DubaiZaman.ae@SD | دبي زمان | elcinema.com | 1 | elcinema.com | Dubai.Zaman.ae | NOT_PUBLISHED |  |  |
-| EchoroukTV.dz@SD | الشروق الجزائرية | elcinema.com | 1 | elcinema.com | Echorouk.TV.dz | NO_CURRENT_EVENT |  |  |
-| ElMehwarChannel.eg@SD | المحور | elcinema.com | 1 | elcinema.com | Channelf643876a.mena | NO_CURRENT_EVENT |  |  |
-| ElWatania1.tn@SD | الوطنية 1 | elcinema.com | 1 | elcinema.com | El.Watania1.tn | NO_CURRENT_EVENT |  |  |
-| ElWatania2.tn@SD | الوطنية 2 | elcinema.com | 1 | elcinema.com | El.Watania2.tn | NO_CURRENT_EVENT |  |  |
-| ERTU1.eg@SD | قناة مصر الأولى | elcinema.com | 1 | elcinema.com | ERTU1.eg | NOT_PUBLISHED |  |  |
-| EuronewsEnglish.fr@SD | 28 | bein.com | 1 | bein.com | EuronewsEnglish.fr@SD | NOT_PUBLISHED |  |  |
-| Fairuz.sa@HD | فيروز | shahid.mbc.net | 1 | shahid.mbc.net | Fairuz.sa | NO_CURRENT_EVENT |  |  |
-| Fatafeat.ae@SD | 17 | bein.com | 2 | osn.com | Fatafeat.mena | NO_CURRENT_EVENT |  |  |
-| Fatafeat.ae@SD | Fatafeat | osn.com | 2 | osn.com | Fatafeat.mena | NO_CURRENT_EVENT |  |  |
-| FIFAPlus.uk | FIFA+ | shahid.mbc.net | 1 | shahid.mbc.net | MBC.FIFA.Plus.mena | NOT_PUBLISHED |  |  |
-| FoodNetworkEMEA.us@SD | 14 | bein.com | 1 | bein.com | FoodNetworkEMEA.us@SD | NOT_PUBLISHED |  |  |
-| FoxActionMoviesMENA.hk@SD | 6 | bein.com | 2 | bein.com | FoxActionMoviesMENA.hk@SD | NOT_PUBLISHED |  |  |
-| FoxActionMoviesMENA.hk@SD | ستار أكشن | elcinema.com | 2 | bein.com | FoxActionMoviesMENA.hk@SD | NOT_PUBLISHED |  |  |
-| FoxArabia.ae@SD | 13 | bein.com | 1 | bein.com | FoxArabia.ae@SD | NOT_PUBLISHED |  |  |
-| FoxMoviesMiddleEast.us@SD | 5 | bein.com | 1 | bein.com | FoxMoviesMiddleEast.us@SD | NOT_PUBLISHED |  |  |
-| FujairahTV.ae@SD | الفجيرة | elcinema.com | 1 | elcinema.com | Fujairah.TV.ae | NO_CURRENT_EVENT |  |  |
-| Gametoon.nl@SD | Gametoon | osn.com | 1 | osn.com | Gametoon.mena | NO_CURRENT_EVENT |  |  |
-| GINXTV.uk@SD | Ginx | osn.com | 1 | osn.com | Ginx.mena | NO_CURRENT_EVENT |  |  |
-| GoalZone.sa | Goal Zone | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Goal.Zone.mena | NOT_PUBLISHED |  |  |
-| HadhramautTV.ye@SD | تلفزيون حضرموت | elcinema.com | 1 | elcinema.com | Hadhramaut.TV.ye | NO_CURRENT_EVENT |  |  |
-| HGTVArabia.us@SD | 15 | bein.com | 1 | bein.com | HGTVArabia.us@SD | NOT_PUBLISHED |  |  |
-| History2MiddleEast.us@SD | H2 HD | osn.com | 1 | osn.com | OSN.History2.Middle.East.ae | NOT_PUBLISHED |  |  |
-| HistoryMiddleEast.us@SD | History HD | osn.com | 1 | osn.com | History.mena | NO_CURRENT_EVENT |  |  |
-| iFilmArabic.ir@SD | آي فيلم | elcinema.com | 1 | elcinema.com | i.Film.Arabic.mena | NO_CURRENT_EVENT |  |  |
-| InvestigationDiscovery.uk@SD | Discovery IDX HD | osn.com | 1 | osn.com | Discovery.IDX.mena | NO_CURRENT_EVENT |  |  |
-| IqraaArabic.sa | إقرأ | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Iqraa.Arabic.mena | NOT_PUBLISHED |  |  |
-| JeemTV.qa@SD | 29 | bein.com | 2 | bein.com | JeemTV.qa@SD | NOT_PUBLISHED |  |  |
-| JeemTV.qa@SD | JeemTV | bein.com | 2 | bein.com | JeemTV.qa@SD | NOT_PUBLISHED |  |  |
-| JordanTV.jo@SD | الأردن | elcinema.com | 1 | elcinema.com | Jordan.TV.jo | NO_CURRENT_EVENT |  |  |
-| KSASports1.sa@SD | KSA Sports 1 HD | osn.com | 1 | osn.com | KSA.Sports.1.sa | NO_CURRENT_EVENT |  |  |
-| KTV1.kw@SD | الكويت | elcinema.com | 2 | osn.com | KTV.Channel.1.kw | NO_CURRENT_EVENT |  |  |
-| KTV1.kw@SD | KTV Channel 1 HD | osn.com | 2 | osn.com | KTV.Channel.1.kw | NO_CURRENT_EVENT |  |  |
-| LanaTV.lb@SD | ال تي في | elcinema.com | 1 | elcinema.com | Channel519d6998.mena | NO_CURRENT_EVENT |  |  |
-| LBC.sa@SD | إل بي سي | elcinema.com | 2 | rotana.net | LBC.2.sa | NO_CURRENT_EVENT |  |  |
-| LBC.sa@SD | إل بي سي | rotana.net | 2 | rotana.net | LBC.2.sa | NO_CURRENT_EVENT |  |  |
-| LBCInternational.lb@SD | إل بي سي آي | elcinema.com | 1 | elcinema.com | LBC.International.lb | NO_CURRENT_EVENT |  |  |
-| MajidAlMohandis.sa@SD | ماجد المهندس | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Majid.Al.Mohandis.mena | NOT_PUBLISHED |  |  |
-| Maraya.sa@HD | قناة مرايا | shahid.mbc.net | 1 | shahid.mbc.net | Maraya.sa | NO_CURRENT_EVENT |  |  |
-| Masah.sa@SD | ماسة | elcinema.com | 1 | elcinema.com | Masah.sa | NO_CURRENT_EVENT |  |  |
-| MasperoZaman.eg@SD | ماسبيرو زمان | elcinema.com | 1 | elcinema.com | Maspero.Zaman.eg | NO_CURRENT_EVENT |  |  |
-| MBC1.ae@SD | إم بي سي | elcinema.com | 3 | shahid.mbc.net | MBC.1.mena | NO_CURRENT_EVENT |  |  |
-| MBC1.ae@SD | MBC 1 | osn.com | 3 | shahid.mbc.net | MBC.1.mena | NO_CURRENT_EVENT |  |  |
-| MBC1.ae@SD | MBC1 | shahid.mbc.net | 3 | shahid.mbc.net | MBC.1.mena | NO_CURRENT_EVENT |  |  |
-| MBC1Egypt.eg@HD | MBC1 | shahid.mbc.net | 1 | shahid.mbc.net | MBC.1.mena | NO_CURRENT_EVENT |  |  |
-| MBC1USA.us@SD | MBC1 | shahid.mbc.net | 1 | shahid.mbc.net | MBC.1.mena | NO_CURRENT_EVENT |  |  |
-| MBC2.ae@SD | إم بي سي 2 | elcinema.com | 2 | shahid.mbc.net | MBC.2.mena | NO_CURRENT_EVENT |  |  |
-| MBC2.ae@SD | MBC2 | shahid.mbc.net | 2 | shahid.mbc.net | MBC.2.mena | NO_CURRENT_EVENT |  |  |
-| MBC3.ae@SD | إم بي سي 3 | elcinema.com | 3 | osn.com | OSN.MBC.3.ae | NOT_PUBLISHED |  |  |
-| MBC3.ae@SD | MBC 3 | osn.com | 3 | osn.com | OSN.MBC.3.ae | NOT_PUBLISHED |  |  |
-| MBC3.ae@SD | MBC3 | shahid.mbc.net | 3 | osn.com | OSN.MBC.3.ae | NOT_PUBLISHED |  |  |
-| MBC3USA.us@SD | MBC3 | shahid.mbc.net | 1 | shahid.mbc.net | MBC.3.mena | NO_CURRENT_EVENT |  |  |
-| MBC4.ae@SD | إم بي سي 4 | elcinema.com | 2 | shahid.mbc.net | MBC.4.mena | NO_CURRENT_EVENT |  |  |
-| MBC4.ae@SD | MBC4 | shahid.mbc.net | 2 | shahid.mbc.net | MBC.4.mena | NO_CURRENT_EVENT |  |  |
-| MBC5.ae@SD | إم بي سي 5 | elcinema.com | 3 | osn.com | OSN.MBC.5.ae | NOT_PUBLISHED |  |  |
-| MBC5.ae@SD | MBC 5 | osn.com | 3 | osn.com | OSN.MBC.5.ae | NOT_PUBLISHED |  |  |
-| MBC5.ae@SD | MBC5 | shahid.mbc.net | 3 | osn.com | OSN.MBC.5.ae | NOT_PUBLISHED |  |  |
-| MBCAction.ae@SD | إم بي سي أكشن | elcinema.com | 2 | shahid.mbc.net | MBC.Action.mena | NO_CURRENT_EVENT |  |  |
-| MBCAction.ae@SD | MBC Action | shahid.mbc.net | 2 | shahid.mbc.net | MBC.Action.mena | NO_CURRENT_EVENT |  |  |
-| MBCBollywood.ae@SD | إم بي سي بوليوود | elcinema.com | 2 | shahid.mbc.net | MBC.Bollywood.mena | NO_CURRENT_EVENT |  |  |
-| MBCBollywood.ae@SD | MBC Bollywood | shahid.mbc.net | 2 | shahid.mbc.net | MBC.Bollywood.mena | NO_CURRENT_EVENT |  |  |
-| MBCDrama.ae@SD | إم بي سي دراما | elcinema.com | 3 | osn.com | MBC.Drama.mena | NO_CURRENT_EVENT |  |  |
-| MBCDrama.ae@SD | MBC Drama | osn.com | 3 | osn.com | MBC.Drama.mena | NO_CURRENT_EVENT |  |  |
-| MBCDrama.ae@SD | MBC Drama | shahid.mbc.net | 3 | osn.com | MBC.Drama.mena | NO_CURRENT_EVENT |  |  |
-| MBCDramaUSA.us@SD | MBC Drama | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Drama.mena | NO_CURRENT_EVENT |  |  |
-| MBCFM.ae@SD | MBC FM | shahid.mbc.net | 1 | shahid.mbc.net | MBC.FM.mena | NOT_PUBLISHED |  |  |
-| MBCIraq.iq@SD | إم بي سي العراق | elcinema.com | 3 | osn.com | MBC.Iraq.mena | NO_CURRENT_EVENT |  |  |
-| MBCIraq.iq@SD | MBC Iraq | osn.com | 3 | osn.com | MBC.Iraq.mena | NO_CURRENT_EVENT |  |  |
-| MBCIraq.iq@SD | MBC Iraq | shahid.mbc.net | 3 | osn.com | MBC.Iraq.mena | NO_CURRENT_EVENT |  |  |
-| MBCMasr.eg@SD | إم بي سي مصر | elcinema.com | 3 | osn.com | MBC.Masr.mena | NO_CURRENT_EVENT |  |  |
-| MBCMasr.eg@SD | MBC Masr | osn.com | 3 | osn.com | MBC.Masr.mena | NO_CURRENT_EVENT |  |  |
-| MBCMasr.eg@SD | MBC Masr | shahid.mbc.net | 3 | osn.com | MBC.Masr.mena | NO_CURRENT_EVENT |  |  |
-| MBCMasr2.eg@SD | إم بي سي مصر 2 | elcinema.com | 3 | osn.com | MBC.Masr2.mena | NO_CURRENT_EVENT |  |  |
-| MBCMasr2.eg@SD | MBC Masr2 | osn.com | 3 | osn.com | MBC.Masr2.mena | NO_CURRENT_EVENT |  |  |
-| MBCMasr2.eg@SD | MBC Masr2 | shahid.mbc.net | 3 | osn.com | MBC.Masr2.mena | NO_CURRENT_EVENT |  |  |
-| MBCMasrDrama.sa@SD | إم بي سي مصر دراما | elcinema.com | 2 | elcinema.com | MBC.Masr.Drama.mena | NO_CURRENT_EVENT |  |  |
-| MBCMasrDrama.sa@SD | مصر دراما | shahid.mbc.net | 2 | elcinema.com | MBC.Masr.Drama.mena | NO_CURRENT_EVENT |  |  |
-| MBCMasrUSA.us@SD | MBC Masr | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Masr.mena | NO_CURRENT_EVENT |  |  |
-| MBCMax.ae@SD | إم بي سي ماكس | elcinema.com | 2 | shahid.mbc.net | MBC.MAX.mena | NO_CURRENT_EVENT |  |  |
-| MBCMax.ae@SD | MBC MAX | shahid.mbc.net | 2 | shahid.mbc.net | MBC.MAX.mena | NO_CURRENT_EVENT |  |  |
-| MBCMood.sa@HD | MBC Mood | osn.com | 1 | osn.com | OSN.MBC.Mood.ae | NOT_PUBLISHED |  |  |
-| MBCPersia.ae@SD | MBC Persia | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Persia.mena | NO_CURRENT_EVENT |  |  |
-| MBCPlusDrama.sa@SD | إم بي سي دراما + | elcinema.com | 3 | osn.com | MBC.Plus.Drama.mena | NO_CURRENT_EVENT |  |  |
-| MBCPlusDrama.sa@SD | MBC+ Drama | osn.com | 3 | osn.com | MBC.Plus.Drama.mena | NO_CURRENT_EVENT |  |  |
-| MBCPlusDrama.sa@SD | MBC Plus Drama | shahid.mbc.net | 3 | osn.com | MBC.Plus.Drama.mena | NO_CURRENT_EVENT |  |  |
-| MCMTop.fr@SD | MCM TOP | osn.com | 1 | osn.com | MCM.TOP.mena | NO_CURRENT_EVENT |  |  |
-| MixBelAraby.eg@SD | ميكس بالعربي | elcinema.com | 1 | elcinema.com | Mix.Bel.Araby.eg | NO_CURRENT_EVENT |  |  |
-| MohammedAbdo.sa@SD | محمد عبده | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Mohammed.Abdo.mena | NOT_PUBLISHED |  |  |
-| MoonbugKids.uk@SD | Moonbug Kids | osn.com | 1 | osn.com | Moonbug.Kids.mena | NO_CURRENT_EVENT |  |  |
-| MotorvisionPlus.de@SD | MOTORVISION | osn.com | 1 | osn.com | MOTORVISION.mena | NO_CURRENT_EVENT |  |  |
-| MoviesAction.sa@SD | Movies Action | shahid.mbc.net | 1 | shahid.mbc.net | Movies.Action.sa | NO_CURRENT_EVENT |  |  |
-| MoviesThriller.sa@SD | Movies Thriller | shahid.mbc.net | 1 | shahid.mbc.net | Movies.Thriller.sa | NO_CURRENT_EVENT |  |  |
-| MTV.lb@SD | إم تي في | elcinema.com | 2 | shahid.mbc.net | MTV.Lebanon.lb | NO_CURRENT_EVENT |  |  |
-| MTV.lb@SD | MTV Lebanon | shahid.mbc.net | 2 | shahid.mbc.net | MTV.Lebanon.lb | NO_CURRENT_EVENT |  |  |
-| MTV80s.uk@SD | 18 | bein.com | 1 | bein.com | MTV80s.uk@SD | NOT_PUBLISHED |  |  |
-| MTV90s.uk@SD | 19 | bein.com | 1 | bein.com | MTV90s.uk@SD | NOT_PUBLISHED |  |  |
-| NationalGeographicAbuDhabi.ae@SD | ناشونال جيوجراف... | elcinema.com | 1 | elcinema.com | National.Geographic.Abu.Dhabi.ae | NOT_PUBLISHED |  |  |
-| NationalGeographicMiddleEast.uk@SD | ناشيونال جيوجرافيك | elcinema.com | 1 | elcinema.com | National.Geographic.Middle.East.mena | NOT_PUBLISHED |  |  |
-| NessmaElJadida.tn@SD | نسمة | elcinema.com | 1 | elcinema.com | Nessma.El.Jadida.tn | NO_CURRENT_EVENT |  |  |
-| NickelodeonArabia.ae@SD | Nickelodeon HD | osn.com | 1 | osn.com | Nickelodeon.ae | NO_CURRENT_EVENT |  |  |
-| NickJrArabia.ae@SD | Nick Jr HD | osn.com | 1 | osn.com | Nick.Jr.ae | NO_CURRENT_EVENT |  |  |
-| NicktoonsArabia.ae@SD | NickToons HD | osn.com | 1 | osn.com | Nick.Toons.ae | NO_CURRENT_EVENT |  |  |
-| NileDrama.eg@SD | نايل دراما | elcinema.com | 1 | elcinema.com | Nile.Drama.eg | NO_CURRENT_EVENT |  |  |
-| NileLife.eg@SD | نايل لايف | elcinema.com | 1 | elcinema.com | Nile.Life.eg | NO_CURRENT_EVENT |  |  |
-| OmanSportsTV.om | قناة عمان الرياضية | ayn.om | 1 | ayn.om | Oman.Sports.TV.om | NO_CURRENT_EVENT |  |  |
-| OmanTV.om | قناة عمان العامة | ayn.om | 1 | ayn.om | Oman.TV.om | NO_CURRENT_EVENT |  |  |
-| OmanTV.om@SD | عمان | elcinema.com | 2 | osn.com | OSN.Oman.TV.ae | NOT_PUBLISHED |  |  |
-| OmanTV.om@SD | Oman TV | osn.com | 2 | osn.com | OSN.Oman.TV.ae | NOT_PUBLISHED |  |  |
-| OmanTVCultural.om | قناة عمان الثقافية | ayn.om | 1 | ayn.om | Oman.TV.Cultural.om | NO_CURRENT_EVENT |  |  |
-| OmanTVMubashir.om | قناة عمان مباشر | ayn.om | 1 | ayn.om | Oman.TV.Mubashir.om | NO_CURRENT_EVENT |  |  |
-| OnDrama.eg@SD | أون دراما | elcinema.com | 1 | elcinema.com | On.Drama.eg | NO_CURRENT_EVENT |  |  |
-| OnE.eg@SD | أون إي | elcinema.com | 1 | elcinema.com | On.E.eg | NO_CURRENT_EVENT |  |  |
-| OSNComedy.ae@SD | OSNtv Comedy | osn.com | 1 | osn.com | OSN.Comedy.ae | NO_CURRENT_EVENT |  |  |
-| OSNKids.ae@SD | OSNtv Kids | osn.com | 1 | osn.com | OSN.Kids.ae | NO_CURRENT_EVENT |  |  |
-| OSNMezze.ae@SD | OSNtv Mezze | osn.com | 1 | osn.com | OSN.Mezze.ae | NO_CURRENT_EVENT |  |  |
-| OSNMoviesAction.ae@SD | OSNtv Movies Action | osn.com | 1 | osn.com | OSN.Movies.Action.ae | NO_CURRENT_EVENT |  |  |
-| OSNMoviesHollywood.ae@SD | OSNtv Movies Hollywood | osn.com | 1 | osn.com | OSN.Movies.Hollywood.ae | NO_CURRENT_EVENT |  |  |
-| OSNMoviesPremiere.ae@SD | OSNtv Movies Premiere | osn.com | 1 | osn.com | OSN.Movies.Premiere.ae | NO_CURRENT_EVENT |  |  |
-| OSNShowcase.ae@SD | OSNtv Showcase | osn.com | 1 | osn.com | OSN.Showcase.ae | NO_CURRENT_EVENT |  |  |
-| OSNtv Crime.sa | OSNtv Crime | osn.com | 1 | osn.com | OSN.Crime.ae | NO_CURRENT_EVENT |  |  |
-| OSNtv Documentary.sa | OSNtv Documentary | osn.com | 1 | osn.com | OSN.Documentary.ae | NO_CURRENT_EVENT |  |  |
-| OSNtv iQIYI.sa | OSNtv iQIYI | osn.com | 1 | osn.com | OSN.iQIYI.ae | NO_CURRENT_EVENT |  |  |
-| OSNtv Movies Comedy.sa | OSNtv Movies Comedy | osn.com | 1 | osn.com | OSN.Movies.Comedy.ae | NO_CURRENT_EVENT |  |  |
-| OSNtv Movies Family.sa | OSNtv Movies Family | osn.com | 1 | osn.com | OSN.Movies.Family.ae | NO_CURRENT_EVENT |  |  |
-| OSNtv Movies Horror.sa | OSNtv Movies Horror | osn.com | 1 | osn.com | OSN.Movies.Horror.ae | NO_CURRENT_EVENT |  |  |
-| OSNtv Now.sa | OSNtv Now | osn.com | 1 | osn.com | OSN.Now.ae | NO_CURRENT_EVENT |  |  |
-| OSNtv One.sa | OSNtv One | osn.com | 1 | osn.com | OSN.One.ae | NO_CURRENT_EVENT |  |  |
-| OSNtv Pop Up.sa | OSNtv Pop Up | osn.com | 1 | osn.com | OSN.Pop.Up.ae | NO_CURRENT_EVENT |  |  |
-| OSNtv Showcase Classics.sa | OSNtv Showcase Classics | osn.com | 1 | osn.com | OSN.Showcase.Classics.ae | NO_CURRENT_EVENT |  |  |
-| OSNYahala.ae@SD | OSNtv Yahala | osn.com | 1 | osn.com | OSN.Yahala.ae | NO_CURRENT_EVENT |  |  |
-| OSNYahalaAflam.ae@SD | OSNtv Yahala Aflam | osn.com | 1 | osn.com | OSN.Yahala.Aflam.ae | NO_CURRENT_EVENT |  |  |
-| OSNYahalaBilArabi.ae@SD | OSNtv Yahala Bil Arabi | osn.com | 1 | osn.com | OSN.Yahala.Bil.Arabi.ae | NO_CURRENT_EVENT |  |  |
-| PanoramaFM.sa@SD | Panorama FM | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Panorama.FM.mena | NOT_PUBLISHED |  |  |
-| QatarTelevision.qa@SD | قطر | elcinema.com | 1 | elcinema.com | Qatar.Television.qa | NOT_PUBLISHED |  |  |
-| RabehSaqer.sa@HD | رابح صقر | shahid.mbc.net | 1 | shahid.mbc.net | Rabeh.Saqer.sa | NO_CURRENT_EVENT |  |  |
-| RashidAlMajed.sa@SD | راشد الماجد | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Rashid.Al.Majed.mena | NOT_PUBLISHED |  |  |
-| RFMTV.fr@SD | RFM TV | osn.com | 1 | osn.com | RFM.TV.mena | NO_CURRENT_EVENT |  |  |
-| RotanaCinemaEgypt.eg@SD | روتانا سينما مصر | elcinema.com | 2 | rotana.net | Rotana.Cinema.Egypt.mena | NO_CURRENT_EVENT |  |  |
-| RotanaCinemaEgypt.eg@SD | روتانا سينما مصر | rotana.net | 2 | rotana.net | Rotana.Cinema.Egypt.mena | NO_CURRENT_EVENT |  |  |
-| RotanaCinemaKSA.sa@SD | روتانا سينما | elcinema.com | 2 | rotana.net | Rotana.Cinema.KSA.mena | NO_CURRENT_EVENT |  |  |
-| RotanaCinemaKSA.sa@SD | روتانا سينما السعودية | rotana.net | 2 | rotana.net | Rotana.Cinema.KSA.mena | NO_CURRENT_EVENT |  |  |
-| RotanaClassic.sa@SD | روتانا كلاسيك | elcinema.com | 2 | rotana.net | Rotana.Classic.mena | NO_CURRENT_EVENT |  |  |
-| RotanaClassic.sa@SD | روتانا كلاسيك | rotana.net | 2 | rotana.net | Rotana.Classic.mena | NO_CURRENT_EVENT |  |  |
-| RotanaClip.sa@SD | روتانا كليب | rotana.net | 1 | rotana.net | Rotana.Clip.mena | NOT_PUBLISHED |  |  |
-| RotanaComedy.sa@SD | روتانا كوميدي | elcinema.com | 2 | rotana.net | Rotana.Comedy.mena | NO_CURRENT_EVENT |  |  |
-| RotanaComedy.sa@SD | روتانا كوميدي | rotana.net | 2 | rotana.net | Rotana.Comedy.mena | NO_CURRENT_EVENT |  |  |
-| RotanaDrama.sa@SD | روتانا دراما | elcinema.com | 2 | rotana.net | Rotana.Drama.mena | NO_CURRENT_EVENT |  |  |
-| RotanaDrama.sa@SD | روتانا دراما | rotana.net | 2 | rotana.net | Rotana.Drama.mena | NO_CURRENT_EVENT |  |  |
-| RotanaKhalijia.sa@SD | روتانا خليجية | elcinema.com | 2 | rotana.net | Rotana.Khalijia.mena | NO_CURRENT_EVENT |  |  |
-| RotanaKhalijia.sa@SD | روتانا خليجية | rotana.net | 2 | rotana.net | Rotana.Khalijia.mena | NO_CURRENT_EVENT |  |  |
-| RoyaComedy.jo@SD | Roya Comedy | roya-tv.com | 1 | roya-tv.com | Roya.Comedy.jo | NO_CURRENT_EVENT |  |  |
-| RoyaDrama.jo@SD | Roya Drama | roya-tv.com | 1 | roya-tv.com | Roya.Drama.jo | NOT_PUBLISHED |  |  |
-| RoyaKids.jo@SD | Roya Kids | roya-tv.com | 2 | roya-tv.com | Roya.Kids.Originals.jo | NOT_PUBLISHED |  |  |
-| RoyaKids.jo@SD | Roya Kids Originals | roya-tv.com | 2 | roya-tv.com | Roya.Kids.Originals.jo | NOT_PUBLISHED |  |  |
-| RoyaKidsSongs.jo@SD | Roya Kids Songs | roya-tv.com | 1 | roya-tv.com | Roya.Kids.Songs.jo | NOT_PUBLISHED |  |  |
-| RoyaKitchen.jo@SD | Roya Kitchen | roya-tv.com | 1 | roya-tv.com | Roya.Kitchen.jo | NO_CURRENT_EVENT |  |  |
-| RoyaNews.jo@SD | Roya News | roya-tv.com | 1 | roya-tv.com | Roya.News.jo | NO_CURRENT_EVENT |  |  |
-| RoyaTV.jo@SD | رؤيا | elcinema.com | 3 | roya-tv.com | Roya.TV.jo | NO_CURRENT_EVENT |  |  |
-| RoyaTV.jo@SD | Roya TV HD | osn.com | 3 | roya-tv.com | Roya.TV.jo | NO_CURRENT_EVENT |  |  |
-| RoyaTV.jo@SD | Roya TV | roya-tv.com | 3 | roya-tv.com | Roya.TV.jo | NO_CURRENT_EVENT |  |  |
-| RT.ru@SD | RT English | osn.com | 1 | osn.com | RT.English.mena | NO_CURRENT_EVENT |  |  |
-| RTArabic.ru@SD | RT Arabic | osn.com | 1 | osn.com | RT.Arabic.mena | NO_CURRENT_EVENT |  |  |
-| SadaElbalad.eg@SD | صدى البلد | elcinema.com | 1 | elcinema.com | Sada.Elbalad.eg | NO_CURRENT_EVENT |  |  |
-| SadaElbalad2.eg@SD | صدى البلد 2 | elcinema.com | 1 | elcinema.com | Sada.Elbalad2.eg | NO_CURRENT_EVENT |  |  |
-| SadaElbaladDrama.eg@SD | صدى البلد دراما | elcinema.com | 1 | elcinema.com | Sada.Elbalad.Drama.eg | NO_CURRENT_EVENT |  |  |
-| SalamTV.ly@SD | سلام | elcinema.com | 1 | elcinema.com | Salam.TV.ly | NOT_PUBLISHED |  |  |
-| SamaDubai.ae@SD | سما دبي | elcinema.com | 1 | elcinema.com | Sama.Dubai.ae | NOT_PUBLISHED |  |  |
-| SaudiThaqafiyaTV.sa@SD | Al Thaqafeya | osn.com | 2 | shahid.mbc.net | MBC.Saudi.Thaqafiya.TV.mena | NOT_PUBLISHED |  |  |
-| SaudiThaqafiyaTV.sa@SD | الثقافية | shahid.mbc.net | 2 | shahid.mbc.net | MBC.Saudi.Thaqafiya.TV.mena | NOT_PUBLISHED |  |  |
-| SBC.sa@SD | إس بي سي | elcinema.com | 2 | shahid.mbc.net | SBC.sa | NO_CURRENT_EVENT |  |  |
-| SBC.sa@SD | SBC | shahid.mbc.net | 2 | shahid.mbc.net | SBC.sa | NO_CURRENT_EVENT |  |  |
-| SharjahTV.ae@SD | الشارقة | elcinema.com | 1 | elcinema.com | Sharjah.TV.ae | NO_CURRENT_EVENT |  |  |
-| SkyNewsArabia.ae@SD | Sky News Arabia HD | osn.com | 1 | osn.com | Sky.News.Arabia.ae | NO_CURRENT_EVENT |  |  |
-| SpacetoonArabic.ae@SD | Spacetoon | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Spacetoon.mena | NOT_PUBLISHED |  |  |
-| StarMoviesMiddleEast.ae@SD | 7 | bein.com | 2 | bein.com | StarMoviesMiddleEast.ae@SD | NOT_PUBLISHED |  |  |
-| StarMoviesMiddleEast.ae@SD | ستار موفيز | elcinema.com | 2 | bein.com | StarMoviesMiddleEast.ae@SD | NOT_PUBLISHED |  |  |
-| StarWorldMiddleEast.ae@SD | 16 | bein.com | 2 | bein.com | StarWorldMiddleEast.ae@SD | NOT_PUBLISHED |  |  |
-| StarWorldMiddleEast.ae@SD | ستار ورلد | elcinema.com | 2 | bein.com | StarWorldMiddleEast.ae@SD | NOT_PUBLISHED |  |  |
-| Tarab.sa@SD | طرب | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Tarab.mena | NOT_PUBLISHED |  |  |
-| TeN.eg@SD | تن | elcinema.com | 1 | elcinema.com | TeN.eg | NO_CURRENT_EVENT |  |  |
-| ThikrayatTV.sa@SD | ذكريات | elcinema.com | 2 | shahid.mbc.net | Thikrayat.TV.sa | NO_CURRENT_EVENT |  |  |
-| ThikrayatTV.sa@SD | ذكريات | shahid.mbc.net | 2 | shahid.mbc.net | Thikrayat.TV.sa | NO_CURRENT_EVENT |  |  |
-| TLCArabia.us@SD | TLC HD | osn.com | 1 | osn.com | TLC.mena | NO_CURRENT_EVENT |  |  |
-| UTV.iq@SD | يو تي في | elcinema.com | 1 | elcinema.com | Channel2954e263.mena | NO_CURRENT_EVENT |  |  |
-| Wanasah.ae@SD | وناسه | shahid.mbc.net | 1 | shahid.mbc.net | MBC.Wanasah.mena | NOT_PUBLISHED |  |  |
-| ZeeAlwan.ae@SD | زي ألوان | elcinema.com | 1 | elcinema.com | Channel6da3a2ca.mena | NO_CURRENT_EVENT |  |  |
-| — | 30 | bein.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | 8 | bein.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | 16 | bein.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | beIN SPORTS 6 AFC | beinsports.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | beIN SPORTS 4 AFC | beinsports.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | beIN SPORTS 5 AFC | beinsports.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | اﻹمارات | elcinema.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | Blippi and Friends | osn.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | OSNtv Pop Up 2 | osn.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | eClutch Access | osn.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | Esport 24 | osn.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | eClutch LIVE | osn.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | Padel TV | osn.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | eClutch LIVE 2 | osn.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | eClutch Arabic | osn.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | STV1 HD | osn.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | رؤيا فلسطين | roya-tv.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | Roya Sport | roya-tv.com | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | BIG TIME | shahid.mbc.net | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | قناة طاش | shahid.mbc.net | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | ناصر القصبي | shahid.mbc.net | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | قناة الكبير أوي | shahid.mbc.net | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | قناة العاصوف | shahid.mbc.net | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | قناة مسرح مصر | shahid.mbc.net | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | قناة اللعبة | shahid.mbc.net | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | UNBEATEN | shahid.mbc.net | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | القرآن الكريم بصوت السديس | shahid.mbc.net | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | قناة كامل العدد | shahid.mbc.net | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | قناة جاك العلم | shahid.mbc.net | 1 |  |  | NO_XMLTV_ID |  |  |
-| — | AWSN | shahid.mbc.net | 1 |  |  | NO_XMLTV_ID |  |  |
+<table>
+<thead><tr>
+<th width="120">Status</th>
+<th width="220">Channel</th>
+<th width="240">XMLTV ID</th>
+<th width="150">Source</th>
+<th width="85">Candidates</th>
+<th width="150">Winner</th>
+<th width="240">Receiver canonical ID</th>
+<th width="280">Now title</th>
+<th width="520">Now description</th>
+<th width="220">OFF reason</th>
+</tr></thead>
+<tbody>
+<tr><td><b>🔴 OFF</b></td><td><b>المغربية الثانية</b></td><td><code>2MMonde.ma@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>2.M.Monde.ma.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>عبدالمجيد عبدالله</b></td><td><code>AbdulmajeedAbdullah.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Abdulmajeed.Abdullah.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>AD Sports 1 HD</b></td><td><code>AbuDhabiSports1.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.AD.Sports.1.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>أبو ظبي</b></td><td><code>AbuDhabiTV.ae@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>osn.com</td><td><code>ADM.Abu.Dhabi.TV.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Abu Dhabi TV HD</b></td><td><code>AbuDhabiTV.ae@SD</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>ADM.Abu.Dhabi.TV.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>أفلام</b></td><td><code>Aflam.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>Aflam.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الأولى المغربية</b></td><td><code>AlAoula.ma@MiddleEast</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Channel31a228df.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>العربية</b></td><td><code>Alarabiya.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Alarabiya.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>العربية Business</b></td><td><code>AlArabiyaBusiness.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Business.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>AL Arabiya English</b></td><td><code>AlArabiyaEnglish.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.AL.Arabiya.English.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Al Arabiya</b></td><td><code>AlarabiyaPortrait.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Al.Arabiya.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>العربية برامج</b></td><td><code>AlArabiyaPrograms.ae</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Al.Arabiya.Programs.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Al Araby TV</b></td><td><code>AlArabyTV.qa@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Al.Araby.TV.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>التلفزيون العربي 2</b></td><td><code>AlArabyTV2.qa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>osn.com</td><td><code>Al.Araby.2.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Al Araby 2</b></td><td><code>AlArabyTV2.qa@SD</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>Al.Araby.2.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الظفرة</b></td><td><code>AlDafrahTV.ae@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Al.Dafrah.TV.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الإخبارية</b></td><td><code>AlEkhbariya.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Al.Ekhbariya.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Al Hadath</b></td><td><code>AlHadath.sa@SD</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>MBC.Al.Hadath.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الحدث</b></td><td><code>AlHadath.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>osn.com</td><td><code>MBC.Al.Hadath.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الحياة</b></td><td><code>AlhayatTV.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Alhayat.TV.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>العراقية</b></td><td><code>AlIraqia.iq@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Al.Iraqia.iq</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الجديد</b></td><td><code>AlJadeed.lb@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Al.Jadeed.lb</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Al Jazeera Arabic</b></td><td><code>AlJazeera.qa@Arabic</code></td><td>aljazeera.com</td><td align="center">1</td><td>aljazeera.com</td><td><code>Al.Jazeera.Arabic.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Al Jazeera 2</b></td><td><code>AlJazeera2.qa@HD</code></td><td>aljazeera.com</td><td align="center">1</td><td>aljazeera.com</td><td><code>Al.Jazeera.2.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>26</b></td><td><code>AlJazeeraDocumentary.qa@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>AlJazeeraDocumentary.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>القاهرة والناس</b></td><td><code>AlKaheraWalNas.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Al.Kahera.Wal.Nas.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>القاهرة والناس 2</b></td><td><code>AlKaheraWalNas2.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Al.Kahera.Wal.Nas2.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>40</b></td><td><code>AlkassEight.qa@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>AlkassEight.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>37</b></td><td><code>AlkassFive.qa@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>AlkassFive.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>36</b></td><td><code>AlkassFour.qa@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>AlkassFour.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>33</b></td><td><code>AlkassOne.qa@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>AlkassOne.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>39</b></td><td><code>AlkassSeven.qa@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>AlkassSeven.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>38</b></td><td><code>AlkassSix.qa@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>AlkassSix.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>35</b></td><td><code>AlkassThree.qa@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>AlkassThree.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>34</b></td><td><code>AlkassTwo.qa@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>AlkassTwo.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إذاعة خزامى</b></td><td><code>AlkhuzamaRadio.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Alkhuzama.Radio.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>المنار</b></td><td><code>AlManar.lb@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Al.Manar.lb</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>المصرية</b></td><td><code>AlMasriyah.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Al.Masriyah.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>النهار</b></td><td><code>AlNahar.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Al.Nahar.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>النهار دراما</b></td><td><code>AlNaharDrama.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Al.Nahar.Drama.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Al Quran Al Kareem TV HD</b></td><td><code>AlQuranAlKareemTV.sa@SD</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>Al.Quran.Al.Kareem.TV.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>القرآن الكريم</b></td><td><code>AlQuranAlKareemTV.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>osn.com</td><td><code>Al.Quran.Al.Kareem.TV.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Al Rai TV</b></td><td><code>AlraiTV.kw@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Al.Rai.TV.kw</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الرشيد</b></td><td><code>AlRasheedTV.iq@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Al.Rasheed.TV.iq</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الرساله</b></td><td><code>AlResalah.sa@SD</code></td><td>rotana.net</td><td align="center">1</td><td>rotana.net</td><td><code>Al.Resalah.2.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>السعيدة</b></td><td><code>AlSaeedah.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Al.Saeedah.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>السعودية</b></td><td><code>AlSaudiya.sa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>Al.Saudiya.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>السعودية</b></td><td><code>AlSaudiya.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>Al.Saudiya.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>السعودية الآن</b></td><td><code>AlSaudiyaAlaan.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Al.Saudiya.Alaan.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الشرقية</b></td><td><code>AlSharqiyaMinKabla.ae@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Al.Sharqiya.Min.Kabla.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>السورية</b></td><td><code>AlSouriyaTV.sy@HD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Al.Souriya.TV.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>السومرية</b></td><td><code>Alsumaria.iq@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Alsumaria.iq</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>السنة النبوية</b></td><td><code>AlSunnahAlNabawiyahTV.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Al.Sunnah.Al.Nabawiyah.TV.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الثانية</b></td><td><code>Althania.sy@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Althania.sy</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>عَمان</b></td><td><code>AmmanTV.jo@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Amman.TV.jo</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Animal Planet HD</b></td><td><code>AnimalPlanetEurope.uk@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Animal.Planet.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>افلام 1</b></td><td><code>ARTAflam1.sa@SD</code></td><td>artonline.tv</td><td align="center">1</td><td>artonline.tv</td><td><code>ART.Aflam1.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>افلام 2</b></td><td><code>ARTAflam2.sa@SD</code></td><td>artonline.tv</td><td align="center">1</td><td>artonline.tv</td><td><code>ART.Aflam2.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>سينما</b></td><td><code>ARTCinema.sa@SD</code></td><td>artonline.tv</td><td align="center">1</td><td>artonline.tv</td><td><code>ART.Cinema.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>حكايات</b></td><td><code>ARTHekayat.sa@SD</code></td><td>artonline.tv</td><td align="center">1</td><td>artonline.tv</td><td><code>ART.Hekayat.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>حكايات 2</b></td><td><code>ARTHekayat2.sa@SD</code></td><td>artonline.tv</td><td align="center">1</td><td>artonline.tv</td><td><code>ART.Hekayat2.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الشرق ديسكفري</b></td><td><code>AsharqDiscovery.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>Asharq.Discovery.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Asharq Documentary</b></td><td><code>AsharqDocumentary.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>Asharq.Documentary.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الشرق</b></td><td><code>AsharqNews.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>Asharq.News.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إيه تي في</b></td><td><code>ATV.kw@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>ATV.kw</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة باب الحارة</b></td><td><code>BabAlHara.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>Bab.Al.Hara.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>البحرين</b></td><td><code>BahrainTV.bh@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>osn.com</td><td><code>Bahrain.TV.bh</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Bahrain TV</b></td><td><code>BahrainTV.bh@SD</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>Bahrain.TV.bh</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>BaraemTV</b></td><td><code>Baraem.qa@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>Baraem.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>BBC World</b></td><td><code>BBCArabic.uk@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>BBC.World.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS1EN</b></td><td><code>beIN.Sports.EN1.qa</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.EN1.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS EN 1</b></td><td><code>beIN.Sports.EN1.qa</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.EN1.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS2EN</b></td><td><code>beIN.Sports.EN2.qa</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.EN2.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS EN 2</b></td><td><code>beIN.Sports.EN2.qa</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.EN2.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS1FR</b></td><td><code>beIN.Sports.FR1.qa</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.FR1.qa</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS FR 1</b></td><td><code>beIN.Sports.FR1.qa</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.FR1.qa</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS2FR</b></td><td><code>beIN.Sports.FR2.qa</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.FR2.qa</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS FR 2</b></td><td><code>beIN.Sports.FR2.qa</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.FR2.qa</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSNews</b></td><td><code>beIN.Sports.News.qa</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>beIN.Sports.News.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS</b></td><td><code>beIN.Sports.qa</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>beIN.Sports.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSXTRA3</b></td><td><code>beIN.Sports.XTRA3.qa</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA3.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS XTRA 3</b></td><td><code>beIN.Sports.XTRA3.qa</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA3.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSXTRA4</b></td><td><code>beIN.Sports.XTRA4.qa</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA4.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS XTRA 4</b></td><td><code>beIN.Sports.XTRA4.qa</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA4.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSXTRA5</b></td><td><code>beIN.Sports.XTRA5.qa</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA5.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS XTRA 5</b></td><td><code>beIN.Sports.XTRA5.qa</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA5.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSXTRA6</b></td><td><code>beIN.Sports.XTRA6.qa</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA6.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS XTRA 6</b></td><td><code>beIN.Sports.XTRA6.qa</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA6.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSXTRA7</b></td><td><code>beIN.Sports.XTRA7.qa</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA7.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS XTRA 7</b></td><td><code>beIN.Sports.XTRA7.qa</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA7.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSXTRA8</b></td><td><code>beIN.Sports.XTRA8.qa</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA8.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS XTRA 8</b></td><td><code>beIN.Sports.XTRA8.qa</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA8.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSXTRA9</b></td><td><code>beIN.Sports.XTRA9.qa</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA9.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS XTRA 9</b></td><td><code>beIN.Sports.XTRA9.qa</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA9.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN 4K</b></td><td><code>beIN4K.qa@SD</code></td><td>beinsports.com</td><td align="center">1</td><td>beinsports.com</td><td><code>beIN.4K.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINDRAMA</b></td><td><code>beINDrama1.qa@SD</code></td><td>bein.com</td><td align="center">2</td><td>elcinema.com</td><td><code>beIN.Drama.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>بي إن دراما</b></td><td><code>beINDrama1.qa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>elcinema.com</td><td><code>beIN.Drama.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINGOURMET</b></td><td><code>beINGourmet.qa@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>beIN.Gourmet.qa</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINMOVIES1</b></td><td><code>beINMovies1Premiere.qa@SD</code></td><td>bein.com</td><td align="center">2</td><td>elcinema.com</td><td><code>beIN.Movies.Premiere.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>بي إن موفيز بريمير</b></td><td><code>beINMovies1Premiere.qa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>elcinema.com</td><td><code>beIN.Movies.Premiere.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINMOVIES2</b></td><td><code>beINMovies2Action.qa@SD</code></td><td>bein.com</td><td align="center">2</td><td>elcinema.com</td><td><code>beIN.Movies.Action.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>بي إن موفيز أكشن</b></td><td><code>beINMovies2Action.qa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>elcinema.com</td><td><code>beIN.Movies.Action.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINMOVIES3</b></td><td><code>beINMovies3Drama.qa@SD</code></td><td>bein.com</td><td align="center">2</td><td>elcinema.com</td><td><code>beIN.Movies.Drama.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>بي إن موفيز دراما</b></td><td><code>beINMovies3Drama.qa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>elcinema.com</td><td><code>beIN.Movies.Drama.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINMOVIES4</b></td><td><code>beINMovies4Family.qa@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>beIN.Movies.Family.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSERIES1</b></td><td><code>beINSeries1.qa@SD</code></td><td>bein.com</td><td align="center">2</td><td>elcinema.com</td><td><code>beIN.Series.1.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>بي إن سيريس</b></td><td><code>beINSeries1.qa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>elcinema.com</td><td><code>beIN.Series.1.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSERIES2</b></td><td><code>beINSeries2.qa@SD</code></td><td>bein.com</td><td align="center">2</td><td>elcinema.com</td><td><code>beIN.Series.2.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>بي إن سيريس إتش...</b></td><td><code>beINSeries2.qa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>elcinema.com</td><td><code>beIN.Series.2.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS1</b></td><td><code>beINSports1.qa@MENA</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.1.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 1</b></td><td><code>beINSports1.qa@MENA</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.1.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS2</b></td><td><code>beINSports2.qa@MENA</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>beIN.Sports.2.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS3</b></td><td><code>beINSports3.qa@MENA</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.3.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 3</b></td><td><code>beINSports3.qa@MENA</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.3.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORT4</b></td><td><code>beINSports4.qa@MENA</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>beIN.Sports.4.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS4KHDR</b></td><td><code>beINSports4KHDR.qa</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>beINSports4KHDR.qa</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS5</b></td><td><code>beINSports5.qa@MENA</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>beIN.Sports.5.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS6</b></td><td><code>beINSports6.qa@MENA</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>beIN.Sports.6.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS7</b></td><td><code>beINSports7.qa@MENA</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>beIN.Sports.7.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS8</b></td><td><code>beINSports8.qa@MENA</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>beIN.Sports.8.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTS9</b></td><td><code>beINSports9.qa@MENA</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.9.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 9</b></td><td><code>beINSports9.qa@MENA</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.9.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS AFC</b></td><td><code>beINSportsAFC.qa@SD</code></td><td>beinsports.com</td><td align="center">1</td><td>beinsports.com</td><td><code>beINSportsAFC.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 1 AFC</b></td><td><code>beINSportsAFC1.qa@SD</code></td><td>beinsports.com</td><td align="center">1</td><td>beinsports.com</td><td><code>beINSportsAFC1.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 2 AFC</b></td><td><code>beINSportsAFC2.qa@SD</code></td><td>beinsports.com</td><td align="center">1</td><td>beinsports.com</td><td><code>beINSportsAFC2.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 3 AFC</b></td><td><code>beINSportsAFC3.qa@SD</code></td><td>beinsports.com</td><td align="center">1</td><td>beinsports.com</td><td><code>beINSportsAFC3.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSMAX1</b></td><td><code>beINSportsMax1.qa@MENA</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.MAX1.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS MAX 1</b></td><td><code>beINSportsMax1.qa@MENA</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.MAX1.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSMAX2</b></td><td><code>beINSportsMax2.qa@MENA</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.MAX2.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS MAX 2</b></td><td><code>beINSportsMax2.qa@MENA</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.MAX2.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSMAX3</b></td><td><code>beINSportsMax3.qa@MENA</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.MAX3.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS MAX 3</b></td><td><code>beINSportsMax3.qa@MENA</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.MAX3.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSMAX4</b></td><td><code>beINSportsMax4.qa@MENA</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.MAX4.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS MAX 4</b></td><td><code>beINSportsMax4.qa@MENA</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.MAX4.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSMAX5</b></td><td><code>beINSportsMax5.qa@MENA</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.MAX5.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS MAX 5</b></td><td><code>beINSportsMax5.qa@MENA</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.MAX5.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSMAX6</b></td><td><code>beINSportsMax6.qa@MENA</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.MAX6.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS MAX 6</b></td><td><code>beINSportsMax6.qa@MENA</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.MAX6.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSXTRA1</b></td><td><code>beINSportsXtra1.qa@SD</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA1.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS XTRA 1</b></td><td><code>beINSportsXtra1.qa@SD</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA1.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINSPORTSXTRA2</b></td><td><code>beINSportsXtra2.qa@SD</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA2.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS XTRA 2</b></td><td><code>beINSportsXtra2.qa@SD</code></td><td>beinsports.com</td><td align="center">2</td><td>bein.com</td><td><code>beIN.Sports.XTRA2.qa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>21</b></td><td><code>BeJunior.qa@SD</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>BeJunior.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beINJUNIOR</b></td><td><code>BeJunior.qa@SD</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>BeJunior.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Big Time Plus</b></td><td><code>BigTimePlus.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Big.Time.Plus.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Bloomberg Originals</b></td><td><code>BloombergOriginals.us@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Bloomberg.Originals.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>22</b></td><td><code>BloombergTV.us@MiddleEast</code></td><td>bein.com</td><td align="center">2</td><td>osn.com</td><td><code>Bloomberg.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Bloomberg</b></td><td><code>BloombergTV.us@MiddleEast</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>Bloomberg.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>نتورك بالعربية</b></td><td><code>CartoonNetworkArabic.ae@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>osn.com</td><td><code>CN.Arabia.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>CN Arabia</b></td><td><code>CartoonNetworkArabic.ae@SD</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>CN.Arabia.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Cartoon Network HD</b></td><td><code>CartoonNetworkMENA.uk@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Cartoon.Network.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>سي بي سي</b></td><td><code>CBC.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>CBC.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>سي بي سي دراما</b></td><td><code>CBCDrama.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>CBC.Drama.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>سي بي سي سفرة</b></td><td><code>CBCSofra.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>CBC.Sofra.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>31</b></td><td><code>CBeebiesMiddleEast.uk@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>CBeebiesMiddleEast.uk@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>سيما</b></td><td><code>Cima.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Cima.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>20</b></td><td><code>ClubMTVEurope.uk@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>ClubMTVEurope.uk@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>27</b></td><td><code>CNNArabic.ae@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>CNNArabic.ae@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>CNN HD</b></td><td><code>CNNInternational.us@MENA</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>CNN.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>C &amp;amp; I</b></td><td><code>CrimePlusInvestigation.us@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.C.amp.I.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>دجلة</b></td><td><code>DijlahTV.iq@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Dijlah.TV.iq</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ديسكفري</b></td><td><code>DiscoveryChannelMiddleEastAfrica.us@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>osn.com</td><td><code>OSN.Discovery.Channel.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Discovery Channel HD</b></td><td><code>DiscoveryChannelMiddleEastAfrica.us@SD</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>OSN.Discovery.Channel.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>دي إم سي</b></td><td><code>DMC.eg@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>osn.com</td><td><code>DMC.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>DMC HD</b></td><td><code>DMC.eg@SD</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>DMC.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>دي إم سي دراما</b></td><td><code>DMCDrama.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>DMC.Drama.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>دبي وان</b></td><td><code>DubaiOne.ae@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Dubai.One.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>دبي</b></td><td><code>DubaiTV.ae@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>osn.com</td><td><code>DMI.Dubai.TV.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Dubai TV HD</b></td><td><code>DubaiTV.ae@SD</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>DMI.Dubai.TV.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>دبي زمان</b></td><td><code>DubaiZaman.ae@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Dubai.Zaman.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الشروق الجزائرية</b></td><td><code>EchoroukTV.dz@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Echorouk.TV.dz</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>المحور</b></td><td><code>ElMehwarChannel.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Channelf643876a.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الوطنية 1</b></td><td><code>ElWatania1.tn@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>El.Watania1.tn</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الوطنية 2</b></td><td><code>ElWatania2.tn@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>El.Watania2.tn</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة مصر الأولى</b></td><td><code>ERTU1.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>ERTU1.eg</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>28</b></td><td><code>EuronewsEnglish.fr@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>EuronewsEnglish.fr@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>فيروز</b></td><td><code>Fairuz.sa@HD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>Fairuz.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>17</b></td><td><code>Fatafeat.ae@SD</code></td><td>bein.com</td><td align="center">2</td><td>osn.com</td><td><code>Fatafeat.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Fatafeat</b></td><td><code>Fatafeat.ae@SD</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>Fatafeat.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>FIFA+</b></td><td><code>FIFAPlus.uk</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.FIFA.Plus.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>14</b></td><td><code>FoodNetworkEMEA.us@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>FoodNetworkEMEA.us@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>6</b></td><td><code>FoxActionMoviesMENA.hk@SD</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>FoxActionMoviesMENA.hk@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ستار أكشن</b></td><td><code>FoxActionMoviesMENA.hk@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>bein.com</td><td><code>FoxActionMoviesMENA.hk@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>13</b></td><td><code>FoxArabia.ae@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>FoxArabia.ae@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>5</b></td><td><code>FoxMoviesMiddleEast.us@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>FoxMoviesMiddleEast.us@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الفجيرة</b></td><td><code>FujairahTV.ae@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Fujairah.TV.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Gametoon</b></td><td><code>Gametoon.nl@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Gametoon.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Ginx</b></td><td><code>GINXTV.uk@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Ginx.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Goal Zone</b></td><td><code>GoalZone.sa</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Goal.Zone.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>تلفزيون حضرموت</b></td><td><code>HadhramautTV.ye@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Hadhramaut.TV.ye</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>15</b></td><td><code>HGTVArabia.us@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>HGTVArabia.us@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>H2 HD</b></td><td><code>History2MiddleEast.us@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.History2.Middle.East.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>History HD</b></td><td><code>HistoryMiddleEast.us@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>History.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>آي فيلم</b></td><td><code>iFilmArabic.ir@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>i.Film.Arabic.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Discovery IDX HD</b></td><td><code>InvestigationDiscovery.uk@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Discovery.IDX.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إقرأ</b></td><td><code>IqraaArabic.sa</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Iqraa.Arabic.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>29</b></td><td><code>JeemTV.qa@SD</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>JeemTV.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>JeemTV</b></td><td><code>JeemTV.qa@SD</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>JeemTV.qa@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الأردن</b></td><td><code>JordanTV.jo@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Jordan.TV.jo</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>KSA Sports 1 HD</b></td><td><code>KSASports1.sa@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>KSA.Sports.1.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الكويت</b></td><td><code>KTV1.kw@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>osn.com</td><td><code>KTV.Channel.1.kw</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>KTV Channel 1 HD</b></td><td><code>KTV1.kw@SD</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>KTV.Channel.1.kw</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ال تي في</b></td><td><code>LanaTV.lb@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Channel519d6998.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إل بي سي</b></td><td><code>LBC.sa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>rotana.net</td><td><code>LBC.2.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إل بي سي</b></td><td><code>LBC.sa@SD</code></td><td>rotana.net</td><td align="center">2</td><td>rotana.net</td><td><code>LBC.2.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إل بي سي آي</b></td><td><code>LBCInternational.lb@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>LBC.International.lb</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ماجد المهندس</b></td><td><code>MajidAlMohandis.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Majid.Al.Mohandis.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة مرايا</b></td><td><code>Maraya.sa@HD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>Maraya.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ماسة</b></td><td><code>Masah.sa@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Masah.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ماسبيرو زمان</b></td><td><code>MasperoZaman.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Maspero.Zaman.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي</b></td><td><code>MBC1.ae@SD</code></td><td>elcinema.com</td><td align="center">3</td><td>shahid.mbc.net</td><td><code>MBC.1.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC 1</b></td><td><code>MBC1.ae@SD</code></td><td>osn.com</td><td align="center">3</td><td>shahid.mbc.net</td><td><code>MBC.1.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC1</b></td><td><code>MBC1.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">3</td><td>shahid.mbc.net</td><td><code>MBC.1.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC1</b></td><td><code>MBC1Egypt.eg@HD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.1.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC1</b></td><td><code>MBC1USA.us@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.1.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي 2</b></td><td><code>MBC2.ae@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MBC.2.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC2</b></td><td><code>MBC2.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MBC.2.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي 3</b></td><td><code>MBC3.ae@SD</code></td><td>elcinema.com</td><td align="center">3</td><td>osn.com</td><td><code>OSN.MBC.3.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC 3</b></td><td><code>MBC3.ae@SD</code></td><td>osn.com</td><td align="center">3</td><td>osn.com</td><td><code>OSN.MBC.3.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC3</b></td><td><code>MBC3.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">3</td><td>osn.com</td><td><code>OSN.MBC.3.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC3</b></td><td><code>MBC3USA.us@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.3.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي 4</b></td><td><code>MBC4.ae@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MBC.4.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC4</b></td><td><code>MBC4.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MBC.4.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي 5</b></td><td><code>MBC5.ae@SD</code></td><td>elcinema.com</td><td align="center">3</td><td>osn.com</td><td><code>OSN.MBC.5.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC 5</b></td><td><code>MBC5.ae@SD</code></td><td>osn.com</td><td align="center">3</td><td>osn.com</td><td><code>OSN.MBC.5.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC5</b></td><td><code>MBC5.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">3</td><td>osn.com</td><td><code>OSN.MBC.5.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي أكشن</b></td><td><code>MBCAction.ae@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MBC.Action.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Action</b></td><td><code>MBCAction.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MBC.Action.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي بوليوود</b></td><td><code>MBCBollywood.ae@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MBC.Bollywood.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Bollywood</b></td><td><code>MBCBollywood.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MBC.Bollywood.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي دراما</b></td><td><code>MBCDrama.ae@SD</code></td><td>elcinema.com</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Drama.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Drama</b></td><td><code>MBCDrama.ae@SD</code></td><td>osn.com</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Drama.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Drama</b></td><td><code>MBCDrama.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Drama.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Drama</b></td><td><code>MBCDramaUSA.us@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Drama.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC FM</b></td><td><code>MBCFM.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.FM.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي العراق</b></td><td><code>MBCIraq.iq@SD</code></td><td>elcinema.com</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Iraq.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Iraq</b></td><td><code>MBCIraq.iq@SD</code></td><td>osn.com</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Iraq.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Iraq</b></td><td><code>MBCIraq.iq@SD</code></td><td>shahid.mbc.net</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Iraq.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي مصر</b></td><td><code>MBCMasr.eg@SD</code></td><td>elcinema.com</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Masr.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Masr</b></td><td><code>MBCMasr.eg@SD</code></td><td>osn.com</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Masr.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Masr</b></td><td><code>MBCMasr.eg@SD</code></td><td>shahid.mbc.net</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Masr.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي مصر 2</b></td><td><code>MBCMasr2.eg@SD</code></td><td>elcinema.com</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Masr2.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Masr2</b></td><td><code>MBCMasr2.eg@SD</code></td><td>osn.com</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Masr2.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Masr2</b></td><td><code>MBCMasr2.eg@SD</code></td><td>shahid.mbc.net</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Masr2.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي مصر دراما</b></td><td><code>MBCMasrDrama.sa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>elcinema.com</td><td><code>MBC.Masr.Drama.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>مصر دراما</b></td><td><code>MBCMasrDrama.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>elcinema.com</td><td><code>MBC.Masr.Drama.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Masr</b></td><td><code>MBCMasrUSA.us@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Masr.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي ماكس</b></td><td><code>MBCMax.ae@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MBC.MAX.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC MAX</b></td><td><code>MBCMax.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MBC.MAX.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Mood</b></td><td><code>MBCMood.sa@HD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.MBC.Mood.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Persia</b></td><td><code>MBCPersia.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Persia.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم بي سي دراما +</b></td><td><code>MBCPlusDrama.sa@SD</code></td><td>elcinema.com</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Plus.Drama.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC+ Drama</b></td><td><code>MBCPlusDrama.sa@SD</code></td><td>osn.com</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Plus.Drama.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MBC Plus Drama</b></td><td><code>MBCPlusDrama.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">3</td><td>osn.com</td><td><code>MBC.Plus.Drama.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MCM TOP</b></td><td><code>MCMTop.fr@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>MCM.TOP.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ميكس بالعربي</b></td><td><code>MixBelAraby.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Mix.Bel.Araby.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>محمد عبده</b></td><td><code>MohammedAbdo.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Mohammed.Abdo.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Moonbug Kids</b></td><td><code>MoonbugKids.uk@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Moonbug.Kids.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MOTORVISION</b></td><td><code>MotorvisionPlus.de@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>MOTORVISION.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Movies Action</b></td><td><code>MoviesAction.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>Movies.Action.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Movies Thriller</b></td><td><code>MoviesThriller.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>Movies.Thriller.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إم تي في</b></td><td><code>MTV.lb@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MTV.Lebanon.lb</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>MTV Lebanon</b></td><td><code>MTV.lb@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MTV.Lebanon.lb</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>18</b></td><td><code>MTV80s.uk@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>MTV80s.uk@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>19</b></td><td><code>MTV90s.uk@SD</code></td><td>bein.com</td><td align="center">1</td><td>bein.com</td><td><code>MTV90s.uk@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ناشونال جيوجراف...</b></td><td><code>NationalGeographicAbuDhabi.ae@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>National.Geographic.Abu.Dhabi.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ناشيونال جيوجرافيك</b></td><td><code>NationalGeographicMiddleEast.uk@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>National.Geographic.Middle.East.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>نسمة</b></td><td><code>NessmaElJadida.tn@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Nessma.El.Jadida.tn</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Nickelodeon HD</b></td><td><code>NickelodeonArabia.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Nickelodeon.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Nick Jr HD</b></td><td><code>NickJrArabia.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Nick.Jr.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>NickToons HD</b></td><td><code>NicktoonsArabia.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Nick.Toons.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>نايل دراما</b></td><td><code>NileDrama.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Nile.Drama.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>نايل لايف</b></td><td><code>NileLife.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Nile.Life.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة عمان الرياضية</b></td><td><code>OmanSportsTV.om</code></td><td>ayn.om</td><td align="center">1</td><td>ayn.om</td><td><code>Oman.Sports.TV.om</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة عمان العامة</b></td><td><code>OmanTV.om</code></td><td>ayn.om</td><td align="center">1</td><td>ayn.om</td><td><code>Oman.TV.om</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>عمان</b></td><td><code>OmanTV.om@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>osn.com</td><td><code>OSN.Oman.TV.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Oman TV</b></td><td><code>OmanTV.om@SD</code></td><td>osn.com</td><td align="center">2</td><td>osn.com</td><td><code>OSN.Oman.TV.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة عمان الثقافية</b></td><td><code>OmanTVCultural.om</code></td><td>ayn.om</td><td align="center">1</td><td>ayn.om</td><td><code>Oman.TV.Cultural.om</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة عمان مباشر</b></td><td><code>OmanTVMubashir.om</code></td><td>ayn.om</td><td align="center">1</td><td>ayn.om</td><td><code>Oman.TV.Mubashir.om</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>أون دراما</b></td><td><code>OnDrama.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>On.Drama.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>أون إي</b></td><td><code>OnE.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>On.E.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Comedy</b></td><td><code>OSNComedy.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Comedy.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Kids</b></td><td><code>OSNKids.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Kids.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Mezze</b></td><td><code>OSNMezze.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Mezze.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Movies Action</b></td><td><code>OSNMoviesAction.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Movies.Action.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Movies Hollywood</b></td><td><code>OSNMoviesHollywood.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Movies.Hollywood.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Movies Premiere</b></td><td><code>OSNMoviesPremiere.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Movies.Premiere.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Showcase</b></td><td><code>OSNShowcase.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Showcase.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Crime</b></td><td><code>OSNtv Crime.sa</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Crime.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Documentary</b></td><td><code>OSNtv Documentary.sa</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Documentary.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv iQIYI</b></td><td><code>OSNtv iQIYI.sa</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.iQIYI.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Movies Comedy</b></td><td><code>OSNtv Movies Comedy.sa</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Movies.Comedy.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Movies Family</b></td><td><code>OSNtv Movies Family.sa</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Movies.Family.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Movies Horror</b></td><td><code>OSNtv Movies Horror.sa</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Movies.Horror.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Now</b></td><td><code>OSNtv Now.sa</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Now.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv One</b></td><td><code>OSNtv One.sa</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.One.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Pop Up</b></td><td><code>OSNtv Pop Up.sa</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Pop.Up.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Showcase Classics</b></td><td><code>OSNtv Showcase Classics.sa</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Showcase.Classics.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Yahala</b></td><td><code>OSNYahala.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Yahala.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Yahala Aflam</b></td><td><code>OSNYahalaAflam.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Yahala.Aflam.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Yahala Bil Arabi</b></td><td><code>OSNYahalaBilArabi.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>OSN.Yahala.Bil.Arabi.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Panorama FM</b></td><td><code>PanoramaFM.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Panorama.FM.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قطر</b></td><td><code>QatarTelevision.qa@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Qatar.Television.qa</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>رابح صقر</b></td><td><code>RabehSaqer.sa@HD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>Rabeh.Saqer.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>راشد الماجد</b></td><td><code>RashidAlMajed.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Rashid.Al.Majed.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>RFM TV</b></td><td><code>RFMTV.fr@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>RFM.TV.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا سينما مصر</b></td><td><code>RotanaCinemaEgypt.eg@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>rotana.net</td><td><code>Rotana.Cinema.Egypt.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا سينما مصر</b></td><td><code>RotanaCinemaEgypt.eg@SD</code></td><td>rotana.net</td><td align="center">2</td><td>rotana.net</td><td><code>Rotana.Cinema.Egypt.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا سينما</b></td><td><code>RotanaCinemaKSA.sa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>rotana.net</td><td><code>Rotana.Cinema.KSA.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا سينما السعودية</b></td><td><code>RotanaCinemaKSA.sa@SD</code></td><td>rotana.net</td><td align="center">2</td><td>rotana.net</td><td><code>Rotana.Cinema.KSA.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا كلاسيك</b></td><td><code>RotanaClassic.sa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>rotana.net</td><td><code>Rotana.Classic.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا كلاسيك</b></td><td><code>RotanaClassic.sa@SD</code></td><td>rotana.net</td><td align="center">2</td><td>rotana.net</td><td><code>Rotana.Classic.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا كليب</b></td><td><code>RotanaClip.sa@SD</code></td><td>rotana.net</td><td align="center">1</td><td>rotana.net</td><td><code>Rotana.Clip.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا كوميدي</b></td><td><code>RotanaComedy.sa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>rotana.net</td><td><code>Rotana.Comedy.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا كوميدي</b></td><td><code>RotanaComedy.sa@SD</code></td><td>rotana.net</td><td align="center">2</td><td>rotana.net</td><td><code>Rotana.Comedy.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا دراما</b></td><td><code>RotanaDrama.sa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>rotana.net</td><td><code>Rotana.Drama.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا دراما</b></td><td><code>RotanaDrama.sa@SD</code></td><td>rotana.net</td><td align="center">2</td><td>rotana.net</td><td><code>Rotana.Drama.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا خليجية</b></td><td><code>RotanaKhalijia.sa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>rotana.net</td><td><code>Rotana.Khalijia.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>روتانا خليجية</b></td><td><code>RotanaKhalijia.sa@SD</code></td><td>rotana.net</td><td align="center">2</td><td>rotana.net</td><td><code>Rotana.Khalijia.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Roya Comedy</b></td><td><code>RoyaComedy.jo@SD</code></td><td>roya-tv.com</td><td align="center">1</td><td>roya-tv.com</td><td><code>Roya.Comedy.jo</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Roya Drama</b></td><td><code>RoyaDrama.jo@SD</code></td><td>roya-tv.com</td><td align="center">1</td><td>roya-tv.com</td><td><code>Roya.Drama.jo</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Roya Kids</b></td><td><code>RoyaKids.jo@SD</code></td><td>roya-tv.com</td><td align="center">2</td><td>roya-tv.com</td><td><code>Roya.Kids.Originals.jo</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Roya Kids Originals</b></td><td><code>RoyaKids.jo@SD</code></td><td>roya-tv.com</td><td align="center">2</td><td>roya-tv.com</td><td><code>Roya.Kids.Originals.jo</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Roya Kids Songs</b></td><td><code>RoyaKidsSongs.jo@SD</code></td><td>roya-tv.com</td><td align="center">1</td><td>roya-tv.com</td><td><code>Roya.Kids.Songs.jo</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Roya Kitchen</b></td><td><code>RoyaKitchen.jo@SD</code></td><td>roya-tv.com</td><td align="center">1</td><td>roya-tv.com</td><td><code>Roya.Kitchen.jo</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Roya News</b></td><td><code>RoyaNews.jo@SD</code></td><td>roya-tv.com</td><td align="center">1</td><td>roya-tv.com</td><td><code>Roya.News.jo</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>رؤيا</b></td><td><code>RoyaTV.jo@SD</code></td><td>elcinema.com</td><td align="center">3</td><td>roya-tv.com</td><td><code>Roya.TV.jo</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Roya TV HD</b></td><td><code>RoyaTV.jo@SD</code></td><td>osn.com</td><td align="center">3</td><td>roya-tv.com</td><td><code>Roya.TV.jo</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Roya TV</b></td><td><code>RoyaTV.jo@SD</code></td><td>roya-tv.com</td><td align="center">3</td><td>roya-tv.com</td><td><code>Roya.TV.jo</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>RT English</b></td><td><code>RT.ru@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>RT.English.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>RT Arabic</b></td><td><code>RTArabic.ru@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>RT.Arabic.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>صدى البلد</b></td><td><code>SadaElbalad.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Sada.Elbalad.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>صدى البلد 2</b></td><td><code>SadaElbalad2.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Sada.Elbalad2.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>صدى البلد دراما</b></td><td><code>SadaElbaladDrama.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Sada.Elbalad.Drama.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>سلام</b></td><td><code>SalamTV.ly@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Salam.TV.ly</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>سما دبي</b></td><td><code>SamaDubai.ae@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Sama.Dubai.ae</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Al Thaqafeya</b></td><td><code>SaudiThaqafiyaTV.sa@SD</code></td><td>osn.com</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MBC.Saudi.Thaqafiya.TV.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الثقافية</b></td><td><code>SaudiThaqafiyaTV.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>MBC.Saudi.Thaqafiya.TV.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>إس بي سي</b></td><td><code>SBC.sa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>SBC.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>SBC</b></td><td><code>SBC.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>SBC.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>الشارقة</b></td><td><code>SharjahTV.ae@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Sharjah.TV.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Sky News Arabia HD</b></td><td><code>SkyNewsArabia.ae@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>Sky.News.Arabia.ae</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Spacetoon</b></td><td><code>SpacetoonArabic.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Spacetoon.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>7</b></td><td><code>StarMoviesMiddleEast.ae@SD</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>StarMoviesMiddleEast.ae@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ستار موفيز</b></td><td><code>StarMoviesMiddleEast.ae@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>bein.com</td><td><code>StarMoviesMiddleEast.ae@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>16</b></td><td><code>StarWorldMiddleEast.ae@SD</code></td><td>bein.com</td><td align="center">2</td><td>bein.com</td><td><code>StarWorldMiddleEast.ae@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ستار ورلد</b></td><td><code>StarWorldMiddleEast.ae@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>bein.com</td><td><code>StarWorldMiddleEast.ae@SD</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>طرب</b></td><td><code>Tarab.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Tarab.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>تن</b></td><td><code>TeN.eg@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>TeN.eg</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ذكريات</b></td><td><code>ThikrayatTV.sa@SD</code></td><td>elcinema.com</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>Thikrayat.TV.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ذكريات</b></td><td><code>ThikrayatTV.sa@SD</code></td><td>shahid.mbc.net</td><td align="center">2</td><td>shahid.mbc.net</td><td><code>Thikrayat.TV.sa</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>TLC HD</b></td><td><code>TLCArabia.us@SD</code></td><td>osn.com</td><td align="center">1</td><td>osn.com</td><td><code>TLC.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>يو تي في</b></td><td><code>UTV.iq@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Channel2954e263.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>وناسه</b></td><td><code>Wanasah.ae@SD</code></td><td>shahid.mbc.net</td><td align="center">1</td><td>shahid.mbc.net</td><td><code>MBC.Wanasah.mena</code></td><td>—</td><td>—</td><td>ID not present in final feed</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>زي ألوان</b></td><td><code>ZeeAlwan.ae@SD</code></td><td>elcinema.com</td><td align="center">1</td><td>elcinema.com</td><td><code>Channel6da3a2ca.mena</code></td><td>—</td><td>—</td><td>Published feed expired</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>30</b></td><td><code>—</code></td><td>bein.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>8</b></td><td><code>—</code></td><td>bein.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>16</b></td><td><code>—</code></td><td>bein.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 6 AFC</b></td><td><code>—</code></td><td>beinsports.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 4 AFC</b></td><td><code>—</code></td><td>beinsports.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>beIN SPORTS 5 AFC</b></td><td><code>—</code></td><td>beinsports.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>اﻹمارات</b></td><td><code>—</code></td><td>elcinema.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Blippi and Friends</b></td><td><code>—</code></td><td>osn.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>OSNtv Pop Up 2</b></td><td><code>—</code></td><td>osn.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>eClutch Access</b></td><td><code>—</code></td><td>osn.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Esport 24</b></td><td><code>—</code></td><td>osn.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>eClutch LIVE</b></td><td><code>—</code></td><td>osn.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Padel TV</b></td><td><code>—</code></td><td>osn.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>eClutch LIVE 2</b></td><td><code>—</code></td><td>osn.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>eClutch Arabic</b></td><td><code>—</code></td><td>osn.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>STV1 HD</b></td><td><code>—</code></td><td>osn.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>رؤيا فلسطين</b></td><td><code>—</code></td><td>roya-tv.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>Roya Sport</b></td><td><code>—</code></td><td>roya-tv.com</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>BIG TIME</b></td><td><code>—</code></td><td>shahid.mbc.net</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة طاش</b></td><td><code>—</code></td><td>shahid.mbc.net</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>ناصر القصبي</b></td><td><code>—</code></td><td>shahid.mbc.net</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة الكبير أوي</b></td><td><code>—</code></td><td>shahid.mbc.net</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة العاصوف</b></td><td><code>—</code></td><td>shahid.mbc.net</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة مسرح مصر</b></td><td><code>—</code></td><td>shahid.mbc.net</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة اللعبة</b></td><td><code>—</code></td><td>shahid.mbc.net</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>UNBEATEN</b></td><td><code>—</code></td><td>shahid.mbc.net</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>القرآن الكريم بصوت السديس</b></td><td><code>—</code></td><td>shahid.mbc.net</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة كامل العدد</b></td><td><code>—</code></td><td>shahid.mbc.net</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>قناة جاك العلم</b></td><td><code>—</code></td><td>shahid.mbc.net</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><b>AWSN</b></td><td><code>—</code></td><td>shahid.mbc.net</td><td align="center">1</td><td></td><td><code></code></td><td>—</td><td>—</td><td>No XMLTV ID</td></tr>
+</tbody>
+</table>
