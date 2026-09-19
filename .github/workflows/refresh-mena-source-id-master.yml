@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/refresh-mena-source-id-master.yml"
       - "tools/enrich_mena_source_id_master.py"
+      - "tools/render_mena_source_id_master_md.py"
   workflow_dispatch:
 
 permissions:
