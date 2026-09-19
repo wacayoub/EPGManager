@@ -48,6 +48,7 @@ QUARANTINED_FAMILY_IDS = {
     ("mena-other", "Nat.Geo.Wild.mena"),
     ("mena-other", "Nat.Geographic.mena"),
     ("provider-adm", "ADM.National.Geographic.Abu.Dhabi.ae"),
+    ("provider-adm", "NationalGeographicAbuDhabi.ae"),
 }
 
 FAMILY_SHARDS = ("mena-other", "provider-adm")
