@@ -45,7 +45,7 @@ jobs:
             -o /tmp/separate-sources.json || printf '%s\n' '{"sources":[]}' > /tmp/separate-sources.json
           curl -fL --retry 3 --retry-delay 1 \
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/source-zero-epg.json" \
-            -o /tmp/source-zero-epg.json || printf '%s\n' '{"rows":[]}' > /tmp/source-zero-epg.json
+            -o /tmp/source-zero-epg.json || printf '%s\n' '{"pending":true,"rows":[]}' > /tmp/source-zero-epg.json
           for key in osn elcinema bein; do
             curl -fL --retry 3 --retry-delay 1 \
               "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/source-${key}.xml.gz" \
