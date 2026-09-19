@@ -33,6 +33,17 @@ jobs:
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz" \
             -o /tmp/mena-arabic.xml.gz
 
+      - name: Download Morocco Cloud monitoring inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --retry-delay 1 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.txt" \
+            -o /tmp/morocco.txt
+          curl -fL --retry 3 --retry-delay 1 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
+            -o /tmp/morocco.xml.gz
+
       - name: Enrich master with current real EPG
         shell: bash
         run: |
@@ -47,7 +58,9 @@ jobs:
           set -euo pipefail
           python tools/render_mena_source_id_master_md.py \
             --csv docs/mena-source-id-master.csv \
-            --md docs/mena-source-id-master.md
+            --md docs/mena-source-id-master.md \
+            --morocco-list /tmp/morocco.txt \
+            --morocco-xml /tmp/morocco.xml.gz
 
       - name: Verify required live columns
         shell: bash
