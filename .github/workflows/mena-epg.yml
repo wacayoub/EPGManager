@@ -269,7 +269,7 @@ jobs:
           fi
           exit 0
 
-      - name: Grab ElCinema Arabic donor - 3 input days throttled
+      - name: Grab ElCinema Arabic donor - 2 days throttled
         if: steps.gate.outputs.run == 'true'
         working-directory: vendor/iptv-org-epg
         shell: bash
