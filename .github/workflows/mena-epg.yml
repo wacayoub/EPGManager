@@ -45,6 +45,7 @@ on:
       - "tools/receiver_release_gate.py"
       - "tools/namespace_replay_test.py"
       - "tools/natgeo_ad_arabic_enrich.py"
+      - "tools/enrich_mena_source_id_master.py"
       - "data/natgeo_ad_arabic_metadata.json"
 
 permissions:
@@ -146,7 +147,8 @@ jobs:
             tools/canonical_publish_finalize.py \
             tools/receiver_release_gate.py \
             tools/namespace_replay_test.py \
-            tools/natgeo_ad_arabic_enrich.py
+            tools/natgeo_ad_arabic_enrich.py \
+            tools/enrich_mena_source_id_master.py
 
       - name: Install upstream EPG grabber
         if: steps.gate.outputs.run == 'true'
@@ -541,6 +543,31 @@ jobs:
           assert int(summary.get('NO_EPG', 0) or 0) == 0, summary
           print('ALL_ID_RELEASE PASS', summary)
           PY
+
+      - name: Refresh MENA source ID master with current programme
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Cloud"
+          git config user.email "actions@users.noreply.github.com"
+          git fetch origin main
+          rm -rf docs-main
+          git worktree add docs-main origin/main
+          python tools/enrich_mena_source_id_master.py \
+            --master docs-main/docs/mena-source-id-master.csv \
+            --xml output/final/mena-arabic.xml.gz \
+            --aliases output/final/receiver-id-aliases.json
+          cd docs-main
+          git add docs/mena-source-id-master.csv
+          if git diff --cached --quiet; then
+            echo "No MENA source ID master changes."
+          else
+            stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
+            git commit -m "Refresh MENA source ID live programme snapshot ${stamp}"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
 
       - name: Publish atomically to mena-data
         if: steps.gate.outputs.run == 'true'
