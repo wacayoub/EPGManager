@@ -33,6 +33,26 @@ def main() -> int:
         counts[s] = counts.get(s, 0) + 1
     snapshot = next(((r.get("epg_snapshot_utc") or "").strip() for r in rows if (r.get("epg_snapshot_utc") or "").strip()), "")
 
+    def monitor_status(row):
+        state = (row.get("now_status") or "").strip()
+        if state == "NOW":
+            return "🟢 ON"
+        return "🔴 OFF"
+
+    def off_reason(row):
+        state = (row.get("now_status") or "").strip()
+        if state == "NOW":
+            return "EPG current"
+        if state == "NO_XMLTV_ID":
+            return "No XMLTV ID"
+        if state == "NOT_PUBLISHED":
+            return "ID not present in final feed"
+        if state == "NEXT_ONLY":
+            return "No current event; future EPG exists"
+        if state == "NO_CURRENT_EVENT":
+            return "Published ID but no current event"
+        return state or "Unknown"
+
     out = [
         "# MENA Source ID Monitoring",
         "",
@@ -56,23 +76,37 @@ def main() -> int:
         "",
         "## All monitored IDs",
         "",
-        "| XMLTV ID | Channel | Source | Candidates | Winner source | Receiver canonical ID | EPG status | Now title | Now description |",
-        "|---|---|---|---:|---|---|---|---|---|",
+        "<table>",
+        "<thead><tr>",
+        '<th width="170">Status</th>',
+        '<th width="260">Channel</th>',
+        '<th width="250">XMLTV ID</th>',
+        '<th width="170">Source</th>',
+        '<th width="90">Candidates</th>',
+        '<th width="170">Winner</th>',
+        '<th width="260">Receiver canonical ID</th>',
+        '<th width="320">Now title</th>',
+        '<th width="520">Now description</th>',
+        '<th width="260">OFF reason</th>',
+        "</tr></thead>",
+        "<tbody>",
     ]
     for r in rows:
         out.append(
-            "| %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
-                esc((r.get("xmltv_id") or "").strip() or "—"),
-                esc(r.get("channel_name") or ""),
-                esc(r.get("source") or ""),
-                esc(r.get("candidate_count") or ""),
-                esc(r.get("winner_source") or ""),
-                esc(r.get("receiver_canonical_id") or ""),
-                esc(r.get("now_status") or ""),
-                esc(r.get("now_title") or ""),
-                esc(r.get("now_desc") or ""),
-            )
+            "<tr>"
+            f"<td><b>{esc(monitor_status(r))}</b></td>"
+            f"<td><b>{esc(r.get('channel_name') or '')}</b></td>"
+            f"<td><code>{esc((r.get('xmltv_id') or '').strip() or '—')}</code></td>"
+            f"<td>{esc(r.get('source') or '')}</td>"
+            f"<td align=\"center\">{esc(r.get('candidate_count') or '')}</td>"
+            f"<td>{esc(r.get('winner_source') or '')}</td>"
+            f"<td><code>{esc(r.get('receiver_canonical_id') or '')}</code></td>"
+            f"<td>{esc(r.get('now_title') or '—')}</td>"
+            f"<td>{esc(r.get('now_desc') or '—')}</td>"
+            f"<td>{esc(off_reason(r))}</td>"
+            "</tr>"
         )
+    out += ["</tbody>", "</table>"]
 
     dst.write_text("\n".join(out) + "\n", encoding="utf-8")
     print(f"MENA_MASTER_MD PASS rows={total} unresolved={unresolved} multi={multi}")
