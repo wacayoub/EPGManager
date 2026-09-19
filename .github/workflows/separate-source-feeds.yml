@@ -288,6 +288,20 @@ jobs:
 
           out = Path('output/final-sources')
           rows = []
+          catalogue_counts = {}
+          for key in ('elcinema','osn','bein'):
+              p = Path(f'output/source-build/{key}.channels.xml')
+              if p.exists():
+                  try:
+                      catalogue_counts[key] = len(ET.parse(p).getroot().findall('channel'))
+                  except Exception:
+                      catalogue_counts[key] = 0
+          try:
+              sport_report = json.loads(Path('output/source-build/sport24-scrape.json').read_text(encoding='utf-8'))
+              catalogue_counts['sport24'] = len(sport_report.get('channels') or [])
+          except Exception:
+              catalogue_counts['sport24'] = 0
+
           for key, label in [('elcinema','ElCinema'), ('sport24','Sport24'), ('osn','OSN Official'), ('bein','beIN')]:
               stats_path = out / f'source-{key}.json'
               stats = json.loads(stats_path.read_text(encoding='utf-8')) if stats_path.exists() else {}
@@ -299,11 +313,19 @@ jobs:
                       healthy = bool(root.findall('channel')) and bool(root.findall('programme'))
                   except Exception:
                       healthy = False
+              active_channels = int(stats.get('channels', 0) or 0)
+              total_channels = int(catalogue_counts.get(key, 0) or 0)
+              scrap_pct = round((active_channels * 100.0 / total_channels), 1) if total_channels else 0.0
+              stats['catalogue_channels'] = total_channels
+              stats['scrap_pct'] = scrap_pct
+              stats_path.write_text(json.dumps(stats, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
               rows.append({
                   'key': key,
                   'label': label,
                   'xml': f'source-{key}.xml.gz',
-                  'channels': int(stats.get('channels', 0) or 0),
+                  'channels': active_channels,
+                  'catalogue_channels': total_channels,
+                  'scrap_pct': scrap_pct,
                   'programmes': int(stats.get('programmes', 0) or 0),
                   'healthy': healthy,
                   'window_hours': 3,
