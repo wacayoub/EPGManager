@@ -65,6 +65,14 @@ CHANNEL_SITE_OVERRIDES = {
     "OmanTV.om@SD": "osn.com",
     "AlHadath.sa@SD": "osn.com",
     "AlQuranAlKareemTV.sa@SD": "osn.com",
+    # User-selected beIN entertainment policy (2026-09-19): prefer ElCinema
+    # for richer Arabic titles/descriptions on these duplicated services.
+    "beINDrama1.qa@SD": "elcinema.com",
+    "beINMovies1Premiere.qa@SD": "elcinema.com",
+    "beINMovies2Action.qa@SD": "elcinema.com",
+    "beINMovies3Drama.qa@SD": "elcinema.com",
+    "beINSeries1.qa@SD": "elcinema.com",
+    "beINSeries2.qa@SD": "elcinema.com",
     # Verified on 2026-09-17 against the standalone official OSN grab: these two
     # exact Abu Dhabi identities have materially better real coverage on OSN
     # (Sports 1 ~50h, Abu Dhabi TV ~37.5h) than the alternate MENA candidates.
