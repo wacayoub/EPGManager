@@ -15,35 +15,32 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - name: Setup PHP 8.3
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-          extensions: curl, dom, simplexml, xmlwriter, openssl, zlib
+          extensions: curl, dom, simplexml, xmlwriter, openssl, zlib, mbstring
           coverage: none
-      - name: PHP modules
-        run: |
-          php -v
-          php -m
-      - name: Run source audit
-        id: audit
+      - name: Prepare output
+        run: mkdir -p hostinger/tests/output
+      - name: Network source audit
+        id: network
         continue-on-error: true
-        run: |
-          php hostinger/tests/source_audit.php | tee hostinger/tests/output/source-audit.txt
-      - name: Print report
-        if: always()
-        run: |
-          cat hostinger/tests/output/source-audit.json || true
-      - name: Upload report
+        run: php hostinger/tests/source_audit.php | tee hostinger/tests/output/source-audit.txt
+      - name: Parser-level audit
+        id: parser
+        continue-on-error: true
+        run: php hostinger/tests/parser_audit.php | tee hostinger/tests/output/parser-audit.txt
+      - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: hostinger-source-audit
           path: hostinger/tests/output/
           retention-days: 3
-      - name: Fail if probes failed
-        if: steps.audit.outcome == 'failure'
+      - name: Final gate
+        if: steps.network.outcome == 'failure' || steps.parser.outcome == 'failure'
         run: exit 1
