@@ -366,3 +366,12 @@ jobs:
         run: |
           echo "Candidate rejected: ${{ steps.candidate.outputs.reason }}"
           echo "The existing epg-data/morocco.xml.gz remains untouched."
+
+      - name: Preserve candidate diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: morocco-candidate-${{ github.run_id }}
+          path: output/
+          if-no-files-found: warn
+          retention-days: 3
