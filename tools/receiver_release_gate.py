@@ -36,7 +36,8 @@ BEIN_CORE = {
     "beIN.Movies.Family.qa", "beIN.Movies.Premiere.qa", "beIN.Series.1.qa",
     "beIN.Series.2.qa", "beIN.Sports.FTA.qa", "beIN.Sports.News.qa", "beIN.Sports.qa",
 } | {"beIN.Sports.%d.qa" % n for n in range(1, 10)} \
-  | {"beIN.Sports.EN%d.qa" % n for n in range(1, 3)}
+  | {"beIN.Sports.EN%d.qa" % n for n in range(1, 3)} \
+  | {"beIN.Sports.FR%d.qa" % n for n in range(1, 3)}
 BEIN_EVENTS = {"beIN.Sports.MAX%d.qa" % n for n in range(1, 7)} \
   | {"beIN.Sports.XTRA%d.qa" % n for n in range(1, 10)}
 BEIN_OPTIONAL = BEIN_EVENTS | {"beIN.Gourmet.qa"}
