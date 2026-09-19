@@ -1,107 +1,277 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Render docs/mena-source-id-master.csv as a GitHub-friendly monitoring page."""
+"""Render the final winner-only EPG monitoring page.
+
+Inputs:
+- MENA source master CSV (contains all source candidates)
+- optional Morocco Cloud channel list + XMLTV feed
+
+Output:
+- one row per winning channel only
+- alphabetical channel order
+- normalized source labels
+- current EPG status/title/description
+"""
 from __future__ import annotations
 
 import argparse
 import csv
+from datetime import datetime, timezone
+import gzip
 from pathlib import Path
+import re
+import xml.etree.ElementTree as ET
 
 
 def esc(value: str) -> str:
-    return str(value or "").replace("|", r"\|").replace("\r", " ").replace("\n", "<br>")
+    return (
+        str(value or "")
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace("|", "&#124;")
+        .replace("\r", " ")
+        .replace("\n", "<br>")
+    )
+
+
+def parse_dt(value: str):
+    value = (value or "").strip()
+    m = re.match(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?", value)
+    if not m:
+        return None
+    digits, offset = m.groups()
+    fmt = "%Y%m%d%H%M%S" if len(digits) == 14 else "%Y%m%d%H%M"
+    try:
+        if not offset or offset == "Z":
+            return datetime.strptime(digits, fmt).replace(tzinfo=timezone.utc)
+        return datetime.strptime(digits + offset, fmt + "%z").astimezone(timezone.utc)
+    except ValueError:
+        return None
+
+
+def read_xml(path: Path):
+    raw = path.read_bytes()
+    if raw[:2] == b"\x1f\x8b":
+        raw = gzip.decompress(raw)
+    return ET.fromstring(raw)
+
+
+def node_text(node: ET.Element, tag: str) -> str:
+    vals = []
+    for child in node.findall(tag):
+        txt = (child.text or "").strip()
+        if txt:
+            vals.append(txt)
+    return " | ".join(vals)
+
+
+def source_label(site: str) -> str:
+    labels = {
+        "bein.com": "beIN",
+        "beinsports.com": "beIN Sports",
+        "osn.com": "OSN",
+        "elcinema.com": "ElCinema",
+        "shahid.mbc.net": "Shahid",
+        "rotana.net": "Rotana",
+        "roya-tv.com": "Roya",
+        "aljazeera.com": "Al Jazeera",
+        "artonline.tv": "ART",
+        "ayn.om": "Ayn Oman",
+        "Morocco Cloud": "Morocco Cloud",
+    }
+    return labels.get(site, site)
+
+
+def monitor_status(row):
+    return "🟢 ON" if (row.get("now_status") or "").strip() == "NOW" else "🔴 OFF"
+
+
+def off_reason(row):
+    state = (row.get("now_status") or "").strip()
+    if state == "NOW":
+        return "EPG current"
+    if state == "STALE_FEED":
+        return "Published feed expired"
+    if state == "NOT_PUBLISHED":
+        return "ID not present in final feed"
+    if state == "NO_XMLTV_ID":
+        return "No XMLTV ID"
+    if state == "NEXT_ONLY":
+        return "Future EPG exists, nothing current"
+    if state == "NO_CURRENT_EVENT":
+        return "Published ID but no current event"
+    return state or "Unknown"
+
+
+def morocco_rows(txt_path: Path, xml_path: Path):
+    now = datetime.now(timezone.utc)
+    root = read_xml(xml_path)
+    events = {}
+    next_events = {}
+    latest_stop = None
+    for p in root.findall("programme"):
+        cid = (p.get("channel") or "").strip()
+        start = parse_dt(p.get("start") or "")
+        stop = parse_dt(p.get("stop") or "")
+        if not cid or not start:
+            continue
+        if stop and (latest_stop is None or stop > latest_stop):
+            latest_stop = stop
+        if stop and start <= now < stop:
+            old = events.get(cid)
+            if old is None or start > old[0]:
+                events[cid] = (start, stop, p)
+        elif start > now:
+            old = next_events.get(cid)
+            if old is None or start < old[0]:
+                next_events[cid] = (start, stop, p)
+
+    rows = []
+    for line in txt_path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        parts = [x.strip() for x in line.split("|")]
+        if len(parts) < 2:
+            continue
+        cid, name = parts[0], parts[1]
+        current = events.get(cid)
+        nxt = next_events.get(cid)
+        if current:
+            _start, _stop, p = current
+            status = "NOW"
+            title = node_text(p, "title")
+            desc = node_text(p, "desc")
+        elif nxt:
+            status = "NEXT_ONLY"
+            title = ""
+            desc = ""
+        elif latest_stop and latest_stop <= now:
+            status = "STALE_FEED"
+            title = ""
+            desc = ""
+        else:
+            status = "NO_CURRENT_EVENT"
+            title = ""
+            desc = ""
+        rows.append({
+            "xmltv_id": cid,
+            "channel_name": name,
+            "source": "Morocco Cloud",
+            "candidate_count": "1",
+            "winner_source": "Morocco Cloud",
+            "receiver_canonical_id": cid,
+            "now_status": status,
+            "now_title": title,
+            "now_desc": desc,
+            "epg_snapshot_utc": now.isoformat(),
+        })
+    return rows
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", required=True)
     ap.add_argument("--md", required=True)
+    ap.add_argument("--morocco-list")
+    ap.add_argument("--morocco-xml")
     args = ap.parse_args()
 
-    src = Path(args.csv)
-    dst = Path(args.md)
-    with src.open("r", encoding="utf-8-sig", newline="") as fh:
-        rows = list(csv.DictReader(fh))
+    with Path(args.csv).open("r", encoding="utf-8-sig", newline="") as fh:
+        all_rows = list(csv.DictReader(fh))
 
-    total = len(rows)
-    resolved = sum(1 for r in rows if (r.get("xmltv_id") or "").strip())
-    unresolved = total - resolved
-    multi = sum(1 for r in rows if int((r.get("candidate_count") or "0") or 0) > 1)
+    # Only the selected winning source row for each channel survives monitoring.
+    rows = [
+        r for r in all_rows
+        if (r.get("xmltv_id") or "").strip()
+        and (r.get("source") or "").strip()
+        and (r.get("source") or "").strip() == (r.get("winner_source") or "").strip()
+    ]
+
+    # Morocco is not part of the MENA Cloud feed; append its dedicated Cloud winners.
+    if args.morocco_list and args.morocco_xml:
+        lp, xp = Path(args.morocco_list), Path(args.morocco_xml)
+        if lp.exists() and xp.exists():
+            rows.extend(morocco_rows(lp, xp))
+
+    # De-duplicate exact monitoring IDs, preferring Morocco Cloud for .ma dedicated IDs.
+    dedup = {}
+    for r in rows:
+        key = (r.get("receiver_canonical_id") or r.get("xmltv_id") or "").strip()
+        if not key:
+            continue
+        current = dedup.get(key)
+        if current is None or (r.get("source") == "Morocco Cloud" and current.get("source") != "Morocco Cloud"):
+            dedup[key] = r
+    rows = list(dedup.values())
+
+    # User-facing alphabetical order by channel name, case-insensitive.
+    rows.sort(key=lambda r: ((r.get("channel_name") or "").casefold(), (r.get("xmltv_id") or "").casefold()))
+
     counts = {}
     for r in rows:
         s = (r.get("now_status") or "").strip() or "UNKNOWN"
         counts[s] = counts.get(s, 0) + 1
     snapshot = next(((r.get("epg_snapshot_utc") or "").strip() for r in rows if (r.get("epg_snapshot_utc") or "").strip()), "")
 
-    def monitor_status(row):
-        state = (row.get("now_status") or "").strip()
-        if state == "NOW":
-            return "🟢 ON"
-        return "🔴 OFF"
-
-    def off_reason(row):
-        state = (row.get("now_status") or "").strip()
-        if state == "NOW":
-            return "EPG current"
-        if state == "NO_XMLTV_ID":
-            return "No XMLTV ID"
-        if state == "NOT_PUBLISHED":
-            return "ID not present in final feed"
-        if state == "STALE_FEED":
-            return "Published feed expired / no current window"
-        if state == "NEXT_ONLY":
-            return "No current event; future EPG exists"
-        if state == "NO_CURRENT_EVENT":
-            return "Published ID but no current event"
-        return state or "Unknown"
+    source_counts = {}
+    for r in rows:
+        lab = source_label((r.get("winner_source") or r.get("source") or "").strip())
+        source_counts[lab] = source_counts.get(lab, 0) + 1
 
     out = [
-        "# MENA Source ID Monitoring",
+        "# EPG Source ID Monitoring",
         "",
-        "> Auto-generated monitoring page from `docs/mena-source-id-master.csv`.  ",
+        "> Winner-only monitoring page.  ",
         "> Rule: **1 real channel → 1 canonical XMLTV ID → 1 winning source**.",
         "",
         "## Summary",
         "",
         "| Metric | Value |",
         "|---|---:|",
-        f"| Source rows | {total} |",
-        f"| Rows with XMLTV ID | {resolved} |",
-        f"| Rows without XMLTV ID | {unresolved} |",
-        f"| Multi-source candidates | {multi} |",
-    ]
-    for key in ("NOW", "STALE_FEED", "NEXT_ONLY", "NO_CURRENT_EVENT", "NOT_PUBLISHED", "NO_XMLTV_ID", "UNKNOWN"):
-        if counts.get(key):
-            out.append(f"| {key} | {counts[key]} |")
-    out += [
+        f"| Winner channels monitored | {len(rows)} |",
+        f"| 🟢 ON | {counts.get('NOW', 0)} |",
+        f"| 🔴 STALE FEED | {counts.get('STALE_FEED', 0)} |",
+        f"| 🔴 NOT PUBLISHED | {counts.get('NOT_PUBLISHED', 0)} |",
+        f"| 🔴 NO CURRENT EVENT | {counts.get('NO_CURRENT_EVENT', 0)} |",
         f"| Snapshot UTC | {esc(snapshot)} |",
         "",
-        "## All monitored IDs",
+        "## Winners by source",
+        "",
+        "| Source | Winners |",
+        "|---|---:|",
+    ]
+    for src, count in sorted(source_counts.items(), key=lambda kv: kv[0].casefold()):
+        out.append(f"| {esc(src)} | {count} |")
+
+    out += [
+        "",
+        "## All winner IDs — alphabetical",
         "",
         "<table>",
         "<thead><tr>",
-        '<th width="170">Status</th>',
-        '<th width="260">Channel</th>',
-        '<th width="250">XMLTV ID</th>',
-        '<th width="170">Source</th>',
+        '<th width="110">Status</th>',
+        '<th width="250">Channel</th>',
+        '<th width="240">XMLTV ID</th>',
+        '<th width="160">Source</th>',
         '<th width="90">Candidates</th>',
-        '<th width="170">Winner</th>',
-        '<th width="260">Receiver canonical ID</th>',
+        '<th width="250">Receiver canonical ID</th>',
         '<th width="320">Now title</th>',
-        '<th width="520">Now description</th>',
-        '<th width="260">OFF reason</th>',
+        '<th width="560">Now description</th>',
+        '<th width="220">OFF reason</th>',
         "</tr></thead>",
         "<tbody>",
     ]
+
     for r in rows:
+        src = source_label((r.get("winner_source") or r.get("source") or "").strip())
         out.append(
             "<tr>"
             f"<td><b>{esc(monitor_status(r))}</b></td>"
             f"<td><b>{esc(r.get('channel_name') or '')}</b></td>"
-            f"<td><code>{esc((r.get('xmltv_id') or '').strip() or '—')}</code></td>"
-            f"<td>{esc(r.get('source') or '')}</td>"
-            f"<td align=\"center\">{esc(r.get('candidate_count') or '')}</td>"
-            f"<td>{esc(r.get('winner_source') or '')}</td>"
+            f"<td><code>{esc((r.get('xmltv_id') or '').strip())}</code></td>"
+            f"<td><b>{esc(src)}</b></td>"
+            f"<td align=\"center\">{esc(r.get('candidate_count') or '1')}</td>"
             f"<td><code>{esc(r.get('receiver_canonical_id') or '')}</code></td>"
             f"<td>{esc(r.get('now_title') or '—')}</td>"
             f"<td>{esc(r.get('now_desc') or '—')}</td>"
@@ -110,8 +280,11 @@ def main() -> int:
         )
     out += ["</tbody>", "</table>"]
 
-    dst.write_text("\n".join(out) + "\n", encoding="utf-8")
-    print(f"MENA_MASTER_MD PASS rows={total} unresolved={unresolved} multi={multi}")
+    Path(args.md).write_text("\n".join(out) + "\n", encoding="utf-8")
+    print(
+        f"EPG_MASTER_MD PASS winners={len(rows)} on={counts.get('NOW',0)} "
+        f"morocco={source_counts.get('Morocco Cloud',0)}"
+    )
     return 0
 
 
