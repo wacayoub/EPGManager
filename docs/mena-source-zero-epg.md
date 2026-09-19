@@ -11,7 +11,8 @@
 
 | Metric | Value |
 |---|---:|
-| Zero/empty source entries | 0 |
+| Zero/empty source entries | PENDING |
 
 | Action | SAT | Channel | Source | XMLTV ID | Canonical ID | State | Suggested next step |
 |---|---|---|---|---|---|---|---|
+| **PENDING** | — | — | — | — | — | Waiting for exact scraper report | Run direct source scrape first |
