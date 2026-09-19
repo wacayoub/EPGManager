@@ -415,24 +415,30 @@ def main() -> int:
             "",
             "## Direct source scrape progress",
             "",
-            "> Real 3h scrape result = channels with usable EPG / channels in that source catalogue.",
+            "> **Scrap** = source catalogue fully queried. **3h EPG coverage** = channels with usable EPG in the current 3-hour test window.",
             "",
-            "| Source | Progress | Active / Catalogue | Programmes | Health |",
-            "|---|---:|---:|---:|---|",
+            "| Source | Scrap | 3h EPG coverage | Active / Catalogue | Programmes | Health |",
+            "|---|---:|---:|---:|---:|---|",
         ]
         for item in sorted(direct_rows, key=lambda x: str(x.get("label") or "").casefold()):
             active = int(item.get("channels", 0) or 0)
             fallback_totals = {"elcinema": 102, "osn": 60, "bein": 85, "sport24": 19}
             key = str(item.get("key") or "").strip().casefold()
             total = int(item.get("catalogue_channels", 0) or fallback_totals.get(key, 0) or 0)
-            pct = float(item.get("scrap_pct", 0.0) or 0.0)
-            if not pct and total:
-                pct = round(active * 100.0 / total, 1)
+            scrape_pct = float(item.get("scrape_pct", 0.0) or 0.0)
+            coverage_pct = float(item.get("coverage_pct", 0.0) or 0.0)
+            if not coverage_pct and total:
+                coverage_pct = round(active * 100.0 / total, 1)
+            # Backward-compatible registry rows from before scrape/coverage were
+            # split: a healthy completed source run means the catalogue was
+            # processed even if only part of it has EPG inside the 3h window.
+            if not scrape_pct and item.get("healthy") and total:
+                scrape_pct = 100.0
             programs = int(item.get("programmes", 0) or 0)
             health = "🟢 HEALTHY" if item.get("healthy") else "🔴 FAILED"
             out.append(
-                f"| {esc(item.get('label') or item.get('key') or '')} | **{pct:.1f}%** | "
-                f"{active} / {total} | {programs} | {health} |"
+                f"| {esc(item.get('label') or item.get('key') or '')} | **{scrape_pct:.1f}%** | "
+                f"**{coverage_pct:.1f}%** | {active} / {total} | {programs} | {health} |"
             )
 
     out += [
