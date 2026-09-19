@@ -16,7 +16,7 @@
 | 🔴 STALE RELEASE / MISSING ID | 63 |
 | 🔴 NOT PUBLISHED | 0 |
 | 🔴 NO CURRENT EVENT | 0 |
-| Snapshot UTC | 2026-09-19T19:34:46.275253+00:00 |
+| Snapshot UTC | 2026-09-19T19:38:08.305239+00:00 |
 
 ## Winners by source
 
@@ -41,10 +41,10 @@
 
 | Source | Scrap | 3h EPG coverage | Active / Catalogue | Programmes | Health |
 |---|---:|---:|---:|---:|---|
-| beIN | **100.0%** | **62.4%** | 53 / 85 | 178 | 🟢 HEALTHY |
-| ElCinema | **100.0%** | **84.3%** | 86 / 102 | 106 | 🟢 HEALTHY |
-| OSN Official | **100.0%** | **96.7%** | 58 / 60 | 498 | 🟢 HEALTHY |
-| Sport24 | **100.0%** | **100.0%** | 20 / 20 | 94 | 🟢 HEALTHY |
+| beIN | **100.0%** | **62.4%** | 53 / 85 | 167 | 🟢 HEALTHY |
+| ElCinema | **100.0%** | **84.3%** | 86 / 102 | 91 | 🟢 HEALTHY |
+| OSN Official | **100.0%** | **96.7%** | 58 / 60 | 502 | 🟢 HEALTHY |
+| Sport24 | **100.0%** | **100.0%** | 20 / 20 | 93 | 🟢 HEALTHY |
 
 ## All winner IDs — alphabetical
 
@@ -223,7 +223,7 @@
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Action</b></td><td><b>OSN</b></td><td><code>OSNMoviesAction.ae@SD</code><br><small>↳ OSN.Movies.Action.ae</small></td><td><b>جاستيس ليغ</b><details><summary>description</summary><small>بعد استعادته الثقة بوجود الخير في النفس البشرية واستلهامه من تضحيات سوبرمان، يستعين بروس واين بحليفته الجديدة، ديانا برينس، لمواجهة تهديد أشد خطراً وفتكاً</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Comedy</b></td><td><b>OSN</b></td><td><code>OSNtv Movies Comedy.sa</code><br><small>↳ OSN.Movies.Comedy.ae</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Family</b></td><td><b>OSN</b></td><td><code>OSNtv Movies Family.sa</code><br><small>↳ OSN.Movies.Family.ae</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Hollywood</b></td><td><b>OSN</b></td><td><code>OSNMoviesHollywood.ae@SD</code><br><small>↳ OSN.Movies.Hollywood.ae</small></td><td><b>تشاتروم</b><details><summary>description</summary><small>يلتقي خمسة مراهقين ذوي شخصيات مختلفة لأول مرة في غرفة دردشة، لكن أحدهم يكشف جانبه المظلم ويهدد حياة الآخرين.</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Hollywood</b></td><td><b>OSN</b></td><td><code>OSNMoviesHollywood.ae@SD</code><br><small>↳ OSN.Movies.Hollywood.ae</small></td><td><b>كراي ماتشو</b><details><summary>description</summary><small>في عام 1979، يحصل نجم مسابقات رعاة البقر ومربي خيول سابق على وظيفة من رئيسه السابق لإحضار ابنه من المكسيك</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Horror</b></td><td><b>OSN</b></td><td><code>OSNtv Movies Horror.sa</code><br><small>↳ OSN.Movies.Horror.ae</small></td><td>—</td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Premiere</b></td><td><b>OSN</b></td><td><code>OSNMoviesPremiere.ae@SD</code><br><small>↳ OSN.Movies.Premiere.ae</small></td><td><b>وان باتل أفتر أناذر</b><details><summary>description</summary><small>بوب، الثوري السابق الذي يعيش خارج الشبكة مع ابنته المستقلة ويلا. عندما يظهر عدوه القديم وتختفي ابنته، يجب عليه مواجهة ماضيه لإنقاذها.</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Now</b></td><td><b>OSN</b></td><td><code>OSNtv Now.sa</code><br><small>↳ OSN.Now.ae</small></td><td>—</td></tr>
