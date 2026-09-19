@@ -292,6 +292,7 @@ def main() -> int:
     ap.add_argument("--source-registry")
     ap.add_argument("--sat-names")
     ap.add_argument("--duplicates-md")
+    ap.add_argument("--zero-epg-md")
     args = ap.parse_args()
 
     with Path(args.csv).open("r", encoding="utf-8-sig", newline="") as fh:
@@ -386,7 +387,8 @@ def main() -> int:
         "> Winner-only monitoring page.  ",
         "> Rule: **1 real channel → 1 canonical XMLTV ID → 1 winning source**.",
         "",
-        "➡️ **[Open duplicate-ID comparison](mena-source-id-duplicates.md)**",
+        "➡️ **[Open duplicate-ID comparison](mena-source-id-duplicates.md)**  ",
+        "➡️ **[Open zero-EPG channels](mena-source-zero-epg.md)**",
         "",
         "## Summary",
         "",
@@ -548,7 +550,8 @@ def main() -> int:
         dup_out = [
             "# Duplicate EPG ID Comparison",
             "",
-            "⬅️ **[Back to main monitoring](mena-source-id-master.md)**",
+            "⬅️ **[Back to main monitoring](mena-source-id-master.md)**  ",
+            "➡️ **[Open zero-EPG channels](mena-source-zero-epg.md)**",
             "",
             "> Only channels/IDs available from **2 or more sources** are listed here.",
             "> Use this page to compare the real current programme from every candidate before changing the winner.",
@@ -641,6 +644,76 @@ def main() -> int:
             f"EPG_DUPLICATES_MD PASS duplicates={len(dup_groups)} "
             f"candidate_rows={sum(len(x[3]) for x in dup_groups)}"
         )
+
+    if args.zero_epg_md:
+        zero_rows = []
+        for r in all_rows:
+            raw_id = (r.get("xmltv_id") or "").strip()
+            src = (r.get("source") or "").strip()
+            if not raw_id or not src:
+                continue
+            state = (r.get("source_now_status") or "").strip()
+            # Zero-EPG report is source-level: no direct current event and no
+            # usable direct programme for that source candidate right now.
+            if state not in {"NO_CURRENT_EVENT", "NOT_MONITORED", "STALE_SOURCE_FEED", "NEXT_ONLY"}:
+                continue
+            zero_rows.append(r)
+
+        # Prefer actual source-level zero rows and keep one row per source/id.
+        uniq = {}
+        for r in zero_rows:
+            key = ((r.get("xmltv_id") or "").strip(), (r.get("source") or "").strip())
+            uniq[key] = r
+        zero_rows = list(uniq.values())
+        zero_rows.sort(key=lambda r: (
+            satellite_channel_name(r, sat_names).casefold(),
+            source_label((r.get("source") or "").strip()).casefold(),
+        ))
+
+        z = [
+            "# Zero EPG Channels",
+            "",
+            "⬅️ **[Back to main monitoring](mena-source-id-master.md)**  ",
+            "➡️ **[Open duplicate-ID comparison](mena-source-id-duplicates.md)**",
+            "",
+            "> These source/channel entries currently have **no usable direct EPG now**.",
+            "> They are marked **SKIP** for coverage work so they do not block the healthy sources.",
+            "> Keep them here for later investigation, remapping, or replacement by another source.",
+            "",
+            "## Summary",
+            "",
+            "| Metric | Value |",
+            "|---|---:|",
+            f"| Zero/empty source entries | {len(zero_rows)} |",
+            "",
+            "| Action | SAT | Channel | Source | XMLTV ID | Canonical ID | State | Suggested next step |",
+            "|---|---|---|---|---|---|---|---|",
+        ]
+
+        for r in zero_rows:
+            src = source_label((r.get("source") or "").strip())
+            raw_id = (r.get("xmltv_id") or "").strip()
+            canonical = (r.get("receiver_canonical_id") or "").strip() or raw_id
+            sats = satellite_positions(r, sat_index)
+            sat_text = " · ".join(sats) if sats else "—"
+            state = (r.get("source_now_status") or "").strip() or "UNKNOWN"
+
+            if state == "NEXT_ONLY":
+                next_step = "Keep for later check; future EPG exists but nothing current"
+            elif state == "STALE_SOURCE_FEED":
+                next_step = "Refresh/repair this source feed"
+            elif state == "NOT_MONITORED":
+                next_step = "Add direct source monitoring or replace with another healthy source"
+            else:
+                next_step = "Check alternative source / remap / provider site"
+
+            z.append(
+                f"| **SKIP** | {esc(sat_text)} | **{esc(satellite_channel_name(r, sat_names))}** | "
+                f"{esc(src)} | `{esc(raw_id)}` | `{esc(canonical)}` | {esc(state)} | {esc(next_step)} |"
+            )
+
+        Path(args.zero_epg_md).write_text("\n".join(z) + "\n", encoding="utf-8")
+        print(f"EPG_ZERO_MD PASS rows={len(zero_rows)}")
 
     print(
         f"EPG_MASTER_MD PASS winners={len(rows)} on={counts.get('NOW',0)} "
