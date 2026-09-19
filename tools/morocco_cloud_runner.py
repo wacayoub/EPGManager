@@ -366,7 +366,9 @@ def main():
     ap.add_argument("--scheduled", action="store_true")
     a = ap.parse_args()
     now = datetime.now(TZ)
-    if a.scheduled and now.hour not in (6, 18):
+    # One controlled morning refresh per Casablanca day.  The workflow invokes
+    # both possible UTC offsets to survive the Morocco DST/Ramadan transition.
+    if a.scheduled and now.hour != 6:
         log("Schedule gate skip: local hour %02d" % now.hour)
         return 0
 
