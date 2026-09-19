@@ -121,7 +121,7 @@ jobs:
         shell: bash
         run: |
           python -m pip install --disable-pip-version-check --no-input --retries 2 --timeout 15 \
-            requests beautifulsoup4 lxml cloudscraper
+            requests beautifulsoup4 lxml cloudscraper curl_cffi
 
       - name: Verify generators
         shell: bash
