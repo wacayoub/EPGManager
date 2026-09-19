@@ -138,6 +138,8 @@ def off_reason(row):
     state = (row.get("now_status") or "").strip()
     if state == "NOW":
         return "EPG current"
+    if state == "STALE_SOURCE_FEED":
+        return "Winner source feed expired"
     if state == "STALE_FEED":
         return "Published feed expired"
     if state == "STALE_RELEASE_MISSING_ID":
@@ -304,6 +306,7 @@ def main() -> int:
         "|---|---:|",
         f"| Winner channels monitored | {len(rows)} |",
         f"| 🟢 ON | {counts.get('NOW', 0)} |",
+        f"| 🔴 STALE SOURCE FEED | {counts.get('STALE_SOURCE_FEED', 0)} |",
         f"| 🔴 STALE FEED | {counts.get('STALE_FEED', 0)} |",
         f"| 🔴 STALE RELEASE / MISSING ID | {counts.get('STALE_RELEASE_MISSING_ID', 0)} |",
         f"| 🔴 NOT PUBLISHED | {counts.get('NOT_PUBLISHED', 0)} |",
