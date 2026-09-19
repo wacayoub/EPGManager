@@ -275,6 +275,61 @@ jobs:
           retry_source osn ""
           retry_source bein ""
 
+      - name: Build exact zero-EPG source report
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          rows = []
+          labels = {"elcinema":"ElCinema", "osn":"OSN Official", "bein":"beIN"}
+          for key in ("elcinema","osn","bein"):
+              cat_path = Path(f"output/source-build/{key}.channels.xml")
+              raw_path = Path(f"output/source-build/{key}.raw.xml")
+              if not cat_path.exists() or not raw_path.exists():
+                  continue
+              cat = ET.parse(cat_path).getroot()
+              raw = ET.parse(raw_path).getroot()
+              with_programmes = {
+                  (p.get("channel") or "").strip()
+                  for p in raw.findall("programme")
+                  if (p.get("channel") or "").strip()
+              }
+              for ch in cat.findall("channel"):
+                  cid = (ch.get("xmltv_id") or ch.get("id") or "").strip()
+                  if not cid or cid in with_programmes:
+                      continue
+                  name = (ch.get("name") or "").strip() or (ch.get("site_id") or "").strip() or cid
+                  rows.append({
+                      "source_key": key,
+                      "source": labels[key],
+                      "xmltv_id": cid,
+                      "channel_name": name,
+                      "reason": "0 programmes returned by upstream after retry",
+                  })
+
+          report = {
+              "schema": 1,
+              "generated_utc": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),
+              "rows": rows,
+              "counts": {
+                  k: sum(1 for r in rows if r["source_key"] == k)
+                  for k in ("elcinema","osn","bein")
+              },
+          }
+          out = Path("output/final-sources")
+          out.mkdir(parents=True, exist_ok=True)
+          (out / "source-zero-epg.json").write_text(
+              json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8"
+          )
+          print(json.dumps(report["counts"], ensure_ascii=False))
+          PY
+
       - name: Scrape Sport24 standalone source safely
         if: steps.gate.outputs.run == 'true'
         shell: bash
@@ -432,6 +487,8 @@ jobs:
               print('PUBLISH', key, row['channels'], row['programmes'])
           # Registry and diagnostics are always current; receiver XML is LKG-protected.
           shutil.copy2(src / 'separate-sources.json', dst / 'separate-sources.json')
+          if (src / 'source-zero-epg.json').exists():
+              shutil.copy2(src / 'source-zero-epg.json', dst / 'source-zero-epg.json')
           if (src / 'sport24-scrape.json').exists():
               shutil.copy2(src / 'sport24-scrape.json', dst / 'sport24-scrape.json')
           print('published=', published)
