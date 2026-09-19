@@ -291,6 +291,7 @@ def main() -> int:
     ap.add_argument("--sat-index")
     ap.add_argument("--source-registry")
     ap.add_argument("--sat-names")
+    ap.add_argument("--duplicates-md")
     args = ap.parse_args()
 
     with Path(args.csv).open("r", encoding="utf-8-sig", newline="") as fh:
@@ -384,6 +385,8 @@ def main() -> int:
         "",
         "> Winner-only monitoring page.  ",
         "> Rule: **1 real channel → 1 canonical XMLTV ID → 1 winning source**.",
+        "",
+        "➡️ **[Open duplicate-ID comparison](mena-source-id-duplicates.md)**",
         "",
         "## Summary",
         "",
@@ -506,6 +509,93 @@ def main() -> int:
     out += ["</tbody>", "</table>"]
 
     Path(args.md).write_text("\n".join(out) + "\n", encoding="utf-8")
+
+    if args.duplicates_md:
+        dup_groups = []
+        for cid, by_source in candidates_by_id.items():
+            candidates = list(by_source.values())
+            if len(candidates) < 2:
+                continue
+            winner_site = next(
+                ((x.get("winner_source") or "").strip() for x in candidates if (x.get("winner_source") or "").strip()),
+                "",
+            )
+            winner_row = next(
+                (x for x in candidates if (x.get("source") or "").strip() == winner_site),
+                candidates[0],
+            )
+            dup_groups.append((satellite_channel_name(winner_row, sat_names), cid, winner_site, candidates))
+
+        dup_groups.sort(key=lambda item: (item[0].casefold(), item[1].casefold()))
+        dup_out = [
+            "# Duplicate EPG ID Comparison",
+            "",
+            "⬅️ **[Back to main monitoring](mena-source-id-master.md)**",
+            "",
+            "> Only channels/IDs available from **2 or more sources** are listed here.",
+            "> Use this page to compare the real current programme from every candidate before changing the winner.",
+            "",
+            "## Summary",
+            "",
+            "| Metric | Value |",
+            "|---|---:|",
+            f"| Duplicate IDs | {len(dup_groups)} |",
+            f"| Candidate source rows | {sum(len(x[3]) for x in dup_groups)} |",
+            "",
+        ]
+
+        for display_name, cid, winner_site, candidates in dup_groups:
+            base = next(
+                (x for x in candidates if (x.get("source") or "").strip() == winner_site),
+                candidates[0],
+            )
+            sats = satellite_positions(base, sat_index)
+            sat_text = " · ".join(sats) if sats else "—"
+            canonical = (base.get("receiver_canonical_id") or "").strip()
+
+            dup_out += [
+                f"## {esc(display_name)}",
+                "",
+                f"- **SAT:** {esc(sat_text)}",
+                f"- **XMLTV ID:** `{esc(cid)}`",
+                f"- **Canonical ID:** `{esc(canonical or cid)}`",
+                f"- **Current suggested winner:** **{esc(source_label(winner_site))}**",
+                f"- **Candidates:** {len(candidates)}",
+                "",
+                "| Choice | Source | Source status | Current programme | Description |",
+                "|---|---|---|---|---|",
+            ]
+
+            ordered = sorted(
+                candidates,
+                key=lambda x: (
+                    0 if (x.get("source") or "").strip() == winner_site else 1,
+                    source_label((x.get("source") or "").strip()).casefold(),
+                ),
+            )
+            for cand in ordered:
+                site = (cand.get("source") or "").strip()
+                choice = "✅ Suggested" if site == winner_site else "Alternative"
+                state = (cand.get("source_now_status") or "").strip() or "NOT_MONITORED"
+                title = candidate_programme_text(cand)
+                desc = (cand.get("source_now_desc") or "").strip() or "—"
+                dup_out.append(
+                    f"| {choice} | **{esc(source_label(site))}** | {esc(state)} | "
+                    f"{esc(title)} | {esc(desc)} |"
+                )
+
+            dup_out += [
+                "",
+                "---",
+                "",
+            ]
+
+        Path(args.duplicates_md).write_text("\n".join(dup_out) + "\n", encoding="utf-8")
+        print(
+            f"EPG_DUPLICATES_MD PASS duplicates={len(dup_groups)} "
+            f"candidate_rows={sum(len(x[3]) for x in dup_groups)}"
+        )
+
     print(
         f"EPG_MASTER_MD PASS winners={len(rows)} on={counts.get('NOW',0)} "
         f"morocco={source_counts.get('Morocco Cloud',0)} sport24={source_counts.get('Sport24',0)}"
