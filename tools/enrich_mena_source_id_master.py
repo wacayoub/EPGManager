@@ -215,6 +215,9 @@ def main() -> int:
         "now_status",
         "now_title",
         "now_desc",
+        "source_now_status",
+        "source_now_title",
+        "source_now_desc",
         "epg_snapshot_utc",
     ]
     fields = [x for x in base_fields if x not in drop_fields and x not in extra] + extra
@@ -237,6 +240,37 @@ def main() -> int:
                 if len(country_matches) == 1:
                     canonical = country_matches[0]
         row["receiver_canonical_id"] = canonical
+
+        own_source = (row.get("source") or "").strip()
+        own_direct = direct_source_indexes.get(own_source) or {}
+        own_events = own_direct.get("events") or {}
+        own_next = own_direct.get("next") or {}
+        own_channels = own_direct.get("channels") or set()
+        own_latest = own_direct.get("latest_stop")
+
+        own_current = own_events.get(raw) or own_events.get(canonical)
+        own_nxt = own_next.get(raw) or own_next.get(canonical)
+        if own_current:
+            _ostart, _ostop, op = own_current
+            row["source_now_status"] = "NOW"
+            row["source_now_title"] = text(op, "title")
+            row["source_now_desc"] = text(op, "desc")
+        elif own_nxt:
+            row["source_now_status"] = "NEXT_ONLY"
+            row["source_now_title"] = ""
+            row["source_now_desc"] = ""
+        elif own_direct and own_latest and own_latest <= now:
+            row["source_now_status"] = "STALE_SOURCE_FEED"
+            row["source_now_title"] = ""
+            row["source_now_desc"] = ""
+        elif own_direct and (raw in own_channels or canonical in own_channels):
+            row["source_now_status"] = "NO_CURRENT_EVENT"
+            row["source_now_title"] = ""
+            row["source_now_desc"] = ""
+        else:
+            row["source_now_status"] = "NOT_MONITORED"
+            row["source_now_title"] = ""
+            row["source_now_desc"] = ""
 
         winner_source = (row.get("winner_source") or row.get("source") or "").strip()
         direct = direct_source_indexes.get(winner_source) or {}
