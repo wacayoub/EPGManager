@@ -4,7 +4,7 @@
 
 Modes:
   build-channels: intersect upstream ElCinema Arabic channels with the active MENA catalogue.
-  overlay: for ElCinema-primary channels replace/extend their raw timetable from the 3-day donor;
+  overlay: for ElCinema-primary channels replace/extend their raw timetable from the 2-day donor;
            for official-primary channels keep start/stop untouched and only enrich exact matching
            slots with Arabic title/description. Official-first protected services never have titles
            replaced; they may only receive a missing/non-Arabic description.
@@ -20,6 +20,27 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 AR = re.compile(r"[\u0600-\u06ff]")
+
+# Verified OSN/ElCinema duplicate audit (2026-09-19). These identities keep
+# the winning non-ElCinema timeline and are removed entirely from the ElCinema
+# donor to avoid duplicate/competing programme grids.
+AUDITED_ELCINEMA_LOSER_IDS = {
+    "AbuDhabiTV.ae@SD",
+    "AlArabyTV2.qa@SD",
+    "CartoonNetworkArabic.ae@SD",
+    "DMC.eg@SD",
+    "DubaiTV.ae@SD",
+    "MBC1.ae@SD",
+    "MBC3.ae@SD",
+    "MBC5.ae@SD",
+    "MBCDrama.ae@SD",
+    "MBCIraq.iq@SD",
+    "MBCMasr.eg@SD",
+    "MBCMasr2.eg@SD",
+    "MBCPlusDrama.sa@SD",
+    "OmanTV.om@SD",
+    "RoyaTV.jo@SD",
+}
 
 
 def has_ar(text: str) -> bool:
@@ -50,12 +71,15 @@ def build_channels(args) -> int:
     kept = 0
     for ch in src.findall("channel"):
         cid = (ch.get("xmltv_id") or "").strip()
-        if cid and cid in active:
+        if cid and cid in active and cid not in AUDITED_ELCINEMA_LOSER_IDS:
             out.append(copy.deepcopy(ch))
             kept += 1
     ET.indent(out, space="  ")
     Path(args.output).write_bytes(ET.tostring(out, encoding="utf-8", xml_declaration=True))
-    print(f"ELCINEMA_DONOR_CHANNELS kept={kept} active={len(active)}")
+    print(
+        f"ELCINEMA_DONOR_CHANNELS kept={kept} active={len(active)} "
+        f"duplicate_losers_excluded={len(AUDITED_ELCINEMA_LOSER_IDS & active)}"
+    )
     return 0
 
 
@@ -145,7 +169,7 @@ def overlay(args) -> int:
     Path(args.output).write_bytes(ET.tostring(primary, encoding="utf-8", xml_declaration=True))
     report = {
         "schema": 1,
-        "policy": "official clocks preserved; ElCinema 3-day throttled donor for Arabic metadata and ElCinema-primary horizon",
+        "policy": "official clocks preserved; ElCinema 2-day throttled donor for Arabic metadata and ElCinema-primary horizon",
         "donor_primary_ids": len(donor_primary_ids),
         "replaced_channels": replaced_channels,
         "donor_programmes_added": added_programmes,
