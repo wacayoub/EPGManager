@@ -262,34 +262,52 @@ def main() -> int:
         "",
         "## All winner IDs — alphabetical",
         "",
-        "<table>",
+        '<table width="100%">',
         "<thead><tr>",
-        '<th width="110">Status</th>',
-        '<th width="250">Channel</th>',
-        '<th width="240">XMLTV ID</th>',
-        '<th width="160">Source</th>',
-        '<th width="90">Candidates</th>',
-        '<th width="250">Receiver canonical ID</th>',
-        '<th width="320">Now title</th>',
-        '<th width="560">Now description</th>',
-        '<th width="220">OFF reason</th>',
+        '<th width="90">Status</th>',
+        '<th width="190">Channel</th>',
+        '<th width="120">Source</th>',
+        '<th width="230">XMLTV ID</th>',
+        '<th width="330">Current programme</th>',
+        '<th width="210">Monitoring</th>',
         "</tr></thead>",
         "<tbody>",
     ]
 
     for r in rows:
         src = source_label((r.get("winner_source") or r.get("source") or "").strip())
+        raw_id = (r.get("xmltv_id") or "").strip()
+        canonical = (r.get("receiver_canonical_id") or "").strip()
+        title = (r.get("now_title") or "").strip()
+        desc = (r.get("now_desc") or "").strip()
+        id_html = f"<code>{esc(raw_id)}</code>"
+        if canonical and canonical != raw_id:
+            id_html += f"<br><small>↳ {esc(canonical)}</small>"
+
+        if title:
+            programme_html = f"<b>{esc(title)}</b>"
+            if desc:
+                programme_html += (
+                    "<details><summary>description</summary>"
+                    f"<small>{esc(desc)}</small></details>"
+                )
+        else:
+            programme_html = "—"
+
+        reason = off_reason(r)
+        if (r.get("now_status") or "").strip() == "NOW":
+            reason_html = "<b>EPG current</b>"
+        else:
+            reason_html = esc(reason)
+
         out.append(
             "<tr>"
             f"<td><b>{esc(monitor_status(r))}</b></td>"
             f"<td><b>{esc(r.get('channel_name') or '')}</b></td>"
-            f"<td><code>{esc((r.get('xmltv_id') or '').strip())}</code></td>"
             f"<td><b>{esc(src)}</b></td>"
-            f"<td align=\"center\">{esc(r.get('candidate_count') or '1')}</td>"
-            f"<td><code>{esc(r.get('receiver_canonical_id') or '')}</code></td>"
-            f"<td>{esc(r.get('now_title') or '—')}</td>"
-            f"<td>{esc(r.get('now_desc') or '—')}</td>"
-            f"<td>{esc(off_reason(r))}</td>"
+            f"<td>{id_html}</td>"
+            f"<td>{programme_html}</td>"
+            f"<td>{reason_html}</td>"
             "</tr>"
         )
     out += ["</tbody>", "</table>"]
