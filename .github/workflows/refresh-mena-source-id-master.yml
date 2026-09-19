@@ -39,6 +39,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          curl -fL --retry 3 --retry-delay 1 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/separate-sources.json" \
+            -o /tmp/separate-sources.json || printf '%s\n' '{"sources":[]}' > /tmp/separate-sources.json
           for key in osn elcinema bein; do
             curl -fL --retry 3 --retry-delay 1 \
               "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/source-${key}.xml.gz" \
@@ -114,7 +117,8 @@ jobs:
             --morocco-xml /tmp/morocco.xml.gz \
             --sport24-list /tmp/source-sport24.txt \
             --sport24-xml /tmp/source-sport24.xml.gz \
-            --sat-index /tmp/receiver-sat-index.json
+            --sat-index /tmp/receiver-sat-index.json \
+            --source-registry /tmp/separate-sources.json
 
       - name: Verify required live columns
         shell: bash
