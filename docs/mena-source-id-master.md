@@ -11,11 +11,10 @@
 | Rows with XMLTV ID | 355 |
 | Rows without XMLTV ID | 30 |
 | Multi-source candidates | 157 |
-| NOW | 0 |
-| NEXT_ONLY | 0 |
 | NO_CURRENT_EVENT | 256 |
 | NOT_PUBLISHED | 99 |
-| Snapshot UTC | 2026-09-19T18:19:56.361875+00:00 |
+| NO_XMLTV_ID | 30 |
+| Snapshot UTC | 2026-09-19T18:21:18.932522+00:00 |
 
 ## All monitored IDs
 
