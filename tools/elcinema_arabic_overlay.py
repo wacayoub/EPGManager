@@ -40,6 +40,14 @@ AUDITED_ELCINEMA_LOSER_IDS = {
     "MBCPlusDrama.sa@SD",
     "OmanTV.om@SD",
     "RoyaTV.jo@SD",
+    # beIN direct vs ElCinema audit (2026-09-19): direct beIN has the denser
+    # 2-day timetable for these four services. Keep ElCinema only for beIN
+    # Drama 1 and beIN Series 2 because no current bein.com channel identity
+    # exists for those two in the upstream catalogue.
+    "beINMovies1Premiere.qa@SD",
+    "beINMovies2Action.qa@SD",
+    "beINMovies3Drama.qa@SD",
+    "beINSeries1.qa@SD",
 }
 
 
