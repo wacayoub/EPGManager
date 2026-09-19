@@ -243,13 +243,7 @@ jobs:
               --raw "output/source-build/${key}.raw.xml" \
               --output "output/source-build/${key}.retry.channels.xml"
 
-            gaps="$(python - "${key}" <<'PY'
-import sys, xml.etree.ElementTree as ET
-key=sys.argv[1]
-root=ET.parse(f"output/source-build/{key}.retry.channels.xml").getroot()
-print(len(root.findall("channel")))
-PY
-)"
+            gaps="$(python -c 'import sys,xml.etree.ElementTree as ET; print(len(ET.parse(sys.argv[1]).getroot().findall("channel")))' "output/source-build/${key}.retry.channels.xml")"
             echo "${key} zero-EPG first-pass channels=${gaps}"
             if [ "${gaps}" -eq 0 ]; then
               return 0
