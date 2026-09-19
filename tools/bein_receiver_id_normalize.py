@@ -37,6 +37,8 @@ ALIASES = {
     "beIN.Sports.9.qa": {"beIN.Sports.9.qa", "beINSPORTS9.qa", "beINSports9.qa@MENA"},
     "beIN.Sports.EN1.qa": {"beIN.Sports.EN1.qa", "beIN SPORTS EN 1.qa", "beIN SPORTS1 ENGLISH Digital.qa"},
     "beIN.Sports.EN2.qa": {"beIN.Sports.EN2.qa", "beIN SPORTS EN 2.qa"},
+    "beIN.Sports.FR1.qa": {"beIN.Sports.FR1.qa"},
+    "beIN.Sports.FR2.qa": {"beIN.Sports.FR2.qa"},
     "beIN.Sports.FTA.qa": {"beIN.Sports.FTA.qa", "bein SPORTS FTA DIGITAL.qa"},
     "beIN.Sports.qa": {"beIN.Sports.qa", "beIN SPORTS.qa"},
     "beIN.4K.qa": {"beIN.4K.qa", "beIN4K.qa@SD", "4k DIGITAL.qa"},
@@ -110,6 +112,7 @@ for n in range(1, 10):
     DISPLAY[f"beIN.Sports.{n}.qa"] = f"beIN Sports {n}"
 for n in range(1, 3):
     DISPLAY[f"beIN.Sports.EN{n}.qa"] = f"beIN Sports EN {n}"
+    DISPLAY[f"beIN.Sports.FR{n}.qa"] = f"beIN Sports FR {n}"
 for n in range(1, 7):
     DISPLAY[f"beIN.Sports.MAX{n}.qa"] = f"beIN Sports MAX {n}"
 for n in range(1, 10):
