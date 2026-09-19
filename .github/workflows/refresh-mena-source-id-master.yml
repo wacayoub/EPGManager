@@ -7,6 +7,7 @@ on:
       - "tools/enrich_mena_source_id_master.py"
       - "tools/render_mena_source_id_master_md.py"
       - "data/receiver-sat-index.json.gz.b64"
+      - "data/receiver-sat-display-names.json"
   workflow_dispatch:
 
 permissions:
@@ -118,6 +119,7 @@ jobs:
             --sport24-list /tmp/source-sport24.txt \
             --sport24-xml /tmp/source-sport24.xml.gz \
             --sat-index /tmp/receiver-sat-index.json \
+            --sat-names data/receiver-sat-display-names.json \
             --source-registry /tmp/separate-sources.json
 
       - name: Verify required live columns
