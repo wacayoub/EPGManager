@@ -9,6 +9,7 @@ on:
       - ".github/workflows/mena-epg.yml"
       - "tools/mena_cloud_catalog.py"
       - "tools/elcinema_arabic_overlay.py"
+      - "tools/elcinema_donor_prune.py"
       - "tools/mena_cloud_merge.py"
       - "tools/mena_cloud_merge_safe.py"
       - "tools/mena_cloud_merge_arabic_first.py"
@@ -280,7 +281,7 @@ jobs:
             npm run grab --- \
               --channels="${GITHUB_WORKSPACE}/output/elcinema-ar.channels.xml" \
               --output="${GITHUB_WORKSPACE}/output/elcinema-ar.xml" \
-              --days=3 \
+              --days=2 \
               --maxConnections=1 \
               --delay=1000 \
               --timeout=20000
@@ -290,6 +291,20 @@ jobs:
             printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?><tv></tv>' > "${GITHUB_WORKSPACE}/output/elcinema-ar.xml"
           fi
           exit 0
+
+      - name: Prune ElCinema channels without EPG and audit descriptions
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/elcinema_donor_prune.py \
+            --channels output/elcinema-ar.channels.xml \
+            --programmes output/elcinema-ar.xml \
+            --output-channels output/elcinema-ar.channels.filtered.xml \
+            --output-programmes output/elcinema-ar.filtered.xml \
+            --report output/elcinema-prune.json
+          mv output/elcinema-ar.channels.filtered.xml output/elcinema-ar.channels.xml
+          mv output/elcinema-ar.filtered.xml output/elcinema-ar.xml
 
       - name: Overlay ElCinema Arabic donor without changing official clocks
         if: steps.gate.outputs.run == 'true'
