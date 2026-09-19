@@ -27,7 +27,9 @@ AR = re.compile(r"[\u0600-\u06ff]")
 AUDITED_ELCINEMA_LOSER_IDS = {
     "AbuDhabiTV.ae@SD",
     "AlArabyTV2.qa@SD",
+    "BahrainTV.bh@SD",
     "CartoonNetworkArabic.ae@SD",
+    "DiscoveryChannelMiddleEastAfrica.us@SD",
     "DMC.eg@SD",
     "DubaiTV.ae@SD",
     "MBC1.ae@SD",
