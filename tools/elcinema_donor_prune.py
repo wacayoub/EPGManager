@@ -29,13 +29,26 @@ def main() -> int:
 
     counts = Counter()
     desc_counts = Counter()
+    samples = {}
     for p in tv_root.findall("programme"):
         cid = (p.get("channel") or "").strip()
         if not cid:
             continue
         counts[cid] += 1
-        if _text(p, "desc"):
+        title = _text(p, "title")
+        desc = _text(p, "desc")
+        if desc:
             desc_counts[cid] += 1
+        current = samples.get(cid)
+        # Prefer a real programme that has a description; otherwise keep the
+        # first titled programme so every live ElCinema ID gets a sample.
+        if current is None or (not current.get("description") and desc):
+            samples[cid] = {
+                "start": (p.get("start") or "").strip(),
+                "stop": (p.get("stop") or "").strip(),
+                "title": title,
+                "description": desc,
+            }
 
     keep = {cid for cid, n in counts.items() if n > 0}
 
@@ -50,6 +63,7 @@ def main() -> int:
             "name": name,
             "programmes": counts.get(cid, 0),
             "descriptions": desc_counts.get(cid, 0),
+            "sample": samples.get(cid, {}),
         }
         if cid in keep:
             out_channels.append(ch)
