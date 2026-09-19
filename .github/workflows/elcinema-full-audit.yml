@@ -55,8 +55,8 @@ jobs:
         shell: bash
         run: |
           npm run grab --- \
-            --channels="\${GITHUB_WORKSPACE}/output/elcinema-ar.channels.xml" \
-            --output="\${GITHUB_WORKSPACE}/output/elcinema-ar.xml" \
+            --channels="${GITHUB_WORKSPACE}/output/elcinema-ar.channels.xml" \
+            --output="${GITHUB_WORKSPACE}/output/elcinema-ar.xml" \
             --days=2 \
             --maxConnections=1 \
             --delay=1000 \
