@@ -7,14 +7,14 @@
 
 | Metric | Value |
 |---|---:|
-| Winner channels monitored | 303 |
-| 🟢 ON | 109 |
+| Winner channels monitored | 302 |
+| 🟢 ON | 108 |
 | 🔴 STALE SOURCE FEED | 0 |
 | 🔴 STALE FEED | 129 |
 | 🔴 STALE RELEASE / MISSING ID | 62 |
 | 🔴 NOT PUBLISHED | 0 |
 | 🔴 NO CURRENT EVENT | 0 |
-| Snapshot UTC | 2026-09-19T19:21:06.815467+00:00 |
+| Snapshot UTC | 2026-09-19T19:22:22.337063+00:00 |
 
 ## Winners by source
 
@@ -31,7 +31,7 @@
 | Rotana | 9 |
 | Roya | 7 |
 | Shahid | 45 |
-| Sport24 | 20 |
+| Sport24 | 19 |
 
 ## Direct source scrape progress
 
@@ -39,10 +39,10 @@
 
 | Source | Progress | Active / Catalogue | Programmes | Health |
 |---|---:|---:|---:|---|
-| beIN | **62.4%** | 53 / 85 | 178 | 🟢 HEALTHY |
-| ElCinema | **84.3%** | 86 / 102 | 106 | 🟢 HEALTHY |
-| OSN Official | **96.7%** | 58 / 60 | 498 | 🟢 HEALTHY |
-| Sport24 | **100.0%** | 20 / 20 | 94 | 🟢 HEALTHY |
+| beIN | **62.4%** | 53 / 85 | 181 | 🟢 HEALTHY |
+| ElCinema | **84.3%** | 86 / 102 | 108 | 🟢 HEALTHY |
+| OSN Official | **96.7%** | 58 / 60 | 499 | 🟢 HEALTHY |
+| Sport24 | **100.0%** | 19 / 19 | 89 | 🟢 HEALTHY |
 
 ## All winner IDs — alphabetical
 
@@ -249,7 +249,6 @@
 <tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Tamazight</b></td><td><b>Morocco Cloud</b></td><td><code>Tamazight</code></td><td><b>تاونزا</b><details><summary>description</summary><small>تاونزا</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>26E</b></small></td><td><b>Thmanyah 1</b></td><td><b>Sport24</b></td><td><code>sport24.thmanyah.1</code></td><td><b>تغطيـة إقليميـة متميّزة لكرة القدم</b><details><summary>description</summary><small>بثّ البطولات الكروية الإقليمية المميّزة، بما في ذلك دوري روشن السعودي، دوري يلو، كأس خادم الحرمين الشريفين، وكأس السوبر السعودي</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>26E</b></small></td><td><b>Thmanyah 2</b></td><td><b>Sport24</b></td><td><code>sport24.thmanyah.2</code></td><td><b>دوري يلو:الأنوار × النجمة</b><details><summary>description</summary><small>دوري يلو- الدرجة الأولى السعودي</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>26E</b></small></td><td><b>Thmanyah 3</b></td><td><b>Sport24</b></td><td><code>sport24.thmanyah.3</code></td><td><b>تغطيـة إقليميـة متميّزة لكرة القدم</b><details><summary>description</summary><small>بثّ البطولات الكروية الإقليمية المميّزة، بما في ذلك دوري روشن السعودي، دوري يلو، كأس خادم الحرمين الشريفين، وكأس السوبر السعودي</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>TLC HD</b></td><td><b>OSN</b></td><td><code>TLCArabia.us@SD</code><br><small>↳ TLC.mena</small></td><td><b>ون داي إن ماي بودي</b><details><summary>description</summary><small>يعاني لوكاس من متلازمة باري-رومبرج، التي تسبب تقلص نصف وجهه نحو الداخل. بينما تعاني ستيفني من ضمور عضلي نادر يتركها تعتمد على والدتها.</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>i Film Arabic mena</b></td><td><b>ElCinema</b></td><td><code>iFilmArabic.ir@SD</code><br><small>↳ i.Film.Arabic.mena</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>25.5E</b></small></td><td><b>Aflam</b></td><td><b>Shahid</b></td><td><code>Aflam.sa@SD</code><br><small>↳ Aflam.sa</small></td><td>—</td></tr>
