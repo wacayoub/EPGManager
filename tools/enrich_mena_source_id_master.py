@@ -111,12 +111,15 @@ def main() -> int:
 
     events = {}
     next_events = {}
+    latest_stop = None
     for p in root.findall("programme"):
         cid = (p.get("channel") or "").strip()
         start = parse_dt(p.get("start") or "")
         stop = parse_dt(p.get("stop") or "")
         if not cid or not start:
             continue
+        if stop and (latest_stop is None or stop > latest_stop):
+            latest_stop = stop
         if stop and start <= now < stop:
             old = events.get(cid)
             if old is None or start > old[0]:
@@ -208,6 +211,9 @@ def main() -> int:
         elif canonical not in channels and raw not in channels:
             row["now_status"] = "NOT_PUBLISHED"
             missing_count += 1
+        elif latest_stop and latest_stop <= now:
+            row["now_status"] = "STALE_FEED"
+            missing_count += 1
         else:
             row["now_status"] = "NO_CURRENT_EVENT"
             missing_count += 1
@@ -241,7 +247,8 @@ def main() -> int:
     print(
         "MENA_MASTER_NOW "
         f"rows={len(rows)} now={current_count} next_only={next_count} "
-        f"missing={missing_count} no_xmltv={unresolved_count} snapshot={now.isoformat()}"
+        f"missing={missing_count} no_xmltv={unresolved_count} "
+        f"latest_stop={latest_stop.isoformat() if latest_stop else 'none'} snapshot={now.isoformat()}"
     )
     return 0
 
