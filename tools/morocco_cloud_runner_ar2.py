@@ -2,12 +2,10 @@
 # -*- coding: utf-8 -*-
 """2M full-day Arabic/Darija quality layer with multi-source failover.
 
-Source order is deliberately conservative:
-1. TeleCableSat (historical/current source)
-2. Telerama
-3. Sudinfo / Cine-Tele-Revue
-4. TVMag / Le Figaro (today-only emergency web fallback)
-5. The outer cloud runner's Last-Known-Good feed if fresh coverage is still bad.
+The only active 2M programme source is Sudinfo / Ciné-Télé-Revue.  It exposes
+the programme name, category and duration that we use for receiver-safe Arabic
+titles and descriptions.  A failed source never causes a partial publication:
+the outer runner keeps its Last-Known-Good feed instead.
 
 Every accepted source is normalized through the same Arabic/Darija title and
 Arabic-description layer. The first evening Info Soir, Meteo and Eco News title
@@ -53,8 +51,6 @@ ar1.SHOW_DESC.update({
 ar1._title_cache.clear()
 ar1._desc_cache.clear()
 
-_PERIODS = ("morning", "noon", "afternoon")
-_BASE_URL = "https://tv-programme.telecablesat.fr/chaine/340/2m-monde.html"
 _TELERAMA_BASE = "https://television.telerama.fr/chaine/2m-maroc"
 _SUDINFO_BASE = "https://programmestv.sudinfo.be/programme-tv/chaine/2m-maroc/606"
 _TVMAG_BASE = "https://tvmag.lefigaro.fr/programme-tv/chaine/340/tous-les-programmes-de-2m-maroc"
@@ -179,40 +175,6 @@ def _events_from_candidates(day, source, candidates, rollover=False):
         desc_ar = ar1.translate_desc(_useful_desc(source_desc), title_ar)
         rows.append(base.Event("2M", start, title_ar, desc_ar, stop, "ar", "ar", "2m-" + source))
         _append_audit(day, source, tm, source_title, source_desc, title_ar, desc_ar)
-    return rows
-
-
-def _from_generic(day, period, candidates):
-    # TeleCableSat's afternoon block may include the after-midnight tail.
-    converted = []
-    for tm, source_title, source_desc in candidates:
-        try:
-            hh, mm = map(int, tm.split(":"))
-        except Exception:
-            continue
-        event_day = day + (timedelta(days=1) if period == "afternoon" and hh < 6 else timedelta())
-        start = datetime.combine(event_day, dtime(hh, mm), PARIS).astimezone(TZ)
-        title_ar = ar1.translate_title(source_title)
-        desc_ar = ar1.translate_desc(_useful_desc(source_desc), title_ar)
-        converted.append(base.Event("2M", start, title_ar, desc_ar, None, "ar", "ar", "2m-telecablesat"))
-        _append_audit(day, "telecablesat/" + period, tm, source_title, source_desc, title_ar, desc_ar)
-    return converted
-
-
-def _from_old_parser(day, period, html):
-    """Fallback to the historical 2M parser when TeleCableSat markup changes."""
-    rows = []
-    try:
-        parsed = base.parse_2m(ar1._translate_http, html, day, period)
-    except Exception as exc:
-        runner.log("2M old parser %s %s failed: %s" % (day, period, exc))
-        parsed = []
-    for e in parsed:
-        title_ar = e.title if ar1.has_arabic(e.title) else ar1.translate_title(e.title)
-        desc_ar = ar1.translate_desc(_useful_desc(e.desc), title_ar)
-        e.title, e.desc, e.tl, e.dl, e.source = title_ar, desc_ar, "ar", "ar", "2m-telecablesat-old"
-        rows.append(e)
-        _append_audit(day, "telecablesat-old/" + period, e.start.strftime("%H:%M"), "old-parser", e.desc, title_ar, desc_ar)
     return rows
 
 
@@ -344,25 +306,6 @@ def _day_complete(rows, source_day):
     return any(h < 12 for h in hours) and any(12 <= h < 18 for h in hours) and any(h >= 18 for h in hours) and any(h >= 20 for h in hours)
 
 
-def _fetch_telecablesat_day(s, day):
-    day_rows = []
-    for period in _PERIODS:
-        try:
-            r = runner.fetch(
-                s, _BASE_URL,
-                params={"date": day.isoformat(), "period": period},
-                referer="https://tv-programme.telecablesat.fr/",
-            )
-            candidates = runner.generic_programme_cards(r.text)
-            rows = _from_generic(day, period, candidates) if candidates else []
-            if len(rows) < 2:
-                rows = _from_old_parser(day, period, r.text)
-            day_rows.extend(rows)
-        except Exception as exc:
-            runner.log("2M TeleCableSat %s %s failed: %s" % (day, period, exc))
-    return _dedupe_exact(day_rows)
-
-
 def _fetch_telerama_day(s, day, today):
     url = _telerama_url(day, today)
     r = runner.fetch(s, url, referer="https://television.telerama.fr/")
@@ -424,25 +367,14 @@ def scrape_2m_full_day(days):
 
     for i in range(days):
         day = today + timedelta(days=i)
-        selected = _fetch_telecablesat_day(s, day)
-        source_stats["telecablesat"] += len(selected)
-
-        if not _day_complete(selected, day):
-            for name, fetcher in (
-                ("telerama", _fetch_telerama_day),
-                ("sudinfo", _fetch_sudinfo_day),
-                ("tvmag", _fetch_tvmag_day),
-            ):
-                try:
-                    backup = fetcher(s, day, today)
-                    source_stats[name] += len(backup)
-                    if backup:
-                        selected = _merge_prefer(selected, backup)
-                    if _day_complete(selected, day):
-                        runner.log("2M %s recovered fresh via %s (%d events)" % (day, name, len(selected)))
-                        break
-                except Exception as exc:
-                    runner.log("2M %s %s backup failed: %s" % (day, name, exc))
+        selected = []
+        try:
+            selected = _fetch_sudinfo_day(s, day, today)
+            source_stats["sudinfo"] += len(selected)
+            if _day_complete(selected, day):
+                runner.log("2M %s complete via Sudinfo (%d events)" % (day, len(selected)))
+        except Exception as exc:
+            runner.log("2M %s Sudinfo source failed: %s" % (day, exc))
 
         selected = _dedupe_exact(selected)
         if _day_complete(selected, day):
