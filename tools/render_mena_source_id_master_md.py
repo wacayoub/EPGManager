@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import csv
 from datetime import datetime, timezone
+import json
 import gzip
 from pathlib import Path
 import re
@@ -82,6 +83,51 @@ def source_label(site: str) -> str:
         "Sport24": "Sport24",
     }
     return labels.get(site, site)
+
+
+def sat_norm(value: str) -> str:
+    s = str(value or "")
+    s = re.sub(r"([a-z])([A-Z])", r"\1 \2", s)
+    s = s.casefold()
+    s = re.sub(r"@(?:sd|hd|mena|arabic)\b", " ", s)
+    s = re.sub(r"\.(?:ae|sa|eg|qa|iq|jo|lb|kw|bh|om|ye|dz|tn|ly|sd|sy|mr|ps|ma|uk|us|fr|net)\b", " ", s)
+    s = re.sub(r"\b(?:uhd|fhd|hd|sd|digital|channel|tv)\b", " ", s)
+    s = re.sub(r"[^0-9a-z\u0600-\u06ff]+", " ", s)
+    return " ".join(s.split())
+
+
+def sat_aliases(row):
+    vals = [
+        row.get("channel_name") or "",
+        row.get("xmltv_id") or "",
+        row.get("receiver_canonical_id") or "",
+    ]
+    aliases = set()
+    for value in vals:
+        base = sat_norm(value)
+        if not base:
+            continue
+        variants = {base}
+        variants.add(re.sub(r"\b(?:middle east|mena|arabia|arabic)\b", " ", base))
+        variants.add(re.sub(r"\b(?:sports?)\b", " sport ", base))
+        for v in variants:
+            v = " ".join(v.split())
+            letters = sum(ch.isalpha() for ch in v)
+            if letters >= 4 and not v.isdigit():
+                aliases.add(v)
+    return sorted(aliases, key=lambda x: (-len(x), x))
+
+
+def satellite_positions(row, sat_index):
+    if not sat_index:
+        return []
+    found = []
+    for pos in ("26E", "7W", "8W", "25.8E"):
+        blob = ((sat_index.get("positions") or {}).get(pos) or {}).get("text") or ""
+        hay = " " + blob + " "
+        if any((" " + alias + " ") in hay for alias in sat_aliases(row)):
+            found.append(pos)
+    return found
 
 
 def monitor_status(row):
@@ -182,10 +228,18 @@ def main() -> int:
     ap.add_argument("--morocco-xml")
     ap.add_argument("--sport24-list")
     ap.add_argument("--sport24-xml")
+    ap.add_argument("--sat-index")
     args = ap.parse_args()
 
     with Path(args.csv).open("r", encoding="utf-8-sig", newline="") as fh:
         all_rows = list(csv.DictReader(fh))
+
+    sat_index = {}
+    if args.sat_index and Path(args.sat_index).exists():
+        try:
+            sat_index = json.loads(Path(args.sat_index).read_text(encoding="utf-8"))
+        except Exception:
+            sat_index = {}
 
     # Only the selected winning source row for each channel survives monitoring.
     rows = [
@@ -265,6 +319,7 @@ def main() -> int:
         '<table width="100%">',
         "<thead><tr>",
         '<th width="90">Status</th>',
+        '<th width="115">SAT</th>',
         '<th width="190">Channel</th>',
         '<th width="120">Source</th>',
         '<th width="230">XMLTV ID</th>',
@@ -300,9 +355,12 @@ def main() -> int:
         else:
             reason_html = esc(reason)
 
+        sats = satellite_positions(r, sat_index)
+        sat_html = " · ".join(sats) if sats else "—"
         out.append(
             "<tr>"
             f"<td><b>{esc(monitor_status(r))}</b></td>"
+            f"<td><small><b>{esc(sat_html)}</b></small></td>"
             f"<td><b>{esc(r.get('channel_name') or '')}</b></td>"
             f"<td><b>{esc(src)}</b></td>"
             f"<td>{id_html}</td>"
