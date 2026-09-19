@@ -16,7 +16,7 @@
 | 🔴 STALE RELEASE / MISSING ID | 63 |
 | 🔴 NOT PUBLISHED | 0 |
 | 🔴 NO CURRENT EVENT | 0 |
-| Snapshot UTC | 2026-09-19T19:31:05.483792+00:00 |
+| Snapshot UTC | 2026-09-19T19:34:46.275253+00:00 |
 
 ## Winners by source
 
@@ -37,14 +37,14 @@
 
 ## Direct source scrape progress
 
-> Real 3h scrape result = channels with usable EPG / channels in that source catalogue.
+> **Scrap** = source catalogue fully queried. **3h EPG coverage** = channels with usable EPG in the current 3-hour test window.
 
-| Source | Progress | Active / Catalogue | Programmes | Health |
-|---|---:|---:|---:|---|
-| beIN | **62.4%** | 53 / 85 | 178 | 🟢 HEALTHY |
-| ElCinema | **84.3%** | 86 / 102 | 106 | 🟢 HEALTHY |
-| OSN Official | **96.7%** | 58 / 60 | 498 | 🟢 HEALTHY |
-| Sport24 | **100.0%** | 20 / 20 | 94 | 🟢 HEALTHY |
+| Source | Scrap | 3h EPG coverage | Active / Catalogue | Programmes | Health |
+|---|---:|---:|---:|---:|---|
+| beIN | **100.0%** | **62.4%** | 53 / 85 | 178 | 🟢 HEALTHY |
+| ElCinema | **100.0%** | **84.3%** | 86 / 102 | 106 | 🟢 HEALTHY |
+| OSN Official | **100.0%** | **96.7%** | 58 / 60 | 498 | 🟢 HEALTHY |
+| Sport24 | **100.0%** | **100.0%** | 20 / 20 | 94 | 🟢 HEALTHY |
 
 ## All winner IDs — alphabetical
 
@@ -98,7 +98,7 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E · 7W</b></small></td><td><b>Al Hadath</b></td><td><b>OSN</b></td><td><code>AlHadath.sa@SD</code><br><small>↳ MBC.Al.Hadath.mena</small></td><td>—<details><summary>Compare 2 sources</summary><small><b>✅ Suggested — OSN</b> — Future EPG only<br><b>Shahid</b> — No direct source feed monitored</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>25.5E · 8W</b></small></td><td><b>Al Jazeera 2</b></td><td><b>Al Jazeera</b></td><td><code>AlJazeera2.qa@HD</code><br><small>↳ Al.Jazeera.2.qa</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>25.5E · 8W</b></small></td><td><b>Al Jazeera Arabic</b></td><td><b>Al Jazeera</b></td><td><code>AlJazeera.qa@Arabic</code><br><small>↳ Al.Jazeera.Arabic.qa</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Al Maghribia</b></td><td><b>Morocco Cloud</b></td><td><code>AlMaghribiya</code></td><td><b>نشرات الاخبار المغربية</b><details><summary>description</summary><small>حصة من الذكر الحكيم</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Al Maghribia</b></td><td><b>Morocco Cloud</b></td><td><code>AlMaghribiya</code></td><td><b>الباحث</b><details><summary>description</summary><small>حصة من الذكر الحكيم</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>Al Quran Al Kareem TV HD</b></td><td><b>OSN</b></td><td><code>AlQuranAlKareemTV.sa@SD</code><br><small>↳ Al.Quran.Al.Kareem.TV.sa</small></td><td><b>القرآن الكريم HD</b><details><summary>description</summary><small>القرآن الكريم HD</small></details><details><summary>Compare 2 sources</summary><small><b>✅ Suggested — OSN</b> — القرآن الكريم HD<br><b>Shahid</b> — No direct source feed monitored</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>Al Rai TV</b></td><td><b>OSN</b></td><td><code>AlraiTV.kw@SD</code><br><small>↳ Al.Rai.TV.kw</small></td><td><b>الراي</b><details><summary>description</summary><small>الراي</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>Animal Planet HD</b></td><td><b>OSN</b></td><td><code>AnimalPlanetEurope.uk@SD</code><br><small>↳ Animal.Planet.mena</small></td><td><b>تانكد</b><details><summary>description</summary><small>طلبت تيريزا كابوتو ذات الشهرة العالمية في لونغ آيلاند المتوسطة من وايد وبريت بناء حوضي أسماك خاصين بها - خزان حورية البحر وبركة كوي.</small></details></td></tr>
@@ -110,7 +110,7 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E · 7W</b></small></td><td><b>Asharq Documentary</b></td><td><b>Shahid</b></td><td><code>AsharqDocumentary.sa@SD</code><br><small>↳ Asharq.Documentary.sa</small></td><td>—</td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Assadissa</b></td><td><b>Morocco Cloud</b></td><td><code>Assadisa</code></td><td><b>المقنع في علم التوقيت</b><details><summary>description</summary><small>المقنع في علم التوقيت</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>Attaqafia / Arrabiaa</b></td><td><b>Morocco Cloud</b></td><td><code>Arrabiaa</code></td><td><b>مرو من هنا</b><details><summary>description</summary><small>مرو من هنا</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>26E · 8W</b></small></td><td><b>Bahrain TV</b></td><td><b>OSN</b></td><td><code>BahrainTV.bh@SD</code><br><small>↳ Bahrain.TV.bh</small></td><td><b>اسأل طبيب</b><details><summary>description</summary><small>يدعو المضيف المتخصصين الطبيين للحديث عن القضايا الهامة المتعلقة بالصحة وكيفية التعامل مع حالات الطوارئ الطبية.</small></details><details><summary>Compare 2 sources</summary><small><b>✅ Suggested — OSN</b> — اسأل طبيب<br><b>ElCinema</b> — No direct source feed monitored</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>26E · 8W</b></small></td><td><b>Bahrain TV</b></td><td><b>OSN</b></td><td><code>BahrainTV.bh@SD</code><br><small>↳ Bahrain.TV.bh</small></td><td><b>صادرات</b><details><summary>description</summary><small>يُجري المضيف مقابلات مع شخصيات حول تاريخ الواردات والصادرات في البحرين.</small></details><details><summary>Compare 2 sources</summary><small><b>✅ Suggested — OSN</b> — صادرات<br><b>ElCinema</b> — No direct source feed monitored</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E</b></small></td><td><b>BaraemTV</b></td><td><b>beIN</b></td><td><code>Baraem.qa@SD</code></td><td>—</td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>BBC World</b></td><td><b>OSN</b></td><td><code>BBCArabic.uk@SD</code><br><small>↳ BBC.World.mena</small></td><td><b>ذا ترافل شو ذا غرايت أوفلاين أدفانتشر</b><details><summary>description</summary><small>هذه فئة من مسلسلات الشبكة.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>beIN 4K</b></td><td><b>beIN Sports</b></td><td><code>beIN4K.qa@SD</code><br><small>↳ beIN.4K.qa</small></td><td><b>Sunderland v Arsenal - English Premier League 2026/2027</b><details><summary>description</summary><small>Sunderland have won just one of their last 29 Premier League meetings with Arsenal, and are winless in 17 since a 1-0 victory in November 2009 after Darren Bent’s goal. Arsenal have only lost one of their last 14 league visits to Sunderland, winning five of their last seven, although did draw this exact fixture last season 2-2.</small></details></td></tr>
@@ -218,7 +218,7 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Crime</b></td><td><b>OSN</b></td><td><code>OSNtv Crime.sa</code><br><small>↳ OSN.Crime.ae</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Documentary</b></td><td><b>OSN</b></td><td><code>OSNtv Documentary.sa</code><br><small>↳ OSN.Documentary.ae</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>OSNtv iQIYI</b></td><td><b>OSN</b></td><td><code>OSNtv iQIYI.sa</code><br><small>↳ OSN.iQIYI.ae</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Kids</b></td><td><b>OSN</b></td><td><code>OSNKids.ae@SD</code><br><small>↳ OSN.Kids.ae</small></td><td><b>شارلي أند لولا</b><details><summary>description</summary><small>من السهل جدًا على تشارلي جعل لولا تقفز.</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Kids</b></td><td><b>OSN</b></td><td><code>OSNKids.ae@SD</code><br><small>↳ OSN.Kids.ae</small></td><td><b>شارلي أند لولا</b><details><summary>description</summary><small>لا يمكنك أن تقيم نزهة من دون لعب التنس الدوّامي وبيض مسلوق وبالطبع أشعة الشمس.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Mezze</b></td><td><b>OSN</b></td><td><code>OSNMezze.ae@SD</code><br><small>↳ OSN.Mezze.ae</small></td><td><b>جيسون أثيرتونز دبي ديشز</b><details><summary>description</summary><small>يكتشف جيسون مفهوم الفخامة المتاحة في نخلة دبي، واحدة من أرقى مناطق المدينة، ويُحضّر أطباقاً تخطف الأنظار ببساطتها، مثل طماطم محشوة بجبنة البوراتا، ونسخته الخاصة من "بيكد ألاسكا".</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Action</b></td><td><b>OSN</b></td><td><code>OSNMoviesAction.ae@SD</code><br><small>↳ OSN.Movies.Action.ae</small></td><td><b>جاستيس ليغ</b><details><summary>description</summary><small>بعد استعادته الثقة بوجود الخير في النفس البشرية واستلهامه من تضحيات سوبرمان، يستعين بروس واين بحليفته الجديدة، ديانا برينس، لمواجهة تهديد أشد خطراً وفتكاً</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Comedy</b></td><td><b>OSN</b></td><td><code>OSNtv Movies Comedy.sa</code><br><small>↳ OSN.Movies.Comedy.ae</small></td><td>—</td></tr>

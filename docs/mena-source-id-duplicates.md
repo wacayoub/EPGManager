@@ -97,7 +97,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Suggested | **OSN** | NOW | اسأل طبيب | يدعو المضيف المتخصصين الطبيين للحديث عن القضايا الهامة المتعلقة بالصحة وكيفية التعامل مع حالات الطوارئ الطبية. |
+| ✅ Suggested | **OSN** | NOW | صادرات | يُجري المضيف مقابلات مع شخصيات حول تاريخ الواردات والصادرات في البحرين. |
 | Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
