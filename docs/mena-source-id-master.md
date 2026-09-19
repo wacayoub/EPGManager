@@ -17,7 +17,7 @@
 | 🔴 STALE RELEASE / MISSING ID | 66 |
 | 🔴 NOT PUBLISHED | 0 |
 | 🔴 NO CURRENT EVENT | 0 |
-| Snapshot UTC | 2026-09-19T20:06:47.338660+00:00 |
+| Snapshot UTC | 2026-09-19T20:09:27.054765+00:00 |
 
 ## Winners by source
 
@@ -42,10 +42,10 @@
 
 | Source | Scrap | 3h EPG coverage | Active / Catalogue | Programmes | Health |
 |---|---:|---:|---:|---:|---|
-| beIN | **100.0%** | **62.4%** | 53 / 85 | 160 | 🟢 HEALTHY |
+| beIN | **100.0%** | **62.4%** | 53 / 85 | 153 | 🟢 HEALTHY |
 | ElCinema | **100.0%** | **26.5%** | 27 / 102 | 27 | 🟢 HEALTHY |
-| OSN Official | **100.0%** | **96.7%** | 58 / 60 | 500 | 🟢 HEALTHY |
-| Sport24 | **100.0%** | **100.0%** | 20 / 20 | 91 | 🟢 HEALTHY |
+| OSN Official | **100.0%** | **96.7%** | 58 / 60 | 495 | 🟢 HEALTHY |
+| Sport24 | **100.0%** | **100.0%** | 20 / 20 | 97 | 🟢 HEALTHY |
 
 ## All winner IDs — alphabetical
 
@@ -219,7 +219,7 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Crime</b></td><td><b>OSN</b></td><td><code>OSNtv Crime.sa</code><br><small>↳ OSN.Crime.ae</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Documentary</b></td><td><b>OSN</b></td><td><code>OSNtv Documentary.sa</code><br><small>↳ OSN.Documentary.ae</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>OSNtv iQIYI</b></td><td><b>OSN</b></td><td><code>OSNtv iQIYI.sa</code><br><small>↳ OSN.iQIYI.ae</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Kids</b></td><td><b>OSN</b></td><td><code>OSNKids.ae@SD</code><br><small>↳ OSN.Kids.ae</small></td><td><b>شارلي أند لولا</b><details><summary>description</summary><small>يتعين على لولا أن تحافظ على سر مفاجأة عيد ميلاد تشارلي.</small></details></td></tr>
+<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Kids</b></td><td><b>OSN</b></td><td><code>OSNKids.ae@SD</code><br><small>↳ OSN.Kids.ae</small></td><td><b>شارلي أند لولا</b><details><summary>description</summary><small>منزل الجدة والجد يقع بجانب البحر، حيث توجد جولات على المهر الصغير، وأطعمة لذيذة، وصندوق كبير للأزياء التنكرية، وقط يُدعى كاسبر.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Mezze</b></td><td><b>OSN</b></td><td><code>OSNMezze.ae@SD</code><br><small>↳ OSN.Mezze.ae</small></td><td><b>ماي كيتشن رولز استراليا</b><details><summary>description</summary><small>نعود إلى بريزبين في ثالث تحدي المطعم الفوري النهائي، حيث يأملان الإيطاليان العصريان سيمون وفيفيانا في الحفاظ على سمعتهما القياسية.</small></details></td></tr>
 <tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Action</b></td><td><b>OSN</b></td><td><code>OSNMoviesAction.ae@SD</code><br><small>↳ OSN.Movies.Action.ae</small></td><td><b>بلود دايموند</b><details><summary>description</summary><small>يتنافس صياد، ومهرب، وشبكة من رجال الأعمال على امتلاك ألماسة لا تقدر بثمن.</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>OSNtv Movies Comedy</b></td><td><b>OSN</b></td><td><code>OSNtv Movies Comedy.sa</code><br><small>↳ OSN.Movies.Comedy.ae</small></td><td>—</td></tr>
