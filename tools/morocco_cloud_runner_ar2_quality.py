@@ -44,6 +44,13 @@ _GENERIC_EXACT = {
 # an unknown title is preserved verbatim rather than guessed.
 _KNOWN_2M_TITLES = {
     "aqba lik": "عقبا ليك",
+    "mabrouk 3lina": "مبروك علينا",
+    "chrif moul lbaraka": "شريف مول البراكة",
+    "tlata delferhate": "ثلاثة الفرحات",
+    "fatty cabotin": "فاتي كابوتين",
+    "kawalisse": "كواليس",
+    "charqi ou lgharbi": "شرقي و الغربي",
+    "auto moto": "Auto-moto",
     "al akhawat attalat": "الأخوات الثلاث",
     "3ailti": "عائلتي",
     "moughamarat": "مغامرات",
