@@ -21,6 +21,7 @@ import re
 import sys
 
 from bs4 import BeautifulSoup
+import cloudscraper
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import morocco_epg as base
@@ -318,7 +319,27 @@ def _fetch_telerama_day(s, day, today):
 
 def _fetch_sudinfo_day(s, day, today):
     url = _sudinfo_url(day, today)
-    r = runner.fetch(s, url, referer="https://programmestv.sudinfo.be/")
+    referer = "https://programmestv.sudinfo.be/"
+    try:
+        r = runner.fetch(s, url, referer=referer)
+    except Exception as first_exc:
+        # Sudinfo can return HTTP 403 to the plain requests session used by
+        # GitHub-hosted runners even though the public page is healthy. Retry
+        # through cloudscraper with a normal desktop browser fingerprint.
+        if "403" not in str(first_exc):
+            raise
+        cs = cloudscraper.create_scraper(
+            browser={"browser": "chrome", "platform": "linux", "desktop": True}
+        )
+        cs.headers.update({
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+            "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.7",
+            "Cache-Control": "no-cache",
+            "Pragma": "no-cache",
+            "Referer": referer,
+        })
+        r = runner.fetch(cs, url, referer=referer)
+        runner.log("Sudinfo 403 recovered through cloudscraper")
     if not _page_matches_day(r.text, day):
         raise ValueError("Sudinfo returned a page for another date")
     candidates = _heading_cards(r.text)
