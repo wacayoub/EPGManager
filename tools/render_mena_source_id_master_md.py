@@ -648,12 +648,15 @@ def main() -> int:
 
     if args.zero_epg_md:
         exact_zero = []
+        zero_report_pending = False
         if args.zero_epg_report and Path(args.zero_epg_report).exists():
             try:
                 report = json.loads(Path(args.zero_epg_report).read_text(encoding="utf-8"))
                 exact_zero = list(report.get("rows") or [])
+                zero_report_pending = bool(report.get("pending"))
             except Exception:
                 exact_zero = []
+                zero_report_pending = True
 
         by_source_id = {}
         for r in all_rows:
@@ -705,11 +708,15 @@ def main() -> int:
             "",
             "| Metric | Value |",
             "|---|---:|",
-            f"| Zero/empty source entries | {len(zero_rows)} |",
+            f"| Zero/empty source entries | {'PENDING' if zero_report_pending else len(zero_rows)} |",
             "",
             "| Action | SAT | Channel | Source | XMLTV ID | Canonical ID | State | Suggested next step |",
             "|---|---|---|---|---|---|---|---|",
         ]
+        if zero_report_pending:
+            z += [
+                "| **PENDING** | — | — | — | — | — | Waiting for exact scraper report | Run direct source scrape first |",
+            ]
 
         for r in zero_rows:
             src = source_label((r.get("source") or "").strip())
