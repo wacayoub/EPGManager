@@ -22,6 +22,7 @@ import sys
 
 from bs4 import BeautifulSoup
 import cloudscraper
+from curl_cffi import requests as curl_requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import morocco_epg as base
@@ -338,8 +339,27 @@ def _fetch_sudinfo_day(s, day, today):
             "Pragma": "no-cache",
             "Referer": referer,
         })
-        r = runner.fetch(cs, url, referer=referer)
-        runner.log("Sudinfo 403 recovered through cloudscraper")
+        try:
+            r = runner.fetch(cs, url, referer=referer)
+            runner.log("Sudinfo 403 recovered through cloudscraper")
+        except Exception as cloud_exc:
+            if "403" not in str(cloud_exc):
+                raise
+            # Last resort: reproduce a modern Chrome TLS/HTTP fingerprint.
+            # Sudinfo currently blocks GitHub-hosted datacenter traffic at the
+            # TLS/browser layer, where requests/cloudscraper can still fail.
+            r = curl_requests.get(
+                url,
+                headers={
+                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+                    "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.7",
+                    "Referer": referer,
+                },
+                impersonate="chrome",
+                timeout=15,
+            )
+            r.raise_for_status()
+            runner.log("Sudinfo 403 recovered through curl_cffi Chrome impersonation")
     if not _page_matches_day(r.text, day):
         raise ValueError("Sudinfo returned a page for another date")
     candidates = _heading_cards(r.text)
