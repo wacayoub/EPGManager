@@ -65,6 +65,10 @@ CHANNEL_SITE_OVERRIDES = {
     "OmanTV.om@SD": "osn.com",
     "AlHadath.sa@SD": "osn.com",
     "AlQuranAlKareemTV.sa@SD": "osn.com",
+    # OSN strict one-winner audit (2026-09-19).
+    "BahrainTV.bh@SD": "osn.com",
+    "BloombergTV.us@MiddleEast": "osn.com",
+    "Fatafeat.ae@SD": "osn.com",
     # User-selected beIN entertainment policy (2026-09-19): prefer ElCinema
     # for richer Arabic titles/descriptions on these duplicated services.
     "beINDrama1.qa@SD": "elcinema.com",
