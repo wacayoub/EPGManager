@@ -55,6 +55,14 @@ OFFICIAL_FIRST_ID_RE = re.compile(
 
 CHANNEL_SITE_OVERRIDES = {
     "Alarabiya.ae@SD": "shahid.mbc.net",
+    # OSN vs ElCinema duplicate audit (2026-09-19): keep the better OSN
+    # timeline for these exact identities. MBC1 stays on Shahid and RoyaTV
+    # stays on roya-tv.com because their broadcaster-owned feeds rank above
+    # both donor sources.
+    "AlArabyTV2.qa@SD": "osn.com",
+    "DMC.eg@SD": "osn.com",
+    "DubaiTV.ae@SD": "osn.com",
+    "OmanTV.om@SD": "osn.com",
     "AlHadath.sa@SD": "osn.com",
     "AlQuranAlKareemTV.sa@SD": "osn.com",
     # Verified on 2026-09-17 against the standalone official OSN grab: these two
@@ -94,6 +102,13 @@ CHANNEL_SITE_OVERRIDES = {
 
 CHANNEL_NAME_OVERRIDES = {
     "MBCPlusDrama.sa@SD": "MBC Plus Drama",
+}
+
+# Verified source rows with no real programme data in the 2-day production
+# window. Excluding the source candidate lets another healthy source win when
+# available; otherwise the identity is naturally absent from the published feed.
+SOURCE_ZERO_EPG_EXCLUSIONS = {
+    ("osn.com", "SaudiThaqafiyaTV.sa@SD"),
 }
 
 BLANK_XMLTV_ID_OVERRIDES = {
@@ -213,6 +228,9 @@ def main() -> int:
             if site in EXCLUDED_SITES:
                 excluded_site_skipped += 1
                 continue
+            if (site, cid) in SOURCE_ZERO_EPG_EXCLUSIONS:
+                excluded_site_skipped += 1
+                continue
             if not args.include_morocco and MOROCCO_ID_RE.search(cid):
                 morocco_skipped += 1
                 continue
@@ -302,6 +320,10 @@ def main() -> int:
         "radio_rows_skipped": radio_skipped,
         "excluded_site_rows_skipped": excluded_site_skipped,
         "excluded_sites": sorted(EXCLUDED_SITES),
+        "verified_zero_epg_source_exclusions": [
+            {"site": site, "xmltv_id": cid}
+            for site, cid in sorted(SOURCE_ZERO_EPG_EXCLUSIONS)
+        ],
         "elcinema_metadata_default_policy": True,
         "elcinema_timeline_authority": False,
         "official_first_live_sports_policy": True,
