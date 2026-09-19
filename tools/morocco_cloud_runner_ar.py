@@ -82,6 +82,43 @@ T2M_AR.update({
     "koulna magharba": "كلنا مغاربة",
     "lecture du coran": "تلاوة القرآن الكريم",
     "coran avec laureats": "القرآن الكريم مع الفائزين",
+    # Late-night 2M catalogue.  These names are often supplied by French
+    # listings as Darija/English transliteration; never leave that text (or
+    # the provider's generic "programme 2M" suffix) in the receiver guide.
+    "nass al khir": "ناس الخير",
+    "nas al khir": "ناس الخير",
+    "asrar al mondial": "أسرار المونديال",
+    "asrar mondial": "أسرار المونديال",
+    "al barlamane wa annass": "البرلمان والناس",
+    "al barlaman wa annass": "البرلمان والناس",
+    "sahatna jmi3": "صحتنا جميعاً",
+    "sahatna jamii": "صحتنا جميعاً",
+    "chkoun yistatmar fmachrou3i": "شكون يستثمر فمشروعي",
+    "chkoune yistattmar fmachrou3i": "شكون يستثمر فمشروعي",
+    "sir al morjane": "سر المرجان",
+    "film": "فيلم",
+    # Sudinfo / Ciné-Télé-Revue canonical 2M catalogue.
+    "qalb aswad": "قلب أسود",
+    "coran avec laureats tajwid al qoran": "القرآن الكريم مع الفائزين",
+    "ch hiwat bladi": "شهيوات بلادي",
+    "chada al alhane": "شذى الألحان",
+    "koulna mgharba": "كلنا مغاربة",
+    "auto moto": "السيارات",
+    "aqba lik": "عقبا ليك",
+    "les interventions des partis politiques": "تدخلات الأحزاب السياسية",
+    "bulletin meteo": "النشرة الجوية",
+    "al akhawat attalat": "الأخوات الثلاث",
+    "tourouq al 3arifine": "طرق العارفين",
+    "al islam 3amal wa soulouk": "الإسلام عمل وسلوك",
+    "addine wa annass": "الدين والناس",
+    "3ailti": "عائلتي",
+    "abtal al bihar": "أبطال البحار",
+    "hikayat fi al adghal": "حكايات في الأدغال",
+    "bahr addalam": "بحر الظلام",
+    "al massaiya": "المسائية",
+    "soirees chaabi": "سهرة شعبية",
+    "akhit tamane": "آخر تمان",
+    "akhir tamane": "آخر تمان",
 })
 
 SHOW_DESC = {
@@ -111,6 +148,10 @@ SHOW_DESC = {
 }
 
 _AR_RE = re.compile(r"[\u0600-\u06ff]")
+_LISTING_BOILERPLATE_RE = re.compile(
+    r"\s*(?:[—–-]\s*)?(?:programme|program|برنامج)\s*(?:2\s*m)?\.?\s*$",
+    re.IGNORECASE,
+)
 _title_cache = {}
 _desc_cache = {}
 _translate_http = base.Http()
@@ -148,7 +189,10 @@ def semantic_desc(title_ar):
 
 
 def translate_title(title):
-    raw = clean(title)
+    # TeleCableSat occasionally puts its generic card label in the same text
+    # node as the show title (for example: "Nass al khir — Programme 2M").
+    # It is metadata, not part of the programme name.
+    raw = _LISTING_BOILERPLATE_RE.sub("", clean(title))
     if not raw:
         return "برنامج على 2M"
     if raw in _title_cache:
