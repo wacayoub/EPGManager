@@ -80,5 +80,13 @@ jobs:
           fi
           stamp="$(TZ=Africa/Casablanca date '+%Y%m%d-%H%M')"
           git commit -m "Refresh MENA source ID live EPG ${stamp}"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push race detected; retry ${attempt}/4"
+            sleep 2
+          done
+          echo "Unable to push refreshed monitoring after retries" >&2
+          exit 1
