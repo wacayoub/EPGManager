@@ -249,6 +249,7 @@ def main() -> int:
     radio_skipped = 0
     excluded_site_skipped = 0
     blank_id_recovered = 0
+    recovered_blank_keys = set()
     parse_errors = []
 
     for path in files:
@@ -271,6 +272,7 @@ def main() -> int:
                     cid = recovered
                     recovered_blank_id = True
                     blank_id_recovered += 1
+                    recovered_blank_keys.add((site, name))
             if not cid or not node.get("site_id") or not site:
                 invalid += 1
                 continue
@@ -340,14 +342,15 @@ def main() -> int:
     if missing_name_overrides:
         raise SystemExit("Verified name override missing from current upstream catalogue: %s" % ", ".join(missing_name_overrides))
 
-    selected_by_id = {row["xmltv_id"]: row for row in selected}
-    missing_osn_identity = []
+    # A recovered blank-ID candidate does not have to win the channel.
+    # Example: bein.com beINDRAMA is a valid recovered identity but ElCinema is
+    # deliberately the selected source for that same XMLTV service.
+    missing_blank_identity = []
     for (site, name), cid in BLANK_XMLTV_ID_OVERRIDES.items():
-        row = selected_by_id.get(cid)
-        if not row or row.get("site") != site or row.get("name") != name:
-            missing_osn_identity.append("%s=%s" % (name, cid))
-    if missing_osn_identity:
-        raise SystemExit("Verified OSN official identity recovery missing: %s" % ", ".join(missing_osn_identity))
+        if (site, name) not in recovered_blank_keys:
+            missing_blank_identity.append("%s|%s=%s" % (site, name, cid))
+    if missing_blank_identity:
+        raise SystemExit("Verified blank-ID recovery missing upstream row: %s" % ", ".join(missing_blank_identity))
 
     plus_row = next((x for x in selected if x["xmltv_id"] == "MBCPlusDrama.sa@SD"), None)
     if plus_row and "plus" not in plus_row["name"].casefold():
