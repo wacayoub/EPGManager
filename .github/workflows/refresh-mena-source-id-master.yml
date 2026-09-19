@@ -6,6 +6,8 @@ on:
       - ".github/workflows/refresh-mena-source-id-master.yml"
       - "tools/enrich_mena_source_id_master.py"
       - "tools/render_mena_source_id_master_md.py"
+      - "tools/build_arabic_sat_index.py"
+      - "tools/render_mena_source_id_master_md.py"
   workflow_dispatch:
 
 permissions:
@@ -56,6 +58,13 @@ jobs:
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/source-sport24.xml.gz" \
             -o /tmp/source-sport24.xml.gz
 
+      - name: Build Arabic satellite availability index
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/build_arabic_sat_index.py \
+            --output /tmp/arabic-sat-index.json
+
       - name: Enrich master with current real EPG
         shell: bash
         run: |
@@ -74,7 +83,8 @@ jobs:
             --morocco-list /tmp/morocco.txt \
             --morocco-xml /tmp/morocco.xml.gz \
             --sport24-list /tmp/source-sport24.txt \
-            --sport24-xml /tmp/source-sport24.xml.gz
+            --sport24-xml /tmp/source-sport24.xml.gz \
+            --sat-index /tmp/arabic-sat-index.json
 
       - name: Verify required live columns
         shell: bash
