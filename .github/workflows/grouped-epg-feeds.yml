@@ -30,10 +30,10 @@ jobs:
         run: |
           set -euo pipefail
           curl -fL --retry 3 --retry-delay 1 \
-            "https://raw.githubusercontent.com/\${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz" \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz" \
             -o /tmp/mena-arabic.xml.gz
           curl -fL --retry 3 --retry-delay 1 \
-            "https://raw.githubusercontent.com/\${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
             -o /tmp/morocco.xml.gz
 
       - name: Build grouped XMLTV feeds
@@ -46,7 +46,7 @@ jobs:
             --mena /tmp/mena-arabic.xml.gz \
             --morocco /tmp/morocco.xml.gz \
             --out-dir /tmp/grouped \
-            --base-url "https://raw.githubusercontent.com/\${GITHUB_REPOSITORY}/mena-data/groups"
+            --base-url "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/groups"
 
           python - <<'PY'
           import gzip, json, xml.etree.ElementTree as ET
@@ -92,7 +92,7 @@ jobs:
             if git push origin HEAD:mena-data; then
               exit 0
             fi
-            echo "Push race detected; retry \${attempt}/4"
+            echo "Push race detected; retry ${attempt}/4"
             sleep 2
           done
           exit 1
