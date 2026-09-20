@@ -6,6 +6,8 @@ on:
       - "tools/build_grouped_epg_feeds.py"
       - "docs/mena-source-id-master.csv"
       - ".github/workflows/grouped-epg-feeds.yml"
+  schedule:
+    - cron: "15 6,7 * * *"
   workflow_dispatch:
 
 permissions:
@@ -18,39 +20,102 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+
     steps:
-      - name: Checkout main
+      - name: Casablanca 07:15 gate
+        id: gate
+        shell: bash
+        run: |
+          if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          hour="$(TZ=Africa/Casablanca date +%H)"
+          if [ "$hour" = "07" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping UTC duplicate slot; Casablanca hour=$hour"
+          fi
+
+      - name: Checkout EPGManager
+        if: steps.gate.outputs.run == 'true'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Download final arbitrated feeds
+      - name: Download current EPG-Scrapers production feeds
+        if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          curl -fL --retry 3 --retry-delay 1 \
-            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz" \
-            -o /tmp/mena-arabic.xml.gz
-          curl -fL --retry 3 --retry-delay 1 \
-            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
-            -o /tmp/morocco.xml.gz
+          base="https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds"
+          mkdir -p /tmp/epg-scrapers
 
-      - name: Build grouped XMLTV feeds
+          for feed in morocco bein osn sport24 elcinema others; do
+            echo "Downloading $feed.xml.gz"
+            curl -fL --retry 4 --retry-delay 2 --connect-timeout 15 --max-time 120               "$base/$feed.xml.gz"               -o "/tmp/epg-scrapers/$feed.xml.gz"
+            test -s "/tmp/epg-scrapers/$feed.xml.gz"
+            gzip -t "/tmp/epg-scrapers/$feed.xml.gz"
+          done
+
+          curl -fL --retry 4 --retry-delay 2 --connect-timeout 15 --max-time 60             "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/reports/latest.json"             -o /tmp/epg-scrapers/latest.json
+
+      - name: Reject stale scraper snapshot
+        if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf /tmp/grouped && mkdir -p /tmp/grouped
-          python tools/build_grouped_epg_feeds.py \
-            --master docs/mena-source-id-master.csv \
-            --mena /tmp/mena-arabic.xml.gz \
-            --morocco /tmp/morocco.xml.gz \
-            --out-dir /tmp/grouped \
-            --base-url "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/groups"
-
           python - <<'PY'
-          import gzip, json, xml.etree.ElementTree as ET
+          import json
+          from datetime import datetime, timezone
           from pathlib import Path
+
+          p=Path('/tmp/epg-scrapers/latest.json')
+          data=json.loads(p.read_text(encoding='utf-8'))
+
+          stamp=(
+              data.get('generated_at') or
+              data.get('generated_utc') or
+              data.get('generated') or
+              data.get('timestamp')
+          )
+          if not stamp:
+              print('No report timestamp field; continuing to XML freshness gate')
+          else:
+              dt=datetime.fromisoformat(stamp.replace('Z','+00:00')).astimezone(timezone.utc)
+              age=(datetime.now(timezone.utc)-dt).total_seconds()/3600.0
+              print('EPG-Scrapers report age_hours=%.2f generated=%s' % (age, dt.isoformat()))
+              if age > 30:
+                  raise SystemExit('STALE SCRAPER REPORT: %.2f hours old' % age)
+          PY
+
+      - name: Verify grouped-feed builder
+        if: steps.gate.outputs.run == 'true'
+        run: python -m py_compile tools/build_grouped_epg_feeds.py
+
+      - name: Build grouped XMLTV feeds from current production data
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/grouped
+          mkdir -p /tmp/grouped
+
+          python tools/build_grouped_epg_feeds.py             --master docs/mena-source-id-master.csv             --feed morocco=/tmp/epg-scrapers/morocco.xml.gz             --feed bein=/tmp/epg-scrapers/bein.xml.gz             --feed osn=/tmp/epg-scrapers/osn.xml.gz             --feed sport24=/tmp/epg-scrapers/sport24.xml.gz             --feed elcinema=/tmp/epg-scrapers/elcinema.xml.gz             --feed others=/tmp/epg-scrapers/others.xml.gz             --out-dir /tmp/grouped             --base-url "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/mena-data/groups"
+
+      - name: Validate grouped feeds and freshness
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import gzip, json, re
+          import xml.etree.ElementTree as ET
+          from datetime import datetime, timezone, timedelta
+          from pathlib import Path
+
           reg=json.loads(Path('/tmp/grouped/group-sources.json').read_text(encoding='utf-8'))
           required={
             'OSN','ROTANA','BEIN_SPORTS','BEIN_MEDIA','ART','MBC','ALJAZEERA',
@@ -60,33 +125,82 @@ jobs:
           }
           got={x['key'] for x in reg['groups']}
           assert got == required, (required-got, got-required)
+
+          now=datetime.now(timezone.utc)
+          total_future=0
+          latest=None
+          seen_ids=set()
+
+          def parse_time(value):
+              m=re.match(r'^(\d{14})', (value or '').strip())
+              if not m:
+                  return None
+              return datetime.strptime(m.group(1), '%Y%m%d%H%M%S').replace(tzinfo=timezone.utc)
+
           for item in reg['groups']:
               p=Path('/tmp/grouped')/item['xml']
-              root=ET.fromstring(gzip.decompress(p.read_bytes()))
+              raw=gzip.decompress(p.read_bytes())
+              root=ET.fromstring(raw)
               assert root.tag == 'tv'
-              assert len(root.findall('channel')) == item['channels']
-              assert len(root.findall('programme')) == item['programmes']
+
+              channels=root.findall('channel')
+              programmes=root.findall('programme')
+              assert len(channels) == item['channels']
+              assert len(programmes) == item['programmes']
+
+              ids={x.get('id') for x in channels if x.get('id')}
+              dup=seen_ids & ids
+              assert not dup, ('duplicate channel IDs across groups', sorted(dup)[:20])
+              seen_ids.update(ids)
+
+              for ev in programmes:
+                  assert ev.get('channel') in ids, ('orphan programme', ev.get('channel'), item['key'])
+                  st=parse_time(ev.get('start'))
+                  sp=parse_time(ev.get('stop'))
+                  if st and sp:
+                      assert st < sp, ('invalid time', item['key'], ev.get('channel'), ev.get('start'), ev.get('stop'))
+                  if st:
+                      if latest is None or st > latest:
+                          latest=st
+                      if st >= now - timedelta(hours=2):
+                          total_future += 1
+
+          assert reg['totals']['channels'] > 0
+          assert reg['totals']['programmes'] > 0
+          assert total_future > 0, 'no current/future programmes'
+          assert latest is not None
+          assert latest >= now + timedelta(hours=12), ('feed horizon too short/stale', latest.isoformat(), now.isoformat())
+
           print('GROUP_FEEDS_VALIDATE PASS', reg['totals'])
+          print('latest programme start', latest.isoformat())
           PY
 
       - name: Publish grouped feeds to mena-data
+        if: steps.gate.outputs.run == 'true'
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "EPGManager Group Builder"
           git config user.email "actions@users.noreply.github.com"
+
           rm -rf /tmp/mena-data
           git worktree add /tmp/mena-data mena-data
           mkdir -p /tmp/mena-data/groups
+
+          rm -f /tmp/mena-data/groups/group-*.xml.gz
           cp -f /tmp/grouped/group-*.xml.gz /tmp/mena-data/groups/
           cp -f /tmp/grouped/group-sources.json /tmp/mena-data/groups/
+
           cd /tmp/mena-data
           git add groups/
+
           if git diff --cached --quiet; then
             echo "No grouped feed changes."
             exit 0
           fi
-          git commit -m "Refresh grouped EPG feeds for Vu+ import"
+
+          git commit -m "Refresh grouped feeds from current EPG-Scrapers production data"
+
           for attempt in 1 2 3 4; do
             git pull --rebase origin mena-data
             if git push origin HEAD:mena-data; then
