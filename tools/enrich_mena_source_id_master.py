@@ -138,6 +138,61 @@ def main() -> int:
         m = re.search(r"\.([a-z]{2})(?:@[^.]*)?$", cid or "", re.I)
         return ("mena-" + m.group(1).lower()) if m else "mena-other"
 
+    country_groups = {
+        "ae": "EMIRATES",
+        "eg": "EGYPT",
+        "ma": "MOROCCO",
+        "sa": "SAUDI",
+        "qa": "QATAR",
+        "kw": "KUWAIT",
+        "lb": "LEBANON",
+        "jo": "JORDAN",
+        "iq": "IRAQ",
+        "bh": "BAHRAIN",
+        "om": "OMAN",
+        "tn": "TUNISIA",
+        "dz": "ALGERIA",
+        "ly": "LIBYA",
+        "sy": "SYRIA",
+        "ye": "YEMEN",
+        "ps": "PALESTINE",
+        "sd": "SUDAN",
+        "mr": "MAURITANIA",
+    }
+
+    def source_id_group(row):
+        """Logical group for XMLTV IDs only; does not alter source provenance."""
+        raw = (row.get("xmltv_id") or "").strip()
+        canonical = (row.get("receiver_canonical_id") or "").strip()
+        name = (row.get("channel_name") or "").strip()
+        source = (row.get("source") or "").strip().casefold()
+        probe = " ".join([raw, canonical, name]).casefold()
+
+        # Provider/network families take priority over country suffixes.
+        if source == "rotana.net" or "rotana" in probe:
+            return "ROTANA"
+        if re.search(r"\bbein\b", probe) or raw.casefold().startswith("bein"):
+            if "sport" in probe:
+                return "BEIN_SPORTS"
+            return "BEIN_MEDIA"
+        if source == "artonline.tv" or re.search(r"\bart(?:\.|\s|$)", probe):
+            return "ART"
+        if canonical.upper().startswith("OSN.") or raw.upper().startswith("OSN.") or re.search(r"\bosn\b", probe):
+            return "OSN"
+        if canonical.upper().startswith("MBC.") or raw.upper().startswith("MBC.") or re.search(r"\bmbc\b", probe):
+            return "MBC"
+        if "aljazeera" in probe or "al jazeera" in probe:
+            return "ALJAZEERA"
+
+        # Everything else is grouped by the XMLTV/canonical country identity.
+        for value in (canonical, raw):
+            m = re.search(r"\.([a-z]{2})(?:@[^.]*)?$", value or "", re.I)
+            if m:
+                cc = m.group(1).lower()
+                if cc in country_groups:
+                    return country_groups[cc]
+        return "OTHER"
+
     channel_nodes = {(c.get("id") or "").strip(): c for c in root.findall("channel")}
     channels = set(channel_nodes)
     name_to_ids = {}
@@ -211,6 +266,7 @@ def main() -> int:
         "next_start_utc",
     }
     extra = [
+        "id_group",
         "receiver_canonical_id",
         "now_status",
         "now_title",
@@ -240,6 +296,7 @@ def main() -> int:
                 if len(country_matches) == 1:
                     canonical = country_matches[0]
         row["receiver_canonical_id"] = canonical
+        row["id_group"] = source_id_group(row)
 
         own_source = (row.get("source") or "").strip()
         own_direct = direct_source_indexes.get(own_source) or {}
