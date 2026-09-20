@@ -77,17 +77,19 @@ def main():
         group_by_id[raw]=group
         group_by_id[canonical]=group
 
-    roots=[read_xml(Path(args.mena))]
+    roots=[("MENA", read_xml(Path(args.mena)))]
     if args.morocco and Path(args.morocco).exists():
-        roots.append(read_xml(Path(args.morocco)))
+        roots.append(("MOROCCO", read_xml(Path(args.morocco))))
 
     channels={}
     programmes=[]
-    for root in roots:
+    for origin, root in roots:
         for ch in root.findall("channel"):
             cid=(ch.get("id") or "").strip()
             if cid:
                 channels[cid]=ch
+                if origin == "MOROCCO":
+                    group_by_id[cid] = "MOROCCO"
         programmes.extend(root.findall("programme"))
 
     ids_by_group={g:set() for g in GROUP_ORDER}
