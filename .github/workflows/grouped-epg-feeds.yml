@@ -1,0 +1,98 @@
+name: Build Grouped EPG Feeds
+
+on:
+  push:
+    paths:
+      - "tools/build_grouped_epg_feeds.py"
+      - "docs/mena-source-id-master.csv"
+      - ".github/workflows/grouped-epg-feeds.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: grouped-epg-feeds
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download final arbitrated feeds
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --retry-delay 1 \
+            "https://raw.githubusercontent.com/\${GITHUB_REPOSITORY}/mena-data/mena-arabic.xml.gz" \
+            -o /tmp/mena-arabic.xml.gz
+          curl -fL --retry 3 --retry-delay 1 \
+            "https://raw.githubusercontent.com/\${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
+            -o /tmp/morocco.xml.gz
+
+      - name: Build grouped XMLTV feeds
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/grouped && mkdir -p /tmp/grouped
+          python tools/build_grouped_epg_feeds.py \
+            --master docs/mena-source-id-master.csv \
+            --mena /tmp/mena-arabic.xml.gz \
+            --morocco /tmp/morocco.xml.gz \
+            --out-dir /tmp/grouped \
+            --base-url "https://raw.githubusercontent.com/\${GITHUB_REPOSITORY}/mena-data/groups"
+
+          python - <<'PY'
+          import gzip, json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          reg=json.loads(Path('/tmp/grouped/group-sources.json').read_text(encoding='utf-8'))
+          required={
+            'OSN','ROTANA','BEIN_SPORTS','BEIN_MEDIA','ART','MBC','ALJAZEERA',
+            'EMIRATES','EGYPT','MOROCCO','SAUDI','QATAR','KUWAIT','LEBANON',
+            'JORDAN','IRAQ','BAHRAIN','OMAN','TUNISIA','ALGERIA','LIBYA',
+            'SYRIA','YEMEN','PALESTINE','SUDAN','MAURITANIA','OTHER'
+          }
+          got={x['key'] for x in reg['groups']}
+          assert got == required, (required-got, got-required)
+          for item in reg['groups']:
+              p=Path('/tmp/grouped')/item['xml']
+              root=ET.fromstring(gzip.decompress(p.read_bytes()))
+              assert root.tag == 'tv'
+              assert len(root.findall('channel')) == item['channels']
+              assert len(root.findall('programme')) == item['programmes']
+          print('GROUP_FEEDS_VALIDATE PASS', reg['totals'])
+          PY
+
+      - name: Publish grouped feeds to mena-data
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPGManager Group Builder"
+          git config user.email "actions@users.noreply.github.com"
+          rm -rf /tmp/mena-data
+          git worktree add /tmp/mena-data mena-data
+          mkdir -p /tmp/mena-data/groups
+          cp -f /tmp/grouped/group-*.xml.gz /tmp/mena-data/groups/
+          cp -f /tmp/grouped/group-sources.json /tmp/mena-data/groups/
+          cd /tmp/mena-data
+          git add groups/
+          if git diff --cached --quiet; then
+            echo "No grouped feed changes."
+            exit 0
+          fi
+          git commit -m "Refresh grouped EPG feeds for Vu+ import"
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin mena-data
+            if git push origin HEAD:mena-data; then
+              exit 0
+            fi
+            echo "Push race detected; retry \${attempt}/4"
+            sleep 2
+          done
+          exit 1
