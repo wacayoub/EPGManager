@@ -12,7 +12,7 @@
 |---|---:|
 | Duplicate IDs | 71 |
 | Candidate source rows | 151 |
-| Current winner gaps recoverable from another direct source | **4** |
+| Current winner gaps recoverable from another direct source | **0** |
 
 ## Abu Dhabi TV HD
 
@@ -24,8 +24,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | تلفزيون أبوظبي HD | تلفزيون أبوظبي HD |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -39,8 +39,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | التحليق فوق سور الصين ... | فيلم وثائقي جوي يمتد على مسافة 2,500 كيلومتر، يعرض سور الصين العظيم بأكمله من أعلى. ويركز على روعة الهندسة المعمارية العسكرية وأسرار بناء السور في عهد أسرة مينغ. |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -54,7 +54,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NEXT_ONLY | Future EPG only | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -69,7 +69,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | القرآن الكريم HD | القرآن الكريم HD |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -85,7 +85,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -99,8 +99,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | تغطية خاصة من الأخبار | يستعرض المذيع أحدث الأخبار والمستجدات من جميع أنحاء العالم. |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -114,8 +114,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -129,8 +129,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -144,8 +144,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ⭐ Recommended now | **beIN** | NOW | فيلادلفيا | — |
-| Current winner | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -159,8 +159,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
-| Alternative | **beIN** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -174,8 +174,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -189,8 +189,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -204,8 +204,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOW | Sevilla vs Barcelona - Spanish LaLiga 2026/2027 - Week 7 | Barcelona have won eight of their nine LaLiga matches against Sevilla, with the only exception in this run being their 4-1 defeat in October 2025; they have also scored at least one away goal in each of their last 12 meetings against Sevilla in the competition. Sevilla won their last home game against Barcelona in LaLiga, 4-1 in October 2025, after |
-| Alternative | **beIN Sports** | NOW | Sevilla vs Barcelona - Spanish LaLiga 2026/2027 - Week 7 | Barcelona have won eight of their nine LaLiga matches against Sevilla, with the only exception in this run being their 4-1 defeat in October 2025; they have also scored at least one away goal in each of their last 12 meetings against Sevilla in the competition. Sevilla won their last home game against Barcelona in LaLiga, 4-1 in October 2025, after |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -219,8 +219,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -234,8 +234,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -249,8 +249,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -264,8 +264,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -279,8 +279,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NO_CURRENT_EVENT | No current programme | — |
-| Alternative | **beIN Sports** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -294,8 +294,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NO_CURRENT_EVENT | No current programme | — |
-| Alternative | **beIN Sports** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -309,8 +309,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -324,8 +324,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -339,8 +339,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -354,8 +354,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -369,8 +369,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -384,8 +384,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NO_CURRENT_EVENT | No current programme | — |
-| Alternative | **beIN Sports** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -399,8 +399,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOW | beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026 | beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events |
-| Alternative | **beIN Sports** | NOW | beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026 | beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -414,8 +414,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOW | Canada vs France - Singles - Davis Cup 2nd Qualifier - 2026 - MD2 | — |
-| Alternative | **beIN Sports** | NOW | Canada vs France - Singles - Davis Cup 2nd Qualifier - 2026 - MD2 | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -429,8 +429,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -444,8 +444,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -459,8 +459,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -474,8 +474,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -489,8 +489,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -504,8 +504,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -519,8 +519,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **beIN Sports** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN Sports** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -534,8 +534,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | ليدرز ويذ فرانسين لاكوا: ذا بودكاست | يعكس رئيس بلاكستون جون غراي تجربته في القيادة خلال الأزمات، مسلطًا الضوء على صفقة هيلتون الصعبة للشركة كدرس في المحافظة على الهدوء، ودعم الأعمال القوية، والتفكير على المدى الطويل. |
-| Alternative | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -549,8 +549,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | بالعربية CN | بالعربية CN |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -564,8 +564,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | دادلياست كاتش | تتسبب مشكلة في سن تود في إجبار القبطان ريك على العودة إلى الميناء. وسيغ يعطي صوفيا دفة القيادة. |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -579,8 +579,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | الكابتن | ينجو طيار من حادث تحطم طائرة ويبدأ في رؤية أرواح الركاب القتلى. |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -594,8 +594,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | باراديس هايواي | يطارد عميل في مكتب التحقيقات الفيدرالي سائق شاحنة يقوم بتهريب فتاة غصباً. |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -609,8 +609,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | 100 لحمة | برنامج "100 لحمة" هو برنامج طبخ من إنتاج "فتافيت" يركز على وصفات اللحوم، بدءًا من المشاوي اليومية وصولًا إلى الأطباق الرئيسية الفاخرة، ويشارك نصائح ونكهات وتقنيات خطوة بخطوة لعشاق اللحوم. |
-| Alternative | **beIN** | NOW | بلوم بيرج تشيف فيوتشر اوفيسر (موسم 6، حلقة1) | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -624,8 +624,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -639,8 +639,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -655,7 +655,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Rotana** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -669,8 +669,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | جايميز جوت تينتكلز | أمير شاب من كوكب بلارب يدعى جيمي، هارب من المخلوقات الفضائية، يفر إلى كوكب الأرض ويتنكر في هيئة صبي بشري. |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -685,8 +685,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | تحت سابع أرض | يجد موسى نفسه في موقف صعب أمام فجر يستدعي الإتيان بخطة على عجل لتجنب الدخول إلى السجن. |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -702,7 +702,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -717,7 +717,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -731,8 +731,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | المداح: أسطورة الوادي | حلم غريب يراود صابر المداح يغير مسار حياته، وعندما يحاول البحث عن تفسير له، يجد نفسه على أعتاب حرب سيخوضها مع الجن. |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -747,8 +747,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | ذا رينتال | تأخذ عطلة زوجين في منزل جميل مستأجر منحى خطرا عندما يشتبهان أن مضيفهما قد يكون يتجسس عليهما. |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -763,8 +763,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | الحكاية مع عمرو أديب | يطل الإعلامي الكبير عمرو أديب على جمهوره، حيث يقدم في كل حلقة فقرات سياسية واجتماعية واقتصادية وفنية، ويقوم بتحليل الأحداث اليومية بأسلوب مبسط ومسلي. |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -779,7 +779,7 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -794,8 +794,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | الكورة مع فايق | عشاق الكرة على موعد مع برنامج يكشف النقاب عن الكثير من التصريحات والتحليلات الغنية للمباريات مع أكبر المحللين الرياضيين في الوطن العربي لما يحدث في الساحة المصرية والعربية والعالمية. |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -811,7 +811,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -826,7 +826,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **OSN** | NOT_MONITORED | No direct source feed monitored | — |
+| Alternative | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -840,8 +840,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ⭐ Recommended now | **ElCinema** | NOW | Parineetii | تدور الأحداث في إطار درامي، حيث يقود القدر صديقتين مقربتين للزواج من نفس الرجل، مما يؤدي إلى العديد من الصعوبات مع ظهور مثلث حب معقد، وتتوالى الأحداث. |
-| Current winner | **OSN** | NEXT_ONLY | Future EPG only | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 | Alternative | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
 
 ---
@@ -856,9 +856,9 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ⭐ Recommended now | **OSN** | NOW | نادينا | المنصة المثالية للمشجعين للتعبير عن آرائهم، ومشاركة شغفهم، ومناقشة كل ما يتعلق بمباريات الدوري السعودي وأنديتهم المفضلة. |
-| Current winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -873,7 +873,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -888,7 +888,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -903,7 +903,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -917,8 +917,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **OSN** | NOW | البحث عن المعرفة | يكشف عشاق العلوم عن أسرار العلوم الرائعة في مختلف المجالات، مثل علم الوراثة والنباتات وكيفية عمل العلم في عالمنا. |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -933,7 +933,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Rotana** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -948,7 +948,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Rotana** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -963,7 +963,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Rotana** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -978,7 +978,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Rotana** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -993,7 +993,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Rotana** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -1008,7 +1008,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Rotana** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -1022,9 +1022,9 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ⭐ Recommended now | **OSN** | NOW | أمن 911 | تُتاح للجمهور فرصة التعرف على دور مديرية الأمن العام. |
-| Current winner | **Roya** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NO_CURRENT_EVENT | No current programme | — |
+| ✅ Keep winner | **Roya** | NOT_MONITORED | No direct source feed monitored | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **OSN** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -1039,7 +1039,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -1053,8 +1053,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOW | ذا واكينج ديد (موسم 9) | — |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -1068,8 +1068,8 @@
 
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
-| ✅ Keep winner | **beIN** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| ✅ Keep winner | **beIN** | STALE_SOURCE_FEED | Source feed expired | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
@@ -1084,7 +1084,7 @@
 | Choice | Source | Source status | Current programme | Description |
 |---|---|---|---|---|
 | ✅ Keep winner | **Shahid** | NOT_MONITORED | No direct source feed monitored | — |
-| Alternative | **ElCinema** | NOT_MONITORED | No direct source feed monitored | — |
+| Alternative | **ElCinema** | STALE_SOURCE_FEED | Source feed expired | — |
 
 ---
 
