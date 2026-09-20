@@ -138,12 +138,12 @@ jobs:
           p=Path("docs/mena-source-id-master.csv")
           with p.open("r",encoding="utf-8-sig",newline="") as f:
               r=csv.DictReader(f)
-              need={"receiver_canonical_id","now_status","now_title","now_desc","epg_snapshot_utc"}
+              need={"id_group","receiver_canonical_id","now_status","now_title","now_desc","epg_snapshot_utc"}
               missing=need-set(r.fieldnames or [])
               assert not missing, missing
               rows=list(r)
           assert rows, "empty master"
-          print("MASTER_LIVE_COLUMNS PASS rows=",len(rows),"now=",sum(1 for x in rows if x.get("now_status")=="NOW"))
+          groups=sorted({(x.get("id_group") or "").strip() for x in rows if (x.get("id_group") or "").strip()})\n          assert groups, "no id groups generated"\n          print("MASTER_LIVE_COLUMNS PASS rows=",len(rows),"now=",sum(1 for x in rows if x.get("now_status")=="NOW"),"groups=",groups)
           PY
 
       - name: Commit refreshed master
