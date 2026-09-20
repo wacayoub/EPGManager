@@ -166,13 +166,13 @@ def main() -> int:
         canonical = (row.get("receiver_canonical_id") or "").strip()
         name = (row.get("channel_name") or "").strip()
         source = (row.get("source") or "").strip().casefold()
-        probe = " ".join([raw, canonical, name]).casefold()
+        provider_probe = " ".join([raw, name]).casefold()\n        probe = " ".join([raw, canonical, name]).casefold()
 
         # Provider/network families take priority over country suffixes.
-        if source == "rotana.net" or "rotana" in probe:
+        if source == "rotana.net" or "rotana" in provider_probe:
             return "ROTANA"
         if re.search(r"\bbein\b", probe) or raw.casefold().startswith("bein"):
-            if "sport" in probe:
+            if "sport" in provider_probe:
                 return "BEIN_SPORTS"
             return "BEIN_MEDIA"
         if source == "artonline.tv" or re.search(r"\bart(?:\.|\s|$)", probe):
