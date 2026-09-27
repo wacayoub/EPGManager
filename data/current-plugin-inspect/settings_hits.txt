@@ -1,0 +1,43 @@
+buildsrc/EPGManager_v6.0.1_GitHub/ui/main.py:243:            started = self.manager.update_source_async(valid[0])
+buildsrc/EPGManager_v6.0.1_GitHub/ui/main.py:256:        started = self.manager.update_source_async(sid)
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:214:        self["key_yellow"] = Label("Update Source")
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:508:        self.refresh_sources()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:541:    def refresh_sources(self):
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:552:        # Cached/other local source metadata.
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:631:                                log.warning("Lazy stale-source refresh failed for %s", src.get("source_name"), exc_info=True)
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:710:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:718:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:735:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:785:        self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:787:    def update_source_title(self):
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:844:        self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:923:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:942:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:944:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1028:        self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1132:            if self.manager is None or not hasattr(self.manager, "update_source_async"):
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1138:            if not self.manager.update_source_async(sid):
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1139:                self.session.open(MessageBox, "Could not start local source update.", MessageBox.TYPE_ERROR)
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1142:            self["summary"].setText("Updating local source %s..." % src.get("source_name", sid))
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1173:        self["key_yellow"].setText("Update Source")
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1186:        self.refresh_sources()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1208:        self["key_yellow"].setText("Update Source")
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1218:            self.refresh_sources()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1224:            log.exception("Could not refresh local source after update")
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1226:            self["summary"].setText("Local source updated: %s (%s programmes)" %
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1230:            self["summary"].setText("Local source is in safety cooldown")
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1232:            self["summary"].setText("Local source update failed: %s" % (status.get("error_message") or sid))
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1234:            self["summary"].setText("Local source update finished")
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1338:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1379:        self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/health_check.py:143:        self["legend"] = Label("GOOD = valid EPG   •   WARNING = low/partial data   •   FAILED = update error or expired EPG\nUP/DOWN Navigate   •   GREEN Update sources needing attention")
+buildsrc/EPGManager_v6.0.1_GitHub/ui/health_check.py:231:            self.manager.update_source_async(st.get("id"))
+buildsrc/EPGManager_v6.0.1_GitHub/ui/screens.py:111:        self.manager.update_source_async(sid)
+buildsrc/EPGManager_v6.0.1_GitHub/tests/test_v570_sources_and_selection.py:11:    assert 'LOCAL_SOURCES' in text
+buildsrc/EPGManager_v6.0.1_GitHub/tests/test_v440_mapping_navigation_speed.py:20:def test_local_source_update_uses_manager_directly():
+buildsrc/EPGManager_v6.0.1_GitHub/tests/test_v440_mapping_navigation_speed.py:23:    assert 'self.manager.update_source_async(sid)' in mapping
+buildsrc/EPGManager_v6.0.1_GitHub/core/manager.py:10:  - update_all() / update_source() ALWAYS spawn a worker thread and return
+buildsrc/EPGManager_v6.0.1_GitHub/core/manager.py:185:    def update_source_async(self, source_id, on_complete=None):
+buildsrc/EPGManager_v6.0.1_GitHub/core/manager.py:187:            log.warning("update_source_async called while an update is already running - ignored")
+buildsrc/EPGManager_v6.0.1_GitHub/core/source_catalog.py:21:LOCAL_SOURCES = [
+buildsrc/EPGManager_v6.0.1_GitHub/core/source_catalog.py:130:    merged = list(LOCAL_SOURCES) + bundled_external_sources() + discover_epgimport_sources()
