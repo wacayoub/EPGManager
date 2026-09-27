@@ -43,7 +43,7 @@ jobs:
           if [ -d "source/overlay" ]; then
             cp -a source/overlay/. "$ROOT"/
           fi
-          python3 -m py_compile "$ROOT/core/external_sources.py" "$ROOT/core/source_catalog.py" "$ROOT/ui/native_sources.py" "$ROOT/version.py"
+          python3 -m py_compile "$ROOT/core/external_sources.py" "$ROOT/core/source_catalog.py" "$ROOT/ui/native_sources.py" "$ROOT/ui/settings.py" "$ROOT/ui/channel_mapping.py" "$ROOT/plugin.py" "$ROOT/version.py"
 
       - name: Read version
         shell: bash
@@ -87,6 +87,9 @@ jobs:
           cp "$SOURCE_ROOT/core/external_sources.py" data/current-plugin-inspect/external_sources.py
           cp "$SOURCE_ROOT/core/source_catalog.py" data/current-plugin-inspect/source_catalog.py
           cp "$SOURCE_ROOT/ui/native_sources.py" data/current-plugin-inspect/native_sources.py
+          cp "$SOURCE_ROOT/ui/settings.py" data/current-plugin-inspect/settings.py
+          cp "$SOURCE_ROOT/ui/channel_mapping.py" data/current-plugin-inspect/channel_mapping.py
+          cp "$SOURCE_ROOT/plugin.py" data/current-plugin-inspect/plugin.py
           cp "$SOURCE_ROOT/version.py" data/current-plugin-inspect/version.py
 
           # Keep a small text-only inspection snapshot of Settings/menu code so
