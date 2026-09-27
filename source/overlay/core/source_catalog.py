@@ -18,14 +18,8 @@ import xml.etree.ElementTree as ET
 
 from . import external_sources
 
-LOCAL_SOURCES = [
-    {"id": "local_medi1tv", "manager_id": "medi1tv", "name": "Medi1 TV", "group": "Local EPG Manager", "kind": "local"},
-    {"id": "local_chada_2m", "manager_id": "chada_2m", "name": "2M / Chada", "group": "Local EPG Manager", "kind": "local"},
-    {"id": "local_snrt", "manager_id": "snrt", "name": "SNRT", "group": "Local EPG Manager", "kind": "local"},
-    {"id": "local_bein_sports", "manager_id": "bein_sports", "name": "beIN Sports", "group": "Local EPG Manager", "kind": "local"},
-    {"id": "local_almajd", "manager_id": "almajd", "name": "Almajd", "group": "Local EPG Manager", "kind": "local"},
-    {"id": "local_arryadia", "manager_id": "arryadia", "name": "Arryadia", "group": "Local EPG Manager", "kind": "local"},
-]
+LOCAL_SOURCES = []  # Legacy receiver-side generators are intentionally hidden.
+
 
 EPGIMPORT_GLOBS = (
     "/etc/epgimport/*.sources.xml",
@@ -125,9 +119,9 @@ def bundled_external_sources():
 
 
 def all_sources():
-    """Return a de-duplicated unified source list, local first."""
+    """Return a de-duplicated direct/online source list."""
     # Prefer validated GitHub feeds before generic EPG-Importer fallbacks.
-    merged = list(LOCAL_SOURCES) + bundled_external_sources() + discover_epgimport_sources()
+    merged = bundled_external_sources() + discover_epgimport_sources()
     result, seen = [], set()
     for item in merged:
         # De-dupe identical online URLs while preserving installed EPG-Importer
