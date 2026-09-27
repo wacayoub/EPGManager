@@ -115,7 +115,10 @@ def bundled_external_sources():
     for src in external_sources.SOURCES:
         item = dict(src)
         item["kind"] = "external"
-        item["group"] = "Online / %s" % item.get("region", "Other")
+        if item.get("tier") == "direct":
+            item["group"] = "MENA Direct / EPG-Scrapers"
+        else:
+            item["group"] = "Online / %s" % item.get("region", "Other")
         item["dynamic"] = False
         out.append(item)
     return out
@@ -123,7 +126,8 @@ def bundled_external_sources():
 
 def all_sources():
     """Return a de-duplicated unified source list, local first."""
-    merged = list(LOCAL_SOURCES) + discover_epgimport_sources() + bundled_external_sources()
+    # Prefer validated GitHub feeds before generic EPG-Importer fallbacks.
+    merged = list(LOCAL_SOURCES) + bundled_external_sources() + discover_epgimport_sources()
     result, seen = [], set()
     for item in merged:
         # De-dupe identical online URLs while preserving installed EPG-Importer

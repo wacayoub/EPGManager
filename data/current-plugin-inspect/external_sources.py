@@ -7,6 +7,7 @@ Downloaded files are decompressed to XML in the configured EPG output directory.
 from __future__ import print_function
 import gzip
 import hashlib
+import json
 try:
     import lzma
 except ImportError:
@@ -19,6 +20,24 @@ from .logger import get_logger
 
 log = get_logger(__name__)
 
+# Direct production feeds generated once per day by wacayoub/EPG-Scrapers.
+# The Vu+ downloads finished XMLTV only; provider websites are never scraped here.
+SCRAPERS_BASE = "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds"
+_DIRECT = [
+    {"id": "direct_morocco", "name": "Morocco • Direct", "url": SCRAPERS_BASE + "/morocco.xml.gz", "metadata_url": SCRAPERS_BASE + "/morocco.json", "region": "MENA Direct", "tier": "direct", "priority": 120},
+    {"id": "direct_bein", "name": "beIN MENA • Direct", "url": SCRAPERS_BASE + "/bein.xml.gz", "metadata_url": SCRAPERS_BASE + "/bein.json", "region": "MENA Direct", "tier": "direct", "priority": 118},
+    {"id": "direct_osn", "name": "OSN • Direct", "url": SCRAPERS_BASE + "/osn.xml.gz", "metadata_url": SCRAPERS_BASE + "/osn.json", "region": "MENA Direct", "tier": "direct", "priority": 116},
+    {"id": "direct_shahid", "name": "Shahid / MBC • Direct", "url": SCRAPERS_BASE + "/shahid.xml.gz", "metadata_url": SCRAPERS_BASE + "/shahid.json", "region": "MENA Direct", "tier": "direct", "priority": 114},
+    {"id": "direct_elcinema", "name": "ElCinema • Direct", "url": SCRAPERS_BASE + "/elcinema.xml.gz", "metadata_url": SCRAPERS_BASE + "/elcinema.json", "region": "MENA Direct", "tier": "direct", "priority": 112},
+    {"id": "direct_rotana", "name": "Rotana • Direct", "url": SCRAPERS_BASE + "/rotana.xml.gz", "metadata_url": SCRAPERS_BASE + "/rotana.json", "region": "MENA Direct", "tier": "direct", "priority": 110},
+    {"id": "direct_dubaiplus", "name": "Dubai+ • Direct", "url": SCRAPERS_BASE + "/dubaiplus.xml.gz", "metadata_url": SCRAPERS_BASE + "/dubaiplus.json", "region": "MENA Direct", "tier": "direct", "priority": 108},
+    {"id": "direct_sport24", "name": "Sport24 • Direct", "url": SCRAPERS_BASE + "/sport24.xml.gz", "metadata_url": SCRAPERS_BASE + "/sport24.json", "region": "MENA Direct", "tier": "direct", "priority": 106},
+    {"id": "direct_stctv", "name": "STC TV • Direct", "url": SCRAPERS_BASE + "/stctv.xml.gz", "metadata_url": SCRAPERS_BASE + "/stctv.json", "region": "MENA Direct", "tier": "direct", "priority": 104},
+    {"id": "direct_starzplay", "name": "STARZPLAY • Direct", "url": SCRAPERS_BASE + "/starzplay.xml.gz", "metadata_url": SCRAPERS_BASE + "/starzplay.json", "region": "MENA Direct", "tier": "direct", "priority": 102},
+    {"id": "direct_aljazeera", "name": "Al Jazeera • Direct", "url": SCRAPERS_BASE + "/aljazeera.xml.gz", "metadata_url": SCRAPERS_BASE + "/aljazeera.json", "region": "MENA Direct", "tier": "direct", "priority": 100},
+]
+
+# Generic fallback catalogue kept after the direct MENA providers.
 # (name, url, region)
 _RAW = [
 ("PALESTINE1","https://www.open-epg.com/files/palestine1.xml.gz","Middle East"),
@@ -146,7 +165,8 @@ def _slug(name):
     return s or hashlib.sha1(name.encode("utf-8")).hexdigest()[:12]
 
 
-SOURCES = [dict(id="ext_" + _slug(n), name=n, url=u, region=r) for n, u, r in _RAW]
+_GENERIC_SOURCES = [dict(id="ext_" + _slug(n), name=n, url=u, region=r, tier="fallback", priority=0) for n, u, r in _RAW]
+SOURCES = list(_DIRECT) + _GENERIC_SOURCES
 BY_ID = {s["id"]: s for s in SOURCES}
 
 
@@ -154,10 +174,24 @@ def local_xml_path(source, epg_dir):
     return os.path.join(epg_dir, "%s.xml" % source["id"])
 
 
+def local_meta_path(source, epg_dir):
+    return os.path.join(epg_dir, "%s.meta.json" % source["id"])
+
+
+def source_metadata(source, epg_dir):
+    path = local_meta_path(source, epg_dir)
+    try:
+        with open(path, "r") as f:
+            data = json.load(f)
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
 def source_status(source, epg_dir):
     path = local_xml_path(source, epg_dir)
     if not os.path.exists(path):
-        return "REMOTE"
+        return "DIRECT" if source.get("tier") == "direct" else "REMOTE"
     try:
         age = max(0, __import__('time').time() - os.path.getmtime(path))
         return "CACHED" if age < 36 * 3600 else "STALE"
@@ -210,6 +244,26 @@ def download_source(source, epg_dir, retries=3, timeout=30):
     with open(tmp, "wb") as f:
         f.write(payload)
     os.replace(tmp, path)
+
+    # Direct feeds expose a tiny JSON sidecar with channel count, coverage and
+    # generation time. A metadata failure never invalidates healthy XML.
+    meta_url = source.get("metadata_url")
+    if meta_url:
+        md = Downloader(retries=1, timeout=min(timeout, 15))
+        try:
+            resp = md.get(meta_url)
+            raw = resp.content.decode("utf-8", "replace") if isinstance(resp.content, bytes) else resp.content
+            data = json.loads(raw)
+            if isinstance(data, dict):
+                meta_path = local_meta_path(source, epg_dir)
+                meta_tmp = meta_path + ".tmp"
+                with open(meta_tmp, "w") as f:
+                    json.dump(data, f, ensure_ascii=False, sort_keys=True)
+                os.replace(meta_tmp, meta_path)
+        except Exception as exc:
+            log.warning("Metadata refresh failed for %s: %s", source.get("id"), exc)
+        finally:
+            md.close()
     return path
 
 

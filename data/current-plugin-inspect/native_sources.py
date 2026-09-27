@@ -38,23 +38,37 @@ class NativeSourceList(MenuList):
             else:
                 status=item.get("_display_status") or "REMOTE"
             mapped = int(mapped_counts.get(item.get("id"), 0) or mapped_counts.get(item.get("manager_id"), 0) or 0)
+            meta = item.get("_meta") or {}
+            channels = int(meta.get("channels") or meta.get("input_channels") or 0)
+            coverage = meta.get("coverage_pct")
             bg = theme.PANEL_ROW_HEX_INT if index % 2 == 0 else theme.PANEL_ROW_ALT_HEX_INT
             marker = u"✓" if selected else u""
             marker_color = theme.STATUS_GREEN_INT if selected else theme.MUTED_TEXT_INT
             mapped_text = ("%d mapped" % mapped) if mapped else ""
+            name = item.get("name", item.get("id", "Source"))
+            if item.get("tier") == "direct":
+                name = "[DIRECT] " + name
+            status_text = status
+            if channels:
+                status_text = "%s • %d IDs" % (status, channels)
+                if coverage is not None:
+                    try: status_text += " • %d%%" % int(round(float(coverage)))
+                    except Exception: pass
+            status_color = theme.STATUS_GREEN_INT if status in ("SUCCESS","UPDATED","CACHED") else (
+                theme.ACCENT_SECONDARY_INT if status in ("STALE","DIRECT") else theme.MUTED_TEXT_INT)
             rows.append([
                 item,
                 MultiContentEntryText(pos=(10,0), size=(48,45), font=0, flags=RT_VALIGN_CENTER, text=marker,
                     color=marker_color, color_sel=marker_color, backcolor=bg, backcolor_sel=theme.PANEL_SELECTED_HEX_INT),
-                MultiContentEntryText(pos=(62,0), size=(1110,45), font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER,
-                    text=item.get("name", item.get("id", "Source")), color=theme.TEXT_INT, color_sel=theme.WHITE_INT,
+                MultiContentEntryText(pos=(62,0), size=(940,45), font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER,
+                    text=name, color=theme.TEXT_INT, color_sel=theme.WHITE_INT,
                     backcolor=bg, backcolor_sel=theme.PANEL_SELECTED_HEX_INT),
-                MultiContentEntryText(pos=(1185,0), size=(280,45), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER,
+                MultiContentEntryText(pos=(1015,0), size=(300,45), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER,
                     text=mapped_text, color=theme.ACCENT_SECONDARY_INT if mapped else theme.MUTED_TEXT_INT,
                     color_sel=theme.ACCENT_SECONDARY_INT if mapped else theme.WHITE_INT, backcolor=bg, backcolor_sel=theme.PANEL_SELECTED_HEX_INT),
-                MultiContentEntryText(pos=(1480,0), size=(300,45), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER,
-                    text=status, color=theme.STATUS_GREEN_INT if status in ("SUCCESS","UPDATED","CACHED") else theme.MUTED_TEXT_INT,
-                    color_sel=theme.WHITE_INT, backcolor=bg, backcolor_sel=theme.PANEL_SELECTED_HEX_INT),
+                MultiContentEntryText(pos=(1330,0), size=(450,45), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER,
+                    text=status_text, color=status_color, color_sel=theme.WHITE_INT,
+                    backcolor=bg, backcolor_sel=theme.PANEL_SELECTED_HEX_INT),
             ])
         self.setList(rows)
 
@@ -95,13 +109,14 @@ class NativeSourcesScreen(Screen):
         self["title"] = Label("EPG MANAGER  /  EPG SOURCES")
         self["summary"] = Label("")
         self["group"] = Label("")
-        self["hint"] = Label("OK Select / unselect   •   GREEN Update selected   •   0 Selected only   •   CH+/CH- Page   •   1 All sources")
+        self["hint"] = Label("OK Select / unselect   •   GREEN Update selected   •   0 Selected only   •   2 Direct MENA   •   1 All   •   CH+/CH- Page")
         self["list"] = NativeSourceList()
         self["detail"] = Label("")
         for key, text in (("red", "Close"), ("green", "Update Selected"), ("yellow", "Refresh Catalogue"), ("blue", "Smart Mapping")):
             self["key_%s_bar" % key] = Label(""); self["key_%s" % key] = Label(text)
         self._all_items, self._items = [], []
         self._show_selected_only = False
+        self._show_direct_only = False
         self._busy = False
         self._pending_locals = []
         self._errors = []
@@ -109,7 +124,7 @@ class NativeSourcesScreen(Screen):
             "cancel": self.close, "red": self.close, "ok": self.toggle_current,
             "green": self.update_selected, "yellow": self.reload_catalogue, "blue": self.open_mapping,
             "up": self._up, "down": self._down, "pageUp": self._page_up, "pageDown": self._page_down,
-            "0": self.toggle_selected_filter, "1": self.show_all,
+            "0": self.toggle_selected_filter, "1": self.show_all, "2": self.show_direct_only,
         }, -1)
         self._timer = eTimer()
         cb = self._timer.callback if hasattr(self._timer, "callback") else self._timer.timeout.get(); cb.append(self._poll)
@@ -145,13 +160,21 @@ class NativeSourcesScreen(Screen):
                 st=external_sources.source_status(item, self._epg_dir())
                 if item.get("dynamic"): st="EPG-IMPORTER"
                 item["_display_status"]=st
-        # Mapped providers first, then selected providers, then normal catalogue order.
+                item["_meta"] = external_sources.source_metadata(item, self._epg_dir()) if item.get("tier") == "direct" else {}
+        # Direct MENA first; then mapped/selected providers; then catalogue order.
         ordered=sorted(enumerate(self._all_items), key=lambda pair: (
+            -int(pair[1].get("tier")=="direct"),
+            -int(pair[1].get("priority",0) or 0),
             -int(pair[1].get("_mapped_count",0)>0),
             -int(self.store.is_selected(pair[1].get("id"))),
             pair[0]))
         source_order=[x for _idx,x in ordered]
-        self._items=[x for x in source_order if (not self._show_selected_only or self.store.is_selected(x.get("id")))]
+        if self._show_direct_only:
+            self._items=[x for x in source_order if x.get("tier")=="direct"]
+        elif self._show_selected_only:
+            self._items=[x for x in source_order if self.store.is_selected(x.get("id"))]
+        else:
+            self._items=source_order
         local_status={}
         try: local_status={x.get("id"):x for x in self.manager.get_status_all()}
         except Exception: pass
@@ -166,7 +189,8 @@ class NativeSourcesScreen(Screen):
                     break
         sel_count=sum(1 for x in self._all_items if self.store.is_selected(x.get("id")))
         mapped_sources=sum(1 for x in self._all_items if x.get("_mapped_count",0))
-        self["summary"].setText("%d selected  •  %d mapped providers  •  %d sources" % (sel_count, mapped_sources, len(self._all_items)))
+        direct_count=sum(1 for x in self._all_items if x.get("tier")=="direct")
+        self["summary"].setText("%d selected  •  %d mapped  •  %d direct  •  %d total" % (sel_count, mapped_sources, direct_count, len(self._all_items)))
         self._detail()
 
     def _index(self):
@@ -188,6 +212,7 @@ class NativeSourcesScreen(Screen):
         state="SELECTED for native import" if self.store.is_selected(item.get("id")) else "Not selected"
         mapped=int(item.get("_mapped_count",0) or 0)
         cache_info=""
+        meta_info=""
         try:
             if item.get("kind") != "local":
                 path=external_sources.local_xml_path(item, self._epg_dir()) if hasattr(external_sources,"local_xml_path") else None
@@ -195,9 +220,19 @@ class NativeSourcesScreen(Screen):
                     age=max(0,int(time.time()-os.path.getmtime(path)))
                     size=os.path.getsize(path)
                     cache_info="  •  cache %.1f MB  •  age %dh" % (size/1048576.0, age//3600)
+                meta=item.get("_meta") or {}
+                channels=int(meta.get("channels") or meta.get("input_channels") or 0)
+                programmes=int(meta.get("programmes") or 0)
+                coverage=meta.get("coverage_pct")
+                if channels or programmes:
+                    meta_info="  •  %d IDs  •  %d programmes" % (channels, programmes)
+                    if coverage is not None:
+                        try: meta_info += "  •  %.1f%% coverage" % float(coverage)
+                        except Exception: pass
         except Exception: pass
-        self["detail"].setText("%s  •  %s  •  %d mapped channel%s%s\n%s\nGroup: %s" % (
-            item.get("name","Source"), state, mapped, "" if mapped==1 else "s", cache_info, url, item.get("group","Other")))
+        tier = "DIRECT GitHub feed" if item.get("tier")=="direct" else item.get("group","Other")
+        self["detail"].setText("%s  •  %s  •  %d mapped channel%s%s%s\n%s\n%s" % (
+            item.get("name","Source"), state, mapped, "" if mapped==1 else "s", cache_info, meta_info, url, tier))
     def _up(self):
         try:self["list"].up()
         except Exception:pass
@@ -216,9 +251,17 @@ class NativeSourcesScreen(Screen):
         if not item:return
         self.store.toggle(item.get("id")); self._apply_filter(item.get("id"))
     def toggle_selected_filter(self):
-        self._show_selected_only=not self._show_selected_only; self._apply_filter()
+        self._show_direct_only=False
+        self._show_selected_only=not self._show_selected_only
+        self._apply_filter()
     def show_all(self):
-        self._show_selected_only=False; self._apply_filter()
+        self._show_selected_only=False
+        self._show_direct_only=False
+        self._apply_filter()
+    def show_direct_only(self):
+        self._show_selected_only=False
+        self._show_direct_only=True
+        self._apply_filter()
 
     def update_selected(self):
         if self._busy:return
