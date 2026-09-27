@@ -32,6 +32,11 @@ The active source package is selected by `source/current.txt`.
 
 ## Direct MENA feeds
 
-EPGManager 6.2.0 consumes the validated daily feeds published by `wacayoub/EPG-Scrapers` instead of scraping provider websites on the receiver. Direct providers include Morocco, beIN MENA, OSN, Shahid/MBC, ElCinema, Rotana, Dubai+, Sport24, STC TV, STARZPLAY and Al Jazeera.
+EPGManager 6.2.0 consumes the validated daily feeds published by `wacayoub/EPG-Scrapers` instead of scraping provider websites on the receiver. Direct providers include Morocco, beIN MENA, OSN, Shahid/MBC, ElCinema, Rotana, Dubai+, Sport24, STC TV and Al Jazeera. STARZPLAY is temporarily on hold and hidden from the active direct catalogue.
 
 The source screen prioritizes these direct feeds, supports a **Direct MENA only** filter with key `2`, and shows cached channel/coverage metadata when available. GoBX is intentionally not exposed until a validated feed is published.
+
+
+## 6.2.1 multinational fix
+
+STARZPLAY is temporarily hidden from active direct sources. Multinational channel feeds are expected to use original English titles with Arabic descriptions; Arabic-native channels keep Arabic titles and descriptions. National Geographic Abu Dhabi remains an Arabic-native exception.

@@ -33,7 +33,6 @@ _DIRECT = [
     {"id": "direct_dubaiplus", "name": "Dubai+ • Direct", "url": SCRAPERS_BASE + "/dubaiplus.xml.gz", "metadata_url": SCRAPERS_BASE + "/dubaiplus.json", "region": "MENA Direct", "tier": "direct", "priority": 108},
     {"id": "direct_sport24", "name": "Sport24 • Direct", "url": SCRAPERS_BASE + "/sport24.xml.gz", "metadata_url": SCRAPERS_BASE + "/sport24.json", "region": "MENA Direct", "tier": "direct", "priority": 106},
     {"id": "direct_stctv", "name": "STC TV • Direct", "url": SCRAPERS_BASE + "/stctv.xml.gz", "metadata_url": SCRAPERS_BASE + "/stctv.json", "region": "MENA Direct", "tier": "direct", "priority": 104},
-    {"id": "direct_starzplay", "name": "STARZPLAY • Direct", "url": SCRAPERS_BASE + "/starzplay.xml.gz", "metadata_url": SCRAPERS_BASE + "/starzplay.json", "region": "MENA Direct", "tier": "direct", "priority": 102},
     {"id": "direct_aljazeera", "name": "Al Jazeera • Direct", "url": SCRAPERS_BASE + "/aljazeera.xml.gz", "metadata_url": SCRAPERS_BASE + "/aljazeera.json", "region": "MENA Direct", "tier": "direct", "priority": 100},
 ]
 
