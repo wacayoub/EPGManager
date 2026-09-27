@@ -88,6 +88,19 @@ jobs:
           cp "$SOURCE_ROOT/core/source_catalog.py" data/current-plugin-inspect/source_catalog.py
           cp "$SOURCE_ROOT/ui/native_sources.py" data/current-plugin-inspect/native_sources.py
           cp "$SOURCE_ROOT/version.py" data/current-plugin-inspect/version.py
+
+          # Keep a small text-only inspection snapshot of Settings/menu code so
+          # future receiver UI cleanup can be patched without unpacking binary
+          # source archives outside Actions.
+          rm -rf data/current-plugin-inspect/settings
+          mkdir -p data/current-plugin-inspect/settings
+          find "$SOURCE_ROOT" -maxdepth 4 -type f -name '*.py' -print0 |             xargs -0 grep -IlE 'Settings|setting|refresh|schedule|auto.?import|local.?source|Source.*Update' |             head -n 30 | while IFS= read -r f; do
+              rel="${f#"$SOURCE_ROOT"/}"
+              safe="$(printf '%s' "$rel" | tr '/' '__')"
+              cp "$f" "data/current-plugin-inspect/settings/$safe"
+            done
+          grep -RniE 'local.?source|source.?refresh|refresh.?source|auto.?refresh|refresh.?interval|scheduled.?refresh|update.?source'             "$SOURCE_ROOT" --include='*.py' > data/current-plugin-inspect/settings_hits.txt || true
+
           echo "PATCHED_SOURCE=$PATCHED_SOURCE" >> "$GITHUB_ENV"
 
       - name: Build IPK
