@@ -112,7 +112,7 @@ class NativeSourcesScreen(Screen):
         self["hint"] = Label("OK Select / unselect   •   GREEN Update selected   •   0 Selected only   •   2 Direct MENA   •   1 All   •   CH+/CH- Page")
         self["list"] = NativeSourceList()
         self["detail"] = Label("")
-        for key, text in (("red", "Close"), ("green", "Update Selected"), ("yellow", "Refresh Catalogue"), ("blue", "Smart Mapping")):
+        for key, text in (("red", "Close"), ("green", "Sync Selected"), ("yellow", "Refresh Catalogue"), ("blue", "Smart Mapping")):
             self["key_%s_bar" % key] = Label(""); self["key_%s" % key] = Label(text)
         self._all_items, self._items = [], []
         self._show_selected_only = False
@@ -264,39 +264,43 @@ class NativeSourcesScreen(Screen):
         self._apply_filter()
 
     def update_selected(self):
-        if self._busy:return
-        selected=[x for x in self._all_items if self.store.is_selected(x.get("id"))]
+        if self._busy:
+            return
+        selected=[x for x in self._all_items if self.store.is_selected(x.get("id")) and x.get("kind")!="local"]
         if not selected:
-            self.session.open(MessageBox,"No EPG sources selected.\nUse OK to select sources first.",MessageBox.TYPE_INFO);return
-        self._busy=True; self._errors=[]
-        self._pending_locals=[x.get("manager_id") for x in selected if x.get("kind")=="local" and x.get("manager_id")]
-        external=[x for x in selected if x.get("kind")!="local"]
-        self["detail"].setText("Updating %d selected sources..." % len(selected))
+            self.session.open(MessageBox,"No online EPG sources selected.\nUse OK to select sources first.",MessageBox.TYPE_INFO)
+            return
+        self._busy=True
+        self._errors=[]
+        self["detail"].setText("Syncing %d selected feeds from GitHub/online sources..." % len(selected))
         def worker():
-            for item in external:
+            for item in selected:
                 if item.get("dynamic"):
-                    self._errors.append("%s: dynamic EPG-Importer URL" % item.get("name")); continue
-                try: external_sources.download_source(item, self._epg_dir(), retries=2, timeout=30)
-                except Exception as exc: self._errors.append("%s: %s" % (item.get("name"), exc))
+                    self._errors.append("%s: dynamic EPG-Importer URL" % item.get("name"))
+                    continue
+                try:
+                    external_sources.download_source(item, self._epg_dir(), retries=2, timeout=30)
+                except Exception as exc:
+                    self._errors.append("%s: %s" % (item.get("name"), exc))
             self._external_done=True
-        threading.Thread(target=worker, daemon=True).start(); self._timer.start(250,False)
+        threading.Thread(target=worker, daemon=True).start()
+        self._timer.start(250,False)
 
     def _poll(self):
-        if getattr(self,"_external_done",False):
-            del self._external_done
-            if self._pending_locals:
-                ids=list(self._pending_locals); self._pending_locals=[]
-                ok=self.manager.update_selected_async(ids, on_complete=lambda result:setattr(self,"_local_result",result))
-                if not ok: self._errors.append("Local EPG Manager update could not start"); self._local_result={}
-            else:self._local_result={}
-        if hasattr(self,"_local_result"):
-            self._timer.stop(); del self._local_result; self._busy=False
-            self.reload_catalogue()
-            if self._errors:
-                shown="\n".join(self._errors[:8]); more=len(self._errors)-8
-                if more>0: shown += "\n... and %d more" % more
-                self.session.open(MessageBox,"Selected sources finished with warnings:\n\n%s" % shown,MessageBox.TYPE_WARNING)
-            else:self.session.open(MessageBox,"Selected EPG sources updated successfully.",MessageBox.TYPE_INFO,timeout=3)
+        if not getattr(self,"_external_done",False):
+            return
+        del self._external_done
+        self._timer.stop()
+        self._busy=False
+        self.reload_catalogue()
+        if self._errors:
+            shown="\n".join(self._errors[:8])
+            more=len(self._errors)-8
+            if more>0:
+                shown += "\n... and %d more" % more
+            self.session.open(MessageBox,"Feed sync finished with warnings:\n\n%s" % shown,MessageBox.TYPE_WARNING)
+        else:
+            self.session.open(MessageBox,"Selected EPG feeds synced successfully.",MessageBox.TYPE_INFO,timeout=3)
 
     def open_mapping(self):
         from .channel_mapping import ChannelMappingScreen
