@@ -7,6 +7,12 @@ on:
         description: Release notes
         required: false
         default: Automatic EPG Manager release
+  push:
+    branches:
+      - main
+    paths:
+      - 'source/overlay/**'
+      - '.github/workflows/build-release.yml'
 
 permissions:
   contents: write
@@ -34,6 +40,10 @@ jobs:
           echo "SOURCE_ROOT=$ROOT" >> "$GITHUB_ENV"
           test -f "$ROOT/installer/build_ipk.sh"
           test -f "$ROOT/version.py"
+          if [ -d "source/overlay" ]; then
+            cp -a source/overlay/. "$ROOT"/
+          fi
+          python3 -m py_compile "$ROOT/core/external_sources.py" "$ROOT/core/source_catalog.py" "$ROOT/ui/native_sources.py" "$ROOT/version.py"
 
       - name: Read version
         shell: bash
@@ -43,6 +53,22 @@ jobs:
           test -n "$VERSION"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "IPK=enigma2-plugin-extensions-epgmanager_${VERSION}_all.ipk" >> "$GITHUB_ENV"
+
+      - name: Snapshot patched source
+        shell: bash
+        run: |
+          set -euo pipefail
+          PATCHED_SOURCE="source/EPGManager_source_v${VERSION}.zip"
+          ROOT_DIR="$(basename "$SOURCE_ROOT")"
+          rm -f "$PATCHED_SOURCE"
+          (cd buildsrc && zip -qr "../$PATCHED_SOURCE" "$ROOT_DIR" -x "*/__pycache__/*" "*.pyc" "*.pyo")
+          printf '%s\n' "$(basename "$PATCHED_SOURCE")" > source/current.txt
+          mkdir -p data/current-plugin-inspect
+          cp "$SOURCE_ROOT/core/external_sources.py" data/current-plugin-inspect/external_sources.py
+          cp "$SOURCE_ROOT/core/source_catalog.py" data/current-plugin-inspect/source_catalog.py
+          cp "$SOURCE_ROOT/ui/native_sources.py" data/current-plugin-inspect/native_sources.py
+          cp "$SOURCE_ROOT/version.py" data/current-plugin-inspect/version.py
+          echo "PATCHED_SOURCE=$PATCHED_SOURCE" >> "$GITHUB_ENV"
 
       - name: Build IPK
         shell: bash
@@ -89,7 +115,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add update.json
+          git add update.json source/current.txt "$PATCHED_SOURCE" data/current-plugin-inspect
           if ! git diff --cached --quiet; then
             git commit -m "Update manifest for v$VERSION"
             git push
