@@ -196,9 +196,10 @@ def _run_direct_auto():
                     epg_dir,
                     source_ids=usable_ids,
                     only_iptv=config.get_native_import_only_iptv(),
-                    min_score=config.get_native_ai_threshold())
-                if check.get("errors"):
-                    raise RuntimeError("Preflight failed: %s" % "; ".join(check.get("errors") or []))
+                    min_score=config.get_native_ai_threshold(),
+                    adaptive=config.get_native_ai_match())
+                if not check.get("ok"):
+                    raise RuntimeError("Preflight failed: %s" % "; ".join(check.get("errors") or ["No usable XMLTV source"]))
 
             plan = native_importer.build_import_plan(
                 epg_dir,
@@ -209,7 +210,7 @@ def _run_direct_auto():
                 adaptive=config.get_native_ai_match())
 
             services = plan.get("services") or {}
-            if not services:
+            if not plan.get("events_ready") or not services:
                 log.warning("Automatic EPG import skipped: no mapped events are ready")
                 # Sync succeeded, so do not re-download every five minutes.
                 config.set_last_update(time.time())
@@ -222,8 +223,8 @@ def _run_direct_auto():
             log.info(
                 "Automatic direct EPG complete: %d feed(s) synced, %d service(s), %d event(s), %d warning(s)",
                 synced,
-                int(result.get("services") or len(services)),
-                int(result.get("events") or 0),
+                int(result.get("imported_services") or len(services)),
+                int(result.get("imported_events") or 0),
                 len(failed))
         except Exception:
             log.exception("Automatic direct EPG sync/import failed")
