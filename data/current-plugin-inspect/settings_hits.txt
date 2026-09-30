@@ -1,32 +1,31 @@
 buildsrc/EPGManager_v6.0.1_GitHub/ui/main.py:243:            started = self.manager.update_source_async(valid[0])
 buildsrc/EPGManager_v6.0.1_GitHub/ui/main.py:256:        started = self.manager.update_source_async(sid)
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:508:        self.refresh_sources()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:541:    def refresh_sources(self):
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:629:                                log.warning("Lazy stale-source refresh failed for %s", src.get("source_name"), exc_info=True)
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:708:            self.update_source_title()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:716:            self.update_source_title()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:733:            self.update_source_title()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:783:        self.update_source_title()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:785:    def update_source_title(self):
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:842:        self.update_source_title()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:921:            self.update_source_title()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:940:            self.update_source_title()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:942:            self.update_source_title()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1026:        self.update_source_title()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1131:                "Legacy local source refresh is disabled.\nUse a Direct/online XMLTV source instead.",
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1175:        self.refresh_sources()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1207:            self.refresh_sources()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1213:            log.exception("Could not refresh local source after update")
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1215:            self["summary"].setText("Local source updated: %s (%s programmes)" %
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1219:            self["summary"].setText("Local source is in safety cooldown")
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1221:            self["summary"].setText("Local source update failed: %s" % (status.get("error_message") or sid))
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1223:            self["summary"].setText("Local source update finished")
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1327:            self.update_source_title()
-buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1368:        self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:509:        self.refresh_sources()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:542:    def refresh_sources(self):
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:630:                                log.warning("Lazy stale-source refresh failed for %s", src.get("source_name"), exc_info=True)
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:709:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:717:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:734:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:784:        self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:786:    def update_source_title(self):
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:843:        self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:922:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:941:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:943:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1027:        self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1132:                "Legacy local source refresh is disabled.\nUse a Direct/online XMLTV source instead.",
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1176:        self.refresh_sources()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1208:            self.refresh_sources()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1214:            log.exception("Could not refresh local source after update")
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1216:            self["summary"].setText("Local source updated: %s (%s programmes)" %
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1220:            self["summary"].setText("Local source is in safety cooldown")
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1222:            self["summary"].setText("Local source update failed: %s" % (status.get("error_message") or sid))
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1224:            self["summary"].setText("Local source update finished")
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1328:            self.update_source_title()
+buildsrc/EPGManager_v6.0.1_GitHub/ui/channel_mapping.py:1369:        self.update_source_title()
 buildsrc/EPGManager_v6.0.1_GitHub/ui/health_check.py:143:        self["legend"] = Label("GOOD = valid EPG   •   WARNING = low/partial data   •   FAILED = update error or expired EPG\nUP/DOWN Navigate   •   GREEN Update sources needing attention")
 buildsrc/EPGManager_v6.0.1_GitHub/ui/health_check.py:231:            self.manager.update_source_async(st.get("id"))
 buildsrc/EPGManager_v6.0.1_GitHub/ui/screens.py:111:        self.manager.update_source_async(sid)
-buildsrc/EPGManager_v6.0.1_GitHub/plugin.py:83:        log.info("EPG Manager v%s direct-feed mode - local source scheduler disabled", __version__)
 buildsrc/EPGManager_v6.0.1_GitHub/tests/test_v570_sources_and_selection.py:11:    assert 'LOCAL_SOURCES' in text
 buildsrc/EPGManager_v6.0.1_GitHub/tests/test_v440_mapping_navigation_speed.py:20:def test_local_source_update_uses_manager_directly():
 buildsrc/EPGManager_v6.0.1_GitHub/tests/test_v440_mapping_navigation_speed.py:23:    assert 'self.manager.update_source_async(sid)' in mapping
