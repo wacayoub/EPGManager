@@ -197,7 +197,7 @@ class ChannelMappingScreen(Screen):
 
         self["title"] = Label("EPG MANAGER  SMART MAPPING")
         self["source_title"] = Label("Select a bouquet and channel")
-        self["subtitle"] = Label("MANUAL MODE • GREEN Auto Map Channel • 6 Unmap Channel • MENU Search • 9 Preview • BLUE Undo")
+        self["subtitle"] = Label("MANUAL MODE • GREEN Auto Map Channel • 5 Auto Map All • 6 Unmap • MENU Search • 9 Preview • BLUE Undo")
         self["summary"] = Label("Opening Smart Mapping...")
         self["hdr_bouquet"] = Label("Bouquet")
         self["hdr_channel"] = Label("Channel")
@@ -237,6 +237,7 @@ class ChannelMappingScreen(Screen):
                 "2": self.page_down,
                 "0": self.jump_top,
                 "4": self.search_channel,
+                "5": self.auto_map_all,
                 "6": self.unmap_current_channel,
                 "9": self.preview_three_programmes,
                 "menu": self.search_channel,
@@ -1433,6 +1434,42 @@ class ChannelMappingScreen(Screen):
             self.refresh_selection()
         self._update_summary()
 
+    def _load_cached_sources_for_auto_map(self, source_ids=None):
+        """Load only XMLTV files already present on disk.
+
+        Smart Mapping opens lazily for speed, so self.epg_channels may be empty
+        even when healthy cached feeds exist. Auto-map must explicitly hydrate
+        the candidates it intends to use, but it must never trigger network
+        downloads behind the user's back.
+        """
+        wanted = set(source_ids or [])
+        loaded = 0
+        missing = 0
+        for src in self._all_source_groups:
+            if not src or src.get("source_group"):
+                continue
+            sid = src.get("source_id")
+            if wanted and sid not in wanted:
+                continue
+            path = self._source_xml_path(src)
+            if not path or not os.path.exists(path):
+                missing += 1
+                continue
+            before = len(self.epg_by_source.get(sid, []))
+            if not before:
+                self._ensure_source_loaded(src)
+            if self.epg_by_source.get(sid):
+                loaded += 1
+        return loaded, missing
+
+    def _receiver_refs_already_mapped(self):
+        refs = set()
+        for saved in (self.store.all() or {}).values():
+            for ref in (saved or {}).get("refs") or []:
+                if ref:
+                    refs.add(ref)
+        return refs
+
     def auto_map_source(self):
         src = self._current("sources", self.source_groups)
         if not src:
@@ -1441,58 +1478,103 @@ class ChannelMappingScreen(Screen):
             self.session.open(MessageBox, "Open the source group and choose one EPG source first.", MessageBox.TYPE_INFO)
             return
         try:
-            target = [x for x in self.epg_channels if x.get("source_id") == src.get("source_id")]
+            self._load_cached_sources_for_auto_map([src.get("source_id")])
+            target = list(self.epg_by_source.get(src.get("source_id"), []))
+            if not target:
+                self.session.open(
+                    MessageBox,
+                    "No cached EPG channels are available for %s.\n\nUse YELLOW Sync Source first." %
+                    src.get("source_name", "this source"),
+                    MessageBox.TYPE_INFO,
+                )
+                return
             threshold = self.config.get_safe_auto_map_threshold() if self.config and hasattr(self.config, "get_safe_auto_map_threshold") else 95
             results = channel_mapper.smart_match_channels(target, self.catalog, min_score=threshold, store=None)
             saved = 0
+            review = 0
+            occupied = self._receiver_refs_already_mapped()
+            self.store.backup()
             for entry in results:
                 matches = entry.get("matches") or []
-                if not matches:
-                    continue
-                # Safe auto-map: one best match only; ambiguous equal-score matches stay manual.
-                if len(matches) != 1:
+                confidence = int(entry.get("confidence") or 0)
+                if len(matches) != 1 or confidence < threshold:
+                    review += 1
                     continue
                 match = matches[0]
-                self.store.set(entry.get("source_id"), entry.get("channel_id"), [match.get("ref")],
-                               mode="auto", display_name=entry.get("display_name"))
+                ref = match.get("ref")
+                if not ref or ref in occupied:
+                    review += 1
+                    continue
+                self.store.set(entry.get("source_id"), entry.get("channel_id"), [ref],
+                               mode="auto-safe", display_name=entry.get("display_name"))
+                occupied.add(ref)
                 saved += 1
             self._rebuild_mapping_cache()
             self.mapping_revision += 1
             self.selection_cache.clear()
             self.refresh_channels()
             self._update_summary()
-            self.session.open(MessageBox, "Auto Map completed: %d mapping(s) saved for %s." %
-                              (saved, src.get("source_name", "source")), MessageBox.TYPE_INFO)
+            self.session.open(
+                MessageBox,
+                "Auto Map Source complete: %d saved, %d left for review.\n\nExisting mappings were preserved." %
+                (saved, review),
+                MessageBox.TYPE_INFO,
+            )
         except Exception as exc:
             log.exception("Auto map failed")
             self.session.open(MessageBox, "Auto Map failed.\n\n%s" % exc, MessageBox.TYPE_ERROR)
 
     def auto_map_all(self):
-        """Safe global auto-map: exact/high confidence, one unambiguous best match."""
+        """Safe global auto-map across every cached source.
+
+        The screen uses lazy source loading for fast navigation. This function
+        hydrates cached feeds first, preserves all existing mappings and never
+        assigns one receiver service to multiple XMLTV IDs in the same pass.
+        """
         try:
-            threshold = self.config.get_safe_auto_map_threshold() if self.config and hasattr(self.config, 'get_safe_auto_map_threshold') else 95
+            loaded, missing = self._load_cached_sources_for_auto_map()
+            if not loaded or not self.epg_channels:
+                self.session.open(
+                    MessageBox,
+                    "Auto Map All found no cached XMLTV channels.\n\nSync your selected EPG sources first.",
+                    MessageBox.TYPE_INFO,
+                )
+                return
+            threshold = self.config.get_safe_auto_map_threshold() if self.config and hasattr(self.config, "get_safe_auto_map_threshold") else 95
             results = channel_mapper.smart_match_channels(self.epg_channels, self.catalog, min_score=threshold, store=None)
             saved = 0
-            skipped = 0
+            review = 0
+            occupied = self._receiver_refs_already_mapped()
             self.store.backup()
             for entry in results:
-                matches = entry.get('matches') or []
-                if len(matches) != 1 or int(entry.get('confidence') or 0) < threshold:
-                    skipped += 1
+                matches = entry.get("matches") or []
+                confidence = int(entry.get("confidence") or 0)
+                if len(matches) != 1 or confidence < threshold:
+                    review += 1
                     continue
-                m = matches[0]
-                self.store.set(entry.get('source_id'), entry.get('channel_id'), [m.get('ref')],
-                               mode='auto-safe', display_name=entry.get('display_name'))
+                match = matches[0]
+                ref = match.get("ref")
+                if not ref or ref in occupied:
+                    review += 1
+                    continue
+                self.store.set(entry.get("source_id"), entry.get("channel_id"), [ref],
+                               mode="auto-safe", display_name=entry.get("display_name"))
+                occupied.add(ref)
                 saved += 1
             self._rebuild_mapping_cache()
             self.mapping_revision += 1
             self.selection_cache.clear()
             self.refresh_channels()
             self._update_summary()
-            self.session.open(MessageBox, 'Auto Map All: %d saved, %d left for review.\n\nBackup: epgmanager_mappings.json.bak' % (saved, skipped), MessageBox.TYPE_INFO)
+            self.session.open(
+                MessageBox,
+                "Auto Map All complete: %d saved, %d left for review.\n\n%d cached source(s) loaded; %d source(s) had no local cache.\nExisting mappings were preserved." %
+                (saved, review, loaded, missing),
+                MessageBox.TYPE_INFO,
+            )
         except Exception as exc:
-            log.exception('Auto Map All failed')
-            self.session.open(MessageBox, 'Auto Map All failed.\n\n%s' % exc, MessageBox.TYPE_ERROR)
+            log.exception("Auto Map All failed")
+            self.session.open(MessageBox, "Auto Map All failed.\n\n%s" % exc, MessageBox.TYPE_ERROR)
 
     def repair_unmapped(self):
         """Focus the workflow on services that still have no mapping."""
