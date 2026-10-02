@@ -3,12 +3,10 @@
   "mode": "bein-max-xtra-source-retention-audit",
   "policy": "MAX/XTRA are retained event-channel sources; generic/cloned off-event guides lower mapping confidence but never cause source rejection",
   "summary": {
-    "KEEP_SOURCE": 19,
-    "REVIEW": 1
+    "KEEP_SOURCE": 20
   },
   "mapping_modes": {
-    "event_only_or_manual": 19,
-    "standby_no_autolock": 1
+    "event_only_or_manual": 20
   },
   "source_errors": [],
   "rows": [
@@ -17,11 +15,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 1.qa",
       "name": "beIN SPORTS MAX 1.qa",
-      "events": 13,
+      "events": 14,
       "unique_titles": 1,
-      "unique_title_pct": 7.7,
+      "unique_title_pct": 7.1,
       "top_title_pct": 100.0,
-      "generic_events": 13,
+      "generic_events": 14,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -33,15 +31,13 @@
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=3"
+        "GENERIC_OFF_EVENT_GUIDE"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
         "beIN SPORTS MAX 1.qa",
-        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 6.qa"
       ]
     },
@@ -50,11 +46,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 2.qa",
       "name": "beIN SPORTS MAX 2.qa",
-      "events": 13,
+      "events": 18,
       "unique_titles": 1,
-      "unique_title_pct": 7.7,
+      "unique_title_pct": 5.6,
       "top_title_pct": 100.0,
-      "generic_events": 13,
+      "generic_events": 18,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -67,15 +63,16 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=3"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS MAX 1.qa",
         "beIN SPORTS MAX 2.qa",
-        "beIN SPORTS MAX 6.qa"
+        "beIN SPORTS MAX 3.qa",
+        "beIN SPORTS MAX 4.qa",
+        "beIN SPORTS MAX 5.qa"
       ]
     },
     {
@@ -83,11 +80,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 3.qa",
       "name": "beIN SPORTS MAX 3.qa",
-      "events": 17,
+      "events": 18,
       "unique_titles": 1,
-      "unique_title_pct": 5.9,
+      "unique_title_pct": 5.6,
       "top_title_pct": 100.0,
-      "generic_events": 17,
+      "generic_events": 18,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -100,12 +97,13 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=3"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 3.qa",
         "beIN SPORTS MAX 4.qa",
         "beIN SPORTS MAX 5.qa"
@@ -116,11 +114,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 4.qa",
       "name": "beIN SPORTS MAX 4.qa",
-      "events": 17,
+      "events": 18,
       "unique_titles": 1,
-      "unique_title_pct": 5.9,
+      "unique_title_pct": 5.6,
       "top_title_pct": 100.0,
-      "generic_events": 17,
+      "generic_events": 18,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -133,12 +131,13 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=3"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 3.qa",
         "beIN SPORTS MAX 4.qa",
         "beIN SPORTS MAX 5.qa"
@@ -149,11 +148,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 5.qa",
       "name": "beIN SPORTS MAX 5.qa",
-      "events": 17,
+      "events": 18,
       "unique_titles": 1,
-      "unique_title_pct": 5.9,
+      "unique_title_pct": 5.6,
       "top_title_pct": 100.0,
-      "generic_events": 17,
+      "generic_events": 18,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -166,12 +165,13 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=3"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 3.qa",
         "beIN SPORTS MAX 4.qa",
         "beIN SPORTS MAX 5.qa"
@@ -182,11 +182,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 6.qa",
       "name": "beIN SPORTS MAX 6.qa",
-      "events": 13,
+      "events": 14,
       "unique_titles": 1,
-      "unique_title_pct": 7.7,
+      "unique_title_pct": 7.1,
       "top_title_pct": 100.0,
-      "generic_events": 13,
+      "generic_events": 14,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -198,15 +198,13 @@
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=3"
+        "GENERIC_OFF_EVENT_GUIDE"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
         "beIN SPORTS MAX 1.qa",
-        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 6.qa"
       ]
     },
@@ -215,17 +213,17 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 1.qa",
       "name": "beIN SPORTS XTRA 1.qa",
-      "events": 35,
-      "unique_titles": 3,
-      "unique_title_pct": 8.6,
-      "top_title_pct": 94.3,
-      "generic_events": 33,
-      "generic_pct": 94.3,
+      "events": 30,
+      "unique_titles": 4,
+      "unique_title_pct": 13.3,
+      "top_title_pct": 90.0,
+      "generic_events": 27,
+      "generic_pct": 90.0,
       "samples": [
-        "Levante vs Athletic Bilbao -Spanish LaLiga 2026/2027 - Week 6",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
@@ -245,17 +243,17 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 2.qa",
       "name": "beIN SPORTS XTRA 2.qa",
-      "events": 32,
-      "unique_titles": 2,
-      "unique_title_pct": 6.2,
-      "top_title_pct": 96.9,
-      "generic_events": 31,
-      "generic_pct": 96.9,
+      "events": 34,
+      "unique_titles": 3,
+      "unique_title_pct": 8.8,
+      "top_title_pct": 94.1,
+      "generic_events": 32,
+      "generic_pct": 94.1,
       "samples": [
-        "Sturm Graz vs Rennes - UEFA Europa League 2026/2027 - MD1",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
@@ -275,29 +273,36 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 3.qa",
       "name": "beIN SPORTS XTRA 3.qa",
-      "events": 32,
-      "unique_titles": 2,
-      "unique_title_pct": 6.2,
-      "top_title_pct": 96.9,
-      "generic_events": 31,
-      "generic_pct": 96.9,
+      "events": 35,
+      "unique_titles": 1,
+      "unique_title_pct": 2.9,
+      "top_title_pct": 100.0,
+      "generic_events": 35,
+      "generic_pct": 100.0,
       "samples": [
-        "Bayer Leverkusen vs Celje - UEFA Europa League 2026/2027 - MD1",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE"
+        "GENERIC_OFF_EVENT_GUIDE",
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 3.qa"
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
+        "beIN SPORTS XTRA 5.qa",
+        "beIN SPORTS XTRA 6.qa",
+        "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
+        "beIN SPORTS XTRA 9.qa"
       ]
     },
     {
@@ -305,29 +310,36 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 4.qa",
       "name": "beIN SPORTS XTRA 4.qa",
-      "events": 32,
-      "unique_titles": 2,
-      "unique_title_pct": 6.2,
-      "top_title_pct": 96.9,
-      "generic_events": 31,
-      "generic_pct": 96.9,
+      "events": 35,
+      "unique_titles": 1,
+      "unique_title_pct": 2.9,
+      "top_title_pct": 100.0,
+      "generic_events": 35,
+      "generic_pct": 100.0,
       "samples": [
-        "Olympiacos Piraeus vs Jagiellonia - UEFA Europa League 2026/2027 - MD1",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE"
+        "GENERIC_OFF_EVENT_GUIDE",
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 4.qa"
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
+        "beIN SPORTS XTRA 5.qa",
+        "beIN SPORTS XTRA 6.qa",
+        "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
+        "beIN SPORTS XTRA 9.qa"
       ]
     },
     {
@@ -335,32 +347,35 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 5.qa",
       "name": "beIN SPORTS XTRA 5.qa",
-      "events": 32,
+      "events": 35,
       "unique_titles": 1,
-      "unique_title_pct": 3.1,
+      "unique_title_pct": 2.9,
       "top_title_pct": 100.0,
-      "generic_events": 32,
+      "generic_events": 35,
       "generic_pct": 100.0,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
         "beIN SPORTS XTRA 9.qa"
       ]
     },
@@ -369,32 +384,35 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 6.qa",
       "name": "beIN SPORTS XTRA 6.qa",
-      "events": 32,
+      "events": 35,
       "unique_titles": 1,
-      "unique_title_pct": 3.1,
+      "unique_title_pct": 2.9,
       "top_title_pct": 100.0,
-      "generic_events": 32,
+      "generic_events": 35,
       "generic_pct": 100.0,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
         "beIN SPORTS XTRA 9.qa"
       ]
     },
@@ -403,32 +421,35 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 7.qa",
       "name": "beIN SPORTS XTRA 7.qa",
-      "events": 32,
+      "events": 35,
       "unique_titles": 1,
-      "unique_title_pct": 3.1,
+      "unique_title_pct": 2.9,
       "top_title_pct": 100.0,
-      "generic_events": 32,
+      "generic_events": 35,
       "generic_pct": 100.0,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
         "beIN SPORTS XTRA 9.qa"
       ]
     },
@@ -437,29 +458,36 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 8.qa",
       "name": "beIN SPORTS XTRA 8.qa",
-      "events": 17,
+      "events": 35,
       "unique_titles": 1,
-      "unique_title_pct": 5.9,
+      "unique_title_pct": 2.9,
       "top_title_pct": 100.0,
-      "generic_events": 17,
+      "generic_events": 35,
       "generic_pct": 100.0,
       "samples": [
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE"
+        "GENERIC_OFF_EVENT_GUIDE",
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 8.qa"
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
+        "beIN SPORTS XTRA 5.qa",
+        "beIN SPORTS XTRA 6.qa",
+        "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
+        "beIN SPORTS XTRA 9.qa"
       ]
     },
     {
@@ -467,32 +495,35 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 9.qa",
       "name": "beIN SPORTS XTRA 9.qa",
-      "events": 32,
+      "events": 35,
       "unique_titles": 1,
-      "unique_title_pct": 3.1,
+      "unique_title_pct": 2.9,
       "top_title_pct": 100.0,
-      "generic_events": 32,
+      "generic_events": 35,
       "generic_pct": 100.0,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
         "beIN SPORTS XTRA 9.qa"
       ]
     },
@@ -501,17 +532,17 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 04 bein.com.qa",
       "name": "beIN SPORTS XTRA 04 bein.com.qa",
-      "events": 14,
+      "events": 32,
       "unique_titles": 1,
-      "unique_title_pct": 7.1,
+      "unique_title_pct": 3.1,
       "top_title_pct": 100.0,
-      "generic_events": 14,
+      "generic_events": 32,
       "generic_pct": 100.0,
       "samples": [
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
@@ -532,17 +563,17 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 05 bein.com.qa",
       "name": "beIN SPORTS XTRA 05 bein.com.qa",
-      "events": 14,
+      "events": 32,
       "unique_titles": 1,
-      "unique_title_pct": 7.1,
+      "unique_title_pct": 3.1,
       "top_title_pct": 100.0,
-      "generic_events": 14,
+      "generic_events": 32,
       "generic_pct": 100.0,
       "samples": [
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
@@ -563,32 +594,41 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 06 bein.com.qa",
       "name": "beIN SPORTS XTRA 06 bein.com.qa",
-      "events": 0,
-      "unique_titles": 0,
-      "unique_title_pct": 0.0,
-      "top_title_pct": 0.0,
-      "generic_events": 0,
-      "generic_pct": 0.0,
-      "samples": [],
-      "verdict": "REVIEW",
-      "warnings": [
-        "NO_CURRENT_EVENTS"
+      "events": 16,
+      "unique_titles": 1,
+      "unique_title_pct": 6.2,
+      "top_title_pct": 100.0,
+      "generic_events": 16,
+      "generic_pct": 100.0,
+      "samples": [
+        "beIN Sports MAX",
+        "beIN Sports MAX",
+        "beIN Sports MAX",
+        "beIN Sports MAX"
       ],
-      "mapping_mode": "standby_no_autolock",
+      "verdict": "KEEP_SOURCE",
+      "warnings": [
+        "LOW_TITLE_DIVERSITY",
+        "REPEATED_GENERIC_TITLE",
+        "GENERIC_OFF_EVENT_GUIDE"
+      ],
+      "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
-      "clone_ids": []
+      "clone_ids": [
+        "beIN SPORTS XTRA 06 bein.com.qa"
+      ]
     },
     {
       "source": "epgshare-bein1",
       "origin": "epgshare",
       "id": "NEW_beIN-SPORTS-MAX-05_AR.bein",
       "name": "NEW_beIN-SPORTS-MAX-05_AR",
-      "events": 14,
+      "events": 16,
       "unique_titles": 1,
-      "unique_title_pct": 7.1,
+      "unique_title_pct": 6.2,
       "top_title_pct": 100.0,
-      "generic_events": 14,
+      "generic_events": 16,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -615,11 +655,11 @@
       "origin": "epgshare",
       "id": "NEW_beIN-SPORTS-MAX-06_AR.bein",
       "name": "NEW_beIN-SPORTS-MAX-06_AR",
-      "events": 14,
+      "events": 16,
       "unique_titles": 1,
-      "unique_title_pct": 7.1,
+      "unique_title_pct": 6.2,
       "top_title_pct": 100.0,
-      "generic_events": 14,
+      "generic_events": 16,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -649,11 +689,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 1.qa",
       "name": "beIN SPORTS MAX 1.qa",
-      "events": 13,
+      "events": 14,
       "unique_titles": 1,
-      "unique_title_pct": 7.7,
+      "unique_title_pct": 7.1,
       "top_title_pct": 100.0,
-      "generic_events": 13,
+      "generic_events": 14,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -665,15 +705,13 @@
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=3"
+        "GENERIC_OFF_EVENT_GUIDE"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
         "beIN SPORTS MAX 1.qa",
-        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 6.qa"
       ]
     },
@@ -682,11 +720,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 2.qa",
       "name": "beIN SPORTS MAX 2.qa",
-      "events": 13,
+      "events": 18,
       "unique_titles": 1,
-      "unique_title_pct": 7.7,
+      "unique_title_pct": 5.6,
       "top_title_pct": 100.0,
-      "generic_events": 13,
+      "generic_events": 18,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -699,15 +737,16 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=3"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS MAX 1.qa",
         "beIN SPORTS MAX 2.qa",
-        "beIN SPORTS MAX 6.qa"
+        "beIN SPORTS MAX 3.qa",
+        "beIN SPORTS MAX 4.qa",
+        "beIN SPORTS MAX 5.qa"
       ]
     },
     {
@@ -715,11 +754,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 3.qa",
       "name": "beIN SPORTS MAX 3.qa",
-      "events": 17,
+      "events": 18,
       "unique_titles": 1,
-      "unique_title_pct": 5.9,
+      "unique_title_pct": 5.6,
       "top_title_pct": 100.0,
-      "generic_events": 17,
+      "generic_events": 18,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -732,12 +771,13 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=3"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 3.qa",
         "beIN SPORTS MAX 4.qa",
         "beIN SPORTS MAX 5.qa"
@@ -748,11 +788,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 4.qa",
       "name": "beIN SPORTS MAX 4.qa",
-      "events": 17,
+      "events": 18,
       "unique_titles": 1,
-      "unique_title_pct": 5.9,
+      "unique_title_pct": 5.6,
       "top_title_pct": 100.0,
-      "generic_events": 17,
+      "generic_events": 18,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -765,12 +805,13 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=3"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 3.qa",
         "beIN SPORTS MAX 4.qa",
         "beIN SPORTS MAX 5.qa"
@@ -781,11 +822,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 5.qa",
       "name": "beIN SPORTS MAX 5.qa",
-      "events": 17,
+      "events": 18,
       "unique_titles": 1,
-      "unique_title_pct": 5.9,
+      "unique_title_pct": 5.6,
       "top_title_pct": 100.0,
-      "generic_events": 17,
+      "generic_events": 18,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -798,12 +839,13 @@
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=3"
+        "CLONED_TIMELINE_GROUP=4"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 3.qa",
         "beIN SPORTS MAX 4.qa",
         "beIN SPORTS MAX 5.qa"
@@ -814,11 +856,11 @@
       "origin": "openepg",
       "id": "beIN SPORTS MAX 6.qa",
       "name": "beIN SPORTS MAX 6.qa",
-      "events": 13,
+      "events": 14,
       "unique_titles": 1,
-      "unique_title_pct": 7.7,
+      "unique_title_pct": 7.1,
       "top_title_pct": 100.0,
-      "generic_events": 13,
+      "generic_events": 14,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -830,15 +872,13 @@
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=3"
+        "GENERIC_OFF_EVENT_GUIDE"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
         "beIN SPORTS MAX 1.qa",
-        "beIN SPORTS MAX 2.qa",
         "beIN SPORTS MAX 6.qa"
       ]
     },
@@ -847,17 +887,17 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 1.qa",
       "name": "beIN SPORTS XTRA 1.qa",
-      "events": 35,
-      "unique_titles": 3,
-      "unique_title_pct": 8.6,
-      "top_title_pct": 94.3,
-      "generic_events": 33,
-      "generic_pct": 94.3,
+      "events": 30,
+      "unique_titles": 4,
+      "unique_title_pct": 13.3,
+      "top_title_pct": 90.0,
+      "generic_events": 27,
+      "generic_pct": 90.0,
       "samples": [
-        "Levante vs Athletic Bilbao -Spanish LaLiga 2026/2027 - Week 6",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
@@ -877,17 +917,17 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 2.qa",
       "name": "beIN SPORTS XTRA 2.qa",
-      "events": 32,
-      "unique_titles": 2,
-      "unique_title_pct": 6.2,
-      "top_title_pct": 96.9,
-      "generic_events": 31,
-      "generic_pct": 96.9,
+      "events": 34,
+      "unique_titles": 3,
+      "unique_title_pct": 8.8,
+      "top_title_pct": 94.1,
+      "generic_events": 32,
+      "generic_pct": 94.1,
       "samples": [
-        "Sturm Graz vs Rennes - UEFA Europa League 2026/2027 - MD1",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
@@ -907,29 +947,36 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 3.qa",
       "name": "beIN SPORTS XTRA 3.qa",
-      "events": 32,
-      "unique_titles": 2,
-      "unique_title_pct": 6.2,
-      "top_title_pct": 96.9,
-      "generic_events": 31,
-      "generic_pct": 96.9,
+      "events": 35,
+      "unique_titles": 1,
+      "unique_title_pct": 2.9,
+      "top_title_pct": 100.0,
+      "generic_events": 35,
+      "generic_pct": 100.0,
       "samples": [
-        "Bayer Leverkusen vs Celje - UEFA Europa League 2026/2027 - MD1",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE"
+        "GENERIC_OFF_EVENT_GUIDE",
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 3.qa"
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
+        "beIN SPORTS XTRA 5.qa",
+        "beIN SPORTS XTRA 6.qa",
+        "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
+        "beIN SPORTS XTRA 9.qa"
       ]
     },
     {
@@ -937,29 +984,36 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 4.qa",
       "name": "beIN SPORTS XTRA 4.qa",
-      "events": 32,
-      "unique_titles": 2,
-      "unique_title_pct": 6.2,
-      "top_title_pct": 96.9,
-      "generic_events": 31,
-      "generic_pct": 96.9,
+      "events": 35,
+      "unique_titles": 1,
+      "unique_title_pct": 2.9,
+      "top_title_pct": 100.0,
+      "generic_events": 35,
+      "generic_pct": 100.0,
       "samples": [
-        "Olympiacos Piraeus vs Jagiellonia - UEFA Europa League 2026/2027 - MD1",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE"
+        "GENERIC_OFF_EVENT_GUIDE",
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 4.qa"
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
+        "beIN SPORTS XTRA 5.qa",
+        "beIN SPORTS XTRA 6.qa",
+        "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
+        "beIN SPORTS XTRA 9.qa"
       ]
     },
     {
@@ -967,32 +1021,35 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 5.qa",
       "name": "beIN SPORTS XTRA 5.qa",
-      "events": 32,
+      "events": 35,
       "unique_titles": 1,
-      "unique_title_pct": 3.1,
+      "unique_title_pct": 2.9,
       "top_title_pct": 100.0,
-      "generic_events": 32,
+      "generic_events": 35,
       "generic_pct": 100.0,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
         "beIN SPORTS XTRA 9.qa"
       ]
     },
@@ -1001,32 +1058,35 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 6.qa",
       "name": "beIN SPORTS XTRA 6.qa",
-      "events": 32,
+      "events": 35,
       "unique_titles": 1,
-      "unique_title_pct": 3.1,
+      "unique_title_pct": 2.9,
       "top_title_pct": 100.0,
-      "generic_events": 32,
+      "generic_events": 35,
       "generic_pct": 100.0,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
         "beIN SPORTS XTRA 9.qa"
       ]
     },
@@ -1035,32 +1095,35 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 7.qa",
       "name": "beIN SPORTS XTRA 7.qa",
-      "events": 32,
+      "events": 35,
       "unique_titles": 1,
-      "unique_title_pct": 3.1,
+      "unique_title_pct": 2.9,
       "top_title_pct": 100.0,
-      "generic_events": 32,
+      "generic_events": 35,
       "generic_pct": 100.0,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
         "beIN SPORTS XTRA 9.qa"
       ]
     },
@@ -1069,29 +1132,36 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 8.qa",
       "name": "beIN SPORTS XTRA 8.qa",
-      "events": 17,
+      "events": 35,
       "unique_titles": 1,
-      "unique_title_pct": 5.9,
+      "unique_title_pct": 2.9,
       "top_title_pct": 100.0,
-      "generic_events": 17,
+      "generic_events": 35,
       "generic_pct": 100.0,
       "samples": [
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
-        "GENERIC_OFF_EVENT_GUIDE"
+        "GENERIC_OFF_EVENT_GUIDE",
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
-        "beIN SPORTS XTRA 8.qa"
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
+        "beIN SPORTS XTRA 5.qa",
+        "beIN SPORTS XTRA 6.qa",
+        "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
+        "beIN SPORTS XTRA 9.qa"
       ]
     },
     {
@@ -1099,32 +1169,35 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 9.qa",
       "name": "beIN SPORTS XTRA 9.qa",
-      "events": 32,
+      "events": 35,
       "unique_titles": 1,
-      "unique_title_pct": 3.1,
+      "unique_title_pct": 2.9,
       "top_title_pct": 100.0,
-      "generic_events": 32,
+      "generic_events": 35,
       "generic_pct": 100.0,
       "samples": [
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026",
-        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - August - 2026"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
         "LOW_TITLE_DIVERSITY",
         "REPEATED_GENERIC_TITLE",
         "GENERIC_OFF_EVENT_GUIDE",
-        "CLONED_TIMELINE_GROUP=4"
+        "CLONED_TIMELINE_GROUP=7"
       ],
       "mapping_mode": "event_only_or_manual",
       "source_retained": true,
       "auto_lock_safe": false,
       "clone_ids": [
+        "beIN SPORTS XTRA 3.qa",
+        "beIN SPORTS XTRA 4.qa",
         "beIN SPORTS XTRA 5.qa",
         "beIN SPORTS XTRA 6.qa",
         "beIN SPORTS XTRA 7.qa",
+        "beIN SPORTS XTRA 8.qa",
         "beIN SPORTS XTRA 9.qa"
       ]
     },
@@ -1133,17 +1206,17 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 04 bein.com.qa",
       "name": "beIN SPORTS XTRA 04 bein.com.qa",
-      "events": 14,
+      "events": 32,
       "unique_titles": 1,
-      "unique_title_pct": 7.1,
+      "unique_title_pct": 3.1,
       "top_title_pct": 100.0,
-      "generic_events": 14,
+      "generic_events": 32,
       "generic_pct": 100.0,
       "samples": [
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
@@ -1164,17 +1237,17 @@
       "origin": "openepg",
       "id": "beIN SPORTS XTRA 05 bein.com.qa",
       "name": "beIN SPORTS XTRA 05 bein.com.qa",
-      "events": 14,
+      "events": 32,
       "unique_titles": 1,
-      "unique_title_pct": 7.1,
+      "unique_title_pct": 3.1,
       "top_title_pct": 100.0,
-      "generic_events": 14,
+      "generic_events": 32,
       "generic_pct": 100.0,
       "samples": [
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA",
-        "beIN Sports XTRA"
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026",
+        "beIN SPORTS XTRA For Live And Exclusive Coverage of Premium Sporting Events - October - 2026"
       ],
       "verdict": "KEEP_SOURCE",
       "warnings": [
@@ -1191,15 +1264,45 @@
       ]
     },
     {
+      "source": "openepg-qatar2",
+      "origin": "openepg",
+      "id": "beIN SPORTS XTRA 06 bein.com.qa",
+      "name": "beIN SPORTS XTRA 06 bein.com.qa",
+      "events": 16,
+      "unique_titles": 1,
+      "unique_title_pct": 6.2,
+      "top_title_pct": 100.0,
+      "generic_events": 16,
+      "generic_pct": 100.0,
+      "samples": [
+        "beIN Sports MAX",
+        "beIN Sports MAX",
+        "beIN Sports MAX",
+        "beIN Sports MAX"
+      ],
+      "verdict": "KEEP_SOURCE",
+      "warnings": [
+        "LOW_TITLE_DIVERSITY",
+        "REPEATED_GENERIC_TITLE",
+        "GENERIC_OFF_EVENT_GUIDE"
+      ],
+      "mapping_mode": "event_only_or_manual",
+      "source_retained": true,
+      "auto_lock_safe": false,
+      "clone_ids": [
+        "beIN SPORTS XTRA 06 bein.com.qa"
+      ]
+    },
+    {
       "source": "epgshare-bein1",
       "origin": "epgshare",
       "id": "NEW_beIN-SPORTS-MAX-05_AR.bein",
       "name": "NEW_beIN-SPORTS-MAX-05_AR",
-      "events": 14,
+      "events": 16,
       "unique_titles": 1,
-      "unique_title_pct": 7.1,
+      "unique_title_pct": 6.2,
       "top_title_pct": 100.0,
-      "generic_events": 14,
+      "generic_events": 16,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
@@ -1226,11 +1329,11 @@
       "origin": "epgshare",
       "id": "NEW_beIN-SPORTS-MAX-06_AR.bein",
       "name": "NEW_beIN-SPORTS-MAX-06_AR",
-      "events": 14,
+      "events": 16,
       "unique_titles": 1,
-      "unique_title_pct": 7.1,
+      "unique_title_pct": 6.2,
       "top_title_pct": 100.0,
-      "generic_events": 14,
+      "generic_events": 16,
       "generic_pct": 100.0,
       "samples": [
         "beIN Sports MAX",
