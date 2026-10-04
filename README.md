@@ -2,6 +2,36 @@
 
 Enigma2 / OpenATV EPG Manager with Native Import, Smart Mapping and online updates.
 
+## Install from GitHub
+
+Permanent installer URL:
+
+`https://raw.githubusercontent.com/wacayoub/EPGManager/main/install.sh`
+
+Recommended SSH command on OpenATV:
+
+```sh
+wget -qO- https://raw.githubusercontent.com/wacayoub/EPGManager/main/install.sh | sh
+```
+
+The installer reads the permanent `update.json` manifest, downloads the current IPK, verifies its file size and SHA-256, then installs it with `opkg`.
+
+After installation, restart the Enigma2 GUI.
+
+## Online Update
+
+Starting with **2026.10.04-rc76**, open **Plugins > EPG Manager Online Update**.
+
+- **GREEN**: install a newer GitHub release.
+- **YELLOW**: check GitHub again.
+- **BLUE**: force reinstall the current GitHub release.
+- The updater verifies the IPK size and SHA-256 before calling `opkg`.
+- After a successful update, EPG Manager offers to restart the Enigma2 GUI.
+
+The permanent update manifest is:
+
+`https://raw.githubusercontent.com/wacayoub/EPGManager/main/update.json`
+
 ## Automatic release system
 
 The repository contains the current plugin source package under `source/` and a GitHub Actions workflow at `.github/workflows/build-release.yml`.
