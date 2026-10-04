@@ -246,7 +246,7 @@ class EPGManagerMainScreen(Screen):
         self["key_blue_bar"] = Label(""); self["key_blue"] = Label("Add Source")
 
         # rc49: the top bar is a real TV-remote navigator, not decorative labels.
-        self._nav_widgets = ("nav_overview", "nav_sources", "nav_mapping", "nav_duplicates", "nav_zero", "nav_logs", "settings_btn")
+        self._nav_widgets = ("nav_overview", "nav_sources", "nav_mapping", "nav_duplicates", "nav_zero", "nav_logs", "settings_btn", "online")
         self._nav_index = 0
         self["actions"] = ActionMap(["OkCancelActions", "NumberActions", "ColorActions", "MenuActions", "DirectionActions"], {
             "cancel": self.close, "red": self.close, "ok": self._nav_activate,
@@ -466,9 +466,8 @@ class EPGManagerMainScreen(Screen):
             self["runtime_detail"].setText("%d direct feeds • %d mapped • %d unresolved • %d no EPG • v%s" % (len(github_direct_sync.DIRECT_SOURCES), mapped, unmapped, red_ids, __version__))
             self["runtime_progress"].setValue(100 if sys_status == "PASS" else int(healthy * 100 / max(1, len(github_direct_sync.DIRECT_SOURCES))) if healthy else 5)
             try:
-                total_direct = len(github_direct_sync.DIRECT_SOURCES)
-                self["online"].setText("● %d/%d DIRECT • %s" % (healthy, total_direct, sys_status))
-                self._set_fg("online", theme.STATUS_GREEN if healthy == total_direct and sys_status == "PASS" else theme.STATUS_YELLOW)
+                self["online"].setText("ONLINE UPDATE • v%s" % __version__)
+                self._set_fg("online", theme.STATUS_GREEN)
             except Exception:
                 pass
 
@@ -493,7 +492,7 @@ class EPGManagerMainScreen(Screen):
 
     def _nav_activate(self):
         actions = (self._refresh, self.open_sources, self.open_channel_mapping,
-                   self.open_duplicates, self.open_zero_epg, self.open_logs, self.open_settings)
+                   self.open_duplicates, self.open_zero_epg, self.open_logs, self.open_settings, self.open_online_update)
         try:
             actions[int(self._nav_index or 0)]()
         except Exception:
