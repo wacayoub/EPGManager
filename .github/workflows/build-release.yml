@@ -7,13 +7,6 @@ on:
         description: Release notes
         required: false
         default: Automatic EPG Manager release
-  push:
-    branches:
-      - main
-    paths:
-      - 'source/overlay/**'
-      - '.github/workflows/build-release.yml'
-
 permissions:
   contents: write
 
