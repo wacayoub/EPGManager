@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TARGET_VERSION="2026.10.04-rc76"
-TARGET_ASSET="EPGManager_rc76_GITHUB_ONLINE_UPDATE.ipk"
+TARGET_VERSION="2026.10.04-rc77"
+TARGET_ASSET="EPGManager_rc77_GITHUB_ONLINE_UPDATE_HOTFIX.ipk"
 
 BASE_URL="$(python3 -c 'import json; print(json.load(open("update.json", encoding="utf-8"))["url"])')"
 BASE_VERSION="$(python3 -c 'import json; print(json.load(open("update.json", encoding="utf-8"))["version"])')"
@@ -73,6 +73,17 @@ def online_update_main(session, **kwargs):
 '''
     text = text[:close_at] + descriptor + text[close_at:]
 
+# EPGMANAGER_ICON_HOTFIX
+# rc76 used icon=icon for the new descriptor. Some current EPGManager
+# builds do not define a local variable named "icon" inside Plugins(),
+# which makes Plugin Browser reject the whole extension. Keep the
+# descriptor self-contained with the actual plugin icon filename.
+text = re.sub(
+    r'(name="EPG Manager Online Update"[\\s\\S]{0,500}?icon\\s*=\\s*)icon([,\\n])',
+    r'\\1"plugin.png"\\2',
+    text,
+    count=1,
+)
 plugin_path.write_text(text, encoding="utf-8")
 
 vtext = version_path.read_text(encoding="utf-8")
@@ -114,7 +125,7 @@ printf '2.0\n' > work/debian-binary
 SHA256="$(sha256sum "work/$TARGET_ASSET" | awk '{print $1}')"
 SIZE="$(stat -c%s "work/$TARGET_ASSET")"
 TAG="v$TARGET_VERSION"
-NOTES="R76: GitHub permanent installer + built-in Online Update. update.json is checked online, IPK size and SHA-256 are verified, and GUI restart is offered after successful opkg installation."
+NOTES="R77 hotfix: fixes Plugin Browser error "name icon is not defined" in the GitHub Online Update descriptor. Keeps permanent installer, SHA-256 verification and GUI restart."
 
 if gh release view "$TAG" >/dev/null 2>&1; then
   gh release upload "$TAG" "work/$TARGET_ASSET" --clobber
@@ -136,7 +147,7 @@ data = {
     "url": "https://github.com/wacayoub/EPGManager/releases/download/v%s/%s" % (v, asset),
     "sha256": os.environ["SHA256"],
     "size": int(os.environ["SIZE"]),
-    "notes": "R76: permanent GitHub installer and built-in Online Update with SHA-256 verification."
+    "notes": "R77 hotfix: fixes Online Update plugin icon NameError; keeps GitHub installer and SHA-256 verification."
 }
 pathlib.Path("update.json").write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 PY
