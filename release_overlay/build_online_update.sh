@@ -75,15 +75,20 @@ def online_update_main(session, **kwargs):
 
 # EPGMANAGER_ICON_HOTFIX
 # rc76 used icon=icon for the new descriptor. Some current EPGManager
-# builds do not define a local variable named "icon" inside Plugins(),
-# which makes Plugin Browser reject the whole extension. Keep the
-# descriptor self-contained with the actual plugin icon filename.
-text = re.sub(
-    r'(name="EPG Manager Online Update"[\\s\\S]{0,500}?icon\\s*=\\s*)icon([,\\n])',
-    r'\\1"plugin.png"\\2',
-    text,
-    count=1,
-)
+# builds do not define a local variable named "icon" inside Plugins().
+# Patch only the Online Update descriptor and fail the build if it remains.
+online_name = 'name="EPG Manager Online Update"'
+online_pos = text.find(online_name)
+if online_pos < 0:
+    raise SystemExit("Online Update descriptor not found")
+online_end = min(len(text), online_pos + 700)
+online_block = text[online_pos:online_end]
+online_block = online_block.replace("icon=icon", 'icon="plugin.png"', 1)
+text = text[:online_pos] + online_block + text[online_end:]
+if "icon=icon" in text[online_pos:min(len(text), online_pos + 700)]:
+    raise SystemExit("Online Update icon hotfix was not applied")
+if 'icon="plugin.png"' not in text[online_pos:min(len(text), online_pos + 700)]:
+    raise SystemExit("Online Update descriptor has no explicit plugin.png icon")
 plugin_path.write_text(text, encoding="utf-8")
 
 vtext = version_path.read_text(encoding="utf-8")
@@ -125,7 +130,7 @@ printf '2.0\n' > work/debian-binary
 SHA256="$(sha256sum "work/$TARGET_ASSET" | awk '{print $1}')"
 SIZE="$(stat -c%s "work/$TARGET_ASSET")"
 TAG="v$TARGET_VERSION"
-NOTES="R77 hotfix: fixes Plugin Browser error "name icon is not defined" in the GitHub Online Update descriptor. Keeps permanent installer, SHA-256 verification and GUI restart."
+NOTES='R77 hotfix: fixes Plugin Browser error "name icon is not defined" in the GitHub Online Update descriptor. Keeps permanent installer, SHA-256 verification and GUI restart.'
 
 if gh release view "$TAG" >/dev/null 2>&1; then
   gh release upload "$TAG" "work/$TARGET_ASSET" --clobber
