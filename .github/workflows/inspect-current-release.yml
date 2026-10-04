@@ -42,6 +42,8 @@ jobs:
           cp "$ROOT/core/native_epgimport_bridge.py" data/release-inspect/native_epgimport_bridge.py
           cp "$ROOT/core/epgimport_export.py" data/release-inspect/epgimport_export.py
           cp "$ROOT/core/mapping_store.py" data/release-inspect/mapping_store.py
+          cp "$ROOT/core/direct_native_import.py" data/release-inspect/direct_native_import.py
+          cp "$ROOT/core/source_readiness.py" data/release-inspect/source_readiness.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/release-inspect
