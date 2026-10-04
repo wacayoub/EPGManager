@@ -232,3 +232,7 @@ class EPGManagerOnlineUpdate(Screen):
             self.session.open(TryQuitMainloop, 3)
         except Exception:
             subprocess.call(["killall", "-9", "enigma2"])
+
+
+# Compatibility alias used by the EPGManager dashboard.
+OnlineUpdateScreen = EPGManagerOnlineUpdate
