@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TARGET_VERSION="2026.10.04-rc77"
-TARGET_ASSET="EPGManager_rc77_GITHUB_ONLINE_UPDATE_HOTFIX.ipk"
+TARGET_VERSION="2026.10.04-rc78"
+TARGET_ASSET="EPGManager_rc78_ONLINE_UPDATE_VISIBLE.ipk"
 
 BASE_URL="$(python3 -c 'import json; print(json.load(open("update.json", encoding="utf-8"))["url"])')"
 BASE_VERSION="$(python3 -c 'import json; print(json.load(open("update.json", encoding="utf-8"))["version"])')"
@@ -110,7 +110,60 @@ vtext = re.sub(
 version_path.write_text(vtext, encoding="utf-8")
 PY
 
-python3 -m py_compile "$PLUGIN_ROOT/plugin.py" "$PLUGIN_ROOT/online_update.py" "$PLUGIN_ROOT/version.py"
+
+# EPGMANAGER_DASHBOARD_UPDATE_BUTTON
+python3 - "$PLUGIN_ROOT/ui/main.py" <<'PY'
+import pathlib
+import sys
+
+path = pathlib.Path(sys.argv[1])
+text = path.read_text(encoding="utf-8")
+
+# Make the existing top-right widget a real Online Update navigation item.
+text = text.replace(
+    'self._nav_widgets = ("nav_overview", "nav_sources", "nav_mapping", "nav_duplicates", "nav_zero", "nav_logs", "settings_btn")',
+    'self._nav_widgets = ("nav_overview", "nav_sources", "nav_mapping", "nav_duplicates", "nav_zero", "nav_logs", "settings_btn", "online")'
+)
+
+text = text.replace(
+    'actions = (self._refresh, self.open_sources, self.open_channel_mapping,\n                   self.open_duplicates, self.open_zero_epg, self.open_logs, self.open_settings)',
+    'actions = (self._refresh, self.open_sources, self.open_channel_mapping,\n                   self.open_duplicates, self.open_zero_epg, self.open_logs, self.open_settings, self.open_online_update)'
+)
+
+# Do not overwrite the Online Update button with DIRECT/PASS health text.
+old = '''            try:
+                total_direct = len(github_direct_sync.DIRECT_SOURCES)
+                self["online"].setText("● %d/%d DIRECT • %s" % (healthy, total_direct, sys_status))
+                self._set_fg("online", theme.STATUS_GREEN if healthy == total_direct and sys_status == "PASS" else theme.STATUS_YELLOW)
+            except Exception:
+                pass
+'''
+new = '''            try:
+                self["online"].setText("ONLINE UPDATE • v%s" % __version__)
+                self._set_fg("online", theme.STATUS_GREEN)
+            except Exception:
+                pass
+'''
+if old in text:
+    text = text.replace(old, new)
+else:
+    # Fallback for minor formatting differences.
+    start = text.find('            try:\n                total_direct = len(github_direct_sync.DIRECT_SOURCES)')
+    if start >= 0:
+        end = text.find('            except Exception:\n                pass', start)
+        if end >= 0:
+            end += len('            except Exception:\n                pass')
+            text = text[:start] + new.rstrip("\n") + text[end:]
+
+if '"online")' not in text:
+    raise SystemExit("Dashboard Online Update widget was not added to navigation")
+if 'self.open_settings, self.open_online_update)' not in text:
+    raise SystemExit("Dashboard Online Update action was not added")
+
+path.write_text(text, encoding="utf-8")
+PY
+
+python3 -m py_compile "$PLUGIN_ROOT/plugin.py" "$PLUGIN_ROOT/online_update.py" "$PLUGIN_ROOT/version.py" "$PLUGIN_ROOT/ui/main.py"
 
 CONTROL_FILE="$(find work/control -maxdepth 3 -type f -name control | head -n1)"
 test -n "$CONTROL_FILE"
@@ -130,7 +183,7 @@ printf '2.0\n' > work/debian-binary
 SHA256="$(sha256sum "work/$TARGET_ASSET" | awk '{print $1}')"
 SIZE="$(stat -c%s "work/$TARGET_ASSET")"
 TAG="v$TARGET_VERSION"
-NOTES='R77 hotfix: fixes Plugin Browser error "name icon is not defined" in the GitHub Online Update descriptor. Keeps permanent installer, SHA-256 verification and GUI restart.'
+NOTES='R78: makes Online Update visible and usable inside the EPGManager top navigation, fixes the dashboard class-name mismatch, and keeps the Plugin Browser update entry.'
 
 if gh release view "$TAG" >/dev/null 2>&1; then
   gh release upload "$TAG" "work/$TARGET_ASSET" --clobber
@@ -152,7 +205,7 @@ data = {
     "url": "https://github.com/wacayoub/EPGManager/releases/download/v%s/%s" % (v, asset),
     "sha256": os.environ["SHA256"],
     "size": int(os.environ["SIZE"]),
-    "notes": "R77 hotfix: fixes Online Update plugin icon NameError; keeps GitHub installer and SHA-256 verification."
+    "notes": "R78: Online Update is visible in the EPGManager top bar, accessible with key 8 or navigation, and the dashboard class mismatch is fixed."
 }
 pathlib.Path("update.json").write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 PY
