@@ -1,0 +1,42 @@
+name: Inspect current EPGManager release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/inspect-current-release.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Extract current release UI
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="$(python3 -c 'import json; print(json.load(open("update.json", encoding="utf-8"))["url"])')"
+          rm -rf /tmp/epgmgr-inspect data/release-inspect
+          mkdir -p /tmp/epgmgr-inspect/ipk /tmp/epgmgr-inspect/data data/release-inspect
+          curl -fL "$URL" -o /tmp/epgmgr-inspect/current.ipk
+          (cd /tmp/epgmgr-inspect/ipk && ar x ../current.ipk)
+          DATA_ARCHIVE="$(find /tmp/epgmgr-inspect/ipk -maxdepth 1 -type f -name 'data.tar.*' | head -n1)"
+          test -n "$DATA_ARCHIVE"
+          tar -xf "$DATA_ARCHIVE" -C /tmp/epgmgr-inspect/data
+          ROOT="$(find /tmp/epgmgr-inspect/data -type f -path '*/Plugins/Extensions/EPGManager/plugin.py' -printf '%h\n' | head -n1)"
+          test -n "$ROOT"
+          cp "$ROOT/plugin.py" data/release-inspect/plugin.py
+          cp "$ROOT/online_update.py" data/release-inspect/online_update.py || true
+          cp "$ROOT/version.py" data/release-inspect/version.py
+          cp "$ROOT/ui/main.py" data/release-inspect/main.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/release-inspect
+          if ! git diff --cached --quiet; then
+            git commit -m "Inspect current EPGManager release UI"
+            git push
+          fi
