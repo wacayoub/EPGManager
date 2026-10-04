@@ -33,6 +33,11 @@ jobs:
           cp "$ROOT/online_update.py" data/release-inspect/online_update.py || true
           cp "$ROOT/version.py" data/release-inspect/version.py
           cp "$ROOT/ui/main.py" data/release-inspect/main.py
+          cp "$ROOT/ui/channel_mapping.py" data/release-inspect/channel_mapping.py
+          cp "$ROOT/core/native_importer.py" data/release-inspect/native_importer.py
+          cp "$ROOT/core/srp_channel_map.py" data/release-inspect/srp_channel_map.py
+          cp "$ROOT/core/manager.py" data/release-inspect/manager.py
+          cp "$ROOT/core/source_preferences.py" data/release-inspect/source_preferences.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/release-inspect
