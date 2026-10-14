@@ -295,6 +295,65 @@ REPLACES = [
         else:''',
     ),
 ]
+
+# Upgrade path for receivers already running the first GitHub Best EPG Match
+# beta. Replace ONLY its own status/ranking snippets. Never restore an outdated
+# full UI file over receiver changes made after the first installation.
+UPGRADE_PAIRS = [
+    ('"NO_EPG": "  •  NO EPG"}.get(remote, "")',
+     '"NO_EPG": "  •  NO EPG", "SYNTHETIC": "  •  GENERATED",\n'
+     '                    "SUSPECT": "  •  REPEATED"}.get(remote, "")'),
+    ('(2 if epg["_github_health"] == "NO_EPG" else 1)',
+     '(3 if epg["_github_health"] in ("NO_EPG", "SYNTHETIC") else\n'
+     '                 (2 if epg["_github_health"] == "SUSPECT" else 1))'),
+    ('(2 if e.get("_github_health") == "NO_EPG" else 1)',
+     '(3 if e.get("_github_health") in ("NO_EPG", "SYNTHETIC") else\n'
+     '             (2 if e.get("_github_health") == "SUSPECT" else 1))'),
+    ('autos = [row for row in autos if row.get("_github_health") != "NO_EPG"]',
+     'autos = [row for row in autos if row.get("_github_health") not in ("NO_EPG", "SYNTHETIC", "SUSPECT")]'),
+    ('(2 if row.get("_github_health") == "NO_EPG" else 1)',
+     '(3 if row.get("_github_health") in ("NO_EPG", "SYNTHETIC") else\n'
+     '                 (2 if row.get("_github_health") == "SUSPECT" else 1))'),
+    ('if remote is not None and remote != "EPG_OK":',
+     'if remote is not None and remote not in ("EPG_OK", "EPG_WARN"):'),
+    ('''        if "NO EPG" in marker:
+            return "NO EPG"
+        if "WARN" in marker:''',
+     '''        if "NO EPG" in marker:
+            return "NO EPG"
+        if "GENERATED" in marker:
+            return "GENERATED"
+        if "REPEATED" in marker:
+            return "REPEATED"
+        if "WARN" in marker:'''),
+    ('''        elif health == "NO EPG":
+            health_color = theme.STATUS_RED_INT
+            health_text = "NO EPG"
+        else:''',
+     '''        elif health in ("NO EPG", "GENERATED"):
+            health_color = theme.STATUS_RED_INT
+            health_text = "GEN EPG" if health == "GENERATED" else "NO EPG"
+        elif health == "REPEATED":
+            health_color = theme.STATUS_YELLOW_INT
+            health_text = "REPEAT?"
+        else:'''),
+]
+
+def upgrade_existing_v1(src):
+    if 'def _poll_github_best_match_health(' not in src or MARKER not in src:
+        raise RuntimeError("Not a recognized installed GitHub Best Match beta")
+    if '"SYNTHETIC": "  •  GENERATED"' in src and \
+            '("NO_EPG", "SYNTHETIC", "SUSPECT")' in src:
+        return src, False
+    out = src
+    for old,new in UPGRADE_PAIRS:
+        n = out.count(old)
+        if n < 1 or n > 3:
+            raise RuntimeError("Unexpected installed beta; cannot safely upgrade: %s" % old[:65])
+        out = out.replace(old,new)
+    compile(out,"channel_mapping.py","exec")
+    return out, True
+
 # Optional additive helpers bound to the Smart Mapping UI; do not compete with
 # the existing NativeImport worker or other EPG timers.
 POLL_METHOD = '''
@@ -341,7 +400,7 @@ INSERT_METHOD_BEFORE = "    def _refresh_cross_source_suggestions(self, service)
 
 def patch_source(src):
     if MARKER in src and "def _poll_github_best_match_health" in src:
-        return src, False
+        return upgrade_existing_v1(src)
     if MARKER in src or "from ..core import github_match_health" in src:
         raise RuntimeError("Partial Best Match GitHub patch; refusing to write")
     out = src
