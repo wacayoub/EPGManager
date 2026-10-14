@@ -1,0 +1,27 @@
+name: Plugin-only safety tests (non-deploying)
+on:
+  push:
+    branches: ["feature/plugin-only-consolidation-20261014"]
+    paths:
+      - "release_overlay/online_update.py"
+      - "source/overlay/online_update.py"
+      - "tests/test_epgmanager_updater.py"
+      - ".github/workflows/plugin-only-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  plugin-updater:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Compile Python source
+        run: python -m py_compile release_overlay/online_update.py source/overlay/online_update.py
+      - name: Ensure release and source overlays have the same updater
+        run: cmp release_overlay/online_update.py source/overlay/online_update.py
+      - name: Run plugin-only updater safety unit tests
+        run: python -m unittest discover -s tests -p test_epgmanager_updater.py -v
