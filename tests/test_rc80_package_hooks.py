@@ -25,6 +25,7 @@ class TestRc80PackageHooks(unittest.TestCase):
             plugin = root/'EPGManager'
             plugin.mkdir()
             (plugin/'plugin.py').write_text('working receiver source\n',encoding='utf-8')
+            (plugin/'version.py').write_text('__version__ = "2026.10.08-rc79.1"\\n',encoding='utf-8')
             config = root/'config'
             config.mkdir()
             mapping = config/'epgmanager_mappings.json'
