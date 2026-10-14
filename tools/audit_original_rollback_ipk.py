@@ -120,7 +120,29 @@ def _parse_control(contents):
     return fields
 
 
-def verify_old_ipk(ipk_path):
+RECEIVER_PLUGIN = Path("/usr/lib/enigma2/python/Plugins/Extensions/EPGManager")
+
+
+def _receiver_python_tree_matches(data_files, receiver_root):
+    """Bytewise matching of ALL Python modules, not just named hotfixes."""
+    receiver_root = Path(receiver_root)
+    if not receiver_root.is_dir() or receiver_root.is_symlink():
+        return False, 0, ["Installed receiver plugin directory unavailable"]
+    installed = {}
+    for source in receiver_root.rglob("*.py"):
+        if source.is_symlink() or not source.is_file():
+            return False, 0, ["Unexpected symlink in receiver Python tree"]
+        rel = source.relative_to(receiver_root).as_posix()
+        installed[rel] = hashlib.sha256(source.read_bytes()).hexdigest()
+    packaged = {name[len(REL):]: hashlib.sha256(data).hexdigest()
+                for name, data in data_files.items()
+                if name.startswith(REL) and name.endswith(".py")}
+    mismatch = sorted(k for k in (installed.keys() | packaged.keys())
+                      if installed.get(k) != packaged.get(k))
+    return (len(installed) == 138 and not mismatch), len(installed), mismatch[:12]
+
+
+def verify_old_ipk(ipk_path, receiver_root=RECEIVER_PLUGIN):
     file = Path(ipk_path)
     if not file.is_file() or file.is_symlink():
         raise ValueError("Rollback IPK does not exist or is a symlink")
@@ -152,7 +174,8 @@ def verify_old_ipk(ipk_path):
         matches[relative] = bool(source is not None and hashlib.sha256(source).hexdigest() == expected)
     count_match = len(python_files) == 138
     other = [name for name in data_files if name.startswith(REL) and name.endswith((".pyc", ".pyo"))]
-    valid = all(matches.values()) and count_match and not other
+    full_tree_match, installed_count, tree_differences = _receiver_python_tree_matches(data_files, receiver_root)
+    valid = all(matches.values()) and count_match and not other and full_tree_match
     return {
         "audit": "EPGManager original rollback IPK compatibility",
         "read_only": True,
@@ -163,15 +186,20 @@ def verify_old_ipk(ipk_path):
         "version": fields.get("version"),
         "architecture": fields.get("architecture"),
         "python_modules": len(python_files),
-        "python_modules_match_receiver": count_match,
+        "python_modules_count_expected": count_match,
+        "installed_receiver_python_modules": installed_count,
+        "all_receiver_python_files_match": full_tree_match,
+        "sample_module_differences": tree_differences,
         "protected_module_hashes_match": matches,
         "stale_bytecode_count": len(other),
-        "rollback_package_identical_to_working_app": valid,
+        "rollback_python_tree_identical_to_working_app": valid,
+        "non_python_package_files_verified": False,
+        "rollback_package_identical_to_working_app": False,
         "opkg_rollback_tested": False,
         "authorized_to_install_new_version": False,
-        "reason": ("Original rollback IPK matches receiver's protected code; "
-                   "still requires supervised opkg recovery rehearsal on a disposable test root.")
-                  if valid else "Original rollback IPK is incomplete or differs from currently working receiver.",
+        "reason": ("All installed Python modules match the old IPK, but non-Python assets and "
+                   "opkg downgrade semantics still require supervised validation.")
+                  if valid else "Old IPK cannot restore the complete working Python tree.",
     }
 
 
@@ -186,7 +214,7 @@ DEFAULT_SEARCH_ROOTS = (
 )
 
 
-def discover(roots=DEFAULT_SEARCH_ROOTS):
+def discover(roots=DEFAULT_SEARCH_ROOTS, receiver_root=RECEIVER_PLUGIN):
     """Check only named local locations. Never crawl an arbitrary receiver disk."""
     candidates = []
     seen = set()
@@ -210,9 +238,9 @@ def discover(roots=DEFAULT_SEARCH_ROOTS):
     results = []
     for candidate in candidates:
         try:
-            report = verify_old_ipk(candidate)
+            report = verify_old_ipk(candidate, receiver_root=receiver_root)
             results.append({"path": str(candidate),
-                            "exact": report["rollback_package_identical_to_working_app"],
+                            "exact": report["rollback_python_tree_identical_to_working_app"],
                             "reason": report["reason"],
                             "sha256": report["candidate_sha256"],
                             "version": report["version"]})
@@ -225,13 +253,13 @@ def discover(roots=DEFAULT_SEARCH_ROOTS):
         "read_only": True,
         "search_scope": "fixed top-level cache/temp/backup locations only",
         "candidates_checked": len(candidates),
-        "exact_rc79_rollback_candidates": len(exact),
+        "code_parity_rc79_candidates": len(exact),
         "candidates": results,
         "rollback_with_opkg_tested": False,
         "authorized_to_install_new_version": False,
-        "reason": ("Original byte-matching rc79.1 IPK found, but supervised opkg"
-                   " downgrade still untested.")
-                  if exact else "No exact rollback IPK verified; rc80 install stays blocked.",
+        "reason": ("Old-version IPK Python tree matches receiver; opkg rollback remains "
+                   "unproven, and installation is blocked.")
+                  if exact else "No full-code-parity rollback IPK found; rc80 install stays blocked.",
     }
 
 def main():
@@ -245,13 +273,13 @@ def main():
     try:
         result = discover() if args.discover else verify_old_ipk(args.ipk)
         print(json.dumps(result, indent=2, sort_keys=True))
-        eligible = (result.get("exact_rc79_rollback_candidates", 0) > 0
+        eligible = (result.get("code_parity_rc79_candidates", 0) > 0
                     if args.discover
-                    else result.get("rollback_package_identical_to_working_app", False))
+                    else result.get("rollback_python_tree_identical_to_working_app", False))
         return 0 if eligible else 2
     except (OSError, ValueError, tarfile.TarError) as exc:
         print(json.dumps({"audit": "EPGManager original rollback IPK compatibility",
-                          "read_only": True, "rollback_package_identical_to_working_app": False,
+                          "read_only": True, "rollback_python_tree_identical_to_working_app": False,
                           "authorized_to_install_new_version": False,
                           "error": str(exc)}, indent=2))
         return 2
