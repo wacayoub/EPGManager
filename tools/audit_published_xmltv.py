@@ -60,6 +60,7 @@ def audit_xml(raw, metadata, now, sample_limit=5):
     bad_time = 0
     missing_title = 0
     active_now = set()
+    genuine_future = set()
     root = None
     for event, node in ET.iterparse(io.BytesIO(xml), events=("start", "end")):
         if root is None and event == "start":
@@ -87,8 +88,14 @@ def audit_xml(raw, metadata, now, sample_limit=5):
             if not title:
                 missing_title += 1
             programme_channels.add(cid)
-            if start and stop and start <= now < stop:
-                active_now.add(cid)
+            # Candidate matching needs exact per-ID evidence, not a blanket
+            # source score. An invalid timestamp, blank title or orphan ID
+            # must never count as a usable real programme on this SAT channel.
+            if cid in channels and title and start and stop and stop > start:
+                if start <= now < stop:
+                    active_now.add(cid)
+                if stop > now:
+                    genuine_future.add(cid)
             if cid not in samples and len(samples) < sample_limit and title:
                 samples[cid] = {
                     "id": cid, "title": title[:110],
@@ -133,6 +140,11 @@ def audit_xml(raw, metadata, now, sample_limit=5):
         "channels": len(channels), "programmes": count,
         "active_channels": len(programme_channels),
         "channels_with_current_programme": len(active_now),
+        "current_real_xmltv_ids": sorted(active_now),
+        "future_real_xmltv_ids": sorted(genuine_future),
+        "past_only_xmltv_ids": sorted(programme_channels - genuine_future),
+        "observed_zero_epg_ids": sorted(channels - programme_channels),
+        "per_id_evidence_observed_utc": now.isoformat(),
         "missing_now_sample": sorted(programme_channels - active_now)[:12],
         "sampled_real_programmes": list(samples.values()),
         "bad_times": bad_time, "missing_titles": missing_title,
