@@ -5,7 +5,14 @@ umask 077
 PLUGIN_DIR="${EPGMGR_PLUGIN_DIR:-/usr/lib/enigma2/python/Plugins/Extensions/EPGManager}"
 CONFIG_DIR="${EPGMGR_CONFIG_DIR:-/etc/enigma2}"
 BACKUP_ROOT="${EPGMGR_BACKUP_ROOT:-/etc/epgmanager_epg/backups}"
-STAMP="$(date +%Y%m%d-%H%M%S)-$$"
+# Default to NO-GO on real upgrades. A supervised installer may proceed only
+# after independently verifying an exact rc79.1 rollback IPK and documenting
+# its package-manager recovery path. Ordinary Online Update must not bypass.
+if [ "${1:-}" = "upgrade" ] && [ "${EPGMGR_RC80_SUPERVISED:-0}" != "1" ]; then
+    echo 'EPGManager rc80: UPGRADE BLOCKED — previous IPK and opkg rollback not certified' >&2
+    exit 90
+fi
+STAMP="$(date +%Y%m%d-%H%M%S)-$"
 DEST="$BACKUP_ROOT/pre-rc80-$STAMP"
 mkdir -p "$DEST"
 chmod 700 "$DEST"
