@@ -93,3 +93,14 @@ wget -qO /tmp/epg-rc80-stage2.py https://raw.githubusercontent.com/wacayoub/EPGM
 Verified GitHub Actions [stage-2 CI](https://github.com/wacayoub/EPGManager/actions/runs/38644459897): **59/59 tests passed for Python 3.13 and 3.14**. Await actual receiver stage-2 output before changing any runtime gate.
 
 **No R80 installation authorized** without full `opkg` rollback and real GUI/native import validation.
+
+
+## Actual Vu+ stage-2 report and false-positive correction (2026-10-14 22:01 UTC)
+
+Receiver-provided stage-2 read-only JSON: `2026-10-14T22:01:55.941383+00:00`, installed RC79.1, Python 3.14.7, config schema 15, 138 Python modules, **no syntax errors**, **no missing required files**. GitHub Direct checks, non-destructive import, native import button, scheduler, saved auto owner, manual and background mapping, and cross-source suggestions all have their expected static markers. Native EPGImport directory and /etc/epgimport directory exist; 2 processes named `enigma2` were observed in /proc. These are **static/prerequisite observations only**, not GUI, import, scheduler or recovery success.
+
+Two reported observations:
+- `STATIC_FEATURE_MISSING:ui/main.py`: **expected** — existing RC79.1 UI has `open_native_import()`, but the RC80-only public overlay `source/overlay/ui/main.py` introduces `open_diagnostics()`. The missing function is a target feature delta, not evidence that RC79.1 was corrupted. Stage-2 observer now reports `expected_rc80_features_not_in_rc79` separately and does not mislabel this missing RC80-only method as a baseline regression.
+- `ROLLBACK_IPK_NOT_VERIFIED`: `provided=false` in the user's call; no old package was supplied for SHA identification. It **does not mean no IPK exists on disk**. A read-only `--scan-local-rollback` option now checks just two exact known rc79.1 basenames in /tmp, /var/volatile/tmp, /media/hdd, and /media/usb, with no recursive reads. Matching hashes prove identity only, *not* an `opkg` recovery rehearsal.
+
+Neither flag authorizes the upgrade. Install authorization remains **FALSE** until certified `opkg` downgrade/recovery and native GUI/import/scheduler tests are complete.
