@@ -175,15 +175,80 @@ def verify_old_ipk(ipk_path):
     }
 
 
+DEFAULT_SEARCH_ROOTS = (
+    "/tmp",
+    "/var/volatile/tmp",
+    "/var/cache/opkg",
+    "/home/root",
+    "/media/hdd",
+    "/media/usb",
+    "/etc/epgmanager_epg/backups",
+)
+
+
+def discover(roots=DEFAULT_SEARCH_ROOTS):
+    """Check only named local locations. Never crawl an arbitrary receiver disk."""
+    candidates = []
+    seen = set()
+    for root in roots:
+        root = Path(root)
+        if not root.is_dir() or root.is_symlink():
+            continue
+        for pattern in ("*epgmanager*.ipk", "*EPGManager*.ipk",
+                        "*/enigma2-plugin-extensions-epgmanager*.ipk"):
+            for file in sorted(root.glob(pattern)):
+                if str(file) in seen or not file.is_file() or file.is_symlink():
+                    continue
+                seen.add(str(file))
+                candidates.append(file)
+                if len(candidates) >= 30:
+                    break
+            if len(candidates) >= 30:
+                break
+        if len(candidates) >= 30:
+            break
+    results = []
+    for candidate in candidates:
+        try:
+            report = verify_old_ipk(candidate)
+            results.append({"path": str(candidate),
+                            "exact": report["rollback_package_identical_to_working_app"],
+                            "reason": report["reason"],
+                            "sha256": report["candidate_sha256"],
+                            "version": report["version"]})
+        except (OSError, ValueError, tarfile.TarError) as err:
+            results.append({"path": str(candidate), "exact": False,
+                            "reason": str(err)})
+    exact = [x for x in results if x["exact"]]
+    return {
+        "audit": "EPGManager local rollback IPK discovery",
+        "read_only": True,
+        "search_scope": "fixed top-level cache/temp/backup locations only",
+        "candidates_checked": len(candidates),
+        "exact_rc79_rollback_candidates": len(exact),
+        "candidates": results,
+        "rollback_with_opkg_tested": False,
+        "authorized_to_install_new_version": False,
+        "reason": ("Original byte-matching rc79.1 IPK found, but supervised opkg"
+                   " downgrade still untested.")
+                  if exact else "No exact rollback IPK verified; rc80 install stays blocked.",
+    }
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--ipk", required=True,
-                        help="Path to locally-held original EPGManager rc79.1 IPK; never downloaded.")
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--ipk",
+                      help="Path to locally-held original EPGManager rc79.1 IPK.")
+    mode.add_argument("--discover", action="store_true",
+                      help="Check only a short allowlist of cache/temporary directories.")
     args = parser.parse_args()
     try:
-        result = verify_old_ipk(args.ipk)
+        result = discover() if args.discover else verify_old_ipk(args.ipk)
         print(json.dumps(result, indent=2, sort_keys=True))
-        return 0 if result["rollback_package_identical_to_working_app"] else 2
+        eligible = (result.get("exact_rc79_rollback_candidates", 0) > 0
+                    if args.discover
+                    else result.get("rollback_package_identical_to_working_app", False))
+        return 0 if eligible else 2
     except (OSError, ValueError, tarfile.TarError) as exc:
         print(json.dumps({"audit": "EPGManager original rollback IPK compatibility",
                           "read_only": True, "rollback_package_identical_to_working_app": False,
