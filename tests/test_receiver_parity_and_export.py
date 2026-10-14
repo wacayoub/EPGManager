@@ -13,7 +13,7 @@ EXPORT = ROOT / "tools/export_receiver_plugin_code.py"
 
 
 def isolated(path):
-    ns = {"__name__": "_isolated_test"}
+    ns = {"__name__": "_isolated_test", "__file__": str(path)}
     exec(compile(path.read_text(encoding="utf-8"), str(path), "exec"), ns)
     return ns
 
