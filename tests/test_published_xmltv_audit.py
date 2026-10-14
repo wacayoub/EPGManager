@@ -41,6 +41,9 @@ class TestPublishedXMLTVAudit(unittest.TestCase):
         self.assertTrue(result["pass"], result["issues"])
         self.assertEqual(result["active_channels"], 1)
         self.assertEqual(result["channels_with_current_programme"], 1)
+        self.assertEqual(result["current_real_xmltv_ids"], ["channel.one"])
+        self.assertEqual(result["future_real_xmltv_ids"], ["channel.one"])
+        self.assertEqual(result["observed_zero_epg_ids"], [])
         self.assertEqual(result["sampled_real_programmes"][0]["title"],
                          "Actual EPG programme")
         self.assertTrue(result["sampled_real_programmes"][0]["description_present"])
@@ -71,6 +74,33 @@ class TestPublishedXMLTVAudit(unittest.TestCase):
         self.assertIn("bad_xmltv_times", result["issues"])
         self.assertIn("empty_programme_titles", result["issues"])
         self.assertIn("programmes_reference_unknown_channels", result["issues"])
+
+    def test_blank_title_and_orphan_never_count_as_real_current_id(self):
+        raw, meta = self.fixture(title="")
+        r = auditor.audit_xml(raw, meta, self.now)
+        self.assertEqual(r["current_real_xmltv_ids"], [])
+        self.assertEqual(r["future_real_xmltv_ids"], [])
+        self.assertIn("empty_programme_titles", r["issues"])
+        raw, meta = self.fixture(unknown=True)
+        r = auditor.audit_xml(raw, meta, self.now)
+        self.assertEqual(r["current_real_xmltv_ids"], [])
+        self.assertIn("programmes_reference_unknown_channels", r["issues"])
+
+    def test_future_real_event_does_not_pretend_to_be_airing(self):
+        raw, meta = self.fixture(start="20261014123000 +0000",
+                                 stop="20261014140000 +0000")
+        r = auditor.audit_xml(raw, meta, self.now)
+        self.assertEqual(r["current_real_xmltv_ids"], [])
+        self.assertEqual(r["future_real_xmltv_ids"], ["channel.one"])
+        self.assertEqual(r["past_only_xmltv_ids"], [])
+
+    def test_past_only_event_not_preferred_to_real_now(self):
+        raw, meta = self.fixture(start="20261013110000 +0000",
+                                 stop="20261013130000 +0000")
+        r = auditor.audit_xml(raw, meta, self.now)
+        self.assertEqual(r["current_real_xmltv_ids"], [])
+        self.assertEqual(r["future_real_xmltv_ids"], [])
+        self.assertEqual(r["past_only_xmltv_ids"], ["channel.one"])
 
     def test_online_reader_receives_only_read_only_get_requests(self):
         raw, meta = self.fixture()
