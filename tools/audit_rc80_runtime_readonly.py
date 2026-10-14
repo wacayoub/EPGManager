@@ -36,6 +36,11 @@ MARKERS = {
         "cross_source_suggestions": "def _refresh_cross_source_suggestions(",
     },
     "ui/main.py": {"diagnostics": "def open_diagnostics(", "native_import": "def open_native_import("},
+    "core/epg_cycle.py": {
+        "github_direct_check": "github_direct_stream.check_selected_sources(selected)",
+        "non_destructive_import": "clear_before_import=False,",
+    },
+    "core/direct_native_import.py": {"saved_auto_owner": "def _merge_persisted_auto_overrides("},
 }
 # New dashboard methods are *expected absent* from the working RC79.1.
 # Do not mistake an uninstalled RC80 feature for a regression in RC79.1.
@@ -46,13 +51,6 @@ ROLLBACK_NAMES = (
     "EPGManager_rc79_1_LOCAL_RESCUE_UNTESTED.ipk",
     "EPGManager_rc79_1_AUTOMAPPING_SAFE.ipk",
 )
-MARKERS_UNUSED_SENTINEL = {
-    "core/epg_cycle.py": {
-        "github_direct_check": "github_direct_stream.check_selected_sources(selected)",
-        "non_destructive_import": "clear_before_import=False,",
-    },
-    "core/direct_native_import.py": {"saved_auto_owner": "def _merge_persisted_auto_overrides("},
-}
 
 
 def examine_plugin(plugin):
