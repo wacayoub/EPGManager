@@ -17,6 +17,8 @@ on:
       - "tests/test_rc80_receiver_preflight.py"
       - "tests/test_rc80_recovery.py"
       - "tests/test_original_rollback_ipk.py"
+      - "tools/prepare_rc79_local_rescue_ipk.py"
+      - "tests/test_prepare_rc79_local_rescue_ipk.py"
       - "tools/audit_original_rollback_ipk.py"
       - ".github/workflows/build-release.yml"
       - "release_overlay/build_online_update.sh"
@@ -47,7 +49,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Compile Python source
-        run: python -m py_compile release_overlay/online_update.py source/overlay/online_update.py tools/verify_rc80_recovery.py tools/audit_original_rollback_ipk.py
+        run: python -m py_compile release_overlay/online_update.py source/overlay/online_update.py tools/verify_rc80_recovery.py tools/audit_original_rollback_ipk.py tools/prepare_rc79_local_rescue_ipk.py
       - name: Compile Smart Mapping UI and receiver fingerprint
         run: python -m py_compile source/overlay/ui/channel_mapping.py source/overlay/ui/main.py tools/audit_receiver_plugin_readonly.py tools/check_receiver_parity.py tools/export_receiver_plugin_code.py tools/merge_verified_receiver_into_staging.py tools/audit_rc80_receiver_preflight_readonly.py tools/verify_rc80_recovery.py tools/audit_original_rollback_ipk.py
       - name: Ensure release and source overlays have the same updater
