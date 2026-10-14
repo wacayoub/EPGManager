@@ -59,4 +59,28 @@ health._reports["osn"]=report
 health._reports["stctv"]={"generated_utc":"2026-10-13T14:23:45+00:00","rows":{}}
 assert health.health("ext_epgscrapers_osn","AbuDhabiTV.ae@SD",now)=="EPG_OK"
 assert health.health("ext_epgscrapers_stctv","AbuDhabiTV.ae@SD",now)=="UNKNOWN"
-print("PASS: no-NETWORK main-thread patch; OSN verified > missing STC; REVIEW yellow; manual and NativeImport unchanged")
+# Real regression reported on Vu+: STC DMC shows 50 schedules, 49 placeholders.
+stc = {"generated_utc":"2026-10-13T14:23:45+00:00",
+       "rows":{"dmc.eg@sd":{"status":"PASS","programmes":50,
+                                "latest_stop_utc":"2026-10-15T15:00:00+00:00"}},
+       "quality":{"generated_utc":"2026-10-13T14:23:45+00:00",
+                  "placeholder_counts":{"dmc.eg@sd":49},"future_counts":{},
+                  "low_diversity_ids":set()}}
+osn = {"generated_utc":"2026-10-13T14:19:54+00:00",
+       "rows":{"dmc.eg@sd":{"status":"WARN","programmes":35,
+                                "latest_stop_utc":"2026-10-15T15:00:00+00:00"}}}
+assert health.classify(stc,"DMC.eg@SD",now)=="SYNTHETIC", "50 generated events do NOT outrank 35 actual EPG"
+assert health.classify(osn,"DMC.eg@SD",now)=="EPG_WARN"
+stc["quality"]["placeholder_counts"]["dmc.eg@sd"] = 2
+assert health.classify(stc,"DMC.eg@SD",now)=="EPG_OK"
+stc["quality"]["low_diversity_ids"].add("dmc.eg@sd")
+assert health.classify(stc,"DMC.eg@SD",now)=="SUSPECT"
+# Rebuild a first-beta UI from the V2 transformation and replay its upgrade.
+v1=patched
+for old,new in patcher.UPGRADE_PAIRS:
+    assert new in v1
+    v1=v1.replace(new,old)
+upgraded,changed=patcher.patch_source(v1)
+assert changed and upgraded==patched, "upgrading V1 must preserve the exact V2 layout"
+assert patcher.patch_source(upgraded)==(upgraded,False)
+print("PASS: DMC STC 49/50 generated detected; OSN ahead, repeat detection, V1->V2 safe upgrade")
