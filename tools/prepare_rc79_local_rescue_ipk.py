@@ -44,6 +44,7 @@ def sha(raw):
 def _read_safe_tar(tar):
     files = {}
     modes = {}
+    total_size = 0
     for item in tar:
         name = item.name.removeprefix("./")
         if name in ("", ".") and item.isdir():
@@ -56,7 +57,14 @@ def _read_safe_tar(tar):
             continue
         if not item.isfile() or name in files:
             raise ValueError("Unsupported/duplicate member in original IPK")
+        if item.size < 0 or item.size > MAX_RECEIVER_FILE:
+            raise ValueError("Oversized member in original IPK")
+        total_size += item.size
+        if total_size > MAX_RECEIVER_TOTAL or len(files) >= 5000:
+            raise ValueError("Original IPK exceeds safe extraction limits")
         raw = tar.extractfile(item).read()
+        if len(raw) != item.size:
+            raise ValueError("Truncated original IPK member")
         files[name] = raw
         modes[name] = item.mode & 0o777
     return files, modes
@@ -110,6 +118,8 @@ def _trusted_inputs(candidate, receiver, expected_sha):
     # might not carry. NEVER silently claim full device parity in that case.
     missing_assets = []
     changed_assets = []
+    changed_asset_modes = []
+    installed_assets = set()
     for path in receiver.rglob("*"):
         if path.is_symlink():
             raise ValueError("Symlink in installed application tree")
@@ -118,17 +128,28 @@ def _trusted_inputs(candidate, receiver, expected_sha):
         rel = path.relative_to(receiver).as_posix()
         if rel.endswith(".py") or rel.endswith(IGNORED_EXT) or "__pycache__" in path.parts:
             continue
+        installed_assets.add(rel)
         packaged = payload.get(REL + rel)
         if packaged is None:
             missing_assets.append(rel)
-        elif path.stat().st_size <= MAX_RECEIVER_FILE and sha(path.read_bytes()) != sha(packaged):
+        elif path.stat().st_size > MAX_RECEIVER_FILE or sha(path.read_bytes()) != sha(packaged):
             changed_assets.append(rel)
+        elif stat.S_IMODE(path.stat().st_mode) & 0o777 != perms.get(REL + rel, 0o644):
+            changed_asset_modes.append(rel)
+    package_assets = {
+        name[len(REL):] for name in payload
+        if name.startswith(REL) and not name.endswith(".py")
+        and not name.endswith(IGNORED_EXT)
+    }
+    package_only_assets = sorted(package_assets - installed_assets)
     return {
         "control": ctrls["control"],
         "payload": payload, "perms": perms,
         "receiver": current, "receiver_modes": modes,
         "missing_assets": sorted(missing_assets),
         "changed_assets": sorted(changed_assets),
+        "changed_asset_modes": sorted(changed_asset_modes),
+        "package_only_assets": package_only_assets,
         "original_sha256": sha(raw),
         "original_scripts": sorted(x for x in ctrls if x != "control"),
         "original_python": sorted(x[len(REL):] for x in payload
@@ -211,6 +232,10 @@ def evaluate(candidate=ORIGINAL, receiver=RECEIVER, expected_sha=EXPECTED_ORIGIN
         "missing_receiver_assets_sample": inputs["missing_assets"][:8],
         "changed_receiver_assets_count": len(inputs["changed_assets"]),
         "changed_receiver_assets_sample": inputs["changed_assets"][:8],
+        "changed_receiver_asset_modes_count": len(inputs["changed_asset_modes"]),
+        "changed_receiver_asset_modes_sample": inputs["changed_asset_modes"][:8],
+        "extra_original_package_assets_count": len(inputs["package_only_assets"]),
+        "extra_original_package_assets_sample": inputs["package_only_assets"][:8],
         "config_and_mapping_files_read": False,
         "opkg_executed": False,
         "receiver_plugin_modified": False,
@@ -221,8 +246,9 @@ def evaluate(candidate=ORIGINAL, receiver=RECEIVER, expected_sha=EXPECTED_ORIGIN
     if not build:
         result["next"] = "Read-only assessment complete; rescue packaging requires explicit --build."
         return result
-    if inputs["missing_assets"] or inputs["changed_assets"]:
-        raise ValueError("Unpackaged/modified application assets found; refusing unsafe rescue build")
+    if (inputs["missing_assets"] or inputs["changed_assets"] or
+            inputs["changed_asset_modes"] or inputs["package_only_assets"]):
+        raise ValueError("Non-Python application assets do not match receiver; refusing unsafe rescue build")
     output = Path(output or "/tmp/" + RESCUE_BASENAME)
     allowed_dirs = (Path("/tmp").resolve(), Path("/var/volatile/tmp").resolve())
     if _test_output_dir is not None:
