@@ -190,7 +190,7 @@ def _package_bytes(inputs):
 
 
 def evaluate(candidate=ORIGINAL, receiver=RECEIVER, expected_sha=EXPECTED_ORIGINAL_SHA256,
-             build=False, output=None):
+             build=False, output=None, _test_output_dir=None):
     inputs = _trusted_inputs(candidate, receiver, expected_sha)
     expected_paths = set(inputs["receiver"])
     old_paths = set(inputs["original_python"])
@@ -224,8 +224,10 @@ def evaluate(candidate=ORIGINAL, receiver=RECEIVER, expected_sha=EXPECTED_ORIGIN
     if inputs["missing_assets"] or inputs["changed_assets"]:
         raise ValueError("Unpackaged/modified application assets found; refusing unsafe rescue build")
     output = Path(output or "/tmp/" + RESCUE_BASENAME)
-    if output.name != RESCUE_BASENAME or output.parent.resolve() not in (
-            Path("/tmp").resolve(), Path("/var/volatile/tmp").resolve()):
+    allowed_dirs = (Path("/tmp").resolve(), Path("/var/volatile/tmp").resolve())
+    if _test_output_dir is not None:
+        allowed_dirs += (Path(_test_output_dir).resolve(),)
+    if output.name != RESCUE_BASENAME or output.parent.resolve() not in allowed_dirs:
         raise ValueError("Rescue output must be the fixed filename in /tmp")
     payload = _package_bytes(inputs)
     if len(payload) > 30 * 1024 * 1024:
