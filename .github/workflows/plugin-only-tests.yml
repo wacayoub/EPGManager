@@ -13,6 +13,9 @@ on:
       - "tests/test_receiver_fingerprint.py"
       - "tests/test_receiver_parity_and_export.py"
       - "tests/test_merge_verified_receiver_into_staging.py"
+      - "tests/test_rc80_package_hooks.py"
+      - "release_overlay/safe_preinst.sh"
+      - "release_overlay/safe_postinst.sh"
       - "tools/merge_verified_receiver_into_staging.py"
       - "tools/check_receiver_parity.py"
       - "tools/export_receiver_plugin_code.py"
@@ -41,6 +44,8 @@ jobs:
         run: python -m py_compile source/overlay/ui/channel_mapping.py source/overlay/ui/main.py tools/audit_receiver_plugin_readonly.py tools/check_receiver_parity.py tools/export_receiver_plugin_code.py tools/merge_verified_receiver_into_staging.py
       - name: Ensure release and source overlays have the same updater
         run: cmp release_overlay/online_update.py source/overlay/online_update.py
+      - name: Check rc80 package maintainer shell scripts
+        run: sh -n release_overlay/safe_preinst.sh && sh -n release_overlay/safe_postinst.sh
       - name: Run plugin-only application safety tests
         run: python -m unittest discover -s tests -p "test_*py" -v
 
