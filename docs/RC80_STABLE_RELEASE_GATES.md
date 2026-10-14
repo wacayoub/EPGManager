@@ -50,3 +50,16 @@ Trace: [XMLTV audit](https://github.com/wacayoub/EPGManager/actions/runs/3862938
 ## Decision
 
 Keep RC79.1 installed and PR #8 as DRAFT. Do not merge/publish a stable IPK while any P0 release gate is open.
+
+
+## Private runtime correction evidence (not public source)
+
+On 2026-10-14, the receiver-owner's private rc79.1 rescue package (SHA256 `117e9a562b557c9afc18366d02392a11031a7178dfcacaeb86b9d756c2bb6a69`) was inspected **offline**. A private patch bundle was prepared for exactly three modules, preserving the 138-module count:
+
+- `core/system_check.py`: native GitHub Direct mode no longer falsely fails solely because local XML is absent. Dynamic provider age over 72h still fails; missing status is warning, and 0 live-now channels is visible.
+- `core/github_match_health.py`: no `EPG_OK` without a fresh, matching quality audit; `NO_EPG`, `SYNTHETIC` and `UNKNOWN` remain distinct.
+- `core/github_direct_sync.py`: parse real currently-on-air coverage metadata, safely ignoring invalid values.
+
+**11 private mocked/offline Python 3.13.5 tests passed.** Seven tests fail or error against the unchanged rc79.1 baseline as expected (5 failures + 2 errors). The patch is a **private review ZIP**, not an installable IPK; the original package was not changed and private receiver code/configuration was **not committed to GitHub**.
+
+**Still blocked:** integrating into audited full rc80 package, safe actual opkg downgrade/rollback, receiver GUI + EPG import/scheduler smoke tests. The existence of private patched source must not change NO-GO release status.
