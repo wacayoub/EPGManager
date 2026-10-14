@@ -102,17 +102,26 @@ def _fetch(key):
 
 def _worker(keys):
     global _generation
-    for key in keys:
-        report = None
-        try:
-            report = _fetch(key)
-        except Exception:
-            report = None
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    fetched = {}
+    try:
+        with ThreadPoolExecutor(max_workers=min(3, len(keys))) as pool:
+            futures = {pool.submit(_fetch, key): key for key in keys}
+            for future in as_completed(futures):
+                key = futures[future]
+                try:
+                    fetched[key] = future.result()
+                except Exception:
+                    pass
+    finally:
+        # A single UI generation prevents repeated expensive receiver repaints.
         with _lock:
-            if report is not None:
+            for key, report in fetched.items():
                 _reports[key] = report
+            if fetched:
                 _generation += 1
-            _pending.discard(key)
+            for key in keys:
+                _pending.discard(key)
 
 def refresh_async(source_ids, now=None):
     """Schedule only missing/expired reports; never runs I/O in calling thread."""
