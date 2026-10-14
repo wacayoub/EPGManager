@@ -135,6 +135,76 @@ REPLACES = [
                 rows.append(label)
                 ordered.append(epg)''',
     ),
+    (
+        '''            elif status in ("REVIEW", "AMBIGUOUS", "MANUAL"):
+                color = theme.STATUS_YELLOW_INT
+                tag = "MANUAL"''',
+        '''            elif status in ("REVIEW", "AMBIGUOUS", "MANUAL"):
+                color = theme.STATUS_YELLOW_INT
+                tag = "CHECK"''',
+    ),
+    (
+        '''            if target and status in ("MAPPED", "SAFE"):
+                detail += "  →  " + target''',
+        '''            if target and status in ("MAPPED", "SAFE", "REVIEW"):
+                detail += "  →  " + target''',
+    ),
+    (
+        '''            item["_precision_reason"] = str(check.get("reason") or "")
+            try:''',
+        '''            item["_precision_reason"] = str(check.get("reason") or "")
+            item["_github_health"] = github_match_health.health(sid, item.get("channel_id"))
+            try:''',
+    ),
+    (
+        '''        proof_rows = [{"auto": True,
+                       "confidence": int(epg.get("_precision_confidence") or 0),''',
+        '''        # The live GitHub 48h report decides whether an EXACT auto candidate
+        # can actually deliver EPG. Prefer a confirmed active feed before a
+        # nominally stronger match with no programme evidence (STC vs OSN).
+        # A proven NO_EPG ID is never auto-applied. Unknown legacy feeds keep
+        # their existing conservative behaviour.
+        autos = [row for row in autos if row.get("_github_health") != "NO_EPG"]
+        online_ready = [row for row in autos
+                        if row.get("_github_health") in ("EPG_OK", "EPG_WARN")]
+        if online_ready:
+            autos = online_ready
+        proof_rows = [{"auto": True,
+                       "confidence": int(epg.get("_precision_confidence") or 0),''',
+    ),
+    (
+        '''        if allowed:
+            return {"status": "review", "best": None, "matches": allowed}
+        return {"status": "nomatch", "best": None, "matches": []}''',
+        '''        if allowed:
+            allowed.sort(key=lambda row: (
+                0 if row.get("_github_health") in ("EPG_OK", "EPG_WARN") else
+                (2 if row.get("_github_health") == "NO_EPG" else 1),
+                -int(row.get("_precision_confidence") or 0),
+                int(row.get("_auto_context_rank") or 9),
+                str(row.get("source_id") or ""),
+            ))
+            return {"status": "review", "best": None,
+                    "review_best": allowed[0], "matches": allowed}
+        return {"status": "nomatch", "best": None, "matches": []}''',
+    ),
+    (
+        '''                    elif status == "review" or matches:
+                        _line = "REVIEW  %s  • manual mapping required" % row_name
+                        self._auto_repair_live = {"channel": row_name,
+                            "phase": "REVIEW", "match": _line, "index": idx + 1, "total": total}
+                        row = {"ref": str(service.get("ref") or ""), "name": row_name, "status": "REVIEW", "target": ""}''',
+        '''                    elif status == "review" or matches:
+                        proposal = (verdict or {}).get("review_best") or (matches[0] if matches else {})
+                        proposal_name = str(proposal.get("display_name") or proposal.get("channel_id") or "EPG")
+                        proposal_source = str(proposal.get("source_name") or proposal.get("source_id") or "source")
+                        target = "%s • %s" % (proposal_name, proposal_source)
+                        _line = "CHECK  %s  →  %s" % (row_name, target)
+                        self._auto_repair_live = {"channel": row_name,
+                            "phase": "REVIEW", "match": _line, "index": idx + 1, "total": total}
+                        row = {"ref": str(service.get("ref") or ""), "name": row_name,
+                               "status": "REVIEW", "target": target}''',
+    ),
 ]
 # Optional additive helpers bound to the Smart Mapping UI; do not compete with
 # the existing NativeImport worker or other EPG timers.
