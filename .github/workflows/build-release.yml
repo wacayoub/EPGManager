@@ -8,10 +8,13 @@ on:
         required: false
         default: Automatic EPG Manager release
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build-release:
+    # RETIRED: this legacy workflow packages rc70, not the verified receiver source.
+    # Keep disabled until release packaging and hardware recovery gates pass.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
