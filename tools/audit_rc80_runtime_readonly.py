@@ -36,6 +36,17 @@ MARKERS = {
         "cross_source_suggestions": "def _refresh_cross_source_suggestions(",
     },
     "ui/main.py": {"diagnostics": "def open_diagnostics(", "native_import": "def open_native_import("},
+}
+# New dashboard methods are *expected absent* from the working RC79.1.
+# Do not mistake an uninstalled RC80 feature for a regression in RC79.1.
+RC80_ONLY_MARKERS = {"ui/main.py": ("diagnostics",)}
+LEGACY_EXPECTED_VERSION = "2026.10.08-rc79.1"
+ROLLBACK_SCAN_DIRS = ("/tmp", "/var/volatile/tmp", "/media/hdd", "/media/usb")
+ROLLBACK_NAMES = (
+    "EPGManager_rc79_1_LOCAL_RESCUE_UNTESTED.ipk",
+    "EPGManager_rc79_1_AUTOMAPPING_SAFE.ipk",
+)
+MARKERS_UNUSED_SENTINEL = {
     "core/epg_cycle.py": {
         "github_direct_check": "github_direct_stream.check_selected_sources(selected)",
         "non_destructive_import": "clear_before_import=False,",
@@ -119,8 +130,40 @@ def rescue_check(ipk):
             "opkg_recovery_certified": False}
 
 
+def scan_known_rollback(directories=ROLLBACK_SCAN_DIRS):
+    """Check only specifically named local rc79.1 IPKs; never traverse folders.
+
+    An IPK's known hash establishes identity, not operable rollback with opkg.
+    Do not print arbitrary unknown filenames, device configuration or secrets.
+    """
+    examined = 0
+    verified = []
+    for directory in directories:
+        folder = Path(directory)
+        if not folder.is_dir() or folder.is_symlink():
+            continue
+        for basename in ROLLBACK_NAMES:
+            candidate = folder / basename
+            if not candidate.is_file() or candidate.is_symlink():
+                continue
+            examined += 1
+            report = rescue_check(candidate)
+            if report.get("known_identity"):
+                verified.append({"path": str(candidate),
+                                 "identified_as": report.get("identified_as"),
+                                 "opkg_recovery_certified": False})
+    return {
+        "scan_performed": True,
+        "scan_scope": "four fixed directories, two known rc79.1 basenames, no recursion",
+        "candidate_count": examined, "recognized_candidates": verified,
+        "known_identity_found": bool(verified),
+        "opkg_recovery_certified": False,
+    }
+
+
 def audit(plugin=PLUGIN, extensions=EXTENSIONS, epgimport=EPGIMPORT_CONFIG,
-          proc=PROC, rollback_ipk=None):
+          proc=PROC, rollback_ipk=None, scan_local_rollback=False,
+          rollback_directories=ROLLBACK_SCAN_DIRS):
     code = examine_plugin(plugin)
     gui = find_gui(proc)
     native = {
@@ -128,24 +171,38 @@ def audit(plugin=PLUGIN, extensions=EXTENSIONS, epgimport=EPGIMPORT_CONFIG,
         "epgimport_config_directory_present": Path(epgimport).is_dir(),
     }
     rescue = rescue_check(rollback_ipk)
+    scan = scan_known_rollback(rollback_directories) if scan_local_rollback else {
+        "scan_performed": False, "known_identity_found": False,
+        "opkg_recovery_certified": False,
+    }
     flags = []
+    expected_rc80_additions = []
     if code["modules"] != 138: flags.append("MODULE_COUNT_NOT_138")
     if code.get("syntax_errors"): flags.append("MODULE_SYNTAX_OR_IO_ERROR")
     if code.get("missing_required"): flags.append("MISSING_REQUIRED_MODULES")
     if code.get("version") != "2026.10.08-rc79.1" or code.get("schema") != 15:
         flags.append("UNEXPECTED_VERSION_OR_SCHEMA")
     for filename, tests in code.get("markers", {}).items():
-        if not all(tests.values()): flags.append("STATIC_FEATURE_MISSING:" + filename)
+        for marker, present in tests.items():
+            if present:
+                continue
+            if (code.get("version") == LEGACY_EXPECTED_VERSION and
+                    marker in RC80_ONLY_MARKERS.get(filename, ())):
+                expected_rc80_additions.append(filename + ":" + marker)
+            else:
+                flags.append("STATIC_FEATURE_MISSING:" + filename + ":" + marker)
     if not gui.get("running"): flags.append("ENIGMA2_PROCESS_NOT_CONFIRMED")
     if not native["epgimport_plugin_present"]: flags.append("NATIVE_EPGIMPORT_NOT_CONFIRMED")
-    if not rescue["known_identity"]: flags.append("ROLLBACK_IPK_NOT_VERIFIED")
+    if not rescue["known_identity"] and not scan["known_identity_found"]:
+        flags.append("ROLLBACK_IPK_NOT_VERIFIED")
     return {
         "audit": "EPGManager rc80 stage2 receiver observation",
         "checked_utc": datetime.now(timezone.utc).isoformat(),
         "read_only": True, "receiver_modified": False,
         "python_version": ".".join(map(str, sys.version_info[:3])),
         "code": code, "gui_process": gui, "native_import_prerequisites": native,
-        "rollback_package": rescue, "observations": flags,
+        "rollback_package": rescue, "rollback_scan": scan, "observations": flags,
+        "expected_rc80_features_not_in_rc79": expected_rc80_additions,
         "gui_functionally_tested": False, "epg_import_executed": False,
         "opkg_rollback_tested": False, "authorized_to_install": False,
     }
@@ -158,9 +215,12 @@ def main():
     parser.add_argument("--epgimport-dir", default=str(EPGIMPORT_CONFIG))
     parser.add_argument("--proc-dir", default=str(PROC))
     parser.add_argument("--rollback-ipk", help="Optional local existing rc79.1 rescue IPK; checksum only")
+    parser.add_argument("--scan-local-rollback", action="store_true",
+                        help="SHA-check two known rc79.1 IPK names in four fixed locations, read-only")
     a = parser.parse_args()
     try:
-        result = audit(a.plugin_dir, a.extensions_dir, a.epgimport_dir, a.proc_dir, a.rollback_ipk)
+        result = audit(a.plugin_dir, a.extensions_dir, a.epgimport_dir, a.proc_dir,
+                       a.rollback_ipk, a.scan_local_rollback)
     except (OSError, ValueError) as exc:
         result = {"audit": "EPGManager rc80 stage2 receiver observation", "read_only": True,
                   "authorized_to_install": False, "receiver_modified": False,
