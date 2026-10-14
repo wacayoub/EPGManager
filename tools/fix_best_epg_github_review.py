@@ -205,6 +205,31 @@ REPLACES = [
                         row = {"ref": str(service.get("ref") or ""), "name": row_name,
                                "status": "REVIEW", "target": target}''',
     ),
+    (
+        '''            try:
+                preview = source_quality.get_programme_preview_cached(sid, cid, max_future_hours=96) or {}
+            except Exception:
+                preview = {}
+            # RC17:''',
+        '''            try:
+                # Direct GitHub streams must never inherit NOW/NEXT from stale
+                # receiver XML quality scans. The remote preview shard is read
+                # asynchronously and remains presentation-only.
+                preview = ({} if github_match_health.source_key(sid) else
+                           (source_quality.get_programme_preview_cached(
+                               sid, cid, max_future_hours=96) or {}))
+            except Exception:
+                preview = {}
+            # RC17:''',
+    ),
+    (
+        '''                    if local_path and os.path.isfile(local_path) and os.path.getsize(local_path) > 0:
+                        with open(local_path, "rb") as fh:''',
+        '''                    if github_match_health.source_key(sid):
+                        local_path = ""  # Native Import uses GitHub, never stale local XML.
+                    if local_path and os.path.isfile(local_path) and os.path.getsize(local_path) > 0:
+                        with open(local_path, "rb") as fh:''',
+    ),
 ]
 # Optional additive helpers bound to the Smart Mapping UI; do not compete with
 # the existing NativeImport worker or other EPG timers.
