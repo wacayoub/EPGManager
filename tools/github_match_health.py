@@ -18,6 +18,7 @@ SUPPORTED = frozenset(("morocco", "bein", "osn", "shahid", "elcinema",
                        "starzplay", "alkass", "tunisiatv", "tabie"))
 FRESH_SECONDS = 72 * 3600
 RETRY_SECONDS = 1800
+REPORT_RELOAD_SECONDS = 3600
 READY_SECONDS = 900
 _MAX_REPORT_BYTES = 260000
 _reports = {}
@@ -126,7 +127,7 @@ def refresh_async(source_ids, now=None):
             # Retry stale/failed reports periodically, never on every cursor move.
             if now - float(_attempts.get(key) or 0) < RETRY_SECONDS:
                 continue
-            if cached and now - _epoch(cached.get("generated_utc")) < FRESH_SECONDS:
+            if cached and now - float(_attempts.get(key) or 0) < REPORT_RELOAD_SECONDS:
                 continue
             _attempts[key] = now
             _pending.add(key)
