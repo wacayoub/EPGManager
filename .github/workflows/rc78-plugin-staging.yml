@@ -9,6 +9,8 @@ on:
       - "source/overlay/ui/channel_mapping.py"
       - "source/overlay/online_update.py"
       - "data/release-inspect/direct_native_import.py"
+      - "tools/check_receiver_parity.py"
+      - "tests/test_receiver_parity_and_export.py"
   workflow_dispatch:
 permissions:
   contents: read
@@ -73,9 +75,15 @@ jobs:
           echo "Candidate IPK round-trip validated: correct control metadata and complete Python tree"
       - name: Re-run plugin-only unit tests
         run: python3 -m unittest discover -s tests -p 'test_*py' -v
-      - name: Upload staging audit report only (IPK retained in CI workspace)
+      - name: Compare staging to protected working receiver modules (NO-GO expected)
+        run: |
+          python3 tools/check_receiver_parity.py \
+            --unpacked /tmp/epg-stage/data --report receiver-parity-staging.json
+      - name: Upload staging audit reports only (IPK retained in CI workspace)
         uses: actions/upload-artifact@v4
         with:
           name: plugin-staging-report
-          path: rc78-plugin-staging-report.json
+          path: |
+            rc78-plugin-staging-report.json
+            receiver-parity-staging.json
           if-no-files-found: error
