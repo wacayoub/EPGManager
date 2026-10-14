@@ -57,8 +57,12 @@ def analyze():
         result["info"]["source_ui_lines"]=len(_read(src/"ui/channel_mapping.py").splitlines())
         result["info"]["inspected_ui_lines"]=len(_read(ROOT/"data/release-inspect/channel_mapping.py").splitlines())
         result["info"]["assembled_schema_version"]=next((x.strip() for x in version.splitlines() if "CONFIG_SCHEMA_VERSION" in x),"")
-        if result["info"]["assembled_version"]!=str(manifest.get("version")):
-            fail("version_mismatch","Assembled ZIP+overlay version does not match published manifest; must explicitly bump and gate new version")
+        def version_parts(v):
+            return tuple(int(t) for t in re.findall(r"\d+", str(v or "")))
+        incoming=result["info"]["assembled_version"]
+        published=str(manifest.get("version"))
+        if version_parts(incoming) <= version_parts(published):
+            fail("version_mismatch","Assembled version %s must be newer than existing published release %s" %(incoming,published))
         if result["info"]["source_ui_lines"] < result["info"]["inspected_ui_lines"]*.6:
             fail("ui_code_loss","Assembled Smart Mapping UI is significantly smaller than current receiver snapshot (possible destructive downgrade)")
         ui=_read(src/"ui/channel_mapping.py")
