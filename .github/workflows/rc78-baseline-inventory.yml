@@ -37,3 +37,11 @@ jobs:
           name: rc78-baseline-inspection
           path: rc78-baseline-inventory.json
           if-no-files-found: error
+
+      - name: Archive verified official rc78 input for offline private merge
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-rc78-input-only-do-not-install
+          path: /tmp/EPGManager_rc78_ONLINE_UPDATE_VISIBLE.ipk
+          if-no-files-found: error
+          retention-days: 1
