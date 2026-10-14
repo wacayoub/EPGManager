@@ -17,6 +17,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      # Hard gate: never publish an IPK rebuilt from the legacy rc70 archive.
+      # The audit reproduces the EXACT source ZIP + overlay used below.
+      - name: Final release compatibility gate
+        shell: bash
+        run: python3 tools/audit_release_candidate.py --strict
+
       - name: Restore current source package
         shell: bash
         run: |
