@@ -100,7 +100,7 @@ def run_self_test():
     out = merge({"source_a": {"id-good": ["1:0:1:A:"]}}, rows, Store(), False, registry)
     assert out["source_a"]["id-good"] == ["1:0:1:A:"], "must not duplicate canonical ref"
     assert out["source_a"]["id-two"] == ["1:0:1:B:"], "AUTO survives stale channels.xml"
-    assert out["source_a"]["id-manual"] == [] if False else True
+    assert "id-manual" not in out["source_a"], "manual is handled by the earlier manual overlay"
     assert "id-hijack" not in out["source_a"], "MANUAL lock must win"
     assert "id-block" not in out["source_a"], "ignored/unmapped must stay blocked"
     assert "id-lost" not in out["source_a"], "foreign ref must be ignored"
