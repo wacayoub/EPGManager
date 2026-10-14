@@ -52,7 +52,8 @@ def assess(source, feed, audit, quality, now=None):
               "real_now_coverage_verified": False, "ready_for_epg_ok": False,
               "xmltv_sha256_verified": False,
               "cohort_match_proof": "TIMESTAMP_ONLY_NOT_HASH_BOUND"}
-    pg = epoch(feed.get("generated_utc"))
+    pg = epoch(feed.get("generated_utc"))  # Original provider age; NEVER replaced by repack time.
+    repack = epoch(feed.get("repacked_utc")) if feed.get("repacked_utc") else None
     ag = epoch(audit.get("generated_utc"))
     qg = epoch(quality.get("generated_utc"))
     if (not pg or now < pg - 3600 or now - pg > MAX_AGE_HOURS * 3600):
@@ -66,15 +67,31 @@ def assess(source, feed, audit, quality, now=None):
     if not re.fullmatch(r"[0-9a-f]{64}", digest) or size <= 0:
         result["status"] = "INVALID_PUBLISHED_METADATA"
         return result
+    # A title-only cleanup can regenerate quality audits without a new
+    # provider fetch. The SOURCE age still comes only from generated_utc;
+    # compare reports against the repack instant only when its original SHA
+    # is declared and the temporal order is sane. Never let repack refresh
+    # a stale guide's age or declare EPG_OK without verifying XMLTV bytes.
+    cohort_epoch = pg
+    if feed.get("repacked_utc") is not None:
+        source_sha = str(feed.get("original_published_sha256") or "").lower()
+        if (not repack or repack < pg or repack > now + 3600
+                or not re.fullmatch(r"[0-9a-f]{64}", source_sha)
+                or source_sha == digest):
+            result["status"] = "INVALID_REPACK_PROVENANCE"
+            return result
+        cohort_epoch = repack
+        result["provider_data_reused_after_title_cleanup"] = True
+        result["cleanup_timestamp_utc"] = feed["repacked_utc"]
     rows = audit.get("feeds") or []
     matching = [x for x in rows if isinstance(x, dict) and x.get("feed") == source + ".xml.gz"]
-    if not ag or abs(ag - pg) > MAX_COHORT_DELTA or len(matching) != 1:
+    if not ag or abs(ag - cohort_epoch) > MAX_COHORT_DELTA or len(matching) != 1:
         result["status"] = "AUDIT_FROM_DIFFERENT_PUBLICATION"
         return result
     result["pubcohort_verified"] = True
     if (quality.get("source") != source or
             quality.get("source_file") != source + ".xml.gz" or
-            not qg or abs(qg - pg) > MAX_COHORT_DELTA):
+            not qg or abs(qg - cohort_epoch) > MAX_COHORT_DELTA):
         result["status"] = "QUALITY_FROM_DIFFERENT_PUBLICATION"
         return result
     result["quality_cohort_verified"] = True
