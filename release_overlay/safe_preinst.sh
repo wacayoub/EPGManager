@@ -12,7 +12,7 @@ if [ "${1:-}" = "upgrade" ] && [ "${EPGMGR_RC80_SUPERVISED:-0}" != "1" ]; then
     echo 'EPGManager rc80: UPGRADE BLOCKED — previous IPK and opkg rollback not certified' >&2
     exit 90
 fi
-STAMP="$(date +%Y%m%d-%H%M%S)-$"
+STAMP="$(date +%Y%m%d-%H%M%S)-$$"
 DEST="$BACKUP_ROOT/pre-rc80-$STAMP"
 mkdir -p "$DEST"
 chmod 700 "$DEST"
