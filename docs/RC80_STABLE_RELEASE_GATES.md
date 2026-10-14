@@ -104,3 +104,14 @@ Two reported observations:
 - `ROLLBACK_IPK_NOT_VERIFIED`: `provided=false` in the user's call; no old package was supplied for SHA identification. It **does not mean no IPK exists on disk**. A read-only `--scan-local-rollback` option now checks just two exact known rc79.1 basenames in /tmp, /var/volatile/tmp, /media/hdd, and /media/usb, with no recursive reads. Matching hashes prove identity only, *not* an `opkg` recovery rehearsal.
 
 Neither flag authorizes the upgrade. Install authorization remains **FALSE** until certified `opkg` downgrade/recovery and native GUI/import/scheduler tests are complete.
+
+
+## Hardware verification: rc79.1 rescue payload
+
+The owner ran stage-2 and the full rollback package audit on the Vu+ receiver on October 14, 2026. Stage-2 found no unexpected observations; the absent Diagnostics method is an expected RC80 feature delta.
+
+Stage-3 read-only output: rescue package has exact parity with the installed application: 138/138 Python modules, 75/75 other assets, 213/213 file modes, zero missing/extra files, correct package metadata and passive maintainer hooks. Result: `rescue_content_parity_found=true`, `status=COMPLETE_CONTENT_OPKG_UNTESTED`.
+
+The original candidate is NOT an adequate rescue: 136 Python files, only 133 matching installed Python files, 208 matching file modes of 211 assets, missing two installed files and non-passive scripts. Never downgrade using the original candidate.
+
+**The rescue package is content-perfect but not tested with opkg. This report does not authorize an upgrade.** Live opkg recovery, Enigma2 GUI, real native import, mapping and scheduler validation remain open.
