@@ -154,6 +154,14 @@ def verify_payload(source, feed, measured_at, reader=payload_audit.fetch):
             measured_at, tz=timezone.utc).isoformat(),
         "xmltv_active_channels": report["active_channels"],
         "xmltv_live_now_channels": report["channels_with_current_programme"],
+        # Exact online IDs are usable even if other catalogue IDs lack a
+        # full 48h guide. They require a current, SHA-verified XMLTV parse;
+        # they are NOT an entire-source stable/48h certification.
+        "xmltv_current_real_ids": report["current_real_xmltv_ids"],
+        "xmltv_future_real_ids": report["future_real_xmltv_ids"],
+        "xmltv_observed_zero_ids": report["observed_zero_epg_ids"],
+        "per_id_evidence_observed_utc": report["per_id_evidence_observed_utc"],
+        "channel_specific_epg_evidence_verified": True,
         "xmltv_missing_titles": report["missing_titles"],
         "xmltv_bad_times": report["bad_times"],
         "xmltv_issues": report["issues"],
