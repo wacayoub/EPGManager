@@ -95,9 +95,9 @@ def audit(plugin_dir, config_dir):
             flags[rel] = {name: False for name in markers}
     text = (base / "version.py").read_text(encoding="utf-8", errors="replace") if (base / "version.py").is_file() else ""
     def literal(name):
-        match = re.search(r"(?m)^" + re.escape(name) + r"\\s*=\\s*['\\\"]([^'\\\"]+)['\\\"]", text)
+        match = re.search(r"(?m)^" + re.escape(name) + r"\s*=\s*['\"]([^'\"]+)['\"]", text)
         return match.group(1) if match else None
-    schema = re.search(r"(?m)^CONFIG_SCHEMA_VERSION\\s*=\\s*(\\d+)", text)
+    schema = re.search(r"(?m)^CONFIG_SCHEMA_VERSION\s*=\s*(\d+)", text)
     cfg_dir = Path(config_dir)
     config = {name: (cfg_dir / name).is_file() for name in CONF_NAMES}
     return {
