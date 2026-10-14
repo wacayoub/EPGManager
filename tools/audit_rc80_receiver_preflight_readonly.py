@@ -80,8 +80,8 @@ def audit(plugin=PLUGIN, backup=BACKUP):
     for name, digest in PROTECTED.items():
         checked[name] = sha256(plugin / name) == digest
     source = (plugin / "version.py").read_text(encoding="utf-8", errors="replace") if (plugin / "version.py").is_file() else ""
-    version = re.search(r'(?m)^__version__\\s*=\\s*["\\\']([^"\\\']+)', source)
-    schema = re.search(r'(?m)^CONFIG_SCHEMA_VERSION\\s*=\\s*(\\d+)', source)
+    version = re.search(r"(?m)^__version__\s*=\s*['\"]([^'\"]+)", source)
+    schema = re.search(r"(?m)^CONFIG_SCHEMA_VERSION\s*=\s*(\d+)", source)
     current_version = version.group(1) if version else "unknown"
     db = package_db()
     db_details = db.get("package_status")
