@@ -17,7 +17,7 @@ class TestReceiverFingerprint(unittest.TestCase):
                           "requests.", "urlopen(", "shutil.", ".mkdir("):
             self.assertNotIn(forbidden, SOURCE)
         self.assertNotIn("import enigma", SOURCE)
-        self.assertNotIn("epgmanager_mappings.json\").read", SOURCE)
+        self.assertNotIn('open("/etc/enigma2/epgmanager_mappings.json"', SOURCE)
 
     def test_safe_import_and_fake_receiver(self):
         namespace = {"__name__": "_test_receiver_fingerprint"}
