@@ -77,6 +77,52 @@ class TestRc80Stage2(unittest.TestCase):
             self.assertFalse(missing["code"]["present"])
             self.assertFalse(missing["authorized_to_install"])
 
+    def test_rc79_absent_rc80_diagnostics_is_expected_delta(self):
+        with tempfile.TemporaryDirectory() as td:
+            plugin, extension, config, proc = self.environment(td)
+            (plugin / "ui").mkdir()
+            (plugin / "ui/main.py").write_text(
+                "def open_native_import(self):\n    pass\n")
+            report = target.audit(plugin, extension, config, proc)
+            self.assertIn("ui/main.py:diagnostics",
+                          report["expected_rc80_features_not_in_rc79"])
+            self.assertNotIn("STATIC_FEATURE_MISSING:ui/main.py:diagnostics",
+                             report["observations"])
+            self.assertFalse(report["authorized_to_install"])
+
+    def test_bounded_rollback_scan_recognizes_only_known_checksum_and_name(self):
+        with tempfile.TemporaryDirectory() as td:
+            folder = Path(td)
+            known = folder / target.ROLLBACK_NAMES[0]
+            known.write_bytes(b"x" * 160)
+            (folder / "unrelated.ipk").write_bytes(b"x" * 160)
+            nested = folder / "nested"
+            nested.mkdir()
+            (nested / target.ROLLBACK_NAMES[0]).write_bytes(b"x" * 160)
+            old = target.RESCUE_SHA
+            try:
+                target.RESCUE_SHA = hashlib.sha256(known.read_bytes()).hexdigest()
+                scan = target.scan_known_rollback([folder])
+                self.assertTrue(scan["known_identity_found"])
+                self.assertEqual(scan["candidate_count"], 1)
+                self.assertEqual(scan["recognized_candidates"][0]["path"], str(known))
+                self.assertFalse(scan["opkg_recovery_certified"])
+            finally:
+                target.RESCUE_SHA = old
+            self.assertFalse(target.scan_known_rollback([folder])["known_identity_found"])
+
+    def test_rc79_diagnostic_no_longer_requires_rc80_feature_for_healthy_baseline(self):
+        with tempfile.TemporaryDirectory() as td:
+            plugin, extension, config, proc = self.environment(td)
+            (plugin / "ui").mkdir()
+            (plugin / "ui/main.py").write_text(
+                "def open_native_import(self):\n    pass\n")
+            report = target.audit(plugin, extension, config, proc, scan_local_rollback=True,
+                                  rollback_directories=[Path(td) / "absent"])
+            self.assertFalse(report["rollback_scan"]["known_identity_found"])
+            self.assertIn("ROLLBACK_IPK_NOT_VERIFIED", report["observations"])
+            self.assertNotIn("STATIC_FEATURE_MISSING:ui/main.py:diagnostics", report["observations"])
+
     def test_known_archive_checksum_not_a_rollback_certification(self):
         with tempfile.TemporaryDirectory() as td:
             ipk = Path(td) / "rescue.ipk"
