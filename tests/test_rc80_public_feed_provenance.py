@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """Read-only published XMLTV/audit cohort regression tests."""
 from datetime import datetime, timedelta, timezone
+import gzip
+import hashlib
+from unittest.mock import patch
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
 import unittest
@@ -29,7 +32,9 @@ class TestPublicFeedProvenance(unittest.TestCase):
         a, b, c = fixtures()
         x = module.assess("morocco", a, b, c, NOW.timestamp())
         self.assertEqual(x["status"], "PUBLICATION_METADATA_COHERENT")
-        self.assertTrue(x["ready_for_epg_ok"])
+        self.assertFalse(x["ready_for_epg_ok"])  # Metadata is not evidence of live programme.
+        self.assertFalse(x["real_now_coverage_verified"])
+        self.assertFalse(x["xmltv_sha256_verified"])
 
     def test_expired_tabie_feed_is_not_repaired_by_new_report(self):
         a, b, c = fixtures("tabie")
@@ -88,6 +93,59 @@ class TestPublicFeedProvenance(unittest.TestCase):
         a["generated_utc"] = ts(NOW + timedelta(days=2))
         self.assertEqual(module.assess("morocco", a, b, c, NOW.timestamp())["status"],
                          "STALE_OR_INVALID_PUBLISHED_FEED")
+
+    def test_verified_xmltv_sha_and_now_programmes(self):
+        a, b, c = fixtures()
+        start = (NOW - timedelta(minutes=30)).strftime("%Y%m%d%H%M%S +0000")
+        stop = (NOW + timedelta(minutes=30)).strftime("%Y%m%d%H%M%S +0000")
+        xml = ('<tv><channel id="c"><display-name>C</display-name></channel>'
+               '<programme channel="c" start="%s" stop="%s">'
+               '<title>Real programme</title></programme></tv>'
+               % (start, stop)).encode()
+        raw = gzip.compress(xml, mtime=0)
+        a.update(sha256=hashlib.sha256(raw).hexdigest(), size_bytes=len(raw),
+                 channels=1, active_channels=1, programmes=1)
+        valid = module.verify_payload("morocco", a, NOW.timestamp(),
+                                      reader=lambda _u, _limit: raw)
+        self.assertTrue(valid["xmltv_sha256_verified"])
+        self.assertTrue(valid["xmltv_content_pass"])
+        self.assertEqual(valid["xmltv_live_now_channels"], 1)
+        a["sha256"] = "0"*64
+        with self.assertRaises(ValueError):
+            module.verify_payload("morocco", a, NOW.timestamp(),
+                                  reader=lambda _u, _limit: raw)
+
+    def test_only_hashed_live_xmltv_can_promote(self):
+        a, b, c = fixtures()
+        verified = {"xmltv_sha256_verified": True, "xmltv_content_pass": True,
+                    "real_now_coverage_verified": True, "xmltv_issues": []}
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", return_value=verified):
+            actual = module.fetch_one("morocco", NOW.timestamp(), verify_xmltv=True)
+        self.assertTrue(actual["ready_for_epg_ok"])
+        self.assertEqual(actual["status"], "HASHED_XMLTV_AND_AUDITS_HEALTHY")
+        b["feeds"][0]["status"] = "FAIL"
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", return_value=verified):
+            invalid = module.fetch_one("morocco", NOW.timestamp(), verify_xmltv=True)
+        self.assertFalse(invalid["ready_for_epg_ok"])
+
+    def test_hash_failure_is_nonpromotable(self):
+        a, b, c = fixtures()
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", side_effect=ValueError("bad sha")):
+            result = module.fetch_one("morocco", NOW.timestamp(), verify_xmltv=True)
+        self.assertFalse(result["ready_for_epg_ok"])
+        self.assertFalse(result["xmltv_sha256_verified"])
+        self.assertFalse(result["real_now_coverage_verified"])
+        self.assertEqual(result["status"], "XMLTV_DOWNLOAD_OR_INTEGRITY_UNVERIFIED")
+
+    def test_json_only_mode_no_live_evidence(self):
+        a, b, c = fixtures()
+        with patch.object(module, "_get_json", side_effect=[a, b, c]):
+            result = module.fetch_one("morocco", NOW.timestamp())
+        self.assertFalse(result["ready_for_epg_ok"])
+        self.assertFalse(result["real_now_coverage_verified"])
 
     def test_no_install_and_no_secrets(self):
         s = PATH.read_text(encoding="utf-8")
