@@ -6,6 +6,9 @@ on:
       - "release_overlay/online_update.py"
       - "source/overlay/online_update.py"
       - "tests/test_epgmanager_updater.py"
+      - "tests/test_plugin_mapping_overlay.py"
+      - "source/overlay/ui/channel_mapping.py"
+      - "data/release-inspect/channel_mapping.py"
       - ".github/workflows/plugin-only-tests.yml"
   workflow_dispatch:
 permissions:
@@ -21,7 +24,9 @@ jobs:
           python-version: "3.13"
       - name: Compile Python source
         run: python -m py_compile release_overlay/online_update.py source/overlay/online_update.py
+      - name: Compile Smart Mapping UI
+        run: python -m py_compile source/overlay/ui/channel_mapping.py
       - name: Ensure release and source overlays have the same updater
         run: cmp release_overlay/online_update.py source/overlay/online_update.py
-      - name: Run plugin-only updater safety unit tests
-        run: python -m unittest discover -s tests -p test_epgmanager_updater.py -v
+      - name: Run plugin-only application safety tests
+        run: python -m unittest discover -s tests -p "test_*py" -v
