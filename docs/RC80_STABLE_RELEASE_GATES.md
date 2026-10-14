@@ -159,3 +159,14 @@ Actual public metadata check 2026-10-14 22:35 UTC:
 - Dubai+, Starzplay, Shahid, STC TV, AlKass, TunisiaTV: **PUBLICATION_COHORT_OK_LIVE_NOW_UNKNOWN**; matching publication/audit timestamps but no direct current-on-air channel evidence in metadata.
 
 **Remaining P0 release gates:** real `opkg` recovery transaction and Enigma2 restart, native GUI/remote navigation and skin acceptance, real native GitHub import, 20 real-channel Smart Mapping + persisted manual overrides, 24h scheduler observation, and XMLTV repairs with actual on-air validation for sources. Hardware remains on RC79.1; the private Beta4 is not approved for installation. Do not publish the blocked private IPK as an Online Update asset.
+
+
+## 14-source verified XMLTV bytes + live-now audit (2026-10-14 23:22 UTC)
+
+A read-only GitHub action [verified all 14 public compressed XMLTV feeds](https://github.com/wacayoub/EPGManager/actions/runs/38653630557) against their *actual* published SHA256 + size (14/14), then parsed real start/stop/title to count genuinely on-air programmes. The source JSON's `currently_on_air_channels` only measures its publication time and is **never** taken as current proof, even if it says 100%.
+
+At that observation UTC: Morocco **14/14**, beIN **54/66**, ElCinema **70/97**, OSN **81/82**, Sport24 **8/8**, Dubai+ **9/9**, Starzplay **116/116**, Shahid **71/71**, Rotana **7/7**, STC TV **149/149**, AlJazeera **3/3**, AlKass **8/8**, TunisiaTV **2/2**, Tabie **0/5**. The denominator is actual XMLTV active programme IDs, not necessarily the satellite bouquet size. ElCinema retains **2 empty programme titles** and Shahid **3**; Tabie old 5-Oct published guide remains unusable. Earlier ElCinema 7/97 at 20:07 UTC differs sharply from 70/97 at 23:22 UTC: investigate time-of-day holes, not simply source-wide EPG absence.
+
+**Only 6/14** full-source release cohorts pass the combination of real-content, no missing titles, >=60% live-now coverage and strict 48h auditing: Morocco, Dubai+, Starzplay, STC TV, AlKass, TunisiaTV. A 48h release failure is *not proof of zero current EPG* (e.g. beIN 54/66, OSN 81/82); preserve mapping for genuine partial current programmes, display degraded/short-horizon warning, and never prefer generated content to verified live programming.
+
+Auditor `tools/audit_rc80_public_feed_provenance.py` now offers `--online --verify-xmltv`, checks actual published gzip hash via the independent bounded parser, reports live-now counts and errors, and never promotes JSON-only statistics to `EPG_OK`. The CI [full public feed run](https://github.com/wacayoub/EPGManager/actions/runs/38653630557) succeeded; 16 synthetic provenance tests passed, previous 79 public application regression tests remained green. **No private device data, no opkg operation, no receiver installation.** The six remaining hardware/recovery gates still require separate evidence.
