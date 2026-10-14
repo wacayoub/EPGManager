@@ -30,7 +30,8 @@ class TestRc80Recovery(unittest.TestCase):
         config.mkdir()
         (config / "epgmanager_mappings.json").write_text('{"manual":"KEEP"}\n')
         env = dict(os.environ, EPGMGR_PLUGIN_DIR=str(plugin),
-                   EPGMGR_CONFIG_DIR=str(config), EPGMGR_BACKUP_ROOT=str(root / "backups"))
+                   EPGMGR_CONFIG_DIR=str(config), EPGMGR_BACKUP_ROOT=str(root / "backups"),
+                   EPGMGR_RC80_SUPERVISED="1")
         proc = subprocess.run(["sh", str(PREINST)], env=env,
                               capture_output=True, text=True)
         self.assertEqual(proc.returncode, 0, proc.stderr)
