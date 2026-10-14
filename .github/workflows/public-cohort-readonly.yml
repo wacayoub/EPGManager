@@ -29,7 +29,10 @@ jobs:
           p=json.load(open('/tmp/rc80-public-xmltv-provenance.json',encoding='utf-8'))
           print('read_only:',p['read_only'])
           for row in p['sources']:
-              print('%-12s %-50s published=%s' % (row['source'],row['status'],row.get('published_generated_utc','n/a')))
+              print('%-12s %-39s on-air=%s/%s missing-titles=%s issues=%s' % (
+                  row['source'], row['status'],
+                  row.get('xmltv_live_now_channels','?'), row.get('xmltv_active_channels','?'),
+                  row.get('xmltv_missing_titles','?'), ','.join(row.get('xmltv_issues',[]))[:110]))
           print('cohorts_verified:',p['publication_cohorts_verified'])
           print('live_now_evidence_present:',p['live_now_evidence_present'])
           print('gzip_sha256_verified:',p['xmltv_sha256_verified_count'])
