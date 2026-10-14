@@ -176,6 +176,41 @@ class TestPublicFeedProvenance(unittest.TestCase):
         self.assertEqual(res["status"], "48H_AUDIT_FAIL")
         self.assertFalse(res["ready_for_epg_ok"])
 
+    def test_verified_title_cleanup_keeps_original_feed_age(self):
+        feed, audit, quality = fixtures("shahid")
+        feed["repacked_utc"] = ts(NOW - timedelta(minutes=10))
+        feed["original_published_sha256"] = "b" * 64
+        audit["generated_utc"] = feed["repacked_utc"]
+        quality["generated_utc"] = feed["repacked_utc"]
+        result = module.assess("shahid", feed, audit, quality, NOW.timestamp())
+        self.assertEqual(result["status"], "PUBLICATION_METADATA_COHERENT")
+        self.assertTrue(result["pubcohort_verified"])
+        self.assertTrue(result["quality_cohort_verified"])
+        self.assertTrue(result["provider_data_reused_after_title_cleanup"])
+        self.assertFalse(result["ready_for_epg_ok"])
+
+    def test_repacking_cannot_launder_old_provider_data(self):
+        feed, audit, quality = fixtures("shahid")
+        feed["generated_utc"] = ts(NOW - timedelta(days=5))
+        feed["repacked_utc"] = ts(NOW - timedelta(minutes=10))
+        feed["original_published_sha256"] = "b" * 64
+        result = module.assess("shahid", feed, audit, quality, NOW.timestamp())
+        self.assertEqual(result["status"], "STALE_OR_INVALID_PUBLISHED_FEED")
+
+    def test_invalid_cleanup_provenance_is_never_promoted(self):
+        feed, audit, quality = fixtures("shahid")
+        feed["repacked_utc"] = ts(NOW - timedelta(minutes=10))
+        feed["original_published_sha256"] = feed["sha256"]
+        result = module.assess("shahid", feed, audit, quality, NOW.timestamp())
+        self.assertEqual(result["status"], "INVALID_REPACK_PROVENANCE")
+        feed["original_published_sha256"] = "invalid"
+        result = module.assess("shahid", feed, audit, quality, NOW.timestamp())
+        self.assertEqual(result["status"], "INVALID_REPACK_PROVENANCE")
+        feed["original_published_sha256"] = "b" * 64
+        feed["repacked_utc"] = ts(NOW - timedelta(hours=3))
+        result = module.assess("shahid", feed, audit, quality, NOW.timestamp())
+        self.assertEqual(result["status"], "INVALID_REPACK_PROVENANCE")
+
     def test_no_install_and_no_secrets(self):
         s = PATH.read_text(encoding="utf-8")
         for forbidden in ("opkg install", "opkg upgrade", "os.system(", "subprocess.run(",
