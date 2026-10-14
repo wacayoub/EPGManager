@@ -155,7 +155,11 @@ def fetch_one(source, now, verify_xmltv=False):
                 # No successful "now" verdict without a downloaded, hashed,
                 # fully parsed public feed AND matching, healthy audit metadata.
                 result["ready_for_epg_ok"] = bool(
-                    result["status"] == "PUBLICATION_METADATA_COHERENT"
+                    result["status"] in (
+                        "PUBLICATION_METADATA_COHERENT",
+                        "PUBLICATION_COHORT_OK_LIVE_NOW_UNKNOWN",
+                        "PUBLISHED_NOW_COVERAGE_LOW",
+                    )
                     and verified["xmltv_content_pass"]
                     and verified["xmltv_sha256_verified"]
                 )
