@@ -137,7 +137,7 @@ class TestPreviousIpkgEligibility(unittest.TestCase):
             marker.write_text('private keep intact', encoding="utf-8")
             result = ipk.discover(roots=(str(root),))
             self.assertEqual(result["candidates_checked"], 0)
-            self.assertEqual(result["exact_rc79_rollback_candidates"], 0)
+            self.assertEqual(result["code_parity_rc79_candidates"], 0)
             self.assertEqual(marker.read_text(encoding="utf-8"), 'private keep intact')
 
     def test_does_not_write_or_run_opkg(self):
