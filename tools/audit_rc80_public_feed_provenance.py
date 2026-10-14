@@ -166,7 +166,17 @@ def fetch_one(source, now, verify_xmltv=False):
                     and verified["xmltv_content_pass"]
                     and verified["xmltv_sha256_verified"]
                 )
-                if not verified["xmltv_content_pass"]:
+                result["xmltv_content_status"] = (
+                    "PASS" if verified["xmltv_content_pass"]
+                    else "XMLTV_CONTENT_QUALITY_ISSUES"
+                )
+                # Keep more serious reasons (stale published feed, failed
+                # 48h audit, mismatched candidate quality) as PRIMARY status.
+                if not verified["xmltv_content_pass"] and result["status"] in (
+                    "PUBLICATION_METADATA_COHERENT",
+                    "PUBLICATION_COHORT_OK_LIVE_NOW_UNKNOWN",
+                    "PUBLISHED_NOW_COVERAGE_LOW",
+                ):
                     result["status"] = "XMLTV_CONTENT_QUALITY_ISSUES"
                 elif result["ready_for_epg_ok"]:
                     result["status"] = "HASHED_XMLTV_AND_AUDITS_HEALTHY"
