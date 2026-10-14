@@ -15,6 +15,8 @@ on:
       - "tests/test_merge_verified_receiver_into_staging.py"
       - "tests/test_rc80_package_hooks.py"
       - "tests/test_rc80_receiver_preflight.py"
+      - "tests/test_rc80_recovery.py"
+      - "tools/verify_rc80_recovery.py"
       - "tools/audit_rc80_receiver_preflight_readonly.py"
       - "release_overlay/safe_preinst.sh"
       - "release_overlay/safe_postinst.sh"
@@ -41,9 +43,9 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Compile Python source
-        run: python -m py_compile release_overlay/online_update.py source/overlay/online_update.py
+        run: python -m py_compile release_overlay/online_update.py source/overlay/online_update.py tools/verify_rc80_recovery.py
       - name: Compile Smart Mapping UI and receiver fingerprint
-        run: python -m py_compile source/overlay/ui/channel_mapping.py source/overlay/ui/main.py tools/audit_receiver_plugin_readonly.py tools/check_receiver_parity.py tools/export_receiver_plugin_code.py tools/merge_verified_receiver_into_staging.py tools/audit_rc80_receiver_preflight_readonly.py
+        run: python -m py_compile source/overlay/ui/channel_mapping.py source/overlay/ui/main.py tools/audit_receiver_plugin_readonly.py tools/check_receiver_parity.py tools/export_receiver_plugin_code.py tools/merge_verified_receiver_into_staging.py tools/audit_rc80_receiver_preflight_readonly.py tools/verify_rc80_recovery.py
       - name: Ensure release and source overlays have the same updater
         run: cmp release_overlay/online_update.py source/overlay/online_update.py
       - name: Check rc80 package maintainer shell scripts
