@@ -47,6 +47,14 @@ jobs:
         run: |
           python3 tools/assemble_rc78_staging.py \
             --unpacked /tmp/epg-stage/data --report rc78-plugin-staging-report.json
+      - name: Remove stale CPython 3.12 bytecode from staging
+        shell: bash
+        run: |
+          set -euo pipefail
+          PLUGIN=/tmp/epg-stage/data/usr/lib/enigma2/python/Plugins/Extensions/EPGManager
+          find "$PLUGIN" -type f \( -name '*.pyc' -o -name '*.pyo' \) -print -delete
+          find "$PLUGIN" -type d -name __pycache__ -empty -delete
+          ! find "$PLUGIN" -type f \( -name '*.pyc' -o -name '*.pyo' \) | grep -q .
       - name: Stamp opkg control and build candidate in CI only
         shell: bash
         run: |
@@ -67,6 +75,28 @@ jobs:
           test -s "$IPK"
           ar p "$IPK" control.tar.gz | tar -xzOf - ./control | grep -Fx 'Version: 2026.10.14-rc79-beta1'
           ar p "$IPK" data.tar.gz | tar -tzf - > /tmp/epg-stage/ipk-members.txt
+          ! grep -E '\\.(pyc|pyo)
+          grep -Fq './usr/lib/enigma2/python/Plugins/Extensions/EPGManager/ui/main.py' /tmp/epg-stage/ipk-members.txt
+          grep -Fq './usr/lib/enigma2/python/Plugins/Extensions/EPGManager/ui/channel_mapping.py' /tmp/epg-stage/ipk-members.txt
+          grep -Fq './usr/lib/enigma2/python/Plugins/Extensions/EPGManager/online_update.py' /tmp/epg-stage/ipk-members.txt
+          grep -Fq './usr/lib/enigma2/python/Plugins/Extensions/EPGManager/core/direct_native_import.py' /tmp/epg-stage/ipk-members.txt
+          test "$(find /tmp/epg-stage/data/usr/lib/enigma2/python/Plugins/Extensions/EPGManager -type f -name '*.py' | wc -l)" = 136
+          echo "Candidate IPK round-trip validated: correct control metadata and complete Python tree"
+      - name: Re-run plugin-only unit tests
+        run: python3 -m unittest discover -s tests -p 'test_*py' -v
+      - name: Compare staging to protected working receiver modules (NO-GO expected)
+        run: |
+          python3 tools/check_receiver_parity.py \
+            --unpacked /tmp/epg-stage/data --report receiver-parity-staging.json
+      - name: Upload staging audit reports only (IPK retained in CI workspace)
+        uses: actions/upload-artifact@v4
+        with:
+          name: plugin-staging-report
+          path: |
+            rc78-plugin-staging-report.json
+            receiver-parity-staging.json
+          if-no-files-found: error
+ /tmp/epg-stage/ipk-members.txt
           grep -Fq './usr/lib/enigma2/python/Plugins/Extensions/EPGManager/ui/main.py' /tmp/epg-stage/ipk-members.txt
           grep -Fq './usr/lib/enigma2/python/Plugins/Extensions/EPGManager/ui/channel_mapping.py' /tmp/epg-stage/ipk-members.txt
           grep -Fq './usr/lib/enigma2/python/Plugins/Extensions/EPGManager/online_update.py' /tmp/epg-stage/ipk-members.txt
