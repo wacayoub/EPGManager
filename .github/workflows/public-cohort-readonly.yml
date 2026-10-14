@@ -1,0 +1,41 @@
+name: RC80 published XMLTV provenance (read-only)
+on:
+  push:
+    branches: ["feature/plugin-only-consolidation-20261014"]
+    paths:
+      - "tools/audit_rc80_public_feed_provenance.py"
+      - "tests/test_rc80_public_feed_provenance.py"
+      - ".github/workflows/public-cohort-readonly.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-cohorts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Confirm independent, synthetic provenance tests
+        run: python -m unittest discover -s tests -p "test_rc80_public_feed_provenance.py" -v
+      - name: Verify currently published public JSON cohorts without modifying anything
+        run: python tools/audit_rc80_public_feed_provenance.py --online > /tmp/rc80-public-xmltv-provenance.json
+      - name: Summarize public feed status
+        run: |
+          python - <<'PY'
+          import json
+          p=json.load(open('/tmp/rc80-public-xmltv-provenance.json',encoding='utf-8'))
+          print('read_only:',p['read_only'])
+          for row in p['sources']:
+              print('%-12s %-50s published=%s' % (row['source'],row['status'],row.get('published_generated_utc','n/a')))
+          print('cohorts_verified:',p['publication_cohorts_verified'])
+          print('live_now_evidence_present:',p['live_now_evidence_present'])
+          print('This is NOT an opkg, TV GUI, or native import validation.')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rc80-public-cohort-readonly
+          path: /tmp/rc80-public-xmltv-provenance.json
+          retention-days: 3
