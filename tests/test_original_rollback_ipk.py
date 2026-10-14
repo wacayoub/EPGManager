@@ -101,6 +101,28 @@ class TestPreviousIpkgEligibility(unittest.TestCase):
             with self.assertRaises(ValueError):
                 ipk.verify_old_ipk(old)
 
+    def test_discovers_only_matching_local_ipk_and_keeps_install_blocked(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            old = root / "enigma2-plugin-extensions-epgmanager_rc79.1_all.ipk"
+            digest = make_ipk(old)
+            with patch.dict(ipk.PROTECTED, digest, clear=True):
+                result = ipk.discover(roots=(str(root),))
+            self.assertEqual(result["candidates_checked"], 1)
+            self.assertEqual(result["exact_rc79_rollback_candidates"], 1)
+            self.assertFalse(result["authorized_to_install_new_version"])
+            self.assertFalse(result["rollback_with_opkg_tested"])
+
+    def test_discovery_reports_no_candidates_without_touching_files(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            marker = root / "epgmanager.secret.json"
+            marker.write_text('private keep intact', encoding="utf-8")
+            result = ipk.discover(roots=(str(root),))
+            self.assertEqual(result["candidates_checked"], 0)
+            self.assertEqual(result["exact_rc79_rollback_candidates"], 0)
+            self.assertEqual(marker.read_text(encoding="utf-8"), 'private keep intact')
+
     def test_does_not_write_or_run_opkg(self):
         code=MODULE.read_text(encoding="utf-8").split('"""', 2)[-1]
         for operation in (".write_bytes(", ".write_text(", "opkg install", "opkg remove",
