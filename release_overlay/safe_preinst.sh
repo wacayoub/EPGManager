@@ -14,6 +14,32 @@ if [ -d "$PLUGIN_DIR" ]; then
     test -s "$DEST/plugin.tar.gz.part" || { echo 'EPGManager: no backup generated' >&2; exit 80; }
     mv "$DEST/plugin.tar.gz.part" "$DEST/plugin.tar.gz"
     chmod 600 "$DEST/plugin.tar.gz"
+    # Fail closed when the backup is corrupt or omits installed Python modules.
+    tar -tzf "$DEST/plugin.tar.gz" >/dev/null || {
+        echo 'EPGManager: backup integrity check failed' >&2; exit 80;
+    }
+    tar -tzf "$DEST/plugin.tar.gz" | grep -Fxq 'EPGManager/plugin.py' || {
+        echo 'EPGManager: plugin.py missing in backup' >&2; exit 80;
+    }
+    tar -tzf "$DEST/plugin.tar.gz" | grep -Fxq 'EPGManager/version.py' || {
+        echo 'EPGManager: version.py missing in backup' >&2; exit 80;
+    }
+    actual="$(find "$PLUGIN_DIR" -type f -name '*.py' | wc -l | tr -d ' ')"
+    archived="$(tar -tzf "$DEST/plugin.tar.gz" | grep -c '\\.pyfi
+mkdir -p "$DEST/config"
+for f in "$CONFIG_DIR"/epgmanager*.json "$CONFIG_DIR"/epgmanager.conf; do
+    [ -f "$f" ] || continue
+    cp -p "$f" "$DEST/config/$(basename "$f")"
+done
+if [ -f "$CONFIG_DIR/settings" ]; then
+    grep '^config\.plugins\.epgmanager\.' "$CONFIG_DIR/settings" > "$DEST/config/epgmanager_settings.conf" || true
+fi
+printf 'Prepared EPGManager recovery snapshot: %s\n' "$DEST"
+exit 0
+ || true)"
+    [ "$actual" = "$archived" ] || {
+        echo "EPGManager: backup Python file count mismatch: $actual/$archived" >&2; exit 80;
+    }
 fi
 mkdir -p "$DEST/config"
 for f in "$CONFIG_DIR"/epgmanager*.json "$CONFIG_DIR"/epgmanager.conf; do
