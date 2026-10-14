@@ -508,6 +508,68 @@ def _merge_manual_overrides(parsed, store, only_iptv=False, store_rows=None):
 
 
 
+def _merge_persisted_auto_overrides(parsed, store_rows, store=None, only_iptv=False,
+                                    registry_index=None):
+    """Project saved AUTO mappings into this import, even after SRP map rebuilds.
+
+    Manual mappings already have an import-time overlay. AUTO records also need
+    one: generated channels.xml files are disposable and can be rebuilt from the
+    receiver registry, losing otherwise-correct AUTO ownership. This overlay is
+    read-only (no changes to MappingStore or channels.xml).
+    """
+    if not isinstance(store_rows, dict) or not parsed:
+        return parsed
+    selected_mids = set(str(mid or "").strip().lower() for mid in parsed)
+    receiver_by_ref = (registry_index or ({}, {}))[0] or {}
+    manually_owned = set()
+    for row in store_rows.values():
+        if not isinstance(row, dict) or str(row.get("mode") or "").lower() != "manual":
+            continue
+        for ref in row.get("refs") or []:
+            canon = _canon_ref(ref)
+            if canon:
+                manually_owned.add(canon)
+    blocked = set()
+    if store is not None:
+        try:
+            for ref in store.blocked_refs() or []:
+                canon = _canon_ref(ref)
+                if canon:
+                    blocked.add(canon)
+        except Exception:
+            log.exception("Could not read blocked refs for AUTO import overlay")
+            return parsed  # fail closed rather than resurrect an ignored channel
+
+    for key, row in store_rows.items():
+        if "::" not in str(key) or not isinstance(row, dict):
+            continue
+        mode = str(row.get("mode") or "").strip().lower()
+        if mode not in ("auto", "auto-repair", "smartmatch", "smartmatch-iptv"):
+            continue
+        mid, cid = str(key).split("::", 1)
+        mid = mid.strip().lower()
+        cid = cid.strip().lower()
+        # An OFF/unselected feed must never be silently added to Import All.
+        if not mid or not cid or mid not in selected_mids:
+            continue
+        target = parsed[mid].setdefault(cid, [])
+        seen = set(_canon_ref(ref) for ref in target)
+        for ref in row.get("refs") or []:
+            raw = str(ref or "").strip()
+            canon = _canon_ref(raw)
+            if not raw or not canon or canon in seen or canon in manually_owned or canon in blocked:
+                continue
+            if receiver_by_ref and canon not in receiver_by_ref:
+                continue  # don't import to foreign or removed receiver services
+            if only_iptv and channel_mapper.classify_service_ref(raw) != "IPTV":
+                continue
+            target.append(raw)
+            seen.add(canon)
+        if not target:
+            parsed[mid].pop(cid, None)
+    return parsed
+
+
 def _prune_to_receiver_refs(mapping, registry_index):
     """Drop SRPs which are not present on this receiver before expensive work."""
     by_ref = (registry_index or ({}, {}))[0] or {}
@@ -960,6 +1022,8 @@ def prepare_direct_sources(items, epg_dir, only_iptv=False, store=None):
 
     phase = time.time()
     parsed = _merge_manual_overrides(parsed, store, only_iptv=only_iptv, store_rows=mapping_rows)
+    parsed = _merge_persisted_auto_overrides(
+        parsed, mapping_rows, store=store, only_iptv=only_iptv, registry_index=registry_index)
     parsed, seed_owner_stats = _fast_single_owner_maps(
         items, parsed, registry_index, store=store, store_rows=mapping_rows)
     timings["seed_ownership_ms"] = int((time.time() - phase) * 1000.0)
