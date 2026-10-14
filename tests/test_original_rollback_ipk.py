@@ -19,6 +19,9 @@ spec.loader.exec_module(ipk)
 def make_tar(files):
     buffer = io.BytesIO()
     with tarfile.open(fileobj=buffer, mode="w:gz") as tar:
+        root = tarfile.TarInfo("./")
+        root.type = tarfile.DIRTYPE
+        tar.addfile(root)
         for name, contents in files.items():
             info = tarfile.TarInfo(name)
             info.size = len(contents)
