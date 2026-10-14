@@ -9,6 +9,8 @@ on:
       - "tests/test_plugin_mapping_overlay.py"
       - "tests/test_plugin_dashboard.py"
       - "source/overlay/ui/main.py"
+      - "tools/audit_receiver_plugin_readonly.py"
+      - "tests/test_receiver_fingerprint.py"
       - "source/overlay/ui/channel_mapping.py"
       - "data/release-inspect/channel_mapping.py"
       - ".github/workflows/plugin-only-tests.yml"
@@ -26,8 +28,8 @@ jobs:
           python-version: "3.13"
       - name: Compile Python source
         run: python -m py_compile release_overlay/online_update.py source/overlay/online_update.py
-      - name: Compile Smart Mapping UI
-        run: python -m py_compile source/overlay/ui/channel_mapping.py source/overlay/ui/main.py
+      - name: Compile Smart Mapping UI and receiver fingerprint
+        run: python -m py_compile source/overlay/ui/channel_mapping.py source/overlay/ui/main.py tools/audit_receiver_plugin_readonly.py
       - name: Ensure release and source overlays have the same updater
         run: cmp release_overlay/online_update.py source/overlay/online_update.py
       - name: Run plugin-only application safety tests
