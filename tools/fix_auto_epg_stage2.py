@@ -135,7 +135,12 @@ def self_test():
     legacy=result["ext_epgscrapers_osn"]["legacy"]
     assert len(exact)==3 and "osncomedy.ae@sd" in exact and "osncrime.ae@sd" in exact
     assert list(legacy)==["unknown.id"]
-    try:\n        patch_source("def _merge_persisted_auto_overrides():pass\\n")\n    except RuntimeError:\n        pass\n    else:\n        raise AssertionError("unsupported layout must abort")
+    try:
+        patch_source("def _merge_persisted_auto_overrides():pass\\n")
+    except RuntimeError:
+        pass
+    else:
+        raise AssertionError("unsupported layout must abort")
     print("SELF-TEST OK: persisted OSN AUTO bypasses second semantic filter; MANUAL protected; other candidates still checked")
 
 def main():
