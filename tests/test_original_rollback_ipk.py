@@ -62,17 +62,23 @@ def make_ipk(path, overrides=None, version=ipk.VERSION, path_attack=False):
              ("control.tar.gz", make_tar({"./control": control})),
              ("data.tar.gz", make_tar(files))]
     path.write_bytes(make_ar(parts))
-    return digest_expectations
+    fake_receiver = path.with_suffix(".receiver")
+    for package_name, payload in files.items():
+        if package_name.startswith(ipk.REL) and package_name.endswith(".py"):
+            target = fake_receiver / package_name[len(ipk.REL):]
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(payload)
+    return digest_expectations, fake_receiver
 
 
 class TestPreviousIpkgEligibility(unittest.TestCase):
     def test_exact_original_package_is_eligible_but_not_authorized(self):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "old.ipk"
-            protected = make_ipk(path)
+            protected, installed = make_ipk(path)
             with patch.dict(ipk.PROTECTED, protected, clear=True):
-                report = ipk.verify_old_ipk(path)
-            self.assertTrue(report["rollback_package_identical_to_working_app"])
+                report = ipk.verify_old_ipk(path, receiver_root=installed)
+            self.assertTrue(report["rollback_python_tree_identical_to_working_app"])
             self.assertEqual(report["python_modules"], 138)
             self.assertFalse(report["opkg_rollback_tested"])
             self.assertFalse(report["authorized_to_install_new_version"])
@@ -80,20 +86,20 @@ class TestPreviousIpkgEligibility(unittest.TestCase):
     def test_only_package_with_exact_previous_version_and_hashes_matches(self):
         with tempfile.TemporaryDirectory() as td:
             old = Path(td)/"old.ipk"
-            digest = make_ipk(old, version="2026.10.14-rc80-beta1")
+            digest, installed = make_ipk(old, version="2026.10.14-rc80-beta1")
             with patch.dict(ipk.PROTECTED, digest, clear=True):
                 with self.assertRaises(ValueError):
-                    ipk.verify_old_ipk(old)
+                    ipk.verify_old_ipk(old, receiver_root=installed)
             old2 = Path(td)/"old2.ipk"
-            make_ipk(old2)
+            _, installed2 = make_ipk(old2)
             # All real receiver hashes differ from synthetic fixture.
-            report = ipk.verify_old_ipk(old2)
-            self.assertFalse(report["rollback_package_identical_to_working_app"])
+            report = ipk.verify_old_ipk(old2, receiver_root=installed2)
+            self.assertFalse(report["rollback_python_tree_identical_to_working_app"])
 
     def test_refuses_missing_files_and_tar_traversal(self):
         with tempfile.TemporaryDirectory() as td:
             old = Path(td)/"old.ipk"
-            digest = make_ipk(old, path_attack=True)
+            digest, installed = make_ipk(old, path_attack=True)
             with patch.dict(ipk.PROTECTED, digest, clear=True):
                 with self.assertRaises(ValueError):
                     ipk.verify_old_ipk(old)
@@ -105,13 +111,24 @@ class TestPreviousIpkgEligibility(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             old = root / "enigma2-plugin-extensions-epgmanager_rc79.1_all.ipk"
-            digest = make_ipk(old)
+            digest, installed = make_ipk(old)
             with patch.dict(ipk.PROTECTED, digest, clear=True):
-                result = ipk.discover(roots=(str(root),))
+                result = ipk.discover(roots=(str(root),), receiver_root=installed)
             self.assertEqual(result["candidates_checked"], 1)
-            self.assertEqual(result["exact_rc79_rollback_candidates"], 1)
+            self.assertEqual(result["code_parity_rc79_candidates"], 1)
             self.assertFalse(result["authorized_to_install_new_version"])
             self.assertFalse(result["rollback_with_opkg_tested"])
+
+    def test_changed_unprotected_python_module_is_rejected(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "old.ipk"
+            protected, installed = make_ipk(path)
+            (installed / "other_000.py").write_text("# unseen local receiver hotfix\\n", encoding="utf-8")
+            with patch.dict(ipk.PROTECTED, protected, clear=True):
+                report = ipk.verify_old_ipk(path, receiver_root=installed)
+            self.assertFalse(report["rollback_python_tree_identical_to_working_app"])
+            self.assertFalse(report["all_receiver_python_files_match"])
+            self.assertIn("other_000.py", report["sample_module_differences"])
 
     def test_discovery_reports_no_candidates_without_touching_files(self):
         with tempfile.TemporaryDirectory() as td:
