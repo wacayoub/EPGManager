@@ -64,7 +64,8 @@ REPLACES = [
         remote = github_match_health.health(sid, cid)
         if remote is not None:
             return {"EPG_OK": "  •  ID OK", "EPG_WARN": "  •  EPG WARN",
-                    "NO_EPG": "  •  NO EPG"}.get(remote, "")
+                    "NO_EPG": "  •  NO EPG", "SYNTHETIC": "  •  GENERATED",
+                    "SUSPECT": "  •  REPEATED"}.get(remote, "")
         try:
             health = github_direct_sync.id_health(sid, cid)''',
     ),
@@ -83,7 +84,8 @@ REPLACES = [
                 -int(confidence),''',
         '''            rank = (
                 0 if epg["_github_health"] in ("EPG_OK", "EPG_WARN") else
-                (2 if epg["_github_health"] == "NO_EPG" else 1),
+                (3 if epg["_github_health"] in ("NO_EPG", "SYNTHETIC") else
+                 (2 if epg["_github_health"] == "SUSPECT" else 1)),
                 0 if auto else 1,
                 -int(confidence),''',
     ),
@@ -94,7 +96,8 @@ REPLACES = [
         '''        rows.sort(key=lambda e: (
             0 if e.get("_suggestion_current") else 1,
             0 if e.get("_github_health") in ("EPG_OK", "EPG_WARN") else
-            (2 if e.get("_github_health") == "NO_EPG" else 1),
+            (3 if e.get("_github_health") in ("NO_EPG", "SYNTHETIC") else
+             (2 if e.get("_github_health") == "SUSPECT" else 1)),
             0 if e.get("_precision_auto") else 1,''',
     ),
     (
@@ -164,7 +167,7 @@ REPLACES = [
         # nominally stronger match with no programme evidence (STC vs OSN).
         # A proven NO_EPG ID is never auto-applied. Unknown legacy feeds keep
         # their existing conservative behaviour.
-        autos = [row for row in autos if row.get("_github_health") != "NO_EPG"]
+        autos = [row for row in autos if row.get("_github_health") not in ("NO_EPG", "SYNTHETIC", "SUSPECT")]
         online_ready = [row for row in autos
                         if row.get("_github_health") in ("EPG_OK", "EPG_WARN")]
         if online_ready:
@@ -179,7 +182,8 @@ REPLACES = [
         '''        if allowed:
             allowed.sort(key=lambda row: (
                 0 if row.get("_github_health") in ("EPG_OK", "EPG_WARN") else
-                (2 if row.get("_github_health") == "NO_EPG" else 1),
+                (3 if row.get("_github_health") in ("NO_EPG", "SYNTHETIC") else
+                 (2 if row.get("_github_health") == "SUSPECT" else 1)),
                 -int(row.get("_precision_confidence") or 0),
                 int(row.get("_auto_context_rank") or 9),
                 str(row.get("source_id") or ""),
@@ -243,7 +247,7 @@ REPLACES = [
                 # is a yellow CHECK, not a false green "EPG works" claim.
                 remote = github_match_health.health(
                     first.get("source_id"), first.get("channel_id"))
-                if remote is not None and remote != "EPG_OK":
+                if remote is not None and remote not in ("EPG_OK", "EPG_WARN"):
                     return ("[A?]", "suggestion")
             return ("[M]" if mode == "manual" else "[A]", "mapped")''',
     ),
@@ -264,6 +268,31 @@ REPLACES = [
                  (e.get("_suggestion_manual") or e.get("_github_health") in ("EPG_OK", "EPG_WARN"))
               else (2 if e.get("_suggestion_current") else 1),
             0 if e.get("_github_health") in ("EPG_OK", "EPG_WARN") else''',
+    ),
+    (
+        '''        if "NO EPG" in marker:
+            return "NO EPG"
+        if "WARN" in marker:''',
+        '''        if "NO EPG" in marker:
+            return "NO EPG"
+        if "GENERATED" in marker:
+            return "GENERATED"
+        if "REPEATED" in marker:
+            return "REPEATED"
+        if "WARN" in marker:''',
+    ),
+    (
+        '''        elif health == "NO EPG":
+            health_color = theme.STATUS_RED_INT
+            health_text = "NO EPG"
+        else:''',
+        '''        elif health in ("NO EPG", "GENERATED"):
+            health_color = theme.STATUS_RED_INT
+            health_text = "GEN EPG" if health == "GENERATED" else "NO EPG"
+        elif health == "REPEATED":
+            health_color = theme.STATUS_YELLOW_INT
+            health_text = "REPEAT?"
+        else:''',
     ),
 ]
 # Optional additive helpers bound to the Smart Mapping UI; do not compete with
