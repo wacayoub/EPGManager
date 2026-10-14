@@ -32,7 +32,8 @@ class TestRc80PackageHooks(unittest.TestCase):
             mapping.write_text('{"KEEP":"manual"}\n',encoding='utf-8')
             (config/'settings').write_text('config.plugins.epgmanager.theme=neo\npassword.other=KEEP_SECRET\n',encoding='utf-8')
             env = dict(os.environ, EPGMGR_PLUGIN_DIR=str(plugin),
-                       EPGMGR_CONFIG_DIR=str(config), EPGMGR_BACKUP_ROOT=str(root/'backups'))
+                       EPGMGR_CONFIG_DIR=str(config), EPGMGR_BACKUP_ROOT=str(root/'backups'),
+                       EPGMGR_RC80_SUPERVISED='1')
             output=subprocess.run(['sh',str(PRE)],env=env,text=True,capture_output=True)
             self.assertEqual(output.returncode,0,output.stderr)
             backups=list((root/'backups').glob('pre-rc80-*'))
@@ -62,6 +63,9 @@ class TestRc80PackageHooks(unittest.TestCase):
             self.assertEqual(result.returncode,90,result.stderr)
             self.assertFalse((root/'backups').exists())
             self.assertIn('working receiver source',(plugin/'plugin.py').read_text(encoding='utf-8'))
+            fresh = subprocess.run(['sh', str(PRE)], env=env, text=True, capture_output=True)
+            self.assertEqual(fresh.returncode, 90, fresh.stderr)
+            self.assertFalse((root/'backups').exists())
 
     def test_postinst_on_synthetic_138_module_plugin_and_wrong_version(self):
         with tempfile.TemporaryDirectory() as td:
