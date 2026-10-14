@@ -76,3 +76,20 @@ A receiver-private **non-installable** IPK (`2026.10.14-rc80-beta2-private`) was
 - This is **only a private filesystem rollback simulation** with mocked package-version metadata. No actual `opkg` rollback/repair was performed; no Enigma2 runtime or native import test on hardware. Source-data blockers (ElCinema, Tabie) remain.
 
 **Release gate remains NO-GO.** A production build must be separately constructed and tested on the receiver, with a working exact-version recovery package, package-manager metadata restoration, GUI, scheduler and native importer smoke tests. Do not use the private package name as `update.json` target.
+
+
+## Stage-2 readonly hardware observation (2026-10-14)
+
+The owner executed `tools/audit_rc80_receiver_preflight_readonly.py` on Vu+ Zero 4K. Receiver-reported evidence: `environment_preflight_pass=true`, `preflight_warnings=[]`, native Python `3.14.7`, `opkg status` installed `2026.10.08-rc79.1`, application 138 Python files, config schema 15, all seven protected file hashes matching the audited installed baseline. Both mapping and source-preferences files were **present** (contents not inspected). Free space ~292.9 MiB under `/tmp`, much larger on application/backup partition.
+
+This establishes only *environment readiness*, NOT release authorization; the JSON correctly reported `authorized_to_install=false`.
+
+A second **read-only, non-deploying** receiver observer is now available at `tools/audit_rc80_runtime_readonly.py`, with five offline regression tests. It checks AST syntax of installed modules, process-name-only Enigma2 existence, EPGImport directory presence, static EPG import/mapping markers, and optional SHA-only identification of a locally supplied previous-version IPK. It does **not** read source contents, credentials, user configuration, mappings, EPG XML, process arguments, environment, or log contents. It explicitly marks GUI function, native import and opkg recovery as *not tested*, even when prerequisites appear present.
+
+```sh
+wget -qO /tmp/epg-rc80-stage2.py https://raw.githubusercontent.com/wacayoub/EPGManager/feature/plugin-only-consolidation-20261014/tools/audit_rc80_runtime_readonly.py && python3 /tmp/epg-rc80-stage2.py
+```
+
+Verified GitHub Actions [stage-2 CI](https://github.com/wacayoub/EPGManager/actions/runs/38644459897): **59/59 tests passed for Python 3.13 and 3.14**. Await actual receiver stage-2 output before changing any runtime gate.
+
+**No R80 installation authorized** without full `opkg` rollback and real GUI/native import validation.
