@@ -1,0 +1,67 @@
+name: EPGManager rc78 Plugin Staging (non-deploying)
+on:
+  push:
+    branches: ["feature/plugin-only-consolidation-20261014"]
+    paths:
+      - "tools/assemble_rc78_staging.py"
+      - ".github/workflows/rc78-plugin-staging.yml"
+      - "source/overlay/ui/main.py"
+      - "source/overlay/ui/channel_mapping.py"
+      - "source/overlay/online_update.py"
+      - "data/release-inspect/direct_native_import.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and authenticate rc78
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fLsS --retry 3 --retry-delay 2 \
+            "https://github.com/wacayoub/EPGManager/releases/download/v2026.10.04-rc78/EPGManager_rc78_ONLINE_UPDATE_VISIBLE.ipk" \
+            -o /tmp/rc78.ipk
+          echo "1d9991cbea17793dae8ac7ffd4686c73bf6a9a408a0be28324794a9c54390958  /tmp/rc78.ipk" | sha256sum -c -
+          test "$(stat -c %s /tmp/rc78.ipk)" = "700448"
+      - name: Extract original IPK and preserve control scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/epg-stage/original /tmp/epg-stage/control /tmp/epg-stage/data
+          cd /tmp/epg-stage/original
+          ar x /tmp/rc78.ipk
+          DATA_TAR="$(find . -maxdepth 1 -type f -name 'data.tar.*' -print -quit)"
+          CONTROL_TAR="$(find . -maxdepth 1 -type f -name 'control.tar.*' -print -quit)"
+          test -n "$DATA_TAR" && test -n "$CONTROL_TAR"
+          tar -xf "$DATA_TAR" -C ../data
+          tar -xf "$CONTROL_TAR" -C ../control
+          test -e ../control/control
+          test -e ../data/usr/lib/enigma2/python/Plugins/Extensions/EPGManager/version.py
+      - name: Assemble checked allowlist only (not rc70 overlay)
+        run: |
+          python3 tools/assemble_rc78_staging.py \
+            --unpacked /tmp/epg-stage/data --report rc78-plugin-staging-report.json
+      - name: Stamp opkg control and build candidate in CI only
+        shell: bash
+        run: |
+          set -euo pipefail
+          sed -i 's/^Version:.*/Version: 2026.10.14-rc79-beta1/' /tmp/epg-stage/control/control
+          mkdir -p /tmp/epg-stage/package
+          printf '2.0\n' > /tmp/epg-stage/package/debian-binary
+          tar --numeric-owner --owner=0 --group=0 -C /tmp/epg-stage/control -czf /tmp/epg-stage/package/control.tar.gz .
+          tar --numeric-owner --owner=0 --group=0 -C /tmp/epg-stage/data -czf /tmp/epg-stage/package/data.tar.gz .
+          (cd /tmp/epg-stage/package && ar q EPGManager_PLUGIN_STAGING_NOT_FOR_INSTALL.ipk debian-binary control.tar.gz data.tar.gz)
+          ar t /tmp/epg-stage/package/EPGManager_PLUGIN_STAGING_NOT_FOR_INSTALL.ipk
+          sha256sum /tmp/epg-stage/package/EPGManager_PLUGIN_STAGING_NOT_FOR_INSTALL.ipk
+      - name: Re-run plugin-only unit tests
+        run: python3 -m unittest discover -s tests -p 'test_*py' -v
+      - name: Upload staging audit report only (IPK retained in CI workspace)
+        uses: actions/upload-artifact@v4
+        with:
+          name: plugin-staging-report
+          path: rc78-plugin-staging-report.json
+          if-no-files-found: error
