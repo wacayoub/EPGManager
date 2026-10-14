@@ -127,10 +127,13 @@ def audit_xml(raw, metadata, now, sample_limit=5):
         issues.append("invalid_generated_utc")
     if expected_active < 1 or expected_active < 0.6 * max(1, declared_count):
         issues.append("insufficient_channel_coverage")
+    if len(active_now) < 0.6 * max(1, len(programme_channels)):
+        issues.append("insufficient_current_time_coverage")
     return {
         "channels": len(channels), "programmes": count,
         "active_channels": len(programme_channels),
         "channels_with_current_programme": len(active_now),
+        "missing_now_sample": sorted(programme_channels - active_now)[:12],
         "sampled_real_programmes": list(samples.values()),
         "bad_times": bad_time, "missing_titles": missing_title,
         "age_hours": age_hours, "zero_epg_ids": metadata.get("zero_epg_ids", []),
