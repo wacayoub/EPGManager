@@ -124,3 +124,20 @@ The receiver's read-only stage-3 report confirms that the local RC79.1 rescue sn
 The older original candidate does **not** qualify for recovery (only 136 Python modules, 133 matching; two receiver-only modules, non-passive hooks, incomplete mode parity). It must not be used as the working rollback artifact.
 
 This closes the *recovery-content identity/parity* subcheck, **not** the required real package-manager rollback, Enigma2 restart or GUI checks. `opkg_rollback_tested=false`, `authorized_to_install_rc80=false` remain unchanged. Next, validate package-manager transaction behavior in an isolated test environment without changing the live receiver, then complete GUI, mapping, native importer and scheduler acceptance.
+
+
+## Private rc80-beta3 five-file integration and seven-gate status
+
+Read-only Vu+ stage-3 verified a **complete and exact** local rc79.1 rescue package: 138/138 installed Python modules, 75/75 additional application assets, 213/213 mode matches, valid opkg metadata, and passive rescue maintainer scripts. The old `AUTOMAPPING_SAFE` package is NOT an eligible full rollback: 136 Python modules (133 matching), 208 mode matches and unsafe old hooks. No opkg recovery performed.
+
+A new **private offline-only, deliberately non-installable** `2026.10.14-rc80-beta3-private` package was assembled from the receiver-owner's exact rescue IPK. SHA256: `af32662d04425c3b83a543b063fa50cd430bae18f9e371e1088200719dae0d96`. The package is held privately and is **NOT a GitHub artifact** or online update target. It has 138 Python modules, 213 application files, unchanged schema 15, and exactly five changed application files: `core/github_direct_sync.py`, `core/github_match_health.py`, `core/system_check.py`, `ui/main.py`, `version.py`; 208 files remain byte-identical to receiver baseline. Private mappings, themes and other assets are unchanged.
+
+UI integration deliberately preserves the working rc79.1 `ui/channel_mapping.py` rather than overwriting it with stale legacy rc70 overlays. It adds an in-place `MORE` Diagnostics choice menu (Zero EPG, Duplicates, System Check, Logs) without changing FHD widget geometry, and corrects the System Check aggregate so **1/14 usable remote feeds cannot be reported as PASS**. Four source-health behaviors remain gated by fresh quality reports. Its package `preinst` **always exits 90**, even when supervision flags are supplied; no installation is possible. Offline postinstall static test is read-only on a temporary extraction.
+
+Private Python 3.13.5 offline regression: **14 test functions passed**, including a loop of **20 synthetic receiver-channel ranking cases**; **six synthetic Casablanca Native Import scheduler cases passed**. These are not 20 live SAT-channel tests, nor a native EPGImport execution, nor a real GUI session. Existing public workflow still passes **69/69 Python 3.13 and 69/69 Python 3.14** at [CI](https://github.com/wacayoub/EPGManager/actions/runs/38645920975); private code was NOT uploaded to CI.
+
+Fresh public feed metadata were inspected for all **14** direct providers: Morocco `2026-10-14T20:30:48Z` 14/14 airing-now channels; Tabie remains `2026-10-05T21:53:55Z` stale (5/9 future catalogue entries; 0 genuine current channels in previous audit). Other historical feed coverage percentages cannot prove a channel is airing NOW. ElCinema/Shahid authenticity and missing-title issues still need verified published repairs.
+
+Seven-gate status: **(1)** rescue content parity verified on hardware; **(2)** opkg recovery NOT proven; **(3)** GUI menu mock PASS, real receiver blocked; **(4)** GitHub Direct structural checks PASS, real import blocked; **(5)** 20 synthetic mapping fixtures PASS, real receiver mapping blocked; **(6)** six synthetic scheduler cases PASS, 24h observation blocked; **(7)** 14 source metadata reviewed, Tabie and others unresolved.
+
+**Hard NO-GO remains.** No live receiver installation, forced update, fallback to old rc70, or replacement of private receiver source is authorized.
