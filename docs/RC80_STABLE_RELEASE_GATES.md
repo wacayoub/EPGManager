@@ -115,3 +115,12 @@ Stage-3 read-only output: rescue package has exact parity with the installed app
 The original candidate is NOT an adequate rescue: 136 Python files, only 133 matching installed Python files, 208 matching file modes of 211 assets, missing two installed files and non-passive scripts. Never downgrade using the original candidate.
 
 **The rescue package is content-perfect but not tested with opkg. This report does not authorize an upgrade.** Live opkg recovery, Enigma2 GUI, real native import, mapping and scheduler validation remain open.
+
+
+## Stage-3 receiver parity evidence
+
+The receiver's read-only stage-3 report confirms that the local RC79.1 rescue snapshot is an exact application payload match: **138/138 Python modules**, **75/75 other assets**, **213/213 permission modes**, zero unmatched files in either direction, metadata valid, matching SHA256, and four passive maintenance hooks. The report says `complete_rescue_content=true` and `rescue_content_parity_found=true`.
+
+The older original candidate does **not** qualify for recovery (only 136 Python modules, 133 matching; two receiver-only modules, non-passive hooks, incomplete mode parity). It must not be used as the working rollback artifact.
+
+This closes the *recovery-content identity/parity* subcheck, **not** the required real package-manager rollback, Enigma2 restart or GUI checks. `opkg_rollback_tested=false`, `authorized_to_install_rc80=false` remain unchanged. Next, validate package-manager transaction behavior in an isolated test environment without changing the live receiver, then complete GUI, mapping, native importer and scheduler acceptance.
