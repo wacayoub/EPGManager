@@ -91,7 +91,9 @@ def analyze():
         bad_py=[]
         for file in source_modules:
             try:
-                py_compile.compile(str(file),cfile=str(temp/"checks"/file.relative_to(src))+'.pyc',doraise=True)
+                out=temp/"checks"/(str(file.relative_to(src))+".pyc")
+                out.parent.mkdir(parents=True,exist_ok=True)
+                py_compile.compile(str(file),cfile=str(out),doraise=True)
             except Exception as exc:
                 bad_py.append([str(file.relative_to(src)),str(exc)[:180]])
         if bad_py: fail("syntax","Source compile errors: "+repr(bad_py[:12]))
