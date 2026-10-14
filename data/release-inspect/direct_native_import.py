@@ -1028,6 +1028,26 @@ def prepare_direct_sources(items, epg_dir, only_iptv=False, store=None):
         items, parsed, registry_index, store=store, store_rows=mapping_rows)
     timings["seed_ownership_ms"] = int((time.time() - phase) * 1000.0)
 
+    # Persisted AUTO ownership has already passed the automatic mapping
+    # engine and single-owner arbitration. Do not send those exact locks back
+    # through the unrelated legacy fuzzy/semantic validator: manual locks
+    # previously survived this second pass while equally valid AUTO locks
+    # were silently lost (OSN Comedy/Crime/Premiere receiver reproduction).
+    persisted_auto_keys = set()
+    for mk, mrec in (mapping_rows or {}).items():
+        if not isinstance(mrec, dict):
+            continue
+        if str(mrec.get("mode") or "").strip().lower() not in (
+                "auto", "auto-repair", "smartmatch", "smartmatch-iptv"):
+            continue
+        if not (mrec.get("refs") or []):
+            continue
+        try:
+            am, ac = str(mk).split("::", 1)
+        except ValueError:
+            continue
+        persisted_auto_keys.add((am.strip().lower(), ac.strip().lower()))
+
     # Expand only the already-winning automatic targets. This preserves the same
     # final duplicate-service coverage while keeping the arbitration set close to
     # receiver size instead of source_count x receiver_size. Manual exact rows are
@@ -1039,7 +1059,10 @@ def prepare_direct_sources(items, epg_dir, only_iptv=False, store=None):
         dst = {}
         auto_rows = {}
         for cid, refs in (channels or {}).items():
-            if (str(mid).lower(), str(cid).lower()) in manual_keys:
+            exact_key = (str(mid).lower(), str(cid).lower())
+            if exact_key in manual_keys or exact_key in persisted_auto_keys:
+                # These are already persisted/exclusive user or vetted AUTO
+                # decisions. Never reclassify them as new fuzzy candidates.
                 dst[str(cid)] = list(refs or [])
             else:
                 auto_rows[str(cid)] = list(refs or [])
