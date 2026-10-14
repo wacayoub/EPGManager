@@ -8,6 +8,7 @@ on:
       - "tools/fix_auto_mapping_epg.py"
       - "tools/test_auto_mapping_epg_patch.py"
       - "tools/audit_osn_auto_epg.py"
+      - "tools/fix_auto_epg_stage2.py"
       - ".github/workflows/auto-mapping-epg-regression.yml"
   workflow_dispatch:
 
@@ -22,6 +23,7 @@ jobs:
           python-version: "3.13"
       - name: Syntax and isolated regression
         run: |
-          python -m py_compile tools/fix_auto_mapping_epg.py tools/test_auto_mapping_epg_patch.py tools/audit_osn_auto_epg.py data/release-inspect/direct_native_import.py
+          python -m py_compile tools/fix_auto_mapping_epg.py tools/test_auto_mapping_epg_patch.py tools/audit_osn_auto_epg.py tools/fix_auto_epg_stage2.py data/release-inspect/direct_native_import.py
           python tools/audit_osn_auto_epg.py --help >/dev/null
           python tools/test_auto_mapping_epg_patch.py
+          python tools/fix_auto_epg_stage2.py --self-test
