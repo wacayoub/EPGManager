@@ -20,11 +20,8 @@ for f in files:
     ast.parse(f.read_text(encoding='utf-8'), filename=str(f))
 print('EPGManager: 138 modules validated, config/EPG data untouched')
 PY
-if [ "${EPGMGR_OFFLINE_TEST:-0}" != 1 ]; then
-    PYTHONPATH="/usr/lib/enigma2/python${PYTHONPATH:+:$PYTHONPATH}" \
-      python3 "$PLUGIN_DIR/core/runtime_prereqs.py" >/tmp/epgmanager-prereq-check.log 2>&1 || {
-        echo 'EPGManager: prerequisite check failed; see /tmp/epgmanager-prereq-check.log' >&2
-        exit 82
-      }
-fi
+# Runtime GUI, scheduler and native importer must be tested after installation.
+# A maintainer script must not launch Enigma2 modules or require optional
+# Python helpers that may not be present in the target package.
+printf '%s\n' 'EPGManager: package static verification complete; runtime acceptance still required.'
 exit 0
