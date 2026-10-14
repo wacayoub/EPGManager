@@ -43,3 +43,14 @@ jobs:
         run: cmp release_overlay/online_update.py source/overlay/online_update.py
       - name: Run plugin-only application safety tests
         run: python -m unittest discover -s tests -p "test_*py" -v
+
+      - name: Archive selected public plugin source overlays for isolated testing
+        if: matrix.python == '3.14'
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-plugin-overlay-input-only
+          path: |
+            source/overlay/ui/main.py
+            source/overlay/online_update.py
+          if-no-files-found: error
+          retention-days: 1
