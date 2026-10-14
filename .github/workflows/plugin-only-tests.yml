@@ -19,6 +19,8 @@ on:
       - "tests/test_original_rollback_ipk.py"
       - "tools/prepare_rc79_local_rescue_ipk.py"
       - "tests/test_prepare_rc79_local_rescue_ipk.py"
+      - "tools/audit_published_xmltv.py"
+      - "tests/test_published_xmltv_audit.py"
       - "tools/audit_original_rollback_ipk.py"
       - ".github/workflows/build-release.yml"
       - "release_overlay/build_online_update.sh"
