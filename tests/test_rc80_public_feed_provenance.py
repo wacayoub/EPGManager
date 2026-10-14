@@ -147,6 +147,35 @@ class TestPublicFeedProvenance(unittest.TestCase):
         self.assertFalse(result["ready_for_epg_ok"])
         self.assertFalse(result["real_now_coverage_verified"])
 
+    def test_stale_published_xmltv_remains_primary_even_after_hash_verified(self):
+        a, b, c = fixtures("tabie")
+        a["generated_utc"] = ts(NOW - timedelta(days=9))
+        audited = {
+            "xmltv_sha256_verified": True, "xmltv_content_pass": False,
+            "xmltv_issues": ["insufficient_current_time_coverage"],
+            "real_now_coverage_verified": True,
+        }
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", return_value=audited):
+            res = module.fetch_one("tabie", NOW.timestamp(), verify_xmltv=True)
+        self.assertEqual(res["status"], "STALE_OR_INVALID_PUBLISHED_FEED")
+        self.assertEqual(res["xmltv_content_status"], "XMLTV_CONTENT_QUALITY_ISSUES")
+        self.assertFalse(res["ready_for_epg_ok"])
+
+    def test_48h_fail_remains_primary_even_if_xmltv_has_missing_titles(self):
+        a, b, c = fixtures("elcinema")
+        b["feeds"][0]["status"] = "FAIL"
+        audited = {
+            "xmltv_sha256_verified": True, "xmltv_content_pass": False,
+            "xmltv_issues": ["empty_programme_titles"],
+            "real_now_coverage_verified": True,
+        }
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", return_value=audited):
+            res = module.fetch_one("elcinema", NOW.timestamp(), verify_xmltv=True)
+        self.assertEqual(res["status"], "48H_AUDIT_FAIL")
+        self.assertFalse(res["ready_for_epg_ok"])
+
     def test_no_install_and_no_secrets(self):
         s = PATH.read_text(encoding="utf-8")
         for forbidden in ("opkg install", "opkg upgrade", "os.system(", "subprocess.run(",
