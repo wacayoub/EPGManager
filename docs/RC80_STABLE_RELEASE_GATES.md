@@ -63,3 +63,16 @@ On 2026-10-14, the receiver-owner's private rc79.1 rescue package (SHA256 `117e9
 **11 private mocked/offline Python 3.13.5 tests passed.** Seven tests fail or error against the unchanged rc79.1 baseline as expected (5 failures + 2 errors). The patch is a **private review ZIP**, not an installable IPK; the original package was not changed and private receiver code/configuration was **not committed to GitHub**.
 
 **Still blocked:** integrating into audited full rc80 package, safe actual opkg downgrade/rollback, receiver GUI + EPG import/scheduler smoke tests. The existence of private patched source must not change NO-GO release status.
+
+
+## Private RC80 beta2 package and recovery rehearsal (2026-10-14)
+
+A receiver-private **non-installable** IPK (`2026.10.14-rc80-beta2-private`) was built entirely offline from the owner's SHA-256-locked rc79.1 local rescue snapshot, incorporating only three private core fixes plus `version.py`. **This artifact is not committed or published here.**
+
+- 213 receiver package assets, 138 Python source files; 209 bytes-and-mode-identical unchanged files. Configuration schema stays 15. No user mapping/settings source is included.
+- The candidate's `preinst` **always exits 90** and cannot be overridden by supervised flags; this package is **not installable**, not even for a field beta.
+- Reproducible byte-for-byte IPK archive; SHA256 `4740f6ed0f5b2e7c38008c0eeb40849d16a74e52cc2c35064f85445563beb684`.
+- **19/19** offline tests on Python 3.13.5: proven source checksum, file/mode parity, total module AST syntax, version/schema consistency, refusal of all installation paths, postinstall static check and expected failure handling, filesystem-only backup/recovery with configuration preserved, tar traversal/symlink rejection and archive reproducibility.
+- This is **only a private filesystem rollback simulation** with mocked package-version metadata. No actual `opkg` rollback/repair was performed; no Enigma2 runtime or native import test on hardware. Source-data blockers (ElCinema, Tabie) remain.
+
+**Release gate remains NO-GO.** A production build must be separately constructed and tested on the receiver, with a working exact-version recovery package, package-manager metadata restoration, GUI, scheduler and native importer smoke tests. Do not use the private package name as `update.json` target.
