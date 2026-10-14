@@ -8,8 +8,8 @@ BACKUP_ROOT="${EPGMGR_BACKUP_ROOT:-/etc/epgmanager_epg/backups}"
 # Default to NO-GO on real upgrades. A supervised installer may proceed only
 # after independently verifying an exact rc79.1 rollback IPK and documenting
 # its package-manager recovery path. Ordinary Online Update must not bypass.
-if [ "${1:-}" = "upgrade" ] && [ "${EPGMGR_RC80_SUPERVISED:-0}" != "1" ]; then
-    echo 'EPGManager rc80: UPGRADE BLOCKED — previous IPK and opkg rollback not certified' >&2
+if [ "${EPGMGR_RC80_SUPERVISED:-0}" != "1" ]; then
+    echo 'EPGManager rc80: INSTALL/UPGRADE BLOCKED — hardware recovery not certified' >&2
     exit 90
 fi
 STAMP="$(date +%Y%m%d-%H%M%S)-$$"
