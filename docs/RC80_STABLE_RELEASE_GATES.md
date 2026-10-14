@@ -141,3 +141,21 @@ Fresh public feed metadata were inspected for all **14** direct providers: Moroc
 Seven-gate status: **(1)** rescue content parity verified on hardware; **(2)** opkg recovery NOT proven; **(3)** GUI menu mock PASS, real receiver blocked; **(4)** GitHub Direct structural checks PASS, real import blocked; **(5)** 20 synthetic mapping fixtures PASS, real receiver mapping blocked; **(6)** six synthetic scheduler cases PASS, 24h observation blocked; **(7)** 14 source metadata reviewed, Tabie and others unresolved.
 
 **Hard NO-GO remains.** No live receiver installation, forced update, fallback to old rc70, or replacement of private receiver source is authorized.
+
+
+## Beta4 private source-provenance repair and 14-source read-only audit
+
+**Private, non-installable RC80 Beta4** was assembled offline from the exact installed RC79.1 recovery package. SHA256: `a475d085c381fb4c1740df7c8fee2d90ed25d98b1eb2b13fc05e312583040863`. 138 Python files and 213 application assets, all file permissions and private configuration intact; only the same five application files differ from the RC79.1 baseline. The `preinst` exits 90 unconditionally, including with supervised flags. Beta4 includes an additional private fix in `core/github_match_health.py`: require the actual published `feeds/<source>.json` to have a fresh, matching generation with the separate 48h and quality reports. Missing or mismatched quality must return `UNKNOWN`, never `EPG_OK`. Reject stale reports from a new candidate while the previous last-known-good XMLTV remains published. Synthetic/duplicate programme labels remain demoted, manual mappings preserved. This is a **timestamp-cohort and metadata check**, NOT cryptographic verification of the XMLTV contents, real-time on-air evidence, or proof of receiver import.
+
+**19 private Beta4 offline tests passed**, including missing quality, stale Tabie LKG, future-only/empty guide, wrong audit publisher, mismatched quality source, repeated/generative titles, incorrect SHA metadata, strict installation refusal, exact file counts/modes and reproducible package build. None of the private source code has been published to GitHub or installed on receiver.
+
+**Public non-deploying source provenance validator:** `tools/audit_rc80_public_feed_provenance.py --online`, validated with 10 synthetic tests plus standard CI. [Public CI 79 tests per Python 3.13/3.14](https://github.com/wacayoub/EPGManager/actions/runs/38648570003), [real read-only 14-source online run](https://github.com/wacayoub/EPGManager/actions/runs/38648620494).
+
+Actual public metadata check 2026-10-14 22:35 UTC:
+
+- Morocco: **PUBLICATION_METADATA_COHERENT**, source-reported 14/14 on-air at publication.
+- Tabie: **STALE_OR_INVALID_PUBLISHED_FEED**, still published Oct 5. New Oct 14 reports were produced from an unaccepted candidate and must never certify that old feed.
+- beIN, ElCinema, OSN, Sport24, Rotana, AlJazeera: **48H_AUDIT_FAIL**. This means the strict 48h standard is unmet; it does **not** mean every channel is blank.
+- Dubai+, Starzplay, Shahid, STC TV, AlKass, TunisiaTV: **PUBLICATION_COHORT_OK_LIVE_NOW_UNKNOWN**; matching publication/audit timestamps but no direct current-on-air channel evidence in metadata.
+
+**Remaining P0 release gates:** real `opkg` recovery transaction and Enigma2 restart, native GUI/remote navigation and skin acceptance, real native GitHub import, 20 real-channel Smart Mapping + persisted manual overrides, 24h scheduler observation, and XMLTV repairs with actual on-air validation for sources. Hardware remains on RC79.1; the private Beta4 is not approved for installation. Do not publish the blocked private IPK as an Online Update asset.
