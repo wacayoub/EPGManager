@@ -1,0 +1,29 @@
+name: Public XMLTV feed authenticity (non-deploying)
+on:
+  workflow_dispatch:
+  push:
+    branches: ["feature/plugin-only-consolidation-20261014"]
+    paths:
+      - "tools/audit_published_xmltv.py"
+      - "tests/test_published_xmltv_audit.py"
+      - ".github/workflows/live-source-audit.yml"
+permissions:
+  contents: read
+jobs:
+  live-xmltv-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run offline XMLTV parser tests
+        run: python3 -m unittest discover -s tests -p "test_published_xmltv_audit.py" -v
+      - name: Inspect actual published compressed XMLTV sources
+        run: python3 tools/audit_published_xmltv.py --strict --output xmltv-audit.json
+      - name: Preserve complete evidence (even on a failed gate)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-xmltv-audit
+          path: xmltv-audit.json
+          if-no-files-found: warn
+          retention-days: 7
