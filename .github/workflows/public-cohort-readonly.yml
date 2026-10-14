@@ -21,7 +21,7 @@ jobs:
       - name: Confirm independent, synthetic provenance tests
         run: python -m unittest discover -s tests -p "test_rc80_public_feed_provenance.py" -v
       - name: Verify currently published public JSON cohorts without modifying anything
-        run: python tools/audit_rc80_public_feed_provenance.py --online > /tmp/rc80-public-xmltv-provenance.json
+        run: python tools/audit_rc80_public_feed_provenance.py --online --verify-xmltv > /tmp/rc80-public-xmltv-provenance.json
       - name: Summarize public feed status
         run: |
           python - <<'PY'
@@ -32,6 +32,8 @@ jobs:
               print('%-12s %-50s published=%s' % (row['source'],row['status'],row.get('published_generated_utc','n/a')))
           print('cohorts_verified:',p['publication_cohorts_verified'])
           print('live_now_evidence_present:',p['live_now_evidence_present'])
+          print('gzip_sha256_verified:',p['xmltv_sha256_verified_count'])
+          print('actual_epg_ready_sources:',p['epg_ready_count'])
           print('This is NOT an opkg, TV GUI, or native import validation.')
           PY
       - uses: actions/upload-artifact@v4
