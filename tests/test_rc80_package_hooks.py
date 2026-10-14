@@ -47,6 +47,22 @@ class TestRc80PackageHooks(unittest.TestCase):
             self.assertIn('config.plugins.epgmanager.theme',settings)
             self.assertNotIn('KEEP_SECRET',settings)
 
+    def test_upgrade_requires_explicit_supervision_before_any_change(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            plugin=root/'EPGManager'
+            plugin.mkdir()
+            (plugin/'plugin.py').write_text('working receiver source\\n',encoding='utf-8')
+            (plugin/'version.py').write_text('__version__ = "2026.10.08-rc79.1"\\n',encoding='utf-8')
+            env=dict(os.environ, EPGMGR_PLUGIN_DIR=str(plugin),
+                     EPGMGR_CONFIG_DIR=str(root/'config'),
+                     EPGMGR_BACKUP_ROOT=str(root/'backups'))
+            result=subprocess.run(['sh',str(PRE),'upgrade','2026.10.08-rc79.1','2026.10.14-rc80-beta1'],
+                                  env=env,text=True,capture_output=True)
+            self.assertEqual(result.returncode,90,result.stderr)
+            self.assertFalse((root/'backups').exists())
+            self.assertIn('working receiver source',(plugin/'plugin.py').read_text(encoding='utf-8'))
+
     def test_postinst_on_synthetic_138_module_plugin_and_wrong_version(self):
         with tempfile.TemporaryDirectory() as td:
             root=Path(td)
