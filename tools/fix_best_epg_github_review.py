@@ -230,6 +230,41 @@ REPLACES = [
                     if local_path and os.path.isfile(local_path) and os.path.getsize(local_path) > 0:
                         with open(local_path, "rb") as fh:''',
     ),
+    (
+        '''        if infos:
+            first = infos[0]
+            mode = str(first.get("mode") or "").lower()
+            return ("[M]" if mode == "manual" else "[A]", "mapped")''',
+        '''        if infos:
+            first = infos[0]
+            mode = str(first.get("mode") or "").lower()
+            if mode != "manual":
+                # A saved AUTO assignment with zero/unverified GitHub coverage
+                # is a yellow CHECK, not a false green "EPG works" claim.
+                remote = github_match_health.health(
+                    first.get("source_id"), first.get("channel_id"))
+                if remote is not None and remote != "EPG_OK":
+                    return ("[A?]", "suggestion")
+            return ("[M]" if mode == "manual" else "[A]", "mapped")''',
+    ),
+    (
+        '''                    "_suggestion_current": True,
+                }''',
+        '''                    "_suggestion_current": True,
+                    "_suggestion_manual": str(info.get("mode") or "").lower() == "manual",
+                    "_github_health": github_match_health.health(sid, cid),
+                }''',
+    ),
+    (
+        '''        rows.sort(key=lambda e: (
+            0 if e.get("_suggestion_current") else 1,
+            0 if e.get("_github_health") in ("EPG_OK", "EPG_WARN") else''',
+        '''        rows.sort(key=lambda e: (
+            0 if e.get("_suggestion_current") and
+                 (e.get("_suggestion_manual") or e.get("_github_health") in ("EPG_OK", "EPG_WARN"))
+              else (2 if e.get("_suggestion_current") else 1),
+            0 if e.get("_github_health") in ("EPG_OK", "EPG_WARN") else''',
+    ),
 ]
 # Optional additive helpers bound to the Smart Mapping UI; do not compete with
 # the existing NativeImport worker or other EPG timers.
