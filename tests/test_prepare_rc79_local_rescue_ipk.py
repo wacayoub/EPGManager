@@ -93,6 +93,56 @@ class TestLocalRescueIPK(unittest.TestCase):
                                     _test_output_dir=td)
                 self.assertEqual(output.read_bytes(), b"pre-existing package remains untouched")
 
+    def test_package_only_asset_blocks_rescue_build(self):
+        with tempfile.TemporaryDirectory() as td:
+            original = Path(td) / "EPGManager_rc79_1_AUTOMAPPING_SAFE.ipk"
+            hashes, live = make_ipk(
+                original, overrides={old.REL + "legacy-logo.png": b"old graphic"})
+            digest = hashlib.sha256(original.read_bytes()).hexdigest()
+            target = Path(td) / rescue.RESCUE_BASENAME
+            with patch.dict(old.PROTECTED, hashes, clear=True):
+                report = rescue.evaluate(candidate=original, receiver=live,
+                                         expected_sha=digest, build=False)
+                self.assertEqual(report["extra_original_package_assets_count"], 1)
+                self.assertIn("legacy-logo.png", report["extra_original_package_assets_sample"])
+                with self.assertRaisesRegex(ValueError, "assets do not match"):
+                    rescue.evaluate(candidate=original, receiver=live,
+                                    expected_sha=digest, build=True,
+                                    output=target, _test_output_dir=td)
+            self.assertFalse(target.exists())
+
+    def test_asset_mode_drift_blocks_rescue_build(self):
+        with tempfile.TemporaryDirectory() as td:
+            original = Path(td) / "EPGManager_rc79_1_AUTOMAPPING_SAFE.ipk"
+            hashes, live = make_ipk(
+                original, overrides={old.REL + "skin/icon.png": b"same graphic"})
+            digest = hashlib.sha256(original.read_bytes()).hexdigest()
+            icon = live / "skin/icon.png"
+            icon.parent.mkdir(parents=True, exist_ok=True)
+            icon.write_bytes(b"same graphic")
+            icon.chmod(0o600)
+            with patch.dict(old.PROTECTED, hashes, clear=True):
+                report = rescue.evaluate(candidate=original, receiver=live,
+                                         expected_sha=digest, build=False)
+                self.assertEqual(report["changed_receiver_asset_modes_count"], 1)
+                with self.assertRaisesRegex(ValueError, "assets do not match"):
+                    rescue.evaluate(candidate=original, receiver=live,
+                                    expected_sha=digest, build=True,
+                                    output=Path(td) / rescue.RESCUE_BASENAME,
+                                    _test_output_dir=td)
+
+    def test_rejects_small_compressed_bomb_before_unpacking(self):
+        with tempfile.TemporaryDirectory() as td:
+            original = Path(td) / "EPGManager_rc79_1_AUTOMAPPING_SAFE.ipk"
+            hashes, live = make_ipk(
+                original,
+                overrides={old.REL + "huge.dat": b"X" * (rescue.MAX_RECEIVER_FILE + 1)})
+            digest = hashlib.sha256(original.read_bytes()).hexdigest()
+            with patch.dict(old.PROTECTED, hashes, clear=True):
+                with self.assertRaisesRegex(ValueError, "Oversized member"):
+                    rescue.evaluate(candidate=original, receiver=live,
+                                    expected_sha=digest, build=False)
+
     def test_no_receiver_install_or_publication(self):
         code=(TOOLS/"prepare_rc79_local_rescue_ipk.py").read_text()
         for forbidden in ("opkg install", "opkg upgrade", "opkg remove",
