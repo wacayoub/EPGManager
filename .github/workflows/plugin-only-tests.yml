@@ -11,6 +11,9 @@ on:
       - "source/overlay/ui/main.py"
       - "tools/audit_receiver_plugin_readonly.py"
       - "tests/test_receiver_fingerprint.py"
+      - "tests/test_receiver_parity_and_export.py"
+      - "tools/check_receiver_parity.py"
+      - "tools/export_receiver_plugin_code.py"
       - "source/overlay/ui/channel_mapping.py"
       - "data/release-inspect/channel_mapping.py"
       - ".github/workflows/plugin-only-tests.yml"
@@ -20,16 +23,20 @@ permissions:
 jobs:
   plugin-updater:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.13", "3.14"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: ${{ matrix.python }}
       - name: Compile Python source
         run: python -m py_compile release_overlay/online_update.py source/overlay/online_update.py
       - name: Compile Smart Mapping UI and receiver fingerprint
-        run: python -m py_compile source/overlay/ui/channel_mapping.py source/overlay/ui/main.py tools/audit_receiver_plugin_readonly.py
+        run: python -m py_compile source/overlay/ui/channel_mapping.py source/overlay/ui/main.py tools/audit_receiver_plugin_readonly.py tools/check_receiver_parity.py tools/export_receiver_plugin_code.py
       - name: Ensure release and source overlays have the same updater
         run: cmp release_overlay/online_update.py source/overlay/online_update.py
       - name: Run plugin-only application safety tests
