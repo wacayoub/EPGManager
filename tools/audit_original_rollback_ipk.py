@@ -15,7 +15,6 @@ import hashlib
 import io
 import json
 from pathlib import PurePosixPath, Path
-import struct
 import sys
 import tarfile
 
@@ -85,6 +84,8 @@ def _safe_file_members(tar):
     for member in tar:
         rel = member.name.removeprefix("./")
         p = PurePosixPath(rel)
+        if rel in ("", ".") and member.isdir():
+            continue
         if not rel or p.is_absolute() or ".." in p.parts:
             raise ValueError("Unsafe embedded tar path")
         if member.issym() or member.islnk() or member.isdev() or member.isfifo():
@@ -140,7 +141,7 @@ def verify_old_ipk(ipk_path):
         raise ValueError("Unexpected rollback package name")
     if fields.get("version") != VERSION:
         raise ValueError("Rollback IPK version differs from installed receiver")
-    if fields.get("architecture") not in ("all", "cortexa15hf-neon-vfpv4"):
+    if fields.get("architecture") != "all":
         raise ValueError("Unexpected rollback architecture; receiver reports all")
     with _data_tar(parts, "data.tar") as dtar:
         data_files = _safe_file_members(dtar)
