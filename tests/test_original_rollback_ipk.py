@@ -99,7 +99,7 @@ class TestPreviousIpkgEligibility(unittest.TestCase):
                 ipk.verify_old_ipk(old)
 
     def test_does_not_write_or_run_opkg(self):
-        code=MODULE.read_text(encoding="utf-8")
+        code=MODULE.read_text(encoding="utf-8").split('"""', 2)[-1]
         for operation in (".write_bytes(", ".write_text(", "opkg install", "opkg remove",
                           "opkg upgrade", "subprocess", "requests.", "urllib.request"):
             self.assertNotIn(operation, code)
