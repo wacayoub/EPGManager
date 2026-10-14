@@ -14,7 +14,10 @@ from datetime import datetime, timezone
 import json
 import re
 from urllib.request import Request, urlopen
-from tools import audit_published_xmltv as payload_audit
+try:
+    import audit_published_xmltv as payload_audit  # python tools/audit_rc80_public_feed_provenance.py
+except ModuleNotFoundError:
+    from tools import audit_published_xmltv as payload_audit  # unittest from repository root
 
 BASE = "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/"
 SOURCES = ("morocco", "bein", "elcinema", "osn", "sport24", "dubaiplus",
