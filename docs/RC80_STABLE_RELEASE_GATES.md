@@ -187,3 +187,14 @@ To avoid the false-negative “whole source has no EPG” mapping bug, the read-
 A possible separate official Qatar TV schedule source was located at `https://www.qtv.qa/transmissionscheduled`, but its machine-readable current-day programme data has not been verified; never publish guessed Qatar/Tabie schedules in its place.
 
 **Installation remains unauthorized**: exact old version rescue payload is fully content-identical, but live `opkg` downgrade/recovery, Enigma2 GUI/startup, import, mapping and full scheduler observation were NOT tested. Keep installed RC79.1, schema 15, mappings/themes untouched.
+
+
+## 15 Oct 2026 00:03 UTC — live ElCinema exact-ID donor extension published
+
+A new [source-only PR #4](https://github.com/wacayoub/EPG-Scrapers/pull/4) was merged after double Python 3.13/3.14 real-feed shadow testing. The [guarded publication workflow](https://github.com/wacayoub/EPG-Scrapers/actions/runs/38657713720) finished successfully on main. It pinned SHA256 to the exact **Shahid**, **Dubai+** and the previous **ElCinema** feed; it accepted only matching literal XMLTV IDs and only non-overlapping authentic published programme nodes.
+
+**Live published result:** ElCinema has **4208** programmes (previous **3988**) from **220 actual donor events for 12 channels**, with exactly the original **97 catalogue IDs** and all 3988 existing programme nodes preserved. No fabricated text, altered broadcast instant, or receiver files. Source original scrape timestamp still `2026-10-14T11:53:08.608823Z`, a separate `repacked_utc=2026-10-15T00:02:59.436635Z` and SHA/hash/donor provenance now declare the augmentation accurately. Published feed SHA: `caa863a39766f1c7ab30c6de5122f14c28908e462e772b0087d9cd6377a3074e`.
+
+At the source publication instant **88/97 channels contained a genuine current programme**. Strict 36h-per-channel audit failures fell from **81 → 70** (eleven failures recovered). Important: at 23:59 UTC the same shadow test measured **26 → 14**; the sharp midnight difference is the strict **36h horizon boundary**, *not* loss of a large number of currently airing programmes. EPG quality status still **WARN**, entire ElCinema 48h gate still **FAIL**, and 70 remaining channel duration failures must not be painted green. The result has its original provider age and still needs future scrapes to avoid decaying.
+
+No permanent cross-source automation has been attached to the scheduled ElCinema production scraper; this was a guarded one-time repack, which future provider refreshes can replace. Before automating, verify a dedicated regression and per-ID provenance to avoid wrong regional feeds. Receiver RC79.1 remains installed; RC80 not authorized. Real opkg recovery, Enigma2 native imports, GUI and scheduling acceptance remain blocked.
