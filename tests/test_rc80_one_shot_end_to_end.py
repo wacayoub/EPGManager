@@ -27,7 +27,11 @@ class TestOneShotEndToEnd(unittest.TestCase):
             rescue, _, _, _, digest = self.fixture(tmp)
             destination = Path(tmp) / 'private-output'
             destination.mkdir()
-            with patch.object(one_shot, 'RESCUE_SHA', digest), patch.object(builder, 'RESCUE_SHA256', digest):
+            actual_prepare = builder.prepare
+            def synthetic_prepare(*args, **kwargs):
+                return actual_prepare(*args, expected_rescue_sha=digest, **kwargs)
+            with patch.object(one_shot, 'RESCUE_SHA', digest), patch.object(builder, 'RESCUE_SHA256', digest), \
+                 patch.object(builder, 'prepare', side_effect=synthetic_prepare):
                 checked = one_shot.prepare(ROOT, rescue)
                 self.assertEqual(checked['source_modules'], 140)
                 self.assertEqual(checked['unchanged_other_assets'], 75)
