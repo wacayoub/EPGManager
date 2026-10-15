@@ -14,13 +14,13 @@ sys.path.insert(0, str(ROOT / 'tools'))
 import assemble_rc80_one_shot_offline as one_shot
 import build_rc80_offline_blocked_ipk as builder
 import audit_rc80_rollback_package_readonly as rollback
-from test_rc80_offline_blocked_ipk import TestBlockedOfflinePackage
+import test_rc80_offline_blocked_ipk as fixtures
 
 
 class TestOneShotEndToEnd(unittest.TestCase):
     @staticmethod
     def fixture(tmp):
-        return TestBlockedOfflinePackage().fixture(tmp)
+        return fixtures.TestBlockedOfflinePackage().fixture(tmp)
 
     def test_private_offline_check_only_and_blocked_build(self):
         with TemporaryDirectory() as tmp:
