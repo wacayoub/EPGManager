@@ -24,6 +24,7 @@ from Components.MenuList import MenuList
 from .compat import MultiContentEntryText
 
 from ..core import channel_mapper, channel_registry, external_sources, activity_store, source_catalog, source_metadata, mapping_safety, srp_channel_map, smartmatch_ai, source_channel_cache, source_channel_sync, source_quality, programme_preview_cache, openepg_id_catalog, srp_master_engine, channel_identity_resolver, id_coverage_audit, source_id_harvester, performance_cache, smart_mapping_warm_cache, smart_context_match, source_variant_policy, smart_name_index_cache, unified_channel_identity, smart_context_engine, source_collision_audit, mapping_regression, perf_profiler, multilingual_channel_aliases, multilingual_guard, service_variant_guard, programme_feed_policy, bouquet_lazy, smart_mapping_view, precision_match_engine, mapping_view_cache, id_mapping_engine, mapping_strategy, manual_match_lite, remote_channel_catalog, smart_catalog_boot, smart_boot_name_index, source_priority, sid_reset, github_direct_sync, system_check, smart_source_cache_refresh
+from ..core import verified_epg_match
 from ..core.mapping_store import MappingStore
 from ..core.source_preferences import SourcePreferences
 from ..core.epgimport_export import save_sourcexml
@@ -5111,6 +5112,13 @@ class ChannelMappingScreen(Screen):
             _alpha_text(e.get("_suggestion_source_label") or e.get("source_name") or e.get("source_id") or ""),
             _alpha_text(e.get("display_name") or e.get("channel_id") or ""),
         ))
+        # RC80 optional per-ID evidence bridge: read-only disk snapshot only.
+        # No XML/network, no mapping writes; saved owner stays first.
+        # On a missing/stale report every candidate remains visible as REVIEW.
+        try:
+            rows = verified_epg_match.annotate_suggestions(rows)
+        except Exception:
+            pass
         return rows[:max(1, int(limit or 40))]
 
     def _refresh_cross_source_suggestions(self, service):
@@ -5125,7 +5133,8 @@ class ChannelMappingScreen(Screen):
         except Exception:
             index_generation = 0
         cache_key = ("__smart_suggestions__", str((service or {}).get("ref") or ""),
-                     self.mapping_revision, boot_generation, index_generation)
+                     self.mapping_revision, boot_generation, index_generation,
+                     int(time.time() // 60))
         cached = self.selection_cache.get(cache_key)
         if cached is not None:
             rows, ordered = cached
@@ -5166,8 +5175,20 @@ class ChannelMappingScreen(Screen):
                 confidence = int(epg.get("_precision_confidence") or 0)
                 pct = max(0, min(100, int(round(confidence / 10.0))))
                 grade = str(epg.get("_precision_grade") or "REVIEW").upper()
-                rows.append(self._compact_epg_row(epg, score=pct, grade=grade,
-                                                  mapped=bool(epg.get("_suggestion_current"))))
+                preview = self._compact_epg_row(epg, score=pct, grade=grade,
+                                                mapped=bool(epg.get("_suggestion_current")))
+                # A verified CURRENT programme outranks generated/no-EPG IDs.
+                # The label is observational, not permission for Auto Repair.
+                health = str(epg.get("_verified_epg_health") or "")
+                if health == "REAL_CURRENT_EPG":
+                    preview += "  •  EPG NOW ✓"
+                elif health == "FUTURE_ONLY_REVIEW":
+                    preview += "  •  FUTURE EPG"
+                elif health == "SUSPECT_GENERATED_EPG":
+                    preview += "  •  GENERATED?"
+                elif health == "NO_EPG":
+                    preview += "  •  NO EPG"
+                rows.append(preview)
                 ordered.append(epg)
 
         self.selection_rows = rows
