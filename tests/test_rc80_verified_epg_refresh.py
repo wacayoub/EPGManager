@@ -152,7 +152,7 @@ class TestRC80PublicEvidenceRefresh(unittest.TestCase):
         with self.assertRaises(ValueError):
             refresh.refresh_file(["wrong"], "/tmp/test.json", NOW.timestamp())
         with self.assertRaises(ValueError):
-            refresh.refresh_file(["morocco"] * 3 + ["osn"], "/tmp/test.json", NOW.timestamp())
+            refresh.refresh_file(["morocco", "osn", "bein"], "/tmp/test.json", NOW.timestamp())
 
     def test_missing_old_evidence_does_not_grant_false_ready(self):
         docs, *_ = fixture()
@@ -171,6 +171,16 @@ class TestRC80PublicEvidenceRefresh(unittest.TestCase):
             self.assertFalse(refresh.queue_background(["direct_morocco"], enabled=False))
             self.assertFalse(refresh.queue_background(["external_morocco"], enabled=True))
             start.assert_not_called()
+
+    def test_symlinked_tmp_subdirectory_cannot_escape_to_receiver_config(self):
+        with tempfile.TemporaryDirectory(dir="/tmp") as directory:
+            with tempfile.TemporaryDirectory() as outside:
+                link = Path(directory) / "redirect"
+                link.symlink_to(outside, target_is_directory=True)
+                with self.assertRaises(ValueError):
+                    refresh.refresh_file(["morocco"], str(link / "evidence.json"),
+                                         now=NOW.timestamp())
+                self.assertEqual(os.listdir(outside), [])
 
     def test_wrong_root_and_invalid_gzip_are_rejected(self):
         docs, meta, *_ = fixture()
