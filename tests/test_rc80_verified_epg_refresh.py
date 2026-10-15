@@ -119,6 +119,36 @@ class TestRC80PublicEvidenceRefresh(unittest.TestCase):
         self.assertFalse(row["ready_for_epg_ok"])
         self.assertEqual(row["xmltv_missing_titles"], 1)
 
+    def test_bad_48h_2m_does_not_disqualify_other_verified_channels(self):
+        docs, _, audit48, _, _ = fixture()
+        item = audit48["feeds"][0]
+        item.update(status="FAIL", failed_channels=1, invalid_times=0,
+                    orphan_programmes=0,
+                    rows=[{"id": key, "status": "FAIL" if key == "B" else "PASS"}
+                          for key in ("A", "B", "NONE", "SYN")])
+        docs["reports/morocco-48h-audit.json"] = json.dumps(audit48).encode()
+        row = refresh.inspect_source("morocco", NOW.timestamp(), reader(docs))
+        self.assertEqual(row["status"], "HASHED_XMLTV_PER_ID_PARTIAL_48H")
+        self.assertEqual(row["partial_48h_blocked_ids"], ["B"])
+        self.assertEqual(row["trusted_current_epg_ids"], ["A"])
+        self.assertEqual(row["review_future_epg_ids"], [])
+        self.assertEqual(bridge.quality_for_id("direct_morocco", "B", report={
+            "audit": "EPGManager RC80 public feed provenance",
+            "evidence_schema": 1, "checked_utc": NOW.isoformat(),
+            "full_xmltv_integrity_checks_enabled": True,
+            "sources": [row]}, now=NOW.timestamp())["status"], "48H_FAILED_ID_REVIEW")
+
+    def test_partial_48h_requires_complete_unambiguous_per_id_results(self):
+        docs, _, audit48, _, _ = fixture()
+        item = audit48["feeds"][0]
+        item.update(status="FAIL", failed_channels=1, invalid_times=0,
+                    orphan_programmes=0,
+                    rows=[{"id": "B", "status": "FAIL"}])
+        docs["reports/morocco-48h-audit.json"] = json.dumps(audit48).encode()
+        row = refresh.inspect_source("morocco", NOW.timestamp(), reader(docs))
+        self.assertFalse(row["ready_for_epg_ok"])
+        self.assertEqual(row["status"], "48H_AUDIT_INCONSISTENT_IDS")
+
     def test_source_metadata_count_mismatch_does_not_auto_promote(self):
         docs, meta, *_ = fixture()
         meta["programmes"] = 9000
