@@ -4,6 +4,7 @@ on:
     branches: ["feature/rc80-offline-sealed-build-20261015"]
     paths:
       - "tools/build_rc80_offline_blocked_ipk.py"
+      - "tools/assemble_rc80_one_shot_offline.py"
       - "tests/test_rc80_offline_blocked_ipk.py"
       - "tests/test_rc80_package_manifest_readonly.py"
       - "tools/audit_rc80_package_manifest_readonly.py"
@@ -26,7 +27,18 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Compile offline builder and source guards
-        run: python -m py_compile tools/build_rc80_offline_blocked_ipk.py tools/audit_rc80_package_manifest_readonly.py tools/audit_rc80_rollback_package_readonly.py tests/test_rc80_offline_blocked_ipk.py
+        run: python -m py_compile tools/assemble_rc80_one_shot_offline.py tools/build_rc80_offline_blocked_ipk.py tools/audit_rc80_package_manifest_readonly.py tools/audit_rc80_rollback_package_readonly.py tests/test_rc80_offline_blocked_ipk.py
+      - name: One-shot must refuse absent private rescue (no writes)
+        run: |
+          python - <<'PY'
+          import subprocess, sys
+          cmd = [sys.executable, 'tools/assemble_rc80_one_shot_offline.py',
+                 '--repo', '.', '--rescue', '/tmp/epg-rc80-ABSENT-NEVER.ipk']
+          p = subprocess.run(cmd, capture_output=True, text=True, check=False)
+          assert p.returncode == 2, (p.returncode, p.stdout, p.stderr)
+          assert '"authorized_to_install": false' in p.stdout.lower(), p.stdout
+          assert '"status": "NO_GO"' in p.stdout, p.stdout
+          PY
       - name: Synthetic offline staging and hard-block regression
         run: python -m unittest discover -s tests -p "test_rc80_offline_blocked_ipk.py" -v
       - name: All plugin regressions (non deploying)
