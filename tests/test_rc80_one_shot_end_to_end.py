@@ -14,6 +14,7 @@ sys.path.insert(0, str(ROOT / 'tools'))
 import assemble_rc80_one_shot_offline as one_shot
 import build_rc80_offline_blocked_ipk as builder
 import audit_rc80_rollback_package_readonly as rollback
+import apply_rc80_private_functional_fixes as functional
 import test_rc80_offline_blocked_ipk as fixtures
 
 
@@ -31,7 +32,8 @@ class TestOneShotEndToEnd(unittest.TestCase):
             def synthetic_prepare(*args, **kwargs):
                 return actual_prepare(*args, expected_rescue_sha=digest, **kwargs)
             with patch.object(one_shot, 'RESCUE_SHA', digest), patch.object(builder, 'RESCUE_SHA256', digest), \
-                 patch.object(builder, 'prepare', side_effect=synthetic_prepare):
+                 patch.object(builder, 'prepare', side_effect=synthetic_prepare), \
+                 patch.object(functional, 'apply_to_staged', return_value={}):
                 checked = one_shot.prepare(ROOT, rescue)
                 self.assertEqual(checked['source_modules'], 140)
                 self.assertEqual(checked['unchanged_other_assets'], 75)
