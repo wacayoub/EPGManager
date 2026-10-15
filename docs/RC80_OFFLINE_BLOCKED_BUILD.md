@@ -35,6 +35,15 @@ VuLink's currently visible GitHub relay issue contains outbound request comments
 
 ## Still blocked
 
-Actual opkg reinstall/downgrade, package-manager database recovery, Enigma2 restart, GUI key navigation, manual mapping retention, native EPG import, 24-hour source scheduler and Casablanca time correctness must be validated on a **separate test receiver** before any installable RC80 exists.
+The owner explicitly waived an actual `opkg` rollback rehearsal on 2026-10-15. **Do not require a hardware rollback to advance this branch.** This waives a *test requirement*, not any backup, rescue SHA verification, package hook safety, or the obligation to be candid about the untested recovery path.
+
+The next release gates are: (1) assemble the actual private 140-Python/75-asset candidate using the checksum-pinned rescue and the three exact reviewed public overlays; (2) reproduce the source hashes and verify the permanently blocked `preinst` (exit 90); (3) verify receiver functionality separately in a controlled smoke test (GUI keys, EPGImport, manual/auto mapping persistence, scheduler and Casablanca time, source health and programme quality). Keep the currently blocked inspection IPK non-installable; a **separately reviewed installable test package** is required for any hardware smoke test. Never install the blocked package merely to test its refusal, and never silently switch the production Vu+ away from RC79.1.
+
+**Outstanding nonmandatory risk:** an actual opkg reinstall/downgrade and package-database recovery have NOT been exercised. Record this as `NOT_TESTED_WAIVED_BY_OWNER`, not as PASS.
 
 RC79.1 remains production; do not change update.json, merge a release, or publish this blocked archive.
+
+
+## One-command local staging (without building public releases)
+
+The single-pass builder at `tools/assemble_rc80_one_shot_offline.py` auto-derives the complete private baseline manifest from the checksum-verified rescue IPK. Run only on an offline workstation with a local checkout of this branch. It validates the three pinned Git overlay blobs, builds exactly 215 files and refuses to generate an installable IPK. The original `--build` flow remains available for independent auditing.
