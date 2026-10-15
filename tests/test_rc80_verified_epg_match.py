@@ -71,6 +71,17 @@ class VerifiedEpgBridgeTests(unittest.TestCase):
         self.assertEqual(self.check("direct_nonexistent", "AlAoula.ma")["status"], "UNKNOWN")
         self.assertEqual(self.check("direct_morocco", "AlAoula.ma.extra")["status"], "UNKNOWN")
 
+    def test_partial_48h_report_certifies_only_nonfailed_real_now_ids(self):
+        report = fixture()
+        src = report["sources"][0]
+        src["status"] = "HASHED_XMLTV_PER_ID_PARTIAL_48H"
+        src["partial_48h_blocked_ids"] = ["Arryadia.ma"]
+        self.assertEqual(self.check("direct_morocco", "AlAoula.ma", report)["status"],
+                         "REAL_CURRENT_EPG")
+        self.assertEqual(self.check("direct_morocco", "Arryadia.ma", report)["status"],
+                         "48H_FAILED_ID_REVIEW")
+        self.assertFalse(self.check("direct_morocco", "Arryadia.ma", report)["verified_now"])
+
     def test_future_only_review_never_verified_now(self):
         status = self.check("direct_morocco", "Medi1.ma")
         self.assertEqual(status["status"], "FUTURE_ONLY_REVIEW")
