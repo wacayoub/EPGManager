@@ -5,6 +5,7 @@ on:
     paths:
       - "tools/build_rc80_offline_blocked_ipk.py"
       - "tools/assemble_rc80_one_shot_offline.py"
+      - "tools/apply_rc80_private_functional_fixes.py"
       - "tests/test_rc80_offline_blocked_ipk.py"
       - "tests/test_rc80_one_shot_end_to_end.py"
       - "tests/test_rc80_package_manifest_readonly.py"
@@ -28,7 +29,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Compile offline builder and source guards
-        run: python -m py_compile tools/assemble_rc80_one_shot_offline.py tools/build_rc80_offline_blocked_ipk.py tools/audit_rc80_package_manifest_readonly.py tools/audit_rc80_rollback_package_readonly.py tests/test_rc80_offline_blocked_ipk.py
+        run: python -m py_compile tools/apply_rc80_private_functional_fixes.py tools/assemble_rc80_one_shot_offline.py tools/build_rc80_offline_blocked_ipk.py tools/audit_rc80_package_manifest_readonly.py tools/audit_rc80_rollback_package_readonly.py tests/test_rc80_offline_blocked_ipk.py
       - name: One-shot must refuse absent private rescue (no writes)
         run: |
           python - <<'PY'
