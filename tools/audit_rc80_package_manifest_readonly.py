@@ -33,6 +33,21 @@ PRIVATE_REVIEWABLE = frozenset((
 ))
 BASELINE_VERSION = "2026.10.08-rc79.1"
 
+# Immutable Git blob identities of the three reviewed public RC80 sources.
+# Comparing staging against a local checkout alone would accept coordinated
+# tampering of both staging and checkout. These identifiers are branch-independent.
+PINNED_PUBLIC_GIT_BLOBS = {
+    "ui/channel_mapping.py": "464d219d0d951fad5105ed643bf0cfdffd7ffc26",
+    "core/verified_epg_match.py": "03d5b779ec639ed7e8f82f7205cf34af4e4af56d",
+    "core/verified_epg_refresh.py": "ce9c57773c739977782d22c373993a81e3a68361",
+}
+
+
+def _git_blob_sha(raw):
+    header = b"blob " + str(len(raw)).encode("ascii") + b"\x00"
+    return hashlib.sha1(header + raw).hexdigest()
+
+
 
 def digest(raw):
     return hashlib.sha256(raw).hexdigest()
@@ -110,6 +125,8 @@ def audit(staged_plugin, manifest, reviewed_deltas=None, public_root=None):
     for rel, path in public_expected.items():
         if path.is_symlink() or not path.is_file() or actual[rel] != path.read_bytes():
             raise ValueError("unverified new public overlay: " + rel)
+        if _git_blob_sha(actual[rel]) != PINNED_PUBLIC_GIT_BLOBS[rel]:
+            raise ValueError("public source differs from audited Git blob: " + rel)
 
     changes = {}
     for rel, record in files.items():
