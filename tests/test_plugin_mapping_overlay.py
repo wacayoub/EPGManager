@@ -16,7 +16,7 @@ class TestSmartMappingPackage(unittest.TestCase):
         # rewritten to the new RC80 UI: otherwise that legacy stage no longer
         # authenticates the original rc78 release.
         raw = SNAPSHOT.read_bytes()
-        blob = b"blob " + str(len(raw)).encode("ascii") + b"\\0" + raw
+        blob = b"blob " + str(len(raw)).encode("ascii") + bytes([0]) + raw
         self.assertEqual(hashlib.sha1(blob).hexdigest(),
                          "d97aa4fed4b4619824efe16668cd9e82d4e1718d")
         self.assertNotEqual(OVERLAY.read_bytes(), raw)
