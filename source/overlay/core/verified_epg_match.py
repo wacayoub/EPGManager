@@ -77,10 +77,12 @@ def load_local_report(path=EVIDENCE_PATH, now=None):
         doc = json.loads(raw.decode("utf-8"))
         if not isinstance(doc, dict) or doc.get("audit") != "EPGManager RC80 public feed provenance":
             raise ValueError("unrecognized EPG audit")
+        if doc.get("evidence_schema") != 1:
+            raise ValueError("unsupported evidence schema")
         if doc.get("full_xmltv_integrity_checks_enabled") is not True:
             raise ValueError("metadata-only report")
-        if not isinstance(doc.get("sources"), list):
-            raise ValueError("missing feed evidence list")
+        if not isinstance(doc.get("sources"), list) or len(doc["sources"]) > len(VALID_DIRECT):
+            raise ValueError("invalid feed evidence list")
     except (OSError, ValueError, UnicodeError, TypeError):
         doc = None
         mtime_ns = None
@@ -106,7 +108,8 @@ def quality_for_id(source_id, channel_id, report=None, now=None):
         report = load_local_report()
     if not isinstance(report, dict) or report.get("full_xmltv_integrity_checks_enabled") is not True:
         return result
-    if report.get("audit") != "EPGManager RC80 public feed provenance":
+    if (report.get("audit") != "EPGManager RC80 public feed provenance" or
+            report.get("evidence_schema") != 1):
         return result
     if now is None:
         now = time.time()
