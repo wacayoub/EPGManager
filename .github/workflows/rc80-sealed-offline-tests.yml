@@ -6,6 +6,7 @@ on:
       - "tools/build_rc80_offline_blocked_ipk.py"
       - "tools/assemble_rc80_one_shot_offline.py"
       - "tests/test_rc80_offline_blocked_ipk.py"
+      - "tests/test_rc80_one_shot_end_to_end.py"
       - "tests/test_rc80_package_manifest_readonly.py"
       - "tools/audit_rc80_package_manifest_readonly.py"
       - "tools/audit_rc80_rollback_package_readonly.py"
@@ -41,5 +42,7 @@ jobs:
           PY
       - name: Synthetic offline staging and hard-block regression
         run: python -m unittest discover -s tests -p "test_rc80_offline_blocked_ipk.py" -v
+      - name: One-shot synthetic 215-file IPK end-to-end (never installs)
+        run: python -m unittest discover -s tests -p "test_rc80_one_shot_end_to_end.py" -v
       - name: All plugin regressions (non deploying)
         run: python -m unittest discover -s tests -p "test_*py" -v
