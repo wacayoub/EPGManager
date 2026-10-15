@@ -172,6 +172,29 @@ class TestBlockedOfflinePackage(unittest.TestCase):
                     builder.prepare(fx[0], fx[1], fx[2], fx[3],
                                     expected_rescue_sha=bad_sha)
 
+    def test_missing_rescue_hook_or_nonexecutable_hook_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            fx = self.fixture(d)
+            original = rollback.read_ar(fx[0].read_bytes())
+            controls, modes = rollback.read_tar(original["control.tar.gz"])
+            for case in ("missing", "no_executable_bit"):
+                changed = dict(controls)
+                changed_modes = dict(modes)
+                if case == "missing":
+                    changed.pop("postrm")
+                    changed_modes.pop("postrm")
+                else:
+                    changed_modes["postrm"] = 0o644
+                bad = builder._ar([
+                    ("debian-binary", b"2.0\n"),
+                    ("control.tar.gz", builder._tar_gzip(changed, changed_modes)),
+                    ("data.tar.gz", original["data.tar.gz"]),
+                ])
+                fx[0].write_bytes(bad)
+                with self.assertRaisesRegex(ValueError, "rescue maintainer hooks"):
+                    builder.prepare(fx[0], fx[1], fx[2], fx[3],
+                                    expected_rescue_sha=hashlib.sha256(bad).hexdigest())
+
     def test_no_live_install_or_external_transfer_code(self):
         script = (ROOT / "tools/build_rc80_offline_blocked_ipk.py").read_text()
         for forbidden in ("subprocess", "requests.", "urlopen", "git push",
