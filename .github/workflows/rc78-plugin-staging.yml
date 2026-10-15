@@ -9,6 +9,7 @@ on:
       - "source/overlay/ui/channel_mapping.py"
       - "source/overlay/online_update.py"
       - "data/release-inspect/direct_native_import.py"
+      - "data/release-inspect/channel_mapping.py"
       - "tools/check_receiver_parity.py"
       - "tests/test_receiver_parity_and_export.py"
   workflow_dispatch:
@@ -20,6 +21,8 @@ jobs:
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+      - name: Ensure legacy audited rc78 snapshot is immutable
+        run: test "$(git hash-object data/release-inspect/channel_mapping.py)" = "d97aa4fed4b4619824efe16668cd9e82d4e1718d"
       - name: Download and authenticate rc78
         shell: bash
         run: |
