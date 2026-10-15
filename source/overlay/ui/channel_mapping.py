@@ -5229,6 +5229,8 @@ class ChannelMappingScreen(Screen):
                     preview += "  •  GENERATED?"
                 elif health == "NO_EPG":
                     preview += "  •  NO EPG"
+                elif health == "48H_FAILED_ID_REVIEW":
+                    preview += "  •  48H SHORT"
                 rows.append(preview)
                 ordered.append(epg)
 
