@@ -71,6 +71,14 @@ def _manifest(manifest):
 
 def audit(staged_plugin, manifest, reviewed_deltas=None, public_root=None):
     """Reject any missing, unexpected or unauthorized source-file change."""
+    root = Path(staged_plugin).absolute()
+    # Refuse direct and symlink-via-parent receiver paths before accessing
+    # anything from disk. Both this tool and its output are staging-only.
+    for candidate in (root, root.resolve()):
+        if str(candidate).startswith(("/usr/lib/enigma2/", "/etc/enigma2/")):
+            raise ValueError("live receiver directory is not an offline staging tree")
+    if not root.is_dir() or root.is_symlink():
+        raise ValueError("staged plugin tree missing/unsafe")
     files = _manifest(manifest)
     reviewed = reviewed_deltas or {}
     if (not isinstance(reviewed, dict) or
@@ -78,13 +86,6 @@ def audit(staged_plugin, manifest, reviewed_deltas=None, public_root=None):
         raise ValueError("unapproved private modification path")
     if any(not re.fullmatch(r"[a-f0-9]{64}", str(value or "")) for value in reviewed.values()):
         raise ValueError("private delta must be bound to an explicit SHA256")
-
-    root = Path(staged_plugin).absolute()
-    # Do not audit a live installation by accident; this is staging only.
-    if str(root).startswith(("/usr/lib/enigma2/", "/etc/enigma2/")):
-        raise ValueError("live receiver directory is not an offline staging tree")
-    if not root.is_dir() or root.is_symlink():
-        raise ValueError("staged plugin tree missing/unsafe")
     public = Path(public_root) if public_root is not None else REPO
     all_py = sorted(root.rglob("*.py"))
     if len(all_py) != EXPECTED_COUNT:
@@ -132,9 +133,22 @@ def audit(staged_plugin, manifest, reviewed_deltas=None, public_root=None):
         except (SyntaxError, UnicodeDecodeError) as err:
             raise ValueError("invalid Python source: " + rel) from err
 
-    version = actual["version.py"].decode("utf-8")
-    if ('CONFIG_SCHEMA_VERSION = 15' not in version or
-            not re.search(r'__version__\s*=\s*["\'][^"\']*rc80[^"\']*["\']', version)):
+    version_tree = ast.parse(actual["version.py"].decode("utf-8"))
+    assignments = {}
+    for stmt in version_tree.body:
+        if isinstance(stmt, ast.Assign) and len(stmt.targets) == 1 and isinstance(stmt.targets[0], ast.Name):
+            assignments.setdefault(stmt.targets[0].id, []).append(stmt.value)
+    try:
+        versions = assignments["__version__"]
+        schemas = assignments["CONFIG_SCHEMA_VERSION"]
+        if (len(versions) != 1 or len(schemas) != 1 or
+                not isinstance(versions[0], ast.Constant) or
+                not isinstance(versions[0].value, str) or
+                "rc80" not in versions[0].value or
+                not isinstance(schemas[0], ast.Constant) or
+                type(schemas[0].value) is not int or schemas[0].value != 15):
+            raise ValueError("version or schema changed")
+    except (KeyError, ValueError):
         raise ValueError("invalid rc80 runtime version/config schema")
     # Structural evidence only. The private full set and actual Enigma2
     # GUI/EPGImport/opkg rollback must still pass before release.
