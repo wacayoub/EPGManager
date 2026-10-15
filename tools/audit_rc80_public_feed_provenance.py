@@ -51,7 +51,8 @@ def assess(source, feed, audit, quality, now=None):
               "pubcohort_verified": False, "quality_cohort_verified": False,
               "real_now_coverage_verified": False, "ready_for_epg_ok": False,
               "xmltv_sha256_verified": False,
-              "cohort_match_proof": "TIMESTAMP_ONLY_NOT_HASH_BOUND"}
+              "cohort_match_proof": "TIMESTAMP_ONLY_NOT_HASH_BOUND",
+              "trusted_current_epg_ids": [], "review_future_epg_ids": []}
     pg = epoch(feed.get("generated_utc"))  # Original provider age; NEVER replaced by repack time.
     repack = epoch(feed.get("repacked_utc")) if feed.get("repacked_utc") else None
     ag = epoch(audit.get("generated_utc"))
@@ -170,6 +171,28 @@ def verify_payload(source, feed, measured_at, reader=payload_audit.fetch):
     }
 
 
+def mapping_quality_for_id(xmltv_id, evidence):
+    """Fail-closed, per-channel recommendation from *published* feed evidence.
+
+    REAL_CURRENT_EPG is the only status eligible for automatic assignment.
+    Future-only programmes must be reviewed; a current event in an unverified
+    or stale publication cannot silently become a working EPG mapping.
+    Manual locks are outside this read-only classifier and remain untouched.
+    """
+    channel_id = str(xmltv_id or "").strip()
+    if not channel_id:
+        return {"status": "UNKNOWN", "auto_eligible": False}
+    if channel_id in (evidence.get("trusted_current_epg_ids") or []):
+        return {"status": "REAL_CURRENT_EPG", "auto_eligible": True}
+    if channel_id in (evidence.get("review_future_epg_ids") or []):
+        return {"status": "FUTURE_ONLY_REVIEW", "auto_eligible": False}
+    if channel_id in (evidence.get("xmltv_observed_zero_ids") or []):
+        return {"status": "NO_EPG", "auto_eligible": False}
+    if channel_id in (evidence.get("xmltv_current_real_ids") or []):
+        return {"status": "CURRENT_UNVERIFIED", "auto_eligible": False}
+    return {"status": "UNKNOWN", "auto_eligible": False}
+
+
 def fetch_one(source, now, verify_xmltv=False):
     try:
         feed = _get_json("feeds/" + source + ".json")
@@ -182,15 +205,39 @@ def fetch_one(source, now, verify_xmltv=False):
                 result.update(verified)
                 # No successful "now" verdict without a downloaded, hashed,
                 # fully parsed public feed AND matching, healthy audit metadata.
-                result["ready_for_epg_ok"] = bool(
+                allowed_cohort = (
                     result["status"] in (
                         "PUBLICATION_METADATA_COHERENT",
                         "PUBLICATION_COHORT_OK_LIVE_NOW_UNKNOWN",
                         "PUBLISHED_NOW_COVERAGE_LOW",
                     )
-                    and verified["xmltv_content_pass"]
-                    and verified["xmltv_sha256_verified"]
+                    and result.get("pubcohort_verified") is True
+                    and result.get("quality_cohort_verified") is True
                 )
+                hash_and_ids_verified = (
+                    verified.get("xmltv_sha256_verified") is True
+                    and verified.get("channel_specific_epg_evidence_verified") is True
+                    and verified.get("real_now_coverage_verified") is True
+                )
+                current_ids = verified.get("xmltv_current_real_ids") or []
+                future_ids = verified.get("xmltv_future_real_ids") or []
+                # Do not expose untrusted/stale programme matches as automatic
+                # recommendations, even when their XML is syntactically valid.
+                if (allowed_cohort and hash_and_ids_verified
+                        and verified.get("xmltv_content_pass") is True):
+                    result["trusted_current_epg_ids"] = sorted(
+                        {x for x in current_ids if isinstance(x, str) and x.strip()})
+                else:
+                    result["trusted_current_epg_ids"] = []
+                # Real future events can be suggested for manual review, never
+                # auto-mapped when the channel has no programme on air NOW.
+                if allowed_cohort and hash_and_ids_verified:
+                    result["review_future_epg_ids"] = sorted(
+                        {x for x in future_ids if isinstance(x, str) and x.strip()}
+                        - set(result["trusted_current_epg_ids"]))
+                else:
+                    result["review_future_epg_ids"] = []
+                result["ready_for_epg_ok"] = bool(result["trusted_current_epg_ids"])
                 result["xmltv_content_status"] = (
                     "PASS" if verified["xmltv_content_pass"]
                     else "XMLTV_CONTENT_QUALITY_ISSUES"
