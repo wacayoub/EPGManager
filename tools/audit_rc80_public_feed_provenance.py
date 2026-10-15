@@ -221,7 +221,6 @@ def fetch_one(source, now, verify_xmltv=False):
                     verified.get("xmltv_sha256_verified") is True
                     and verified.get("channel_specific_epg_evidence_verified") is True
                     and verified.get("real_now_coverage_verified") is True
-                    and quality_flags_complete
                 )
                 current_ids = verified.get("xmltv_current_real_ids") or []
                 future_ids = verified.get("xmltv_future_real_ids") or []
@@ -245,6 +244,7 @@ def fetch_one(source, now, verify_xmltv=False):
                 # Do not expose untrusted/stale programme matches as automatic
                 # recommendations, even when their XML is syntactically valid.
                 if (allowed_cohort and hash_and_ids_verified
+                        and quality_flags_complete
                         and verified.get("xmltv_content_pass") is True):
                     result["trusted_current_epg_ids"] = sorted(
                         {x for x in current_ids if isinstance(x, str) and x.strip()}
@@ -253,7 +253,7 @@ def fetch_one(source, now, verify_xmltv=False):
                     result["trusted_current_epg_ids"] = []
                 # Real future events can be suggested for manual review, never
                 # auto-mapped when the channel has no programme on air NOW.
-                if allowed_cohort and hash_and_ids_verified:
+                if allowed_cohort and hash_and_ids_verified and quality_flags_complete:
                     result["review_future_epg_ids"] = sorted(
                         {x for x in future_ids if isinstance(x, str) and x.strip()}
                         - {x for x in current_ids if isinstance(x, str) and x.strip()}
