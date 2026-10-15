@@ -1,0 +1,32 @@
+name: RC80 sealed offline package tests (no deployment)
+on:
+  push:
+    branches: ["feature/rc80-offline-sealed-build-20261015"]
+    paths:
+      - "tools/build_rc80_offline_blocked_ipk.py"
+      - "tests/test_rc80_offline_blocked_ipk.py"
+      - "tools/audit_rc80_package_manifest_readonly.py"
+      - "tools/audit_rc80_rollback_package_readonly.py"
+      - ".github/workflows/rc80-sealed-offline-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Compile offline builder and source guards
+        run: python -m py_compile tools/build_rc80_offline_blocked_ipk.py tools/audit_rc80_package_manifest_readonly.py tools/audit_rc80_rollback_package_readonly.py tests/test_rc80_offline_blocked_ipk.py
+      - name: Synthetic offline staging and hard-block regression
+        run: python -m unittest discover -s tests -p "test_rc80_offline_blocked_ipk.py" -v
+      - name: All plugin regressions (non deploying)
+        run: python -m unittest discover -s tests -p "test_*py" -v
