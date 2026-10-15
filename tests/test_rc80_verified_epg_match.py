@@ -139,6 +139,38 @@ class VerifiedEpgBridgeTests(unittest.TestCase):
         self.assertEqual(len(ranked), 3)
         self.assertEqual(ranked[-1]["channel_id"], "Zero.ma")
 
+    def test_producer_snapshot_is_compatible_with_preview_bridge(self):
+        from unittest.mock import patch
+        producer_path = PATH.parents[2] / "tools/audit_rc80_public_feed_provenance.py"
+        spec = spec_from_file_location("rc80_public_evidence_producer", str(producer_path))
+        producer = module_from_spec(spec)
+        spec.loader.exec_module(producer)
+        chosen = fixture()["sources"]
+        def synthetic_result(source, _when, _verify):
+            for row in chosen:
+                if row["source"] == source:
+                    return dict(row)
+            return {"source": source, "status": "NETWORK_OR_FORMAT_UNVERIFIED",
+                    "ready_for_epg_ok": False}
+        with patch.object(producer, "fetch_one", side_effect=synthetic_result):
+            output = producer.run_online(now=NOW.timestamp(), verify_xmltv=True)
+        self.assertEqual(output["evidence_schema"], 1)
+        self.assertEqual(output["checked_utc"], NOW.isoformat())
+        self.assertEqual(len(output["sources"]), 14)
+        self.assertEqual(bridge.quality_for_id("direct_morocco", "AlAoula.ma",
+                          report=output, now=NOW.timestamp())["status"], "REAL_CURRENT_EPG")
+        self.assertEqual(bridge.quality_for_id("direct_elcinema", "BahrainTV.bh@SD",
+                          report=output, now=NOW.timestamp())["status"], "SUSPECT_GENERATED_EPG")
+
+    def test_unknown_schema_never_confirms_epg(self):
+        doc = fixture()
+        doc.pop("evidence_schema")
+        self.assertEqual(self.check("direct_morocco", "AlAoula.ma", doc)["status"], "UNKNOWN")
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "legacy.json"
+            path.write_text(json.dumps(doc), encoding="utf-8")
+            self.assertIsNone(bridge.load_local_report(str(path)))
+
     def test_local_loader_no_network_no_config_changes(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "verified.json"
