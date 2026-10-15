@@ -118,7 +118,10 @@ class TestPublicFeedProvenance(unittest.TestCase):
     def test_only_hashed_live_xmltv_can_promote(self):
         a, b, c = fixtures()
         verified = {"xmltv_sha256_verified": True, "xmltv_content_pass": True,
-                    "real_now_coverage_verified": True, "xmltv_issues": []}
+                    "real_now_coverage_verified": True, "xmltv_issues": [],
+                    "channel_specific_epg_evidence_verified": True,
+                    "xmltv_current_real_ids": ["id.morocco.real"],
+                    "xmltv_future_real_ids": ["id.morocco.real", "id.morocco.future"]}
         with patch.object(module, "_get_json", side_effect=[a, b, c]), \
                 patch.object(module, "verify_payload", return_value=verified):
             actual = module.fetch_one("morocco", NOW.timestamp(), verify_xmltv=True)
@@ -210,6 +213,76 @@ class TestPublicFeedProvenance(unittest.TestCase):
         feed["repacked_utc"] = ts(NOW - timedelta(hours=3))
         result = module.assess("shahid", feed, audit, quality, NOW.timestamp())
         self.assertEqual(result["status"], "INVALID_REPACK_PROVENANCE")
+
+
+    def test_verified_current_id_is_auto_eligible_but_future_is_review_only(self):
+        a, b, c = fixtures()
+        verified = {"xmltv_sha256_verified": True, "xmltv_content_pass": True,
+                    "real_now_coverage_verified": True, "xmltv_issues": [],
+                    "channel_specific_epg_evidence_verified": True,
+                    "xmltv_current_real_ids": ["id.real"],
+                    "xmltv_future_real_ids": ["id.real", "id.later"],
+                    "xmltv_observed_zero_ids": ["id.empty"]}
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", return_value=verified):
+            result = module.fetch_one("morocco", NOW.timestamp(), verify_xmltv=True)
+        self.assertEqual(result["trusted_current_epg_ids"], ["id.real"])
+        self.assertEqual(result["review_future_epg_ids"], ["id.later"])
+        self.assertTrue(result["ready_for_epg_ok"])
+        self.assertEqual(module.mapping_quality_for_id("id.real", result),
+                         {"status": "REAL_CURRENT_EPG", "auto_eligible": True})
+        self.assertEqual(module.mapping_quality_for_id("id.later", result),
+                         {"status": "FUTURE_ONLY_REVIEW", "auto_eligible": False})
+        self.assertEqual(module.mapping_quality_for_id("id.empty", result),
+                         {"status": "NO_EPG", "auto_eligible": False})
+
+    def test_stale_but_parseable_feed_cannot_autolock_its_current_events(self):
+        a, b, c = fixtures("tabie")
+        a["generated_utc"] = ts(NOW - timedelta(days=9))
+        verified = {"xmltv_sha256_verified": True, "xmltv_content_pass": True,
+                    "real_now_coverage_verified": True, "xmltv_issues": [],
+                    "channel_specific_epg_evidence_verified": True,
+                    "xmltv_current_real_ids": ["id.stale"],
+                    "xmltv_future_real_ids": ["id.stale"]}
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", return_value=verified):
+            result = module.fetch_one("tabie", NOW.timestamp(), verify_xmltv=True)
+        self.assertEqual(result["status"], "STALE_OR_INVALID_PUBLISHED_FEED")
+        self.assertFalse(result["ready_for_epg_ok"])
+        self.assertEqual(result["trusted_current_epg_ids"], [])
+        self.assertEqual(result["review_future_epg_ids"], [])
+        self.assertEqual(module.mapping_quality_for_id("id.stale", result),
+                         {"status": "CURRENT_UNVERIFIED", "auto_eligible": False})
+
+    def test_unverified_or_missing_per_id_evidence_cannot_autolock(self):
+        a, b, c = fixtures()
+        verified = {"xmltv_sha256_verified": True, "xmltv_content_pass": True,
+                    "real_now_coverage_verified": True, "xmltv_issues": [],
+                    "xmltv_current_real_ids": ["id.unverified"]}
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", return_value=verified):
+            result = module.fetch_one("morocco", NOW.timestamp(), verify_xmltv=True)
+        self.assertFalse(result["ready_for_epg_ok"])
+        self.assertEqual(result["trusted_current_epg_ids"], [])
+        self.assertEqual(module.mapping_quality_for_id("id.unverified", result),
+                         {"status": "CURRENT_UNVERIFIED", "auto_eligible": False})
+        self.assertEqual(module.mapping_quality_for_id("", result),
+                         {"status": "UNKNOWN", "auto_eligible": False})
+
+    def test_failure_in_another_channel_keeps_future_as_review_not_auto(self):
+        a, b, c = fixtures()
+        verified = {"xmltv_sha256_verified": True, "xmltv_content_pass": False,
+                    "real_now_coverage_verified": True, "xmltv_issues": ["empty_programme_titles"],
+                    "channel_specific_epg_evidence_verified": True,
+                    "xmltv_current_real_ids": ["id.good"],
+                    "xmltv_future_real_ids": ["id.good", "id.later"]}
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", return_value=verified):
+            result = module.fetch_one("morocco", NOW.timestamp(), verify_xmltv=True)
+        self.assertFalse(result["ready_for_epg_ok"])
+        self.assertEqual(result["trusted_current_epg_ids"], [])
+        self.assertEqual(result["review_future_epg_ids"], ["id.good", "id.later"])
+        self.assertFalse(module.mapping_quality_for_id("id.good", result)["auto_eligible"])
 
     def test_no_install_and_no_secrets(self):
         s = PATH.read_text(encoding="utf-8")
