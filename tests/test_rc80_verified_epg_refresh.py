@@ -174,7 +174,7 @@ class TestRC80PublicEvidenceRefresh(unittest.TestCase):
 
     def test_symlinked_tmp_subdirectory_cannot_escape_to_receiver_config(self):
         with tempfile.TemporaryDirectory(dir="/tmp") as directory:
-            with tempfile.TemporaryDirectory() as outside:
+            with tempfile.TemporaryDirectory(dir=str(ROOT)) as outside:
                 link = Path(directory) / "redirect"
                 link.symlink_to(outside, target_is_directory=True)
                 with self.assertRaises(ValueError):
