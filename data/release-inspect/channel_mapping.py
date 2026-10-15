@@ -30,6 +30,10 @@ try:
     from ..core import verified_epg_match
 except ImportError:
     verified_epg_match = None
+try:
+    from ..core import verified_epg_refresh
+except ImportError:
+    verified_epg_refresh = None
 from ..core.mapping_store import MappingStore
 from ..core.source_preferences import SourcePreferences
 from ..core.epgimport_export import save_sourcexml
@@ -5143,7 +5147,17 @@ class ChannelMappingScreen(Screen):
         # No XML/network, no mapping writes; saved owner stays first.
         # On a missing/stale report every candidate remains visible as REVIEW.
         try:
-            rows = verified_epg_match.annotate_suggestions(rows)
+            if verified_epg_match is not None:
+                rows = verified_epg_match.annotate_suggestions(rows)
+        except Exception:
+            pass
+        # Preview-only background work is explicitly disabled until receiver
+        # CPU/GUI/recovery acceptance. Queueing has no network/disk on UI.
+        try:
+            if verified_epg_refresh is not None:
+                verified_epg_refresh.queue_background(
+                    [epg.get("source_id") for epg in rows],
+                    enabled=(os.environ.get("EPGMGR_RC80_EVIDENCE_BG") == "1"))
         except Exception:
             pass
         return rows[:max(1, int(limit or 40))]
