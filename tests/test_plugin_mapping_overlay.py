@@ -14,6 +14,24 @@ class TestSmartMappingPackage(unittest.TestCase):
         self.assertEqual(OVERLAY.read_bytes(), SNAPSHOT.read_bytes(),
                          "Current full UI and release overlay must not diverge")
 
+    def test_verified_epg_evidence_only_touches_preview(self):
+        src = OVERLAY.read_text(encoding="utf-8")
+        tree = ast.parse(src, filename=str(OVERLAY))
+        self.assertIn("from ..core import verified_epg_match", src)
+        self.assertIn("verified_epg_match.annotate_suggestions(rows)", src)
+        self.assertIn("EPG NOW", src)
+        self.assertIn("GENERATED?", src)
+        method = next(node for cls in tree.body if isinstance(cls, ast.ClassDef)
+                      for node in cls.body if isinstance(node, ast.FunctionDef)
+                      and node.name == "_cross_source_suggestion_candidates")
+        self.assertFalse(any(isinstance(node, ast.Call) and
+                             isinstance(node.func, ast.Attribute) and
+                             node.func.attr in ("assign_exclusive", "save", "write")
+                             for node in ast.walk(method)))
+        # The receiver-facing automatic writer is deliberately NOT patched.
+        self.assertIn("def _auto_batch_match(", src)
+        self.assertIn("def _start_auto_repair_batch(", src)
+
     def test_mapping_behaviour_preserved(self):
         src = OVERLAY.read_text(encoding="utf-8")
         self.assertGreater(len(src.splitlines()), 9000)
