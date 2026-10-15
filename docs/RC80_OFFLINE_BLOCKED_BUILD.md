@@ -21,6 +21,18 @@ Create an un-installable inspection archive only, in an existing private output 
 
 The file is created mode 0600, never overwritten, verified for content and a preinstall hook that **always exits 90**. It is **not an installable beta**. This is not a live rescue test and has never been exercised with the owner's full private inputs during CI.
 
+## Exact version and recovery-hook safety gates
+
+The staged Python file `version.py` must literally declare `__version__ = "2026.10.15-rc80-offline-blocked"`, exactly matching the generated IPK's `Version:` control field. A different reviewed RC80 version is **not** sufficient: the offline assembly refuses mismatches.
+
+The pinned RC79.1 rescue must contain `preinst`, `postinst`, `prerm` and `postrm` with the expected passive rescue content and executable modes. Missing, modified, unsafe or non-executable hooks abort construction. The resulting RC80 inspection archive replaces `preinst` with an unconditional `exit 90`; this block is independently exercised in the CI's isolated synthetic shell test. **Do not try this IPK on production to see whether it refuses:** package managers may have side effects before reporting a failed installation.
+
+The new code and CI are still synthetic validation: they do not establish a successful `opkg` downgrade, package-database restoration, Enigma2 reboot or native EPG import.
+
+## Hardware handoff
+
+VuLink's currently visible GitHub relay issue contains outbound request comments but does not independently establish a completed receiver-side reply or hardware certification. Hardware tests remain blocked until a **separate non-production Vu+** is available, with before/after evidence collected using the repository's existing read-only receiver audit tools. Never turn synthetic successes into a production install approval.
+
 ## Still blocked
 
 Actual opkg reinstall/downgrade, package-manager database recovery, Enigma2 restart, GUI key navigation, manual mapping retention, native EPG import, 24-hour source scheduler and Casablanca time correctness must be validated on a **separate test receiver** before any installable RC80 exists.
