@@ -52,7 +52,8 @@ def assess(source, feed, audit, quality, now=None):
               "real_now_coverage_verified": False, "ready_for_epg_ok": False,
               "xmltv_sha256_verified": False,
               "cohort_match_proof": "TIMESTAMP_ONLY_NOT_HASH_BOUND",
-              "trusted_current_epg_ids": [], "review_future_epg_ids": []}
+              "trusted_current_epg_ids": [], "review_future_epg_ids": [],
+              "suspected_placeholder_epg_ids": []}
     pg = epoch(feed.get("generated_utc"))  # Original provider age; NEVER replaced by repack time.
     repack = epoch(feed.get("repacked_utc")) if feed.get("repacked_utc") else None
     ag = epoch(audit.get("generated_utc"))
@@ -182,6 +183,8 @@ def mapping_quality_for_id(xmltv_id, evidence):
     channel_id = str(xmltv_id or "").strip()
     if not channel_id:
         return {"status": "UNKNOWN", "auto_eligible": False}
+    if channel_id in (evidence.get("suspected_placeholder_epg_ids") or []):
+        return {"status": "SUSPECT_GENERATED_EPG", "auto_eligible": False}
     if channel_id in (evidence.get("trusted_current_epg_ids") or []):
         return {"status": "REAL_CURRENT_EPG", "auto_eligible": True}
     if channel_id in (evidence.get("review_future_epg_ids") or []):
@@ -218,15 +221,34 @@ def fetch_one(source, now, verify_xmltv=False):
                     verified.get("xmltv_sha256_verified") is True
                     and verified.get("channel_specific_epg_evidence_verified") is True
                     and verified.get("real_now_coverage_verified") is True
+                    and quality_flags_complete
                 )
                 current_ids = verified.get("xmltv_current_real_ids") or []
                 future_ids = verified.get("xmltv_future_real_ids") or []
+                # Quality reports explicitly flag programme placeholders such
+                # as channel-name-only schedule rows. A valid programme time
+                # and matching XML checksum do NOT make such content genuine.
+                # A missing/malformed quality signal is not certification.
+                placeholder_rows = quality.get("suspected_placeholder_channels")
+                quality_flags_complete = isinstance(placeholder_rows, list)
+                placeholder_ids = set()
+                if quality_flags_complete:
+                    for row in placeholder_rows:
+                        ident = row.get("id") if isinstance(row, dict) else row
+                        if isinstance(ident, str) and ident.strip():
+                            placeholder_ids.add(ident.strip())
+                        else:
+                            quality_flags_complete = False
+                            break
+                result["suspected_placeholder_epg_ids"] = sorted(placeholder_ids)
+
                 # Do not expose untrusted/stale programme matches as automatic
                 # recommendations, even when their XML is syntactically valid.
                 if (allowed_cohort and hash_and_ids_verified
                         and verified.get("xmltv_content_pass") is True):
                     result["trusted_current_epg_ids"] = sorted(
-                        {x for x in current_ids if isinstance(x, str) and x.strip()})
+                        {x for x in current_ids if isinstance(x, str) and x.strip()}
+                        - placeholder_ids)
                 else:
                     result["trusted_current_epg_ids"] = []
                 # Real future events can be suggested for manual review, never
@@ -234,7 +256,8 @@ def fetch_one(source, now, verify_xmltv=False):
                 if allowed_cohort and hash_and_ids_verified:
                     result["review_future_epg_ids"] = sorted(
                         {x for x in future_ids if isinstance(x, str) and x.strip()}
-                        - {x for x in current_ids if isinstance(x, str) and x.strip()})
+                        - {x for x in current_ids if isinstance(x, str) and x.strip()}
+                        - placeholder_ids)
                 else:
                     result["review_future_epg_ids"] = []
                 result["ready_for_epg_ok"] = bool(result["trusted_current_epg_ids"])
