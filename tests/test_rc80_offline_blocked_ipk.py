@@ -2,6 +2,7 @@
 """Only synthetic RC79/RC80 bytes. Never requires a receiver or private backup."""
 from pathlib import Path
 import hashlib
+import subprocess
 import tempfile
 import unittest
 import sys
@@ -25,6 +26,11 @@ class TestBlockedOfflinePackage(unittest.TestCase):
                 original[rel] = b"# private working UI baseline\n"
             else:
                 original[rel] = (plugin / rel).read_bytes()
+        # Match runtime and IPK control identities, without exposing a private source.
+        version = ('__version__ = "%s"\nCONFIG_SCHEMA_VERSION = 15\n'
+                   % builder.CANDIDATE_VERSION).encode()
+        (plugin / "version.py").write_bytes(version)
+        reviewed["version.py"] = hashlib.sha256(version).hexdigest()
         assets = {"assets/skin%03d.png" % i: ("image%03d" % i).encode()
                   for i in range(builder.EXPECTED_ASSETS)}
         for name, value in assets.items():
@@ -35,9 +41,11 @@ class TestBlockedOfflinePackage(unittest.TestCase):
         data_modes = {rel: 0o644 for rel in payload}
         control = ("Package: %s\nVersion: %s\nArchitecture: all\nDescription: Private synthetic fixture\n"
                    % (rollback.PACKAGE, rollback.VERSION)).encode()
-        ctrls = {"control": control, "preinst": b"#!/bin/sh\nexit 0\n",
-                 "postinst": b"#!/bin/sh\nexit 0\n"}
-        ctrls_modes = {"control": 0o644, "preinst": 0o755, "postinst": 0o755}
+        ctrls = {"control": control}
+        ctrls_modes = {"control": 0o644}
+        for hook in builder.HOOKS:
+            ctrls[hook] = rollback.HOOK
+            ctrls_modes[hook] = 0o755
         package = builder._ar([
             ("debian-binary", b"2.0\n"),
             ("control.tar.gz", builder._tar_gzip(ctrls, ctrls_modes)),
@@ -79,6 +87,10 @@ class TestBlockedOfflinePackage(unittest.TestCase):
             hooks, perms = rollback.read_tar(archive["control.tar.gz"])
             files, modes = rollback.read_tar(archive["data.tar.gz"])
             self.assertEqual(hooks["preinst"], builder.BLOCKED_PREINST)
+            executed = subprocess.run(["sh"], input=hooks["preinst"],
+                                      capture_output=True, timeout=5)
+            self.assertEqual(executed.returncode, 90)
+            self.assertEqual(executed.stdout, b"")
             self.assertEqual(perms["preinst"], 0o755)
             self.assertEqual(len(files), 215)
             self.assertEqual(rollback.metadata(hooks["control"])["version"], builder.CANDIDATE_VERSION)
@@ -131,6 +143,34 @@ class TestBlockedOfflinePackage(unittest.TestCase):
             (fx[1] / "core/verified_epg_refresh.py").unlink()
             with self.assertRaises(ValueError):
                 self.call(fx)
+
+    def test_mismatched_runtime_version_rejected_even_if_reviewed_sha_matches(self):
+        with tempfile.TemporaryDirectory() as d:
+            fx = self.fixture(d)
+            other = b'__version__ = "2026.10.15-rc80-other"\nCONFIG_SCHEMA_VERSION = 15\n'
+            (fx[1] / "version.py").write_bytes(other)
+            fx[3]["version.py"] = hashlib.sha256(other).hexdigest()
+            with self.assertRaisesRegex(ValueError, "does not match opkg control version"):
+                self.call(fx)
+
+    def test_nonpassive_or_missing_rescue_hooks_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            fx = self.fixture(d)
+            for new_hook in (b"#!/bin/sh\nexit 0\n",
+                             b"#!/bin/sh\nrm -rf /tmp/something\nexit 0\n"):
+                original = rollback.read_ar(fx[0].read_bytes())
+                ctrls, ctrls_modes = rollback.read_tar(original["control.tar.gz"])
+                ctrls["preinst"] = new_hook
+                bad = builder._ar([
+                    ("debian-binary", b"2.0\n"),
+                    ("control.tar.gz", builder._tar_gzip(ctrls, ctrls_modes)),
+                    ("data.tar.gz", original["data.tar.gz"]),
+                ])
+                fx[0].write_bytes(bad)
+                bad_sha = hashlib.sha256(bad).hexdigest()
+                with self.assertRaisesRegex(ValueError, "rescue maintainer hooks"):
+                    builder.prepare(fx[0], fx[1], fx[2], fx[3],
+                                    expected_rescue_sha=bad_sha)
 
     def test_no_live_install_or_external_transfer_code(self):
         script = (ROOT / "tools/build_rc80_offline_blocked_ipk.py").read_text()
