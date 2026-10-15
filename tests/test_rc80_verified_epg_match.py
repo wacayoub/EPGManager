@@ -141,7 +141,7 @@ class VerifiedEpgBridgeTests(unittest.TestCase):
 
     def test_producer_snapshot_is_compatible_with_preview_bridge(self):
         from unittest.mock import patch
-        producer_path = PATH.parents[2] / "tools/audit_rc80_public_feed_provenance.py"
+        producer_path = PATH.parents[3] / "tools/audit_rc80_public_feed_provenance.py"
         spec = spec_from_file_location("rc80_public_evidence_producer", str(producer_path))
         producer = module_from_spec(spec)
         spec.loader.exec_module(producer)
