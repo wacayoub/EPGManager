@@ -106,7 +106,11 @@ class VerifiedEpgBridgeTests(unittest.TestCase):
         self.assertEqual(self.check("direct_morocco", "AlAoula.ma", doc)["status"], "UNKNOWN")
         doc = fixture()
         doc["sources"][0]["status"] = "XMLTV_CONTENT_QUALITY_ISSUES"
-        self.assertEqual(self.check("direct_morocco", "AlAoula.ma", doc)["status"], "UNKNOWN")
+        # XML payload reports a current event, but failed global quality gate:
+        # visible as unverified, NEVER marked REAL_CURRENT_EPG.
+        result = self.check("direct_morocco", "AlAoula.ma", doc)
+        self.assertEqual(result["status"], "CURRENT_UNVERIFIED")
+        self.assertFalse(result["verified_now"])
 
     def test_preview_prefers_real_epg_to_fake_name_score(self):
         original = [
