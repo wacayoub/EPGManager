@@ -24,16 +24,6 @@ from Components.MenuList import MenuList
 from .compat import MultiContentEntryText
 
 from ..core import channel_mapper, channel_registry, external_sources, activity_store, source_catalog, source_metadata, mapping_safety, srp_channel_map, smartmatch_ai, source_channel_cache, source_channel_sync, source_quality, programme_preview_cache, openepg_id_catalog, srp_master_engine, channel_identity_resolver, id_coverage_audit, source_id_harvester, performance_cache, smart_mapping_warm_cache, smart_context_match, source_variant_policy, smart_name_index_cache, unified_channel_identity, smart_context_engine, source_collision_audit, mapping_regression, perf_profiler, multilingual_channel_aliases, multilingual_guard, service_variant_guard, programme_feed_policy, bouquet_lazy, smart_mapping_view, precision_match_engine, mapping_view_cache, id_mapping_engine, mapping_strategy, manual_match_lite, remote_channel_catalog, smart_catalog_boot, smart_boot_name_index, source_priority, sid_reset, github_direct_sync, system_check, smart_source_cache_refresh
-# Optional until the private 138-module receiver build is fully reconstructed.
-# An absent new RC80 evidence module must NEVER break the working rc79 UI.
-try:
-    from ..core import verified_epg_match
-except ImportError:
-    verified_epg_match = None
-try:
-    from ..core import verified_epg_refresh
-except ImportError:
-    verified_epg_refresh = None
 from ..core.mapping_store import MappingStore
 from ..core.source_preferences import SourcePreferences
 from ..core.epgimport_export import save_sourcexml
@@ -4981,11 +4971,6 @@ class ChannelMappingScreen(Screen):
         receiver_compact = manual_match_lite.manual_compact(receiver_name)
 
         best_by_source = {}
-        try:
-            _verified_report = verified_epg_match.load_local_report() if verified_epg_match else None
-        except Exception:
-            _verified_report = None
-        _quality_clock = time.time()
         for raw in raw_rows:
             if not isinstance(raw, dict):
                 continue
@@ -5062,22 +5047,6 @@ class ChannelMappingScreen(Screen):
             elif not auto and confidence < 820 and not (identity_exact or text_exact):
                 continue
 
-            # RC80: apply genuinely verified on-air EPG evidence BEFORE
-            # selecting one candidate per source. This stops an exact-name
-            # channel carrying generated/no EPG from hiding a real-ID rival.
-            # No verified local snapshot = preserve existing manual choices.
-            if _verified_report is not None and verified_epg_match is not None:
-                try:
-                    _q = verified_epg_match.quality_for_id(
-                        sid, cid, report=_verified_report, now=_quality_clock)
-                    epg["_verified_epg_health"] = str(_q.get("status") or "UNKNOWN")
-                    epg["_verified_epg_rank"] = int(_q.get("rank", 3))
-                    if _q.get("status") in ("NO_EPG", "SUSPECT_GENERATED_EPG"):
-                        auto = False
-                        grade = "NO EPG" if _q.get("status") == "NO_EPG" else "REVIEW"
-                except Exception:
-                    pass
-
             epg["_precision_auto"] = bool(auto)
             epg["_precision_grade"] = grade
             epg["_precision_confidence"] = confidence
@@ -5090,7 +5059,6 @@ class ChannelMappingScreen(Screen):
             # One best row per source, exactly as requested in the SUGGESTION
             # browser. SAFE/PROVEN wins, then confidence, then exact identity.
             rank = (
-                int(epg.get("_verified_epg_rank", 3)),
                 0 if auto else 1,
                 -int(confidence),
                 0 if identity_exact else 1,
@@ -5143,23 +5111,6 @@ class ChannelMappingScreen(Screen):
             _alpha_text(e.get("_suggestion_source_label") or e.get("source_name") or e.get("source_id") or ""),
             _alpha_text(e.get("display_name") or e.get("channel_id") or ""),
         ))
-        # RC80 optional per-ID evidence bridge: read-only disk snapshot only.
-        # No XML/network, no mapping writes; saved owner stays first.
-        # On a missing/stale report every candidate remains visible as REVIEW.
-        try:
-            if verified_epg_match is not None:
-                rows = verified_epg_match.annotate_suggestions(rows)
-        except Exception:
-            pass
-        # Preview-only background work is explicitly disabled until receiver
-        # CPU/GUI/recovery acceptance. Queueing has no network/disk on UI.
-        try:
-            if verified_epg_refresh is not None:
-                verified_epg_refresh.queue_background(
-                    [epg.get("source_id") for epg in rows],
-                    enabled=(os.environ.get("EPGMGR_RC80_EVIDENCE_BG") == "1"))
-        except Exception:
-            pass
         return rows[:max(1, int(limit or 40))]
 
     def _refresh_cross_source_suggestions(self, service):
@@ -5174,8 +5125,7 @@ class ChannelMappingScreen(Screen):
         except Exception:
             index_generation = 0
         cache_key = ("__smart_suggestions__", str((service or {}).get("ref") or ""),
-                     self.mapping_revision, boot_generation, index_generation,
-                     int(time.time() // 60))
+                     self.mapping_revision, boot_generation, index_generation)
         cached = self.selection_cache.get(cache_key)
         if cached is not None:
             rows, ordered = cached
@@ -5216,22 +5166,8 @@ class ChannelMappingScreen(Screen):
                 confidence = int(epg.get("_precision_confidence") or 0)
                 pct = max(0, min(100, int(round(confidence / 10.0))))
                 grade = str(epg.get("_precision_grade") or "REVIEW").upper()
-                preview = self._compact_epg_row(epg, score=pct, grade=grade,
-                                                mapped=bool(epg.get("_suggestion_current")))
-                # A verified CURRENT programme outranks generated/no-EPG IDs.
-                # The label is observational, not permission for Auto Repair.
-                health = str(epg.get("_verified_epg_health") or "")
-                if health == "REAL_CURRENT_EPG":
-                    preview += "  •  EPG NOW ✓"
-                elif health == "FUTURE_ONLY_REVIEW":
-                    preview += "  •  FUTURE EPG"
-                elif health == "SUSPECT_GENERATED_EPG":
-                    preview += "  •  GENERATED?"
-                elif health == "NO_EPG":
-                    preview += "  •  NO EPG"
-                elif health == "48H_FAILED_ID_REVIEW":
-                    preview += "  •  48H SHORT"
-                rows.append(preview)
+                rows.append(self._compact_epg_row(epg, score=pct, grade=grade,
+                                                  mapped=bool(epg.get("_suggestion_current"))))
                 ordered.append(epg)
 
         self.selection_rows = rows
