@@ -149,9 +149,12 @@ class VerifiedEpgBridgeTests(unittest.TestCase):
         def synthetic_result(source, _when, _verify):
             for row in chosen:
                 if row["source"] == source:
-                    return dict(row)
+                    valid = dict(row)
+                    valid["pubcohort_verified"] = True
+                    return valid
             return {"source": source, "status": "NETWORK_OR_FORMAT_UNVERIFIED",
-                    "ready_for_epg_ok": False}
+                    "pubcohort_verified": False, "real_now_coverage_verified": False,
+                    "xmltv_sha256_verified": False, "ready_for_epg_ok": False}
         with patch.object(producer, "fetch_one", side_effect=synthetic_result):
             output = producer.run_online(now=NOW.timestamp(), verify_xmltv=True)
         self.assertEqual(output["evidence_schema"], 1)
