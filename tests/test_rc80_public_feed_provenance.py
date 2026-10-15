@@ -23,7 +23,7 @@ def fixtures(source="morocco"):
          "currently_on_air_channels": 14, "active_channels": 14},
         {"generated_utc": gen, "feeds": [{"feed": source + ".xml.gz", "status": "WARN"}]},
         {"generated_utc": gen, "source": source, "source_file": source + ".xml.gz",
-         "quality_status": "PASS"},
+         "quality_status": "PASS", "suspected_placeholder_channels": []},
     )
 
 
@@ -285,6 +285,44 @@ class TestPublicFeedProvenance(unittest.TestCase):
         self.assertEqual(module.mapping_quality_for_id("id.good", result)["status"],
                          "CURRENT_UNVERIFIED")
         self.assertFalse(module.mapping_quality_for_id("id.good", result)["auto_eligible"])
+
+
+    def test_suspected_generated_placeholder_never_becomes_real_epg(self):
+        a, b, c = fixtures("elcinema")
+        c["suspected_placeholder_channels"] = [{"id": "BahrainTV.bh@SD", "count": 18}]
+        verified = {"xmltv_sha256_verified": True, "xmltv_content_pass": True,
+                    "real_now_coverage_verified": True, "xmltv_issues": [],
+                    "channel_specific_epg_evidence_verified": True,
+                    "xmltv_current_real_ids": ["BahrainTV.bh@SD", "RealChannel.eg@SD"],
+                    "xmltv_future_real_ids": ["BahrainTV.bh@SD", "RealChannel.eg@SD"]}
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", return_value=verified):
+            result = module.fetch_one("elcinema", NOW.timestamp(), verify_xmltv=True)
+        self.assertEqual(result["trusted_current_epg_ids"], ["RealChannel.eg@SD"])
+        self.assertEqual(result["suspected_placeholder_epg_ids"], ["BahrainTV.bh@SD"])
+        self.assertEqual(module.mapping_quality_for_id("BahrainTV.bh@SD", result),
+                         {"status": "SUSPECT_GENERATED_EPG", "auto_eligible": False})
+        self.assertTrue(module.mapping_quality_for_id("RealChannel.eg@SD", result)["auto_eligible"])
+
+    def test_missing_or_malformed_placeholder_quality_report_fails_closed(self):
+        a, b, c = fixtures("morocco")
+        verified = {"xmltv_sha256_verified": True, "xmltv_content_pass": True,
+                    "real_now_coverage_verified": True, "xmltv_issues": [],
+                    "channel_specific_epg_evidence_verified": True,
+                    "xmltv_current_real_ids": ["id.real"],
+                    "xmltv_future_real_ids": ["id.real"]}
+        for bad in (None, "not-a-list", [{"count": 5}]):
+            report = dict(c)
+            if bad is None:
+                report.pop("suspected_placeholder_channels", None)
+            else:
+                report["suspected_placeholder_channels"] = bad
+            with self.subTest(report=bad), \
+                    patch.object(module, "_get_json", side_effect=[a, b, report]), \
+                    patch.object(module, "verify_payload", return_value=verified):
+                result = module.fetch_one("morocco", NOW.timestamp(), verify_xmltv=True)
+            self.assertFalse(result["ready_for_epg_ok"])
+            self.assertEqual(result["trusted_current_epg_ids"], [])
 
     def test_no_install_and_no_secrets(self):
         s = PATH.read_text(encoding="utf-8")
