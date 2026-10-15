@@ -8,6 +8,7 @@ Private rc79.1 rescue and full 140-module staged tree are required.
 from __future__ import annotations
 
 import argparse
+import ast
 import gzip
 import hashlib
 import io
@@ -44,8 +45,14 @@ def _read_rescue(path, expected_sha):
     if not re.fullmatch(r"[0-9a-f]{64}", str(expected_sha)) or _sha(raw) != expected_sha:
         raise ValueError("private rc79.1 rescue checksum mismatch")
     ar = rollback.read_ar(raw)
-    controls, _ = rollback.read_tar(ar["control.tar.gz"])
+    controls, control_modes = rollback.read_tar(ar["control.tar.gz"])
     payload, modes = rollback.read_tar(ar["data.tar.gz"])
+    # A checksum is necessary but not sufficient for a reusable recovery package.
+    # Ensure the exact rescue hooks are passive and executable.
+    if (set(controls) != {"control", *HOOKS} or
+            any(controls.get(h) != rollback.HOOK or
+                not (control_modes.get(h, 0) & 0o111) for h in HOOKS)):
+        raise ValueError("private rescue maintainer hooks are not the exact passive set")
     meta = rollback.metadata(controls.get("control", b""))
     if (meta.get("package"), meta.get("version"), meta.get("architecture")) != (
         rollback.PACKAGE, rollback.VERSION, "all"
@@ -157,6 +164,25 @@ def _ar(members):
     return bytes(out)
 
 
+def _runtime_version(sources):
+    """Require byte-stage runtime version to equal the IPK control version."""
+    try:
+        module = ast.parse(sources["version.py"].decode("utf-8"), filename="version.py")
+    except (KeyError, UnicodeDecodeError, SyntaxError) as exc:
+        raise ValueError("invalid candidate runtime version module") from exc
+    values = []
+    for stmt in module.body:
+        if isinstance(stmt, ast.Assign):
+            if any(isinstance(target, ast.Name) and target.id == "__version__"
+                   for target in stmt.targets):
+                if not isinstance(stmt.value, ast.Constant) or not isinstance(stmt.value.value, str):
+                    raise ValueError("candidate version must be a literal string")
+                values.append(stmt.value.value)
+    if values != [CANDIDATE_VERSION]:
+        raise ValueError("runtime version.py does not match opkg control version")
+    return values[0]
+
+
 def _package(control, sources, rescue_app, rescue_modes):
     payload = {rollback.PREFIX + p: (sources[p] if p.endswith(".py") else raw)
                for p, raw in rescue_app.items()}
@@ -199,6 +225,7 @@ def prepare(rescue_ipk, staged_plugin, manifest, reviewed_deltas=None,
     control, original, modes = _read_rescue(rescue_ipk, expected_rescue_sha)
     tree_report = gate.audit(staged_plugin, manifest, reviewed_deltas)
     sources = _validate_staging(staged_plugin, manifest, original, modes)
+    _runtime_version(sources)
     raw = _package(control, sources, original, modes)
     report = {
         "status": "SEALED_OFFLINE_CANDIDATE_NOT_INSTALLABLE",
