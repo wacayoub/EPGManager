@@ -58,7 +58,7 @@ def candidate(sid, cid, confidence=950, saved=False):
 
 class VerifiedEpgBridgeTests(unittest.TestCase):
     def check(self, sid, cid, report=None):
-        return bridge.quality_for_id(sid, cid, report=report or fixture(), now=NOW.timestamp())
+        return bridge.quality_for_id(sid, cid, report=fixture() if report is None else report, now=NOW.timestamp())
 
     def test_real_verified_now_is_highest_eligible_tier(self):
         result = self.check("direct_morocco", "AlAoula.ma")
