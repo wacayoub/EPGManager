@@ -281,7 +281,9 @@ class TestPublicFeedProvenance(unittest.TestCase):
             result = module.fetch_one("morocco", NOW.timestamp(), verify_xmltv=True)
         self.assertFalse(result["ready_for_epg_ok"])
         self.assertEqual(result["trusted_current_epg_ids"], [])
-        self.assertEqual(result["review_future_epg_ids"], ["id.good", "id.later"])
+        self.assertEqual(result["review_future_epg_ids"], ["id.later"])
+        self.assertEqual(module.mapping_quality_for_id("id.good", result)["status"],
+                         "CURRENT_UNVERIFIED")
         self.assertFalse(module.mapping_quality_for_id("id.good", result)["auto_eligible"])
 
     def test_no_install_and_no_secrets(self):
