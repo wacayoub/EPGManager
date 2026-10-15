@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
+echo 'BLOCKED: historical online updater build would publish a nonvalidated IPK.' >&2
+echo 'Use a new reviewed release pipeline after actual rc80 hardware tests.' >&2
+exit 91
 
 TARGET_VERSION="2026.10.04-rc78"
 TARGET_ASSET="EPGManager_rc78_ONLINE_UPDATE_VISIBLE.ipk"

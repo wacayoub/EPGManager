@@ -1,0 +1,87 @@
+name: Plugin-only safety tests (non-deploying)
+on:
+  push:
+    branches: ["feature/plugin-only-consolidation-20261014"]
+    paths:
+      - "release_overlay/online_update.py"
+      - "source/overlay/online_update.py"
+      - "tests/test_epgmanager_updater.py"
+      - "tests/test_plugin_mapping_overlay.py"
+      - "tests/test_plugin_dashboard.py"
+      - "source/overlay/ui/main.py"
+      - "tools/audit_receiver_plugin_readonly.py"
+      - "tests/test_receiver_fingerprint.py"
+      - "tests/test_receiver_parity_and_export.py"
+      - "tests/test_merge_verified_receiver_into_staging.py"
+      - "tests/test_rc80_package_hooks.py"
+      - "tests/test_rc80_receiver_preflight.py"
+      - "tests/test_rc80_recovery.py"
+      - "tests/test_original_rollback_ipk.py"
+      - "tools/prepare_rc79_local_rescue_ipk.py"
+      - "tests/test_prepare_rc79_local_rescue_ipk.py"
+      - "tools/audit_published_xmltv.py"
+      - "tests/test_published_xmltv_audit.py"
+      - "tools/audit_original_rollback_ipk.py"
+      - ".github/workflows/build-release.yml"
+      - "release_overlay/build_online_update.sh"
+      - "tools/verify_rc80_recovery.py"
+      - "tools/audit_rc80_receiver_preflight_readonly.py"
+      - "tools/audit_rc80_runtime_readonly.py"
+      - "tools/audit_rc80_rollback_package_readonly.py"
+      - "tools/audit_rc80_public_feed_provenance.py"
+      - "tests/test_rc80_public_feed_provenance.py"
+      - "tests/test_rc80_verified_epg_match.py"
+      - "tests/test_rc80_verified_epg_refresh.py"
+      - "tests/test_rc80_package_manifest_readonly.py"
+      - "tools/audit_rc80_package_manifest_readonly.py"
+      - "source/overlay/core/verified_epg_refresh.py"
+      - "source/overlay/core/verified_epg_match.py"
+      - "tests/test_rc80_rollback_package_readonly.py"
+      - "tests/test_rc80_runtime_readonly.py"
+      - "release_overlay/safe_preinst.sh"
+      - "release_overlay/safe_postinst.sh"
+      - "tools/merge_verified_receiver_into_staging.py"
+      - "tools/check_receiver_parity.py"
+      - "tools/export_receiver_plugin_code.py"
+      - "source/overlay/ui/channel_mapping.py"
+      - "data/release-inspect/channel_mapping.py"
+      - ".github/workflows/plugin-only-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  plugin-updater:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Compile Python source
+        run: python -m py_compile release_overlay/online_update.py source/overlay/online_update.py tools/verify_rc80_recovery.py tools/audit_original_rollback_ipk.py tools/prepare_rc79_local_rescue_ipk.py
+      - name: Compile Smart Mapping UI and receiver fingerprint
+        run: python -m py_compile source/overlay/ui/channel_mapping.py source/overlay/ui/main.py tools/audit_receiver_plugin_readonly.py tools/check_receiver_parity.py tools/export_receiver_plugin_code.py tools/merge_verified_receiver_into_staging.py tools/audit_rc80_receiver_preflight_readonly.py tools/audit_rc80_runtime_readonly.py tools/audit_rc80_rollback_package_readonly.py tools/audit_rc80_public_feed_provenance.py tools/verify_rc80_recovery.py tools/audit_original_rollback_ipk.py
+      - name: Compile verified EPG preview policy (no Enigma2 runtime)
+        run: python -m py_compile source/overlay/core/verified_epg_match.py source/overlay/core/verified_epg_refresh.py tools/audit_rc80_package_manifest_readonly.py
+      - name: Ensure release and source overlays have the same updater
+        run: cmp release_overlay/online_update.py source/overlay/online_update.py
+      - name: Check rc80 package maintainer shell scripts
+        run: sh -n release_overlay/safe_preinst.sh && sh -n release_overlay/safe_postinst.sh
+      - name: Run plugin-only application safety tests
+        run: python -m unittest discover -s tests -p "test_*py" -v
+
+      - name: Archive selected public plugin source overlays for isolated testing
+        if: matrix.python == '3.14'
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-plugin-overlay-input-only
+          path: |
+            source/overlay/ui/main.py
+            source/overlay/online_update.py
+          if-no-files-found: error
+          retention-days: 1

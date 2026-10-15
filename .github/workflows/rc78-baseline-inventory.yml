@@ -1,0 +1,47 @@
+name: EPGManager rc78 Baseline Inventory (read-only)
+on:
+  push:
+    branches: ["feature/plugin-only-consolidation-20261014"]
+    paths:
+      - "tools/audit_rc78_package.py"
+      - ".github/workflows/rc78-baseline-inventory.yml"
+      - "source/overlay/ui/channel_mapping.py"
+      - "source/overlay/ui/main.py"
+      - "source/overlay/online_update.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rc78-inspection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch exact released rc78 package
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fLsS --retry 3 --retry-delay 2 --connect-timeout 12 \
+            "https://github.com/wacayoub/EPGManager/releases/download/v2026.10.04-rc78/EPGManager_rc78_ONLINE_UPDATE_VISIBLE.ipk" \
+            -o /tmp/EPGManager_rc78_ONLINE_UPDATE_VISIBLE.ipk
+          echo "1d9991cbea17793dae8ac7ffd4686c73bf6a9a408a0be28324794a9c54390958  /tmp/EPGManager_rc78_ONLINE_UPDATE_VISIBLE.ipk" | sha256sum -c -
+          test "$(stat -c '%s' /tmp/EPGManager_rc78_ONLINE_UPDATE_VISIBLE.ipk)" = "700448"
+      - name: Compare full release modules to inspected snapshots
+        run: |
+          python3 tools/audit_rc78_package.py \
+            --ipk /tmp/EPGManager_rc78_ONLINE_UPDATE_VISIBLE.ipk \
+            --report rc78-baseline-inventory.json
+      - name: Publish read-only audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: rc78-baseline-inspection
+          path: rc78-baseline-inventory.json
+          if-no-files-found: error
+
+      - name: Archive verified official rc78 input for offline private merge
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-rc78-input-only-do-not-install
+          path: /tmp/EPGManager_rc78_ONLINE_UPDATE_VISIBLE.ipk
+          if-no-files-found: error
+          retention-days: 1
