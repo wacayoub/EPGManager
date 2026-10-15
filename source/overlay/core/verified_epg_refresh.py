@@ -159,7 +159,7 @@ def _verified_cohort(source, meta, report48, quality, now):
     matches = [v for v in (report48.get("feeds") or [])
                if isinstance(v, dict) and v.get("feed") == source + ".xml.gz"]
     if (audit_timestamp is None or abs(audit_timestamp - cohort) > COHORT_MAX_DELTA or
-            len(matches) != 1 or matches[0].get("status") == "FAIL"):
+            len(matches) != 1 or matches[0].get("status") not in ("PASS", "WARN", "FAIL")):
         return False, "48H_AUDIT_MISSING_OR_FAILED"
     if (quality_timestamp is None or abs(quality_timestamp - cohort) > COHORT_MAX_DELTA or
             quality.get("source") != source or
@@ -167,6 +167,45 @@ def _verified_cohort(source, meta, report48, quality, now):
             quality.get("quality_status") not in ("PASS", "WARN")):
         return False, "QUALITY_FROM_DIFFERENT_PUBLICATION"
     return True, "COHORT_VERIFIED"
+
+
+def _blocked_48h_ids(source, audit48, actual_channels):
+    """Explicitly exclude failing IDs without discarding healthy siblings.
+
+    Only a structurally complete, matching report with channel-specific rows,
+    no orphan programmes and no invalid times can authorize a partial cohort.
+    None means the report cannot safely establish per-ID provenance.
+    """
+    matched = [v for v in (audit48.get("feeds") or ())
+               if isinstance(v, dict) and v.get("feed") == source + ".xml.gz"]
+    if len(matched) != 1:
+        return None
+    data = matched[0]
+    status = data.get("status")
+    if status in ("PASS", "WARN"):
+        return set()
+    if status != "FAIL":
+        return None
+    if data.get("invalid_times") != 0 or data.get("orphan_programmes") != 0:
+        return None
+    rows = data.get("rows")
+    if not isinstance(rows, list) or len(rows) != len(actual_channels):
+        return None
+    seen, blocked = set(), set()
+    for row in rows:
+        if not isinstance(row, dict):
+            return None
+        cid = row.get("id")
+        row_status = row.get("status")
+        if (not isinstance(cid, str) or not cid or cid in seen or
+                cid not in actual_channels or row_status not in ("PASS", "WARN", "FAIL")):
+            return None
+        seen.add(cid)
+        if row_status == "FAIL":
+            blocked.add(cid)
+    if seen != actual_channels or not blocked or data.get("failed_channels") != len(blocked):
+        return None
+    return blocked
 
 
 def inspect_source(source, now=None, reader=None):
@@ -210,6 +249,11 @@ def inspect_source(source, now=None, reader=None):
                      len(measured["populated"]) == meta.get("active_channels") and
                      not (measured["populated"] - measured["channels"]))
         known_quality, reason = _verified_cohort(source, meta, audit48, quality, now)
+        failing_48h_ids = _blocked_48h_ids(source, audit48, measured["channels"])
+        result["partial_48h_blocked_ids"] = sorted(failing_48h_ids or ())
+        if failing_48h_ids is None:
+            known_quality = False
+            reason = "48H_AUDIT_INCONSISTENT_IDS"
         placeholder = quality.get("suspected_placeholder_channels")
         flags_valid = isinstance(placeholder, list)
         flagged = set()
@@ -238,12 +282,19 @@ def inspect_source(source, now=None, reader=None):
                  100 * len(measured["current"]) >= 60 * len(measured["populated"]) and
                  100 * len(measured["populated"]) >= 60 * len(measured["channels"]))
         if valid:
-            result["trusted_current_epg_ids"] = sorted(measured["current"] - flagged)
-            result["review_future_epg_ids"] = sorted(measured["future"] - measured["current"] - flagged)
+            blocked = failing_48h_ids or set()
+            result["trusted_current_epg_ids"] = sorted(measured["current"] - flagged - blocked)
+            result["review_future_epg_ids"] = sorted(measured["future"] - measured["current"] - flagged - blocked)
             result["ready_for_epg_ok"] = bool(result["trusted_current_epg_ids"])
-            result["status"] = "HASHED_XMLTV_AND_AUDITS_HEALTHY" if result["ready_for_epg_ok"] else "NO_CURRENT_REAL_EPG"
+            if result["ready_for_epg_ok"]:
+                result["status"] = ("HASHED_XMLTV_PER_ID_PARTIAL_48H" if blocked else
+                                    "HASHED_XMLTV_AND_AUDITS_HEALTHY")
+            else:
+                result["status"] = "NO_CURRENT_REAL_EPG"
         else:
-            result["review_future_epg_ids"] = sorted(measured["future"] - measured["current"] - flagged) if known_quality else []
+            result["review_future_epg_ids"] = sorted(
+                measured["future"] - measured["current"] - flagged -
+                (failing_48h_ids or set())) if known_quality else []
             result["status"] = reason if not known_quality else "XMLTV_CONTENT_QUALITY_ISSUES"
     except (OSError, ValueError, TypeError, KeyError, UnicodeError, EOFError) as err:
         result["status"] = "XMLTV_DOWNLOAD_OR_INTEGRITY_UNVERIFIED"
