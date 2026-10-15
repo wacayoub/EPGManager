@@ -5,6 +5,7 @@ on:
     paths:
       - "tools/build_rc80_offline_blocked_ipk.py"
       - "tests/test_rc80_offline_blocked_ipk.py"
+      - "tests/test_rc80_package_manifest_readonly.py"
       - "tools/audit_rc80_package_manifest_readonly.py"
       - "tools/audit_rc80_rollback_package_readonly.py"
       - ".github/workflows/rc80-sealed-offline-tests.yml"
