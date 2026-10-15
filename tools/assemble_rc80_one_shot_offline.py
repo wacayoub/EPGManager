@@ -80,6 +80,7 @@ def prepare(repo_path, rescue_path, output_dir=None, build=False):
     toolroot = repo / 'tools'
     sys.path.insert(0, str(toolroot))
     import build_rc80_offline_blocked_ipk as builder
+    import apply_rc80_private_functional_fixes as functional
     import audit_rc80_package_manifest_readonly as gate
     import audit_rc80_rollback_package_readonly as rollback
     if gate.REPO.resolve() != repo.resolve():
@@ -151,6 +152,9 @@ def prepare(repo_path, rescue_path, output_dir=None, build=False):
         version.write_text(new, encoding='utf-8')
         version.chmod(modes['version.py'])
         reviewed = {'version.py': hashlib.sha256(version.read_bytes()).hexdigest()}
+        # Strict SHA-preimage fixes live only in temporary private staging.
+        # Their complete source files are never uploaded to GitHub.
+        reviewed.update(functional.apply_to_staged(staged, original))
         candidate = (destination / builder.OUTPUT_NAME) if build else None
         report = builder.prepare(rescue, staged, baseline, reviewed,
                                  output=candidate, build=build)
@@ -162,7 +166,8 @@ def prepare(repo_path, rescue_path, output_dir=None, build=False):
         report['rescue_sha256'] = RESCUE_SHA
         report['reviewed_public_blobs'] = BLOBS
         report['warnings'] = ['NOT AN INSTALLABLE R80',
-                              'No hardware opkg rollback, Enigma2 GUI, EPG native import or 24h scheduler certification']
+                              'Hardware opkg rollback waived by owner; not tested (not PASS)',
+                              'Enigma2 GUI, EPG native import and 24h scheduler not certified']
         return report
 
 
