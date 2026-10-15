@@ -234,7 +234,7 @@ def fetch_one(source, now, verify_xmltv=False):
                 if allowed_cohort and hash_and_ids_verified:
                     result["review_future_epg_ids"] = sorted(
                         {x for x in future_ids if isinstance(x, str) and x.strip()}
-                        - set(result["trusted_current_epg_ids"]))
+                        - {x for x in current_ids if isinstance(x, str) and x.strip()})
                 else:
                     result["review_future_epg_ids"] = []
                 result["ready_for_epg_ok"] = bool(result["trusted_current_epg_ids"])
