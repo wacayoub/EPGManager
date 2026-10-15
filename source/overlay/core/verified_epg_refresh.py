@@ -263,7 +263,13 @@ def refresh_file(sources, destination=None, now=None, reader=None):
     """
     if destination is None:
         destination = evidence.EVIDENCE_PATH
-    if not os.path.abspath(destination).startswith("/tmp/"):
+    absolute = os.path.abspath(destination)
+    root = os.path.realpath("/tmp")
+    # The parent may itself be a symlink outside /tmp. Never allow the
+    # write target to escape the receiver's ephemeral workspace.
+    actual_parent = os.path.realpath(os.path.dirname(absolute))
+    if (not absolute.startswith("/tmp/") or
+            not (actual_parent == root or actual_parent.startswith(root + os.sep))):
         raise ValueError("evidence cache must be written only under /tmp")
     if os.path.islink(destination):
         raise ValueError("symlinked evidence target")
@@ -330,7 +336,8 @@ def queue_background(source_ids, enabled=False):
     when = time.monotonic()
     with _BG_LOCK:
         if (_BG_STATE["busy"] or
-                when - _BG_STATE["last_started"] < REFRESH_COOLDOWN_SECONDS):
+                (_BG_STATE["last_started"] and
+                 when - _BG_STATE["last_started"] < REFRESH_COOLDOWN_SECONDS)):
             return False
         candidates = [s for s in allowed if when - _BG_STATE["source_at"].get(s, -1e9) >= PER_SOURCE_COOLDOWN_SECONDS]
         if not candidates:
