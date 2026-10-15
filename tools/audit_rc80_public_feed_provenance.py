@@ -298,6 +298,8 @@ def run_online(now=None, verify_xmltv=False):
         result = [future.result() for future in as_completed(tasks)]
     result.sort(key=lambda row: SOURCES.index(row["source"]))
     return {"audit": "EPGManager RC80 public feed provenance",
+            "evidence_schema": 1,
+            "checked_utc": datetime.fromtimestamp(now, tz=timezone.utc).isoformat(),
             "read_only": True, "receiver_modified": False,
             "install_authorized": False, "sources": result,
             "publication_cohorts_verified": sum(bool(x["pubcohort_verified"]) for x in result),
