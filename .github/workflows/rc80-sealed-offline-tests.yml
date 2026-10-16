@@ -1,12 +1,15 @@
 name: RC80 sealed offline package tests (no deployment)
 on:
   push:
-    branches: ["feature/rc80-offline-sealed-build-20261015"]
+    branches: ["feature/rc80-offline-sealed-build-20261015", "fix/rc80-live-bestmatch-parity-20261016"]
     paths:
       - "tools/build_rc80_offline_blocked_ipk.py"
       - "tools/assemble_rc80_one_shot_offline.py"
       - "tools/apply_rc80_private_functional_fixes.py"
       - "tests/test_rc80_offline_blocked_ipk.py"
+      - "tests/test_rc80_live_bestmatch_parity.py"
+      - "tests/test_plugin_mapping_overlay.py"
+      - "source/overlay/ui/channel_mapping.py"
       - "tests/test_rc80_one_shot_end_to_end.py"
       - "tests/test_rc80_package_manifest_readonly.py"
       - "tools/audit_rc80_package_manifest_readonly.py"
@@ -47,3 +50,13 @@ jobs:
         run: python -m unittest discover -s tests -p "test_rc80_one_shot_end_to_end.py" -v
       - name: All plugin regressions (non deploying)
         run: python -m unittest discover -s tests -p "test_*py" -v
+      - name: Export reviewed PUBLIC RC80 overlay (never receiver sources)
+        uses: actions/upload-artifact@v4
+        with:
+          name: rc80-reviewed-public-overlay-py${{ matrix.python }}
+          retention-days: 2
+          if-no-files-found: error
+          path: |
+            source/overlay/ui/channel_mapping.py
+            source/overlay/core/verified_epg_match.py
+            source/overlay/core/verified_epg_refresh.py
