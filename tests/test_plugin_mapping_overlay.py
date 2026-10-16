@@ -29,7 +29,14 @@ class TestSmartMappingPackage(unittest.TestCase):
                     if isinstance(cls, ast.ClassDef) and cls.name == "ChannelMappingScreen"
                     for node in cls.body if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))}
         old, new = methods(baseline), methods(current)
-        self.assertEqual(set(old), set(new), "Lost or added receiver GUI methods")
+        # RC80 intentionally restores two runtime callbacks already confirmed
+        # present on the owner's working RC79.1 by a read-only receiver audit.
+        restored = {"_queue_github_best_match_health",
+                    "_poll_github_best_match_health"}
+        self.assertTrue(restored.issubset(new),
+                        "Live GitHub Best Match callbacks must be preserved")
+        self.assertEqual(set(old), set(new) - restored,
+                         "Lost/added methods beyond the reviewed live parity bridge")
         approved = {"_cross_source_suggestion_candidates",
                     "_refresh_cross_source_suggestions"}
         changed = {key for key in old if ast.dump(old[key]) != ast.dump(new[key])}
