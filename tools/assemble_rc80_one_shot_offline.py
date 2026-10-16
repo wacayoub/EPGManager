@@ -83,6 +83,7 @@ def prepare(repo_path, rescue_path, output_dir=None, build=False):
     import apply_rc80_private_functional_fixes as functional
     import audit_rc80_package_manifest_readonly as gate
     import audit_rc80_rollback_package_readonly as rollback
+    import reconcile_rc80_private_mapping as private_mapping
     if gate.REPO.resolve() != repo.resolve():
         fail('builder imported from a different repository')
     if (builder.RESCUE_SHA256 != RESCUE_SHA or
@@ -113,6 +114,23 @@ def prepare(repo_path, rescue_path, output_dir=None, build=False):
     }
     if any(n in original for n in gate.CORE_ADDITIONS):
         fail('baseline contains R80 additions')
+    # Only four approved preview callbacks are merged into the real, working
+    # receiver GUI. Its existing Auto Mapping writers/skin are retained.
+    # Synthetic CI fixtures continue to use the public GUI overlay.
+    original_ui_digest = hashlib.sha256(original['ui/channel_mapping.py']).hexdigest()
+    if original_ui_digest == private_mapping.BASELINE_UI_SHA256:
+        overlays['ui/channel_mapping.py'], preview_methods = (
+            private_mapping.reconcile_private_ui(
+                original['ui/channel_mapping.py'], overlays['ui/channel_mapping.py']
+            )
+        )
+        if set(preview_methods) != {
+            '_cross_source_suggestion_candidates', '_refresh_cross_source_suggestions',
+            '_queue_github_best_match_health', '_poll_github_best_match_health'
+        }:
+            fail('unreviewed private mapping method reconciliation')
+    elif RESCUE_SHA == '117e9a562b557c9afc18366d02392a11031a7178dfcacaeb86b9d756c2bb6a69':
+        fail('unexpected mapping source for pinned private rescue')
     if build:
         if output_dir is None:
             fail('--build-blocked requires --output-dir')
