@@ -131,7 +131,7 @@ def audit(staged_plugin, manifest, reviewed_deltas=None, public_root=None):
             raise ValueError("public source differs from audited Git blob: " + rel)
     for rel in CORE_ADDITIONS:
         if actual[rel] != public_expected[rel].read_bytes():
-            raise ValueError("new verified EPG core differs from reviewed Git source: " + rel)
+            raise ValueError("unverified new public overlay: " + rel)
     private_ui_reconciled = (
         files[CHANGED_PUBLIC_UI]["sha256"]
         == "314cbd1dee923bdbe4b1930867050f57194a45bd94970a6924f21df6a2007002"
