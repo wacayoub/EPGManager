@@ -53,7 +53,7 @@ jobs:
       - name: Export reviewed PUBLIC RC80 overlay (never receiver sources)
         uses: actions/upload-artifact@v4
         with:
-          name: rc80-reviewed-public-overlay
+          name: rc80-reviewed-public-overlay-py${{ matrix.python }}
           retention-days: 2
           if-no-files-found: error
           path: |
