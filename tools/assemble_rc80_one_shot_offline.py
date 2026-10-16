@@ -29,7 +29,7 @@ from tempfile import TemporaryDirectory
 RESCUE_SHA = '117e9a562b557c9afc18366d02392a11031a7178dfcacaeb86b9d756c2bb6a69'
 VERSION = '2026.10.15-rc80-offline-blocked'
 BLOBS = {
-    'ui/channel_mapping.py': '464d219d0d951fad5105ed643bf0cfdffd7ffc26',
+    'ui/channel_mapping.py': '26165496d9c530058dbdbc858c34794c0a4fb1a2',
     'core/verified_epg_match.py': '03d5b779ec639ed7e8f82f7205cf34af4e4af56d',
     'core/verified_epg_refresh.py': 'ce9c57773c739977782d22c373993a81e3a68361',
 }
