@@ -79,7 +79,7 @@ def reconcile_private_ui(working: bytes, public: bytes) -> tuple[bytes, list[str
     for name in sorted(allowed, key=lambda n: own[n].lineno, reverse=True):
         lines[own[name].lineno-1:own[name].end_lineno] = patches[name].splitlines(keepends=True)
     combined = "".join(lines)
-    imports = """# RC80 verified public evidence is optional; retain RC79.1 functionality.
+    imports = """# RC80 verified public evidence is optional; no regression if it is unavailable.
 try:
     from ..core import verified_epg_match
 except ImportError:
