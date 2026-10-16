@@ -37,8 +37,11 @@ class TestSmartMappingPackage(unittest.TestCase):
                         "Live GitHub Best Match callbacks must be preserved")
         self.assertEqual(set(old), set(new) - restored,
                          "Lost/added methods beyond the reviewed live parity bridge")
+        # __init__ registers the single eTimer, cleanup stops it; both
+        # changes are required to preserve RC79.1's async UI behavior.
         approved = {"_cross_source_suggestion_candidates",
-                    "_refresh_cross_source_suggestions"}
+                    "_refresh_cross_source_suggestions", "__init__",
+                    "_cleanup_fast_open"}
         changed = {key for key in old if ast.dump(old[key]) != ast.dump(new[key])}
         self.assertEqual(changed, approved,
                          "RC80 preview work modified unapproved receiver GUI methods")
