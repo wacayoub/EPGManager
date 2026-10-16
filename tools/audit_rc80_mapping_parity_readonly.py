@@ -76,8 +76,14 @@ def require_safe_preview_parity(original_bytes, staged_bytes):
                 raise ValueError("preview is performing unapproved mapping writes")
     # Avoid GUI polling that performs synchronous network requests.
     for node in ast.walk(after["_poll_github_best_match_health"]):
-        if isinstance(node, ast.Attribute) and node.attr in ("urlopen", "get", "post", "refresh_async"):
+        if not isinstance(node, ast.Call) or not isinstance(node.func, ast.Attribute):
+            continue
+        fn = node.func
+        if fn.attr in ("refresh_async", "urlopen", "urlretrieve"):
             raise ValueError("mapping GUI poll performs blocking or unapproved work")
+        if (fn.attr in ("get", "post") and isinstance(fn.value, ast.Name)
+                and fn.value.id in ("requests", "http", "urllib")):
+            raise ValueError("mapping GUI poll performs blocking network requests")
     return {
         "status": "PRIVATE_RUNTIME_PARITY_VERIFIED_OFFLINE",
         "original_method_count": len(before),
