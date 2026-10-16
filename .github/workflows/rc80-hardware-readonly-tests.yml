@@ -1,0 +1,28 @@
+name: RC80 hardware handoff readonly checks
+on:
+  push:
+    branches:
+      - feature/rc80-hardware-qualification-readonly-20261016
+    paths:
+      - tools/audit_rc80_hardware_handoff_readonly.py
+      - tests/test_rc80_hardware_handoff_readonly.py
+      - .github/workflows/rc80-hardware-readonly-tests.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  readonly-handoff:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Compile only; no device calls
+        run: python -m py_compile tools/audit_rc80_hardware_handoff_readonly.py tests/test_rc80_hardware_handoff_readonly.py
+      - name: Synthetic failure-mode tests; no install or network
+        run: python -m unittest discover -s tests -p 'test_rc80_hardware_handoff_readonly.py' -v
