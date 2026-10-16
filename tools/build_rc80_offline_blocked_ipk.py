@@ -225,6 +225,17 @@ def prepare(rescue_ipk, staged_plugin, manifest, reviewed_deltas=None,
     control, original, modes = _read_rescue(rescue_ipk, expected_rescue_sha)
     tree_report = gate.audit(staged_plugin, manifest, reviewed_deltas)
     sources = _validate_staging(staged_plugin, manifest, original, modes)
+    # Production-source parity must be checked against the actual private
+    # receiver baseline, not just the public preview UI blob. Test fixtures
+    # use an explicitly substituted rescue hash; this branch cannot publish.
+    if expected_rescue_sha == "117e9a562b557c9afc18366d02392a11031a7178dfcacaeb86b9d756c2bb6a69":
+        import audit_rc80_mapping_parity_readonly as mapping_parity
+        expected_original_ui = "314cbd1dee923bdbe4b1930867050f57194a45bd94970a6924f21df6a2007002"
+        if _sha(original["ui/channel_mapping.py"]) != expected_original_ui:
+            raise ValueError("private rc79.1 original Mapping UI SHA mismatch")
+        mapping_parity.require_safe_preview_parity(
+            original["ui/channel_mapping.py"], sources["ui/channel_mapping.py"]
+        )
     _runtime_version(sources)
     raw = _package(control, sources, original, modes)
     report = {
