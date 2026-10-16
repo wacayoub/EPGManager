@@ -1,12 +1,14 @@
 name: RC80 sealed offline package tests (no deployment)
 on:
   push:
-    branches: ["feature/rc80-offline-sealed-build-20261015"]
+    branches: ["feature/rc80-offline-sealed-build-20261015", "fix/rc80-live-bestmatch-parity-20261016"]
     paths:
       - "tools/build_rc80_offline_blocked_ipk.py"
       - "tools/assemble_rc80_one_shot_offline.py"
       - "tools/apply_rc80_private_functional_fixes.py"
       - "tests/test_rc80_offline_blocked_ipk.py"
+      - "tests/test_rc80_live_bestmatch_parity.py"
+      - "source/overlay/ui/channel_mapping.py"
       - "tests/test_rc80_one_shot_end_to_end.py"
       - "tests/test_rc80_package_manifest_readonly.py"
       - "tools/audit_rc80_package_manifest_readonly.py"
