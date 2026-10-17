@@ -1,0 +1,21 @@
+name: Arryadia six-month historical programme audit
+on:
+  push:
+    branches:
+      - fix/morocco-arryadia-verified-sources-20261017
+    paths:
+      - tools/arryadia_6month_archive_audit.py
+      - .github/workflows/arryadia-six-month-archive.yml
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests beautifulsoup4 lxml
+      - run: python tools/arryadia_6month_archive_audit.py
