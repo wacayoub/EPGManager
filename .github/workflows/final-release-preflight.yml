@@ -1,0 +1,24 @@
+name: FINAL Release Preflight (Non Deploying)
+on:
+  push:
+    branches: ["fix/auto-mapping-native-epg-20261014"]
+    paths:
+      - "tools/audit_release_candidate.py"
+      - ".github/workflows/final-release-preflight.yml"
+      - "source/**"
+      - "update.json"
+      - ".github/workflows/build-release.yml"
+  workflow_dispatch:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Validate release preflight syntax
+        run: python -m py_compile tools/audit_release_candidate.py
+      - name: Inspect exact ZIP plus source overlay (no release/publish)
+        run: python tools/audit_release_candidate.py --strict

@@ -1,0 +1,33 @@
+name: AUTO Mapping Native EPG regression
+on:
+  push:
+    branches: ["fix/auto-mapping-native-epg-20261014"]
+  pull_request:
+    paths:
+      - "data/release-inspect/direct_native_import.py"
+      - "tools/fix_auto_mapping_epg.py"
+      - "tools/test_auto_mapping_epg_patch.py"
+      - "tools/audit_osn_auto_epg.py"
+      - "tools/fix_auto_epg_stage2.py"
+      - "tools/fix_best_epg_github_review.py"
+      - "tools/github_match_health.py"
+      - "tools/test_best_epg_github_review.py"
+      - ".github/workflows/auto-mapping-epg-regression.yml"
+  workflow_dispatch:
+
+jobs:
+  auto-epg:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Syntax and isolated regression
+        run: |
+          python -m py_compile tools/fix_auto_mapping_epg.py tools/test_auto_mapping_epg_patch.py tools/audit_osn_auto_epg.py tools/fix_auto_epg_stage2.py data/release-inspect/direct_native_import.py tools/fix_best_epg_github_review.py tools/github_match_health.py tools/test_best_epg_github_review.py
+          python tools/audit_osn_auto_epg.py --help >/dev/null
+          python tools/test_auto_mapping_epg_patch.py
+          python tools/fix_auto_epg_stage2.py --self-test
+          python tools/test_best_epg_github_review.py
