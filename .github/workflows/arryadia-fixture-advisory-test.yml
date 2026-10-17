@@ -1,8 +1,8 @@
-name: Arryadia HD candidate collision/time-zone safety
+name: Arryadia HD1-HD2 match advisory scope safety
 on:
   push:
     branches:
-      - feat/arryadia-fixture-advisory-safety-20261017
+      - fix/arryadia-advisory-exclude-hd3-20261017
     paths:
       - tools/arryadia_fixture_candidates.py
       - tests/test_arryadia_fixture_candidates.py
@@ -38,6 +38,8 @@ jobs:
           assert x["never_publish_directly"] is True
           assert x["source_clock_timezone"]=="UNVERIFIED"
           assert all(y["may_publish"] is False and y["site_timezone"]=="UNVERIFIED" for y in x["candidates"])
-          assert set(x["channel_ids_probed"])=={"Arryadia_HD1","Arryadia_HD2","Arryadia_HD3"}
+          assert set(x["channel_ids_probed"])=={"Arryadia_HD1","Arryadia_HD2"}
+          assert x["excluded_match_channels"]==["Arryadia_HD3"]
+          assert all(y["channel"]!="Arryadia_HD3" for y in x["candidates"])
           print("ARR_FIXTURES_CAUTION_GATE: PASS",x["candidate_count"],x["collision_count"])
           PY
