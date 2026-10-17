@@ -74,7 +74,7 @@ class ExtremeElCinema(unittest.TestCase):
     def test_cli_mismatched_warning_rows_closed(self):
         a,b,c,v=cli_warn_fixture(1440)
         b["feeds"][0]["rows"].pop()
-        x=m.assess("elcinema",a,b,c,NOW.replace(hour=12,minute=10).timestamp())
+        x=m.assess("elcinema",a,b,c,CLI_NOW.timestamp())
         self.assertEqual(x["status"],"48H_AUDIT_INCONSISTENT_IDS")
         self.assertEqual(x["trusted_current_epg_ids"],[])
     def test_cli_719_gap_no_quarantine(self):
