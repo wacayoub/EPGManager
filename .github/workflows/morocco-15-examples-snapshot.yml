@@ -17,10 +17,10 @@ jobs:
       - name: Fetch exact published cloud feed
         run: |
           curl -fsSL --retry 2 --connect-timeout 5 --max-time 35 \
-            https://raw.githubusercontent.com/wacayoub/EPGManager/epg-data/morocco.xml.gz \
+            https://raw.githubusercontent.com/wacayoub/EPGManager/1ce70bddf5f087b947591612a6ebf9afd49389ef/morocco.xml.gz \
             -o /tmp/morocco.xml.gz
           curl -fsSL --retry 2 --connect-timeout 5 --max-time 35 \
-            https://raw.githubusercontent.com/wacayoub/EPGManager/epg-data/manifest.json \
+            https://raw.githubusercontent.com/wacayoub/EPGManager/1ce70bddf5f087b947591612a6ebf9afd49389ef/manifest.json \
             -o /tmp/morocco-manifest.json
       - name: Show actual XMLTV programme examples per channel
         run: |
@@ -65,4 +65,5 @@ jobs:
                       description_lang=desc.get('lang') if desc is not None else None,
                       generic=generic(e)))
               print('EXAMPLE '+json.dumps(out,ensure_ascii=False))
+          print('TWOM_FRENCH_VERIFIED '+json.dumps([(e.findtext('title'),dt(e.get('start')).strftime('%d/%m %H:%M')) for e in by_id.get('2M',[]) if (e.findtext('title') or '') in {'Info Soir','Eco News','Bulletin Météo','Auto-moto','Planète Foot','Ahsane pâtissier'}][:30],ensure_ascii=False))
           PY
