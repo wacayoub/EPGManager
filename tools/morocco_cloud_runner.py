@@ -361,10 +361,16 @@ def main():
             status[name]["source"] = "https://chada.ma/fr/tv/grille/"
             status[name]["policy"] = "official-only"
         if name == "arryadia":
+            from arryadia_hourly_grand_format import IDS as GRAND_IDS, SOURCE as GRAND_SOURCE
+            viewer_rows = [e for e in rows if e.channel in GRAND_IDS and e.source == GRAND_SOURCE]
             status[name]["source"] = "https://www.snrt.ma/ar/node/4070"
-            status[name]["policy"] = "real-current-only"
+            status[name]["policy"] = "official-only-with-explicit-viewer-reported-HD2-HD3"
             status[name]["historical_hints"] = "read-only; not broadcast programmes"
             status[name]["stale_feed_or_fillers_count_as_epg"] = False
+            status[name]["verified_current_events"] = len(rows) - len(viewer_rows)
+            status[name]["viewer_reported_grand_format_hourly"] = len(viewer_rows)
+            status[name]["viewer_reported_channels"] = sorted(set(e.channel for e in viewer_rows))
+            status[name]["viewer_report_officially_verified"] = False
 
     # Dedupe and infer missing stops independently by channel.
     ded = {}
@@ -396,7 +402,11 @@ def main():
         "programmes": sum(counts.values()),
         "channel_counts": {c: counts.get(c, 0) for c in sorted(base.CHANNELS)},
         "missing_current_epg": sorted(set(base.CHANNELS) - set(counts)),
-        "publication_status": "complete" if len(counts) == len(base.CHANNELS) else "partial_real_only",
+        "publication_status": (
+            "partial_with_viewer_reported_slots"
+            if status.get("arryadia", {}).get("viewer_reported_grand_format_hourly", 0)
+            else ("complete" if len(counts) == len(base.CHANNELS) else "partial_real_only")
+        ),
         "sources": status,
     }
     (outdir / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
