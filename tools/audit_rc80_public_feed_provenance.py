@@ -41,6 +41,48 @@ def epoch(value):
         return None
 
 
+
+def _zero_only_partial_48h_ids(feed, row):
+    """Report-backed exceptions only for catalogue IDs lacking future EPG.
+
+    An audit FAIL can be per-ID nonfatal only when every declared channel has
+    one unique row, *all* failing rows explicitly say NO_FUTURE_EPG, and the
+    source-wide XMLTV syntax/reference checks are clean. Metadata alone never
+    establishes that a healthy sibling has a genuine current programme.
+    """
+    if not isinstance(row, dict) or row.get("status") != "FAIL":
+        return None
+    count = feed.get("channels")
+    if not isinstance(count, int) or isinstance(count, bool) or count <= 0:
+        return None
+    if row.get("channels") != count:
+        return None
+    if row.get("invalid_times") != 0 or row.get("orphan_programmes") != 0:
+        return None
+    rows = row.get("rows")
+    if not isinstance(rows, list) or len(rows) != count:
+        return None
+    seen, blocked = set(), set()
+    for item in rows:
+        if not isinstance(item, dict):
+            return None
+        cid = item.get("id")
+        status = item.get("status")
+        if (not isinstance(cid, str) or not cid.strip() or cid in seen or
+                status not in ("PASS", "WARN", "FAIL")):
+            return None
+        seen.add(cid)
+        if status == "FAIL":
+            if item.get("reason") != "NO_FUTURE_EPG":
+                return None
+            blocked.add(cid)
+    failed = row.get("failed_channels")
+    if (not blocked or not isinstance(failed, int) or
+            isinstance(failed, bool) or failed != len(blocked)):
+        return None
+    return blocked
+
+
 def assess(source, feed, audit, quality, now=None):
     """Pure, bounded, honest classification: quality unknown is not failure."""
     if now is None:
@@ -97,9 +139,14 @@ def assess(source, feed, audit, quality, now=None):
         result["status"] = "QUALITY_FROM_DIFFERENT_PUBLICATION"
         return result
     result["quality_cohort_verified"] = True
+    partial_zero_ids = set()
     if matching[0].get("status") == "FAIL":
-        result["status"] = "48H_AUDIT_FAIL"
-        return result
+        verified_failures = _zero_only_partial_48h_ids(feed, matching[0])
+        if verified_failures is None:
+            result["status"] = "48H_AUDIT_FAIL"
+            return result
+        partial_zero_ids = verified_failures
+        result["partial_48h_zero_ids"] = sorted(partial_zero_ids)
     if quality.get("quality_status") not in ("PASS", "WARN"):
         result["status"] = "QUALITY_AUDIT_FAIL_OR_UNKNOWN"
         return result
@@ -122,7 +169,10 @@ def assess(source, feed, audit, quality, now=None):
     if current * 100 < active * 60:
         result["status"] = "PUBLISHED_NOW_COVERAGE_LOW"
     else:
-        result["status"] = "PUBLICATION_METADATA_COHERENT"
+        # Never call an audit with failed IDs globally healthy on metadata
+        # alone. SHA-checked XMLTV must first prove the other programmes.
+        result["status"] = ("48H_PARTIAL_ZERO_IDS_NEED_XMLTV_PROOF"
+                            if partial_zero_ids else "PUBLICATION_METADATA_COHERENT")
         result["ready_for_epg_ok"] = False  # Only actual verified XMLTV qualifies.
     return result
 
@@ -213,6 +263,7 @@ def fetch_one(source, now, verify_xmltv=False):
                         "PUBLICATION_METADATA_COHERENT",
                         "PUBLICATION_COHORT_OK_LIVE_NOW_UNKNOWN",
                         "PUBLISHED_NOW_COVERAGE_LOW",
+                        "48H_PARTIAL_ZERO_IDS_NEED_XMLTV_PROOF",
                     )
                     and result.get("pubcohort_verified") is True
                     and result.get("quality_cohort_verified") is True
@@ -224,6 +275,20 @@ def fetch_one(source, now, verify_xmltv=False):
                 )
                 current_ids = verified.get("xmltv_current_real_ids") or []
                 future_ids = verified.get("xmltv_future_real_ids") or []
+                # A source with 19 missing OSN IDs need not block 82 real
+                # siblings. Its reported zero-ID set must match the actual
+                # downloaded, SHA-verified XMLTV, and no reported failed ID
+                # may have future/current events. Otherwise fail closed.
+                blocked_ids = set(result.get("partial_48h_zero_ids") or [])
+                if blocked_ids:
+                    observed_zero = verified.get("xmltv_observed_zero_ids")
+                    if (not isinstance(observed_zero, list) or
+                            set(observed_zero) != blocked_ids or
+                            blocked_ids.intersection(current_ids) or
+                            blocked_ids.intersection(future_ids)):
+                        allowed_cohort = False
+                        result["status"] = "48H_PARTIAL_ZERO_IDS_XMLTV_MISMATCH"
+                
                 # Quality reports explicitly flag programme placeholders such
                 # as channel-name-only schedule rows. A valid programme time
                 # and matching XML checksum do NOT make such content genuine.
@@ -248,7 +313,7 @@ def fetch_one(source, now, verify_xmltv=False):
                         and verified.get("xmltv_content_pass") is True):
                     result["trusted_current_epg_ids"] = sorted(
                         {x for x in current_ids if isinstance(x, str) and x.strip()}
-                        - placeholder_ids)
+                        - placeholder_ids - blocked_ids)
                 else:
                     result["trusted_current_epg_ids"] = []
                 # Real future events can be suggested for manual review, never
@@ -257,7 +322,7 @@ def fetch_one(source, now, verify_xmltv=False):
                     result["review_future_epg_ids"] = sorted(
                         {x for x in future_ids if isinstance(x, str) and x.strip()}
                         - {x for x in current_ids if isinstance(x, str) and x.strip()}
-                        - placeholder_ids)
+                        - placeholder_ids - blocked_ids)
                 else:
                     result["review_future_epg_ids"] = []
                 result["ready_for_epg_ok"] = bool(result["trusted_current_epg_ids"])
@@ -274,7 +339,8 @@ def fetch_one(source, now, verify_xmltv=False):
                 ):
                     result["status"] = "XMLTV_CONTENT_QUALITY_ISSUES"
                 elif result["ready_for_epg_ok"]:
-                    result["status"] = "HASHED_XMLTV_AND_AUDITS_HEALTHY"
+                    result["status"] = ("HASHED_XMLTV_PER_ID_PARTIAL_48H"
+                                        if blocked_ids else "HASHED_XMLTV_AND_AUDITS_HEALTHY")
             except Exception as exc:
                 result.update({
                     "status": "XMLTV_DOWNLOAD_OR_INTEGRITY_UNVERIFIED",
