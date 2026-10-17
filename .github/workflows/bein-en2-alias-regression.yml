@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "tools/bein_receiver_id_normalize.py"
+      - "tools/enrich_mena_source_id_master.py"
       - "tools/test_bein_receiver_aliases.py"
       - ".github/workflows/bein-en2-alias-regression.yml"
   pull_request:
@@ -28,6 +29,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Compile normalizer and regression
-        run: python -m py_compile tools/bein_receiver_id_normalize.py tools/test_bein_receiver_aliases.py
+        run: python -m py_compile tools/bein_receiver_id_normalize.py tools/test_bein_receiver_aliases.py tools/enrich_mena_source_id_master.py
       - name: Verify English 2 and Arabic 2 remain separate
         run: python tools/test_bein_receiver_aliases.py
