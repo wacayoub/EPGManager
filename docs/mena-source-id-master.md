@@ -10,14 +10,14 @@
 
 | Metric | Value |
 |---|---:|
-| Winner channels monitored | 303 |
-| 🟢 ON | 14 |
-| 🔴 STALE SOURCE FEED | 90 |
-| 🔴 STALE FEED | 137 |
-| 🔴 STALE RELEASE / MISSING ID | 61 |
+| Winner channels monitored | 302 |
+| 🟢 ON | 0 |
+| 🔴 STALE SOURCE FEED | 129 |
+| 🔴 STALE FEED | 110 |
+| 🔴 STALE RELEASE / MISSING ID | 63 |
 | 🔴 NOT PUBLISHED | 0 |
-| 🔴 NO CURRENT EVENT | 1 |
-| Snapshot UTC | 2026-09-20T13:21:34.755427+00:00 |
+| 🔴 NO CURRENT EVENT | 0 |
+| Snapshot UTC | 2026-10-17T16:42:23.866928+00:00 |
 
 ## Winners by source
 
@@ -34,7 +34,7 @@
 | Rotana | 9 |
 | Roya | 7 |
 | Shahid | 45 |
-| Sport24 | 20 |
+| Sport24 | 19 |
 
 ## Direct source scrape progress
 
@@ -42,10 +42,10 @@
 
 | Source | Scrap | 3h EPG coverage | Active / Catalogue | Programmes | Health |
 |---|---:|---:|---:|---:|---|
-| beIN | **100.0%** | **62.4%** | 53 / 85 | 153 | 🟢 HEALTHY |
-| ElCinema | **100.0%** | **26.5%** | 27 / 102 | 27 | 🟢 HEALTHY |
-| OSN Official | **100.0%** | **96.7%** | 58 / 60 | 495 | 🟢 HEALTHY |
-| Sport24 | **100.0%** | **100.0%** | 20 / 20 | 97 | 🟢 HEALTHY |
+| beIN | **100.0%** | **55.3%** | 47 / 85 | 136 | 🟢 HEALTHY |
+| ElCinema | **100.0%** | **84.3%** | 86 / 102 | 91 | 🟢 HEALTHY |
+| OSN Official | **100.0%** | **98.3%** | 59 / 60 | 491 | 🟢 HEALTHY |
+| Sport24 | **100.0%** | **95.0%** | 19 / 20 | 96 | 🟢 HEALTHY |
 
 ## All winner IDs — alphabetical
 
@@ -71,7 +71,7 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>CNNArabic</b></td><td><b>beIN</b></td><td><code>CNNArabic.ae@SD</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Euronews English</b></td><td><b>beIN</b></td><td><code>EuronewsEnglish.fr@SD</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E</b></small></td><td><b>Jeem TV</b></td><td><b>beIN</b></td><td><code>JeemTV.qa@SD</code></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>2M NATIONAL HD</b></td><td><b>Morocco Cloud</b></td><td><code>2M</code></td><td><b>كلنا مغاربة</b><details><summary>description</summary><small>سيتكوم مغربي يجمع شخصيات وعائلات من مناطق مختلفة من المملكة في مواقف اجتماعية وكوميدية تعكس تنوع المجتمع المغربي.</small></details></td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>2M NATIONAL HD</b></td><td><b>Morocco Cloud</b></td><td><code>2M</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>CBeebies Middle East</b></td><td><b>beIN</b></td><td><code>CBeebiesMiddleEast.uk@SD</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E · 7W</b></small></td><td><b>Alkass One</b></td><td><b>beIN</b></td><td><code>AlkassOne.qa@SD</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E · 7W</b></small></td><td><b>Alkass Two</b></td><td><b>beIN</b></td><td><code>AlkassTwo.qa@SD</code></td><td>—</td></tr>
@@ -87,11 +87,10 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Abu Dhabi Sports 1</b></td><td><b>Sport24</b></td><td><code>sport24.adsports.1</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Abu Dhabi Sports 2</b></td><td><b>Sport24</b></td><td><code>sport24.adsports.2</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Abu Dhabi Sports 3</b></td><td><b>Sport24</b></td><td><code>sport24.adsports.3</code></td><td>—</td></tr>
-<tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Abu Dhabi Sports 4</b></td><td><b>Sport24</b></td><td><code>sport24.adsports.4</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E · 7W</b></small></td><td><b>Abu Dhabi TV HD</b></td><td><b>OSN</b></td><td><code>AbuDhabiTV.ae@SD</code><br><small>↳ ADM.Abu.Dhabi.TV.ae</small></td><td>—<details><summary>Compare 2 sources</summary><small><b>✅ Suggested — OSN</b> — Source feed expired<br><b>ElCinema</b> — Source feed expired</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E · 7W</b></small></td><td><b>AD Sport 1 HD</b></td><td><b>OSN</b></td><td><code>AbuDhabiSports1.ae@SD</code><br><small>↳ OSN.AD.Sports.1.ae</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Aflam HD</b></td><td><b>Morocco Cloud</b></td><td><code>AFLAM.ma</code></td><td><b>برامج قناة السابعة AFLAM</b><details><summary>description</summary><small>أفضل الأفلام والبرامج السينمائية على القناة السابعة المغربية</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Al Aoula Inter</b></td><td><b>Morocco Cloud</b></td><td><code>AlAoula</code></td><td><b>Hayna</b><details><summary>description</summary><small>برنامج ضمن شبكة قناة الأولى المغربية.</small></details></td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>25.5E</b></small></td><td><b>Aflam HD</b></td><td><b>Morocco Cloud</b></td><td><code>AFLAM.ma</code></td><td>—</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>25.5E</b></small></td><td><b>Al Aoula Inter</b></td><td><b>Morocco Cloud</b></td><td><code>AlAoula</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E · 7W</b></small></td><td><b>Al Arabiya</b></td><td><b>OSN</b></td><td><code>AlarabiyaPortrait.ae@SD</code><br><small>↳ OSN.Al.Arabiya.ae</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>AL Arabiya English</b></td><td><b>Shahid</b></td><td><code>AlArabiyaEnglish.sa@SD</code><br><small>↳ MBC.AL.Arabiya.English.mena</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>Al Araby 2</b></td><td><b>OSN</b></td><td><code>AlArabyTV2.qa@SD</code><br><small>↳ Al.Araby.2.qa</small></td><td>—<details><summary>Compare 2 sources</summary><small><b>✅ Suggested — OSN</b> — Source feed expired<br><b>ElCinema</b> — Source feed expired</small></details></td></tr>
@@ -99,18 +98,18 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E · 7W</b></small></td><td><b>Al Hadath</b></td><td><b>OSN</b></td><td><code>AlHadath.sa@SD</code><br><small>↳ MBC.Al.Hadath.mena</small></td><td>—<details><summary>Compare 2 sources</summary><small><b>✅ Suggested — OSN</b> — Source feed expired<br><b>Shahid</b> — No direct source feed monitored</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>25.5E · 8W</b></small></td><td><b>Al Jazeera 2</b></td><td><b>Al Jazeera</b></td><td><code>AlJazeera2.qa@HD</code><br><small>↳ Al.Jazeera.2.qa</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>25.5E · 8W</b></small></td><td><b>Al Jazeera Arabic</b></td><td><b>Al Jazeera</b></td><td><code>AlJazeera.qa@Arabic</code><br><small>↳ Al.Jazeera.Arabic.qa</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Al Maghribia</b></td><td><b>Morocco Cloud</b></td><td><code>AlMaghribiya</code></td><td><b>نشرات الاخبار المغربية</b><details><summary>description</summary><small>حصة من الذكر الحكيم</small></details></td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Al Maghribia</b></td><td><b>Morocco Cloud</b></td><td><code>AlMaghribiya</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Al Quran Al Kareem TV HD</b></td><td><b>OSN</b></td><td><code>AlQuranAlKareemTV.sa@SD</code><br><small>↳ Al.Quran.Al.Kareem.TV.sa</small></td><td>—<details><summary>Compare 2 sources</summary><small><b>✅ Suggested — OSN</b> — Source feed expired<br><b>Shahid</b> — No direct source feed monitored</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Al Rai TV</b></td><td><b>OSN</b></td><td><code>AlraiTV.kw@SD</code><br><small>↳ Al.Rai.TV.kw</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>Animal Planet HD</b></td><td><b>OSN</b></td><td><code>AnimalPlanetEurope.uk@SD</code><br><small>↳ Animal.Planet.mena</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Arryadia</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD</code></td><td><b>Live: التنس.. كأس ​​ديفيس – المجموعة الثانية</b><details><summary>description</summary><small>التنس.. كأس ​​ديفيس – المجموعة الثانية &#124; Maroc - Nigéria "Match 4" (Direct)</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W</b></small></td><td><b>Arryadia HD1</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD1</code></td><td><b>Programmes Arryadia HD1</b><details><summary>description</summary><small>Suivez le meilleur du sport marocain et international sur Arryadia HD1.</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Arryadia HD2</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD2</code></td><td><b>Programmes Arryadia HD2</b><details><summary>description</summary><small>Suivez le meilleur du sport marocain et international sur Arryadia HD2.</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E</b></small></td><td><b>Arryadia HD3</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD3</code></td><td><b>Programmes Arryadia HD3</b><details><summary>description</summary><small>Suivez le meilleur du sport marocain et international sur Arryadia HD3.</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>Arryadia TNT</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_TNT</code></td><td><b>Live: التنس.. كأس ​​ديفيس – المجموعة الثانية</b><details><summary>description</summary><small>التنس.. كأس ​​ديفيس – المجموعة الثانية &#124; Maroc - Nigéria "Match 4" (Direct)</small></details></td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Arryadia</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD</code></td><td>—</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>25.5E · 7W</b></small></td><td><b>Arryadia HD1</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD1</code></td><td>—</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>25.5E</b></small></td><td><b>Arryadia HD2</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD2</code></td><td>—</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>25.5E</b></small></td><td><b>Arryadia HD3</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_HD3</code></td><td>—</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Arryadia TNT</b></td><td><b>Morocco Cloud</b></td><td><code>Arryadia_TNT</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E · 7W</b></small></td><td><b>Asharq Documentary</b></td><td><b>Shahid</b></td><td><code>AsharqDocumentary.sa@SD</code><br><small>↳ Asharq.Documentary.sa</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Assadissa</b></td><td><b>Morocco Cloud</b></td><td><code>Assadisa</code></td><td><b>المسالك</b><details><summary>description</summary><small>حصة من الذكر الحكيم</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>—</b></small></td><td><b>Attaqafia / Arrabiaa</b></td><td><b>Morocco Cloud</b></td><td><code>Arrabiaa</code></td><td><b>تذكرة سينما</b><details><summary>description</summary><small>تذكرة سينما</small></details></td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Assadissa</b></td><td><b>Morocco Cloud</b></td><td><code>Assadisa</code></td><td>—</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Attaqafia / Arrabiaa</b></td><td><b>Morocco Cloud</b></td><td><code>Arrabiaa</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E · 8W</b></small></td><td><b>Bahrain TV</b></td><td><b>OSN</b></td><td><code>BahrainTV.bh@SD</code><br><small>↳ Bahrain.TV.bh</small></td><td>—<details><summary>Compare 2 sources</summary><small><b>✅ Suggested — OSN</b> — Source feed expired<br><b>ElCinema</b> — Source feed expired</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E</b></small></td><td><b>BaraemTV</b></td><td><b>beIN</b></td><td><code>Baraem.qa@SD</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>BBC World</b></td><td><b>OSN</b></td><td><code>BBCArabic.uk@SD</code><br><small>↳ BBC.World.mena</small></td><td>—</td></tr>
@@ -204,8 +203,8 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>MBC3</b></td><td><b>Shahid</b></td><td><code>MBC3USA.us@SD</code><br><small>↳ MBC.3.mena</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>MBC4</b></td><td><b>Shahid</b></td><td><code>MBC4.ae@SD</code><br><small>↳ MBC.4.mena</small></td><td>—<details><summary>Compare 2 sources</summary><small><b>✅ Suggested — Shahid</b> — No direct source feed monitored<br><b>ElCinema</b> — Source feed expired</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>MCM TOP</b></td><td><b>OSN</b></td><td><code>MCMTop.fr@SD</code><br><small>↳ MCM.TOP.mena</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W</b></small></td><td><b>Medi1 TV Arabic</b></td><td><b>Morocco Cloud</b></td><td><code>MEDI1TV_AR.ma</code></td><td><b>المنتصف</b><details><summary>description</summary><small>المنتصف</small></details></td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>7W</b></small></td><td><b>Medi1 TV Maghreb</b></td><td><b>Morocco Cloud</b></td><td><code>MEDI1TV_MAGHREB.ma</code></td><td><b>المنتصف</b><details><summary>description</summary><small>المنتصف</small></details></td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>25.5E · 7W</b></small></td><td><b>Medi1 TV Arabic</b></td><td><b>Morocco Cloud</b></td><td><code>MEDI1TV_AR.ma</code></td><td>—</td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>Medi1 TV Maghreb</b></td><td><b>Morocco Cloud</b></td><td><code>MEDI1TV_MAGHREB.ma</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>Moonbug Kids</b></td><td><b>OSN</b></td><td><code>MoonbugKids.uk@SD</code><br><small>↳ Moonbug.Kids.mena</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>MOTORVISION</b></td><td><b>OSN</b></td><td><code>MotorvisionPlus.de@SD</code><br><small>↳ MOTORVISION.mena</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>Movies Action</b></td><td><b>Shahid</b></td><td><code>MoviesAction.sa@SD</code><br><small>↳ Movies.Action.sa</small></td><td>—</td></tr>
@@ -249,7 +248,7 @@
 <tr><td><b>🔴 OFF</b></td><td><small><b>—</b></small></td><td><b>SBC</b></td><td><b>Shahid</b></td><td><code>SBC.sa@SD</code><br><small>↳ SBC.sa</small></td><td>—<details><summary>Compare 2 sources</summary><small><b>✅ Suggested — Shahid</b> — No direct source feed monitored<br><b>ElCinema</b> — Source feed expired</small></details></td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E · 7W</b></small></td><td><b>Sky News Arabia HD</b></td><td><b>OSN</b></td><td><code>SkyNewsArabia.ae@SD</code><br><small>↳ Sky.News.Arabia.ae</small></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>7W</b></small></td><td><b>Spacetoon</b></td><td><b>Shahid</b></td><td><code>SpacetoonArabic.ae@SD</code><br><small>↳ MBC.Spacetoon.mena</small></td><td>—</td></tr>
-<tr><td><b>🟢 ON</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Tamazight</b></td><td><b>Morocco Cloud</b></td><td><code>Tamazight</code></td><td><b>تاونزا</b><details><summary>description</summary><small>تاونزا</small></details></td></tr>
+<tr><td><b>🔴 OFF</b></td><td><small><b>25.5E · 7W · 8W</b></small></td><td><b>Tamazight</b></td><td><b>Morocco Cloud</b></td><td><code>Tamazight</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E</b></small></td><td><b>Thmanyah 1</b></td><td><b>Sport24</b></td><td><code>sport24.thmanyah.1</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E</b></small></td><td><b>Thmanyah 2</b></td><td><b>Sport24</b></td><td><code>sport24.thmanyah.2</code></td><td>—</td></tr>
 <tr><td><b>🔴 OFF</b></td><td><small><b>26E</b></small></td><td><b>Thmanyah 3</b></td><td><b>Sport24</b></td><td><code>sport24.thmanyah.3</code></td><td>—</td></tr>
