@@ -170,11 +170,16 @@ def _verified_cohort(source, meta, report48, quality, now):
 
 
 def _blocked_48h_ids(source, audit48, actual_channels):
-    """Explicitly exclude failing IDs without discarding healthy siblings.
+    """Protect genuine sibling programmes while quarantining severe gaps.
 
-    Only a structurally complete, matching report with channel-specific rows,
-    no orphan programmes and no invalid times can authorize a partial cohort.
-    None means the report cannot safely establish per-ID provenance.
+    Any ElCinema channel with an actual >=12h internal schedule gap must be
+    manual-review only, even when a source-wide audit is WARN instead of FAIL.
+    The prior day-boundary bug produced 24h holes on 87 channels while the
+    entire source reported 0 FAIL, so status-based gating alone is unsafe.
+
+    The report must have one complete, nonduplicated row per published
+    channel, with exact failed-count accounting and no global XMLTV errors.
+    Other sources preserve their existing partial-48h behavior.
     """
     matched = [v for v in (audit48.get("feeds") or ())
                if isinstance(v, dict) and v.get("feed") == source + ".xml.gz"]
@@ -182,16 +187,16 @@ def _blocked_48h_ids(source, audit48, actual_channels):
         return None
     data = matched[0]
     status = data.get("status")
-    if status in ("PASS", "WARN"):
-        return set()
-    if status != "FAIL":
+    if status not in ("PASS", "WARN", "FAIL"):
         return None
+    if status in ("PASS", "WARN") and source != "elcinema":
+        return set()
     if data.get("invalid_times") != 0 or data.get("orphan_programmes") != 0:
         return None
     rows = data.get("rows")
     if not isinstance(rows, list) or len(rows) != len(actual_channels):
         return None
-    seen, blocked = set(), set()
+    seen, blocked, failed = set(), set(), set()
     for row in rows:
         if not isinstance(row, dict):
             return None
@@ -202,8 +207,22 @@ def _blocked_48h_ids(source, audit48, actual_channels):
             return None
         seen.add(cid)
         if row_status == "FAIL":
+            failed.add(cid)
             blocked.add(cid)
-    if seen != actual_channels or not blocked or data.get("failed_channels") != len(blocked):
+        if source == "elcinema" and row_status == "WARN":
+            gap = row.get("max_gap_minutes")
+            if (not isinstance(gap, (int, float)) or isinstance(gap, bool)
+                    or gap < 0):
+                return None
+            if gap >= 720:
+                blocked.add(cid)
+    count = data.get("failed_channels")
+    if (seen != actual_channels or not isinstance(count, int) or
+            isinstance(count, bool) or count != len(failed)):
+        return None
+    if status == "FAIL" and not failed:
+        return None
+    if status != "FAIL" and failed:
         return None
     return blocked
 
@@ -251,6 +270,18 @@ def inspect_source(source, now=None, reader=None):
         known_quality, reason = _verified_cohort(source, meta, audit48, quality, now)
         failing_48h_ids = _blocked_48h_ids(source, audit48, measured["channels"])
         result["partial_48h_blocked_ids"] = sorted(failing_48h_ids or ())
+        # These are real ElCinema programmes, but a >=12-hour internal gap
+        # makes them unsafe for automatic best-candidate selection.
+        # 48h FAIL ids are also blocked in the above complete per-ID set.
+        if source == "elcinema":
+            source_rows = next((v.get("rows") for v in (audit48.get("feeds") or [])
+                                if isinstance(v, dict) and v.get("feed") == source + ".xml.gz"), [])
+            if isinstance(source_rows, list) and failing_48h_ids is not None:
+                result["long_gap_review_epg_ids"] = sorted(
+                    v["id"] for v in source_rows
+                    if isinstance(v, dict) and v.get("id") in failing_48h_ids
+                    and isinstance(v.get("max_gap_minutes"), (float, int))
+                    and v.get("max_gap_minutes") >= 720)
         if failing_48h_ids is None:
             known_quality = False
             reason = "48H_AUDIT_INCONSISTENT_IDS"

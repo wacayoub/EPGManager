@@ -18,13 +18,28 @@ ts = lambda dt: dt.isoformat()
 
 def fixtures(source="morocco"):
     gen = ts(NOW - timedelta(hours=2))
-    return (
+    result = (
         {"generated_utc": gen, "sha256": "a"*64, "size_bytes": 10000,
          "currently_on_air_channels": 14, "active_channels": 14},
         {"generated_utc": gen, "feeds": [{"feed": source + ".xml.gz", "status": "WARN"}]},
         {"generated_utc": gen, "source": source, "source_file": source + ".xml.gz",
          "quality_status": "PASS", "suspected_placeholder_channels": []},
     )
+    # ElCinema direct-source publication is eligible only with full per-ID
+    # audit rows. Generic empty WARN metadata must never be considered green.
+    if source == "elcinema":
+        meta, report, _ = result
+        meta.update(channels=2, active_channels=2, currently_on_air_channels=2)
+        report["feeds"][0].update(
+            status="WARN", channels=2, failed_channels=0,
+            warning_channels=2, invalid_times=0, orphan_programmes=0,
+            rows=[
+                {"id": "BahrainTV.bh@SD", "status": "WARN",
+                 "reason": "SHORT_HORIZON", "max_gap_minutes": 0},
+                {"id": "RealChannel.eg@SD", "status": "WARN",
+                 "reason": "SHORT_HORIZON", "max_gap_minutes": 0},
+            ])
+    return result
 
 
 class TestPublicFeedProvenance(unittest.TestCase):
