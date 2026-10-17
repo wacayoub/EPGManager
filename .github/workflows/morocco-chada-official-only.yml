@@ -1,0 +1,57 @@
+name: Chada TV official-only provenance checks
+on:
+  push:
+    branches:
+      - fix/morocco-chada-official-only-20261017
+  pull_request:
+    paths:
+      - tools/morocco_cloud_final.py
+      - tools/morocco_cloud_runner.py
+      - tools/morocco_current_official.py
+      - tests/test_morocco_chada_official_only.py
+      - .github/workflows/morocco-chada-official-only.yml
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests beautifulsoup4 lxml cloudscraper curl_cffi
+      - name: Enforce strict official-only Chada source
+        run: PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_chada_official_only.py -v
+      - name: Run existing broadcaster source tests
+        run: PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_live_official.py -v
+      - name: Smoke current official Chada page without publication
+        run: PYTHONPATH=tools python tools/morocco_live_grids_smoke.py
+      - name: Build seven-day Morocco candidate read-only, verify Chada provenance
+        shell: bash
+        run: |
+          mkdir -p previous output
+          curl -fL --retry 2 --connect-timeout 5 --max-time 20 \
+            "https://raw.githubusercontent.com/wacayoub/EPGManager/epg-data/morocco.xml.gz" \
+            -o previous/morocco.xml.gz
+          timeout 600s python tools/morocco_cloud_final.py --output-dir output --previous previous/morocco.xml.gz --days 7
+          python - <<'PY'
+          import gzip, json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          m=json.loads(Path("output/manifest.json").read_text())
+          root=ET.fromstring(gzip.decompress(Path("output/morocco.xml.gz").read_bytes()))
+          count=sum(x.get("channel")=="Chada TV" for x in root.findall("programme"))
+          audit=m["sources"]["chada"]
+          print("CHADA_OFFICIAL_ONLY",audit,"xml_events",count,
+                "total_events",m["programmes"],"missing",m["missing_current_epg"])
+          assert audit["policy"] == "official-only"
+          assert audit["source"] == "https://chada.ma/fr/tv/grille/"
+          assert audit["events"] == count
+          assert audit["mode"] in ("official-only", "official-unavailable")
+          assert count > 0, "Official Chada live source unexpectedly empty in this smoke"
+          assert m["channel_counts"]["2M"]>=200
+          assert m["channel_counts"]["AlAoula"]>=10
+          assert root.findall("channel")
+          print("CHADA_OFFICIAL_ONLY_PROVENANCE: PASS")
+          PY
