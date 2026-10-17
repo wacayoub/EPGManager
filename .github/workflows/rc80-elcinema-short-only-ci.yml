@@ -1,0 +1,69 @@
+name: RC80 ElCinema short-only 35 guides yellow — NO DEPLOY
+on:
+  push:
+    branches: [fix/rc80-elcinema-short-only-per-id-20261017]
+    paths:
+      - 'tools/audit_rc80_public_feed_provenance.py'
+      - 'tests/test_rc80_elcinema_short_only.py'
+      - '.github/workflows/rc80-elcinema-short-only-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/audit_rc80_public_feed_provenance.py'
+      - 'tests/test_rc80_elcinema_short_only.py'
+      - '.github/workflows/rc80-elcinema-short-only-ci.yml'
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Compile offline gate without resealing sealed package
+        run: |
+          python -m py_compile tools/audit_rc80_public_feed_provenance.py tests/test_rc80_elcinema_short_only.py
+          python -m unittest discover -s tests -p 'test_rc80_elcinema_short_only.py' -v
+          python -m unittest discover -s tests -p 'test_rc80_elcinema_partial_48h.py' -v
+          python -m unittest discover -s tests -p 'test_rc80_public_feed_provenance.py' -v
+  public-real:
+    needs: unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Check ElCinema current hash/48h true short IDs and manual yellow review
+        run: |
+          python - <<'PY'
+          import json,time
+          from tools.audit_rc80_public_feed_provenance import fetch_one,mapping_quality_for_id
+          out=fetch_one('elcinema',time.time(),verify_xmltv=True)
+          q=out.get('review_partial_epg_ids') or []
+          failed=out.get('partial_48h_short_ids') or []
+          greens=out.get('trusted_current_epg_ids') or []
+          report={
+            'source_status':out.get('status'),
+            'xmltv_sha_verified':out.get('xmltv_sha256_verified'),
+            'quality_cohort_verified':out.get('quality_cohort_verified'),
+            'true_short_failures':len(failed),
+            'current_partial_review':len(q),
+            'trusted_current_ids':len(greens),
+            'all_short_ids_manual_only':all(not mapping_quality_for_id(cid,out)['auto_eligible'] for cid in failed),
+            'receiver_modified':False,'install_authorized':False,
+          }
+          print('ELCINEMA_RC80_ACTUAL_SHORT_ONLY',json.dumps(report,sort_keys=True))
+          assert out.get('xmltv_sha256_verified') is True
+          assert out.get('status') == 'HASHED_XMLTV_PER_ID_PARTIAL_48H',out.get('status')
+          assert len(failed)>0
+          assert len(q)>0
+          assert len(greens)>0
+          assert not set(greens).intersection(failed)
+          assert report['all_short_ids_manual_only']
+          PY
