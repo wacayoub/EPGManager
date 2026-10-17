@@ -178,7 +178,10 @@ def _install_per_channel_lkg():
             # They are *reported recurring slots*, not official programme
             # events; explicit provenance remains with each XMLTV row.
             # Any real event, if independently verified, overrides its hours.
-            hourly = grand_format.generate_hourly(days=7, verified=verified)
+            hourly = [
+                e for e in grand_format.generate_hourly(days=7, verified=verified)
+                if e.channel in channel_ids
+            ]
             runner.log(
                 "Arryadia: verified_current=%d rejected=%d "
                 "viewer_reported_hourly_HD2_HD3=%d history_family_matches=%s"
