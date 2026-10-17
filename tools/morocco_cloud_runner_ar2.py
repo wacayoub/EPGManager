@@ -64,12 +64,20 @@ _MONTHS_FR = (
 _TIME_RE = re.compile(r"^(?:[01]?\d|2[0-3]):[0-5]\d$")
 _DURATION_RE = re.compile(r"(?:(\d+)\s*h(?:\s*(\d+))?|(?:(\d+)\s*min))", re.I)
 
-# First evening edition is deliberately French. All later occurrences/replays
-# are converted to the canonical Arabic title. This is per Morocco broadcast
-# day and only applies from 18:00 local time onward.
+# Editorially verified 100%-French 2M programmes. Latin-script Darija
+# is NOT automatically French; never treat unknown Romanized names as French.
+_NATIVE_FRENCH_2M = {
+    "auto moto": "Auto-moto",
+    "planete foot": "Planète Foot",
+    "ahsane patissier": "Ahsane pâtissier",
+}
+
+# Info Soir and Eco News are French-language programme identities, including
+# reprises. Bulletin Météo is French only when immediately following the
+# evening Info Soir; all other weather bulletins stay in Arabic.
 _SPECIAL_FR = {
     "info_soir": "Info Soir",
-    "meteo": "Météo",
+    "meteo": "Bulletin Météo",
     "eco_news": "Eco News",
 }
 _SPECIAL_AR = {
@@ -77,7 +85,6 @@ _SPECIAL_AR = {
     "meteo": "النشرة الجوية",
     "eco_news": "إيكو نيوز",
 }
-
 
 def _special_family(title):
     raw = ar1.clean(title)
@@ -92,28 +99,49 @@ def _special_family(title):
 
 
 def _apply_evening_language_policy(rows):
-    """Keep the first evening bulletin trio in French, repeats in Arabic."""
-    seen_first = set()
+    """Keep verified French shows, only post-Info Soir weather in French.
+
+    Latin-script Darija remains Arabic, and descriptions remain Arabic.
+    """
     stats = defaultdict(lambda: {"fr_first": 0, "ar_other": 0})
+    last = None
+    french_weather_day = set()
 
     for e in sorted(rows, key=lambda x: x.start):
-        family = _special_family(e.title)
-        if not family:
-            continue
         local = e.start.astimezone(TZ)
-        key = (local.date().isoformat(), family)
-
-        if local.hour >= 18 and key not in seen_first:
-            seen_first.add(key)
+        family = _special_family(e.title)
+        if family in ("info_soir", "eco_news"):
             e.title = _SPECIAL_FR[family]
             e.tl = "fr"
+            e.dl = "ar"
             stats[family]["fr_first"] += 1
+        elif family == "meteo":
+            key = local.date().isoformat()
+            directly_after_info = (
+                last is not None
+                and _special_family(last.title) == "info_soir"
+                and last.start.astimezone(TZ).date() == local.date()
+                and local.hour >= 18
+                and timedelta(0) < e.start - last.start <= timedelta(hours=2)
+                and key not in french_weather_day
+            )
+            if directly_after_info:
+                french_weather_day.add(key)
+                e.title = _SPECIAL_FR["meteo"]
+                e.tl = "fr"
+                stats["meteo"]["fr_first"] += 1
+            else:
+                e.title = _SPECIAL_AR["meteo"]
+                e.tl = "ar"
+                stats["meteo"]["ar_other"] += 1
+            e.dl = "ar"
         else:
-            e.title = _SPECIAL_AR[family]
-            e.tl = "ar"
-            stats[family]["ar_other"] += 1
-        e.dl = "ar"
-
+            verified_name = _NATIVE_FRENCH_2M.get(ar1.norm(e.title))
+            if verified_name:
+                e.title = verified_name
+                e.tl = "fr"
+                e.dl = "ar"
+        last = e
     return dict(stats)
 
 
