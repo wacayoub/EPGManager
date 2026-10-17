@@ -187,10 +187,13 @@ def _install_per_channel_lkg():
                 "viewer_reported_hourly_HD2_HD3=%d history_family_matches=%s"
                 % (len(verified), len(fresh) - len(verified), len(hourly), hints)
             )
-            return verified + hourly, (
-                "official+viewer-reported-hourly" if verified
-                else "viewer-reported-hourly-only"
+            mode = (
+                "official+viewer-reported-hourly" if verified and hourly
+                else "real-only" if verified
+                else "viewer-reported-hourly-only" if hourly
+                else "real-source-unavailable"
             )
+            return verified + hourly, mode
         if name == "chada":
             # User source policy: CHADA TV may ONLY come from the broadcaster's
             # official weekly schedule. Never accept an old receiver programme,
