@@ -30,8 +30,8 @@ RESCUE_SHA = '117e9a562b557c9afc18366d02392a11031a7178dfcacaeb86b9d756c2bb6a69'
 VERSION = '2026.10.15-rc80-offline-blocked'
 BLOBS = {
     'ui/channel_mapping.py': '26165496d9c530058dbdbc858c34794c0a4fb1a2',
-    'core/verified_epg_match.py': '03d5b779ec639ed7e8f82f7205cf34af4e4af56d',
-    'core/verified_epg_refresh.py': 'ce9c57773c739977782d22c373993a81e3a68361',
+    'core/verified_epg_match.py': '6cc0e755b8f2c15065402f560ed8705358801872',
+    'core/verified_epg_refresh.py': 'fae7c10b0f3e87aa8217fef3a0ba7ac11c38248d',
 }
 ROOT = 'usr/lib/enigma2/python/Plugins/Extensions/EPGManager/'
 
