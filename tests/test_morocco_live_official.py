@@ -9,15 +9,26 @@ class OfficialGrids(unittest.TestCase):
         def row(tm,title):
             return '<div class="grille-item"><div class="info"><span class="when">%s</span> %s</div></div>' % (tm,title)
         content = '<div id="main-roller-content">' + "".join(row(t,n) for t,n in [
-            ("07H00","Coran"), ("08H00","Morning"), ("09H00","Documentaire"),
-            ("10H00","Journal"),("11H00","Série"),("12H00","Sport"),
-            ("13H00","Magazine"),("20H00","Météo"),("23H00","Cinéma"),
-            ("00H30","Journal nuit")]) + "</div>"
+            ("07H00","القرآن الكريم"), ("08H00","برنامج الصباح"), ("09H00","وثائقي"),
+            ("10H00","الأخبار"),("11H00","مسلسل"),("12H00","الرياضة"),
+            ("13H00","مجلة"),("20H00","أحوال الطقس"),("23H00","سهرة سينمائية"),
+            ("00H30","الأخبار الأخيرة")]) + "</div>"
         events = parse_alaoula_html(content,date(2026,10,17))
         self.assertEqual(len(events),10)
         self.assertEqual(events[-1].start.date(),date(2026,10,18))
         self.assertTrue(all(e.stop > e.start for e in events))
         self.assertTrue(all("AlAoula" == e.channel for e in events))
+        self.assertTrue(all(e.tl == "ar" and e.dl == "ar" for e in events))
+        self.assertTrue(all(e.source == "snrt-official-arabic" for e in events))
+        self.assertIn("القرآن الكريم", [e.title for e in events])
+
+    def test_snrt_french_grid_is_not_reused(self):
+        def row(t, label):
+            return '<div class="grille-item"><div class="info"><span class="when">%s</span> %s</div></div>' % (t,label)
+        html = '<div id="main-roller-content">' + ''.join(
+            row('%02dH00' % h,'Journal Télévisé') for h in range(7,20)
+        ) + '</div>'
+        self.assertEqual(parse_alaoula_html(html,date(2026,10,17)), [])
 
     def test_snrt_do_not_invent_when_grid_missing(self):
         self.assertEqual(parse_alaoula_html('<div class="old-grille"></div>',date.today()), [])

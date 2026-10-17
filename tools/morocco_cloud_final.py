@@ -23,7 +23,6 @@ import morocco_epg as base
 import morocco_cloud_runner as runner
 import morocco_cloud_legacy_logic as legacy
 import morocco_cloud_runner_ar2_quality as final2m
-import morocco_alaoula_fallback as alaoula_fallback
 import morocco_current_official as current_official
 
 TZ = runner.TZ
@@ -181,9 +180,25 @@ def _install_per_channel_lkg():
             runner.log("Chada official-only: no valid upstream events; publishing empty Chada ID")
             return [], "official-unavailable"
         rows, mode = historical_choose(name, fresh, old, channel_ids, minimum)
+        if name == "snrt":
+            # Enforce the existing Al Aoula Arabic-native source policy even
+            # when SNRT's other channels use an older cached provider feed.
+            # No French or last-known-good Al Aoula programme may be reused.
+            rows = [e for e in rows if e.channel != "AlAoula"]
+            verified = [
+                e for e in _valid_horizon(fresh)
+                if e.channel == "AlAoula"
+                and getattr(e, "source", None) == "snrt-official-arabic"
+                and re.search(r"[\u0600-\u06ff]", e.title)
+            ]
+            rows.extend(verified)
+            mode += "+alaoula-official-arabic" if verified else "+alaoula-arabic-unavailable"
         present = {e.channel for e in _valid_horizon(rows)}
         recovered = {}
         for cid in sorted(set(channel_ids) - present):
+            if cid == "AlAoula":
+                # The previous public guide contained French Al Aoula rows.
+                continue
             lkg = [e for e in _valid_horizon(old) if e.channel == cid]
             if not lkg:
                 continue
@@ -264,6 +279,17 @@ def _install_strict_writer():
             for e in clean
         ):
             raise RuntimeError("Chada EPG provenance violation: nonofficial programme")
+        if any(
+            e.channel == "AlAoula"
+            and (
+                getattr(e, "source", None) != "snrt-official-arabic"
+                or not re.search(r"[\u0600-\u06ff]", e.title)
+                or not re.search(r"[\u0600-\u06ff]", e.desc or "")
+                or e.tl != "ar" or e.dl != "ar"
+            )
+            for e in clean
+        ):
+            raise RuntimeError("AlAoula EPG Arabic official provenance violation")
         useful_ids = {e.channel for e in _valid_horizon(clean)}
         missing = sorted(set(base.CHANNELS) - useful_ids)
         if missing:
@@ -283,10 +309,9 @@ def _install_strict_writer():
 
 
 def main():
-    # The legacy /ar/node/1208 and /fr/programmes/alaoula grids can expose stale
-    # cache rows. Keep the active official page as primary; if it still has no
-    # useful dated programme, a guarded TeleNews fallback is injected below.
-    legacy.SNRT_CHANNELS["AlAoula"] = "https://www.snrt.ma/ar/al-aoula"
+    # Al Aoula's Arabic official page now has its own current-grid reader.
+    # Do not concurrently scrape its obsolete grille-line layout.
+    legacy.SNRT_CHANNELS.pop("AlAoula", None)
 
     # Install receiver-proven Moroccan source behaviour before runner.main()
     # builds its parallel provider jobs.
@@ -297,26 +322,14 @@ def main():
     historical_snrt = base.scrape_snrt
 
     def cloud_snrt(days):
-        rows = historical_snrt(days)
-        current_alaoula = [
-            e for e in _valid_horizon(rows)
-            if e.channel == "AlAoula"
-        ]
-        if not current_alaoula:
-            runner.log("AlAoula historical SNRT grid empty; checking current official page")
-            backup = current_official.scrape_alaoula(days)
-            if not backup:
-                runner.log("AlAoula official live grid unavailable; trying guarded fallback")
-                try:
-                    backup = alaoula_fallback.scrape(min(days, 3))
-                except Exception as exc:
-                    runner.log("AlAoula guarded fallback failed: %s" % exc)
-                    backup = []
-            if backup:
-                rows.extend(backup)
-                runner.log("AlAoula guarded fallback accepted: %d events" % len(backup))
-            else:
-                runner.log("AlAoula guarded fallback returned zero events")
+        rows = [e for e in historical_snrt(days) if e.channel != "AlAoula"]
+        # Arabic page is authoritative, never the /fr/ page or TeleNews.
+        official_ar = current_official.scrape_alaoula(days)
+        if len(official_ar) >= 8:
+            rows.extend(official_ar)
+            runner.log("AlAoula Arabic official grid accepted: %d events" % len(official_ar))
+        else:
+            runner.log("AlAoula Arabic official grid unavailable; no French fallback")
         return _snrt_cloud_cleanup(rows, days)
 
     base.scrape_snrt = cloud_snrt
