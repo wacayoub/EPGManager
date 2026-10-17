@@ -25,3 +25,20 @@ for key, url in (
             print("JSON",sel,[x.get_text()[:180] for x in soup.select(sel)][:3])
     except Exception as e:
         print("PROBE_ERROR",type(e).__name__,str(e)[:400],flush=True)
+
+        if key == "alaoula":
+            grid = soup.select("#main-roller-content .grille-item")
+            print("SNRT_GRID_COUNT",len(grid))
+            for row in grid[:4]:
+                print("SNRT_ITEM",str(row)[:900].replace("\\n"," "),flush=True)
+            print("SNRT_GRID_PARENT",str(soup.select_one("#main-roller-content"))[:1400].replace("\\n"," "),flush=True)
+        if key == "chada":
+            print("CHADA_ROW_COUNT",len(soup.select("article.chada-epg-row")))
+            for row in soup.select("article.chada-epg-row")[:2]:
+                print("CHADA_ITEM",str(row)[:1600].replace("\\n"," "),flush=True)
+                parent=row.parent
+                for level in range(3):
+                    if parent:
+                        print("CHADA_PANEL",level,parent.name,parent.get("class"),parent.get("id"),[(a,v) for a,v in parent.attrs.items() if a.startswith("data-")])
+                        parent=parent.parent
+            print("CHADA_TABS",[(e.name,e.get("class"),e.get("data-day"),e.get("data-weekday"),e.get("aria-controls"),e.get("id"),e.get_text(" ",strip=True)[:30]) for e in soup.select("[class*=day], [class*=tab]")[:24]],flush=True)
