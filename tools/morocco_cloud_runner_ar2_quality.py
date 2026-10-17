@@ -50,7 +50,7 @@ _KNOWN_2M_TITLES = {
     "fatty cabotin": "فاتي كابوتين",
     "kawalisse": "كواليس",
     "charqi ou lgharbi": "شرقي و الغربي",
-    "auto moto": "Auto-moto",
+    "auto moto": "أوتو موتو",
     "al akhawat attalat": "الأخوات الثلاث",
     "3ailti": "عائلتي",
     "moughamarat": "مغامرات",
