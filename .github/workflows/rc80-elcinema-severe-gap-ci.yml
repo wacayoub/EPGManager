@@ -7,6 +7,7 @@ on:
       - 'source/overlay/core/verified_epg_match.py'
       - 'tools/audit_rc80_public_feed_provenance.py'
       - 'tests/test_rc80_elcinema_large_gaps.py'
+      - 'tests/test_rc80_public_feed_provenance.py'
       - '.github/workflows/rc80-elcinema-severe-gap-ci.yml'
   pull_request:
     paths:
@@ -14,6 +15,7 @@ on:
       - 'source/overlay/core/verified_epg_match.py'
       - 'tools/audit_rc80_public_feed_provenance.py'
       - 'tests/test_rc80_elcinema_large_gaps.py'
+      - 'tests/test_rc80_public_feed_provenance.py'
       - '.github/workflows/rc80-elcinema-severe-gap-ci.yml'
 permissions:
   contents: read
