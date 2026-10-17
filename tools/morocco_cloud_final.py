@@ -24,6 +24,7 @@ import morocco_cloud_runner as runner
 import morocco_cloud_legacy_logic as legacy
 import morocco_cloud_runner_ar2_quality as final2m
 import morocco_current_official as current_official
+import arryadia_archive_patterns as arr_policy
 
 TZ = runner.TZ
 
@@ -165,6 +166,19 @@ def _install_per_channel_lkg():
     historical_choose = runner.choose
 
     def choose_channel_complete(name, fresh, old, channel_ids, minimum):
+        if name == "arryadia":
+            # Six-month archive findings are matching hints only. The old
+            # SNRT grid can be weeks stale, and last-known-good XML contains
+            # synthetic 'Programmes Arryadia' three-hour fillers. Never revive
+            # these as current broadcaster announcements.
+            verified = arr_policy.validated_rows(fresh)
+            hints = arr_policy.observed_family_counts(verified)
+            runner.log(
+                "Arryadia real-only: verified_current=%d rejected=%d "
+                "history_family_matches=%s; no LKG or synthetic filler"
+                % (len(verified), len(fresh) - len(verified), hints)
+            )
+            return verified, ("real-only" if verified else "real-source-unavailable")
         if name == "chada":
             # User source policy: CHADA TV may ONLY come from the broadcaster's
             # official weekly schedule. Never accept an old receiver programme,
@@ -290,6 +304,11 @@ def _install_strict_writer():
             for e in clean
         ):
             raise RuntimeError("AlAoula EPG Arabic official provenance violation")
+        if any(
+            e.channel in arr_policy.ARR_IDS and not arr_policy.actual_arr_event(e)
+            for e in clean
+        ):
+            raise RuntimeError("Arryadia EPG provenance violation: stale or artificial programme")
         useful_ids = {e.channel for e in _valid_horizon(clean)}
         missing = sorted(set(base.CHANNELS) - useful_ids)
         if missing:
@@ -297,7 +316,7 @@ def _install_strict_writer():
                 "MOROCCO_PARTIAL_REAL_ONLY missing_current_epg=%s; no synthetic events"
                 % ",".join(missing)
             )
-        critical = {"2M", "Arryadia_HD", "MEDI1TV_AR.ma"}
+        critical = {"2M", "MEDI1TV_AR.ma"}
         if critical - useful_ids:
             raise RuntimeError(
                 "Refusing Morocco candidate missing core verified EPG for: %s"

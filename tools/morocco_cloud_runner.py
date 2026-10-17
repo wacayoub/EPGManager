@@ -360,6 +360,11 @@ def main():
         if name == "chada":
             status[name]["source"] = "https://chada.ma/fr/tv/grille/"
             status[name]["policy"] = "official-only"
+        if name == "arryadia":
+            status[name]["source"] = "https://www.snrt.ma/ar/node/4070"
+            status[name]["policy"] = "real-current-only"
+            status[name]["historical_hints"] = "read-only; not broadcast programmes"
+            status[name]["stale_feed_or_fillers_count_as_epg"] = False
 
     # Dedupe and infer missing stops independently by channel.
     ded = {}

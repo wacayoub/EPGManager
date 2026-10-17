@@ -49,7 +49,7 @@ class ArabicAlAoula(unittest.TestCase):
             runner.write_xml=lambda rows,path: {e.channel for e in rows}
             cloud._install_strict_writer()
             core=[event("2M","نشرة الأخبار","sudinfo"),
-                  event("Arryadia_HD","برنامج رياضي","snrt"),
+                  event("Arryadia_HD","برنامج رياضي","arryadia-current-official"),
                   event("MEDI1TV_AR.ma","نشرة الأخبار","medi1")]
             with self.assertRaisesRegex(RuntimeError,"Arabic official"):
                 runner.write_xml(core+[event("AlAoula","Jmaatna zina","snrt-official-live")],"unused")

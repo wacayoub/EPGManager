@@ -370,38 +370,20 @@ def format_football_title(title, desc):
     return new_title, final_desc, is_live
 
 
-def _arryadia_filler(start, end):
-    out = defaultdict(list)
-    cur = start
-    while cur < end:
-        nxt = min(end, cur + timedelta(hours=3))
-        for cid in ARR_IDS:
-            name = ARR_NAMES[cid]
-            out[cid].append((cur, nxt, "Programmes %s" % name, "Suivez le meilleur du sport sur %s." % name))
-        cur = nxt
-    return out
-
-
 def _arryadia_fill_gaps(scraped, start, end):
-    result = defaultdict(list)
-    for cid in ARR_IDS:
-        progs = sorted(scraped.get(cid, []), key=lambda x: x[0])
-        name = ARR_NAMES[cid]
-        cur = start
-        for p in progs:
-            while cur < p[0] - timedelta(minutes=1):
-                gap_end = min(p[0], cur + timedelta(hours=3))
-                result[cid].append((cur, gap_end, "Programmes %s" % name,
-                                    "Suivez le meilleur du sport marocain et international sur %s." % name))
-                cur = gap_end
-            result[cid].append(p)
-            cur = max(cur, p[1])
-        while cur < end:
-            nxt = min(end, cur + timedelta(hours=3))
-            result[cid].append((cur, nxt, "Programmes %s" % name,
-                                "Suivez le meilleur du sport marocain et international sur %s." % name))
-            cur = nxt
-    return result
+    """Do not invent missing programmes: return only broadcaster-dated rows.
+
+    Previous implementation manufactured a three-hour "Programmes Arryadia"
+    entry in every gap and even when the official feed was from last month.
+    Preserve the interface for receiver-side editorial compatibility.
+    """
+    return {
+        cid: sorted(
+            (row for row in scraped.get(cid, []) if
+             start <= row[0] < end and row[1] > row[0]),
+            key=lambda x: x[0],
+        ) for cid in ARR_IDS
+    }
 
 
 def scrape_arryadia_historical(days):
@@ -447,14 +429,15 @@ def scrape_arryadia_historical(days):
         except Exception:
             continue
 
+    # Never shift old programmes to today's timeline. Date classes in SNRT's
+    # existing /node/4070 page are stale (2026-09 while current is 2026-10).
+    details = [
+        row for row in details
+        if start <= row["start"] < end
+    ]
     if not details:
-        filler = _arryadia_filler(start, end)
-        out = []
-        for cid in ARR_IDS:
-            for st, sp, ti, de in filler[cid]:
-                out.append(base.Event(cid, st, ti, de, sp, "fr", "ar", "arryadia"))
-        runner.log("Arryadia historical logic: no grid, filler=%d" % len(out))
-        return out
+        runner.log("Arryadia: official grid has no current dated programmes; no synthetic fallback")
+        return []
 
     details.sort(key=lambda x: x["start"])
     unique_starts = sorted({x["start"] for x in details})
@@ -468,16 +451,19 @@ def scrape_arryadia_historical(days):
             intended = ["Arryadia_HD", "Arryadia_TNT"]
         for cid in intended:
             title, desc, _live = format_football_title(p["title"], p["desc"])
-            if cid in ("Arryadia_HD1", "Arryadia_HD2", "Arryadia_HD3") and not title.upper().startswith("LIVE:"):
-                title = "Live: %s" % title
+            # HD1/HD2/HD3 are not inherently live. Only the broadcaster's
+            # explicit (Direct / مباشر / LIVE) metadata may add Live:.
+            # format_football_title already handles that condition.
             scraped[cid].append((p["start"], stop, title, desc))
 
     filled = _arryadia_fill_gaps(scraped, start, end)
     out = []
     for cid in ARR_IDS:
         for st, sp, ti, de in filled[cid]:
-            out.append(base.Event(cid, st, ti, de, sp, "fr", "ar", "arryadia"))
-    runner.log("Arryadia historical logic: %d raw / %d final events" % (len(details), len(out)))
+            title_lang = "ar" if re.search(r"[\u0600-\u06ff]", ti) else "fr"
+            desc_lang = "ar" if re.search(r"[\u0600-\u06ff]", de) else "fr"
+            out.append(base.Event(cid, st, ti, de, sp, title_lang, desc_lang, "arryadia-current-official"))
+    runner.log("Arryadia real-only: %d date-valid source rows / %d verified events" % (len(details), len(out)))
     return out
 
 

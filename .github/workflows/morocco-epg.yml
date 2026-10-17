@@ -333,15 +333,21 @@ jobs:
                                   if st and sp and sp[:14] <= st[:14]:
                                       bad_time.append((x.get('channel'), st, sp))
 
-                              # Historical Arryadia rule: real HD1/2/3 events are LIVE;
-                              # synthetic gap fillers deliberately start with 'Programmes'.
+                              # Real-only Arryadia: HD1/2/3 are never assumed LIVE.
+                              # Confirmed direct broadcasts are labelled by the
+                              # broadcaster, not by their channel name.
                               bad_hd_live = []
                               for x in arr:
                                   if x.get('channel') not in {'Arryadia_HD1','Arryadia_HD2','Arryadia_HD3'}:
                                       continue
                                   t = x.find('title')
                                   tt = (t.text or '') if t is not None else ''
-                                  if tt and not tt.startswith('Programmes ') and not tt.upper().startswith('LIVE:'):
+                                  desc = (x.findtext('desc') or '').lower()
+                                  explicitly_direct = (
+                                      'مباشر' in desc or 'direct' in desc
+                                      or 'live' in desc
+                                  )
+                                  if explicitly_direct and tt and not tt.upper().startswith('LIVE:'):
                                       bad_hd_live.append(tt)
 
                               weather_bad = []
@@ -364,8 +370,12 @@ jobs:
                                   reason = '2M Arabic description quality failed: %d/%d bad; sample=%r' % (len(bad_d), len(twom), bad_d[:3])
                               elif len(snrt) < 10:
                                   reason = 'SNRT programme count too small: %d' % len(snrt)
-                              elif len(arr) < 10:
-                                  reason = 'Arryadia programme count too small: %d' % len(arr)
+                              elif any(
+                                  ((x.findtext('title') or '').strip().startswith('Programmes Arryadia'))
+                                  or (x.findtext('title') or '').strip() in {'Programme', 'Programmes'}
+                                  for x in arr
+                              ):
+                                  reason = 'Arryadia artificial filler detected in candidate XMLTV'
                               elif bad_time:
                                   reason = 'SNRT/Arryadia invalid stop timeline: %r' % (bad_time[:3],)
                               elif weather_bad:
