@@ -24,6 +24,7 @@ import morocco_cloud_runner as runner
 import morocco_cloud_legacy_logic as legacy
 import morocco_cloud_runner_ar2_quality as final2m
 import morocco_alaoula_fallback as alaoula_fallback
+import morocco_current_official as current_official
 
 TZ = runner.TZ
 
@@ -234,7 +235,11 @@ def _strict_cloud_timeline(rows):
 
 
 def _install_strict_writer():
-    """Refuse a receiver candidate containing any zero-EPG stable channel."""
+    """Preserve verified programmes when an optional provider is offline.
+
+    Missing channels keep their stable <channel> records but receive no
+    synthetic <programme>; the manifest reports the zero-EPG IDs.
+    """
     historical_write = runner.write_xml
 
     def strict_write(rows, path):
@@ -242,9 +247,15 @@ def _install_strict_writer():
         useful_ids = {e.channel for e in _valid_horizon(clean)}
         missing = sorted(set(base.CHANNELS) - useful_ids)
         if missing:
+            runner.log(
+                "MOROCCO_PARTIAL_REAL_ONLY missing_current_epg=%s; no synthetic events"
+                % ",".join(missing)
+            )
+        critical = {"2M", "Arryadia_HD", "MEDI1TV_AR.ma"}
+        if critical - useful_ids:
             raise RuntimeError(
-                "Refusing Morocco candidate with zero useful EPG for: %s"
-                % ", ".join(missing)
+                "Refusing Morocco candidate missing core verified EPG for: %s"
+                % ", ".join(sorted(critical - useful_ids))
             )
         return historical_write(clean, path)
 
@@ -272,12 +283,15 @@ def main():
             if e.channel == "AlAoula"
         ]
         if not current_alaoula:
-            runner.log("AlAoula official SNRT has zero useful events; trying guarded fallback")
-            try:
-                backup = alaoula_fallback.scrape(min(days, 3))
-            except Exception as exc:
-                runner.log("AlAoula guarded fallback failed: %s" % exc)
-                backup = []
+            runner.log("AlAoula historical SNRT grid empty; checking current official page")
+            backup = current_official.scrape_alaoula(days)
+            if not backup:
+                runner.log("AlAoula official live grid unavailable; trying guarded fallback")
+                try:
+                    backup = alaoula_fallback.scrape(min(days, 3))
+                except Exception as exc:
+                    runner.log("AlAoula guarded fallback failed: %s" % exc)
+                    backup = []
             if backup:
                 rows.extend(backup)
                 runner.log("AlAoula guarded fallback accepted: %d events" % len(backup))
@@ -286,6 +300,20 @@ def main():
         return _snrt_cloud_cleanup(rows, days)
 
     base.scrape_snrt = cloud_snrt
+
+    # Chada's previous /chada-tv/grille-tv/ endpoint is obsolete.
+    # Use verified current official weekly day panels; preserve the
+    # historical donor only as a non-authoritative outage fallback.
+    previous_chada = runner.scrape_chada
+
+    def cloud_chada(days):
+        rows = current_official.scrape_chada(days)
+        if len(rows) >= 3:
+            return rows
+        runner.log("Chada current official guide empty; checking historical donor")
+        return previous_chada(days)
+
+    runner.scrape_chada = cloud_chada
 
     # Global safety overlays: provider groups may use LKG per channel, and the
     # final receiver timeline must be strict across SNRT, Arryadia, 2M, Chada
