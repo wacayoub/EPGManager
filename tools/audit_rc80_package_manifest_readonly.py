@@ -33,6 +33,21 @@ PRIVATE_REVIEWABLE = frozenset((
 ))
 BASELINE_VERSION = "2026.10.08-rc79.1"
 
+# Immutable Git blob identities of the three reviewed public RC80 sources.
+# Comparing staging against a local checkout alone would accept coordinated
+# tampering of both staging and checkout. These identifiers are branch-independent.
+PINNED_PUBLIC_GIT_BLOBS = {
+    "ui/channel_mapping.py": "26165496d9c530058dbdbc858c34794c0a4fb1a2",
+    "core/verified_epg_match.py": "03d5b779ec639ed7e8f82f7205cf34af4e4af56d",
+    "core/verified_epg_refresh.py": "ce9c57773c739977782d22c373993a81e3a68361",
+}
+
+
+def _git_blob_sha(raw):
+    header = b"blob " + str(len(raw)).encode("ascii") + b"\x00"
+    return hashlib.sha1(header + raw).hexdigest()
+
+
 
 def digest(raw):
     return hashlib.sha256(raw).hexdigest()
@@ -101,15 +116,32 @@ def audit(staged_plugin, manifest, reviewed_deltas=None, public_root=None):
     if set(actual) != set(files) | set(CORE_ADDITIONS):
         raise ValueError("source inventory does not match 138 original paths + 2 RC80 modules")
 
-    # UI and new core additions are exact bytes from the reviewed public PR.
+    # Authenticate the public Git overlay separately from staged PRIVATE mapping.
+    # Replacing the entire receiver GUI with the public preview loses working
+    # Auto Mapping behavior; verified real receivers use a SHA-pinned method graft.
     public_expected = {
         CHANGED_PUBLIC_UI: public / "source/overlay/ui/channel_mapping.py",
         CORE_ADDITIONS[0]: public / "source/overlay/core/verified_epg_match.py",
         CORE_ADDITIONS[1]: public / "source/overlay/core/verified_epg_refresh.py",
     }
     for rel, path in public_expected.items():
-        if path.is_symlink() or not path.is_file() or actual[rel] != path.read_bytes():
+        if path.is_symlink() or not path.is_file():
+            raise ValueError("missing reviewed public overlay: " + rel)
+        if _git_blob_sha(path.read_bytes()) != PINNED_PUBLIC_GIT_BLOBS[rel]:
+            raise ValueError("public source differs from audited Git blob: " + rel)
+    for rel in CORE_ADDITIONS:
+        if actual[rel] != public_expected[rel].read_bytes():
             raise ValueError("unverified new public overlay: " + rel)
+    private_ui_reconciled = (
+        files[CHANGED_PUBLIC_UI]["sha256"]
+        == "314cbd1dee923bdbe4b1930867050f57194a45bd94970a6924f21df6a2007002"
+    )
+    if private_ui_reconciled:
+        from reconcile_rc80_private_mapping import RECONCILED_UI_SHA256
+        if digest(actual[CHANGED_PUBLIC_UI]) != RECONCILED_UI_SHA256:
+            raise ValueError("staged private Mapping UI differs from reviewed reconciliation")
+    elif actual[CHANGED_PUBLIC_UI] != public_expected[CHANGED_PUBLIC_UI].read_bytes():
+        raise ValueError("synthetic preview UI differs from reviewed public source")
 
     changes = {}
     for rel, record in files.items():
@@ -119,7 +151,8 @@ def audit(staged_plugin, manifest, reviewed_deltas=None, public_root=None):
                 raise ValueError("claimed private modification did not occur: " + rel)
             continue
         if rel == CHANGED_PUBLIC_UI:
-            changes[rel] = "public-review-exact"
+            changes[rel] = ("private-reconciled-sha-locked" if private_ui_reconciled
+                            else "public-review-exact")
         elif rel in reviewed and digest(raw) == reviewed[rel]:
             changes[rel] = "private-reviewed-hash"
         else:

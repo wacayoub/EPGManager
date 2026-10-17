@@ -86,6 +86,23 @@ class TestRC80PackageIntegrity(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "unverified new public overlay"):
                 gate.audit(plugin, manifest, reviewed)
 
+    def test_coordinated_staging_checkout_tamper_rejected(self):
+        """Matching a modified checkout is not enough without frozen blob IDs."""
+        with tempfile.TemporaryDirectory() as temp:
+            plugin, manifest, reviewed = make_tree(temp)
+            mirror = Path(temp) / "tampered-checkout"
+            for rel in gate.PINNED_PUBLIC_GIT_BLOBS:
+                src = ROOT / "source" / "overlay" / rel
+                dest = mirror / "source" / "overlay" / rel
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                dest.write_bytes(src.read_bytes())
+            changed = b"# Python-valid but NOT reviewed on GitHub\n"
+            target = "core/verified_epg_refresh.py"
+            (plugin / target).write_bytes(changed)
+            (mirror / "source" / "overlay" / target).write_bytes(changed)
+            with self.assertRaisesRegex(ValueError, "audited Git blob"):
+                gate.audit(plugin, manifest, reviewed, mirror)
+
     def test_private_module_modification_without_digest_rejected(self):
         with tempfile.TemporaryDirectory() as temp:
             plugin, manifest, reviewed = make_tree(temp)

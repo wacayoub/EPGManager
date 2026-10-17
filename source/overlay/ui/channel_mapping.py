@@ -23,7 +23,7 @@ from Components.ProgressBar import ProgressBar
 from Components.MenuList import MenuList
 from .compat import MultiContentEntryText
 
-from ..core import channel_mapper, channel_registry, external_sources, activity_store, source_catalog, source_metadata, mapping_safety, srp_channel_map, smartmatch_ai, source_channel_cache, source_channel_sync, source_quality, programme_preview_cache, openepg_id_catalog, srp_master_engine, channel_identity_resolver, id_coverage_audit, source_id_harvester, performance_cache, smart_mapping_warm_cache, smart_context_match, source_variant_policy, smart_name_index_cache, unified_channel_identity, smart_context_engine, source_collision_audit, mapping_regression, perf_profiler, multilingual_channel_aliases, multilingual_guard, service_variant_guard, programme_feed_policy, bouquet_lazy, smart_mapping_view, precision_match_engine, mapping_view_cache, id_mapping_engine, mapping_strategy, manual_match_lite, remote_channel_catalog, smart_catalog_boot, smart_boot_name_index, source_priority, sid_reset, github_direct_sync, system_check, smart_source_cache_refresh
+from ..core import channel_mapper, channel_registry, external_sources, activity_store, source_catalog, source_metadata, mapping_safety, srp_channel_map, smartmatch_ai, source_channel_cache, source_channel_sync, source_quality, programme_preview_cache, openepg_id_catalog, srp_master_engine, channel_identity_resolver, id_coverage_audit, source_id_harvester, performance_cache, smart_mapping_warm_cache, smart_context_match, source_variant_policy, smart_name_index_cache, unified_channel_identity, smart_context_engine, source_collision_audit, mapping_regression, perf_profiler, multilingual_channel_aliases, multilingual_guard, service_variant_guard, programme_feed_policy, bouquet_lazy, smart_mapping_view, precision_match_engine, mapping_view_cache, id_mapping_engine, mapping_strategy, manual_match_lite, remote_channel_catalog, smart_catalog_boot, smart_boot_name_index, source_priority, sid_reset, github_direct_sync, system_check, smart_source_cache_refresh, github_match_health
 # Optional until the private 138-module receiver build is fully reconstructed.
 # An absent new RC80 evidence module must NEVER break the working rc79 UI.
 try:
@@ -857,6 +857,17 @@ class ChannelMappingScreen(Screen):
         self._source_nav_timer = eTimer()
         _scb = self._source_nav_timer.callback if hasattr(self._source_nav_timer, "callback") else self._source_nav_timer.timeout.get()
         _scb.append(self._source_nav_idle)
+        # RC80: restore non-blocking per-ID GitHub health updates from rc79.1.
+        # Network work is owned by the existing core daemon, never by eTimer/UI.
+        try:
+            self._github_health_generation = int(github_match_health.generation())
+        except Exception:
+            self._github_health_generation = 0
+        self._github_best_health_timer = eTimer()
+        _ghcb = (self._github_best_health_timer.callback
+                 if hasattr(self._github_best_health_timer, "callback")
+                 else self._github_best_health_timer.timeout.get())
+        _ghcb.append(self._poll_github_best_match_health)
         # RC17: non-imported SAFE EPG previews warm in their own daemon/timer.
         # The timer only polls an atomic result and repaints cached rows; provider
         # I/O never executes on Enigma2's UI thread.
@@ -1123,7 +1134,7 @@ class ChannelMappingScreen(Screen):
         self._suggestion_job_token = int(getattr(self, "_suggestion_job_token", 0) or 0) + 1
         self._safe_preview_warm_token = int(getattr(self, "_safe_preview_warm_token", 0) or 0) + 1
         self._safe_preview_warm_busy = False
-        for timer in (getattr(self, "_timer", None), getattr(self, "_idle_timer", None), getattr(self, "_receiver_nav_timer", None), getattr(self, "_source_nav_timer", None), getattr(self, "_safe_preview_timer", None)):
+        for timer in (getattr(self, "_timer", None), getattr(self, "_idle_timer", None), getattr(self, "_receiver_nav_timer", None), getattr(self, "_source_nav_timer", None), getattr(self, "_safe_preview_timer", None), getattr(self, "_github_best_health_timer", None)):
             try:
                 if timer is not None:
                     timer.stop()
@@ -4998,6 +5009,13 @@ class ChannelMappingScreen(Screen):
             if not src:
                 continue
             epg.setdefault("source_name", src.get("source_name") or sid)
+            # Existing RC79.1 feed-specific quality: cached lookup only.
+            # The async refresh is queued later, outside candidate ranking.
+            try:
+                live_health = str(github_match_health.health(sid, cid) or "UNKNOWN").upper()
+            except Exception:
+                live_health = "UNKNOWN"
+            epg["_github_health"] = live_health
 
             try:
                 verdict = id_mapping_engine.evaluate(service, src, epg, learned=False) or {}
@@ -5078,6 +5096,16 @@ class ChannelMappingScreen(Screen):
                 except Exception:
                     pass
 
+            # New RC80 per-ID on-air proof outranks older source summaries.
+            # When no fresh verified report exists, preserve the working
+            # RC79.1 quality fallback instead of presenting 0-EPG as SAFE.
+            if "_verified_epg_rank" not in epg:
+                live_rank = {"EPG_OK": 1, "EPG_WARN": 2,
+                             "SYNTHETIC": 5, "NO_EPG": 5}
+                epg["_verified_epg_rank"] = live_rank.get(live_health, 3)
+                if live_health in ("SYNTHETIC", "NO_EPG"):
+                    auto = False
+                    grade = "NO EPG" if live_health == "NO_EPG" else "REVIEW"
             epg["_precision_auto"] = bool(auto)
             epg["_precision_grade"] = grade
             epg["_precision_confidence"] = confidence
@@ -5137,6 +5165,7 @@ class ChannelMappingScreen(Screen):
         rows = [pair[1] for pair in best_by_source.values()]
         rows.sort(key=lambda e: (
             0 if e.get("_suggestion_current") else 1,
+            int(e.get("_verified_epg_rank", 3)),
             0 if e.get("_precision_auto") else 1,
             -int(e.get("_precision_confidence") or 0),
             0 if e.get("_suggestion_active") else 1,
@@ -5161,6 +5190,39 @@ class ChannelMappingScreen(Screen):
         except Exception:
             pass
         return rows[:max(1, int(limit or 40))]
+
+    def _queue_github_best_match_health(self, suggestions):
+        """Request small source quality snapshots without blocking the UI."""
+        source_ids = {str(row.get("source_id") or "")
+                      for row in suggestions if isinstance(row, dict)}
+        source_ids.discard("")
+        if not source_ids:
+            return
+        try:
+            requested = bool(github_match_health.refresh_async(source_ids))
+            if requested or github_match_health.is_busy():
+                self._github_best_health_timer.start(350, True)
+        except Exception:
+            pass
+
+    def _poll_github_best_match_health(self):
+        """Refresh only the visible suggestions when cached health changes."""
+        try:
+            current_generation = int(github_match_health.generation())
+            if current_generation != self._github_health_generation:
+                self._github_health_generation = current_generation
+                # Do not discard unrelated selection caches or rescans.
+                for key in tuple(self.selection_cache):
+                    if isinstance(key, tuple) and key and key[0] == "__smart_suggestions__":
+                        self.selection_cache.pop(key, None)
+                selected = self._current("sources", self.source_groups) or {}
+                service = self._current("channels", self.bouquet_services) or {}
+                if selected.get("suggestion_all_sources") and service:
+                    self._refresh_cross_source_suggestions(service)
+            if github_match_health.is_busy():
+                self._github_best_health_timer.start(450, True)
+        except Exception:
+            pass
 
     def _refresh_cross_source_suggestions(self, service):
         """Paint pane 4 with one suggested EPG match per prepared source."""
@@ -5194,6 +5256,7 @@ class ChannelMappingScreen(Screen):
             return
 
         suggestions = self._cross_source_suggestion_candidates(service, limit=12)
+        self._queue_github_best_match_health(suggestions)
         # rc46: the title is already shown by the pane/header.  Do NOT insert a
         # fake first list row here: on real OpenATV/Metrix that separator could
         # receive the blue cursor and trap navigation at index 0.  Pane 4 now
@@ -5231,6 +5294,14 @@ class ChannelMappingScreen(Screen):
                     preview += "  •  NO EPG"
                 elif health == "48H_FAILED_ID_REVIEW":
                     preview += "  •  48H SHORT"
+                elif not health:
+                    live = str(epg.get("_github_health") or "")
+                    if live == "EPG_OK":
+                        preview += "  •  EPG ✓"
+                    elif live == "EPG_WARN":
+                        preview += "  •  EPG REVIEW"
+                    elif live in ("NO_EPG", "SYNTHETIC"):
+                        preview += "  •  " + live.replace("_", " ")
                 rows.append(preview)
                 ordered.append(epg)
 
