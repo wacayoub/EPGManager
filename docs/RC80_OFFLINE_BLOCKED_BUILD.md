@@ -68,3 +68,13 @@ The public canonical offline assembler now uses `tools/reconcile_rc80_private_ma
 The private rescue, original receiver source, reconciled source and user settings were **not uploaded to GitHub**, and neither `opkg` nor the receiver was accessed. The canonical IPK is `0600`, with a mandatory unconditionally blocking `preinst exit 90`; it remains **NOT INSTALLABLE**. Python 3.13/3.14 synthetic tests passed for the updated canonical build flow at [run 38983197591](https://github.com/wacayoub/EPGManager/actions/runs/38983197591).
 
 **Next gate:** separate supervised, installable *test* package preparation and controlled Enigma2 GUI, native GitHub EPG import, auto/manual mapping persistence, source health, and full scheduler/timezone smoke tests on safe hardware. This private inspection artifact must never be installed. Real opkg rollback remains `NOT_TESTED_WAIVED_BY_OWNER`, not PASS. No production release, `update.json` change or RC79.1 receiver modification is authorized by these offline results.
+
+## 2026-10-16: isolated eight-case EPG behavior replay on actual private RC80 IPK
+
+Against the SHA-256-pinned 215-file canonical private inspection IPK, a separate *local offline* harness ran the actual `github_match_health.classify` function in isolation, with fixed clock and synthetic inputs. The eight scenarios passed: missing report → UNKNOWN, stale report → UNKNOWN, proven no EPG → NO_EPG, future slots without quality proof → EPG_WARN, quality-certified live EPG → EPG_OK, majority generated placeholders → SYNTHETIC, repeated low-diversity events → SUSPECT, and failed quality row → EPG_WARN. No XMLTV or user mappings were accessed.
+
+Actual 254 method ASTs from the original private Mapping UI were compared with the RC80 IPK. Only the four reviewed Best Match preview/health methods changed. `ui/main.py`, `ui/settings.py`, `ui/theme.py`, `plugin.py`, `core/epg_cycle.py` and `core/direct_native_import.py` remain byte-identical to the RC79.1 baseline. The new Overview/menu redesign is **not** included in this conservative RC80 candidate and must not be advertised as implemented.
+
+Read-only lab-handoff PR #11 was merged into this staging branch after Python 3.13 and 3.14 tests passed. VuLink's previous relay issue had request comments only and did not independently verify receiver connectivity.
+
+**Still NOT TESTED:** RC80 GUI/remote controls on hardware, native XMLTV import end-to-end, retained manual/auto mappings after reboot, source programme freshness on the box, and a complete Casablanca-local 24-hour scheduler cycle. There is no authorized installable package or production release. Hardware opkg rollback remains `NOT_TESTED_WAIVED_BY_OWNER`. The blocked inspection IPK MUST NOT be installed.
