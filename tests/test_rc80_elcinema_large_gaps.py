@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 import unittest
 from test_rc80_verified_epg_refresh import refresh, fixture, reader, NOW, bridge
-from test_rc80_elcinema_partial_48h import inputs, observed, m
+from test_rc80_elcinema_partial_48h import inputs, observed, m, NOW as CLI_NOW
 
 def source_xml_fixture(gap):
     docs,meta,audit,quality,raw=fixture("elcinema")
@@ -68,7 +68,7 @@ class ExtremeElCinema(unittest.TestCase):
         self.assertFalse(m.mapping_quality_for_id("short1",x)["auto_eligible"])
     def test_cli_metadata_alone_not_enough(self):
         a,b,c,v=cli_warn_fixture(1440)
-        x=m.assess("elcinema",a,b,c,NOW.replace(hour=12,minute=10).timestamp())
+        x=m.assess("elcinema",a,b,c,CLI_NOW.timestamp())
         self.assertEqual(x["partial_48h_blocked_ids"],["short1"])
         self.assertFalse(x["ready_for_epg_ok"])
     def test_cli_mismatched_warning_rows_closed(self):
