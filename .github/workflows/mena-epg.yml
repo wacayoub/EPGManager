@@ -57,6 +57,8 @@ concurrency:
 
 jobs:
   build:
+    # No source-data publication or generator execution from RC80 review branches.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
