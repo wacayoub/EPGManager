@@ -23,22 +23,25 @@ import requests
 from bs4 import BeautifulSoup
 
 TZ = ZoneInfo("Africa/Casablanca")
+# Explicit scope: the user excluded Arryadia HD3 from match discovery.
+# HD / TNT remain in the normal SNRT EPG pipeline, but are not assumed to
+# simulcast HD1/HD2. Do not infer a channel from a different channel's guide.
 SOURCES = {
     "Arryadia_HD1": "https://www.livefootballtv.info/channel/arryadia-hd1",
     "Arryadia_HD2": "https://www.livefootballtv.info/channel/arryadia-hd2",
-    "Arryadia_HD3": "https://www.livefootballtv.info/channel/moroccan-sports",
 }
+EXCLUDED_MATCH_CHANNELS = frozenset({"Arryadia_HD3"})
 HEADING_DATE = re.compile(r"(\d{2})/(\d{2})/(20\d{2})")
 CLOCK = re.compile(r"^(?:[01]\d|2[0-3]):[0-5]\d$")
 
 
 def parse_fixture_candidates(html, cid, today, source_url):
     if cid not in SOURCES:
-        raise ValueError("Unknown Arryadia HD variant: %r" % cid)
+        raise ValueError("Arryadia variant excluded or unsupported: %r" % cid)
     soup = BeautifulSoup(html, "lxml")
     h = soup.select_one("h1")
     if not h or cid.upper().replace("_", " ") not in h.get_text(" ", strip=True).upper():
-        # The alias URL currently presents an HD3 heading; avoid cross-channel.
+        # Never reinterpret an HD3 or other-channel heading as HD1/HD2.
         return []
     results = []
     day = None
@@ -121,6 +124,7 @@ def main():
         "source_clock_timezone": "UNVERIFIED",
         "never_publish_directly": True,
         "channel_ids_probed": list(SOURCES),
+        "excluded_match_channels": sorted(EXCLUDED_MATCH_CHANNELS),
         "candidate_count": len(rows),
         "collision_count": collisions,
         "source_errors": errors,
