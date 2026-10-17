@@ -166,7 +166,8 @@ def main() -> int:
         canonical = (row.get("receiver_canonical_id") or "").strip()
         name = (row.get("channel_name") or "").strip()
         source = (row.get("source") or "").strip().casefold()
-        provider_probe = " ".join([raw, name]).casefold()\n        probe = " ".join([raw, canonical, name]).casefold()
+        provider_probe = " ".join([raw, name]).casefold()
+        probe = " ".join([raw, canonical, name]).casefold()
 
         # Provider/network families take priority over country suffixes.
         if source == "rotana.net" or "rotana" in provider_probe:
