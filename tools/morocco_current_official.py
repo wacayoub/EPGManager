@@ -8,6 +8,7 @@ import re
 from bs4 import BeautifulSoup
 import morocco_epg as base
 import morocco_cloud_runner as runner
+from morocco_cloud_legacy_logic import WEATHER_DESC
 
 TZ = runner.TZ
 SNRT_LIVE_URL = "https://www.snrt.ma/ar/al-aoula"
@@ -58,8 +59,12 @@ def parse_alaoula_html(html, today, now=None):
         stop = parsed[i+1][0] if i+1 < len(parsed) else start + timedelta(hours=1)
         if stop <= start:
             continue
+        # Keep original Arabic title from the SNRT live grid. The established
+        # EPGManager SNRT weather description is the editorial description
+        # required by the existing production quality gate.
+        description = WEATHER_DESC if title == "أحوال الطقس" else title
         events.append(base.Event(
-            "AlAoula", start, title, title, stop, "ar", "ar",
+            "AlAoula", start, title, description, stop, "ar", "ar",
             "snrt-official-arabic",
         ))
     return events
