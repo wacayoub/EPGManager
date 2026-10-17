@@ -1,15 +1,15 @@
 {
   "channel_counts": {
-    "2M": 257,
+    "2M": 218,
     "AFLAM.ma": 52,
-    "AlAoula": 31,
-    "AlMaghribiya": 359,
+    "AlAoula": 30,
+    "AlMaghribiya": 358,
     "Arrabiaa": 162,
-    "Arryadia_HD": 120,
-    "Arryadia_HD1": 24,
-    "Arryadia_HD2": 24,
-    "Arryadia_HD3": 24,
-    "Arryadia_TNT": 120,
+    "Arryadia_HD": 0,
+    "Arryadia_HD1": 0,
+    "Arryadia_HD2": 0,
+    "Arryadia_HD3": 0,
+    "Arryadia_TNT": 0,
     "Assadisa": 431,
     "Chada TV": 43,
     "MEDI1TV_AR.ma": 48,
@@ -17,20 +17,30 @@
     "Tamazight": 241
   },
   "channels": 15,
-  "generated": "2026-10-17T21:51:59.581856+00:00",
-  "missing_current_epg": [],
-  "programmes": 1950,
-  "publication_status": "complete",
-  "sha256": "9d9c49a29aaefe2d8f6a0f9743fc85a8af518579c439cfd37e171e5f50e93003",
-  "size": 41282,
+  "generated": "2026-10-17T22:13:06.365399+00:00",
+  "missing_current_epg": [
+    "Arryadia_HD",
+    "Arryadia_HD1",
+    "Arryadia_HD2",
+    "Arryadia_HD3",
+    "Arryadia_TNT"
+  ],
+  "programmes": 1597,
+  "publication_status": "partial_real_only",
+  "sha256": "07e463ca98721e0c0bf688826400f56dd65e2f98c4090142f0bc02a4a0f63ea9",
+  "size": 35002,
   "sources": {
     "2m": {
-      "events": 257,
+      "events": 218,
       "mode": "fresh"
     },
     "arryadia": {
-      "events": 312,
-      "mode": "fresh"
+      "events": 0,
+      "historical_hints": "read-only; not broadcast programmes",
+      "mode": "real-source-unavailable",
+      "policy": "real-current-only",
+      "source": "https://www.snrt.ma/ar/node/4070",
+      "stale_feed_or_fillers_count_as_epg": false
     },
     "chada": {
       "events": 43,
@@ -43,11 +53,11 @@
       "mode": "fresh"
     },
     "snrt": {
-      "events": 1276,
+      "events": 1274,
       "mode": "fresh+alaoula-official-arabic"
     }
   },
   "timezone": "Africa/Casablanca",
   "url": "morocco.xml.gz",
-  "version": "20261017-215159"
+  "version": "20261017-221306"
 }
