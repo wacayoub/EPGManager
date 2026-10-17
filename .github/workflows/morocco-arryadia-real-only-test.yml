@@ -1,0 +1,58 @@
+name: Arryadia real-only source and historical match regression
+on:
+  push:
+    branches:
+      - fix/morocco-arryadia-real-only-20261017
+  pull_request:
+    paths:
+      - tools/arryadia_archive_patterns.py
+      - tools/morocco_cloud_final.py
+      - tools/morocco_cloud_legacy_logic.py
+      - tools/morocco_cloud_runner.py
+      - tests/test_morocco_arryadia_real_only.py
+      - .github/workflows/morocco-arryadia-real-only-test.yml
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests beautifulsoup4 lxml cloudscraper curl_cffi
+      - name: Source identity, no filler, no archive-as-current, no forced live tests
+        run: |
+          PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_arryadia_real_only.py -v
+          PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_chada_official_only.py -v
+          PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_alaoula_arabic_source.py -v
+      - name: Generate 7-day Morocco guide without publishing
+        run: |
+          mkdir -p previous output
+          curl -fL --retry 2 --max-time 25 \
+            https://raw.githubusercontent.com/wacayoub/EPGManager/epg-data/morocco.xml.gz \
+            -o previous/morocco.xml.gz
+          timeout 600s python tools/morocco_cloud_final.py --output-dir output --previous previous/morocco.xml.gz --days 7
+      - name: Verify 15 IDs and no fake Arryadia events in real-world candidate
+        run: |
+          python - <<'PY'
+          import gzip,json,xml.etree.ElementTree as ET
+          from pathlib import Path
+          m=json.loads(Path("output/manifest.json").read_text())
+          r=ET.fromstring(gzip.decompress(Path("output/morocco.xml.gz").read_bytes()))
+          names={c.get("id") for c in r.findall("channel")}
+          ids=["Arryadia_HD","Arryadia_TNT","Arryadia_HD1","Arryadia_HD2","Arryadia_HD3"]
+          assert len(names)==15 and set(ids)<=names
+          arr=[p for p in r.findall("programme") if p.get("channel") in ids]
+          assert not [p.findtext("title") for p in arr if (p.findtext("title") or "").startswith("Programmes Arryadia")]
+          assert m["sources"]["arryadia"]["policy"]=="real-current-only"
+          assert m["sources"]["arryadia"]["stale_feed_or_fillers_count_as_epg"] is False
+          assert len(arr)==m["sources"]["arryadia"]["events"]
+          assert m["channel_counts"]["2M"]>200
+          assert m["channel_counts"]["AlAoula"]>0
+          assert m["channel_counts"]["Chada TV"]>0
+          print("ARRYADIA_REAL_ONLY_SMOKE: PASS verified_event_count=%d missing=%s guide_total=%s" % (
+              len(arr),m["missing_current_epg"],m["programmes"]))
+          PY
