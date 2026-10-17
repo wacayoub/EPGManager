@@ -1,0 +1,54 @@
+name: Al Aoula Arabic official guide regression
+on:
+  push:
+    branches:
+      - fix/morocco-alaoula-official-arabic-first-20261017
+  pull_request:
+    paths:
+      - tools/morocco_current_official.py
+      - tools/morocco_cloud_final.py
+      - tests/test_morocco_alaoula_arabic_source.py
+      - tests/test_morocco_live_official.py
+      - .github/workflows/morocco-alaoula-arabic-test.yml
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install requests beautifulsoup4 lxml cloudscraper curl_cffi
+      - name: Arabic source regression and no French LKG fallback
+        run: |
+          PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_alaoula_arabic_source.py -v
+          PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_live_official.py -v
+      - name: Verify actual Arabic SNRT website and 7-day Morocco output without publish
+        run: |
+          mkdir -p previous output
+          curl -fL --retry 2 --connect-timeout 5 --max-time 25 \
+             https://raw.githubusercontent.com/wacayoub/EPGManager/epg-data/morocco.xml.gz \
+             -o previous/morocco.xml.gz
+          timeout 600s python tools/morocco_cloud_final.py --output-dir output --previous previous/morocco.xml.gz --days 7
+          python - <<'PY'
+          import json, gzip, re, xml.etree.ElementTree as ET
+          from pathlib import Path
+          m=json.loads(Path('output/manifest.json').read_text(encoding='utf8'))
+          r=ET.fromstring(gzip.decompress(Path('output/morocco.xml.gz').read_bytes()))
+          shows=[e for e in r.findall('programme') if e.get('channel')=='AlAoula']
+          titles=[(e.findtext('title'),e.findtext('desc')) for e in shows]
+          fail=[t for t in shows if t.find('title').get('lang')!='ar' or
+                  t.find('desc').get('lang')!='ar' or not re.search(r'[\u0600-\u06ff]',t.findtext('title') or '') or
+                  not re.search(r'[\u0600-\u06ff]',t.findtext('desc') or '')]
+          print('ALAOULA_ARABIC_REAL',len(shows),'wrong_language',len(fail),
+                'samples',titles[:8], 'morocco_channels',m['channels'],'programmes',m['programmes'])
+          assert m['channels']==15
+          assert len(shows)>=8
+          assert not fail
+          assert m['channel_counts']['2M']>=200
+          assert m['channel_counts']['Chada TV']>0
+          print('ALAOULA_OFFICIAL_ARABIC: PASS')
+          PY
