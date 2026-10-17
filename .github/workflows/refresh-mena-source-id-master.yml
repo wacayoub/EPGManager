@@ -19,6 +19,8 @@ concurrency:
 
 jobs:
   refresh:
+    # Never write the main source-ID master from a review branch.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
