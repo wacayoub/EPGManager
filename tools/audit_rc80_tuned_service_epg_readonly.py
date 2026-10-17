@@ -36,16 +36,26 @@ def query(method, params=None):
         raise ValueError("unexpected API response")
     return obj
 
-def safe_sat_reference(obj):
+def inspect_current(obj):
+    """Classify the live service safely, without logging its name or reference."""
     if obj.get("result") is not True:
-        return None
+        return None, "NO_CURRENT_SERVICE_REPORTED"
     ref = obj.get("ref")
-    if not isinstance(ref, str) or not (10 < len(ref) < 300):
-        return None
-    lower = ref.lower()
-    if not ref.startswith("1:0:") or any(s in lower for s in ("http", "://", "%3a", "@")):
-        return None
-    return ref
+    if not isinstance(ref, str) or not ref.strip():
+        return None, "CURRENT_REF_MISSING"
+    if len(ref) > 300:
+        return None, "CURRENT_REF_OVERSIZED_OR_STREAM"
+    low = ref.lower()
+    if any(token in low for token in ("http", "%3a", "://", "@", "/")):
+        return None, "CURRENT_SERVICE_STREAM_OR_URL"
+    parts = ref.rstrip(":").split(":")
+    if len(parts) != 10:
+        return None, "CURRENT_REF_NOT_STANDARD_DVB"
+    if parts[0] != "1" or parts[1] != "0":
+        return None, "CURRENT_SERVICE_NOT_DVB_SAT_STYLE"
+    if any(not part or not all(c in "0123456789abcdefABCDEF" for c in part) for part in parts[2:]):
+        return None, "CURRENT_REF_UNEXPECTED_FORMAT"
+    return ref, "DVB_SERVICE_REFERENCE_VALID"
 
 def measure(events, epoch):
     valid = current = future = 0
@@ -74,9 +84,10 @@ def run():
            "service_name_or_reference_disclosed": False, "epg": {}}
     try:
         cur = query("getcurrent")
-        ref = safe_sat_reference(cur)
+        ref, classification = inspect_current(cur)
+        out["current_reference_class"] = classification
         if not ref:
-            out["status"] = "NO_SAFE_SAT_SERVICE_TUNED"
+            out["status"] = "CURRENT_SERVICE_IDENTIFIED_NO_SAT_EPG_QUERY"
             return out
         out["safe_sat_service_selected"] = True
         epoch = int(time.time())
