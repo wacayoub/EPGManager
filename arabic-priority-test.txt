@@ -1,35 +1,27 @@
 ARABIC PRIORITY REGRESSION TEST
 
-=== Aden TV ===
-shard=mena-ye id=<missing> events=0 status=MISSING_ID
-title AR=0% EN=0% | desc AR=0%
+=== Hadhramaut TV ===
+shard=mena-ye id=Hadhramaut.TV.ye events=39 status=PASS_ARABIC
+title AR=97% EN=3% | desc AR=100%
 
-=== AFAQ TV ===
-shard=mena-iq id=<missing> events=0 status=MISSING_ID
-title AR=0% EN=0% | desc AR=0%
+=== Al Sumaria TV ===
+shard=mena-iq id=Alsumaria.2.iq events=35 status=PASS_ARABIC
+title AR=86% EN=14% | desc AR=100%
 
-=== Al Nada TV ===
-shard=mena-eg id=<missing> events=0 status=MISSING_ID
-title AR=0% EN=0% | desc AR=0%
+=== Al Nahar TV ===
+shard=mena-eg id=Al.Nahar.2.eg events=36 status=PASS_ARABIC
+title AR=100% EN=0% | desc AR=100%
 
 DISNEY + NATIONAL GEOGRAPHIC REVIEW / QUARANTINE GATE
 
-[QUARANTINE_PENDING_PROMOTION] mena-other/Disney Channel.sa
-  issues=NONE
-[QUARANTINE_PENDING_PROMOTION] mena-other/Disney Junior.sa
-  issues=NONE
-[QUARANTINE_HIDDEN] mena-other/Nat geo hd.qa
-[QUARANTINE_PENDING_PROMOTION] mena-other/Nat. Geo. AD.sa
-  issues=NONE
-[QUARANTINE_PENDING_PROMOTION] mena-other/Nat. Geo. Wild HD.sa
-  issues=NONE
-[QUARANTINE_PENDING_PROMOTION] mena-other/Nat. Geographic.sa
-  issues=NONE
-[QUARANTINE_HIDDEN] mena-other/NationalGeographicMiddleEast.uk@SD
-[QUARANTINE_HIDDEN] provider-adm/Nat.Geo.Abu.Dhabi.HD.ae
+[QUARANTINE_HIDDEN] mena-other/Disney.Channel.mena
+[QUARANTINE_HIDDEN] mena-other/Disney.Junior.mena
+[QUARANTINE_HIDDEN] mena-other/Nat.Geo.AD.mena
+[QUARANTINE_HIDDEN] mena-other/Nat.Geo.Wild.mena
+[QUARANTINE_HIDDEN] mena-other/Nat.Geographic.mena
+[QUARANTINE_HIDDEN] provider-adm/ADM.National.Geographic.Abu.Dhabi.ae
 [QUARANTINE_REVIEW] provider-adm/NationalGeographicAbuDhabi.ae
-  issues=EMPTY_DESC=68, TITLE_AR_LOW=0%, DESC_AR_LOW=0%
-[QUARANTINE_HIDDEN] provider-adm/NationalGeographicAbuDhabi.ae@SD
+  issues=EMPTY_DESC=60, TITLE_AR_LOW=12%
 
 family_review_gate=PASS
 

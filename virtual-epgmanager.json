@@ -9,13 +9,13 @@
       "shard": "provider-mbc",
       "policy": "arabic",
       "safe_lock": true,
-      "best_id": "MBC5.ae@SD",
+      "best_id": "MBC.5.mena",
       "best_status": "PASS",
       "candidates": [
         {
-          "id": "MBC5.ae@SD",
+          "id": "MBC.5.mena",
           "name": "MBC 5",
-          "events": 35,
+          "events": 36,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 100.0,
@@ -39,14 +39,14 @@
       "shard": "provider-mbc",
       "policy": "arabic",
       "safe_lock": true,
-      "best_id": "MBC1.ae@SD",
+      "best_id": "MBC.1.mena",
       "best_status": "PASS",
       "candidates": [
         {
-          "id": "MBC1.ae@SD",
+          "id": "MBC.1.mena",
           "name": "MBC1",
-          "events": 48,
-          "score": 98.9,
+          "events": 47,
+          "score": 97.3,
           "status": "PASS",
           "title_ar_pct": 100.0,
           "title_en_pct": 0.0,
@@ -71,17 +71,17 @@
       "shard": "provider-mbc",
       "policy": "arabic",
       "safe_lock": true,
-      "best_id": "MBC2.ae@SD",
+      "best_id": "MBC.2.mena",
       "best_status": "PASS",
       "candidates": [
         {
-          "id": "MBC2.ae@SD",
+          "id": "MBC.2.mena",
           "name": "MBC2",
-          "events": 24,
+          "events": 22,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 100.0,
-          "title_en_pct": 12.5,
+          "title_en_pct": 31.8,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
           "empty_desc": 0,
@@ -101,17 +101,17 @@
       "shard": "provider-mbc",
       "policy": "arabic",
       "safe_lock": true,
-      "best_id": "MBCAction.ae@SD",
+      "best_id": "MBC.Action.mena",
       "best_status": "PASS",
       "candidates": [
         {
-          "id": "MBCAction.ae@SD",
+          "id": "MBC.Action.mena",
           "name": "MBC Action",
-          "events": 53,
+          "events": 48,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 100.0,
-          "title_en_pct": 47.2,
+          "title_en_pct": 27.1,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
           "empty_desc": 0,
@@ -131,16 +131,16 @@
       "shard": "provider-bein",
       "policy": "premium",
       "safe_lock": true,
-      "best_id": "beIN SPORTS 1.qa",
+      "best_id": "beIN.Sports.1.qa",
       "best_status": "PASS",
       "candidates": [
         {
-          "id": "beIN SPORTS 1.qa",
-          "name": "beIN SPORTS 1.qa",
-          "events": 26,
-          "score": 93.5,
+          "id": "beIN.Sports.1.qa",
+          "name": "beIN Sports 1",
+          "events": 33,
+          "score": 100.0,
           "status": "PASS",
-          "title_ar_pct": 15.4,
+          "title_ar_pct": 24.2,
           "title_en_pct": 100.0,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
@@ -149,10 +149,8 @@
           "short_duplicates": 0,
           "nonpositive": 0,
           "mixed_tz_days": 0,
-          "mbc_meta_titles": 4,
-          "reasons": [
-            "4 title(s) still contain season/episode"
-          ]
+          "mbc_meta_titles": 0,
+          "reasons": []
         }
       ]
     },
@@ -163,16 +161,16 @@
       "shard": "provider-bein",
       "policy": "premium",
       "safe_lock": true,
-      "best_id": "beINSports2.qa@MENA",
+      "best_id": "beIN.Sports.2.qa",
       "best_status": "PASS",
       "candidates": [
         {
-          "id": "beINSports2.qa@MENA",
-          "name": "beINSPORTS2",
-          "events": 15,
+          "id": "beIN.Sports.2.qa",
+          "name": "beIN Sports 2",
+          "events": 20,
           "score": 100.0,
           "status": "PASS",
-          "title_ar_pct": 13.3,
+          "title_ar_pct": 10.0,
           "title_en_pct": 100.0,
           "desc_ar_pct": 100.0,
           "desc_en_pct": 0.0,
@@ -192,28 +190,30 @@
       "receiver": "Abu Dhabi Sports 1 HD",
       "shard": "provider-adm",
       "policy": "arabic",
-      "safe_lock": true,
+      "safe_lock": false,
       "best_id": "AbuDhabiSports1.ae",
-      "best_status": "PASS",
+      "best_status": "FAIL",
       "candidates": [
         {
           "id": "AbuDhabiSports1.ae",
           "name": "Abu Dhabi Sports 1",
-          "events": 23,
-          "score": 89.8,
-          "status": "PASS",
-          "title_ar_pct": 100.0,
-          "title_en_pct": 0.0,
-          "desc_ar_pct": 100.0,
+          "events": 39,
+          "score": 27.0,
+          "status": "FAIL",
+          "title_ar_pct": 0.0,
+          "title_en_pct": 100.0,
+          "desc_ar_pct": 0.0,
           "desc_en_pct": 0.0,
-          "empty_desc": 13,
+          "empty_desc": 39,
           "overlaps": 0,
           "short_duplicates": 0,
           "nonpositive": 0,
           "mixed_tz_days": 0,
           "mbc_meta_titles": 0,
           "reasons": [
-            "13 empty description(s)"
+            "Arabic title coverage 0%",
+            "Arabic description coverage 0%",
+            "39 empty description(s)"
           ]
         }
       ]
@@ -225,13 +225,13 @@
       "shard": "provider-osn",
       "policy": "premium",
       "safe_lock": true,
-      "best_id": "OSNMoviesAction.ae@SD",
+      "best_id": "OSN.Movies.Action.ae",
       "best_status": "PASS",
       "candidates": [
         {
-          "id": "OSNMoviesAction.ae@SD",
+          "id": "OSN.Movies.Action.ae",
           "name": "OSNtv Movies Action",
-          "events": 15,
+          "events": 14,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 0.0,
@@ -255,11 +255,11 @@
       "shard": "provider-osn",
       "policy": "premium",
       "safe_lock": true,
-      "best_id": "OSNMoviesPremiere.ae@SD",
+      "best_id": "OSN.Movies.Premiere.ae",
       "best_status": "PASS",
       "candidates": [
         {
-          "id": "OSNMoviesPremiere.ae@SD",
+          "id": "OSN.Movies.Premiere.ae",
           "name": "OSNtv Movies Premiere",
           "events": 16,
           "score": 100.0,
@@ -285,13 +285,13 @@
       "shard": "provider-alkass",
       "policy": "arabic",
       "safe_lock": true,
-      "best_id": "Alkass One.qa",
+      "best_id": "AlKass.One.qa",
       "best_status": "PASS",
       "candidates": [
         {
-          "id": "Alkass One.qa",
-          "name": "Alkass One.qa",
-          "events": 21,
+          "id": "AlKass.One.qa",
+          "name": "Alkass One",
+          "events": 4,
           "score": 100.0,
           "status": "PASS",
           "title_ar_pct": 100.0,
@@ -305,6 +305,26 @@
           "mixed_tz_days": 0,
           "mbc_meta_titles": 0,
           "reasons": []
+        },
+        {
+          "id": "AlKass.2023.Alkass.1.qa",
+          "name": "2023 Alkass 1.qa",
+          "events": 28,
+          "score": 73.5,
+          "status": "REVIEW",
+          "title_ar_pct": 0.0,
+          "title_en_pct": 100.0,
+          "desc_ar_pct": 100.0,
+          "desc_en_pct": 0.0,
+          "empty_desc": 0,
+          "overlaps": 0,
+          "short_duplicates": 0,
+          "nonpositive": 0,
+          "mixed_tz_days": 0,
+          "mbc_meta_titles": 0,
+          "reasons": [
+            "Arabic title coverage 0%"
+          ]
         }
       ]
     }

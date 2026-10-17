@@ -2,10 +2,9 @@
   "schema": 1,
   "mode": "virtual-epgmanager-exhaustive-osn-production-policy",
   "summary": {
-    "channels": 22,
-    "programmes": 852,
+    "channels": 20,
+    "programmes": 740,
     "counts": {
-      "ALIAS_OK": 2,
       "PASS": 20
     }
   },
@@ -13,20 +12,17 @@
     "OSN Ya Hala.eg": "OSNYahala.ae@SD",
     "Osn Ya Hala Aflam.eg": "OSNYahalaAflam.ae@SD"
   },
-  "compat_aliases": {
-    "OSN Ya Hala.eg": "OSNYahala.ae@SD",
-    "Osn Ya Hala Aflam.eg": "OSNYahalaAflam.ae@SD"
-  },
+  "compat_aliases": {},
   "channels": [
     {
-      "id": "Osn Ya Hala Aflam.eg",
-      "name": "Osn Ya Hala Aflam.eg",
-      "family": "OSN Movies",
-      "kind": "movies",
-      "events": 18,
-      "fingerprint": "274acf105dda882fb2734a94b8cc47b59758cebe",
-      "coverage_hours": 28.67,
-      "span_hours": 28.67,
+      "id": "OSN.Comedy.ae",
+      "name": "OSNtv Comedy",
+      "family": "OSN Comedy",
+      "kind": "comedy",
+      "events": 71,
+      "fingerprint": "6de1d541f371eb4b0bfd8085821feeca308b9289",
+      "coverage_hours": 30.43,
+      "span_hours": 30.43,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -44,57 +40,60 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 11.1,
-      "unique_title_pct": 83.3,
+      "top_title_pct": 23.9,
+      "unique_title_pct": 12.7,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260915201500 +0000",
-          "stop": "20260915215500 +0000",
-          "title": "Shalaby",
-          "desc": "يحلم صابر بترك وظيفته المُملة ليصبح مبدع عروض الدمى المتحركة, فيقوم بتصميم دمية يُطلِق عليها شلبي وسرعان ما يخوض أحداث مشوقة برفقة أصدقاءه وجيرانه أثناء سعيهم لتحقيق الشهرة."
+          "start": "20261017173400 +0000",
+          "stop": "20261017175600 +0000",
+          "title": "Friends",
+          "desc": "الجميع يعلم إن كان طفل روس ذكراً أم أنثى باستثناء روس والذي يفضل أن ينتظر إلى موعد الولادة. تقوم مونيكا بتحضير الكثير من اللازانيا لخالتها ولكنها سرعان ما تكتشف أن خالتها لا تأكل ا"
         },
         {
-          "start": "20260915215500 +0000",
-          "stop": "20260915233500 +0000",
-          "title": "El Hana Elli Ana Feeh",
-          "desc": "أحمد، مستشار الزواج على وسائل التواصل الاجتماعي تصبح حياته فوضوية عندما تقوم زوجته بتشخيص نفسها بشكل خاطئ بمرض مميت وتجبره على الزواج من أفضل صديقاتها."
+          "start": "20261017175600 +0000",
+          "stop": "20261017182100 +0000",
+          "title": "Friends",
+          "desc": "شاندلر يشاهد وبدون قصد راشيل وهي بملابس غير محتشمة بعد انتهائها من الاستحمام، يضطر جوي إلى محاولة التوفيق بين والديه واتخاذ قرار بإخفاء أمر علاقة والده مع إمرأة أخرى عن والدته"
         },
         {
-          "start": "20260915233500 +0000",
-          "stop": "20260916011500 +0000",
-          "title": "Sugar Daddy",
-          "desc": "يقوم شوقي بأخذ حبيبته ناتاليا في رحلة إلى سهل حشيش. عندما يكتشف أبناؤه العلاقة، يتوجهون إلى هناك لمواجهته وإنقاذ زواج والديهم."
+          "start": "20261017182100 +0000",
+          "stop": "20261017184400 +0000",
+          "title": "Friends",
+          "desc": "يصادف أول موعد غرامي لروس منذ 9 أعوام عيد الفالنتين، يرتب جوي موعداً غرامياً لشاندلر مع جانيس. وتتسبب فيبي، مونيكا وراشيل في حريق أثناء محاولتهم إحراق تذكارات قديمة."
         },
         {
-          "start": "20260916011500 +0000",
-          "stop": "20260916023500 +0000",
-          "title": "Al Thulatha 12",
-          "desc": "تكافح ثلاث فتيات يبلغن من العمر أربعة عشر عاما، أمل الرياضية، سلمى عازفة البيانو ونور الراقصة المتمردة، مع والدهمن لتحقيق أحلامهمن."
+          "start": "20261017184400 +0000",
+          "stop": "20261017190700 +0000",
+          "title": "Friends",
+          "desc": "تقوم مونيكا بتحضير وجبة شهية لصاحب مطعم يبحث عن طباخ جديد، يحصل تشاندلر على ترقية، ثم يقوم بالاستقالة ويعود من بعدها للعمل من جديد. لدى روس موعد غرامي مع زميلة له."
         }
       ],
-      "verdict": "ALIAS_OK",
+      "verified_kids_single_minute_clip": false,
+      "verdict": "PASS",
       "issues": [],
       "warnings": [],
-      "diagnostic": [],
+      "diagnostic": [
+        "LOW_TITLE_DIVERSITY=13%"
+      ],
       "source_status": "NORMAL",
       "mapping_mode": "normal_candidate",
       "auto_lock_safe": true,
-      "compat_canonical": "OSNYahalaAflam.ae@SD",
-      "alias_exact_match": true
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
-      "id": "OSN Ya Hala.eg",
-      "name": "OSN Ya Hala.eg",
-      "family": "OSN Yahala",
-      "kind": "arabic_entertainment",
+      "id": "OSN.Crime.ae",
+      "name": "OSNtv Crime",
+      "family": "OSN Crime",
+      "kind": "crime",
       "events": 37,
-      "fingerprint": "558773112b73bdb65f2efd34b50f9cec6467e3e6",
-      "coverage_hours": 27.92,
-      "span_hours": 27.92,
+      "fingerprint": "fc2f867d42649140ec7f4dcce612decf0d1753e5",
+      "coverage_hours": 31.0,
+      "span_hours": 31.0,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -113,56 +112,126 @@
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 16.2,
-      "unique_title_pct": 21.6,
+      "unique_title_pct": 35.1,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260915200500 +0000",
-          "stop": "20260915205500 +0000",
-          "title": "El Kabeer Awy",
-          "desc": "يذهب الكبير ومربوحة إلي مستشارة العلاقات الزوجية لمحاولة إصلاح زواجهما والتي بدورها تقدم لهما الحل."
+          "start": "20261017171500 +0000",
+          "stop": "20261017180500 +0000",
+          "title": "My Wife, My Abuser: Captured on Camera",
+          "desc": "كان يعيش ريتشارد سبينسر كابوساً خفياً عن الأعين، إذ جعلته زوجته المُعتدية، شيري سبينسر، يخاف من ظلّه لعشرين عام."
         },
         {
-          "start": "20260915205500 +0000",
-          "stop": "20260915214500 +0000",
-          "title": "Sama Aleya",
-          "desc": "تواجه الشيخة صعوبة في التكيف مع الحياة في مصر والتعود على العادات والتقاليد، يحاول راشد مساعدتها على التكيف مع حياتها الجديدة."
+          "start": "20261017180500 +0000",
+          "stop": "20261017185500 +0000",
+          "title": "Black Widow",
+          "desc": "تحقق خطة دينا الشريرة أبعاد جديدة. لا تزال الشرطة تكافح للوصول إلى حقيقة وفاة جوليان ويب. بعد أربع سنوات من الهروب، يبدأ لي وايت في اكتشاف بأنه كان في الواقع ضحية لمؤامرة زوجته الم"
         },
         {
-          "start": "20260915214500 +0000",
-          "stop": "20260915223500 +0000",
-          "title": "Majareeh",
-          "desc": "تقرر غنيمة اصطحاب فوزية للإقامة معها في منزل مشعل بعد طلاقها من خالد، وترفض بدرية استقبال غنيمة وتتشاجر معها."
+          "start": "20261017185500 +0000",
+          "stop": "20261017201000 +0000",
+          "title": "Who Killed Robert Wone?",
+          "desc": "يستمر التحقيق الذي دام طويلاً في مقتل محامي العاصمة روبرت وون عام 2006، دون ظهور أي خيوط جديدة في الأفق، ويلاحق المدعون في النهاية اتهامات غير معتادة على أمل حل القضية وتحقيق العدا"
         },
         {
-          "start": "20260915223500 +0000",
-          "stop": "20260915232500 +0000",
-          "title": "Baba Geh",
-          "desc": "يعاني هشام من مشاكل مع زوجته وابنته بسبب كونه عاطل عن العمل، ويذهب لدعم ابنته وحضور المسرحية الخاصة بها فيُفاجأ بإحراجها له."
+          "start": "20261017201000 +0000",
+          "stop": "20261017210500 +0000",
+          "title": "Oz",
+          "desc": "مع تصاعد الأحداث في إم سيتي، يبدأ أورايلي علاقة مفاجئة. ويطلب زابتز حماية شيلينغر من كيلر، الذي يحاول الانضمام إلى برنامج إعادة التأهيل للتصالح مع الأخت بيت."
         }
       ],
-      "verdict": "ALIAS_OK",
+      "verified_kids_single_minute_clip": false,
+      "verdict": "PASS",
       "issues": [],
       "warnings": [],
       "diagnostic": [],
       "source_status": "NORMAL",
       "mapping_mode": "normal_candidate",
       "auto_lock_safe": true,
-      "compat_canonical": "OSNYahala.ae@SD",
-      "alias_exact_match": true
+      "compat_canonical": null,
+      "alias_exact_match": null
     },
     {
-      "id": "OSNComedy.ae@SD",
-      "name": "OSNtv Comedy",
-      "family": "OSN Comedy",
-      "kind": "comedy",
-      "events": 58,
-      "fingerprint": "0a2f07f37948dd2c68ca0cab073ce0b7c3f43042",
-      "coverage_hours": 27.83,
-      "span_hours": 27.83,
+      "id": "OSN.Documentary.ae",
+      "name": "OSNtv Documentary",
+      "family": "OSN Documentary",
+      "kind": "documentary",
+      "events": 29,
+      "fingerprint": "d4ec2913891bc6689c9dedfce4a36d035c233738",
+      "coverage_hours": 31.0,
+      "span_hours": 31.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 3.4,
+      "top_title_pct": 20.7,
+      "unique_title_pct": 27.6,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20261017170000 +0000",
+          "stop": "20261017183000 +0000",
+          "title": "The Vow",
+          "desc": "يُدان كيث رانييري بجميع التهم الموجهة إليه، بما في ذلك الابتزاز، والاتجار بالجنس، والتآمر للعمل القسري، وسرقة الهوية، وإنتاج وحيازة مواد إباحية للأطفال."
+        },
+        {
+          "start": "20261017183000 +0000",
+          "stop": "20261017192500 +0000",
+          "title": "Savior Complex",
+          "desc": "تُثار مزاعم مقلقة حول مبشرة أمريكية ودورها في تقديم الرعاية الطبية للأطفال داخل جمعيتها الخيرية في أوغندا."
+        },
+        {
+          "start": "20261017192500 +0000",
+          "stop": "20261017202500 +0000",
+          "title": "Savior Complex",
+          "desc": "ناشط أوغندي مع مبشر سابق يتعاونان معاً لكشف مخاطر عقلية الشخص الأبيض المنقذ وإغلاق المؤسسة الخيرية نهائياً."
+        },
+        {
+          "start": "20261017202500 +0000",
+          "stop": "20261017212500 +0000",
+          "title": "Savior Complex",
+          "desc": "تتعاون أمهات فقدن أطفالهن مع محامي أوغندي لرفع دعوى قضائية ضد رينيه باخ وعيادتها."
+        }
+      ],
+      "verified_kids_single_minute_clip": false,
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "diagnostic": [],
+      "source_status": "NORMAL",
+      "mapping_mode": "normal_candidate",
+      "auto_lock_safe": true,
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "OSN.iQIYI.ae",
+      "name": "OSNtv iQIYI",
+      "family": "OSN iQIYI",
+      "kind": "series",
+      "events": 20,
+      "fingerprint": "dc1ce0b89aad32a60d2b3edb377511bd8f2f4b53",
+      "coverage_hours": 31.75,
+      "span_hours": 31.75,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -180,44 +249,43 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 20.7,
-      "unique_title_pct": 15.5,
+      "top_title_pct": 20.0,
+      "unique_title_pct": 35.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260915201000 +0000",
-          "stop": "20260915210000 +0000",
-          "title": "Silicon Valley",
-          "desc": "قبل فترة من تحديد المهنة ، يقوم ريتشارد باكتشاف مذهل يغير كل شيء ويرسل فريق السباق بايد بايبر بأكمله ليحقق أكبر نصر لم يشهده وادي السيليكون على الإطلاق."
+          "start": "20261017164000 +0000",
+          "stop": "20261017182500 +0000",
+          "title": "Dog Days Are Over",
+          "desc": "يجد خمسة غرباء أنفسهم عالقين داخل نفق منهار، ولا يملكون سوى شاحنة محمّلة بالبيرة للبقاء على قيد الحياة، فيخوضون رحلة مليئة بالمواقف المضحكة والمثيرة للهروب."
         },
         {
-          "start": "20260915210000 +0000",
-          "stop": "20260915213000 +0000",
-          "title": "Veep",
-          "desc": "عند اكتشافهم أن ثورنهيا متقدم في نتيجة الانتخابات، تبحث سيلينا وطاقمها على طريقة لاظهار مدى تواضعها. وفي هذه الأثناء، تجري نائبة الرئيس مقابلة مع صحفي يقدم أسئلة مرتجلة، ويلتقي جون"
+          "start": "20261017182500 +0000",
+          "stop": "20261017213500 +0000",
+          "title": "Sing! Asia",
+          "desc": "يتولى مجموعة من المدربين الموسيقيين زمام الأمور للبحث عن النجوم، ومساعدة المغنيين الشباب على تطوير مهاراتهم وأحلامهم وشخصياتهم ليتمكنوا من الصعود إلى المسرح العالمي."
         },
         {
-          "start": "20260915213000 +0000",
-          "stop": "20260915220000 +0000",
-          "title": "The Comeback",
-          "desc": "بينما هي متحمسة بشأن حلقة من روم آند بورد مخصصة لشخصيتها، تحاول فاليري الحصول على ممثل معروف ليقوم بدور حبيب العمة ساسي. تصرفات مارك في فايبر روم تسلط الضوء على بعض القضايا الحميمي"
+          "start": "20261017213500 +0000",
+          "stop": "20261017222500 +0000",
+          "title": "My Unicorn Girl",
+          "desc": "يكشف وين بينغ الحقيقة لوالدته، التي تتقبل سانغ تيان. وعلى الرغم من انفصالهما، يستمران في علاقة سرية تحت مراقبة الآخرين."
         },
         {
-          "start": "20260915220000 +0000",
-          "stop": "20260915223000 +0000",
-          "title": "The Comeback",
-          "desc": "يتوجه مارك وفاليري إلى الصحراء لقضاء نهاية أسبوع طويلة في منتجع بالم سبرينغ. بينما يضع مارك الحدود مع طاقم جين في ملعب الغولف، تجد فاليري في أحد المعارف القدامى معلما جديدا."
+          "start": "20261017222500 +0000",
+          "stop": "20261017231000 +0000",
+          "title": "My Unicorn Girl",
+          "desc": "يكتشف يان ووشو هوية سانغ تيان وينشرها عبر الإنترنت، مما يجبرها على مغادرة فريق الهوكي."
         }
       ],
+      "verified_kids_single_minute_clip": false,
       "verdict": "PASS",
       "issues": [],
       "warnings": [],
-      "diagnostic": [
-        "LOW_TITLE_DIVERSITY=16%"
-      ],
+      "diagnostic": [],
       "source_status": "NORMAL",
       "mapping_mode": "normal_candidate",
       "auto_lock_safe": true,
@@ -225,21 +293,21 @@
       "alias_exact_match": null
     },
     {
-      "id": "OSNKids.ae@SD",
+      "id": "OSN.Kids.ae",
       "name": "OSNtv Kids",
       "family": "OSN Kids",
       "kind": "kids",
-      "events": 140,
-      "fingerprint": "e9a5b8e8e92b8257ad977d8e1a3e2d1b2315975a",
-      "coverage_hours": 28.03,
-      "span_hours": 28.03,
+      "events": 122,
+      "fingerprint": "cda483d3dbaa01e358b6af5f99da1848c4122d99",
+      "coverage_hours": 30.53,
+      "span_hours": 30.53,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
       "overlaps": 0,
       "long_gt_6h": 0,
       "long_gt_12h": 0,
-      "short_lt_2m": 0,
+      "short_lt_2m": 1,
       "empty_title": 0,
       "empty_desc": 0,
       "desc_same_title": 0,
@@ -250,43 +318,45 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 12.1,
-      "unique_title_pct": 15.0,
+      "top_title_pct": 10.7,
+      "unique_title_pct": 12.3,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260915200800 +0000",
-          "stop": "20260915203200 +0000",
-          "title": "Dragons: The Nine Realms",
-          "desc": "يحاول توم هزيمة ورلد سيربنت عن طريق محاكاة هيكاب."
+          "start": "20261017172900 +0000",
+          "stop": "20261017175100 +0000",
+          "title": "Matt Hatter Chronicles",
+          "desc": "بعد أن ألحق الأذى بعصا روكسي، يقوم ملك القردة بنقل الهارمونيانز وغوميز إلى مملكته الكريستالية. يتمكن مات وروكسي من تحرير غوميز، لكن لا يزال عليهما العثور على طريقة لتدمير المملكة ا"
         },
         {
-          "start": "20260915203200 +0000",
-          "stop": "20260915203900 +0000",
-          "title": "Bing",
-          "desc": "إنه عيد الهالوين! وبينغ قد تنكر في زي بايتيسوروس! لكن ماذا يحدث عندما يفاجئ تشارلي بصيحة \"بو\"؟"
+          "start": "20261017175100 +0000",
+          "stop": "20261017181300 +0000",
+          "title": "Matt Hatter Chronicles",
+          "desc": "عندما تضرب عاصفة نادرة من البرق الأزرق مدينة الكرنفال، يسعى تينوروك لاستغلال طاقتها من خلال لعب دور الكابتن لايتنينغ! يتسابق مات وروكسي وغوميز ضد الزمن لمنع لايتنينغ من نصب جهاز ال"
         },
         {
-          "start": "20260915203900 +0000",
-          "stop": "20260915204600 +0000",
-          "title": "Bing",
-          "desc": "تقوم \"سولا\" برسم \"بايتيسوروس\" على وجه \"بينغ\" باستخدام اللون الأخضر، لكنها تضيف اللون البنفسجي عن طريق الخطأ!"
+          "start": "20261017181300 +0000",
+          "stop": "20261017185800 +0000",
+          "title": "Team Hot Wheels: The Skills to Thrill",
+          "desc": "انضم إلى المغامرة المستمرة للمركبات مع فريق هوت ويلز وهم يواجهون الخطر الأقصى... موت القيادة!"
         },
         {
-          "start": "20260915204600 +0000",
-          "stop": "20260915205400 +0000",
-          "title": "Tee and Mo",
-          "desc": "تستيقظ تي مبكرًا جدًا وتريد اللعب فورًا! يتساءل مو عن مقدار النشاط المطلوب قبل أن يحتاج الجميع إلى قيلولة!"
+          "start": "20261017185800 +0000",
+          "stop": "20261017192000 +0000",
+          "title": "LEGO Marvel Superheroes - Spiderman Vexed by Venom",
+          "desc": "بفضل غوبلن الأخضر وفينوم، وصلت سرقات التكنولوجيا إلى أعلى مستوياتها على الإطلاق - هل سيتمكن صديقنا الودود سبايدرمان من وضع حد لمخططهما الشرير الغامض قبل أن يتم تدمير مدينة نيويورك "
         }
       ],
+      "verified_kids_single_minute_clip": true,
       "verdict": "PASS",
       "issues": [],
       "warnings": [],
       "diagnostic": [
-        "LOW_TITLE_DIVERSITY=15%"
+        "VERIFIED_OSN_KIDS_60S_CLIP=1",
+        "LOW_TITLE_DIVERSITY=12%"
       ],
       "source_status": "NORMAL",
       "mapping_mode": "normal_candidate",
@@ -295,14 +365,14 @@
       "alias_exact_match": null
     },
     {
-      "id": "OSNMezze.ae@SD",
+      "id": "OSN.Mezze.ae",
       "name": "OSNtv Mezze",
       "family": "OSN Mezze",
       "kind": "lifestyle",
-      "events": 28,
-      "fingerprint": "218d2ca410c2f3201ea763b3a34a71881527c907",
-      "coverage_hours": 28.42,
-      "span_hours": 28.42,
+      "events": 33,
+      "fingerprint": "ff7a3ba57f812d0c79dd9d3ae294e76c02960cac",
+      "coverage_hours": 31.08,
+      "span_hours": 31.08,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -320,38 +390,39 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 17.9,
-      "unique_title_pct": 25.0,
+      "top_title_pct": 18.2,
+      "unique_title_pct": 21.2,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260915193500 +0000",
-          "stop": "20260915210000 +0000",
-          "title": "My Kitchen Rules Australia",
-          "desc": "تتواجه الفرق في المطبخ المركزي لتفادي الخروج من المنافسة، والفوز بجائزة كبيرة من الحكّام مانو فيلديل وكولين فاسنيج."
+          "start": "20261017165500 +0000",
+          "stop": "20261017180500 +0000",
+          "title": "MasterChef Australia",
+          "desc": "يُمنح كل متسابق مكونًا، ثم يواجه قرارًا مصيريًا: إما أن يختار ما أمامه ويطهو به، أو يخاطر ويختار مكونًا مخفيًا قد يقلب الموازين."
         },
         {
-          "start": "20260915210000 +0000",
-          "stop": "20260915220000 +0000",
-          "title": "Hell's Kitchen",
-          "desc": "يواجه الطهاة تحدياً جديداً: تحدي ثمار البحر واللحوم الحمراء، حيث يقدم الشيف رامزي مجموعة مختارة من المأكولات البحرية والبروتينات. في أزواج، سيتذوق الطهاة أطباقاً تحتوي على صنفين، و"
+          "start": "20261017180500 +0000",
+          "stop": "20261017190000 +0000",
+          "title": "MasterChef USA",
+          "desc": "تخوض أفضل 3 ثنائيات ليلتهم الأخيرة والأكثر تحديًا في مطبخ ماسترشيف تحضيرًا للنهائي الكبير."
         },
         {
-          "start": "20260915220000 +0000",
-          "stop": "20260915230000 +0000",
-          "title": "John and Lisa's Weekend Kitchen",
-          "desc": "يعدّان جون وليزا قائمة طعام مثالية لأمسية رومانسية أو حتى ليلة رأس السنة، تبدأ بمقبلات من ريليت الخنزير وتليها وجبة رئيسية لذيذة من معجنات السلمون."
+          "start": "20261017190000 +0000",
+          "stop": "20261017200000 +0000",
+          "title": "Stanley Tucci: Searching for Italy",
+          "desc": "يزور ستانلي توتشي المنطقة التي حققت حلم توحيد إيطاليا وجعلته واقعًا ملموسًا."
         },
         {
-          "start": "20260915230000 +0000",
-          "stop": "20260916000000 +0000",
-          "title": "Top Chef",
-          "desc": "في آخر تحدي للإقصاء، يجب على الطهاة الثلاثة المتأهلين للنهائيات إعداد أفضل وجبة مكونة من أربع أطباق على الإطلاق، وبمساعدة الطهاة المساعدين، يجب على المتسابقين النهائيين تقديم كل ما"
+          "start": "20261017200000 +0000",
+          "stop": "20261017210000 +0000",
+          "title": "James Martin's Spanish Adventure",
+          "desc": "في كوستا ديل سول، يتعلم جيمس طريقة تحضير الباييلا العملاقة، ويزور القرية المنسية إيل أسيبوخال."
         }
       ],
+      "verified_kids_single_minute_clip": false,
       "verdict": "PASS",
       "issues": [],
       "warnings": [],
@@ -363,14 +434,14 @@
       "alias_exact_match": null
     },
     {
-      "id": "OSNMoviesAction.ae@SD",
+      "id": "OSN.Movies.Action.ae",
       "name": "OSNtv Movies Action",
       "family": "OSN Movies",
       "kind": "movies",
-      "events": 15,
-      "fingerprint": "2f2d272be2d4557dc38cd93f7b4c24df83954c41",
-      "coverage_hours": 29.42,
-      "span_hours": 29.42,
+      "events": 14,
+      "fingerprint": "e6539ce8f4770e6fb94ce50f405a4b309754170f",
+      "coverage_hours": 32.25,
+      "span_hours": 32.25,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -388,38 +459,246 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.3,
-      "unique_title_pct": 93.3,
+      "top_title_pct": 14.3,
+      "unique_title_pct": 78.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260915194500 +0000",
-          "stop": "20260915220500 +0000",
+          "start": "20261017154500 +0000",
+          "stop": "20261017180000 +0000",
+          "title": "Ready Player One",
+          "desc": "في عام 2045، أصبح العالم مكاناً قاسياً إذ اللحظات الوحيدة التي يشعر فيها وايد واتس بالحياة هي عندما يهرب إلى أويسيس، وهو العالم الافتراضي الغامر حيث يقضي معظم البشر أيامهم."
+        },
+        {
+          "start": "20261017180000 +0000",
+          "stop": "20261017200500 +0000",
+          "title": "Body Of Lies",
+          "desc": "يسعى عميل قي الاستخبارات الأمريكية إلى كشف عملية إرهابية خطيرة في الأردن، لكن هل يستطيع الوثوق بمن يدّعون أنهم حلفاؤه؟"
+        },
+        {
+          "start": "20261017200500 +0000",
+          "stop": "20261017223500 +0000",
+          "title": "The Dark Knight",
+          "desc": "يحرص كل من باتمان وجوردن وهارفي دنت على حشد كل طاقتهم وذكائهم ضد المجرم الداهية الجوكر الذي يثير الفوضى في المدينة."
+        },
+        {
+          "start": "20261017223500 +0000",
+          "stop": "20261018011500 +0000",
+          "title": "The Dark Knight Rises",
+          "desc": "في الجزء الأخير من ثلاثية باتمان نجد أن ذا دارك نايت قد تم تحريضه لمواجهة عدوه الجديد باين الذي يمتلك قوة وذكاء هائلين، ومصمم على بذل كل ما في استطاعته لتدمير حامي مدينة غوثام."
+        }
+      ],
+      "verified_kids_single_minute_clip": false,
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "diagnostic": [],
+      "source_status": "NORMAL",
+      "mapping_mode": "normal_candidate",
+      "auto_lock_safe": true,
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "OSN.Movies.Comedy.ae",
+      "name": "OSNtv Movies Comedy",
+      "family": "OSN Movies",
+      "kind": "movies",
+      "events": 19,
+      "fingerprint": "c577a5e15f78d7677b23348a4b44ff18017d21d4",
+      "coverage_hours": 33.0,
+      "span_hours": 33.0,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 10.5,
+      "unique_title_pct": 78.9,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20261017160000 +0000",
+          "stop": "20261017180500 +0000",
+          "title": "Sherlock Holmes: A Game Of Shadows",
+          "desc": "يقوم كل من شيرلوك هولمز وواتسون بتوحيد عقليهما لمحاربة البروفيسور الشرير موريارتي بعدما كشفا مؤامرته الشيطانية لزعزعة الإستقرار في العالم الغربي."
+        },
+        {
+          "start": "20261017180500 +0000",
+          "stop": "20261017194000 +0000",
+          "title": "Starter For 10",
+          "desc": "يعاني صبي إنجليزي من الطبقة العاملة، حالفه الحظ بأن يتم قبوله في جامعة خاصة راقية، لتحقيق حلم حياته بينما يحاول في الوقت ذاته الفوز بقلب الفتاة التي يحبها"
+        },
+        {
+          "start": "20261017194000 +0000",
+          "stop": "20261017212000 +0000",
+          "title": "Switched",
+          "desc": "بعد أن سئمت من التنمر، تصلي كاساندرا إيفانز بأن تجرب عدوّتها كايتي شارب، ملكة وسائل التواصل الاجتماعي، ما يعنيه أن تعيش يومًا في حياتها. تُستجاب صلاتها بطريقة غير متوقعة عندما يتبا"
+        },
+        {
+          "start": "20261017212000 +0000",
+          "stop": "20261017230000 +0000",
+          "title": "Weapons Of Mass Distraction",
+          "desc": "يُعرض الهجاء الموجه على وسائل الإعلام الحرب القائمة بين شركتي إعلام ضخمتين تتنافسان على شراء فريق كرة قدم لوس أنجلس."
+        }
+      ],
+      "verified_kids_single_minute_clip": false,
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "diagnostic": [],
+      "source_status": "NORMAL",
+      "mapping_mode": "normal_candidate",
+      "auto_lock_safe": true,
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "OSN.Movies.Family.ae",
+      "name": "OSNtv Movies Family",
+      "family": "OSN Movies",
+      "kind": "movies",
+      "events": 22,
+      "fingerprint": "f2edd79d04665e42ebef989fba40e1825bb8971f",
+      "coverage_hours": 31.67,
+      "span_hours": 31.67,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 9.1,
+      "unique_title_pct": 77.3,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20261017162000 +0000",
+          "stop": "20261017175000 +0000",
+          "title": "Mr. Peabody And Sherman",
+          "desc": "يسيء شيرمان، الصبي الصغير، استخدام آلة الزمن التي صنعها والده العالِم السيد بيبودي، مما يسبب فوضى في تاريخ العالم. الآن، يصبح على السيد بيبودي إنقاذ ابنه والعالم."
+        },
+        {
+          "start": "20261017175000 +0000",
+          "stop": "20261017192000 +0000",
+          "title": "Penguins Of Madagascar",
+          "desc": "يتحدون سكيبر وكوالسكي وريكو وبرايفت مع فريق النخبة نورث ويند لإنقاذ العالم"
+        },
+        {
+          "start": "20261017192000 +0000",
+          "stop": "20261017203500 +0000",
+          "title": "The Powerpuff Girls Movie",
+          "desc": "ثلاث فتيات خارقات - بلوسوم، بابلز وباتركاب - يحاربن الأشرار والوحوش لحماية مدينة تاونزفيل"
+        },
+        {
+          "start": "20261017203500 +0000",
+          "stop": "20261017220000 +0000",
+          "title": "Teen Titans Go To The Movies!",
+          "desc": "ينشغل خمسة فتية من الأبطال الخارقين عن تحقيق حلمهم بتحقيق النجومية في عالم السينما عند التصدي لمخططات شرير مهووس بالسيطرة على العالم."
+        }
+      ],
+      "verified_kids_single_minute_clip": false,
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "diagnostic": [],
+      "source_status": "NORMAL",
+      "mapping_mode": "normal_candidate",
+      "auto_lock_safe": true,
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "OSN.Movies.Hollywood.ae",
+      "name": "OSNtv Movies Hollywood",
+      "family": "OSN Movies",
+      "kind": "movies",
+      "events": 17,
+      "fingerprint": "2947ce758557cad3603fb19f2863d853c8dfdbae",
+      "coverage_hours": 32.58,
+      "span_hours": 32.58,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 17.6,
+      "unique_title_pct": 76.5,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20261017155500 +0000",
+          "stop": "20261017180000 +0000",
+          "title": "Superman II",
+          "desc": "يهمّ سوبرمان بالتخلي عن قواه من أجل الحب، لكن ثلاثة مجرمين خارقين من كوكبه الأصلي يظهرون على الأرض لمواجهته، بعد هروبهم من السجن."
+        },
+        {
+          "start": "20261017180000 +0000",
+          "stop": "20261017193000 +0000",
+          "title": "Never Goin' Back",
+          "desc": "تأخذان جيسي وأنجيلا، اللتان تركتا المدرسة الثانوية، أسبوعاً للراحة على الشاطئ، ولكن للأسف، يُسرق منزلهما، وعليهما دفع الإيجار، وهما على وشك أن يُفصلا عن العمل."
+        },
+        {
+          "start": "20261017193000 +0000",
+          "stop": "20261017215500 +0000",
           "title": "Man On Fire",
           "desc": "في مكسيكو سيتي، يتعهد عميل سابق في وكالة المخابرات المركزية بالانتقام من أولئك الذين ارتكبوا جرائماً بحق العائلة التي تم توظيفه لحمايتها."
         },
         {
-          "start": "20260915220500 +0000",
-          "stop": "20260916002000 +0000",
-          "title": "The Matrix",
-          "desc": "عندما يقود شخص غريب الهاكر نيون إلى عالم سفلي مريب، يكتشف الحقيقة الصادمة - الحياة التي يعرفها هي خدعة متقنة من قِبَل ذكاء اصطناعي شرير."
-        },
-        {
-          "start": "20260916002000 +0000",
-          "stop": "20260916023500 +0000",
-          "title": "The Matrix Reloaded",
-          "desc": "يواصل أبطال الحرية نيو وترينيتي ومورفيوس قيادة الثورة ضد جيش الآلات، مستخدمين ترسانتهم من المهارات الاستثنائية والأسلحة في مواجهة القوى النظامية للقمع والاستغلال."
-        },
-        {
-          "start": "20260916023500 +0000",
-          "stop": "20260916044000 +0000",
-          "title": "The Matrix Revolutions",
-          "desc": "تدافع مدينة زيون البشرية عن نفسها ضد الغزو الهائل للآلات بينما يحارب نيو لإنهاء الحرب في جبهة أخرى ويواجه أيضاً العميل المارق سميث."
+          "start": "20261017215500 +0000",
+          "stop": "20261018000000 +0000",
+          "title": "Room",
+          "desc": "بعد ان تم احتجازهما لمدة 7 سنوات في مكان مغلق تحررت امرأة وابنها الصغير أخيرًا مما سمح للصبي بتجربة العالم الخارجي لأول مرة."
         }
       ],
+      "verified_kids_single_minute_clip": false,
       "verdict": "PASS",
       "issues": [],
       "warnings": [],
@@ -431,14 +710,14 @@
       "alias_exact_match": null
     },
     {
-      "id": "OSNMoviesHollywood.ae@SD",
-      "name": "OSNtv Movies Hollywood",
+      "id": "OSN.Movies.Horror.ae",
+      "name": "OSNtv Movies Horror",
       "family": "OSN Movies",
       "kind": "movies",
-      "events": 16,
-      "fingerprint": "9bdd3bfae0445aac1460703aa55a722a37e0b968",
-      "coverage_hours": 28.75,
-      "span_hours": 28.75,
+      "events": 20,
+      "fingerprint": "0c5286b26c9e455628edcfe298a5d598b78b0476",
+      "coverage_hours": 32.67,
+      "span_hours": 32.67,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -456,38 +735,39 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 12.5,
-      "unique_title_pct": 81.2,
+      "top_title_pct": 10.0,
+      "unique_title_pct": 75.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260915200500 +0000",
-          "stop": "20260915215000 +0000",
-          "title": "The Wrestler",
-          "desc": "يُواجه مصارعٌ تقدّم به السن تحديات الحياة خارج الحلبة، بعدما أجبره جسده المنهك على الاعتزال، ليبدأ رحلة تصالح مع ما تبقّى له من العمر."
+          "start": "20261017162500 +0000",
+          "stop": "20261017180000 +0000",
+          "title": "Final Destination",
+          "desc": "الموت قادم. وأليكس براونينغ ملعون بمعرفة متى وكيف وأين سيأخذ ملك الموت ضحيته التالية"
         },
         {
-          "start": "20260915215000 +0000",
-          "stop": "20260915232500 +0000",
-          "title": "Blank",
-          "desc": "تسجّل كاتبة يائسة في منتجع يعمل بالذكاء الاصطناعي بالكامل لعلاج جمودها الإبداعي، ولكن يحبسها خللاً غير متوقع في النظام داخل المكان مع آليّة غير مستقرة."
+          "start": "20261017180000 +0000",
+          "stop": "20261017194000 +0000",
+          "title": "Tales From The Hood 3",
+          "desc": "تحذر فتاة صغيرة رجلاً في منتصف العمر من أخطار تقترب، بينما تسرد له أربع حكايات قاتمة تكشف الجانب المظلم من نسيج المجتمع الأخلاقي المشوَّه."
         },
         {
-          "start": "20260915232500 +0000",
-          "stop": "20260916012500 +0000",
-          "title": "Slumdog Millionaire",
-          "desc": "يُستجوب فتى من أحياء مومباي الفقيرة بعد أن أثار فوزه في برنامج أسئلة الشكوك، فيبدأ باسترجاع محطات من ماضيه تشرح كيف عرف كل الإجابات."
+          "start": "20261017194000 +0000",
+          "stop": "20261017211000 +0000",
+          "title": "Keep Watching",
+          "desc": "تصبح عائلة محتجزة في منزلها بواسطة متسللين يجبرونها على لعب لعبة حياة أو موت حيث تتضح القواعد الغامضة مع تقدم الّليل."
         },
         {
-          "start": "20260916012500 +0000",
-          "stop": "20260916031500 +0000",
-          "title": "The Duchess",
-          "desc": "يسرد الفيلم حكاية حياة الأرستقراطية جورجيانا، دوقة ديفونشاير في القرن الثامن عشر، التي أثارت الجدل بأسلوب حياتها الصاخب سياسياً وشخصياً."
+          "start": "20261017211000 +0000",
+          "stop": "20261017230000 +0000",
+          "title": "Saw III",
+          "desc": "يختطف جيغسو طبيباً ليُبقي نفسه على قيد الحياة، بينما يراقب تلميذه الجديد يُخضع رجلاً يدعى جيف لاختبار وحشي لا يرحم."
         }
       ],
+      "verified_kids_single_minute_clip": false,
       "verdict": "PASS",
       "issues": [],
       "warnings": [],
@@ -499,14 +779,14 @@
       "alias_exact_match": null
     },
     {
-      "id": "OSNMoviesPremiere.ae@SD",
+      "id": "OSN.Movies.Premiere.ae",
       "name": "OSNtv Movies Premiere",
       "family": "OSN Movies",
       "kind": "movies",
       "events": 16,
-      "fingerprint": "ab652a868174896767e5e4399a16d36c45aa296d",
-      "coverage_hours": 30.0,
-      "span_hours": 30.0,
+      "fingerprint": "6332d0e244585a6eefbddc32469bd00ef463217d",
+      "coverage_hours": 32.08,
+      "span_hours": 32.08,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -532,30 +812,31 @@
       ],
       "preview": [
         {
-          "start": "20260915180000 +0000",
-          "stop": "20260915203500 +0000",
-          "title": "Marty Supreme",
-          "desc": "مارتي ماوزر، شاب يحمل حلماً لا يحترمه أحد، يذهب إلى الجحيم ويعود في سعيه نحو العظمة."
+          "start": "20261017155500 +0000",
+          "stop": "20261017180000 +0000",
+          "title": "Superman",
+          "desc": "يروي الفيلم رحلة سوبرمان في المصالحة بين إرثه ككريبتوني يُدعى كال-إل وتربيته البشرية ككلارك كينت في بلدة سمولفيل بولاية كانساس."
         },
         {
-          "start": "20260915203500 +0000",
-          "stop": "20260915222000 +0000",
-          "title": "My Dead Friend Zoe",
-          "desc": "ميريت، وهي محاربة قديمة في الجيش الأمريكي تعاني من اضطراب ما بعد الصدمة، تتعرض بشكل متكرر لعذاب الرؤى التي تراها لصديقتها المتوفاة وزميلتها في الوحدة زوي."
+          "start": "20261017180000 +0000",
+          "stop": "20261017201500 +0000",
+          "title": "Sinners",
+          "desc": "يحاول شقيقان توأم ترك ماضيهما المضطرب خلفهما ويعودان إلى بلدتهما من أجل بداية جديدة، ليكتشفا أن شراً أعظم بانتظارهما للترحيب بهما."
         },
         {
-          "start": "20260915222000 +0000",
-          "stop": "20260916000000 +0000",
-          "title": "False Positive",
-          "desc": "كأن الحمل لم يكن معقداً بما فيه الكفاية، تبدأ لوسي رحلتها لكشف الحقيقة المقلقة عن طبيب الخصوبة الخاص بها."
+          "start": "20261017201500 +0000",
+          "stop": "20261017221000 +0000",
+          "title": "Mother Mary",
+          "desc": "تطفو على السطح جروح قديمة عندما تجتمع نجمة البوب الشهيرة ماذر ماري مع صديقتها المقرّبة السابقة ومصممة الأزياء السابقة سام أنسلم عشية أداء عودتها"
         },
         {
-          "start": "20260916000000 +0000",
-          "stop": "20260916005000 +0000",
-          "title": "The Unrideables: Alaska Range",
-          "desc": "يدمج التزلج السريع بين سرعة التزلج على الجليد وخفة الطيران بالمظلات، ليقدّم واحدة من أكثر الرياضات الشتوية إثارة في العالم."
+          "start": "20261017221000 +0000",
+          "stop": "20261018000500 +0000",
+          "title": "May December",
+          "desc": "بعد مرور عشرين عاماً على انتشار علاقتهما الرومانسية سيئة السمعة في البلاد، يستسلم زوجان للضغوط عندما تصل ممثلة لإجراء بحث عن فيلم عن ماضيهما."
         }
       ],
+      "verified_kids_single_minute_clip": false,
       "verdict": "PASS",
       "issues": [],
       "warnings": [],
@@ -567,14 +848,154 @@
       "alias_exact_match": null
     },
     {
-      "id": "OSNShowcase.ae@SD",
-      "name": "OSNtv Showcase",
-      "family": "OSN Showcase",
+      "id": "OSN.Now.ae",
+      "name": "OSNtv Now.sa",
+      "family": "OSN Now",
       "kind": "entertainment",
+      "events": 58,
+      "fingerprint": "adcbd4d5ba498ba0a9d2c1cce6d624e7474a81c6",
+      "coverage_hours": 37.33,
+      "span_hours": 37.33,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 21,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 20.7,
+      "unique_title_pct": 24.1,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20261017171500 +0000",
+          "stop": "20261017181000 +0000",
+          "title": "Anne Rice's Mayfair Witches",
+          "desc": "أن ريسيز مايفير ويتشيز"
+        },
+        {
+          "start": "20261017181000 +0000",
+          "stop": "20261017182500 +0000",
+          "title": "We Are Lady Parts",
+          "desc": ""
+        },
+        {
+          "start": "20261017182500 +0000",
+          "stop": "20261017185500 +0000",
+          "title": "We Are Lady Parts",
+          "desc": "فرقة السيدات - وي أر لايدي بارتس"
+        },
+        {
+          "start": "20261017185500 +0000",
+          "stop": "20261017192500 +0000",
+          "title": "Betty S2",
+          "desc": "بيتي"
+        }
+      ],
+      "verified_kids_single_minute_clip": false,
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "diagnostic": [
+        "EMPTY_DESC=21(36%)"
+      ],
+      "source_status": "NORMAL",
+      "mapping_mode": "normal_candidate",
+      "auto_lock_safe": true,
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "OSN.One.ae",
+      "name": "OSNtv One",
+      "family": "OSN One",
+      "kind": "entertainment",
+      "events": 40,
+      "fingerprint": "7de8e3da6f3f50bc01bfa06e330dc92e3c068df2",
+      "coverage_hours": 31.25,
+      "span_hours": 31.25,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 15.0,
+      "unique_title_pct": 47.5,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20261017171000 +0000",
+          "stop": "20261017180000 +0000",
+          "title": "Superman & Lois",
+          "desc": "ينضم كل من لانا وسارة إلى المعركة ضد لوثر، الذي يبدأ في اتخاذ خطوات في سمولفيل. يتصادم جوردان مع جوناثان حول قرار مهم."
+        },
+        {
+          "start": "20261017180000 +0000",
+          "stop": "20261017185500 +0000",
+          "title": "The Couple Next Door",
+          "desc": "يؤدي إنذار بيت إلى زيادة هوس إيفي بداني. يفشل مخطط داني من أجل إخراج سبنسر من حياته بسبب الخبر الصحفي الخاص ببيت وصوفي."
+        },
+        {
+          "start": "20261017185500 +0000",
+          "stop": "20261017194500 +0000",
+          "title": "The Pitt",
+          "desc": "بعد اجتماع الموظفين مع روبي، تقوم دانا بفض شجار داخل غرفة الانتظار، ويتوصل ويتاكر إلى تفاهم مع الكراكن، ويواجه مكاي خطأً كبيراً"
+        },
+        {
+          "start": "20261017194500 +0000",
+          "stop": "20261017203500 +0000",
+          "title": "The Pitt",
+          "desc": "بعد أن تعرضت للضرب من قبل المريض الغاضب، تعود دانا إلى غرفة الطوارئ بأنف نازف، مما يثير قلق الجميع"
+        }
+      ],
+      "verified_kids_single_minute_clip": false,
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "diagnostic": [],
+      "source_status": "NORMAL",
+      "mapping_mode": "normal_candidate",
+      "auto_lock_safe": true,
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "OSN.Pop.Up.ae",
+      "name": "OSNtv Pop Up",
+      "family": "OSN Pop Up",
+      "kind": "thematic",
       "events": 41,
-      "fingerprint": "33bc1f952bf3cf9369caf14f97f7c561ece7f822",
-      "coverage_hours": 28.0,
-      "span_hours": 28.0,
+      "fingerprint": "402d0727cfdc3c7968c465504aa1f14d2e0520d8",
+      "coverage_hours": 30.75,
+      "span_hours": 30.75,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -593,37 +1014,38 @@
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 14.6,
-      "unique_title_pct": 48.8,
+      "unique_title_pct": 22.0,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260915200000 +0000",
-          "stop": "20260915210000 +0000",
-          "title": "True Detective",
-          "desc": "يقكر كل من راي وفرانك بخيارات جديدة في حياتهما، بينما يتبع آني وبول أحدهم على طول الساحل.."
+          "start": "20261017171500 +0000",
+          "stop": "20261017180000 +0000",
+          "title": "What On Earth?",
+          "desc": "تستولي قوة مدججة بالسلاح على أحد أقدم المواقع الأثرية في سوريا، مما يثير المخاوف من سرقة كنوزه التاريخية."
         },
         {
-          "start": "20260915210000 +0000",
-          "stop": "20260915220000 +0000",
-          "title": "Strike Back",
-          "desc": "مع وجود شتري في مهب الريح وكارولين في اعقابهم، يضطر نوفن، وايت و كولترن إلى موازنة الولاء ضد الواجب والحفاظ على الذات. لا تزال اس20 مدرجة في القائمة السوداء وتترك بموارد ضئيلة ، وت"
+          "start": "20261017180000 +0000",
+          "stop": "20261017184500 +0000",
+          "title": "Life After People",
+          "desc": "من ناطحات السحاب الشاهقة مثل مركز التجارة العالمي إلى الخزائن المحصنة مثل فورت نوكس، تم تصميمها لتتحمل الكوارث، ولكن في عالم بلا بشر، حتى الأقوى منها يبدأ في التصدع."
         },
         {
-          "start": "20260915220000 +0000",
-          "stop": "20260915230000 +0000",
-          "title": "Last Week Tonight With John Oliver",
-          "desc": "يناقش جون أوليفر كيف منحت بعض الولايات في الولايات المتحدة حقوقًا للأجنة، ومن أين جاءت هذه الفكرة، وإلى أين قد تتجه الأمور في المستقبل."
+          "start": "20261017184500 +0000",
+          "stop": "20261017193000 +0000",
+          "title": "Life After People",
+          "desc": "إن المخاطر المخفية التي كانت تحت السيطرة من قبل البشر والتي تحمل قوة كارثية، من الأشياء اليومية التي قد تنفجر إلى المصانع الكيميائية وأسراب الجراد، عندما تتصادم الطبيعة مع إرث الإن"
         },
         {
-          "start": "20260915230000 +0000",
-          "stop": "20260916000000 +0000",
-          "title": "Dune: Prophecy",
-          "desc": "بعد وقوع مأساة، تقلق الشابة تولا بشأن قبولها رغم اسم عائلتها، بينما تواجه فاليا بسبب شكوكها صعوبة في اتخاذ قرار بأخذ عهد الأخوة. وبعد عدة سنوات، تتلقى فاليا رسالة تؤكد شكوكها."
+          "start": "20261017193000 +0000",
+          "stop": "20261017201500 +0000",
+          "title": "Mysteries Unearthed With Danny Trejo",
+          "desc": "اكتشف الأسرار المذهلة من الباباوات المخفيين إلى المدن الغارقة، هذه الاكتشافات تتحدى المعتقدات وتكشف عن ألغاز ملحمية."
         }
       ],
+      "verified_kids_single_minute_clip": false,
       "verdict": "PASS",
       "issues": [],
       "warnings": [],
@@ -635,422 +1057,14 @@
       "alias_exact_match": null
     },
     {
-      "id": "OSNtv Crime.sa",
-      "name": "OSNtv Crime",
-      "family": "OSN Crime",
-      "kind": "crime",
-      "events": 33,
-      "fingerprint": "c961871fcb5ddf2165149c931bbfe03e3ed4aa7e",
-      "coverage_hours": 28.67,
-      "span_hours": 28.67,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 18.2,
-      "unique_title_pct": 24.2,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260915195000 +0000",
-          "stop": "20260915205000 +0000",
-          "title": "Black Snow",
-          "desc": "يسعى كورماك جاهداً للقبض على قاتل زوي بعد أن تم تسليط الضوء على جولي. ولكن يتضح بأن ليو كان يكذب بشأن حجة الغياب الخاصة به طوال الوقت، واكتشاف جديد بخصوص المتصل المجهول يجعل كورماك"
-        },
-        {
-          "start": "20260915205000 +0000",
-          "stop": "20260915213500 +0000",
-          "title": "The Mentalist",
-          "desc": "تقود جين فرصة اللقاء مع الكولونيل العسكري إلى الإعتقاد بأن الضابط يخفي شيئاً، مما دفعه للبحث عميقاً في قضية مقتل زوجة الرجل."
-        },
-        {
-          "start": "20260915213500 +0000",
-          "stop": "20260915222500 +0000",
-          "title": "Law & Order",
-          "desc": "يتسبب موت غامض لامرأة بوضع المحققين في مواجهة مشتبه به يستخدم تكنولوجيا المراقبة المتقدمة ضدهم. ويشتبه مارون بأن الشاهدة تعرف أكثر عن المتهم مما تظهر."
-        },
-        {
-          "start": "20260915222500 +0000",
-          "stop": "20260915232500 +0000",
-          "title": "True Detective",
-          "desc": "عمل فرقة المهام في محل رهنيات يقودهم للتركيز على مشتبه به في قضية كاسبير، ويسترجع فرانك ماضيه ليتمكن من النظر في حاضره."
-        }
-      ],
-      "verdict": "PASS",
-      "issues": [],
-      "warnings": [],
-      "diagnostic": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "OSNtv Documentary.sa",
-      "name": "OSNtv Documentary",
-      "family": "OSN Documentary",
-      "kind": "documentary",
-      "events": 24,
-      "fingerprint": "037ed204d184113ef33c5fe644c4a9300c6dae11",
-      "coverage_hours": 27.5,
-      "span_hours": 27.5,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 4.2,
-      "top_title_pct": 8.3,
-      "unique_title_pct": 79.2,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260915203000 +0000",
-          "stop": "20260915214000 +0000",
-          "title": "One Nation Under Stress",
-          "desc": "يتبع هذا الفيلم الوثائقي سانجاي غوبتا أثناء محاولته للكشف عن الأسباب الجذرية وراء إنخفاض متوسط العمر بالولايات المتحدة والذي أصبح الآن أقصر من جميع الدول المتقدمة الرئيسية الأخرى."
-        },
-        {
-          "start": "20260915214000 +0000",
-          "stop": "20260915231000 +0000",
-          "title": "The Execution of Wanda Jean: America Undercover",
-          "desc": "يروي فيلم إكسيكيوشن أوف واندا جين معركة الحياة والموت التي خاضتها واندا جين ألين، أول امرأة سوداء يتم إعدامها في الولايات المتحدة في العصر الحديث."
-        },
-        {
-          "start": "20260915231000 +0000",
-          "stop": "20260916001000 +0000",
-          "title": "Outside the Bubble: On the Road with Alexandra P..",
-          "desc": "تذهب أليكساندرا بيلوسي، التي تنوي الهروب من فقاعتها الساحلية، في رحلة عبر البلاد للمشاركة في محادثات مع زملائها الأميركيين في محاولة لاكتساب فهم كامل لوجهات النظر الأخرى."
-        },
-        {
-          "start": "20260916001000 +0000",
-          "stop": "20260916011000 +0000",
-          "title": "Gladiator Days: Anatomy Of A Prison Murder",
-          "desc": "يدرس الفيلم ثقافة العنف المؤسسي من خلال الأحداث التي أدت إلى جريمة قتل عنيفة في السجن."
-        }
-      ],
-      "verdict": "PASS",
-      "issues": [],
-      "warnings": [],
-      "diagnostic": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "OSNtv iQIYI.sa",
-      "name": "OSNtv iQIYI",
-      "family": "OSN iQIYI",
-      "kind": "series",
-      "events": 36,
-      "fingerprint": "dc7bb74dc3545bd353a3f41be6625dede716b27e",
-      "coverage_hours": 28.08,
-      "span_hours": 28.08,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 13.9,
-      "unique_title_pct": 22.2,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260915202000 +0000",
-          "stop": "20260915211000 +0000",
-          "title": "The Day Of Becoming You",
-          "desc": "بعد إنهاء البث المباشر، تتذكر جيانغ يي (الأنثى) القبلة في المنتجع وتشعر بالارتباك. يتصل يو شينغشنغ (الذكر) وهو يشعر بالغيرة، ويسألها عما إذا كانت سعيدة بالعيش مقابل بي جاشو."
-        },
-        {
-          "start": "20260915211000 +0000",
-          "stop": "20260915220000 +0000",
-          "title": "Mr. Bad",
-          "desc": "بمساعدة شياو وودي، تتغلب نان شينغ على حالتها. ويكتشف بأنه تم إنشاؤه من قبل ماو شياوجون لحمايتها."
-        },
-        {
-          "start": "20260915220000 +0000",
-          "stop": "20260915225000 +0000",
-          "title": "Ping Pong",
-          "desc": "يرى يو كينان والده، فيستعيد ثقته ويعود للعب. يجهد شو تان ركبته، فيحصل على نصيحة طبية لأخذ وقت راحة، ولكنه يصر على الاستمرار."
-        },
-        {
-          "start": "20260915225000 +0000",
-          "stop": "20260915233500 +0000",
-          "title": "Luo Yang",
-          "desc": "تقرر سي يوي مراقبة بايلي هونغيي شخصيًا، ويقوم لي بيكي بمساعدتها. يقوم غاو بينغتشو بوضع قائمة بالخونة المشتبه بهم ويستجوبهم واحدًا تلو الآخر، مما يسبب استياء داخل ليانفانغ."
-        }
-      ],
-      "verdict": "PASS",
-      "issues": [],
-      "warnings": [],
-      "diagnostic": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "OSNtv Movies Comedy.sa",
-      "name": "OSNtv Movies Comedy",
-      "family": "OSN Movies",
-      "kind": "movies",
-      "events": 15,
-      "fingerprint": "7b47c558020840b25723500edca6fda3ab642f43",
-      "coverage_hours": 28.42,
-      "span_hours": 28.42,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 6.7,
-      "top_title_pct": 13.3,
-      "unique_title_pct": 93.3,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260915193500 +0000",
-          "stop": "20260915212000 +0000",
-          "title": "Horrible Bosses 2",
-          "desc": "قرر نيك وديل وكورت أن يصبحوا مدراء أنفسهم من خلال بدء عمل تجاري. وبعد أن يخدعهم مستثمر بارع، يقومون بالتخطيط لاستعادة شركتهم."
-        },
-        {
-          "start": "20260915212000 +0000",
-          "stop": "20260915232500 +0000",
-          "title": "Ocean's Twelve",
-          "desc": "بعد أن قسّموا عائدات الـ160 مليون دولار، يسعى كل فرد من عصابة أوشن الشهيرة إلى أن يعيش حياة جديدة بعيداً عن الأضواء... ولكن تبوء محاولاتهم بالفشل."
-        },
-        {
-          "start": "20260915232500 +0000",
-          "stop": "20260916010500 +0000",
-          "title": "Redirected",
-          "desc": "يتّفق أربعة أصدقاء مع رجل على سرقة كازينو، لكن بعد فشل المهمة، يعلقون في أوروبا الشرقية ويبحثون عن طريق للهروب بأمان."
-        },
-        {
-          "start": "20260916010500 +0000",
-          "stop": "20260916032500 +0000",
-          "title": "Mr. Morgan's Last Love",
-          "desc": "يعيش أستاذ أرمل في باريس قصة علاقة استثنائية مع امرأة فرنسية تصغره سناً."
-        }
-      ],
-      "verdict": "PASS",
-      "issues": [],
-      "warnings": [],
-      "diagnostic": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "OSNtv Movies Family.sa",
-      "name": "OSNtv Movies Family",
-      "family": "OSN Movies",
-      "kind": "movies",
-      "events": 19,
-      "fingerprint": "a9fc7b41bacbdad72b7b591fe8cd4725c658205f",
-      "coverage_hours": 28.83,
-      "span_hours": 28.83,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 10.5,
-      "unique_title_pct": 84.2,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260915192500 +0000",
-          "stop": "20260915205000 +0000",
-          "title": "Dr. Seuss' The Grinch",
-          "desc": "يخطط غرينش الغاضب لتخريب حفلة عيد الميلاد أثناء إقامة سكان هوفيل احتفالهم السنوي بالعطلة."
-        },
-        {
-          "start": "20260915205000 +0000",
-          "stop": "20260915224500 +0000",
-          "title": "Charlie And The Chocolate Factory",
-          "desc": "عندما يَعد صانع الحلوى غريب الأطوار ويلي ونكا بخزائن لا تنفد من الحلويات وجولة سحرية في مصنع الشوكولاتة لخمسة أطفال محظوظين، ينطلق الفقير تشارلي باكيت في رحلة أمل باحثاً عن التذكرة"
-        },
-        {
-          "start": "20260915224500 +0000",
-          "stop": "20260916002000 +0000",
-          "title": "Megamind",
-          "desc": "يصبح ميغامايند ذو السمعة السيئة والشرير في ميترو سيتي منقذ المدينة الواقعة في المشاكل وذلك بعد أن هزم ميترومان الجيد و المحبوب وقام بصنع خصم جديد له يرفض اللعب وفقا لأية قوانين."
-        },
-        {
-          "start": "20260916002000 +0000",
-          "stop": "20260916011000 +0000",
-          "title": "LEGO Marvel Superheroes - The Black Panther",
-          "desc": "عندما يصل ثانوس الجبار من الفضاء الخارجي ويهدد بتدمير الأرض، ينطلق النمر الأسود إلى العمل - ولكن للأسف، تسببت بطولاته في مشاكل لوطنه، واكاندا!"
-        }
-      ],
-      "verdict": "PASS",
-      "issues": [],
-      "warnings": [],
-      "diagnostic": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "OSNtv Movies Horror.sa",
-      "name": "OSNtv Movies Horror",
-      "family": "OSN Movies",
-      "kind": "movies",
-      "events": 17,
-      "fingerprint": "2cc47143a44b6928ba7a5b5bda2b034004f85382",
-      "coverage_hours": 29.92,
-      "span_hours": 29.92,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 11.8,
-      "unique_title_pct": 82.4,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260915184500 +0000",
-          "stop": "20260915210500 +0000",
-          "title": "The Shining",
-          "desc": "تتوجّه عائلة إلى فندق معزول لقضاء فصل الشتاء، حيث تؤثر قوة شريرة على الأب وتدفعه نحو العنف."
-        },
-        {
-          "start": "20260915210500 +0000",
-          "stop": "20260915225500 +0000",
-          "title": "Poltergeist",
-          "desc": "يتحول بيت عائلة إلى بؤرة للقوى الغامضة التي تفتح باباً إلى \"العالم الآخر\". وبمساعدة ما، يجب على العائلة العبور إلى الضفة الأخرى لاستعادة فرداً منها."
-        },
-        {
-          "start": "20260915225500 +0000",
-          "stop": "20260916002500 +0000",
-          "title": "The Grudge",
-          "desc": "تواجه ممرضة أمريكية تعيش في طوكيو لعنة خارقة غامضة، تحبس ضحاياها في نوبة غضب عارمة قبل أن تفتك بهم وتنتقل إلى الهدف التالي."
-        },
-        {
-          "start": "20260916002500 +0000",
-          "stop": "20260916020500 +0000",
-          "title": "Tales From The Hood 3",
-          "desc": "تحذر فتاة صغيرة رجلاً في منتصف العمر من أخطار تقترب، بينما تسرد له أربع حكايات قاتمة تكشف الجانب المظلم من نسيج المجتمع الأخلاقي المشوَّه."
-        }
-      ],
-      "verdict": "PASS",
-      "issues": [],
-      "warnings": [],
-      "diagnostic": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "OSNtv Now.sa",
-      "name": "OSNtv Now",
-      "family": "OSN Now",
+      "id": "OSN.Showcase.ae",
+      "name": "OSNtv Showcase",
+      "family": "OSN Showcase",
       "kind": "entertainment",
-      "events": 36,
-      "fingerprint": "66674e26f3039a1e32b9fa944e20be3a04ab993a",
-      "coverage_hours": 28.0,
-      "span_hours": 28.0,
+      "events": 47,
+      "fingerprint": "8947f41a5f7cf6f78ab68cbe07cac7389b5f93af",
+      "coverage_hours": 30.5,
+      "span_hours": 30.5,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1068,38 +1082,39 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 13.9,
-      "unique_title_pct": 33.3,
+      "top_title_pct": 23.4,
+      "unique_title_pct": 31.9,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260915200000 +0000",
-          "stop": "20260915212000 +0000",
-          "title": "The Affair",
-          "desc": "بينما تزداد حدة الجدل حول نوا، يجب على كل من هيلين وويتني أن يقررا مع من ستقفان."
+          "start": "20261017173000 +0000",
+          "stop": "20261017180000 +0000",
+          "title": "Room 104",
+          "desc": "امرأة تسأل الشابة التي في داخلها لإعادة خلق أحداث ليلة واحدة في حفلة الجامعية."
         },
         {
-          "start": "20260915212000 +0000",
-          "stop": "20260915215500 +0000",
-          "title": "Californication",
-          "desc": "احتفالا بإطلاق كتاب ميا، يستضيف آشبي سهرة في قصره الريفي. بعد اكتشاف ديزي مع روني براغير، يخبر تشارلي مارسي أنه يريد الطلاق. ولاحقا، تصل جاني جونز، ويحاول آشبي استجماع شجاعته ليتكل"
+          "start": "20261017180000 +0000",
+          "stop": "20261017190000 +0000",
+          "title": "Kate Berlant: Parmesan",
+          "desc": "عرض كوميدي رائع يسخر من التناقضات العديدة في الحياة المعاصرة وفن الكوميديا الارتجالية."
         },
         {
-          "start": "20260915215500 +0000",
-          "stop": "20260915221000 +0000",
-          "title": "Drift Brothers",
-          "desc": "تبدأ الأمطار بالهطول في أسوأ وقت في ريغا، لاتفيا، بالنسبة للأخوين دريفت إلياس ويوهانس هونتونجي. مع مضمار مغطى بالماء، وليس أمامهم سوى بذل قصارى جهدهم. هل سيكون ذلك كافياً؟"
+          "start": "20261017190000 +0000",
+          "stop": "20261017193000 +0000",
+          "title": "Bored To Death",
+          "desc": "سجين روسي حصل للتو على إطلاق سراح مشروط يستعين بجوناثان للبحث عن امرأة مهووس بها، مغنية لا يعرف عنها شيء سوى اسم شهرتها \"الحمامة البيضاء\""
         },
         {
-          "start": "20260915221000 +0000",
-          "stop": "20260915230000 +0000",
-          "title": "The Real Housewives of Dubai",
-          "desc": "بعد أن ودعتا ليسا وأيان أحبابهن، ترتّب سارة رحلة من العمر للسيدات إلى رأس الخيمة. وبينما تختبر المجموعة المرح والإستكشاف في الصحراء، تُطبخ الدراما تحت السطح مباشرة حيث يبدو أن بعض "
+          "start": "20261017193000 +0000",
+          "stop": "20261017200000 +0000",
+          "title": "Bored To Death",
+          "desc": "يستأجر رجل متزوج من نيوجيرسي جوناثان ليساعده على استعادة شريط جنسي تستخدمه فتاة ليل لابتزاز الأموال منه. ينضم راي وجورج إلى جوناثان عندما يذهب إلى نزل لمقابلة فتاة الليل تلك"
         }
       ],
+      "verified_kids_single_minute_clip": false,
       "verdict": "PASS",
       "issues": [],
       "warnings": [],
@@ -1111,14 +1126,14 @@
       "alias_exact_match": null
     },
     {
-      "id": "OSNtv One.sa",
-      "name": "OSNtv One",
-      "family": "OSN One",
+      "id": "OSN.Showcase.Classics.ae",
+      "name": "OSNtv Showcase Classics",
+      "family": "OSN Showcase",
       "kind": "entertainment",
       "events": 39,
-      "fingerprint": "0bd8ea252842af1ca45956082c61a07d754eb90c",
-      "coverage_hours": 28.25,
-      "span_hours": 28.25,
+      "fingerprint": "21459c7ea2fe8e93ae93140ec4fc53ebef4afe3b",
+      "coverage_hours": 30.58,
+      "span_hours": 30.58,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1137,37 +1152,38 @@
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
       "top_title_pct": 25.6,
-      "unique_title_pct": 35.9,
+      "unique_title_pct": 25.6,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260915194500 +0000",
-          "stop": "20260915204500 +0000",
-          "title": "The Day Of The Jackal",
-          "desc": "بعد تبادل إطلاق النار مع بيانكا، يجب على ابن آوى الهروب من خاطفيه وإعادة تنظيم نفسه قبل تنفيذ ضربته على أولي داج تشارلز، وتتبع بيانكا مسار عمله عبر وسط أوروبا."
+          "start": "20261017172500 +0000",
+          "stop": "20261017175500 +0000",
+          "title": "Getting On",
+          "desc": "تنقلب حالة نوبة العمل المسائية الهادئة لـ ديدي رأساً على عقب عند وصول مريض جديد يتحدث اللغة السويدية وعدد من الزوار المخمورين غير المرحب بهم."
         },
         {
-          "start": "20260915204500 +0000",
-          "stop": "20260915213000 +0000",
-          "title": "The Curse",
-          "desc": "يضع دوجي وويتني خطة لإحياء العرض بينما يصبح آشر منعزلاً بشكل كبير."
+          "start": "20261017175500 +0000",
+          "stop": "20261017182500 +0000",
+          "title": "Getting On",
+          "desc": "تصاب فايليس بالقلق والحيرة مع تكرار تحسن ثم تدهور حالة والدتها. وفي هذه الأثناء، بعد أن عمت الخلاف، يتصالح أفراد الطاقم مجدداً لتقديم حفلة كيرغيفر الأسبوعية للمرضى في جناح المستشفى"
         },
         {
-          "start": "20260915213000 +0000",
-          "stop": "20260915214000 +0000",
-          "title": "Drift Brothers",
-          "desc": "بعد حادث في المجر، يجد الأخوين دريفت، إلياس ويوهانس هونتونجي، طريقة مبتكرة لإصلاح سيارتهما المتضررة ويختبران إصلاحاتهما على المضمار خلال سباق مشوق."
+          "start": "20261017182500 +0000",
+          "stop": "20261017192500 +0000",
+          "title": "The Knick",
+          "desc": "تطلب عاشقة سابقة لـ ذاكري منه أن يقوم بعمل جراحي لأنفها الذي أفسده زوجها المنحل. يجب على إدوارد المغادرة وسط عملية في القبو. يبيع بارو جثة بـ 75 دولار لتسديد دينه."
         },
         {
-          "start": "20260915214000 +0000",
-          "stop": "20260915223000 +0000",
-          "title": "The Hunting Wives",
-          "desc": "تتعرف صوفي أونيل بعد انتقالها إلى شرق تكساس مؤخراً، على مارجو بانكس الساحرة، التي تكشف لصوفي جانباً آخر من الحياة."
+          "start": "20261017192500 +0000",
+          "stop": "20261017202500 +0000",
+          "title": "The Wire",
+          "desc": "يثبت مايكل براعته بالعدو، مما يقوم بتنبيه بودي ومارلو، ويقوم رولز باستبدال أشير بتشارلز ماريماو (رجل الشركة) الذي لديه جدول أعمال جديد للفرقة."
         }
       ],
+      "verified_kids_single_minute_clip": false,
       "verdict": "PASS",
       "issues": [],
       "warnings": [],
@@ -1179,14 +1195,14 @@
       "alias_exact_match": null
     },
     {
-      "id": "OSNtv Pop Up.sa",
-      "name": "OSNtv Pop Up",
-      "family": "OSN Pop Up",
-      "kind": "thematic",
-      "events": 141,
-      "fingerprint": "129d5e8507e0dd31c2f5349a3fe558f68740d2a3",
-      "coverage_hours": 27.62,
-      "span_hours": 27.62,
+      "id": "OSN.Yahala.ae",
+      "name": "OSNtv Yahala",
+      "family": "OSN Yahala",
+      "kind": "arabic_entertainment",
+      "events": 39,
+      "fingerprint": "5aaf08a31267831662c4ce605c79adc4b8ce8927",
+      "coverage_hours": 31.17,
+      "span_hours": 31.17,
       "gaps_gt_2h": 0,
       "gap_hours": 0.0,
       "invalid": 0,
@@ -1204,317 +1220,183 @@
       "title_hybrid_pct": 0.0,
       "desc_ar_pct": 100.0,
       "desc_latin_pct": 0.0,
-      "top_title_pct": 78.7,
-      "unique_title_pct": 1.4,
+      "top_title_pct": 20.5,
+      "unique_title_pct": 20.5,
       "mixed_tz_days": 0,
       "offsets": [
         "implicit-UTC"
       ],
       "preview": [
         {
-          "start": "20260915202800 +0000",
-          "stop": "20260915204000 +0000",
-          "title": "The Amazing World Of Gumball",
-          "desc": "يكتشف غامبول أن بوبيرت يخطط لسرقة هويته."
+          "start": "20261017165000 +0000",
+          "stop": "20261017174500 +0000",
+          "title": "Omour A'aillya",
+          "desc": "تستعد مها سرًا للمغادرة مع الرضيعة دلال، بينما تعيش العائلة صدمة وفاة مي وتصاعد التوتر مع أسامة. في المقابل، ينهار ناصر حزنًا غير قادر على تجاوز فقدانها."
         },
         {
-          "start": "20260915204000 +0000",
-          "stop": "20260915205000 +0000",
-          "title": "The Amazing World Of Gumball",
-          "desc": "نجا غامبول وداروين بالكاد من غابة الهلاك."
+          "start": "20261017174500 +0000",
+          "stop": "20261017183500 +0000",
+          "title": "Omour A'aillya",
+          "desc": "تكشف شكوك سلوى كذب مها حول تحركاتها، بينما تتفجر أزمة أمل بسبب خطأ مالي كبير."
         },
         {
-          "start": "20260915205000 +0000",
-          "stop": "20260915210100 +0000",
-          "title": "The Amazing World Of Gumball",
-          "desc": "يحاول غامبول استعادة والده من خلال سباق معصوب العينين."
+          "start": "20261017183500 +0000",
+          "stop": "20261017192500 +0000",
+          "title": "Omour A'aillya",
+          "desc": "يعاني أسامة من غياب مي وتطارده ذكرياتها، بينما تلتقي مها سرًا بفهد بحجة إصلاح هاتفها، في إشارة إلى نوايا خفية."
         },
         {
-          "start": "20260915210100 +0000",
-          "stop": "20260915211400 +0000",
-          "title": "The Amazing World Of Gumball",
-          "desc": "يكاد غامبول يفقد عقله وهو يحاول اكتشاف سر داروين."
+          "start": "20261017192500 +0000",
+          "stop": "20261017201500 +0000",
+          "title": "Omour A'aillya",
+          "desc": "خلال تجمع عائلي، تستدعي هيا سعود وناصر لاجتماع خاص يوحي بقرار مهم."
         }
       ],
+      "verified_kids_single_minute_clip": false,
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "diagnostic": [],
+      "source_status": "NORMAL",
+      "mapping_mode": "normal_candidate",
+      "auto_lock_safe": true,
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "OSN.Yahala.Aflam.ae",
+      "name": "OSNtv Yahala Aflam",
+      "family": "OSN Movies",
+      "kind": "movies",
+      "events": 20,
+      "fingerprint": "afa290bb809626a903601c76a6bde54b2ae94096",
+      "coverage_hours": 32.58,
+      "span_hours": 32.58,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 10.0,
+      "unique_title_pct": 70.0,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20261017160500 +0000",
+          "stop": "20261017181000 +0000",
+          "title": "Al Ens W El Nems",
+          "desc": "يعمل تحسين، الذي يواجه الكثير من المتاعب بسبب مهنة والده، بمدينة الملاهي وتحديدا في منزل الرعب. تنقلب حياته رأسا على عقب عندما يقع في حب نرمين، التي يتبين أنها من الجن."
+        },
+        {
+          "start": "20261017181000 +0000",
+          "stop": "20261017201500 +0000",
+          "title": "Hwjn",
+          "desc": "في قلب مدينة جدة, حوجن جني طيب يعيش بين البشر ينحدر من سلالة ملكية, وخلال رحلته لاستعادة حقه الشرعي في الملك يقع في حب سوسن طالبة الطب الآدمية , فهل سيتمكن حوجن من تحقيق مصيره وحبه"
+        },
+        {
+          "start": "20261017201500 +0000",
+          "stop": "20261017215000 +0000",
+          "title": "Ya Baadeh",
+          "desc": "تقع بسمة في حب ابن الجيران حمد الذي عانى الأمرّين كي يقنع أهله بالموافقة على خطبتها بسبب تحفظ أهله على بيئتها المتحررة والتي تعد أكثر انفتاحاً من مثيلتها عند حمد."
+        },
+        {
+          "start": "20261017215000 +0000",
+          "stop": "20261017232500 +0000",
+          "title": "Hazer Tejwal AKA Curfew",
+          "desc": "يتابع الفيلم قصة فاتن التي يتم إطلاق سراحها بعد عشرين سنة من السجن بسبب إرتكابها جريمة فظيعة، وفي الوقت نفسه يتم فرض حظر تجول، تًجبر فاتن على المكوث مع ابنتها ليلى التي تقوم بمواجه"
+        }
+      ],
+      "verified_kids_single_minute_clip": false,
+      "verdict": "PASS",
+      "issues": [],
+      "warnings": [],
+      "diagnostic": [],
+      "source_status": "NORMAL",
+      "mapping_mode": "normal_candidate",
+      "auto_lock_safe": true,
+      "compat_canonical": null,
+      "alias_exact_match": null
+    },
+    {
+      "id": "OSN.Yahala.Bil.Arabi.ae",
+      "name": "OSNtv Yahala Bil Arabi",
+      "family": "OSN Yahala",
+      "kind": "arabic_entertainment",
+      "events": 36,
+      "fingerprint": "162d1d2b4b95ba7a3920972c796fa4042b6dded2",
+      "coverage_hours": 30.67,
+      "span_hours": 30.67,
+      "gaps_gt_2h": 0,
+      "gap_hours": 0.0,
+      "invalid": 0,
+      "overlaps": 0,
+      "long_gt_6h": 0,
+      "long_gt_12h": 0,
+      "short_lt_2m": 0,
+      "empty_title": 0,
+      "empty_desc": 0,
+      "desc_same_title": 0,
+      "placeholder": 0,
+      "generic": 0,
+      "title_has_ar_pct": 0.0,
+      "title_has_latin_pct": 100.0,
+      "title_hybrid_pct": 0.0,
+      "desc_ar_pct": 100.0,
+      "desc_latin_pct": 0.0,
+      "top_title_pct": 30.6,
+      "unique_title_pct": 16.7,
+      "mixed_tz_days": 0,
+      "offsets": [
+        "implicit-UTC"
+      ],
+      "preview": [
+        {
+          "start": "20261017172000 +0000",
+          "stop": "20261017181000 +0000",
+          "title": "Deep In Love",
+          "desc": "تؤكد شيرين لأوروتش أنها تريد الذهاب إلى أسماء والتحدث معها بشأن إيليني، لأن الحقيقة أصبحت قريبة جدًا من الانكشاف"
+        },
+        {
+          "start": "20261017181000 +0000",
+          "stop": "20261017190000 +0000",
+          "title": "Deep In Love",
+          "desc": "أصبحت أسماء أسيرة لدى شريف، وعادل يبحث عنها بكل قوته، بينما أصبح منزل شريف قرب بحيرة أوزون الهدف التالي لعائلة كوتشاري"
+        },
+        {
+          "start": "20261017190000 +0000",
+          "stop": "20261017195000 +0000",
+          "title": "Deep In Love",
+          "desc": "حبيبان متيمّان محاصران في انتقام عائلي عنيف يجب عليهما الاختيار بين الولاء للدم وفرصة ثانية مستحيلة للحب، بينما تهدد الأسرار المدفونة إمبراطوريتيهما."
+        },
+        {
+          "start": "20261017195000 +0000",
+          "stop": "20261017204000 +0000",
+          "title": "Worood Hamra - Red Roses",
+          "desc": "يكتمل زواج جنيد وزينب بعد أن شهد سعدي وعارف على زواجهما، وتفشل محاولة عبد الواحد بزواجه من زينب."
+        }
+      ],
+      "verified_kids_single_minute_clip": false,
       "verdict": "PASS",
       "issues": [],
       "warnings": [],
       "diagnostic": [
-        "REPEATED_TITLE=79%",
-        "LOW_TITLE_DIVERSITY=1%"
+        "LOW_TITLE_DIVERSITY=17%"
       ],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "OSNtv Showcase Classics.sa",
-      "name": "OSNtv Showcase Classics",
-      "family": "OSN Showcase",
-      "kind": "entertainment",
-      "events": 35,
-      "fingerprint": "a367fb1a10323a81d549f543676e53abf0841998",
-      "coverage_hours": 28.25,
-      "span_hours": 28.25,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 17.1,
-      "unique_title_pct": 31.4,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260915194500 +0000",
-          "stop": "20260915204000 +0000",
-          "title": "The Wire",
-          "desc": "يقوم مصدر غير متوقع بإعطاء ماكنالتي رقم لوحة سيارة يقودها سترينغر بيل. في هذه الأثناء، يقوم غريغز وكرافر باعتقال مساعد في الكونغرس يحمل أموالاً قذرة، لكن يتم إجبارهما على أخلاء سبي"
-        },
-        {
-          "start": "20260915204000 +0000",
-          "stop": "20260915213500 +0000",
-          "title": "True Blood",
-          "desc": "يقوم إيريك بمبايعة بيل في محاولة أخيرة لإنقاذ نورا. مأساة قرب المنزل تجبر سام على تجاهل تحذير ألسايد والعودة إلى بون تيمبس. تظهر جيسيكا امتنانها لجيمس، في حين تنتقم سارة الجريئة من"
-        },
-        {
-          "start": "20260915213500 +0000",
-          "stop": "20260915223500 +0000",
-          "title": "Big Love",
-          "desc": "بعد هروب ألبي وما يصاحب ذلك من تهديد خطير، تجد عائلة هانريكسون نفسها في موقف حرج. في هذه الأثناء، تحدث بارب، بيل عن موقف كنيستها الجديد بشأن تعدد الأزواج وعن التزامها تجاه عائلتها."
-        },
-        {
-          "start": "20260915223500 +0000",
-          "stop": "20260915230500 +0000",
-          "title": "The Rehearsal",
-          "desc": "يساعد ناثان امرأة من أوريغان للإستعداد للأمومة من خلال محاكاة تجربة تربية طفل من الولادة حتى سن الثامنة عشر."
-        }
-      ],
-      "verdict": "PASS",
-      "issues": [],
-      "warnings": [],
-      "diagnostic": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "OSNYahala.ae@SD",
-      "name": "OSNtv Yahala",
-      "family": "OSN Yahala",
-      "kind": "arabic_entertainment",
-      "events": 37,
-      "fingerprint": "558773112b73bdb65f2efd34b50f9cec6467e3e6",
-      "coverage_hours": 27.92,
-      "span_hours": 27.92,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 16.2,
-      "unique_title_pct": 21.6,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260915200500 +0000",
-          "stop": "20260915205500 +0000",
-          "title": "El Kabeer Awy",
-          "desc": "يذهب الكبير ومربوحة إلي مستشارة العلاقات الزوجية لمحاولة إصلاح زواجهما والتي بدورها تقدم لهما الحل."
-        },
-        {
-          "start": "20260915205500 +0000",
-          "stop": "20260915214500 +0000",
-          "title": "Sama Aleya",
-          "desc": "تواجه الشيخة صعوبة في التكيف مع الحياة في مصر والتعود على العادات والتقاليد، يحاول راشد مساعدتها على التكيف مع حياتها الجديدة."
-        },
-        {
-          "start": "20260915214500 +0000",
-          "stop": "20260915223500 +0000",
-          "title": "Majareeh",
-          "desc": "تقرر غنيمة اصطحاب فوزية للإقامة معها في منزل مشعل بعد طلاقها من خالد، وترفض بدرية استقبال غنيمة وتتشاجر معها."
-        },
-        {
-          "start": "20260915223500 +0000",
-          "stop": "20260915232500 +0000",
-          "title": "Baba Geh",
-          "desc": "يعاني هشام من مشاكل مع زوجته وابنته بسبب كونه عاطل عن العمل، ويذهب لدعم ابنته وحضور المسرحية الخاصة بها فيُفاجأ بإحراجها له."
-        }
-      ],
-      "verdict": "PASS",
-      "issues": [],
-      "warnings": [],
-      "diagnostic": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "OSNYahalaAflam.ae@SD",
-      "name": "OSNtv Yahala Aflam",
-      "family": "OSN Movies",
-      "kind": "movies",
-      "events": 18,
-      "fingerprint": "274acf105dda882fb2734a94b8cc47b59758cebe",
-      "coverage_hours": 28.67,
-      "span_hours": 28.67,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 11.1,
-      "unique_title_pct": 83.3,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260915201500 +0000",
-          "stop": "20260915215500 +0000",
-          "title": "Shalaby",
-          "desc": "يحلم صابر بترك وظيفته المُملة ليصبح مبدع عروض الدمى المتحركة, فيقوم بتصميم دمية يُطلِق عليها شلبي وسرعان ما يخوض أحداث مشوقة برفقة أصدقاءه وجيرانه أثناء سعيهم لتحقيق الشهرة."
-        },
-        {
-          "start": "20260915215500 +0000",
-          "stop": "20260915233500 +0000",
-          "title": "El Hana Elli Ana Feeh",
-          "desc": "أحمد، مستشار الزواج على وسائل التواصل الاجتماعي تصبح حياته فوضوية عندما تقوم زوجته بتشخيص نفسها بشكل خاطئ بمرض مميت وتجبره على الزواج من أفضل صديقاتها."
-        },
-        {
-          "start": "20260915233500 +0000",
-          "stop": "20260916011500 +0000",
-          "title": "Sugar Daddy",
-          "desc": "يقوم شوقي بأخذ حبيبته ناتاليا في رحلة إلى سهل حشيش. عندما يكتشف أبناؤه العلاقة، يتوجهون إلى هناك لمواجهته وإنقاذ زواج والديهم."
-        },
-        {
-          "start": "20260916011500 +0000",
-          "stop": "20260916023500 +0000",
-          "title": "Al Thulatha 12",
-          "desc": "تكافح ثلاث فتيات يبلغن من العمر أربعة عشر عاما، أمل الرياضية، سلمى عازفة البيانو ونور الراقصة المتمردة، مع والدهمن لتحقيق أحلامهمن."
-        }
-      ],
-      "verdict": "PASS",
-      "issues": [],
-      "warnings": [],
-      "diagnostic": [],
-      "source_status": "NORMAL",
-      "mapping_mode": "normal_candidate",
-      "auto_lock_safe": true,
-      "compat_canonical": null,
-      "alias_exact_match": null
-    },
-    {
-      "id": "OSNYahalaBilArabi.ae@SD",
-      "name": "OSNtv Yahala Bil Arabi",
-      "family": "OSN Yahala",
-      "kind": "arabic_entertainment",
-      "events": 33,
-      "fingerprint": "da2bfbe09eb2486b3859d40f8caeb3b1aed0cf4a",
-      "coverage_hours": 28.17,
-      "span_hours": 28.17,
-      "gaps_gt_2h": 0,
-      "gap_hours": 0.0,
-      "invalid": 0,
-      "overlaps": 0,
-      "long_gt_6h": 0,
-      "long_gt_12h": 0,
-      "short_lt_2m": 0,
-      "empty_title": 0,
-      "empty_desc": 0,
-      "desc_same_title": 0,
-      "placeholder": 0,
-      "generic": 0,
-      "title_has_ar_pct": 0.0,
-      "title_has_latin_pct": 100.0,
-      "title_hybrid_pct": 0.0,
-      "desc_ar_pct": 100.0,
-      "desc_latin_pct": 0.0,
-      "top_title_pct": 21.2,
-      "unique_title_pct": 24.2,
-      "mixed_tz_days": 0,
-      "offsets": [
-        "implicit-UTC"
-      ],
-      "preview": [
-        {
-          "start": "20260915195000 +0000",
-          "stop": "20260915204000 +0000",
-          "title": "Ikhwaty",
-          "desc": "بعد ما حدث لسارب، يزداد التوتر بين ياسمين وآسيا."
-        },
-        {
-          "start": "20260915204000 +0000",
-          "stop": "20260915213000 +0000",
-          "title": "Worood Hamra - Red Roses",
-          "desc": "ليفينت يشرح للوقمان أن وصول جنيد لا بد أن يكون له هدف، حيث إنه من الواضح أنه يهرب من حياته السابقة."
-        },
-        {
-          "start": "20260915213000 +0000",
-          "stop": "20260915222000 +0000",
-          "title": "Deep In Love",
-          "desc": "بعد إصابة شريف بطلق ناري، تعم الفوضى في عائلة فورتونا؛ إذ يحاول عادل تحمّل المسؤولية بدلاً من أسماء، بينما تصر هي بالمقابل على حمايته من خلال تسليم نفسها."
-        },
-        {
-          "start": "20260915222000 +0000",
-          "stop": "20260915231000 +0000",
-          "title": "Sharab Al Toot AKA One Love",
-          "desc": "في حين أن حفل استقبال الطفل الذي نظمته ألين يجمع نساء العائلتين معا، فإن فاتح سيشكل المفاجأة الأكبر. ومع ذلك، فإن هذه الأيام الهادئة لن تستمر طويلا."
-        }
-      ],
-      "verdict": "PASS",
-      "issues": [],
-      "warnings": [],
-      "diagnostic": [],
       "source_status": "NORMAL",
       "mapping_mode": "normal_candidate",
       "auto_lock_safe": true,
@@ -1522,24 +1404,5 @@
       "alias_exact_match": null
     }
   ],
-  "duplicate_timeline_groups": [
-    {
-      "ids": [
-        "Osn Ya Hala Aflam.eg",
-        "OSNYahalaAflam.ae@SD"
-      ],
-      "families": [
-        "OSN Movies"
-      ]
-    },
-    {
-      "ids": [
-        "OSN Ya Hala.eg",
-        "OSNYahala.ae@SD"
-      ],
-      "families": [
-        "OSN Yahala"
-      ]
-    }
-  ]
+  "duplicate_timeline_groups": []
 }
