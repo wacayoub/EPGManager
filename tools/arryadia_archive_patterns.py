@@ -31,7 +31,7 @@ RECURRING_FAMILIES = {
     },
 }
 _NO_EVENT_TITLES = re.compile(
-    r"^(?:programmes?\s+(?:arryadia|الرياضية)|programmes?|"
+    r"^(?:programmes?\s+(?:arryadia|الرياضية)(?:\s+(?:hd(?:[123])?|tnt))?|programmes?|"
     r"برامج\s+قناة\s+الرياضية|برامج\s+الرياضية)$",
     re.I,
 )
