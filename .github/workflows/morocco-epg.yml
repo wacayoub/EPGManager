@@ -175,22 +175,56 @@ jobs:
           curl -fL --retry 2 --retry-delay 1 --connect-timeout 5 --max-time 20 \
             "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/morocco.xml.gz" \
             -o previous/morocco.xml.gz || true
+          curl -fL --retry 2 --retry-delay 1 --connect-timeout 5 --max-time 20 \
+            "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/epg-data/manifest.json" \
+            -o previous/manifest.json || true
+
+      # GitHub scheduled workflows may start hours after their intended UTC
+      # minute. The old in-generator exact 06:00 local gate suppressed every
+      # delayed run and left the public Morocco guide frozen for weeks.
+      - name: Decide one refresh per Casablanca calendar day
+        id: daily
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          today = datetime.now(ZoneInfo("Africa/Casablanca")).date()
+          latest = Path("previous/manifest.json")
+          already_fresh = False
+          if os.environ["EVENT_NAME"] == "schedule" and latest.is_file():
+              try:
+                  m = json.loads(latest.read_text(encoding="utf-8"))
+                  published_date = datetime.fromisoformat(m["generated"]).astimezone(
+                      ZoneInfo("Africa/Casablanca")).date()
+                  already_fresh = published_date == today and int(m.get("programmes", 0)) >= 50
+              except (ValueError, KeyError, TypeError, OSError):
+                  pass
+          run = not already_fresh
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write("run=%s\n" % ("true" if run else "false"))
+          print("Morocco daily refresh: event=%s date=%s run=%s" %
+                (os.environ["EVENT_NAME"], today, run))
+          PY
 
       - name: Generate Morocco XMLTV with final historical source logic
+        if: steps.daily.outputs.run == 'true'
         id: generate
         shell: bash
         run: |
           set +e
-          EXTRA=""
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            EXTRA="--scheduled"
-          fi
+          # Do not pass --scheduled: GitHub queue delays are not provider failures.
+          # The daily gate above handles duplicates across UTC offset changes.
           timeout --signal=TERM --kill-after=20s 600s \
             python tools/morocco_cloud_final.py \
               --output-dir output \
               --previous previous/morocco.xml.gz \
-              --days 7 \
-              ${EXTRA}
+              --days 7
           rc=$?
           echo "generator_rc=${rc}" >> "$GITHUB_OUTPUT"
           if [ "$rc" -eq 124 ] || [ "$rc" -eq 137 ]; then
@@ -201,6 +235,7 @@ jobs:
           exit 0
 
       - name: Validate candidate and Moroccan source policies
+        if: steps.daily.outputs.run == 'true'
         id: candidate
         shell: bash
         run: |
@@ -363,10 +398,35 @@ jobs:
           git push origin epg-data
 
       - name: Keep endpoint healthy when candidate is rejected
-        if: steps.candidate.outputs.ready != 'true'
+        if: steps.daily.outputs.run == 'true' && steps.candidate.outputs.ready != 'true'
         run: |
           echo "Candidate rejected: ${{ steps.candidate.outputs.reason }}"
           echo "The existing epg-data/morocco.xml.gz remains untouched."
+
+      - name: Fail loudly if published Morocco guide stays stale
+        if: always() && steps.daily.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin epg-data:refs/remotes/origin/epg-data
+          git show origin/epg-data:manifest.json > /tmp/morocco-published-manifest.json
+          python - <<'PY'
+          import json
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          tz = ZoneInfo("Africa/Casablanca")
+          today = datetime.now(tz).date()
+          data = json.loads(Path("/tmp/morocco-published-manifest.json").read_text(encoding="utf-8"))
+          generated = datetime.fromisoformat(data["generated"]).astimezone(tz).date()
+          age = (today - generated).days
+          print("PUBLISHED_MOROCCO_FRESHNESS generated=%s age_days=%d events=%s" %
+                (generated, age, data.get("programmes")))
+          # A provider outage may preserve yesterday's valid LKG. Never mark
+          # 2+ day old information healthy, or accept a bootstrap/empty feed.
+          if age < 0 or age >= 2 or int(data.get("programmes", 0)) < 50:
+              raise SystemExit("STALE_MOROCCO_EPG: published guide needs a verified refresh")
+          PY
 
       - name: Preserve candidate diagnostics
         if: always()
