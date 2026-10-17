@@ -1,0 +1,68 @@
+name: Morocco all 15 programmes examples (read only)
+
+on:
+  push:
+    branches:
+      - audit/morocco-15-example-snapshot-20261017
+
+permissions:
+  contents: read
+
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch exact published cloud feed
+        run: |
+          curl -fsSL --retry 2 --connect-timeout 5 --max-time 35 \
+            https://raw.githubusercontent.com/wacayoub/EPGManager/epg-data/morocco.xml.gz \
+            -o /tmp/morocco.xml.gz
+          curl -fsSL --retry 2 --connect-timeout 5 --max-time 35 \
+            https://raw.githubusercontent.com/wacayoub/EPGManager/epg-data/manifest.json \
+            -o /tmp/morocco-manifest.json
+      - name: Show actual XMLTV programme examples per channel
+        run: |
+          python - <<'PY'
+          import gzip,json,datetime,re,xml.etree.ElementTree as ET
+          from collections import defaultdict
+          from zoneinfo import ZoneInfo
+          from pathlib import Path
+          m=json.loads(Path('/tmp/morocco-manifest.json').read_text(encoding='utf8'))
+          r=ET.fromstring(gzip.decompress(Path('/tmp/morocco.xml.gz').read_bytes()))
+          now=datetime.datetime.fromisoformat(m['generated']).astimezone(ZoneInfo('Africa/Casablanca'))
+          by_id=defaultdict(list)
+          for p in r.findall('programme'):
+              by_id[p.get('channel')].append(p)
+          display={c.get('id'):c.findtext('display-name') for c in r.findall('channel')}
+          def dt(s):
+              return datetime.datetime.strptime(s.strip(),'%Y%m%d%H%M%S %z').astimezone(ZoneInfo('Africa/Casablanca'))
+          print('SUMMARY',json.dumps(dict(generated=m['generated'],channels=m['channels'],programmes=m['programmes'],manifest_sha=m['sha256']),ensure_ascii=False))
+          for cid in sorted(display):
+              events=by_id[cid]
+              future=sorted([e for e in events if dt(e.get('stop'))>now],key=lambda e:dt(e.get('start')))
+              if not future:
+                  future=sorted(events,key=lambda e:dt(e.get('start')))[:2]
+              def generic(e):
+                  name=e.findtext('title') or ''
+                  return bool(re.match(r'^(Programmes? |برامج? |Diffusion |Rediffusion)',name,re.I))
+              # choose one imminent and one additional editorial/non-generic example
+              first=future[0] if future else None
+              editorial=next((e for e in future if not generic(e) and e is not first),None)
+              examples=[e for e in [first,editorial] if e is not None]
+              out=dict(channel_id=cid,display=display[cid],count=len(events),future=len(future),examples=[])
+              for e in examples:
+                  title=e.find('title')
+                  desc=e.find('desc')
+                  out['examples'].append(dict(
+                      date=dt(e.get('start')).strftime('%d/%m'),
+                      start=dt(e.get('start')).strftime('%H:%M'),
+                      end=dt(e.get('stop')).strftime('%H:%M'),
+                      title=e.findtext('title'),
+                      title_lang=title.get('lang') if title is not None else None,
+                      description=(e.findtext('desc') or '')[:160],
+                      description_lang=desc.get('lang') if desc is not None else None,
+                      generic=generic(e)))
+              print('EXAMPLE '+json.dumps(out,ensure_ascii=False))
+          PY
