@@ -1,0 +1,31 @@
+name: MENA master embedded Python gate (read-only)
+
+on:
+  push:
+    paths:
+      - ".github/workflows/refresh-mena-source-id-master.yml"
+      - ".github/workflows/mena-master-inline-regression.yml"
+      - "tools/test_mena_master_workflow_inline.py"
+  pull_request:
+    paths:
+      - ".github/workflows/refresh-mena-source-id-master.yml"
+      - ".github/workflows/mena-master-inline-regression.yml"
+      - "tools/test_mena_master_workflow_inline.py"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-inline-python:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Compile and execute synthetic live-column tests
+        run: python tools/test_mena_master_workflow_inline.py
