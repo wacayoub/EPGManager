@@ -3,44 +3,49 @@
     "2M": 218,
     "AFLAM.ma": 52,
     "AlAoula": 30,
-    "AlMaghribiya": 358,
+    "AlMaghribiya": 359,
     "Arrabiaa": 162,
     "Arryadia_HD": 0,
     "Arryadia_HD1": 0,
-    "Arryadia_HD2": 0,
-    "Arryadia_HD3": 0,
+    "Arryadia_HD2": 168,
+    "Arryadia_HD3": 168,
     "Arryadia_TNT": 0,
     "Assadisa": 432,
     "Chada TV": 43,
     "MEDI1TV_AR.ma": 48,
     "MEDI1TV_MAGHREB.ma": 14,
-    "Tamazight": 241
+    "Tamazight": 242
   },
   "channels": 15,
-  "generated": "2026-10-17T22:22:51.113397+00:00",
+  "generated": "2026-10-17T22:37:32.867838+00:00",
   "missing_current_epg": [
     "Arryadia_HD",
     "Arryadia_HD1",
-    "Arryadia_HD2",
-    "Arryadia_HD3",
     "Arryadia_TNT"
   ],
-  "programmes": 1598,
-  "publication_status": "partial_real_only",
-  "sha256": "04640df66f3c7c2e537e66965ae5bc4011b5480f07b6155e416412f2663ba43a",
-  "size": 35018,
+  "programmes": 1936,
+  "publication_status": "partial_with_viewer_reported_slots",
+  "sha256": "13a5b86ee3043cf1a9bf6626be89999b477908f098a5f857937c9dd150bbe038",
+  "size": 40642,
   "sources": {
     "2m": {
       "events": 218,
       "mode": "fresh"
     },
     "arryadia": {
-      "events": 0,
+      "events": 336,
       "historical_hints": "read-only; not broadcast programmes",
-      "mode": "real-source-unavailable",
-      "policy": "real-current-only",
+      "mode": "viewer-reported-hourly-only",
+      "policy": "official-only-with-explicit-viewer-reported-HD2-HD3",
       "source": "https://www.snrt.ma/ar/node/4070",
-      "stale_feed_or_fillers_count_as_epg": false
+      "stale_feed_or_fillers_count_as_epg": false,
+      "verified_current_events": 0,
+      "viewer_report_officially_verified": false,
+      "viewer_reported_channels": [
+        "Arryadia_HD2",
+        "Arryadia_HD3"
+      ],
+      "viewer_reported_grand_format_hourly": 336
     },
     "chada": {
       "events": 43,
@@ -53,11 +58,11 @@
       "mode": "fresh"
     },
     "snrt": {
-      "events": 1275,
+      "events": 1277,
       "mode": "fresh+alaoula-official-arabic"
     }
   },
   "timezone": "Africa/Casablanca",
   "url": "morocco.xml.gz",
-  "version": "20261017-222251"
+  "version": "20261017-223732"
 }
