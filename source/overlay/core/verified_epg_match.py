@@ -129,6 +129,8 @@ def quality_for_id(source_id, channel_id, report=None, now=None):
         return result
     if cid in (row.get("suspected_placeholder_epg_ids") or ()):
         return {"status": "SUSPECT_GENERATED_EPG", "verified_now": False, "rank": 5}
+    if cid in (row.get("severe_warn_gap_ids") or ()):
+        return {"status": "PARTIAL_GUIDE_REVIEW", "verified_now": False, "rank": 5}
     if cid in (row.get("partial_48h_blocked_ids") or ()):
         return {"status": "48H_FAILED_ID_REVIEW", "verified_now": False, "rank": 5}
     if cid in (row.get("xmltv_observed_zero_ids") or ()):
