@@ -320,8 +320,10 @@ def fetch_one(source, now, verify_xmltv=False):
                             not short_ids.issubset(future_ids) or
                             short_ids.intersection(observed_zero)):
                         allowed_cohort = False
-                        result["status"] = "48H_PARTIAL_IDS_XMLTV_MISMATCH"
-                    elif (hash_and_ids_verified and
+                        result["status"] = ("48H_PARTIAL_IDS_XMLTV_MISMATCH"
+                                            if short_ids else
+                                            "48H_PARTIAL_ZERO_IDS_XMLTV_MISMATCH")
+                    elif (allowed_cohort and hash_and_ids_verified and
                           verified.get("xmltv_content_pass") is True):
                         # Yellow/review status, not green auto-owner evidence.
                         result["review_partial_epg_ids"] = sorted(
