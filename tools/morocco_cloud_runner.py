@@ -262,64 +262,13 @@ def parse_chada_page(html, day):
 
 
 def scrape_chada(days):
-    s = session()
-    today = datetime.now(TZ).date()
-    out = []
-    # Official page first. It may present a datacenter challenge, so failure is expected and harmless.
-    try:
-        r = fetch(s, "https://chada.ma/fr/chada-tv/grille-tv/")
-        txt = clean(BeautifulSoup(r.text, "lxml").get_text(" ", strip=True))
-        if "request is being verified" not in txt.casefold() and "just a moment" not in txt.casefold():
-            # Reuse the legacy official parser if the page is actually available.
-            try:
-                legacy = base.scrape_2m_chada(days)
-                official = [e for e in legacy if e.channel == "Chada TV"]
-                if len(official) >= 3:
-                    log("Chada official: %d events" % len(official))
-                    return official
-            except Exception:
-                pass
-    except Exception as exc:
-        log("Chada official unavailable: %s" % exc)
+    """Scrape CHADA TV exclusively from the official chada.ma TV grille.
 
-    # Independent public fallback. This prevents Chada anti-bot from taking down 2M/SNRT/Medi1.
-    url = "https://tele-news.net/fr/maroc/television/cm9WVVlDbkswYktGODVnYkFhWkpNZz09"
-    try:
-        r = fetch(s, url)
-        first = parse_chada_page(r.text, today)
-        if first:
-            out.extend(first)
-            # TeleNews exposes a rolling channel schedule. Preserve the visible pattern for the
-            # configured horizon only when no per-date links are discoverable.
-            soup = BeautifulSoup(r.text, "lxml")
-            date_links = []
-            for a in soup.find_all("a", href=True):
-                m = DATE_RE.search(a.get("href", ""))
-                if m:
-                    date_links.append((m.group(0), urljoin(url, a["href"])))
-            used_days = {today}
-            for ds, href in date_links:
-                try:
-                    d = datetime.strptime(ds, "%Y-%m-%d").date()
-                except Exception:
-                    continue
-                if d < today or d >= today + timedelta(days=days) or d in used_days:
-                    continue
-                try:
-                    rr = parse_chada_page(fetch(s, href).text, d)
-                    if rr:
-                        out.extend(rr); used_days.add(d)
-                except Exception:
-                    pass
-            # If only today's page is available, do not invent future schedules.
-    except Exception as exc:
-        log("Chada TeleNews fallback unavailable: %s" % exc)
-    ded = {(e.start, e.title.casefold()): e for e in out}
-    rows = sorted(ded.values(), key=lambda e: e.start)
-    base.infer(rows)
-    log("Chada fallback: %d events" % len(rows))
-    return rows
-
+    An unreachable/empty official schedule returns no events. Do not call
+    TeleNews, old /chada-tv/grille-tv, or any third-party programme provider.
+    """
+    from morocco_current_official import scrape_chada as official_chada
+    return official_chada(days)
 
 def read_previous(path):
     return base.previous(path) if path and path.exists() else []
@@ -408,6 +357,9 @@ def main():
         rows, mode = choose(name, results.get(name, []), old, ids, minimum)
         selected.extend(rows)
         status[name] = {"mode": mode, "events": len(rows)}
+        if name == "chada":
+            status[name]["source"] = "https://chada.ma/fr/tv/grille/"
+            status[name]["policy"] = "official-only"
 
     # Dedupe and infer missing stops independently by channel.
     ded = {}
