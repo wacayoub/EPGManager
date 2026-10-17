@@ -283,9 +283,15 @@ jobs:
                               french_first = set()
                               allowed_fr = {
                                   'Info Soir': 'info_soir',
-                                  'Météo': 'meteo',
                                   'Eco News': 'eco_news',
+                                  'Bulletin Météo': 'meteo_after_info',
+                                  'Auto-moto': 'auto_moto',
+                                  'Planète Foot': 'planete_foot',
+                                  'Ahsane pâtissier': 'ahsane_patissier',
                               }
+                              previous_title = ''
+                              previous_day = ''
+                              weather_fr_days = set()
                               for x in sorted(twom, key=lambda z: z.get('start') or ''):
                                   t = x.find('title')
                                   d = x.find('desc')
@@ -303,16 +309,23 @@ jobs:
                                       key = (day, allowed_fr[tt])
                                       if t is None or t.get('lang') != 'fr':
                                           bad_policy.append('%s must be lang=fr' % tt)
-                                      elif hour < 18:
-                                          bad_policy.append('%s appears before evening at %s' % (tt, start))
-                                      elif key in french_first:
-                                          bad_policy.append('duplicate French first edition %s on %s' % (tt, day))
+                                      elif tt == 'Bulletin Météo' and not (
+                                          hour >= 18 and previous_title == 'Info Soir'
+                                          and previous_day == day and day not in weather_fr_days
+                                      ):
+                                          bad_policy.append('French weather without preceding evening Info Soir: %s' % start)
                                       else:
                                           french_first.add(key)
+                                          if tt == 'Bulletin Météo':
+                                              weather_fr_days.add(day)
+                                  elif tt in {'أخبار المساء', 'إيكو نيوز'}:
+                                      bad_policy.append('2M French-native news title translated into Arabic: %s' % tt)
                                   elif t is None or t.get('lang') != 'ar' or not ar.search(tt):
                                       bad_t.append(tt)
                                   if d is None or d.get('lang') != 'ar' or not ar.search(dd):
                                       bad_d.append(dd)
+                                  previous_title = tt
+                                  previous_day = day
 
                               for x in snrt + arr:
                                   st = x.get('start') or ''
@@ -344,9 +357,9 @@ jobs:
                               elif evening < 3:
                                   reason = '2M full-day coverage failed: only %d evening events' % evening
                               elif bad_policy:
-                                  reason = '2M French-first policy failed: %s' % bad_policy[:3]
+                                  reason = '2M native-language programme policy failed: %s' % bad_policy[:3]
                               elif bad_t:
-                                  reason = '2M Arabic title quality failed outside allowed French first editions: %d/%d bad; sample=%r' % (len(bad_t), len(twom), bad_t[:3])
+                                  reason = '2M Arabic title quality failed outside verified native-French shows: %d/%d bad; sample=%r' % (len(bad_t), len(twom), bad_t[:3])
                               elif bad_d:
                                   reason = '2M Arabic description quality failed: %d/%d bad; sample=%r' % (len(bad_d), len(twom), bad_d[:3])
                               elif len(snrt) < 10:

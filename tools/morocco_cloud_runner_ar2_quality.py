@@ -50,7 +50,7 @@ _KNOWN_2M_TITLES = {
     "fatty cabotin": "فاتي كابوتين",
     "kawalisse": "كواليس",
     "charqi ou lgharbi": "شرقي و الغربي",
-    "auto moto": "أوتو موتو",
+    "auto moto": "Auto-moto",
     "al akhawat attalat": "الأخوات الثلاث",
     "3ailti": "عائلتي",
     "moughamarat": "مغامرات",
@@ -65,6 +65,8 @@ _KNOWN_2M_TITLES = {
     "addine wa annass": "الدين والناس",
     "yassar would annass": "يسار: ولد الناس",
     "akhir tamane": "آخر تمان",
+    # Real 100%-French show names, not arbitrary Latin-script Darija.
+    **base._NATIVE_FRENCH_2M,
 }
 
 
