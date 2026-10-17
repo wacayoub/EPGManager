@@ -1,0 +1,71 @@
+name: RC80 partial OSN 82/19 per-ID provenance — NO DEPLOY
+
+on:
+  push:
+    branches: [fix/rc80-osn-partial-48h-provenance-20261017]
+    paths:
+      - 'tools/audit_rc80_public_feed_provenance.py'
+      - 'tests/test_rc80_public_feed_provenance.py'
+      - '.github/workflows/rc80-osn-partial-provenance-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/audit_rc80_public_feed_provenance.py'
+      - 'tests/test_rc80_public_feed_provenance.py'
+      - '.github/workflows/rc80-osn-partial-provenance-ci.yml'
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Read-only source provenance regression
+        run: |
+          python -m py_compile tools/audit_rc80_public_feed_provenance.py tests/test_rc80_public_feed_provenance.py
+          python -m unittest discover -s tests -p 'test_rc80_public_feed_provenance.py' -v
+      - name: Full RC80 non-deploying regression suite
+        run: python -m unittest discover -s tests -p 'test_*py' -q
+  real-osn-public-xmltv:
+    needs: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Check actual hash-pinned OSN feed and per-ID 48h reports, never export programmes
+        run: |
+          python - <<'PY'
+          import json,time
+          from tools.audit_rc80_public_feed_provenance import fetch_one,mapping_quality_for_id
+          now=time.time()
+          out=fetch_one('osn',now,verify_xmltv=True)
+          wanted={
+            'status':out.get('status'),
+            'source':out.get('source'),
+            'published_sha256_verified':out.get('xmltv_sha256_verified'),
+            'per_id_proof':out.get('channel_specific_epg_evidence_verified'),
+            'quality_cohort_verified':out.get('quality_cohort_verified'),
+            'programme_current_ids':len(out.get('trusted_current_epg_ids') or []),
+            'no_future_epg_ids':len(out.get('partial_48h_zero_ids') or []),
+            'no_programmes_observed':len(out.get('xmltv_observed_zero_ids') or []),
+            'auto_allowed_for_missing':sum(
+              mapping_quality_for_id(cid,out)['auto_eligible']
+              for cid in out.get('partial_48h_zero_ids') or []),
+            'receiver_modified':False,'install_authorized':False,
+          }
+          print('RC80_OSN_LIVE_PER_ID',json.dumps(wanted,sort_keys=True))
+          assert out.get('status')=='HASHED_XMLTV_PER_ID_PARTIAL_48H',out.get('status')
+          assert out.get('ready_for_epg_ok') is True
+          assert wanted['programme_current_ids']>=1
+          assert wanted['no_future_epg_ids']>=1
+          assert wanted['auto_allowed_for_missing']==0
+          PY
