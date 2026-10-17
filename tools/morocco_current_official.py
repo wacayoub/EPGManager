@@ -10,7 +10,8 @@ import morocco_epg as base
 import morocco_cloud_runner as runner
 
 TZ = runner.TZ
-SNRT_LIVE_URL = "https://www.snrt.ma/fr/al-aoula"
+SNRT_LIVE_URL = "https://www.snrt.ma/ar/al-aoula"
+_ARABIC_SCRIPT = re.compile(r"[\u0600-\u06ff]")
 CHADA_LIVE_URL = "https://chada.ma/fr/tv/grille/"
 CLOCK = re.compile(r"^([01]?\d|2[0-3])\s*[Hh:]\s*([0-5]\d)$")
 
@@ -42,7 +43,8 @@ def parse_alaoula_html(html, today, now=None):
         title = info.get_text(" ", strip=True)
         if title.startswith(label):
             title = title[len(label):].strip(" -–:")
-        if not title or len(title) > 150:
+        if not title or len(title) > 150 or not _ARABIC_SCRIPT.search(title):
+            # Never publish Latin-script/French-fallback programme titles.
             continue
         # SNRT broadcast-day invariant: 00:00–06:59 belong to the next day.
         date = today + timedelta(days=1 if hm[0] < 7 else 0)
@@ -56,8 +58,10 @@ def parse_alaoula_html(html, today, now=None):
         stop = parsed[i+1][0] if i+1 < len(parsed) else start + timedelta(hours=1)
         if stop <= start:
             continue
-        lang = base.lang(title)
-        events.append(base.Event("AlAoula", start, title, title, stop, lang, lang, "snrt-official-live"))
+        events.append(base.Event(
+            "AlAoula", start, title, title, stop, "ar", "ar",
+            "snrt-official-arabic",
+        ))
     return events
 
 
@@ -66,7 +70,7 @@ def scrape_alaoula(days):
         response = runner.fetch(runner.session(), SNRT_LIVE_URL)
         today = datetime.now(TZ).date()
         rows = parse_alaoula_html(response.text, today)
-        runner.log("AlAoula active official SNRT grid: %d real events" % len(rows))
+        runner.log("AlAoula active official SNRT Arabic grid: %d real events" % len(rows))
         return rows
     except Exception as exc:
         runner.log("AlAoula active official SNRT page unavailable: %s" % exc)
