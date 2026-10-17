@@ -68,6 +68,36 @@ def load_root(path):
     return ET.fromstring(data)
 
 
+
+def verified_kids_single_minute_clip(cid, programmes):
+    """True only for one real 60-second OSN Kids programme, not a broken slot.
+
+    Verify original XMLTV start/stop offsets and non-empty bilingual metadata.
+    Does not waive gaps, overlaps, bad timezones, low horizons, or duplicates.
+    """
+    if cid not in ("OSN.Kids.ae", "OSNKids.ae@SD"):
+        return False
+    from datetime import datetime
+    tiny = []
+    for programme in programmes:
+        start = (programme.get("start") or "").strip()
+        stop = (programme.get("stop") or "").strip()
+        if len(start) < 14 or len(stop) < 14 or start[14:] != stop[14:]:
+            return False
+        try:
+            begin = datetime.strptime(start[:14], "%Y%m%d%H%M%S")
+            end = datetime.strptime(stop[:14], "%Y%m%d%H%M%S")
+        except ValueError:
+            return False
+        seconds = (end - begin).total_seconds()
+        if 0 < seconds < 120:
+            title = (programme.findtext("title") or "").strip()
+            desc = (programme.findtext("desc") or "").strip()
+            tiny.append(seconds == 60 and bool(title) and
+                        any("\u0600" <= ch <= "\u06ff" for ch in desc))
+    return len(tiny) == 1 and tiny[0]
+
+
 def policy_verdict(row):
     issues = []
     warnings = []
@@ -93,7 +123,16 @@ def policy_verdict(row):
     if row.get("long_gt_6h"):
         warnings.append("LONG_6H=%d" % row["long_gt_6h"])
     if row.get("short_lt_2m"):
-        warnings.append("SHORT_LT_2M=%d" % row["short_lt_2m"])
+        # An isolated, individually verified one-minute children's song is
+        # legitimate programming, not a broken guide. All other short entries
+        # remain REVIEW. Never hide actual structural/time coverage defects.
+        if (int(row["short_lt_2m"]) == 1 and
+                row.get("verified_kids_single_minute_clip") is True and
+                float(row.get("coverage_hours", 0.0) or 0.0) >= 24.0 and
+                not issues):
+            diagnostic.append("VERIFIED_OSN_KIDS_60S_CLIP=1")
+        else:
+            warnings.append("SHORT_LT_2M=%d" % row["short_lt_2m"])
     if row.get("desc_same_title"):
         warnings.append("DESC_EQUALS_TITLE=%d" % row["desc_same_title"])
 
@@ -162,6 +201,8 @@ def main():
     for cid in sorted(channels, key=str.casefold):
         row = base.build_profile(cid, channels[cid], events.get(cid, []))
         family, kind = osn_family_kind(cid, channels[cid])
+        row["verified_kids_single_minute_clip"] = verified_kids_single_minute_clip(
+            cid, events.get(cid, []))
         row["family"] = family
         row["kind"] = kind
         verdict, issues, warnings, diagnostic = policy_verdict(row)
