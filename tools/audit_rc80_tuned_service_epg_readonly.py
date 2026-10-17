@@ -37,10 +37,13 @@ def query(method, params=None):
     return obj
 
 def inspect_current(obj):
-    """Classify the live service safely, without logging its name or reference."""
-    if obj.get("result") is not True:
-        return None, "NO_CURRENT_SERVICE_REPORTED"
-    ref = obj.get("ref")
+    """OpenWebif /api/getcurrent has nested info, now, next dictionaries."""
+    info = obj.get("info")
+    if not isinstance(info, dict):
+        return None, "OPENWEBIF_CURRENT_INFO_MISSING"
+    if info.get("result") is not True:
+        return None, "OPENWEBIF_CURRENT_INFO_FAILED"
+    ref = info.get("ref")
     if not isinstance(ref, str) or not ref.strip():
         return None, "CURRENT_REF_MISSING"
     if len(ref) > 300:
@@ -86,11 +89,21 @@ def run():
         cur = query("getcurrent")
         ref, classification = inspect_current(cur)
         out["current_reference_class"] = classification
+        info = cur.get("info")
+        if isinstance(info, dict):
+            name = info.get("name")
+            if isinstance(name, str):
+                # Only a boolean is reported. The actual service name stays private.
+                out["tuned_channel_name_contains_2m"] = "2m" in name.lower().replace(" ", "")
         if not ref:
             out["status"] = "CURRENT_SERVICE_IDENTIFIED_NO_SAT_EPG_QUERY"
             return out
         out["safe_sat_service_selected"] = True
         epoch = int(time.time())
+        for key in ("now", "next"):
+            embedded = cur.get(key)
+            if isinstance(embedded, dict):
+                out["epg"]["getcurrent_" + key] = measure([embedded], epoch)
         for name in ("epgservicenow", "epgservicenext", "epgservice"):
             try:
                 reply = query(name, {"sRef": ref})
