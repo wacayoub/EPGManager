@@ -1,0 +1,73 @@
+name: Morocco 2M French editorial verification
+on:
+  push:
+    branches:
+      - fix/morocco-2m-native-french-titles-20261017
+  pull_request:
+    paths:
+      - tools/morocco_cloud_runner_ar2.py
+      - tools/morocco_cloud_runner_ar2_quality.py
+      - tests/test_morocco_native_french.py
+      - tests/test_morocco_2m_auto_moto.py
+      - .github/workflows/morocco-native-french-test.yml
+permissions:
+  contents: read
+jobs:
+  editorial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests beautifulsoup4 lxml cloudscraper curl_cffi
+      - name: Test original 2M translation policy and native French exceptions
+        run: |
+          PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_native_french.py -v
+          PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_2m_auto_moto.py -v
+      - name: Load last good Moroccan feed
+        run: |
+          mkdir -p previous output
+          curl -fL --retry 2 --connect-timeout 5 --max-time 20 \
+            https://raw.githubusercontent.com/wacayoub/EPGManager/epg-data/morocco.xml.gz \
+            -o previous/morocco.xml.gz
+      - name: Generate full fresh Morocco XMLTV without publication
+        run: timeout 600s python tools/morocco_cloud_final.py --output-dir output --previous previous/morocco.xml.gz --days 7
+      - name: Audit 2M final Arabic descriptions, genuine French titles, and no fabricated events
+        run: |
+          python - <<'PY'
+          import gzip, re, json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          xml = ET.fromstring(gzip.decompress(Path('output/morocco.xml.gz').read_bytes()))
+          m = json.loads(Path('output/manifest.json').read_text(encoding='utf-8'))
+          rows = [p for p in xml.findall('programme') if p.get('channel') == '2M']
+          fr = {'Info Soir', 'Eco News', 'Bulletin Météo', 'Auto-moto',
+                'Planète Foot', 'Ahsane pâtissier'}
+          titles = [x.findtext('title') for x in rows]
+          french = [(x.findtext('title'), x.get('start')) for x in rows
+                    if x.find('title') is not None and x.find('title').get('lang') == 'fr']
+          bad = [(x.findtext('title'),x.get('start')) for x in rows
+                 if x.find('title') is None or
+                 (x.find('title').get('lang') == 'fr' and x.findtext('title') not in fr) or
+                 (x.find('title').get('lang') != 'fr' and
+                  not re.search(r'[\u0600-\u06ff]',x.findtext('title') or ''))]
+          bad_desc = [x for x in rows if x.find('desc') is None or
+                      x.find('desc').get('lang') != 'ar' or
+                      not re.search(r'[\u0600-\u06ff]',x.findtext('desc') or '')]
+          print('MOROCCO_EDITORIAL_LIVE',m['generated'],'2M',len(rows),
+                'native_french',french[:14],'bad_titles',bad[:6],
+                'bad_descriptions',len(bad_desc),
+                'channel_count',m['channels'],'all_events',m['programmes'])
+          assert m['channels'] == 15
+          assert len(rows) >= 200
+          assert not bad and not bad_desc
+          assert any(t == 'Info Soir' for t in titles)
+          assert any(t == 'Eco News' for t in titles)
+          assert 'أخبار المساء' not in titles
+          assert 'إيكو نيوز' not in titles
+          assert any(t == 'Auto-moto' for t in titles)
+          assert m['channel_counts']['AlAoula'] > 0
+          assert m['channel_counts']['Chada TV'] > 0
+          print('MOROCCO_2M_NATIVE_FRENCH: PASS')
+          PY
