@@ -1,0 +1,18 @@
+name: Arryadia alternative EPG source truth audit
+on:
+  push:
+    branches:
+      - audit/arryadia-fresh-epg-sources-20261017
+permissions:
+  contents: read
+jobs:
+  truth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests beautifulsoup4 lxml
+      - run: python tools/arryadia_source_truth_survey.py
