@@ -42,13 +42,17 @@ def epoch(value):
 
 
 
-def _zero_only_partial_48h_ids(feed, row):
-    """Report-backed exceptions only for catalogue IDs lacking future EPG.
+def _safe_partial_48h_ids(source, feed, row):
+    """Split per-ID audited FAIL into empty and incomplete-but-real guides.
 
-    An audit FAIL can be per-ID nonfatal only when every declared channel has
-    one unique row, *all* failing rows explicitly say NO_FUTURE_EPG, and the
-    source-wide XMLTV syntax/reference checks are clean. Metadata alone never
-    establishes that a healthy sibling has a genuine current programme.
+    OSN's official Legacy services can have zero programmes. ElCinema has
+    authentic current events on 97/97 services, but some have short horizons
+    and multi-hour internal gaps. Such IDs may be shown for manual review,
+    NEVER marked REAL_CURRENT_EPG or auto-mapped as high-quality.
+
+    Require an exhaustive, unique per-ID audit with clean source-wide times,
+    known failure reasons only, and a matching failure count. Do not let a
+    summary from another source bypass this gate.
     """
     if not isinstance(row, dict) or row.get("status") != "FAIL":
         return None
@@ -62,7 +66,7 @@ def _zero_only_partial_48h_ids(feed, row):
     rows = row.get("rows")
     if not isinstance(rows, list) or len(rows) != count:
         return None
-    seen, blocked = set(), set()
+    seen, zero, short = set(), set(), set()
     for item in rows:
         if not isinstance(item, dict):
             return None
@@ -72,15 +76,30 @@ def _zero_only_partial_48h_ids(feed, row):
                 status not in ("PASS", "WARN", "FAIL")):
             return None
         seen.add(cid)
-        if status == "FAIL":
-            if item.get("reason") != "NO_FUTURE_EPG":
+        if status != "FAIL":
+            continue
+        reason = item.get("reason")
+        if source == "osn" and reason == "NO_FUTURE_EPG":
+            zero.add(cid)
+        elif source == "elcinema" and reason == "TOO_SHORT+INTERNAL_GAP":
+            # Sanity-check the category and report values. These constraints
+            # do not certify the programme, only justify manual-review status.
+            future = item.get("future_hours")
+            gap = item.get("max_gap_minutes")
+            if (not isinstance(future, (int, float)) or isinstance(future, bool)
+                    or not 0 < future < 48
+                    or not isinstance(gap, (int, float)) or isinstance(gap, bool)
+                    or gap <= 90):
                 return None
-            blocked.add(cid)
+            short.add(cid)
+        else:
+            return None
     failed = row.get("failed_channels")
-    if (not blocked or not isinstance(failed, int) or
-            isinstance(failed, bool) or failed != len(blocked)):
+    if (not zero and not short) or not isinstance(failed, int) or isinstance(failed, bool):
         return None
-    return blocked
+    if failed != len(zero) + len(short):
+        return None
+    return {"zero": zero, "short": short}
 
 
 def assess(source, feed, audit, quality, now=None):
@@ -139,14 +158,17 @@ def assess(source, feed, audit, quality, now=None):
         result["status"] = "QUALITY_FROM_DIFFERENT_PUBLICATION"
         return result
     result["quality_cohort_verified"] = True
-    partial_zero_ids = set()
+    partial_zero_ids, partial_short_ids = set(), set()
     if matching[0].get("status") == "FAIL":
-        verified_failures = _zero_only_partial_48h_ids(feed, matching[0])
+        verified_failures = _safe_partial_48h_ids(source, feed, matching[0])
         if verified_failures is None:
             result["status"] = "48H_AUDIT_FAIL"
             return result
-        partial_zero_ids = verified_failures
+        partial_zero_ids = verified_failures["zero"]
+        partial_short_ids = verified_failures["short"]
         result["partial_48h_zero_ids"] = sorted(partial_zero_ids)
+        result["partial_48h_short_ids"] = sorted(partial_short_ids)
+        result["partial_48h_blocked_ids"] = sorted(partial_zero_ids | partial_short_ids)
     if quality.get("quality_status") not in ("PASS", "WARN"):
         result["status"] = "QUALITY_AUDIT_FAIL_OR_UNKNOWN"
         return result
@@ -171,7 +193,9 @@ def assess(source, feed, audit, quality, now=None):
     else:
         # Never call an audit with failed IDs globally healthy on metadata
         # alone. SHA-checked XMLTV must first prove the other programmes.
-        result["status"] = ("48H_PARTIAL_ZERO_IDS_NEED_XMLTV_PROOF"
+        result["status"] = ("48H_PARTIAL_IDS_NEED_XMLTV_PROOF"
+                            if partial_short_ids else
+                            "48H_PARTIAL_ZERO_IDS_NEED_XMLTV_PROOF"
                             if partial_zero_ids else "PUBLICATION_METADATA_COHERENT")
         result["ready_for_epg_ok"] = False  # Only actual verified XMLTV qualifies.
     return result
@@ -237,6 +261,8 @@ def mapping_quality_for_id(xmltv_id, evidence):
         return {"status": "SUSPECT_GENERATED_EPG", "auto_eligible": False}
     if channel_id in (evidence.get("trusted_current_epg_ids") or []):
         return {"status": "REAL_CURRENT_EPG", "auto_eligible": True}
+    if channel_id in (evidence.get("review_partial_epg_ids") or []):
+        return {"status": "PARTIAL_GUIDE_REVIEW", "auto_eligible": False}
     if channel_id in (evidence.get("review_future_epg_ids") or []):
         return {"status": "FUTURE_ONLY_REVIEW", "auto_eligible": False}
     if channel_id in (evidence.get("xmltv_observed_zero_ids") or []):
@@ -264,6 +290,7 @@ def fetch_one(source, now, verify_xmltv=False):
                         "PUBLICATION_COHORT_OK_LIVE_NOW_UNKNOWN",
                         "PUBLISHED_NOW_COVERAGE_LOW",
                         "48H_PARTIAL_ZERO_IDS_NEED_XMLTV_PROOF",
+                        "48H_PARTIAL_IDS_NEED_XMLTV_PROOF",
                     )
                     and result.get("pubcohort_verified") is True
                     and result.get("quality_cohort_verified") is True
@@ -279,15 +306,28 @@ def fetch_one(source, now, verify_xmltv=False):
                 # siblings. Its reported zero-ID set must match the actual
                 # downloaded, SHA-verified XMLTV, and no reported failed ID
                 # may have future/current events. Otherwise fail closed.
-                blocked_ids = set(result.get("partial_48h_zero_ids") or [])
+                zero_ids = set(result.get("partial_48h_zero_ids") or [])
+                short_ids = set(result.get("partial_48h_short_ids") or [])
+                blocked_ids = zero_ids | short_ids
                 if blocked_ids:
                     observed_zero = verified.get("xmltv_observed_zero_ids")
+                    # Distinguish real-but-incomplete ElCinema schedules from
+                    # empty OSN IDs. A short guide MUST contain future events.
                     if (not isinstance(observed_zero, list) or
-                            set(observed_zero) != blocked_ids or
-                            blocked_ids.intersection(current_ids) or
-                            blocked_ids.intersection(future_ids)):
+                            set(observed_zero) != zero_ids or
+                            zero_ids.intersection(current_ids) or
+                            zero_ids.intersection(future_ids) or
+                            not short_ids.issubset(future_ids) or
+                            short_ids.intersection(observed_zero)):
                         allowed_cohort = False
-                        result["status"] = "48H_PARTIAL_ZERO_IDS_XMLTV_MISMATCH"
+                        result["status"] = ("48H_PARTIAL_IDS_XMLTV_MISMATCH"
+                                            if short_ids else
+                                            "48H_PARTIAL_ZERO_IDS_XMLTV_MISMATCH")
+                    elif (allowed_cohort and hash_and_ids_verified and
+                          verified.get("xmltv_content_pass") is True):
+                        # Yellow/review status, not green auto-owner evidence.
+                        result["review_partial_epg_ids"] = sorted(
+                            short_ids.intersection(current_ids))
                 
                 # Quality reports explicitly flag programme placeholders such
                 # as channel-name-only schedule rows. A valid programme time
