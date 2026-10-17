@@ -1,0 +1,26 @@
+name: Morocco 2M Arabic proper-title regression
+on:
+  push:
+    branches:
+      - fix/morocco-2m-auto-moto-arabic-20261017
+    paths:
+      - tools/morocco_cloud_runner_ar2_quality.py
+      - tests/test_morocco_2m_auto_moto.py
+      - .github/workflows/morocco-2m-auto-moto-test.yml
+  pull_request:
+    paths:
+      - tools/morocco_cloud_runner_ar2_quality.py
+      - tests/test_morocco_2m_auto_moto.py
+      - .github/workflows/morocco-2m-auto-moto-test.yml
+permissions:
+  contents: read
+jobs:
+  policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests beautifulsoup4 lxml cloudscraper curl_cffi
+      - run: PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_2m_auto_moto.py -v
