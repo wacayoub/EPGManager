@@ -19,7 +19,7 @@ def fetch_snrt(n):
         s=BeautifulSoup(r.text,"lxml")
         rows=[]
         for item in s.select("div.grille-line"):
-            v=next((x for x in item.get("class",[]) if re.fullmatch(r"20\\d{6}",x)),None)
+            v=next((x for x in item.get("class",[]) if re.fullmatch(r"20\d{6}",x)),None)
             if not v:continue
             try:date=datetime.datetime.strptime(v,"%Y%m%d").date()
             except ValueError: continue
@@ -41,7 +41,7 @@ def fetch_external(day):
         soup=BeautifulSoup(r.text,"lxml")
         text=soup.get_text(" ",strip=True)
         # Don't count if site's header doesn't correspond to the date requested.
-        ds=[int(x) for x in re.findall(r"(?i)\\b(?:19|20)\\d{2}\\b",text[:5000])[:6]]
+        ds=[int(x) for x in re.findall(r"(?i)\b(?:19|20)\d{2}\b",text[:5000])[:6]]
         return dict(requested=day,status=r.status_code,date_visible=day in text[:2000],date_years=ds,
                     arr_mention="Arryadia" in text,preview=text[text.find("Programme TV Arryadia"):text.find("Programme TV Arryadia")+220])
     except Exception as e:return dict(requested=day,error=str(e)[:120])
@@ -87,7 +87,7 @@ for x in rows:stat[family(x["title"])].append(x)
 summaries=[]
 for k,rr in sorted(stat.items(),key=lambda t:-len(t[1])):
     dates=sorted(set(x["date"] for x in rr))
-    times=collections.Counter(x["time"][:2] for x in rr if re.fullmatch(r"\\d{1,2}:\\d{2}",x["time"]))
+    times=collections.Counter(x["time"][:2] for x in rr if re.fullmatch(r"\d{1,2}:\d{2}",x["time"]))
     day_names=collections.Counter(x["week_day"] for x in rr)
     summaries.append(dict(family=k,events=len(rr),observed_days=len(dates),observed_months=sorted(set(d[:7] for d in dates)),
                           most_common_hours=times.most_common(5),weekdays=day_names.most_common(7),
