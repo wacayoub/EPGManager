@@ -45,7 +45,7 @@ def read(url):
         if len(data)>cap:
             return dict(status=status,error="download exceeded 20MB cap")
     body=bytes(data)
-    if body[:2]==b"\\x1f\\x8b":
+    if body[:2]==bytes([31,139]):
         body=gzip.decompress(body)
     return dict(status=status,body=body,bytes=len(body),type=r.headers.get("content-type",""))
 def parse_dt(text):
