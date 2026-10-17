@@ -10,19 +10,19 @@
     "Arryadia_HD2": 24,
     "Arryadia_HD3": 24,
     "Arryadia_TNT": 120,
-    "Assadisa": 430,
+    "Assadisa": 431,
     "Chada TV": 43,
     "MEDI1TV_AR.ma": 48,
     "MEDI1TV_MAGHREB.ma": 14,
-    "Tamazight": 240
+    "Tamazight": 241
   },
   "channels": 15,
-  "generated": "2026-10-17T21:26:43.073692+00:00",
+  "generated": "2026-10-17T21:37:22.737026+00:00",
   "missing_current_epg": [],
-  "programmes": 1949,
+  "programmes": 1951,
   "publication_status": "complete",
-  "sha256": "e4ce4279b87a41c112fb755e18b456aa2958f2a9beb1e8eb586dfbd15ff09eff",
-  "size": 41319,
+  "sha256": "349786244dc793fa2d79351e4912ff8af6633077d786bb1c2c3c380daf435308",
+  "size": 41365,
   "sources": {
     "2m": {
       "events": 257,
@@ -34,18 +34,20 @@
     },
     "chada": {
       "events": 43,
-      "mode": "fresh"
+      "mode": "official-only",
+      "policy": "official-only",
+      "source": "https://chada.ma/fr/tv/grille/"
     },
     "medi1": {
       "events": 62,
       "mode": "fresh"
     },
     "snrt": {
-      "events": 1275,
+      "events": 1277,
       "mode": "fresh"
     }
   },
   "timezone": "Africa/Casablanca",
   "url": "morocco.xml.gz",
-  "version": "20261017-212643"
+  "version": "20261017-213722"
 }
