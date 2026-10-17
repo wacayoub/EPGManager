@@ -438,6 +438,8 @@ def main():
         "channels": len(base.CHANNELS),
         "programmes": sum(counts.values()),
         "channel_counts": {c: counts.get(c, 0) for c in sorted(base.CHANNELS)},
+        "missing_current_epg": sorted(set(base.CHANNELS) - set(counts)),
+        "publication_status": "complete" if len(counts) == len(base.CHANNELS) else "partial_real_only",
         "sources": status,
     }
     (outdir / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")

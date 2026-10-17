@@ -1,0 +1,71 @@
+name: Morocco full candidate safety smoke
+on:
+  push:
+    branches:
+      - fix/morocco-live-official-source-restoration-20261017
+    paths:
+      - .github/workflows/morocco-full-candidate-smoke.yml
+      - tools/morocco_cloud_final.py
+      - tools/morocco_current_official.py
+      - tools/morocco_cloud_runner.py
+  pull_request:
+    paths:
+      - .github/workflows/morocco-full-candidate-smoke.yml
+      - tools/morocco_cloud_final.py
+      - tools/morocco_current_official.py
+      - tools/morocco_cloud_runner.py
+permissions:
+  contents: read
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests beautifulsoup4 lxml cloudscraper curl_cffi
+      - name: Load last published receiver data read only
+        run: |
+          mkdir -p previous output
+          curl -fL --retry 2 --connect-timeout 5 --max-time 20 \
+             https://raw.githubusercontent.com/wacayoub/EPGManager/epg-data/morocco.xml.gz \
+             -o previous/morocco.xml.gz
+      - name: Generate current validated Morocco candidate without publication
+        run: timeout 600s python tools/morocco_cloud_final.py --output-dir output --previous previous/morocco.xml.gz --days 7
+      - name: Verify receiver XMLTV and official channels
+        run: |
+          python - <<'PY'
+          import gzip, json, datetime, xml.etree.ElementTree as ET
+          from collections import Counter
+          from pathlib import Path
+          root=ET.fromstring(gzip.decompress(Path('output/morocco.xml.gz').read_bytes()))
+          ids={x.get('id') for x in root.findall('channel')}
+          programmes=root.findall('programme')
+          counts=Counter(p.get('channel') for p in programmes)
+          report=json.loads(Path('output/manifest.json').read_text())
+          print('MOROCCO_CANDIDATE',report['generated'],'status',report['publication_status'],
+                'channels',len(ids),'programmes',len(programmes),
+                'missing',report['missing_current_epg'],'key_counts',
+                {k:counts[k] for k in ['AlAoula','Chada TV','2M','Arryadia_HD','MEDI1TV_AR.ma']})
+          assert len(ids)==15
+          assert len(programmes)==report['programmes']>=700
+          assert counts['2M']>=200
+          assert counts['AlAoula']>=8
+          assert counts['Chada TV']>=20
+          assert counts['Arryadia_HD']>=10
+          assert counts['MEDI1TV_AR.ma']>=5
+          assert all(p.get('start','')[:14]<p.get('stop','')[:14] for p in programmes)
+          print('MOROCCO_FULL_CANDIDATE_GATES: PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: morocco-live-candidate-${{ github.run_id }}
+          path: |
+            output/morocco.xml.gz
+            output/manifest.json
+            output/morocco.txt
+          retention-days: 3
+          if-no-files-found: warn
