@@ -61,7 +61,7 @@ class ChadaOnly(unittest.TestCase):
             cloud._install_strict_writer()
             core = [
                 event("2M", "sudinfo", 0),
-                event("Arryadia_HD", "snrt", 45),
+                event("Arryadia_HD", "arryadia-current-official", 45),
                 event("MEDI1TV_AR.ma", "medi1", 90),
             ]
             self.assertEqual(runner.write_xml(core, "unused")["Chada TV"], 0)
