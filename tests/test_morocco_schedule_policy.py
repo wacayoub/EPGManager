@@ -23,7 +23,7 @@ def script(name):
 
 
 def embedded_python(step):
-    match = re.search(r"python - <<'PY'\n(.*?)\n\s+PY(?:\n|$)", step["run"], re.S)
+    match = re.search(r"python - <<'PY'\n(.*?)\nPY(?:\n|$)", step["run"], re.S)
     if match is None:
         raise AssertionError("Missing Python heredoc in " + step["name"])
     code = match.group(1)
