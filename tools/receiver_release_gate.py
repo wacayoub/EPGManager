@@ -69,6 +69,10 @@ DMI = {
     "DMI.Dubai.Zaman.ae", "DMI.Dubai.Racing.1.ae", "DMI.Dubai.Racing.2.ae",
     "DMI.Dubai.TV.ae", "DMI.Noor.Dubai.TV.ae", "DMI.Sama.Dubai.ae",
 }
+# Dubai Racing 1 can be absent when the live feed has no real programmes.
+# The zero-EPG prune deliberately omits it; it reappears on its own when real
+# programmes are present. Never invent placeholder events to satisfy the gate.
+DMI_OPTIONAL_REAL_EPG_ONLY = {"DMI.Dubai.Racing.1.ae"}
 # Stable receiver contract restored intentionally by provider_namespace_polish.py.
 ADM = {
     "AbuDhabiEmirates.ae", "AbuDhabiSports1.ae", "AbuDhabiSports2.ae",
@@ -94,7 +98,7 @@ PROVIDERS = {
     "provider-osn": (("OSN.",), OSN, set()),
     "provider-mbc": (("MBC.",), MBC, set()),
     "provider-rotana": (("Rotana.",), ROTANA, ROTANA_OPTIONAL),
-    "provider-dmi": (("DMI.",), DMI, set()),
+    "provider-dmi": (("DMI.",), DMI - DMI_OPTIONAL_REAL_EPG_ONLY, DMI_OPTIONAL_REAL_EPG_ONLY),
     # Exact membership is the ADM namespace contract; no synthetic ADM.* prefix.
     "provider-adm": (None, ADM, set()),
 }

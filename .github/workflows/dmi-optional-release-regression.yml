@@ -1,0 +1,33 @@
+name: DMI real EPG receiver gate (read-only)
+
+on:
+  push:
+    paths:
+      - "tools/receiver_release_gate.py"
+      - "tools/test_dmi_optional_release_gate.py"
+      - ".github/workflows/dmi-optional-release-regression.yml"
+  pull_request:
+    paths:
+      - "tools/receiver_release_gate.py"
+      - "tools/test_dmi_optional_release_gate.py"
+      - ".github/workflows/dmi-optional-release-regression.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Compile receiver gate and run provider contract regression
+        run: |
+          python -m py_compile tools/receiver_release_gate.py tools/test_dmi_optional_release_gate.py
+          python tools/test_dmi_optional_release_gate.py
