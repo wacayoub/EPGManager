@@ -5,6 +5,7 @@ from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
 for label,url in [
  ("snrt-ar","https://www.snrt.ma/ar/node/4070"),
+ ("snrt-home","https://www.snrt.ma/ar/arryadia"),
  ("soccer-main","https://www.livesoccertv.com/fr/channels/arryadia/"),
  ("soccer-tnt","https://www.livesoccertv.com/fr/channels/arryadia-tnt/"),
  ("hd3","https://www.livefootballtv.info/channel/moroccan-sports")
@@ -13,7 +14,7 @@ for label,url in [
   r=requests.get(url,timeout=(7,17),headers={"User-Agent":"Mozilla/5.0","Accept-Language":"fr,ar;q=.9"})
   print("SOURCE",label,"status",r.status_code,"bytes",len(r.content),"url",r.url,flush=True)
   soup=BeautifulSoup(r.text,"lxml")
-  if label=="snrt-ar":
+  if label in ("snrt-ar","snrt-home"):
    elems=soup.select(".grille-line")
    print("SNRT_ROWS",len(elems),"date_classes",[(e.get("class"),e.select_one(".grille-time").get_text(" ",strip=True) if e.select_one(".grille-time") else None) for e in elems[:10]],flush=True)
    print("SNRT_DATES",sorted(set(v for e in elems for v in e.get("class",[]) if re.fullmatch(r"\d{8}",v)))[:15],flush=True)
