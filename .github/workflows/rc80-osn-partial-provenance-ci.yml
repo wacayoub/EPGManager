@@ -30,6 +30,8 @@ jobs:
         run: |
           python -m py_compile tools/audit_rc80_public_feed_provenance.py tests/test_rc80_public_feed_provenance.py
           python -m unittest discover -s tests -p 'test_rc80_public_feed_provenance.py' -v
+      - name: Full RC80 non-deploying regression suite
+        run: python -m unittest discover -s tests -p 'test_*py' -q
   real-osn-public-xmltv:
     needs: unit
     runs-on: ubuntu-latest
