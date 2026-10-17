@@ -166,6 +166,20 @@ def _install_per_channel_lkg():
     historical_choose = runner.choose
 
     def choose_channel_complete(name, fresh, old, channel_ids, minimum):
+        if name == "chada":
+            # User source policy: CHADA TV may ONLY come from the broadcaster's
+            # official weekly schedule. Never accept an old receiver programme,
+            # TeleNews, a generic donor or a fabricated gap filler.
+            official = [
+                e for e in _valid_horizon(fresh)
+                if e.channel == "Chada TV"
+                and getattr(e, "source", None) == "chada-official-weekly"
+            ]
+            if len(official) >= minimum:
+                runner.log("Chada official-only: %d verified current events" % len(official))
+                return official, "official-only"
+            runner.log("Chada official-only: no valid upstream events; publishing empty Chada ID")
+            return [], "official-unavailable"
         rows, mode = historical_choose(name, fresh, old, channel_ids, minimum)
         present = {e.channel for e in _valid_horizon(rows)}
         recovered = {}
@@ -244,6 +258,12 @@ def _install_strict_writer():
 
     def strict_write(rows, path):
         clean = _strict_cloud_timeline(rows)
+        if any(
+            e.channel == "Chada TV"
+            and getattr(e, "source", None) != "chada-official-weekly"
+            for e in clean
+        ):
+            raise RuntimeError("Chada EPG provenance violation: nonofficial programme")
         useful_ids = {e.channel for e in _valid_horizon(clean)}
         missing = sorted(set(base.CHANNELS) - useful_ids)
         if missing:
@@ -301,19 +321,11 @@ def main():
 
     base.scrape_snrt = cloud_snrt
 
-    # Chada's previous /chada-tv/grille-tv/ endpoint is obsolete.
-    # Use verified current official weekly day panels; preserve the
-    # historical donor only as a non-authoritative outage fallback.
-    previous_chada = runner.scrape_chada
-
-    def cloud_chada(days):
-        rows = current_official.scrape_chada(days)
-        if len(rows) >= 3:
-            return rows
-        runner.log("Chada current official guide empty; checking historical donor")
-        return previous_chada(days)
-
-    runner.scrape_chada = cloud_chada
+    # Chada TV: only scrape the broadcaster's current official weekly
+    # schedule at https://chada.ma/fr/tv/grille/. No alternative providers.
+    # If the official page fails, the channel remains visible with zero EPG;
+    # the 2M, SNRT, Arryadia and Medi1 guides must still be published.
+    runner.scrape_chada = current_official.scrape_chada
 
     # Global safety overlays: provider groups may use LKG per channel, and the
     # final receiver timeline must be strict across SNRT, Arryadia, 2M, Chada
