@@ -324,6 +324,110 @@ class TestPublicFeedProvenance(unittest.TestCase):
             self.assertFalse(result["ready_for_epg_ok"])
             self.assertEqual(result["trusted_current_epg_ids"], [])
 
+    def _partial_osn(self):
+        a, b, c = fixtures("osn")
+        a.update(channels=4, active_channels=3, currently_on_air_channels=2)
+        b["feeds"][0].update(
+            status="FAIL", channels=4, failed_channels=1,
+            invalid_times=0, orphan_programmes=0,
+            rows=[
+                {"id": "id.good", "status": "PASS"},
+                {"id": "id.also_good", "status": "PASS"},
+                {"id": "id.later", "status": "WARN"},
+                {"id": "id.empty", "status": "FAIL", "reason": "NO_FUTURE_EPG"},
+            ])
+        verified = {
+            "xmltv_sha256_verified": True, "xmltv_content_pass": True,
+            "real_now_coverage_verified": True,
+            "channel_specific_epg_evidence_verified": True,
+            "xmltv_current_real_ids": ["id.good", "id.also_good"],
+            "xmltv_future_real_ids": ["id.good", "id.also_good", "id.later"],
+            "xmltv_observed_zero_ids": ["id.empty"],
+        }
+        return a, b, c, verified
+
+    def test_osn_partial_48h_19_empty_ids_do_not_block_healthy_siblings(self):
+        a, b, c, verified = self._partial_osn()
+        pre = module.assess("osn", a, b, c, NOW.timestamp())
+        self.assertEqual(pre["status"], "48H_PARTIAL_ZERO_IDS_NEED_XMLTV_PROOF")
+        self.assertFalse(pre["ready_for_epg_ok"])
+        self.assertEqual(pre["partial_48h_zero_ids"], ["id.empty"])
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", return_value=verified):
+            out = module.fetch_one("osn", NOW.timestamp(), verify_xmltv=True)
+        self.assertEqual(out["status"], "HASHED_XMLTV_PER_ID_PARTIAL_48H")
+        self.assertEqual(out["trusted_current_epg_ids"], ["id.also_good", "id.good"])
+        self.assertEqual(out["review_future_epg_ids"], ["id.later"])
+        self.assertTrue(out["ready_for_epg_ok"])
+        self.assertEqual(module.mapping_quality_for_id("id.empty", out),
+                         {"status": "NO_EPG", "auto_eligible": False})
+        self.assertTrue(module.mapping_quality_for_id("id.good", out)["auto_eligible"])
+        self.assertFalse(module.mapping_quality_for_id("id.later", out)["auto_eligible"])
+
+    def test_osn_partial_not_allowed_on_metadata_only(self):
+        a, b, c, _ = self._partial_osn()
+        with patch.object(module, "_get_json", side_effect=[a, b, c]):
+            out = module.fetch_one("osn", NOW.timestamp(), verify_xmltv=False)
+        self.assertFalse(out["ready_for_epg_ok"])
+        self.assertEqual(out["trusted_current_epg_ids"], [])
+
+    def test_osn_partial_wrong_reason_fails_full_source_closed(self):
+        a, b, c, _ = self._partial_osn()
+        b["feeds"][0]["rows"][-1]["reason"] = "TOO_SHORT+INTERNAL_GAP"
+        out = module.assess("osn", a, b, c, NOW.timestamp())
+        self.assertEqual(out["status"], "48H_AUDIT_FAIL")
+        self.assertEqual(out["trusted_current_epg_ids"], [])
+
+    def test_osn_partial_missing_or_duplicate_rows_fail_closed(self):
+        a, b, c, _ = self._partial_osn()
+        for bad in (
+            b["feeds"][0]["rows"][:3],
+            [*b["feeds"][0]["rows"][:3], b["feeds"][0]["rows"][1]],
+        ):
+            with self.subTest(bad=bad):
+                b["feeds"][0]["rows"] = bad
+                out = module.assess("osn", a, b, c, NOW.timestamp())
+                self.assertEqual(out["status"], "48H_AUDIT_FAIL")
+
+    def test_osn_partial_bad_or_orphan_programmes_fail_closed(self):
+        a, b, c, _ = self._partial_osn()
+        for issue in ("invalid_times", "orphan_programmes"):
+            with self.subTest(issue=issue):
+                b["feeds"][0][issue] = 1
+                self.assertEqual(module.assess("osn", a, b, c, NOW.timestamp())["status"],
+                                 "48H_AUDIT_FAIL")
+                b["feeds"][0][issue] = 0
+
+    def test_osn_partial_xmltv_zero_ids_must_equal_report(self):
+        a, b, c, verified = self._partial_osn()
+        for mismatch in ([], ["id.unrelated"], ["id.empty", "id.missing"]):
+            with self.subTest(mismatch=mismatch):
+                wrong = dict(verified, xmltv_observed_zero_ids=mismatch)
+                with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                        patch.object(module, "verify_payload", return_value=wrong):
+                    out = module.fetch_one("osn", NOW.timestamp(), verify_xmltv=True)
+                self.assertEqual(out["status"], "48H_PARTIAL_ZERO_IDS_XMLTV_MISMATCH")
+                self.assertFalse(out["ready_for_epg_ok"])
+                self.assertEqual(out["trusted_current_epg_ids"], [])
+
+    def test_osn_partial_stale_metadata_never_autolocks(self):
+        a, b, c, verified = self._partial_osn()
+        a["generated_utc"] = ts(NOW - timedelta(days=9))
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", return_value=verified):
+            out = module.fetch_one("osn", NOW.timestamp(), verify_xmltv=True)
+        self.assertFalse(out["ready_for_epg_ok"])
+        self.assertEqual(out["status"], "STALE_OR_INVALID_PUBLISHED_FEED")
+
+    def test_osn_partial_bad_quality_report_never_autolocks(self):
+        a, b, c, verified = self._partial_osn()
+        c["suspected_placeholder_channels"] = [{"count": 7}]
+        with patch.object(module, "_get_json", side_effect=[a, b, c]), \
+                patch.object(module, "verify_payload", return_value=verified):
+            out = module.fetch_one("osn", NOW.timestamp(), verify_xmltv=True)
+        self.assertFalse(out["ready_for_epg_ok"])
+        self.assertEqual(out["trusted_current_epg_ids"], [])
+
     def test_no_install_and_no_secrets(self):
         s = PATH.read_text(encoding="utf-8")
         for forbidden in ("opkg install", "opkg upgrade", "os.system(", "subprocess.run(",
