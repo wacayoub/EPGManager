@@ -21,6 +21,12 @@ class OfficialGrids(unittest.TestCase):
         self.assertTrue(all(e.tl == "ar" and e.dl == "ar" for e in events))
         self.assertTrue(all(e.source == "snrt-official-arabic" for e in events))
         self.assertIn("القرآن الكريم", [e.title for e in events])
+        weather = [e for e in events if e.title == "أحوال الطقس"]
+        self.assertEqual(len(weather), 1)
+        self.assertEqual(
+            weather[0].desc,
+            "نشرة جوية مفصلة حول حالة الطقس في المملكة المغربية.",
+        )
 
     def test_snrt_french_grid_is_not_reused(self):
         def row(t, label):
