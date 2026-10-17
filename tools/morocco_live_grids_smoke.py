@@ -9,8 +9,26 @@ for name,url,parser,min_count in [
     ("AlAoula","https://www.snrt.ma/ar/al-aoula",parse_alaoula_html,8),
     ("Chada TV","https://chada.ma/fr/tv/grille/",parse_chada_html,20),
 ]:
-    r=requests.get(url,timeout=(5,20),headers={"User-Agent":"Mozilla/5.0","Accept-Language":"fr,ar;q=.9"})
-    r.raise_for_status()
+    # SNRT sometimes times out on a cold connection from GitHub runners.
+    # Retry the same official URL only; never substitute French or a donor.
+    import time
+    last_error = None
+    for attempt in range(3):
+        try:
+            r = requests.get(
+                url, timeout=(12, 20),
+                headers={"User-Agent":"Mozilla/5.0","Accept-Language":"ar,fr;q=.9"}
+            )
+            r.raise_for_status()
+            last_error = None
+            break
+        except requests.RequestException as exc:
+            last_error = exc
+            print("OFFICIAL_SOURCE_RETRY",name,attempt+1,str(exc)[:160],flush=True)
+            if attempt < 2:
+                time.sleep(1)
+    if last_error is not None:
+        raise last_error
     events=parser(r.text,today)
     print("LIVE_OFFICIAL_SOURCE",name,"http=",r.status_code,"events=",len(events),
           "first=",events[0].start if events else None,
