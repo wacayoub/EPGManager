@@ -36,7 +36,7 @@ ALIASES = {
     "beIN.Sports.8.qa": {"beIN.Sports.8.qa", "beIN SPORTS 8.qa", "beINSPORTS8.qa", "beINSports8.qa@MENA"},
     "beIN.Sports.9.qa": {"beIN.Sports.9.qa", "beINSPORTS9.qa", "beINSports9.qa@MENA", "beIN SPORTS9 DIGITAL.qa"},
     "beIN.Sports.EN1.qa": {"beIN.Sports.EN1.qa", "beIN SPORTS EN 1.qa", "beIN SPORTS1 ENGLISH Digital.qa"},
-    "beIN.Sports.EN2.qa": {"beIN.Sports.EN2.qa", "beIN SPORTS EN 2.qa"},
+    "beIN.Sports.EN2.qa": {"beIN.Sports.EN2.qa", "beIN SPORTS EN 2.qa", "beIN SPORTS2 ENGLISH Digital.qa"},
     "beIN.Sports.FR1.qa": {"beIN.Sports.FR1.qa"},
     "beIN.Sports.FR2.qa": {"beIN.Sports.FR2.qa"},
     "beIN.Sports.FTA.qa": {"beIN.Sports.FTA.qa", "bein SPORTS FTA DIGITAL.qa"},
