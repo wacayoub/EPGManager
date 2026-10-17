@@ -182,16 +182,16 @@ def _blocked_48h_ids(source, audit48, actual_channels):
         return None
     data = matched[0]
     status = data.get("status")
-    if status in ("PASS", "WARN"):
+    if source != "elcinema" and status in ("PASS", "WARN"):
         return set()
-    if status != "FAIL":
+    if status not in ("PASS", "WARN", "FAIL"):
         return None
     if data.get("invalid_times") != 0 or data.get("orphan_programmes") != 0:
         return None
     rows = data.get("rows")
     if not isinstance(rows, list) or len(rows) != len(actual_channels):
         return None
-    seen, blocked = set(), set()
+    seen, blocked, warn_count, fail_count, severe_gap_ids = set(), set(), 0, 0, set()
     for row in rows:
         if not isinstance(row, dict):
             return None
@@ -203,7 +203,26 @@ def _blocked_48h_ids(source, audit48, actual_channels):
         seen.add(cid)
         if row_status == "FAIL":
             blocked.add(cid)
-    if seen != actual_channels or not blocked or data.get("failed_channels") != len(blocked):
+            fail_count += 1
+        elif row_status == "WARN":
+            warn_count += 1
+            if source == "elcinema":
+                gap = row.get("max_gap_minutes")
+                if (not isinstance(gap, (int, float)) or isinstance(gap, bool)
+                        or gap < 0 or gap > 10080):
+                    return None
+                if gap >= 720:
+                    if "INTERNAL_GAP" not in str(row.get("reason") or ""):
+                        return None
+                    blocked.add(cid)
+                    severe_gap_ids.add(cid)
+    if seen != actual_channels or data.get("failed_channels") != fail_count:
+        return None
+    if source == "elcinema":
+        if (data.get("warning_channels") != warn_count or
+                (status in ("PASS","WARN") and fail_count)):
+            return None
+    elif status == "FAIL" and not fail_count:
         return None
     return blocked
 
@@ -251,6 +270,13 @@ def inspect_source(source, now=None, reader=None):
         known_quality, reason = _verified_cohort(source, meta, audit48, quality, now)
         failing_48h_ids = _blocked_48h_ids(source, audit48, measured["channels"])
         result["partial_48h_blocked_ids"] = sorted(failing_48h_ids or ())
+        if source == "elcinema" and failing_48h_ids is not None:
+            by_audit_id = {row.get("id"): row for row in
+                next((v.get("rows",[]) for v in audit48.get("feeds",[])
+                      if isinstance(v,dict) and v.get("feed")==source+".xml.gz"),[])}
+            result["severe_warn_gap_ids"] = sorted(
+                cid for cid in failing_48h_ids
+                if by_audit_id.get(cid,{}).get("status") == "WARN")
         if failing_48h_ids is None:
             known_quality = False
             reason = "48H_AUDIT_INCONSISTENT_IDS"
