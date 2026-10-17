@@ -19,7 +19,7 @@ def programme(start="20261018022900 +0000", stop="20261018023000 +0000",
 
 class TestKidsMicroclip(unittest.TestCase):
     def row(self, **kwargs):
-        data = {"id": "OSN.Kids.ae", "events": 124, "coverage_hours": 31.2,
+        data = {"id": "OSN.Kids.ae", "events": 124, "coverage_hours": 31.2, "desc_ar_pct": 100.0,
                 "short_lt_2m": 1, "verified_kids_single_minute_clip": True}
         data.update(kwargs)
         return data
