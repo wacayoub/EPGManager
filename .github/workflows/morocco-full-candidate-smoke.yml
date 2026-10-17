@@ -54,7 +54,8 @@ jobs:
           assert counts['2M']>=200
           assert counts['AlAoula']>=8
           assert counts['Chada TV']>=20
-          assert counts['Arryadia_HD']>=10
+          assert all(not (p.findtext('title') or '').startswith('Programmes Arryadia') for p in programmes)
+          assert report['sources']['arryadia']['policy']=='real-current-only'
           assert counts['MEDI1TV_AR.ma']>=5
           assert all(p.get('start','')[:14]<p.get('stop','')[:14] for p in programmes)
           print('MOROCCO_FULL_CANDIDATE_GATES: PASS')
