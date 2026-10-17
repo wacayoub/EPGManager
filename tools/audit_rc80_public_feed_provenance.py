@@ -81,15 +81,22 @@ def _safe_partial_48h_ids(source, feed, row):
         reason = item.get("reason")
         if source == "osn" and reason == "NO_FUTURE_EPG":
             zero.add(cid)
-        elif source == "elcinema" and reason == "TOO_SHORT+INTERNAL_GAP":
-            # Sanity-check the category and report values. These constraints
-            # do not certify the programme, only justify manual-review status.
+        elif source == "elcinema" and reason in ("TOO_SHORT", "TOO_SHORT+INTERNAL_GAP"):
+            # ElCinema's published minimum is 36h, NOT 48h. After the
+            # corrected October 17 broadcast-date anchor its remaining
+            # incomplete guides end at ~28h, gap=0. These are real but
+            # not complete and must be yellow/manual rather than making
+            # the other current IDs globally untrusted.
             future = item.get("future_hours")
             gap = item.get("max_gap_minutes")
             if (not isinstance(future, (int, float)) or isinstance(future, bool)
-                    or not 0 < future < 48
+                    or not 0 < future < 36
                     or not isinstance(gap, (int, float)) or isinstance(gap, bool)
-                    or gap <= 90):
+                    or gap < 0):
+                return None
+            if reason == "TOO_SHORT" and gap > 90:
+                return None
+            if reason == "TOO_SHORT+INTERNAL_GAP" and gap <= 90:
                 return None
             short.add(cid)
         else:
