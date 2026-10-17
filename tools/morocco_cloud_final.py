@@ -25,6 +25,7 @@ import morocco_cloud_legacy_logic as legacy
 import morocco_cloud_runner_ar2_quality as final2m
 import morocco_current_official as current_official
 import arryadia_archive_patterns as arr_policy
+import arryadia_hourly_grand_format as grand_format
 
 TZ = runner.TZ
 
@@ -173,12 +174,20 @@ def _install_per_channel_lkg():
             # these as current broadcaster announcements.
             verified = arr_policy.validated_rows(fresh)
             hints = arr_policy.observed_family_counts(verified)
+            # Viewer-observed HD2 and HD3 are a one-hour Grand Format loop.
+            # They are *reported recurring slots*, not official programme
+            # events; explicit provenance remains with each XMLTV row.
+            # Any real event, if independently verified, overrides its hours.
+            hourly = grand_format.generate_hourly(days=7, verified=verified)
             runner.log(
-                "Arryadia real-only: verified_current=%d rejected=%d "
-                "history_family_matches=%s; no LKG or synthetic filler"
-                % (len(verified), len(fresh) - len(verified), hints)
+                "Arryadia: verified_current=%d rejected=%d "
+                "viewer_reported_hourly_HD2_HD3=%d history_family_matches=%s"
+                % (len(verified), len(fresh) - len(verified), len(hourly), hints)
             )
-            return verified, ("real-only" if verified else "real-source-unavailable")
+            return verified + hourly, (
+                "official+viewer-reported-hourly" if verified
+                else "viewer-reported-hourly-only"
+            )
         if name == "chada":
             # User source policy: CHADA TV may ONLY come from the broadcaster's
             # official weekly schedule. Never accept an old receiver programme,
@@ -305,7 +314,11 @@ def _install_strict_writer():
         ):
             raise RuntimeError("AlAoula EPG Arabic official provenance violation")
         if any(
-            e.channel in arr_policy.ARR_IDS and not arr_policy.actual_arr_event(e)
+            e.channel in arr_policy.ARR_IDS
+            and not (
+                arr_policy.actual_arr_event(e)
+                or grand_format.is_viewer_report(e)
+            )
             for e in clean
         ):
             raise RuntimeError("Arryadia EPG provenance violation: stale or artificial programme")
