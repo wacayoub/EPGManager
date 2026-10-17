@@ -1,0 +1,76 @@
+name: Arryadia HD2 HD3 hourly Grand Format and provenance
+on:
+  push:
+    branches:
+      - fix/arryadia-hd2-hd3-hourly-grand-format-20261017
+  pull_request:
+    paths:
+      - tools/arryadia_hourly_grand_format.py
+      - tools/morocco_cloud_final.py
+      - tools/morocco_cloud_runner.py
+      - tools/arryadia_fixture_candidates.py
+      - tests/test_arryadia_hourly_grand_format.py
+      - .github/workflows/arryadia-hourly-grand-format-test.yml
+permissions:
+  contents: read
+jobs:
+  safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests beautifulsoup4 lxml cloudscraper curl_cffi
+      - name: Hourly user-observation provenance, regular slots and overrides
+        run: |
+          PYTHONPATH=tools python -m unittest discover -s tests -p test_arryadia_hourly_grand_format.py -v
+          PYTHONPATH=tools python -m unittest discover -s tests -p test_arryadia_fixture_candidates.py -v
+          PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_arryadia_real_only.py -v
+          PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_chada_official_only.py -v
+          PYTHONPATH=tools python -m unittest discover -s tests -p test_morocco_alaoula_arabic_source.py -v
+      - name: Generate current Morocco candidate without publishing
+        run: |
+          mkdir -p previous output
+          curl -fL --retry 2 --connect-timeout 6 --max-time 26 \
+            https://raw.githubusercontent.com/wacayoub/EPGManager/epg-data/morocco.xml.gz \
+            -o previous/morocco.xml.gz
+          timeout 600s python tools/morocco_cloud_final.py --output-dir output --previous previous/morocco.xml.gz --days 7
+      - name: Check HD2 and HD3 hourly EPG and truthful source manifest
+        run: |
+          python - <<'PY'
+          import collections,gzip,json,xml.etree.ElementTree as ET
+          from datetime import datetime,timedelta
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          m=json.loads(Path('output/manifest.json').read_text())
+          root=ET.fromstring(gzip.decompress(Path('output/morocco.xml.gz').read_bytes()))
+          programmes=root.findall('programme')
+          ids={x.get('id') for x in root.findall('channel')}
+          assert len(ids)==15 and len(programmes)==m['programmes']
+          assert m['sources']['arryadia']['viewer_report_officially_verified'] is False
+          assert m['sources']['arryadia']['policy']=='official-only-with-explicit-viewer-reported-HD2-HD3'
+          counts=collections.Counter(p.get('channel') for p in programmes)
+          total=0
+          for cid in ('Arryadia_HD2','Arryadia_HD3'):
+              rows=sorted(
+                  [p for p in programmes if p.get('channel')==cid and p.findtext('title')=='Grand Format'],
+                  key=lambda p:p.get('start')
+              )
+              assert len(rows)>=24,(cid,len(rows))
+              assert all(p.find('title').get('lang')=='fr' and p.find('desc').get('lang')=='ar' for p in rows)
+              for x in rows:
+                  st=datetime.strptime(x.get('start'),'%Y%m%d%H%M%S %z')
+                  en=datetime.strptime(x.get('stop'),'%Y%m%d%H%M%S %z')
+                  assert en-st==timedelta(hours=1)
+                  assert st.minute==0 and st.second==0
+              total+=len(rows)
+              print('GRAND_FORMAT_HOURLY',cid,'reported_slots',len(rows),'source','VIEWER_OBSERVED_NOT_OFFICIAL')
+          assert m['sources']['arryadia']['viewer_reported_grand_format_hourly']==total
+          assert m['sources']['arryadia']['viewer_reported_channels']==['Arryadia_HD2','Arryadia_HD3']
+          assert not any(p.get('channel') in ('Arryadia_HD','Arryadia_TNT','Arryadia_HD1') and
+                         (p.findtext('title') or '').startswith('Programmes Arryadia') for p in programmes)
+          assert counts['2M']>=20 and counts['Chada TV']>=20 and counts['AlAoula']>=8
+          print('ARR_HOURLY_XMLTV: PASS',m['programmes'],'reported',total,'missing',m['missing_current_epg'])
+          PY

@@ -28,9 +28,10 @@ TZ = ZoneInfo("Africa/Casablanca")
 # simulcast HD1/HD2. Do not infer a channel from a different channel's guide.
 SOURCES = {
     "Arryadia_HD1": "https://www.livefootballtv.info/channel/arryadia-hd1",
-    "Arryadia_HD2": "https://www.livefootballtv.info/channel/arryadia-hd2",
 }
-EXCLUDED_MATCH_CHANNELS = frozenset({"Arryadia_HD3"})
+# HD2 and HD3 have user-observed hourly Grand Format, not verified live
+# football. HD3 exclusion from match discovery remains in force.
+EXCLUDED_MATCH_CHANNELS = frozenset({"Arryadia_HD2", "Arryadia_HD3"})
 HEADING_DATE = re.compile(r"(\d{2})/(\d{2})/(20\d{2})")
 CLOCK = re.compile(r"^(?:[01]\d|2[0-3]):[0-5]\d$")
 

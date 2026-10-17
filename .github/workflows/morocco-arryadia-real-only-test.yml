@@ -47,7 +47,9 @@ jobs:
           assert len(names)==15 and set(ids)<=names
           arr=[p for p in r.findall("programme") if p.get("channel") in ids]
           assert not [p.findtext("title") for p in arr if (p.findtext("title") or "").startswith("Programmes Arryadia")]
-          assert m["sources"]["arryadia"]["policy"]=="real-current-only"
+          assert m["sources"]["arryadia"]["policy"]=="official-only-with-explicit-viewer-reported-HD2-HD3"
+          assert m["sources"]["arryadia"]["viewer_report_officially_verified"] is False
+          assert all(m["channel_counts"][cid]>=24 for cid in ("Arryadia_HD2","Arryadia_HD3"))
           assert m["sources"]["arryadia"]["stale_feed_or_fillers_count_as_epg"] is False
           assert len(arr)==m["sources"]["arryadia"]["events"]
           assert m["channel_counts"]["2M"]>200
