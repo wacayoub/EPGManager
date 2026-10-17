@@ -1,0 +1,17 @@
+name: Arryadia upstream evidence probe
+on:
+  push:
+    branches: [fix/morocco-arryadia-verified-sources-20261017]
+permissions:
+  contents: read
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests beautifulsoup4 lxml
+      - run: python tools/arryadia_sources_probe.py
