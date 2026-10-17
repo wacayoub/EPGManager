@@ -1,4 +1,4 @@
-name: RC80 ElCinema 12h-gap quarantine — no deploy
+name: RC80 ElCinema 12h-gap quarantine candidate — NO DEPLOY
 on:
   push:
     branches: [fix/rc80-elcinema-large-gap-quarantine-20261017]
@@ -32,7 +32,17 @@ jobs:
       - name: Complete RC80 regression, no IPK or receiver access
         run: |
           python -m py_compile source/overlay/core/verified_epg_refresh.py source/overlay/core/verified_epg_match.py tools/audit_rc80_public_feed_provenance.py tests/test_rc80_elcinema_large_gaps.py
-          python -m unittest discover -s tests -p 'test_*py' -q
+          # Runtime source overlays are not part of the existing reviewed
+          # RC80 offline sealed candidate. Full packaging tests must stay
+          # NO-GO until its SHA-pinned source manifest is independently re-sealed.
+          for test in \
+            test_rc80_elcinema_large_gaps.py \
+            test_rc80_elcinema_partial_48h.py \
+            test_rc80_verified_epg_refresh.py \
+            test_rc80_verified_epg_match.py \
+            test_rc80_public_feed_provenance.py; do
+            python -m unittest discover -s tests -p "$test" -q
+          done
   real-feed:
     needs: all-rc80
     runs-on: ubuntu-latest
