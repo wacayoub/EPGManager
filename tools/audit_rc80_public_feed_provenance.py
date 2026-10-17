@@ -102,6 +102,52 @@ def _safe_partial_48h_ids(source, feed, row):
     return {"zero": zero, "short": short}
 
 
+
+def _severe_elcinema_warn_gap_ids(feed, row, threshold_minutes=720):
+    """Per-ID 12h+ gap WARN is never certified GREEN by a source-level WARN.
+
+    Require a complete unique 97-ID (or candidate-size) report, including
+    the zero-failure/zero-invalid-times count, before trusting its negative
+    per-ID evidence. A missing/garbled report fails closed.
+    """
+    if not isinstance(row, dict) or row.get("status") not in ("PASS", "WARN", "FAIL"):
+        return None
+    channels = feed.get("channels")
+    rows = row.get("rows")
+    if (not isinstance(channels, int) or isinstance(channels, bool) or channels <= 0
+            or not isinstance(rows, list) or len(rows) != channels
+            or row.get("channels") != channels or row.get("invalid_times") != 0
+            or row.get("orphan_programmes") != 0):
+        return None
+    seen, severe, failing, warns = set(), set(), 0, 0
+    for item in rows:
+        if not isinstance(item, dict):
+            return None
+        cid, state = item.get("id"), item.get("status")
+        if (not isinstance(cid, str) or not cid.strip() or cid in seen
+                or state not in ("PASS", "WARN", "FAIL")):
+            return None
+        seen.add(cid)
+        if state == "FAIL":
+            failing += 1
+        if state == "WARN":
+            warns += 1
+            gap = item.get("max_gap_minutes")
+            reason = str(item.get("reason") or "")
+            if (not isinstance(gap, (int, float)) or isinstance(gap, bool)
+                    or gap < 0 or gap > 7 * 24 * 60):
+                return None
+            if gap >= threshold_minutes:
+                if "INTERNAL_GAP" not in reason:
+                    return None
+                severe.add(cid)
+    if row.get("failed_channels") != failing or row.get("warning_channels") != warns:
+        return None
+    if row.get("status") in ("PASS", "WARN") and failing:
+        return None
+    return severe
+
+
 def assess(source, feed, audit, quality, now=None):
     """Pure, bounded, honest classification: quality unknown is not failure."""
     if now is None:
@@ -169,6 +215,14 @@ def assess(source, feed, audit, quality, now=None):
         result["partial_48h_zero_ids"] = sorted(partial_zero_ids)
         result["partial_48h_short_ids"] = sorted(partial_short_ids)
         result["partial_48h_blocked_ids"] = sorted(partial_zero_ids | partial_short_ids)
+    if source == "elcinema":
+        severe_warn_ids = _severe_elcinema_warn_gap_ids(feed, matching[0])
+        if severe_warn_ids is None:
+            result["status"] = "48H_ELCINEMA_WARN_GAP_REPORT_INCOMPLETE"
+            return result
+        result["severe_warn_gap_ids"] = sorted(severe_warn_ids)
+        result["partial_48h_blocked_ids"] = sorted(
+            partial_zero_ids | partial_short_ids | severe_warn_ids)
     if quality.get("quality_status") not in ("PASS", "WARN"):
         result["status"] = "QUALITY_AUDIT_FAIL_OR_UNKNOWN"
         return result
@@ -196,7 +250,10 @@ def assess(source, feed, audit, quality, now=None):
         result["status"] = ("48H_PARTIAL_IDS_NEED_XMLTV_PROOF"
                             if partial_short_ids else
                             "48H_PARTIAL_ZERO_IDS_NEED_XMLTV_PROOF"
-                            if partial_zero_ids else "PUBLICATION_METADATA_COHERENT")
+                            if partial_zero_ids else
+                            "48H_PARTIAL_IDS_NEED_XMLTV_PROOF"
+                            if result.get("severe_warn_gap_ids") else
+                            "PUBLICATION_METADATA_COHERENT")
         result["ready_for_epg_ok"] = False  # Only actual verified XMLTV qualifies.
     return result
 
@@ -308,7 +365,8 @@ def fetch_one(source, now, verify_xmltv=False):
                 # may have future/current events. Otherwise fail closed.
                 zero_ids = set(result.get("partial_48h_zero_ids") or [])
                 short_ids = set(result.get("partial_48h_short_ids") or [])
-                blocked_ids = zero_ids | short_ids
+                severe_warn_ids = set(result.get("severe_warn_gap_ids") or [])
+                blocked_ids = zero_ids | short_ids | severe_warn_ids
                 if blocked_ids:
                     observed_zero = verified.get("xmltv_observed_zero_ids")
                     # Distinguish real-but-incomplete ElCinema schedules from
@@ -317,17 +375,17 @@ def fetch_one(source, now, verify_xmltv=False):
                             set(observed_zero) != zero_ids or
                             zero_ids.intersection(current_ids) or
                             zero_ids.intersection(future_ids) or
-                            not short_ids.issubset(future_ids) or
-                            short_ids.intersection(observed_zero)):
+                            not (short_ids | severe_warn_ids).issubset(future_ids) or
+                            (short_ids | severe_warn_ids).intersection(observed_zero)):
                         allowed_cohort = False
                         result["status"] = ("48H_PARTIAL_IDS_XMLTV_MISMATCH"
-                                            if short_ids else
+                                            if (short_ids or severe_warn_ids) else
                                             "48H_PARTIAL_ZERO_IDS_XMLTV_MISMATCH")
                     elif (allowed_cohort and hash_and_ids_verified and
                           verified.get("xmltv_content_pass") is True):
                         # Yellow/review status, not green auto-owner evidence.
                         result["review_partial_epg_ids"] = sorted(
-                            short_ids.intersection(current_ids))
+                            (short_ids | severe_warn_ids).intersection(current_ids))
                 
                 # Quality reports explicitly flag programme placeholders such
                 # as channel-name-only schedule rows. A valid programme time
