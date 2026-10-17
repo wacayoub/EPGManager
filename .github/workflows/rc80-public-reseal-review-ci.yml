@@ -1,0 +1,74 @@
+name: RC80 OSN ElCinema pin review (read only, no deployment)
+
+on:
+  push:
+    branches: ['review/rc80-osn-elcinema-reseal-20261017']
+    paths:
+      - 'tools/assemble_rc80_one_shot_offline.py'
+      - 'tools/audit_rc80_package_manifest_readonly.py'
+      - 'source/overlay/core/verified_epg_match.py'
+      - 'source/overlay/core/verified_epg_refresh.py'
+      - 'tests/**'
+      - '.github/workflows/rc80-public-reseal-review-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/assemble_rc80_one_shot_offline.py'
+      - 'tools/audit_rc80_package_manifest_readonly.py'
+      - 'source/overlay/core/verified_epg_match.py'
+      - 'source/overlay/core/verified_epg_refresh.py'
+      - '.github/workflows/rc80-public-reseal-review-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  review-public-source-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Check two public manifests against actual Git blob bytes
+        run: |
+          python - <<'PY'
+          import sys, hashlib
+          from pathlib import Path
+          sys.path.insert(0, 'tools')
+          import assemble_rc80_one_shot_offline as build
+          import audit_rc80_package_manifest_readonly as verify
+          import build_rc80_offline_blocked_ipk as pack
+          expected={
+              'ui/channel_mapping.py':'26165496d9c530058dbdbc858c34794c0a4fb1a2',
+              'core/verified_epg_match.py':'6cc0e755b8f2c15065402f560ed8705358801872',
+              'core/verified_epg_refresh.py':'fae7c10b0f3e87aa8217fef3a0ba7ac11c38248d'}
+          assert build.BLOBS == verify.PINNED_PUBLIC_GIT_BLOBS == expected
+          for name, sha in expected.items():
+              raw=(Path('source/overlay')/name).read_bytes()
+              actual=hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
+              assert actual == sha, (name, actual, sha)
+          assert pack.BLOCKED_PREINST == b'#!/bin/sh\n# RC80 staging only: installation forbidden\nexit 90\n'
+          assert pack.RESCUE_SHA256 == build.RESCUE_SHA == '117e9a562b557c9afc18366d02392a11031a7178dfcacaeb86b9d756c2bb6a69'
+          assert pack.EXPECTED_FILES == 215 and pack.EXPECTED_ASSETS == 75
+          print('PUBLIC_RC80_BLOB_PIN_REVIEW PASS, PRIVATE_RESCUE_NOT_PRESENT, INSTALL_FORBIDDEN')
+          PY
+      - name: Compile and all regression tests (synthetic only)
+        run: |
+          python -m compileall -q source/overlay/core tools tests
+          python -m unittest discover -s tests -p 'test_*py' -q
+      - name: Negative check old incorrect overlay pin
+        run: |
+          python - <<'PY'
+          import sys
+          sys.path.insert(0,'tools')
+          import assemble_rc80_one_shot_offline as build
+          import audit_rc80_package_manifest_readonly as verify
+          assert build.BLOBS['core/verified_epg_refresh.py'] != 'ce9c57773c739977782d22c373993a81e3a68361'
+          assert verify.PINNED_PUBLIC_GIT_BLOBS['core/verified_epg_match.py'] != '03d5b779ec639ed7e8f82f7205cf34af4e4af56d'
+          print('OLD_STALE_PIN_REJECTED')
+          PY
