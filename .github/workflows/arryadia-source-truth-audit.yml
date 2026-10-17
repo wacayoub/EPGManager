@@ -16,3 +16,4 @@ jobs:
           python-version: "3.11"
       - run: pip install requests beautifulsoup4 lxml
       - run: python tools/arryadia_source_truth_survey.py
+      - run: python tools/arryadia_hd3_fixture_probe.py
