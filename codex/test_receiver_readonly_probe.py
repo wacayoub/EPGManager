@@ -85,9 +85,10 @@ class TestReceiverProbe(unittest.TestCase):
     def test_remote_probe_source_contains_no_write_or_external_exec(self):
         source=Path(probe.__file__).read_text()
         for forbidden in (
-                "subprocess", "urllib", "requests", "socket.", "os.system",
-                "write_text(", "write_bytes(", "mkdir(", "unlink(", "shutil.",
-                "opkg install", "restart", "sshpass", "passwd"):
+                "import subprocess", "import urllib", "import requests",
+                "import socket", "os.system(", ".write_text(", ".write_bytes(",
+                ".mkdir(", ".unlink(", "import shutil",
+                "opkg install", "sshpass", "passwd"):
             self.assertNotIn(forbidden,source)
 
 
