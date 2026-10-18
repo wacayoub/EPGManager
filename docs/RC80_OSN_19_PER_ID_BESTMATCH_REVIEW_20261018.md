@@ -59,3 +59,45 @@ Compare the two contemporaneous, pinned published cohorts, never channel names a
 **Safe RC80 behavior:** when a fresh, full-byte-hash-verified per-ID read-only report proves actual on-air Shahid EPG for one of the eight same-identity MBC programmes while OSN remains REVIEW, surface verified Shahid before OSN in the suggestion browser. The ranking is *not* a stored-source switch or mapping permission; retain any existing manual/saved owner at the top. Never manufacture Shahid identity for `MBCMood.sa@HD`: keep OSN as REVIEW/manual until verified official EPG improves.
 
 A synthetic safety regression on this review branch checks the same-ID Shahid-vs-OSN ranking and saved-owner precedence. This has **not** tested EPGManager R80 on the receiver, nor does it install or publish anything.
+
+## Shahid source check — 18 October 2026, read-only and RC80 preview-only
+
+The last publicly accepted Shahid direct feed was generated on
+2026-10-17T10:56:32Z, published gzip SHA-256
+`163774a9c380b4d7eda15cf3928f16b19814ca85929bed6f78cad09b7dbb285f`:
+71/71 active IDs have programmes, 70/71 had a currently on-air
+programme at publication, and the source contains 4,180 programmes.
+The 48h Shahid report has 70 PASS rows and exactly one WARN,
+`shahid.49923781913188` (AWSN): `SHORT_HORIZON+INTERNAL_GAP`,
+**622 minutes** internal gap, 46.07h horizon. The source quality report
+counts **1,756 missing descriptions among 4,017 future programmes**.
+Do not fabricate descriptions or fill the AWSN gap with channel-title
+placeholders; Shahid input itself needs richer authentic metadata.
+
+All eight exact common MBC XMLTV IDs identified above remain 48h PASS,
+with zero reported gap in Shahid. MBCMood does not have the matching
+Shahid ID; keep OSN manual review.
+
+**RC80 correction (candidate PR #36 only):**
+- Direct source `WARN` with complete, unique 48h Shahid audit rows:
+  quarantine only `WARN` IDs with an observed gap **>180 minutes**.
+- An actually airing programme on the quarantined AWSN ID remains
+  visible to manual mapping but cannot win green Best Match.
+- Other verified MBC siblings are unaffected; a saved manual owner
+  always remains at the top.
+- A malformed/duplicated per-ID audit fails closed.
+- Public metadata provenance audit and preview-only runtime evidence
+  apply identical source-scoped quarantine.
+- Immutable public Git blob pin for `core/verified_epg_refresh.py` is
+  updated to `cd722543d226bced311eeb081963bfbc741f47cd` in both
+  private-only offline manifest inspectors. Installation remains
+  blocked by `preinst exit 90`; no Vu+ assets changed.
+
+`tests/test_rc80_shahid_gap_guard.py` tests AWSN 622-minute
+review, healthy exact-ID MBC green, saved ownership, and fail-closed
+negative cases. Both Python 3.13 and 3.14 RC80 synthetic suites passed
+227 tests at GitHub run 39094390533. Separate **live ElCinema**
+assertions were failing with `48H_PARTIAL_IDS_XMLTV_MISMATCH`
+(39094390653 and 39094390597) and must not be called source-fix PASS.
+This is an independent outstanding ElCinema audit issue; it prevents
+claiming full R80 readiness.
