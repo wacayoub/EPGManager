@@ -79,6 +79,37 @@ class VerifiedOSNHealth(unittest.TestCase):
         self.assertEqual(row["osn_review_per_id_ids"],["A","SYN"])
         self.assertIn("B",row["review_future_epg_ids"])
 
+    def test_exact_mbc_id_prefers_verified_shahid_over_review_osn_without_remapping(self):
+        # Model two direct source feeds with the identical MBC XMLTV ID A.
+        # OSN has genuine current rows but failed the per-ID continuity gate;
+        # Shahid has genuinely verified NOW rows and is therefore preferred.
+        docs,_=with_osn([
+            ("A","REVIEW",False),("B","VERIFIED",True),
+            ("NONE","NO_EPG",False),("SYN","REVIEW",False)])
+        osn=self.inspect(docs)
+        shahid_docs,*_=fixture("shahid")
+        shahid=refresh.inspect_source("shahid",now=NOW.timestamp(),
+                                      reader=reader(shahid_docs))
+        self.assertEqual(shahid["trusted_current_epg_ids"],["A"])
+        self.assertNotIn("A",osn["trusted_current_epg_ids"])
+        report={"audit":"EPGManager RC80 public feed provenance",
+                "evidence_schema":1,"checked_utc":NOW.isoformat(),
+                "full_xmltv_integrity_checks_enabled":True,
+                "sources":[osn,shahid]}
+        choices=[{"source_id":"direct_osn","channel_id":"A"},
+                 {"source_id":"direct_shahid","channel_id":"A"}]
+        ranked=bridge.annotate_suggestions(choices,report=report,
+                                           now=NOW.timestamp())
+        self.assertEqual(ranked[0]["source_id"],"direct_shahid")
+        self.assertEqual(ranked[0]["_verified_epg_health"],"REAL_CURRENT_EPG")
+        self.assertEqual(ranked[1]["_verified_epg_health"],"FUTURE_ONLY_REVIEW")
+        # Preview ranking is never permission to replace a saved OSN owner.
+        choices[0]["_suggestion_current"]=True
+        saved=bridge.annotate_suggestions(choices,report=report,
+                                          now=NOW.timestamp())
+        self.assertEqual(saved[0]["source_id"],"direct_osn")
+        self.assertEqual(saved[0]["_verified_epg_health"],"SAVED_OWNER")
+
     def test_bad_sha_or_fabricated_zero_current_fails_closed(self):
         for opts in ({"wrong_hash":True},{"wrong_future":True}):
             with self.subTest(opts=opts):
