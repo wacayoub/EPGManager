@@ -215,7 +215,16 @@ Backup creation/restoration has not been tested on the real receiver.
 
 Private baseline manifests, scripts and both IPKs stay outside Git. Public
 summary evidence: `docs/evidence/rc80-supervised-20261018.json`.
-Final Linux results for the new guard are recorded after CI completes.
+Final Linux CI for the new guard **passed: 205/205 suite tests plus 4/4 probe
+tests on each of Python 3.13 and 3.14, with no skips**. Job logs were read.
+Tested code commit: `b992b4c7c10923affa087bfae3a91978f2041a52`.
+[Successful supervised-candidate CI](https://github.com/wacayoub/EPGManager/actions/runs/39167039826).
+
+Readiness verdict: prepared for a separately authorized supervised test
+installation. Production/final-release verdict remains NO GO until actual
+installation, GUI and native import acceptance. No remote backup or install
+has yet been performed. Installation alone does not reload the running GUI;
+Enigma2 restart remains a separate explicitly authorized operation.
 
 ## Remaining gates
 
