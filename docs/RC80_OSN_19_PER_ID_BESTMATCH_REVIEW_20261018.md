@@ -30,7 +30,7 @@ GitHub Actions 39090159364 passed **221 synthetic/offline tests per Python versi
 The reviewed Git blob identities replacing the prior PR #16 preview are:
 - `ui/channel_mapping.py`: `26165496d9c530058dbdbc858c34794c0a4fb1a2` (**unchanged**)
 - `core/verified_epg_match.py`: `7181615a9bb10eeb8d8d892929c26c4513c6025d`
-- `core/verified_epg_refresh.py`: `78546faeefcbf2d879b6c17d1ebd773480eb83c0`
+- `core/verified_epg_refresh.py`: `cd722543d226bced311eeb081963bfbc741f47cd`
 
 Both strict public manifest validators and the non-installable offline one-shot package builder must use **these exact pins together**. CI verified the public blobs from their contents. The private RC79.1 rescue remains required offline; **no private baseline or installable IPK is published**. No change to receiver, installed RC79.1, mappings, GitHub updater or Morocco / ElCinema / beIN schedules.
 
