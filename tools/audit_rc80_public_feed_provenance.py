@@ -114,13 +114,12 @@ def _safe_partial_48h_ids(source, feed, row):
     return {"zero": zero, "short": short}
 
 
-def _elcinema_extreme_gap_ids(feed, report):
-    """An ElCinema source WARN is NOT proof of continuity.
+def _elcinema_extreme_gap_ids(feed, report, source="elcinema"):
+    """A source-wide WARN is NOT proof of per-channel continuity.
 
-    Require all channel-level rows and fail-close for malformed metadata.
-    Flag WARN IDs whose reported internal broadcast gap is 12h or longer.
-    A currently airing programme from such an ID may be shown for MANUAL
-    correction, but must not win the green best-EPG auto selection.
+    ElCinema: flag >=12h WARN gaps; Shahid: flag >180min WARN gaps.
+    Require exhaustive, unique channel-level rows and fail closed if invalid.
+    Other actual guides retain their verified current/green status.
     """
     if report.get("status") not in ("PASS", "WARN", "FAIL"):
         return None
@@ -151,7 +150,8 @@ def _elcinema_extreme_gap_ids(feed, report):
             if (not isinstance(gap, (int, float)) or isinstance(gap, bool)
                     or gap < 0):
                 return None
-            if gap >= 720:
+            threshold = 720 if source == "elcinema" else 180
+            if (gap >= threshold if source == "elcinema" else gap > threshold):
                 flagged.add(cid)
     declared = report.get("failed_channels")
     if (not isinstance(declared, int) or isinstance(declared, bool)
@@ -218,8 +218,8 @@ def assess(source, feed, audit, quality, now=None):
         return result
     result["quality_cohort_verified"] = True
     partial_zero_ids, partial_short_ids, long_gap_ids = set(), set(), set()
-    if source == "elcinema" and matching[0].get("status") in ("PASS", "WARN", "FAIL"):
-        observed = _elcinema_extreme_gap_ids(feed, matching[0])
+    if source in ("elcinema", "shahid") and matching[0].get("status") in ("PASS", "WARN", "FAIL"):
+        observed = _elcinema_extreme_gap_ids(feed, matching[0], source=source)
         if observed is None:
             result["status"] = "48H_AUDIT_INCONSISTENT_IDS"
             return result
