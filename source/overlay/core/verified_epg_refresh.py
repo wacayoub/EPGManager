@@ -189,7 +189,11 @@ def _blocked_48h_ids(source, audit48, actual_channels):
     status = data.get("status")
     if status not in ("PASS", "WARN", "FAIL"):
         return None
-    if status in ("PASS", "WARN") and source != "elcinema":
+    # Shahid is usually PASS, but a WARN feed can hide a very long gap in
+    # just one channel (AWSN: 622 minutes on 2026-10-17). Keep that specific
+    # ID yellow/manual without disqualifying the 8 verified MBC siblings.
+    if status in ("PASS", "WARN") and source != "elcinema" and not (
+            source == "shahid" and status == "WARN"):
         return set()
     if data.get("invalid_times") != 0 or data.get("orphan_programmes") != 0:
         return None
@@ -209,12 +213,13 @@ def _blocked_48h_ids(source, audit48, actual_channels):
         if row_status == "FAIL":
             failed.add(cid)
             blocked.add(cid)
-        if source == "elcinema" and row_status == "WARN":
+        if source in ("elcinema", "shahid") and row_status == "WARN":
             gap = row.get("max_gap_minutes")
             if (not isinstance(gap, (int, float)) or isinstance(gap, bool)
                     or gap < 0):
                 return None
-            if gap >= 720:
+            threshold = 720 if source == "elcinema" else 180
+            if (gap >= threshold if source == "elcinema" else gap > threshold):
                 blocked.add(cid)
     count = data.get("failed_channels")
     if (seen != actual_channels or not isinstance(count, int) or
@@ -344,10 +349,10 @@ def inspect_source(source, now=None, reader=None):
             result["osn_no_epg_verified_ids"] = sorted(osn_per_id["missing"])
             result["osn_review_per_id_ids"] = sorted(osn_per_id["review"])
         result["partial_48h_blocked_ids"] = sorted(failing_48h_ids or ())
-        # These are real ElCinema programmes, but a >=12-hour internal gap
-        # makes them unsafe for automatic best-candidate selection.
-        # 48h FAIL ids are also blocked in the above complete per-ID set.
-        if source == "elcinema":
+        # Real ElCinema (>=12h) and Shahid (>180min) internal gaps are
+        # unsafe for automatic best-candidate selection. Keep affected IDs
+        # visible for manual mapping; other verified channels remain green.
+        if source in ("elcinema", "shahid"):
             source_rows = next((v.get("rows") for v in (audit48.get("feeds") or [])
                                 if isinstance(v, dict) and v.get("feed") == source + ".xml.gz"), [])
             if isinstance(source_rows, list) and failing_48h_ids is not None:
@@ -355,7 +360,8 @@ def inspect_source(source, now=None, reader=None):
                     v["id"] for v in source_rows
                     if isinstance(v, dict) and v.get("id") in failing_48h_ids
                     and isinstance(v.get("max_gap_minutes"), (float, int))
-                    and v.get("max_gap_minutes") >= 720)
+                    and v.get("max_gap_minutes") >= (
+                        720 if source == "elcinema" else 181))
         if failing_48h_ids is None:
             known_quality = False
             reason = "48H_AUDIT_INCONSISTENT_IDS"
