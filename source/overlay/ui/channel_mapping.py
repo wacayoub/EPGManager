@@ -5090,9 +5090,9 @@ class ChannelMappingScreen(Screen):
                         sid, cid, report=_verified_report, now=_quality_clock)
                     epg["_verified_epg_health"] = str(_q.get("status") or "UNKNOWN")
                     epg["_verified_epg_rank"] = int(_q.get("rank", 3))
-                    if _q.get("status") in ("NO_EPG", "SUSPECT_GENERATED_EPG"):
+                    if _q.get("status") in ("NO_EPG", "NO_FUTURE_EPG", "DEGRADED_WITH_EPG", "SUSPECT_GENERATED_EPG"):
                         auto = False
-                        grade = "NO EPG" if _q.get("status") == "NO_EPG" else "REVIEW"
+                        grade = "NO EPG" if _q.get("status") in ("NO_EPG", "NO_FUTURE_EPG") else "REVIEW"
                 except Exception:
                     pass
 
@@ -5290,8 +5290,10 @@ class ChannelMappingScreen(Screen):
                     preview += "  •  FUTURE EPG"
                 elif health == "SUSPECT_GENERATED_EPG":
                     preview += "  •  GENERATED?"
-                elif health == "NO_EPG":
+                elif health in ("NO_EPG", "NO_FUTURE_EPG"):
                     preview += "  •  NO EPG"
+                elif health == "DEGRADED_WITH_EPG":
+                    preview += "  •  EPG REVIEW"
                 elif health == "48H_FAILED_ID_REVIEW":
                     preview += "  •  48H SHORT"
                 elif not health:

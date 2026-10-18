@@ -1,5 +1,8 @@
 # RC80 candidate qualification — 18 October 2026
 
+**Superseded by [actual LAN receiver validation](RC80_LAN_VALIDATION_20261018.md).**
+The historical SSH failure below no longer describes the latest session.
+
 **Verdict: NO GO for installation. Receiver changed: false.**
 
 One public source candidate: `codex/rc80-final-qualification-20261018`, based on

@@ -37,8 +37,8 @@ BASELINE_VERSION = "2026.10.08-rc79.1"
 # Comparing staging against a local checkout alone would accept coordinated
 # tampering of both staging and checkout. These identifiers are branch-independent.
 PINNED_PUBLIC_GIT_BLOBS = {
-    "ui/channel_mapping.py": "26165496d9c530058dbdbc858c34794c0a4fb1a2",
-    "core/verified_epg_match.py": "ce1ce19345d19b39e876757c3571d71d51850059",
+    "ui/channel_mapping.py": "299660ec7cb772ce19fce788ffebaa80cc5db939",
+    "core/verified_epg_match.py": "c91248c98aeb0e590abaa75970aac28219326468",
     "core/verified_epg_refresh.py": "17a15648b5fc5a666a6de62a0599a51f2f015cea",
 }
 

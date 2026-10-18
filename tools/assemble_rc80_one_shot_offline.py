@@ -29,8 +29,8 @@ from tempfile import TemporaryDirectory
 RESCUE_SHA = '117e9a562b557c9afc18366d02392a11031a7178dfcacaeb86b9d756c2bb6a69'
 VERSION = '2026.10.15-rc80-offline-blocked'
 BLOBS = {
-    'ui/channel_mapping.py': '26165496d9c530058dbdbc858c34794c0a4fb1a2',
-    'core/verified_epg_match.py': 'ce1ce19345d19b39e876757c3571d71d51850059',
+    'ui/channel_mapping.py': '299660ec7cb772ce19fce788ffebaa80cc5db939',
+    'core/verified_epg_match.py': 'c91248c98aeb0e590abaa75970aac28219326468',
     'core/verified_epg_refresh.py': '17a15648b5fc5a666a6de62a0599a51f2f015cea',
 }
 ROOT = 'usr/lib/enigma2/python/Plugins/Extensions/EPGManager/'

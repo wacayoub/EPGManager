@@ -1,0 +1,169 @@
+{
+  "audit": "EPGManager Codex SSH receiver fingerprint",
+  "authorized_to_install_rc80": false,
+  "baseline_version_reference": "2026.10.08-rc79.1",
+  "enigma_process_detected": true,
+  "epgimport_extension_present": true,
+  "functional_code_markers_not_hardware_proof": {
+    "core/direct_native_import.py": {
+      "available": true,
+      "markers": {
+        "def _merge_persisted_auto_overrides(": true
+      }
+    },
+    "core/epg_cycle.py": {
+      "available": true,
+      "markers": {
+        "clear_before_import=False": true
+      }
+    },
+    "plugin.py": {
+      "available": true,
+      "markers": {
+        "WHERE_AUTOSTART": true,
+        "refresh_native_import_scheduler": true
+      }
+    },
+    "ui/channel_mapping.py": {
+      "available": true,
+      "markers": {
+        "def _auto_batch_match(": true,
+        "def _poll_github_best_match_health(": true,
+        "def _queue_github_best_match_health(": true,
+        "def open_manual_source_override(": true,
+        "def undo_last_mapping(": true
+      }
+    }
+  },
+  "installed_python_modules": 138,
+  "installed_schema": 15,
+  "installed_version": "2026.10.08-rc79.1",
+  "logs_read": false,
+  "mappings_file_exists_only": true,
+  "mappings_read": false,
+  "mode": "READ_ONLY",
+  "native_epg_import_functionally_tested": false,
+  "passwords_tokens_read": false,
+  "plugin_directory_present": true,
+  "protected_module_hashes": {
+    "core/direct_native_import.py": {
+      "matches_known_rc79_basis": true,
+      "present": true,
+      "sha256": "43564fe313513deaa49b80acece8fccf9dedc0b9e3fcf210177da7b5f2207c31"
+    },
+    "core/epg_cycle.py": {
+      "matches_known_rc79_basis": true,
+      "present": true,
+      "sha256": "f49e92ae9c18919554a010af1f9fb6e5ba4b6a8358c9652b575c652227200887"
+    },
+    "core/github_direct_stream.py": {
+      "matches_known_rc79_basis": true,
+      "present": true,
+      "sha256": "52180c29f691e2764fd63d14906bcf851ed72c8447c6b07c4a2f272ec0b98686"
+    },
+    "core/github_match_health.py": {
+      "matches_known_rc79_basis": true,
+      "present": true,
+      "sha256": "941c89c9ace27f63a63a41486b3f012f9f96cd7ed6c0dca602bc8b3353f4571c"
+    },
+    "ui/channel_mapping.py": {
+      "matches_known_rc79_basis": true,
+      "present": true,
+      "sha256": "314cbd1dee923bdbe4b1930867050f57194a45bd94970a6924f21df6a2007002"
+    },
+    "ui/settings.py": {
+      "matches_known_rc79_basis": true,
+      "present": true,
+      "sha256": "ba2a989b772e768aeef4932bd24abdf966a5286a2edff931d12e36f5bf4474fa"
+    },
+    "ui/theme.py": {
+      "matches_known_rc79_basis": true,
+      "present": true,
+      "sha256": "68853f1f7b2bbcbec434a0c05f8f8992e69a3744818e4f23b9e8c525900a27b6"
+    }
+  },
+  "receiver_gui_functionally_tested": false,
+  "receiver_modified": false,
+  "runtime_python": "3.14.7",
+  "settings_read": false,
+  "source_preferences_file_exists_only": true,
+  "source_xmltv_read": false,
+  "status": "INSTALLED_FINGERPRINT_OBSERVED_NOT_FUNCTIONALLY_TESTED",
+  "cache_observation": {
+    "audit": "EPGManager tuned SAT service cache",
+    "authorized_to_install": false,
+    "current_reference_class": "DVB_SERVICE_REFERENCE_VALID",
+    "epg": {
+      "epgservice": {
+        "api_result_ok": true,
+        "future": 26,
+        "now": 1,
+        "returned": 27,
+        "schema_ok": true,
+        "valid": 27
+      },
+      "epgservicenext": {
+        "api_result_ok": true,
+        "future": 1,
+        "now": 0,
+        "returned": 1,
+        "schema_ok": true,
+        "valid": 1
+      },
+      "epgservicenow": {
+        "api_result_ok": true,
+        "future": 0,
+        "now": 1,
+        "returned": 1,
+        "schema_ok": true,
+        "valid": 1
+      },
+      "getcurrent_next": {
+        "future": 1,
+        "now": 0,
+        "returned": 1,
+        "schema_ok": true,
+        "valid": 1
+      },
+      "getcurrent_now": {
+        "future": 0,
+        "now": 1,
+        "returned": 1,
+        "schema_ok": true,
+        "valid": 1
+      }
+    },
+    "network": "127.0.0.1 GET only",
+    "rc80_hardware_certified": false,
+    "read_only": true,
+    "receiver_modified": false,
+    "safe_sat_service_selected": true,
+    "service_name_or_reference_disclosed": false,
+    "status": "EPG_VISIBLE_TUNED_SERVICE",
+    "tuned_channel_name_contains_2m": false
+  },
+  "memory_candidate_first_measurement": {
+    "receiver_modified": false,
+    "candidate_executed_in_memory_only": true,
+    "synthetic_logic_checks": {
+      "missing_quality_baseline": "EPG_OK",
+      "missing_quality_candidate": "EPG_WARN",
+      "QUALIFIED_AT_BUILD": "EPG_OK",
+      "DEGRADED_WITH_EPG": "EPG_WARN",
+      "NO_FUTURE_EPG": "NO_EPG",
+      "malformed_quality": "UNKNOWN"
+    },
+    "logic_pass": true,
+    "preview_500_rows_median_ms": 40.61665400001857,
+    "preview_trials_ms": [
+      64.92141600006107,
+      40.561230999969666,
+      40.47379199994339,
+      41.30518600004507,
+      40.61665400001857
+    ],
+    "gui_tested": false,
+    "native_import_executed": false,
+    "python": "3.14.7"
+  }
+}

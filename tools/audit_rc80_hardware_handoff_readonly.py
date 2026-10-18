@@ -20,7 +20,7 @@ EXTENSIONS = Path('/usr/lib/enigma2/python/Plugins/Extensions')
 PROC = Path('/proc')
 BASE_VERSION = '2026.10.08-rc79.1'
 BRIDGES = {
-    'core/verified_epg_match.py': 'ce1ce19345d19b39e876757c3571d71d51850059',
+    'core/verified_epg_match.py': 'c91248c98aeb0e590abaa75970aac28219326468',
     'core/verified_epg_refresh.py': '17a15648b5fc5a666a6de62a0599a51f2f015cea',
 }
 MAPPING = (

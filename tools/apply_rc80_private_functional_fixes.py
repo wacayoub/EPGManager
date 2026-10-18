@@ -62,6 +62,47 @@ def corrected(source):
         # Old quality reports have no per-ID denominator; their current audit''', rel)
     s = _one(s, '''    return "EPG_WARN" if str(row.get("status") or "").upper() != "PASS" else "EPG_OK"''', '''    return "EPG_OK" if certified and str(row.get("status") or "").upper() == "PASS" else "EPG_WARN"''', rel)
     health = s.encode("utf-8")
+    # The installed per-ID classifier can report green without quality data.
+    # Keep its public API, but require the MENA owner's exact ID to qualify.
+    s = _one(s, 'def classify(report, channel_id, now=None):',
+             'def _classify_source_report(report, channel_id, now=None):', rel)
+    wrapper = '''def classify(report, channel_id, now=None):
+    from .verified_epg_match import mena_status
+    observed = float(time.time() if now is None else now)
+    try:
+        status = _classify_source_report(report, channel_id, observed)
+        if not isinstance(report, dict):
+            return status
+        readiness = mena_status(report.get("source"), str(channel_id or "").strip(),
+                                report.get("mena_readiness"), observed)
+        if readiness == "NO_FUTURE_EPG":
+            return "NO_EPG"
+        if status == "EPG_OK" and readiness != "QUALIFIED_AT_BUILD":
+            return "EPG_WARN"
+        return status
+    except (ValueError, TypeError, OverflowError, AttributeError):
+        return "UNKNOWN"
+
+
+'''
+    s = _one(s, 'def health(source_id, channel_id, now=None):',
+             wrapper + 'def health(source_id, channel_id, now=None):', rel)
+    s = _one(s, '    fetched = {}\n    try:', '''    fetched = {}
+    # One bounded MENA GET per batch, never on the GUI thread or per channel.
+    from .verified_epg_match import mena_index
+    try:
+        mena = _get_json(REPORT_BASE + "mena-readiness.json")
+        snapshot = {"checked_utc": mena.get("checked_utc"),
+                    "ids": mena_index(mena, time.time())}
+    except Exception:
+        snapshot = {}
+    try:''', rel)
+    s = _one(s, '                    fetched[key] = future.result()',
+             '''                    fetched[key] = future.result()
+                    fetched[key]["source"] = key
+                    fetched[key]["mena_readiness"] = snapshot''', rel)
+    s = _one(s, '_MAX_REPORT_BYTES = 260000', '_MAX_REPORT_BYTES = 1024 * 1024', rel)
+    health = s.encode("utf-8")
     result = {"core/system_check.py":system_check, "core/github_match_health.py":health}
     for name, payload in result.items():
         ast.parse(payload.decode("utf-8"), filename=name)
