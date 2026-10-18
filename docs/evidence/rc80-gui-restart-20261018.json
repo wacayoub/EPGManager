@@ -1,0 +1,105 @@
+{
+  "operation": "OWNER_AUTHORIZED_ENIGMA2_RESTART",
+  "epg_import_requested": false,
+  "before_processes": [
+    [
+      5904,
+      "104312"
+    ]
+  ],
+  "restart_requests_sent": 1,
+  "restart_response_exception": "RemoteDisconnected",
+  "after_processes": [
+    [
+      7195,
+      "165571"
+    ]
+  ],
+  "elapsed_seconds": 51.85,
+  "api_stable_samples": 3,
+  "receiver_boot_unchanged": true,
+  "protected_config_files_before": 95,
+  "protected_config_files_after": 95,
+  "protected_config_hashes_unchanged": false,
+  "protected_config_changed_count": 2,
+  "gui_restart_verified": true,
+  "plugin_gui_functional_tested": false,
+  "native_import_tested": false,
+  "readonly_followup": {
+    "mode": "READ_ONLY_AFTER_RESTART",
+    "receiver_modified_by_probe": false,
+    "backup_configuration_comparison": [
+      {
+        "file": "epgmanager-settings.conf",
+        "matches_backup": true
+      },
+      {
+        "file": "epgmanager.conf",
+        "matches_backup": true
+      },
+      {
+        "file": "epgmanager_activity.json",
+        "matches_backup": true
+      },
+      {
+        "file": "epgmanager_github_direct_status.json",
+        "matches_backup": true
+      },
+      {
+        "file": "epgmanager_http_validators.json",
+        "matches_backup": true
+      },
+      {
+        "file": "epgmanager_iptv_registry.json",
+        "matches_backup": true
+      },
+      {
+        "file": "epgmanager_mapping_view_cache.json",
+        "matches_backup": false
+      },
+      {
+        "file": "epgmanager_mappings.json",
+        "matches_backup": true
+      },
+      {
+        "file": "epgmanager_native_settings.json",
+        "matches_backup": true
+      },
+      {
+        "file": "epgmanager_sat_registry.json",
+        "matches_backup": false
+      },
+      {
+        "file": "epgmanager_smartmatch_learning.json",
+        "matches_backup": true
+      },
+      {
+        "file": "epgmanager_source_fast_status.json",
+        "matches_backup": true
+      },
+      {
+        "file": "epgmanager_source_preferences.json",
+        "matches_backup": true
+      },
+      {
+        "file": "epgmanager_srp_maps.json",
+        "matches_backup": true
+      },
+      {
+        "file": "epgmanager_srp_master.json",
+        "matches_backup": true
+      }
+    ],
+    "recent_crash_files": [],
+    "recent_plugin_files_metadata": [
+      {
+        "file": "epgmanager_sat_registry.json",
+        "age_seconds": 125
+      },
+      {
+        "file": "epgmanager_mapping_view_cache.json",
+        "age_seconds": 123
+      }
+    ]
+  }
+}

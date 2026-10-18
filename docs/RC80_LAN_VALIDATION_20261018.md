@@ -1,8 +1,8 @@
 # RC80 actual LAN validation — 18 October 2026
 
 **Final release: NO GO pending GUI/native import acceptance. Receiver modified:
-true by the explicitly authorized installation below.** No restart/import was
-requested. One consolidated candidate:
+true by the explicitly authorized installation and GUI restart below.** No manual
+EPG import was requested. One consolidated candidate:
 [draft PR #38](https://github.com/wacayoub/EPGManager/pull/38), branch
 `codex/rc80-final-qualification-20261018`, based on `948ca148`.
 This supersedes the earlier SSH_NOT_TESTED report.
@@ -281,8 +281,7 @@ Evidence: `docs/evidence/rc80-installation-20261018.json`.
 
 ## Remaining gates
 
-1. Separate explicit authorization for Enigma2 restart to load the candidate,
-   and for the actual native EPG import test.
+1. Separate explicit authorization for the actual native EPG import test.
 2. Actual GUI Auto/Manual Mapping, Best Match, persistence, native EPGImport,
    unavailable-source retention, GMT+0/local display, scheduler and UI latency.
    Reboot/restart remains separately authorized.
@@ -290,3 +289,28 @@ Evidence: `docs/evidence/rc80-installation-20261018.json`.
 RC80 candidate is installed on disk; a verified RC79.1 recovery archive is
 preserved. IPToSatPro and IPAudio Pro were not touched. No final release has
 been published.
+
+## Authorized GUI restart actually executed
+
+The owner separately authorized the Enigma2 restart. One localhost OpenWebif
+`powerstate?newstate=3` request was sent, following the
+[official API documentation](https://github.com/E2OpenPlugins/e2openplugin-OpenWebif/wiki/OpenWebif-API-documentation).
+The HTTP connection closed during the restart; the command was not retried.
+Measured recovery: **51.85 seconds**, Enigma2 PID **5904 → 7195**, with three
+consecutive successful OpenWebif power-state samples. The receiver boot ID
+remained unchanged: this was a GUI restart, not a receiver reboot.
+
+The comparison included 95 tracked plugin/configuration files. Two hashes
+changed: `epgmanager_sat_registry.json` and `epgmanager_mapping_view_cache.json`.
+These are registry/view cache files used by startup warming, not saved mappings.
+A separate read-only comparison against the verified RC79 recovery archive
+confirmed **13 of 15 archived configuration entries identical**, including
+`epgmanager_mappings.json`, plugin settings, native settings, source preferences,
+learning and SRP mappings. The only differences were the same two cache files.
+No recent crash file was found in the inspected top-level log directories;
+this limited check does not prove absence of every possible runtime error.
+
+No manual import, mapping edit, cache reset, or further installation was issued.
+The installed candidate and successful GUI process recovery do **not** certify
+opening EPGManager screens or native EPGImport behavior. These acceptance gates
+remain pending. Evidence: `docs/evidence/rc80-gui-restart-20261018.json`.
