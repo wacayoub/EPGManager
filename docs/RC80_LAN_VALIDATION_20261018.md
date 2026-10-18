@@ -167,6 +167,12 @@ SHA256: `d693dee2289eb2f907e0dd18b9616b3ee914603085a032d12d80628a0bb5b5b7`.
   unconditional install block, malformed metadata, path escapes, missing
   modules, changed asset bytes, duplicate assets and mode drift.
 
+**Package-builder Linux CI passed:** 197/197 suite tests plus 4/4 probe tests
+on each of Python 3.13 and 3.14, no skips. Job logs were read for tested commit
+`45bd0091f5859c4c899540185369cccfd714cd7c`.
+[Successful package qualification](https://github.com/wacayoub/EPGManager/actions/runs/39163452728).
+Public count/hash evidence: `docs/evidence/rc80-package-20261018.json`.
+
 This is a complete **inspection** IPK with an unconditional installation
 block. It is not an approved deployment package. Preparing this artifact did
 not authorize or perform an installation, restart, import or cache change.
