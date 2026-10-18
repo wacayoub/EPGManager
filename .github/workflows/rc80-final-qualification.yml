@@ -1,0 +1,22 @@
+name: RC80 candidate qualification (no receiver)
+on:
+  push:
+    branches: [codex/rc80-final-qualification-20261018]
+  pull_request:
+    branches: [feature/rc80-hardware-qualification-readonly-20261016]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m unittest codex.test_receiver_readonly_probe -v
+      - run: python -m unittest discover -s tests -v

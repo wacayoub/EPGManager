@@ -127,6 +127,11 @@ def quality_for_id(source_id, channel_id, report=None, now=None):
             row.get("real_now_coverage_verified") is not True or
             not _fresh(row.get("per_id_evidence_observed_utc"), now)):
         return result
+    if (cid in (row.get("xmltv_no_future_ids") or ()) or
+            cid in (row.get("mena_no_future_ids") or ())):
+        return {"status": "NO_FUTURE_EPG", "verified_now": False, "rank": 6}
+    if cid in (row.get("mena_degraded_ids") or ()):
+        return {"status": "DEGRADED_WITH_EPG", "verified_now": False, "rank": 4}
     if cid in (row.get("suspected_placeholder_epg_ids") or ()):
         return {"status": "SUSPECT_GENERATED_EPG", "verified_now": False, "rank": 5}
     if cid in (row.get("partial_48h_blocked_ids") or ()):
@@ -168,6 +173,11 @@ def annotate_suggestions(rows, report=None, now=None):
             evidence = quality_for_id(item.get("source_id"), item.get("channel_id"), report=report, now=now)
             item["_verified_epg_health"] = evidence["status"]
             item["_verified_epg_rank"] = evidence["rank"]
+            if evidence["status"] in ("NO_EPG", "NO_FUTURE_EPG", "DEGRADED_WITH_EPG",
+                                       "48H_FAILED_ID_REVIEW", "SUSPECT_GENERATED_EPG"):
+                item["_precision_auto"] = False
+                item["_precision_grade"] = ("NO EPG" if evidence["status"] in
+                                              ("NO_EPG", "NO_FUTURE_EPG") else "REVIEW")
         annotated.append(item)
     annotated.sort(key=lambda epg: (
         0 if epg.get("_suggestion_current") else 1,

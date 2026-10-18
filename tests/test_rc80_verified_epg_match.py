@@ -65,6 +65,23 @@ class VerifiedEpgBridgeTests(unittest.TestCase):
         self.assertEqual(result["status"], "REAL_CURRENT_EPG")
         self.assertTrue(result["verified_now"])
 
+    def test_mena_veto_overrides_positive_cache_and_name_confidence(self):
+        for field, status in (("mena_no_future_ids", "NO_FUTURE_EPG"),
+                              ("xmltv_no_future_ids", "NO_FUTURE_EPG"),
+                              ("mena_degraded_ids", "DEGRADED_WITH_EPG")):
+            with self.subTest(field=field):
+                report = fixture()
+                report["sources"][0][field] = ["AlAoula.ma"]
+                original = candidate("direct_morocco", "AlAoula.ma", confidence=1000)
+                rows = bridge.annotate_suggestions([original], report, NOW.timestamp())
+                self.assertEqual(rows[0]["_verified_epg_health"], status)
+                self.assertFalse(rows[0]["_precision_auto"])
+                self.assertIn(rows[0]["_precision_grade"], ("NO EPG", "REVIEW"))
+                self.assertTrue(original["_precision_auto"])
+                original["_suggestion_current"] = True
+                saved = bridge.annotate_suggestions([original], report, NOW.timestamp())[0]
+                self.assertEqual(saved["_verified_epg_health"], "SAVED_OWNER")
+
     def test_direct_source_identity_must_match_namespace(self):
         self.assertEqual(self.check("direct_elcinema", "AlAoula.ma")["status"], "UNKNOWN")
         self.assertEqual(self.check("epgimport_morocco", "AlAoula.ma")["status"], "UNKNOWN")
