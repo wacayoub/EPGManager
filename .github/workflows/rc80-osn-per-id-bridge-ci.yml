@@ -1,0 +1,49 @@
+name: RC80 OSN per-ID Best Match evidence gate — read only
+on:
+  push:
+    branches: [review/rc80-osn-per-id-real-guide-link-20261018]
+  pull_request:
+    paths:
+      - 'source/overlay/core/verified_epg_match.py'
+      - 'source/overlay/core/verified_epg_refresh.py'
+      - 'tests/test_rc80_osn_per_id_health_bridge.py'
+      - 'tools/assemble_rc80_one_shot_offline.py'
+      - 'tools/audit_rc80_package_manifest_readonly.py'
+      - '.github/workflows/rc80-osn-per-id-bridge-ci.yml'
+permissions:
+  contents: read
+jobs:
+  read-only-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Verify immutable public overlay blob identities and permanent blocked install
+        run: |
+          python - <<'PY'
+          import sys,hashlib
+          from pathlib import Path
+          sys.path.insert(0,'tools')
+          import assemble_rc80_one_shot_offline as build
+          import audit_rc80_package_manifest_readonly as verify
+          import build_rc80_offline_blocked_ipk as pack
+          assert build.BLOBS==verify.PINNED_PUBLIC_GIT_BLOBS
+          for rel,expected in build.BLOBS.items():
+              raw=(Path('source/overlay')/rel).read_bytes()
+              got=hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
+              assert got==expected,(rel,got,expected)
+          assert pack.BLOCKED_PREINST == b'#!/bin/sh\n# RC80 staging only: installation forbidden\nexit 90\n'
+          assert pack.RESCUE_SHA256==build.RESCUE_SHA
+          print('RC80_OSN_REVIEW_PINS_PASS; INSTALL_FORBIDDEN')
+          PY
+      - name: Run all public synthetic RC80 regressions and OSN negative fixtures
+        run: |
+          python -m compileall -q source/overlay/core tools tests
+          python -m unittest discover -s tests -p 'test_*py' -q

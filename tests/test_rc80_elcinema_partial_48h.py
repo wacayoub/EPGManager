@@ -18,8 +18,10 @@ def inputs():
           "channels":4,"active_channels":4,"currently_on_air_channels":4}
     rows=[
       {"id":"good1","status":"PASS","reason":""},
-      {"id":"good2","status":"WARN","reason":"INTERNAL_GAP"},
-      {"id":"good3","status":"WARN","reason":"SHORT_HORIZON"},
+      {"id":"good2","status":"WARN","reason":"INTERNAL_GAP",
+       "max_gap_minutes":60},
+      {"id":"good3","status":"WARN","reason":"SHORT_HORIZON",
+       "max_gap_minutes":0},
       {"id":"short1","status":"FAIL","reason":"TOO_SHORT+INTERNAL_GAP",
        "future_hours":35.0,"max_gap_minutes":360,"programmes":25},
     ]
@@ -89,10 +91,10 @@ class PartialElCinema(unittest.TestCase):
     def test_incomplete_or_duplicate_rows_fail_closed(self):
         a,b,c,v=inputs()
         b["feeds"][0]["rows"][-1]=b["feeds"][0]["rows"][0].copy()
-        self.assertEqual(m.assess("elcinema",a,b,c,NOW.timestamp())["status"],"48H_AUDIT_FAIL")
+        self.assertEqual(m.assess("elcinema",a,b,c,NOW.timestamp())["status"],"48H_AUDIT_INCONSISTENT_IDS")
         a,b,c,v=inputs()
         b["feeds"][0]["rows"].pop()
-        self.assertEqual(m.assess("elcinema",a,b,c,NOW.timestamp())["status"],"48H_AUDIT_FAIL")
+        self.assertEqual(m.assess("elcinema",a,b,c,NOW.timestamp())["status"],"48H_AUDIT_INCONSISTENT_IDS")
     def test_stale_audit_or_published_data_never_green(self):
         a,b,c,v=inputs()
         a["generated_utc"]=date(NOW-timedelta(days=6))

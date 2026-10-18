@@ -191,11 +191,16 @@ class TestPublicFeedProvenance(unittest.TestCase):
         with patch.object(module, "_get_json", side_effect=[a, b, c]), \
                 patch.object(module, "verify_payload", return_value=audited):
             res = module.fetch_one("elcinema", NOW.timestamp(), verify_xmltv=True)
-        self.assertEqual(res["status"], "48H_AUDIT_FAIL")
+        # The mock FAIL report has no complete per-ID rows. Reject it
+        # specifically as structurally inconsistent before XML title scoring.
+        self.assertEqual(res["status"], "48H_AUDIT_INCONSISTENT_IDS")
         self.assertFalse(res["ready_for_epg_ok"])
 
     def test_verified_title_cleanup_keeps_original_feed_age(self):
         feed, audit, quality = fixtures("shahid")
+        # This test is about immutable original age; a source-wide WARN now
+        # requires complete per-ID rows to protect AWSN/other severe gaps.
+        audit["feeds"][0]["status"] = "PASS"
         feed["repacked_utc"] = ts(NOW - timedelta(minutes=10))
         feed["original_published_sha256"] = "b" * 64
         audit["generated_utc"] = feed["repacked_utc"]
