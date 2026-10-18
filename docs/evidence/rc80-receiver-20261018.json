@@ -142,7 +142,7 @@
     "status": "EPG_VISIBLE_TUNED_SERVICE",
     "tuned_channel_name_contains_2m": false
   },
-  "memory_candidate_first_measurement": {
+  "memory_candidate_final": {
     "receiver_modified": false,
     "candidate_executed_in_memory_only": true,
     "synthetic_logic_checks": {
@@ -154,16 +154,66 @@
       "malformed_quality": "UNKNOWN"
     },
     "logic_pass": true,
-    "preview_500_rows_median_ms": 40.61665400001857,
+    "preview_500_rows_median_ms": 42.47550499985664,
     "preview_trials_ms": [
-      64.92141600006107,
-      40.561230999969666,
-      40.47379199994339,
-      41.30518600004507,
-      40.61665400001857
+      69.57494000016595,
+      43.63814399994226,
+      42.47550499985664,
+      42.41407099993921,
+      42.327893999981825
     ],
     "gui_tested": false,
     "native_import_executed": false,
-    "python": "3.14.7"
+    "python": "3.14.7",
+    "python_optimize": 1,
+    "checks_use_explicit_exceptions": true
+  },
+  "final_protected_hashes_unchanged": true,
+  "dependencies_standalone_python": {
+    "receiver_modified": false,
+    "dependency_code_imported": false,
+    "module_spec_presence": {
+      "Components": false,
+      "Plugins": false,
+      "Screens": false,
+      "ServiceReference": false,
+      "bs4": true,
+      "bz2": true,
+      "cloudscraper": false,
+      "enigma": false,
+      "gzip": true,
+      "lxml": true,
+      "lzma": true,
+      "pytz": true,
+      "requests": true,
+      "ssl": true,
+      "twisted": true,
+      "urllib3": true,
+      "xml": true,
+      "zoneinfo": true,
+      "zlib": true
+    },
+    "python_optimize": 1,
+    "timezone_names": [
+      "UTC",
+      "UTC"
+    ],
+    "offset_seconds_east_utc": 0,
+    "dependency_functionality_tested": false
+  },
+  "linux_offline_ci": {
+    "code_commit": "470ad45d634002a7d9eb992bf0f501b7be290579",
+    "run_url": "https://github.com/wacayoub/EPGManager/actions/runs/39161235131",
+    "python_313": {
+      "suite_passed": 192,
+      "probe_passed": 4,
+      "skipped": 0
+    },
+    "python_314": {
+      "suite_passed": 192,
+      "probe_passed": 4,
+      "skipped": 0
+    },
+    "logs_inspected": true
   }
 }

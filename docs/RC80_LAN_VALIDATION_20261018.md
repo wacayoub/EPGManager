@@ -26,6 +26,13 @@ session credentials. No credential is requested in chat or stored in Git.
 | Mapping/preferences files | Present; contents never read |
 | Already tuned satellite service cache | 27 valid events: one current, 26 future |
 
+Dependency discovery in standalone SSH Python found requests, urllib3, bs4,
+lxml, twisted, SSL, gzip/zlib, bz2/lzma and both pytz/zoneinfo. The optional
+cloudscraper package is absent. Enigma2's embedded modules and GUI path are
+not discoverable in this standalone interpreter; this is not proof that the
+running Enigma2 process lacks them. Standalone Python reports UTC (offset 0).
+Actual GUI local-time display and dependency imports were not exercised.
+
 The cache check used read-only localhost OpenWebif GETs. It does not certify a
 new import or GUI operation. No channel name, service reference, private URL,
 programme text, mapping or settings content is published. Source capture and
@@ -70,10 +77,15 @@ Synthetic logic fixtures are separate from the real cache check above.
 | No future EPG | — | NO_EPG |
 | Malformed numeric quality | — | UNKNOWN |
 
-First five trials ranking 500 synthetic candidates: median **40.62 ms**, range
-40.47–64.92 ms on Vu+/Python 3.14.7. This is CPU ranking, not GUI rendering or
-a measured overall speedup. Final consolidated-code results are recorded
-separately in the receiver evidence before completion.
+Final consolidated-code run: all six expected classification results matched.
+Five trials ranking 500 synthetic candidates: median **42.48 ms**, range
+42.33–69.57 ms on Vu+/Python 3.14.7. This is CPU ranking, not GUI rendering or
+a measured overall speedup. Python uses optimization level 1 on the receiver;
+the final test uses explicit exceptions, independent of disabled assertions.
+The initial consolidated test script had an invalid future-import concatenation;
+a subsequent probe exposed a sub-microsecond fixture timestamp rounding issue.
+Neither attempt is counted as a successful final test. The corrected final
+probe exited successfully and rechecked all seven unchanged protected hashes.
 
 ## Actual public-source tests (PC)
 
@@ -103,7 +115,11 @@ Remaining failures involve POSIX modes, shell/paths and symlink privileges.
 They are not passing tests. All eight new MENA/legacy-health tests pass.
 Linux CI for the previous PR code passed 184 suite + four probe tests on
 Python 3.13/3.14; that does not validate the newly consolidated commit.
-Final consolidated Linux results must be read before claiming success.
+**Final consolidated Linux CI passed and logs were read:** 192/192 suite tests
+plus 4/4 probe fixture tests, with no skips, on each of Python 3.13 and 3.14.
+Tested code: `470ad45d634002a7d9eb992bf0f501b7be290579`.
+[Successful run](https://github.com/wacayoub/EPGManager/actions/runs/39161235131).
+Later report-only updates do not alter that tested code.
 
 One private SOURCE-ONLY archive was assembled from the actual 138-module
 snapshot, two public RC80 modules and SHA-locked deltas. Schema remains 15.
@@ -112,17 +128,19 @@ four changed original paths: version, health, diagnostics, preview UI.
 Snapshot/archive stay on the owner's PC outside Git. It is not an IPK and
 must not be copied over the operational plugin.
 
+Archive: `EPGManager-RC80-candidate-SOURCE-ONLY.private.zip`.
+SHA256: `3bd1a9368008eea922a6deef90bf40e6ff2e948221c6d86364658cd8449f932b`.
+
 The specifically pinned rescue IPK was absent from bounded known locations.
 No rescue was created remotely. Permanent IPK install blocks remain intact.
 A real opkg rollback test is waived by the owner, not an outstanding gate.
 
 ## Remaining gates
 
-1. Final Linux CI on consolidated public code.
-2. Prepare/inspect a complete package with unchanged application assets.
-3. Separate explicit authorization for a precise receiver deployment/test
+1. Prepare/inspect a complete package with unchanged application assets.
+2. Separate explicit authorization for a precise receiver deployment/test
    before any remote write, import execution or GUI restart.
-4. Actual GUI Auto/Manual Mapping, Best Match, persistence, native EPGImport,
+3. Actual GUI Auto/Manual Mapping, Best Match, persistence, native EPGImport,
    unavailable-source retention, GMT+0/local display, scheduler and UI latency.
    Reboot/restart remains separately authorized.
 
