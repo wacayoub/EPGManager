@@ -1,0 +1,60 @@
+name: Codex SSH hardware probe - offline read-only source regression
+on:
+  push:
+    branches:
+      - codex/rc80-vu-ssh-readonly-hardware-tests-20261018
+    paths:
+      - 'codex/**'
+      - 'AGENTS.md'
+      - '.github/workflows/codex-ssh-readonly-probe-ci.yml'
+  pull_request:
+    paths:
+      - 'codex/**'
+      - 'AGENTS.md'
+      - '.github/workflows/codex-ssh-readonly-probe-ci.yml'
+permissions:
+  contents: read
+jobs:
+  offline-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Offline only — NEVER connect to Vu+ from GitHub Actions
+        run: |
+          python -m py_compile codex/receiver_readonly_probe.py codex/test_receiver_readonly_probe.py
+          python -m unittest codex.test_receiver_readonly_probe -v
+      - name: No embedded credentials, no remote installation commands
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import ast
+          p=Path("codex/receiver_readonly_probe.py")
+          tree=ast.parse(p.read_text())
+          imports=set()
+          for node in ast.walk(tree):
+              if isinstance(node,ast.Import):
+                  imports.update(alias.name.split('.')[0] for alias in node.names)
+              if isinstance(node,ast.ImportFrom):
+                  imports.add((node.module or '').split('.')[0])
+          assert not imports.intersection({
+              "subprocess","socket","urllib","requests","paramiko","shutil","ctypes"
+          }),imports
+          source=p.read_text()
+          assert 'authorized_to_install_rc80": False' in source
+          assert 'receiver_modified": False' in source
+          assert not any(x in source for x in
+                     ("os.system(", "os.popen(", "Path.write_", "open('/etc/enigma2"))
+          doc=Path("codex/CODEX_SSH_TASK.md").read_text()
+          assert "BatchMode=yes" in doc and "StrictHostKeyChecking=yes" in doc
+          assert "python3 -' < codex/receiver_readonly_probe.py" in doc
+          assert "SSH_NOT_TESTED" in doc
+          print("CODEX_SSH_HANDOFF_OFFLINE_TESTED; NO_SSH_ATTEMPTED")
+          PY
