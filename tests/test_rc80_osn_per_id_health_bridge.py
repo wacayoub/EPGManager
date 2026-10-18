@@ -104,7 +104,7 @@ class VerifiedOSNHealth(unittest.TestCase):
         self.assertIn("NONE",row["partial_48h_blocked_ids"])
 
     def test_source_report_never_invents_evidence_for_other_sources(self):
-        docs,_=fixture("morocco")
+        docs,*_=fixture("morocco")
         row=refresh.inspect_source("morocco",now=NOW.timestamp(),reader=reader(docs))
         self.assertFalse(row["osn_per_id_cohort_verified"])
         self.assertEqual(row["trusted_current_epg_ids"],["A"])
