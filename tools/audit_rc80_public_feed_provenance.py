@@ -79,7 +79,12 @@ def _safe_partial_48h_ids(source, feed, row):
         if status != "FAIL":
             continue
         reason = item.get("reason")
-        if source == "osn" and reason == "NO_FUTURE_EPG":
+        if source in ("osn", "elcinema") and reason == "NO_FUTURE_EPG":
+            # An actually empty ElCinema service is not a short-but-real
+            # programme and must never grant an automatic green candidate.
+            if source == "elcinema" and (item.get("future_hours") != 0 or
+                                         item.get("max_gap_minutes") is not None):
+                return None
             zero.add(cid)
         elif source == "elcinema" and reason in ("TOO_SHORT", "TOO_SHORT+INTERNAL_GAP"):
             # ElCinema's published minimum is 36h, NOT 48h. After the
@@ -117,8 +122,8 @@ def _elcinema_extreme_gap_ids(feed, report):
     A currently airing programme from such an ID may be shown for MANUAL
     correction, but must not win the green best-EPG auto selection.
     """
-    if report.get("status") not in ("PASS", "WARN"):
-        return set()
+    if report.get("status") not in ("PASS", "WARN", "FAIL"):
+        return None
     count = feed.get("channels")
     rows = report.get("rows")
     if (not isinstance(count, int) or isinstance(count, bool) or count < 1
@@ -127,6 +132,7 @@ def _elcinema_extreme_gap_ids(feed, report):
             or report.get("orphan_programmes") != 0):
         return None
     seen, flagged = set(), set()
+    failures = 0
     for item in rows:
         if not isinstance(item, dict):
             return None
@@ -136,7 +142,10 @@ def _elcinema_extreme_gap_ids(feed, report):
             return None
         seen.add(cid)
         if status == "FAIL":
-            return None
+            # Failed rows are quarantined separately as NO_EPG / TOO_SHORT.
+            # They must not hide extreme gaps in *other*, genuine WARN IDs.
+            failures += 1
+            continue
         gap = item.get("max_gap_minutes")
         if status == "WARN":
             if (not isinstance(gap, (int, float)) or isinstance(gap, bool)
@@ -144,7 +153,10 @@ def _elcinema_extreme_gap_ids(feed, report):
                 return None
             if gap >= 720:
                 flagged.add(cid)
-    if report.get("failed_channels") != 0:
+    declared = report.get("failed_channels")
+    if (not isinstance(declared, int) or isinstance(declared, bool)
+            or declared != failures or
+            (report.get("status") == "FAIL") != bool(failures)):
         return None
     return flagged
 
@@ -206,7 +218,7 @@ def assess(source, feed, audit, quality, now=None):
         return result
     result["quality_cohort_verified"] = True
     partial_zero_ids, partial_short_ids, long_gap_ids = set(), set(), set()
-    if source == "elcinema" and matching[0].get("status") in ("PASS", "WARN"):
+    if source == "elcinema" and matching[0].get("status") in ("PASS", "WARN", "FAIL"):
         observed = _elcinema_extreme_gap_ids(feed, matching[0])
         if observed is None:
             result["status"] = "48H_AUDIT_INCONSISTENT_IDS"
