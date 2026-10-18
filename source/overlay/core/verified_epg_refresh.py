@@ -240,6 +240,13 @@ def _osn_health_cohort(meta, measured, now, reader):
         health = _json("reports/osn-per-id-health.json", reader)
     except (KeyError, FileNotFoundError):
         return None
+    except AssertionError as exc:
+        # The offline fixture reader asserts exact known paths instead of
+        # raising a filesystem 404. This is *only* an absent optional report,
+        # not permission to ignore any other malformed source evidence.
+        if str(exc) == "reports/osn-per-id-health.json":
+            return None
+        raise
     except OSError as exc:
         if getattr(exc, "code", None) == 404:
             return None
