@@ -218,7 +218,8 @@ def assess(source, feed, audit, quality, now=None):
         return result
     result["quality_cohort_verified"] = True
     partial_zero_ids, partial_short_ids, long_gap_ids = set(), set(), set()
-    if source in ("elcinema", "shahid") and matching[0].get("status") in ("PASS", "WARN", "FAIL"):
+    if ((source == "elcinema" and matching[0].get("status") in ("PASS", "WARN", "FAIL"))
+            or (source == "shahid" and matching[0].get("status") == "WARN")):
         observed = _elcinema_extreme_gap_ids(feed, matching[0], source=source)
         if observed is None:
             result["status"] = "48H_AUDIT_INCONSISTENT_IDS"
