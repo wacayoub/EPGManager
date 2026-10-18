@@ -108,7 +108,7 @@ python -m unittest codex.test_receiver_readonly_probe -v
 python -m unittest discover -s tests -v
 ```
 
-## Offline tests and single private source candidate
+## Offline tests and consolidated private candidate
 
 Windows/Python 3.13.2: **192 tests: 170 pass, 7 failures, 12 errors, 3 skips**.
 Remaining failures involve POSIX modes, shell/paths and symlink privileges.
@@ -125,8 +125,9 @@ One private SOURCE-ONLY archive was assembled from the actual 138-module
 snapshot, two public RC80 modules and SHA-locked deltas. Schema remains 15.
 The structural gate confirms 140 modules, zero unapproved modifications and
 four changed original paths: version, health, diagnostics, preview UI.
-Snapshot/archive stay on the owner's PC outside Git. It is not an IPK and
-must not be copied over the operational plugin.
+Snapshot/source archive stay on the owner's PC outside Git. They must not be
+copied over the operational plugin. A complete inspection IPK has now also
+been assembled as described below.
 
 Archive: `EPGManager-RC80-candidate-SOURCE-ONLY.private.zip`.
 SHA256: `3bd1a9368008eea922a6deef90bf40e6ff2e948221c6d86364658cd8449f932b`.
@@ -135,11 +136,46 @@ The specifically pinned rescue IPK was absent from bounded known locations.
 No rescue was created remotely. Permanent IPK install blocks remain intact.
 A real opkg rollback test is waived by the owner, not an outstanding gate.
 
+## Complete offline inspection IPK
+
+Following the owner's instruction to prepare the complete package, read-only
+SSH inventory found exactly 138 Python modules and 75 application resources.
+All 138 source hashes were rechecked before the resource snapshot. No mapping,
+preferences or settings file under /etc was read, copied or modified. Private
+application resources remain local and are never uploaded to GitHub.
+
+`tools/build_rc80_snapshot_ipk.py` reconstructs the same reviewed source
+candidate from these observations, applies the existing exact preimage,
+mapping parity and source inventory gates, and adds the 75 unchanged resources
+with their observed permissions. It does not substitute a different rescue
+hash into the historical rescue builder. That builder is unchanged.
+
+Package: `EPGManager_RC80_COMPLETE_OFFLINE_BLOCKED.ipk`, **670584 bytes**.
+Version: `2026.10.18-rc80-candidate`, schema 15; **140 modules + 75 resources**.
+SHA256: `d693dee2289eb2f907e0dd18b9616b3ee914603085a032d12d80628a0bb5b5b7`.
+
+- Two independently serialized packages are byte-identical.
+- All 215 payload bytes/modes survive archive read-back exactly.
+- The 140 modules are byte-identical to the already tested private source ZIP.
+- Installed package identity/dependencies are preserved; runtime/control
+  versions agree. Resources are declared as conffiles to retain local edits
+  in a separately reviewed deployment. Actual opkg conffile behavior is untested.
+- On the PC, all four embedded scripts pass shell syntax checks. Preinst
+  exits **90**, including with EPGMGR_RC80_SUPERVISED=1; the other hooks exit 0
+  without an action. No script or opkg command was run on the receiver.
+- Five new regressions test exact asset preservation, deterministic archives,
+  unconditional install block, malformed metadata, path escapes, missing
+  modules, changed asset bytes, duplicate assets and mode drift.
+
+This is a complete **inspection** IPK with an unconditional installation
+block. It is not an approved deployment package. Preparing this artifact did
+not authorize or perform an installation, restart, import or cache change.
+
 ## Remaining gates
 
-1. Prepare/inspect a complete package with unchanged application assets.
-2. Separate explicit authorization for a precise receiver deployment/test
+1. Separate explicit authorization for a precise receiver deployment/test
    before any remote write, import execution or GUI restart.
+2. A separately reviewed deployment package; the inspection IPK remains blocked.
 3. Actual GUI Auto/Manual Mapping, Best Match, persistence, native EPGImport,
    unavailable-source retention, GMT+0/local display, scheduler and UI latency.
    Reboot/restart remains separately authorized.
