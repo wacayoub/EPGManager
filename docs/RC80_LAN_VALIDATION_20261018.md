@@ -1,11 +1,13 @@
 # RC80 actual LAN validation — 18 October 2026
 
-**Installation: NO GO. Receiver modified: false.** One consolidated candidate:
+**Final release: NO GO pending GUI/native import acceptance. Receiver modified:
+true by the explicitly authorized installation below.** No restart/import was
+requested. One consolidated candidate:
 [draft PR #38](https://github.com/wacayoub/EPGManager/pull/38), branch
 `codex/rc80-final-qualification-20261018`, based on `948ca148`.
 This supersedes the earlier SSH_NOT_TESTED report.
 
-## Actual receiver evidence
+## Actual receiver baseline before authorized installation
 
 Read AGENTS.md and codex/CODEX_SSH_TASK.md before the probe. Alias `epg-vu`
 fails name resolution: no SSH alias configuration exists on this PC. Direct
@@ -211,7 +213,9 @@ preserving original mappings/EPG, exclusion of other-plugin settings, low-space
 refusal, hook syntax/compilation and postinstall verification of 140 modules.
 All embedded hooks pass local shell syntax checks; the actual embedded preinst
 was executed on the PC without consent and refused before receiver-path I/O.
-Backup creation/restoration has not been tested on the real receiver.
+At that preparation stage backup creation/restoration had not been tested on
+the receiver. The authorized installation below subsequently tested backup
+creation/read-back, but no restoration was exercised.
 
 Private baseline manifests, scripts and both IPKs stay outside Git. Public
 summary evidence: `docs/evidence/rc80-supervised-20261018.json`.
@@ -220,21 +224,69 @@ tests on each of Python 3.13 and 3.14, with no skips**. Job logs were read.
 Tested code commit: `b992b4c7c10923affa087bfae3a91978f2041a52`.
 [Successful supervised-candidate CI](https://github.com/wacayoub/EPGManager/actions/runs/39167039826).
 
-Readiness verdict: prepared for a separately authorized supervised test
-installation. Production/final-release verdict remains NO GO until actual
-installation, GUI and native import acceptance. No remote backup or install
-has yet been performed. Installation alone does not reload the running GUI;
-Enigma2 restart remains a separate explicitly authorized operation.
+The owner subsequently explicitly confirmed the installation with verified
+backup, without import/restart. Installation alone does not reload the GUI;
+Enigma2 restart remains a separately authorized operation.
+
+## Authorized installation actually executed
+
+The installed artifact has the same 215-file application payload as the tested
+inspection IPK. Its control metadata corrects the inherited `python3` dependency
+to OpenATV's installed `python3-core` 3.14.7 package. A dedicated regression
+checks that only that dependency token changes. The nine targeted guard tests
+passed before installation. Current artifact:
+
+- Version `2026.10.18-rc80-candidate`, schema 15, **140 modules + 75 resources**.
+- IPK SHA256 `a38b0cbd635611472d58112e8e13cb35b6ce137c97b7a9565d7406cbdbb60b69`.
+- Bytes: **708468**. The earlier 00bb8cfc artifact is superseded for deployment;
+  the permanent inspection package remains unchanged.
+
+Pre-install attempts stopped without any receiver write because this opkg has
+different option/status-query behavior. The installer then verified each of
+the 13 required installed dependency packages individually and used opkg's
+`--nodeps` to isolate this upgrade from other package/dependency changes. No
+dependency was installed to work around a missing runtime.
+
+The actual authorized `opkg install` returned **0**. Its preinst created one
+private RC79 backup, then read it back and verified all archived bytes/modes
+before replacing the package payload:
+
+`/etc/epgmanager_epg/backups/rc79-before-rc80-1792358774825996001-5701.tar.gz`
+
+Backup SHA256: `13640001a06ce505823a5f3758fedf1f44a7a4703410169c5942aaa83f7a128d`
+(1193540 bytes). No real restore/rollback was executed.
+
+Post-install results:
+
+- opkg reports `install ok installed`, version `2026.10.18-rc80-candidate`.
+- Every candidate file matches the expected content/mode; 140 modules parse
+  without syntax errors on the receiver.
+- Configuration hashes, EPG file metadata and the Enigma2 process are unchanged.
+- No import or GUI restart was requested. The running GUI has not been reloaded;
+  RC80 GUI/native import behavior remains unvalidated.
+
+**Recorded opkg warning:** the upgrade attempted to remove an obsolete `/.`
+entry inherited from the previous package; unlinking the root directory failed
+with "Is a directory". No root directory was removed and no manual registry
+repair was performed. Subsequent read-only inspection confirms the current
+registry has **215 entries, zero missing files, zero foreign paths and no root
+entry**. This opkg stores `path<TAB>mode`, accounted for by the final probe.
+The warning is retained in the installation evidence, not hidden by exit code 0.
+
+Linux CI for the dependency correction passed **206/206 suite tests + 4/4 probe
+tests on each of Python 3.13 and 3.14**, no skips; logs inspected. Code commit
+`273efb55e0de3c66f7cebb7f100a8e4b97a2fd9f`.
+[Successful run](https://github.com/wacayoub/EPGManager/actions/runs/39167932586).
+Evidence: `docs/evidence/rc80-installation-20261018.json`.
 
 ## Remaining gates
 
-1. Separate explicit authorization for a precise receiver deployment/test
-   before any remote write, import execution or GUI restart.
-2. Supervised installation of the prepared test package; the inspection IPK
-   remains permanently blocked and must not be used for deployment.
-3. Actual GUI Auto/Manual Mapping, Best Match, persistence, native EPGImport,
+1. Separate explicit authorization for Enigma2 restart to load the candidate,
+   and for the actual native EPG import test.
+2. Actual GUI Auto/Manual Mapping, Best Match, persistence, native EPGImport,
    unavailable-source retention, GMT+0/local display, scheduler and UI latency.
    Reboot/restart remains separately authorized.
 
-RC79.1 remains installed. IPToSatPro and IPAudio Pro were untouched. No final
-release has been published.
+RC80 candidate is installed on disk; a verified RC79.1 recovery archive is
+preserved. IPToSatPro and IPAudio Pro were not touched. No final release has
+been published.

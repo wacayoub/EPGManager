@@ -1,0 +1,75 @@
+{
+  "authorized_to_install": true,
+  "backup_archives": [
+    {
+      "bytes": 1193540,
+      "path": "/etc/epgmanager_epg/backups/rc79-before-rc80-1792358774825996001-5701.tar.gz",
+      "sha256": "13640001a06ce505823a5f3758fedf1f44a7a4703410169c5942aaa83f7a128d"
+    }
+  ],
+  "backup_files_created": 1,
+  "candidate_sha256": "a38b0cbd635611472d58112e8e13cb35b6ce137c97b7a9565d7406cbdbb60b69",
+  "configuration_hashes_unchanged": true,
+  "dependency_mode": "required_packages_verified_solver_disabled",
+  "enigma_process_unchanged": true,
+  "epg_file_metadata_unchanged": true,
+  "epg_import_requested": false,
+  "installed_modules": 140,
+  "installed_package_version": "2026.10.18-rc80-candidate",
+  "installed_payload_verified": true,
+  "installed_schema": 15,
+  "installed_version": "2026.10.18-rc80-candidate",
+  "operation": "OWNER_AUTHORIZED_RC80_SUPERVISED_INSTALL",
+  "opkg_executed": true,
+  "opkg_exit_code": 0,
+  "opkg_output": "RC79 recovery archive verified; SHA256 13640001a06ce505823a5f3758fedf1f44a7a4703410169c5942aaa83f7a128d\nRC80 140 modules/schema 15 verified; GUI/import still require testing\nUpgrading enigma2-plugin-extensions-epgmanager (2026.10.08-rc79.1) to enigma2-plugin-extensions-epgmanager (2026.10.18-rc80) on root\nRemoving obsolete file /.\nConfiguring enigma2-plugin-extensions-epgmanager.\nerror: remove_obsolesced_files: unlinking / failed: Is a directory.\nerror: opkg_install_pkg: Failed to determine obsolete files from previously installed enigma2-plugin-extensions-epgmanager\n",
+  "read_only_preflight_passed": true,
+  "receiver_modified": true,
+  "required_packages_verified": 13,
+  "restart_requested": false,
+  "status": "INSTALLED_VERIFIED_NO_RESTART_NO_IMPORT",
+  "uploaded_ipk": "/tmp/epgmanager-rc80-authorized-i8gvfxju.ipk",
+  "postinstall_readonly_audit": {
+    "receiver_modified": false,
+    "audit_mode": "READ_ONLY_POSTINSTALL",
+    "installed_package": {
+      "Package": "enigma2-plugin-extensions-epgmanager",
+      "Version": "2026.10.18-rc80-candidate",
+      "Depends": "python3-core, python3-requests, python3-asyncio, python3-compression, python3-datetime, python3-difflib, python3-email, python3-html, python3-io, python3-json, python3-logging, python3-math, python3-xml",
+      "Status": "install ok installed",
+      "Architecture": "all"
+    },
+    "opkg_status_exit": 0,
+    "registries": [
+      {
+        "registry": "/var/lib/opkg/info/enigma2-plugin-extensions-epgmanager.list",
+        "entries": 215,
+        "format": "path_tab_mode",
+        "root_entries": [],
+        "foreign_entries": [],
+        "missing_file_count": 0
+      }
+    ],
+    "python_modules": 140,
+    "syntax_errors": [],
+    "root_directory_exists": true,
+    "gui_restarted_by_probe": false,
+    "epg_import_requested": false
+  },
+  "legacy_root_entry_warning_recorded": true,
+  "linux_ci": {
+    "code_commit": "273efb55e0de3c66f7cebb7f100a8e4b97a2fd9f",
+    "run_url": "https://github.com/wacayoub/EPGManager/actions/runs/39167932586",
+    "python_313": {
+      "suite_passed": 206,
+      "probe_passed": 4,
+      "skipped": 0
+    },
+    "python_314": {
+      "suite_passed": 206,
+      "probe_passed": 4,
+      "skipped": 0
+    },
+    "logs_inspected": true
+  }
+}
