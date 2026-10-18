@@ -227,6 +227,68 @@ def _blocked_48h_ids(source, audit48, actual_channels):
     return blocked
 
 
+
+def _osn_health_cohort(meta, measured, now, reader):
+    """Optional published OSN per-ID cohort: restrict, never grant, green IDs.
+
+    The OSN source sidecar is published *after* a new accepted source refresh.
+    Older installations may not have that report yet, in which case the
+    existing strict XMLTV+48h per-ID validation remains authoritative.
+    An available but inconsistent report fails closed: not silently ignored.
+    """
+    try:
+        health = _json("reports/osn-per-id-health.json", reader)
+    except (KeyError, FileNotFoundError):
+        return None
+    except OSError as exc:
+        if getattr(exc, "code", None) == 404:
+            return None
+        raise
+    if (health.get("schema") != 1 or health.get("source") != "osn" or
+            health.get("source_sha256") != meta.get("sha256") or
+            health.get("catalogue_channels") != len(measured["channels"]) or
+            health.get("programme_rows_unchanged") != measured["events"] or
+            health.get("synthetic_programmes_added") != 0):
+        raise ValueError("OSN_PER_ID_WRONG_PUBLISHED_COHORT")
+    original = evidence._epoch(meta.get("generated_utc"))
+    stamp = evidence._epoch(health.get("source_generated_utc"))
+    observed = evidence._epoch(health.get("checked_utc"))
+    if (original is None or stamp is None or observed is None or
+            abs(stamp - original) > 1 or
+            observed < original or observed > original + COHORT_MAX_DELTA or
+            observed > now + 3600):
+        raise ValueError("OSN_PER_ID_STALE_OR_UNRELATED_REPORT")
+    rows = health.get("ids")
+    counts = health.get("counts")
+    if not isinstance(rows, list) or len(rows) != len(measured["channels"]) or not isinstance(counts, dict):
+        raise ValueError("OSN_PER_ID_INCOMPLETE_REPORT")
+    seen, approved, missing, actual_counts = set(), set(), set(), {
+        "VERIFIED": 0, "REVIEW": 0, "NO_EPG": 0}
+    for row in rows:
+        if not isinstance(row, dict):
+            raise ValueError("OSN_PER_ID_INVALID_ROW")
+        cid = row.get("xmltv_id")
+        status = row.get("status")
+        if (not isinstance(cid, str) or cid not in measured["channels"] or cid in seen
+                or status not in actual_counts or
+                row.get("best_match_green_allowed") is not (status == "VERIFIED") or
+                row.get("manual_mapping_visible") is not True):
+            raise ValueError("OSN_PER_ID_UNTRUSTED_ROW")
+        seen.add(cid)
+        actual_counts[status] += 1
+        if status == "VERIFIED":
+            approved.add(cid)
+        elif status == "NO_EPG":
+            missing.add(cid)
+    if (seen != measured["channels"] or
+            any(counts.get(key) != value for key, value in actual_counts.items()) or
+            set(health.get("missing_ids") or []) != missing or
+            not missing.issubset(measured["channels"] - measured["future"])):
+        raise ValueError("OSN_PER_ID_MISMATCHED_FUTURE_OR_CATALOGUE")
+    # This report is not a new positive proof: the full current XMLTV,
+    # per-ID audit and placeholder checks still govern the green whitelist.
+    return {"approved": approved, "missing": missing, "review": seen - approved - missing}
+
 def inspect_source(source, now=None, reader=None):
     """Fetch, hash and inspect one source; return evidence or fail-closed state.
 
@@ -269,6 +331,11 @@ def inspect_source(source, now=None, reader=None):
                      not (measured["populated"] - measured["channels"]))
         known_quality, reason = _verified_cohort(source, meta, audit48, quality, now)
         failing_48h_ids = _blocked_48h_ids(source, audit48, measured["channels"])
+        osn_per_id = _osn_health_cohort(meta, measured, now, reader) if source == "osn" else None
+        result["osn_per_id_cohort_verified"] = osn_per_id is not None
+        if osn_per_id is not None:
+            result["osn_no_epg_verified_ids"] = sorted(osn_per_id["missing"])
+            result["osn_review_per_id_ids"] = sorted(osn_per_id["review"])
         result["partial_48h_blocked_ids"] = sorted(failing_48h_ids or ())
         # These are real ElCinema programmes, but a >=12-hour internal gap
         # makes them unsafe for automatic best-candidate selection.
@@ -314,8 +381,17 @@ def inspect_source(source, now=None, reader=None):
                  100 * len(measured["populated"]) >= 60 * len(measured["channels"]))
         if valid:
             blocked = failing_48h_ids or set()
-            result["trusted_current_epg_ids"] = sorted(measured["current"] - flagged - blocked)
-            result["review_future_epg_ids"] = sorted(measured["future"] - measured["current"] - flagged - blocked)
+            good = measured["current"] - flagged - blocked
+            review = measured["future"] - measured["current"] - flagged - blocked
+            if osn_per_id is not None:
+                # Always intersect with actual source XMLTV NOW, never promote
+                # a merely metadata-green channel from the source-side report.
+                good &= osn_per_id["approved"]
+                review |= ((measured["future"] - flagged - blocked) -
+                           osn_per_id["approved"])
+                review -= good
+            result["trusted_current_epg_ids"] = sorted(good)
+            result["review_future_epg_ids"] = sorted(review)
             result["ready_for_epg_ok"] = bool(result["trusted_current_epg_ids"])
             if result["ready_for_epg_ok"]:
                 result["status"] = ("HASHED_XMLTV_PER_ID_PARTIAL_48H" if blocked else
