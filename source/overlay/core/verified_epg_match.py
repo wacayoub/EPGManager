@@ -131,10 +131,13 @@ def quality_for_id(source_id, channel_id, report=None, now=None):
         return {"status": "SUSPECT_GENERATED_EPG", "verified_now": False, "rank": 5}
     if cid in (row.get("long_gap_review_epg_ids") or ()):
         return {"status": "LONG_INTERNAL_GAP_REVIEW", "verified_now": False, "rank": 4}
+    # An exact source-audited zero-programme channel is NO_EPG, not merely
+    # 48h "short". Keep it visible to manual review but never promote it.
+    if (cid in (row.get("osn_no_epg_verified_ids") or ()) or
+            cid in (row.get("xmltv_observed_zero_ids") or ())):
+        return {"status": "NO_EPG", "verified_now": False, "rank": 6}
     if cid in (row.get("partial_48h_blocked_ids") or ()):
         return {"status": "48H_FAILED_ID_REVIEW", "verified_now": False, "rank": 5}
-    if cid in (row.get("xmltv_observed_zero_ids") or ()):
-        return {"status": "NO_EPG", "verified_now": False, "rank": 6}
     if (row.get("ready_for_epg_ok") is True and
             row.get("status") in ("HASHED_XMLTV_AND_AUDITS_HEALTHY",
                                   "HASHED_XMLTV_PER_ID_PARTIAL_48H") and
