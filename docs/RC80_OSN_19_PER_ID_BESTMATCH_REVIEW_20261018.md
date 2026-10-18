@@ -35,3 +35,27 @@ The reviewed Git blob identities replacing the prior PR #16 preview are:
 Both strict public manifest validators and the non-installable offline one-shot package builder must use **these exact pins together**. CI verified the public blobs from their contents. The private RC79.1 rescue remains required offline; **no private baseline or installable IPK is published**. No change to receiver, installed RC79.1, mappings, GitHub updater or Morocco / ElCinema / beIN schedules.
 
 **Unresolved:** availability/rights for original official Alfa and Pinoy programmes; real Vu+ native import, GUI mapping and 24h scheduler acceptance under R80. RC80 remains a **DRAFT/NO-GO**, not final.
+
+## Follow-up: nine REVIEW IDs are MBC, exact Shahid alternative checked
+
+A read-only Actions run [39091882773](https://github.com/wacayoub/EPG-Scrapers/actions/runs/39091882773) on 2026-10-18 verified that all **nine** REVIEW cases have real current OSN programmes but fail the stricter 8-hour *uninterrupted* guide horizon because of near-term gaps. No suspicious placeholder titles were detected. The published OSN 48h report may still mark such channels PASS or WARN because it has different horizon/gap criteria; these are not contradictory assessments.
+
+Compare the two contemporaneous, pinned published cohorts, never channel names alone:
+- OSN generated 2026-10-17T10:51:33Z; SHA-256 `6a3d726d42b49392f4b9915b1e542d91e3078cdb33eb8b96b9d0285d3cf4dea9`
+- Shahid generated 2026-10-17T10:56:32Z; SHA-256 `163774a9c380b4d7eda15cf3928f16b19814ca85929bed6f78cad09b7dbb285f`
+
+| Original OSN XMLTV ID | OSN uninterrupted hours at review | OSN largest 48h gap | Shahid same exact ID | Shahid audited 48h | Shahid largest gap |
+| --- | ---: | ---: | --- | --- | ---: |
+| `MBC1.ae@SD` | 2.55 | 30 min | YES | PASS | 0 min |
+| `MBC3.ae@SD` | 2.98 | 4 min | YES | PASS | 0 min |
+| `MBC5.ae@SD` | 2.55 | 56 min | YES | PASS | 0 min |
+| `MBCDrama.ae@SD` | 2.55 | 60 min | YES | PASS | 0 min |
+| `MBCIraq.iq@SD` | 2.55 | 36 min | YES | PASS | 0 min |
+| `MBCMasr.eg@SD` | 2.55 | 130 min | YES | PASS | 0 min |
+| `MBCMasr2.eg@SD` | 2.58 | 28 min | YES | PASS | 0 min |
+| `MBCMood.sa@HD` | 2.55 | 30 min | NO | N/A | N/A |
+| `MBCPlusDrama.sa@SD` | 2.95 | 36 min | YES | PASS | 0 min |
+
+**Safe RC80 behavior:** when a fresh, full-byte-hash-verified per-ID read-only report proves actual on-air Shahid EPG for one of the eight same-identity MBC programmes while OSN remains REVIEW, surface verified Shahid before OSN in the suggestion browser. The ranking is *not* a stored-source switch or mapping permission; retain any existing manual/saved owner at the top. Never manufacture Shahid identity for `MBCMood.sa@HD`: keep OSN as REVIEW/manual until verified official EPG improves.
+
+A synthetic safety regression on this review branch checks the same-ID Shahid-vs-OSN ranking and saved-owner precedence. This has **not** tested EPGManager R80 on the receiver, nor does it install or publish anything.
