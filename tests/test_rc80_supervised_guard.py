@@ -14,6 +14,15 @@ import prepare_rc80_supervised_ipk as prepare
 
 
 class SupervisedGuardTests(unittest.TestCase):
+    def test_openatv_python_dependency_is_corrected_without_other_metadata_changes(self):
+        original = b'Package: fixture\nDepends: python3, python3-requests\nRecommends: python3-pytz\n'
+        fixed = prepare.openatv_control(original)
+        self.assertEqual(fixed, original.replace(b'Depends: python3,', b'Depends: python3-core,'))
+        for malformed in (b'Depends: python3-core\n', b'Depends: python3-other\n',
+                          b'Depends: python3\nDepends: python3\n'):
+            with self.assertRaises(ValueError):
+                prepare.openatv_control(malformed)
+
     def fixture(self, home):
         root = home/'plugin'
         root.mkdir()

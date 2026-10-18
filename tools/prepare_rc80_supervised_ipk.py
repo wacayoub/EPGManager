@@ -10,6 +10,7 @@ import base64
 import hashlib
 import json
 from pathlib import Path
+import re
 
 import audit_rc80_rollback_package_readonly as archive
 import build_rc80_offline_blocked_ipk as sealed
@@ -21,6 +22,14 @@ OUTPUT = 'EPGManager_RC80_SUPERVISED_TEST.ipk'
 
 def sha(raw):
     return hashlib.sha256(raw).hexdigest()
+
+
+def openatv_control(raw):
+    """OpenATV installs python3-core; the historical python3 dependency is absent."""
+    updated, count = re.subn(rb'(?m)^Depends: python3(?=,|$)', b'Depends: python3-core', raw)
+    if count != 1:
+        raise ValueError('unexpected legacy Python dependency declaration')
+    return updated
 
 
 def hook_source(guard, manifest, mode):
@@ -82,7 +91,7 @@ def prepare(inspection_ipk, source_snapshot, inventory_path, assets_path, output
     controls['postinst'] = hook_source(guard, manifest, 'verify')
     for h in ('prerm', 'postrm'):
         controls[h] = sealed.PASSIVE_HOOK
-    controls['control'] = controls['control'].replace(
+    controls['control'] = openatv_control(controls['control']).replace(
         b'Description: EPGManager RC80 complete offline inspection; install blocked',
         b'Description: EPGManager RC80 supervised hardware test candidate')
     out = sealed._ar((('debian-binary', b'2.0\n'),
@@ -112,6 +121,7 @@ def prepare(inspection_ipk, source_snapshot, inventory_path, assets_path, output
             'candidate_sha256': sha(out), 'candidate_bytes': len(out),
             'application_payload_identical_to_tested_inspection_ipk': True,
             'source_modules': 140, 'unchanged_assets': 75,
+            'python_dependency': 'python3-core',
             'consent_required': True, 'verified_backup_required': True,
             'read_only_preflight_required_before_opkg': True,
             'installed_removal_hooks_must_be_passive': True,
