@@ -177,11 +177,52 @@ This is a complete **inspection** IPK with an unconditional installation
 block. It is not an approved deployment package. Preparing this artifact did
 not authorize or perform an installation, restart, import or cache change.
 
+## Supervised installation candidate
+
+The owner authorized improving/finalizing preparation, not a receiver install
+or restart. A separate supervised test artifact is now prepared while the
+permanently blocked inspection artifact remains unchanged. Both contain the
+same application payload (140 modules and 75 resources); this is one source
+candidate, not a second RC80 release.
+
+`EPGManager_RC80_SUPERVISED_TEST.ipk`: **708464 bytes**.
+SHA256: `00bb8cfc6cfc22df2fdf348c1524f6b7123e9e37fe86c79d47fdffbb4434499f`.
+Version/schema remain `2026.10.18-rc80-candidate` / 15.
+
+The new preinst refuses an ordinary installation without package-specific
+consent. It checks original hashes/permissions, requires passive or absent old
+removal hooks, checks backup space, then writes and reads back one private
+recovery archive containing the working plugin and EPGManager configuration.
+Only EPGManager settings lines are copied; settings for other plugins are
+excluded. The postinst verifies the expected 140-module payload and performs
+no settings/cache reset, scheduler operation, EPG import or Enigma2 restart.
+
+A read-only preflight must run **before** any opkg invocation, because old
+removal hooks participate in upgrades. Its exact code was sent through SSH
+stdin and **passed on the actual receiver**, with no backup/write/install.
+Installed prerm is passive; postrm is absent. The installed legacy postinst
+contains cache overwrites and EPG-file deletion, observed in code only and
+never executed in this task. The supervised candidate does not carry those
+legacy postinst operations; its new postinst only verifies file integrity.
+
+Eight new synthetic tests pass locally: consent refusal before any write,
+rejection of active old hooks, source/resource drift, verified backup while
+preserving original mappings/EPG, exclusion of other-plugin settings, low-space
+refusal, hook syntax/compilation and postinstall verification of 140 modules.
+All embedded hooks pass local shell syntax checks; the actual embedded preinst
+was executed on the PC without consent and refused before receiver-path I/O.
+Backup creation/restoration has not been tested on the real receiver.
+
+Private baseline manifests, scripts and both IPKs stay outside Git. Public
+summary evidence: `docs/evidence/rc80-supervised-20261018.json`.
+Final Linux results for the new guard are recorded after CI completes.
+
 ## Remaining gates
 
 1. Separate explicit authorization for a precise receiver deployment/test
    before any remote write, import execution or GUI restart.
-2. A separately reviewed deployment package; the inspection IPK remains blocked.
+2. Supervised installation of the prepared test package; the inspection IPK
+   remains permanently blocked and must not be used for deployment.
 3. Actual GUI Auto/Manual Mapping, Best Match, persistence, native EPGImport,
    unavailable-source retention, GMT+0/local display, scheduler and UI latency.
    Reboot/restart remains separately authorized.
