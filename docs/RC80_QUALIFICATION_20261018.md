@@ -76,8 +76,18 @@ POSIX /tmp/permissions; one requires Windows symlink privilege. No skipped test
 is counted as a pass. Full Windows run: **184 tests, 162 passed, 7 failed,
 12 errors, 3 skipped** (separate from the four probe tests). The failures expose
 missing `sh`, POSIX modes/paths and unavailable symlink privileges; the complete
-suite is not claimed green on Windows. Linux/Python 3.13 and 3.14 CI runs the complete suite,
-including these POSIX checks, without accessing a receiver.
+suite is not claimed green on Windows.
+
+**Linux CI actually passed on Python 3.13 and Python 3.14:** 184/184 suite tests
+and 4/4 receiver-probe fixture tests on each runtime, with no skips. Job logs
+were read to verify these counts. Tested code commit:
+`7430c3b8b10609fef0d77e5d622cf601a30fdc9b`.
+[Completed CI run](https://github.com/wacayoub/EPGManager/actions/runs/39156841859).
+This validates offline logic, POSIX controls and synthetic package construction;
+it does not validate Enigma2 behavior on the Vu+.
+
+[Draft PR #38](https://github.com/wacayoub/EPGManager/pull/38) contains the one
+public candidate. No final release was created and no receiver was modified.
 
 ## Remaining installation gates
 
