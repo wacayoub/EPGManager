@@ -39,7 +39,7 @@ BASELINE_VERSION = "2026.10.08-rc79.1"
 PINNED_PUBLIC_GIT_BLOBS = {
     "ui/channel_mapping.py": "26165496d9c530058dbdbc858c34794c0a4fb1a2",
     "core/verified_epg_match.py": "7181615a9bb10eeb8d8d892929c26c4513c6025d",
-    "core/verified_epg_refresh.py": "7308a1f43650b8b332f1ec1fdabf1e47c42fac94",
+    "core/verified_epg_refresh.py": "78546faeefcbf2d879b6c17d1ebd773480eb83c0",
 }
 
 
