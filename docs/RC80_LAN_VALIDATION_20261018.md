@@ -314,3 +314,84 @@ No manual import, mapping edit, cache reset, or further installation was issued.
 The installed candidate and successful GUI process recovery do **not** certify
 opening EPGManager screens or native EPGImport behavior. These acceptance gates
 remain pending. Evidence: `docs/evidence/rc80-gui-restart-20261018.json`.
+
+## Owner GUI confirmation and authorized import attempt — 20 October
+
+The owner confirmed the TV picture returned and EPGManager opens. This is actual
+owner-observed GUI opening evidence; Auto/Manual Mapping and Best Match screen
+behavior remain separate acceptance checks.
+
+The owner explicitly authorized a native EPG import test with no deletion of
+saved mappings or existing programmes. **No import was executed in this attempt.**
+Direct SSH reached authentication, but the tool's automatic approval policy
+rejected interactive input (`sandbox_approval` disabled). No credential was
+requested or disclosed in chat. Alias `epg-vu` still fails name resolution.
+A read-only direct LAN OpenWebif request was refused on TCP port 80
+(Windows error 10061); the earlier successful localhost API does not establish
+current LAN accessibility. SSH key access has been requested as the prerequisite.
+
+Review of the captured native import source identifies the installed OE-Alliance
+engine bridge as the appropriate test path. The manual screen passes the saved
+clear-before-import preference, so the authorized conservation test must explicitly
+enforce `clear_before_import=False` before starting; it must not blindly press
+Manual Import with an unknown setting. Standalone SSH Python is insufficient to
+prove a write into Enigma2's embedded cache. No installed code/configuration,
+mapping, cache, service, or scheduler was changed by this attempt.
+
+Final release remains **NO GO** pending actual native import, programme retention,
+time correctness and remaining mapping/scheduler acceptance. Evidence:
+`docs/evidence/rc80-native-import-attempt-20261020.json`.
+
+## Actual native-import GUI attempt through owner SSH tunnel — 20 October
+
+The owner established a Windows SSH local forward to the receiver's localhost
+OpenWebif. HTTP power-state and OSD capture succeeded. Remote-control API
+navigation opened EPGManager, Main Settings and Native Import options on the real
+GUI. The displayed installed version is `2026.10.18-rc80-candidate`.
+
+**First concrete problem:** the saved **Delete current EPG before import** option
+was **Yes**. In accordance with the owner's explicit conservation instruction,
+it was changed to **No** before selecting Manual Import and accepting the prompt.
+The screen's normal save operation persisted the setting. No mapping editing,
+source-selection change, purge, installation or restart was requested.
+
+**Actual test result: NOTHING TO IMPORT.** Preparation found **zero local XMLTV
+files** under the configured `/etc/epgmanager_epg`. This manual screen uses the
+local-only bridge, whereas GitHub-direct feeds are imported by the dashboard's
+Import All/direct runner. The native engine did not start; this is not an import
+success. The screen's suggestion to use Import All was not followed blindly.
+
+**Second concrete code defect:** `DirectEPGImportRunner` constructs
+`FirstWriteFlushProxy(..., enabled=not self.clear_before_import)` in both the
+OE-Alliance engine and fallback paths, and runs migration sanitation before the
+engine. Consequently `clear_before_import=False` still permits a per-service
+purge, losing existing programmes when a replacement feed is partial or the
+subsequent event write fails. This was found by inspection of the SHA-verified
+receiver source and reproduced offline, not by destructive testing on the Vu+.
+
+The source-locked corrective candidate disables both implicit first-write
+flushes, makes the proxy default safe and skips migration sanitation during
+non-destructive imports. Explicit `clear_before_import=True` remains a separate
+destructive request and was not used. Five targeted tests pass: partial feeds,
+failed writes in both paths, safe proxy default, reproduction of old loss and
+source-pattern drift rejection. The full private 140-module candidate assembles;
+75 resource bytes/modes are preserved. Its inspection-only IPK is permanently
+installation-blocked (670606 bytes, SHA256
+`81cff2c29ef3c7716bb1a6d88ad6f7a5996103c17570f2261fecb9a954ece1ee`).
+It is **not installed or hardware-qualified**.
+
+Cache conservation sampling queried 32 receiver services, of which six had EPG:
+**543 event fingerprints before, 543 after, all 543 retained**, zero query errors.
+This does not certify the entire cache or mapping-file hash identity. No saved
+mapping edit was requested; native import preparation only consumed maps.
+
+The initial Windows full-suite attempt hit sandbox temporary-directory errors.
+Repeating with a workspace temporary directory ran 211 tests but still produced
+7 failures, 12 errors and 3 skips involving POSIX modes, symlink permissions,
+Linux paths and shell commands. This is explicitly **not a passing full suite**.
+Probe tests then ran four, zero failures, one Windows skip. Linux CI for the new
+code is required; the earlier 206+4 successful run does not certify these changes.
+
+Evidence: `docs/evidence/rc80-native-import-20261020.json`. **Final release NO GO**
+pending a separately authorized corrective deployment and actual non-destructive
+direct native import, cache retention and the other acceptance gates.

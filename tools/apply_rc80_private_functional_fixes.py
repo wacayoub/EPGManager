@@ -10,9 +10,35 @@ import ast
 import hashlib
 
 ORIGINAL = {
+    "core/direct_native_import.py": "43564fe313513deaa49b80acece8fccf9dedc0b9e3fcf210177da7b5f2207c31",
     "core/system_check.py": "d086d5e7ac49439d1d95bac4ce9dc97c1fe445348591c6548c50f2457269b07a",
     "core/github_match_health.py": "941c89c9ace27f63a63a41486b3f012f9f96cd7ed6c0dca602bc8b3353f4571c",
 }
+
+
+def preserve_native_events(text):
+    """Remove implicit purges; explicit clear=True remains an owner operation."""
+    text = _one(text, 'def __init__(self, cache, enabled=True):',
+                'def __init__(self, cache, enabled=False):', 'native proxy default')
+    marker = 'FirstWriteFlushProxy(cache, enabled=not self.clear_before_import)'
+    if text.count(marker) != 2:
+        raise ValueError('expected engine and fallback retention sites')
+    text = text.replace(marker, 'FirstWriteFlushProxy(cache, enabled=False)')
+    text = _one(text,
+        'self.stale_cleanup = service_epg_sanitizer.sanitize_once(cache, self.sources)',
+        'self.stale_cleanup = (service_epg_sanitizer.sanitize_once(cache, self.sources) '
+        'if self.clear_before_import else {"skipped": "preserve_existing_epg"})',
+        'native migration cleanup')
+    text = text.replace('"""Start OE-Alliance EPGImport with per-service stale-event replacement.',
+                        '"""Start OE-Alliance EPGImport while retaining existing service events.')
+    text = text.replace('''        The frozen Golden bridge remains untouched.  The only behavioural
+        difference is that a DVB service is flushed immediately before its first
+        fresh event batch is written.  Empty/dead feeds therefore never erase EPG.''',
+                        '''        Non-destructive imports never flush a service or run stale-event
+        migration cleanup. Existing programmes survive unavailable/partial feeds.
+        Only an explicit clear-before-import request permits destructive cleanup.''')
+    ast.parse(text)
+    return text
 
 
 def _one(s, old, new, rel):
@@ -103,7 +129,9 @@ def corrected(source):
                     fetched[key]["mena_readiness"] = snapshot''', rel)
     s = _one(s, '_MAX_REPORT_BYTES = 260000', '_MAX_REPORT_BYTES = 1024 * 1024', rel)
     health = s.encode("utf-8")
-    result = {"core/system_check.py":system_check, "core/github_match_health.py":health}
+    native = preserve_native_events(source['core/direct_native_import.py'].decode('utf-8')).encode('utf-8')
+    result = {"core/system_check.py":system_check, "core/github_match_health.py":health,
+              "core/direct_native_import.py": native}
     for name, payload in result.items():
         ast.parse(payload.decode("utf-8"), filename=name)
     return result

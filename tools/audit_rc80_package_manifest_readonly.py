@@ -26,6 +26,7 @@ CORE_ADDITIONS = (
 )
 CHANGED_PUBLIC_UI = "ui/channel_mapping.py"
 PRIVATE_REVIEWABLE = frozenset((
+    "core/direct_native_import.py",
     "core/system_check.py",
     "core/github_match_health.py",
     "core/github_direct_sync.py",
