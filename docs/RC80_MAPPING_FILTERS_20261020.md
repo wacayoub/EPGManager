@@ -22,3 +22,11 @@ Ten unit tests cover confirmed-empty versus unknown/healthy/degraded/suspect/gen
 The consolidated package retains 142 Python modules, 75 resources, schema 15, and version 2026.10.20-rc80. It preserves package-specific consent, verified backup, exact baseline checks and passive removal hooks. No import/restart occurs in its hooks. Linux Python 3.13/3.14 CI and read-only package preflight must pass before seeking specific installation/restart approval. Actual native GUI interaction of these new filters remains NOT TESTED until an approved deployment.
 
 The actual receiver read-only package preflight passes (exit 0); missing consent refuses installation. The isolated synthetic mode/selection/empty-view tests also pass in memory on receiver Python 3.14.7. This does not certify native GUI interaction or real-owner filter counts. No receiver file writes occurred.
+
+## Final candidate gate
+
+[PR #40](https://github.com/wacayoub/EPGManager/pull/40) is a follow-up to the installed readable interface in #39. [Linux CI](https://github.com/wacayoub/EPGManager/actions/runs/39406191507) of code commit `ec0beec7dcd15c0f6b3f37118debf4aafb1b3182` passes **260 suite + 4 probe tests on each Python 3.13/3.14**, zero failures/skips; both logs inspected.
+
+The final consolidated IPK is **702674 bytes**, SHA256 `f4fef2d5f8346c1dcc764a5e7174403d9ad968e8004eb2097158afaa7020391b`. Read-only receiver preflight passes for this exact final package, all 142 payload modules parse, and missing consent refuses before writes. The final isolated filter methods, including backend-error handling, passed in memory on Python 3.14.7. Earlier intermediate private candidate packages are superseded and are not the proposed deployment artifact.
+
+**Prepared and qualified, not installed.** Separate explicit approval remains required for same-version IPK reinstallation, one Enigma2 restart, and native GUI verification of the four filter choices. No mapping-save/undo or native import test is needed for this view-only change; those implementations remain identical. The 216 unchanged application files include the native importer and scheduler.
