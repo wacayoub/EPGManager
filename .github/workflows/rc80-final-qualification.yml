@@ -1,9 +1,9 @@
 name: RC80 candidate qualification (no receiver)
 on:
   push:
-    branches: [codex/rc80-final-qualification-20261018, codex/rc80-interface-readability]
+    branches: [codex/rc80-final-qualification-20261018, codex/rc80-interface-readability, codex/rc80-mapping-filters, codex/rc80-mapping-workflow]
   pull_request:
-    branches: [feature/rc80-hardware-qualification-readonly-20261016, codex/rc80-final-qualification-20261018]
+    branches: [feature/rc80-hardware-qualification-readonly-20261016, codex/rc80-final-qualification-20261018, codex/rc80-interface-readability, codex/rc80-mapping-filters]
   workflow_dispatch:
 permissions:
   contents: read

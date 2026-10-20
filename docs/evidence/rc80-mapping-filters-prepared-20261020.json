@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-20",
+  "receiver_changed": false,
+  "installed": false,
+  "baseline_receiver_SHA256_verified_by_SSH": true,
+  "branch": "codex/rc80-mapping-filters",
+  "unit_tests": 10,
+  "unit_failures": 0,
+  "actual_code_integration": {
+    "receiver_changed": false,
+    "candidate_syntax": "PASS",
+    "changed_existing_methods": [
+      "_mapping_option_selected",
+      "_paint_channel_rows_cached",
+      "_timer_tick",
+      "open_mapping_options",
+      "refresh_channels",
+      "set_channel_filter",
+      "update_focus"
+    ],
+    "all_other_methods_unchanged": true,
+    "actual_refresh_and_filter_modes": {
+      "no_future": 1,
+      "review": 5,
+      "locked": 1,
+      "all": 7
+    },
+    "selection_preserved_when_still_visible": true,
+    "empty_filter_and_return_all": "PASS",
+    "synthetic_mapping_input_unchanged": true,
+    "new_filter_data_IO": "NONE; existing RAM health and owner lookups only",
+    "real_GUI": "NOT_TESTED"
+  },
+  "package": {
+    "version": "2026.10.20-rc80",
+    "schema": 15,
+    "python_modules": 142,
+    "resources": 75,
+    "payload_files": 217,
+    "bytes": 702674,
+    "sha256": "f4fef2d5f8346c1dcc764a5e7174403d9ad968e8004eb2097158afaa7020391b",
+    "filename": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "changed_existing_modules": [
+      "ui/channel_mapping.py"
+    ],
+    "added_module": null,
+    "unchanged_application_files": 216,
+    "same_package_version_requires_force_reinstall": true,
+    "explicit_consent_still_required": true,
+    "native_import_engine_unchanged": true,
+    "user_settings_packaged": false,
+    "receiver_changed": false,
+    "installed": false,
+    "deterministic_bytes_verified": true,
+    "payload_and_modes_roundtrip_verified": true
+  },
+  "hardware_GUI": "NOT_TESTED",
+  "verdict": "PREPARED_QUALIFIED_REQUIRES_SPECIFIC_INSTALLATION_RESTART_APPROVAL_AND_NATIVE_GUI_VALIDATION",
+  "receiver_readonly_package_preflight": {
+    "exit_code": 0,
+    "missing_consent_refused": true,
+    "candidate_modules_parsed": 142,
+    "package_sha256": "f4fef2d5f8346c1dcc764a5e7174403d9ad968e8004eb2097158afaa7020391b",
+    "receiver_changed": false
+  },
+  "receiver_isolated_tests": {
+    "receiver_python": "3.14.7",
+    "execution": "MEMORY_ONLY_SYNTHETIC_FILTER_CASES",
+    "actual_refresh_and_filter_modes": {
+      "no_future": 1,
+      "review": 5,
+      "locked": 1,
+      "all": 7
+    },
+    "selection_preserved_when_still_visible": true,
+    "empty_filter_and_return_all": "PASS",
+    "synthetic_mapping_input_unchanged": true,
+    "backend_lookup_failure_stays_in_review": true,
+    "real_GUI": "NOT_TESTED"
+  },
+  "linux_CI": {
+    "status": "PASS",
+    "code_commit": "ec0beec7dcd15c0f6b3f37118debf4aafb1b3182",
+    "python_versions": [
+      "3.13",
+      "3.14"
+    ],
+    "suite_tests_each": 260,
+    "probe_tests_each": 4,
+    "failures": 0,
+    "skips": 0,
+    "both_job_logs_inspected": true,
+    "url": "https://github.com/wacayoub/EPGManager/actions/runs/39406191507"
+  },
+  "PR": "https://github.com/wacayoub/EPGManager/pull/40",
+  "historical_preparation_snapshot": true,
+  "superseded_by_installed_evidence": "docs/evidence/rc80-mapping-filters-installed-20261020.json"
+}

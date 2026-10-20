@@ -1,0 +1,52 @@
+{
+  "designation": "RC80 FINAL - qualified owner receiver",
+  "version": "2026.10.20-rc80",
+  "schema": 15,
+  "python": "3.14.7",
+  "platform": "Vu+ Zero 4K / OpenATV 8.0.1",
+  "decision": "GO_FOR_QUALIFIED_RECEIVER",
+  "finalized_utc": "2026-10-20T11:06:07.488397+00:00",
+  "owner_requested_final_designation": true,
+  "all_217_installed_files_match_final": true,
+  "receiver_modified_by_finalization": false,
+  "new_install_or_restart_required": false,
+  "package": {
+    "filename": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "bytes": 704394,
+    "sha256": "99514e7c92ca6333931f469d03577beda5f5b73c890e3beca960adfc9d41cdbd"
+  },
+  "application_source_archive": {
+    "filename": "EPGManager_RC80_FINAL_2026.10.20_application-source.zip",
+    "files": 217,
+    "python_modules": 142,
+    "exact_bytes_and_modes_verified": true,
+    "sha256": "5e4a6ccf3f27c89a0eb885de6efba475563010f59688f0f760548acfeb94ff90"
+  },
+  "prior_validation": {
+    "protected_mapping_preferences_hashes_unchanged": 6,
+    "sampled_nonexpired_events_retained": 482,
+    "sampled_events_total": 482,
+    "last_successful_native_import_events": 15969,
+    "native_import_failed_events": 0,
+    "native_import_services": 739,
+    "offline_suite_per_python": 277,
+    "probe_tests_per_python": 4,
+    "linux_python": [
+      "3.13",
+      "3.14"
+    ]
+  },
+  "application_change_since_hardware_validation": false,
+  "public_general_auto_update_enabled": false,
+  "legacy_release_pipeline_retired": true,
+  "installation_scope": "Guarded qualified upgrade artifact; exact prior application baseline and consent required. Not a generic fresh-install IPK.",
+  "unvalidated": [
+    "Other receivers/images",
+    "New live mapping apply/save/undo and bulk changes",
+    "Forced live provider outage",
+    "All-channel/all-language guide coverage"
+  ],
+  "evidence": "docs/evidence/rc80-mapping-workflow-installed-20261020.json",
+  "validated_source_commit": "9f2c7841d5b9e300e2cfa7aa3b572b23a975616e",
+  "mapping_workflow_pr": "https://github.com/wacayoub/EPGManager/pull/41"
+}

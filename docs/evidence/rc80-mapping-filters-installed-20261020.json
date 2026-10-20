@@ -1,0 +1,160 @@
+{
+  "date": "2026-10-20",
+  "receiver_changed": true,
+  "owner_explicitly_authorized_this_install_restart_and_GUI_test": true,
+  "owner_continuing_authorization_for_necessary_EPGManager_operations": true,
+  "preservation_boundaries_remain_in_force": true,
+  "installed": {
+    "installed_version": "2026.10.20-rc80",
+    "schema": 15,
+    "python": "3.14.7",
+    "python_modules": 142,
+    "application_files": 217,
+    "all_installed_bytes_and_modes_match_candidate": true,
+    "epgimport_extension_present": true,
+    "receiver_write_performed_by_this_check": false
+  },
+  "package": {
+    "version": "2026.10.20-rc80",
+    "schema": 15,
+    "python_modules": 142,
+    "resources": 75,
+    "payload_files": 217,
+    "bytes": 702674,
+    "sha256": "f4fef2d5f8346c1dcc764a5e7174403d9ad968e8004eb2097158afaa7020391b",
+    "filename": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "changed_existing_modules": [
+      "ui/channel_mapping.py"
+    ],
+    "added_module": null,
+    "unchanged_application_files": 216,
+    "same_package_version_requires_force_reinstall": true,
+    "explicit_consent_still_required": true,
+    "native_import_engine_unchanged": true,
+    "user_settings_packaged": false,
+    "receiver_changed": true,
+    "installed": true,
+    "deterministic_bytes_verified": true,
+    "payload_and_modes_roundtrip_verified": true
+  },
+  "installation": {
+    "backup_path": "/etc/epgmanager_epg/backups/rc80-before-final-1792491568324221603-3704.tar.gz",
+    "backup_sha256": "e7ded0335548f703bb913949ed3ef5c6154b40bbfb9424742d8bae7bf4a2767e",
+    "changed_protected_filenames": [],
+    "import_executed": false,
+    "operation": "OWNER_AUTHORIZED_MAPPING_FILTERS_IPK_REINSTALL",
+    "opkg_exit_code": 0,
+    "package_sha256": "f4fef2d5f8346c1dcc764a5e7174403d9ad968e8004eb2097158afaa7020391b",
+    "protected_config_files": 15,
+    "protected_config_hashes_unchanged": true,
+    "restart_executed": false
+  },
+  "restart": {
+    "operation": "OWNER_AUTHORIZED_MAPPING_FILTERS_ENIGMA2_RESTART",
+    "backup_sha256_verified": true,
+    "installed_version": "2026.10.20-rc80",
+    "schema": 15,
+    "restart_requests_sent": 1,
+    "import_requested": false,
+    "restart_response_exception": "RemoteDisconnected",
+    "elapsed_seconds": 48.1,
+    "api_down_observed": true,
+    "stable_api_samples": 3,
+    "boot_id_unchanged": true,
+    "enigma2_pid_changed": true,
+    "enigma2_running": true,
+    "protected_config_files": 15,
+    "protected_hashes_unchanged": false,
+    "restart_verified": true
+  },
+  "actual_GUI": {
+    "opened_dashboard_and_Mapping": true,
+    "opened_BLUE_More_Filter_channels": true,
+    "current_reception_services_all": 574,
+    "confirmed_no_future_source_EPG_view": 0,
+    "needs_review_view": 544,
+    "manual_only_view": 0,
+    "filter_heading_visible": true,
+    "selected_service_kept_when_still_visible": true,
+    "empty_view_recoverable": true,
+    "returned_All_services": 574,
+    "cancel_did_not_change_filter": true,
+    "mapping_apply_save_undo_requested": false,
+    "receiver_left_on_dashboard": true,
+    "limits": "Positive manual and confirmed-empty memberships were exercised in isolated fixtures, not observed as positive rows in this live reception; review includes unknown source health and is not an error count."
+  },
+  "configuration_conservation": {
+    "protected_mapping_preferences_files": 6,
+    "all_six_hashes_unchanged": true,
+    "changed_six_filenames": [],
+    "changed_epgmanager_settings_keys": [
+      "config.plugins.epgmanager.last_native_import"
+    ],
+    "runtime_cache_changes": {
+      "epgmanager_mapping_view_cache.json": [
+        "created",
+        "signature"
+      ],
+      "epgmanager_sat_registry.json": [
+        "signature"
+      ],
+      "epgmanager_activity.json": [
+        "mapping"
+      ],
+      "epgmanager_github_direct_status.json": [
+        "checked",
+        "id_monitor_checked",
+        "sources"
+      ]
+    },
+    "full_15_file_hash_equality": false
+  },
+  "cache_conservation": {
+    "sampled_services": 32,
+    "before_events": 485,
+    "after_events": 485,
+    "nonexpired_before_events": 485,
+    "retained_nonexpired_fingerprints": 485,
+    "query_errors": 0
+  },
+  "final_API_health": [
+    {
+      "ok": true,
+      "elapsed_seconds": 0.063
+    },
+    {
+      "ok": true,
+      "elapsed_seconds": 0.095
+    },
+    {
+      "ok": true,
+      "elapsed_seconds": 0.092
+    }
+  ],
+  "previous_existing_import_observed_not_newly_requested": {
+    "ok": true,
+    "imported_events": 15969,
+    "failed_events": 0,
+    "written_services": 739,
+    "timestamp": 1792490488,
+    "engine": "Plugins.Extensions.EPGImport.EPGImport"
+  },
+  "native_import_requested": false,
+  "native_import_engine_changed": false,
+  "other_plugins_modified": false,
+  "public_release_or_merge_performed": false,
+  "Linux_CI": {
+    "url": "https://github.com/wacayoub/EPGManager/actions/runs/39406191507",
+    "tested_code_commit": "ec0beec7dcd15c0f6b3f37118debf4aafb1b3182",
+    "python_versions": [
+      "3.13",
+      "3.14"
+    ],
+    "suite_tests_each": 260,
+    "probe_tests_each": 4,
+    "failures": 0,
+    "skips": 0,
+    "both_job_logs_inspected": true
+  },
+  "verdict": "GO_FOR_INSTALLED_MAPPING_FILTERS_ON_THIS_RECEIVER"
+}
