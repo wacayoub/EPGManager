@@ -1,10 +1,15 @@
 # RC80 actual LAN validation — 18 October 2026
 
-**GO for controlled final installation on this qualified Vu+ Zero 4K. The stale-
-profile correction is installed and GUI-checked: 141 modules/schema 15. Actual
-native import, scheduler and bounded mapping/time/conservation checks passed.
-The final 2026.10.20-rc80 IPK is prepared offline, not installed or published.
-Receiver changed: true, only through specifically authorized operations.**
+**GO for the final RC80 installed on this qualified Vu+ Zero 4K. The owner-
+authorized `2026.10.20-rc80` IPK is now installed with opkg: 141 modules,
+schema 15. Enigma2 restarted in 45.22 seconds without a receiver reboot.
+A new real native import processed/imported 16,044 events, zero failures.
+All 496 sampled pre-install events survived installation, restart and import.
+Mappings/preferences and EPGManager settings are preserved. Runtime metadata
+rewrites during restart are documented below. No public release or merge.**
+Current evidence: [final installed acceptance](evidence/rc80-final-installed-20261020.json).
+The dated sections below retain the earlier qualification history.
+
 One consolidated candidate:
 [draft PR #38](https://github.com/wacayoub/EPGManager/pull/38), branch
 `codex/rc80-final-qualification-20261018`, based on `948ca148`.
@@ -678,3 +683,58 @@ release was performed.
 Current evidence: `docs/evidence/rc80-final-qualified-20261020.json`. Earlier NO_GO
 statements above document the historical gates before this authorized repair;
 they do not describe the present controlled-installation verdict.
+
+## Final IPK installed and accepted — 20 October 2026
+
+The owner explicitly authorized this final IPK installation, Enigma2 restart
+and non-destructive native import. Direct SSH key authentication succeeded
+on the owner's LAN receiver. No public SSH endpoint was used by Codex.
+The exact existing package was installed without changing its consent guard.
+
+- Package: `enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk`,
+  701058 bytes, SHA256
+  `9a8f90832b1101a80584737c97301d959409bedaedcdd6128f139f1fef573e8e`.
+- Read-only exact baseline/hash/mode preflight passed before installation.
+  The preinst created and read back a verified recovery archive; SHA256
+  `2542cb2bb4bc6c789247b96a298916ffce5a53e5b4f74bf4e580696c8d73fc88`.
+  opkg exit was 0, status `install ok installed`, version `2026.10.20-rc80`.
+  All 15 protected configuration hashes were identical before/after opkg.
+- The postinst verified all 216 application files/modes. A separate receiver
+  syntax check parsed 141 modules with zero errors; schema remains 15.
+- One Enigma2 restart recovered in **45.22 seconds**. The Enigma2 PID changed,
+  receiver boot ID stayed identical, and three consecutive API checks passed.
+- Strict all-file configuration hashes did **not** remain identical across
+  restart: 12/15 stayed identical. Global Enigma2 `settings` was rewritten,
+  but the EPGManager settings lines match the recovery archive exactly.
+  The satellite registry changed only `signature`; the mapping view cache
+  changed only `created` and `signature`. Their remaining data are identical.
+  All six protected mapping/preferences/native files remained byte-identical
+  across installation, restart, import and final GUI navigation. No assertion
+  is made that every other plugin's global settings line is unchanged.
+- Actual GUI: final version displayed, dashboard and Smart Mapping opened,
+  three Best Match candidates and a current programme preview visible,
+  source selector opened/cancelled. No mapping save or automatic APPLY.
+- After verifying the clear-before-import option is false (default false),
+  a real native import completed through `Plugins.Extensions.EPGImport.EPGImport`:
+  **16,044 processed/imported events, zero failures, 739 services, 13 native
+  sources, 285 channel IDs and 753 service references**. Engine time **20.80 s**,
+  entire cycle **35.63 s**, stage DONE, no reboot requested. Fourteen selected
+  source feeds do not imply fourteen sources wrote usable events.
+- Conservation sample: 32 services, 496 events before and after; **496/496
+  non-expired event fingerprints retained**, zero query errors. This bounded
+  sample does not certify every programme on every service.
+
+The actual scheduler trigger, 3,267 exact timing correspondences and Auto
+Mapping dry run were observed earlier in this same qualification; they were
+not needlessly repeated after the final IPK's branding-only application change.
+The previously inspected Linux Python 3.13/3.14 CI remains 232 suite + 4 probe
+tests per interpreter, zero failures/skips; 18 isolated mapping/time/scheduler
+checks are separate from actual GUI and native import evidence.
+
+**Verdict: GO for the installed RC80 on this receiver.** Source gaps (31 IDs
+without future EPG), uncertain guides and unresolved user mappings remain
+explicit. New live mapping save/undo, a forced live source outage and other
+receiver images remain outside the measured acceptance. No public stable
+release, Git tag or merge was performed. IPToSatPro and IPAudio Pro were not
+modified by this installation. Evidence contains only counts, hashes and
+validation outcomes; no credentials, mappings or programme text.
