@@ -1,0 +1,13 @@
+# RC80 modern plugin picon
+
+Modern cyan/violet television-guide grid with a synchronization badge, on a navy tile with transparent corners. Generated using the built-in image generation tool, then mechanically downsampled with Pillow for the Enigma2 menu. The runtime asset is `assets/branding/epgmanager-modern.png`: PNG RGBA8, 256 x 256, 55,357 bytes. The high-resolution generated original remains in the owner's workspace.
+
+The actual installed main PluginDescriptor entries previously omitted `icon`, although the Online Update entry already referenced `plugin.png`. The guarded offline builder replaces only `plugin.png` and adds `icon="plugin.png"` to the two main descriptors. Removing those two keywords reproduces the original complete plugin.py AST. Autostart, importer, scheduler, mappings, sources, and the other 215 application files/modes are unchanged; schema 15 and 142 Python modules remain.
+
+Prepared package: `enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk`, 758,010 bytes, SHA256 `609f68fe295edd75da04210f317be49cd94e99ae500ae27912ecb49a23fcd2a7`. Baseline is the exact installed qualified final `99514e7c92ca6333931f469d03577beda5f5b73c890e3beca960adfc9d41cdbd`. Exact-baseline checking, package consent, verified backup and passive removal hooks remain mandatory. At preparation: receiver_changed=false, installation/restart/GUI display pending. The existing final package is retained for recovery until this follow-up is validated.
+
+Generation prompt (built-in mode):
+
+> Use case: logo-brand. Create ONE polished modern app icon / Enigma2 plugin picon for EPGManager, an electronic television programme guide manager. Square 1024x1024 canvas with true transparent background outside a centered rounded-square dark midnight navy tile. Tile occupies 90% of canvas, softly rounded corners. Main symbol: bold minimal white television screen outline combined with a clear cyan/turquoise programme grid: three short horizontal schedule bars inside the screen, with a small vivid teal circular sync arrow badge integrated at lower right. Small tasteful violet accent on one guide bar. Premium modern flat UI with very subtle dimensional lighting, crisp thick edges, clean balanced silhouette, strong contrast and generous spacing, readable at 100x60 and 128x128 pixels on a dark television interface. Front-on orthographic, no tilted perspective. No text, no letters, no words, no numbers, no antenna, no watermark, no mockup, no surrounding objects, no heavy glow or tiny detail. Output the finished single icon only, transparent corners.
+
+The generation tool produced a 1254-square RGBA master. Downscaling preserves its alpha and aspect ratio. Runtime size is 256-square; no master-resolution image is loaded on the receiver.
