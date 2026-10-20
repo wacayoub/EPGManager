@@ -1,8 +1,9 @@
 # RC80 actual LAN validation — 18 October 2026
 
-**Final release: NO GO pending remaining mapping, timezone, scheduler and failure
-acceptance. Native import on the actual receiver: PASS on 20 October. Receiver
-modified: true by explicitly authorized installations, GUI restarts and import.**
+**Final release: NO GO pending separate approval, installation and GUI retest of
+the newly measured stale-profile correction. Actual native import and scheduler:
+PASS on 20 October; bounded GUI mapping/time checks passed. Receiver modified:
+true by authorized installations, restarts, imports and a restored scheduler test.**
 One consolidated candidate:
 [draft PR #38](https://github.com/wacayoub/EPGManager/pull/38), branch
 `codex/rc80-final-qualification-20261018`, based on `948ca148`.
@@ -480,3 +481,115 @@ new mapping edits were not attempted. No IPToSatPro/IPAudio Pro operation or fin
 release publication was performed.
 
 Evidence: `docs/evidence/rc80-native-import-success-20261020.json`.
+
+## Remaining acceptance and new stale-profile defect — 20 October
+
+Live access was recovered through the owner's existing SSH tunnel on PC port
+18880 to the receiver's loopback port 80. The owner's diagnostic established
+that port 18081 belongs to a Python process; it was not treated as OpenWebif.
+No SSH key was added and no unrelated process was changed.
+
+Actual receiver GUI tests opened Smart Mapping, displayed three cached
+suggestions for a selected service, opened/cancelled the manual source selector,
+and completed an Auto Mapping dry run on 7.0W. The result was 313 scanned,
+1 SAFE proposal, 16 review, zero ambiguous and 296 without a match. The APPLY
+question was answered **No**. All six protected file hashes remained unchanged.
+Three OpenWebif responses during the search took 0.091, 0.106 and 0.104 seconds;
+these measure API responsiveness, not GUI frame latency. New mapping save/undo
+was deliberately not exercised against the owner's live store.
+
+A targeted read-only time check parsed generated channel maps privately and
+queried 158 services, 139 populated, with zero query errors. Fourteen public
+XMLTV payloads were SHA-verified and all used GMT+0. Across 4,955 sampled event
+rows there were **3,267 exact title/start/duration matches** with public donor
+programmes. Matches covered 101 services and 11 sources. Repeated programme
+titles/durations also produce matches at adjacent hourly slots, so this is
+bounded positive evidence, not an all-channel offset or mapping certification.
+An earlier untargeted 32-service sample matched none of the public donors and
+was not counted as a successful timing test. No programme text or private
+service references are published.
+
+**New real defect:** the Zero EPG GUI shows NO EPG alongside positive future
+programme metadata. The beIN complete quality profile was checked at epoch
+1791973623, while the live monitor observation was 1792458184: the older profile
+wrongly wins even when a newer observation contradicts it. A replay of the
+SHA-verified installed functions and privately captured metadata reproduces
+64 contradictory NO_EPG verdicts on 64 positive-monitor rows. The correction
+returns review for these 64 cases, zero NO_EPG and zero automatic green. This
+does not certify that all 64 public guides are usable.
+
+The reviewed correction changes only `core/source_quality.py` and
+`core/github_direct_sync.py`, adding `core/quality_profile_freshness.py`. It
+retains caches and user data. A complete profile must be timestamped, within
+24 hours, and at least as recent as the monitor before it is authoritative.
+Positive monitor metadata alone now remains WARNING. The correction is
+**prepared offline, not installed**; installed preimage hashes were freshly
+verified through OpenWebif. `tools/install_rc80_stale_profile.py` requires
+separate explicit owner authorization, verifies all downloads and preimages,
+creates and reads back a recovery archive, then changes those three files.
+It does not execute opkg, restart Enigma2 or run an import. Four installer tests
+exercise real temporary filesystem backup/conservation, drift rejection and
+backup failure; six freshness tests cover the measured regression and invalid
+timestamps.
+
+Current code commit `f3df5d3a1b4ea8fada1efec5fd231e68d0af0870` passed **227 suite
+tests + 4 probe tests on each Linux Python 3.13 and 3.14**, zero failures/skips,
+both logs inspected. [CI run](https://github.com/wacayoub/EPGManager/actions/runs/39352229509).
+Additional isolated workstation tests exercised the SHA-verified receiver
+MappingStore, scheduler and timezone source: 18 checks passed, including
+manual-owner protection, save/reload, undo, GMT+0 roundtrips, timer registration,
+boot grace, success de-duplication and bounded failure retries. Its timers are
+stubs, not real Enigma2 timer evidence. A fresh public-data Best Match replay
+checked 518 MENA IDs, including 108 degraded and 24 no-future IDs, with zero
+false green in those degraded/no-future groups. Fourteen XMLTV hashes verified;
+six sources passed the source-level readiness gate.
+
+One consolidated **source-only, non-installable** pending-validation archive is
+prepared locally: 141 Python modules, 75 unchanged resources, schema 15, 216
+files; every source parses and the ZIP payload roundtrip matches. SHA256:
+`40ab3b63c455a40a42517b84be9515322de97506f33d4695fe6a7dd846dc5cb9`
+(791751 bytes). It supersedes the previous candidate for further review; it
+has not replaced the installed 140-module plugin. The older blocked IPK
+remains historical evidence of the receiver's retention correction.
+
+Scheduler results and restoration are recorded in
+`docs/evidence/rc80-remaining-acceptance-20261020.json`. Final release remains
+NO GO until the new stale-profile correction is separately approved, installed
+and checked in the real Mapping/Best Match GUI. Live mapping writes/undo and
+a forced unavailable-source scenario remain unperformed; their isolated tests
+are reported separately. No final release/tag/merge was published.
+
+### Actual scheduler trigger and restored settings
+
+The owner separately authorized a temporary scheduled import and restoration.
+The original enablement/time were recorded privately from the fresh GUI,
+superseding an earlier disabled-state assumption. Clear-before-import remained
+No. Only the import time was temporarily moved to 01:15, with the five-minute startup guard
+left intact. No manual Import All command was sent during this test.
+
+The real Enigma2 scheduler logged start at **01:15:45 UTC**, 45 seconds after
+the configured slot. Persisted activity recorded successful DONE at epoch
+1792458969, a **24.16-second cycle**, with **15,793 events processed/imported,
+zero failed events, 738 services written, 12 native sources, 283 mapped IDs and
+751 mapped references**. Engine: `Plugins.Extensions.EPGImport.EPGImport`,
+17.496 seconds; no reboot requested. The scheduler logged successful completion
+at 01:16:45 and its last-success timestamp was read back from saved settings.
+This is actual timer/native-import evidence, distinct from the isolated tests.
+The shorter time than the earlier import is not attributed to a code speedup: the
+runner code is unchanged and cache conditions differ.
+
+After completion the original scheduler enablement/time were restored, saved
+and read back; private owner schedule values are not published.
+All original explicit EPGManager configuration values were unchanged except the
+expected new last-success timestamp. All six protected files, including native
+settings and mapping/preferences/SRP/learning files, retained their initial
+SHA256 hashes. No code was installed or GUI restarted during this round.
+
+The cache baseline contained 542 event fingerprints across 32 queried services.
+After scheduled import, 541 remained; the missing event had naturally expired.
+**All 541 baseline events still valid at the after-sample time were retained**,
+zero query errors. This is bounded conservation evidence, not a whole-cache
+comparison or proof of behavior under a deliberately broken live source.
+
+**Scheduler hardware gate: PASS. Final release gate: NO GO pending the prepared
+stale-profile correction and real GUI retest.**

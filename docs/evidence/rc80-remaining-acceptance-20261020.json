@@ -1,0 +1,234 @@
+{
+  "audit": "RC80 remaining acceptance and stale-profile correction",
+  "date": "2026-10-20",
+  "receiver_interactions": "existing owner SSH tunnel 18880 to receiver loopback port 80; no SSH key added",
+  "hardware": {
+    "mapping_auto_dry_run": {
+      "status": "PASS_NO_APPLY",
+      "reception": "7.0W",
+      "scanned": 313,
+      "safe_proposals": 1,
+      "review": 16,
+      "ambiguous": 0,
+      "no_match": 296,
+      "apply_answer": "NO",
+      "protected_files": 6,
+      "all_hashes_unchanged": true
+    },
+    "best_match_preview": {
+      "status": "OBSERVED_GUI",
+      "cached_candidates_visible": 3,
+      "new_mapping_saved": false
+    },
+    "manual_source_selector": {
+      "status": "OPENED_AND_CANCELLED",
+      "new_mapping_saved": false,
+      "live_save_undo_tested": false
+    },
+    "openwebif_latency_during_auto_search_seconds": [
+      0.091,
+      0.106,
+      0.104
+    ],
+    "time_comparison": {
+      "mode": "READ_ONLY_GENERATED_CHANNEL_MAP_AND_LIVE_ENIGMA_CACHE",
+      "checked_epoch": 1792458511.6547515,
+      "sources_sampled": 14,
+      "services_queried": 158,
+      "populated_services": 139,
+      "errors": 0,
+      "event_rows": 4955,
+      "exact_begin_duration_matches": 3497,
+      "plus60_matches": 557,
+      "minus60_matches": 550,
+      "exact_title_begin_duration_matches": 3267,
+      "title_plus60_matches": 249,
+      "title_minus60_matches": 239,
+      "matched_services": 101,
+      "sources_with_matches": [
+        "aljazeera",
+        "alkass",
+        "bein",
+        "dubaiplus",
+        "morocco",
+        "osn",
+        "rotana",
+        "shahid",
+        "starzplay",
+        "stctv",
+        "tunisiatv"
+      ],
+      "receiver_modified": false,
+      "programme_titles_or_private_refs_published": false,
+      "limitation": "Bounded sample from generated channel maps; no all-channel or language correctness certification."
+    },
+    "scheduler": {
+      "status": "PASS_REAL_ENIGMA_TIMER_AND_NATIVE_IMPORT",
+      "result": {
+        "observed_epoch": 1792458971.8683786,
+        "slot_epoch": 1792458900,
+        "cycle": {
+          "timestamp": 1792458969,
+          "ok": true,
+          "stage": "DONE",
+          "elapsed": 24.16
+        },
+        "last_import": {
+          "timestamp": 1792458969,
+          "ok": true,
+          "processed_events": 15793,
+          "imported_events": 15793,
+          "failed_events": 0,
+          "written_services": 738,
+          "sources": 12,
+          "mapped_channel_ids": 283,
+          "mapped_service_refs": 751,
+          "elapsed": 17.49632740020752,
+          "engine": "Plugins.Extensions.EPGImport.EPGImport",
+          "reboot_requested": false
+        },
+        "manual_import_requests_during_test": 0,
+        "new_cycle_observed": true
+      },
+      "log_markers": {
+        "Scheduled Native Import started": [
+          "2026-10-20 01:15:45"
+        ],
+        "Scheduled Native Import finished successfully": [
+          "2026-10-20 01:16:45"
+        ]
+      },
+      "retention": {
+        "sampled_services": 32,
+        "before_events": 542,
+        "after_events": 541,
+        "retained_fingerprints": 541,
+        "before_events_not_expired_at_after_sample": 541,
+        "retained_nonexpired_fingerprints": 541,
+        "errors": 0,
+        "receiver_modified_by_probe": false
+      },
+      "restoration": {
+        "observed_epoch": 1792459027.2126644,
+        "schedule_original_values_restored": true,
+        "last_native_import_timestamp": 1792459005.3877835,
+        "last_native_import_marked_after_scheduled_cycle": true,
+        "original_explicit_config_values_changed_excluding_success_timestamp": [],
+        "protected_files_compared": 6,
+        "protected_hashes_unchanged": true,
+        "changed_protected_filenames": [],
+        "temporary_scheduler_test_restored": true
+      },
+      "receiver_scheduler_temporarily_modified_with_explicit_owner_authorization": true
+    }
+  },
+  "offline": {
+    "isolated_receiver_source": {
+      "status": "PASS_OFFLINE_ISOLATED_RECEIVER_SOURCE",
+      "checks": {
+        "auto_does_not_replace_manual_owner": true,
+        "auto_save_preserves_manual": true,
+        "auto_undo_available": true,
+        "auto_undo_restores_exact_mapping_dictionary": true,
+        "manual_undo_restores_dictionary": true,
+        "save_survives_fresh_store_load": true,
+        "project_GMT0_now": true,
+        "GMT0_XMLTV_format": true,
+        "GMT0_epoch_roundtrip": true,
+        "poll_timer_armed_without_duplicate_callbacks": true,
+        "boot_grace_prevents_import": true,
+        "disabled_scheduler_does_not_import": true,
+        "due_scheduler_starts_once_while_runner_busy": true,
+        "successful_slot_not_repeated": true,
+        "busy_scheduler_retries_without_marking_success": true,
+        "failed_slot_backoff_no_success_timestamp": true,
+        "failed_slot_bounded_to_three_attempts": true,
+        "next_day_slot_can_retry": true
+      },
+      "checks_passed": 18,
+      "verified_source_sha256": {
+        "core/mapping_store.py": "1d14fa0c1ec2bb08232388cb817439c6be94f455071e7ea13ea451929f9ae9cd",
+        "core/scheduler.py": "29ac8ff2e95cd4ec5de34939881ecd789d66552be71c83c717976b11cba37594",
+        "core/timezone_manager.py": "760994876c024723390a4b85aaf935c5288fe57379087c3a2fd864fc36384a15"
+      },
+      "receiver_modified": false,
+      "user_mapping_data_read": false,
+      "real_enigma_timer_tested": false,
+      "real_GUI_mapping_writes_tested": false,
+      "timezone_scope": "project-requested GMT+0 policy, not legal tzdata certification"
+    },
+    "public_feed_best_match": {
+      "mode": "OFFLINE_REAL_PUBLIC_DATA",
+      "xmltv_hashes_verified": 14,
+      "source_level_ready": 6,
+      "mena_ids": 518,
+      "no_future_ids_checked": 24,
+      "degraded_ids_checked": 108,
+      "false_green_count": 0,
+      "classified_status_counts": {
+        "REAL_CURRENT_EPG": 178,
+        "CURRENT_UNVERIFIED": 143,
+        "DEGRADED_WITH_EPG": 108,
+        "UNKNOWN": 38,
+        "NO_FUTURE_EPG": 24,
+        "FUTURE_ONLY_REVIEW": 3,
+        "SUSPECT_GENERATED_EPG": 24
+      },
+      "checked_utc": "2026-10-20T00:53:04.947843+00:00",
+      "receiver_modified": false,
+      "GUI_tested": false
+    },
+    "stale_profile_replay": {
+      "mode": "OFFLINE_REPLAY_OF_READ_ONLY_HARDWARE_METADATA",
+      "receiver_modified": false,
+      "monitor_ids": 68,
+      "future_ids": 64,
+      "old_false_no_epg_on_future_rows": 64,
+      "new_false_no_epg_on_future_rows": 0,
+      "new_future_rows_marked_review": 64,
+      "new_future_rows_marked_green": 0,
+      "corrective_payload_sha256": {
+        "core/source_quality.py": "a65d773a54818477a93f6f0c8d92de9bb36eb64f678846aae2a72f2de454544e",
+        "core/github_direct_sync.py": "14ae9f7c2486142ba60e13d63daf3f8060b7f7d1f5bd87addc6501e706e6fc6e",
+        "core/quality_profile_freshness.py": "3b7009eb9d35ef9b5bcf052580856e9d21fb77c0975da43b7b93c4c4478cb348"
+      }
+    },
+    "linux_ci": {
+      "code_commit": "f3df5d3a1b4ea8fada1efec5fd231e68d0af0870",
+      "run_url": "https://github.com/wacayoub/EPGManager/actions/runs/39352229509",
+      "python_versions": [
+        "3.13",
+        "3.14"
+      ],
+      "suite_tests_per_version": 227,
+      "probe_tests_per_version": 4,
+      "failures": 0,
+      "skips": 0,
+      "both_job_logs_inspected": true
+    }
+  },
+  "new_defect": {
+    "observed_gui": "NO EPG rows coexist with positive future programme metadata",
+    "local_profile_checked_epoch": 1791973623,
+    "newer_monitor_checked_epoch": 1792458184,
+    "correction": "current profile timestamp required; older profiles cannot overrule newer monitor evidence; positive monitor metadata stays WARNING",
+    "installed_on_receiver": false
+  },
+  "consolidated_candidate": {
+    "artifact_kind": "SOURCE_ONLY_NOT_AN_INSTALLER",
+    "receiver_installed": false,
+    "schema": 15,
+    "files": 216,
+    "python_modules": 141,
+    "resources": 75,
+    "archive_sha256": "40ab3b63c455a40a42517b84be9515322de97506f33d4695fe6a7dd846dc5cb9",
+    "archive_bytes": 791751
+  },
+  "receiver_installed_module_count": 140,
+  "candidate_module_count": 141,
+  "schema": 15,
+  "final_release_verdict": "NO_GO_PENDING_STALE_PROFILE_CORRECTION_INSTALL_AND_GUI_RETEST",
+  "new_receiver_code_write_this_round": false,
+  "scheduler_test_separately_authorized": true,
+  "protected_other_projects_touched": false
+}
