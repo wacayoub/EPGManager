@@ -1,0 +1,96 @@
+{
+  "receiver_changed": false,
+  "candidate_python_modules": 3,
+  "syntax": "PASS",
+  "all_nonpresentation_methods_unchanged": true,
+  "bestmatch_state_cases": 14,
+  "import_timestamp_cases": 5,
+  "actual_skin_xml_and_bounds": "PASS",
+  "hardware_gui": "NOT_TESTED",
+  "branch": "codex/rc80-interface-readability",
+  "receiver_baseline_sha256_verified_over_ssh": true,
+  "deployment": "NOT_INSTALLED",
+  "baseline_ipk_sha256": "89d6202cbec8d9a8ad10bc2d7b2f25c4b0c8afbab9d18d515a490396d76f999a",
+  "candidate_sha256": {
+    "ui/channel_mapping.py": "3bcbbf34f567d53427b585709e1f459696512f07612073957be028adf92fc421",
+    "ui/main.py": "16346f03c2043ba2d7f313a607d980bf0b46fc19fc9bccdb15309a7d0ac2e042",
+    "ui/theme.py": "88986e4e8ee263d15e7e36b078615b94527e14d081b85695638c32be590afd7e"
+  },
+  "focused_existing_ui_tests": {
+    "passed": 7
+  },
+  "windows_full_suite": {
+    "run": 247,
+    "failures": 7,
+    "errors": 12,
+    "skipped": 3,
+    "status": "NOT_GREEN"
+  },
+  "isolated_receiver_runtime_checks": {
+    "receiver_changed": false,
+    "candidate_python_modules": 3,
+    "syntax": "PASS",
+    "all_nonpresentation_methods_unchanged": true,
+    "bestmatch_state_cases": 14,
+    "import_timestamp_cases": 5,
+    "actual_skin_xml_and_bounds": "PASS",
+    "hardware_gui": "NOT_TESTED",
+    "receiver_python": "3.14.7",
+    "execution": "MEMORY_ONLY_ISOLATED_RENDER_CHECKS"
+  },
+  "package": {
+    "version": "2026.10.20-rc80",
+    "schema": 15,
+    "python_modules": 142,
+    "resources": 75,
+    "payload_files": 217,
+    "bytes": 701998,
+    "sha256": "bafee7f5d8911449a44ef3578fa2da4c74e55e8870e049cc6ee4c5259758ef64",
+    "filename": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "changed_existing_modules": [
+      "ui/main.py",
+      "ui/channel_mapping.py",
+      "ui/theme.py"
+    ],
+    "added_module": null,
+    "unchanged_application_files": 214,
+    "same_package_version_requires_force_reinstall": true,
+    "explicit_consent_still_required": true,
+    "native_import_engine_unchanged": true,
+    "user_settings_packaged": false,
+    "receiver_changed": false,
+    "installed": false,
+    "deterministic_bytes_verified": true,
+    "payload_and_modes_roundtrip_verified": true
+  },
+  "linux_ci": {
+    "status": "PASS",
+    "tested_code_commit": "12ca985c8969ad2238752054904a8dcb2dae8b3c",
+    "python_versions": [
+      "3.13",
+      "3.14"
+    ],
+    "suite_tests_per_version": 250,
+    "probe_tests_per_version": 4,
+    "failures": 0,
+    "skips": 0,
+    "both_job_logs_inspected": true,
+    "url": "https://github.com/wacayoub/EPGManager/actions/runs/39402505556"
+  },
+  "actual_receiver_readonly_package_preflight": {
+    "receiver_changed": false,
+    "package_sha256": "bafee7f5d8911449a44ef3578fa2da4c74e55e8870e049cc6ee4c5259758ef64",
+    "all_payload_modules_parse": 142,
+    "actual_receiver_readonly_preflight_exit": 0,
+    "actual_receiver_readonly_preflight_message": "RC80 read-only preflight passed; installation not performed",
+    "changed_application_files": [
+      "ui/channel_mapping.py",
+      "ui/main.py",
+      "ui/theme.py"
+    ],
+    "unchanged_application_files": 214,
+    "missing_consent_refused": true
+  },
+  "historical_preparation_snapshot": true,
+  "superseded_by_installed_evidence": "docs/evidence/rc80-interface-readability-installed-20261020.json"
+}
