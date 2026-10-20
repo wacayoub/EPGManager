@@ -1,3 +1,5 @@
+> Current final delivery includes the owner-requested native 100x40 plugin picon: 709060-byte IPK, SHA256 b5d4bf68f86f3fe71b2dcc38c818a71d5dba5b3479d6e0521e067d3d17996ec8. See [current installed acceptance](RC80_MODERN_PICON_20261020.md) and [evidence](evidence/rc80-modern-picon-installed-20261020.json). The previous 704394-byte package below is historical and retained for recovery. Version/schema remain unchanged.
+
 # EPGManager RC80 FINAL — 2026.10.20
 
 GO for the owner's qualified Vu+ Zero 4K / OpenATV 8.0.1 / Python 3.14.7.
