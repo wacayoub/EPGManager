@@ -62,5 +62,33 @@
     "installed": false,
     "deterministic_bytes_verified": true,
     "payload_and_modes_roundtrip_verified": true
+  },
+  "linux_ci": {
+    "status": "PASS",
+    "tested_code_commit": "12ca985c8969ad2238752054904a8dcb2dae8b3c",
+    "python_versions": [
+      "3.13",
+      "3.14"
+    ],
+    "suite_tests_per_version": 250,
+    "probe_tests_per_version": 4,
+    "failures": 0,
+    "skips": 0,
+    "both_job_logs_inspected": true,
+    "url": "https://github.com/wacayoub/EPGManager/actions/runs/39402505556"
+  },
+  "actual_receiver_readonly_package_preflight": {
+    "receiver_changed": false,
+    "package_sha256": "bafee7f5d8911449a44ef3578fa2da4c74e55e8870e049cc6ee4c5259758ef64",
+    "all_payload_modules_parse": 142,
+    "actual_receiver_readonly_preflight_exit": 0,
+    "actual_receiver_readonly_preflight_message": "RC80 read-only preflight passed; installation not performed",
+    "changed_application_files": [
+      "ui/channel_mapping.py",
+      "ui/main.py",
+      "ui/theme.py"
+    ],
+    "unchanged_application_files": 214,
+    "missing_consent_refused": true
   }
 }

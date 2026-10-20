@@ -29,3 +29,9 @@ The consolidated IPK is 701998 bytes, SHA256 `bafee7f5d8911449a44ef3578fa2da4c74
 The actual candidate rendering checks also passed over SSH in memory on receiver Python 3.14.7, with no Enigma2 imports, disk writes or settings access. This validates syntax, isolated row rendering and skin construction on the target interpreter; it does **not** validate the native GUI, fonts or TV picture.
 
 Three additional package-consent/source-drift tests pass. A separate GitHub branch runs the complete suite on Linux Python 3.13/3.14 before deployment approval is requested.
+
+## Qualification gate passed; awaiting specific deployment approval
+
+[Linux qualification](https://github.com/wacayoub/EPGManager/actions/runs/39402505556) of code commit `12ca985c8969ad2238752054904a8dcb2dae8b3c` passes: **250 suite + 4 probe tests on each Python 3.13 and 3.14**, zero failures/skips; both job logs inspected. Windows packaging/mode/symlink limitations remain recorded above and were not hidden by weakening any test.
+
+The actual receiver read-only package preflight also passed (exit 0). All 142 payload Python modules parse. Missing package-specific consent refuses installation before backup or receiver writes. Source hashes, passive hooks and 214 unchanged file bytes/modes were checked. Native GUI validation of this new presentation still requires installation plus one Enigma2 restart under separate explicit owner approval. [Draft PR #39](https://github.com/wacayoub/EPGManager/pull/39) contains only this interface follow-up to #38. No receiver modification occurred during preparation.
