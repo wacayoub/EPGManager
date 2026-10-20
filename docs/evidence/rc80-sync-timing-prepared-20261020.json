@@ -1,0 +1,104 @@
+{
+  "audit": "Prepared GMT+0 trigger and synchronization receipt correction",
+  "date": "2026-10-20",
+  "installed_version_before_followup": "2026.10.20-rc80",
+  "installed_module_count": 141,
+  "receiver_code_changed": false,
+  "corrective_package_installed": false,
+  "findings": {
+    "settings_save_reapplies_boot_grace": {
+      "reproduced_in_isolated_installed_source": true,
+      "actual_missed_hardware_trigger_reproduced": false,
+      "correction": "Apply five-minute quiet time only for actual Enigma2 startup; settings apply uses requested UTC slot immediately."
+    },
+    "metadata_refresh_drops_local_receipts": {
+      "reproduced_in_isolated_installed_source": true,
+      "correction": "Merge genuine prior local receipts under the existing sync lock; metadata checks never fabricate a successful XML sync."
+    },
+    "source_display_ambiguity": {
+      "actual_gui_observed": true,
+      "old_column": "LAST REFRESH",
+      "old_meaning": "Upstream generated_utc, not receiver last check or native import completion.",
+      "new_column": "PUBLISHED / CHECKED GMT+0",
+      "offsets_normalized_before_utc_formatting": true
+    },
+    "retired_source_scheduler": "Legacy local scraper/downloader scheduling is deliberately retired and is not re-enabled. Active native import already retrieves provider streams.",
+    "scheduled_metadata_refresh": "The active native import trigger also requests one asynchronous control-plane refresh, without force-download, receiver mapping work or GUI-thread network I/O."
+  },
+  "conservation": {
+    "configured_hours_unchanged": true,
+    "configuration_schema_unchanged": 15,
+    "owner_settings_written": false,
+    "mapping_writers_changed": false,
+    "native_import_engine_changed": false,
+    "source_identifiers_priorities_languages_and_programme_offsets_changed": false,
+    "boot_grace_retained": true,
+    "busy_retry_and_three_attempt_failure_bound_retained": true
+  },
+  "package": {
+    "version": "2026.10.20-rc80",
+    "schema": 15,
+    "python_modules": 142,
+    "resources": 75,
+    "payload_files": 217,
+    "bytes": 702188,
+    "sha256": "89d6202cbec8d9a8ad10bc2d7b2f25c4b0c8afbab9d18d515a490396d76f999a",
+    "filename": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "changed_existing_modules": [
+      "plugin.py",
+      "core/scheduler.py",
+      "core/github_direct_sync.py",
+      "ui/settings.py",
+      "ui/native_sources.py"
+    ],
+    "added_module": "core/sync_timing.py",
+    "same_package_version_requires_force_reinstall": true,
+    "explicit_consent_still_required": true,
+    "native_import_engine_unchanged": true,
+    "user_settings_packaged": false,
+    "receiver_changed": false,
+    "installed": false,
+    "deterministic_bytes_verified": true,
+    "payload_and_modes_roundtrip_verified": true
+  },
+  "validation": {
+    "new_public_unit_tests": 15,
+    "public_test_failures": 0,
+    "public_test_skips": 0,
+    "isolated_checks": 18,
+    "isolated_checks_results": {
+      "installed_settings_refresh_delay_reproduced": true,
+      "settings_apply_triggers_at_requested_utc_minute": true,
+      "busy_runner_not_started_twice": true,
+      "one_timer_callback_after_start": true,
+      "real_enigma_boot_grace_preserved": true,
+      "recent_boot_slot_catches_up_once": true,
+      "success_recorded_once_no_repeat": true,
+      "disabled_schedule_stays_disabled": true,
+      "temporarily_busy_retries_without_success_timestamp": true,
+      "failure_retry_bounded_to_three_attempts": true,
+      "installed_metadata_worker_completed": true,
+      "installed_receipt_erasure_reproduced": true,
+      "candidate_metadata_worker_completed": true,
+      "candidate_metadata_worker_retains_receipt": true,
+      "real_plugin_settings_refresh_uses_no_boot_delay": true,
+      "real_plugin_startup_retains_boot_delay": true,
+      "scheduled_import_returns_existing_native_runner": true,
+      "scheduled_import_also_refreshes_metadata_without_xml_or_mapping": true
+    },
+    "actual_receiver_readonly_preflight": {
+      "candidate_ipk_sha256": "89d6202cbec8d9a8ad10bc2d7b2f25c4b0c8afbab9d18d515a490396d76f999a",
+      "missing_consent_refused_before_receiver_io": true,
+      "actual_receiver_readonly_preflight_exit": 0,
+      "actual_receiver_readonly_preflight_message": "RC80 read-only preflight passed; installation not performed",
+      "candidate_modules_parsed": 142,
+      "syntax_errors": 0,
+      "receiver_code_changed": false
+    },
+    "real_corrected_enigma_trigger_tested": false,
+    "real_corrected_GUI_display_tested": false,
+    "linux_ci": "PENDING"
+  },
+  "verdict": "PREPARED_NOT_INSTALLED_REQUIRES_SPECIFIC_OWNER_INSTALL_AND_RESTART_APPROVAL",
+  "private_settings_mappings_credentials_or_programme_text_published": false
+}

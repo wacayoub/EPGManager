@@ -1,5 +1,12 @@
 # RC80 actual LAN validation — 18 October 2026
 
+**Current follow-up: the owner reported trigger/synchronization discrepancies.
+A GMT+0 timing/receipt correction is prepared and tested offline, but not installed.
+Its actual receiver trigger/GUI acceptance is pending specific installation and
+restart approval. The earlier successful 141-module installation below is
+historical evidence, not proof that this new correction is receiver-validated.**
+Evidence: [prepared timing correction](evidence/rc80-sync-timing-prepared-20261020.json).
+
 **GO for the final RC80 installed on this qualified Vu+ Zero 4K. The owner-
 authorized `2026.10.20-rc80` IPK is now installed with opkg: 141 modules,
 schema 15. Enigma2 restarted in 45.22 seconds without a receiver reboot.
@@ -738,3 +745,51 @@ receiver images remain outside the measured acceptance. No public stable
 release, Git tag or merge was performed. IPToSatPro and IPAudio Pro were not
 modified by this installation. Evidence contains only counts, hashes and
 validation outcomes; no credentials, mappings or programme text.
+
+## Trigger and synchronization follow-up — prepared, not installed
+
+The Sources table's LAST REFRESH column was observed on the receiver. It shows
+upstream publication time, which can predate the receiver's latest check.
+UTC and the requested GMT+0 are the same offset. Source-generated times are
+not synchronization completion receipts.
+
+Two code defects were reproduced using the exact SHA-verified installed
+source in isolated fixtures: saving settings creates a new scheduler with a
+fresh five-minute startup delay; metadata-only refresh replaces source rows
+and discards prior successful local XML synchronization timestamps. No claim
+is made that a missed timed trigger was reproduced on live hardware.
+The legacy source-generator scheduler is retired intentionally and remains off.
+
+The correction changes five existing modules (plugin.py, core/scheduler.py,
+core/github_direct_sync.py, ui/settings.py and ui/native_sources.py), adding
+core/sync_timing.py. It uses an explicit UTC clock for the active native
+scheduler and labels the configured time GMT+0 without changing that value.
+Only genuine Enigma2 startup retains its five-minute quiet period. Settings
+apply does not invent another boot period. Existing busy/failed-job retry and
+single-run completion rules remain intact. A scheduled import additionally
+refreshes GitHub control-plane metadata asynchronously with force=False;
+this does not start local scrapers, prepare mappings or download full XML.
+
+Source rows display publication and receiver-check timestamps separately in
+GMT+0, parsing real ISO offsets before formatting. Metadata checks preserve
+successful local receipts and never claim that a GET is an XML sync or import.
+A failed synchronization cannot advance the last-success timestamp.
+
+The one consolidated corrected IPK retains version 2026.10.20-rc80/schema 15:
+142 modules + 75 unchanged resources, 702188 bytes, SHA256
+`89d6202cbec8d9a8ad10bc2d7b2f25c4b0c8afbab9d18d515a490396d76f999a`.
+The preinst still requires package-specific consent and an exact installed
+141-module baseline, followed by verified backup; postinst checks 142 modules.
+The native import engine, user settings, mapping writers, IDs, priorities,
+languages and programme offsets are unchanged. Same-version installation
+requires an explicitly approved opkg --force-reinstall operation; no such
+operation or restart was performed for this follow-up.
+
+Validation: 15 new public unit tests pass with zero skips; 18 checks execute
+installed/corrected source in isolation. All 142 candidate modules parse.
+The exact new preflight ran on the actual Vu+ over SSH in read-only check mode
+and passed. The actual embedded preinst also refused missing consent on the
+PC before receiver-path I/O. Deterministic serialization and all payload/hook
+bytes and modes roundtrip-verified. Corrected live trigger, GUI acceptance and
+Linux CI remain separately recorded gates. No receiver code or owner data
+was changed by this preparation.
