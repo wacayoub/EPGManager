@@ -1,5 +1,9 @@
 # RC80 interface readability candidate
 
+**Current acceptance: owner-authorized UI IPK installed and Enigma2 restarted once. Actual dashboard, Mapping and Best Match interaction passed; six protected mapping/preferences hashes and all EPGManager settings are preserved. All 489 sampled nonexpired programmes survived. GO for this receiver.** [Installed evidence](evidence/rc80-interface-readability-installed-20261020.json).
+
+The preparation and pending-approval statements below retain the chronology and are superseded by the installed acceptance at the end.
+
 Prepared offline; **not installed**. The three installed UI module SHA256 hashes were checked over read-only SSH and match the pinned package baseline. Receiver changed: false. Separate owner approval is required before installation or Enigma2 restart.
 
 ## Changes
@@ -35,3 +39,15 @@ Three additional package-consent/source-drift tests pass. A separate GitHub bran
 [Linux qualification](https://github.com/wacayoub/EPGManager/actions/runs/39402505556) of code commit `12ca985c8969ad2238752054904a8dcb2dae8b3c` passes: **250 suite + 4 probe tests on each Python 3.13 and 3.14**, zero failures/skips; both job logs inspected. Windows packaging/mode/symlink limitations remain recorded above and were not hidden by weakening any test.
 
 The actual receiver read-only package preflight also passed (exit 0). All 142 payload Python modules parse. Missing package-specific consent refuses installation before backup or receiver writes. Source hashes, passive hooks and 214 unchanged file bytes/modes were checked. Native GUI validation of this new presentation still requires installation plus one Enigma2 restart under separate explicit owner approval. [Draft PR #39](https://github.com/wacayoub/EPGManager/pull/39) contains only this interface follow-up to #38. No receiver modification occurred during preparation.
+
+## Installed and native GUI validated
+
+The owner granted control directly after the specific UI installation/restart/test request. The exact `bafee7f5…` IPK was installed with `opkg --force-reinstall`, exit 0, after its verified backup. All 15 protected configuration file hashes remained identical across installation. One Enigma2 restart recovered in **47.73 seconds**, with a changed Enigma2 PID, unchanged receiver boot ID and three stable API responses.
+
+Actual receiver screenshots were inspected privately: the new dashboard fonts, GMT+0 import receipt and Sources button are visible. Smart Mapping opened, the satellite/channel panes navigated normally, and Best Match displayed three cached candidates with explicit EPG OK badges. The selected candidate moved with the remote direction key; no apply/save/undo action was requested. CHECK was also visible on the initial placeholder. NO EPG/generated/repeated badge paths were covered by the isolated rendering cases, not claimed as newly observed live channels. The receiver was left on the dashboard. Physical TV viewing-distance judgement remains the owner's.
+
+All **217 installed application files/modes match the reviewed candidate**, 142 Python modules, schema 15, Python 3.14.7. EPGImport is present as the installed compiled `EPGImport.pyc`; testing only for `EPGImport.py` would incorrectly report it missing.
+
+Preservation: six protected mapping/preferences/native-setting files retain their pre-installation SHA256 hashes. No EPGManager setting value changed. Full 15-file equality across restart/navigation is false because normal registry/view-cache signatures, source metadata receipts and mapping activity update; the global Enigma2 settings file was also serialized, while all EPGManager keys remained equal. No source-preference restoration was needed. The EPG sample contains **489 events on 32 services before and after**, all 489 nonexpired fingerprints retained, zero query errors. Final API checks passed in 0.066/0.063/0.094 seconds.
+
+This was a presentation deployment: no new EPG import was requested and the native engine remained byte-identical. The earlier native import/scheduler acceptance is separate evidence in #38. No IPToSatPro/IPAudio changes, public release or PR merge occurred. **GO for this installed interface on the qualified receiver.**
