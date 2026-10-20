@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-20",
+  "receiver_changed": false,
+  "owner_authorized_accepted_study_implementation_and_necessary_deployment": true,
+  "unit_tests": 17,
+  "unit_failures": 0,
+  "offline_actual_code": {
+    "receiver_changed": false,
+    "exact_candidate_verified": true,
+    "original_mutation_bodies_unchanged": true,
+    "technical_diagnostics_preserved": true,
+    "all_existing_health_functions_unchanged": true,
+    "actual_review_row_reason_and_normal_programme_render": "PASS",
+    "actual_green_label_cases": 4,
+    "actual_score_label": "PASS",
+    "reset_menu_error_cannot_fall_through": true,
+    "native_GUI": "NOT_TESTED"
+  },
+  "package": {
+    "version": "2026.10.20-rc80",
+    "schema": 15,
+    "python_modules": 142,
+    "resources": 75,
+    "payload_files": 217,
+    "bytes": 704394,
+    "sha256": "99514e7c92ca6333931f469d03577beda5f5b73c890e3beca960adfc9d41cdbd",
+    "filename": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "changed_existing_modules": [
+      "ui/channel_mapping.py",
+      "core/github_match_health.py"
+    ],
+    "added_module": null,
+    "unchanged_application_files": 215,
+    "same_package_version_requires_force_reinstall": true,
+    "explicit_consent_still_required": true,
+    "native_import_engine_unchanged": true,
+    "user_settings_packaged": false,
+    "receiver_changed": false,
+    "installed": false,
+    "deterministic_bytes_verified": true,
+    "payload_and_modes_roundtrip_verified": true
+  },
+  "receiver_readonly_preflight": {
+    "receiver_changed": false,
+    "exit_code": 0,
+    "stdout": [
+      "RC80 read-only preflight passed; installation not performed",
+      "{\"receiver_python\": \"3.14.7\", \"receiver_changed\": false}"
+    ],
+    "candidate_python_modules_parsed": 142,
+    "missing_consent_refused": true,
+    "package_sha256": "99514e7c92ca6333931f469d03577beda5f5b73c890e3beca960adfc9d41cdbd",
+    "unchanged_application_files": 215
+  },
+  "actual_GUI": "NOT_TESTED",
+  "verdict": "PREPARED_AWAITING_LINUX_CI_AND_AUTHORIZED_DEPLOYMENT"
+}
