@@ -790,6 +790,8 @@ installed/corrected source in isolation. All 142 candidate modules parse.
 The exact new preflight ran on the actual Vu+ over SSH in read-only check mode
 and passed. The actual embedded preinst also refused missing consent on the
 PC before receiver-path I/O. Deterministic serialization and all payload/hook
-bytes and modes roundtrip-verified. Corrected live trigger, GUI acceptance and
-Linux CI remain separately recorded gates. No receiver code or owner data
-was changed by this preparation.
+bytes and modes roundtrip-verified. Corrected live trigger and GUI acceptance remain pending. Linux qualification
+of code commit `16b4505f` passed **247 suite + 4 probe tests on each Python 3.13
+and 3.14**, zero failures/skips, with both logs inspected.
+[Successful timing correction CI](https://github.com/wacayoub/EPGManager/actions/runs/39394353322).
+No receiver code or owner data was changed by this preparation.

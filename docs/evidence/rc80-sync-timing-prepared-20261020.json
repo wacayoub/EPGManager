@@ -97,7 +97,30 @@
     },
     "real_corrected_enigma_trigger_tested": false,
     "real_corrected_GUI_display_tested": false,
-    "linux_ci": "PENDING"
+    "linux_ci": {
+      "status": "PASS",
+      "commit": "16b4505f9a739519d00a6b56bb7a8db9f14fac4c",
+      "python_versions": [
+        "3.13",
+        "3.14"
+      ],
+      "suite_tests_per_version": 247,
+      "probe_tests_per_version": 4,
+      "failures": 0,
+      "skips": 0,
+      "both_job_logs_inspected": true,
+      "url": "https://github.com/wacayoub/EPGManager/actions/runs/39394353322"
+    },
+    "payload_parity": {
+      "existing_files_unchanged": 211,
+      "existing_modules_changed": 5,
+      "added_modules": 1,
+      "native_import_engine_identical": true,
+      "mapping_UI_identical": true,
+      "config_storage_identical": true,
+      "version_identical": true,
+      "retired_source_scheduler_identical": true
+    }
   },
   "verdict": "PREPARED_NOT_INSTALLED_REQUIRES_SPECIFIC_OWNER_INSTALL_AND_RESTART_APPROVAL",
   "private_settings_mappings_credentials_or_programme_text_published": false
