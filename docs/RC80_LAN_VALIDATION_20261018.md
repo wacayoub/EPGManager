@@ -395,3 +395,10 @@ code is required; the earlier 206+4 successful run does not certify these change
 Evidence: `docs/evidence/rc80-native-import-20261020.json`. **Final release NO GO**
 pending a separately authorized corrective deployment and actual non-destructive
 direct native import, cache retention and the other acceptance gates.
+
+Subsequent Linux CI for code commit `907a56f318bb2b23826aa19b3899293ed8b30159`
+passed **211/211 suite tests + 4/4 probe tests on each Python 3.13 and 3.14**,
+zero skips. Both job logs were inspected. This resolves the full-suite execution
+gate for the new code without concealing the Windows limitations above.
+[Successful run](https://github.com/wacayoub/EPGManager/actions/runs/39346462328).
+It does not resolve corrective deployment or native-import hardware acceptance.
