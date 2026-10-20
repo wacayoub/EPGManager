@@ -1,9 +1,10 @@
 # RC80 actual LAN validation — 18 October 2026
 
-**Final release: NO GO pending separate approval, installation and GUI retest of
-the newly measured stale-profile correction. Actual native import and scheduler:
-PASS on 20 October; bounded GUI mapping/time checks passed. Receiver modified:
-true by authorized installations, restarts, imports and a restored scheduler test.**
+**GO for controlled final installation on this qualified Vu+ Zero 4K. The stale-
+profile correction is installed and GUI-checked: 141 modules/schema 15. Actual
+native import, scheduler and bounded mapping/time/conservation checks passed.
+The final 2026.10.20-rc80 IPK is prepared offline, not installed or published.
+Receiver changed: true, only through specifically authorized operations.**
 One consolidated candidate:
 [draft PR #38](https://github.com/wacayoub/EPGManager/pull/38), branch
 `codex/rc80-final-qualification-20261018`, based on `948ca148`.
@@ -593,3 +594,87 @@ comparison or proof of behavior under a deliberately broken live source.
 
 **Scheduler hardware gate: PASS. Final release gate: NO GO pending the prepared
 stale-profile correction and real GUI retest.**
+
+## Final stale-profile deployment, receiver retest and consolidated IPK — 20 October
+
+The owner separately authorized this exact three-file correction, GUI restart
+and Mapping/Best Match retest, then executed the pinned installer in the
+existing SSH session. It changed source_quality.py and github_direct_sync.py,
+added quality_profile_freshness.py, and verified all **15 protected configuration
+files unchanged**. No opkg, restart or import was performed by that installer.
+The backup was read back and independently hashed through the existing tunnel:
+`/etc/epgmanager_epg/backups/rc80-before-stale-profile-1792459290041161680.tar.gz`,
+SHA256 `4daf86c9f69d2b0177b902941ceebb73233a0492d720b9039e2b2b72387cf3b1`.
+All three correction hashes and the earlier native-retention module hash matched.
+
+One authorized GUI restart recovered after **47.61 seconds**, with observed API
+down/up, three stable responses and increasing receiver uptime. Boot ID was not
+checked. Independent full payload parity now matches **216/216 files: 141 Python
+modules and 75 resources**, with zero mismatches. This HTTP comparison checks
+bytes, not modes; the installer's verified backup records original modes.
+The installed runtime label remains `2026.10.18-rc80-candidate`, schema 15.
+
+Actual post-restart GUI evidence:
+
+- Dashboard NO_EPG count changed from 659 to **31**. Positive-monitor cases no
+  longer inherit obsolete empty-profile verdicts. The 633 remaining uncertain
+  or review cases did not automatically turn green; dashboard green count is 0.
+- The Zero EPG beIN group changed from 74 rows to **4**, each visibly reporting
+  zero programmes. This is a correction of the displayed verdicts, not a claim
+  that missing programmes were generated or every remaining guide is reliable.
+- Best Match opens with three cached candidates and a current programme preview.
+  Candidate identity percentages are not treated as programme-quality proof.
+- Auto Mapping was rerun because the health classifier changed: 313 scanned,
+  1 safe proposal, 16 review, 0 ambiguous, 296 no match. APPLY was declined.
+  No additional mappings were created, deleted or reset.
+- All six independently tracked mapping/preferences/native-setting files retain
+  their pre-install SHA256 hashes. The 32-service cache sample contains **541
+  events before and after, all 541 fingerprints retained**, zero query errors.
+- The native-import activity timestamp is unchanged from the successful earlier
+  scheduled import. No new native import was requested in this correction round.
+
+### One prepared final candidate
+
+`tools/prepare_rc80_qualified_final.py` builds the single private final candidate
+`enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk` from the exact
+qualified payload, pinned recovery archive and previous inspection metadata.
+It contains **141 modules + 75 unchanged resources**, schema 15. **215/216
+application files are byte-identical to the qualified receiver**; only version.py
+branding changes to 2026.10.20-rc80. AST comparison verifies all other executable
+behavior and schema remain unchanged. Python dependencies are preserved, with
+the tested OpenATV python3-core substitution. No user configuration or EPG cache
+is packaged.
+
+The new preinst adapts the reviewed recovery guard to this exact 141-module
+baseline, requires package-specific explicit consent, rejects source/mode or
+removal-hook drift, and verifies a full recovery archive before unpacking.
+Postinst verifies 216 payload files. Removal hooks are passive; no hook imports
+EPG or restarts Enigma2. Guard adaptation, missing-consent refusal, a real
+141-module temporary backup fixture, branding and dependency conservation have
+five additional passing offline tests. The IPK was deterministically built and
+its payload, hooks and Unix modes roundtrip-verified. It was **not installed with
+opkg and not uploaded as a GitHub release**; any such operation needs its own
+explicit owner authorization.
+
+Final IPK: **701058 bytes**, SHA256
+`9a8f90832b1101a80584737c97301d959409bedaedcdd6128f139f1fef573e8e`.
+The previous source ZIP and inspection IPKs remain historical evidence, not
+additional final candidates. The functional candidate is already active on the
+receiver; the final IPK adds the final version label and package bookkeeping.
+
+Code commit `30326c438f91dee3f81e2587d862d90cac03a9af` passed **232 suite + 4 probe
+tests on each Linux Python 3.13 and 3.14**, no failures/skips, both job logs
+inspected. [Final CI run](https://github.com/wacayoub/EPGManager/actions/runs/39353668123).
+
+**Verdict: GO for controlled final installation on this exact qualified receiver.**
+This is not certification for other images or every channel/language. New live
+mapping edits/undo and a deliberately broken live source were not exercised
+against owner data; their isolated tests are separate. Existing mappings survive
+restart and imports. Source gaps and unresolved mappings are preserved for
+explicit review, never replaced with fabricated programmes. IPToSatPro and
+IPAudio Pro were untouched. No final package installation, merge, tag or public
+release was performed.
+
+Current evidence: `docs/evidence/rc80-final-qualified-20261020.json`. Earlier NO_GO
+statements above document the historical gates before this authorized repair;
+they do not describe the present controlled-installation verdict.
