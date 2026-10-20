@@ -1,0 +1,163 @@
+{
+  "status": "INSTALLED_NATIVE_HORIZONTAL_PICON_GUI_VERIFIED",
+  "date": "2026-10-20",
+  "receiver_changed": true,
+  "platform": "Vu+ Zero 4K / OpenATV 8.0.1 / Python 3.14.7",
+  "package": {
+    "version": "2026.10.20-rc80",
+    "schema": 15,
+    "filename": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "bytes": 709060,
+    "sha256": "b5d4bf68f86f3fe71b2dcc38c818a71d5dba5b3479d6e0521e067d3d17996ec8",
+    "changed_application_files": [
+      "plugin.png",
+      "plugin.py"
+    ],
+    "unchanged_application_files": 215,
+    "python_modules": 142,
+    "resources": 75,
+    "icon_pixels": [
+      100,
+      40
+    ],
+    "icon_bytes": 7287,
+    "icon_sha256": "82bc2d29653dad13f4713cfbae235c866677ddd389b4ee7bdb805c3a7dda9c10",
+    "registration_ast_only_icon_keywords": true,
+    "native_import_scheduler_mapping_sources_unchanged": true,
+    "deterministic_roundtrip_verified": true,
+    "receiver_changed": true
+  },
+  "all_217_installed_bytes_and_modes_verified": true,
+  "original_icon_registration_installation": {
+    "backup_path": "/etc/epgmanager_epg/backups/rc80-before-final-1792494982822696183-12955.tar.gz",
+    "backup_sha256": "225f75b9b80c3553b58015a8ccc3cc97f2db4e6dca8c1e282cdbe67897c4255f",
+    "changed_protected_filenames": [],
+    "import_executed": false,
+    "operation": "OWNER_AUTHORIZED_MODERN_PICON_IPK_REINSTALL",
+    "opkg_exit_code": 0,
+    "package_sha256": "609f68fe295edd75da04210f317be49cd94e99ae500ae27912ecb49a23fcd2a7",
+    "protected_config_files": 15,
+    "protected_config_hashes_unchanged": true,
+    "restart_executed": false
+  },
+  "horizontal_asset_correction": {
+    "operation": "OWNER_REQUESTED_NATIVE_100X40_PICON",
+    "receiver_changed": true,
+    "changed_application_files": [
+      "plugin.png"
+    ],
+    "all_217_installed_files_match_final": true,
+    "backup_path": "/etc/epgmanager_epg/backups/rc80-before-horizontal-picon-1792495246936908756.png",
+    "backup_sha256": "4346b4ff7bc6090004a9c2f4ee3637de7e5b83e143e713950444a0398ad10da0",
+    "backup_readback_verified": true,
+    "protected_config_files": 15,
+    "protected_hashes_unchanged": true,
+    "changed_config_filenames": [],
+    "import_executed": false,
+    "restart_executed": false
+  },
+  "first_square_prototype_restart": {
+    "operation": "OWNER_AUTHORIZED_MODERN_PICON_ENIGMA2_RESTART",
+    "backup_sha256_verified": true,
+    "installed_version": "2026.10.20-rc80",
+    "schema": 15,
+    "restart_requests_sent": 1,
+    "import_requested": false,
+    "restart_response_exception": "RemoteDisconnected",
+    "elapsed_seconds": 45.32,
+    "api_down_observed": true,
+    "stable_api_samples": 3,
+    "boot_id_unchanged": true,
+    "enigma2_pid_changed": true,
+    "enigma2_running": true,
+    "protected_config_files": 15,
+    "protected_hashes_unchanged": false,
+    "restart_verified": true
+  },
+  "final_horizontal_restart": {
+    "operation": "OWNER_REQUESTED_HORIZONTAL_PICON_ENIGMA2_RESTART",
+    "backup_sha256_verified": true,
+    "installed_version": "2026.10.20-rc80",
+    "schema": 15,
+    "restart_requests_sent": 1,
+    "import_requested": false,
+    "restart_response_exception": "RemoteDisconnected",
+    "elapsed_seconds": 45.25,
+    "api_down_observed": true,
+    "stable_api_samples": 3,
+    "boot_id_unchanged": true,
+    "enigma2_pid_changed": true,
+    "enigma2_running": true,
+    "protected_config_files": 15,
+    "protected_hashes_unchanged": false,
+    "restart_verified": true
+  },
+  "conservation": {
+    "protected_mapping_preferences_files": 6,
+    "all_six_hashes_unchanged": true,
+    "changed_six_filenames": [],
+    "changed_epgmanager_settings_keys": [],
+    "runtime_cache_changes": {
+      "epgmanager_github_direct_status.json": [
+        "checked",
+        "id_monitor_checked",
+        "sources"
+      ],
+      "epgmanager_sat_registry.json": [
+        "signature"
+      ],
+      "epgmanager_mapping_view_cache.json": [
+        "created",
+        "signature"
+      ]
+    },
+    "full_15_file_hash_equality": false
+  },
+  "native_epg_sample_conservation": {
+    "sampled_services": 32,
+    "before_events": 480,
+    "after_events": 480,
+    "nonexpired_before_events": 480,
+    "retained_nonexpired_fingerprints": 480,
+    "query_errors": 0
+  },
+  "api_health": [
+    {
+      "ok": true,
+      "elapsed_seconds": 0.058
+    },
+    {
+      "ok": true,
+      "elapsed_seconds": 0.092
+    },
+    {
+      "ok": true,
+      "elapsed_seconds": 0.094
+    }
+  ],
+  "actual_gui": {
+    "plugin_browser_main_icon_native_horizontal": true,
+    "online_updater_icon_native_horizontal": true,
+    "no_square_stretching": true,
+    "main_plugin_launch_dashboard_passed": true,
+    "left_on_plugin_browser": true,
+    "screenshots_kept_private": true
+  },
+  "new_native_import_requested": false,
+  "generation": "Built-in image generation; final horizontal master 1983x793 RGBA; mechanical downsample to 100x40",
+  "public_general_update_promoted": false,
+  "verdict": "GO_FOR_QUALIFIED_RECEIVER",
+  "source_pr": "https://github.com/wacayoub/EPGManager/pull/43",
+  "linux_ci_initial_registration": {
+    "commit": "0a49699547ac467da64300b6c78cb7ca89f8215b",
+    "run": 39413626018,
+    "suite_tests_each": 277,
+    "probe_tests_each": 4,
+    "python": [
+      "3.13",
+      "3.14"
+    ],
+    "result": "success"
+  },
+  "final_horizontal_ci": "See PR #43 checks and final qualification comment"
+}

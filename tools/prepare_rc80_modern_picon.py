@@ -64,8 +64,8 @@ def validate_png(raw):
     if raw[:8] != b'\x89PNG\r\n\x1a\n' or raw[12:16] != b'IHDR':
         raise ValueError('PNG required')
     width, height, depth, colour = struct.unpack('>IIBB', raw[16:26])
-    if (width, height, depth, colour) != (256,256,8,6) or len(raw) > 100000:
-        raise ValueError('expected compact 256-square RGBA8 icon')
+    if (width, height, depth, colour) != (100,40,8,6) or len(raw) > 20000:
+        raise ValueError('expected compact native 100x40 RGBA8 picon')
 
 
 def build(original, output):
@@ -121,7 +121,7 @@ def build(original, output):
     (output/'private-install-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
     report = {'version':'2026.10.20-rc80','schema':15,'filename':name,'bytes':len(result),'sha256':sha(result),
               'changed_application_files':changed,'unchanged_application_files':215,'python_modules':142,'resources':75,
-              'icon_pixels':[256,256],'icon_bytes':len(icon),'icon_sha256':sha(icon),'registration_ast_only_icon_keywords':True,
+              'icon_pixels':[100,40],'icon_bytes':len(icon),'icon_sha256':sha(icon),'registration_ast_only_icon_keywords':True,
               'native_import_scheduler_mapping_sources_unchanged':True,'deterministic_roundtrip_verified':True,'receiver_changed':False}
     (output/'package-summary.private.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     return report
