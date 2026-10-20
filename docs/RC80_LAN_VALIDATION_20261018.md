@@ -1,8 +1,9 @@
 # RC80 actual LAN validation — 18 October 2026
 
-**Final release: NO GO pending GUI/native import acceptance. Receiver modified:
-true by the explicitly authorized installation and GUI restart below.** No manual
-EPG import was requested. One consolidated candidate:
+**Final release: NO GO pending remaining mapping, timezone, scheduler and failure
+acceptance. Native import on the actual receiver: PASS on 20 October. Receiver
+modified: true by explicitly authorized installations, GUI restarts and import.**
+One consolidated candidate:
 [draft PR #38](https://github.com/wacayoub/EPGManager/pull/38), branch
 `codex/rc80-final-qualification-20261018`, based on `948ca148`.
 This supersedes the earlier SSH_NOT_TESTED report.
@@ -402,3 +403,80 @@ zero skips. Both job logs were inspected. This resolves the full-suite execution
 gate for the new code without concealing the Windows limitations above.
 [Successful run](https://github.com/wacayoub/EPGManager/actions/runs/39346462328).
 It does not resolve corrective deployment or native-import hardware acceptance.
+
+## Corrective deployment and actual native import success — 20 October
+
+The owner explicitly authorized installing the retention correction, restarting
+Enigma2 and repeating native import while retaining mappings/programmes. The
+owner executed the reviewed, SHA-verified installer in the existing SSH terminal.
+It patched only `core/direct_native_import.py`; no opkg command was run. The
+installed version remains `2026.10.18-rc80-candidate`, schema 15, 140 modules.
+
+The installer created and read back a complete private recovery archive before
+atomic replacement, verified every archived byte/mode and confirmed all **15
+tracked configuration files unchanged**. Archive:
+
+`/etc/epgmanager_epg/backups/rc80-before-native-retention-1792456904621317787.tar.gz`
+
+1203661 bytes, SHA256
+`afb1dbb622b034a5e248aa327aabae195b03544af2139509042548b778862a14`.
+Its hash and corrected module hash were independently checked through the owner
+SSH tunnel. The module matches
+`c8dc4d68712006f8fe86e64e698852d6dee8601667b9d880cff4dd3873d929f7`.
+No restore was attempted.
+
+One authorized OpenWebif GUI restart request was sent. The connection closed,
+the API became unavailable, then three consecutive successful responses confirmed
+recovery after **47.18 seconds**. Receiver uptime progressed **03:12 → 03:13**.
+Boot ID could not be read through the HTTP file controller (procfs reports a
+zero-length file), so it is not claimed as verified for this restart. The six
+protected mapping/preferences/native-settings hashes remained identical across
+restart, and the corrective module hash still matched.
+
+After reopening EPGManager, **Import All was invoked once**. This exercises the
+direct native runner instead of the local-only Manual Import screen. Actual
+persisted activity advanced to a new import timestamp and reported:
+
+| Receiver measurement | Result |
+| --- | --- |
+| Native engine | `Plugins.Extensions.EPGImport.EPGImport` |
+| Cycle | DONE, successful |
+| Events processed / imported | 15793 / 15793 |
+| Failed events | 0 |
+| Services written | 738 |
+| Native sources / mapped IDs / mapped refs | 12 / 283 / 751 |
+| Native engine time | 19.322 seconds |
+| Full cycle time | 26.19 seconds |
+| Reboot requested by import | false |
+
+Fourteen sources remain selected; twelve were used by this native import. This
+does not establish that every selected feed supplied events. No claim is made
+about which two were absent from the final plan without per-source evidence.
+
+**Conservation after actual import:** the six protected files retain identical
+SHA256 hashes, including saved mappings, source preferences, SRP maps/master,
+learning and native settings. The saved clear-before-import setting is false.
+A fresh pre-import baseline sampled 32 receiver services: **542 event fingerprints
+before, 542 after, all 542 retained**, zero query errors. This fresh baseline is
+distinct from the earlier 543-event local-only attempt. These samples do not
+certify every event in the receiver cache; no explicit purge was requested.
+
+Read-only parity subsequently compared the installed plugin to the consolidated
+corrective inspection IPK: **215/215 SHA256 matches**, comprising **140 Python
+modules and 75 resources**, zero mismatches. This HTTP parity check does not
+recheck Unix file modes. The installer did preserve and verify the changed
+module's mode. The consolidated inspection IPK remains permanently blocked for
+installation and is not a final release.
+
+Installer code `ab08f68d4c972aa3fc10d6d9cd075530488a1a2a` passed **217 suite + 4
+probe tests on each Linux Python 3.13 and 3.14**, no skips, both logs inspected.
+[Successful run](https://github.com/wacayoub/EPGManager/actions/runs/39348916349).
+
+**Native-import gate: PASS on actual hardware. Final release: still NO GO**
+pending remaining mapping save/undo, Best Match GUI quality-state scenarios,
+donor-versus-GUI time display, scheduled trigger and a live unavailable-source
+scenario. Existing mapping persistence across the authorized restart is verified;
+new mapping edits were not attempted. No IPToSatPro/IPAudio Pro operation or final
+release publication was performed.
+
+Evidence: `docs/evidence/rc80-native-import-success-20261020.json`.
