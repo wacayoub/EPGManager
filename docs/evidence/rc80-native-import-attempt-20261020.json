@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-20",
+  "user_confirmed_tv_picture_returned": true,
+  "user_confirmed_epgmanager_gui_opens": true,
+  "user_authorized_native_import_without_mapping_or_epg_deletion": true,
+  "native_import_executed": false,
+  "receiver_modified_by_this_attempt": false,
+  "ssh_direct_host_reached_authentication_prompt": true,
+  "ssh_password_input_blocked": "Automatic approval policy rejected write_stdin; sandbox_approval is disabled",
+  "ssh_alias_result": "epg-vu name resolution failed",
+  "openwebif_lan_result": "TCP port 80 actively refused connection (Windows error 10061)",
+  "native_import_result": "NOT_EXECUTED_ACCESS_BLOCKED",
+  "static_import_path_review": {
+    "installed_source_snapshot_reviewed": true,
+    "runner": "core/native_epgimport_bridge.py:EPGImportLocalRunner",
+    "engine": "installed OE-Alliance EPGImport inside Enigma2",
+    "standalone_ssh_python_cannot_certify_embedded_cache_import": true,
+    "required_test_override": "clear_before_import=False",
+    "manual_screen_currently_uses_saved_clear_preference": true
+  },
+  "final_release_verdict": "NO_GO_PENDING_NATIVE_IMPORT_AND_REMAINING_ACCEPTANCE"
+}

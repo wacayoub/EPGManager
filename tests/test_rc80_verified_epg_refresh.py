@@ -55,6 +55,10 @@ def fixture(source="morocco", now=NOW):
                "source_file": source + ".xml.gz", "quality_status": "PASS",
                "suspected_placeholder_channels": [{"id": "SYN", "count": 1}]}
     docs = {
+        "reports/mena-readiness.json": json.dumps({
+            "schema": 1, "source": "mena", "checked_utc": timestamp,
+            "source_manifest_sha256_match": True, "verified_source_count": 14,
+            "structural_errors": [], "ids": []}).encode(),
         "feeds/" + source + ".json": json.dumps(meta).encode(),
         "reports/" + source + "-48h-audit.json": json.dumps(report).encode(),
         "reports/" + source + "-quality.json": json.dumps(quality).encode(),
@@ -72,6 +76,76 @@ def reader(docs):
 
 
 class TestRC80PublicEvidenceRefresh(unittest.TestCase):
+    def test_occasional_info_does_not_reject_healthy_siblings_or_promote_empty_id(self):
+        docs, *_ = fixture()
+        audit = json.loads(docs["reports/morocco-48h-audit.json"])
+        audit["feeds"][0].update(status="FAIL", invalid_times=0, orphan_programmes=0,
+            failed_channels=1, occasional_channel_ids=["NONE"], rows=[
+                {"id": "A", "status": "PASS"}, {"id": "B", "status": "FAIL"},
+                {"id": "SYN", "status": "WARN"}, {"id": "NONE", "status": "INFO",
+                 "occasional_event_channel": True, "reason": "OCCASIONAL_EVENT_SCHEDULE"}])
+        docs["reports/morocco-48h-audit.json"] = json.dumps(audit).encode()
+        row = refresh.inspect_source("morocco", NOW.timestamp(), reader(docs))
+        self.assertEqual(row["status"], "HASHED_XMLTV_PER_ID_PARTIAL_48H")
+        self.assertEqual(row["trusted_current_epg_ids"], ["A"])
+        self.assertIn("NONE", row["xmltv_no_future_ids"])
+        audit["feeds"][0]["rows"][-1]["occasional_event_channel"] = False
+        docs["reports/morocco-48h-audit.json"] = json.dumps(audit).encode()
+        row = refresh.inspect_source("morocco", NOW.timestamp(), reader(docs))
+        self.assertFalse(row["ready_for_epg_ok"])
+        self.assertEqual(row["status"], "48H_AUDIT_INCONSISTENT_IDS")
+
+    def test_mena_empty_or_degraded_owner_never_green_even_with_current_xml(self):
+        for status, future, expected in (("NO_FUTURE_EPG", 0, "NO_FUTURE_EPG"),
+                                         ("DEGRADED_WITH_EPG", 1, "DEGRADED_WITH_EPG")):
+            with self.subTest(status=status):
+                docs, *_ = fixture()
+                readiness = json.loads(docs["reports/mena-readiness.json"])
+                readiness["ids"] = [{"xmltv_id": "A", "owner": "morocco",
+                    "status": status, "actual_future_programmes": future,
+                    "selected_role": "MAIN", "best_match_green_allowed": False}]
+                docs["reports/mena-readiness.json"] = json.dumps(readiness).encode()
+                row = refresh.inspect_source("morocco", NOW.timestamp(), reader(docs))
+                self.assertNotIn("A", row["trusted_current_epg_ids"])
+                report = {"audit": "EPGManager RC80 public feed provenance", "evidence_schema": 1,
+                    "checked_utc": NOW.isoformat(), "full_xmltv_integrity_checks_enabled": True,
+                    "sources": [row]}
+                quality = bridge.quality_for_id("direct_morocco", "A", report, NOW.timestamp())
+                self.assertEqual(quality["status"], expected)
+                self.assertFalse(quality["verified_now"])
+
+    def test_mena_exact_owner_and_id_boundaries(self):
+        docs, *_ = fixture()
+        readiness = json.loads(docs["reports/mena-readiness.json"])
+        readiness["ids"] = [{"xmltv_id": "A", "owner": "osn", "status": "NO_FUTURE_EPG",
+                             "actual_future_programmes": 0}]
+        docs["reports/mena-readiness.json"] = json.dumps(readiness).encode()
+        row = refresh.inspect_source("morocco", NOW.timestamp(), reader(docs))
+        self.assertIn("A", row["trusted_current_epg_ids"])
+        readiness["ids"][0].update(owner="morocco", xmltv_id="A@HD")
+        docs["reports/mena-readiness.json"] = json.dumps(readiness).encode()
+        row = refresh.inspect_source("morocco", NOW.timestamp(), reader(docs))
+        self.assertIn("A", row["trusted_current_epg_ids"])
+
+    def test_invalid_missing_or_stale_readiness_fails_closed(self):
+        for change in ({"verified_source_count": 13}, {"checked_utc": "2020-01-01T00:00:00Z"},
+                       {"structural_errors": ["bad"]}, {"ids": [{"xmltv_id": "A"}]}):
+            with self.subTest(change=change):
+                docs, *_ = fixture()
+                readiness = json.loads(docs["reports/mena-readiness.json"])
+                readiness.update(change)
+                docs["reports/mena-readiness.json"] = json.dumps(readiness).encode()
+                row = refresh.inspect_source("morocco", NOW.timestamp(), reader(docs))
+                self.assertFalse(row["ready_for_epg_ok"])
+                self.assertEqual(row["trusted_current_epg_ids"], [])
+        docs, *_ = fixture()
+        docs.pop("reports/mena-readiness.json")
+        def missing(path, limit):
+            if path not in docs:
+                raise OSError("missing")
+            return docs[path]
+        self.assertFalse(refresh.inspect_source("morocco", NOW.timestamp(), missing)["ready_for_epg_ok"])
+
     def test_hash_verified_current_programmes_beat_future_and_generated(self):
         docs, *_ = fixture()
         row = refresh.inspect_source("morocco", now=NOW.timestamp(), reader=reader(docs))
@@ -162,6 +236,7 @@ class TestRC80PublicEvidenceRefresh(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "limit"):
             stream.read(4)
 
+    @unittest.skipUnless(os.name == "posix", "requires POSIX /tmp and file permissions")
     def test_only_tmp_atomic_report_is_written_and_usable_by_ui(self):
         docs, *_ = fixture()
         with tempfile.TemporaryDirectory(dir="/tmp") as folder:
@@ -184,6 +259,7 @@ class TestRC80PublicEvidenceRefresh(unittest.TestCase):
         with self.assertRaises(ValueError):
             refresh.refresh_file(["morocco", "osn", "bein"], "/tmp/test.json", NOW.timestamp())
 
+    @unittest.skipUnless(os.name == "posix", "requires POSIX /tmp and file permissions")
     def test_missing_old_evidence_does_not_grant_false_ready(self):
         docs, *_ = fixture()
         with tempfile.TemporaryDirectory(dir="/tmp") as folder:
@@ -202,6 +278,7 @@ class TestRC80PublicEvidenceRefresh(unittest.TestCase):
             self.assertFalse(refresh.queue_background(["external_morocco"], enabled=True))
             start.assert_not_called()
 
+    @unittest.skipUnless(os.name == "posix", "requires POSIX /tmp and symlinks")
     def test_symlinked_tmp_subdirectory_cannot_escape_to_receiver_config(self):
         with tempfile.TemporaryDirectory(dir="/tmp") as directory:
             with tempfile.TemporaryDirectory(dir=str(ROOT)) as outside:

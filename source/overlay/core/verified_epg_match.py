@@ -23,6 +23,59 @@ VALID_DIRECT = frozenset((
 ))
 _CACHE = {"next_check": 0.0, "mtime_ns": None, "report": None}
 
+MENA_MAX_AGE_SECONDS = 72 * 3600
+
+
+def mena_index(report, now):
+    """Index the bounded publisher report once in the background worker.
+
+    This is a conservative veto, never independent proof of live XMLTV.
+    Roles MAIN/B1/B2 are deliberately ignored. IDs stay case-sensitive.
+    """
+    if (not isinstance(report, dict) or report.get("schema") != 1 or
+            report.get("source") != "mena" or
+            report.get("source_manifest_sha256_match") is not True or
+            report.get("verified_source_count") != len(VALID_DIRECT) or
+            report.get("structural_errors") != [] or
+            not _fresh(report.get("checked_utc"), now, MENA_MAX_AGE_SECONDS) or
+            not _fresh(report.get("source_generated_utc"), now, MENA_MAX_AGE_SECONDS)):
+        return {}
+    rows = report.get("ids")
+    if not isinstance(rows, list) or len(rows) > 4000:
+        return {}
+    index = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            return {}
+        cid, owner = row.get("xmltv_id"), row.get("owner")
+        count = row.get("actual_future_programmes")
+        if (not isinstance(cid, str) or not cid or not isinstance(owner, str) or owner not in VALID_DIRECT or
+                type(count) is not int or count < 0 or cid in index):
+            return {}
+        status = row.get("status")
+        if status not in ("QUALIFIED_AT_BUILD", "DEGRADED_WITH_EPG", "NO_FUTURE_EPG"):
+            return {}
+        if count == 0 or status == "NO_FUTURE_EPG":
+            status = "NO_FUTURE_EPG"
+        elif status == "QUALIFIED_AT_BUILD" and (
+                row.get("qualified_when_built") is not True or
+                row.get("best_match_green_allowed") is not True):
+            status = "DEGRADED_WITH_EPG"
+        index[cid] = {"owner": owner, "status": status}
+    return index
+
+
+def mena_status(source, channel_id, snapshot, now):
+    """O(1) exact-ID lookup against an already validated worker snapshot."""
+    if (not isinstance(snapshot, dict) or
+            not _fresh(snapshot.get("checked_utc"), now, MENA_MAX_AGE_SECONDS) or
+            not isinstance(snapshot.get("ids"), dict)):
+        return "UNKNOWN"
+    row = snapshot["ids"].get(channel_id)
+    if not isinstance(row, dict) or row.get("owner") != source:
+        return "UNKNOWN"
+    return row.get("status", "UNKNOWN")
+
 
 def _epoch(value):
     try:
@@ -127,6 +180,16 @@ def quality_for_id(source_id, channel_id, report=None, now=None):
             row.get("real_now_coverage_verified") is not True or
             not _fresh(row.get("per_id_evidence_observed_utc"), now)):
         return result
+    readiness = mena_status(source, cid, row.get("mena_readiness"), now)
+    if readiness == "NO_FUTURE_EPG":
+        return {"status": "NO_FUTURE_EPG", "verified_now": False, "rank": 6}
+    if readiness == "DEGRADED_WITH_EPG":
+        return {"status": "DEGRADED_WITH_EPG", "verified_now": False, "rank": 4}
+    if (cid in (row.get("xmltv_no_future_ids") or ()) or
+            cid in (row.get("mena_no_future_ids") or ())):
+        return {"status": "NO_FUTURE_EPG", "verified_now": False, "rank": 6}
+    if cid in (row.get("mena_degraded_ids") or ()):
+        return {"status": "DEGRADED_WITH_EPG", "verified_now": False, "rank": 4}
     if cid in (row.get("suspected_placeholder_epg_ids") or ()):
         return {"status": "SUSPECT_GENERATED_EPG", "verified_now": False, "rank": 5}
     if cid in (row.get("partial_48h_blocked_ids") or ()):
@@ -168,6 +231,11 @@ def annotate_suggestions(rows, report=None, now=None):
             evidence = quality_for_id(item.get("source_id"), item.get("channel_id"), report=report, now=now)
             item["_verified_epg_health"] = evidence["status"]
             item["_verified_epg_rank"] = evidence["rank"]
+            if evidence["status"] in ("NO_EPG", "NO_FUTURE_EPG", "DEGRADED_WITH_EPG",
+                                       "48H_FAILED_ID_REVIEW", "SUSPECT_GENERATED_EPG"):
+                item["_precision_auto"] = False
+                item["_precision_grade"] = ("NO EPG" if evidence["status"] in
+                                              ("NO_EPG", "NO_FUTURE_EPG") else "REVIEW")
         annotated.append(item)
     annotated.sort(key=lambda epg: (
         0 if epg.get("_suggestion_current") else 1,

@@ -10,9 +10,35 @@ import ast
 import hashlib
 
 ORIGINAL = {
+    "core/direct_native_import.py": "43564fe313513deaa49b80acece8fccf9dedc0b9e3fcf210177da7b5f2207c31",
     "core/system_check.py": "d086d5e7ac49439d1d95bac4ce9dc97c1fe445348591c6548c50f2457269b07a",
     "core/github_match_health.py": "941c89c9ace27f63a63a41486b3f012f9f96cd7ed6c0dca602bc8b3353f4571c",
 }
+
+
+def preserve_native_events(text):
+    """Remove implicit purges; explicit clear=True remains an owner operation."""
+    text = _one(text, 'def __init__(self, cache, enabled=True):',
+                'def __init__(self, cache, enabled=False):', 'native proxy default')
+    marker = 'FirstWriteFlushProxy(cache, enabled=not self.clear_before_import)'
+    if text.count(marker) != 2:
+        raise ValueError('expected engine and fallback retention sites')
+    text = text.replace(marker, 'FirstWriteFlushProxy(cache, enabled=False)')
+    text = _one(text,
+        'self.stale_cleanup = service_epg_sanitizer.sanitize_once(cache, self.sources)',
+        'self.stale_cleanup = (service_epg_sanitizer.sanitize_once(cache, self.sources) '
+        'if self.clear_before_import else {"skipped": "preserve_existing_epg"})',
+        'native migration cleanup')
+    text = text.replace('"""Start OE-Alliance EPGImport with per-service stale-event replacement.',
+                        '"""Start OE-Alliance EPGImport while retaining existing service events.')
+    text = text.replace('''        The frozen Golden bridge remains untouched.  The only behavioural
+        difference is that a DVB service is flushed immediately before its first
+        fresh event batch is written.  Empty/dead feeds therefore never erase EPG.''',
+                        '''        Non-destructive imports never flush a service or run stale-event
+        migration cleanup. Existing programmes survive unavailable/partial feeds.
+        Only an explicit clear-before-import request permits destructive cleanup.''')
+    ast.parse(text)
+    return text
 
 
 def _one(s, old, new, rel):
@@ -62,7 +88,50 @@ def corrected(source):
         # Old quality reports have no per-ID denominator; their current audit''', rel)
     s = _one(s, '''    return "EPG_WARN" if str(row.get("status") or "").upper() != "PASS" else "EPG_OK"''', '''    return "EPG_OK" if certified and str(row.get("status") or "").upper() == "PASS" else "EPG_WARN"''', rel)
     health = s.encode("utf-8")
-    result = {"core/system_check.py":system_check, "core/github_match_health.py":health}
+    # The installed per-ID classifier can report green without quality data.
+    # Keep its public API, but require the MENA owner's exact ID to qualify.
+    s = _one(s, 'def classify(report, channel_id, now=None):',
+             'def _classify_source_report(report, channel_id, now=None):', rel)
+    wrapper = '''def classify(report, channel_id, now=None):
+    from .verified_epg_match import mena_status
+    observed = float(time.time() if now is None else now)
+    try:
+        status = _classify_source_report(report, channel_id, observed)
+        if not isinstance(report, dict):
+            return status
+        readiness = mena_status(report.get("source"), str(channel_id or "").strip(),
+                                report.get("mena_readiness"), observed)
+        if readiness == "NO_FUTURE_EPG":
+            return "NO_EPG"
+        if status == "EPG_OK" and readiness != "QUALIFIED_AT_BUILD":
+            return "EPG_WARN"
+        return status
+    except (ValueError, TypeError, OverflowError, AttributeError):
+        return "UNKNOWN"
+
+
+'''
+    s = _one(s, 'def health(source_id, channel_id, now=None):',
+             wrapper + 'def health(source_id, channel_id, now=None):', rel)
+    s = _one(s, '    fetched = {}\n    try:', '''    fetched = {}
+    # One bounded MENA GET per batch, never on the GUI thread or per channel.
+    from .verified_epg_match import mena_index
+    try:
+        mena = _get_json(REPORT_BASE + "mena-readiness.json")
+        snapshot = {"checked_utc": mena.get("checked_utc"),
+                    "ids": mena_index(mena, time.time())}
+    except Exception:
+        snapshot = {}
+    try:''', rel)
+    s = _one(s, '                    fetched[key] = future.result()',
+             '''                    fetched[key] = future.result()
+                    fetched[key]["source"] = key
+                    fetched[key]["mena_readiness"] = snapshot''', rel)
+    s = _one(s, '_MAX_REPORT_BYTES = 260000', '_MAX_REPORT_BYTES = 1024 * 1024', rel)
+    health = s.encode("utf-8")
+    native = preserve_native_events(source['core/direct_native_import.py'].decode('utf-8')).encode('utf-8')
+    result = {"core/system_check.py":system_check, "core/github_match_health.py":health,
+              "core/direct_native_import.py": native}
     for name, payload in result.items():
         ast.parse(payload.decode("utf-8"), filename=name)
     return result

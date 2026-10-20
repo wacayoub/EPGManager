@@ -77,7 +77,12 @@ class TestReceiverProbe(unittest.TestCase):
             sensitive.write_text("__version__='SECRET_VERSION'\n")
             version=plugin/"version.py"
             version.unlink()
-            version.symlink_to(sensitive)
+            try:
+                version.symlink_to(sensitive)
+            except OSError as exc:
+                if getattr(exc, "winerror", None) == 1314:
+                    self.skipTest("Windows account lacks symlink privilege")
+                raise
             result=probe.observe(plugin,root/"Extensions",root/"enigma2",root/"proc")
             self.assertIsNone(result["installed_version"])
             self.assertNotIn("SECRET_VERSION",json.dumps(result))

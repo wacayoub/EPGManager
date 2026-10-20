@@ -198,7 +198,12 @@ def _blocked_48h_ids(source, audit48, actual_channels):
         cid = row.get("id")
         row_status = row.get("status")
         if (not isinstance(cid, str) or not cid or cid in seen or
-                cid not in actual_channels or row_status not in ("PASS", "WARN", "FAIL")):
+                cid not in actual_channels or row_status not in ("PASS", "WARN", "FAIL", "INFO")):
+            return None
+        if row_status == "INFO" and not (
+                row.get("occasional_event_channel") is True and
+                row.get("reason") == "OCCASIONAL_EVENT_SCHEDULE" and
+                cid in (data.get("occasional_channel_ids") or ())):
             return None
         seen.add(cid)
         if row_status == "FAIL":
@@ -206,6 +211,43 @@ def _blocked_48h_ids(source, audit48, actual_channels):
     if seen != actual_channels or not blocked or data.get("failed_channels") != len(blocked):
         return None
     return blocked
+
+
+def _readiness_vetoes(source, document, now):
+    """MENA routing can veto its selected owner, never certify direct EPG.
+
+    Preserve exact IDs and source namespaces: an empty selected owner says
+    nothing about another provider carrying the same channel ID.
+    """
+    checked = evidence._epoch(document.get("checked_utc"))
+    rows = document.get("ids")
+    if (document.get("schema") != 1 or document.get("source") != "mena" or
+            document.get("source_manifest_sha256_match") is not True or
+            document.get("verified_source_count") != len(evidence.VALID_DIRECT) or
+            document.get("structural_errors") != [] or
+            checked is None or not 0 <= now - checked <= SOURCE_MAX_AGE_HOURS * 3600 or
+            not isinstance(rows, list) or len(rows) > 10000):
+        raise ValueError("MENA readiness unavailable or invalid")
+    seen, empty, degraded = set(), set(), set()
+    for row in rows:
+        if not isinstance(row, dict):
+            raise ValueError("invalid MENA readiness row")
+        cid = row.get("xmltv_id")
+        future = row.get("actual_future_programmes")
+        if (not isinstance(cid, str) or not cid or cid in seen or
+                row.get("owner") not in evidence.VALID_DIRECT or
+                type(future) is not int or future < 0 or
+                row.get("status") not in ("QUALIFIED_AT_BUILD", "DEGRADED_WITH_EPG", "NO_FUTURE_EPG")):
+            raise ValueError("ambiguous MENA readiness ID")
+        seen.add(cid)
+        if row["owner"] != source:
+            continue
+        if row["status"] == "NO_FUTURE_EPG" or future == 0:
+            empty.add(cid)
+        elif (row["status"] != "QUALIFIED_AT_BUILD" or
+              row.get("best_match_green_allowed") is not True):
+            degraded.add(cid)
+    return empty, degraded
 
 
 def inspect_source(source, now=None, reader=None):
@@ -270,6 +312,12 @@ def inspect_source(source, now=None, reader=None):
         result["xmltv_current_real_ids"] = sorted(measured["current"])
         result["xmltv_future_real_ids"] = sorted(measured["future"])
         result["xmltv_observed_zero_ids"] = sorted(measured["channels"] - measured["populated"])
+        result["xmltv_no_future_ids"] = sorted(measured["channels"] - measured["future"])
+        readiness = _json("reports/mena-readiness.json", reader)
+        empty, degraded = _readiness_vetoes(source, readiness, now)
+        result["mena_no_future_ids"] = sorted(empty)
+        result["mena_degraded_ids"] = sorted(degraded)
+        result["mena_readiness_checked_utc"] = readiness["checked_utc"]
         result["xmltv_live_now_channels"] = len(measured["current"])
         result["xmltv_active_channels"] = len(measured["populated"])
         result["xmltv_missing_titles"] = measured["missing_titles"]
@@ -282,12 +330,12 @@ def inspect_source(source, now=None, reader=None):
                  100 * len(measured["current"]) >= 60 * len(measured["populated"]) and
                  100 * len(measured["populated"]) >= 60 * len(measured["channels"]))
         if valid:
-            blocked = failing_48h_ids or set()
+            blocked = (failing_48h_ids or set()) | empty | degraded
             result["trusted_current_epg_ids"] = sorted(measured["current"] - flagged - blocked)
             result["review_future_epg_ids"] = sorted(measured["future"] - measured["current"] - flagged - blocked)
             result["ready_for_epg_ok"] = bool(result["trusted_current_epg_ids"])
             if result["ready_for_epg_ok"]:
-                result["status"] = ("HASHED_XMLTV_PER_ID_PARTIAL_48H" if blocked else
+                result["status"] = ("HASHED_XMLTV_PER_ID_PARTIAL_48H" if failing_48h_ids else
                                     "HASHED_XMLTV_AND_AUDITS_HEALTHY")
             else:
                 result["status"] = "NO_CURRENT_REAL_EPG"

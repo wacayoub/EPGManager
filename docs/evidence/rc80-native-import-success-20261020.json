@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-20",
+  "owner_authorized": [
+    "native retention hotfix",
+    "Enigma2 restart",
+    "non-destructive native import"
+  ],
+  "installed_version": "2026.10.18-rc80-candidate",
+  "schema": 15,
+  "receiver_modified": true,
+  "installation": {
+    "status": "NATIVE_RETENTION_INSTALLED_VERIFIED",
+    "execution": "owner executed reviewed SHA-verified installer in existing SSH terminal",
+    "installer_commit": "ab08f68d4c972aa3fc10d6d9cd075530488a1a2a",
+    "changed_modules": [
+      "core/direct_native_import.py"
+    ],
+    "module_sha256": "c8dc4d68712006f8fe86e64e698852d6dee8601667b9d880cff4dd3873d929f7",
+    "protected_config_files": 15,
+    "protected_config_hashes_unchanged": true,
+    "backup_path": "/etc/epgmanager_epg/backups/rc80-before-native-retention-1792456904621317787.tar.gz",
+    "backup_bytes": 1203661,
+    "backup_sha256": "afb1dbb622b034a5e248aa327aabae195b03544af2139509042548b778862a14",
+    "backup_readback_verified_by_installer": true,
+    "backup_hash_independently_verified_via_tunnel": true,
+    "opkg_executed": false,
+    "recovery_restore_tested": false
+  },
+  "restart": {
+    "operation": "OWNER_AUTHORIZED_RETENTION_GUI_RESTART",
+    "backup_hash_verified": true,
+    "module_hash_verified": true,
+    "restart_requests_sent": 1,
+    "manual_import_requested": false,
+    "restart_response_exception": "RemoteDisconnected",
+    "elapsed_seconds": 47.18,
+    "observed_api_down": true,
+    "stable_api_samples": 3,
+    "uptime_before": "03:12",
+    "uptime_after": "03:13",
+    "receiver_uptime_did_not_reset": true,
+    "boot_id_checked": false,
+    "protected_files_compared": 6,
+    "protected_hashes_unchanged": true,
+    "changed_protected_files": [],
+    "corrective_module_still_verified": true,
+    "gui_restart_verified": true
+  },
+  "native_import": {
+    "monitor_elapsed": 14.05,
+    "cycle": {
+      "ok": true,
+      "stage": "DONE",
+      "elapsed": 26.19,
+      "timestamp": 1792457098
+    },
+    "last_import": {
+      "ok": true,
+      "processed_events": 15793,
+      "imported_events": 15793,
+      "failed_events": 0,
+      "written_services": 738,
+      "sources": 12,
+      "mapped_channel_ids": 283,
+      "mapped_service_refs": 751,
+      "elapsed": 19.322219848632812,
+      "engine": "Plugins.Extensions.EPGImport.EPGImport",
+      "reboot_requested": false,
+      "timestamp": 1792457098
+    },
+    "import_timestamp_advanced": true
+  },
+  "conservation": {
+    "protected_files": 6,
+    "protected_hashes_unchanged": true,
+    "changed_protected_files": [],
+    "sample_services": 32,
+    "events_before": 542,
+    "events_after": 542,
+    "event_fingerprints_retained": 542,
+    "event_fingerprints_missing": 0
+  },
+  "consolidated_payload_parity": {
+    "operation": "READ_ONLY_INSTALLED_CORRECTIVE_PAYLOAD_PARITY",
+    "files": 215,
+    "python_modules": 140,
+    "resources": 75,
+    "sha256_matched": 215,
+    "mismatched_relative_paths": [],
+    "file_modes_rechecked_by_this_http_probe": false,
+    "receiver_modified": false
+  },
+  "clear_before_import_setting_after": false,
+  "mapping_edits_requested": false,
+  "sources_selected": 14,
+  "sources_in_native_import": 12,
+  "coverage_limit": "No claim that all 14 selected feeds wrote events, or that the 32-service sample covers the whole EPG cache.",
+  "linux_ci": {
+    "code_commit": "ab08f68d4c972aa3fc10d6d9cd075530488a1a2a",
+    "run_url": "https://github.com/wacayoub/EPGManager/actions/runs/39348916349",
+    "suite_passed_each_python": 217,
+    "probe_passed_each_python": 4,
+    "python_versions": [
+      "3.13",
+      "3.14"
+    ],
+    "skipped": 0,
+    "both_logs_inspected": true
+  },
+  "native_import_gate": "PASS_ON_ACTUAL_RECEIVER",
+  "release_verdict": "NO_GO_PENDING_REMAINING_ACCEPTANCE",
+  "remaining_acceptance": [
+    "Auto/Manual Mapping save and undo GUI flows without risking owner mappings",
+    "Best Match screen behavior across quality states",
+    "GUI GMT+0/local display comparison with donor programmes",
+    "scheduled trigger execution",
+    "live unavailable-source retention scenario"
+  ]
+}

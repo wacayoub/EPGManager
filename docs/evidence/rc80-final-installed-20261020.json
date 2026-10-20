@@ -1,0 +1,165 @@
+{
+  "audit": "Owner-authorized RC80 final IPK installation and receiver acceptance",
+  "date": "2026-10-20",
+  "receiver_changed": true,
+  "owner_explicitly_authorized_final_ipk_restart_and_non_destructive_import": true,
+  "transport": "SSH key authentication on owner LAN receiver; existing OpenWebif tunnel for actual GUI interactions",
+  "receiver": {
+    "image": "OpenATV 8.0.1",
+    "python": "3.14.7",
+    "installed_version": "2026.10.20-rc80",
+    "schema": 15,
+    "python_modules": 141,
+    "module_delta_from_rc79_1": 3,
+    "resources": 75,
+    "syntax_errors": 0,
+    "opkg_status": "install ok installed",
+    "opkg_version": "2026.10.20-rc80"
+  },
+  "package": {
+    "filename": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "bytes": 701058,
+    "sha256": "9a8f90832b1101a80584737c97301d959409bedaedcdd6128f139f1fef573e8e",
+    "installed": true,
+    "published": false,
+    "functional_application_changes_from_previous_qualified_payload": false,
+    "only_application_change": "version.py branding"
+  },
+  "installation": {
+    "backup_path": "/etc/epgmanager_epg/backups/rc80-before-final-1792483766844397515-23640.tar.gz",
+    "backup_sha256": "2542cb2bb4bc6c789247b96a298916ffce5a53e5b4f74bf4e580696c8d73fc88",
+    "changed_protected_filenames": [],
+    "import_executed": false,
+    "operation": "OWNER_AUTHORIZED_FINAL_IPK_INSTALL",
+    "opkg_exit_code": 0,
+    "package_sha256": "9a8f90832b1101a80584737c97301d959409bedaedcdd6128f139f1fef573e8e",
+    "protected_config_files": 15,
+    "protected_config_hashes_unchanged": true,
+    "restart_executed": false
+  },
+  "restart": {
+    "operation": "OWNER_AUTHORIZED_FINAL_IPK_ENIGMA2_RESTART",
+    "backup_sha256_verified": true,
+    "installed_version": "2026.10.20-rc80",
+    "schema": 15,
+    "restart_requests_sent": 1,
+    "import_requested": false,
+    "restart_response_exception": "RemoteDisconnected",
+    "elapsed_seconds": 45.22,
+    "api_down_observed": true,
+    "stable_api_samples": 3,
+    "boot_id_unchanged": true,
+    "enigma2_pid_changed": true,
+    "enigma2_running": true,
+    "protected_config_files": 15,
+    "protected_hashes_unchanged": false,
+    "restart_verified": true
+  },
+  "restart_configuration_review": {
+    "strict_all_file_hash_comparison": "FAIL_3_RUNTIME_REWRITES",
+    "unchanged_of_15_files": 12,
+    "changed_files": [
+      "settings",
+      "epgmanager_sat_registry.json",
+      "epgmanager_mapping_view_cache.json"
+    ],
+    "epgmanager_settings_lines_unchanged": true,
+    "satellite_registry_only_changed_fields": [
+      "signature"
+    ],
+    "mapping_view_cache_only_changed_fields": [
+      "created",
+      "signature"
+    ],
+    "all_other_cache_content_unchanged": true,
+    "six_mapping_preferences_native_files_unchanged": true,
+    "all_other_global_enigma2_settings_unchanged": "NOT_CERTIFIED_FULL_SETTINGS_HASH_CHANGED",
+    "resolution": "PASS_FOR_EPGMANAGER_PRESERVATION_WITH_DOCUMENTED_RUNTIME_METADATA_REWRITES"
+  },
+  "actual_gui_after_final_install": {
+    "plugin_opened": true,
+    "version_2026_10_20_rc80_visible": true,
+    "mapping_opened": true,
+    "best_match_candidates_visible": 3,
+    "best_match_current_programme_visible": true,
+    "sources_selector_opened_and_cancelled": true,
+    "new_mapping_saved": false,
+    "auto_apply_executed": false,
+    "dashboard_no_future_epg_ids": 31,
+    "dashboard_review_or_unknown_ids": 633,
+    "dashboard_green_ids": 0
+  },
+  "actual_final_native_import": {
+    "monitor_elapsed": 22.73,
+    "cycle": {
+      "ok": true,
+      "stage": "DONE",
+      "elapsed": 35.63,
+      "timestamp": 1792483996
+    },
+    "last_import": {
+      "ok": true,
+      "processed_events": 16044,
+      "imported_events": 16044,
+      "failed_events": 0,
+      "written_services": 739,
+      "sources": 13,
+      "mapped_channel_ids": 285,
+      "mapped_service_refs": 753,
+      "elapsed": 20.795538187026978,
+      "engine": "Plugins.Extensions.EPGImport.EPGImport",
+      "reboot_requested": false,
+      "timestamp": 1792483996
+    },
+    "import_timestamp_advanced": true
+  },
+  "cache_conservation_across_install_restart_import": {
+    "sampled_services": 32,
+    "before_events": 496,
+    "after_events": 496,
+    "retained_fingerprints": 496,
+    "nonexpired_before_events": 496,
+    "retained_nonexpired_fingerprints": 496,
+    "query_errors": 0
+  },
+  "final_mapping_conservation": {
+    "protected_files": 6,
+    "all_hashes_unchanged": true,
+    "changed_filenames": []
+  },
+  "previously_observed_hardware_validation": {
+    "evidence": "docs/evidence/rc80-remaining-acceptance-20261020.json",
+    "real_scheduler_import_passed": true,
+    "original_scheduler_settings_restored": true,
+    "scheduler_trigger_repeated_after_final_ipk": false,
+    "exact_title_start_duration_correspondences": 3267,
+    "auto_mapping_dry_run_scanned": 313,
+    "new_auto_mapping_applied": false,
+    "functional_application_code_unchanged_in_final_ipk": true
+  },
+  "offline_validation": {
+    "code_commit": "30326c438f91dee3f81e2587d862d90cac03a9af",
+    "python_versions": [
+      "3.13",
+      "3.14"
+    ],
+    "suite_tests_per_version": 232,
+    "probe_tests_per_version": 4,
+    "failures": 0,
+    "skips": 0,
+    "isolated_mapping_time_scheduler_checks": 18,
+    "ci_url": "https://github.com/wacayoub/EPGManager/actions/runs/39353668123",
+    "rerun_for_report_only_change": false
+  },
+  "verdict": "GO_FOR_INSTALLED_RC80_ON_THIS_QUALIFIED_RECEIVER",
+  "scope_limits": [
+    "New live manual/auto mapping writes and undo were not exercised; owner mappings were preserved.",
+    "A deliberately unavailable source was not forced on the receiver; isolated tests are separate.",
+    "Scheduler was actually triggered before final packaging and restored; it was not triggered again after the branding-only final IPK.",
+    "Thirty-one source IDs lack future EPG and unresolved user mappings remain explicit; schedules are not fabricated.",
+    "No all-channel, all-language or other-image certification.",
+    "No public final release, tag or merge."
+  ],
+  "other_projects_modified_by_this_installation": false,
+  "private_settings_mappings_programme_text_or_credentials_published": false
+}

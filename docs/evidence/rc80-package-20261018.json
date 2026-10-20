@@ -1,0 +1,87 @@
+{
+  "status": "COMPLETE_OFFLINE_INSPECTION_IPK_INSTALL_BLOCKED",
+  "version": "2026.10.18-rc80-candidate",
+  "schema": 15,
+  "source_modules": 140,
+  "unchanged_assets": 75,
+  "payload_files": 215,
+  "snapshot_assets_sha256": "98321a26a13e9ab8b7cf99de7ace3aa9b724ffbf8781ff5455237e8a89eca4ec",
+  "inventory_sha256": "8f0c39a31347da5abcbb9a3a16bb769cab9eaeec6464975d14136152739b18a3",
+  "candidate_sha256": "d693dee2289eb2f907e0dd18b9616b3ee914603085a032d12d80628a0bb5b5b7",
+  "candidate_bytes": 670584,
+  "candidate_filename": "EPGManager_RC80_COMPLETE_OFFLINE_BLOCKED.ipk",
+  "deterministic_bytes_verified": true,
+  "payload_hash_and_mode_roundtrip_verified": true,
+  "source_gate": {
+    "audit": "EPGManager RC80 package source inventory (read-only)",
+    "status": "SOURCE_TREE_STRUCTURALLY_VERIFIED_NOT_INSTALL_APPROVED",
+    "baseline_python_modules": 138,
+    "added_public_modules": [
+      "core/verified_epg_match.py",
+      "core/verified_epg_refresh.py"
+    ],
+    "result_python_modules": 140,
+    "original_file_paths_checked": 138,
+    "approved_changed_paths": {
+      "core/github_match_health.py": "private-reviewed-hash",
+      "core/system_check.py": "private-reviewed-hash",
+      "ui/channel_mapping.py": "private-reconciled-sha-locked",
+      "version.py": "private-reviewed-hash"
+    },
+    "unapproved_modifications": 0,
+    "schema": 15,
+    "receiver_config_read": false,
+    "receiver_mapping_read": false,
+    "package_built": false,
+    "hardware_tested": false,
+    "opkg_rollback_tested": false,
+    "authorized_to_install": false
+  },
+  "preinst_unconditionally_exits": 90,
+  "postinst_prerm_postrm_passive": true,
+  "resource_conffiles": 75,
+  "receiver_modified": false,
+  "opkg_executed": false,
+  "authorized_to_install": false,
+  "package_built": true,
+  "hook_validation": {
+    "source_archive_140_modules_byte_identical": true,
+    "hooks_executed_on_pc_only": true,
+    "hooks": {
+      "preinst": {
+        "syntax_exit": 0,
+        "execution_exit": 90
+      },
+      "postinst": {
+        "syntax_exit": 0,
+        "execution_exit": 0
+      },
+      "prerm": {
+        "syntax_exit": 0,
+        "execution_exit": 0
+      },
+      "postrm": {
+        "syntax_exit": 0,
+        "execution_exit": 0
+      }
+    },
+    "supervised_environment_cannot_bypass_block": true,
+    "receiver_modified": false,
+    "opkg_executed": false
+  },
+  "linux_package_ci": {
+    "code_commit": "45bd0091f5859c4c899540185369cccfd714cd7c",
+    "run_url": "https://github.com/wacayoub/EPGManager/actions/runs/39163452728",
+    "python_313": {
+      "suite_passed": 197,
+      "probe_passed": 4,
+      "skipped": 0
+    },
+    "python_314": {
+      "suite_passed": 197,
+      "probe_passed": 4,
+      "skipped": 0
+    },
+    "logs_inspected": true
+  }
+}

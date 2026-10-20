@@ -1,0 +1,167 @@
+{
+  "audit": "RC80 stale-profile deployed acceptance and consolidated final package",
+  "date": "2026-10-20",
+  "receiver_changed": true,
+  "owner_separately_authorized_three_file_install_and_gui_restart": true,
+  "installed_version": "2026.10.18-rc80-candidate",
+  "installed_schema": 15,
+  "installed_python_modules": 141,
+  "baseline_rc79_python_modules": 138,
+  "module_count_delta": 3,
+  "owner_installer_result": {
+    "status": "STALE_PROFILE_CORRECTION_INSTALLED_VERIFIED",
+    "changed_modules": [
+      "core/source_quality.py",
+      "core/github_direct_sync.py"
+    ],
+    "added_modules": [
+      "core/quality_profile_freshness.py"
+    ],
+    "protected_config_files": 15,
+    "protected_config_hashes_unchanged": true,
+    "backup_readback_verified": true,
+    "backup_path": "/etc/epgmanager_epg/backups/rc80-before-stale-profile-1792459290041161680.tar.gz",
+    "backup_sha256": "4daf86c9f69d2b0177b902941ceebb73233a0492d720b9039e2b2b72387cf3b1",
+    "opkg_executed": false,
+    "restart_executed_by_installer": false,
+    "import_executed_by_installer": false
+  },
+  "independent_install_verification": {
+    "modules_verified": {
+      "core/source_quality.py": true,
+      "core/github_direct_sync.py": true,
+      "core/quality_profile_freshness.py": true,
+      "core/direct_native_import.py": true
+    },
+    "backup_sha256": "4daf86c9f69d2b0177b902941ceebb73233a0492d720b9039e2b2b72387cf3b1",
+    "backup_sha256_verified": true,
+    "protected_hashes_unchanged": true,
+    "protected_files": 6
+  },
+  "authorized_gui_restart": {
+    "operation": "OWNER_AUTHORIZED_STALE_PROFILE_GUI_RESTART",
+    "backup_hash_verified": true,
+    "module_hash_verified": true,
+    "restart_requests_sent": 1,
+    "manual_import_requested": false,
+    "restart_response_exception": "RemoteDisconnected",
+    "elapsed_seconds": 47.61,
+    "observed_api_down": true,
+    "stable_api_samples": 3,
+    "uptime_before": "03:51",
+    "uptime_after": "03:52",
+    "receiver_uptime_did_not_reset": true,
+    "boot_id_checked": false,
+    "protected_files_compared": 6,
+    "protected_hashes_unchanged": true,
+    "changed_protected_files": [],
+    "corrective_module_still_verified": true,
+    "gui_restart_verified": true
+  },
+  "installed_payload_parity": {
+    "files": 216,
+    "matched": 216,
+    "python_modules": 141,
+    "resources": 75,
+    "mismatch_relative_paths": [],
+    "file_modes_rechecked": false,
+    "receiver_modified": false
+  },
+  "actual_gui": {
+    "dashboard_no_epg_before": 659,
+    "dashboard_no_epg_after": 31,
+    "dashboard_total_ids": 664,
+    "dashboard_green_after": 0,
+    "dashboard_unknown_or_review_after": 633,
+    "bein_zero_epg_group_before": 74,
+    "bein_zero_epg_group_after": 4,
+    "bein_visible_zero_rows_have_zero_programmes": true,
+    "best_match_cached_candidates": 3,
+    "best_match_current_programme_preview_visible": true,
+    "automatic_promotion_of_uncertain_guides_observed": false,
+    "auto_dry_run_after": {
+      "scanned": 313,
+      "safe_proposals": 1,
+      "review": 16,
+      "ambiguous": 0,
+      "no_match": 296,
+      "apply_declined": true
+    },
+    "live_manual_mapping_saved": false,
+    "live_mapping_undo_executed": false
+  },
+  "cache_conservation": {
+    "sampled_services": 32,
+    "before_events": 541,
+    "after_events": 541,
+    "retained_fingerprints": 541,
+    "nonexpired_before_events": 541,
+    "retained_nonexpired_fingerprints": 541,
+    "query_errors": 0
+  },
+  "final_mapping_conservation": {
+    "protected_files": 6,
+    "protected_hashes_unchanged": true,
+    "mapping_apply_declined": true,
+    "new_manual_mapping_saved": false
+  },
+  "no_additional_import": {
+    "native_import_timestamp": 1792458969,
+    "no_new_native_import_during_correction": true
+  },
+  "earlier_actual_native_import_and_scheduler": "docs/evidence/rc80-remaining-acceptance-20261020.json",
+  "offline_final_package_tests": {
+    "tests": 5,
+    "failures": 0,
+    "real_temporary_141_module_backup_fixture": true,
+    "missing_consent_rejected_before_receiver_IO": true
+  },
+  "linux_final_ci": {
+    "status": "PASS",
+    "commit": "30326c438f91dee3f81e2587d862d90cac03a9af",
+    "python_versions": [
+      "3.13",
+      "3.14"
+    ],
+    "suite_tests_per_version": 232,
+    "probe_tests_per_version": 4,
+    "failures": 0,
+    "skips": 0,
+    "both_job_logs_inspected": true,
+    "url": "https://github.com/wacayoub/EPGManager/actions/runs/39353668123"
+  },
+  "final_package": {
+    "version": "2026.10.20-rc80",
+    "schema": 15,
+    "python_modules": 141,
+    "unchanged_resources": 75,
+    "payload_files": 216,
+    "qualified_application_files_identical": 215,
+    "only_runtime_branding_changed": "version.py",
+    "functionality_change_from_qualified_receiver": false,
+    "sha256": "9a8f90832b1101a80584737c97301d959409bedaedcdd6128f139f1fef573e8e",
+    "bytes": 701058,
+    "package_filename": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "deterministic_bytes_verified": true,
+    "payload_and_modes_roundtrip_verified": true,
+    "preinst_requires_explicit_consent": true,
+    "preinst_verifies_141_module_baseline_and_recovery_archive": true,
+    "restart_or_import_in_hooks": false,
+    "receiver_accessed": false,
+    "package_installed": false,
+    "package_published": false
+  },
+  "verdict": "GO_FOR_CONTROLLED_FINAL_INSTALL_ON_THIS_QUALIFIED_RECEIVER",
+  "publication": "NOT_PUBLISHED_GENERAL_RELEASE_NOT_CERTIFIED",
+  "scope_limits": [
+    "Final IPK not installed with opkg; requires separate explicit owner authorization.",
+    "Final IPK only changes version branding from the receiver-qualified functional payload.",
+    "New live mapping edits/undo and a forced live source outage were not performed; isolated tests are separate.",
+    "Source gaps, 31 no-EPG IDs and unresolved user mappings are not fabricated or silently changed.",
+    "No claim of all-channel, all-language or other-image certification."
+  ],
+  "other_projects_touched": false,
+  "private_mappings_settings_or_programme_text_published": false,
+  "historical_qualification_snapshot": true,
+  "superseded_by_final_installation_evidence": "docs/evidence/rc80-final-installed-20261020.json"
+}
