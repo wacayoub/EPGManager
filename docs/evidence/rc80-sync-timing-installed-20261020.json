@@ -1,0 +1,230 @@
+{
+  "audit": "Owner-authorized GMT+0 trigger/synchronization correction installed and hardware-tested",
+  "date": "2026-10-20",
+  "receiver_changed": true,
+  "owner_explicitly_authorized_same_version_reinstall_restart_and_temporary_scheduler_test": true,
+  "installed_version": "2026.10.20-rc80",
+  "installed_schema": 15,
+  "installed_python_modules": 142,
+  "resources": 75,
+  "module_delta_from_rc79_1": 4,
+  "package": {
+    "version": "2026.10.20-rc80",
+    "schema": 15,
+    "python_modules": 142,
+    "resources": 75,
+    "payload_files": 217,
+    "bytes": 702188,
+    "sha256": "89d6202cbec8d9a8ad10bc2d7b2f25c4b0c8afbab9d18d515a490396d76f999a",
+    "filename": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "changed_existing_modules": [
+      "plugin.py",
+      "core/scheduler.py",
+      "core/github_direct_sync.py",
+      "ui/settings.py",
+      "ui/native_sources.py"
+    ],
+    "added_module": "core/sync_timing.py",
+    "same_package_version_requires_force_reinstall": true,
+    "explicit_consent_still_required": true,
+    "native_import_engine_unchanged": true,
+    "user_settings_packaged": false,
+    "receiver_changed": true,
+    "installed": true,
+    "deterministic_bytes_verified": true,
+    "payload_and_modes_roundtrip_verified": true
+  },
+  "installation": {
+    "backup_path": "/etc/epgmanager_epg/backups/rc80-before-final-1792485480888980640-25687.tar.gz",
+    "backup_sha256": "3838d98150d941842f26129973d6c8fda8166cb522687d80beb7e9847b6a2b00",
+    "changed_protected_filenames": [],
+    "import_executed": false,
+    "operation": "OWNER_AUTHORIZED_SYNC_TIMING_IPK_REINSTALL",
+    "opkg_exit_code": 0,
+    "package_sha256": "89d6202cbec8d9a8ad10bc2d7b2f25c4b0c8afbab9d18d515a490396d76f999a",
+    "protected_config_files": 15,
+    "protected_config_hashes_unchanged": true,
+    "restart_executed": false
+  },
+  "restart": {
+    "operation": "OWNER_AUTHORIZED_SYNC_TIMING_ENIGMA2_RESTART",
+    "backup_sha256_verified": true,
+    "installed_version": "2026.10.20-rc80",
+    "schema": 15,
+    "restart_requests_sent": 1,
+    "import_requested": false,
+    "restart_response_exception": "RemoteDisconnected",
+    "elapsed_seconds": 47.6,
+    "api_down_observed": true,
+    "stable_api_samples": 3,
+    "boot_id_unchanged": true,
+    "enigma2_pid_changed": true,
+    "enigma2_running": true,
+    "protected_config_files": 15,
+    "protected_hashes_unchanged": false,
+    "restart_verified": true
+  },
+  "configuration_review": {
+    "strict_all_file_restart_hashes_unchanged": false,
+    "mapping_native_preferences_preserved_before_test": true,
+    "owner_settings_preserved": true,
+    "only_changed_epgmanager_settings_key_at_restart": "last_native_import",
+    "runtime_cache_changes": {
+      "epgmanager_sat_registry.json": [
+        "signature"
+      ],
+      "epgmanager_mapping_view_cache.json": [
+        "created",
+        "signature"
+      ]
+    },
+    "source_UI_order_review": {
+      "same_14_selected_sources": true,
+      "normal_UI_close_changed_list_order_only": true,
+      "original_source_preferences_bytes_and_mode_restored": true,
+      "native_import_priority_sorter_unchanged": true
+    },
+    "final_six_protected_files_unchanged": true
+  },
+  "actual_GUI": {
+    "Sources_opened": true,
+    "new_column_visible": "PUBLISHED / CHECKED GMT+0",
+    "upstream_publication_and_receiver_check_shown_separately": true,
+    "settings_GMT0_label_visible": true,
+    "dashboard_responding": true,
+    "original_settings_restored_via_GUI": true
+  },
+  "actual_scheduler_trial": {
+    "operation": "OWNER_AUTHORIZED_TEMPORARY_REAL_GMT0_SCHEDULER_TRIAL",
+    "test_target_utc": "2026-10-20T08:45:00+00:00",
+    "target_epoch": 1792485900,
+    "settings_save_epoch": 1792485750.4605975,
+    "manual_import_requested": false,
+    "corrected_hardware_trigger_pass": true,
+    "cycle": {
+      "ok": true,
+      "stage": "DONE",
+      "elapsed": 29.39,
+      "timestamp": 1792485961
+    },
+    "last_import": {
+      "ok": true,
+      "processed_events": 16044,
+      "imported_events": 16044,
+      "failed_events": 0,
+      "written_services": 739,
+      "sources": 13,
+      "mapped_channel_ids": 285,
+      "mapped_service_refs": 753,
+      "elapsed": 18.774076461791992,
+      "engine": "Plugins.Extensions.EPGImport.EPGImport",
+      "reboot_requested": false,
+      "timestamp": 1792485961
+    },
+    "estimated_start_epoch": 1792485931.61,
+    "estimated_start_utc": "2026-10-20T08:45:31.610000+00:00",
+    "start_estimation": "integer completion timestamp minus cycle duration; uncertainty about one second",
+    "estimated_seconds_late": 31.61,
+    "estimated_seconds_after_settings_save": 181.15,
+    "completed_without_new_five_minute_settings_grace": true,
+    "source_metadata_checked_after_slot": true,
+    "source_metadata_rows": 14,
+    "original_native_settings_restored": true,
+    "native_settings_hash_restored": true,
+    "owner_original_time_restored": true,
+    "owner_original_enablement_restored": true,
+    "elapsed_monitor_seconds": 135.57
+  },
+  "scheduler_start_log": {
+    "utc": "2026-10-20T08:45:32+00:00",
+    "seconds_after_target": 32,
+    "receiver_local_utc_offset_seconds": 0,
+    "full_logs_or_programme_text_published": false
+  },
+  "cache_conservation": {
+    "sampled_services": 32,
+    "before_events": 493,
+    "after_events": 493,
+    "retained_fingerprints": 493,
+    "nonexpired_before_events": 493,
+    "retained_nonexpired_fingerprints": 493,
+    "query_errors": 0
+  },
+  "final_mapping_and_preferences_conservation": {
+    "protected_files": 6,
+    "all_hashes_unchanged": true,
+    "changed_filenames": []
+  },
+  "offline_validation": {
+    "new_public_unit_tests": 15,
+    "public_test_failures": 0,
+    "public_test_skips": 0,
+    "isolated_checks": 18,
+    "isolated_checks_results": {
+      "installed_settings_refresh_delay_reproduced": true,
+      "settings_apply_triggers_at_requested_utc_minute": true,
+      "busy_runner_not_started_twice": true,
+      "one_timer_callback_after_start": true,
+      "real_enigma_boot_grace_preserved": true,
+      "recent_boot_slot_catches_up_once": true,
+      "success_recorded_once_no_repeat": true,
+      "disabled_schedule_stays_disabled": true,
+      "temporarily_busy_retries_without_success_timestamp": true,
+      "failure_retry_bounded_to_three_attempts": true,
+      "installed_metadata_worker_completed": true,
+      "installed_receipt_erasure_reproduced": true,
+      "candidate_metadata_worker_completed": true,
+      "candidate_metadata_worker_retains_receipt": true,
+      "real_plugin_settings_refresh_uses_no_boot_delay": true,
+      "real_plugin_startup_retains_boot_delay": true,
+      "scheduled_import_returns_existing_native_runner": true,
+      "scheduled_import_also_refreshes_metadata_without_xml_or_mapping": true
+    },
+    "actual_receiver_readonly_preflight": {
+      "candidate_ipk_sha256": "89d6202cbec8d9a8ad10bc2d7b2f25c4b0c8afbab9d18d515a490396d76f999a",
+      "missing_consent_refused_before_receiver_io": true,
+      "actual_receiver_readonly_preflight_exit": 0,
+      "actual_receiver_readonly_preflight_message": "RC80 read-only preflight passed; installation not performed",
+      "candidate_modules_parsed": 142,
+      "syntax_errors": 0,
+      "receiver_code_changed": false
+    },
+    "real_corrected_enigma_trigger_tested": false,
+    "real_corrected_GUI_display_tested": false,
+    "linux_ci": {
+      "status": "PASS",
+      "commit": "16b4505f9a739519d00a6b56bb7a8db9f14fac4c",
+      "python_versions": [
+        "3.13",
+        "3.14"
+      ],
+      "suite_tests_per_version": 247,
+      "probe_tests_per_version": 4,
+      "failures": 0,
+      "skips": 0,
+      "both_job_logs_inspected": true,
+      "url": "https://github.com/wacayoub/EPGManager/actions/runs/39394353322"
+    },
+    "payload_parity": {
+      "existing_files_unchanged": 211,
+      "existing_modules_changed": 5,
+      "added_modules": 1,
+      "native_import_engine_identical": true,
+      "mapping_UI_identical": true,
+      "config_storage_identical": true,
+      "version_identical": true,
+      "retired_source_scheduler_identical": true
+    }
+  },
+  "remaining_scope": {
+    "actual_local_XML_receipt_erasure_fixture_only": true,
+    "forced_live_source_outage_performed": false,
+    "new_live_mapping_save_or_undo_performed": false,
+    "other_images_or_all_channel_certification": false,
+    "legacy_source_scheduler_reactivated": false,
+    "native_import_engine_modified": false,
+    "public_release_or_merge_performed": false
+  },
+  "verdict": "GO_FOR_CORRECTED_GMT0_TRIGGER_AND_SOURCE_DISPLAY_ON_THIS_RECEIVER",
+  "private_owner_settings_mappings_credentials_or_programme_text_published": false
+}

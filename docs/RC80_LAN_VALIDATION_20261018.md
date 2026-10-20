@@ -1,11 +1,13 @@
 # RC80 actual LAN validation — 18 October 2026
 
-**Current follow-up: the owner reported trigger/synchronization discrepancies.
-A GMT+0 timing/receipt correction is prepared and tested offline, but not installed.
-Its actual receiver trigger/GUI acceptance is pending specific installation and
-restart approval. The earlier successful 141-module installation below is
-historical evidence, not proof that this new correction is receiver-validated.**
-Evidence: [prepared timing correction](evidence/rc80-sync-timing-prepared-20261020.json).
+**Current acceptance: the owner-authorized timing/synchronization correction is
+installed: RC80 2026.10.20, 142 modules/schema 15. The real automatic trigger ran
+at 08:45:32 GMT+0 for a temporary 08:45 slot; 16,044 events imported, zero failures.
+Original scheduler settings and all six protected mapping/preferences hashes
+are restored. All 493 sampled pre-test programmes survive. GO for this receiver.**
+Current evidence: [installed timing correction](evidence/rc80-sync-timing-installed-20261020.json).
+The earlier 141-module acceptance and prepared-but-not-installed statements below
+retain the dated history; they do not describe the current installed state.
 
 **GO for the final RC80 installed on this qualified Vu+ Zero 4K. The owner-
 authorized `2026.10.20-rc80` IPK is now installed with opkg: 141 modules,
@@ -795,3 +797,61 @@ of code commit `16b4505f` passed **247 suite + 4 probe tests on each Python 3.13
 and 3.14**, zero failures/skips, with both logs inspected.
 [Successful timing correction CI](https://github.com/wacayoub/EPGManager/actions/runs/39394353322).
 No receiver code or owner data was changed by this preparation.
+
+## Timing correction installed and actual scheduled trigger accepted — 20 October
+
+The owner specifically authorized the same-version corrected IPK reinstall,
+Enigma2 restart and temporary scheduled test with restoration. The exact
+702188-byte IPK (SHA256 `89d6202cbec8d9a8ad10bc2d7b2f25c4b0c8afbab9d18d515a490396d76f999a`)
+was installed with opkg --force-reinstall, exit 0. Its consent and baseline
+checks were retained. The verified recovery archive SHA256 is
+`3838d98150d941842f26129973d6c8fda8166cb522687d80beb7e9847b6a2b00`.
+All 15 protected configuration hashes were identical across installation.
+The 217 application files/modes were verified by postinst; 142 modules parsed
+independently with zero syntax errors. Schema remains 15, Python 3.14.7.
+
+One authorized Enigma2 restart recovered in 47.60 seconds. The receiver boot ID
+stayed the same, Enigma2 PID changed, and three stable API responses followed.
+The strict full-file hash comparison across restart was not identical:
+Enigma2 persisted the previous successful last_native_import timestamp, and
+runtime cache signature/date fields changed. All actual owner preferences and
+six protected mapping/native files were preserved at that stage.
+
+Actual GUI acceptance showed the PUBLISHED / CHECKED GMT+0 column with separate
+upstream-generation and receiver-check dates, and the import time label GMT+0.
+A normal Sources-screen close rewrote the order of the same 14 selected IDs.
+No source was added/removed and other preferences were identical; the original
+source-preference bytes/mode were restored from the verified archive after
+checking for concurrent changes. Import priority uses the unchanged explicit
+source_priority sorter. This was an existing UI serialization behavior, not
+an instruction to change the owner's sources.
+
+Temporary live test (no manual Import All request):
+
+- Original native settings were captured privately. Only the temporary import
+  time changed, read-back verified. The test used **08:45 GMT+0**.
+- The filtered scheduler start log confirms **08:45:32 GMT+0**, 32 seconds after
+  the configured minute, within the existing 60-second polling accuracy.
+  No full process arguments, programme text or raw logs are published.
+- Cycle duration was **29.39 s**, native engine **18.77 s**. The actual engine
+  `Plugins.Extensions.EPGImport.EPGImport` processed/imported **16,044 events**,
+  zero failures, 739 services, 13 native sources, 285 IDs and 753 references.
+- The start was about **181 seconds after the settings save**, proving that
+  another artificial five-minute boot grace was not applied by saving settings.
+  Real Enigma2 startup still retains the separately tested quiet period.
+- Metadata for all 14 direct sources was checked after the scheduled slot.
+  This is a metadata receipt, not a claim that fourteen XML sources wrote EPG.
+- The original import time/enablement were restored through the GUI. The entire
+  native-settings mirror regained its original SHA256 hash. All six protected
+  mapping/preferences/native files match their pre-installation hashes.
+- Cache sample: **493 events before/after on 32 services, all 493 non-expired
+  fingerprints retained**, zero query errors.
+
+**Verdict: GO for the corrected GMT+0 scheduling and source display on this Vu+.**
+Code commit `16b4505f` has inspected passing Linux CI: 247 suite + 4 probe tests
+on each Python 3.13 and 3.14, zero skips/failures; 18 isolated installed/corrected
+source checks are separate. Per-source local-XML receipt conservation was
+exercised in isolated fixtures; no forced live provider outage was introduced.
+Legacy receiver scrapers remain off. No live mapping assignments/undo, public
+stable release, tag, merge, or IPToSatPro/IPAudio modification was performed.
+Evidence: `docs/evidence/rc80-sync-timing-installed-20261020.json`.
