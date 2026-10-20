@@ -22,10 +22,13 @@ FILTER_METHODS = '''    def _cached_primary_epg_health(self, service):
         return self._cached_primary_epg_health(service) == "NO_EPG"
 
     def _service_needs_review(self, service):
-        return (not self._paint_is_mapped((service or {}).get("ref"))
-                or self._service_has_conflict(service)
-                or self._service_is_ignored(service)
-                or self._cached_primary_epg_health(service) != "EPG_OK")
+        try:
+            return (not self._paint_is_mapped((service or {}).get("ref"))
+                    or self._service_has_conflict(service)
+                    or self._service_is_ignored(service)
+                    or self._cached_primary_epg_health(service) != "EPG_OK")
+        except Exception:
+            return True  # A lookup error needs review, never a green guide.
 
     def open_channel_filters(self):
         from Screens.ChoiceBox import ChoiceBox

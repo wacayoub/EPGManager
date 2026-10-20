@@ -64,6 +64,13 @@ class MappingFilterTests(unittest.TestCase):
         self.assertFalse(s._service_has_no_future_epg({"ref": "service"}))
         self.assertTrue(s._service_needs_review({"ref": "service"}))
 
+    def test_backend_lookup_failure_stays_in_review(self):
+        def fail(*args): raise RuntimeError("unavailable")
+        for method in ("_paint_is_mapped", "_service_has_conflict", "_service_is_ignored"):
+            s, _ = self.harness("EPG_OK")
+            setattr(s, method, fail)
+            self.assertTrue(s._service_needs_review({"ref": "service"}))
+
     def test_cancel_and_invalid_answers_do_nothing(self):
         s, _ = self.harness(); calls = []
         s.set_channel_filter = calls.append
