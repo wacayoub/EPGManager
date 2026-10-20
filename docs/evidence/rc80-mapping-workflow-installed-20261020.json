@@ -1,0 +1,176 @@
+{
+  "date": "2026-10-20",
+  "receiver_changed": true,
+  "owner_approved_mapping_usability_study_and_continuing_necessary_operations": true,
+  "installed": {
+    "installed_version": "2026.10.20-rc80",
+    "schema": 15,
+    "python": "3.14.7",
+    "python_modules": 142,
+    "application_files": 217,
+    "all_installed_bytes_and_modes_match_candidate": true,
+    "epgimport_extension_present": true,
+    "receiver_write_performed_by_this_check": false
+  },
+  "package": {
+    "version": "2026.10.20-rc80",
+    "schema": 15,
+    "python_modules": 142,
+    "resources": 75,
+    "payload_files": 217,
+    "bytes": 704394,
+    "sha256": "99514e7c92ca6333931f469d03577beda5f5b73c890e3beca960adfc9d41cdbd",
+    "filename": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "changed_existing_modules": [
+      "ui/channel_mapping.py",
+      "core/github_match_health.py"
+    ],
+    "added_module": null,
+    "unchanged_application_files": 215,
+    "same_package_version_requires_force_reinstall": true,
+    "explicit_consent_still_required": true,
+    "native_import_engine_unchanged": true,
+    "user_settings_packaged": false,
+    "receiver_changed": true,
+    "installed": true,
+    "deterministic_bytes_verified": true,
+    "payload_and_modes_roundtrip_verified": true
+  },
+  "installation": {
+    "backup_path": "/etc/epgmanager_epg/backups/rc80-before-final-1792493102649654731-8069.tar.gz",
+    "backup_sha256": "da68cf565e2e23e3648c9a800118cdc60ae93fe1d269e6585003c1c6c394e9c8",
+    "changed_protected_filenames": [],
+    "import_executed": false,
+    "operation": "OWNER_AUTHORIZED_MAPPING_WORKFLOW_IPK_REINSTALL",
+    "opkg_exit_code": 0,
+    "package_sha256": "99514e7c92ca6333931f469d03577beda5f5b73c890e3beca960adfc9d41cdbd",
+    "protected_config_files": 15,
+    "protected_config_hashes_unchanged": true,
+    "restart_executed": false
+  },
+  "restart": {
+    "operation": "OWNER_AUTHORIZED_MAPPING_WORKFLOW_ENIGMA2_RESTART",
+    "backup_sha256_verified": true,
+    "installed_version": "2026.10.20-rc80",
+    "schema": 15,
+    "restart_requests_sent": 1,
+    "import_requested": false,
+    "restart_response_exception": "RemoteDisconnected",
+    "elapsed_seconds": 48.04,
+    "api_down_observed": true,
+    "stable_api_samples": 3,
+    "boot_id_unchanged": true,
+    "enigma2_pid_changed": true,
+    "enigma2_running": true,
+    "protected_config_files": 15,
+    "protected_hashes_unchanged": false,
+    "restart_verified": true
+  },
+  "actual_GUI": {
+    "normal_More_menu_entries": 5,
+    "search_keyboard_opened_and_cancelled": true,
+    "search_query_execution_not_retested": true,
+    "filter_reasons_visible_for_unmapped_and_unknown_guide": true,
+    "other_filters_menu_opened_and_cancelled": true,
+    "returned_All_reception_services": 574,
+    "normal_programme_subtitle_restored_after_Review": true,
+    "candidate_Match_percent_prefix_visible": true,
+    "green_button_Apply_selected_guide_visible": true,
+    "INFO_compact_guide_details_visible": true,
+    "INFO_match_and_guide_status_separate": true,
+    "INFO_real_future_source_event_end_GMT0_visible": true,
+    "continuous_coverage_or_gaps_claimed": false,
+    "assignment_preview_old_new_and_one_affected_service_visible": true,
+    "assignment_preview_default_No_cancelled": true,
+    "remove_confirmation_default_No_selected_No": true,
+    "ignore_confirmation_default_No_selected_No": true,
+    "Change_guide_this_or_all_linked_menu_opened_cancelled": true,
+    "reset_actions_moved_to_Advanced": true,
+    "actual_mapping_apply_remove_ignore_reset_undo_executed": false,
+    "receiver_left_on_dashboard": true
+  },
+  "configuration_conservation": {
+    "protected_mapping_preferences_files": 6,
+    "all_six_hashes_unchanged": true,
+    "changed_six_filenames": [],
+    "changed_epgmanager_settings_keys": [],
+    "runtime_cache_changes": {
+      "epgmanager_mapping_view_cache.json": [
+        "created",
+        "signature"
+      ],
+      "epgmanager_github_direct_status.json": [
+        "checked",
+        "id_monitor_checked",
+        "sources"
+      ],
+      "epgmanager_activity.json": [
+        "mapping"
+      ],
+      "epgmanager_sat_registry.json": [
+        "signature"
+      ]
+    },
+    "full_15_file_hash_equality": false
+  },
+  "EPG_cache_conservation": {
+    "sampled_services": 32,
+    "before_events": 482,
+    "after_events": 482,
+    "nonexpired_before_events": 482,
+    "retained_nonexpired_fingerprints": 482,
+    "query_errors": 0
+  },
+  "final_API_health": [
+    {
+      "ok": true,
+      "elapsed_seconds": 0.084
+    },
+    {
+      "ok": true,
+      "elapsed_seconds": 0.063
+    },
+    {
+      "ok": true,
+      "elapsed_seconds": 0.061
+    }
+  ],
+  "offline_actual_code": {
+    "receiver_changed": false,
+    "exact_candidate_verified": true,
+    "original_mutation_bodies_unchanged": true,
+    "technical_diagnostics_preserved": true,
+    "all_existing_health_functions_unchanged": true,
+    "actual_review_row_reason_and_normal_programme_render": "PASS",
+    "actual_green_label_cases": 4,
+    "actual_score_label": "PASS",
+    "reset_menu_error_cannot_fall_through": true,
+    "native_GUI": "NOT_TESTED"
+  },
+  "Linux_CI": {
+    "url": "https://github.com/wacayoub/EPGManager/actions/runs/39409998191",
+    "tested_code_commit": "ba17641fa296f82d9c76532d0388dcd782da6579",
+    "python_versions": [
+      "3.13",
+      "3.14"
+    ],
+    "suite_tests_each": 277,
+    "probe_tests_each": 4,
+    "failures": 0,
+    "skips": 0,
+    "both_logs_inspected": true
+  },
+  "new_native_import_requested": false,
+  "native_import_engine_scheduler_storage_modified": false,
+  "other_plugins_modified": false,
+  "public_release_or_merge_performed": false,
+  "limits": {
+    "positive_mapping_mutation_dispatch_tested_in_fixtures_only": true,
+    "stale_context_checks_tested_in_fixtures_only": true,
+    "live_bulk_mapping_changes_performed": false,
+    "live_reset_executed": false,
+    "performance_gain_claimed": false,
+    "all_channel_language_or_guide_certification_claimed": false
+  },
+  "verdict": "GO_FOR_INSTALLED_MAPPING_WORKFLOW_ON_THIS_RECEIVER"
+}
