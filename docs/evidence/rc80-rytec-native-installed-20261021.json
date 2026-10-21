@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-21",
+  "decision": "GO_FOR_TESTED_RYTEC_NATIVE_IMPORT_ON_OWNER_RECEIVER",
+  "version": "2026.10.20-rc80",
+  "schema": 15,
+  "python": "3.14.7",
+  "image": "OpenATV 8.0.1",
+  "application_files": 217,
+  "python_modules": 142,
+  "resources": 75,
+  "receiver_changed": true,
+  "installed_payload_verified": true,
+  "total_changed_application_modules": 5,
+  "unchanged_files_from_previous_picon_final": 212,
+  "tested_source_commit": "9cd53ae4788653d4505908ebaa9b007c53ab00d3",
+  "branch": "codex/rc80-rytec-native-import",
+  "pull_request": "https://github.com/wacayoub/EPGManager/pull/44",
+  "package": {
+    "name": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "bytes": 712124,
+    "sha256": "6a8d00ebda2de0bc06a6c1eb27351d895f6c32badb10e243422d7f3e3a5ba3a6"
+  },
+  "source_archive": {
+    "name": "EPGManager_RC80_RYTEC_FINAL_2026.10.21_source.zip",
+    "sha256": "475745ae21b914b7eb49ac9bc4e5b972b7228ecd3428cfea6ab9b582e3c83260"
+  },
+  "offline_tests": {
+    "linux_python": [
+      "3.13",
+      "3.14"
+    ],
+    "suite_per_python": 302,
+    "probe_per_python": 4,
+    "targeted_rytec_tests": 25,
+    "ci_run": "https://github.com/wacayoub/EPGManager/actions/runs/39524088648"
+  },
+  "real_hardware": {
+    "single_france_tnt": {
+      "events": 12584,
+      "services": 139,
+      "errors": 0,
+      "import_seconds": 12.782,
+      "cycle_seconds": 23.2
+    },
+    "batch_france_tnt_and_mixte": {
+      "sources": 2,
+      "events": 17002,
+      "services": 180,
+      "errors": 0,
+      "import_seconds": 20.283,
+      "cycle_seconds": 41.05
+    },
+    "engine": "Plugins.Extensions.EPGImport.EPGImport",
+    "native_channel_map_receiver_matches": 2130,
+    "counts_cached_read_seconds": 0.008,
+    "gui_shared_map_totals_before": 115871,
+    "gui_shared_map_totals_after": 2981,
+    "time_check": {
+      "matched_provider_ids": 1,
+      "donor_events_for_service": 265,
+      "queried_cache_events": 224,
+      "matching_native_utc_intervals": 224,
+      "matching_native_titles_and_intervals": 188,
+      "mirror_attempts": 1,
+      "errors": [],
+      "tested_xmltv_offset": "XMLTV declared timezone parsed with %z; no manager-added offset"
+    },
+    "conservation": {
+      "protected_mapping_preference_files": 6,
+      "six_hashes_unchanged": true,
+      "changed_names": [],
+      "other_plugin_code_unchanged": true,
+      "application_files_verified": 217,
+      "python_modules_compiled": 142,
+      "sampled_services": 32,
+      "query_errors": 0,
+      "nonexpired_before_events": 424,
+      "identical_fingerprints_retained": 359,
+      "updated_fingerprints": 65,
+      "updated_services": 1,
+      "covered_old_slots": 424,
+      "covered_updated_slots": 65,
+      "uncovered_old_slots": 0
+    },
+    "other_plugin_python_files_unchanged": {
+      "IPAudioPro": 55,
+      "SatIPTVBridge": 17
+    },
+    "initial_tuned_service_restored": true,
+    "last_restart": {
+      "restart_requests": 1,
+      "elapsed_seconds": 72.95,
+      "same_boot": true,
+      "pid_changed": true,
+      "stable_api_samples": 3,
+      "api_down_observed": true
+    },
+    "backup_readback_verified": true
+  },
+  "unvalidated": [
+    "All Rytec country feeds in a single import",
+    "Azman/Koala native source adapters",
+    "Provider-outage fault injection and all-channel coverage"
+  ],
+  "public_general_release_published": false,
+  "package_scope": "Already installed guarded receiver upgrade; not a generic fresh-install package."
+}
