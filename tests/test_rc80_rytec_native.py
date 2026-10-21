@@ -8,6 +8,7 @@ import unittest
 from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 import prepare_rc80_rytec_native as fix
+import prepare_rc80_rytec_ui as ui_fix
 
 REF = "1:0:1:123:456:789:C00000:0:0:0:"
 A = {"id": "rytec_a", "provider": "RYTEC", "channels_name": "rytec.channels.xml.xz"}
@@ -169,5 +170,26 @@ class OfficialCountTests(unittest.TestCase):
         ns["_read_json"]=lambda p:{"sources":{"a":{"provider":"RYTEC","official":True,"map_path":"map","channels":0,"refs":0}}}
         ns["_cached_official_counts"]=lambda p:{"channels":3,"refs":5}
         self.assertEqual(ns["load_index"]()["sources"]["a"]["channels"],3)
+
+class NativeDisplayTests(unittest.TestCase):
+    def test_shared_map_is_counted_once_but_generated_maps_remain_distinct(self):
+        ns={};exec(ui_fix.UNIQUE_ROWS,ns)
+        rows={str(i):{"provider":"RYTEC","official":True,"map_path":"same","channels":2130} for i in range(54)}
+        rows["other"]={"provider":"GITHUB","channels":15}
+        result=ns["_unique_mapping_rows"]({"sources":rows})
+        self.assertEqual(len(result),2);self.assertEqual(sum(r["channels"] for r in result),2145)
+
+    def test_incomplete_native_header_does_not_claim_zero_programmes_or_missing_mapping(self):
+        ns={};exec(ui_fix.NATIVE_DISPLAY,ns)
+        item={"provider":"RYTEC","_health":"MAP NEEDED","_channels":3014,"_programmes":0}
+        ns["_native_rytec_display"](item,{"complete":False})
+        self.assertEqual(item["_health"],"NATIVE MAP");self.assertIsNone(item["_programmes"])
+        self.assertEqual(item["_epg_ids_text"],"Shared SRP")
+
+    def test_proven_no_epg_stays_no_epg(self):
+        ns={};exec(ui_fix.NATIVE_DISPLAY,ns)
+        item={"provider":"RYTEC","_health":"NO EPG","_programmes":0}
+        ns["_native_rytec_display"](item,{"complete":True})
+        self.assertEqual(item["_health"],"NO EPG");self.assertEqual(item["_programmes"],0)
 
 if __name__ == "__main__": unittest.main()

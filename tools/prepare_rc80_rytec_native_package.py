@@ -1,4 +1,4 @@
-"""Build the guarded Mapping-workflow IPK from the installed filter package offline."""
+"""Build the guarded consolidated Rytec native-import and display IPK offline."""
 import argparse
 import ast
 import hashlib
@@ -6,10 +6,12 @@ import json
 from pathlib import Path
 
 import prepare_rc80_rytec_native as fix
+import prepare_rc80_rytec_ui as ui_fix
 import audit_rc80_rollback_package_readonly as archive
 import build_rc80_offline_blocked_ipk as sealed
 import prepare_rc80_supervised_ipk as supervised
 
+NATIVE_STAGE_SHA = '3928204a8206d4cee98bf78ac999a3dd1007d12adea55c10c46faf4690ef2bf1'
 ORIGINAL_IPK_SHA = 'b5d4bf68f86f3fe71b2dcc38c818a71d5dba5b3479d6e0521e067d3d17996ec8'
 REPO = Path(__file__).resolve().parents[1]
 
@@ -48,14 +50,16 @@ def build(original, output):
     if path.is_symlink() or not path.is_file() or path.stat().st_size > archive.MAX_IPK:
         raise ValueError('unsafe original IPK')
     raw = path.read_bytes()
-    if sha(raw) != ORIGINAL_IPK_SHA:
+    if sha(raw) not in (ORIGINAL_IPK_SHA, NATIVE_STAGE_SHA):
         raise ValueError('installed final IPK identity mismatch')
     ar = archive.read_ar(raw)
     controls, cmodes = archive.read_tar(ar['control.tar.gz'])
     payload, pmodes = archive.read_tar(ar['data.tar.gz'])
     if len(payload) != 217 or sum(name.endswith('.py') for name in payload) != 142:
         raise ValueError('installed final application inventory drift')
-    replacements = fix.corrected({p: payload[archive.PREFIX+p] for p in fix.ORIGINAL})
+    replacements = (fix.corrected({p: payload[archive.PREFIX+p] for p in fix.ORIGINAL})
+                    if sha(raw) == ORIGINAL_IPK_SHA else {})
+    replacements.update(ui_fix.corrected({p: payload[archive.PREFIX+p] for p in ui_fix.ORIGINAL}))
     before = {name[len(archive.PREFIX):]: {'sha256': sha(value), 'bytes': len(value), 'mode': pmodes[name]}
               for name, value in sorted(payload.items())}
     for name, value in replacements.items():
@@ -93,8 +97,8 @@ def build(original, output):
     (output/'private-install-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
     report = {'version':manifest['version'], 'schema':15, 'python_modules':142,
         'resources':75, 'payload_files':217, 'bytes':len(result), 'sha256':sha(result),
-        'filename':target.name, 'changed_existing_modules':list(fix.ORIGINAL),
-        'added_module':None, 'unchanged_application_files':214, 'same_package_version_requires_force_reinstall':True,
+        'filename':target.name, 'changed_existing_modules':list(replacements),
+        'added_module':None, 'unchanged_application_files':217-len(replacements), 'same_package_version_requires_force_reinstall':True,
         'explicit_consent_still_required':True, 'native_import_engine_unchanged':True,
         'user_settings_packaged':False, 'receiver_changed':False, 'installed':False,
         'deterministic_bytes_verified':True, 'payload_and_modes_roundtrip_verified':True}
