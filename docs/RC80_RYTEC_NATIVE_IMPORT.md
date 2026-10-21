@@ -20,7 +20,7 @@ creates the existing guarded backup/verification hooks and retains passive
 removal hooks. No deployment occurs from the builder or CI.
 
 Validation before installation:
-- 20 targeted regression tests pass on local Python 3.13.
+- 22 targeted regression tests pass on local Python 3.13.
 - Live SSH: installed 2026.10.20-rc80/schema 15, Python 3.14.7, 142 modules.
 - Official cached XML: 3051 raw IDs, 10487 channel elements; 2135 IDs and 3711
   reference rows overlap the cached receiver registry.
@@ -32,3 +32,7 @@ Validation before installation:
 Hardware installation, GUI import results and conservation evidence must be
 recorded separately after they have actually been observed. A provider-owned
 mapping is not proof of future programme availability.
+
+The existing zero counters are repaired on index reads using a shared, signature-
+invalidated in-process cache of exact receiver reference matches. The on-disk
+SRP index is not rewritten, and these links do not certify feed freshness.

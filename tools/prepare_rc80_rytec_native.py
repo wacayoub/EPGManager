@@ -166,6 +166,50 @@ def replace_once(source, old, new):
     return source.replace(old, new, 1)
 
 
+OFFICIAL_INDEX = r'''_OFFICIAL_COUNTS = {}
+
+
+def _cached_official_counts(path):
+    # One small official-map parse per file/receiver-registry revision. Derived
+    # display counts never rewrite the owner's SRP index or saved mappings.
+    registries = (channel_registry.SAT_PATH, channel_registry.IPTV_PATH)
+    def signature(name):
+        try:
+            stat = os.stat(name)
+            return (getattr(stat, "st_mtime_ns", stat.st_mtime), stat.st_size)
+        except OSError:
+            return None
+    sig = tuple(signature(name) for name in (path,) + registries)
+    previous = _OFFICIAL_COUNTS.get(path)
+    if previous and previous[0] == sig:
+        return previous[1]
+    receiver = set()
+    for name in registries:
+        for service in (_read_json(name).get("services") or []):
+            ref = channel_registry.canonical_service_ref(service.get("ref"))
+            if ref:
+                receiver.add(ref)
+    official = parse_channels_xml(path)
+    matched = {cid: [ref for ref in refs if channel_registry.canonical_service_ref(ref) in receiver]
+               for cid, refs in official.items()}
+    result = {"channels": sum(bool(refs) for refs in matched.values()),
+              "refs": sum(len(refs) for refs in matched.values()),
+              "official_channel_ids": len(official),
+              "shared_provider_map": True}
+    if len(_OFFICIAL_COUNTS) >= 16:
+        _OFFICIAL_COUNTS.clear()
+    _OFFICIAL_COUNTS[path] = (sig, result)
+    return result
+
+
+def load_index(path=INDEX_PATH):
+    data = _read_json(path)
+    for row in (data.get("sources") or {}).values():
+        if row.get("official") and row.get("provider") == "RYTEC" and row.get("map_path"):
+            row.update(_cached_official_counts(row["map_path"]))
+    return data
+'''
+
 def corrected(original):
     if set(original) != set(ORIGINAL):
         raise ValueError("Expected the three pinned installed modules")
@@ -198,10 +242,11 @@ def corrected(original):
     out[key] = replace_once(out[key], """        # The official Rytec map already is the direct channel-id -> SRP map.
         return {"source_id": source_id, "map_path": path, "provider": provider,
                 "official": True, "channels": 0, "refs": 0, "unmapped": 0,""", """        # Report actual official-map counts, not zero placeholders.
-        official_map = parse_channels_xml(path)
+        official_map = _cached_official_counts(path)
         return {"source_id": source_id, "map_path": path, "provider": provider,
-                "official": True, "channels": len(official_map),
-                "refs": sum(len(refs) for refs in official_map.values()), "unmapped": 0,""")
+                "official": True, "channels": official_map["channels"],
+                "refs": official_map["refs"], "unmapped": 0,""")
+    out[key] = replace_once(out[key], "def load_index(path=INDEX_PATH):\n    return _read_json(path)", OFFICIAL_INDEX.rstrip())
     result = {name: text.encode("utf-8") for name, text in out.items()}
     for name, raw in result.items():
         ast.parse(raw, filename=name)

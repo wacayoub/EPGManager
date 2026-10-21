@@ -151,4 +151,23 @@ class ProtectionTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"baseline drift"):
             fix.corrected({name:b"drift" for name in fix.ORIGINAL})
 
+class OfficialCountTests(unittest.TestCase):
+    def test_counts_only_receiver_matches_and_reuses_shared_cache(self):
+        reads=[];parses=[]
+        data={"sat":{"services":[{"ref":REF}]},"iptv":{"services":[]}}
+        ns={"INDEX_PATH":"index","os":types.SimpleNamespace(stat=lambda p:types.SimpleNamespace(st_mtime=1,st_mtime_ns=1,st_size=1)),
+            "channel_registry":types.SimpleNamespace(SAT_PATH="sat",IPTV_PATH="iptv",canonical_service_ref=lambda x:x),
+            "_read_json":lambda p:reads.append(p) or data[p],
+            "parse_channels_xml":lambda p:parses.append(p) or {"valid":[REF],"foreign":["foreign"]}}
+        exec(fix.OFFICIAL_INDEX,ns)
+        self.assertEqual(ns["_cached_official_counts"]("map")["channels"],1)
+        self.assertEqual(ns["_cached_official_counts"]("map")["refs"],1)
+        self.assertEqual(parses,["map"]);self.assertEqual(reads,["sat","iptv"])
+
+    def test_existing_zero_index_gets_read_only_counts_without_a_save(self):
+        ns={"INDEX_PATH":"index"};exec(fix.OFFICIAL_INDEX,ns)
+        ns["_read_json"]=lambda p:{"sources":{"a":{"provider":"RYTEC","official":True,"map_path":"map","channels":0,"refs":0}}}
+        ns["_cached_official_counts"]=lambda p:{"channels":3,"refs":5}
+        self.assertEqual(ns["load_index"]()["sources"]["a"]["channels"],3)
+
 if __name__ == "__main__": unittest.main()
