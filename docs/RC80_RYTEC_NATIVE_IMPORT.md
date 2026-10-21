@@ -53,3 +53,26 @@ on the overview and shows NATIVE/Shared SRP instead of pretending its global ID
 list belongs to each country feed. Incomplete checks remain NATIVE MAP/unknown;
 complete proven NO EPG results remain negative. The final combined artifact's
 installation and conservation checks must be recorded separately.
+
+Final consolidated hardware validation: the two-source France TNT + France Mixte
+GUI batch imported 17,002 events to 180 services, zero failures, 20.28 seconds
+native-import phase / 41.05 seconds total. The final overview shows 2,981 links
+instead of repeating 115,871 shared-map claims. Source rows show NATIVE/Shared
+SRP with unverified programme availability remaining unknown. Batch marks were
+cleared without changing permanent source selection. All 217 installed files
+match the consolidated payload; 142 modules compile on the receiver.
+
+Six mapping/preference files remain byte-identical. Of 424 initial sample events
+still unexpired at the last check, 359 retain identical fingerprints and 65 have
+updated provider data on one service; all 424 original time slots remain covered.
+One additional initial event expired normally during testing. Native donor
+comparison matches all 224 checked cache intervals; 188 also match the plain
+XMLTV title exactly (native parser formatting may differ). Other plugin code
+(55 IPAudioPro + 17 SatIPTVBridge modules) is unchanged, and the initial tuned
+service was restored using its unique existing registry reference.
+
+GO is limited to the tested native Rytec mechanism on the owner's receiver;
+all-country stress coverage, provider fault injection and Azman/Koala remain
+unvalidated. Aggregate evidence: `evidence/rc80-rytec-native-installed-20261021.json`.
+The single consolidated package SHA256 is
+`6a8d00ebda2de0bc06a6c1eb27351d895f6c32badb10e243422d7f3e3a5ba3a6`.
