@@ -1,35 +1,36 @@
 {
   "channel_counts": {
-    "2M": 257,
+    "2M": 261,
     "AFLAM.ma": 56,
-    "AlAoula": 40,
-    "AlMaghribiya": 185,
-    "Arrabiaa": 77,
+    "AlAoula": 0,
+    "AlMaghribiya": 145,
+    "Arrabiaa": 60,
     "Arryadia_HD": 0,
     "Arryadia_HD1": 0,
     "Arryadia_HD2": 168,
     "Arryadia_HD3": 168,
     "Arryadia_TNT": 0,
-    "Assadisa": 219,
+    "Assadisa": 171,
     "Chada TV": 43,
-    "MEDI1TV_AR.ma": 93,
-    "MEDI1TV_MAGHREB.ma": 34,
-    "Tamazight": 116
+    "MEDI1TV_AR.ma": 71,
+    "MEDI1TV_MAGHREB.ma": 23,
+    "Tamazight": 89
   },
   "channels": 15,
-  "generated": "2026-10-22T09:52:36.779466+00:00",
+  "generated": "2026-10-23T09:46:35.114308+00:00",
   "missing_current_epg": [
+    "AlAoula",
     "Arryadia_HD",
     "Arryadia_HD1",
     "Arryadia_TNT"
   ],
-  "programmes": 1456,
+  "programmes": 1255,
   "publication_status": "partial_with_viewer_reported_slots",
-  "sha256": "1eb510df785cd9b94cb0bbdc16b127f4b73335e050f2bff12d40db35bccb9114",
-  "size": 33841,
+  "sha256": "e789582435e0bf659f38dbb7561b572b63e83c0cfb5f663c50a19311d9d28a51",
+  "size": 29213,
   "sources": {
     "2m": {
-      "events": 257,
+      "events": 261,
       "mode": "fresh"
     },
     "arryadia": {
@@ -54,15 +55,15 @@
       "source": "https://chada.ma/fr/tv/grille/"
     },
     "medi1": {
-      "events": 127,
+      "events": 94,
       "mode": "fresh"
     },
     "snrt": {
-      "events": 693,
-      "mode": "fresh+alaoula-official-arabic"
+      "events": 521,
+      "mode": "fresh+alaoula-arabic-unavailable+channel-lkg"
     }
   },
   "timezone": "Africa/Casablanca",
   "url": "morocco.xml.gz",
-  "version": "20261022-095236"
+  "version": "20261023-094635"
 }
