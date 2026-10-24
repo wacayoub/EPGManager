@@ -1,5 +1,9 @@
 # RC80 live UTC qualification — 24 October 2026
 
+This is the earlier scheduler trial. The subsequent installed optimization,
+source-gap verification and updated verdict are recorded in
+[RC80 current status](RC80_CURRENT_STATUS.md).
+
 This follows the owner's approval to finish Mapping/Best Match and a temporary
 scheduled native import, preserve mappings/programmes, then use 13:15 GMT+0.
 

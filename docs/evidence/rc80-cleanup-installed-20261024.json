@@ -1,0 +1,155 @@
+{
+  "date_utc": "2026-10-24",
+  "receiver_changed": true,
+  "explicit_install_restart_import_approval": true,
+  "installed": {
+    "version": "2026.10.20-rc80",
+    "schema": 15,
+    "python": "3.14.7",
+    "python_modules": 142,
+    "module_count_delta": 0,
+    "payload_files": 217,
+    "changed_modules": [
+      "core/direct_native_import.py",
+      "ui/settings.py"
+    ]
+  },
+  "package": {
+    "bytes": 712314,
+    "sha256": "5888e63c3f4f96e531939663014a3d72161af8b86aa81a29a567b36ca8172e23"
+  },
+  "backup": {
+    "readback_verified": true,
+    "application_files_verified": 217,
+    "sha256": "8731fc572ce27b819f5116faa1aebe403331ae9e8d66aef184e71e327c43a584",
+    "all_16_protected_config_hashes_unchanged_at_install": true
+  },
+  "restart": {
+    "restart_requests": 1,
+    "epg_saved_before_restart": true,
+    "elapsed_seconds": 77.07,
+    "same_boot": true,
+    "pid_changed": true,
+    "stable_api_samples": 3,
+    "api_down_observed": true
+  },
+  "restart_retention": {
+    "six_protected_files_unchanged": true,
+    "other_plugins_unchanged": true,
+    "before_events": 3900,
+    "expired": 1,
+    "nonexpired": 3899,
+    "identical_retained": 3899
+  },
+  "final_protection": {
+    "six_protected_files_unchanged": true,
+    "other_plugin_hashes_unchanged": true,
+    "other_plugin_module_counts": {
+      "IPAudioPro": 62,
+      "SatIPTVBridge": 19
+    },
+    "all_217_installed_bytes_and_modes_verified": true,
+    "python_modules": 142,
+    "native_time": [
+      13,
+      15
+    ],
+    "purge": false
+  },
+  "plan_comparison": {
+    "previous_plan_seconds": 423.98,
+    "installed_optimized_plan": {
+      "time_prefix": "2026-10-24 06:19:29",
+      "seconds": 193.16,
+      "receiver_services": 11013,
+      "mapped_ids": 112663,
+      "refs": 326751,
+      "ready_sources": 69,
+      "stage_ms": {
+        "registry_ms": 11370,
+        "map_load_prune_ms": 4355,
+        "seed_ownership_ms": 47975,
+        "winner_expand_ms": 115816,
+        "source_build_overlay_ms": 181779
+      }
+    },
+    "reduction_percent": 54.44,
+    "comparison": "Two observed production runs, same selected source preferences and 11013 services; ready sources 68 to 69; not a controlled identical-input benchmark."
+  },
+  "full_import": {
+    "cycle": {
+      "ok": true,
+      "stage": "DONE",
+      "elapsed": 600.37,
+      "timestamp": 1792823174
+    },
+    "last_import": {
+      "ok": true,
+      "processed_events": 395527,
+      "imported_events": 395527,
+      "failed_events": 0,
+      "written_services": 4134,
+      "sources": 69,
+      "mapped_channel_ids": 112663,
+      "mapped_service_refs": 326751,
+      "empty_files": 0,
+      "unmapped_sources": 3,
+      "elapsed": 403.1979076862335,
+      "reboot_requested": false,
+      "engine": "Plugins.Extensions.EPGImport.EPGImport",
+      "timestamp": 1792823173
+    }
+  },
+  "observed_full_cycle_comparison": {
+    "previous_seconds": 1237.18,
+    "optimized_seconds": 600.37,
+    "reduction_percent": 51.47,
+    "controlled_identical_input": false,
+    "limits": "Ready sources, source contents, cache and network state differed; overall reduction cannot be attributed solely to the patch."
+  },
+  "sampled_retention": {
+    "sampled_services": 32,
+    "initial_events": 3900,
+    "expired": 5,
+    "unexpired": 3895,
+    "identical": 3782,
+    "updated_fully_covered": 110,
+    "partly_covered": 3,
+    "missing_entirely": 0,
+    "scope": "Bounded 32-service sample; provider revisions are distinct from exact retention."
+  },
+  "partial_interval_source_verification": {
+    "public_feed": "http://www.xmltvepg.nl/rytecMisc.xz",
+    "sha256": "74fb30a8bb92a464a6202a59adbbc0de4cd7f3377c8053f8cc192d265a0ab159",
+    "donor_events": 115,
+    "native_fingerprints_matching": 79,
+    "partial_cases_exactly_explained": 3,
+    "case_count": 3
+  },
+  "gui": {
+    "actual_interaction": true,
+    "plugin_opened": true,
+    "utc_help_and_1315_verified": true,
+    "import_completed_and_dashboard_ready": true
+  },
+  "offline_ci": {
+    "python_versions": [
+      "3.13",
+      "3.14"
+    ],
+    "tests_per_version": 310,
+    "probe_tests_per_version": 4,
+    "result": "PASS",
+    "url": "https://github.com/wacayoub/EPGManager/actions/runs/40068988151"
+  },
+  "qualification_limits": [
+    "32-service retention sample, not exhaustive service coverage",
+    "No new unavailable-source simulation or mapping rewrite/undo test in this performance trial",
+    "Existing scheduler trial is documented separately; this trial used manual Import All",
+    "External guides remain missing on some channels; no synthetic schedules added",
+    "No general public release promoted"
+  ],
+  "verdict": "GO for keeping this exact qualified candidate on this receiver; external guide completeness is not certified",
+  "branch": "codex/rc80-utc-live-validation-20261024",
+  "pull_request": "https://github.com/wacayoub/EPGManager/pull/45"
+}

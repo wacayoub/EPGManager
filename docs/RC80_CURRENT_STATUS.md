@@ -2,10 +2,13 @@
 
 ## What actually runs
 
-The fresh read-only SSH probe still measures 2026.10.20-rc80, schema 15,
-142 Python modules and Python 3.14.7. The last completed native import inserted
-394,472 events with zero insertion failures. The daily slot remains 13:15 GMT+0,
-without purge. See [original measured trial](RC80_LIVE_UTC_VALIDATION_20261024.md).
+The approved optimized package is now installed and verified: 2026.10.20-rc80,
+schema 15, 142 Python modules (no count change), Python 3.14.7. Actual native
+EPGImport inserted 395,527 events with zero insertion failures across 4,134
+written services and 69 ready sources. The daily slot remains 13:15 GMT+0,
+without purge. [Installed evidence](evidence/rc80-cleanup-installed-20261024.json)
+and [earlier scheduler trial](RC80_LIVE_UTC_VALIDATION_20261024.md) distinguish
+the new manual import from the previously exercised scheduled trigger.
 
 ## Six partial intervals: explained by the actual source
 
@@ -22,7 +25,7 @@ Donor checked: public koala15.xml.xz, SHA256
 5cb15b2400394843b79b650ec1917e008768822a663f2d79e25fa2c6e219f973.
 The earlier Morocco/2M hypothesis did not match these services and was rejected.
 
-## Performance candidate
+## Installed performance correction
 
 The original full plan needed 423.98 seconds, with 138.084 seconds in ownership
 and 261.136 seconds in winner expansion. The candidate preserves the same
@@ -44,7 +47,15 @@ installed arbitration function with the candidate on fictional data:
 | Equal-rank shared maps | 0.766813 s | 0.144059 s | 2,160 to 40 |
 
 Decisions match exactly. These are synthetic CPU timings, not a measured gain
-on the full 68-source import. No receiver file was changed for this benchmark.
+on the full import. No receiver file was changed for this benchmark.
+
+The subsequent real import reduced preparation from 423.98 to 193.16 seconds
+(54.44%). Ownership took 47.975 seconds and winner expansion 115.816 seconds.
+The complete cycle took 600.37 seconds (10m00s), versus the earlier 1237.18
+seconds (20m37s): an observed 51.47% reduction. These are two production runs,
+not identical-input experiments: ready sources increased from 68 to 69 and
+feed/cache/network conditions differed. The whole-cycle change is not solely
+attributed to this patch.
 
 ## Single candidate and repository cleanup
 
@@ -55,7 +66,24 @@ files, 142 modules, same schema and no packaged user settings. Input identity,
 installation consent, exact baseline and verified backup guards remain active.
 The 712,314-byte candidate SHA256 is
 5888e63c3f4f96e531939663014a3d72161af8b86aa81a29a567b36ca8172e23.
-It has not yet been installed or tested as a real import.
+It was installed after explicit owner approval. The recovery archive was
+read back and verified against all 217 previous application files. All 16
+protected configuration hashes matched during installation. Exactly one
+Enigma2 restart completed in 77.07 seconds, with no receiver reboot.
+The installed 217 file bytes/modes and compilation of 142 modules passed.
+Six mapping/learning/SRP/source-preference/native-settings files still matched
+their pre-install hashes after the import. IPAudioPro and SatIPTVBridge Python
+file hashes remained unchanged.
+
+The bounded 32-service sample retained all 3,899 nonexpired events identically
+across restart. Across the complete trial, five of the initial 3,900 expired;
+3,782 remained identical, 110 revised intervals were fully covered, three
+were partially covered and none disappeared entirely. The three partial
+Eurosport1.int intervals exactly match Rytec Misc schedule gaps of 180, 240
+and 360 seconds. Seventy-nine native event fingerprints match that public
+feed, SHA256 74fb30a8bb92a464a6202a59adbbc0de4cd7f3377c8053f8cc192d265a0ab159.
+No additional importer-created gap was observed in this sample. No obsolete
+event was extended to fabricate continuity.
 
 README now has an explicit current-status banner separating legacy instructions
 from qualified RC80 evidence. Private directories and IPKs are ignored to avoid
@@ -65,10 +93,19 @@ only the safe additive README correction was applied. No historical source ZIP,
 active dependency branch, release, receiver cache or useful backup was deleted.
 Work is consolidated in PR #45 rather than creating another dependency PR.
 
-## Remaining gate
+## Validation and remaining limits
 
-The candidate needs Linux Python 3.13/3.14 CI and an explicitly approved guarded
-installation/restart followed by actual GUI/native-import qualification before
-receiver performance improvements are claimed. Missing external guides,
-editorial quality and ambiguous comparisons against non-owner donor feeds remain
-separate data-quality issues. No general public final release is promoted.
+Linux CI passed 310 tests plus four probe tests on each Python 3.13 and 3.14.
+The real GUI opened after restart, displayed the corrected GMT+0 help and
+13:15 slot, and returned to READY after the actual EPGImport completed.
+The dashboard still reports unavailable external guides and unresolved matches;
+these are not certified as fixed by a performance patch. No mappings were
+rewritten, no unavailable-source simulation was performed, and the 32-service
+retention sample is not an exhaustive channel audit. Missing external guides,
+editorial quality and ambiguous comparisons against non-owner donors remain
+separate data-quality issues.
+
+Verdict: **GO to keep this exact candidate on the qualified receiver.**
+This is not a claim that every upstream channel has a complete guide.
+No general public final release is promoted. The public historical update
+channel has not been repointed.
