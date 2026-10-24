@@ -1,5 +1,19 @@
 # EPGManager
 
+> **RC80 qualification status — 24 October 2026:** the receiver runs
+> 2026.10.20-rc80, schema 15, 142 modules, Python 3.14.7. See the
+> [measured validation and remaining limits](docs/RC80_LIVE_UTC_VALIDATION_20261024.md).
+> The tested daily import is 13:15 GMT+0, without purge. The build/publish
+> workflow described below is retired and disabled; source/current.txt still
+> selects the historical RC70 archive. Historical installer/update-channel
+> instructions do not certify parity with this receiver. The current catalogue
+> includes 14 direct feeds, including STARZPLAY. Provider scraping now lives in
+> [EPG-Scrapers](https://github.com/wacayoub/EPG-Scrapers).
+>
+> The following older release descriptions are retained as historical context.
+
+Current work and the explained La 2 intervals: [RC80 status and cleanup](docs/RC80_CURRENT_STATUS.md).
+
 Enigma2 / OpenATV EPG Manager with Native Import, Smart Mapping and online updates.
 
 ## Install from GitHub

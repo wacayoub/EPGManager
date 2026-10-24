@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-24",
+  "receiver_changed": false,
+  "mode": "READ_ONLY_AUDIT_AND_SYNTHETIC_BENCHMARK",
+  "benchmark": {
+    "mode": "READ_ONLY_SYNTHETIC_CPU_BENCHMARK",
+    "real_import_executed": false,
+    "receiver_changed": false,
+    "cases": [
+      {
+        "case": "different_priority",
+        "sources": 54,
+        "services": 40,
+        "baseline_seconds": 0.767749,
+        "optimized_seconds": 0.096136,
+        "baseline_name_calls": 2160,
+        "optimized_name_calls": 0,
+        "identical_decisions": true
+      },
+      {
+        "case": "shared_equal_rank",
+        "sources": 54,
+        "services": 40,
+        "baseline_seconds": 0.766813,
+        "optimized_seconds": 0.144059,
+        "baseline_name_calls": 2160,
+        "optimized_name_calls": 40,
+        "identical_decisions": true
+      }
+    ]
+  },
+  "source_revision_evidence": {
+    "public_feed": "koala15.xml.xz",
+    "sha256": "5cb15b2400394843b79b650ec1917e008768822a663f2d79e25fa2c6e219f973",
+    "channels": [
+      {
+        "public_channel_id": "LA 2",
+        "donor_events": 132,
+        "partial_cases_exactly_explained": 6,
+        "case_count": 6,
+        "native_event_fingerprints_matching_donor_per_service": [
+          96,
+          96
+        ]
+      }
+    ]
+  },
+  "candidate": {
+    "filename": "enigma2-plugin-extensions-epgmanager_2026.10.20-rc80_all.ipk",
+    "sha256": "5888e63c3f4f96e531939663014a3d72161af8b86aa81a29a567b36ca8172e23",
+    "bytes": 712314,
+    "modules": 142,
+    "payload_files": 217,
+    "changed_modules": [
+      "core/direct_native_import.py",
+      "ui/settings.py"
+    ],
+    "unchanged_files": 215,
+    "deterministic_bytes_and_modes_verified": true,
+    "user_settings_packaged": false,
+    "receiver_changed": false,
+    "installed": false,
+    "consent_guard_preserved": true,
+    "verified_backup_required": true
+  },
+  "hardware_candidate_import_tested": false
+}
