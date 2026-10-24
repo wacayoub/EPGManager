@@ -1,8 +1,22 @@
 # EPGManager
 
+> **RC80 qualification status — 24 October 2026:** the receiver runs
+> 2026.10.20-rc80, schema 15, 142 modules, Python 3.14.7. See the
+> [measured validation and remaining limits](docs/RC80_LIVE_UTC_VALIDATION_20261024.md).
+> The tested daily import is 13:15 GMT+0, without purge. The build/publish
+> workflow described below is retired and disabled; source/current.txt still
+> selects the historical RC70 archive. Historical installer/update-channel
+> instructions do not certify parity with this receiver. The current catalogue
+> includes 14 direct feeds, including STARZPLAY. Provider scraping now lives in
+> [EPG-Scrapers](https://github.com/wacayoub/EPG-Scrapers).
+>
+> The following older release descriptions are retained as historical context.
+
+Installed optimization, measured import and source-gap verification: [RC80 status and cleanup](docs/RC80_CURRENT_STATUS.md).
+
 Enigma2 / OpenATV EPG Manager with Native Import, Smart Mapping and online updates.
 
-## Install from GitHub
+## Install from GitHub (historical public channel)
 
 Permanent installer URL:
 
@@ -18,7 +32,7 @@ The installer reads the permanent `update.json` manifest, downloads the current 
 
 After installation, restart the Enigma2 GUI.
 
-## Online Update
+## Online Update (historical public channel)
 
 Starting with **2026.10.04-rc76**, open **Plugins > EPG Manager Online Update**.
 
@@ -32,7 +46,7 @@ The permanent update manifest is:
 
 `https://raw.githubusercontent.com/wacayoub/EPGManager/main/update.json`
 
-## Automatic release system
+## Automatic release system (retired; do not dispatch)
 
 The repository contains the current plugin source package under `source/` and a GitHub Actions workflow at `.github/workflows/build-release.yml`.
 
@@ -60,7 +74,7 @@ The Enigma2 plugin checks this permanent manifest URL:
 The active source package is selected by `source/current.txt`.
 
 
-## Direct MENA feeds
+## Direct MENA feeds (historical notes)
 
 EPGManager 6.2.0 consumes the validated daily feeds published by `wacayoub/EPG-Scrapers` instead of scraping provider websites on the receiver. Direct providers include Morocco, beIN MENA, OSN, Shahid/MBC, ElCinema, Rotana, Dubai+, Sport24, STC TV and Al Jazeera. STARZPLAY is temporarily on hold and hidden from the active direct catalogue.
 

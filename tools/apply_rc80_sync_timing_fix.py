@@ -75,6 +75,8 @@ def corrected(source):
     settings = source['ui/settings.py'].decode('utf-8')
     # The stored ConfigClock and every owner-selected value remain unchanged.
     settings = settings.replace('"EPG Import start time"', '"EPG Import start time (GMT+0)"')
+    settings = settings.replace('Daily Casablanca local time for automatic EPG Import All.',
+                                'Daily GMT+0 (UTC) time for automatic EPG Import All.')
     result['ui/settings.py'] = settings
 
     sources = source['ui/native_sources.py'].decode('utf-8')
