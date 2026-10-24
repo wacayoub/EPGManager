@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-24",
+  "installed_version": "2026.10.20-rc80",
+  "schema": 15,
+  "modules": 142,
+  "python": "3.14.7",
+  "receiver_changed": true,
+  "receiver_change_scope": [
+    "owner-authorized native import",
+    "native_import_time 10:00 to 13:15 GMT+0"
+  ],
+  "new_package_installed": false,
+  "restart_executed": false,
+  "source_help_fix_installed": false,
+  "gui_mapping_applied": false,
+  "scheduler_slot_gmt0": "00:35",
+  "observed_receiver_start_gmt0": "00:35:13",
+  "slot_lateness_receiver_clock_seconds": 13,
+  "import": {
+    "ok": true,
+    "processed_events": 394472,
+    "imported_events": 394472,
+    "failed_events": 0,
+    "written_services": 4137,
+    "sources": 68,
+    "mapped_channel_ids": 112661,
+    "mapped_service_refs": 326749,
+    "empty_files": 0,
+    "unmapped_sources": 3,
+    "elapsed": 807.9520494937897,
+    "reboot_requested": false,
+    "engine": "Plugins.Extensions.EPGImport.EPGImport",
+    "timestamp": 1792803349
+  },
+  "cycle": {
+    "ok": true,
+    "stage": "DONE",
+    "elapsed": 1237.18,
+    "timestamp": 1792803350
+  },
+  "retention": [
+    {
+      "selective_flushed_services": 0,
+      "selective_flush_failures": 0,
+      "stale_cleanup": {
+        "skipped": "preserve_existing_epg"
+      }
+    }
+  ],
+  "prepare": [
+    {
+      "time_prefix": "2026-10-24 00:42:21",
+      "seconds": 423.98,
+      "receiver_services": 11013,
+      "mapped_ids": 112661,
+      "refs": 326749,
+      "ready_sources": 68,
+      "stage_ms": {
+        "registry_ms": 5529,
+        "map_load_prune_ms": 1584,
+        "seed_ownership_ms": 138084,
+        "winner_expand_ms": 261136,
+        "source_build_overlay_ms": 418434
+      }
+    }
+  ],
+  "protected_mapping_preference_hashes_unchanged": true,
+  "protected_file_count": 5,
+  "native_schedule": {
+    "final_native_time": [
+      13,
+      15
+    ],
+    "enabled": true,
+    "clear_before_import": false,
+    "changed_native_keys": [
+      "native_import_time"
+    ]
+  },
+  "cache_sample": {
+    "sampled_services": 32,
+    "before_epoch": 1792801900.1908493,
+    "after_epoch": 1792803360.6514804,
+    "initial_events": 3923,
+    "expired": 6,
+    "unexpired": 3917,
+    "identical": 3810,
+    "updated_fully_covered": 101,
+    "partly_covered": 6,
+    "missing_entirely": 0,
+    "scope": "Bounded 32-service sample; provider revisions are distinct from exact retention."
+  },
+  "CI": {
+    "run_id": 40046214331,
+    "commit": "bd6a51701010ceb607e0ed6427ad7fdb3d24e702",
+    "versions": [
+      "3.13",
+      "3.14"
+    ],
+    "tests_each": 302,
+    "probe_tests_each": 4,
+    "failures": 0,
+    "job_ids": [
+      120728428077,
+      120728428194
+    ]
+  },
+  "time_check": {
+    "sources_sha_verified": 14,
+    "sampled_services": 158,
+    "exact_begin_duration_pairs": 3155,
+    "exact_title_begin_duration_pairs": 2947,
+    "morocco_2m_exact_events_per_equivalent_ref": 55,
+    "equivalent_2m_refs": 10,
+    "al_aoula_exact_events": 68,
+    "all_channel_time_validation": false
+  },
+  "verdict": {
+    "observed_scheduler_native_import": "GO",
+    "universal_retention_times_optimized_final_release": "NO GO"
+  },
+  "remaining": [
+    "six partially covered original intervals",
+    "ambiguous time matches outside the observed owner sample",
+    "missing external schedules and editorial defects",
+    "costly ownership/expansion phases",
+    "help fix source only"
+  ]
+}
