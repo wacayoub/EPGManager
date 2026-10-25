@@ -43,6 +43,8 @@ on:
       - "tools/provider_namespace_polish.py"
       - "tools/canonical_publish_finalize.py"
       - "tools/receiver_release_gate.py"
+      - "tools/receiver_contract.py"
+      - "tools/receiver_preflight.py"
       - "tools/namespace_replay_test.py"
       - "tools/natgeo_ad_arabic_enrich.py"
       - "tools/enrich_mena_source_id_master.py"
@@ -148,6 +150,8 @@ jobs:
             tools/provider_namespace_polish.py \
             tools/canonical_publish_finalize.py \
             tools/receiver_release_gate.py \
+            tools/receiver_contract.py \
+            tools/receiver_preflight.py \
             tools/namespace_replay_test.py \
             tools/natgeo_ad_arabic_enrich.py \
             tools/enrich_mena_source_id_master.py
@@ -226,6 +230,18 @@ jobs:
           cp previous/bootstrap/receiver-id-aliases.json previous/receiver-id-aliases.json
           test -s previous/receiver-id-aliases.json
           echo "Bootstrapped exact raw-to-canonical LKG aliases from the retained pre-normalization snapshot."
+
+      - name: Canonical receiver preflight before expensive grab
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/receiver_preflight.py \
+            --lkg previous/mena-arabic.xml.gz \
+            --aliases previous/receiver-id-aliases.json \
+            --output-lkg previous/mena-arabic.canonical.xml.gz \
+            --json output/receiver-preflight.json \
+            --text output/receiver-preflight.txt
 
       - name: Grab primary programme data - 2 days only
         if: steps.gate.outputs.run == 'true'
@@ -356,7 +372,7 @@ jobs:
           python tools/mena_cloud_finalize_pruned.py \
             --candidate output/merged.xml \
             --catalog-manifest output/catalog.json \
-            --previous previous/mena-arabic.xml.gz \
+            --previous previous/mena-arabic.canonical.xml.gz \
             --receiver-aliases previous/receiver-id-aliases.json \
             --merge-report output/merge-report.json \
             --window-hours 48 \
