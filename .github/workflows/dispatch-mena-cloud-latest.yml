@@ -78,7 +78,7 @@ jobs:
           echo "Production refresh dispatched successfully."
 
       - name: Dispatch source checks
-        if: steps.gate.outputs.run == 'true'
+        if: steps.gate.outputs.run == 'true' && steps.gate.outputs.production == 'true'
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
