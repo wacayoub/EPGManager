@@ -24,11 +24,11 @@ import xml.etree.ElementTree as ET
 
 import bein_receiver_id_normalize as bein
 import canonical_receiver_cleanup as cleanup
+from receiver_contract import PREMIUM_IDS, is_unknown_reserved
 
 
 AR_RE = re.compile(r"[\u0600-\u06ff]")
 LATIN_RE = re.compile(r"[A-Za-z]")
-PREMIUM_PREFIXES = ("beIN.", "OSN.")
 PROVIDER_STEMS = {
     "alkass": "provider-alkass",
     "bein": "provider-bein",
@@ -350,10 +350,24 @@ def main() -> int:
         run_transform(script_dir, "provider_namespace_polish.py", base)
 
     combined_path = base / "mena-arabic.xml.gz"
-    combined = canonical_root(read_root(combined_path))
+    source_combined = read_root(combined_path)
+    source_ids = {(c.get("id") or "").strip() for c in source_combined.findall("channel")}
+    quarantined_reserved = {cid for cid in source_ids if is_unknown_reserved(cid)}
+    allowed_ids = source_ids - quarantined_reserved
+    combined = canonical_root(source_combined, allowed_ids)
     combined_ids = {(c.get("id") or "").strip() for c in combined.findall("channel")}
-    premium_ids = {cid for cid in combined_ids if cid.startswith(PREMIUM_PREFIXES)}
+    premium_ids = combined_ids & set(PREMIUM_IDS)
     mena_ids = combined_ids - premium_ids
+    if quarantined_reserved:
+        (base / "receiver-contract-quarantine.json").write_text(
+            json.dumps({
+                "schema": 1,
+                "policy": "unknown IDs in reserved provider namespaces are never receiver-published",
+                "ids": sorted(quarantined_reserved, key=lambda value: (value.casefold(), value)),
+            }, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        print("RECEIVER_CONTRACT quarantine=%d" % len(quarantined_reserved))
     if not premium_ids or not mena_ids:
         raise SystemExit("canonical aggregate split unexpectedly empty")
 
