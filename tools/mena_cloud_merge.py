@@ -64,6 +64,23 @@ REMOTE_SOURCES = [
     ("epgshare-aljazeera1", "epgshare", "https://epgshare01.online/epgshare01/epg_ripper_ALJAZEERA1.xml.gz"),
 ]
 
+
+
+# Validated per-source feeds produced by the dedicated source engine.
+# EPG-Scrapers never owns receiver IDs or final MENA publication; these feeds
+# are candidates only. EPGManager remains the sole canonical/release authority.
+SCRAPER_SOURCE_NAMES = (
+    "bein", "osn", "shahid", "elcinema", "rotana", "dubaiplus",
+    "sport24", "stctv", "aljazeera", "alkass", "starzplay", "tabie",
+    "tunisiatv",
+)
+for _name in SCRAPER_SOURCE_NAMES:
+    REMOTE_SOURCES.append((
+        "scrapers-" + _name,
+        "scrapers",
+        "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/%s.xml.gz" % _name,
+    ))
+
 ALIASES = {
     "abu dhabi sport": "abu dhabi sports",
     "ad sport": "abu dhabi sports",
@@ -303,6 +320,8 @@ def source_base(origin: str, site: str) -> int:
         return 100 if site in OFFICIAL_SITES else 78
     if origin == "openepg":
         return 82
+    if origin == "scrapers":
+        return 90
     if origin == "epgshare":
         return 74
     return 60
