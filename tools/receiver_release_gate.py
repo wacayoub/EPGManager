@@ -31,77 +31,10 @@ AR_RE = re.compile(r"[\u0600-\u06ff]")
 LATIN_RE = re.compile(r"[A-Za-z]")
 MAX_VUPLUS_XML_BYTES = 12 * 1024 * 1024
 
-BEIN_CORE = {
-    "beIN.4K.qa", "beIN.Drama.qa", "beIN.Movies.Action.qa", "beIN.Movies.Drama.qa",
-    "beIN.Movies.Family.qa", "beIN.Movies.Premiere.qa", "beIN.Series.1.qa",
-    "beIN.Series.2.qa", "beIN.Sports.FTA.qa", "beIN.Sports.News.qa", "beIN.Sports.qa",
-} | {"beIN.Sports.%d.qa" % n for n in range(1, 10)} \
-  | {"beIN.Sports.EN%d.qa" % n for n in range(1, 3)} \
-  | {"beIN.Sports.FR%d.qa" % n for n in range(1, 3)}
-BEIN_EVENTS = {"beIN.Sports.MAX%d.qa" % n for n in range(1, 7)} \
-  | {"beIN.Sports.XTRA%d.qa" % n for n in range(1, 10)}
-BEIN_OPTIONAL = BEIN_EVENTS | {"beIN.Gourmet.qa"}
-
-OSN = {
-    "OSN.Comedy.ae", "OSN.Kids.ae", "OSN.Mezze.ae", "OSN.Movies.Action.ae",
-    "OSN.Movies.Hollywood.ae", "OSN.Movies.Premiere.ae", "OSN.Showcase.ae",
-    "OSN.Crime.ae", "OSN.Documentary.ae", "OSN.iQIYI.ae", "OSN.Movies.Comedy.ae",
-    "OSN.Movies.Family.ae", "OSN.Movies.Horror.ae", "OSN.Now.ae", "OSN.One.ae",
-    "OSN.Pop.Up.ae", "OSN.Showcase.Classics.ae", "OSN.Yahala.ae",
-    "OSN.Yahala.Aflam.ae", "OSN.Yahala.Bil.Arabi.ae",
-}
-MBC = {
-    "MBC.Alarabiya.mena", "MBC.Al.Hadath.mena", "MBC.1.mena", "MBC.2.mena",
-    "MBC.3.mena", "MBC.4.mena", "MBC.5.mena", "MBC.Action.mena",
-    "MBC.Bollywood.mena", "MBC.Drama.mena", "MBC.Iraq.mena", "MBC.Masr.mena",
-    "MBC.Masr2.mena", "MBC.Masr.Drama.mena", "MBC.MAX.mena", "MBC.Persia.mena",
-    "MBC.Plus.Drama.mena",
-}
-ROTANA = {
-    "Rotana.Plus.mena", "Rotana.Aflam.Plus.mena", "Rotana.Kids.mena",
-    "Rotana.M.Plus.mena", "Rotana.Music.mena", "Rotana.Cinema.Egypt.mena",
-    "Rotana.Cinema.KSA.mena", "Rotana.Classic.mena", "Rotana.Comedy.mena",
-    "Rotana.Drama.mena", "Rotana.Khalijia.mena",
-}
-ROTANA_OPTIONAL = {"Rotana.Clip.mena"}
-DMI = {
-    "DMI.Dubai.One.ae", "DMI.Dubai.Sports.2.ae", "DMI.Dubai.Sports.ae",
-    "DMI.Dubai.Zaman.ae", "DMI.Dubai.Racing.1.ae", "DMI.Dubai.Racing.2.ae",
-    "DMI.Dubai.TV.ae", "DMI.Noor.Dubai.TV.ae", "DMI.Sama.Dubai.ae",
-}
-# Dubai Racing 1 can be absent when the live feed has no real programmes.
-# The zero-EPG prune deliberately omits it; it reappears on its own when real
-# programmes are present. Never invent placeholder events to satisfy the gate.
-DMI_OPTIONAL_REAL_EPG_ONLY = {"DMI.Dubai.Racing.1.ae"}
-# Stable receiver contract restored intentionally by provider_namespace_polish.py.
-ADM = {
-    "AbuDhabiEmirates.ae", "AbuDhabiSports1.ae", "AbuDhabiSports2.ae",
-    "AbuDhabiTV.ae", "ADSportsExtra.ae", "ADSportsPremium1.ae",
-    "ADSportsPremium2.ae", "Majid.ae", "NationalGeographicAbuDhabi.ae",
-    "YasTV.ae", "YasTVExtra.ae",
-}
-PREMIUM_INTERNATIONAL = {
-    "AnimalPlanetEurope.uk@SD",
-    "DiscoveryChannelMiddleEastAfrica.us@SD",
-    "InvestigationDiscovery.uk@SD",
-    "HistoryMiddleEast.us@SD",
-    "History2MiddleEast.us@SD",
-    "TLCArabia.us@SD",
-    "CartoonNetworkMENA.uk@SD",
-    "NickelodeonArabia.ae@SD",
-    "NickJrArabia.ae@SD",
-    "NicktoonsArabia.ae@SD",
-    "CartoonNetworkArabic.ae@SD",
-}
-PROVIDERS = {
-    "provider-bein": (("beIN.",), BEIN_CORE, BEIN_OPTIONAL),
-    "provider-osn": (("OSN.",), OSN, set()),
-    "provider-mbc": (("MBC.",), MBC, set()),
-    "provider-rotana": (("Rotana.",), ROTANA, ROTANA_OPTIONAL),
-    "provider-dmi": (("DMI.",), DMI - DMI_OPTIONAL_REAL_EPG_ONLY, DMI_OPTIONAL_REAL_EPG_ONLY),
-    # Exact membership is the ADM namespace contract; no synthetic ADM.* prefix.
-    "provider-adm": (None, ADM, set()),
-}
+from receiver_contract import (
+    BEIN_CORE, BEIN_OPTIONAL, OSN, MBC, ROTANA, ROTANA_OPTIONAL,
+    DMI, DMI_OPTIONAL_REAL_EPG_ONLY, ADM, PREMIUM_INTERNATIONAL, PROVIDERS,
+)
 
 
 def read_file(path: Path):
