@@ -1,0 +1,175 @@
+
+    <screen name="EPGManagerMainScreen" position="0,0" size="1920,1080" title="EPG Manager" backgroundColor="#000B1119" flags="wfNoBorder">
+      <widget name="top" position="0,0" size="1920,92" backgroundColor="#000F1925" />
+      <widget name="brand" position="42,17" size="315,36" font="Regular;30" foregroundColor="#FFFFFF" backgroundColor="#000F1925" transparent="1" />
+      <widget name="brand_sub" position="44,56" size="315,22" font="Regular;14" foregroundColor="#C1D2DC" backgroundColor="#000F1925" transparent="1" />
+
+      <widget name="nav_overview" position="388,16" size="176,53" font="Regular;18" halign="center" valign="center" foregroundColor="#FFFFFF" backgroundColor="#00265570" transparent="0" />
+      <widget name="nav_sources" position="574,16" size="156,53" font="Regular;18" halign="center" valign="center" foregroundColor="#C1D2DC" backgroundColor="#000F1925" transparent="0" />
+      <widget name="nav_mapping" position="740,16" size="205,53" font="Regular;18" halign="center" valign="center" foregroundColor="#C1D2DC" backgroundColor="#000F1925" transparent="0" />
+      <widget name="nav_duplicates" position="955,16" size="178,53" font="Regular;18" halign="center" valign="center" foregroundColor="#C1D2DC" backgroundColor="#000F1925" transparent="0" />
+      <widget name="nav_zero" position="1143,16" size="162,53" font="Regular;18" halign="center" valign="center" foregroundColor="#C1D2DC" backgroundColor="#000F1925" transparent="0" />
+      <widget name="nav_logs" position="1315,16" size="120,53" font="Regular;18" halign="center" valign="center" foregroundColor="#C1D2DC" backgroundColor="#000F1925" transparent="0" />
+      <widget name="settings_btn" position="1460,16" size="174,53" font="Regular;17" halign="center" valign="center" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="0" />
+      <widget name="online" position="1650,16" size="226,53" font="Regular;16" halign="center" valign="center" foregroundColor="#56DBAE" backgroundColor="#0016212F" transparent="0" />
+      <widget name="header_rule" position="0,90" size="1920,2" backgroundColor="#294352" />
+
+      <widget name="headline" position="42,112" size="760,37" font="Regular;29" foregroundColor="#FFFFFF" backgroundColor="#000B1119" transparent="1" />
+      <widget name="headline_sub" position="44,151" size="990,23" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#000B1119" transparent="1" />
+      <widget name="target" position="1550,113" size="326,46" font="Regular;17" halign="center" valign="center" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="0" />
+
+      
+      <widget name="kpi1_bg" position="40,184" size="252,126" backgroundColor="#0016212F" />
+      <widget name="kpi1_rail" position="40,184" size="252,4" backgroundColor="#56DBAE" />
+      <widget name="kpi1_title" position="58,202" size="216,20" font="Regular;17" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi1_value" position="58,229" size="216,39" font="Regular;32" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi1_note" position="58,276" size="216,21" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="kpi2_bg" position="304,184" size="252,126" backgroundColor="#0016212F" />
+      <widget name="kpi2_rail" position="304,184" size="252,4" backgroundColor="#45D9E7" />
+      <widget name="kpi2_title" position="322,202" size="216,20" font="Regular;17" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi2_value" position="322,229" size="216,39" font="Regular;32" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi2_note" position="322,276" size="216,21" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="kpi3_bg" position="568,184" size="252,126" backgroundColor="#0016212F" />
+      <widget name="kpi3_rail" position="568,184" size="252,4" backgroundColor="#20C4D8" />
+      <widget name="kpi3_title" position="586,202" size="216,20" font="Regular;17" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi3_value" position="586,229" size="216,39" font="Regular;32" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi3_note" position="586,276" size="216,21" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="kpi4_bg" position="832,184" size="252,126" backgroundColor="#0016212F" />
+      <widget name="kpi4_rail" position="832,184" size="252,4" backgroundColor="#8A63FF" />
+      <widget name="kpi4_title" position="850,202" size="216,20" font="Regular;17" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi4_value" position="850,229" size="216,39" font="Regular;32" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi4_note" position="850,276" size="216,21" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="kpi5_bg" position="1096,184" size="252,126" backgroundColor="#0016212F" />
+      <widget name="kpi5_rail" position="1096,184" size="252,4" backgroundColor="#F5C75B" />
+      <widget name="kpi5_title" position="1114,202" size="216,20" font="Regular;17" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi5_value" position="1114,229" size="216,39" font="Regular;32" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi5_note" position="1114,276" size="216,21" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="kpi6_bg" position="1360,184" size="252,126" backgroundColor="#0016212F" />
+      <widget name="kpi6_rail" position="1360,184" size="252,4" backgroundColor="#FFB66D" />
+      <widget name="kpi6_title" position="1378,202" size="216,20" font="Regular;17" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi6_value" position="1378,229" size="216,39" font="Regular;32" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi6_note" position="1378,276" size="216,21" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="kpi7_bg" position="1624,184" size="252,126" backgroundColor="#0016212F" />
+      <widget name="kpi7_rail" position="1624,184" size="252,4" backgroundColor="#FF8290" />
+      <widget name="kpi7_title" position="1642,202" size="216,20" font="Regular;17" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi7_value" position="1642,229" size="216,39" font="Regular;32" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="kpi7_note" position="1642,276" size="216,21" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+    
+
+      <widget name="sources_heading" position="42,333" size="700,34" font="Regular;27" foregroundColor="#FFFFFF" backgroundColor="#000B1119" transparent="1" />
+      <widget name="sources_sub" position="44,365" size="950,21" font="Regular;15" foregroundColor="#C1D2DC" backgroundColor="#000B1119" transparent="1" />
+      <widget name="catalog_meta" position="1140,338" size="735,28" font="Regular;16" halign="right" foregroundColor="#A4BAC8" backgroundColor="#000B1119" transparent="1" />
+
+      
+      <widget name="card1_bg" position="40,390" size="440,245" backgroundColor="#0016212F" />
+      <widget name="card1_rail" position="40,390" size="440,5" backgroundColor="#56DBAE" />
+      <widget name="card1_title" position="60,409" size="255,30" font="Regular;23" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card1_status" position="334,407" size="126,31" font="Regular;15" halign="center" valign="center" foregroundColor="#56DBAE" backgroundColor="#001E3341" transparent="0" />
+      <widget name="card1_subtitle" position="60,444" size="385,24" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card1_sep" position="60,474" size="385,1" backgroundColor="#294352" />
+      <widget name="card1_left" position="60,491" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card1_right" position="260,491" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card1_progress" position="60,587" size="385,10" borderWidth="1" borderColor="#294352" backgroundColor="#00253240" foregroundColor="#56DBAE" />
+      <widget name="card1_footer" position="60,605" size="385,22" font="Regular;14" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="card2_bg" position="500,390" size="440,245" backgroundColor="#0016212F" />
+      <widget name="card2_rail" position="500,390" size="440,5" backgroundColor="#45D9E7" />
+      <widget name="card2_title" position="520,409" size="255,30" font="Regular;23" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card2_status" position="794,407" size="126,31" font="Regular;15" halign="center" valign="center" foregroundColor="#56DBAE" backgroundColor="#001E3341" transparent="0" />
+      <widget name="card2_subtitle" position="520,444" size="385,24" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card2_sep" position="520,474" size="385,1" backgroundColor="#294352" />
+      <widget name="card2_left" position="520,491" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card2_right" position="720,491" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card2_progress" position="520,587" size="385,10" borderWidth="1" borderColor="#294352" backgroundColor="#00253240" foregroundColor="#56DBAE" />
+      <widget name="card2_footer" position="520,605" size="385,22" font="Regular;14" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="card3_bg" position="960,390" size="440,245" backgroundColor="#0016212F" />
+      <widget name="card3_rail" position="960,390" size="440,5" backgroundColor="#20C4D8" />
+      <widget name="card3_title" position="980,409" size="255,30" font="Regular;23" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card3_status" position="1254,407" size="126,31" font="Regular;15" halign="center" valign="center" foregroundColor="#56DBAE" backgroundColor="#001E3341" transparent="0" />
+      <widget name="card3_subtitle" position="980,444" size="385,24" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card3_sep" position="980,474" size="385,1" backgroundColor="#294352" />
+      <widget name="card3_left" position="980,491" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card3_right" position="1180,491" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card3_progress" position="980,587" size="385,10" borderWidth="1" borderColor="#294352" backgroundColor="#00253240" foregroundColor="#56DBAE" />
+      <widget name="card3_footer" position="980,605" size="385,22" font="Regular;14" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="card4_bg" position="1420,390" size="440,245" backgroundColor="#0016212F" />
+      <widget name="card4_rail" position="1420,390" size="440,5" backgroundColor="#8A63FF" />
+      <widget name="card4_title" position="1440,409" size="255,30" font="Regular;23" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card4_status" position="1714,407" size="126,31" font="Regular;15" halign="center" valign="center" foregroundColor="#56DBAE" backgroundColor="#001E3341" transparent="0" />
+      <widget name="card4_subtitle" position="1440,444" size="385,24" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card4_sep" position="1440,474" size="385,1" backgroundColor="#294352" />
+      <widget name="card4_left" position="1440,491" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card4_right" position="1640,491" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card4_progress" position="1440,587" size="385,10" borderWidth="1" borderColor="#294352" backgroundColor="#00253240" foregroundColor="#56DBAE" />
+      <widget name="card4_footer" position="1440,605" size="385,22" font="Regular;14" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="card5_bg" position="40,650" size="440,245" backgroundColor="#0016212F" />
+      <widget name="card5_rail" position="40,650" size="440,5" backgroundColor="#F5C75B" />
+      <widget name="card5_title" position="60,669" size="255,30" font="Regular;23" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card5_status" position="334,667" size="126,31" font="Regular;15" halign="center" valign="center" foregroundColor="#56DBAE" backgroundColor="#001E3341" transparent="0" />
+      <widget name="card5_subtitle" position="60,704" size="385,24" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card5_sep" position="60,734" size="385,1" backgroundColor="#294352" />
+      <widget name="card5_left" position="60,751" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card5_right" position="260,751" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card5_progress" position="60,847" size="385,10" borderWidth="1" borderColor="#294352" backgroundColor="#00253240" foregroundColor="#56DBAE" />
+      <widget name="card5_footer" position="60,865" size="385,22" font="Regular;14" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="card6_bg" position="500,650" size="440,245" backgroundColor="#0016212F" />
+      <widget name="card6_rail" position="500,650" size="440,5" backgroundColor="#FFB66D" />
+      <widget name="card6_title" position="520,669" size="255,30" font="Regular;23" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card6_status" position="794,667" size="126,31" font="Regular;15" halign="center" valign="center" foregroundColor="#56DBAE" backgroundColor="#001E3341" transparent="0" />
+      <widget name="card6_subtitle" position="520,704" size="385,24" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card6_sep" position="520,734" size="385,1" backgroundColor="#294352" />
+      <widget name="card6_left" position="520,751" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card6_right" position="720,751" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card6_progress" position="520,847" size="385,10" borderWidth="1" borderColor="#294352" backgroundColor="#00253240" foregroundColor="#56DBAE" />
+      <widget name="card6_footer" position="520,865" size="385,22" font="Regular;14" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="card7_bg" position="960,650" size="440,245" backgroundColor="#0016212F" />
+      <widget name="card7_rail" position="960,650" size="440,5" backgroundColor="#FF8290" />
+      <widget name="card7_title" position="980,669" size="255,30" font="Regular;23" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card7_status" position="1254,667" size="126,31" font="Regular;15" halign="center" valign="center" foregroundColor="#56DBAE" backgroundColor="#001E3341" transparent="0" />
+      <widget name="card7_subtitle" position="980,704" size="385,24" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card7_sep" position="980,734" size="385,1" backgroundColor="#294352" />
+      <widget name="card7_left" position="980,751" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card7_right" position="1180,751" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card7_progress" position="980,847" size="385,10" borderWidth="1" borderColor="#294352" backgroundColor="#00253240" foregroundColor="#56DBAE" />
+      <widget name="card7_footer" position="980,865" size="385,22" font="Regular;14" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+    
+      <widget name="card8_bg" position="1420,650" size="440,245" backgroundColor="#0016212F" />
+      <widget name="card8_rail" position="1420,650" size="440,5" backgroundColor="#56DBAE" />
+      <widget name="card8_title" position="1440,669" size="255,30" font="Regular;23" foregroundColor="#FFFFFF" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card8_status" position="1714,667" size="126,31" font="Regular;15" halign="center" valign="center" foregroundColor="#56DBAE" backgroundColor="#001E3341" transparent="0" />
+      <widget name="card8_subtitle" position="1440,704" size="385,24" font="Regular;16" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card8_sep" position="1440,734" size="385,1" backgroundColor="#294352" />
+      <widget name="card8_left" position="1440,751" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card8_right" position="1640,751" size="185,83" font="Regular;16" foregroundColor="#EDF6FA" backgroundColor="#0016212F" transparent="1" />
+      <widget name="card8_progress" position="1440,847" size="385,10" borderWidth="1" borderColor="#294352" backgroundColor="#00253240" foregroundColor="#56DBAE" />
+      <widget name="card8_footer" position="1440,865" size="385,22" font="Regular;14" foregroundColor="#A4BAC8" backgroundColor="#0016212F" transparent="1" />
+    
+
+      <widget name="runtime_bar" position="40,919" size="1840,64" backgroundColor="#0016212F" />
+      <widget name="runtime_state" position="64,932" size="520,29" font="Regular;20" foregroundColor="#56DBAE" backgroundColor="#0016212F" transparent="1" />
+      <widget name="runtime_detail" position="600,934" size="1248,26" font="Regular;16" halign="right" foregroundColor="#C1D2DC" backgroundColor="#0016212F" transparent="1" />
+      <widget name="runtime_progress" position="64,968" size="1784,6" borderWidth="0" backgroundColor="#00253240" foregroundColor="#45D9E7" />
+
+      <widget name="footer" position="0,1000" size="1920,80" backgroundColor="#000D1722" />
+      <widget name="footer_rule" position="30,1000" size="1860,1" backgroundColor="#294352" />
+      <widget name="key_red_bar" position="34,1015" size="7,48" backgroundColor="#D94B5A" />
+        <widget name="key_red" position="56,1015" size="278,48" font="Regular;21" foregroundColor="#EDF6FA" backgroundColor="#000D1722" transparent="0" valign="center" />
+<widget name="key_green_bar" position="355,1015" size="7,48" backgroundColor="#18A77B" />
+        <widget name="key_green" position="377,1015" size="388,48" font="Regular;21" foregroundColor="#EDF6FA" backgroundColor="#000D1722" transparent="0" valign="center" />
+<widget name="key_yellow_bar" position="790,1015" size="7,48" backgroundColor="#C7A12E" />
+        <widget name="key_yellow" position="812,1015" size="388,48" font="Regular;21" foregroundColor="#EDF6FA" backgroundColor="#000D1722" transparent="0" valign="center" />
+<widget name="key_blue_bar" position="1225,1015" size="7,48" backgroundColor="#14879A" />
+        <widget name="key_blue" position="1247,1015" size="638,48" font="Regular;21" foregroundColor="#EDF6FA" backgroundColor="#000D1722" transparent="0" valign="center" />
+
+    </screen>
