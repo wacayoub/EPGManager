@@ -3,7 +3,7 @@ on:
   push:
     branches: [codex/rc80-final-qualification-20261018, codex/rc80-interface-readability, codex/rc80-mapping-filters, codex/rc80-mapping-workflow, codex/rc80-rytec-native-import]
   pull_request:
-    branches: [feature/rc80-hardware-qualification-readonly-20261016, codex/rc80-final-qualification-20261018, codex/rc80-interface-readability, codex/rc80-mapping-filters, codex/rc80-rytec-native-import]
+    branches: [feature/rc80-hardware-qualification-readonly-20261016, codex/rc80-final-qualification-20261018, codex/rc80-interface-readability, codex/rc80-mapping-filters, codex/rc80-rytec-native-import, codex/rc80-utc-live-validation-20261024]
   workflow_dispatch:
 permissions:
   contents: read
