@@ -1,0 +1,37 @@
+name: List Sport24 programmes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/list-sport24-programmes.yml"
+  workflow_dispatch:
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print Sport24 channel counts and titles
+        run: |
+          python - <<'PY'
+          import gzip, json, xml.etree.ElementTree as ET
+          root=ET.fromstring(gzip.decompress(open("feeds/sport24.xml.gz","rb").read()))
+          names={}
+          for c in root.findall("channel"):
+              cid=c.get("id")
+              name=next(((x.text or "").strip() for x in c.findall("display-name") if (x.text or "").strip()),cid)
+              names[cid]=name
+          out=[]
+          for cid,name in names.items():
+              titles=[]
+              count=0
+              for p in root.findall("programme"):
+                  if p.get("channel")!=cid: continue
+                  count+=1
+                  title=next(((x.text or "").strip() for x in p.findall("title") if (x.text or "").strip()),"")
+                  if title and title not in titles:
+                      titles.append(title)
+              out.append({"id":cid,"name":name,"count":count,"sample_titles":titles[:8]})
+          print("SPORT24_SUMMARY",json.dumps(out,ensure_ascii=False))
+          PY

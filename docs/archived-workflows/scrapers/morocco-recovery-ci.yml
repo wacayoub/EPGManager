@@ -1,0 +1,37 @@
+name: Morocco HTTP and scheduling recovery checks
+on:
+  pull_request:
+    paths:
+      - 'tools/morocco_epg.py'
+      - 'tools/morocco_run_timing.py'
+      - 'tools/test_morocco_recovery.py'
+      - '.github/workflows/refresh-source-core.yml'
+      - '.github/workflows/refresh-morocco.yml'
+      - '.github/workflows/morocco-recovery-ci.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/morocco_epg.py'
+      - 'tools/morocco_run_timing.py'
+      - 'tools/test_morocco_recovery.py'
+      - '.github/workflows/refresh-source-core.yml'
+      - '.github/workflows/morocco-recovery-ci.yml'
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -r requirements.txt pyyaml tzdata
+      - run: python -m unittest tools.test_morocco_recovery -v
+      - run: python -m unittest tools.test_morocco_2m_translation -v
+      - run: python -m unittest discover -s tools -p test_report_cohort_gate.py -v

@@ -1,0 +1,72 @@
+name: Build Others EPG
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/build-others-epg.yml"
+      - "tools/build_others_feed.py"
+      - "reports/new-arab-epg-ids.csv"
+      - "reports/rotana-art-programmes.json"
+      - "analysis/arab-fallback/openepg.xml.gz"
+      - "analysis/arab-fallback/epgshare.xml.gz"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: others-epg-publish
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build unified Others feed
+        run: python tools/build_others_feed.py
+
+      - name: Validate Others XMLTV
+        shell: bash
+        run: |
+          python - <<'PY'
+          import gzip,xml.etree.ElementTree as ET,json
+          from pathlib import Path
+          p=Path("feeds/others.xml.gz")
+          root=ET.fromstring(gzip.decompress(p.read_bytes()))
+          ch=root.findall("channel");pr=root.findall("programme")
+          assert ch and pr
+          ids=[x.get("id") for x in ch]
+          assert len(ids)==len(set(ids)),"duplicate channel IDs"
+          print("Others:",len(ch),"channels",len(pr),"programmes")
+          print(Path("feeds/others.json").read_text())
+          PY
+
+      - name: Publish Others feed
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/others
+          cp feeds/others.xml.gz feeds/others.json feeds/others.txt /tmp/others/
+          git config user.name "EPG Scraper Bot"
+          git config user.email "actions@users.noreply.github.com"
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p feeds
+            cp -f /tmp/others/* feeds/
+            git add feeds/others.xml.gz feeds/others.json feeds/others.txt
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "Update unified Others EPG"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1

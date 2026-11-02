@@ -1,0 +1,32 @@
+name: Targeted XMLTV empty-title cleanup safety tests
+on:
+  push:
+    branches: ["fix/published-empty-titles-20261014"]
+    paths:
+      - "tools/prune_published_blank_titles.py"
+      - "tools/test_prune_published_blank_titles.py"
+      - ".github/workflows/title-repair-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Validate code
+        run: python -m py_compile tools/prune_published_blank_titles.py tools/test_prune_published_blank_titles.py
+      - name: Regression tests
+        run: python -m unittest tools.test_prune_published_blank_titles -v
+      - name: Check actual current Shahid and ElCinema public payloads WITHOUT writes
+        run: |
+          python tools/prune_published_blank_titles.py --source shahid
+          python tools/prune_published_blank_titles.py --source elcinema

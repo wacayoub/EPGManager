@@ -1,0 +1,52 @@
+name: Maintain verified ElCinema daily donor gaps
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-source-publish
+  cancel-in-progress: false
+
+jobs:
+  extend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Run fail-closed unit checks
+        run: |
+          python -m py_compile tools/elcinema_daily_donors.py tools/elcinema_exact_id_gap_shadow.py
+          python -m unittest tools.test_elcinema_daily_donors -v
+      - name: Apply only verified same-day donor programmes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/elcinema_daily_donors.py --apply > /tmp/elcinema-daily-donor-report.json
+          cat /tmp/elcinema-daily-donor-report.json
+      - name: Publish ElCinema feed and reports only when changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "EPG Daily Donor Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add feeds/elcinema.xml.gz feeds/elcinema.json \
+            reports/elcinema-quality.json reports/elcinema-48h-audit.json \
+            reports/elcinema-daily-donor.json
+          if git diff --cached --quiet; then
+            echo "No genuine non-overlapping same-day donor events; leave original feed unchanged"
+            exit 0
+          fi
+          # Fail closed if main changed since checkout. Never rebase a previously
+          # verified candidate onto different source hashes.
+          git commit -m "EPG ElCinema: preserve exact-ID real donor coverage after today's scrape"
+          git push origin HEAD:main

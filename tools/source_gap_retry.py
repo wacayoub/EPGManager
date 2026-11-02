@@ -25,9 +25,17 @@ def copy(node: ET.Element) -> ET.Element:
     return ET.fromstring(ET.tostring(node, encoding="utf-8"))
 
 
-def build(catalogue: str, raw: str, output: str) -> int:
+def build(catalogue: str, raw: str, output: str, fallback_catalogue: str | None = None) -> int:
     cat = read(catalogue)
     src = read(raw)
+    fallback = read(fallback_catalogue) if fallback_catalogue else None
+    fallback_by_id = {}
+    if fallback is not None:
+        fallback_by_id = {
+            cid_from_catalogue(ch): ch
+            for ch in fallback.findall("channel")
+            if cid_from_catalogue(ch)
+        }
     program_ids = {
         (p.get("channel") or "").strip()
         for p in src.findall("programme")
@@ -37,7 +45,7 @@ def build(catalogue: str, raw: str, output: str) -> int:
     for ch in cat.findall("channel"):
         cid = cid_from_catalogue(ch)
         if cid and cid not in program_ids:
-            out.append(copy(ch))
+            out.append(copy(fallback_by_id.get(cid, ch)))
     ET.indent(out, space="  ")
     Path(output).write_bytes(ET.tostring(out, encoding="utf-8", xml_declaration=True))
     print(f"SOURCE_GAP_BUILD total={len(cat.findall('channel'))} gaps={len(out)} output={output}")
@@ -95,6 +103,7 @@ def main() -> int:
     b.add_argument("--catalogue", required=True)
     b.add_argument("--raw", required=True)
     b.add_argument("--output", required=True)
+    b.add_argument("--fallback-catalogue")
 
     m = sub.add_parser("merge")
     m.add_argument("--primary", required=True)
@@ -103,7 +112,7 @@ def main() -> int:
 
     args = ap.parse_args()
     if args.cmd == "build":
-        return build(args.catalogue, args.raw, args.output)
+        return build(args.catalogue, args.raw, args.output, args.fallback_catalogue)
     return merge(args.primary, args.retry, args.output)
 
 

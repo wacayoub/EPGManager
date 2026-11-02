@@ -1,0 +1,66 @@
+name: Verify published EPG source
+
+on:
+  workflow_call:
+    inputs:
+      source:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Verify fresh published programmes
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          source = "${{ inputs.source }}"
+          report = Path(f"reports/{source}-publish-lkg.json")
+          if not report.is_file():
+              raise SystemExit(f"Missing publish report: {report}")
+
+          data = json.loads(report.read_text(encoding="utf-8"))
+          row = (data.get("sources") or {}).get(source) or {}
+          generated = data.get("generated_utc")
+          published = row.get("published") is True
+          stats = row.get("candidate_stats") or {}
+          programmes = int(stats.get("programmes") or 0)
+
+          if not generated:
+              raise SystemExit(f"{source}: report has no generated_utc")
+
+          tz = ZoneInfo("Africa/Casablanca")
+          generated_day = datetime.fromisoformat(
+              str(generated).replace("Z", "+00:00")
+          ).astimezone(tz).date()
+          today = datetime.now(tz).date()
+
+          if generated_day != today:
+              raise SystemExit(
+                  f"{source}: stale refresh report ({generated_day}), expected {today}"
+              )
+          if not published:
+              raise SystemExit(f"{source}: candidate was not published")
+          if programmes <= 0:
+              raise SystemExit(f"{source}: no programmes downloaded")
+
+          print(
+              f"VERIFIED source={source} published=true "
+              f"programmes={programmes} generated_day={generated_day}"
+          )
+          PY

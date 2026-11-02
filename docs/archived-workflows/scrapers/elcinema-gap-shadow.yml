@@ -1,0 +1,70 @@
+name: ElCinema exact-ID real EPG gap shadow (non-deploying)
+on:
+  push:
+    branches: ["fix/elcinema-exact-id-gap-shadow-20261014"]
+    paths:
+      - "tools/elcinema_exact_id_gap_shadow.py"
+      - "tools/test_elcinema_exact_id_gap_shadow.py"
+      - ".github/workflows/elcinema-gap-shadow.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  shadow-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Compile no-deploy code
+        run: python -m py_compile tools/elcinema_exact_id_gap_shadow.py tools/test_elcinema_exact_id_gap_shadow.py
+      - name: Verify strict timestamp, hash and no-overlap regression
+        run: python -m unittest tools.test_elcinema_exact_id_gap_shadow -v
+      - name: Compare truly published ElCinema against exact-ID Shahid and DubaiPlus
+        run: |
+          python tools/elcinema_exact_id_gap_shadow.py --shadow > output-summary.json
+          cp output/shadow/elcinema-verified-gap-shadow.xml.gz output/shadow/elcinema.xml.gz
+          set +e
+          python tools/validate_48h.py feeds/elcinema.xml.gz output/shadow/elcinema.xml.gz --report output/shadow/comparison-48h.json > output/shadow/validation.log
+          code=$?
+          set -e
+          if [ "$code" -ne 0 ] && [ "$code" -ne 2 ]; then exit "$code"; fi
+          python - <<'PY'
+          import json
+          a=json.load(open('output/shadow/comparison-48h.json'))
+          old,new=a['feeds']
+          before={r['id']:r for r in old['rows']}
+          after={r['id']:r for r in new['rows']}
+          report=json.load(open('output/shadow/elcinema-verified-gap-report.json'))
+          assert before.keys()==after.keys() and len(before)==97
+          assert report['original_programmes_kept']==3988
+          assert report['synthetic_programmes']==0
+          assert report['xmltv_id_rewrites']==0
+          assert report['production_feeds_modified'] is False
+          for channel in before:
+              assert after[channel]['future_hours'] >= before[channel]['future_hours'] - .01, channel
+          print('REAL_SHADOW_COMPARE original_failed=',old['failed_channels'],'shadow_failed=',new['failed_channels'])
+          print('REAL_SHADOW_APPEND channels_extended=',report['channels_extended_count'],'real_donor_rows=',report['donor_rows_appended'])
+          for name,data in report['by_id'].items():
+              if data['added_real_programmes']:
+                  print(name,': added=',data['added_real_programmes'],'orig_horizon=',before[name]['future_hours'],'new_horizon=',after[name]['future_hours'])
+          if report['donor_rows_appended']==0:
+              print('NO IMPROVEMENT: no donor programmes for today; NEVER publish shadow')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: elcinema-gap-shadow-python-${{ matrix.python }}
+          path: |
+            output-summary.json
+            output/shadow/elcinema-verified-gap-report.json
+            output/shadow/comparison-48h.json
+            output/shadow/validation.log
+          if-no-files-found: warn
+          retention-days: 3

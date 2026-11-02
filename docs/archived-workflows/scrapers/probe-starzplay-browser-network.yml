@@ -1,0 +1,172 @@
+name: Probe STARZPLAY browser EPG network
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-starzplay-browser-network.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-starzplay-browser-network
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install WARP
+        shell: bash
+        run: |
+          set -e
+          curl -fsSL https://pkg.cloudflareclient.com/pubkey.gpg | sudo gpg --yes --dearmor -o /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/cloudflare-client.list
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq cloudflare-warp
+          sudo systemctl enable --now warp-svc
+          sudo warp-cli --accept-tos registration new || true
+          sudo warp-cli --accept-tos mode warp+doh
+          sudo warp-cli --accept-tos tunnel protocol set MASQUE
+          sudo warp-cli --accept-tos connect
+          for i in 1 2 3 4 5 6 7 8 9 10; do
+            sudo warp-cli --accept-tos status | grep -qi Connected && exit 0
+            sleep 3
+          done
+          exit 12
+
+      - name: Install browser probe
+        shell: bash
+        run: |
+          python -m pip install --disable-pip-version-check --no-cache-dir playwright
+          python -m playwright install chromium --with-deps
+
+      - name: Capture public Live metadata calls
+        shell: bash
+        run: |
+          python - <<'PY'
+          import asyncio, json, re
+          from pathlib import Path
+          from urllib.parse import urlsplit, parse_qsl, urlencode, urlunsplit
+          from datetime import datetime, timezone
+          from playwright.async_api import async_playwright
+
+          SENSITIVE=re.compile(r"(token|auth|bearer|key|secret|signature|sig|session|license|drm|widevine|password)",re.I)
+          HINT=re.compile(r"(epg|schedule|guide|channel|live|program|programme|listing|api)",re.I)
+          rows=[]
+          payloads=[]
+
+          def clean_url(url):
+            try:
+              p=urlsplit(url)
+              q=[]
+              for k,v in parse_qsl(p.query,keep_blank_values=True):
+                q.append((k,"[REDACTED]" if SENSITIVE.search(k) else v[:300]))
+              return urlunsplit((p.scheme,p.netloc,p.path,urlencode(q,doseq=True),""))
+            except Exception:
+              return url[:2000]
+
+          async def main():
+            async with async_playwright() as pw:
+              browser=await pw.chromium.launch(headless=True,args=["--no-sandbox"])
+              context=await browser.new_context(
+                locale="ar-MA",
+                user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36",
+                viewport={"width":1280,"height":900},
+              )
+              page=await context.new_page()
+
+              async def on_response(resp):
+                u=resp.url
+                if not HINT.search(u):
+                  return
+                ct=resp.headers.get("content-type","")
+                row={
+                  "url":clean_url(u),
+                  "status":resp.status,
+                  "content_type":ct,
+                  "resource_type":resp.request.resource_type,
+                }
+                rows.append(row)
+                if resp.status==200 and ("json" in ct.lower() or HINT.search(urlsplit(u).path)):
+                  try:
+                    body=await resp.body()
+                    if 0 < len(body) <= 5_000_000:
+                      txt=body.decode("utf-8","replace")
+                      try:
+                        obj=json.loads(txt)
+                        payloads.append({"url":clean_url(u),"json":obj})
+                        row["json_type"]=type(obj).__name__
+                        row["bytes"]=len(body)
+                      except Exception:
+                        row["bytes"]=len(body)
+                        row["sample"]=txt[:500]
+                  except Exception as e:
+                    row["body_error"]=str(e)[:200]
+
+              page.on("response", on_response)
+              target="https://www.starzplay.com/ar/live?selectcountry=MA&selectcity=Casablanca"
+              nav={}
+              try:
+                r=await page.goto(target,wait_until="domcontentloaded",timeout=60000)
+                nav={"status":r.status if r else None,"url":page.url}
+                await page.wait_for_timeout(18000)
+              except Exception as e:
+                nav={"error":str(e)[:500],"url":page.url}
+              await browser.close()
+
+              # Deduplicate while preserving order.
+              uniq=[]; seen=set()
+              for row in rows:
+                key=(row.get("url"),row.get("status"),row.get("resource_type"))
+                if key not in seen:
+                  seen.add(key); uniq.append(row)
+              Path("reports").mkdir(exist_ok=True)
+              Path("reports/starzplay-browser-network.json").write_text(
+                json.dumps({
+                  "generated_utc":datetime.now(timezone.utc).isoformat(),
+                  "navigation":nav,
+                  "requests":uniq,
+                  "policy":"public page only; sensitive query values redacted; no login/DRM/auth bypass"
+                },ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+              Path("reports/starzplay-browser-public-payloads.json").write_text(
+                json.dumps(payloads,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+              print(json.dumps({"navigation":nav,"interesting_requests":len(uniq),"json_payloads":len(payloads)},ensure_ascii=False))
+
+          asyncio.run(main())
+          PY
+
+      - name: Disconnect WARP
+        if: always()
+        shell: bash
+        run: |
+          sudo warp-cli --accept-tos disconnect || true
+          sudo warp-cli --accept-tos registration delete || true
+
+      - name: Publish diagnostic
+        if: always()
+        shell: bash
+        run: |
+          set -e
+          git config user.name "epg-diagnostic-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/starzplay-browser-network.json reports/starzplay-browser-public-payloads.json 2>/dev/null || true
+          git commit -m "diagnostic: capture STARZPLAY public browser EPG calls" || exit 0
+          for n in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          exit 1

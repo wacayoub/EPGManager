@@ -1,0 +1,77 @@
+name: Dubai+ genuine metadata and exact OSN DubaiTV real-gap quality checks
+on:
+  push:
+    branches: [fix/dubaiplus-exact-osn-dubaitv-gap-20261018]
+    paths:
+      - 'tools/dubaiplus_api_source.py'
+      - 'tools/dubaiplus_verified_osn_gap.py'
+      - 'tools/test_dubaiplus_native_metadata.py'
+      - 'tools/test_dubaiplus_verified_osn_gap.py'
+      - 'tools/refresh_one_source.sh'
+      - '.github/workflows/refresh-source-core.yml'
+      - '.github/workflows/dubaiplus-osn-gap-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/dubaiplus_api_source.py'
+      - 'tools/dubaiplus_verified_osn_gap.py'
+      - 'tools/test_dubaiplus_native_metadata.py'
+      - 'tools/test_dubaiplus_verified_osn_gap.py'
+      - 'tools/refresh_one_source.sh'
+      - '.github/workflows/refresh-source-core.yml'
+      - '.github/workflows/dubaiplus-osn-gap-ci.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install runtime Python dependencies for source-only tests
+        run: python -m pip install --disable-pip-version-check requests
+      - name: Native AR metadata and strict exact-ID donor tests, without public publish
+        run: |
+          python -m compileall -q tools/dubaiplus_api_source.py tools/dubaiplus_verified_osn_gap.py
+          python -m unittest tools.test_dubaiplus_native_metadata tools.test_dubaiplus_verified_osn_gap -v
+          bash -n tools/refresh_one_source.sh
+      - name: Read-only real feed integrity and native Dubai+ continuity provenance
+        run: |
+          python - <<'PY'
+          import gzip,hashlib,json
+          from datetime import datetime,timezone
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          from tools import dubaiplus_verified_osn_gap as mod
+          meta=json.loads(Path("feeds/dubaiplus.json").read_text())
+          blob=Path("feeds/dubaiplus.xml.gz").read_bytes()
+          assert hashlib.sha256(blob).hexdigest()==meta["sha256"]
+          assert len(blob)==meta["size_bytes"]
+          tv=ET.fromstring(gzip.decompress(blob))
+          orig=[(p.get("channel"),p.get("start"),p.get("stop"),p.findtext("title"))
+                for p in tv.findall("programme")]
+          assert len(orig)==meta["programmes"]
+          assert meta["channels"]==9 and meta["active_channels"]==9
+          rr=mod.extend(tv,Path("feeds"),datetime.now(timezone.utc))
+          final=[(p.get("channel"),p.get("start"),p.get("stop"),p.findtext("title"))
+                 for p in tv.findall("programme")]
+          assert len(final)==len(orig)+rr["added"]
+          assert all(x in final for x in orig), "Native provider schedule must remain"
+          assert rr["synthetic_programmes_added"]==0
+          assert rr["donor_id"]=="DubaiTV.ae@SD"
+          assert rr["donor_source"]=="osn"
+          assert rr["status"] in ("VERIFIED_GAPS_FILLED",
+              "VERIFIED_NO_NONOVERLAPPING_GAPS",
+              "DONOR_HASH_OR_FRESHNESS","DONOR_AUDIT_COHORT_MISMATCH",
+              "DONOR_EXACT_ID_NOT_48H_PASS","DONOR_REAL_XML_LARGE_GAP",
+              "DONOR_REAL_XML_SHORT_HORIZON",
+              "DONOR_UNAVAILABLE_OR_INVALID","DONOR_EXACT_ID_BAD_COVERAGE")
+          print("DUBAIPLUS_REAL_COHORT",json.dumps(rr))
+          print("DUBAIPLUS_ORIGINAL_PROGRAMMES_UNMODIFIED",len(orig))
+          PY

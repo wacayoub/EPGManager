@@ -1,0 +1,16 @@
+name: Legacy staggered EPG schedule (disabled)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notice:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Staggered schedule disabled
+        run: |
+          echo "The staggered per-source cron is disabled."
+          echo "Production refresh now uses daily-source-refresh.yml at 06:00 Africa/Casablanca."

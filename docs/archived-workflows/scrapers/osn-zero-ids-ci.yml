@@ -1,0 +1,23 @@
+name: OSN complete catalogue zero guides — CI
+on:
+  push:
+    branches: [fix/osn-complete-zero-ids-20261017]
+    paths: ['tools/osn_zero_epg_fallback.py','tools/test_osn_complete_zero_ids.py','.github/workflows/osn-zero-ids-ci.yml']
+  pull_request:
+    paths: ['tools/osn_zero_epg_fallback.py','tools/test_osn_complete_zero_ids.py','.github/workflows/osn-zero-ids-ci.yml']
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install --disable-pip-version-check requests
+      - run: python -m py_compile tools/osn_zero_epg_fallback.py tools/test_osn_complete_zero_ids.py
+      - run: python -m unittest discover -s tools -p 'test_osn_complete_zero_ids.py' -v

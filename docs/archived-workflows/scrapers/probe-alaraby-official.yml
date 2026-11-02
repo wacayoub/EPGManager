@@ -1,0 +1,21 @@
+name: Probe Al Araby official EPG
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install requests
+      - run: python tools/alaraby_official_probe.py --days 3
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: alaraby-official-probe
+          path: reports/alaraby-official-probe.json

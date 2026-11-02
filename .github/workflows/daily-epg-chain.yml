@@ -1,0 +1,29 @@
+name: EPG 48h - Daily source postprocessing
+
+on:
+  schedule:
+    - cron: "15 7 * * *"
+      timezone: "Etc/GMT"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "config/daily-chain-trigger.txt"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-daily-chain
+  cancel-in-progress: false
+
+jobs:
+  # The source engine and derived assembly now share EPGManager.
+  elcinema_extend:
+    if: ${{ always() }}
+    uses: ./.github/workflows/elcinema-daily-donors.yml
+
+  finalize:
+    needs: elcinema_extend
+    if: ${{ always() }}
+    uses: ./.github/workflows/rebuild-mena-derived.yml

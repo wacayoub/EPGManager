@@ -1,0 +1,35 @@
+name: Tabie active IDs — source-only regression
+on:
+  push:
+    branches: [fix/tabie-active-ids-only-20261017]
+    paths:
+      - 'tools/tabie_source.py'
+      - 'tools/test_tabie_active_ids_only.py'
+      - 'tools/publish_lkg.py'
+      - '.github/workflows/tabie-active-ids-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/tabie_source.py'
+      - 'tools/test_tabie_active_ids_only.py'
+      - 'tools/publish_lkg.py'
+      - '.github/workflows/tabie-active-ids-ci.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install --disable-pip-version-check requests
+      - run: python -m py_compile tools/tabie_source.py tools/publish_lkg.py tools/test_tabie_active_ids_only.py
+      - run: python -m unittest discover -s tools -p 'test_tabie_active_ids_only.py' -v
+      - name: Confirm minimum 3 is gated by current coverage
+        run: |
+          grep -F '"tabie":     {"min_channels": 3' tools/publish_lkg.py
+          grep -F 'minimum_now = {"tabie": 0.60' tools/publish_lkg.py

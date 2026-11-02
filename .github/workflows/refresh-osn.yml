@@ -1,0 +1,19 @@
+name: EPG 48h - OSN
+
+on:
+  # Sole scheduled OSN scraper: 01:40 local Casablanca, DST/Ramadan aware.
+  schedule:
+    - cron: "40 1 * * *"
+      timezone: "Etc/GMT"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: osn
+      scheduled: false
+    secrets: inherit

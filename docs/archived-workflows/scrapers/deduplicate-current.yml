@@ -1,0 +1,85 @@
+name: Deduplicate current EPG feeds
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/deduplicate-current.yml"
+      - "tools/deduplicate_sources.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-feed-publish
+  cancel-in-progress: false
+
+jobs:
+  deduplicate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Audit and select winners
+        run: |
+          mkdir -p output/dedup output/final reports
+          python tools/deduplicate_sources.py \
+            --feeds-dir feeds \
+            --output-dir output/dedup \
+            --report-json reports/source-winners.json \
+            --report-md reports/source-winners.md
+
+      - name: Repack pruned feeds
+        shell: bash
+        run: |
+          set -e
+          shopt -s nullglob
+          for src in output/dedup/*.xml.gz; do
+            key="$(basename "$src" .xml.gz)"
+            python tools/source_feed_pack.py \
+              --input "$src" \
+              --output-gz "output/final/$key.xml.gz" \
+              --output-txt "output/final/$key.txt" \
+              --stats "output/final/$key.json" \
+              --label "$key" \
+              --window-hours 48
+          done
+
+      - name: Show duplicate winners
+        run: |
+          cat reports/source-winners.md
+
+      - name: Publish deduplicated feeds safely
+        shell: bash
+        run: |
+          set -e
+          rm -rf /tmp/dedup-publish
+          mkdir -p /tmp/dedup-publish/feeds /tmp/dedup-publish/reports
+          cp output/final/* /tmp/dedup-publish/feeds/
+          cp reports/source-winners.json reports/source-winners.md /tmp/dedup-publish/reports/
+
+          git config user.name "EPG Scraper Bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          git fetch origin main
+          git reset --hard origin/main
+
+          cp /tmp/dedup-publish/feeds/* feeds/
+          cp /tmp/dedup-publish/reports/* reports/
+          git add feeds reports/source-winners.json reports/source-winners.md
+
+          if git diff --cached --quiet; then
+            echo "No cross-source duplicate changes."
+            exit 0
+          fi
+
+          git commit -m "Deduplicate EPG sources and keep best channel feed"
+          git push origin HEAD:main

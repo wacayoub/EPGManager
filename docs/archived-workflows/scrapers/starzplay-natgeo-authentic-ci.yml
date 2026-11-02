@@ -1,0 +1,72 @@
+name: STARZPLAY NatGeo Abu Dhabi real Arabic-only editorial safety (read only)
+on:
+  push:
+    branches: [fix/starzplay-natgeo-authentic-arabic-no-fake-description-20261018]
+    paths:
+      - 'tools/starzplay_hybrid.py'
+      - 'tools/test_starzplay_natgeo_authentic_ar.py'
+      - '.github/workflows/starzplay-natgeo-authentic-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/starzplay_hybrid.py'
+      - 'tools/test_starzplay_natgeo_authentic_ar.py'
+      - '.github/workflows/starzplay-natgeo-authentic-ci.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install translator dependency but NEVER call network in tests
+        run: python -m pip install --disable-pip-version-check requests
+      - name: Deterministic source-only AR/EN hybrid tests
+        run: |
+          python -m compileall -q tools/starzplay_hybrid.py tools/test_starzplay_natgeo_authentic_ar.py
+          python -m unittest tools.test_starzplay_natgeo_authentic_ar -v
+      - name: Read-only provenance on actual 117-channel published XMLTV and quality
+        run: |
+          python - <<'PY'
+          import gzip,hashlib,json
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          m=json.loads(Path("feeds/starzplay.json").read_text())
+          quality=json.loads(Path("reports/starzplay-quality.json").read_text())
+          report=json.loads(Path("reports/starzplay-hybrid.json").read_text())
+          blob=Path("feeds/starzplay.xml.gz").read_bytes()
+          assert hashlib.sha256(blob).hexdigest()==m["sha256"]
+          assert len(blob)==m["size_bytes"]
+          tv=ET.fromstring(gzip.decompress(blob))
+          ids={c.get("id") for c in tv.findall("channel")}
+          assert len(ids)==m["channels"] and len(ids)>100
+          assert len(tv.findall("programme"))==m["programmes"]
+          assert m["zero_epg_channels"]==0
+          assert quality["channels"]==m["channels"]
+          assert quality["source"]=="starzplay"
+          assert quality["programmes"]==m["programmes"]
+          assert quality["future_programmes_without_description"]>0
+          assert quality["future_programmes_with_placeholder_or_channel_title"]>0
+          assert quality["quality_status"]=="WARN"
+          assert "NationalGeographicAbuDhabi.ae@SD" in ids
+          assert "NationalGeographicAbuDhabi.ae@SD" in report["force_arabic_content_ids"]
+          sports=[
+              "starzplay.705949224430","starzplay.705949224431",
+              "StarzplaySports3.sa@HD"
+          ]
+          assert all(cid in ids for cid in sports)
+          suspicious={x["id"] for x in quality["suspected_placeholder_channels"]}
+          assert "StarzplaySports3.sa@HD" in suspicious
+          print("STARZPLAY_PUBLISHED_SOURCE_READ_ONLY_CHECKED",m["generated_utc"])
+          print("STARZPLAY_CHANNELS_PROGRAMMES",m["channels"],m["programmes"])
+          print("STARZPLAY_SOURCE_QUALITY_WARN",quality["future_programmes_without_description"],
+                quality["future_programmes_with_placeholder_or_channel_title"])
+          print("NO_SCHEDULE_CHANGED_AND_NO_RECEIVER_MODIFIED")
+          PY

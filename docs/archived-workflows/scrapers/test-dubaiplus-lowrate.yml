@@ -1,0 +1,37 @@
+name: TEST Dubai+ low-rate 2h
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/test-dubaiplus-lowrate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install requests beautifulsoup4
+      - name: Dubai+ 2h single-page test
+        run: |
+          mkdir -p output reports
+          python tools/dubaiplus_api_source.py \
+            --output output/dubaiplus.2h.xml \
+            --report reports/dubaiplus-lowrate-2h.json \
+            --hours 2
+          cat reports/dubaiplus-lowrate-2h.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dubaiplus-lowrate-2h
+          path: |
+            output/dubaiplus.2h.xml
+            reports/dubaiplus-lowrate-2h.json

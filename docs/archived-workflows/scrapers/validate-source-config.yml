@@ -1,0 +1,119 @@
+name: Validate source configuration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/validate-source-config.yml"
+      - ".github/workflows/daily-source-refresh.yml"
+      - ".github/workflows/refresh-source-core.yml"
+      - ".github/workflows/epg-source-id-monitoring.yml"
+      - ".github/workflows/epg-watchdog.yml"
+      - ".github/workflows/daily-epg.yml"
+      - "tools/build_catalogues.py"
+      - "tools/build_derived_feeds.py"
+      - "tools/publish_lkg.py"
+      - "config/canonical-channel-policy.json"
+      - "tools/refresh_one_source.sh"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install YAML validator
+        run: python -m pip install --disable-pip-version-check --no-cache-dir pyyaml
+
+      - name: Workflow YAML syntax checks
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+          for p in sorted(Path(".github/workflows").glob("*.yml")):
+              with p.open("r",encoding="utf-8") as fh:
+                  yaml.safe_load(fh)
+              print("YAML_OK",p)
+          PY
+
+      - name: Syntax checks
+        run: |
+          bash -n tools/refresh_one_source.sh
+          python -m py_compile             tools/build_catalogues.py             tools/build_derived_feeds.py             tools/publish_lkg.py             tools/source_feed_pack.py             tools/validate_48h.py             tools/aljazeera_source.py             tools/starzplay_source.py             tools/stctv_source.py             tools/dubaiplus_api_source.py             tools/rotana_source.py             tools/sport24_source.py
+
+      - name: Validate canonical routing policy
+        run: python -c "import json,pathlib; d=json.loads(pathlib.Path('config/canonical-channel-policy.json').read_text(encoding='utf-8')); assert d.get('default_source_order'); assert isinstance(d.get('alias_groups'),list); assert len({x['canonical_id'] for x in d['alias_groups']}) == len(d['alias_groups']); print('CANONICAL_POLICY_OK',len(d['alias_groups']))"
+
+      - name: Validate catalogues and beIN MENA scope
+        run: |
+          python tools/build_catalogues.py
+          python - <<'PY'
+          import json, re
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          root=ET.parse("output/source-build/bein.channels.xml").getroot()
+          en_root=ET.parse("output/source-build/bein_en.channels.xml").getroot()
+          rows=[]
+          bad=[]
+          seen_keys=set()
+          seen_ids=set()
+          for c in root.findall("channel"):
+              cid=(c.get("xmltv_id") or "").strip()
+              name=(c.text or "").strip()
+              key="".join(ch.lower() for ch in name if ch.isalnum())
+              m=re.fullmatch(r"beinsports(\d+)(en|fr)",key)
+              if m:
+                  key=f"beinsports{m.group(2)}{m.group(1)}"
+              m=re.fullmatch(r"beinsports(en|fr)(\d+)",key)
+              if m:
+                  key=f"beinsports{m.group(1)}{m.group(2)}"
+              rows.append((cid,name))
+              if not cid or "afc" in key or "afc" in cid.casefold():
+                  bad.append((cid,name))
+              if key in seen_keys:
+                  raise SystemExit(f"duplicate beIN service key: {key}")
+              if cid in seen_ids:
+                  raise SystemExit(f"duplicate beIN XMLTV ID: {cid}")
+              seen_keys.add(key)
+              seen_ids.add(cid)
+
+          if bad:
+              raise SystemExit(f"invalid/AFC beIN package rows: {bad}")
+          required_kids={"JeemTV.qa@SD","Baraem.qa@SD","BeJunior.qa@SD"}
+          missing_kids=sorted(required_kids-seen_ids)
+          if missing_kids:
+              raise SystemExit(f"beIN Kids IDs missing: {missing_kids}")
+          if len(rows) < 35:
+              raise SystemExit(f"beIN package catalogue unexpectedly small: {len(rows)}")
+          # English is a hybrid metadata mirror, not a requirement that every
+          # Arabic-native/package service have an English equivalent.
+          if len(en_root) < 20:
+              raise SystemExit(f"beIN English catalogue unexpectedly small: {len(en_root)}")
+
+          audit=json.loads(Path("output/source-build/bein-catalogue.json").read_text())
+          print(json.dumps({
+              "bein_ids":len(rows),
+              "bein_english_ids":len(en_root),
+              "scope":audit.get("scope"),
+              "generated_local_ids":audit.get("generated_local_ids"),
+              "sample":rows[:20],
+          },ensure_ascii=False,indent=2))
+          PY

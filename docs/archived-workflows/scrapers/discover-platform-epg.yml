@@ -1,0 +1,25 @@
+name: Discover platform EPG sources
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/discover-platform-epg.yml"
+      - "tools/platform_epg_probe.py"
+  workflow_dispatch:
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check --no-cache-dir -r requirements.txt
+      - name: Probe public TV-guide platforms
+        run: python tools/platform_epg_probe.py
+      - name: Show summary
+        run: cat reports/platform-epg-discovery.md

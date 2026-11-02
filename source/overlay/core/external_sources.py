@@ -20,9 +20,9 @@ from .logger import get_logger
 
 log = get_logger(__name__)
 
-# Direct production feeds generated once per day by wacayoub/EPG-Scrapers.
+# Direct production feeds generated once per day by wacayoub/EPGManager.
 # The Vu+ downloads finished XMLTV only; provider websites are never scraped here.
-SCRAPERS_BASE = "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds"
+SCRAPERS_BASE = "https://raw.githubusercontent.com/wacayoub/EPGManager/main/feeds"
 _DIRECT = [
     {"id": "direct_morocco", "name": "Morocco • Direct", "url": SCRAPERS_BASE + "/morocco.xml.gz", "metadata_url": SCRAPERS_BASE + "/morocco.json", "region": "MENA Direct", "tier": "direct", "priority": 120},
     {"id": "direct_bein", "name": "beIN MENA • Direct", "url": SCRAPERS_BASE + "/bein.xml.gz", "metadata_url": SCRAPERS_BASE + "/bein.json", "region": "MENA Direct", "tier": "direct", "priority": 118},
@@ -34,6 +34,10 @@ _DIRECT = [
     {"id": "direct_sport24", "name": "Sport24 • Direct", "url": SCRAPERS_BASE + "/sport24.xml.gz", "metadata_url": SCRAPERS_BASE + "/sport24.json", "region": "MENA Direct", "tier": "direct", "priority": 106},
     {"id": "direct_stctv", "name": "STC TV • Direct", "url": SCRAPERS_BASE + "/stctv.xml.gz", "metadata_url": SCRAPERS_BASE + "/stctv.json", "region": "MENA Direct", "tier": "direct", "priority": 104},
     {"id": "direct_aljazeera", "name": "Al Jazeera • Direct", "url": SCRAPERS_BASE + "/aljazeera.xml.gz", "metadata_url": SCRAPERS_BASE + "/aljazeera.json", "region": "MENA Direct", "tier": "direct", "priority": 100},
+    {"id": "direct_starzplay", "name": "STARZPLAY • Direct", "url": SCRAPERS_BASE + "/starzplay.xml.gz", "metadata_url": SCRAPERS_BASE + "/starzplay.json", "region": "MENA Direct", "tier": "direct", "priority": 102},
+    {"id": "direct_alkass", "name": "AlKass • Direct", "url": SCRAPERS_BASE + "/alkass.xml.gz", "metadata_url": SCRAPERS_BASE + "/alkass.json", "region": "MENA Direct", "tier": "direct", "priority": 98},
+    {"id": "direct_tabie", "name": "Tabie • Direct", "url": SCRAPERS_BASE + "/tabie.xml.gz", "metadata_url": SCRAPERS_BASE + "/tabie.json", "region": "MENA Direct", "tier": "direct", "priority": 96},
+    {"id": "direct_tunisiatv", "name": "Tunisia TV • Direct", "url": SCRAPERS_BASE + "/tunisiatv.xml.gz", "metadata_url": SCRAPERS_BASE + "/tunisiatv.json", "region": "MENA Direct", "tier": "direct", "priority": 94},
 ]
 
 # Generic fallback catalogue kept after the direct MENA providers.

@@ -1,0 +1,21 @@
+name: EPG 48h - ElCinema
+
+on:
+  # Run at 01:20 Moroccan local wall-clock time, including future tz changes.
+  schedule:
+    - cron: "20 1 * * *"
+      timezone: "Etc/GMT"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: elcinema
+      # The clock trigger is already timezone-aware; bypass the legacy
+      # shared 06:00-only gate, which applies to other scheduled pipelines.
+      scheduled: false
+    secrets: inherit

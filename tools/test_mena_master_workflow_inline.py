@@ -10,7 +10,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-WORKFLOW = ROOT / ".github/workflows/refresh-mena-source-id-master.yml"
+WORKFLOW = ROOT / "docs/archived-workflows/epgmanager/refresh-mena-source-id-master.yml"
 REQUIRED = (
     "id_group", "receiver_canonical_id", "now_status",
     "now_title", "now_desc", "epg_snapshot_utc",

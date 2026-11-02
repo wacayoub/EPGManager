@@ -1,0 +1,147 @@
+name: Test ElCinema only
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-elcinema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout scraper repository
+        uses: actions/checkout@v4
+
+      - name: Checkout iptv-org EPG adapters
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install upstream grabber
+        working-directory: vendor/iptv-org-epg
+        run: npm ci --no-audit --no-fund
+
+      - name: Build ElCinema Arabic and hybrid-English catalogues
+        run: |
+          python tools/build_catalogues.py
+          python tools/elcinema_hybrid.py catalogue \
+            --fallback-catalogue output/source-build/elcinema_fallback.channels.xml \
+            --policy config/elcinema-language-policy.json \
+            --output output/source-build/elcinema_hybrid_en.channels.xml
+          echo "Arabic catalogue:"
+          grep -c '<channel ' output/source-build/elcinema.channels.xml
+          echo "Hybrid English catalogue:"
+          grep -c '<channel ' output/source-build/elcinema_hybrid_en.channels.xml
+
+      - name: Grab ElCinema Arabic guide
+        shell: bash
+        run: |
+          cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+          timeout --signal=TERM --kill-after=30s 1200s npm run grab -- \
+            --channels="$GITHUB_WORKSPACE/output/source-build/elcinema.channels.xml" \
+            --output="$GITHUB_WORKSPACE/output/elcinema-test.ar.xml" \
+            --days=2 \
+            --maxConnections=1 \
+            --timeout=20000 \
+            --delay=1000
+
+      - name: Grab English titles for hybrid IDs only
+        shell: bash
+        run: |
+          cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+          timeout --signal=TERM --kill-after=30s 900s npm run grab -- \
+            --channels="$GITHUB_WORKSPACE/output/source-build/elcinema_hybrid_en.channels.xml" \
+            --output="$GITHUB_WORKSPACE/output/elcinema-test.en.xml" \
+            --days=2 \
+            --maxConnections=1 \
+            --timeout=20000 \
+            --delay=1000
+
+      - name: Build ElCinema hybrid guide
+        run: |
+          python tools/elcinema_hybrid.py merge \
+            --arabic output/elcinema-test.ar.xml \
+            --english output/elcinema-test.en.xml \
+            --policy config/elcinema-language-policy.json \
+            --output output/elcinema-test.hybrid.xml \
+            --report output/elcinema-hybrid-report.json
+
+      - name: Audit ElCinema hybrid policy
+        run: |
+          python - <<'PY'
+          import json, re, xml.etree.ElementTree as ET
+          from pathlib import Path
+          AR=re.compile(r"[\u0600-\u06FF]")
+          policy=json.loads(Path("config/elcinema-language-policy.json").read_text(encoding="utf-8"))
+          hybrid=set(policy["hybrid_ids"])
+          root=ET.parse("output/elcinema-test.hybrid.xml").getroot()
+          by={}
+          for p in root.findall("programme"):
+              by.setdefault((p.get("channel") or "").strip(),[]).append(p)
+          def txt(p,tag):
+              n=p.find(tag)
+              return ((n.text or "").strip() if n is not None else "")
+          def pct(vals,pred):
+              vals=[v for v in vals if v]
+              return round(100*sum(1 for v in vals if pred(v))/len(vals),1) if vals else 0.0
+          rows=[]
+          for ch in root.findall("channel"):
+              cid=(ch.get("id") or ch.get("xmltv_id") or "").strip()
+              progs=by.get(cid,[])
+              titles=[txt(p,"title") for p in progs]
+              descs=[txt(p,"desc") for p in progs]
+              rows.append({
+                  "id":cid,
+                  "profile":"hybrid" if cid in hybrid else "arabic_native",
+                  "programmes":len(progs),
+                  "title_ar_pct":pct(titles,lambda x:bool(AR.search(x))),
+                  "desc_ar_pct":pct(descs,lambda x:bool(AR.search(x))),
+                  "desc_coverage_pct":round(100*sum(1 for d in descs if d)/len(progs),1) if progs else 0.0
+              })
+          summary={
+              "channels_in_raw":len(rows),
+              "ids_with_epg":sum(r["programmes"]>0 for r in rows),
+              "hybrid_ids_with_epg":sum(r["profile"]=="hybrid" and r["programmes"]>0 for r in rows),
+              "hybrid_ids_requested":len(hybrid),
+              "rows":rows,
+          }
+          Path("output/elcinema-test-report.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps({k:v for k,v in summary.items() if k!="rows"},ensure_ascii=False))
+          focus=hybrid | {
+              "MBC1.ae@SD","MBCDrama.ae@SD","MBCMasr.eg@SD",
+              "RotanaCinemaKSA.sa@SD","AbuDhabiTV.ae@SD","AlArabyTV2.qa@SD"
+          }
+          for r in rows:
+              if r["id"] in focus:
+                  print("[LANG]",json.dumps(r,ensure_ascii=False))
+          bad_hybrid=[r for r in rows if r["profile"]=="hybrid" and r["programmes"] and r["title_ar_pct"]>0]
+          if bad_hybrid:
+              print("BAD_HYBRID",json.dumps(bad_hybrid,ensure_ascii=False))
+              raise SystemExit(5)
+          PY
+
+      - name: Upload ElCinema hybrid test
+        uses: actions/upload-artifact@v4
+        with:
+          name: elcinema-hybrid-test
+          path: |
+            output/elcinema-hybrid-report.json
+            output/elcinema-test-report.json
+            output/elcinema-test.hybrid.xml
+            output/source-build/elcinema.channels.xml
+            output/source-build/elcinema_hybrid_en.channels.xml

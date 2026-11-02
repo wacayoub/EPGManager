@@ -1,0 +1,3798 @@
+FILE assets/config_dev.json
+1: {
+2:   "name": "dev",
+3:   "targetVersion": 995,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://dev-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-dev-new-api.aws.playco.com/api",
+7:   "staticPegBaseUrl": "https://dev-api.aws.playco.com/api",
+8:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+9:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+10:   "pinLoginKey" : "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+11:   "ratingCalloutEnabled": true,
+12:   "removeCache": "false",
+13:   "concurrencyEnabled": false,
+14:   "concurrencyV2Enabled": true,
+15:   "heartbeatIntervalSeconds" : 20,
+16:   "CDNSelectorEnabled": false,
+17:   "externalLinksConfig": {
+18:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+19:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+20:     "shareBaseUrl": "https://arabia.starzplay.com/"
+21:   },
+22:   "welcomePageConfig": {
+23:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+24:   },
+25:   "languageConfig": {
+26:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/translation_3.0/",
+27:     "languagesISO1": [
+28:       "en",
+29:       "ar",
+30:       "fr"
+31:     ]
+32:   },
+33:   "downloadsConfig": {
+34:     "downloadsEnabled": true,
+35:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+36:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+37:   },
+38:   "mpxConfig": {
+39:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_dev_dynamic2/%s"
+40:   },
+41:   "catalogUrls": {
+42:     "moviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&byTagIds=23375400370&sort=added%7Cdesc",
+43:     "seriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&byTagIds=23375400369&sort=added%7Cdesc",
+44:     "customSectionUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=35400231959&sort=added%7Cdesc",
+45:     "yuppflixUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_mena_CatalogueYuppFlix?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byCustomValue=%7BYuppFlixContent%7D%7BYes%7D&sort=added%7Cdesc",
+46:     "catKidsSeriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400369|23375400370,23374376389&byProgramType=Series",
+47:     "catKidsMoviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400369|23375400370,23374376389&byProgramType=Movie",
+48:     "disneyUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,peg%24arAgeRating,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CKids%7D&byMediaAvailabilityState=available&byTagIds=23635496364&byProgramType=Movie",
+49:     "disneyHeroUrl": "http://mena-cdn-lb.aws.playco.com/DODMBANNER.jpg"
+50:   },
+51:   "cdnConfig": {
+52:     "CDNBaseUrl": "http://mena-cdn-lb.aws.playco.com/",
+53:     "CDNImageBaseUrl": "http://mena-img-cdn-lb.aws.playco.com/"
+54:   },
+55:   "screenSaverDisplayTime":2,
+56:   "screenSaverUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/screensaver/index.html",
+57:   "profileConfig": "https://starzplay-prod-ssl.akamaized.net/prd-peg-data/default/configs/profiles-screen-stg.json",
+58:   "videoCommerceUrl": "https://vc-apii.multitvsolution.com/media_commerce/api/fetch_products"
+59: 
+60: }
+
+===== MATCH =====
+
+FILE assets/config_dev.json
+1: {
+2:   "name": "dev",
+3:   "targetVersion": 995,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://dev-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-dev-new-api.aws.playco.com/api",
+7:   "staticPegBaseUrl": "https://dev-api.aws.playco.com/api",
+8:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+9:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+10:   "pinLoginKey" : "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+11:   "ratingCalloutEnabled": true,
+12:   "removeCache": "false",
+13:   "concurrencyEnabled": false,
+14:   "concurrencyV2Enabled": true,
+15:   "heartbeatIntervalSeconds" : 20,
+16:   "CDNSelectorEnabled": false,
+17:   "externalLinksConfig": {
+18:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+19:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+20:     "shareBaseUrl": "https://arabia.starzplay.com/"
+21:   },
+22:   "welcomePageConfig": {
+23:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+24:   },
+25:   "languageConfig": {
+26:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/translation_3.0/",
+27:     "languagesISO1": [
+28:       "en",
+29:       "ar",
+30:       "fr"
+31:     ]
+32:   },
+33:   "downloadsConfig": {
+34:     "downloadsEnabled": true,
+35:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+36:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+37:   },
+38:   "mpxConfig": {
+39:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_dev_dynamic2/%s"
+40:   },
+41:   "catalogUrls": {
+42:     "moviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&byTagIds=23375400370&sort=added%7Cdesc",
+43:     "seriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&byTagIds=23375400369&sort=added%7Cdesc",
+44:     "customSectionUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=35400231959&sort=added%7Cdesc",
+45:     "yuppflixUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_mena_CatalogueYuppFlix?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byCustomValue=%7BYuppFlixContent%7D%7BYes%7D&sort=added%7Cdesc",
+46:     "catKidsSeriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400369|23375400370,23374376389&byProgramType=Series",
+47:     "catKidsMoviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400369|23375400370,23374376389&byProgramType=Movie",
+48:     "disneyUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,peg%24arAgeRating,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CKids%7D&byMediaAvailabilityState=available&byTagIds=23635496364&byProgramType=Movie",
+49:     "disneyHeroUrl": "http://mena-cdn-lb.aws.playco.com/DODMBANNER.jpg"
+50:   },
+51:   "cdnConfig": {
+52:     "CDNBaseUrl": "http://mena-cdn-lb.aws.playco.com/",
+53:     "CDNImageBaseUrl": "http://mena-img-cdn-lb.aws.playco.com/"
+54:   },
+55:   "screenSaverDisplayTime":2,
+56:   "screenSaverUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/screensaver/index.html",
+57:   "profileConfig": "https://starzplay-prod-ssl.akamaized.net/prd-peg-data/default/configs/profiles-screen-stg.json",
+58:   "videoCommerceUrl": "https://vc-apii.multitvsolution.com/media_commerce/api/fetch_products"
+59: 
+60: }
+
+===== MATCH =====
+
+FILE assets/config_dev.json
+1: {
+2:   "name": "dev",
+3:   "targetVersion": 995,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://dev-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-dev-new-api.aws.playco.com/api",
+7:   "staticPegBaseUrl": "https://dev-api.aws.playco.com/api",
+8:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+9:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+10:   "pinLoginKey" : "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+11:   "ratingCalloutEnabled": true,
+12:   "removeCache": "false",
+13:   "concurrencyEnabled": false,
+14:   "concurrencyV2Enabled": true,
+15:   "heartbeatIntervalSeconds" : 20,
+16:   "CDNSelectorEnabled": false,
+17:   "externalLinksConfig": {
+18:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+19:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+20:     "shareBaseUrl": "https://arabia.starzplay.com/"
+21:   },
+22:   "welcomePageConfig": {
+23:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+24:   },
+25:   "languageConfig": {
+26:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/translation_3.0/",
+27:     "languagesISO1": [
+28:       "en",
+29:       "ar",
+30:       "fr"
+31:     ]
+32:   },
+33:   "downloadsConfig": {
+34:     "downloadsEnabled": true,
+35:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+36:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+37:   },
+38:   "mpxConfig": {
+39:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_dev_dynamic2/%s"
+40:   },
+41:   "catalogUrls": {
+42:     "moviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&byTagIds=23375400370&sort=added%7Cdesc",
+43:     "seriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&byTagIds=23375400369&sort=added%7Cdesc",
+44:     "customSectionUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=35400231959&sort=added%7Cdesc",
+45:     "yuppflixUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_mena_CatalogueYuppFlix?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byCustomValue=%7BYuppFlixContent%7D%7BYes%7D&sort=added%7Cdesc",
+46:     "catKidsSeriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400369|23375400370,23374376389&byProgramType=Series",
+47:     "catKidsMoviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400369|23375400370,23374376389&byProgramType=Movie",
+48:     "disneyUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,peg%24arAgeRating,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CKids%7D&byMediaAvailabilityState=available&byTagIds=23635496364&byProgramType=Movie",
+49:     "disneyHeroUrl": "http://mena-cdn-lb.aws.playco.com/DODMBANNER.jpg"
+50:   },
+51:   "cdnConfig": {
+52:     "CDNBaseUrl": "http://mena-cdn-lb.aws.playco.com/",
+53:     "CDNImageBaseUrl": "http://mena-img-cdn-lb.aws.playco.com/"
+54:   },
+55:   "screenSaverDisplayTime":2,
+56:   "screenSaverUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/screensaver/index.html",
+57:   "profileConfig": "https://starzplay-prod-ssl.akamaized.net/prd-peg-data/default/configs/profiles-screen-stg.json",
+58:   "videoCommerceUrl": "https://vc-apii.multitvsolution.com/media_commerce/api/fetch_products"
+59: 
+60: }
+
+===== MATCH =====
+
+FILE assets/config_dev.json
+1: {
+2:   "name": "dev",
+3:   "targetVersion": 995,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://dev-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-dev-new-api.aws.playco.com/api",
+7:   "staticPegBaseUrl": "https://dev-api.aws.playco.com/api",
+8:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+9:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+10:   "pinLoginKey" : "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+11:   "ratingCalloutEnabled": true,
+12:   "removeCache": "false",
+13:   "concurrencyEnabled": false,
+14:   "concurrencyV2Enabled": true,
+15:   "heartbeatIntervalSeconds" : 20,
+16:   "CDNSelectorEnabled": false,
+17:   "externalLinksConfig": {
+18:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+19:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+20:     "shareBaseUrl": "https://arabia.starzplay.com/"
+21:   },
+22:   "welcomePageConfig": {
+23:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+24:   },
+25:   "languageConfig": {
+26:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/translation_3.0/",
+27:     "languagesISO1": [
+28:       "en",
+29:       "ar",
+30:       "fr"
+31:     ]
+32:   },
+33:   "downloadsConfig": {
+34:     "downloadsEnabled": true,
+35:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+36:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+37:   },
+38:   "mpxConfig": {
+39:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_dev_dynamic2/%s"
+40:   },
+41:   "catalogUrls": {
+42:     "moviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&byTagIds=23375400370&sort=added%7Cdesc",
+43:     "seriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&byTagIds=23375400369&sort=added%7Cdesc",
+44:     "customSectionUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=35400231959&sort=added%7Cdesc",
+45:     "yuppflixUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_mena_CatalogueYuppFlix?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byCustomValue=%7BYuppFlixContent%7D%7BYes%7D&sort=added%7Cdesc",
+46:     "catKidsSeriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400369|23375400370,23374376389&byProgramType=Series",
+47:     "catKidsMoviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400369|23375400370,23374376389&byProgramType=Movie",
+48:     "disneyUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,peg%24arAgeRating,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CKids%7D&byMediaAvailabilityState=available&byTagIds=23635496364&byProgramType=Movie",
+49:     "disneyHeroUrl": "http://mena-cdn-lb.aws.playco.com/DODMBANNER.jpg"
+50:   },
+51:   "cdnConfig": {
+52:     "CDNBaseUrl": "http://mena-cdn-lb.aws.playco.com/",
+53:     "CDNImageBaseUrl": "http://mena-img-cdn-lb.aws.playco.com/"
+54:   },
+55:   "screenSaverDisplayTime":2,
+56:   "screenSaverUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/screensaver/index.html",
+57:   "profileConfig": "https://starzplay-prod-ssl.akamaized.net/prd-peg-data/default/configs/profiles-screen-stg.json",
+58:   "videoCommerceUrl": "https://vc-apii.multitvsolution.com/media_commerce/api/fetch_products"
+59: 
+60: }
+
+===== MATCH =====
+
+FILE assets/config_stage.json
+1: {
+2:   "name": "stg",
+3:   "targetVersion": 995,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://stg-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-stg-new-api.aws.playco.com/api",
+7:   "mediaServiceBaseUrlNMS": "https://sp-stg-nms-api.aws.playco.com/api",
+8:   "staticPegBaseUrl": "https://stg-static-api.aws.playco.com/api",
+9:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+10:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+11:   "pinLoginKey": "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+12:   "defaultCDNUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+13:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+14:   "ratingCalloutEnabled": true,
+15:   "removeCache": "false",
+16:   "concurrencyEnabled": false,
+17:   "concurrencyV2Enabled": true,
+18:   "heartbeatIntervalSeconds": 60,
+19:   "CDNSelectorEnabled": false,
+20:   "adsEnabled": true,
+21:   "vodAdsMinOSVersion": 26,
+22:   "liveAdsMinOSVersion": 26,
+23:   "externalLinksConfig": {
+24:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+25:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+26:     "privacyPolicyUrl": "https://arabia.starzplay.com/%s/privacypolicy",
+27:     "shareBaseUrl": "https://arabia.starzplay.com/"
+28:   },
+29:   "remoteConfigUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/configs/remote-configs-stg.json",
+30:   "welcomePageConfig": {
+31:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+32:   },
+33:   "languageConfig": {
+34:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/stage/translation_4.0/",
+35:     "languagesISO1": [
+36:       "en",
+37:       "ar"
+38:     ]
+39:   },
+40:   "downloadsConfig": {
+41:     "downloadsEnabled": true,
+42:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+43:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+44:   },
+45:   "mpxConfig": {
+46:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_paf_all/%s"
+47:   },
+48:   "catalogUrls": {
+49:     "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+50:     "storeUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids|Kids}",
+51:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400370",
+52:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400369",
+53:     "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids}&byTagIds=35400231959",
+54:     "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23374376389",
+55:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+56:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+57:   },
+58:   "regionalConfigs": {
+59:     "pk": {
+60:       "mpxConfig": {
+61:         "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+62:       },
+63:       "catalogUrls": {
+64:         "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+65:         "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400370&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+66:         "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400369&byCustomValue={availableInSection}{All|NotKids}&&sort=:priorityLevel",
+67:         "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=300244008319&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+68:         "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23374376389&byCustomValue={availableInSection}{All|Kids}&sort=:priorityLevelKids",
+69:         "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+70:         "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+
+===== MATCH =====
+
+FILE assets/config_stage.json
+1: {
+2:   "name": "stg",
+3:   "targetVersion": 995,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://stg-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-stg-new-api.aws.playco.com/api",
+7:   "mediaServiceBaseUrlNMS": "https://sp-stg-nms-api.aws.playco.com/api",
+8:   "staticPegBaseUrl": "https://stg-static-api.aws.playco.com/api",
+9:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+10:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+11:   "pinLoginKey": "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+12:   "defaultCDNUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+13:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+14:   "ratingCalloutEnabled": true,
+15:   "removeCache": "false",
+16:   "concurrencyEnabled": false,
+17:   "concurrencyV2Enabled": true,
+18:   "heartbeatIntervalSeconds": 60,
+19:   "CDNSelectorEnabled": false,
+20:   "adsEnabled": true,
+21:   "vodAdsMinOSVersion": 26,
+22:   "liveAdsMinOSVersion": 26,
+23:   "externalLinksConfig": {
+24:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+25:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+26:     "privacyPolicyUrl": "https://arabia.starzplay.com/%s/privacypolicy",
+27:     "shareBaseUrl": "https://arabia.starzplay.com/"
+28:   },
+29:   "remoteConfigUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/configs/remote-configs-stg.json",
+30:   "welcomePageConfig": {
+31:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+32:   },
+33:   "languageConfig": {
+34:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/stage/translation_4.0/",
+35:     "languagesISO1": [
+36:       "en",
+37:       "ar"
+38:     ]
+39:   },
+40:   "downloadsConfig": {
+41:     "downloadsEnabled": true,
+42:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+43:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+44:   },
+45:   "mpxConfig": {
+46:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_paf_all/%s"
+47:   },
+48:   "catalogUrls": {
+49:     "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+50:     "storeUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids|Kids}",
+51:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400370",
+52:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400369",
+53:     "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids}&byTagIds=35400231959",
+54:     "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23374376389",
+55:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+56:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+57:   },
+58:   "regionalConfigs": {
+59:     "pk": {
+60:       "mpxConfig": {
+61:         "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+62:       },
+63:       "catalogUrls": {
+64:         "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+65:         "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400370&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+66:         "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400369&byCustomValue={availableInSection}{All|NotKids}&&sort=:priorityLevel",
+67:         "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=300244008319&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+68:         "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23374376389&byCustomValue={availableInSection}{All|Kids}&sort=:priorityLevelKids",
+69:         "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+70:         "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+75:     "CDNBaseUrl": "http://mena-cdn-lb.aws.playco.com/",
+
+===== MATCH =====
+
+FILE assets/config_stage.json
+1: {
+2:   "name": "stg",
+3:   "targetVersion": 995,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://stg-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-stg-new-api.aws.playco.com/api",
+7:   "mediaServiceBaseUrlNMS": "https://sp-stg-nms-api.aws.playco.com/api",
+8:   "staticPegBaseUrl": "https://stg-static-api.aws.playco.com/api",
+9:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+10:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+11:   "pinLoginKey": "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+12:   "defaultCDNUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+13:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+14:   "ratingCalloutEnabled": true,
+15:   "removeCache": "false",
+16:   "concurrencyEnabled": false,
+17:   "concurrencyV2Enabled": true,
+18:   "heartbeatIntervalSeconds": 60,
+19:   "CDNSelectorEnabled": false,
+20:   "adsEnabled": true,
+21:   "vodAdsMinOSVersion": 26,
+22:   "liveAdsMinOSVersion": 26,
+23:   "externalLinksConfig": {
+24:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+25:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+26:     "privacyPolicyUrl": "https://arabia.starzplay.com/%s/privacypolicy",
+27:     "shareBaseUrl": "https://arabia.starzplay.com/"
+28:   },
+29:   "remoteConfigUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/configs/remote-configs-stg.json",
+30:   "welcomePageConfig": {
+31:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+32:   },
+33:   "languageConfig": {
+34:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/stage/translation_4.0/",
+35:     "languagesISO1": [
+36:       "en",
+37:       "ar"
+38:     ]
+39:   },
+40:   "downloadsConfig": {
+41:     "downloadsEnabled": true,
+42:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+43:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+44:   },
+45:   "mpxConfig": {
+46:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_paf_all/%s"
+47:   },
+48:   "catalogUrls": {
+49:     "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+50:     "storeUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids|Kids}",
+51:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400370",
+52:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400369",
+53:     "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids}&byTagIds=35400231959",
+54:     "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23374376389",
+55:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+56:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+57:   },
+58:   "regionalConfigs": {
+59:     "pk": {
+60:       "mpxConfig": {
+61:         "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+62:       },
+63:       "catalogUrls": {
+64:         "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+65:         "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400370&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+66:         "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400369&byCustomValue={availableInSection}{All|NotKids}&&sort=:priorityLevel",
+67:         "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=300244008319&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+68:         "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23374376389&byCustomValue={availableInSection}{All|Kids}&sort=:priorityLevelKids",
+69:         "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+70:         "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+75:     "CDNBaseUrl": "http://mena-cdn-lb.aws.playco.com/",
+76:     "CDNImageBaseUrl": "http://mena-img-cdn-lb.aws.playco.com/"
+
+===== MATCH =====
+
+FILE assets/config_stage.json
+1: {
+2:   "name": "stg",
+3:   "targetVersion": 995,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://stg-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-stg-new-api.aws.playco.com/api",
+7:   "mediaServiceBaseUrlNMS": "https://sp-stg-nms-api.aws.playco.com/api",
+8:   "staticPegBaseUrl": "https://stg-static-api.aws.playco.com/api",
+9:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+10:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+11:   "pinLoginKey": "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+12:   "defaultCDNUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+13:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+14:   "ratingCalloutEnabled": true,
+15:   "removeCache": "false",
+16:   "concurrencyEnabled": false,
+17:   "concurrencyV2Enabled": true,
+18:   "heartbeatIntervalSeconds": 60,
+19:   "CDNSelectorEnabled": false,
+20:   "adsEnabled": true,
+21:   "vodAdsMinOSVersion": 26,
+22:   "liveAdsMinOSVersion": 26,
+23:   "externalLinksConfig": {
+24:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+25:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+26:     "privacyPolicyUrl": "https://arabia.starzplay.com/%s/privacypolicy",
+27:     "shareBaseUrl": "https://arabia.starzplay.com/"
+28:   },
+29:   "remoteConfigUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/configs/remote-configs-stg.json",
+30:   "welcomePageConfig": {
+31:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+32:   },
+33:   "languageConfig": {
+34:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/stage/translation_4.0/",
+35:     "languagesISO1": [
+36:       "en",
+37:       "ar"
+38:     ]
+39:   },
+40:   "downloadsConfig": {
+41:     "downloadsEnabled": true,
+42:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+43:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+44:   },
+45:   "mpxConfig": {
+46:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_paf_all/%s"
+47:   },
+48:   "catalogUrls": {
+49:     "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+50:     "storeUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids|Kids}",
+51:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400370",
+52:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400369",
+53:     "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids}&byTagIds=35400231959",
+54:     "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23374376389",
+55:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+56:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+57:   },
+58:   "regionalConfigs": {
+59:     "pk": {
+60:       "mpxConfig": {
+61:         "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+62:       },
+63:       "catalogUrls": {
+64:         "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+65:         "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400370&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+66:         "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400369&byCustomValue={availableInSection}{All|NotKids}&&sort=:priorityLevel",
+67:         "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=300244008319&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+68:         "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23374376389&byCustomValue={availableInSection}{All|Kids}&sort=:priorityLevelKids",
+69:         "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+70:         "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+75:     "CDNBaseUrl": "http://mena-cdn-lb.aws.playco.com/",
+76:     "CDNImageBaseUrl": "http://mena-img-cdn-lb.aws.playco.com/"
+77:   },
+
+===== MATCH =====
+
+FILE assets/config_stage.json
+1: {
+2:   "name": "stg",
+3:   "targetVersion": 995,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://stg-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-stg-new-api.aws.playco.com/api",
+7:   "mediaServiceBaseUrlNMS": "https://sp-stg-nms-api.aws.playco.com/api",
+8:   "staticPegBaseUrl": "https://stg-static-api.aws.playco.com/api",
+9:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+10:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+11:   "pinLoginKey": "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+12:   "defaultCDNUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+13:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+14:   "ratingCalloutEnabled": true,
+15:   "removeCache": "false",
+16:   "concurrencyEnabled": false,
+17:   "concurrencyV2Enabled": true,
+18:   "heartbeatIntervalSeconds": 60,
+19:   "CDNSelectorEnabled": false,
+20:   "adsEnabled": true,
+21:   "vodAdsMinOSVersion": 26,
+22:   "liveAdsMinOSVersion": 26,
+23:   "externalLinksConfig": {
+24:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+25:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+26:     "privacyPolicyUrl": "https://arabia.starzplay.com/%s/privacypolicy",
+27:     "shareBaseUrl": "https://arabia.starzplay.com/"
+28:   },
+29:   "remoteConfigUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/configs/remote-configs-stg.json",
+30:   "welcomePageConfig": {
+31:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+32:   },
+33:   "languageConfig": {
+34:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/stage/translation_4.0/",
+35:     "languagesISO1": [
+36:       "en",
+37:       "ar"
+38:     ]
+39:   },
+40:   "downloadsConfig": {
+41:     "downloadsEnabled": true,
+42:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+43:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+44:   },
+45:   "mpxConfig": {
+46:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_paf_all/%s"
+47:   },
+48:   "catalogUrls": {
+49:     "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+50:     "storeUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids|Kids}",
+51:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400370",
+52:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400369",
+53:     "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids}&byTagIds=35400231959",
+54:     "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23374376389",
+55:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+56:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+57:   },
+58:   "regionalConfigs": {
+59:     "pk": {
+60:       "mpxConfig": {
+61:         "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+62:       },
+63:       "catalogUrls": {
+64:         "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+65:         "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400370&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+66:         "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400369&byCustomValue={availableInSection}{All|NotKids}&&sort=:priorityLevel",
+67:         "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=300244008319&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+68:         "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23374376389&byCustomValue={availableInSection}{All|Kids}&sort=:priorityLevelKids",
+69:         "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+70:         "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+75:     "CDNBaseUrl": "http://mena-cdn-lb.aws.playco.com/",
+76:     "CDNImageBaseUrl": "http://mena-img-cdn-lb.aws.playco.com/"
+77:   },
+78:   "imageCacheVersion": "1.0.1",
+79:   "screenSaverDisplayTime": 2,
+
+===== MATCH =====
+
+FILE assets/config.json
+1: {
+2:   "name": "prd",
+3:   "targetVersion": 7500234,
+4:   "forceToUpdate": true,
+5:   "pegBaseUrl": "https://api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-new-api.aws.playco.com/api",
+7:   "mediaServiceBaseUrlNMS": "https://sp-nms-api.aws.playco.com/api",
+8:   "staticPegBaseUrl": "https://static-api.aws.playco.com/api",
+9:   "staticBaseUrlV2": "https://static-cf-rec.aws.playco.com",
+10:   "pinLoginBaseUrl": "https://sp-code.aws.playco.com",
+11:   "pinLoginKey": "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi",
+12:   "defaultCDNUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+13:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+14:   "ratingCalloutEnabled": true,
+15:   "removeCache": "false",
+16:   "concurrencyEnabled": false,
+17:   "concurrencyV2Enabled": true,
+18:   "heartbeatIntervalSeconds": 60,
+19:   "CDNSelectorEnabled": false,
+20:   "adsEnabled": true,
+21:   "vodAdsMinOSVersion": 26,
+22:   "liveAdsMinOSVersion": 26,
+23:   "externalLinksConfig": {
+24:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+25:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+26:     "privacyPolicyUrl": "https://arabia.starzplay.com/%s/privacypolicy",
+27:     "shareBaseUrl": "https://arabia.starzplay.com/"
+28:   },
+29:   "remoteConfigUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/configs/remote-configs.json",
+30:   "welcomePageConfig": {
+31:     "baseWelcomeContentUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+32:   },
+33:   "languageConfig": {
+34:     "langFileName": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/translation_4.0/",
+35:     "languagesISO1": [
+36:       "en",
+37:       "ar"
+38:     ]
+39:   },
+40:   "downloadsConfig": {
+41:     "downloadsEnabled": true,
+42:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+43:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+44:   },
+45:   "mpxConfig": {
+46:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_paf_all/%s"
+47:   },
+48:   "catalogUrls": {
+49:     "baseChannelUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+50:     "storeUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids|Kids}",
+51:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400370",
+52:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400369",
+53:     "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids}&byTagIds=35400231959",
+54:     "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23374376389",
+55:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+56:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+57:   },
+58:   "regionalConfigs": {
+59:     "pk": {
+60:       "mpxConfig": {
+61:         "mpxTitlesUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+62:       },
+63:       "catalogUrls": {
+64:         "baseChannelUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+65:         "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400370&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+66:         "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400369&byCustomValue={availableInSection}{All|NotKids}&&sort=:priorityLevel",
+67:         "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=300244008319&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+68:         "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23374376389&byCustomValue={availableInSection}{All|Kids}&sort=:priorityLevelKids",
+69:         "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+70:         "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+
+===== MATCH =====
+
+FILE assets/config.json
+1: {
+2:   "name": "prd",
+3:   "targetVersion": 7500234,
+4:   "forceToUpdate": true,
+5:   "pegBaseUrl": "https://api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-new-api.aws.playco.com/api",
+7:   "mediaServiceBaseUrlNMS": "https://sp-nms-api.aws.playco.com/api",
+8:   "staticPegBaseUrl": "https://static-api.aws.playco.com/api",
+9:   "staticBaseUrlV2": "https://static-cf-rec.aws.playco.com",
+10:   "pinLoginBaseUrl": "https://sp-code.aws.playco.com",
+11:   "pinLoginKey": "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi",
+12:   "defaultCDNUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+13:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+14:   "ratingCalloutEnabled": true,
+15:   "removeCache": "false",
+16:   "concurrencyEnabled": false,
+17:   "concurrencyV2Enabled": true,
+18:   "heartbeatIntervalSeconds": 60,
+19:   "CDNSelectorEnabled": false,
+20:   "adsEnabled": true,
+21:   "vodAdsMinOSVersion": 26,
+22:   "liveAdsMinOSVersion": 26,
+23:   "externalLinksConfig": {
+24:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+25:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+26:     "privacyPolicyUrl": "https://arabia.starzplay.com/%s/privacypolicy",
+27:     "shareBaseUrl": "https://arabia.starzplay.com/"
+28:   },
+29:   "remoteConfigUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/configs/remote-configs.json",
+30:   "welcomePageConfig": {
+31:     "baseWelcomeContentUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+32:   },
+33:   "languageConfig": {
+34:     "langFileName": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/translation_4.0/",
+35:     "languagesISO1": [
+36:       "en",
+37:       "ar"
+38:     ]
+39:   },
+40:   "downloadsConfig": {
+41:     "downloadsEnabled": true,
+42:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+43:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+44:   },
+45:   "mpxConfig": {
+46:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_paf_all/%s"
+47:   },
+48:   "catalogUrls": {
+49:     "baseChannelUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+50:     "storeUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids|Kids}",
+51:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400370",
+52:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400369",
+53:     "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids}&byTagIds=35400231959",
+54:     "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23374376389",
+55:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+56:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+57:   },
+58:   "regionalConfigs": {
+59:     "pk": {
+60:       "mpxConfig": {
+61:         "mpxTitlesUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+62:       },
+63:       "catalogUrls": {
+64:         "baseChannelUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+65:         "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400370&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+66:         "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400369&byCustomValue={availableInSection}{All|NotKids}&&sort=:priorityLevel",
+67:         "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=300244008319&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+68:         "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23374376389&byCustomValue={availableInSection}{All|Kids}&sort=:priorityLevelKids",
+69:         "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+70:         "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+75:     "CDNBaseUrl": "https://mena-cdn-lb.aws.playco.com/",
+
+===== MATCH =====
+
+FILE assets/config.json
+1: {
+2:   "name": "prd",
+3:   "targetVersion": 7500234,
+4:   "forceToUpdate": true,
+5:   "pegBaseUrl": "https://api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-new-api.aws.playco.com/api",
+7:   "mediaServiceBaseUrlNMS": "https://sp-nms-api.aws.playco.com/api",
+8:   "staticPegBaseUrl": "https://static-api.aws.playco.com/api",
+9:   "staticBaseUrlV2": "https://static-cf-rec.aws.playco.com",
+10:   "pinLoginBaseUrl": "https://sp-code.aws.playco.com",
+11:   "pinLoginKey": "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi",
+12:   "defaultCDNUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+13:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+14:   "ratingCalloutEnabled": true,
+15:   "removeCache": "false",
+16:   "concurrencyEnabled": false,
+17:   "concurrencyV2Enabled": true,
+18:   "heartbeatIntervalSeconds": 60,
+19:   "CDNSelectorEnabled": false,
+20:   "adsEnabled": true,
+21:   "vodAdsMinOSVersion": 26,
+22:   "liveAdsMinOSVersion": 26,
+23:   "externalLinksConfig": {
+24:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+25:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+26:     "privacyPolicyUrl": "https://arabia.starzplay.com/%s/privacypolicy",
+27:     "shareBaseUrl": "https://arabia.starzplay.com/"
+28:   },
+29:   "remoteConfigUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/configs/remote-configs.json",
+30:   "welcomePageConfig": {
+31:     "baseWelcomeContentUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+32:   },
+33:   "languageConfig": {
+34:     "langFileName": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/translation_4.0/",
+35:     "languagesISO1": [
+36:       "en",
+37:       "ar"
+38:     ]
+39:   },
+40:   "downloadsConfig": {
+41:     "downloadsEnabled": true,
+42:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+43:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+44:   },
+45:   "mpxConfig": {
+46:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_paf_all/%s"
+47:   },
+48:   "catalogUrls": {
+49:     "baseChannelUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+50:     "storeUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids|Kids}",
+51:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400370",
+52:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400369",
+53:     "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids}&byTagIds=35400231959",
+54:     "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23374376389",
+55:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+56:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+57:   },
+58:   "regionalConfigs": {
+59:     "pk": {
+60:       "mpxConfig": {
+61:         "mpxTitlesUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+62:       },
+63:       "catalogUrls": {
+64:         "baseChannelUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+65:         "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400370&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+66:         "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400369&byCustomValue={availableInSection}{All|NotKids}&&sort=:priorityLevel",
+67:         "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=300244008319&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+68:         "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23374376389&byCustomValue={availableInSection}{All|Kids}&sort=:priorityLevelKids",
+69:         "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+70:         "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+75:     "CDNBaseUrl": "https://mena-cdn-lb.aws.playco.com/",
+76:     "CDNImageBaseUrl": "https://mena-img-cdn-lb.aws.playco.com/"
+
+===== MATCH =====
+
+FILE assets/config.json
+1: {
+2:   "name": "prd",
+3:   "targetVersion": 7500234,
+4:   "forceToUpdate": true,
+5:   "pegBaseUrl": "https://api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-new-api.aws.playco.com/api",
+7:   "mediaServiceBaseUrlNMS": "https://sp-nms-api.aws.playco.com/api",
+8:   "staticPegBaseUrl": "https://static-api.aws.playco.com/api",
+9:   "staticBaseUrlV2": "https://static-cf-rec.aws.playco.com",
+10:   "pinLoginBaseUrl": "https://sp-code.aws.playco.com",
+11:   "pinLoginKey": "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi",
+12:   "defaultCDNUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+13:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+14:   "ratingCalloutEnabled": true,
+15:   "removeCache": "false",
+16:   "concurrencyEnabled": false,
+17:   "concurrencyV2Enabled": true,
+18:   "heartbeatIntervalSeconds": 60,
+19:   "CDNSelectorEnabled": false,
+20:   "adsEnabled": true,
+21:   "vodAdsMinOSVersion": 26,
+22:   "liveAdsMinOSVersion": 26,
+23:   "externalLinksConfig": {
+24:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+25:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+26:     "privacyPolicyUrl": "https://arabia.starzplay.com/%s/privacypolicy",
+27:     "shareBaseUrl": "https://arabia.starzplay.com/"
+28:   },
+29:   "remoteConfigUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/configs/remote-configs.json",
+30:   "welcomePageConfig": {
+31:     "baseWelcomeContentUrl": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+32:   },
+33:   "languageConfig": {
+34:     "langFileName": "https://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/translation_4.0/",
+35:     "languagesISO1": [
+36:       "en",
+37:       "ar"
+38:     ]
+39:   },
+40:   "downloadsConfig": {
+41:     "downloadsEnabled": true,
+42:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+43:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+44:   },
+45:   "mpxConfig": {
+46:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_paf_all/%s"
+47:   },
+48:   "catalogUrls": {
+49:     "baseChannelUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+50:     "storeUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids|Kids}",
+51:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400370",
+52:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids},{AddonContent}{starz|-}&byTagIds=23375400369",
+53:     "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|NotKids}&byTagIds=35400231959",
+54:     "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23374376389",
+55:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+56:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+57:   },
+58:   "regionalConfigs": {
+59:     "pk": {
+60:       "mpxConfig": {
+61:         "mpxTitlesUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+62:       },
+63:       "catalogUrls": {
+64:         "baseChannelUrl": "https://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+65:         "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400370&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+66:         "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23375400369&byCustomValue={availableInSection}{All|NotKids}&&sort=:priorityLevel",
+67:         "customSectionUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=300244008319&byCustomValue={availableInSection}{All|NotKids}&sort=:priorityLevel",
+68:         "kidsUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_pk_Explore_v2?byTagIds=23374376389&byCustomValue={availableInSection}{All|Kids}&sort=:priorityLevelKids",
+69:         "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400369,23374376389",
+70:         "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/spa_mena_Explore_v2?sort=added|desc&byCustomValue={availableInSection}{All|Kids}&byTagIds=23375400370,23374376389"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+75:     "CDNBaseUrl": "https://mena-cdn-lb.aws.playco.com/",
+76:     "CDNImageBaseUrl": "https://mena-img-cdn-lb.aws.playco.com/"
+77:   },
+
+===== MATCH =====
+
+FILE assets/config_test.json
+1: {
+2:   "name": "tst",
+3:   "targetVersion": 7500040,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://test-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-dev-new-api.aws.playco.com/api",
+7:   "staticPegBaseUrl": "https://test-api.aws.playco.com/api",
+8:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+9:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+10:   "pinLoginKey" : "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+11:   "defaultCDNUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+12:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+13:   "ratingCalloutEnabled": true,
+14:   "removeCache": "false",
+15:   "concurrencyEnabled": false,
+16:   "concurrencyV2Enabled": true,
+17:   "heartbeatIntervalSeconds" : 20,
+18:   "CDNSelectorEnabled": false,
+19:   "externalLinksConfig": {
+20:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+21:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+22:     "shareBaseUrl": "https://arabia.starzplay.com/"
+23:   },
+24:   "welcomePageConfig": {
+25:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+26:   },
+27:   "languageConfig": {
+28:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/translation_3.0/",
+29:     "languagesISO1": [
+30:       "en",
+31:       "ar",
+32:       "fr"
+33:     ]
+34:   },
+35:   "downloadsConfig": {
+36:     "downloadsEnabled": true,
+37:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+38:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+39:   },
+40:   "mpxConfig": {
+41:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_dev_dynamic2/%s"
+42:   },
+43:   "catalogUrls": {
+44:     "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+45:     "storeUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7CKids%7D&sort=added%7Cdesc",
+46:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_dev_CataloguesProgram?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&sort=added%7Cdesc&ByProgramType=movie",
+47:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_dev_CataloguesProgram?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&sort=added%7Cdesc&ByProgramType=series",
+48:     "customSectionUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=35400231959&sort=added%7Cdesc",
+49:     "yuppflixUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_mena_CatalogueYuppFlix?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byCustomValue=%7BYuppFlixContent%7D%7BYes%7D&sort=added%7Cdesc",
+50:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&f[%E2%80%A6]23374376389&byProgramType=series&ByTags=22244904202",
+51:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400369%7C23375400370,23374376389&byProgramType=movie&ByTags=22244904202",
+52:     "disneyUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,peg%24arAgeRating,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CKids%7D&byMediaAvailabilityState=available&byTagIds=23635496364&byProgramType=Movie",
+53:     "disneyHeroUrl": "http://mena-cdn-lb.aws.playco.com/DODMBANNER.jpg"
+54:   },
+55:   "regionalConfigs": {
+56:     "pk": {
+57:       "mpxConfig": {
+58:         "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+59:       },
+60:       "catalogUrls": {
+61:         "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+62:         "kidsUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,programType,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&thumbnailFilter=thumb-677x474&byTagIds=23375400369%7C68671016179%2C68671016181&sort=added%7Cdesc",
+63:         "moviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=23375400370&sort=added%7Cdesc",
+64:         "seriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=23375400369&sort=added%7Cdesc",
+65:         "customSectionUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=300244008319&sort=added%7Cdesc",
+66:         "yuppflixUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/notHaveYuppflix?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byCustomValue=%7BYuppFlixContent%7D%7BYes%7D&sort=added%7Cdesc",
+67:         "catKidsSeriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400370|23375400369,23374376389",
+68:         "catKidsMoviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400370|23375400369,23374376389",
+69:         "disneyUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,peg%24arAgeRating,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CKids%7D&byMediaAvailabilityState=available&byTagIds=23635496364&byProgramType=Movie",
+70:         "disneyHeroUrl": "http://mena-cdn-lb.aws.playco.com/DODMBANNER.jpg"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+
+===== MATCH =====
+
+FILE assets/config_test.json
+1: {
+2:   "name": "tst",
+3:   "targetVersion": 7500040,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://test-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-dev-new-api.aws.playco.com/api",
+7:   "staticPegBaseUrl": "https://test-api.aws.playco.com/api",
+8:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+9:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+10:   "pinLoginKey" : "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+11:   "defaultCDNUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+12:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+13:   "ratingCalloutEnabled": true,
+14:   "removeCache": "false",
+15:   "concurrencyEnabled": false,
+16:   "concurrencyV2Enabled": true,
+17:   "heartbeatIntervalSeconds" : 20,
+18:   "CDNSelectorEnabled": false,
+19:   "externalLinksConfig": {
+20:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+21:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+22:     "shareBaseUrl": "https://arabia.starzplay.com/"
+23:   },
+24:   "welcomePageConfig": {
+25:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+26:   },
+27:   "languageConfig": {
+28:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/translation_3.0/",
+29:     "languagesISO1": [
+30:       "en",
+31:       "ar",
+32:       "fr"
+33:     ]
+34:   },
+35:   "downloadsConfig": {
+36:     "downloadsEnabled": true,
+37:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+38:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+39:   },
+40:   "mpxConfig": {
+41:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_dev_dynamic2/%s"
+42:   },
+43:   "catalogUrls": {
+44:     "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+45:     "storeUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7CKids%7D&sort=added%7Cdesc",
+46:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_dev_CataloguesProgram?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&sort=added%7Cdesc&ByProgramType=movie",
+47:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_dev_CataloguesProgram?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&sort=added%7Cdesc&ByProgramType=series",
+48:     "customSectionUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=35400231959&sort=added%7Cdesc",
+49:     "yuppflixUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_mena_CatalogueYuppFlix?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byCustomValue=%7BYuppFlixContent%7D%7BYes%7D&sort=added%7Cdesc",
+50:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&f[%E2%80%A6]23374376389&byProgramType=series&ByTags=22244904202",
+51:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400369%7C23375400370,23374376389&byProgramType=movie&ByTags=22244904202",
+52:     "disneyUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,peg%24arAgeRating,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CKids%7D&byMediaAvailabilityState=available&byTagIds=23635496364&byProgramType=Movie",
+53:     "disneyHeroUrl": "http://mena-cdn-lb.aws.playco.com/DODMBANNER.jpg"
+54:   },
+55:   "regionalConfigs": {
+56:     "pk": {
+57:       "mpxConfig": {
+58:         "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+59:       },
+60:       "catalogUrls": {
+61:         "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+62:         "kidsUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,programType,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&thumbnailFilter=thumb-677x474&byTagIds=23375400369%7C68671016179%2C68671016181&sort=added%7Cdesc",
+63:         "moviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=23375400370&sort=added%7Cdesc",
+64:         "seriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=23375400369&sort=added%7Cdesc",
+65:         "customSectionUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=300244008319&sort=added%7Cdesc",
+66:         "yuppflixUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/notHaveYuppflix?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byCustomValue=%7BYuppFlixContent%7D%7BYes%7D&sort=added%7Cdesc",
+67:         "catKidsSeriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400370|23375400369,23374376389",
+68:         "catKidsMoviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400370|23375400369,23374376389",
+69:         "disneyUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,peg%24arAgeRating,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CKids%7D&byMediaAvailabilityState=available&byTagIds=23635496364&byProgramType=Movie",
+70:         "disneyHeroUrl": "http://mena-cdn-lb.aws.playco.com/DODMBANNER.jpg"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+75:     "CDNBaseUrl": "http://mena-cdn-lb.aws.playco.com/",
+
+===== MATCH =====
+
+FILE assets/config_test.json
+1: {
+2:   "name": "tst",
+3:   "targetVersion": 7500040,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://test-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-dev-new-api.aws.playco.com/api",
+7:   "staticPegBaseUrl": "https://test-api.aws.playco.com/api",
+8:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+9:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+10:   "pinLoginKey" : "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+11:   "defaultCDNUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+12:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+13:   "ratingCalloutEnabled": true,
+14:   "removeCache": "false",
+15:   "concurrencyEnabled": false,
+16:   "concurrencyV2Enabled": true,
+17:   "heartbeatIntervalSeconds" : 20,
+18:   "CDNSelectorEnabled": false,
+19:   "externalLinksConfig": {
+20:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+21:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+22:     "shareBaseUrl": "https://arabia.starzplay.com/"
+23:   },
+24:   "welcomePageConfig": {
+25:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+26:   },
+27:   "languageConfig": {
+28:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/translation_3.0/",
+29:     "languagesISO1": [
+30:       "en",
+31:       "ar",
+32:       "fr"
+33:     ]
+34:   },
+35:   "downloadsConfig": {
+36:     "downloadsEnabled": true,
+37:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+38:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+39:   },
+40:   "mpxConfig": {
+41:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_dev_dynamic2/%s"
+42:   },
+43:   "catalogUrls": {
+44:     "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+45:     "storeUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7CKids%7D&sort=added%7Cdesc",
+46:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_dev_CataloguesProgram?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&sort=added%7Cdesc&ByProgramType=movie",
+47:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_dev_CataloguesProgram?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&sort=added%7Cdesc&ByProgramType=series",
+48:     "customSectionUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=35400231959&sort=added%7Cdesc",
+49:     "yuppflixUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_mena_CatalogueYuppFlix?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byCustomValue=%7BYuppFlixContent%7D%7BYes%7D&sort=added%7Cdesc",
+50:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&f[%E2%80%A6]23374376389&byProgramType=series&ByTags=22244904202",
+51:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400369%7C23375400370,23374376389&byProgramType=movie&ByTags=22244904202",
+52:     "disneyUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,peg%24arAgeRating,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CKids%7D&byMediaAvailabilityState=available&byTagIds=23635496364&byProgramType=Movie",
+53:     "disneyHeroUrl": "http://mena-cdn-lb.aws.playco.com/DODMBANNER.jpg"
+54:   },
+55:   "regionalConfigs": {
+56:     "pk": {
+57:       "mpxConfig": {
+58:         "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+59:       },
+60:       "catalogUrls": {
+61:         "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+62:         "kidsUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,programType,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&thumbnailFilter=thumb-677x474&byTagIds=23375400369%7C68671016179%2C68671016181&sort=added%7Cdesc",
+63:         "moviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=23375400370&sort=added%7Cdesc",
+64:         "seriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=23375400369&sort=added%7Cdesc",
+65:         "customSectionUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=300244008319&sort=added%7Cdesc",
+66:         "yuppflixUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/notHaveYuppflix?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byCustomValue=%7BYuppFlixContent%7D%7BYes%7D&sort=added%7Cdesc",
+67:         "catKidsSeriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400370|23375400369,23374376389",
+68:         "catKidsMoviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400370|23375400369,23374376389",
+69:         "disneyUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,peg%24arAgeRating,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CKids%7D&byMediaAvailabilityState=available&byTagIds=23635496364&byProgramType=Movie",
+70:         "disneyHeroUrl": "http://mena-cdn-lb.aws.playco.com/DODMBANNER.jpg"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+75:     "CDNBaseUrl": "http://mena-cdn-lb.aws.playco.com/",
+76:     "CDNImageBaseUrl": "http://mena-img-cdn-lb.aws.playco.com/"
+
+===== MATCH =====
+
+FILE assets/config_test.json
+1: {
+2:   "name": "tst",
+3:   "targetVersion": 7500040,
+4:   "forceToUpdate": false,
+5:   "pegBaseUrl": "https://test-api.aws.playco.com/api",
+6:   "mediaServiceBaseUrl": "https://sp-dev-new-api.aws.playco.com/api",
+7:   "staticPegBaseUrl": "https://test-api.aws.playco.com/api",
+8:   "staticBaseUrlV2": "https://sp-stg-new-api-static.aws.playco.com",
+9:   "pinLoginBaseUrl": "https://stg-pin-api.aws.playco.com",
+10:   "pinLoginKey" : "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc",
+11:   "defaultCDNUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/",
+12:   "loginQRCodeBaseUrl": "https://starzplay-img-prod-ssl.akamaized.net/prd-peg-data/default/images/qrcodes/",
+13:   "ratingCalloutEnabled": true,
+14:   "removeCache": "false",
+15:   "concurrencyEnabled": false,
+16:   "concurrencyV2Enabled": true,
+17:   "heartbeatIntervalSeconds" : 20,
+18:   "CDNSelectorEnabled": false,
+19:   "externalLinksConfig": {
+20:     "portalFAQUrl": "https://arabia.starzplay.com/faq",
+21:     "portalTermsUrl": "https://arabia.starzplay.com/termsandconditions",
+22:     "shareBaseUrl": "https://arabia.starzplay.com/"
+23:   },
+24:   "welcomePageConfig": {
+25:     "baseWelcomeContentUrl": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/"
+26:   },
+27:   "languageConfig": {
+28:     "langFileName": "http://mena-cdn-lb.aws.playco.com/prd-peg-data/default/androidtv/translation_3.0/",
+29:     "languagesISO1": [
+30:       "en",
+31:       "ar",
+32:       "fr"
+33:     ]
+34:   },
+35:   "downloadsConfig": {
+36:     "downloadsEnabled": true,
+37:     "downloadsApiBaseUrl": "https://tmpd.aws.playco.com/",
+38:     "downloadsManifestHostUrl": "usp-download.aws.playco.com"
+39:   },
+40:   "mpxConfig": {
+41:     "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_dev_dynamic2/%s"
+42:   },
+43:   "catalogUrls": {
+44:     "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+45:     "storeUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/spa_mena_store_Explore_v2?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7CKids%7D&sort=added%7Cdesc",
+46:     "moviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_dev_CataloguesProgram?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&sort=added%7Cdesc&ByProgramType=movie",
+47:     "seriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_dev_CataloguesProgram?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D%2C%7BAddonContent%7D%7Bstarz%7C-%7D&byMediaAvailabilityState=available&sort=added%7Cdesc&ByProgramType=series",
+48:     "customSectionUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=35400231959&sort=added%7Cdesc",
+49:     "yuppflixUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_mena_CatalogueYuppFlix?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byCustomValue=%7BYuppFlixContent%7D%7BYes%7D&sort=added%7Cdesc",
+50:     "catKidsSeriesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&f[%E2%80%A6]23374376389&byProgramType=series&ByTags=22244904202",
+51:     "catKidsMoviesUrl": "https://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400369%7C23375400370,23374376389&byProgramType=movie&ByTags=22244904202",
+52:     "disneyUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_mena_CatalogueAllProgram?form=cjson&fields=id,title,titleLocalized,year,peg%24arAgeRating,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CKids%7D&byMediaAvailabilityState=available&byTagIds=23635496364&byProgramType=Movie",
+53:     "disneyHeroUrl": "http://mena-cdn-lb.aws.playco.com/DODMBANNER.jpg"
+54:   },
+55:   "regionalConfigs": {
+56:     "pk": {
+57:       "mpxConfig": {
+58:         "mpxTitlesUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/peg_pk_paf_all/%s"
+59:       },
+60:       "catalogUrls": {
+61:         "baseChannelUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/",
+62:         "kidsUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,programType,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&thumbnailFilter=thumb-677x474&byTagIds=23375400369%7C68671016179%2C68671016181&sort=added%7Cdesc",
+63:         "moviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,peg%24arAgeRating,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=23375400370&sort=added%7Cdesc",
+64:         "seriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=23375400369&sort=added%7Cdesc",
+65:         "customSectionUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,peg%24arAgeRating,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CNotKids%7D&byMediaAvailabilityState=available&byTagIds=300244008319&sort=added%7Cdesc",
+66:         "yuppflixUrl": "http://feed.entertainment.tv.theplatform.eu/f/hGKjSC/notHaveYuppflix?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byCustomValue=%7BYuppFlixContent%7D%7BYes%7D&sort=added%7Cdesc",
+67:         "catKidsSeriesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400370|23375400369,23374376389",
+68:         "catKidsMoviesUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,tagIds,description,shortDescription,shortDescriptionLocalized,tags,peg$arAgeRating,thumbnails&byMediaAvailabilityState=available&byTagIds=23375400370|23375400369,23374376389",
+69:         "disneyUrl": "http://feed.entertainment.tv.theplatform.eu/f/qaJAph/peg_pk_paf_all?form=cjson&fields=id,title,titleLocalized,year,peg%24arAgeRating,tagIds,description,shortDescription,shortDescriptionLocalized,tags,thumbnails&byCustomValue=%7BavailableInSection%7D%7BAll%7CKids%7D&byMediaAvailabilityState=available&byTagIds=23635496364&byProgramType=Movie",
+70:         "disneyHeroUrl": "http://mena-cdn-lb.aws.playco.com/DODMBANNER.jpg"
+71:       }
+72:     }
+73:   },
+74:   "cdnConfig": {
+75:     "CDNBaseUrl": "http://mena-cdn-lb.aws.playco.com/",
+76:     "CDNImageBaseUrl": "http://mena-img-cdn-lb.aws.playco.com/"
+77:   },
+78:   "imageCacheVersion": "1.0.0",
+
+===== MATCH =====
+
+FILE smali_classes6/de/b.smali
+2395:     move-result-object v7
+2396: 
+2397:     .line 19
+2398:     const-string v0, ".*/user/.*/favourite.*"
+2399: 
+2400:     .line 20
+2401:     .line 21
+2402:     invoke-static {v0}, Ljava/util/regex/Pattern;->compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+2403: 
+2404:     .line 22
+2405:     .line 23
+2406:     .line 24
+2407:     move-result-object v15
+2408: 
+2409:     .line 25
+2410: [REDACTED_SENSITIVE_LINE]
+2411: 
+2412:     .line 26
+2413:     .line 27
+2414: [REDACTED_SENSITIVE_LINE]
+2415: 
+2416:     .line 28
+2417:     .line 29
+2418: [REDACTED_SENSITIVE_LINE]
+2419: 
+2420:     .line 30
+2421:     .line 31
+2422: [REDACTED_SENSITIVE_LINE]
+2423: 
+2424:     .line 32
+2425:     .line 33
+2426:     const-string v8, "/recommendations"
+2427: 
+2428:     .line 34
+2429:     .line 35
+2430:     const-string v9, "/epg/channel/start/"
+2431: 
+2432:     .line 36
+2433:     .line 37
+2434:     const-string v10, "/epg/category/config/"
+2435: 
+2436:     .line 38
+2437:     .line 39
+2438:     const-string v11, "/epg/category/events/"
+2439: 
+2440:     .line 40
+2441:     .line 41
+2442:     const-string v12, "/user/add/favourite"
+2443: 
+2444:     .line 42
+2445:     .line 43
+2446:     const-string v13, "/user/remove/favourite"
+2447: 
+2448:     .line 44
+2449:     .line 45
+2450:     const-string v14, "/dynamicmodules/home/predict"
+2451: 
+2452:     .line 46
+2453:     .line 47
+2454:     filled-new-array/range {v1 .. v15}, [Ljava/lang/Object;
+2455: 
+2456:     .line 48
+2457:     .line 49
+2458:     .line 50
+2459:     move-result-object v0
+2460: 
+2461:     .line 51
+2462:     return-object v0
+2463:     .line 52
+2464:     .line 53
+2465:     .line 54
+2466:     .line 55
+2467:     .line 56
+2468:     .line 57
+2469:     .line 58
+2470:     .line 59
+2471:     .line 60
+2472:     .line 61
+2473:     .line 62
+2474:     .line 63
+2475:     .line 64
+2476:     .line 65
+2477:     .line 66
+2478:     .line 67
+2479:     .line 68
+2480:     .line 69
+2481:     .line 70
+2482:     .line 71
+2483:     .line 72
+2484:     .line 73
+2485:     .line 74
+2486:     .line 75
+2487:     .line 76
+2488:     .line 77
+2489:     .line 78
+2490:     .line 79
+2491:     .line 80
+2492:     .line 81
+2493:     .line 82
+2494:     .line 83
+2495:     .line 84
+2496:     .line 85
+2497:     .line 86
+2498:     .line 87
+2499:     .line 88
+
+===== MATCH =====
+
+FILE smali_classes6/de/b.smali
+2399: 
+2400:     .line 20
+2401:     .line 21
+2402:     invoke-static {v0}, Ljava/util/regex/Pattern;->compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+2403: 
+2404:     .line 22
+2405:     .line 23
+2406:     .line 24
+2407:     move-result-object v15
+2408: 
+2409:     .line 25
+2410: [REDACTED_SENSITIVE_LINE]
+2411: 
+2412:     .line 26
+2413:     .line 27
+2414: [REDACTED_SENSITIVE_LINE]
+2415: 
+2416:     .line 28
+2417:     .line 29
+2418: [REDACTED_SENSITIVE_LINE]
+2419: 
+2420:     .line 30
+2421:     .line 31
+2422: [REDACTED_SENSITIVE_LINE]
+2423: 
+2424:     .line 32
+2425:     .line 33
+2426:     const-string v8, "/recommendations"
+2427: 
+2428:     .line 34
+2429:     .line 35
+2430:     const-string v9, "/epg/channel/start/"
+2431: 
+2432:     .line 36
+2433:     .line 37
+2434:     const-string v10, "/epg/category/config/"
+2435: 
+2436:     .line 38
+2437:     .line 39
+2438:     const-string v11, "/epg/category/events/"
+2439: 
+2440:     .line 40
+2441:     .line 41
+2442:     const-string v12, "/user/add/favourite"
+2443: 
+2444:     .line 42
+2445:     .line 43
+2446:     const-string v13, "/user/remove/favourite"
+2447: 
+2448:     .line 44
+2449:     .line 45
+2450:     const-string v14, "/dynamicmodules/home/predict"
+2451: 
+2452:     .line 46
+2453:     .line 47
+2454:     filled-new-array/range {v1 .. v15}, [Ljava/lang/Object;
+2455: 
+2456:     .line 48
+2457:     .line 49
+2458:     .line 50
+2459:     move-result-object v0
+2460: 
+2461:     .line 51
+2462:     return-object v0
+2463:     .line 52
+2464:     .line 53
+2465:     .line 54
+2466:     .line 55
+2467:     .line 56
+2468:     .line 57
+2469:     .line 58
+2470:     .line 59
+2471:     .line 60
+2472:     .line 61
+2473:     .line 62
+2474:     .line 63
+2475:     .line 64
+2476:     .line 65
+2477:     .line 66
+2478:     .line 67
+2479:     .line 68
+2480:     .line 69
+2481:     .line 70
+2482:     .line 71
+2483:     .line 72
+2484:     .line 73
+2485:     .line 74
+2486:     .line 75
+2487:     .line 76
+2488:     .line 77
+2489:     .line 78
+2490:     .line 79
+2491:     .line 80
+2492:     .line 81
+2493:     .line 82
+2494:     .line 83
+2495:     .line 84
+2496:     .line 85
+2497:     .line 86
+2498:     .line 87
+2499:     .line 88
+2500:     .line 89
+2501:     .line 90
+2502:     .line 91
+2503:     .line 92
+
+===== MATCH =====
+
+FILE smali_classes6/de/b.smali
+2403: 
+2404:     .line 22
+2405:     .line 23
+2406:     .line 24
+2407:     move-result-object v15
+2408: 
+2409:     .line 25
+2410: [REDACTED_SENSITIVE_LINE]
+2411: 
+2412:     .line 26
+2413:     .line 27
+2414: [REDACTED_SENSITIVE_LINE]
+2415: 
+2416:     .line 28
+2417:     .line 29
+2418: [REDACTED_SENSITIVE_LINE]
+2419: 
+2420:     .line 30
+2421:     .line 31
+2422: [REDACTED_SENSITIVE_LINE]
+2423: 
+2424:     .line 32
+2425:     .line 33
+2426:     const-string v8, "/recommendations"
+2427: 
+2428:     .line 34
+2429:     .line 35
+2430:     const-string v9, "/epg/channel/start/"
+2431: 
+2432:     .line 36
+2433:     .line 37
+2434:     const-string v10, "/epg/category/config/"
+2435: 
+2436:     .line 38
+2437:     .line 39
+2438:     const-string v11, "/epg/category/events/"
+2439: 
+2440:     .line 40
+2441:     .line 41
+2442:     const-string v12, "/user/add/favourite"
+2443: 
+2444:     .line 42
+2445:     .line 43
+2446:     const-string v13, "/user/remove/favourite"
+2447: 
+2448:     .line 44
+2449:     .line 45
+2450:     const-string v14, "/dynamicmodules/home/predict"
+2451: 
+2452:     .line 46
+2453:     .line 47
+2454:     filled-new-array/range {v1 .. v15}, [Ljava/lang/Object;
+2455: 
+2456:     .line 48
+2457:     .line 49
+2458:     .line 50
+2459:     move-result-object v0
+2460: 
+2461:     .line 51
+2462:     return-object v0
+2463:     .line 52
+2464:     .line 53
+2465:     .line 54
+2466:     .line 55
+2467:     .line 56
+2468:     .line 57
+2469:     .line 58
+2470:     .line 59
+2471:     .line 60
+2472:     .line 61
+2473:     .line 62
+2474:     .line 63
+2475:     .line 64
+2476:     .line 65
+2477:     .line 66
+2478:     .line 67
+2479:     .line 68
+2480:     .line 69
+2481:     .line 70
+2482:     .line 71
+2483:     .line 72
+2484:     .line 73
+2485:     .line 74
+2486:     .line 75
+2487:     .line 76
+2488:     .line 77
+2489:     .line 78
+2490:     .line 79
+2491:     .line 80
+2492:     .line 81
+2493:     .line 82
+2494:     .line 83
+2495:     .line 84
+2496:     .line 85
+2497:     .line 86
+2498:     .line 87
+2499:     .line 88
+2500:     .line 89
+2501:     .line 90
+2502:     .line 91
+2503:     .line 92
+2504:     .line 93
+2505:     .line 94
+2506:     .line 95
+2507:     .line 96
+
+===== MATCH =====
+
+FILE smali_classes6/oe/b.smali
+369:     .annotation runtime Lij/f;
+370:         value = "dynamicmodules/home/predict"
+371:     .end annotation
+372: .end method
+373: 
+374: .method public abstract getEPGCategories(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lfj/b;
+375:     .param p1    # Ljava/lang/String;
+376:         .annotation runtime Lij/s;
+377:             value = "userId"
+378:         .end annotation
+379:     .end param
+380:     .param p2    # Ljava/lang/String;
+381:         .annotation runtime Lij/t;
+382:             value = "lang"
+383:         .end annotation
+384:     .end param
+385:     .param p3    # Ljava/lang/String;
+386:         .annotation runtime Lij/i;
+387:             value = "x-geo-country"
+388:         .end annotation
+389:     .end param
+390:     .annotation system Ldalvik/annotation/Signature;
+391:         value = {
+392:             "(",
+393:             "Ljava/lang/String;",
+394:             "Ljava/lang/String;",
+395:             "Ljava/lang/String;",
+396:             ")",
+397:             "Lfj/b<",
+398:             "Lcom/starzplay/sdk/model/peg/epg/v2/EpgCategoryResponse;",
+399:             ">;"
+400:         }
+401:     .end annotation
+402: 
+403:     .annotation runtime Lij/f;
+404:         value = "epg/category/config/{userId}"
+405:     .end annotation
+406: .end method
+407: 
+408: .method public abstract getEPGCategoryEvents(Ljava/lang/String;Ljava/lang/String;JJLjava/lang/String;Ljava/lang/String;ILjava/lang/Integer;Ljava/lang/String;)Lfj/b;
+409:     .param p1    # Ljava/lang/String;
+410:         .annotation runtime Lij/s;
+411:             value = "userId"
+412:         .end annotation
+413:     .end param
+414:     .param p2    # Ljava/lang/String;
+415:         .annotation runtime Lij/t;
+416:             value = "category"
+417:         .end annotation
+418:     .end param
+419:     .param p3    # J
+420:         .annotation runtime Lij/t;
+421:             value = "ts_start"
+422:         .end annotation
+423:     .end param
+424:     .param p5    # J
+425:         .annotation runtime Lij/t;
+426:             value = "ts_end"
+427:         .end annotation
+428:     .end param
+429:     .param p7    # Ljava/lang/String;
+430:         .annotation runtime Lij/t;
+431:             value = "lang"
+432:         .end annotation
+433:     .end param
+434:     .param p8    # Ljava/lang/String;
+435:         .annotation runtime Lij/t;
+436:             value = "pg"
+437:         .end annotation
+438:     .end param
+439:     .param p9    # I
+440:         .annotation runtime Lij/t;
+441:             value = "page"
+442:         .end annotation
+443:     .end param
+444:     .param p10    # Ljava/lang/Integer;
+445:         .annotation runtime Lij/t;
+446:             value = "limit"
+447:         .end annotation
+448:     .end param
+449:     .param p11    # Ljava/lang/String;
+450:         .annotation runtime Lij/i;
+451:             value = "x-geo-country"
+452:         .end annotation
+453:     .end param
+454:     .annotation system Ldalvik/annotation/Signature;
+455:         value = {
+456:             "(",
+457:             "Ljava/lang/String;",
+458:             "Ljava/lang/String;",
+459:             "JJ",
+460:             "Ljava/lang/String;",
+461:             "Ljava/lang/String;",
+462:             "I",
+463:             "Ljava/lang/Integer;",
+464:             "Ljava/lang/String;",
+465:             ")",
+466:             "Lfj/b<",
+467:             "Lcom/starzplay/sdk/model/peg/epg/v2/EPGCategoryChannelResponse;",
+468:             ">;"
+469:         }
+470:     .end annotation
+471: 
+472:     .annotation runtime Lij/f;
+473:         value = "epg/category/events/{userId}"
+
+===== MATCH =====
+
+FILE smali_classes6/oe/b.smali
+438:     .end param
+439:     .param p9    # I
+440:         .annotation runtime Lij/t;
+441:             value = "page"
+442:         .end annotation
+443:     .end param
+444:     .param p10    # Ljava/lang/Integer;
+445:         .annotation runtime Lij/t;
+446:             value = "limit"
+447:         .end annotation
+448:     .end param
+449:     .param p11    # Ljava/lang/String;
+450:         .annotation runtime Lij/i;
+451:             value = "x-geo-country"
+452:         .end annotation
+453:     .end param
+454:     .annotation system Ldalvik/annotation/Signature;
+455:         value = {
+456:             "(",
+457:             "Ljava/lang/String;",
+458:             "Ljava/lang/String;",
+459:             "JJ",
+460:             "Ljava/lang/String;",
+461:             "Ljava/lang/String;",
+462:             "I",
+463:             "Ljava/lang/Integer;",
+464:             "Ljava/lang/String;",
+465:             ")",
+466:             "Lfj/b<",
+467:             "Lcom/starzplay/sdk/model/peg/epg/v2/EPGCategoryChannelResponse;",
+468:             ">;"
+469:         }
+470:     .end annotation
+471: 
+472:     .annotation runtime Lij/f;
+473:         value = "epg/category/events/{userId}"
+474:     .end annotation
+475: .end method
+476: 
+477: .method public abstract getEPGChannelFilters()Lfj/b;
+478:     .annotation system Ldalvik/annotation/Signature;
+479:         value = {
+480:             "()",
+481:             "Lfj/b<",
+482:             "Lcom/starzplay/sdk/model/peg/epg/ChannelFiltersResponse;",
+483:             ">;"
+484:         }
+485:     .end annotation
+486: 
+487:     .annotation runtime Lij/f;
+488:         value = "epg/channel/config"
+489:     .end annotation
+490: .end method
+491: 
+492: .method public abstract getEPGEvents(Ljava/lang/String;JJLjava/lang/String;Ljava/lang/String;IILjava/lang/String;)Lfj/b;
+493:     .param p1    # Ljava/lang/String;
+494:         .annotation runtime Lij/t;
+495:             value = "channels"
+496:         .end annotation
+497:     .end param
+498:     .param p2    # J
+499:         .annotation runtime Lij/t;
+500:             value = "ts_start"
+501:         .end annotation
+502:     .end param
+503:     .param p4    # J
+504:         .annotation runtime Lij/t;
+505:             value = "ts_end"
+506:         .end annotation
+507:     .end param
+508:     .param p6    # Ljava/lang/String;
+509:         .annotation runtime Lij/t;
+510:             value = "lang"
+511:         .end annotation
+512:     .end param
+513:     .param p7    # Ljava/lang/String;
+514:         .annotation runtime Lij/t;
+515:             value = "pg"
+516:         .end annotation
+517:     .end param
+518:     .param p8    # I
+519:         .annotation runtime Lij/t;
+520:             value = "page"
+521:         .end annotation
+522:     .end param
+523:     .param p9    # I
+524:         .annotation runtime Lij/t;
+525:             value = "limit"
+526:         .end annotation
+527:     .end param
+528:     .param p10    # Ljava/lang/String;
+529:         .annotation runtime Lij/i;
+530:             value = "x-geo-country"
+531:         .end annotation
+532:     .end param
+533:     .annotation system Ldalvik/annotation/Signature;
+534:         value = {
+535:             "(",
+536:             "Ljava/lang/String;",
+537:             "JJ",
+538:             "Ljava/lang/String;",
+539:             "Ljava/lang/String;",
+540:             "II",
+541:             "Ljava/lang/String;",
+542:             ")",
+
+===== MATCH =====
+
+FILE smali_classes6/oe/b.smali
+560:     .param p2    # J
+561:         .annotation runtime Lij/t;
+562:             value = "ts_start"
+563:         .end annotation
+564:     .end param
+565:     .param p4    # J
+566:         .annotation runtime Lij/t;
+567:             value = "ts_end"
+568:         .end annotation
+569:     .end param
+570:     .param p6    # Ljava/lang/String;
+571:         .annotation runtime Lij/t;
+572:             value = "lang"
+573:         .end annotation
+574:     .end param
+575:     .param p7    # Ljava/lang/String;
+576:         .annotation runtime Lij/t;
+577:             value = "pg"
+578:         .end annotation
+579:     .end param
+580:     .annotation system Ldalvik/annotation/Signature;
+581:         value = {
+582:             "(",
+583:             "Ljava/lang/String;",
+584:             "JJ",
+585:             "Ljava/lang/String;",
+586:             "Ljava/lang/String;",
+587:             ")",
+588:             "Lfj/b<",
+589:             "Lcom/starzplay/sdk/model/peg/epg/v2/EPGCategoryChannelResponse;",
+590:             ">;"
+591:         }
+592:     .end annotation
+593: 
+594:     .annotation runtime Lij/f;
+595:         value = "epg/channel/start/{userId}"
+596:     .end annotation
+597: .end method
+598: 
+599: .method public abstract getFavourites(Ljava/lang/String;)Lfj/b;
+600:     .param p1    # Ljava/lang/String;
+601:         .annotation runtime Lij/s;
+602:             value = "userId"
+603:         .end annotation
+604:     .end param
+605:     .annotation system Ldalvik/annotation/Signature;
+606:         value = {
+607:             "(",
+608:             "Ljava/lang/String;",
+609:             ")",
+610:             "Lfj/b<",
+611:             "Lcom/starzplay/sdk/model/peg/epg/EPGFavourites;",
+612:             ">;"
+613:         }
+614:     .end annotation
+615: 
+616:     .annotation runtime Lij/f;
+617:         value = "user/{userId}/favourite"
+618:     .end annotation
+619: .end method
+620: 
+621: .method public abstract getHeroModule(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;)Lfj/b;
+622:     .param p1    # Ljava/lang/String;
+623:         .annotation runtime Lij/s;
+624:             value = "pageName"
+625:         .end annotation
+626:     .end param
+627:     .param p2    # Ljava/lang/String;
+628:         .annotation runtime Lij/t;
+629:             value = "origin"
+630:         .end annotation
+631:     .end param
+632:     .param p3    # Ljava/lang/String;
+633:         .annotation runtime Lij/t;
+634:             value = "page"
+635:         .end annotation
+636:     .end param
+637:     .param p4    # Ljava/lang/String;
+638:         .annotation runtime Lij/t;
+639:             value = "limit"
+640:         .end annotation
+641:     .end param
+642:     .param p5    # Ljava/lang/String;
+643:         .annotation runtime Lij/t;
+644:             value = "mediaAssetTypes"
+645:         .end annotation
+646:     .end param
+647:     .param p6    # Ljava/lang/String;
+648:         .annotation runtime Lij/t;
+649:             value = "version"
+650:         .end annotation
+651:     .end param
+652:     .param p7    # Ljava/lang/String;
+653:         .annotation runtime Lij/t;
+654:             value = "profileType"
+655:         .end annotation
+656:     .end param
+657:     .param p8    # Ljava/lang/String;
+658:         .annotation runtime Lij/t;
+659:             value = "x-geo-country"
+660:         .end annotation
+661:     .end param
+662:     .param p9    # Ljava/lang/String;
+663:         .annotation runtime Lij/t;
+664:             value = "sub"
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+127:     .line 31
+128:     .line 32
+129:     const/4 v0, 0x2
+130: 
+131:     .line 33
+132:     if-eq p1, v0, :cond_2
+133: 
+134:     .line 34
+135:     .line 35
+136:     const/4 v0, 0x3
+137: 
+138:     .line 36
+139:     if-eq p1, v0, :cond_1
+140: 
+141:     .line 37
+142:     .line 38
+143:     const/4 v0, 0x4
+144: 
+145:     .line 39
+146:     if-ne p1, v0, :cond_0
+147: 
+148:     .line 40
+149:     .line 41
+150:     new-instance v1, Lke/d$a;
+151: 
+152:     .line 42
+153:     .line 43
+154:     const-string v6, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+155: 
+156:     .line 44
+157:     .line 45
+158:     const-string v7, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+159: 
+160:     .line 46
+161:     .line 47
+162:     const-string v2, "https://test-api.aws.playco.com/api"
+163: 
+164:     .line 48
+165:     .line 49
+166:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+167: 
+168:     .line 50
+169:     .line 51
+170:     const-string v4, "https://sp-dev-new-api.aws.playco.com/api"
+171: 
+172:     .line 52
+173:     .line 53
+174:     const-string v5, "https://test-api.aws.playco.com/api"
+175: 
+176:     .line 54
+177:     .line 55
+178:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+179: 
+180:     .line 56
+181:     .line 57
+182:     .line 58
+183:     return-object v1
+184: 
+185:     .line 59
+186:     :cond_0
+187:     new-instance p1, Lkotlin/NoWhenBranchMatchedException;
+188: 
+189:     .line 60
+190:     .line 61
+191:     invoke-direct {p1}, Lkotlin/NoWhenBranchMatchedException;-><init>()V
+192: 
+193:     .line 62
+194:     .line 63
+195:     .line 64
+196:     throw p1
+197: 
+198:     .line 65
+199:     :cond_1
+200:     new-instance v0, Lke/d$a;
+201: 
+202:     .line 66
+203:     .line 67
+204:     const-string v5, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+205: 
+206:     .line 68
+207:     .line 69
+208:     const-string v6, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+209: 
+210:     .line 70
+211:     .line 71
+212:     const-string v1, "https://dev-api.aws.playco.com/api"
+213: 
+214:     .line 72
+215:     .line 73
+216:     const-string v2, "https://sp-dev-new-api.aws.playco.com/api"
+217: 
+218:     .line 74
+219:     .line 75
+220:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+221: 
+222:     .line 76
+223:     .line 77
+224:     const-string v4, "https://dev-api.aws.playco.com/api"
+225: 
+226:     .line 78
+227:     .line 79
+228:     invoke-direct/range {v0 .. v6}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+229: 
+230:     .line 80
+231:     .line 81
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+131:     .line 33
+132:     if-eq p1, v0, :cond_2
+133: 
+134:     .line 34
+135:     .line 35
+136:     const/4 v0, 0x3
+137: 
+138:     .line 36
+139:     if-eq p1, v0, :cond_1
+140: 
+141:     .line 37
+142:     .line 38
+143:     const/4 v0, 0x4
+144: 
+145:     .line 39
+146:     if-ne p1, v0, :cond_0
+147: 
+148:     .line 40
+149:     .line 41
+150:     new-instance v1, Lke/d$a;
+151: 
+152:     .line 42
+153:     .line 43
+154:     const-string v6, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+155: 
+156:     .line 44
+157:     .line 45
+158:     const-string v7, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+159: 
+160:     .line 46
+161:     .line 47
+162:     const-string v2, "https://test-api.aws.playco.com/api"
+163: 
+164:     .line 48
+165:     .line 49
+166:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+167: 
+168:     .line 50
+169:     .line 51
+170:     const-string v4, "https://sp-dev-new-api.aws.playco.com/api"
+171: 
+172:     .line 52
+173:     .line 53
+174:     const-string v5, "https://test-api.aws.playco.com/api"
+175: 
+176:     .line 54
+177:     .line 55
+178:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+179: 
+180:     .line 56
+181:     .line 57
+182:     .line 58
+183:     return-object v1
+184: 
+185:     .line 59
+186:     :cond_0
+187:     new-instance p1, Lkotlin/NoWhenBranchMatchedException;
+188: 
+189:     .line 60
+190:     .line 61
+191:     invoke-direct {p1}, Lkotlin/NoWhenBranchMatchedException;-><init>()V
+192: 
+193:     .line 62
+194:     .line 63
+195:     .line 64
+196:     throw p1
+197: 
+198:     .line 65
+199:     :cond_1
+200:     new-instance v0, Lke/d$a;
+201: 
+202:     .line 66
+203:     .line 67
+204:     const-string v5, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+205: 
+206:     .line 68
+207:     .line 69
+208:     const-string v6, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+209: 
+210:     .line 70
+211:     .line 71
+212:     const-string v1, "https://dev-api.aws.playco.com/api"
+213: 
+214:     .line 72
+215:     .line 73
+216:     const-string v2, "https://sp-dev-new-api.aws.playco.com/api"
+217: 
+218:     .line 74
+219:     .line 75
+220:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+221: 
+222:     .line 76
+223:     .line 77
+224:     const-string v4, "https://dev-api.aws.playco.com/api"
+225: 
+226:     .line 78
+227:     .line 79
+228:     invoke-direct/range {v0 .. v6}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+229: 
+230:     .line 80
+231:     .line 81
+232:     .line 82
+233:     return-object v0
+234: 
+235:     .line 83
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+135:     .line 35
+136:     const/4 v0, 0x3
+137: 
+138:     .line 36
+139:     if-eq p1, v0, :cond_1
+140: 
+141:     .line 37
+142:     .line 38
+143:     const/4 v0, 0x4
+144: 
+145:     .line 39
+146:     if-ne p1, v0, :cond_0
+147: 
+148:     .line 40
+149:     .line 41
+150:     new-instance v1, Lke/d$a;
+151: 
+152:     .line 42
+153:     .line 43
+154:     const-string v6, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+155: 
+156:     .line 44
+157:     .line 45
+158:     const-string v7, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+159: 
+160:     .line 46
+161:     .line 47
+162:     const-string v2, "https://test-api.aws.playco.com/api"
+163: 
+164:     .line 48
+165:     .line 49
+166:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+167: 
+168:     .line 50
+169:     .line 51
+170:     const-string v4, "https://sp-dev-new-api.aws.playco.com/api"
+171: 
+172:     .line 52
+173:     .line 53
+174:     const-string v5, "https://test-api.aws.playco.com/api"
+175: 
+176:     .line 54
+177:     .line 55
+178:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+179: 
+180:     .line 56
+181:     .line 57
+182:     .line 58
+183:     return-object v1
+184: 
+185:     .line 59
+186:     :cond_0
+187:     new-instance p1, Lkotlin/NoWhenBranchMatchedException;
+188: 
+189:     .line 60
+190:     .line 61
+191:     invoke-direct {p1}, Lkotlin/NoWhenBranchMatchedException;-><init>()V
+192: 
+193:     .line 62
+194:     .line 63
+195:     .line 64
+196:     throw p1
+197: 
+198:     .line 65
+199:     :cond_1
+200:     new-instance v0, Lke/d$a;
+201: 
+202:     .line 66
+203:     .line 67
+204:     const-string v5, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+205: 
+206:     .line 68
+207:     .line 69
+208:     const-string v6, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+209: 
+210:     .line 70
+211:     .line 71
+212:     const-string v1, "https://dev-api.aws.playco.com/api"
+213: 
+214:     .line 72
+215:     .line 73
+216:     const-string v2, "https://sp-dev-new-api.aws.playco.com/api"
+217: 
+218:     .line 74
+219:     .line 75
+220:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+221: 
+222:     .line 76
+223:     .line 77
+224:     const-string v4, "https://dev-api.aws.playco.com/api"
+225: 
+226:     .line 78
+227:     .line 79
+228:     invoke-direct/range {v0 .. v6}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+229: 
+230:     .line 80
+231:     .line 81
+232:     .line 82
+233:     return-object v0
+234: 
+235:     .line 83
+236:     :cond_2
+237:     new-instance v1, Lke/d$a;
+238: 
+239:     .line 84
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+139:     if-eq p1, v0, :cond_1
+140: 
+141:     .line 37
+142:     .line 38
+143:     const/4 v0, 0x4
+144: 
+145:     .line 39
+146:     if-ne p1, v0, :cond_0
+147: 
+148:     .line 40
+149:     .line 41
+150:     new-instance v1, Lke/d$a;
+151: 
+152:     .line 42
+153:     .line 43
+154:     const-string v6, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+155: 
+156:     .line 44
+157:     .line 45
+158:     const-string v7, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+159: 
+160:     .line 46
+161:     .line 47
+162:     const-string v2, "https://test-api.aws.playco.com/api"
+163: 
+164:     .line 48
+165:     .line 49
+166:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+167: 
+168:     .line 50
+169:     .line 51
+170:     const-string v4, "https://sp-dev-new-api.aws.playco.com/api"
+171: 
+172:     .line 52
+173:     .line 53
+174:     const-string v5, "https://test-api.aws.playco.com/api"
+175: 
+176:     .line 54
+177:     .line 55
+178:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+179: 
+180:     .line 56
+181:     .line 57
+182:     .line 58
+183:     return-object v1
+184: 
+185:     .line 59
+186:     :cond_0
+187:     new-instance p1, Lkotlin/NoWhenBranchMatchedException;
+188: 
+189:     .line 60
+190:     .line 61
+191:     invoke-direct {p1}, Lkotlin/NoWhenBranchMatchedException;-><init>()V
+192: 
+193:     .line 62
+194:     .line 63
+195:     .line 64
+196:     throw p1
+197: 
+198:     .line 65
+199:     :cond_1
+200:     new-instance v0, Lke/d$a;
+201: 
+202:     .line 66
+203:     .line 67
+204:     const-string v5, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+205: 
+206:     .line 68
+207:     .line 69
+208:     const-string v6, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+209: 
+210:     .line 70
+211:     .line 71
+212:     const-string v1, "https://dev-api.aws.playco.com/api"
+213: 
+214:     .line 72
+215:     .line 73
+216:     const-string v2, "https://sp-dev-new-api.aws.playco.com/api"
+217: 
+218:     .line 74
+219:     .line 75
+220:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+221: 
+222:     .line 76
+223:     .line 77
+224:     const-string v4, "https://dev-api.aws.playco.com/api"
+225: 
+226:     .line 78
+227:     .line 79
+228:     invoke-direct/range {v0 .. v6}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+229: 
+230:     .line 80
+231:     .line 81
+232:     .line 82
+233:     return-object v0
+234: 
+235:     .line 83
+236:     :cond_2
+237:     new-instance v1, Lke/d$a;
+238: 
+239:     .line 84
+240:     .line 85
+241:     const-string v6, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+242: 
+243:     .line 86
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+177:     .line 55
+178:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+179: 
+180:     .line 56
+181:     .line 57
+182:     .line 58
+183:     return-object v1
+184: 
+185:     .line 59
+186:     :cond_0
+187:     new-instance p1, Lkotlin/NoWhenBranchMatchedException;
+188: 
+189:     .line 60
+190:     .line 61
+191:     invoke-direct {p1}, Lkotlin/NoWhenBranchMatchedException;-><init>()V
+192: 
+193:     .line 62
+194:     .line 63
+195:     .line 64
+196:     throw p1
+197: 
+198:     .line 65
+199:     :cond_1
+200:     new-instance v0, Lke/d$a;
+201: 
+202:     .line 66
+203:     .line 67
+204:     const-string v5, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+205: 
+206:     .line 68
+207:     .line 69
+208:     const-string v6, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+209: 
+210:     .line 70
+211:     .line 71
+212:     const-string v1, "https://dev-api.aws.playco.com/api"
+213: 
+214:     .line 72
+215:     .line 73
+216:     const-string v2, "https://sp-dev-new-api.aws.playco.com/api"
+217: 
+218:     .line 74
+219:     .line 75
+220:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+221: 
+222:     .line 76
+223:     .line 77
+224:     const-string v4, "https://dev-api.aws.playco.com/api"
+225: 
+226:     .line 78
+227:     .line 79
+228:     invoke-direct/range {v0 .. v6}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+229: 
+230:     .line 80
+231:     .line 81
+232:     .line 82
+233:     return-object v0
+234: 
+235:     .line 83
+236:     :cond_2
+237:     new-instance v1, Lke/d$a;
+238: 
+239:     .line 84
+240:     .line 85
+241:     const-string v6, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+242: 
+243:     .line 86
+244:     .line 87
+245:     const-string v7, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+246: 
+247:     .line 88
+248:     .line 89
+249:     const-string v2, "https://stg-api.aws.playco.com/api"
+250: 
+251:     .line 90
+252:     .line 91
+253:     const-string v3, "https://sp-stg-new-api.aws.playco.com/api"
+254: 
+255:     .line 92
+256:     .line 93
+257:     const-string v4, "https://sp-stg-nms-api.aws.playco.com/api"
+258: 
+259:     .line 94
+260:     .line 95
+261:     const-string v5, "https://stg-static.aws.playco.com/api"
+262: 
+263:     .line 96
+264:     .line 97
+265:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+266: 
+267:     .line 98
+268:     .line 99
+269:     .line 100
+270:     return-object v1
+271: 
+272:     .line 101
+273:     :cond_3
+274:     new-instance v2, Lke/d$a;
+275: 
+276:     .line 102
+277:     .line 103
+278:     const-string v7, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+279: 
+280:     .line 104
+281:     .line 105
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+181:     .line 57
+182:     .line 58
+183:     return-object v1
+184: 
+185:     .line 59
+186:     :cond_0
+187:     new-instance p1, Lkotlin/NoWhenBranchMatchedException;
+188: 
+189:     .line 60
+190:     .line 61
+191:     invoke-direct {p1}, Lkotlin/NoWhenBranchMatchedException;-><init>()V
+192: 
+193:     .line 62
+194:     .line 63
+195:     .line 64
+196:     throw p1
+197: 
+198:     .line 65
+199:     :cond_1
+200:     new-instance v0, Lke/d$a;
+201: 
+202:     .line 66
+203:     .line 67
+204:     const-string v5, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+205: 
+206:     .line 68
+207:     .line 69
+208:     const-string v6, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+209: 
+210:     .line 70
+211:     .line 71
+212:     const-string v1, "https://dev-api.aws.playco.com/api"
+213: 
+214:     .line 72
+215:     .line 73
+216:     const-string v2, "https://sp-dev-new-api.aws.playco.com/api"
+217: 
+218:     .line 74
+219:     .line 75
+220:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+221: 
+222:     .line 76
+223:     .line 77
+224:     const-string v4, "https://dev-api.aws.playco.com/api"
+225: 
+226:     .line 78
+227:     .line 79
+228:     invoke-direct/range {v0 .. v6}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+229: 
+230:     .line 80
+231:     .line 81
+232:     .line 82
+233:     return-object v0
+234: 
+235:     .line 83
+236:     :cond_2
+237:     new-instance v1, Lke/d$a;
+238: 
+239:     .line 84
+240:     .line 85
+241:     const-string v6, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+242: 
+243:     .line 86
+244:     .line 87
+245:     const-string v7, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+246: 
+247:     .line 88
+248:     .line 89
+249:     const-string v2, "https://stg-api.aws.playco.com/api"
+250: 
+251:     .line 90
+252:     .line 91
+253:     const-string v3, "https://sp-stg-new-api.aws.playco.com/api"
+254: 
+255:     .line 92
+256:     .line 93
+257:     const-string v4, "https://sp-stg-nms-api.aws.playco.com/api"
+258: 
+259:     .line 94
+260:     .line 95
+261:     const-string v5, "https://stg-static.aws.playco.com/api"
+262: 
+263:     .line 96
+264:     .line 97
+265:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+266: 
+267:     .line 98
+268:     .line 99
+269:     .line 100
+270:     return-object v1
+271: 
+272:     .line 101
+273:     :cond_3
+274:     new-instance v2, Lke/d$a;
+275: 
+276:     .line 102
+277:     .line 103
+278:     const-string v7, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+279: 
+280:     .line 104
+281:     .line 105
+282:     const-string v8, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+283: 
+284:     .line 106
+285:     .line 107
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+185:     .line 59
+186:     :cond_0
+187:     new-instance p1, Lkotlin/NoWhenBranchMatchedException;
+188: 
+189:     .line 60
+190:     .line 61
+191:     invoke-direct {p1}, Lkotlin/NoWhenBranchMatchedException;-><init>()V
+192: 
+193:     .line 62
+194:     .line 63
+195:     .line 64
+196:     throw p1
+197: 
+198:     .line 65
+199:     :cond_1
+200:     new-instance v0, Lke/d$a;
+201: 
+202:     .line 66
+203:     .line 67
+204:     const-string v5, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+205: 
+206:     .line 68
+207:     .line 69
+208:     const-string v6, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+209: 
+210:     .line 70
+211:     .line 71
+212:     const-string v1, "https://dev-api.aws.playco.com/api"
+213: 
+214:     .line 72
+215:     .line 73
+216:     const-string v2, "https://sp-dev-new-api.aws.playco.com/api"
+217: 
+218:     .line 74
+219:     .line 75
+220:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+221: 
+222:     .line 76
+223:     .line 77
+224:     const-string v4, "https://dev-api.aws.playco.com/api"
+225: 
+226:     .line 78
+227:     .line 79
+228:     invoke-direct/range {v0 .. v6}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+229: 
+230:     .line 80
+231:     .line 81
+232:     .line 82
+233:     return-object v0
+234: 
+235:     .line 83
+236:     :cond_2
+237:     new-instance v1, Lke/d$a;
+238: 
+239:     .line 84
+240:     .line 85
+241:     const-string v6, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+242: 
+243:     .line 86
+244:     .line 87
+245:     const-string v7, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+246: 
+247:     .line 88
+248:     .line 89
+249:     const-string v2, "https://stg-api.aws.playco.com/api"
+250: 
+251:     .line 90
+252:     .line 91
+253:     const-string v3, "https://sp-stg-new-api.aws.playco.com/api"
+254: 
+255:     .line 92
+256:     .line 93
+257:     const-string v4, "https://sp-stg-nms-api.aws.playco.com/api"
+258: 
+259:     .line 94
+260:     .line 95
+261:     const-string v5, "https://stg-static.aws.playco.com/api"
+262: 
+263:     .line 96
+264:     .line 97
+265:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+266: 
+267:     .line 98
+268:     .line 99
+269:     .line 100
+270:     return-object v1
+271: 
+272:     .line 101
+273:     :cond_3
+274:     new-instance v2, Lke/d$a;
+275: 
+276:     .line 102
+277:     .line 103
+278:     const-string v7, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+279: 
+280:     .line 104
+281:     .line 105
+282:     const-string v8, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+283: 
+284:     .line 106
+285:     .line 107
+286:     const-string v3, "https://api.aws.playco.com/api"
+287: 
+288:     .line 108
+289:     .line 109
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+189:     .line 60
+190:     .line 61
+191:     invoke-direct {p1}, Lkotlin/NoWhenBranchMatchedException;-><init>()V
+192: 
+193:     .line 62
+194:     .line 63
+195:     .line 64
+196:     throw p1
+197: 
+198:     .line 65
+199:     :cond_1
+200:     new-instance v0, Lke/d$a;
+201: 
+202:     .line 66
+203:     .line 67
+204:     const-string v5, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+205: 
+206:     .line 68
+207:     .line 69
+208:     const-string v6, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+209: 
+210:     .line 70
+211:     .line 71
+212:     const-string v1, "https://dev-api.aws.playco.com/api"
+213: 
+214:     .line 72
+215:     .line 73
+216:     const-string v2, "https://sp-dev-new-api.aws.playco.com/api"
+217: 
+218:     .line 74
+219:     .line 75
+220:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+221: 
+222:     .line 76
+223:     .line 77
+224:     const-string v4, "https://dev-api.aws.playco.com/api"
+225: 
+226:     .line 78
+227:     .line 79
+228:     invoke-direct/range {v0 .. v6}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+229: 
+230:     .line 80
+231:     .line 81
+232:     .line 82
+233:     return-object v0
+234: 
+235:     .line 83
+236:     :cond_2
+237:     new-instance v1, Lke/d$a;
+238: 
+239:     .line 84
+240:     .line 85
+241:     const-string v6, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+242: 
+243:     .line 86
+244:     .line 87
+245:     const-string v7, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+246: 
+247:     .line 88
+248:     .line 89
+249:     const-string v2, "https://stg-api.aws.playco.com/api"
+250: 
+251:     .line 90
+252:     .line 91
+253:     const-string v3, "https://sp-stg-new-api.aws.playco.com/api"
+254: 
+255:     .line 92
+256:     .line 93
+257:     const-string v4, "https://sp-stg-nms-api.aws.playco.com/api"
+258: 
+259:     .line 94
+260:     .line 95
+261:     const-string v5, "https://stg-static.aws.playco.com/api"
+262: 
+263:     .line 96
+264:     .line 97
+265:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+266: 
+267:     .line 98
+268:     .line 99
+269:     .line 100
+270:     return-object v1
+271: 
+272:     .line 101
+273:     :cond_3
+274:     new-instance v2, Lke/d$a;
+275: 
+276:     .line 102
+277:     .line 103
+278:     const-string v7, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+279: 
+280:     .line 104
+281:     .line 105
+282:     const-string v8, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+283: 
+284:     .line 106
+285:     .line 107
+286:     const-string v3, "https://api.aws.playco.com/api"
+287: 
+288:     .line 108
+289:     .line 109
+290:     const-string v4, "https://sp-new-api.aws.playco.com/api"
+291: 
+292:     .line 110
+293:     .line 111
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+214:     .line 72
+215:     .line 73
+216:     const-string v2, "https://sp-dev-new-api.aws.playco.com/api"
+217: 
+218:     .line 74
+219:     .line 75
+220:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+221: 
+222:     .line 76
+223:     .line 77
+224:     const-string v4, "https://dev-api.aws.playco.com/api"
+225: 
+226:     .line 78
+227:     .line 79
+228:     invoke-direct/range {v0 .. v6}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+229: 
+230:     .line 80
+231:     .line 81
+232:     .line 82
+233:     return-object v0
+234: 
+235:     .line 83
+236:     :cond_2
+237:     new-instance v1, Lke/d$a;
+238: 
+239:     .line 84
+240:     .line 85
+241:     const-string v6, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+242: 
+243:     .line 86
+244:     .line 87
+245:     const-string v7, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+246: 
+247:     .line 88
+248:     .line 89
+249:     const-string v2, "https://stg-api.aws.playco.com/api"
+250: 
+251:     .line 90
+252:     .line 91
+253:     const-string v3, "https://sp-stg-new-api.aws.playco.com/api"
+254: 
+255:     .line 92
+256:     .line 93
+257:     const-string v4, "https://sp-stg-nms-api.aws.playco.com/api"
+258: 
+259:     .line 94
+260:     .line 95
+261:     const-string v5, "https://stg-static.aws.playco.com/api"
+262: 
+263:     .line 96
+264:     .line 97
+265:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+266: 
+267:     .line 98
+268:     .line 99
+269:     .line 100
+270:     return-object v1
+271: 
+272:     .line 101
+273:     :cond_3
+274:     new-instance v2, Lke/d$a;
+275: 
+276:     .line 102
+277:     .line 103
+278:     const-string v7, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+279: 
+280:     .line 104
+281:     .line 105
+282:     const-string v8, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+283: 
+284:     .line 106
+285:     .line 107
+286:     const-string v3, "https://api.aws.playco.com/api"
+287: 
+288:     .line 108
+289:     .line 109
+290:     const-string v4, "https://sp-new-api.aws.playco.com/api"
+291: 
+292:     .line 110
+293:     .line 111
+294:     const-string v5, "https://sp-nms-api.aws.playco.com/api"
+295: 
+296:     .line 112
+297:     .line 113
+298:     const-string v6, "https://static.aws.playco.com/api"
+299: 
+300:     .line 114
+301:     .line 115
+302:     invoke-direct/range {v2 .. v8}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+303: 
+304:     .line 116
+305:     .line 117
+306:     .line 118
+307:     return-object v2
+308:     .line 119
+309:     .line 120
+310:     .line 121
+311:     .line 122
+312:     .line 123
+313:     .line 124
+314:     .line 125
+315:     .line 126
+316:     .line 127
+317:     .line 128
+318:     .line 129
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+218:     .line 74
+219:     .line 75
+220:     const-string v3, "https://sp-dev-new-api.aws.playco.com/api"
+221: 
+222:     .line 76
+223:     .line 77
+224:     const-string v4, "https://dev-api.aws.playco.com/api"
+225: 
+226:     .line 78
+227:     .line 79
+228:     invoke-direct/range {v0 .. v6}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+229: 
+230:     .line 80
+231:     .line 81
+232:     .line 82
+233:     return-object v0
+234: 
+235:     .line 83
+236:     :cond_2
+237:     new-instance v1, Lke/d$a;
+238: 
+239:     .line 84
+240:     .line 85
+241:     const-string v6, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+242: 
+243:     .line 86
+244:     .line 87
+245:     const-string v7, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+246: 
+247:     .line 88
+248:     .line 89
+249:     const-string v2, "https://stg-api.aws.playco.com/api"
+250: 
+251:     .line 90
+252:     .line 91
+253:     const-string v3, "https://sp-stg-new-api.aws.playco.com/api"
+254: 
+255:     .line 92
+256:     .line 93
+257:     const-string v4, "https://sp-stg-nms-api.aws.playco.com/api"
+258: 
+259:     .line 94
+260:     .line 95
+261:     const-string v5, "https://stg-static.aws.playco.com/api"
+262: 
+263:     .line 96
+264:     .line 97
+265:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+266: 
+267:     .line 98
+268:     .line 99
+269:     .line 100
+270:     return-object v1
+271: 
+272:     .line 101
+273:     :cond_3
+274:     new-instance v2, Lke/d$a;
+275: 
+276:     .line 102
+277:     .line 103
+278:     const-string v7, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+279: 
+280:     .line 104
+281:     .line 105
+282:     const-string v8, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+283: 
+284:     .line 106
+285:     .line 107
+286:     const-string v3, "https://api.aws.playco.com/api"
+287: 
+288:     .line 108
+289:     .line 109
+290:     const-string v4, "https://sp-new-api.aws.playco.com/api"
+291: 
+292:     .line 110
+293:     .line 111
+294:     const-string v5, "https://sp-nms-api.aws.playco.com/api"
+295: 
+296:     .line 112
+297:     .line 113
+298:     const-string v6, "https://static.aws.playco.com/api"
+299: 
+300:     .line 114
+301:     .line 115
+302:     invoke-direct/range {v2 .. v8}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+303: 
+304:     .line 116
+305:     .line 117
+306:     .line 118
+307:     return-object v2
+308:     .line 119
+309:     .line 120
+310:     .line 121
+311:     .line 122
+312:     .line 123
+313:     .line 124
+314:     .line 125
+315:     .line 126
+316:     .line 127
+317:     .line 128
+318:     .line 129
+319:     .line 130
+320:     .line 131
+321:     .line 132
+322:     .line 133
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+222:     .line 76
+223:     .line 77
+224:     const-string v4, "https://dev-api.aws.playco.com/api"
+225: 
+226:     .line 78
+227:     .line 79
+228:     invoke-direct/range {v0 .. v6}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+229: 
+230:     .line 80
+231:     .line 81
+232:     .line 82
+233:     return-object v0
+234: 
+235:     .line 83
+236:     :cond_2
+237:     new-instance v1, Lke/d$a;
+238: 
+239:     .line 84
+240:     .line 85
+241:     const-string v6, "3_xnCUEAFnL5eLAiWm5-4innY20020spstgayFnV0HQFjGOYq5BRQ9LdJYezwmQTwQJkYBPqrgzc"
+242: 
+243:     .line 86
+244:     .line 87
+245:     const-string v7, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+246: 
+247:     .line 88
+248:     .line 89
+249:     const-string v2, "https://stg-api.aws.playco.com/api"
+250: 
+251:     .line 90
+252:     .line 91
+253:     const-string v3, "https://sp-stg-new-api.aws.playco.com/api"
+254: 
+255:     .line 92
+256:     .line 93
+257:     const-string v4, "https://sp-stg-nms-api.aws.playco.com/api"
+258: 
+259:     .line 94
+260:     .line 95
+261:     const-string v5, "https://stg-static.aws.playco.com/api"
+262: 
+263:     .line 96
+264:     .line 97
+265:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+266: 
+267:     .line 98
+268:     .line 99
+269:     .line 100
+270:     return-object v1
+271: 
+272:     .line 101
+273:     :cond_3
+274:     new-instance v2, Lke/d$a;
+275: 
+276:     .line 102
+277:     .line 103
+278:     const-string v7, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+279: 
+280:     .line 104
+281:     .line 105
+282:     const-string v8, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+283: 
+284:     .line 106
+285:     .line 107
+286:     const-string v3, "https://api.aws.playco.com/api"
+287: 
+288:     .line 108
+289:     .line 109
+290:     const-string v4, "https://sp-new-api.aws.playco.com/api"
+291: 
+292:     .line 110
+293:     .line 111
+294:     const-string v5, "https://sp-nms-api.aws.playco.com/api"
+295: 
+296:     .line 112
+297:     .line 113
+298:     const-string v6, "https://static.aws.playco.com/api"
+299: 
+300:     .line 114
+301:     .line 115
+302:     invoke-direct/range {v2 .. v8}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+303: 
+304:     .line 116
+305:     .line 117
+306:     .line 118
+307:     return-object v2
+308:     .line 119
+309:     .line 120
+310:     .line 121
+311:     .line 122
+312:     .line 123
+313:     .line 124
+314:     .line 125
+315:     .line 126
+316:     .line 127
+317:     .line 128
+318:     .line 129
+319:     .line 130
+320:     .line 131
+321:     .line 132
+322:     .line 133
+323:     .line 134
+324:     .line 135
+325:     .line 136
+326:     .line 137
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+251:     .line 90
+252:     .line 91
+253:     const-string v3, "https://sp-stg-new-api.aws.playco.com/api"
+254: 
+255:     .line 92
+256:     .line 93
+257:     const-string v4, "https://sp-stg-nms-api.aws.playco.com/api"
+258: 
+259:     .line 94
+260:     .line 95
+261:     const-string v5, "https://stg-static.aws.playco.com/api"
+262: 
+263:     .line 96
+264:     .line 97
+265:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+266: 
+267:     .line 98
+268:     .line 99
+269:     .line 100
+270:     return-object v1
+271: 
+272:     .line 101
+273:     :cond_3
+274:     new-instance v2, Lke/d$a;
+275: 
+276:     .line 102
+277:     .line 103
+278:     const-string v7, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+279: 
+280:     .line 104
+281:     .line 105
+282:     const-string v8, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+283: 
+284:     .line 106
+285:     .line 107
+286:     const-string v3, "https://api.aws.playco.com/api"
+287: 
+288:     .line 108
+289:     .line 109
+290:     const-string v4, "https://sp-new-api.aws.playco.com/api"
+291: 
+292:     .line 110
+293:     .line 111
+294:     const-string v5, "https://sp-nms-api.aws.playco.com/api"
+295: 
+296:     .line 112
+297:     .line 113
+298:     const-string v6, "https://static.aws.playco.com/api"
+299: 
+300:     .line 114
+301:     .line 115
+302:     invoke-direct/range {v2 .. v8}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+303: 
+304:     .line 116
+305:     .line 117
+306:     .line 118
+307:     return-object v2
+308:     .line 119
+309:     .line 120
+310:     .line 121
+311:     .line 122
+312:     .line 123
+313:     .line 124
+314:     .line 125
+315:     .line 126
+316:     .line 127
+317:     .line 128
+318:     .line 129
+319:     .line 130
+320:     .line 131
+321:     .line 132
+322:     .line 133
+323:     .line 134
+324:     .line 135
+325:     .line 136
+326:     .line 137
+327:     .line 138
+328:     .line 139
+329:     .line 140
+330:     .line 141
+331:     .line 142
+332:     .line 143
+333:     .line 144
+334:     .line 145
+335:     .line 146
+336:     .line 147
+337:     .line 148
+338:     .line 149
+339:     .line 150
+340:     .line 151
+341:     .line 152
+342:     .line 153
+343:     .line 154
+344:     .line 155
+345:     .line 156
+346:     .line 157
+347:     .line 158
+348:     .line 159
+349:     .line 160
+350:     .line 161
+351:     .line 162
+352:     .line 163
+353:     .line 164
+354:     .line 165
+355:     .line 166
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+255:     .line 92
+256:     .line 93
+257:     const-string v4, "https://sp-stg-nms-api.aws.playco.com/api"
+258: 
+259:     .line 94
+260:     .line 95
+261:     const-string v5, "https://stg-static.aws.playco.com/api"
+262: 
+263:     .line 96
+264:     .line 97
+265:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+266: 
+267:     .line 98
+268:     .line 99
+269:     .line 100
+270:     return-object v1
+271: 
+272:     .line 101
+273:     :cond_3
+274:     new-instance v2, Lke/d$a;
+275: 
+276:     .line 102
+277:     .line 103
+278:     const-string v7, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+279: 
+280:     .line 104
+281:     .line 105
+282:     const-string v8, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+283: 
+284:     .line 106
+285:     .line 107
+286:     const-string v3, "https://api.aws.playco.com/api"
+287: 
+288:     .line 108
+289:     .line 109
+290:     const-string v4, "https://sp-new-api.aws.playco.com/api"
+291: 
+292:     .line 110
+293:     .line 111
+294:     const-string v5, "https://sp-nms-api.aws.playco.com/api"
+295: 
+296:     .line 112
+297:     .line 113
+298:     const-string v6, "https://static.aws.playco.com/api"
+299: 
+300:     .line 114
+301:     .line 115
+302:     invoke-direct/range {v2 .. v8}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+303: 
+304:     .line 116
+305:     .line 117
+306:     .line 118
+307:     return-object v2
+308:     .line 119
+309:     .line 120
+310:     .line 121
+311:     .line 122
+312:     .line 123
+313:     .line 124
+314:     .line 125
+315:     .line 126
+316:     .line 127
+317:     .line 128
+318:     .line 129
+319:     .line 130
+320:     .line 131
+321:     .line 132
+322:     .line 133
+323:     .line 134
+324:     .line 135
+325:     .line 136
+326:     .line 137
+327:     .line 138
+328:     .line 139
+329:     .line 140
+330:     .line 141
+331:     .line 142
+332:     .line 143
+333:     .line 144
+334:     .line 145
+335:     .line 146
+336:     .line 147
+337:     .line 148
+338:     .line 149
+339:     .line 150
+340:     .line 151
+341:     .line 152
+342:     .line 153
+343:     .line 154
+344:     .line 155
+345:     .line 156
+346:     .line 157
+347:     .line 158
+348:     .line 159
+349:     .line 160
+350:     .line 161
+351:     .line 162
+352:     .line 163
+353:     .line 164
+354:     .line 165
+355:     .line 166
+356:     .line 167
+357:     .line 168
+358:     .line 169
+359:     .line 170
+
+===== MATCH =====
+
+FILE smali_classes6/ke/d.smali
+259:     .line 94
+260:     .line 95
+261:     const-string v5, "https://stg-static.aws.playco.com/api"
+262: 
+263:     .line 96
+264:     .line 97
+265:     invoke-direct/range {v1 .. v7}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+266: 
+267:     .line 98
+268:     .line 99
+269:     .line 100
+270:     return-object v1
+271: 
+272:     .line 101
+273:     :cond_3
+274:     new-instance v2, Lke/d$a;
+275: 
+276:     .line 102
+277:     .line 103
+278:     const-string v7, "3_ypIpRQXE8T2KWymQmQ5Ly20020prod92qPrjvrewfvALir19xxsQI82QyMBk6ZWpZVugsh6zi"
+279: 
+280:     .line 104
+281:     .line 105
+282:     const-string v8, "rRiE4LPpZ8FJZzWoBUsPFAH5TF2vo6Vjdt5PtULWR/c="
+283: 
+284:     .line 106
+285:     .line 107
+286:     const-string v3, "https://api.aws.playco.com/api"
+287: 
+288:     .line 108
+289:     .line 109
+290:     const-string v4, "https://sp-new-api.aws.playco.com/api"
+291: 
+292:     .line 110
+293:     .line 111
+294:     const-string v5, "https://sp-nms-api.aws.playco.com/api"
+295: 
+296:     .line 112
+297:     .line 113
+298:     const-string v6, "https://static.aws.playco.com/api"
+299: 
+300:     .line 114
+301:     .line 115
+302:     invoke-direct/range {v2 .. v8}, Lke/d$a;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+303: 
+304:     .line 116
+305:     .line 117
+306:     .line 118
+307:     return-object v2
+308:     .line 119
+309:     .line 120
+310:     .line 121
+311:     .line 122
+312:     .line 123
+313:     .line 124
+314:     .line 125
+315:     .line 126
+316:     .line 127
+317:     .line 128
+318:     .line 129
+319:     .line 130
+320:     .line 131
+321:     .line 132
+322:     .line 133
+323:     .line 134
+324:     .line 135
+325:     .line 136
+326:     .line 137
+327:     .line 138
+328:     .line 139
+329:     .line 140
+330:     .line 141
+331:     .line 142
+332:     .line 143
+333:     .line 144
+334:     .line 145
+335:     .line 146
+336:     .line 147
+337:     .line 148
+338:     .line 149
+339:     .line 150
+340:     .line 151
+341:     .line 152
+342:     .line 153
+343:     .line 154
+344:     .line 155
+345:     .line 156
+346:     .line 157
+347:     .line 158
+348:     .line 159
+349:     .line 160
+350:     .line 161
+351:     .line 162
+352:     .line 163
+353:     .line 164
+354:     .line 165
+355:     .line 166
+356:     .line 167
+357:     .line 168
+358:     .line 169
+359:     .line 170
+360:     .line 171
+361:     .line 172
+362:     .line 173
+363:     .line 174
+
+===== MATCH =====
+
+FILE smali_classes6/df/a.smali
+55: 
+56:     .line 1
+57:     return-void
+58:     .line 2
+59:     .line 3
+60:     .line 4
+61:     .line 5
+62:     .line 6
+63:     .line 7
+64:     .line 8
+65:     .line 9
+66:     .line 10
+67:     .line 11
+68:     .line 12
+69:     .line 13
+70:     .line 14
+71:     .line 15
+72:     .line 16
+73:     .line 17
+74:     .line 18
+75:     .line 19
+76:     .line 20
+77:     .line 21
+78:     .line 22
+79:     .line 23
+80:     .line 24
+81: .end method
+82: 
+83: .method public constructor <init>()V
+84:     .locals 1
+85: 
+86:     .line 1
+87:     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+88: 
+89:     .line 2
+90:     const-string v0, "https://api.aws.playco.com/api/"
+91: 
+92:     iput-object v0, p0, Ldf/a;->a:Ljava/lang/String;
+93: 
+94:     .line 3
+95:     const-string v0, "v0.2/reports/android"
+96: 
+97:     iput-object v0, p0, Ldf/a;->b:Ljava/lang/String;
+98: 
+99:     .line 4
+100:     sget-object v0, Ldf/a$c;->PRD:Ldf/a$c;
+101: 
+102:     invoke-virtual {v0}, Ldf/a$c;->toString()Ljava/lang/String;
+103: 
+104:     move-result-object v0
+105: 
+106:     iput-object v0, p0, Ldf/a;->d:Ljava/lang/String;
+107: 
+108:     .line 5
+109:     sget-object v0, Ldf/a$d;->SYSTEM:Ldf/a$d;
+110: 
+111:     invoke-virtual {v0}, Ldf/a$d;->toString()Ljava/lang/String;
+112: 
+113:     move-result-object v0
+114: 
+115:     iput-object v0, p0, Ldf/a;->e:Ljava/lang/String;
+116: 
+117:     .line 6
+118:     sget-object v0, Ldf/a$e;->ERROR:Ldf/a$e;
+119: 
+120:     invoke-virtual {v0}, Ldf/a$e;->toString()Ljava/lang/String;
+121: 
+122:     move-result-object v0
+123: 
+124:     iput-object v0, p0, Ldf/a;->f:Ljava/lang/String;
+125: 
+126:     .line 7
+127:     new-instance v0, Ljava/util/HashMap;
+128: 
+129:     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+130: 
+131:     iput-object v0, p0, Ldf/a;->g:Ljava/util/HashMap;
+132: 
+133:     .line 8
+134:     invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
+135: 
+136:     move-result-object v0
+137: 
+138:     .line 9
+139:     invoke-virtual {v0}, Ljava/util/UUID;->toString()Ljava/lang/String;
+140: 
+141:     move-result-object v0
+142: 
+143:     iput-object v0, p0, Ldf/a;->h:Ljava/lang/String;
+144: 
+145:     .line 10
+146:     :try_start_0
+147:     invoke-static {}, Lza/m;->T()Lza/m;
+148: 
+149:     move-result-object v0
+150: 
+151:     .line 11
+152:     invoke-virtual {v0}, Lza/m;->Y()Lzb/a;
+153: 
+154:     move-result-object v0
+155: 
+156:     .line 12
+157:     invoke-interface {v0}, Lzb/a;->getEnvironment()Ljava/lang/String;
+158: 
+159:     move-result-object v0
+
+===== MATCH =====
+
+FILE smali_classes6/df/a.smali
+141:     move-result-object v0
+142: 
+143:     iput-object v0, p0, Ldf/a;->h:Ljava/lang/String;
+144: 
+145:     .line 10
+146:     :try_start_0
+147:     invoke-static {}, Lza/m;->T()Lza/m;
+148: 
+149:     move-result-object v0
+150: 
+151:     .line 11
+152:     invoke-virtual {v0}, Lza/m;->Y()Lzb/a;
+153: 
+154:     move-result-object v0
+155: 
+156:     .line 12
+157:     invoke-interface {v0}, Lzb/a;->getEnvironment()Ljava/lang/String;
+158: 
+159:     move-result-object v0
+160: 
+161:     iput-object v0, p0, Ldf/a;->d:Ljava/lang/String;
+162:     :try_end_0
+163:     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+164: 
+165:     :catch_0
+166:     return-void
+167: .end method
+168: 
+169: .method public constructor <init>(Ldf/a$c;Ldf/a$d;Ldf/a$e;)V
+170:     .locals 1
+171: 
+172:     .line 26
+173:     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+174: 
+175:     .line 27
+176:     const-string v0, "https://api.aws.playco.com/api/"
+177: 
+178:     iput-object v0, p0, Ldf/a;->a:Ljava/lang/String;
+179: 
+180:     .line 28
+181:     const-string v0, "v0.2/reports/android"
+182: 
+183:     iput-object v0, p0, Ldf/a;->b:Ljava/lang/String;
+184: 
+185:     .line 29
+186:     sget-object v0, Ldf/a$c;->PRD:Ldf/a$c;
+187: 
+188:     invoke-virtual {v0}, Ldf/a$c;->toString()Ljava/lang/String;
+189: 
+190:     move-result-object v0
+191: 
+192:     iput-object v0, p0, Ldf/a;->d:Ljava/lang/String;
+193: 
+194:     .line 30
+195:     sget-object v0, Ldf/a$d;->SYSTEM:Ldf/a$d;
+196: 
+197:     invoke-virtual {v0}, Ldf/a$d;->toString()Ljava/lang/String;
+198: 
+199:     move-result-object v0
+200: 
+201:     iput-object v0, p0, Ldf/a;->e:Ljava/lang/String;
+202: 
+203:     .line 31
+204:     sget-object v0, Ldf/a$e;->ERROR:Ldf/a$e;
+205: 
+206:     invoke-virtual {v0}, Ldf/a$e;->toString()Ljava/lang/String;
+207: 
+208:     move-result-object v0
+209: 
+210:     iput-object v0, p0, Ldf/a;->f:Ljava/lang/String;
+211: 
+212:     .line 32
+213:     new-instance v0, Ljava/util/HashMap;
+214: 
+215:     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+216: 
+217:     iput-object v0, p0, Ldf/a;->g:Ljava/util/HashMap;
+218: 
+219:     .line 33
+220:     invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
+221: 
+222:     move-result-object v0
+223: 
+224:     .line 34
+225:     invoke-virtual {v0}, Ljava/util/UUID;->toString()Ljava/lang/String;
+226: 
+227:     move-result-object v0
+228: 
+229:     iput-object v0, p0, Ldf/a;->h:Ljava/lang/String;
+230: 
+231:     .line 35
+232:     invoke-virtual {p1}, Ldf/a$c;->toString()Ljava/lang/String;
+233: 
+234:     move-result-object p1
+235: 
+236:     iput-object p1, p0, Ldf/a;->d:Ljava/lang/String;
+237: 
+238:     .line 36
+239:     invoke-virtual {p2}, Ldf/a$d;->toString()Ljava/lang/String;
+240: 
+241:     move-result-object p1
+242: 
+243:     iput-object p1, p0, Ldf/a;->e:Ljava/lang/String;
+244: 
+245:     .line 37
+
+===== MATCH =====
+
+FILE smali_classes6/df/a.smali
+227:     move-result-object v0
+228: 
+229:     iput-object v0, p0, Ldf/a;->h:Ljava/lang/String;
+230: 
+231:     .line 35
+232:     invoke-virtual {p1}, Ldf/a$c;->toString()Ljava/lang/String;
+233: 
+234:     move-result-object p1
+235: 
+236:     iput-object p1, p0, Ldf/a;->d:Ljava/lang/String;
+237: 
+238:     .line 36
+239:     invoke-virtual {p2}, Ldf/a$d;->toString()Ljava/lang/String;
+240: 
+241:     move-result-object p1
+242: 
+243:     iput-object p1, p0, Ldf/a;->e:Ljava/lang/String;
+244: 
+245:     .line 37
+246:     invoke-virtual {p3}, Ldf/a$e;->toString()Ljava/lang/String;
+247: 
+248:     move-result-object p1
+249: 
+250:     iput-object p1, p0, Ldf/a;->f:Ljava/lang/String;
+251: 
+252:     return-void
+253: .end method
+254: 
+255: .method public constructor <init>(Ldf/a$d;)V
+256:     .locals 1
+257: 
+258:     .line 13
+259:     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+260: 
+261:     .line 14
+262:     const-string v0, "https://api.aws.playco.com/api/"
+263: 
+264:     iput-object v0, p0, Ldf/a;->a:Ljava/lang/String;
+265: 
+266:     .line 15
+267:     const-string v0, "v0.2/reports/android"
+268: 
+269:     iput-object v0, p0, Ldf/a;->b:Ljava/lang/String;
+270: 
+271:     .line 16
+272:     sget-object v0, Ldf/a$c;->PRD:Ldf/a$c;
+273: 
+274:     invoke-virtual {v0}, Ldf/a$c;->toString()Ljava/lang/String;
+275: 
+276:     move-result-object v0
+277: 
+278:     iput-object v0, p0, Ldf/a;->d:Ljava/lang/String;
+279: 
+280:     .line 17
+281:     sget-object v0, Ldf/a$d;->SYSTEM:Ldf/a$d;
+282: 
+283:     invoke-virtual {v0}, Ldf/a$d;->toString()Ljava/lang/String;
+284: 
+285:     move-result-object v0
+286: 
+287:     iput-object v0, p0, Ldf/a;->e:Ljava/lang/String;
+288: 
+289:     .line 18
+290:     sget-object v0, Ldf/a$e;->ERROR:Ldf/a$e;
+291: 
+292:     invoke-virtual {v0}, Ldf/a$e;->toString()Ljava/lang/String;
+293: 
+294:     move-result-object v0
+295: 
+296:     iput-object v0, p0, Ldf/a;->f:Ljava/lang/String;
+297: 
+298:     .line 19
+299:     new-instance v0, Ljava/util/HashMap;
+300: 
+301:     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+302: 
+303:     iput-object v0, p0, Ldf/a;->g:Ljava/util/HashMap;
+304: 
+305:     .line 20
+306:     invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
+307: 
+308:     move-result-object v0
+309: 
+310:     .line 21
+311:     invoke-virtual {v0}, Ljava/util/UUID;->toString()Ljava/lang/String;
+312: 
+313:     move-result-object v0
+314: 
+315:     iput-object v0, p0, Ldf/a;->h:Ljava/lang/String;
+316: 
+317:     .line 22
+318:     :try_start_0
+319:     invoke-static {}, Lza/m;->T()Lza/m;
+320: 
+321:     move-result-object v0
+322: 
+323:     .line 23
+324:     invoke-virtual {v0}, Lza/m;->Y()Lzb/a;
+325: 
+326:     move-result-object v0
+327: 
+328:     .line 24
+329:     invoke-interface {v0}, Lzb/a;->getEnvironment()Ljava/lang/String;
+330: 
+331:     move-result-object v0

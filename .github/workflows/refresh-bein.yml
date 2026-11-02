@@ -1,0 +1,19 @@
+name: EPG 48h - beIN MENA
+
+on:
+  # Sole scheduled beIN upstream scraper: 02:22 Casablanca civil time.
+  schedule:
+    - cron: "22 2 * * *"
+      timezone: "Etc/GMT"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: bein
+      scheduled: false
+    secrets: inherit

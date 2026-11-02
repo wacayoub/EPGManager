@@ -1,0 +1,181 @@
+name: EPG Daily Watchdog
+
+on:
+  schedule:
+    - cron: "15 14 * * *"
+      timezone: "Etc/GMT"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: epg-watchdog
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Measure real remaining EPG, independent of LKG attempt date
+        run: python tools/source_health_snapshot.py --output output/watchdog-current-health.json
+
+      - name: Verify today's source feeds and LKG state
+        id: health
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          from tools.mena_source_snapshot import get_source_snapshot, needs_rebuild
+
+          tz = ZoneInfo("Etc/GMT")
+          now = datetime.now(tz)
+          today = now.date()
+          sources = [
+              "elcinema", "aljazeera", "osn", "dubaiplus", "starzplay",
+              "tunisiatv", "stctv", "alkass", "shahid", "sport24",
+              "bein", "rotana", "morocco", "tabie",
+          ]
+
+          stale_sources = []
+          lkg_sources = []
+          fresh_sources = []
+
+          def local_day(raw):
+              if not raw:
+                  return None
+              dt = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+              if dt.tzinfo is None:
+                  dt = dt.replace(tzinfo=timezone.utc)
+              return dt.astimezone(tz).date()
+
+          for name in sources:
+              feed = Path("feeds") / f"{name}.json"
+              feed_day = None
+              if feed.exists():
+                  try:
+                      data = json.loads(feed.read_text(encoding="utf-8"))
+                      feed_day = local_day(data.get("generated_utc") or data.get("generated"))
+                  except Exception:
+                      pass
+
+              if feed_day == today:
+                  fresh_sources.append(name)
+                  continue
+
+              lkg = Path("reports") / f"{name}-publish-lkg.json"
+              accepted_lkg = False
+              if lkg.exists():
+                  try:
+                      data = json.loads(lkg.read_text(encoding="utf-8"))
+                      report_day = local_day(data.get("generated_utc"))
+                      decision = (data.get("sources", {}).get(name, {}).get("decision", ""))
+                      accepted_lkg = report_day == today and decision == "KEEP_LKG"
+                  except Exception:
+                      pass
+
+              if accepted_lkg:
+                  lkg_sources.append(name)
+              else:
+                  stale_sources.append(name)
+
+          mena = Path("feeds/mena.json")
+          mena_fresh = False
+          if mena.exists():
+              try:
+                  data = json.loads(mena.read_text(encoding="utf-8"))
+                  mena_fresh = local_day(data.get("generated_utc") or data.get("generated")) == today
+              except Exception:
+                  pass
+
+          # Source freshness and the derived-feed rebuild are independent.
+          # An old Tabie provider is NOT a reason to omit fresh beIN/Morocco.
+          # Snapshot compares the exact SHA-verified compressed feed bytes,
+          # so it does not rebuild endlessly just because a calendar day changes.
+          source_snapshot_error = ""
+          source_changed = []
+          try:
+              policy=json.loads(Path("config/canonical-channel-policy.json").read_text(encoding="utf-8"))
+              order=policy["default_source_order"]
+              snapshot=get_source_snapshot(Path("feeds"),order)
+              previous_meta=json.loads(mena.read_text(encoding="utf-8")) if mena.is_file() else {}
+              previous=previous_meta.get("source_snapshot") or {}
+              source_changed=[name for name in order if previous.get(name)!=snapshot.get(name)]
+              rebuild_needed = needs_rebuild(snapshot,previous_meta)
+          except Exception as exc:
+              source_snapshot_error=str(exc)[:200]
+              rebuild_needed=False
+          if source_snapshot_error:
+              status="invalid_source_manifest"
+          elif stale_sources:
+              status="stale_sources"
+          elif rebuild_needed:
+              status="mena_sources_updated"
+          elif lkg_sources:
+              status="healthy_lkg"
+          else:
+              status="healthy"
+          current_health=json.loads(Path("output/watchdog-current-health.json").read_text())
+          degraded_guides=[r["source"] for r in current_health if r["status"]!="AVAILABLE"]
+          if degraded_guides and status in ("healthy", "healthy_lkg"):
+              status="degraded_source_guides"
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
+              fh.write(f"status={status}\n")
+              fh.write("degraded_guides=" + ";".join(degraded_guides) + "\n")
+              fh.write("stale_sources=" + ";".join(stale_sources) + "\n")
+              fh.write("lkg_sources=" + ";".join(lkg_sources) + "\n")
+              fh.write("fresh_sources=" + ";".join(fresh_sources) + "\n")
+              fh.write("mena_fresh=" + ("true" if mena_fresh else "false") + "\n")
+              fh.write("rebuild_needed=" + ("true" if rebuild_needed else "false") + "\n")
+              fh.write("source_changed=" + ";".join(source_changed) + "\n")
+              fh.write("source_snapshot_error=" + source_snapshot_error + "\n")
+
+          print("WATCHDOG", now.isoformat())
+          print("status=", status)
+          print("fresh=", fresh_sources)
+          print("lkg=", lkg_sources)
+          print("stale=", stale_sources)
+          print("mena_fresh=", mena_fresh)
+          print("rebuild_needed=",rebuild_needed)
+          print("changed_source_feeds=",source_changed)
+          print("source_snapshot_error=",source_snapshot_error)
+          PY
+
+      # A stale provider is never a reason to restart ALL 14 sources.
+      # Shahid targeted retry is now manual-only: no second 15:00 scrape.
+      # ElCinema/OSN/beIN/Shahid each have dedicated daily schedules.
+      - name: Rebuild MENA when a validated source snapshot differs even if other providers are stale
+        if: steps.health.outputs.rebuild_needed == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run rebuild-mena-derived.yml --repo "$GITHUB_REPOSITORY" --ref main
+
+      - name: Watchdog summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## EPG watchdog"
+            echo "- Status: ${{ steps.health.outputs.status }}"
+            echo "- Published guides requiring review now: ${{ steps.health.outputs.degraded_guides }}"
+            echo "- Fresh sources: ${{ steps.health.outputs.fresh_sources }}"
+            echo "- LKG accepted today: ${{ steps.health.outputs.lkg_sources }}"
+            echo "- Stale sources: ${{ steps.health.outputs.stale_sources }}"
+            echo "- MENA fresh: ${{ steps.health.outputs.mena_fresh }}"
+            echo "- Rebuild needed (source SHA changed): ${{ steps.health.outputs.rebuild_needed }}"
+            echo "- Changed source feeds: ${{ steps.health.outputs.source_changed }}"
+            echo "- Manifest integrity error: ${{ steps.health.outputs.source_snapshot_error }}"
+          } >> "$GITHUB_STEP_SUMMARY"

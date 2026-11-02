@@ -1,0 +1,237 @@
+name: XMLTV audit - five channels per source
+
+on:
+  push:
+    paths:
+      - '.github/workflows/audit-xmltv-five.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: xmltv-five-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate real compressed XMLTV payloads and representative channels
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import collections
+          import datetime as dt
+          import gzip
+          import json
+          import os
+          import re
+          import sys
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          NOW = dt.datetime.now(dt.timezone.utc)
+          SOURCE_NAMES = [
+              'elcinema','aljazeera','osn','dubaiplus','starzplay',
+              'tunisiatv','stctv','alkass','shahid','sport24',
+              'bein','rotana','morocco','tabie'
+          ]
+          rows = []
+          markdown = ['# Real XMLTV: five channels per source', '',
+                      'Time (UTC): ' + NOW.isoformat(), '',
+                      '| Source | Valid XML | IDs | Programmes | Sample | Findings |',
+                      '|---|---|---:|---:|---:|---|']
+
+          def when(value):
+              m = re.fullmatch(r'\s*(\d{14})\s*([+-]\d{4})\s*', value or '')
+              if not m:
+                  raise ValueError('bad XMLTV datetime: ' + repr(value))
+              return dt.datetime.strptime(m.group(1) + ' ' + m.group(2), '%Y%m%d%H%M%S %z').astimezone(dt.timezone.utc)
+
+          def safe(s, limit=78):
+              return re.sub(r'\s+', ' ', s or '').strip()[:limit].replace('|', '/')
+
+          def pct_arabic(s):
+              return bool(re.search('[\u0600-\u06FF]', s or ''))
+
+          for source in SOURCE_NAMES:
+              out = {'source': source, 'sample': [], 'errors': [], 'warnings': []}
+              try:
+                  path = Path('feeds') / (source + '.xml.gz')
+                  with gzip.open(path, 'rb') as f:
+                      root = ET.parse(f).getroot()
+                  if root.tag != 'tv':
+                      out['errors'].append('root XML tag is not tv: ' + root.tag)
+                  channels = root.findall('channel')
+                  programmes = root.findall('programme')
+                  ids = [c.get('id', '') for c in channels]
+                  id_set = set(ids)
+                  out['xml_channels'] = len(channels)
+                  out['xml_programmes'] = len(programmes)
+                  out['xml_unique_ids'] = len(id_set)
+                  if len(id_set) != len(channels):
+                      out['errors'].append('duplicated channel IDs')
+                  if not id_set:
+                      out['errors'].append('no XML channel IDs')
+                  display = {c.get('id',''): safe(c.findtext('display-name'), 65) for c in channels}
+                  events = collections.defaultdict(list)
+                  bad_time = missing_title = missing_desc = duplicates = orphans = 0
+                  seen = set()
+                  for p in programmes:
+                      cid = p.get('channel','')
+                      if cid not in id_set:
+                          orphans += 1
+                      title = (p.findtext('title') or '').strip()
+                      desc = (p.findtext('desc') or '').strip()
+                      missing_title += not bool(title)
+                      missing_desc += not bool(desc)
+                      try:
+                          start = when(p.get('start'))
+                          stop = when(p.get('stop'))
+                          if stop <= start:
+                              bad_time += 1
+                              continue
+                      except (ValueError, TypeError):
+                          bad_time += 1
+                          continue
+                      key = (cid, start, stop, title)
+                      if key in seen:
+                          duplicates += 1
+                      seen.add(key)
+                      events[cid].append((start, stop, title, desc))
+                  if bad_time:
+                      out['errors'].append(str(bad_time) + ' invalid start/stop pairs')
+                  if orphans:
+                      out['errors'].append(str(orphans) + ' programmes refer to missing channel IDs')
+                  if missing_title:
+                      out['errors'].append(str(missing_title) + ' missing programme titles')
+                  if duplicates:
+                      out['warnings'].append(str(duplicates) + ' duplicate programmes')
+                  out['missing_descriptions'] = missing_desc
+                  out['invalid_times'] = bad_time
+                  out['orphan_programmes'] = orphans
+                  out['duplicate_programmes'] = duplicates
+
+                  for cid in events:
+                      events[cid].sort(key=lambda v: (v[0], v[1]))
+                  empty = sorted(x for x in ids if not events.get(x))
+                  out['zero_epg_ids'] = empty
+                  if empty:
+                      out['warnings'].append(str(len(empty)) + ' zero-EPG channels')
+                  all_stops = [e[1] for es in events.values() for e in es]
+                  out['hours_remaining'] = round((max(all_stops)-NOW).total_seconds()/3600, 1) if all_stops else None
+                  if not all_stops or max(all_stops) <= NOW:
+                      out['errors'].append('XML contains NO future programme')
+                  elif max(all_stops) < NOW + dt.timedelta(hours=8):
+                      out['warnings'].append('feed expires within 8 hours')
+
+                  meta_path = Path('feeds') / (source + '.json')
+                  if meta_path.exists():
+                      meta = json.loads(meta_path.read_text(encoding='utf8'))
+                      out['declared_channels'] = meta.get('channels')
+                      out['declared_programmes'] = meta.get('programmes')
+                      if meta.get('channels') != len(channels):
+                          out['errors'].append('channel total differs from feed JSON')
+                      if meta.get('programmes') != len(programmes):
+                          out['errors'].append('programme total differs from feed JSON')
+                      generated = meta.get('generated_utc')
+                      if generated:
+                          age = NOW - dt.datetime.fromisoformat(generated.replace('Z','+00:00'))
+                          out['feed_age_hours'] = round(age.total_seconds()/3600,1)
+                          if age.total_seconds() > 36*3600:
+                              out['warnings'].append('feed not regenerated for >36 hours')
+
+                  n = min(5, len(ids))
+                  selection = list(dict.fromkeys(empty[:2]))
+                  others = sorted(x for x in ids if x not in selection)
+                  needed = n - len(selection)
+                  if needed:
+                      for k in range(needed):
+                          selection.append(others[min(len(others)-1, int((k + .5)*len(others)/needed))])
+                  for cid in selection:
+                      ev = events.get(cid, [])
+                      near = [e for e in ev if e[1] > NOW and e[0] < NOW+dt.timedelta(hours=24)]
+                      current = [e for e in ev if e[0] <= NOW < e[1]]
+                      overlaps = 0
+                      previous_end = None
+                      for e in ev:
+                          if previous_end is not None and e[0] < previous_end - dt.timedelta(seconds=60):
+                              overlaps += 1
+                          previous_end = max(previous_end or e[1], e[1])
+                      example = current[0] if current else (near[0] if near else None)
+                      stat = {
+                          'id': cid, 'name': display.get(cid,''), 'programmes': len(ev),
+                          'upcoming_24h': len(near), 'on_air_now': bool(current),
+                          'overlaps': overlaps,
+                          'title_arabic': sum(pct_arabic(e[2]) for e in ev),
+                          'desc_arabic': sum(pct_arabic(e[3]) for e in ev),
+                          'missing_description': sum(not e[3] for e in ev),
+                          'example_title': example[2][:120] if example else None,
+                          'example_desc': example[3][:120] if example else None,
+                          'example_start_utc': example[0].isoformat() if example else None,
+                          'example_stop_utc': example[1].isoformat() if example else None
+                      }
+                      out['sample'].append(stat)
+                      if not near:
+                          out['errors'].append('no programmes in next 24h: ' + cid)
+                      if overlaps:
+                          out['warnings'].append(str(overlaps) + ' overlapping events in ' + cid)
+                  if len(selection) < 5:
+                      out['warnings'].append('only ' + str(len(selection)) + ' IDs exist for this source')
+
+                  out['status'] = 'FAIL' if out['errors'] else ('WARN' if out['warnings'] else 'PASS')
+              except Exception as ex:
+                  out['errors'].append(type(ex).__name__ + ': ' + str(ex))
+                  out['status'] = 'FAIL'
+              rows.append(out)
+              detail = '; '.join(out['errors'] + out['warnings'])[:320] or 'No anomalies detected'
+              markdown.append('| {source} | {status} | {channels} | {programmes} | {count} | {detail} |'.format(
+                  source=source, status=out['status'],
+                  channels=out.get('xml_channels',0), programmes=out.get('xml_programmes',0),
+                  count=len(out['sample']), detail=safe(detail,320)))
+              print('SOURCE', source, 'STATUS', out['status'], 'XML_CHANNELS', out.get('xml_channels'),
+                    'XML_PROGRAMMES', out.get('xml_programmes'), 'HOURS_REMAINING', out.get('hours_remaining'),
+                    'AGE_HOURS', out.get('feed_age_hours'), 'ERRORS', out['errors'], 'WARNINGS', out['warnings'])
+              for p in out['sample']:
+                  print('  SAMPLE', p['id'], 'NAME', p['name'],
+                        'EVENTS', p['programmes'], 'NEXT_24H', p['upcoming_24h'],
+                        'ON_AIR', p['on_air_now'], 'OVERLAP', p['overlaps'],
+                        'TITLE_AR', p['title_arabic'], 'DESC_AR', p['desc_arabic'],
+                        'MISSING_DESC', p['missing_description'],
+                        'PROGRAM', safe(p['example_title']))
+
+          markdown.extend(['','## Sample programmes (one per audited ID)','',
+                           '| Source | XML channel ID | Name | Now / next 24h | Example programme (UTC) |',
+                           '|---|---|---|---|---|'])
+          for r in rows:
+              for p in r['sample']:
+                  markdown.append('| {} | {} | {} | {} / {} | {} {} |'.format(
+                      r['source'], safe(p['id'],70), safe(p['name'],40),
+                      'ON AIR' if p['on_air_now'] else 'OFF AIR', p['upcoming_24h'],
+                      safe(p['example_start_utc'],20), safe(p['example_title'],75)))
+          Path('audit-xmltv-five.json').write_text(json.dumps(
+              {'generated_utc': NOW.isoformat(), 'sources': rows}, indent=2, ensure_ascii=False), encoding='utf8')
+          Path('audit-xmltv-five.md').write_text('\n'.join(markdown)+'\n', encoding='utf8')
+          summary = os.getenv('GITHUB_STEP_SUMMARY')
+          if summary:
+              with open(summary,'a',encoding='utf8') as w:
+                  w.write('\n'.join(markdown)+'\n')
+          failures = [r['source'] for r in rows if r['status'] == 'FAIL']
+          warnings = [r['source'] for r in rows if r['status'] == 'WARN']
+          print('FINAL', 'FAILED=' + ','.join(failures), 'WARN=' + ','.join(warnings),
+                'SAMPLED_CHANNELS=' + str(sum(len(r['sample']) for r in rows)))
+          if failures:
+              sys.exit(1)
+          PY
+      - name: Save detailed report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xmltv-five-sources-audit
+          path: |
+            audit-xmltv-five.json
+            audit-xmltv-five.md
+          retention-days: 14

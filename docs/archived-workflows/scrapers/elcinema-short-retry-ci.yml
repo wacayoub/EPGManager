@@ -1,0 +1,58 @@
+name: ElCinema short horizon retry — offline no publish
+on:
+  push:
+    branches: [fix/elcinema-targeted-short-horizon-retry-20261017, fix/elcinema-horizon-ci-time-aware-20261017]
+    paths: ['tools/elcinema_short_horizon_retry.py','tools/test_elcinema_short_horizon_retry.py','tools/refresh_one_source.sh','.github/workflows/elcinema-short-retry-ci.yml']
+  pull_request:
+    paths: ['tools/elcinema_short_horizon_retry.py','tools/test_elcinema_short_horizon_retry.py','tools/refresh_one_source.sh','.github/workflows/elcinema-short-retry-ci.yml']
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: bash -n tools/refresh_one_source.sh
+      - run: python -m py_compile tools/elcinema_short_horizon_retry.py tools/test_elcinema_short_horizon_retry.py
+      - run: python -m unittest discover -s tools -p 'test_elcinema_short_horizon_retry.py' -v
+  current-public-snapshot:
+    needs: unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Evaluate which published ElCinema guides would be retried, without fetching or publishing
+        run: |
+          python - <<'PY'
+          import gzip,xml.etree.ElementTree as ET
+          from pathlib import Path
+          import sys
+          sys.path.insert(0,'tools')
+          from elcinema_short_horizon_retry import build_catalogue
+          raw=ET.fromstring(gzip.decompress(Path('feeds/elcinema.xml.gz').read_bytes()))
+          cat=ET.Element('channels')
+          for c in raw.findall('channel'):
+              cid=(c.get('id') or '').strip()
+              if cid:
+                  ET.SubElement(cat,'channel',xmltv_id=cid,site_id=cid)
+          targets,report=build_catalogue(cat,raw,min_hours=40,max_ids=45)
+          print('ELCINEMA_REAL_SNAPSHOT',report['retryable_total'],
+                'selected',report['selected'],'channels',len(cat))
+          assert len(cat)>=90
+          assert report['selected']>0
+          assert report['selected']<=45
+          # Real guide horizons shrink every minute between 06h refreshes.
+          # An evening snapshot may legitimately have >90 retryable IDs.
+          # The 45-ID cap is intentional; never require a frozen daytime count.
+          assert 0<report['retryable_total']<=len(cat),report
+          assert report['selected']==min(report['retryable_total'],45),report
+          assert len(set(report['selected_ids']))==report['selected']
+          PY

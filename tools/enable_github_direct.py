@@ -28,7 +28,7 @@ DIRECT_BLOCK = '''        else:
             # Receiver-side *.xml / *.lastgood are never used for direct sources.
             if item.get("direct_feed"):
                 url = str(item.get("url") or "")
-                if not (url.startswith("https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/")
+                if not (url.startswith("https://raw.githubusercontent.com/wacayoub/EPGManager/main/feeds/")
                         and url.endswith(".xml.gz")):
                     stats["unreadable_files"] += 1
                     stats["skipped_source_names"].append(name)

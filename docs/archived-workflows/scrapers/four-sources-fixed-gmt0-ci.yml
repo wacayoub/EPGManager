@@ -1,0 +1,105 @@
+name: Four final direct EPG sources GMT+0 single daily triggers
+on:
+  push:
+    branches: [schedule/four-final-sources-gmt0-0030-0350-0630-0635-20261018]
+    paths:
+      - '.github/workflows/**'
+      - 'tools/test_epg_casablanca_workflows.py'
+      - 'docs/CASABLANCA_EPG_SCRAPE_SCHEDULE.md'
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'tools/test_epg_casablanca_workflows.py'
+      - 'docs/CASABLANCA_EPG_SCRAPE_SCHEDULE.md'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install YAML parser
+        run: python -m pip install --disable-pip-version-check pyyaml
+      - name: Existing cron and source-chain unit tests
+        run: python -m unittest tools.test_epg_schedule_policy tools.test_epg_casablanca_workflows -v
+      - name: Exhaustive all-GMT0 cron source uniqueness, no 19:30 AlKass, unchanged receiver
+        run: |
+          python - <<'PY'
+          from datetime import datetime,timezone
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          import yaml
+          WF=Path(".github/workflows")
+          def load(name):
+              return yaml.load((WF/name).read_text(),Loader=yaml.BaseLoader)
+          four={
+              "tabie":"30 0 * * *",
+              "rotana":"50 3 * * *",
+              "alkass":"30 6 * * *",
+              "tunisiatv":"35 6 * * *",
+          }
+          for source,cron in four.items():
+              wf=load(f"refresh-{source}.yml")
+              assert wf["on"]["schedule"]==[{"cron":cron,"timezone":"Etc/GMT"}]
+              assert "workflow_dispatch" in wf["on"] and "push" not in wf["on"]
+              assert wf["jobs"]["refresh"]["uses"]=="./.github/workflows/refresh-source-core.yml"
+              assert wf["jobs"]["refresh"]["with"]=={"source":source,"scheduled":"false"}
+          chain=load("daily-epg-chain.yml")
+          assert chain["on"]["schedule"]==[{"cron":"15 7 * * *","timezone":"Etc/GMT"}]
+          assert set(chain["jobs"])=={"elcinema_extend","finalize"}
+          assert chain["jobs"]["elcinema_extend"]["uses"]=="./.github/workflows/elcinema-daily-donors.yml"
+          assert chain["jobs"]["elcinema_extend"].get("needs") is None
+          assert chain["jobs"]["finalize"]["needs"]=="elcinema_extend"
+          evening=load("epg-evening-casablanca.yml")
+          assert "schedule" not in evening["on"]
+          assert "workflow_dispatch" in evening["on"]
+          assert "sports" in evening["on"]["workflow_dispatch"]["inputs"]["group"]["options"]
+          assert evening["jobs"]["sports"]["strategy"]["matrix"]["source"]==["alkass"]
+          assert evening["jobs"]["morocco"]["with"]["source"]=="morocco"
+          expected={
+              "refresh-tabie.yml":["30 0 * * *"],
+              "refresh-elcinema.yml":["20 1 * * *"],
+              "refresh-osn.yml":["40 1 * * *"],
+              "refresh-bein.yml":["22 2 * * *"],
+              "refresh-sport24.yml":["5 3 * * *"],
+              "refresh-shahid.yml":["39 3 * * *"],
+              "refresh-rotana.yml":["50 3 * * *"],
+              "refresh-aljazeera.yml":["12 4 * * *"],
+              "refresh-dubaiplus.yml":["44 4 * * *"],
+              "refresh-starzplay.yml":["12 5 * * *"],
+              "refresh-stctv.yml":["55 5 * * *"],
+              "refresh-alkass.yml":["30 6 * * *"],
+              "refresh-tunisiatv.yml":["35 6 * * *"],
+              "daily-epg-chain.yml":["15 7 * * *"],
+              "epg-watchdog.yml":["15 14 * * *"],
+              "refresh-morocco.yml":["7 7 * * *"],
+          }
+          actual={}
+          for path in sorted(WF.glob("*.yml")):
+              doc=load(path.name)
+              if not isinstance(doc,dict):continue
+              on=doc.get("on")
+              if not isinstance(on,dict):continue
+              schedules=on.get("schedule") or []
+              if schedules:
+                  assert all(x["timezone"]=="Etc/GMT" for x in schedules),path
+                  actual[path.name]=[x["cron"] for x in schedules]
+          assert actual==expected,(actual,expected)
+          fixed=ZoneInfo("Etc/GMT")
+          for year,month,day in [(2026,10,19),(2026,12,1),(2027,2,20),(2027,7,1)]:
+              for source,cron in four.items():
+                  minute,hour=map(int,cron.split()[:2])
+                  utc=datetime(year,month,day,hour,minute,tzinfo=fixed).astimezone(timezone.utc)
+                  assert (utc.hour,utc.minute)==(hour,minute),(source,utc)
+          print("ALL_14_SOURCE_CLOCKS_SOLE_FIXED_GMT0",actual)
+          print("07_15_DERIVED_ONLY_AND_NO_19_30_ALKASS_AUTO_DUPLICATE")
+          print("NO_VU_PLUS_SCHEDULE_OR_SETTINGS_CHANGED")
+          PY

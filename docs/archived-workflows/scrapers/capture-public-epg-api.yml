@@ -1,0 +1,38 @@
+name: Capture public EPG API schemas
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/capture-public-epg-api.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - run: python tools/capture_public_epg_api.py
+      - run: |
+          python - <<'PY'
+          import json,glob,os
+          for p in glob.glob("reports/public-api-capture/*.json"):
+              x=json.load(open(p,encoding="utf-8"))
+              print("###",os.path.basename(p), "captures=",len(x.get("captures",[])), "final=",x.get("final_url"))
+              for c in x.get("captures",[]):
+                  print(c.get("label"), c.get("status"), c.get("url"))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: public-epg-api-schemas
+          path: reports/public-api-capture/

@@ -1,0 +1,35 @@
+name: Probe Rotana official access
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-rotana-access.yml"
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe official Rotana URLs
+        shell: bash
+        run: |
+          set +e
+          ua='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/140 Safari/537.36'
+          for u in \
+            'https://rotana.net/ar/streams?channel=431' \
+            'https://www.rotana.net/ar/streams?channel=431' \
+            'https://rotana.net/index.php/ar/streams?channel=431' \
+            'https://www.rotana.net/index.php/ar/streams?channel=431' \
+            'https://www.rotana.net/tv/channels'
+          do
+            echo "=== $u ==="
+            curl -L --compressed --connect-timeout 8 --max-time 20 \
+              -A "$ua" \
+              -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+              -H 'Accept-Language: ar,en-US;q=0.8,en;q=0.7' \
+              -H 'Referer: https://www.rotana.net/' \
+              -o /tmp/rotana.html -sS -w 'HTTP=%{http_code} SIZE=%{size_download}\n' "$u"
+            head -c 120 /tmp/rotana.html | tr '\n' ' '; echo
+          done

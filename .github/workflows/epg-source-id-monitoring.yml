@@ -1,0 +1,60 @@
+name: EPG Source ID Monitoring
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/epg-source-id-monitoring.yml"
+      - "tools/monitor_feeds.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-source-id-monitoring
+  cancel-in-progress: true
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build all-ID monitoring dashboard
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          feeds=(feeds/*.xml.gz)
+          test "${#feeds[@]}" -gt 0
+          python tools/monitor_feeds.py "${feeds[@]}" \
+            --json reports/latest.json \
+            --md reports/latest.md \
+            --html reports/epg-source-id-monitoring.html \
+            --csv reports/epg-source-id-monitoring.csv \
+            --reports-dir reports
+      - name: Publish dashboard
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/id-monitor
+          cp -f reports/latest.json reports/latest.md reports/epg-source-id-monitoring.html reports/epg-source-id-monitoring.csv /tmp/id-monitor/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp -f /tmp/id-monitor/* reports/
+            git add reports/latest.json reports/latest.md reports/epg-source-id-monitoring.html reports/epg-source-id-monitoring.csv
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "Update EPG Source ID Monitoring"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1

@@ -1,0 +1,126 @@
+name: Probe STC batch schedule
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-stctv-batch.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install requests
+        run: python -m pip install --disable-pip-version-check --no-cache-dir requests
+      - name: Probe one public batch request
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json,requests
+          from datetime import datetime,timezone
+          from pathlib import Path
+
+          date=datetime.now(timezone.utc).date().isoformat()
+          base=f'https://prod-cdn-content-api.intigral-ott.net/content-api-3.0.1/channels/schedules/{date}/3'
+          params={'apikey':'GDMPrdExy0sVDlZMzNDdUyZ','productKey':'stc-tv'}
+          s=requests.Session()
+          s.headers.update({
+            'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36',
+            'Accept':'application/json,text/plain,*/*',
+            'Origin':'https://web.stctv.com',
+            'Referer':'https://web.stctv.com/',
+            'Accept-Language':'ar-SA,ar;q=0.9,en;q=0.7',
+          })
+          row={'url':base,'date':date}
+          try:
+              r=s.get(base,params=params,timeout=25)
+              row.update({'status':r.status_code,'bytes':len(r.content),'content_type':r.headers.get('content-type','')})
+              if r.status_code==200:
+                  data=r.json()
+                  row['json_type']=type(data).__name__
+                  if isinstance(data,list):
+                      row['blocks']=len(data)
+                      row['block_keys']=[list(x.keys())[:30] for x in data[:3] if isinstance(x,dict)]
+                      row['listings_total']=sum(len(x.get('listings') or []) for x in data if isinstance(x,dict))
+                      row['samples']=data[:2]
+                  elif isinstance(data,dict):
+                      row['top_keys']=list(data.keys())[:50]
+                      row['sample']={k:data[k] for k in list(data)[:5]}
+          except Exception as e:
+              row['error']=str(e)[:300]
+          Path('reports').mkdir(exist_ok=True)
+          Path('reports/stctv-batch-probe.json').write_text(json.dumps(row,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({k:v for k,v in row.items() if k!='samples'},ensure_ascii=False,indent=2))
+          PY
+      - name: Test optimized full STC 48h scraper
+        shell: bash
+        run: |
+          set -e
+          python tools/stctv_source.py \
+            --output /tmp/stctv-fast-48h.xml \
+            --report reports/stctv-fast-48h.json \
+            --id-index feeds/mena.txt \
+            --window-hours 48 \
+            --delay 0.1 \
+            --max-channels 0 \
+            --profile all
+          python - <<'PY'
+          import json,xml.etree.ElementTree as ET
+          from pathlib import Path
+          r=json.loads(Path('reports/stctv-fast-48h.json').read_text())
+          root=ET.parse('/tmp/stctv-fast-48h.xml').getroot()
+          ch=len(root.findall('channel')); pr=len(root.findall('programme'))
+          assert ch >= 140, (ch,pr)
+          assert pr >= 1000, (ch,pr)
+          assert r.get('schedule_mode') == 'batch_per_day'
+          assert r.get('requests',999) <= 6, r.get('requests')
+          print('STC_FAST_48H_OK', 'channels',ch,'programmes',pr,'requests',r.get('requests'),'blocks',r.get('schedule_channel_blocks'))
+          PY
+
+      - name: Test STARZPLAY Sports 48h fallback
+        shell: bash
+        run: |
+          set -e
+          python tools/stctv_source.py \
+            --output /tmp/starzplay-fallback.xml \
+            --report reports/starzplay-fallback-test.json \
+            --id-index feeds/mena.txt \
+            --window-hours 48 \
+            --delay 0.1 \
+            --max-channels 0 \
+            --profile starzplay-sports
+          python - <<'PY'
+          import json,xml.etree.ElementTree as ET
+          from pathlib import Path
+          r=json.loads(Path('reports/starzplay-fallback-test.json').read_text())
+          root=ET.parse('/tmp/starzplay-fallback.xml').getroot()
+          ids=[(x.get('id') or '') for x in root.findall('channel')]
+          pr=root.findall('programme')
+          assert len(ids)==3, ids
+          assert len(pr)>=20, len(pr)
+          assert r.get('requests',999)<=6, r.get('requests')
+          print('STARZPLAY_FALLBACK_48H_OK',ids,'programmes',len(pr),'requests',r.get('requests'))
+          PY
+
+      - name: Publish
+        shell: bash
+        run: |
+          set -e
+          git config user.name "epg-diagnostic-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/stctv-batch-probe.json reports/stctv-fast-48h.json reports/starzplay-fallback-test.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "diagnostic: probe STC batch EPG"
+          git pull --rebase origin main
+          git push origin HEAD:main

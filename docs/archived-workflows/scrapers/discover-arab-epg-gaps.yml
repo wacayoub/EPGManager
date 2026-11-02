@@ -1,0 +1,34 @@
+name: Discover Arab EPG gaps
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/discover-arab-epg-gaps.yml"
+      - "tools/discover_arab_epg_gaps.py"
+  workflow_dispatch:
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Discover missing Arab-country EPG IDs
+        run: |
+          python tools/discover_arab_epg_gaps.py \
+            --vendor vendor/iptv-org-epg \
+            --feeds-dir feeds \
+            --json reports/arab-epg-gaps.json \
+            --md reports/arab-epg-gaps.md
+      - name: Show gap report
+        run: cat reports/arab-epg-gaps.md

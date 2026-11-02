@@ -1,0 +1,26 @@
+name: Publish EPGManager GitHub Online Update
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/patch-online-update.yml'
+      - 'release_overlay/online_update.py'
+      - 'release_overlay/build_online_update.sh'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and publish rc76
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash release_overlay/build_online_update.sh

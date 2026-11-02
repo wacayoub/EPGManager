@@ -1,0 +1,131 @@
+name: ElCinema live date-boundary metadata probe — no publish
+on:
+  push:
+    branches: [fix/elcinema-rollover-anchor-previous-day-20261017]
+    paths:
+      - 'tools/elcinema_day_boundary_probe.js'
+      - 'tools/elcinema_midnight_patch.py'
+      - 'tools/test_elcinema_midnight_patch.py'
+      - '.github/workflows/refresh-source-core.yml'
+      - '.github/workflows/refresh-elcinema.yml'
+      - '.github/workflows/elcinema-day-boundary-metadata.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify bounded official channel pages are robots permitted
+        run: |
+          python - <<'PY'
+          from urllib import robotparser
+          r=robotparser.RobotFileParser()
+          r.set_url('https://elcinema.com/robots.txt')
+          r.read()
+          for sid in ('1136','1382'):
+              url='https://elcinema.com/tvguide/'+sid+'/'
+              assert r.can_fetch('EPGManager-MetadataProbe/1.0',url),'ROBOTS_DENY_OR_UNAVAILABLE:'+sid
+          PY
+      - name: Install upstream adapter dependencies
+        run: npm ci --no-audit --no-fund
+        working-directory: vendor/iptv-org-epg
+      - name: Baseline source parser metadata — same Casablanca timezone
+        run: |
+          cp tools/elcinema_day_boundary_probe.js vendor/iptv-org-epg/__elcinema_day_boundary_probe.js
+          cd vendor/iptv-org-epg
+          TZ=Africa/Casablanca node __elcinema_day_boundary_probe.js | tee /tmp/elcinema-before.log
+      - name: Patch transient upstream parser, never repo main
+        run: |
+          python tools/elcinema_midnight_patch.py --config vendor/iptv-org-epg/sites/elcinema.com/elcinema.com.config.js
+          python -m unittest discover -s tools -p 'test_elcinema_midnight_patch.py' -v
+      - name: Observe corrected day-boundary metadata only
+        run: |
+          cd vendor/iptv-org-epg
+          TZ=Africa/Casablanca node __elcinema_day_boundary_probe.js | tee /tmp/elcinema-after.log
+      - name: Verify production workflow uses guarded rollover patch
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          core=Path('.github/workflows/refresh-source-core.yml').read_text()
+          refresh=Path('.github/workflows/refresh-elcinema.yml').read_text()
+          assert "python3 tools/elcinema_midnight_patch.py" in core
+          assert "python3 -m unittest discover -s tools -p 'test_elcinema_midnight_patch.py'" in core
+          assert "tools/elcinema_midnight_patch.py" in refresh
+          assert "inputs.source == 'elcinema'" in core
+          assert "old = \"return dayjs.tz(time" not in core
+          print('ELCINEMA_PRODUCTION_PIPELINE_HOOK_PASS')
+          PY
+      - name: Verify no programme loss, no backwards clock, no unrelated source changes
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          def parse(file):
+              out={}
+              for s in Path(file).read_text().splitlines():
+                  if s.startswith('ELCINEMA_DAY_BOUNDARY_METADATA '):
+                      j=json.loads(s.split(' ',1)[1])
+                      out[j['id']]=j
+              return out
+          before=parse('/tmp/elcinema-before.log')
+          after=parse('/tmp/elcinema-after.log')
+          assert before and before.keys()==after.keys(),(before.keys(),after.keys())
+          corrected=0
+          for cid,ref in before.items():
+              new=after[cid]
+              for old_day,new_day in zip(ref['days'],new['days']):
+                  assert old_day['date']==new_day['date']
+                  assert old_day['source_html_cards']==new_day['source_html_cards']
+                  assert old_day['adapter_items']==new_day['adapter_items']
+                  assert old_day['valid_time_pairs']==new_day['valid_time_pairs']
+                  if old_day['time_order_inversions']>0:
+                      assert new_day['time_order_inversions']==0,(cid,new_day)
+                      corrected+=1
+                  assert new_day['time_order_inversions'] <= old_day['time_order_inversions']
+          assert corrected>=2,('no verified day-boundary corrections',corrected)
+          # CRITICAL: previous +1-day fix looked green but inserted 24h
+          # gaps everywhere. Date-labelled sections must be contiguous
+          # when an evening-to-morning rollover is seen.
+          for cid,data in after.items():
+              days=data['days']
+              if len(days)<2 or not days[0]['header_found'] or not days[1]['header_found']:
+                  continue
+              from datetime import datetime
+              if not days[0]['latest_stop_utc'] or not days[1]['earliest_start_utc']:
+                  continue
+              prev=datetime.fromisoformat(days[0]['latest_stop_utc'].replace('Z','+00:00'))
+              following=datetime.fromisoformat(days[1]['earliest_start_utc'].replace('Z','+00:00'))
+              gap=(following-prev).total_seconds()/60
+              assert -45<=gap<=180,('A day-boundary 24h gap or overlap remains',cid,gap)
+              print('ELCINEMA_CONTIGUOUS_BOUNDARY',cid,'gap_minutes',gap)
+          print('ELCINEMA_CROSS_MIDNIGHT_REPAIR_PASS',json.dumps({
+              'channels':len(after),'corrected_date_sections':corrected,
+              'all_programme_row_counts_preserved':True,
+              'programme_titles_logged':False,
+              'live_feeds_modified':False
+          },sort_keys=True))
+          PY
+      - name: Confirm no public EPG publication
+        run: |
+          git diff --exit-code -- feeds/ reports/
+          echo 'NO_PUBLIC_FEED_CHANGED'
+  offline-python-3-14:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: python -m py_compile tools/elcinema_midnight_patch.py tools/test_elcinema_midnight_patch.py
+      - run: python -m unittest discover -s tools -p 'test_elcinema_midnight_patch.py' -v

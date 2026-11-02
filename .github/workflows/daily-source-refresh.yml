@@ -1,0 +1,47 @@
+name: EPG 48h - Manual source refresh
+
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: Source to refresh
+        required: true
+        type: choice
+        default: elcinema
+        options:
+          - elcinema
+          - aljazeera
+          - osn
+          - dubaiplus
+          - starzplay
+          - tunisiatv
+          - stctv
+          - alkass
+          - shahid
+          - sport24
+          - bein
+          - rotana
+          - morocco
+          - tabie
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-manual-source-${{ inputs.source }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: ${{ inputs.source }}
+      scheduled: false
+    secrets: inherit
+
+  verify:
+    needs: refresh
+    if: ${{ always() }}
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: ${{ inputs.source }}

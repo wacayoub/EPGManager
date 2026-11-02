@@ -1,0 +1,109 @@
+name: EPG 48h - STARZPLAY Morocco runner
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-starzplay-ma
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: [self-hosted, linux, starzplay-ma]
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check --no-cache-dir -r requirements.txt
+
+      - name: Verify direct STARZPLAY access
+        shell: bash
+        run: |
+          python - <<'PY'
+          import sys, requests
+          url="https://www.starzplay.com/ar/live?selectcountry=MA&selectcity=Casablanca"
+          r=requests.get(
+              url,
+              headers={
+                  "User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/140 Safari/537.36",
+                  "Accept":"text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
+                  "Accept-Language":"ar-MA,ar;q=0.9,en;q=0.7",
+                  "Referer":"https://www.starzplay.com/",
+              },
+              timeout=25,
+              allow_redirects=True,
+          )
+          print("STARZPLAY_HTTP_STATUS", r.status_code)
+          print("STARZPLAY_FINAL_URL", r.url)
+          print("STARZPLAY_BYTES", len(r.content))
+          if r.status_code != 200 or len(r.content) < 5000:
+              print("Direct STARZPLAY access is not healthy; refuse fallback publication on MA runner.", file=sys.stderr)
+              raise SystemExit(10)
+          PY
+
+      - name: Verify refresh scripts
+        shell: bash
+        run: |
+          bash -n tools/refresh_one_source.sh
+          python -m py_compile             tools/starzplay_source.py             tools/starzplay_hybrid.py             tools/stctv_source.py             tools/source_feed_pack.py             tools/validate_48h.py             tools/publish_lkg.py
+
+      - name: Refresh STARZPLAY 48h
+        shell: bash
+        run: bash tools/refresh_one_source.sh starzplay 48
+
+      - name: Require direct STARZPLAY mode
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, sys
+          from pathlib import Path
+          p=Path("reports/starzplay-source-mode.json")
+          if not p.exists():
+              raise SystemExit("Missing STARZPLAY source-mode report")
+          mode=json.loads(p.read_text(encoding="utf-8"))
+          print(mode)
+          if mode.get("fallback"):
+              raise SystemExit("STARZPLAY direct scrape failed; refusing to publish fallback from MA runner")
+          PY
+
+      - name: Commit STARZPLAY feed
+        shell: bash
+        run: |
+          set -e
+          git config user.name "EPG STARZPLAY MA Bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          git add feeds/starzplay.xml.gz feeds/starzplay.txt feeds/starzplay.json 2>/dev/null || true
+          git add reports/starzplay-*.json 2>/dev/null || true
+
+          if git diff --cached --quiet; then
+            echo "No STARZPLAY changes"
+            exit 0
+          fi
+
+          git commit -m "EPG starzplay direct MA 48h refresh $(TZ=Africa/Casablanca date +%F)"
+
+          for n in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            git fetch origin main
+            git rebase origin/main
+            sleep $((n * 2))
+          done
+          exit 1

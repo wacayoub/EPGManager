@@ -1,0 +1,65 @@
+name: ElCinema Morocco 2026 timezone read-only probe
+on:
+  push:
+    branches: [fix/elcinema-morocco-gmt-sep2026-20261017]
+  pull_request:
+    paths:
+      - tools/elcinema_midnight_patch.py
+      - tools/assert_elcinema_timezone.py
+      - tools/test_elcinema_midnight_patch.py
+      - .github/workflows/elcinema-ma-2026-timezone.yml
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Check legal Morocco UTC+0 after September 20 and actual ElCinema XML
+        run: |
+          python - <<'PY'
+          import gzip,json,datetime,zoneinfo,xml.etree.ElementTree as ET
+          from pathlib import Path
+          check=datetime.datetime(2026,10,17,20,0,tzinfo=zoneinfo.ZoneInfo('Africa/Casablanca'))
+          earlier=datetime.datetime(2026,9,19,20,0,tzinfo=zoneinfo.ZoneInfo('Africa/Casablanca'))
+          meta=json.loads(Path('feeds/elcinema.json').read_text())
+          doc=ET.fromstring(gzip.decompress(Path('feeds/elcinema.xml.gz').read_bytes()))
+          print('MOROCCO_TZDB_EVIDENCE',json.dumps(dict(oct17_in_python=str(check.utcoffset()),sep19_in_python=str(earlier.utcoffset()),legal_oct17_offset='+00:00',source_generated=meta['generated_utc'],source_timezones=meta['timezone_output'])),flush=True)
+          names=('MBCMasr.eg@SD','MBC1.ae@SD','DubaiTV.ae@SD','CBC.eg@SD')
+          for cid in names:
+            sample=[]
+            for p in doc.findall('programme'):
+              if p.get('channel')!=cid:continue
+              title=(p.findtext('title') or '')
+              if any(w in title for w in ('الحكاية','عمرو أديب','نادينا','أولاد الراعي','أحلى ما طاش')) or p.get('start','').startswith('20261017'):
+                sample.append(dict(start=p.get('start'),stop=p.get('stop'),title=title[:75]))
+            print('REAL_XMLTV_SAMPLES',cid,json.dumps(sample[:18],ensure_ascii=False),flush=True)
+          PY
+          node - <<'JS'
+          const dt=new Date('2026-10-17T20:00:00Z');
+          for(const z of ['Africa/Casablanca','UTC','Africa/Cairo']){
+            console.log('NODE_INTL_TZ_EVIDENCE',z,
+              new Intl.DateTimeFormat('en-GB',{timeZone:z,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(dt));
+          }
+          JS
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Retrieve the actual iptv-org ElCinema adapter (same ref as production)
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+      - name: Patch and compile the real upstream ElCinema adapter
+        run: |
+          python tools/elcinema_midnight_patch.py --config vendor/iptv-org-epg/sites/elcinema.com/elcinema.com.config.js
+          node --check vendor/iptv-org-epg/sites/elcinema.com/elcinema.com.config.js
+      - name: Assert 2026 legal GMT on Node.js 20 with actual upstream adapter
+        run: python tools/assert_elcinema_timezone.py --adapter vendor/iptv-org-epg/sites/elcinema.com/elcinema.com.config.js
+      - name: Regression tests of the actual pinned ElCinema adapter patch
+        run: python -m unittest discover -s tools -p test_elcinema_midnight_patch.py -v

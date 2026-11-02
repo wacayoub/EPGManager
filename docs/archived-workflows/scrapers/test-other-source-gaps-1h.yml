@@ -1,0 +1,160 @@
+name: Test other source gaps next 1h
+
+on:
+  push:
+    paths:
+      - ".github/workflows/test-other-source-gaps-1h.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: other-source-gaps-1h
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --disable-pip-version-check --no-cache-dir -r requirements.txt
+          cd vendor/iptv-org-epg
+          npm ci --no-audit --no-fund
+
+      - name: Build complete source catalogues
+        run: |
+          python tools/build_catalogues.py
+          mkdir -p output/gaps reports feeds/tests
+          python - <<'PY'
+          import json
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          specs = {
+              "shahid": "shahid.",
+              "elcinema": "elcinema.",
+          }
+          summary = {}
+          for key, prefix in specs.items():
+              src = ET.parse(f"output/source-build/{key}.channels.xml").getroot()
+              dst = ET.Element("channels")
+              for ch in src.findall("channel"):
+                  cid = (ch.get("xmltv_id") or "").strip()
+                  if cid.startswith(prefix):
+                      dst.append(ET.fromstring(ET.tostring(ch, encoding="utf-8")))
+              ET.indent(dst, space="  ")
+              Path(f"output/gaps/{key}.channels.xml").write_bytes(
+                  ET.tostring(dst, encoding="utf-8", xml_declaration=True)
+              )
+              summary[key] = {
+                  "catalogue_total": len(src.findall("channel")),
+                  "gap_ids": len(dst),
+                  "gap_id_list": [(c.get("xmltv_id") or "").strip() for c in dst.findall("channel")],
+              }
+          Path("reports/source-gap-catalogues.json").write_text(
+              json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+          print(json.dumps(summary, ensure_ascii=False))
+          PY
+
+      - name: Scrape only missing Shahid and ElCinema IDs
+        shell: bash
+        run: |
+          set +e
+          for spec in "shahid|500" "elcinema|1000"; do
+            IFS='|' read -r key delay <<< "$spec"
+            if grep -q '<channel ' "output/gaps/$key.channels.xml"; then
+              cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+              timeout --signal=TERM --kill-after=30s 600s npm run grab -- \
+                --channels="$GITHUB_WORKSPACE/output/gaps/$key.channels.xml" \
+                --output="$GITHUB_WORKSPACE/output/gaps/$key.raw.xml" \
+                --days=1 \
+                --maxConnections=1 \
+                --timeout=20000 \
+                --delay="$delay"
+              cd "$GITHUB_WORKSPACE"
+            else
+              echo '<?xml version="1.0"?><tv></tv>' > "output/gaps/$key.raw.xml"
+            fi
+
+            python tools/source_feed_pack.py \
+              --input "output/gaps/$key.raw.xml" \
+              --catalogue "output/gaps/$key.channels.xml" \
+              --output-gz "feeds/tests/$key-gap-1h.xml.gz" \
+              --output-txt "feeds/tests/$key-gap-1h.txt" \
+              --stats "reports/$key-gap-1h.json" \
+              --label "$key-gap-1h" \
+              --window-hours 1 \
+              --keep-past-hours 0
+          done
+          exit 0
+
+      - name: Audit complete STC catalogue with one metadata request
+        shell: bash
+        run: |
+          set +e
+          python tools/stctv_source.py \
+            --output output/gaps/stctv-catalogue.xml \
+            --report reports/stctv-catalogue.json \
+            --window-hours 1 \
+            --max-channels 0 \
+            --profile all \
+            --catalogue-only
+          exit 0
+
+      - name: Build compact result
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          out = {"scope": "other source gaps + STC catalogue", "window_hours": 1}
+          for key in ("source-gap-catalogues","shahid-gap-1h","elcinema-gap-1h","stctv-catalogue"):
+              p = Path("reports") / f"{key}.json"
+              if p.exists():
+                  out[key] = json.loads(p.read_text(encoding="utf-8"))
+          Path("reports/other-sources-1h-test.json").write_text(
+              json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+          print(json.dumps(out, ensure_ascii=False))
+          PY
+
+      - name: Commit isolated test results
+        shell: bash
+        run: |
+          set -e
+          git config user.name "EPG Scraper Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/source-gap-catalogues.json \
+                  reports/shahid-gap-1h.json reports/elcinema-gap-1h.json \
+                  reports/stctv-catalogue.json reports/other-sources-1h-test.json \
+                  feeds/tests/shahid-gap-1h.xml.gz feeds/tests/shahid-gap-1h.txt \
+                  feeds/tests/elcinema-gap-1h.xml.gz feeds/tests/elcinema-gap-1h.txt
+          if git diff --cached --quiet; then
+            echo "No test changes."
+          else
+            git commit -m "Publish other source gap 1h test"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

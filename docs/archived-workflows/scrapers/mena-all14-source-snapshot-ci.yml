@@ -1,0 +1,67 @@
+name: MENA all 14 SHA snapshot, Tabie active IDs, source-diff watchdog and timezone
+on:
+  push:
+    branches: [fix/mena-all14-snapshot-watchdog-timezone-20261018]
+    paths:
+      - 'tools/build_derived_feeds.py'
+      - 'tools/mena_source_snapshot.py'
+      - 'tools/test_mena_source_snapshot.py'
+      - 'config/canonical-channel-policy.json'
+      - '.github/workflows/epg-watchdog.yml'
+      - '.github/workflows/mena-all14-source-snapshot-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/build_derived_feeds.py'
+      - 'tools/mena_source_snapshot.py'
+      - 'tools/test_mena_source_snapshot.py'
+      - 'config/canonical-channel-policy.json'
+      - '.github/workflows/epg-watchdog.yml'
+      - '.github/workflows/mena-all14-source-snapshot-ci.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install offline YAML parsing for workflow schedule checks
+        run: python -m pip install --disable-pip-version-check pyyaml
+      - name: Compile, GMT+0/14-source schedule and ephemeral end-to-end MENA source tests
+        run: |
+          python -m py_compile tools/build_derived_feeds.py tools/mena_source_snapshot.py tools/test_mena_source_snapshot.py
+          python -m unittest tools.test_mena_source_snapshot tools.test_epg_casablanca_workflows -v
+      - name: Validate real fourteen published source SHA manifests read only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          import yaml
+          from tools.mena_source_snapshot import get_source_snapshot,needs_rebuild
+          order=json.loads(Path("config/canonical-channel-policy.json").read_text())["default_source_order"]
+          assert len(order)==14 and len(set(order))==14 and "tabie" in order
+          snapshot=get_source_snapshot(Path("feeds"),order)
+          assert len(snapshot)==14
+          assert all(isinstance(value,str) and len(value)==64 for value in snapshot.values())
+          meta=json.loads(Path("feeds/mena.json").read_text())
+          assert meta.get("source_snapshot")==snapshot, "Published MENA must consume the exact current source bytes"
+          assert not needs_rebuild(snapshot,meta), "An unchanged source snapshot must not request endless rebuilds"
+          wf=yaml.load(Path(".github/workflows/epg-watchdog.yml").read_text(),Loader=yaml.BaseLoader)
+          assert wf["on"]["schedule"]==[{"cron":"15 14 * * *","timezone":"Etc/GMT"}]
+          step=next(x for x in wf["jobs"]["verify"]["steps"] if "Rebuild MENA" in x.get("name",""))
+          assert "steps.health.outputs.rebuild_needed" in step["if"]
+          assert "stale_sources" not in step["if"]
+          script=Path(".github/workflows/epg-watchdog.yml").read_text()
+          assert "get_source_snapshot" in script
+          assert "gh workflow run rebuild-mena-derived.yml" in script
+          print("14_SHA_PINNED_SOURCE_FEEDS_VERIFIED")
+          print("MENA_SNAPSHOT_VERIFIED_NO_UNNECESSARY_REBUILD_OR_SCRAPE")
+          print("WATCHDOG_REBUILDS_ON_SOURCE_CHANGE_INDEPENDENT_OF_TABIE_STALENESS")
+          PY

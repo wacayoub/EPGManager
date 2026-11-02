@@ -1,0 +1,32 @@
+name: Verify unified EPGManager sources
+on:
+  pull_request:
+  push:
+    branches: [main, codex/unify-scrapers-sources]
+    paths: ['tools/**', 'tests/**', 'source/overlay/**', '.github/workflows/**', 'config/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -r requirements.txt pyyaml
+      - run: python -m unittest discover -s tools -p 'test_*.py' -q
+      - run: python -m unittest discover -s tests -p 'test_*.py' -q
+      - run: bash -n tools/refresh_one_source.sh
+      - run: python tools/verify_unified_repository.py
+      - name: Rebuild and verify the exact published source snapshot
+        run: |
+          python tools/build_derived_feeds.py
+          python tools/mena_readiness_audit.py
+          python tools/source_health_snapshot.py --output output/current-health.json

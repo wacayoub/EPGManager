@@ -1,0 +1,95 @@
+name: Morocco sole 07:07 fixed GMT+0 source schedule - no 20:30 duplicate
+on:
+  push:
+    branches: [schedule/morocco-0707-fixed-gmt0-sole-daily-20261018]
+    paths:
+      - '.github/workflows/**'
+      - 'tools/test_epg_casablanca_workflows.py'
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'tools/test_epg_casablanca_workflows.py'
+      - 'docs/CASABLANCA_EPG_SCRAPE_SCHEDULE.md'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install workflow parser
+        run: python -m pip install --disable-pip-version-check pyyaml
+      - name: All-source fixed-GMT0 schedule regression tests
+        run: python -m unittest tools.test_epg_schedule_policy tools.test_epg_casablanca_workflows -v
+      - name: Validate Morocco sole automatic 07:07 including Morocco DST
+        run: |
+          python - <<'PY'
+          import yaml
+          from pathlib import Path
+          from datetime import datetime,timezone
+          from zoneinfo import ZoneInfo
+          wf=Path(".github/workflows")
+          def load(name):
+              return yaml.load((wf/name).read_text(), Loader=yaml.BaseLoader)
+          morning=load("refresh-morocco.yml")
+          manual=load("epg-evening-casablanca.yml")
+          chain=load("daily-epg-chain.yml")
+          assert morning["on"]["schedule"]==[{"cron":"7 7 * * *","timezone":"Etc/GMT"}]
+          assert "push" not in morning["on"] and "workflow_dispatch" in morning["on"]
+          assert morning["jobs"]["refresh"]["uses"]=="./.github/workflows/refresh-source-core.yml"
+          assert morning["jobs"]["refresh"]["with"]=={"source":"morocco","scheduled":"false"}
+          assert "schedule" not in manual["on"] and "push" not in manual["on"]
+          assert "workflow_dispatch" in manual["on"]
+          assert manual["on"]["workflow_dispatch"]["inputs"]["group"]["options"]==["sports","morocco"]
+          assert manual["jobs"]["morocco"]["with"]["source"]=="morocco"
+          assert manual["jobs"]["sports"]["strategy"]["matrix"]["source"]==["alkass"]
+          assert chain["on"]["schedule"]==[{"cron":"15 7 * * *","timezone":"Etc/GMT"}]
+          assert "morocco" not in chain["jobs"]
+          assert set(chain["jobs"])=={"elcinema_extend","finalize"}
+          expected={
+              "refresh-tabie.yml":["30 0 * * *"],
+              "refresh-elcinema.yml":["20 1 * * *"],
+              "refresh-osn.yml":["40 1 * * *"],
+              "refresh-bein.yml":["22 2 * * *"],
+              "refresh-sport24.yml":["5 3 * * *"],
+              "refresh-shahid.yml":["39 3 * * *"],
+              "refresh-rotana.yml":["50 3 * * *"],
+              "refresh-aljazeera.yml":["12 4 * * *"],
+              "refresh-dubaiplus.yml":["44 4 * * *"],
+              "refresh-starzplay.yml":["12 5 * * *"],
+              "refresh-stctv.yml":["55 5 * * *"],
+              "refresh-alkass.yml":["30 6 * * *"],
+              "refresh-tunisiatv.yml":["35 6 * * *"],
+              "refresh-morocco.yml":["7 7 * * *"],
+              "daily-epg-chain.yml":["15 7 * * *"],
+              "epg-watchdog.yml":["15 14 * * *"],
+          }
+          actual={}
+          for p in sorted(wf.glob("*.yml")):
+              doc=yaml.load(p.read_text(),Loader=yaml.BaseLoader)
+              if not isinstance(doc,dict) or not isinstance(doc.get("on"),dict):
+                  continue
+              slots=doc["on"].get("schedule") or []
+              if slots:
+                  assert all(s["timezone"]=="Etc/GMT" for s in slots),p
+                  actual[p.name]=[s["cron"] for s in slots]
+          assert actual==expected,(actual,expected)
+          fixed=ZoneInfo("Etc/GMT")
+          cas=ZoneInfo("Africa/Casablanca")
+          for y,m,d in ((2026,10,19),(2026,12,15),(2027,2,20),(2027,4,18),(2027,7,1)):
+              scheduled=datetime(y,m,d,7,7,tzinfo=fixed)
+              utc=scheduled.astimezone(timezone.utc)
+              assert (utc.hour,utc.minute)==(7,7)
+              print("MOROCCO_GMT0_0707",scheduled.isoformat(),
+                    "CASABLANCA_LOCAL",utc.astimezone(cas).isoformat())
+          print("MOROCCO_ONE_DAILY_0707_FIXED_GMT0_NO_EVENING_CRON")
+          print("MENA_0715_DERIVED_ONLY_MAPPINGS_NOT_TOUCHED")
+          PY
