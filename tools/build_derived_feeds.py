@@ -268,7 +268,7 @@ def channel_copy(ch, cid):
 
 def write_feed(name, channels, programmes, meta):
     root = ET.Element("tv", {
-        "generator-info-name": meta.get("generator", "EPG-Scrapers derived feed"),
+        "generator-info-name": meta.get("generator", "EPGManager derived feed"),
         "generator-info-url": "https://github.com/wacayoub/EPGManager",
     })
     for cid in sorted(channels, key=str.casefold):
@@ -298,6 +298,7 @@ def write_feed(name, channels, programmes, meta):
         "programmes": count,
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "sha256": hashlib.sha256(gz).hexdigest(),
+        "size_bytes": len(gz),
         **meta,
     }
     (FEEDS / f"{name}.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -438,7 +439,7 @@ for canonical, candidates in sorted(groups.items(), key=lambda x: x[0].casefold(
 
 if merged_channels:
     write_feed("mena", merged_channels, merged_programmes, {
-        "generator": "EPG-Scrapers canonical MENA merged feed",
+        "generator": "EPGManager canonical MENA merged feed",
         "source_snapshot": get_source_snapshot(FEEDS, PRIORITY),
         "source_snapshot_policy": "SHA256 pinned exact XMLTV bytes, including missing source markers",
         "priority": PRIORITY,
