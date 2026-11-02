@@ -107,6 +107,16 @@ class UnifiedCatalogue(unittest.TestCase):
             self.assertEqual(sum(r['url'].endswith('/feeds/morocco.xml.gz') for r in rows), 1)
             self.assertEqual(old['id'], 'saved_legacy_morocco')
             self.assertIn('EPG-Scrapers', old['url'])  # caller's settings never mutated
+            legacy = {'id':'saved_canada', 'url':external._SHARE_BASE+'CA1.xml.gz'}
+            retired = {'id':'saved_estonia', 'url':external._SHARE_BASE+'EE1.xml.gz'}
+            with patch.object(catalog, 'discover_epgimport_sources', return_value=[legacy, retired]):
+                rows = catalog.all_sources()
+            self.assertEqual(sum(r['url'].endswith('epg_ripper_CA2.xml.gz') for r in rows), 1)
+            self.assertFalse(any(r['id']=='saved_estonia' for r in rows))
+            self.assertTrue(legacy['url'].endswith('CA1.xml.gz'))
+            self.assertEqual(len(external._RAW), 112)
+            for source in external.SOURCES:
+                self.assertNotIn(source['url'], external.RETIRED_SOURCE_URLS)
 
 
 if __name__ == '__main__':

@@ -113,6 +113,35 @@ class TestAllSources(unittest.TestCase):
         self.donor_cohort(age_hours=100)
         self.assertIn('STALE_PUBLISHED_DATA', self.audit()['issues'])
 
+    def cleanup_cohort(self, age_hours=22):
+        self.m['generated_utc']=iso(NOW-timedelta(hours=age_hours))
+        marker={'input_sha256':'a'*64, 'output_sha256':self.m['sha256'],
+                'preserved_generated_utc':self.m['generated_utc'], 'repacked_utc':iso(NOW)}
+        self.m['quality_cleanup']=marker
+        self.a['source_sha256']=self.q['source_sha256']=self.m['sha256']
+        self.cleanup_proof=dict(marker,source=self.source,remaining_programmes=self.m['programmes'],fabricated_programmes=0)
+        self.save_cleanup_proof()
+
+    def save_cleanup_proof(self):
+        self.save()
+        (self.root/'reports'/(self.source+'-quality-cleanup.json')).write_text(json.dumps(self.cleanup_proof))
+
+    def test_cleanup_cohort_preserves_real_provider_age(self):
+        self.cleanup_cohort()
+        row=self.audit()
+        self.assertNotIn('OUT_OF_COHORT_REPORT',row['issues'])
+        self.assertEqual(row['published_age_hours'],22)
+
+    def test_unverified_cleanup_cannot_hide_wrong_report_cohort(self):
+        self.cleanup_cohort()
+        self.cleanup_proof['output_sha256']='b'*64
+        self.save_cleanup_proof()
+        self.assertIn('OUT_OF_COHORT_REPORT',self.audit()['issues'])
+
+    def test_cleanup_does_not_make_expired_source_fresh(self):
+        self.cleanup_cohort(age_hours=100)
+        self.assertIn('STALE_PUBLISHED_DATA',self.audit()['issues'])
+
     def test_48h_source_fail_does_not_certify_all_ids(self):
         self.a["feeds"][0].update(status="FAIL",failed_channels=2)
         self.save()

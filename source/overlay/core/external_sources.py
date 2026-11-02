@@ -95,14 +95,13 @@ _RAW = [
 ("Rytec-UK-Sports-Movies","http://www.xmltvepg.nl/rytecUK_SportMovies.xz","Rytec"),
 ("Albania","https://epgshare01.online/epgshare01/epg_ripper_AL1.xml.gz","Europe"),
 ("Austria","https://epgshare01.online/epgshare01/epg_ripper_AT1.xml.gz","Europe"),
-("Belgium","https://epgshare01.online/epgshare01/epg_ripper_BE1.xml.gz","Europe"),
+("Belgium","https://epgshare01.online/epgshare01/epg_ripper_BE2.xml.gz","Europe"),
 ("Bosnia_Herzegovina","https://epgshare01.online/epgshare01/epg_ripper_BA1.xml.gz","Europe"),
 ("Bulgaria","https://epgshare01.online/epgshare01/epg_ripper_BG1.xml.gz","Europe"),
 ("Croatia","https://epgshare01.online/epgshare01/epg_ripper_HR1.xml.gz","Europe"),
 ("Cyprus","https://epgshare01.online/epgshare01/epg_ripper_CY1.xml.gz","Europe"),
 ("Czech_Republic","https://epgshare01.online/epgshare01/epg_ripper_CZ1.xml.gz","Europe"),
 ("Denmark","https://epgshare01.online/epgshare01/epg_ripper_DK1.xml.gz","Europe"),
-("Estonia","https://epgshare01.online/epgshare01/epg_ripper_EE1.xml.gz","Europe"),
 ("Finland","https://epgshare01.online/epgshare01/epg_ripper_FI1.xml.gz","Europe"),
 ("France-EPGShare","https://epgshare01.online/epgshare01/epg_ripper_FR1.xml.gz","Europe"),
 ("France1","https://www.open-epg.com/files/france1.xml.gz","Europe"),
@@ -111,7 +110,6 @@ _RAW = [
 ("Germany","https://epgshare01.online/epgshare01/epg_ripper_DE1.xml.gz","Europe"),
 ("Greece","https://epgshare01.online/epgshare01/epg_ripper_GR1.xml.gz","Europe"),
 ("Hungary","https://epgshare01.online/epgshare01/epg_ripper_HU1.xml.gz","Europe"),
-("Iceland","https://epgshare01.online/epgshare01/epg_ripper_IS1.xml.gz","Europe"),
 ("Ireland","https://epgshare01.online/epgshare01/epg_ripper_IE1.xml.gz","Europe"),
 ("Italy","https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz","Europe"),
 ("Latvia","https://epgshare01.online/epgshare01/epg_ripper_LV1.xml.gz","Europe"),
@@ -123,7 +121,6 @@ _RAW = [
 ("Romania","https://epgshare01.online/epgshare01/epg_ripper_RO1.xml.gz","Europe"),
 ("Serbia","https://epgshare01.online/epgshare01/epg_ripper_RS1.xml.gz","Europe"),
 ("Slovakia","https://epgshare01.online/epgshare01/epg_ripper_SK1.xml.gz","Europe"),
-("Slovenia","https://epgshare01.online/epgshare01/epg_ripper_SI1.xml.gz","Europe"),
 ("Spain","https://epgshare01.online/epgshare01/epg_ripper_ES1.xml.gz","Europe"),
 ("Spain2","https://www.open-epg.com/files/spain1.xml","Europe"),
 ("Sweden","https://epgshare01.online/epgshare01/epg_ripper_SE1.xml.gz","Europe"),
@@ -133,7 +130,6 @@ _RAW = [
 ("Kenya","https://epgshare01.online/epgshare01/epg_ripper_KE1.xml.gz","Africa"),
 ("Nigeria","https://epgshare01.online/epgshare01/epg_ripper_NG1.xml.gz","Africa"),
 ("South_Africa","https://epgshare01.online/epgshare01/epg_ripper_ZA1.xml.gz","Africa"),
-("China","https://epgshare01.online/epgshare01/epg_ripper_CN1.xml.gz","Asia"),
 ("India","https://epgshare01.online/epgshare01/epg_ripper_IN1.xml.gz","Asia"),
 ("Indonesia","https://epgshare01.online/epgshare01/epg_ripper_ID1.xml.gz","Asia"),
 ("Israel","https://epgshare01.online/epgshare01/epg_ripper_IL1.xml.gz","Asia"),
@@ -147,9 +143,9 @@ _RAW = [
 ("Thailand","https://epgshare01.online/epgshare01/epg_ripper_TH1.xml.gz","Asia"),
 ("Turkey","https://epgshare01.online/epgshare01/epg_ripper_TR1.xml.gz","Asia"),
 ("Vietnam","https://epgshare01.online/epgshare01/epg_ripper_VN1.xml.gz","Asia"),
-("Canada","https://epgshare01.online/epgshare01/epg_ripper_CA1.xml.gz","North America"),
+("Canada","https://epgshare01.online/epgshare01/epg_ripper_CA2.xml.gz","North America"),
 ("Mexico","https://epgshare01.online/epgshare01/epg_ripper_MX1.xml.gz","North America"),
-("USA","https://epgshare01.online/epgshare01/epg_ripper_US1.xml.gz","North America"),
+("USA","https://epgshare01.online/epgshare01/epg_ripper_US2.xml.gz","North America"),
 ("Argentina","https://epgshare01.online/epgshare01/epg_ripper_AR1.xml.gz","South America"),
 ("Brazil","https://epgshare01.online/epgshare01/epg_ripper_BR1.xml.gz","South America"),
 ("Chile","https://epgshare01.online/epgshare01/epg_ripper_CL1.xml.gz","South America"),
@@ -157,10 +153,27 @@ _RAW = [
 ("Ecuador","https://epgshare01.online/epgshare01/epg_ripper_EC1.xml.gz","South America"),
 ("Peru","https://epgshare01.online/epgshare01/epg_ripper_PE1.xml.gz","South America"),
 ("Uruguay","https://epgshare01.online/epgshare01/epg_ripper_UY1.xml.gz","South America"),
-("Venezuela","https://epgshare01.online/epgshare01/epg_ripper_VE1.xml.gz","South America"),
 ("Australia","https://epgshare01.online/epgshare01/epg_ripper_AU1.xml.gz","Oceania"),
 ("New_Zealand","https://epgshare01.online/epgshare01/epg_ripper_NZ1.xml.gz","Oceania"),
 ]
+
+
+# Confirmed twice against the publisher on 2026-11-02; see source-review report.
+_SHARE_BASE = "https://epgshare01.online/epgshare01/epg_ripper_"
+URL_REPLACEMENTS = {
+    _SHARE_BASE + old + ".xml.gz": _SHARE_BASE + new + ".xml.gz"
+    for old, new in (("BE1", "BE2"), ("CA1", "CA2"), ("US1", "US2"))
+}
+RETIRED_SOURCE_URLS = frozenset(
+    _SHARE_BASE + code + ".xml.gz" for code in ("EE1", "IS1", "SI1", "CN1", "VE1")
+)
+
+
+def canonical_source_url(url):
+    old_base = "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/"
+    if url and url.startswith(old_base):
+        return SCRAPERS_BASE + "/" + url[len(old_base):]
+    return URL_REPLACEMENTS.get(url, url)
 
 
 def _slug(name):
@@ -206,9 +219,11 @@ def download_source(source, epg_dir, retries=3, timeout=30):
     """Download and decompress one external source to a stable local XML file."""
     if isinstance(source, str):
         source = BY_ID[source]
+    url = canonical_source_url(source["url"])
+    if url in RETIRED_SOURCE_URLS:
+        raise ValueError("Source retired after confirmed HTTP 404: %s" % source.get("name", source.get("id", "")))
     if not os.path.isdir(epg_dir):
         os.makedirs(epg_dir)
-    url = source["url"]
     lower = url.lower().split("?", 1)[0]
     # EPG-Importer source definitions may reference an already-local XMLTV
     # file with file:///... . Never send those through requests.

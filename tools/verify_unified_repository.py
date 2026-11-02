@@ -12,6 +12,8 @@ def verify(root='.'):
     root=Path(root)
     sources=json.loads((root/'config/canonical-channel-policy.json').read_text(encoding='utf-8'))['default_source_order']
     assert len(sources)==len(set(sources))==14, 'fourteen unique source names required'
+    published={p.name for p in (root/'feeds').glob('*.xml.gz')}
+    assert published=={name+'.xml.gz' for name in sources}|{'mena.xml.gz'}, 'unexpected diagnostic or retired publication in active feeds'
     schedules=[]
     for path in (root/'.github/workflows').glob('*.yml'):
         text=path.read_text(encoding='utf-8')

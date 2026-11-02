@@ -104,7 +104,7 @@ class DerivedQuality(unittest.TestCase):
             replace_feed(d,'stctv','stctv.example@SD',[(now,now+timedelta(hours=24),'Channel Placeholder','وصف')],name='Channel Placeholder')
             rebuild(Path(d))
             row=next(x for x in check(d,now)['ids'] if x['xmltv_id']=='stctv.example@SD')
-            self.assertEqual(row['status'],'DEGRADED_WITH_EPG')
+            self.assertEqual(row['status'],'NO_FUTURE_EPG')
             self.assertTrue(row['suspected_placeholder'])
             self.assertFalse(row['best_match_green_allowed'])
 

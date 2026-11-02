@@ -129,8 +129,10 @@ def all_sources():
         item = dict(item)
         for field in ("url", "metadata_url"):
             value = item.get(field)
-            if value and value.startswith("https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/"):
-                item[field] = external_sources.SCRAPERS_BASE + "/" + value.rsplit("/", 1)[1]
+            if value:
+                item[field] = external_sources.canonical_source_url(value)
+        if item.get("url") in external_sources.RETIRED_SOURCE_URLS:
+            continue
         # De-dupe identical online URLs while preserving installed EPG-Importer
         # naming first, then the bundled fallback catalogue.
         key = item.get("url") or item.get("id")
