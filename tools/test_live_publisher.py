@@ -50,6 +50,25 @@ def timeline(channels=9, live=5, horizon=12, shift=-5,
 
 
 class TestLivePublication(unittest.TestCase):
+    def test_complete_stc_cannot_be_replaced_by_accidental_three_channel_scrape(self):
+        with tempfile.TemporaryDirectory() as folder:
+            base=Path(folder)
+            candidate=base/'output/final/stctv.xml.gz'
+            candidate.parent.mkdir(parents=True)
+            candidate.write_bytes(gzip.compress(timeline(channels=3,live=3,horizon=48)))
+            write_bundle_metadata(candidate)
+            previous=base/'feeds/stctv.xml.gz'
+            previous.parent.mkdir()
+            previous.write_bytes(gzip.compress(timeline(channels=149,live=149,horizon=48)))
+            before=previous.read_bytes()
+            result=subprocess.run([sys.executable,str(PUBLISHER),'--source','stctv'],
+                                  cwd=base,capture_output=True,timeout=25)
+            self.assertEqual(result.returncode,0,result.stderr)
+            report=json.loads((base/'reports/publish-lkg.json').read_text())['sources']['stctv']
+            self.assertFalse(report['published'])
+            self.assertIn('channel_regression>40%',report['reasons'])
+            self.assertEqual(previous.read_bytes(),before)
+
     def setup_workspace(self, root, candidate, previous):
         root = Path(root)
         (root / "output/final").mkdir(parents=True)

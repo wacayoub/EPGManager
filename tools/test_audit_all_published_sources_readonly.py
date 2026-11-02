@@ -119,7 +119,7 @@ class TestAllSources(unittest.TestCase):
         self.assertEqual(self.audit()["48h_failed_ids"],2)
         self.assertFalse(self.audit()["programme_provenance_certified"])
 
-    def test_stc_catalogue_scope_over_three_marked(self):
+    def test_complete_stc_catalogue_is_not_misreported_as_three_sports_only(self):
         self.source="stctv"
         self.m["label"]=self.source
         self.m["channels"]=149
@@ -129,7 +129,8 @@ class TestAllSources(unittest.TestCase):
         self.q["source_file"]="stctv.xml.gz"
         self.save()
         a=self.audit()
-        self.assertIn("UNEXPECTED_SOURCE_SCOPE",a["issues"])
+        self.assertNotIn("UNEXPECTED_SOURCE_SCOPE",a["issues"])
+        self.assertEqual(a["channels"],149)
 
     def test_absent_sources_are_not_green(self):
         a=run(self.root,NOW)

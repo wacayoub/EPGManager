@@ -57,9 +57,8 @@ POLICY = {
     # accepts two active channels because the official indexed guide currently
     # exposes complete schedules for Al Jazeera and Al Jazeera 2.
     "aljazeera": {"min_channels": 2, "min_programmes": 40, "min_future_ratio": 0.95, "min_horizon_hours": 36},
-    # Daily STC production is intentionally scoped to STARZPLAY Sports 1-3.
-    # A healthy three-channel candidate is therefore a planned scope change,
-    # not a catastrophic regression from the historical 144-channel LKG.
+    # STC production preserves the complete public catalogue. The standard
+    # regression gate must protect it from a partial sports-only scrape.
     "stctv":     {"min_channels": 3, "min_programmes": 20, "min_future_ratio": 1.00, "min_horizon_hours": 8},
 }
 DT_RE = re.compile(r"^(\d{14}|\d{12})(?:\s*([+-]\d{4}|Z))?$")
@@ -192,14 +191,6 @@ def evaluate(key: str, candidate: Path, previous: Path):
                 and cur["active_channels"] >= 35
                 and cur["future_ratio"] >= 0.90
             )
-            planned_stctv_scope_rebase = (
-                key == "stctv"
-                and old["channels"] >= 100
-                and cur["channels"] == 3
-                and cur["active_channels"] == 3
-                and cur["future_ratio"] >= 0.99
-                and cur["programmes"] >= 20
-            )
             # Tabie/QMC sometimes returns the current Qatar day for requested
             # future dates. A new 8-24h *real* guide is safer than retaining a
             # fully expired archive, but MUST be labelled as partial coverage.
@@ -243,8 +234,7 @@ def evaluate(key: str, candidate: Path, previous: Path):
                     cur["future_horizon_hours"] + 4 < old["future_horizon_hours"] and
                     cur["future_horizon_hours"] < old["future_horizon_hours"] * 0.65):
                 reasons.append("future_horizon_regression>35%")
-            planned_scope_rebase = (planned_bein_scope_rebase or
-                                    planned_stctv_scope_rebase or recovery_short_horizon)
+            planned_scope_rebase = planned_bein_scope_rebase or recovery_short_horizon
             if (
                 not planned_scope_rebase
                 and old["channels"]

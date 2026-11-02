@@ -22,11 +22,10 @@ SOURCES = (
 FRESH_SECONDS = 72 * 3600
 COHORT_SECONDS = 15 * 60
 MAX_GZIP_BYTES = 12 * 1024 * 1024
-SOURCE_LIMITS = {"stctv": 3}  # intended source scope: STARZPLAY Sports 1-3
 HARD = frozenset(("MISSING_REPORT", "INVALID_PUBLIC_METADATA", "GZIP_SHA_MISMATCH",
                   "STALE_PUBLISHED_DATA", "OUT_OF_COHORT_REPORT", "BAD_REPORT_SOURCE"))
 RISK = frozenset(("ZERO_EPG_IDS", "48H_FAILED_IDS", "SUSPECT_PLACEHOLDER_IDS",
-                  "MISSING_DESCRIPTIONS", "SHORT_48H_COVERAGE", "UNEXPECTED_SOURCE_SCOPE"))
+                  "MISSING_DESCRIPTIONS", "SHORT_48H_COVERAGE"))
 
 
 def _utc(value):
@@ -98,8 +97,6 @@ def assess(source, root, now):
             result["channels"] = ch
             result["channels_with_programmes"] = active
             result["programme_rows"] = count
-        if ch is not None and source in SOURCE_LIMITS and ch > SOURCE_LIMITS[source]:
-            flag("UNEXPECTED_SOURCE_SCOPE")
     except (OSError, UnicodeError, ValueError, TypeError, json.JSONDecodeError):
         flag("INVALID_PUBLIC_METADATA")
         start = None

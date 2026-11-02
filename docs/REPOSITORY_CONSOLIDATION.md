@@ -58,9 +58,10 @@ Current byte-level coverage is recorded in `reports/consolidation-current-health
 | STARZPLAY | 120 / 120 |
 | STC | 149 / 149 |
 
-STC still exposes a retained historical 149-ID catalogue despite the new
-three-channel scrape policy. Repetition warnings and this scope difference
-remain explicit; retained programme rows are not automatically certified.
+STC intentionally exposes its complete 149-ID public catalogue. An obsolete
+three-channel sports-only audit limit and publication exemption were removed
+to match the actual adapter. Repetition warnings remain explicit; programme
+rows are not automatically certified merely because the catalogue is complete.
 Morocco has no future guide for AFLAM and five Arryadia service IDs. No
 programmes were guessed to fill those holes.
 
@@ -71,7 +72,7 @@ These values are a dated observation, not permanent quality guarantees.
 
 ## Validation and migration
 
-Python 3.13 offline validation: 218 tool tests plus 6 migration/publication
+Python 3.13 offline validation: 219 tool tests plus 6 migration/publication
 tests passed. CI also runs Python 3.14. Rebuild and readiness checks succeed
 with explicit editorial warnings. Direct feed bytes were preserved from the
 upstream source snapshot; only derived feeds and observation reports were built.
