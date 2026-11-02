@@ -1,0 +1,69 @@
+name: Al Jazeera official real EPG - timeline quality and no placeholder
+on:
+  push:
+    branches: [fix/aljazeera-authentic-durations-zero-guide-source-20261018]
+    paths:
+      - 'tools/aljazeera_source.py'
+      - 'tools/test_aljazeera_authentic_timeline.py'
+      - '.github/workflows/aljazeera-authentic-timeline-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/aljazeera_source.py'
+      - 'tools/test_aljazeera_authentic_timeline.py'
+      - '.github/workflows/aljazeera-authentic-timeline-ci.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install public-source parser test dependencies
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4
+      - name: Run time-boundary, programme-stop and zero-EPG regressions offline
+        run: |
+          python -m py_compile tools/aljazeera_source.py tools/test_aljazeera_authentic_timeline.py
+          python -m unittest tools.test_aljazeera_authentic_timeline -v
+      - name: Inspect exact published Al Jazeera source evidence without modifying it
+        run: |
+          python - <<'PY'
+          import gzip,hashlib,json
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          metadata=json.loads(Path('feeds/aljazeera.json').read_text())
+          blob=Path('feeds/aljazeera.xml.gz').read_bytes()
+          assert hashlib.sha256(blob).hexdigest()==metadata['sha256']
+          assert len(blob)==metadata['size_bytes']
+          root=ET.fromstring(gzip.decompress(blob))
+          ids={c.get('id') for c in root.findall('channel')}
+          assert len(ids)==metadata['channels']==5
+          count={}
+          for p in root.findall('programme'):
+              id_=p.get('channel')
+              count[id_]=count.get(id_,0)+1
+              assert id_ in ids and p.findtext('title')
+              assert p.get('start').endswith(' +0000')
+              assert p.get('stop').endswith(' +0000')
+          assert sum(count.values())==metadata['programmes']
+          for id_ in metadata['zero_epg_ids']:
+              assert id_ in ids and count.get(id_,0)==0,id_
+          assert set(metadata['zero_epg_ids'])=={
+              'AlJazeeraMubasher.qa@SD','AlJazeeraDocumentary.qa@SD'}
+          coverage=json.loads(Path('reports/aljazeera-48h-audit.json').read_text())
+          rows=coverage['feeds'][0]['rows']
+          assert len(rows)==5
+          assert {x['id'] for x in rows if x['status']=='FAIL'}==set(metadata['zero_epg_ids'])
+          assert coverage['feeds'][0]['status']=='FAIL'
+          print('ALJAZEERA_SOURCE_PROVENANCE_OK',metadata['generated_utc'],
+                'actual_channel_counts',count)
+          print('SCHEDULE_GMT0_IS_UNCHANGED_BY_THIS_SOURCE_ONLY_PATCH')
+          print('TWO_MISSING_OFFICIAL_GUIDES_REMAIN_NO_EPG_AND_NO_FAKE_ROWS')
+          PY

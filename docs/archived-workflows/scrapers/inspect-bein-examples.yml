@@ -1,0 +1,43 @@
+name: Inspect beIN examples
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/inspect-bein-examples.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit non-English beIN titles
+        run: |
+          python - <<'PY'
+          import gzip,json,re,xml.etree.ElementTree as ET
+          from pathlib import Path
+          AR=re.compile(r"[\u0600-\u06ff]")
+          root=ET.fromstring(gzip.decompress(Path("feeds/bein.xml.gz").read_bytes()))
+          bad=[]
+          total=0
+          for p in root.findall("programme"):
+              total+=1
+              t=p.find("title")
+              title=(t.text or "").strip() if t is not None else ""
+              if AR.search(title):
+                  d=p.find("desc")
+                  bad.append({
+                      "channel":p.get("channel"),
+                      "start":p.get("start"),
+                      "stop":p.get("stop"),
+                      "title":title,
+                      "description":((d.text or "").strip()[:180] if d is not None else "")
+                  })
+          print("TOTAL",total)
+          print("ARABIC_TITLES",len(bad))
+          print(json.dumps(bad,ensure_ascii=False,indent=2))
+          PY

@@ -1,0 +1,185 @@
+name: TEST 2H - all EPG sources
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/test-all-sources-2h.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: epg-2h-audit
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Checkout iptv-org EPG adapters
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Dependencies
+        run: |
+          python -m pip install --disable-pip-version-check --no-cache-dir -r requirements.txt
+          cd vendor/iptv-org-epg
+          npm ci --no-audit --no-fund
+
+      - name: Build source catalogues
+        run: python tools/build_catalogues.py
+
+      - name: Scrape base sources - minimum upstream window
+        shell: bash
+        run: |
+          set +e
+          mkdir -p output/source-build reports
+          for key in elcinema osn bein shahid; do
+            cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+            extra=""
+            [ "$key" = "elcinema" ] && extra="--delay=1000"
+            timeout --signal=TERM --kill-after=30s 700s npm run grab --               --channels="$GITHUB_WORKSPACE/output/source-build/$key.channels.xml"               --output="$GITHUB_WORKSPACE/output/source-build/$key.raw.xml"               --days=1               --maxConnections=1               --timeout=20000               $extra
+            echo "$?" > "$GITHUB_WORKSPACE/output/source-build/$key.grab.rc"
+            [ -s "$GITHUB_WORKSPACE/output/source-build/$key.raw.xml" ] || echo '<?xml version="1.0"?><tv></tv>' > "$GITHUB_WORKSPACE/output/source-build/$key.raw.xml"
+          done
+          exit 0
+
+      - name: Build hybrid catalogues
+        shell: bash
+        run: |
+          set +e
+          python tools/elcinema_hybrid.py catalogue             --fallback-catalogue output/source-build/elcinema_fallback.channels.xml             --policy config/elcinema-language-policy.json             --output output/source-build/elcinema_hybrid_en.channels.xml
+          exit 0
+
+      - name: Scrape English hybrid companions
+        shell: bash
+        run: |
+          set +e
+          cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+          for spec in             "osn_en.channels.xml|osn.en.raw.xml|0"             "bein_hybrid_en.channels.xml|bein.hybrid.en.raw.xml|500"             "elcinema_hybrid_en.channels.xml|elcinema.hybrid.en.raw.xml|1000"; do
+            IFS='|' read -r cat out delay <<< "$spec"
+            d=""
+            [ "$delay" != "0" ] && d="--delay=$delay"
+            timeout --signal=TERM --kill-after=30s 700s npm run grab --               --channels="$GITHUB_WORKSPACE/output/source-build/$cat"               --output="$GITHUB_WORKSPACE/output/source-build/$out"               --days=1               --maxConnections=1               --timeout=20000               $d
+            echo "$?" > "$GITHUB_WORKSPACE/output/source-build/$out.rc"
+            [ -s "$GITHUB_WORKSPACE/output/source-build/$out" ] || echo '<?xml version="1.0"?><tv></tv>' > "$GITHUB_WORKSPACE/output/source-build/$out"
+          done
+          exit 0
+
+      - name: OSN Hybrid
+        shell: bash
+        run: |
+          set +e
+          python tools/osn_hybrid.py             --arabic output/source-build/osn.raw.xml             --english output/source-build/osn.en.raw.xml             --policy config/osn-language-policy.json             --mode hybrid             --output output/source-build/osn.hybrid.raw.xml             --report reports/osn-hybrid-2h.json
+          [ "$?" -eq 0 ] && [ -s output/source-build/osn.hybrid.raw.xml ] && mv output/source-build/osn.hybrid.raw.xml output/source-build/osn.raw.xml
+          exit 0
+
+      - name: ElCinema Hybrid
+        shell: bash
+        run: |
+          set +e
+          python tools/elcinema_hybrid.py merge             --arabic output/source-build/elcinema.raw.xml             --english output/source-build/elcinema.hybrid.en.raw.xml             --policy config/elcinema-language-policy.json             --cache data/elcinema_translation_cache.json             --output output/source-build/elcinema.hybrid.raw.xml             --report reports/elcinema-hybrid-2h.json
+          [ "$?" -eq 0 ] && [ -s output/source-build/elcinema.hybrid.raw.xml ] && mv output/source-build/elcinema.hybrid.raw.xml output/source-build/elcinema.raw.xml
+          exit 0
+
+      - name: beIN Hybrid - only 2h candidate window
+        shell: bash
+        run: |
+          set +e
+          mkdir -p output/final data reports
+          python tools/source_feed_pack.py             --input output/source-build/bein.raw.xml             --output-gz output/final/bein.base.xml.gz             --output-txt output/final/bein.base.txt             --stats output/final/bein.base.json             --label bein-2h             --window-hours 2
+          python tools/bein_arabize.py             --input output/final/bein.base.xml.gz             --output output/final/bein.ar.xml.gz             --cache data/bein_translation_cache.json             --report reports/bein-arabize-2h.json
+          python tools/bein_hybrid.py             --input output/final/bein.ar.xml.gz             --english output/source-build/bein.hybrid.en.raw.xml             --policy config/bein-language-policy.json             --cache data/bein_hybrid_translation_cache.json             --output output/final/bein.hybrid.xml.gz             --report reports/bein-hybrid-2h.json
+          exit 0
+
+      - name: Rotana - native 2h
+        shell: bash
+        run: |
+          set +e
+          python tools/rotana_source.py             --output output/source-build/rotana.raw.xml             --report reports/rotana-2h.json             --window-hours 2
+          exit 0
+
+      - name: Sport24 - native 2h
+        shell: bash
+        run: |
+          set +e
+          python tools/sport24_source.py             --output output/source-build/sport24.raw.xml             --report reports/sport24-2h.json             --window-hours 2
+          exit 0
+
+      - name: Morocco - scrape then audit only 2h
+        shell: bash
+        run: |
+          set +e
+          mkdir -p output/morocco
+          if [ -s feeds/morocco.xml.gz ]; then
+            python tools/morocco_epg.py --output-dir output/morocco --days 1 --previous feeds/morocco.xml.gz
+          else
+            python tools/morocco_epg.py --output-dir output/morocco --days 1
+          fi
+          exit 0
+
+      - name: STARZPLAY - native 2h bilingual + Hybrid
+        shell: bash
+        run: |
+          set +e
+          for lang in ar en; do
+            python tools/starzplay_source.py               --lang "$lang"               --output "output/source-build/starzplay.$lang.raw.xml"               --report "reports/starzplay-$lang-2h.json"               --id-index feeds/mena.txt               --hours 2
+          done
+          if grep -q '<programme ' output/source-build/starzplay.ar.raw.xml 2>/dev/null && grep -q '<programme ' output/source-build/starzplay.en.raw.xml 2>/dev/null; then
+            python tools/starzplay_hybrid.py               --arabic output/source-build/starzplay.ar.raw.xml               --english output/source-build/starzplay.en.raw.xml               --policy config/starzplay-language-policy.json               --output output/source-build/starzplay.raw.xml               --report reports/starzplay-hybrid-2h.json
+          else
+            cp output/source-build/starzplay.ar.raw.xml output/source-build/starzplay.raw.xml 2>/dev/null || echo '<?xml version="1.0"?><tv></tv>' > output/source-build/starzplay.raw.xml
+          fi
+          exit 0
+
+      - name: Dubai+ - native 2h Hybrid
+        shell: bash
+        run: |
+          set +e
+          python tools/dubaiplus_source.py             --output output/source-build/dubaiplus.raw.xml             --report reports/dubaiplus-2h.json             --hours 2
+          exit 0
+
+      - name: STC TV public probe
+        continue-on-error: true
+        run: python tools/stctv_probe.py
+
+      - name: GoBX public probe
+        continue-on-error: true
+        run: python tools/gobx_probe.py
+
+      - name: Per-ID 2h audit
+        run: python tools/audit_2h_ids.py
+
+      - name: Print summary
+        run: cat reports/all-sources-2h-audit.md
+
+      - name: Upload 2h audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: epg-all-sources-2h-audit
+          path: |
+            reports/
+            output/source-build/*.raw.xml
+            output/final/bein.hybrid.xml.gz
+            output/morocco/morocco.xml.gz
+          if-no-files-found: warn

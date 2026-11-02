@@ -1,0 +1,71 @@
+{
+  "runner": "windows-latest",
+  "runner_os": "Windows",
+  "rows": [
+    {
+      "url": "https://www.starzplay.com/ar/live?selectcountry=MA&selectcity=Casablanca",
+      "status": 403,
+      "final_url": "https://www.starzplay.com/ar/live?selectcountry=MA&selectcity=Casablanca",
+      "content_type": "text/html",
+      "sample_bytes": 919,
+      "sample": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\"> <HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\"> <TITLE>ERROR: The request could not be satisfied</TITLE> </HEAD><BODY> <H1>403 ERROR</H1> <H2>The request could "
+    },
+    {
+      "url": "https://starzplay.com/ar/live?selectcountry=MA&selectcity=Casablanca",
+      "status": 403,
+      "final_url": "https://starzplay.com/ar/live?selectcountry=MA&selectcity=Casablanca",
+      "content_type": "text/html",
+      "sample_bytes": 919,
+      "sample": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\"> <HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\"> <TITLE>ERROR: The request could not be satisfied</TITLE> </HEAD><BODY> <H1>403 ERROR</H1> <H2>The request could "
+    },
+    {
+      "url": "https://sp-new-api.aws.playco.com/api/epg/channel/config",
+      "status": 403,
+      "final_url": "https://sp-new-api.aws.playco.com/api/epg/channel/config",
+      "content_type": "text/html",
+      "sample_bytes": 520,
+      "sample": "<html>\r <head><title>403 Forbidden</title></head>\r <body>\r <center><h1>403 Forbidden</h1></center>\r </body>\r </html>\r <!-- a padding to disable MSIE and Chrome friendly error page -->\r <!-- a padding to disable MSIE and Chrome friendly error page -->\r <!-- a padding to disable MSIE and Chrome friend"
+    },
+    {
+      "url": "https://api.aws.playco.com/api/epg/channel/config",
+      "status": 403,
+      "final_url": "https://api.aws.playco.com/api/epg/channel/config",
+      "content_type": "text/html",
+      "sample_bytes": 520,
+      "sample": "<html>\r <head><title>403 Forbidden</title></head>\r <body>\r <center><h1>403 Forbidden</h1></center>\r </body>\r </html>\r <!-- a padding to disable MSIE and Chrome friendly error page -->\r <!-- a padding to disable MSIE and Chrome friendly error page -->\r <!-- a padding to disable MSIE and Chrome friend"
+    },
+    {
+      "url": "https://static-api.aws.playco.com/api/epg/channel/config",
+      "status": 404,
+      "final_url": "https://static-api.aws.playco.com/api/epg/channel/config",
+      "content_type": "",
+      "sample_bytes": 49,
+      "sample": "No listener for endpoint: /api/epg/channel/config"
+    },
+    {
+      "url": "https://stg-static-api.aws.playco.com/api/epg/channel/config",
+      "status": 404,
+      "final_url": "https://stg-static-api.aws.playco.com/api/epg/channel/config",
+      "content_type": "text/html;charset=UTF-8",
+      "sample_bytes": 306,
+      "sample": "<html><body><h1>Whitelabel Error Page</h1><p>This application has no explicit mapping for /error, so you are seeing this as a fallback.</p><div id='created'>Sun Sep 27 09:48:12 UTC 2026</div><div>There was an unexpected error (type=Not Found, status=404).</div><div>No message available</div></body><"
+    },
+    {
+      "url": "https://sp-nms-api.aws.playco.com/api/epg/channel/config",
+      "status": 404,
+      "final_url": "https://sp-nms-api.aws.playco.com/api/epg/channel/config",
+      "content_type": "application/json; charset=utf-8",
+      "sample_bytes": 64,
+      "sample": "{\"error\":\"Invalid API version\",\"path\":\"/api/epg/channel/config\"}"
+    },
+    {
+      "url": "https://starzplay-prod-ssl.akamaized.net/prd-peg-data/default/configs/profiles-screen.json",
+      "status": 200,
+      "final_url": "https://starzplay-prod-ssl.akamaized.net/prd-peg-data/default/configs/profiles-screen.json",
+      "content_type": "application/json",
+      "sample_bytes": 4096,
+      "sample": "{\r     \"androidtv\": {\r         \"active\": true,\r         \"imageRotateTimeInSeconds\": \"7\"\r     },\r     \"tvOS\": {\r         \"active\": true,\r         \"imageRotateTimeInSeconds\": \"7\"\r     },\r     \"samsungtv\": {\r         \"active\": true,\r         \"imageRotateTimeInSeconds\": \"7\"\r     },\r     \"playstation4\": {\r         \"active\": true,\r         \"imageRotateTimeInSeconds\": \"7\"\r     },\r     \"hisensetv\": {\r    "
+    }
+  ],
+  "policy": "public metadata endpoints only; no auth, DRM or CAPTCHA bypass"
+}

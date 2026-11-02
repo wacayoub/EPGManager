@@ -1,0 +1,29 @@
+name: List beIN News titles
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/list-bein-news-titles.yml"
+  workflow_dispatch:
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print unique titles
+        run: |
+          python - <<'PY'
+          import gzip, xml.etree.ElementTree as ET, json
+          root=ET.fromstring(gzip.decompress(open("feeds/bein.xml.gz","rb").read()))
+          cid="beINSportsNews.qa@SD"
+          titles=[]
+          for p in root.findall("programme"):
+              if p.get("channel")!=cid:
+                  continue
+              title=next(((x.text or "").strip() for x in p.findall("title") if (x.text or "").strip()),"")
+              if title and title not in titles:
+                  titles.append(title)
+          print("BEIN_NEWS_TITLES",json.dumps(titles,ensure_ascii=False))
+          PY

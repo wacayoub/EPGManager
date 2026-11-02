@@ -1,0 +1,20 @@
+name: EPG 48h - STC TV
+
+on:
+  # One STC source scrape per day: 05:55 GMT+0 fixed (no DST/Ramadan shift).
+  # No automatic source refresh on code changes; manual remains available.
+  schedule:
+    - cron: "55 5 * * *"
+      timezone: "Etc/GMT"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: stctv
+      scheduled: false
+    secrets: inherit

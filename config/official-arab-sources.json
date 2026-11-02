@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "updated": "2026-09-27",
+  "policy": {
+    "primary_rule": "official/direct broadcaster or operator schedule first",
+    "fallback_rule": "Rytec/OpenEPG/EPGShare only after direct/validated sources",
+    "publication_rule": "candidate must pass live validation and 24h minimum future coverage before production promotion"
+  },
+  "sources": [
+    {
+      "id": "alkass",
+      "name": "Al Kass Direct",
+      "country": "QA",
+      "status": "production",
+      "tier": "A",
+      "urls": [
+        "https://www.alkass.net/tvguide",
+        "https://dirorigin.alkass.net/tvguide"
+      ],
+      "expected_channels": [
+        "Al Kass 1",
+        "Al Kass 2",
+        "Al Kass 3",
+        "Al Kass 4",
+        "Al Kass 5",
+        "Al Kass 6",
+        "Al Kass 7",
+        "Al Kass 8"
+      ],
+      "language": "ar/en",
+      "notes": "Direct broadcaster guide validated: Al Kass 1-8, today+tomorrow, 48h+ horizon. Preferred over beIN/aggregator fallback."
+    },
+    {
+      "id": "tunisiatv",
+      "name": "Télévision Tunisienne",
+      "country": "TN",
+      "status": "production",
+      "tier": "A",
+      "urls": [
+        "https://www.tunisiatv.tn/ar",
+        "https://tunisiatv.tn/ar"
+      ],
+      "expected_channels": [
+        "الوطنية 1",
+        "الوطنية 2"
+      ],
+      "language": "ar",
+      "notes": "Direct official Watania 1/2 scraper validated with three schedule days; 48h future coverage, Arabic titles/descriptions retained."
+    },
+    {
+      "id": "tabie_qmc",
+      "name": "Tabie / Qatar Media Corporation",
+      "country": "QA",
+      "status": "production_partial_horizon",
+      "tier": "A",
+      "urls": [
+        "https://www.tabie.net/live",
+        "https://tabie.net/live"
+      ],
+      "expected_channels": [
+        "تلفزيون قطر",
+        "تلفزيون قطر 2",
+        "تلفزيون قطر القرآن الكريم",
+        "QBC",
+        "قناة الريان",
+        "قناة الكأس 1"
+      ],
+      "language": "ar",
+      "notes": "Public QMC schedule API validated. QTV1/QTV2/QBC/Tabie services active; direct horizon currently about one day, then canonical MENA merge may extend strictly after the official stop using lower-priority fallbacks."
+    },
+    {
+      "id": "roya",
+      "name": "Roya",
+      "country": "JO",
+      "status": "now_next_confirmed_api_needed",
+      "tier": "A-candidate",
+      "urls": [
+        "https://roya.tv/",
+        "https://en.roya.tv/"
+      ],
+      "expected_channels": [
+        "Roya TV",
+        "Roya News",
+        "Roya Drama",
+        "Roya Comedy",
+        "Roya Kitchen",
+        "Roya Sport"
+      ],
+      "language": "ar/en",
+      "notes": "Official site exposes live channels and now/next; probe API for full 24-48h schedule."
+    },
+    {
+      "id": "maraya_sharjah",
+      "name": "Maraya / Sharjah Broadcasting Authority",
+      "country": "AE",
+      "status": "probe_only",
+      "tier": "A-candidate",
+      "urls": [
+        "https://www.sharjahtv.ae/"
+      ],
+      "expected_channels": [
+        "Sharjah TV",
+        "Sharjah Sports",
+        "Al Wousta",
+        "Sharqiya Kalba",
+        "Sharjah Quran"
+      ],
+      "language": "ar",
+      "notes": "Official SBA family. Discover current public schedule/API before promotion."
+    },
+    {
+      "id": "kuwait_media",
+      "name": "Kuwait Ministry of Information",
+      "country": "KW",
+      "status": "probe_only",
+      "tier": "A-candidate",
+      "urls": [
+        "https://media.gov.kw/",
+        "https://www.media.gov.kw/Frequency.aspx?FreqType=TVKSC"
+      ],
+      "expected_channels": [
+        "Kuwait TV 1",
+        "Kuwait TV 2",
+        "Kuwait News",
+        "Kuwait Sport",
+        "Kuwait Sport Plus"
+      ],
+      "language": "ar",
+      "notes": "Official channel inventory confirmed; schedule endpoint still to be discovered."
+    },
+    {
+      "id": "bahrain_tv",
+      "name": "Bahrain TV & Radio",
+      "country": "BH",
+      "status": "probe_only",
+      "tier": "A-candidate",
+      "urls": [
+        "https://www.bahrain.bh/"
+      ],
+      "expected_channels": [
+        "Bahrain TV",
+        "Bahrain Lawal",
+        "Bahrain International",
+        "Bahrain Sports 1",
+        "Bahrain Sports 2",
+        "Quraan Kareem"
+      ],
+      "language": "ar/en",
+      "notes": "Official channel family confirmed. Discover public guide/API."
+    },
+    {
+      "id": "jawwy",
+      "name": "Jawwy TV",
+      "country": "SA/MENA",
+      "status": "probe_only",
+      "tier": "B-candidate",
+      "urls": [
+        "https://www.jawwy.tv/"
+      ],
+      "expected_channels": [],
+      "language": "ar/en",
+      "notes": "Operator source candidate. Do not promote until a public guide endpoint and exact channel identities are validated."
+    }
+  ]
+}

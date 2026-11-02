@@ -1,0 +1,31 @@
+name: Morocco publication-cohort guard (non-publishing)
+
+on:
+  pull_request:
+    paths:
+      - 'tools/report_cohort_gate.py'
+      - 'tools/test_report_cohort_gate.py'
+      - 'tools/refresh_one_source.sh'
+      - '.github/workflows/scrape-morocco-unified.yml'
+      - '.github/workflows/morocco-publication-cohort-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-and-cohort:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Check refresh shell syntax
+        run: bash -n tools/refresh_one_source.sh
+      - name: Test publishing cohort guard without external access
+        run: python -m unittest discover -s tools -p 'test_report_cohort_gate.py' -v

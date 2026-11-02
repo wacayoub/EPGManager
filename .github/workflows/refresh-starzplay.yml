@@ -1,0 +1,19 @@
+name: EPG 48h - STARZPLAY
+
+on:
+  # Sole automatic STARZPLAY scraper: 05:12 fixed GMT+0, no seasonal shift.
+  schedule:
+    - cron: "12 5 * * *"
+      timezone: "Etc/GMT"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: starzplay
+      scheduled: false
+    secrets: inherit

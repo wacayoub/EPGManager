@@ -1,0 +1,19 @@
+name: EPG 48h - Rotana
+
+on:
+  # Only automatic source scrape: fixed GMT+0, independent of Morocco DST.
+  schedule:
+    - cron: "50 3 * * *"
+      timezone: "Etc/GMT"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: rotana
+      scheduled: false
+    secrets: inherit

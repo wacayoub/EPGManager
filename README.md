@@ -1,5 +1,16 @@
 # EPGManager
 
+EPGManager now contains both the Enigma2 plugin and its MENA source engine.
+Provider scrapers, publication guards and the 14 direct feeds live in this repository.
+The receiver downloads finished XMLTV; it does not run the provider scrapers.
+
+See [source engine and schedules](docs/SOURCE_ENGINE.md) and
+[consolidation verification](docs/REPOSITORY_CONSOLIDATION.md).
+
+The following installer information describes the historical release channel;
+this repository consolidation does not install or update the receiver.
+
+
 Enigma2 / OpenATV EPG Manager with Native Import, Smart Mapping and online updates.
 
 ## Install from GitHub

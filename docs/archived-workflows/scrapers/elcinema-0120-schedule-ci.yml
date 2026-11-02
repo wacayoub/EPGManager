@@ -1,0 +1,70 @@
+name: ElCinema 01:20 schedule regression
+on:
+  push:
+    branches: [schedule/elcinema-daily-casablanca-0120-20261017]
+    paths:
+      - '.github/workflows/refresh-elcinema.yml'
+      - '.github/workflows/daily-epg-chain.yml'
+      - '.github/workflows/elcinema-0120-schedule-ci.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/refresh-elcinema.yml'
+      - '.github/workflows/daily-epg-chain.yml'
+      - '.github/workflows/elcinema-0120-schedule-ci.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify daily local-time schedule and no duplicate chain job
+        run: |
+          python -m pip install --disable-pip-version-check pyyaml
+          python - <<'PY'
+          from pathlib import Path
+          from datetime import datetime, timezone
+          from zoneinfo import ZoneInfo
+          import yaml
+
+          def read(path):
+              return yaml.load(Path(path).read_text(encoding="utf8"),Loader=yaml.BaseLoader)
+          e=read('.github/workflows/refresh-elcinema.yml')
+          chain=read('.github/workflows/daily-epg-chain.yml')
+          core=read('.github/workflows/refresh-source-core.yml')
+
+          assert e['on']['schedule']==[
+            {'cron':'20 1 * * *','timezone':'Etc/GMT'}
+          ],e['on']
+          assert 'workflow_dispatch' in e['on']
+          assert 'push' not in e['on'], 'Extra unscheduled push triggers not wanted'
+          assert e['jobs']['refresh']['uses']=='./.github/workflows/refresh-source-core.yml'
+          assert e['jobs']['refresh']['with']=={'source':'elcinema','scheduled':'false'}
+          assert chain['on']['schedule']==[
+            {'cron':'15 7 * * *','timezone':'Etc/GMT'}
+          ]
+          assert 'elcinema' not in chain['jobs'], '07:15 should not run a second ElCinema scraper'
+          assert 'aljazeera' not in chain['jobs']
+          assert 'osn' not in chain['jobs']
+          assert 'shahid' not in chain['jobs']
+          assert 'sport24' not in chain['jobs']
+          assert set(chain['jobs'])=={'elcinema_extend','finalize'}
+          assert 'dubaiplus' not in chain['jobs']
+          assert 'starzplay' not in chain['jobs']
+          assert 'tunisiatv' not in chain['jobs']
+          assert 'stctv' not in chain['jobs']
+          assert 'alkass' not in chain['jobs']
+          for job in ['elcinema_extend','finalize']:
+              assert job in chain['jobs'],job
+          assert chain['jobs']['elcinema_extend'].get('needs') is None
+          assert 'Fixed GMT+0 06:00 gate' in [x['name'] for x in core['jobs']['refresh']['steps']]
+
+          local=ZoneInfo('Etc/GMT')
+          for d in [(2026,10,18),(2026,11,1),(2027,4,15)]:
+              when=datetime(*d,1,20,tzinfo=local)
+              utc=when.astimezone(timezone.utc)
+              assert utc.hour==1 and utc.minute==20,(d,str(utc))
+              print('ELCINEMA_NEXT_RUN_LOCAL',when.isoformat(),'UTC',utc.isoformat())
+          print('ELCINEMA_0120_CASABLANCA_DAILY: PASS; only one scheduled scraper')
+          PY

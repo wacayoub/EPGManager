@@ -1,0 +1,89 @@
+name: MENA real 14-source 517-ID structural release gate and EPG quality health
+on:
+  push:
+    branches: [fix/mena-517-ids-readiness-structural-release-gate-20261018]
+    paths:
+      - 'tools/mena_readiness_audit.py'
+      - 'tools/test_mena_readiness_audit.py'
+      - '.github/workflows/rebuild-mena-derived.yml'
+      - '.github/workflows/mena-517-readiness-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/mena_readiness_audit.py'
+      - 'tools/test_mena_readiness_audit.py'
+      - '.github/workflows/rebuild-mena-derived.yml'
+      - '.github/workflows/mena-517-readiness-ci.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Compile and test end-to-end genuine 14-feed scenarios
+        run: |
+          python -m py_compile tools/mena_readiness_audit.py tools/test_mena_readiness_audit.py
+          python -m unittest tools.test_mena_readiness_audit -v
+      - name: Audit currently PUBLISHED 517 channel MENA XMLTV without changing data
+        run: |
+          python tools/mena_readiness_audit.py \
+            --feed feeds/mena.xml.gz \
+            --metadata feeds/mena.json \
+            --routing reports/canonical-source-routing.json \
+            --feed-dir feeds \
+            --report /tmp/mena-readiness.json \
+            --markdown /tmp/mena-readiness.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('/tmp/mena-readiness.json').read_text())
+          assert p['status'] in ('READY','READY_WITH_WARNINGS')
+          assert p['structural_errors']==[]
+          assert p['source_manifest_sha256_match']
+          assert p['verified_source_count']==14
+          meta=json.loads(Path('feeds/mena.json').read_text())
+          assert p['channels']==meta['channels'] and p['channels']>0
+          assert p['programmes']==meta['programmes'] and p['programmes']>0
+          assert not p['orphan_programmes'] and not p['exact_duplicate_programmes']
+          assert not p['invalid_programme_times']
+          assert sum(p['selected_statuses'].values())==p['channels']
+          assert sum(p['selected_roles'].values())==p['channels']
+          assert sum(p['selected_owners'].values())==p['channels']
+          selected={v['xmltv_id']:v for v in p['ids']}
+          for id_ in ('2M','AlAoula','Arryadia_HD2','Arryadia_HD3','Chada TV'):
+              assert 'morocco' in selected[id_]['candidate_sources']
+              assert selected[id_]['manual_mapping_visible']
+          for id_ in ('StarzplaySports1.sa@HD','StarzplaySports2.sa@HD',
+                       'StarzplaySports3.sa@HD'):
+              assert 'starzplay' in selected[id_]['candidate_sources']
+          # Tabie may recover real IDs; neither a historical outage nor a
+          # fixed channel count is an acceptance criterion for future builds.
+          for x in p['ids']:
+              if x['status']=='NO_FUTURE_EPG':
+                  assert not x['best_match_green_allowed'] and x['manual_mapping_visible']
+          print('MENA_14_SHA_PINNED_PUBLISHED_SOURCE_AUDITED')
+          print('MENA_PRESERVES_PUBLISHED_CHANNEL_CATALOGUE',p['channels'])
+          print('MENA_QUALITY_WARNINGS_EXPLICIT',p['selected_statuses'])
+          print('NO_VU_PLUS_CHANGES_NO_MAPPING_RENAMES_NO_SYNTHETIC_EPG')
+          PY
+      - name: Prove production derived release gated before Git push
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('.github/workflows/rebuild-mena-derived.yml').read_text()
+          a=s.index('python tools/build_derived_feeds.py')
+          b=s.index('python tools/mena_readiness_audit.py')
+          c=s.index('git commit -m "Rebuild MENA derived feed"')
+          assert a<b<c
+          assert 'git add reports/mena-readiness.json reports/mena-readiness.md' in s
+          assert 'if git push origin HEAD:main; then' in s
+          print('RELEASE_BLOCKING_STRUCTURAL_GATE_BEFORE_PUBLISH')
+          PY

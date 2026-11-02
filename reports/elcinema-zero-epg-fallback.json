@@ -1,0 +1,111 @@
+{
+  "generated_utc": "2026-11-02T07:49:24.837756+00:00",
+  "policy": "ElCinema first; local production fallback; EPGShare last resort; official Al-Manar; never replace healthy ElCinema EPG",
+  "before_future": {
+    "2MMonde.ma@SD": 0,
+    "ATV.kw@SD": 0,
+    "AbuDhabiTV.ae@SD": 59,
+    "BahrainTV.bh@SD": 0,
+    "CBCSofra.eg@SD": 0,
+    "DiscoveryChannelMiddleEastAfrica.us@SD": 0,
+    "FoxActionMoviesMENA.hk@SD": 0,
+    "KTV1.kw@SD": 0,
+    "NationalGeographicAbuDhabi.ae@SD": 0,
+    "NationalGeographicMiddleEast.uk@SD": 0,
+    "QatarTelevision.qa@SD": 0,
+    "SalamTV.ly@SD": 0,
+    "StarMoviesMiddleEast.ae@SD": 0
+  },
+  "applied": {
+    "2MMonde.ma@SD": {
+      "source": "starzplay:2M Monde",
+      "programmes_added": 84,
+      "future_programmes": 52
+    },
+    "BahrainTV.bh@SD": {
+      "source": "osn:Bahrain TV",
+      "programmes_added": 130,
+      "future_programmes": 64
+    },
+    "CBCSofra.eg@SD": {
+      "source": "stctv:CBC Sofra",
+      "programmes_added": 50,
+      "future_programmes": 30
+    },
+    "DiscoveryChannelMiddleEastAfrica.us@SD": {
+      "source": "osn:Discovery Channel",
+      "programmes_added": 63,
+      "future_programmes": 31
+    },
+    "FoxActionMoviesMENA.hk@SD": {
+      "source": "bein:Fox Action Movies",
+      "programmes_added": 26,
+      "future_programmes": 14
+    },
+    "NationalGeographicAbuDhabi.ae@SD": {
+      "source": "starzplay:NatGeo Abu Dhabi",
+      "programmes_added": 72,
+      "future_programmes": 41
+    },
+    "NationalGeographicMiddleEast.uk@SD": {
+      "source": "stctv:Nat Geo",
+      "programmes_added": 66,
+      "future_programmes": 38
+    },
+    "StarMoviesMiddleEast.ae@SD": {
+      "source": "stctv:Star Movies",
+      "programmes_added": 30,
+      "future_programmes": 18
+    },
+    "KTV1.kw@SD": {
+      "source": "epgshare:AE1:Kuwait.TV.1.HD.ae",
+      "programmes_added": 136,
+      "future_programmes": 84
+    },
+    "QatarTelevision.qa@SD": {
+      "source": "epgshare:AE1:Qatar.TV.HD.ae",
+      "programmes_added": 104,
+      "future_programmes": 78
+    }
+  },
+  "external": {
+    "epgshare": {
+      "status": 200,
+      "bytes": 2488722,
+      "url": "https://epgshare01.online/epgshare01/epg_ripper_AE1.xml.gz"
+    }
+  },
+  "errors": [],
+  "after_future": {
+    "2MMonde.ma@SD": 52,
+    "ATV.kw@SD": 0,
+    "AbuDhabiTV.ae@SD": 59,
+    "BahrainTV.bh@SD": 64,
+    "CBCSofra.eg@SD": 30,
+    "DiscoveryChannelMiddleEastAfrica.us@SD": 31,
+    "FoxActionMoviesMENA.hk@SD": 14,
+    "KTV1.kw@SD": 84,
+    "NationalGeographicAbuDhabi.ae@SD": 41,
+    "NationalGeographicMiddleEast.uk@SD": 38,
+    "QatarTelevision.qa@SD": 78,
+    "SalamTV.ly@SD": 0,
+    "StarMoviesMiddleEast.ae@SD": 18
+  },
+  "resolved": [
+    "2MMonde.ma@SD",
+    "AbuDhabiTV.ae@SD",
+    "BahrainTV.bh@SD",
+    "CBCSofra.eg@SD",
+    "DiscoveryChannelMiddleEastAfrica.us@SD",
+    "FoxActionMoviesMENA.hk@SD",
+    "KTV1.kw@SD",
+    "NationalGeographicAbuDhabi.ae@SD",
+    "NationalGeographicMiddleEast.uk@SD",
+    "QatarTelevision.qa@SD",
+    "StarMoviesMiddleEast.ae@SD"
+  ],
+  "unresolved": [
+    "ATV.kw@SD",
+    "SalamTV.ly@SD"
+  ]
+}

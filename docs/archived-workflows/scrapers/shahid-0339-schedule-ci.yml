@@ -1,0 +1,106 @@
+name: Shahid single 03:39 Casablanca daily scrape - source-only audit
+on:
+  push:
+    branches: [schedule/shahid-casablanca-0339-single-daily-20261018]
+    paths:
+      - '.github/workflows/refresh-shahid.yml'
+      - '.github/workflows/daily-epg-chain.yml'
+      - '.github/workflows/epg-casablanca-targeted-retry.yml'
+      - '.github/workflows/epg-watchdog.yml'
+      - 'tools/test_epg_casablanca_workflows.py'
+      - '.github/workflows/osn-0140-schedule-ci.yml'
+      - '.github/workflows/bein-0222-schedule-ci.yml'
+      - '.github/workflows/elcinema-0120-schedule-ci.yml'
+      - '.github/workflows/elcinema-single-trigger-ci.yml'
+      - '.github/workflows/shahid-0339-schedule-ci.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/refresh-shahid.yml'
+      - '.github/workflows/daily-epg-chain.yml'
+      - '.github/workflows/epg-casablanca-targeted-retry.yml'
+      - '.github/workflows/epg-watchdog.yml'
+      - 'tools/test_epg_casablanca_workflows.py'
+      - '.github/workflows/shahid-0339-schedule-ci.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install PyYAML
+        run: python -m pip install --disable-pip-version-check pyyaml
+      - name: "Regression suite: shared GMT+0 schedule and safe manual retry policy"
+        run: python -m unittest tools.test_epg_schedule_policy tools.test_epg_casablanca_workflows -v
+      - name: Verify single daily Shahid at 03:39, no 07:15 or 15:00 duplicate
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from datetime import datetime,timezone
+          from zoneinfo import ZoneInfo
+          import yaml
+          from tools.epg_schedule_policy import TARGETS
+          base=Path(".github/workflows")
+          def load(name):
+              return yaml.load((base/name).read_text(encoding="utf-8"),Loader=yaml.BaseLoader)
+          shahid=load("refresh-shahid.yml")
+          chain=load("daily-epg-chain.yml")
+          retry=load("epg-casablanca-targeted-retry.yml")
+          core=load("refresh-source-core.yml")
+          manual=load("daily-source-refresh.yml")
+          legacy=load("daily-epg.yml")
+          evening=load("epg-evening-casablanca.yml")
+          watchdog=load("epg-watchdog.yml")
+          assert shahid["on"]["schedule"]==[
+              {"cron":"39 3 * * *","timezone":"Etc/GMT"}]
+          assert shahid["jobs"]["refresh"]["uses"]=="./.github/workflows/refresh-source-core.yml"
+          assert shahid["jobs"]["refresh"]["with"]=={"source":"shahid","scheduled":"false"}
+          assert "workflow_dispatch" in shahid["on"] and "push" not in shahid["on"]
+          assert chain["on"]["schedule"]==[
+              {"cron":"15 7 * * *","timezone":"Etc/GMT"}]
+          assert "shahid" not in chain["jobs"]
+          assert "sport24" not in chain["jobs"]
+          assert set(chain["jobs"])=={"elcinema_extend","finalize"}
+          assert "osn" not in chain["jobs"] and "elcinema" not in chain["jobs"]
+          assert "bein" not in chain["jobs"]
+          assert "schedule" not in retry["on"], "15h scheduled Shahid retry must be disabled"
+          assert "workflow_dispatch" in retry["on"]
+          assert TARGETS==("shahid",), "Keep manual Shahid-only quality retry"
+          assert "matrix.source" in retry["jobs"]["retry"]["with"]["source"]
+          assert evening["jobs"]["sports"]["strategy"]["matrix"]["source"]==["alkass"]
+          assert "schedule" not in core["on"] and "schedule" not in manual["on"]
+          assert "schedule" not in legacy["on"]
+          assert watchdog["on"]["schedule"]==[
+              {"cron":"15 14 * * *","timezone":"Etc/GMT"}]
+          assert load("refresh-elcinema.yml")["on"]["schedule"]==[
+              {"cron":"20 1 * * *","timezone":"Etc/GMT"}]
+          assert load("refresh-osn.yml")["on"]["schedule"]==[
+              {"cron":"40 1 * * *","timezone":"Etc/GMT"}]
+          assert load("refresh-bein.yml")["on"]["schedule"]==[
+              {"cron":"22 2 * * *","timezone":"Etc/GMT"}]
+          for name in ("daily-epg-chain.yml","refresh-shahid.yml",
+                       "epg-evening-casablanca.yml","epg-watchdog.yml"):
+              for job in load(name)["jobs"].values():
+                  if isinstance(job,dict) and "strategy" in job:
+                      matrix=job["strategy"].get("matrix") or {}
+                      assert "shahid" not in (matrix.get("source") or []),name
+                  if isinstance(job,dict) and "with" in job:
+                      assert job["with"].get("source")!="shahid" or name=="refresh-shahid.yml",name
+          tz=ZoneInfo("Etc/GMT")
+          for date in [(2026,10,19),(2026,12,2),(2027,2,15),(2027,4,18)]:
+              local=datetime(*date,3,39,tzinfo=tz)
+              back=local.astimezone(timezone.utc).astimezone(tz)
+              assert (back.year,back.month,back.day,back.hour,back.minute)==(*date,3,39)
+              print("SHAHID_SCHEDULE_LOCAL",local.isoformat(),"UTC",local.astimezone(timezone.utc).isoformat())
+          print("SHAHID_0339_SINGLE_DAILY_SOURCE_TRIGGER_PASS")
+          print("SHAHID_0715_CHAIN_AND_AUTOMATIC_1500_RETRY_DISABLED")
+          print("NO_RECEIVER_OR_SOURCE_FEED_MODIFICATIONS")
+          PY

@@ -1,0 +1,71 @@
+name: Apply SHA-locked published XMLTV title cleanup (source-only)
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/prune_published_blank_titles.py"
+      - ".github/workflows/title-repair-publish.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: epg-source-publish
+  cancel-in-progress: false
+jobs:
+  remove-untitled:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Test exact payload guard without modifications
+        run: |
+          python -m unittest tools.test_prune_published_blank_titles -v
+          python tools/prune_published_blank_titles.py --source shahid
+          python tools/prune_published_blank_titles.py --source elcinema
+      - name: Prune only five identified untitled events from public output
+        run: |
+          python tools/prune_published_blank_titles.py --source shahid --apply
+          python tools/prune_published_blank_titles.py --source elcinema --apply
+      - name: Rebuild quality reports from the cleaned actual gzip
+        shell: bash
+        run: |
+          set -e
+          for src in shahid elcinema; do
+            python tools/audit_source_quality.py --input "feeds/$src.xml.gz" --source "$src" --report "reports/$src-quality.json"
+            python tools/validate_48h.py "feeds/$src.xml.gz" --report "reports/$src-48h-audit.json" || test "$?" -eq 2
+          done
+          python - <<'PY'
+          import gzip, hashlib, json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          for source, expected_removed in (("shahid",3),("elcinema",2)):
+              raw=Path("feeds/"+source+".xml.gz").read_bytes()
+              meta=json.loads(Path("feeds/"+source+".json").read_text())
+              report=json.loads(Path("reports/"+source+"-title-repair.json").read_text())
+              root=ET.fromstring(gzip.decompress(raw))
+              events=root.findall("programme")
+              assert hashlib.sha256(raw).hexdigest()==meta["sha256"]
+              assert len(raw)==meta["size_bytes"] and len(events)==meta["programmes"]
+              assert len(root.findall("channel"))==meta["channels"]
+              assert all(any((t.text or "").strip() for t in p.findall("title")) for p in events)
+              assert report["removed_untitled_programmes"]==expected_removed
+              assert meta["generated_utc"]==report["preserved_source_generated_utc"]
+              print(source,"clean titles",len(events),"removed",expected_removed,"source timestamp preserved")
+          PY
+      - name: Commit source-specific EPG and audit files atomically to main
+        shell: bash
+        run: |
+          set -e
+          git config user.name "EPG Source Bot"
+          git config user.email "actions@users.noreply.github.com"
+          for src in shahid elcinema; do
+            git add "feeds/$src.xml.gz" "feeds/$src.json" "reports/$src-title-repair.json" \
+                    "reports/$src-quality.json" "reports/$src-48h-audit.json"
+          done
+          git diff --cached --quiet && { echo "No changes"; exit 0; }
+          git commit -m "EPG: remove 5 verified blank-title rows, preserve source timestamps"
+          git push origin HEAD:main

@@ -1,0 +1,183 @@
+name: Prepare Vu+ direct EPG test pack
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/prepare-vuplus-test.yml"
+      - "tools/build_vuplus_test_pack.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prepare-vuplus-test
+  cancel-in-progress: true
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check --no-cache-dir -r requirements.txt
+
+      - name: Verify existing published direct feeds
+        shell: bash
+        run: |
+          set -e
+          for key in morocco bein shahid rotana sport24 osn elcinema; do
+            test -s "feeds/$key.xml.gz"
+            python - <<PY
+          import gzip, xml.etree.ElementTree as ET
+          p="feeds/$key.xml.gz"
+          root=ET.fromstring(gzip.decompress(open(p,"rb").read()))
+          ch=len(root.findall("channel")); pr=len(root.findall("programme"))
+          if ch < 1 or pr < 1:
+              raise SystemExit(f"{p}: empty")
+          print(f"{p}: channels={ch} programmes={pr}")
+          PY
+          done
+
+      - name: Refresh Dubai+ with official public JSON API
+        shell: bash
+        run: |
+          set +e
+          mkdir -p output/vuplus reports/vuplus
+          python tools/dubaiplus_api_source.py             --output output/vuplus/dubaiplus.raw.xml             --report reports/vuplus/dubaiplus-scrape.json             --hours 48
+          rc=$?
+          echo "$rc" > reports/vuplus/dubaiplus-scrape.rc
+          python tools/source_feed_pack.py             --input output/vuplus/dubaiplus.raw.xml             --output-gz output/vuplus/dubaiplus.xml.gz             --output-txt output/vuplus/dubaiplus.txt             --stats output/vuplus/dubaiplus.json             --label dubaiplus             --window-hours 48
+          echo "$?" > reports/vuplus/dubaiplus-pack.rc
+          exit 0
+
+      - name: Refresh full STC public channel catalogue
+        shell: bash
+        run: |
+          set +e
+          mkdir -p output/vuplus reports/vuplus
+          python tools/stctv_source.py             --output output/vuplus/stctv.raw.xml             --report reports/vuplus/stctv-scrape.json             --id-index feeds/mena.txt             --window-hours 48             --delay 1.5             --max-channels 0             --profile all
+          rc=$?
+          echo "$rc" > reports/vuplus/stctv-scrape.rc
+          python tools/source_feed_pack.py             --input output/vuplus/stctv.raw.xml             --output-gz output/vuplus/stctv.xml.gz             --output-txt output/vuplus/stctv.txt             --stats output/vuplus/stctv.json             --label stctv             --window-hours 48
+          echo "$?" > reports/vuplus/stctv-pack.rc
+          exit 0
+
+      - name: Publish only healthy Dubai+ and STC candidates
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import gzip, json, shutil, re
+          from datetime import datetime,timedelta,timezone
+          import xml.etree.ElementTree as ET
+
+          DT=re.compile(r"^(\d{12}|\d{14})(?:\s*([+-]\d{4}|Z))?")
+          policy={
+            "dubaiplus":{"min_channels":7,"min_programmes":20,"min_ratio":0.70,"min_horizon":4},
+            "stctv":{"min_channels":3,"min_programmes":6,"min_ratio":0.66,"min_horizon":3},
+          }
+          def dt(v):
+              m=DT.match((v or "").strip())
+              if not m:return None
+              s=m.group(1); x=datetime.strptime(s,"%Y%m%d%H%M%S" if len(s)==14 else "%Y%m%d%H%M")
+              o=m.group(2)
+              if not o or o=="Z":return x.replace(tzinfo=timezone.utc)
+              sign=1 if o[0]=="+" else -1
+              mins=sign*(int(o[1:3])*60+int(o[3:5]))
+              return x.replace(tzinfo=timezone(timedelta(minutes=mins))).astimezone(timezone.utc)
+          def audit(path):
+              raw=Path(path).read_bytes()
+              root=ET.fromstring(gzip.decompress(raw))
+              ids={(c.get("id") or "").strip() for c in root.findall("channel") if (c.get("id") or "").strip()}
+              now=datetime.now(timezone.utc); valid={x:0 for x in ids}; fut={x:0 for x in ids}; latest=None; pr=0; bad=0
+              for p in root.findall("programme"):
+                  cid=(p.get("channel") or "").strip(); s=dt(p.get("start")); e=dt(p.get("stop"))
+                  if cid not in ids or not s or not e or e<=s:
+                      bad+=1; continue
+                  pr+=1
+                  valid[cid]=valid.get(cid,0)+1
+                  if e>now:
+                      fut[cid]=fut.get(cid,0)+1
+                      latest=e if latest is None or e>latest else latest
+              active=sum(1 for x in ids if valid.get(x,0)>0)
+              ratio=sum(1 for x in ids if fut.get(x,0)>0)/active if active else 0
+              horizon=max(0,(latest-now).total_seconds()/3600) if latest else 0
+              return {"channels":len(ids),"active_channels":active,"zero_epg_channels":max(0,len(ids)-active),"programmes":pr,"future_ratio":ratio,"future_horizon_hours":horizon,"invalid_rows":bad}
+          result={}
+          for key,p in policy.items():
+              src=Path("output/vuplus")/(key+".xml.gz")
+              row={"published":False}
+              if not src.exists() or not src.stat().st_size:
+                  row["reason"]="candidate missing"; result[key]=row; continue
+              try:
+                  s=audit(src); row["stats"]=s
+                  reasons=[]
+                  if s["active_channels"]<p["min_channels"]: reasons.append("too_few_active_channels")
+                  if s["programmes"]<p["min_programmes"]: reasons.append("too_few_programmes")
+                  if s["future_ratio"]<p["min_ratio"]: reasons.append("low_future_ratio")
+                  if s["future_horizon_hours"]<p["min_horizon"]: reasons.append("short_future_horizon")
+                  if s["invalid_rows"]: reasons.append("invalid_times")
+                  if reasons:
+                      row["reason"]=";".join(reasons)
+                  else:
+                      for ext in ("xml.gz","txt","json"):
+                          f=Path("output/vuplus")/(key+"."+ext)
+                          if f.exists(): shutil.copy2(f,Path("feeds")/f.name)
+                      row["published"]=True; row["reason"]="PASS"
+              except Exception as e:
+                  row["reason"]="audit_error:"+str(e)
+              result[key]=row
+          Path("reports/vuplus/new-source-readiness.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
+          print(json.dumps(result,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Build safe Vu+ source manifest and merged test feed
+        run: python tools/build_vuplus_test_pack.py
+
+      - name: Verify final Vu+ merged test feed
+        shell: bash
+        run: |
+          python - <<'PY'
+          import gzip, json, xml.etree.ElementTree as ET
+          from pathlib import Path
+          raw=gzip.decompress(Path("feeds/vuplus-test.xml.gz").read_bytes())
+          root=ET.fromstring(raw)
+          ids={(c.get("id") or "").strip() for c in root.findall("channel")}
+          programmes=root.findall("programme")
+          assert ids and programmes
+          assert all((p.get("channel") or "").strip() in ids for p in programmes)
+          m=json.loads(Path("feeds/vuplus-test.json").read_text())
+          enabled=[s["key"] for s in m["sources"] if s.get("enabled")]
+          assert "gobx" not in enabled and "starzplay" not in enabled
+          print("VU+ TEST PACK OK",len(ids),"channels",len(programmes),"programmes","sources",enabled)
+          PY
+
+      - name: Commit Vu+ test pack
+        shell: bash
+        run: |
+          set -e
+          git config user.name "EPG Scraper Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add feeds/dubaiplus.xml.gz feeds/dubaiplus.txt feeds/dubaiplus.json 2>/dev/null || true
+          git add feeds/stctv.xml.gz feeds/stctv.txt feeds/stctv.json 2>/dev/null || true
+          git add feeds/vuplus-test.xml.gz feeds/vuplus-test.txt feeds/vuplus-test.json
+          git add reports/vuplus
+          git add reports/vuplus-test-readiness.md
+          if git diff --cached --quiet; then
+            echo "No Vu+ test changes."
+          else
+            git commit -m "Prepare validated direct EPG pack for Vu+ test"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

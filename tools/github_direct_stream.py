@@ -10,8 +10,8 @@ import time
 from datetime import datetime
 from urllib.request import Request, urlopen
 
-PREFIX = "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/"
-AUDITS = "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/reports/"
+PREFIX = "https://raw.githubusercontent.com/wacayoub/EPGManager/main/feeds/"
+AUDITS = "https://raw.githubusercontent.com/wacayoub/EPGManager/main/reports/"
 
 
 def _source_key(item):

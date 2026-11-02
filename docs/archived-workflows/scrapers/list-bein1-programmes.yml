@@ -1,0 +1,29 @@
+name: List beIN Sports 1 programmes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/list-bein1-programmes.yml"
+  workflow_dispatch:
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Print all beIN Sports 1 programmes
+        run: |
+          python - <<'PY'
+          import gzip, xml.etree.ElementTree as ET, json
+          root=ET.fromstring(gzip.decompress(open("feeds/bein.xml.gz","rb").read()))
+          cid="beINSports1.qa@MENA"
+          rows=[]
+          for p in root.findall("programme"):
+              if p.get("channel")!=cid:
+                  continue
+              title=next(((x.text or "").strip() for x in p.findall("title") if (x.text or "").strip()),"")
+              desc=next(((x.text or "").strip() for x in p.findall("desc") if (x.text or "").strip()),"")
+              rows.append({"start":p.get("start"),"stop":p.get("stop"),"title":title,"desc":desc})
+          print("BEIN1_ALL",json.dumps(rows,ensure_ascii=False))
+          PY

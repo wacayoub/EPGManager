@@ -110,7 +110,7 @@ def bundled_external_sources():
         item = dict(src)
         item["kind"] = "external"
         if item.get("tier") == "direct":
-            item["group"] = "MENA Direct / EPG-Scrapers"
+            item["group"] = "MENA Direct / EPGManager"
         else:
             item["group"] = "Online / %s" % item.get("region", "Other")
         item["dynamic"] = False
@@ -124,6 +124,13 @@ def all_sources():
     merged = bundled_external_sources() + discover_epgimport_sources()
     result, seen = [], set()
     for item in merged:
+        # Keep saved IDs stable while migrating installed source definitions.
+        # Their old repository URLs identify the same direct feeds.
+        item = dict(item)
+        for field in ("url", "metadata_url"):
+            value = item.get(field)
+            if value and value.startswith("https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/"):
+                item[field] = external_sources.SCRAPERS_BASE + "/" + value.rsplit("/", 1)[1]
         # De-dupe identical online URLs while preserving installed EPG-Importer
         # naming first, then the bundled fallback catalogue.
         key = item.get("url") or item.get("id")

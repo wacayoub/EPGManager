@@ -1,0 +1,95 @@
+name: STC honest real-guide per-ID health - never green on channel-name placeholders
+on:
+  push:
+    branches: [fix/stctv-per-id-real-content-readiness-20261018]
+    paths:
+      - 'tools/stctv_per_id_readiness.py'
+      - 'tools/test_stctv_per_id_readiness.py'
+      - 'tools/refresh_one_source.sh'
+      - '.github/workflows/refresh-source-core.yml'
+      - '.github/workflows/refresh-stctv.yml'
+      - '.github/workflows/stctv-real-content-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/stctv_per_id_readiness.py'
+      - 'tools/test_stctv_per_id_readiness.py'
+      - 'tools/refresh_one_source.sh'
+      - '.github/workflows/refresh-source-core.yml'
+      - '.github/workflows/refresh-stctv.yml'
+      - '.github/workflows/stctv-real-content-ci.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install dependencies for source-only tests
+        run: python -m pip install --disable-pip-version-check requests pyyaml
+      - name: Negative placeholder/stale/hash tests and unchanged STC source workflow
+        run: |
+          python -m compileall -q tools/stctv_per_id_readiness.py tools/test_stctv_per_id_readiness.py tools/stctv_source.py
+          python -m unittest tools.test_stctv_per_id_readiness tools.test_epg_casablanca_workflows -v
+          bash -n tools/refresh_one_source.sh
+      - name: Real SHA-pinned published 149-channel audit without writing XMLTV
+        run: |
+          python - <<'PY'
+          import hashlib,json,tempfile
+          from pathlib import Path
+          import yaml
+          from tools.stctv_per_id_readiness import ready_report
+          feed=Path("feeds/stctv.xml.gz")
+          metadata=Path("feeds/stctv.json")
+          quality=json.loads(Path("reports/stctv-quality.json").read_text())
+          source=metadata.read_bytes()
+          original=feed.read_bytes()
+          digest=hashlib.sha256(original).hexdigest()
+          rep=ready_report(feed,metadata)
+          assert rep["source_sha256"]==digest
+          actual=json.loads(source)
+          assert rep["channels"]==actual["channels"]
+          assert rep["original_programmes_preserved"]==actual["programmes"]
+          assert rep["quality_suspected_placeholder_future"]>=0
+          assert rep["quality_unavailable_descriptions"]>=0
+          assert sum(rep["counts"].values())==actual["channels"]
+          for row in rep["ids"]:
+              assert row["best_match_green_allowed"]==(row["status"]=="VERIFIED")
+              assert row["manual_mapping_visible"]
+              if row["suspected_channel_title_or_generic_description_rows"]:
+                  assert row["status"]=="REVIEW"
+                  assert not row["best_match_green_allowed"]
+              if row["suspected_repeated_title"]:
+                  assert not row["best_match_green_allowed"]
+          sports={x["xmltv_id"]:x for x in rep["ids"] if
+                  x["xmltv_id"] in ("StarzplaySports1.sa@HD","StarzplaySports2.sa@HD",
+                                  "StarzplaySports3.sa@HD")}
+          assert len(sports)==3
+          for x in sports.values():
+              assert x["status"] in ("VERIFIED","REVIEW")
+              if x["suspected_channel_title_or_generic_description_rows"]:
+                  assert x["status"]=="REVIEW"
+          assert hashlib.sha256(feed.read_bytes()).hexdigest()==digest
+          assert metadata.read_bytes()==source
+          w=Path(".github/workflows")
+          stc=yaml.load((w/"refresh-stctv.yml").read_text(),Loader=yaml.BaseLoader)
+          chain=yaml.load((w/"daily-epg-chain.yml").read_text(),Loader=yaml.BaseLoader)
+          assert stc["on"]["schedule"]==[{"cron":"55 5 * * *","timezone":"Etc/GMT"}]
+          assert "push" not in stc["on"]
+          assert "workflow_dispatch" in stc["on"]
+          assert chain["on"]["schedule"]==[{"cron":"15 7 * * *","timezone":"Etc/GMT"}]
+          assert "stctv" not in chain["jobs"]
+          assert set(chain["jobs"])=={"elcinema_extend","finalize"}
+          print("STCTV_REAL_149_ID_CONTENT_GUARD",json.dumps(rep["counts"]))
+          print("STCTV_ORIGINAL_XMLTV_UNMODIFIED_SHA",digest)
+          print("STCTV_SPORTS_1_TO_3_PROTECTED",json.dumps(sports))
+          print("STCTV_GMT0_0555_SOLE_CRON_0715_DUPLICATE_REMOVED")
+          print("NO_RECEIVER_OR_MAPPINGS_CHANGED")
+          PY

@@ -1,0 +1,200 @@
+name: Probe OSN Legacy catalogue
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "config/osn-legacy-probe-trigger.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: osn-legacy-catalogue-probe
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install upstream EPG grabber
+        working-directory: vendor/iptv-org-epg
+        run: npm ci --no-audit --no-fund
+
+      - name: Inspect raw Legacy channel objects
+        shell: bash
+        working-directory: vendor/iptv-org-epg
+        run: |
+          set -euo pipefail
+          cfg="./sites/osn.com/osn.com.config.js"
+          cp "$cfg" "$cfg.raw.orig"
+          sed -i 's/platform=Android/platform=Legacy/g' "$cfg"
+          node <<'JS'
+          const cfg=require('./sites/osn.com/osn.com.config.js');
+          (async()=>{
+            try{
+              const rows=await cfg.channels({lang:'ar'});
+              const arr=Array.isArray(rows)?rows:[];
+              const blank=arr.filter(x=>!String(x.site_id||'').trim());
+              const focus=arr.filter(x=>/alfa|alpha|cinema|gma|tfc|cine.?mo|kass|oman tv sport|oman tv mubashir/i.test(String(x.name||'')));
+              console.log('RAW_LEGACY_COUNT',arr.length,'BLANK_SITE_ID',blank.length,'USABLE',arr.length-blank.length);
+              for(const x of focus) console.log('RAW_LEGACY_ITEM',JSON.stringify(x));
+            }catch(e){console.log('RAW_LEGACY_ERR',e && e.message ? e.message : String(e));}
+          })();
+          JS
+          cp "$cfg.raw.orig" "$cfg"
+
+      - name: Discover Android and Legacy channels
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output/source-build reports
+          cfg="vendor/iptv-org-epg/sites/osn.com/osn.com.config.js"
+          cp "$cfg" "$cfg.orig"
+
+          for platform in Android Legacy; do
+            cp "$cfg.orig" "$cfg"
+            sed -i "s/platform=Android/platform=${platform}/g" "$cfg"
+            sed -i "s/boxAndroid/box${platform}/g" "$cfg"
+            slug="$(printf '%s' "$platform" | tr '[:upper:]' '[:lower:]')"
+            (
+              cd vendor/iptv-org-epg
+              npm run channels:parse -- \
+                --config="./sites/osn.com/osn.com.config.js" \
+                --output="$GITHUB_WORKSPACE/output/source-build/osn_${slug}_ar.channels.xml" \
+                --set="lang:ar"
+              npm run channels:parse -- \
+                --config="./sites/osn.com/osn.com.config.js" \
+                --output="$GITHUB_WORKSPACE/output/source-build/osn_${slug}_en.channels.xml" \
+                --set="lang:en"
+            )
+          done
+          cp "$cfg.orig" "$cfg"
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          out = {"platforms": {}}
+          for platform in ("android", "legacy"):
+              row = {}
+              for lang in ("ar", "en"):
+                  p = Path(f"output/source-build/osn_{platform}_{lang}.channels.xml")
+                  root = ET.parse(p).getroot()
+                  items = []
+                  for ch in root.findall("channel"):
+                      items.append({
+                          "site_id": ch.get("site_id") or "",
+                          "xmltv_id": ch.get("xmltv_id") or "",
+                          "name": (ch.text or "").strip(),
+                          "lang": ch.get("lang") or lang,
+                      })
+                  row[lang] = {"channels": len(items), "items": items}
+              out["platforms"][platform] = row
+
+          Path("reports/osn-legacy-catalogue-probe.json").write_text(
+              json.dumps(out, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          print(json.dumps({
+              k: {lang: v[lang]["channels"] for lang in ("ar", "en")}
+              for k, v in out["platforms"].items()
+          }, ensure_ascii=False))
+          PY
+
+      - name: Probe Legacy schedule box variants
+        shell: bash
+        run: |
+          set -euo pipefail
+          cfg="vendor/iptv-org-epg/sites/osn.com/osn.com.config.js"
+          cp "$cfg" "$cfg.variant.orig"
+          python - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          wanted={"202","203","211","216","217","223","312","2501","5675","5676","9993","9994"}
+          src=ET.parse("output/source-build/osn_legacy_ar.channels.xml").getroot()
+          out=ET.Element("channels")
+          for ch in src.findall("channel"):
+              if (ch.get("site_id") or "") in wanted:
+                  out.append(ET.fromstring(ET.tostring(ch,encoding="utf-8")))
+          ET.indent(out,space="  ")
+          Path("output/source-build/osn_legacy_probe.channels.xml").write_bytes(ET.tostring(out,encoding="utf-8",xml_declaration=True))
+          print("LEGACY_TARGET_ROWS",len(out))
+          PY
+
+          for box in Legacy; do
+            cp "$cfg.variant.orig" "$cfg"
+            sed -i 's/platform=Android/platform=Legacy/g' "$cfg"
+            sed -i "s/boxAndroid/box${box}/g" "$cfg"
+            python - "$cfg" <<'PY'
+          from pathlib import Path
+          import sys
+          p=Path(sys.argv[1])
+          text=p.read_text(encoding="utf-8")
+          old="const _channels = [...allChannels.map(item => item.guid)]"
+          new="const _channels = [...allChannels.map(item => item.guid).filter(Boolean)]"
+          if old not in text:
+              raise SystemExit("OSN channel segment filter anchor not found")
+          p.write_text(text.replace(old,new,1),encoding="utf-8")
+          print("OSN Legacy schedule: blank GUIDs filtered")
+          PY
+            out="$GITHUB_WORKSPACE/output/source-build/osn_legacy_box_${box}.xml"
+            (
+              cd vendor/iptv-org-epg
+              timeout --signal=TERM --kill-after=20s 360s npm run grab -- \
+                --channels="$GITHUB_WORKSPACE/output/source-build/osn_legacy_probe.channels.xml" \
+                --output="$out" --days=1 --maxConnections=1 --timeout=20000
+            ) || true
+            python - "$box" "$out" <<'PY'
+          import sys, xml.etree.ElementTree as ET
+          from collections import Counter
+          box,path=sys.argv[1:]
+          try: root=ET.parse(path).getroot()
+          except Exception:
+              print("BOX_RESULT",box,"unreadable")
+              raise SystemExit(0)
+          c=Counter((p.get("channel") or "") for p in root.findall("programme"))
+          print("BOX_RESULT",box,"programmes",sum(c.values()),"channels",sum(v>0 for v in c.values()))
+          for cid,n in sorted(c.items()):
+              if n: print(" BOX_CHANNEL",box,cid,n)
+          PY
+          done
+          cp "$cfg.variant.orig" "$cfg"
+      - name: Publish catalogue probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "OSN Legacy Probe"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/osn-legacy-catalogue-probe.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Probe OSN Legacy catalogue"
+          for n in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((n * 2))
+          done
+          exit 1

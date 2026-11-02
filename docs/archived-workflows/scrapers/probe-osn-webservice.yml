@@ -1,0 +1,85 @@
+name: Probe OSN Legacy webservice
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "config/osn-webservice-probe-trigger.txt"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Probe OSN legacy schedule webservice
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          import requests
+
+          channels = {
+              "202":"GMA Pinoy TV",
+              "203":"GMA News TV",
+              "211":"GMA Life TV",
+              "216":"Cinema One Global",
+              "217":"TFC HD",
+              "223":"CineMo",
+              "312":"Alfa Music HD",
+              "2501":"Al Kass One",
+              "5675":"Alfa Cinema 1",
+              "5676":"Alfa Cinema 2",
+              "9993":"Oman TV Sport",
+              "9994":"Oman TV Mubashir",
+          }
+          dt=datetime.now(timezone.utc).strftime("%m/%d/%Y")
+          s=requests.Session()
+          s.headers.update({
+              "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/140 Safari/537.36",
+              "Accept":"application/json,text/plain,*/*",
+              "Accept-Language":"en-AE,en;q=0.9,ar;q=0.8",
+              "Referer":"https://www.osn.com/en-ae/watch/tv-schedule",
+              "Origin":"https://www.osn.com",
+          })
+          for co in ("AE","SA"):
+              print("COUNTRY",co)
+              for code,name in channels.items():
+                  url="https://www.osn.com/api/TVScheduleWebService.asmx/time"
+                  try:
+                      r=s.get(url,params={"dt":dt,"co":co,"ch":code,"mo":"false","hr":"0"},timeout=20)
+                  except Exception as e:
+                      print("WEB_SERVICE",co,code,name,"ERR",type(e).__name__,str(e)[:120])
+                      continue
+                  row={"country":co,"code":code,"name":name,"status":r.status_code,"bytes":len(r.content)}
+                  try:
+                      data=r.json()
+                      if isinstance(data,list):
+                          row["kind"]="list"
+                          row["programmes"]=len(data)
+                          if data and isinstance(data[0],dict):
+                              row["keys"]=sorted(data[0].keys())
+                              row["sample"]={k:data[0].get(k) for k in list(data[0].keys())[:12]}
+                      elif isinstance(data,dict):
+                          row["kind"]="dict"
+                          row["keys"]=sorted(data.keys())
+                          for key in ("d","items","programmes","programs","data"):
+                              val=data.get(key)
+                              if isinstance(val,list):
+                                  row["programmes"]=len(val)
+                                  if val and isinstance(val[0],dict):
+                                      row["item_keys"]=sorted(val[0].keys())
+                                      row["sample"]={k:val[0].get(k) for k in list(val[0].keys())[:12]}
+                                  break
+                      else:
+                          row["kind"]=type(data).__name__
+                  except Exception:
+                      row["body"]=r.text[:240]
+                  print("WEB_SERVICE",json.dumps(row,ensure_ascii=False,default=str))
+          PY

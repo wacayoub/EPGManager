@@ -1,0 +1,82 @@
+name: Test Shahid Rotana direct
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Python dependencies
+        run: python -m pip install --disable-pip-version-check --no-cache-dir -r requirements.txt
+
+      - name: Install upstream
+        working-directory: vendor/iptv-org-epg
+        run: npm ci --no-audit --no-fund
+
+      - name: Build direct catalogues
+        run: |
+          python -m py_compile tools/build_catalogues.py tools/source_feed_pack.py tools/rotana_source.py
+          python tools/build_catalogues.py
+
+      - name: Grab Shahid direct
+        shell: bash
+        run: |
+          set -e
+          mkdir -p output/source-build output/test-direct
+          (
+            cd vendor/iptv-org-epg
+            timeout --signal=TERM --kill-after=30s 600s npm run grab -- \
+              --channels="$GITHUB_WORKSPACE/output/source-build/shahid.channels.xml" \
+              --output="$GITHUB_WORKSPACE/output/source-build/shahid.raw.xml" \
+              --days=3 --maxConnections=1 --timeout=20000
+          )
+          python tools/source_feed_pack.py \
+            --input output/source-build/shahid.raw.xml \
+            --output-gz output/test-direct/shahid.xml.gz \
+            --output-txt output/test-direct/shahid.txt \
+            --stats output/test-direct/shahid.json \
+            --label shahid --window-hours 48
+
+      - name: Grab Rotana resilient official
+        shell: bash
+        run: |
+          set -e
+          python tools/rotana_source.py \
+            --output output/source-build/rotana.raw.xml \
+            --report output/test-direct/rotana-scrape.json \
+            --window-hours 72
+          python tools/source_feed_pack.py \
+            --input output/source-build/rotana.raw.xml \
+            --output-gz output/test-direct/rotana.xml.gz \
+            --output-txt output/test-direct/rotana.txt \
+            --stats output/test-direct/rotana.json \
+            --label rotana --window-hours 48
+
+      - name: Report direct results
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for key in ("shahid","rotana"):
+              d=json.loads((Path("output/test-direct")/f"{key}.json").read_text(encoding="utf-8"))
+              print(f"DIRECT_OK {key}: channels={d['channels']} programmes={d['programmes']} invalid={d['rejected_invalid_time']} inferred_stop={d['inferred_stop']}")
+          PY

@@ -1,0 +1,45 @@
+name: ElCinema exact source per-ID genuine EPG safety
+on:
+  push:
+    branches:
+      - fix/elcinema-per-id-real-quality-20261017
+  pull_request:
+    paths:
+      - tools/elcinema_per_id_readiness.py
+      - tools/test_elcinema_per_id_readiness.py
+      - .github/workflows/elcinema-per-id-gate.yml
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Run source age, SHA, horizon, placeholder and manual-yellow regression
+        run: |
+          python -m py_compile tools/elcinema_per_id_readiness.py
+          python -m unittest tools.test_elcinema_per_id_readiness -v
+      - name: Audit exact public ElCinema gzip without modifying it
+        run: |
+          python tools/elcinema_per_id_readiness.py --output /tmp/elcinema-per-id-readiness.json
+          python - <<'PY'
+          from pathlib import Path
+          import json, hashlib
+          r=json.loads(Path('/tmp/elcinema-per-id-readiness.json').read_text())
+          m=json.loads(Path('feeds/elcinema.json').read_text())
+          assert r['source_sha256']==m['sha256']
+          assert r['source_channels']==m['channels']
+          assert r['synthetic_programmes_added']==0
+          assert r['counts']['VERIFIED']+r['counts']['REVIEW']+r['counts']['QUARANTINE']==r['source_channels']
+          assert all(x['xmltv_id'] and (x['auto_green_allowed'] == (x['verdict']=='VERIFIED')) for x in r['ids'])
+          assert len({x['xmltv_id'] for x in r['ids']})==r['source_channels']
+          print('ELCINEMA_QUALITY_REAL_SOURCE: PASS',r['source_channels'],r['counts'])
+          PY

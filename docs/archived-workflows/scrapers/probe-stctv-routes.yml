@@ -1,0 +1,21 @@
+name: Extract STC TV public metadata routes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-stctv-routes.yml"
+      - "tools/stctv_extract_routes.py"
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --disable-pip-version-check --no-cache-dir requests beautifulsoup4
+      - run: python tools/stctv_extract_routes.py

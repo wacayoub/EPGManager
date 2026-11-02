@@ -1,0 +1,57 @@
+name: beIN occasional MAX XTRA AFC genuine EPG policy
+on:
+  push:
+    branches: [fix/bein-occasional-event-channel-policy-20261017]
+    paths:
+      - 'tools/bein_occasional_policy.py'
+      - 'tools/validate_48h.py'
+      - 'tools/audit_source_quality.py'
+      - 'tools/test_bein_occasional_policy.py'
+      - '.github/workflows/bein-occasional-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/bein_occasional_policy.py'
+      - 'tools/validate_48h.py'
+      - 'tools/audit_source_quality.py'
+      - 'tools/test_bein_occasional_policy.py'
+      - '.github/workflows/bein-occasional-ci.yml'
+permissions:
+  contents: read
+jobs:
+  source-policy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Unit test real-event vs idle vs false-guide beIN policies
+        run: PYTHONPATH=tools python -m unittest tools.test_bein_occasional_policy tools.test_audit_source_quality -v
+      - name: Inspect actual published beIN feed without modifying it
+        run: |
+          python - <<'PY'
+          from datetime import datetime, timezone
+          from tools import validate_48h, audit_source_quality
+          from tools.bein_occasional_policy import is_occasional_bein
+          a=validate_48h.audit('feeds/bein.xml.gz',48,90)
+          q=audit_source_quality.analyze('feeds/bein.xml.gz','bein',datetime.now(timezone.utc))
+          event={r['id'] for r in a['rows'] if r.get('occasional_event_channel')}
+          assert event and 'beINSportsMax1.qa@MENA' in event
+          assert 'beINMENA.beinsportsxtra7' in event
+          assert 'beINSports1.qa@MENA' not in event
+          assert event==set(q['occasional_event_channel_ids'])
+          assert all(r['status']=='INFO' for r in a['rows'] if r['id'] in event)
+          assert a['invalid_times']==0 and a['orphan_programmes']==0
+          assert set(q['channels_with_shorter_than_24h']).isdisjoint(event)
+          assert not (set(q['suspected_repeated_title_channels']) & event)
+          assert set(q['occasional_event_channels_with_repeated_titles'])<=event
+          print('BEIN_OCCASIONAL_REAL_SOURCE_PASS',len(event),
+                'idle',len(q['occasional_event_channels_without_future_match']),
+                'events_present',len(event)-len(q['occasional_event_channels_without_future_match']),
+                'real_rows_preserved',q['programmes'],
+                'placeholder_alerts_preserved',len(q['suspected_placeholder_channels']))
+          PY

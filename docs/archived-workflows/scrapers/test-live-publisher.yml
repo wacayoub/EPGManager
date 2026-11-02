@@ -1,0 +1,32 @@
+name: Live XMLTV publisher safety (non-deploying)
+
+on:
+  push:
+    branches: ["fix/live-epg-publisher-gates-20261014"]
+    paths:
+      - "tools/publish_lkg.py"
+      - "tools/source_feed_pack.py"
+      - "tools/test_live_publisher.py"
+      - ".github/workflows/test-live-publisher.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-publisher:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Syntax check
+        run: python -m py_compile tools/publish_lkg.py tools/source_feed_pack.py tools/test_live_publisher.py
+      - name: Offline publisher regression
+        run: python -m unittest discover -s tools -p "test_live_publisher.py" -v

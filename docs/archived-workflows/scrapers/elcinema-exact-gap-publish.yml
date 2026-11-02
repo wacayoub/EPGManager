@@ -1,0 +1,77 @@
+name: Verified ElCinema exact-ID donor publication (guarded)
+on:
+  push:
+    branches:
+      - main
+      - "fix/elcinema-exact-id-gap-shadow-20261014"
+    paths:
+      - "tools/publish_elcinema_verified_gaps.py"
+      - ".github/workflows/elcinema-exact-gap-publish.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: epg-source-publish
+  cancel-in-progress: false
+jobs:
+  verified-elcinema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Offline SHA, no-overlap and no-fabrication tests
+        run: |
+          python -m py_compile tools/elcinema_exact_id_gap_shadow.py tools/publish_elcinema_verified_gaps.py
+          python -m unittest tools.test_elcinema_exact_id_gap_shadow -v
+      - name: Prepare and validate real source-only shadow, NEVER write feeds
+        run: |
+          python tools/publish_elcinema_verified_gaps.py > /tmp/elcinema-publication-preflight.json
+          cat /tmp/elcinema-publication-preflight.json
+      - name: Publish exact checked source extension (main branch ONLY)
+        if: github.ref_name == 'main'
+        run: |
+          python tools/publish_elcinema_verified_gaps.py --apply > /tmp/elcinema-publish.json
+          cat /tmp/elcinema-publish.json
+          python - <<'PY'
+          import gzip, hashlib, json, pathlib, xml.etree.ElementTree as ET
+          src=pathlib.Path('feeds/elcinema.xml.gz').read_bytes()
+          m=json.loads(pathlib.Path('feeds/elcinema.json').read_text())
+          r=json.loads(pathlib.Path('reports/elcinema-exact-donor.json').read_text())
+          xml=ET.fromstring(gzip.decompress(src))
+          assert m['sha256']==hashlib.sha256(src).hexdigest()
+          assert m['size_bytes']==len(src)
+          assert len(xml.findall('channel'))==97
+          assert len(xml.findall('programme'))==m['programmes']
+          assert r['added_real_programmes']>=100
+          assert r['failure_count_after']<=r['failure_count_before']-8
+          assert r['original_provider_generated_utc']==m['generated_utc']
+          print('APPROVED_SOURCE_ONLY',r['failure_count_before'],r['failure_count_after'],
+                r['added_real_programmes'],len(xml.findall('programme')))
+          PY
+      - name: Commit only audited ElCinema XMLTV and reports
+        if: github.ref_name == 'main'
+        run: |
+          git config user.name "EPG Source Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add feeds/elcinema.xml.gz feeds/elcinema.json \
+                  reports/elcinema-quality.json reports/elcinema-48h-audit.json \
+                  reports/elcinema-exact-donor.json
+          git diff --cached --quiet && exit 0
+          git commit -m "EPG ElCinema: extend 12 exact IDs using real Shahid and Dubai+ guides"
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: elcinema-publish-preflight
+          path: |
+            /tmp/elcinema-publication-preflight.json
+            /tmp/elcinema-publish.json
+            output/shadow/elcinema-exact-donor.json
+            output/shadow/elcinema-48h-audit.json
+          if-no-files-found: warn
+          retention-days: 4

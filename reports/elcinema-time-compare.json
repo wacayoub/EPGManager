@@ -1,0 +1,75 @@
+{
+  "generated_utc": "2026-09-27T20:47:52.117021+00:00",
+  "test_timezone": "Africa/Casablanca",
+  "production_timezone_patch": "Africa/Cairo",
+  "channels": [
+    "MBC1.ae@SD",
+    "AbuDhabiTV.ae@SD",
+    "DubaiTV.ae@SD",
+    "MBCMasr.eg@SD",
+    "RotanaCinemaKSA.sa@SD"
+  ],
+  "matched_events": 4,
+  "observed_deltas_hours": [
+    -5.5,
+    -30.0,
+    2.0,
+    -14.0
+  ],
+  "dominant_delta_hours": 2.0,
+  "rows": [
+    {
+      "id": "MBC1.ae@SD",
+      "matched": 1,
+      "samples": [
+        {
+          "title": "برنامج نادينا",
+          "production_start_utc": "2026-09-27T21:30:00+00:00",
+          "casablanca_test_start_utc": "2026-09-27T16:00:00+00:00",
+          "test_minus_production_hours": -5.5
+        }
+      ]
+    },
+    {
+      "id": "AbuDhabiTV.ae@SD",
+      "matched": 0,
+      "samples": []
+    },
+    {
+      "id": "DubaiTV.ae@SD",
+      "matched": 1,
+      "samples": [
+        {
+          "title": "برنامج شطرنج",
+          "production_start_utc": "2026-09-28T21:30:00+00:00",
+          "casablanca_test_start_utc": "2026-09-27T15:30:00+00:00",
+          "test_minus_production_hours": -30.0
+        }
+      ]
+    },
+    {
+      "id": "MBCMasr.eg@SD",
+      "matched": 1,
+      "samples": [
+        {
+          "title": "الحكاية مع عمرو أديب",
+          "production_start_utc": "2026-09-27T13:00:00+00:00",
+          "casablanca_test_start_utc": "2026-09-27T15:00:00+00:00",
+          "test_minus_production_hours": 2.0
+        }
+      ]
+    },
+    {
+      "id": "RotanaCinemaKSA.sa@SD",
+      "matched": 1,
+      "samples": [
+        {
+          "title": "سبع البرمبة",
+          "production_start_utc": "2026-09-28T05:00:00+00:00",
+          "casablanca_test_start_utc": "2026-09-27T15:00:00+00:00",
+          "test_minus_production_hours": -14.0
+        }
+      ]
+    }
+  ]
+}

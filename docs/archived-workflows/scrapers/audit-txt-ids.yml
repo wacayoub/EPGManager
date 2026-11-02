@@ -1,0 +1,48 @@
+name: Audit TXT EPG IDs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/audit-txt-ids.yml"
+      - "tools/audit_txt_ids.py"
+      - "feeds/*.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Audit TXT channel IDs
+        run: python tools/audit_txt_ids.py
+      - name: Show audit
+        run: cat reports/txt-id-duplicate-audit.md
+      - name: Publish audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/txt-audit
+          cp reports/txt-id-duplicate-audit.* /tmp/txt-audit/
+          git config user.name "EPG Scraper Bot"
+          git config user.email "actions@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/txt-audit/* reports/
+            git add reports/txt-id-duplicate-audit.*
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "Update TXT ID duplicate audit"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt*2))
+          done
+          exit 1

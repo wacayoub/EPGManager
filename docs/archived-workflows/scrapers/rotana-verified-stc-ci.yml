@@ -1,0 +1,69 @@
+name: Rotana authentic zero-EPG rescue via exact STC VERIFIED IDs only
+on:
+  push:
+    branches: [fix/rotana-stc-authentic-schedule-fallback-20261018]
+    paths:
+      - 'tools/rotana_verified_stc_fallback.py'
+      - 'tools/test_rotana_verified_stc_fallback.py'
+      - 'tools/refresh_one_source.sh'
+      - '.github/workflows/refresh-source-core.yml'
+      - '.github/workflows/rotana-verified-stc-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/rotana_verified_stc_fallback.py'
+      - 'tools/test_rotana_verified_stc_fallback.py'
+      - 'tools/refresh_one_source.sh'
+      - '.github/workflows/refresh-source-core.yml'
+      - '.github/workflows/rotana-verified-stc-ci.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install native Python source metadata dependencies
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4 lxml
+      - name: No fake titles, exact source IDs, Rotana priority and bad SHA rejection
+        run: |
+          python -m py_compile tools/rotana_verified_stc_fallback.py tools/test_rotana_verified_stc_fallback.py
+          python -m unittest tools.test_rotana_verified_stc_fallback -v
+          bash -n tools/refresh_one_source.sh
+      - name: Actual public published Rotana and STC guides — read only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import gzip,hashlib,json,xml.etree.ElementTree as ET
+          from tools.rotana_verified_stc_fallback import add_verified_donor
+          r=json.loads(Path("feeds/rotana.json").read_text())
+          data=Path("feeds/rotana.xml.gz").read_bytes()
+          assert r["sha256"]==hashlib.sha256(data).hexdigest()
+          root=ET.fromstring(gzip.decompress(data))
+          before=[(p.get("channel"),p.get("start"),p.get("stop"),p.findtext("title"))
+                  for p in root.findall("programme")]
+          assert len(before)==r["programmes"]
+          report=add_verified_donor(root,Path("feeds"))
+          after=[(p.get("channel"),p.get("start"),p.get("stop"),p.findtext("title"))
+                 for p in root.findall("programme")]
+          assert all(x in after for x in before)
+          assert len(after)==len(before)+report["added"]
+          assert report["synthetic_programmes_added"]==0
+          assert set(report["ids"])=={"AlResalah.sa@SD","RotanaClip.sa@SD"}
+          for key,row in report["ids"].items():
+              assert row["added"]>=0
+              if row["original_rotana_programmes"]:
+                  assert row["reason"]=="ROTANA_PRIMARY_PRESENT_UNTOUCHED"
+              if row["reason"]=="STC_DONOR_NOT_VERIFIED_PER_ID":
+                  assert row["added"]==0
+          print("ROTANA_STC_CONDITIONALLY_VERIFIED",json.dumps(report,ensure_ascii=False))
+          print("ROTANA_ORIGINAL_REAL_PROGRAMMES_PRESERVED",len(before))
+          print("ROTANA_NO_FAKE_GUIDE_OR_RECEIVER_CHANGES")
+          PY

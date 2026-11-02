@@ -1,0 +1,67 @@
+{
+  "generated_utc": "2026-11-02T06:36:07.471358+00:00",
+  "mode": "source-aware",
+  "feeds": [
+    {
+      "feed": "tabie.xml.gz",
+      "generated_utc": "2026-11-02T06:36:07.471172+00:00",
+      "target_hours": 48.0,
+      "minimum_acceptable_hours": 24.0,
+      "max_gap_minutes_warning": 180,
+      "channels": 4,
+      "invalid_times": 0,
+      "orphan_programmes": 0,
+      "failed_channels": 4,
+      "warning_channels": 0,
+      "informational_channels": 0,
+      "occasional_channel_ids": [],
+      "status": "FAIL",
+      "rows": [
+        {
+          "id": "QatarTelevision.qa@SD",
+          "status": "FAIL",
+          "reason": "TOO_SHORT",
+          "future_hours": 14.4,
+          "latest_stop_utc": "2026-11-02T21:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 27,
+          "occasional_event_channel": false,
+          "verified_regular_off_air": false
+        },
+        {
+          "id": "QatarTelevision2.qa@SD",
+          "status": "FAIL",
+          "reason": "TOO_SHORT",
+          "future_hours": 14.4,
+          "latest_stop_utc": "2026-11-02T21:00:00+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 27,
+          "occasional_event_channel": false,
+          "verified_regular_off_air": false
+        },
+        {
+          "id": "TabieKids.qa",
+          "status": "FAIL",
+          "reason": "TOO_SHORT",
+          "future_hours": 14.06,
+          "latest_stop_utc": "2026-11-02T20:39:52+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 56,
+          "occasional_event_channel": false,
+          "verified_regular_off_air": false
+        },
+        {
+          "id": "TabieNow.qa",
+          "status": "FAIL",
+          "reason": "TOO_SHORT",
+          "future_hours": 14.36,
+          "latest_stop_utc": "2026-11-02T20:57:50+00:00",
+          "max_gap_minutes": 0.0,
+          "programmes": 673,
+          "occasional_event_channel": false,
+          "verified_regular_off_air": false
+        }
+      ]
+    }
+  ]
+}

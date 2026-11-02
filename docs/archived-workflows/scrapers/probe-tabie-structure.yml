@@ -1,0 +1,46 @@
+name: Probe Tabie EPG structure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/tabie_structure_probe.py"
+      - ".github/workflows/probe-tabie-structure.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --disable-pip-version-check --no-cache-dir requests beautifulsoup4
+      - run: python tools/tabie_structure_probe.py
+      - name: Publish probe report
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp reports/tabie-structure.json /tmp/tabie-structure.json
+          git config user.name "EPG Probe Bot"
+          git config user.email "actions@users.noreply.github.com"
+          for n in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p reports
+            cp /tmp/tabie-structure.json reports/tabie-structure.json
+            git add reports/tabie-structure.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "Update Tabie EPG structure probe"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((n*2))
+          done
+          exit 1

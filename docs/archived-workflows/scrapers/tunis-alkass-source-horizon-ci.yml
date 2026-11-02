@@ -1,0 +1,60 @@
+name: XMLTV timezone fix, AlKass genuine horizon, Tunisia Watania2 overnight off-air
+on:
+  push:
+    branches: [fix/tunisia-watania2-offair-alkass-provider-horizon-20261018]
+    paths:
+      - 'tools/validate_48h.py'
+      - 'tools/alkass_source.py'
+      - 'tools/test_tunis_offair_alkass_horizon.py'
+      - 'tools/source_feed_pack.py'
+      - 'tools/publish_lkg.py'
+      - 'tools/test_xmltv_timezone_offsets.py'
+      - '.github/workflows/tunis-alkass-source-horizon-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/validate_48h.py'
+      - 'tools/alkass_source.py'
+      - 'tools/test_tunis_offair_alkass_horizon.py'
+      - 'tools/source_feed_pack.py'
+      - 'tools/publish_lkg.py'
+      - 'tools/test_xmltv_timezone_offsets.py'
+      - '.github/workflows/tunis-alkass-source-horizon-ci.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install public programme parser dependencies
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4
+      - name: Genuine nightly off-air versus real source gap tests
+        run: |
+          python -m py_compile tools/validate_48h.py tools/alkass_source.py tools/test_tunis_offair_alkass_horizon.py tools/source_feed_pack.py tools/publish_lkg.py tools/test_xmltv_timezone_offsets.py
+          python -m unittest tools.test_tunis_offair_alkass_horizon tools.test_xmltv_timezone_offsets -v
+      - name: Read-only verify last real source limitations and exact GMT0 crons
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          a=json.loads(Path("reports/alkass-48h-audit.json").read_text())["feeds"][0]
+          t=json.loads(Path("reports/tunisiatv-48h-audit.json").read_text())["feeds"][0]
+          assert a["channels"]==8 and a["status"]=="WARN"
+          assert all(x["status"]=="WARN" and x["reason"]=="SHORT_HORIZON" for x in a["rows"])
+          assert min(x["future_hours"] for x in a["rows"])>24
+          assert any(x["id"]=="ElWatania2.tn@SD" and x["max_gap_minutes"]>=350
+                     for x in t["rows"])
+          assert any(x["id"]=="ElWatania1.tn@SD" and x["status"]=="PASS"
+                     for x in t["rows"])
+          print("ALKASS_OFFICIAL_PAGE_HAS_TODAY_AND_TOMORROW_ONLY_NO_THIRD_DAY_INVENTED")
+          print("TUNISIA_WATANIYA2_DOCUMENTED_MIDNIGHT_TO_06H_OFF_AIR_NOT_MISSING_SHOW")
+          print("SOURCE_REPORTS_WILL_REGENERATE_ONLY_ON_NEXT_ACCEPTED_FEED")
+          PY

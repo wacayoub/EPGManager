@@ -1,0 +1,58 @@
+name: STARZPLAY official English display names all 117 - XMLTV IDs immutable
+on:
+  push:
+    branches: [fix/starzplay-en-display-by-source-id-20261018]
+    paths:
+      - 'tools/starzplay_hybrid.py'
+      - 'tools/test_starzplay_english_display_names.py'
+      - 'config/starzplay-language-policy.json'
+      - '.github/workflows/starzplay-en-display-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/starzplay_hybrid.py'
+      - 'tools/test_starzplay_english_display_names.py'
+      - 'config/starzplay-language-policy.json'
+      - '.github/workflows/starzplay-en-display-ci.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install source hybrid runtime dependencies
+        run: python -m pip install --disable-pip-version-check requests pyyaml
+      - name: Read-only official Arabic/English source name and identity unit tests
+        run: |
+          python -m py_compile tools/starzplay_hybrid.py tools/test_starzplay_english_display_names.py
+          python -m unittest tools.test_starzplay_english_display_names tools.test_starzplay_natgeo_authentic_ar -v
+      - name: Ensure GMT+0 workflows and existing source languages remain unchanged
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import yaml
+          p=json.loads(Path('config/starzplay-language-policy.json').read_text())
+          assert p['arabic_display_name_ids']==[]
+          assert p['force_arabic_content_ids']==['NationalGeographicAbuDhabi.ae@SD']
+          assert p['profiles']['arabic_native']=={'title':'ar','subtitle':'ar','description':'ar'}
+          assert p['profiles']['hybrid']=={'title':'en','subtitle':'en','description':'ar'}
+          w=yaml.load(Path('.github/workflows/daily-epg-chain.yml').read_text(),Loader=yaml.BaseLoader)
+          assert w['on']['schedule']==[{'cron':'15 7 * * *','timezone':'Etc/GMT'}]
+          assert 'starzplay' not in w['jobs']
+          assert set(w['jobs'])=={'elcinema_extend','finalize'}
+          assert w['jobs']['finalize']['needs']=='elcinema_extend'
+          scheduled=yaml.load(Path('.github/workflows/refresh-starzplay.yml').read_text(),Loader=yaml.BaseLoader)
+          assert scheduled['on']['schedule']==[{'cron':'12 5 * * *','timezone':'Etc/GMT'}]
+          assert scheduled['jobs']['refresh']['with']=={'source':'starzplay','scheduled':'false'}
+          print('EN_DISPLAY_117_AR_PROGRAMME_POLICY_PRESERVED')
+          print('STARZPLAY_SCRAPE_GMT0_UNCHANGED_AND_XMLTV_IDS_STABLE')
+          PY

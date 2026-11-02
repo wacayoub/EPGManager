@@ -1,0 +1,27 @@
+name: Published scraping quality and GMT0 regressions
+on:
+  pull_request:
+    paths: ['tools/**', 'config/**', '.github/workflows/**']
+  push:
+    branches: [main]
+    paths: ['tools/**', 'config/**', '.github/workflows/scraping-quality-regressions.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -r requirements.txt PyYAML tzdata
+      - name: Offline suite, including exact-ID quality and fixed GMT0 contracts
+        env:
+          PYTHONPATH: .:tools
+          PYTHONUTF8: '1'
+        run: python -m unittest discover -s tools -p 'test_*.py' -q

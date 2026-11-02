@@ -1,0 +1,70 @@
+name: EPG on-demand individual Morocco or AlKass refresh
+
+# The only AUTOMATIC Morocco source refresh is refresh-morocco.yml
+# at 07:07 fixed GMT+0; AlKass is at 06:30 fixed GMT+0.
+# This workflow is an explicitly manual exception, never a second cron.
+on:
+  workflow_dispatch:
+    inputs:
+      group:
+        description: "Manually refresh just this source group"
+        type: choice
+        required: true
+        options:
+          - sports
+          - morocco
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-evening-casablanca
+  cancel-in-progress: false
+
+jobs:
+  route:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      group: ${{ steps.select.outputs.group }}
+    steps:
+      - name: Select explicit manual source group
+        id: select
+        shell: bash
+        env:
+          DISPATCH_GROUP: ${{ inputs.group }}
+        run: |
+          set -euo pipefail
+          case "$DISPATCH_GROUP" in
+            sports|morocco) group="$DISPATCH_GROUP" ;;
+            *) echo "Invalid manual group"; exit 2 ;;
+          esac
+          echo "group=$group" >> "$GITHUB_OUTPUT"
+
+  sports:
+    needs: route
+    if: needs.route.outputs.group == 'sports'
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        source: [alkass]
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: ${{ matrix.source }}
+      scheduled: false
+    secrets: inherit
+
+  morocco:
+    needs: route
+    if: needs.route.outputs.group == 'morocco'
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: morocco
+      scheduled: false
+    secrets: inherit
+
+  finalize:
+    needs: [route, sports, morocco]
+    if: always() && needs.route.outputs.group != '' && (needs.sports.result == 'success' || needs.morocco.result == 'success')
+    uses: ./.github/workflows/rebuild-mena-derived.yml

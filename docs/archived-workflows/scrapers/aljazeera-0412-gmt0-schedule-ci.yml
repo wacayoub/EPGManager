@@ -1,0 +1,73 @@
+name: Al Jazeera sole 04:12 GMT0 daily source scrape regression
+on:
+  push:
+    branches: [schedule/aljazeera-fixed-gmt0-0412-once-daily-20261018]
+    paths:
+      - '.github/workflows/refresh-aljazeera.yml'
+      - '.github/workflows/daily-epg-chain.yml'
+      - '.github/workflows/aljazeera-0412-gmt0-schedule-ci.yml'
+      - 'tools/test_epg_casablanca_workflows.py'
+  pull_request:
+    paths:
+      - '.github/workflows/refresh-aljazeera.yml'
+      - '.github/workflows/daily-epg-chain.yml'
+      - '.github/workflows/aljazeera-0412-gmt0-schedule-ci.yml'
+      - 'tools/test_epg_casablanca_workflows.py'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install PyYAML for read-only scheduling audit
+        run: python -m pip install --disable-pip-version-check pyyaml
+      - name: Test full fixed GMT0 EPG workflows
+        run: python -m unittest tools.test_epg_schedule_policy tools.test_epg_casablanca_workflows -v
+      - name: Verify one automatic Al Jazeera source only and rest of sequential chain
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from datetime import datetime,timezone
+          from zoneinfo import ZoneInfo
+          import yaml
+          base=Path(".github/workflows")
+          def load(name):
+              return yaml.load((base/name).read_text(encoding="utf-8"),Loader=yaml.BaseLoader)
+          j=load("refresh-aljazeera.yml")
+          chain=load("daily-epg-chain.yml")
+          assert j["on"]["schedule"]==[{"cron":"12 4 * * *","timezone":"Etc/GMT"}]
+          assert "workflow_dispatch" in j["on"] and "push" not in j["on"]
+          assert j["jobs"]["refresh"]["uses"]=="./.github/workflows/refresh-source-core.yml"
+          assert j["jobs"]["refresh"]["with"]=={"source":"aljazeera","scheduled":"false"}
+          assert "aljazeera" not in chain["jobs"]
+          assert "starzplay" not in chain["jobs"]
+          assert chain["jobs"]["elcinema_extend"].get("needs") is None
+          assert set(chain["jobs"])=={"elcinema_extend","finalize"}
+          assert chain["jobs"]["finalize"]["needs"]=="elcinema_extend"
+          assert chain["on"]["schedule"]==[{"cron":"15 7 * * *","timezone":"Etc/GMT"}]
+          for other,cron in [
+            ("refresh-elcinema.yml","20 1 * * *"),
+            ("refresh-osn.yml","40 1 * * *"),
+            ("refresh-bein.yml","22 2 * * *"),
+            ("refresh-sport24.yml","5 3 * * *"),
+            ("refresh-shahid.yml","39 3 * * *"),
+            ("refresh-dubaiplus.yml","44 4 * * *")]:
+              assert load(other)["on"]["schedule"]==[{"cron":cron,"timezone":"Etc/GMT"}],other
+          zone=ZoneInfo("Etc/GMT")
+          for date in [(2026,10,19),(2026,12,15),(2027,2,20),(2027,4,18)]:
+              when=datetime(*date,4,12,tzinfo=zone)
+              utc=when.astimezone(timezone.utc)
+              assert (utc.hour,utc.minute)==(4,12),date
+          print("ALJAZEERA_SOLE_0412_GMT0_TRIGGER: PASS")
+          print("NO_0715_ALJAZEERA_DUPLICATE; STARZPLAY_CHAIN_PRESERVED")
+          print("NO_VU_PLUS_ASSETS_TOUCHED")
+          PY

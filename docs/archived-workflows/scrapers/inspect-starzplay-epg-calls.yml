@@ -1,0 +1,85 @@
+name: Inspect STARZPLAY EPG call sites
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/inspect-starzplay-epg-calls.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq apktool unzip
+
+      - name: Download and decode public STARZPLAY Android package
+        shell: bash
+        run: |
+          set -e
+          rm -rf /tmp/starzcall
+          mkdir -p /tmp/starzcall/xapk /tmp/starzcall/decoded reports
+          curl -fL --retry 1 --connect-timeout 20 --max-time 180             'https://d.apkpure.net/b/XAPK/com.parsifal.starz?version=latest'             -o /tmp/starzcall/starzplay.xapk
+          unzip -q /tmp/starzcall/starzplay.xapk -d /tmp/starzcall/xapk
+          i=0
+          for apk in /tmp/starzcall/xapk/*.apk; do
+            [ -f "$apk" ] || continue
+            i=$((i+1))
+            apktool d -f "$apk" -o "/tmp/starzcall/decoded/apk$i" >/dev/null 2>&1 || true
+          done
+
+      - name: Extract call-site context
+        shell: bash
+        run: |
+          python - <<'PY'
+          import re
+          from pathlib import Path
+
+          needles=re.compile(r'(->getEPG(?:Events|Categories|CategoryEvents|ChannelFilters)|mediaServiceBaseUrlNMS|mediaServiceBaseUrl|x-geo-country|epg/channel/start|epg/category/events|epg/category/config)',re.I)
+          sensitive=re.compile(r'(authorization|bearer|password|secret|token|license|widevine|drm|payment|pinLoginKey)',re.I)
+          blocks=[]
+          for root in Path('/tmp/starzcall/decoded').glob('apk*'):
+              for p in root.rglob('*.smali'):
+                  try:
+                      lines=p.read_text(encoding='utf-8',errors='ignore').splitlines()
+                  except Exception:
+                      continue
+                  hitidx=[i for i,l in enumerate(lines) if needles.search(l)]
+                  for i in hitidx:
+                      a=max(0,i-100); b=min(len(lines),i+140)
+                      out=[]
+                      for n in range(a,b):
+                          line=lines[n]
+                          if sensitive.search(line):
+                              line='[REDACTED_SENSITIVE_LINE]'
+                          line=re.sub(r'"[A-Za-z0-9+/=_-]{80,}"','"[REDACTED_LONG_CONSTANT]"',line)
+                          out.append(f'{n+1}: {line}')
+                      blocks.append(f'FILE {p.relative_to(root)}\n'+'\n'.join(out))
+          Path('reports/starzplay-epg-call-sites.txt').write_text(
+              '\n\n===== MATCH =====\n\n'.join(blocks[:180])+'\n',
+              encoding='utf-8'
+          )
+          PY
+
+      - name: Publish report
+        shell: bash
+        run: |
+          set -e
+          git config user.name "epg-diagnostic-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/starzplay-epg-call-sites.txt
+          git commit -m "diagnostic: inspect STARZPLAY EPG call sites" || exit 0
+          git pull --rebase origin main
+          git push origin HEAD:main

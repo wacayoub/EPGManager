@@ -1,0 +1,52 @@
+name: Inspect ElCinema grid
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/inspect-elcinema-grid.yml"
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests beautifulsoup4 lxml
+      - name: Inspect target rows
+        run: |
+          python - <<'PY'
+          import re,requests
+          from bs4 import BeautifulSoup
+          ids=["1136","1272","1308","1334","1330","1275","1212","1329"]
+          r=requests.get("https://elcinema.com/tvguide/",headers={"User-Agent":"Mozilla/5.0"},timeout=20)
+          print("HTTP",r.status_code,"LEN",len(r.text))
+          s=BeautifulSoup(r.text,"lxml")
+          print("TV_LINES",len(s.select(".tv-line")))
+          for i,row in enumerate(s.select(".tv-line")):
+              links=[(a.get("href")," ".join(a.stripped_strings)[:100]) for a in row.find_all("a",href=True) if "/tvguide/" in a.get("href","")]
+              if links:
+                  print("ROWTV",i,links[:5])
+          print("FIRSTROWHTML",str(s.select_one(".tv-line"))[:12000])
+          print("\nDETAIL PAGES")
+          for sid in ids:
+              rr=requests.get(f"https://elcinema.com/tvguide/{sid}/",headers={"User-Agent":"Mozilla/5.0"},timeout=20)
+              ss=BeautifulSoup(rr.text,"lxml")
+              dates=[" ".join(x.stripped_strings) for x in ss.select(".dates")]
+              print("DETAIL",sid,"HTTP",rr.status_code,"LEN",len(rr.text),"DATES",dates[:8],"ITEMS",len(ss.select(".padded-half")),"TITLE",ss.title.get_text(" ",strip=True) if ss.title else "")
+              if sid=="1136":
+                  print("DETAIL1136TEXT"," | ".join(ss.stripped_strings)[:5000])
+                  print("DETAIL1136PAD", [str(x)[:2500] for x in ss.select(".padded-half")])
+          for sid in ids:
+              a=s.find("a",href=re.compile(rf"/tvguide/{sid}/?$"))
+              print("\nSID",sid,"FOUND_LINK",bool(a))
+              row=a.find_parent(class_=lambda c:c and "tv-line" in (c if isinstance(c,list) else c.split())) if a else None
+              print("ROW",bool(row))
+              if row:
+                  txt=" | ".join(row.stripped_strings)
+                  print("TEXT",txt[:2500])
+                  print("HTML",str(row)[:5000])
+          PY

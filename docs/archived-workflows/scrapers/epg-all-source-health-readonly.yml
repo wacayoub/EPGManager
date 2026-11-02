@@ -1,0 +1,45 @@
+name: All EPG sources — public health audit (no publish)
+
+on:
+  push:
+    branches:
+      - audit/all-source-guard-20261017
+    paths:
+      - 'tools/audit_all_published_sources_readonly.py'
+      - 'tools/test_audit_all_published_sources_readonly.py'
+      - '.github/workflows/epg-all-source-health-readonly.yml'
+  pull_request:
+    paths:
+      - 'tools/audit_all_published_sources_readonly.py'
+      - 'tools/test_audit_all_published_sources_readonly.py'
+      - '.github/workflows/epg-all-source-health-readonly.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Test standalone policy
+        run: |
+          python -m py_compile tools/audit_all_published_sources_readonly.py tools/test_audit_all_published_sources_readonly.py
+          python -m unittest discover -s tools -p 'test_audit_all_published_sources_readonly.py' -v
+  inspect-current-published-feeds:
+    needs: unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Non-publishing snapshot of all 14 sources
+        run: python tools/audit_all_published_sources_readonly.py --repo .

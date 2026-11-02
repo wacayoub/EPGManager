@@ -1,0 +1,110 @@
+name: All EPG scheduled triggers fixed GMT+0; Dubai+ sole 04:44
+on:
+  push:
+    branches: [schedule/all-epg-fixed-gmt0-dubaiplus-0444-20261018]
+    paths:
+      - '.github/workflows/**'
+      - 'tools/test_epg_casablanca_workflows.py'
+      - 'docs/CASABLANCA_EPG_SCRAPE_SCHEDULE.md'
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'tools/test_epg_casablanca_workflows.py'
+      - 'docs/CASABLANCA_EPG_SCRAPE_SCHEDULE.md'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install YAML parser
+        run: python -m pip install --disable-pip-version-check pyyaml
+      - name: Existing source schedule regression tests
+        run: python -m unittest tools.test_epg_schedule_policy tools.test_epg_casablanca_workflows -v
+      - name: Audit EVERY workflow schedule in repository and fixed-GMT offsets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+          from datetime import datetime,timezone
+          import yaml
+          W=Path(".github/workflows")
+          def load(name):
+              return yaml.load((W/name).read_text(encoding="utf-8"),
+                               Loader=yaml.BaseLoader)
+          expected={
+              "refresh-elcinema.yml":["20 1 * * *"],
+              "refresh-osn.yml":["40 1 * * *"],
+              "refresh-bein.yml":["22 2 * * *"],
+              "refresh-sport24.yml":["5 3 * * *"],
+              "refresh-shahid.yml":["39 3 * * *"],
+              "refresh-dubaiplus.yml":["44 4 * * *"],
+              "refresh-aljazeera.yml":["12 4 * * *"],
+              "refresh-starzplay.yml":["12 5 * * *"],
+              "refresh-stctv.yml":["55 5 * * *"],
+              "refresh-alkass.yml":["30 6 * * *"],
+              "refresh-tunisiatv.yml":["35 6 * * *"],
+              "refresh-rotana.yml":["50 3 * * *"],
+              "refresh-tabie.yml":["30 0 * * *"],
+              "refresh-morocco.yml":["7 7 * * *"],
+              "daily-epg-chain.yml":["15 7 * * *"],
+              "epg-watchdog.yml":["15 14 * * *"],
+          }
+          actual={}
+          for path in sorted(W.glob("*.yml")):
+              doc=load(path.name)
+              if not isinstance(doc,dict):continue
+              on=doc.get("on") or {}
+              if not isinstance(on,dict):continue
+              entries=on.get("schedule") or []
+              if entries:
+                  for entry in entries:
+                      assert entry["timezone"]=="Etc/GMT",(path.name,entry)
+                  actual[path.name]=[x["cron"] for x in entries]
+          assert actual==expected,("Unexpected/duplicate/unconverted GMT+0 schedules",actual,expected)
+          chain=load("daily-epg-chain.yml")
+          assert "starzplay" not in chain["jobs"]
+          assert set(chain["jobs"])=={"elcinema_extend","finalize"}
+          assert chain["jobs"]["finalize"]["needs"]=="elcinema_extend"
+          for duplicate in ("elcinema","osn","bein","sport24","shahid","dubaiplus","aljazeera","starzplay","stctv","alkass","tunisiatv","rotana","tabie"):
+              assert duplicate not in chain["jobs"], duplicate
+          dubai=load("refresh-dubaiplus.yml")
+          assert "workflow_dispatch" in dubai["on"] and "push" not in dubai["on"]
+          assert dubai["jobs"]["refresh"]["with"]=={"source":"dubaiplus","scheduled":"false"}
+          evening=load("epg-evening-casablanca.yml")
+          assert evening["jobs"]["sports"]["strategy"]["matrix"]["source"]==["alkass"]
+          assert evening["jobs"]["morocco"]["with"]["source"]=="morocco"
+          assert "schedule" not in evening["on"]
+          assert "workflow_dispatch" in evening["on"]
+          morocco=load("refresh-morocco.yml")
+          assert morocco["on"]["schedule"]==[{"cron":"7 7 * * *","timezone":"Etc/GMT"}]
+          assert "workflow_dispatch" in morocco["on"] and "push" not in morocco["on"]
+          assert "schedule" not in load("epg-casablanca-targeted-retry.yml")["on"]
+          assert "workflow_dispatch" in load("epg-casablanca-targeted-retry.yml")["on"]
+          assert "Fixed GMT+0 06:00 gate" in [
+              x.get("name") for x in load("refresh-source-core.yml")["jobs"]["refresh"]["steps"]]
+          assert "TZ=Etc/GMT date +%H" in (W/"refresh-source-core.yml").read_text()
+          assert "schedule" not in evening["on"]
+          tz=ZoneInfo("Etc/GMT")
+          cas=ZoneInfo("Africa/Casablanca")
+          for (year,month,day) in [
+              (2026,10,19),(2026,12,15),(2027,2,20),(2027,4,18),(2027,7,1)]:
+              gmt=datetime(year,month,day,4,44,tzinfo=tz)
+              utc=gmt.astimezone(timezone.utc)
+              assert (utc.hour,utc.minute)==(4,44)
+              roundtrip=utc.astimezone(tz)
+              assert roundtrip==gmt
+              print("DUBAI_GMT0",gmt.isoformat(),"CASABLANCA_FOR_CONTEXT",gmt.astimezone(cas).isoformat())
+          print("ALL_GMT0_SCHEDULES_0444_VALIDATED",actual)
+          print("DUBAI_PLUS_SINGLE_GMT0_0444_AND_OTHER_SOURCE_TRIGGERS_PRESERVED")
+          print("NO_RECEIVER_CHANGES")
+          PY

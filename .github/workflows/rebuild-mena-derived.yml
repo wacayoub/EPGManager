@@ -1,0 +1,72 @@
+name: Rebuild derived MENA feed
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebuild-derived-mena
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rebuild from latest source feeds
+        shell: bash
+        run: |
+          set -e
+          git config user.name "EPG Derived Feed Bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+
+            python tools/build_derived_feeds.py
+            # Fail CLOSED on broken XMLTV/IDs/SHA/routing. Preserve degraded
+            # guides as visible explicit WARN instead of deleting mappings.
+            python tools/mena_readiness_audit.py \
+              --feed feeds/mena.xml.gz \
+              --metadata feeds/mena.json \
+              --routing reports/canonical-source-routing.json \
+              --feed-dir feeds \
+              --report reports/mena-readiness.json \
+              --markdown reports/mena-readiness.md
+            shopt -s nullglob
+            feeds=(feeds/*.xml.gz)
+            test "${#feeds[@]}" -gt 0
+            python tools/monitor_feeds.py "${feeds[@]}" \
+              --json reports/latest.json \
+              --md reports/latest.md \
+              --html reports/epg-source-id-monitoring.html \
+              --csv reports/epg-source-id-monitoring.csv \
+              --reports-dir reports
+
+            git add feeds/mena.xml.gz feeds/mena.txt feeds/mena.json
+            git add reports/latest.json reports/latest.md reports/epg-source-id-monitoring.html reports/epg-source-id-monitoring.csv
+            git add reports/canonical-source-routing.json reports/canonical-source-routing.md
+            git add reports/mena-readiness.json reports/mena-readiness.md
+
+            if git diff --cached --quiet; then
+              echo "MENA derived feed already current"
+              exit 0
+            fi
+
+            git commit -m "Rebuild MENA derived feed"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Main changed during rebuild; retrying from latest source feeds"
+          done
+
+          echo "Unable to publish derived MENA feed after retries"
+          exit 1

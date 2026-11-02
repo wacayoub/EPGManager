@@ -1,0 +1,30 @@
+name: Tabie strict broadcast-day guard — nonpublishing
+on:
+  push:
+    branches: [fix/tabie-date-mismatch-failclosed-20261017]
+    paths:
+      - 'tools/tabie_source.py'
+      - 'tools/test_tabie_strict_day.py'
+      - '.github/workflows/tabie-day-guard-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/tabie_source.py'
+      - 'tools/test_tabie_strict_day.py'
+      - '.github/workflows/tabie-day-guard-ci.yml'
+permissions:
+  contents: read
+jobs:
+  safe-unit-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install --disable-pip-version-check requests
+      - run: python -m py_compile tools/tabie_source.py tools/test_tabie_strict_day.py
+      - run: python -m unittest discover -s tools -p 'test_tabie_strict_day.py' -v

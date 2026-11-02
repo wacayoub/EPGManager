@@ -1,0 +1,23 @@
+name: XMLTV Authenticity Audit
+on:
+  push:
+    paths:
+      - "tools/audit_source_quality.py"
+      - "tools/test_audit_source_quality.py"
+      - "tools/refresh_one_source.sh"
+      - ".github/workflows/epg-authenticity-regression.yml"
+  workflow_dispatch:
+jobs:
+  test-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Validate scripts and authentic programme distinction
+        run: |
+          python -m py_compile tools/audit_source_quality.py tools/test_audit_source_quality.py
+          bash -n tools/refresh_one_source.sh
+          python tools/test_audit_source_quality.py

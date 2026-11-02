@@ -1,0 +1,22 @@
+name: Bootstrap same-day verified ElCinema donors once
+
+# A new source-only code merge activates a single guarded catch-up run.
+# Future daily source runs use the reusable elcinema-daily-donors.yml itself.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/elcinema_daily_donors.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extend:
+    uses: ./.github/workflows/elcinema-daily-donors.yml
+
+  finalize:
+    needs: extend
+    if: needs.extend.result == 'success'
+    uses: ./.github/workflows/rebuild-mena-derived.yml

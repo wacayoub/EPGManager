@@ -1,0 +1,81 @@
+name: EPG targeted Shahid retry - manual only
+
+on:
+  # Shahid runs automatically at 03:39; never schedule a second 15:00 scrape.
+  # Intentional manual dispatch remains available when source data is degraded.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: epg-casablanca-targeted-retry
+  cancel-in-progress: false
+
+jobs:
+  decide:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      retry_count: ${{ steps.select.outputs.retry_count }}
+      retry_sources: ${{ steps.select.outputs.retry_sources }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Refuse overlapping full scrape or delayed retry window
+        id: select
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          local_hour="$(TZ=Africa/Casablanca date +%H)"
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ] && [ "$local_hour" -ge 19 ]; then
+            printf 'retry_count=0\nretry_sources=[]\n' >> "$GITHUB_OUTPUT"
+            echo "Too late for 15h source retry; defer to following main chain"
+            exit 0
+          fi
+          # Fail CLOSED if the workflow API cannot confirm running work.
+          if ! gh run list --repo "$GITHUB_REPOSITORY" \
+              --workflow daily-epg-chain.yml --limit 25 --json status \
+              > /tmp/epg-main-chain-runs.json; then
+            printf 'retry_count=0\nretry_sources=[]\n' >> "$GITHUB_OUTPUT"
+            echo "GitHub run status unavailable; skip duplicate risk"
+            exit 0
+          fi
+          active="$(python - <<'PY'
+          import json
+          x=json.load(open('/tmp/epg-main-chain-runs.json'))
+          print(sum(r.get('status') in ('queued','in_progress','waiting','pending') for r in x))
+          PY
+          )"
+          if [ "$active" -gt 0 ]; then
+            python tools/epg_schedule_policy.py --active-chain --github-output "$GITHUB_OUTPUT"
+          else
+            python tools/epg_schedule_policy.py --github-output "$GITHUB_OUTPUT"
+          fi
+
+  retry:
+    needs: decide
+    if: needs.decide.outputs.retry_count != '0'
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        source: ${{ fromJSON(needs.decide.outputs.retry_sources) }}
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: ${{ matrix.source }}
+      scheduled: false
+    secrets: inherit
+
+  # Only Shahid may be retried at 15:00.
+  # OSN (01:40), ElCinema (01:20), and beIN (02:22) run once daily.
+  # Their individual scrapers cannot be selected by this retry policy.
+  finalize:
+    needs: [decide, retry]
+    if: always() && needs.decide.outputs.retry_count != '0' && needs.retry.result == 'success'
+    uses: ./.github/workflows/rebuild-mena-derived.yml

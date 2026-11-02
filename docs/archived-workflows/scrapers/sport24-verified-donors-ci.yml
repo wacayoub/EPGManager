@@ -1,0 +1,68 @@
+name: Sport24 genuine 3-channel verified donor gap filling - read only
+on:
+  push:
+    branches: [fix/sport24-verified-3ch-direct-gap-donors-20261018]
+    paths:
+      - 'tools/sport24_verified_donors.py'
+      - 'tools/test_sport24_verified_donors.py'
+      - 'tools/refresh_one_source.sh'
+      - '.github/workflows/refresh-source-core.yml'
+      - '.github/workflows/sport24-verified-donors-ci.yml'
+  pull_request:
+    paths:
+      - 'tools/sport24_verified_donors.py'
+      - 'tools/test_sport24_verified_donors.py'
+      - 'tools/refresh_one_source.sh'
+      - '.github/workflows/refresh-source-core.yml'
+      - '.github/workflows/sport24-verified-donors-ci.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13','3.14']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Negative SHA/cohort/gap tests, no network or source publication
+        run: |
+          python -m compileall -q tools/sport24_verified_donors.py tools/test_sport24_verified_donors.py tools/source_feed_pack.py
+          python -m unittest tools.test_sport24_verified_donors -v
+          bash -n tools/refresh_one_source.sh
+      - name: Read-only audit of actual public source cohorts and fresh donor gaps
+        run: |
+          python - <<'PY'
+          import gzip,hashlib,json
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          from datetime import datetime,timezone
+          from tools import sport24_verified_donors as fix
+          original=Path("feeds/sport24.xml.gz").read_bytes()
+          published=json.loads(Path("feeds/sport24.json").read_text())
+          assert hashlib.sha256(original).hexdigest()==published["sha256"]
+          root=ET.fromstring(gzip.decompress(original))
+          assert len(root.findall("channel"))==published["channels"]==9
+          assert len(root.findall("programme"))==published["programmes"]
+          originals=[
+              (p.get("channel"),p.get("start"),p.get("stop"),p.findtext("title"))
+              for p in root.findall("programme")]
+          result=fix.extend(root,Path("feeds"),datetime.now(timezone.utc))
+          final=[
+              (p.get("channel"),p.get("start"),p.get("stop"),p.findtext("title"))
+              for p in root.findall("programme")]
+          assert len(final)==len(originals)+result["added_programmes"]
+          assert all(o in final for o in originals), "Never replace Sport24 authentic programmes"
+          assert result["synthetic_programmes_added"]==0
+          assert result["donor_channels"]<=3
+          assert {x["sport24_id"] for x in result["channels"]}==set(fix.DONORS)
+          assert all(x["donor_xmltv_id"]==fix.DONORS[x["sport24_id"]][1]
+                     for x in result["channels"])
+          print("SPORT24_REAL_COHORT_VERIFIED",json.dumps(result,ensure_ascii=False))
+          print("SPORT24_ORIGINAL_UNCHANGED",len(originals),published["sha256"])
+          PY

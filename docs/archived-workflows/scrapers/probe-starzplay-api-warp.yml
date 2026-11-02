@@ -1,0 +1,287 @@
+name: Probe STARZPLAY EPG API through WARP
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-starzplay-api-warp.yml"
+      - "tools/starzplay_api_source.py"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: probe-starzplay-api-warp
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Cloudflare WARP
+        shell: bash
+        run: |
+          set -e
+          curl -fsSL https://pkg.cloudflareclient.com/pubkey.gpg | sudo gpg --yes --dearmor -o /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/cloudflare-client.list
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq cloudflare-warp
+          sudo systemctl enable --now warp-svc
+
+      - name: Connect WARP
+        shell: bash
+        run: |
+          set -e
+          sudo warp-cli --accept-tos registration new || true
+          sudo warp-cli --accept-tos mode warp+doh
+          sudo warp-cli --accept-tos tunnel protocol set MASQUE
+          sudo warp-cli --accept-tos connect
+          for i in 1 2 3 4 5 6 7 8 9 10; do
+            if sudo warp-cli --accept-tos status | grep -qi Connected; then exit 0; fi
+            sleep 3
+          done
+          exit 12
+
+      - name: Inspect current STARZPLAY Live page structure
+        shell: bash
+        run: |
+          python -m pip install --disable-pip-version-check --no-cache-dir requests beautifulsoup4
+          python tools/starzplay_structure_probe.py --lang ar --output reports/starzplay-warp-structure.json
+
+      - name: Probe STARZPLAY public EPG catalogue
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, urllib.request, urllib.error
+          from pathlib import Path
+          from datetime import datetime, timezone
+
+          bases=["https://epg.aws.playco.com/api","https://sp-new-api.aws.playco.com/api"]
+          headers={
+            "User-Agent":"Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36",
+            "Client-Type":"Android",
+            "Accept":"application/json",
+            "Accept-Language":"ar-MA,ar;q=0.9,en;q=0.7",
+            "x-geo-country":"MA",
+          }
+          versions=("v1.1","v1.0","v2.0")
+          rows=[]; payloads={}
+
+          for base in bases:
+           for version in versions:
+            url=f"{base}/{version}/epg/channel/config"
+            req=urllib.request.Request(url,headers=headers)
+            try:
+              with urllib.request.urlopen(req,timeout=25) as r:
+                body=r.read(5_000_000)
+                row={"base":base,"version":version,"url":url,"status":r.status,
+                     "content_type":r.headers.get("content-type",""),"bytes":len(body)}
+                try:
+                  obj=json.loads(body)
+                  row["json_type"]=type(obj).__name__
+                  row["top_keys"]=list(obj)[:50] if isinstance(obj,dict) else []
+                  payloads[f"{base}|{version}"]=obj
+                except Exception as e:
+                  row["json_error"]=str(e)
+                  row["sample"]=body[:1000].decode("utf-8","replace")
+            except urllib.error.HTTPError as e:
+              b=e.read(100000)
+              row={"base":base,"version":version,"url":url,"status":e.code,
+                   "content_type":e.headers.get("content-type","") if e.headers else "",
+                   "bytes":len(b),"sample":b[:1000].decode("utf-8","replace")}
+            except Exception as e:
+              row={"base":base,"version":version,"url":url,"status":"ERROR","error":str(e)}
+            rows.append(row)
+
+          Path("reports").mkdir(exist_ok=True)
+          Path("reports/starzplay-api-warp-probe.json").write_text(
+            json.dumps({"generated_utc":datetime.now(timezone.utc).isoformat(),"rows":rows},
+                       ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          Path("reports/starzplay-api-warp-payloads.json").write_text(
+            json.dumps(payloads,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(rows,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Probe complete STARZPLAY category events
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, time, urllib.parse, urllib.request, urllib.error, uuid
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+
+          base="https://epg.aws.playco.com/api/v1.1"
+          headers={
+            "User-Agent":"Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/140 Mobile Safari/537.36",
+            "Client-Type":"Android",
+            "Accept":"application/json",
+            "Accept-Language":"ar-MA,ar;q=0.9,en;q=0.7",
+            "x-geo-country":"MA",
+          }
+
+          def get(url):
+            req=urllib.request.Request(url,headers=headers)
+            try:
+              with urllib.request.urlopen(req,timeout=25) as r:
+                body=r.read(8_000_000)
+                try: obj=json.loads(body)
+                except Exception: obj=None
+                return r.status,r.headers.get("content-type",""),body,obj
+            except urllib.error.HTTPError as e:
+              body=e.read(500_000)
+              try: obj=json.loads(body)
+              except Exception: obj=None
+              return e.code,e.headers.get("content-type","") if e.headers else "",body,obj
+            except Exception as e:
+              return 0,"",str(e).encode(),None
+
+          cfg_status,_,_,cfg=get(f"{base}/epg/channel/config")
+
+          # The channel/config endpoint exposes internal channel families
+          # (starzplaysports/starzplay/criclife). The category/events endpoint
+          # expects the public Live TV category slugs instead.
+          cat_status,_,_,cat_cfg=get(f"{base}/epg/category/config/0?lang=ar")
+          slugs=[]
+          if isinstance(cat_cfg,dict):
+            for row in cat_cfg.get("data") or []:
+              if isinstance(row,dict) and row.get("slug"):
+                slugs.append(str(row["slug"]))
+          slugs=[s for s in dict.fromkeys(slugs) if s != "radio"]
+
+          now=datetime.now(timezone.utc)
+          start_s=int((now-timedelta(hours=2)).timestamp())
+          end_s=int((now+timedelta(hours=52)).timestamp())
+          user_ids=["0"]
+          rows=[]
+          payloads={}
+          winners=[]
+
+          for uid in user_ids:
+            u=f"{base}/epg/category/config/{urllib.parse.quote(uid,safe='')}"
+            qs=urllib.parse.urlencode({"lang":"ar"})
+            st,ct,body,obj=get(u+"?"+qs)
+            rows.append({"kind":"category_config","userId":uid,"url":u,"status":st,"bytes":len(body),
+                         "top_keys":list(obj)[:30] if isinstance(obj,dict) else [],
+                         "sample":body[:800].decode("utf-8","replace") if not isinstance(obj,(dict,list)) else ""})
+            if st==200 and isinstance(obj,(dict,list)):
+              payloads[f"category_config|{uid}"]=obj
+            time.sleep(.15)
+
+            for slug in slugs:
+              for unit in ("seconds",):
+                ts0=start_s if unit=="seconds" else start_s*1000
+                ts1=end_s if unit=="seconds" else end_s*1000
+                params={"category":slug,"ts_start":ts0,"ts_end":ts1,"lang":"ar","pg":"18","page":1,"limit":200}
+                url=f"{base}/epg/category/events/{urllib.parse.quote(uid,safe='')}?"+urllib.parse.urlencode(params)
+                st,ct,body,obj=get(url)
+                data_len=0
+                if isinstance(obj,dict):
+                  data=obj.get("data")
+                  if isinstance(data,list): data_len=len(data)
+                  elif isinstance(data,dict): data_len=len(data)
+                row={"kind":"category_events","userId":uid,"category":slug,"unit":unit,
+                     "status":st,"bytes":len(body),"data_len":data_len,
+                     "top_keys":list(obj)[:30] if isinstance(obj,dict) else [],
+                     "url":url}
+                if st!=200:
+                  row["sample"]=body[:900].decode("utf-8","replace")
+                rows.append(row)
+                if st==200 and isinstance(obj,(dict,list)):
+                  payloads[f"events|{uid}|{slug}|{unit}"]=obj
+                  if data_len:
+                    winners.append({"userId":uid,"category":slug,"unit":unit,"data_len":data_len})
+                time.sleep(.15)
+
+          start_rows=[]
+          start_payloads={}
+          for unit in ("seconds","milliseconds"):
+            ts0=start_s if unit=="seconds" else start_s*1000
+            ts1=end_s if unit=="seconds" else end_s*1000
+            for pg in (None,"","0","18","tv"):
+              params={"ts_start":ts0,"ts_end":ts1,"lang":"ar"}
+              if pg is not None:
+                params["pg"]=pg
+              url=f"{base}/epg/channel/start/0?"+urllib.parse.urlencode(params)
+              st,ct,body,obj=get(url)
+              total=obj.get("total") if isinstance(obj,dict) else None
+              data=obj.get("data") if isinstance(obj,dict) else None
+              dlen=len(data) if isinstance(data,(list,dict)) else 0
+              row={"kind":"channel_start","unit":unit,"pg":pg,"status":st,"bytes":len(body),
+                   "total":total,"data_len":dlen,"top_keys":list(obj)[:30] if isinstance(obj,dict) else [],
+                   "url":url}
+              if st!=200:
+                row["sample"]=body[:900].decode("utf-8","replace")
+              start_rows.append(row)
+              if st==200 and isinstance(obj,(dict,list)):
+                start_payloads[f"{unit}|{pg!r}"]=obj
+              time.sleep(.12)
+
+          rows.extend(start_rows)
+          payloads.update({f"channel_start|{k}":v for k,v in start_payloads.items()})
+          out={"generated_utc":datetime.now(timezone.utc).isoformat(),"country":"MA",
+               "channel_config_status":cfg_status,"category_config_status":cat_status,
+               "categories":slugs,"rows":rows,"winners":winners}
+          Path("reports/starzplay-category-events-probe.json").write_text(
+            json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          Path("reports/starzplay-category-events-payloads.json").write_text(
+            json.dumps(payloads,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps({"categories":slugs,"winners":winners},ensure_ascii=False,indent=2))
+          PY
+
+      - name: Test full STARZPLAY API scraper
+        shell: bash
+        run: |
+          python -m py_compile tools/starzplay_api_source.py
+          python tools/starzplay_api_source.py \
+            --lang ar \
+            --output /tmp/starzplay-api-test.xml \
+            --report reports/starzplay-api-source-test.json \
+            --id-index feeds/mena.txt \
+            --hours 48
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path("reports/starzplay-api-source-test.json").read_text(encoding="utf-8"))
+          print(json.dumps({
+            "status":p.get("status"),
+            "channels":p.get("channels"),
+            "programmes":p.get("programmes"),
+            "zero_epg_channels":p.get("zero_epg_channels"),
+            "categories":p.get("category_slugs"),
+            "channel_catalogue":p.get("channel_catalogue"),
+          },ensure_ascii=False,indent=2))
+          PY
+
+      - name: Disconnect WARP
+        if: always()
+        shell: bash
+        run: |
+          sudo warp-cli --accept-tos disconnect || true
+          sudo warp-cli --accept-tos registration delete || true
+
+      - name: Publish report
+        if: always()
+        shell: bash
+        run: |
+          set -e
+          git config user.name "epg-diagnostic-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/starzplay-api-warp-probe.json reports/starzplay-api-warp-payloads.json reports/starzplay-warp-structure.json reports/starzplay-category-events-probe.json reports/starzplay-category-events-payloads.json reports/starzplay-api-source-test.json 2>/dev/null || true
+          git commit -m "diagnostic: STARZPLAY EPG API through WARP" || exit 0
+          for n in 1 2 3 4 5; do
+            git pull --rebase origin main || true
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          exit 1

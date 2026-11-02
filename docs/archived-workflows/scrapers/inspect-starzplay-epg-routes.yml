@@ -1,0 +1,93 @@
+name: Inspect STARZPLAY public EPG route context
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/inspect-starzplay-epg-routes.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Install apktool
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq apktool unzip
+
+      - name: Download public STARZPLAY Android package
+        shell: bash
+        run: |
+          set -e
+          rm -rf /tmp/starzroute
+          mkdir -p /tmp/starzroute/xapk /tmp/starzroute/decoded reports
+          curl -fL --retry 1 --connect-timeout 20 --max-time 180             'https://d.apkpure.net/b/XAPK/com.parsifal.starz?version=latest'             -o /tmp/starzroute/starzplay.xapk
+          unzip -q /tmp/starzroute/starzplay.xapk -d /tmp/starzroute/xapk
+
+      - name: Decode and extract EPG route context
+        shell: bash
+        run: |
+          set -e
+          i=0
+          for apk in /tmp/starzroute/xapk/*.apk; do
+            [ -f "$apk" ] || continue
+            i=$((i+1))
+            apktool d -f "$apk" -o "/tmp/starzroute/decoded/apk$i" >/dev/null 2>&1 || true
+          done
+
+          python - <<'PY'
+          import re
+          from pathlib import Path
+
+          roots=list(Path('/tmp/starzroute/decoded').glob('apk*'))
+          needles=re.compile(r'(epg/(?:category/config|category/events|channel/start)|sp-(?:nms|new)-api\.aws\.playco\.com|api\.aws\.playco\.com)',re.I)
+          sensitive=re.compile(r'(authorization|bearer|password|secret|token|license|widevine|drm|payment)',re.I)
+          keep=[]
+          for root in roots:
+              for p in root.rglob('*'):
+                  if not p.is_file():
+                      continue
+                  if p.suffix.lower() not in {'.smali','.xml','.json','.txt','.properties'}:
+                      continue
+                  try:
+                      lines=p.read_text(encoding='utf-8',errors='ignore').splitlines()
+                  except Exception:
+                      continue
+                  hits=[i for i,l in enumerate(lines) if needles.search(l)]
+                  for i in hits:
+                      a=max(0,i-35); b=min(len(lines),i+70)
+                      block=[]
+                      for n in range(a,b):
+                          line=lines[n]
+                          if sensitive.search(line):
+                              line='[REDACTED_SENSITIVE_LINE]'
+                          # Remove very long encoded constants while keeping route/header/version text.
+                          line=re.sub(r'"[A-Za-z0-9+/=_-]{80,}"','"[REDACTED_LONG_CONSTANT]"',line)
+                          block.append(f'{n+1}: {line}')
+                      keep.append(f'FILE {p.relative_to(root)}\n'+'\n'.join(block))
+          out='\n\n===== MATCH =====\n\n'.join(keep[:120])
+          Path('reports/starzplay-apk-epg-route-context.txt').write_text(out+'\n',encoding='utf-8')
+          print(out[:30000])
+          PY
+
+      - name: Publish sanitized route report
+        shell: bash
+        run: |
+          set -e
+          git config user.name "epg-diagnostic-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add reports/starzplay-apk-epg-route-context.txt
+          git commit -m "diagnostic: inspect STARZPLAY EPG route context" || exit 0
+          git pull --rebase origin main
+          git push origin HEAD:main

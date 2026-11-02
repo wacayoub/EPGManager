@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-09-20T12:12:25.005339+00:00",
+  "active_rows": 1527,
+  "zero_epg_blacklisted_ids": 929,
+  "source_blacklist": [
+    {
+      "provider": "epgshare",
+      "source": "AE1",
+      "reason": "SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING",
+      "detail": "411 cloned channels / 813 total"
+    },
+    {
+      "provider": "epgshare",
+      "source": "EG1",
+      "reason": "ZERO_ACTIVE_CHANNELS",
+      "detail": "238 channels, 0 active"
+    },
+    {
+      "provider": "epgshare",
+      "source": "SA1",
+      "reason": "ZERO_ACTIVE_CHANNELS",
+      "detail": "97 channels, 0 active"
+    },
+    {
+      "provider": "epgshare",
+      "source": "SA2",
+      "reason": "SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING",
+      "detail": "23 cloned channels / 41 total"
+    },
+    {
+      "provider": "epgshare",
+      "source": "AR1",
+      "reason": "ARGENTINA_LATAM_NOT_ARAB",
+      "detail": ""
+    },
+    {
+      "provider": "epgshare",
+      "source": "BEIN1",
+      "reason": "SOURCE_QUARANTINED_BAD_CHANNEL_PROGRAMME_MAPPING",
+      "detail": "28 cloned channels / 80 total"
+    },
+    {
+      "provider": "openepg",
+      "source": "arabiapremiumar",
+      "reason": "INVALID_SOURCE_XML",
+      "detail": "no element found: line 1, column 0"
+    }
+  ],
+  "canonical_groups": 1273,
+  "duplicate_groups": 210,
+  "duplicate_extra_rows": 254,
+  "decision_counts": {
+    "UNIQUE": 1063,
+    "WINNER_OF_DUPLICATES": 210
+  },
+  "merged_fallback_winners_before_direct_filter": 257,
+  "already_covered_by_direct_sources": 107,
+  "bein_family_fallback_policy": "ALWAYS_EXCLUDE_USE_DIRECT_BEIN",
+  "protected_direct_families": [
+    "bein",
+    "osn",
+    "mbc",
+    "rotana",
+    "dubai_dmi",
+    "adm",
+    "morocco",
+    "sport24"
+  ],
+  "protected_direct_feeds": [
+    "bein",
+    "osn",
+    "elcinema",
+    "sport24",
+    "2m",
+    "morocco",
+    "snrt"
+  ],
+  "missing_ids_final": 150,
+  "compare_only_channels": 27,
+  "new_ids_after_zero_and_latam_filter": 150,
+  "language_duplicates_removed": 54,
+  "language_policy": "ARABIC_FIRST_ENGLISH_ONLY_AFTER_4_AUDITS",
+  "event_text_policy": "EN_TITLE_AR_DESC_ONLY_FOR_MULTINATIONAL_CHANNELS",
+  "english_rejected_for_arabic": 6,
+  "english_accepted_after_4_audits": 67,
+  "sort_order": "CHANNEL_NAME_ASC",
+  "excluded_sources": [
+    "epgshare:AR1"
+  ],
+  "quarantined_sources": [
+    "epgshare:AE1",
+    "epgshare:BEIN1",
+    "epgshare:SA2"
+  ],
+  "integration_policy": {
+    "healthy_direct_feed": "always_keep",
+    "fallback": "only_missing_ids_not_covered_by_any_healthy_direct_source",
+    "duplicate": "use winner; keep alternatives for failover",
+    "zero_epg": "dynamic_blacklist_until_future_programmes_return",
+    "source_zero_or_invalid": "source_blacklist"
+  }
+}

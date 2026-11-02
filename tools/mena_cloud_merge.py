@@ -78,7 +78,7 @@ for _name in SCRAPER_SOURCE_NAMES:
     REMOTE_SOURCES.append((
         "scrapers-" + _name,
         "scrapers",
-        "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/feeds/%s.xml.gz" % _name,
+        "https://raw.githubusercontent.com/wacayoub/EPGManager/main/feeds/%s.xml.gz" % _name,
     ))
 
 ALIASES = {

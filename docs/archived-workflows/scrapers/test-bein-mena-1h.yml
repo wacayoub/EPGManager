@@ -1,0 +1,150 @@
+name: Test beIN MENA next 1h
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/test-bein-mena-1h.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bein-mena-1h-test
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout scraper repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout upstream beIN adapters
+        uses: actions/checkout@v4
+        with:
+          repository: iptv-org/epg
+          ref: master
+          path: vendor/iptv-org-epg
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --disable-pip-version-check --no-cache-dir -r requirements.txt
+          cd vendor/iptv-org-epg
+          npm ci --no-audit --no-fund
+
+      - name: Build beIN MENA Arabic + English catalogues
+        run: |
+          python tools/build_catalogues.py
+          mkdir -p reports output/bein-1h
+          cp output/source-build/bein-catalogue.json reports/bein-mena-1h-catalogue.json
+          echo "Arabic IDs: $(grep -c '<channel ' output/source-build/bein.channels.xml)"
+          echo "English IDs: $(grep -c '<channel ' output/source-build/bein_en.channels.xml)"
+
+      - name: Scrape Arabic and English beIN once
+        shell: bash
+        run: |
+          set +e
+          cd "$GITHUB_WORKSPACE/vendor/iptv-org-epg"
+          for spec in             "ar:$GITHUB_WORKSPACE/output/source-build/bein.channels.xml:$GITHUB_WORKSPACE/output/bein-1h/ar.raw.xml:0"             "en:$GITHUB_WORKSPACE/output/source-build/bein_en.channels.xml:$GITHUB_WORKSPACE/output/bein-1h/en.raw.xml:500"
+          do
+            IFS=: read -r lang channels output delay <<< "$spec"
+            args=(npm run grab -- "--channels=$channels" "--output=$output" --days=1 --maxConnections=1 --timeout=20000)
+            [ "$delay" != "0" ] && args+=("--delay=$delay")
+            timeout --signal=TERM --kill-after=30s 1200s "${args[@]}"
+            echo "$?" > "$GITHUB_WORKSPACE/output/bein-1h/$lang.rc"
+            [ -s "$output" ] || echo '<?xml version="1.0"?><tv></tv>' > "$output"
+          done
+          exit 0
+
+      - name: Pack next hour and apply production language policy
+        shell: bash
+        run: |
+          set -e
+          mkdir -p feeds/tests reports data
+          python tools/source_feed_pack.py             --input output/bein-1h/ar.raw.xml             --catalogue output/source-build/bein.channels.xml             --output-gz output/bein-1h/base.xml.gz             --output-txt output/bein-1h/base.txt             --stats output/bein-1h/base.json             --label bein-mena-1h             --window-hours 1             --keep-past-hours 0
+
+          python tools/bein_arabize.py             --input output/bein-1h/base.xml.gz             --output output/bein-1h/desc-ar.xml.gz             --cache data/bein_translation_cache.json             --report reports/bein-mena-1h-desc.json
+
+          python tools/bein_hybrid.py             --input output/bein-1h/desc-ar.xml.gz             --english output/bein-1h/en.raw.xml             --policy config/bein-language-policy.json             --cache data/bein_hybrid_translation_cache.json             --output feeds/tests/bein-mena-1h.xml.gz             --report reports/bein-mena-1h-hybrid.json
+
+          cp output/bein-1h/base.txt feeds/tests/bein-mena-1h.txt
+
+      - name: Audit language samples
+        shell: bash
+        run: |
+          python - <<'PY'
+          import gzip,json,re,xml.etree.ElementTree as ET
+          from pathlib import Path
+          AR=re.compile(r"[\u0600-\u06ff]")
+          root=ET.fromstring(gzip.decompress(Path("feeds/tests/bein-mena-1h.xml.gz").read_bytes()))
+          rows=[]
+          title_ar=0
+          desc_ar=0
+          desc_non_ar=0
+          for p in root.findall("programme"):
+              t=p.find("title"); d=p.find("desc")
+              title=(t.text or "").strip() if t is not None else ""
+              desc=(d.text or "").strip() if d is not None else ""
+              if AR.search(title): title_ar+=1
+              if desc:
+                  if AR.search(desc): desc_ar+=1
+                  else: desc_non_ar+=1
+              if len(rows)<30:
+                  rows.append({
+                      "channel":p.get("channel"),
+                      "start":p.get("start"),
+                      "title":title,
+                      "description":desc[:240],
+                  })
+          report={
+              "programmes":len(root.findall("programme")),
+              "title_policy":"EN",
+              "description_policy":"AR",
+              "titles_with_arabic":title_ar,
+              "arabic_descriptions":desc_ar,
+              "non_arabic_descriptions":desc_non_ar,
+              "samples":rows,
+          }
+          Path("reports/bein-mena-1h-test.json").write_text(
+              json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+          )
+          print(json.dumps(report,ensure_ascii=False,indent=2))
+          if report["programmes"]<10:
+              raise SystemExit("too few beIN programmes")
+          if report["titles_with_arabic"] != 0:
+              raise SystemExit(f"Arabic titles remain: {report['titles_with_arabic']}")
+          if report["non_arabic_descriptions"] != 0:
+              raise SystemExit(f"Non-Arabic descriptions remain: {report['non_arabic_descriptions']}")
+          if report["arabic_descriptions"] != report["programmes"]:
+              raise SystemExit(
+                  f"Missing Arabic descriptions: {report['programmes']-report['arabic_descriptions']}"
+              )
+          PY
+
+      - name: Commit isolated test result
+        shell: bash
+        run: |
+          set -e
+          git config user.name "EPG Scraper Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add feeds/tests/bein-mena-1h.xml.gz feeds/tests/bein-mena-1h.txt                   reports/bein-mena-1h-catalogue.json reports/bein-mena-1h-desc.json                   reports/bein-mena-1h-hybrid.json reports/bein-mena-1h-test.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Test beIN MENA EN titles AR descriptions"
+          git pull --rebase origin main
+          git push origin HEAD:main

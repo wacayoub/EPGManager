@@ -1,0 +1,62 @@
+name: Validate duplicate language policy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/validate-duplicate-policy.yml"
+      - "tools/deduplicate_sources.py"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Restore full pre-dedup feeds for comparison only
+        run: |
+          mkdir -p /tmp/full-feeds
+          base=ea21ad4d281d901f6ae4d836a6a1e91c976afe62
+          for key in elcinema osn bein sport24 morocco; do
+            if git cat-file -e "$base:feeds/$key.xml.gz" 2>/dev/null; then
+              git show "$base:feeds/$key.xml.gz" > "/tmp/full-feeds/$key.xml.gz"
+            fi
+          done
+
+      - name: Run dry duplicate arbitration
+        run: |
+          mkdir -p output/policy-check reports
+          python tools/deduplicate_sources.py \
+            --feeds-dir /tmp/full-feeds \
+            --output-dir output/policy-check \
+            --report-json reports/source-winners-policy-check.json \
+            --report-md reports/source-winners-policy-check.md
+          cat reports/source-winners-policy-check.md
+
+      - name: Print detailed comparison rows
+        run: |
+          python - <<'PY'
+          import json
+          j=json.load(open("reports/source-winners-policy-check.json",encoding="utf-8"))
+          for d in j["duplicates"]:
+              print("POLICY_ROW",json.dumps({
+                  "channel":d["winner"]["name"],
+                  "canonical":d["canonical"],
+                  "winner":d["winner"]["source"],
+                  "candidates":[{
+                      "source":x["source"],
+                      "profile":x.get("profile"),
+                      "fit":x.get("language_fit_pct"),
+                      "score":x["score"],
+                      **x["metrics"]
+                  } for x in d["candidates"]]
+              },ensure_ascii=False))
+          PY
