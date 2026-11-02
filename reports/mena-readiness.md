@@ -1,10 +1,10 @@
 # MENA — source snapshot and exact-ID readiness
 
-Checked GMT+0: 2026-11-02T17:54:47.810572+00:00
-Published GMT+0: 2026-11-02T17:54:47.349200+00:00
+Checked GMT+0: 2026-11-02T17:55:18.721021+00:00
+Published GMT+0: 2026-11-02T17:55:18.469047+00:00
 **Status:** READY_WITH_WARNINGS
 
-**548 logical IDs · 32512 source programme records · 14 source fingerprints checked**
+**548 logical IDs · 32511 source programme records · 14 source fingerprints checked**
 
 | Route quality | Channels |
 |---|---:|
@@ -89,7 +89,7 @@ Warnings: MENA_HAS_UNQUALIFIED_OR_EMPTY_GUIDES
 | Arryadia_TNT | morocco | MAIN | NO_FUTURE_EPG | 0 |
 | AsharqDiscovery.sa@SD | shahid | MAIN | QUALIFIED_AT_BUILD | 74 |
 | AsharqDocumentary.sa@SD | shahid | MAIN | QUALIFIED_AT_BUILD | 84 |
-| AsharqNews.sa@SD | shahid | MAIN | QUALIFIED_AT_BUILD | 96 |
+| AsharqNews.sa@SD | shahid | MAIN | QUALIFIED_AT_BUILD | 95 |
 | Assadisa | morocco | MAIN | QUALIFIED_AT_BUILD | 95 |
 | BabAlHara.sa@SD | shahid | B1 | QUALIFIED_AT_BUILD | 53 |
 | BahrainTV.bh@SD | osn | B1 | QUALIFIED_AT_BUILD | 105 |
@@ -176,7 +176,7 @@ Warnings: MENA_HAS_UNQUALIFIED_OR_EMPTY_GUIDES
 | ElWatania2.tn@SD | tunisiatv | MAIN | QUALIFIED_AT_BUILD | 49 |
 | ERTU1.eg@SD | elcinema | B1 | QUALIFIED_AT_BUILD | 21 |
 | EuronewsEnglish.fr@SD | bein | B1 | DEGRADED_WITH_EPG | 12 |
-| Fairuz.sa@HD | shahid | B1 | DEGRADED_WITH_EPG | 659 |
+| Fairuz.sa@HD | shahid | B1 | DEGRADED_WITH_EPG | 658 |
 | Fann.ae@SD | osn | MAIN | NO_FUTURE_EPG | 0 |
 | Fatafeat.ae@SD | osn | B1 | QUALIFIED_AT_BUILD | 40 |
 | FIFAPlus.uk | starzplay | B1 | DEGRADED_WITH_EPG | 32 |
@@ -220,7 +220,7 @@ Warnings: MENA_HAS_UNQUALIFIED_OR_EMPTY_GUIDES
 | MBCAction.ae@SD | shahid | MAIN | QUALIFIED_AT_BUILD | 73 |
 | MBCAction.sa@HD | stctv | B1 | QUALIFIED_AT_BUILD | 65 |
 | MBCBollywood.ae@SD | shahid | MAIN | QUALIFIED_AT_BUILD | 50 |
-| MBCBollywood.sa@HD | stctv | B1 | QUALIFIED_AT_BUILD | 42 |
+| MBCBollywood.sa@HD | stctv | B1 | QUALIFIED_AT_BUILD | 41 |
 | MBCDrama.ae@SD | shahid | MAIN | QUALIFIED_AT_BUILD | 46 |
 | MBCDrama.sa@HD | stctv | B1 | QUALIFIED_AT_BUILD | 46 |
 | MBCDramaUSA.us@SD | shahid | MAIN | QUALIFIED_AT_BUILD | 44 |
@@ -254,7 +254,7 @@ Warnings: MENA_HAS_UNQUALIFIED_OR_EMPTY_GUIDES
 | NationalGeographicMiddleEast.uk@SD | elcinema | B1 | QUALIFIED_AT_BUILD | 25 |
 | NessmaElJadida.tn@SD | elcinema | B1 | QUALIFIED_AT_BUILD | 26 |
 | NickelodeonArabia.ae@SD | osn | MAIN | QUALIFIED_AT_BUILD | 108 |
-| NickJrArabia.ae@SD | osn | MAIN | QUALIFIED_AT_BUILD | 126 |
+| NickJrArabia.ae@SD | osn | MAIN | QUALIFIED_AT_BUILD | 125 |
 | NicktoonsArabia.ae@SD | osn | MAIN | QUALIFIED_AT_BUILD | 118 |
 | NileDrama.eg@SD | elcinema | B1 | NO_FUTURE_EPG | 0 |
 | NileLife.eg@SD | elcinema | B1 | DEGRADED_WITH_EPG | 22 |
@@ -284,7 +284,7 @@ Warnings: MENA_HAS_UNQUALIFIED_OR_EMPTY_GUIDES
 | OSNIQIYI.ae@SD | osn | MAIN | QUALIFIED_AT_BUILD | 53 |
 | OSNKids.ae@SD | osn | MAIN | QUALIFIED_AT_BUILD | 202 |
 | OSNKTVChannel1HD | osn | MAIN | QUALIFIED_AT_BUILD | 94 |
-| OSNMezze.ae@SD | osn | MAIN | QUALIFIED_AT_BUILD | 39 |
+| OSNMezze.ae@SD | osn | MAIN | QUALIFIED_AT_BUILD | 38 |
 | OSNMoviesAction.ae@SD | osn | MAIN | QUALIFIED_AT_BUILD | 20 |
 | OSNMoviesComedy.ae@SD | osn | MAIN | QUALIFIED_AT_BUILD | 24 |
 | OSNMoviesFamily.ae@SD | osn | MAIN | QUALIFIED_AT_BUILD | 19 |
@@ -418,9 +418,9 @@ Warnings: MENA_HAS_UNQUALIFIED_OR_EMPTY_GUIDES
 | starzplay.777986600373 | starzplay | MAIN | DEGRADED_WITH_EPG | 42 |
 | starzplay.777988648235 | starzplay | MAIN | DEGRADED_WITH_EPG | 26 |
 | starzplay.777994280349 | starzplay | MAIN | QUALIFIED_AT_BUILD | 36 |
-| starzplay.777994280350 | starzplay | MAIN | DEGRADED_WITH_EPG | 45 |
+| starzplay.777994280350 | starzplay | MAIN | DEGRADED_WITH_EPG | 44 |
 | starzplay.777994792182 | starzplay | MAIN | QUALIFIED_AT_BUILD | 36 |
-| starzplay.777994792183 | starzplay | MAIN | QUALIFIED_AT_BUILD | 105 |
+| starzplay.777994792183 | starzplay | MAIN | QUALIFIED_AT_BUILD | 104 |
 | starzplay.780808744214 | starzplay | MAIN | DEGRADED_WITH_EPG | 37 |
 | starzplay.780811816096 | starzplay | MAIN | DEGRADED_WITH_EPG | 50 |
 | starzplay.780814888237 | starzplay | MAIN | QUALIFIED_AT_BUILD | 69 |
@@ -489,7 +489,7 @@ Warnings: MENA_HAS_UNQUALIFIED_OR_EMPTY_GUIDES
 | stctv.5c3e1fd60f8e | stctv | B1 | QUALIFIED_AT_BUILD | 25 |
 | stctv.5e41e47097a5 | stctv | B1 | QUALIFIED_AT_BUILD | 29 |
 | stctv.5fa334c40328 | stctv | B1 | QUALIFIED_AT_BUILD | 64 |
-| stctv.5fa4ccdd74f7 | stctv | B1 | QUALIFIED_AT_BUILD | 97 |
+| stctv.5fa4ccdd74f7 | stctv | B1 | QUALIFIED_AT_BUILD | 96 |
 | stctv.6053e29227f6 | stctv | B1 | QUALIFIED_AT_BUILD | 45 |
 | stctv.62271af08509 | stctv | B1 | DEGRADED_WITH_EPG | 45 |
 | stctv.637d712e5c3b | stctv | B1 | QUALIFIED_AT_BUILD | 41 |

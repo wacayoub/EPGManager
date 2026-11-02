@@ -1,6 +1,6 @@
 # Canonical EPG Main / Backup Routing
 
-Generated: 2026-11-02T17:54:47.377182+00:00
+Generated: 2026-11-02T17:55:18.491053+00:00
 
 Logical channels: **548**
 Duplicate groups: **74**
@@ -8,7 +8,7 @@ Backups currently selected: **277**
 
 | Channel ID | Selected | Role | Profile | Candidates |
 |---|---|---|---|---|
-| AbuDhabiSports1.ae@SD | **sport24** | MAIN | arabic | MAIN sport24 (74.29, OK), B1 starzplay (28.42, LOW), B2 stctv (98.38, LOW) |
+| AbuDhabiSports1.ae@SD | **sport24** | MAIN | arabic | MAIN sport24 (74.29, OK), B1 starzplay (28.38, LOW), B2 stctv (98.38, LOW) |
 | AbuDhabiSports2.ae@SD | **sport24** | MAIN | arabic | MAIN sport24 (74.04, OK), B1 starzplay (26.5, LOW), B2 stctv (98.38, LOW) |
 | AbuDhabiTV.ae@SD | **osn** | B1 | arabic | MAIN starzplay (28.38, LOW), B1 osn (96.08, OK), B2 elcinema (79.65, OK), B3 stctv (98.38, OK) |
 | Alarabiya.ae@SD | **shahid** | MAIN | arabic | MAIN shahid (97.08, OK), B1 stctv (98.38, OK) |
@@ -32,7 +32,7 @@ Backups currently selected: **277**
 | beINMovies3Drama.qa@SD | **bein** | MAIN | hybrid | MAIN bein (93.08, OK), B1 elcinema (91.12, OK) |
 | beINSeries1.qa@SD | **bein** | MAIN | hybrid | MAIN bein (96.71, OK), B1 elcinema (70.0, LOW) |
 | BloombergTV.us@MiddleEast | **osn** | MAIN | hybrid | MAIN osn (92.04, OK), B1 bein (48.71, LOW) |
-| CartoonNetworkArabic.ae@SD | **osn** | MAIN | hybrid | MAIN osn (96.21, OK), B1 starzplay (75.75, OK), B2 elcinema (95.62, OK), B3 stctv (75.88, OK) |
+| CartoonNetworkArabic.ae@SD | **osn** | MAIN | hybrid | MAIN osn (96.21, OK), B1 starzplay (75.71, OK), B2 elcinema (95.62, OK), B3 stctv (75.88, OK) |
 | CNNInternational.us@MENA | **osn** | MAIN | hybrid | MAIN osn (96.29, OK), B1 starzplay (98.38, OK), B2 stctv (98.38, OK) |
 | DiscoveryChannelMiddleEastAfrica.us@SD | **osn** | MAIN | hybrid | MAIN osn (96.0, OK), B1 elcinema (80.5, OK) |
 | DMC.eg@SD | **osn** | B1 | arabic | B1 osn (92.83, OK), B2 elcinema (85.88, OK) |
@@ -61,7 +61,7 @@ Backups currently selected: **277**
 | MBCPlusDrama.sa@SD | **shahid** | MAIN | arabic | MAIN shahid (91.59, OK), B1 osn (96.17, OK), B2 elcinema (97.42, OK), B3 stctv (98.38, OK) |
 | MTV.lb@SD | **shahid** | B1 | arabic | B1 shahid (70.04, OK), B2 elcinema (0.0, LOW) |
 | NationalGeographicAbuDhabi.ae@SD | **starzplay** | MAIN | arabic_strict | MAIN starzplay (98.25, OK), B1 elcinema (84.12, OK), B2 stctv (0.0, LOW) |
-| OmanTV.om@SD | **osn** | B1 | arabic | B1 osn (96.38, OK), B2 elcinema (80.46, OK) |
+| OmanTV.om@SD | **osn** | B1 | arabic | B1 osn (96.38, OK), B2 elcinema (80.57, OK) |
 | QatarTelevision.qa@SD | **elcinema** | B1 | arabic | MAIN tabie (22.35, LOW), B1 elcinema (94.62, OK) |
 | RotanaCinemaEgypt.eg@SD | **starzplay** | B1 | arabic | MAIN rotana (46.46, LOW), B1 starzplay (95.04, OK), B2 elcinema (83.54, OK), B3 stctv (95.04, OK) |
 | RotanaCinemaKSA.sa@SD | **starzplay** | B1 | arabic | MAIN rotana (46.46, LOW), B1 starzplay (95.04, OK), B2 elcinema (83.54, OK), B3 stctv (95.04, OK) |
