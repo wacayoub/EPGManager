@@ -13,11 +13,11 @@ import xml.etree.ElementTree as ET
 try:
     from tools.mena_source_snapshot import get_source_snapshot
     from tools.audit_source_quality import analyze as analyze_quality
-    from tools.programme_authenticity import generated_placeholder, strict_arabic_channel, arabic_title
+    from tools.programme_authenticity import strict_arabic_channel, arabic_title, clean_programme
 except ImportError:
     from mena_source_snapshot import get_source_snapshot
     from audit_source_quality import analyze as analyze_quality
-    from programme_authenticity import generated_placeholder, strict_arabic_channel, arabic_title
+    from programme_authenticity import strict_arabic_channel, arabic_title, clean_programme
 
 FEEDS = Path("feeds")
 REPORTS = Path("reports")
@@ -130,10 +130,11 @@ def source_data(name):
     for p in root.findall("programme"):
         cid = (p.get("channel") or "").strip()
         if cid in channels:
+            p = clean_programme(p, [n.text for n in channels[cid].findall("display-name")])
+            if p is None:
+                continue
             # Preserve the channel/catalogue identity, but exclude explicitly
             # invented rows from the derived feed, including old LKG fillers.
-            if generated_placeholder(text_of(p, "title")):
-                continue
             canonical = member_to_canonical.get((name, cid), cid)
             if strict_arabic_channel(canonical) and not arabic_title(text_of(p, "title")):
                 continue

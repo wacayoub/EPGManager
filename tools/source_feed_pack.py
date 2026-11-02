@@ -21,6 +21,10 @@ import json
 from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
+try:
+    from tools.programme_authenticity import clean_programme
+except ModuleNotFoundError:
+    from programme_authenticity import clean_programme
 
 
 def read_xml(path: Path) -> ET.Element:
@@ -124,6 +128,8 @@ def main() -> int:
     rejected_time = 0
     rejected_missing_title = 0
     inferred_stop = 0
+    rejected_placeholder = 0
+    removed_unavailable_descriptions = 0
 
     raw_by_channel = defaultdict(list)
     for p in root.findall("programme"):
@@ -159,7 +165,11 @@ def main() -> int:
             # Canonicalize all provider offsets to UTC. This is a timezone
             # representation change only; the absolute programme instant stays
             # exactly the same.
-            pp = copy_node(p)
+            pp = clean_programme(p, [n.text for n in channels[cid].findall("display-name")])
+            if pp is None:
+                rejected_placeholder += 1
+                continue
+            removed_unavailable_descriptions += len(p.findall("desc")) - len(pp.findall("desc"))
             pp.set("start", fmt_utc(start))
             pp.set("stop", fmt_utc(stop))
             programmes[cid].append(pp)
@@ -225,6 +235,8 @@ def main() -> int:
         "programmes": event_count,
         "rejected_invalid_time": rejected_time,
         "rejected_missing_title": rejected_missing_title,
+        "rejected_placeholder_title": rejected_placeholder,
+        "removed_unavailable_descriptions": removed_unavailable_descriptions,
         "inferred_stop": inferred_stop,
         "window_hours": args.window_hours,
         "timezone_output": "UTC +0000",

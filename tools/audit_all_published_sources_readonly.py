@@ -121,6 +121,22 @@ def assess(source, root, now):
                     and donor.get("generated_or_guessed_programmes") == 0
                     and start is not None and start <= repacked <= now):
                 cohort_start = repacked
+        if meta.get("quality_cleanup"):
+            proof = _read_json(root / "reports" / (source + "-quality-cleanup.json"))
+            marker = meta["quality_cleanup"]
+            repacked = _utc(marker.get("repacked_utc"))
+            if (result["feed_sha256_matches"] is True
+                    and proof.get("source") == source
+                    and proof.get("input_sha256") == marker.get("input_sha256")
+                    and isinstance(proof.get("input_sha256"), str)
+                    and proof.get("output_sha256") == meta.get("sha256") == marker.get("output_sha256")
+                    and proof.get("preserved_generated_utc") == meta.get("generated_utc") == marker.get("preserved_generated_utc")
+                    and proof.get("repacked_utc") == marker.get("repacked_utc")
+                    and proof.get("remaining_programmes") == meta.get("programmes")
+                    and proof.get("fabricated_programmes") == 0
+                    and audit.get("source_sha256") == quality.get("source_sha256") == meta.get("sha256")
+                    and start is not None and start <= repacked <= now):
+                cohort_start = repacked
         if cohort_start is None or abs((at - cohort_start).total_seconds()) > COHORT_SECONDS or abs((qt - cohort_start).total_seconds()) > COHORT_SECONDS:
             flag("OUT_OF_COHORT_REPORT")
         match = [x for x in audit.get("feeds", []) if isinstance(x, dict) and x.get("feed") == source + ".xml.gz"]
