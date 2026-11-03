@@ -43,6 +43,15 @@ class SourceTimelineCleanup(unittest.TestCase):
                event(start='20261105000000 +0000',stop='20261105004400 +0000')]
         self.assertEqual(same_start_duplicates(nodes,parse_xmltv_dt),(nodes,[]))
 
+    def test_category_order_does_not_duplicate_an_otherwise_identical_episode(self):
+        short=event();long=event(stop='20261104004500 +0000');different=event()
+        for node,labels in ((short,('Drama','Thriller')),(long,('Thriller','Drama')),(different,('Drama','Comedy'))):
+            for label in labels:ET.SubElement(node,'category',lang='en').text=label
+        original=ET.tostring(short)
+        kept,dropped=same_start_duplicates([long,short,different],parse_xmltv_dt)
+        self.assertEqual(kept,[short,different]);self.assertEqual(dropped,[long])
+        self.assertEqual(ET.tostring(short),original)
+
     def test_published_cleanup_preserves_ids_age_and_exact_second_pass_bytes(self):
         now=datetime.now(timezone.utc).replace(microsecond=0)
         fmt=lambda d:d.strftime('%Y%m%d%H%M%S %z')

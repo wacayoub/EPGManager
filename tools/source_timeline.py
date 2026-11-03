@@ -2,9 +2,11 @@
 
 
 def _content(node, root=False):
+    children = tuple(_content(child) for child in node if child.tag != 'category')
+    categories = tuple(sorted(_content(child) for child in node if child.tag == 'category'))
     return (node.tag, tuple(sorted((k, v) for k, v in node.attrib.items()
                                   if not (root and k == 'stop'))),
-            (node.text or '').strip(), tuple(_content(child) for child in node))
+            (node.text or '').strip(), children, categories)
 
 
 def same_start_duplicates(programmes, parse_time):
@@ -12,6 +14,7 @@ def same_start_duplicates(programmes, parse_time):
 
     Every surviving interval was supplied by the provider. Different titles,
     descriptions, episode metadata, languages or start times remain separate.
+    Category ordering is immaterial; the surviving node keeps its original order.
     No start/stop is invented and input elements are never edited.
     """
     winners = {}
