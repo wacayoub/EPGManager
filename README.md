@@ -78,7 +78,7 @@ The active source package is selected by `source/current.txt`.
 
 ## Direct MENA feeds
 
-EPGManager contains source collection and per-source LKG; EPG-Scrapers is a compatibility mirror. The source aggregate on `main` preserves catalogue IDs and reports missing guide data. It has a different contract from the canonical receiver shards and MENA/Premium split on `mena-data`. The legacy full publication workflow is retired; the unified source checks do not replace its release gates.
+EPGManager contains source collection, per-source LKG and all direct publications. The former EPG-Scrapers repository is archived; its history is preserved under `archive/epg-scrapers/*` tags here. Permanent deletion requires a GitHub permission unavailable to the current token. See [migration and archives](archives/epg-scrapers/README.md) for current URLs and old-client limitations. The source aggregate on `main` preserves catalogue IDs and reports missing guide data. It has a different contract from the canonical receiver shards and MENA/Premium split on `mena-data`. The legacy full publication workflow is retired; the unified source checks do not replace its release gates.
 
 The source screen prioritizes these direct feeds, supports a **Direct MENA only** filter with key `2`, and shows cached channel/coverage metadata when available. GoBX is intentionally not exposed until a validated feed is published.
 
