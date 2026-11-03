@@ -1528,16 +1528,24 @@ def scrape_arryadia(days,history=None,history_path=None,report_path=None,include
    current=[e for e in events if e["stop"]>now and e["start"]<limit]
    attempt["future_events"]=len(current)
    attempt["status"]="CURRENT_GRID" if current else "STALE_OFFICIAL_GRID" if events else "NO_DATED_PROGRAMMES"
-   official=[Event(e["channel"],e["start"],e["title"],e["desc"],e["stop"],lang(e["title"]),lang(e["desc"]),"arryadia-snrt") for e in events]
+   source_rows=[Event(e["channel"],e["start"],e["title"],e["desc"],e["stop"],lang(e["title"]),lang(e["desc"]),"arryadia-snrt") for e in events]
+   official+=source_rows
    if current:
-    out=[e for e in official if e.stop>now and e.start<limit]
-    report["selected_url"]=url
+    added=0
+    for event in source_rows:
+     if event.stop<=now or event.start>=limit:continue
+     if any(e.channel==event.channel and e.start<event.stop and e.stop>event.start for e in out):continue
+     out.append(event);added+=1
+    attempt["added_nonoverlapping_events"]=added
+    if added:
+     report.setdefault("selected_url",url)
+     report.setdefault("selected_urls",[]).append(url)
   except Exception as exc:
    attempt.update(status="HTTP_OR_PARSE_ERROR",error=type(exc).__name__)
    response=getattr(exc,"response",None)
    if response is not None:attempt["http_status"]=response.status_code
   report["attempts"].append(attempt)
-  if out:break
+  # A current primary AR grid must not hide an FR-only TNT/local or HD1 listing.
  archive=_arryadia_history_update(history_path,official,days=7) if history_path else []
  filled=_arryadia_fill(out,hours=window_hours,history=list(history or [])+archive)
  retained=len(filled)-len(out)
@@ -1567,6 +1575,15 @@ def scrape_arryadia(days,history=None,history_path=None,report_path=None,include
                output_events=len(filled),channel_counts={cid:sum(e.channel==cid for e in filled) for cid in ARR_IDS})
  if viewer and not out:report["status"]="VIEWER_REPORTED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID"
  if smart and not out:report["status"]="ESTIMATED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID"
+ report["official_service_activation"]={}
+ for cid in ('Arryadia_HD1','Arryadia_TNT'):
+  current_count=sum(e.channel==cid for e in out)
+  exact_lkg=sum(e.channel==cid and e.source=='arryadia-lkg' for e in filled)
+  report["official_service_activation"][cid]={
+   "status":"OFFICIAL_EPG_AVAILABLE" if current_count else "OFFICIAL_LKG_AVAILABLE" if exact_lkg else "WAITING_FOR_OFFICIAL_EPG",
+   "official_future_programmes":current_count,"retained_exact_lkg":exact_lkg,
+   "service_scope":"local terrestrial TNT; independent of satellite" if cid=='Arryadia_TNT' else "explicit HD1 listings only",
+   "estimated_schedule_allowed":False,"receiver_action":False}
  if report_path:
   p=Path(report_path);p.parent.mkdir(parents=True,exist_ok=True)
   p.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")

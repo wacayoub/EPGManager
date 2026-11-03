@@ -73,9 +73,10 @@ class ArryadiaGrid(unittest.TestCase):
         self.assertEqual(report['selected_url'],'https://www.snrt.ma/fr/node/4070')
         self.assertEqual(events[0].tl,'fr')
 
-    def test_current_arabic_needs_no_duplicate_french_request(self):
-        events,report,client=self.collect([row(title='الأخبار الرياضية')])
-        self.assertEqual(events[0].tl,'ar');self.assertEqual(client.get.call_count,1)
+    def test_current_arabic_keeps_priority_while_both_locales_are_checked(self):
+        events,report,client=self.collect([row(title='الأخبار الرياضية'),row(title='Sports news')])
+        self.assertEqual(len(events),1)
+        self.assertEqual(events[0].tl,'ar');self.assertEqual(client.get.call_count,2)
 
     def test_outage_keeps_only_exact_future_lkg(self):
         good=m.Event('Arryadia_HD2',NOW,'Real match','Official description',NOW+timedelta(hours=1),source='old')
