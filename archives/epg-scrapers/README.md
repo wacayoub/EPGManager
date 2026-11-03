@@ -13,7 +13,9 @@ URLs stop working when that repository is deleted.
 - `manifest.json` records exact original commits and backup checksums.
 - `github-inventory.json.gz` contains UTF-8 JSON with branches, tickets, pull
   requests, comments and reviews. The original repository had no tags/releases.
-  This is a historical export; GitHub ticket numbers and URLs are not redirected.
+  This is a historical export; the four open issues were also transferred to
+  EPGManager. [Open work and issue transfers](OPEN_WORK.md) link their new numbers
+  and the eight unmerged PR snapshots.
 - A verified complete Git bundle is saved beside the local checkouts as
   `EPG-Scrapers-complete-20261103.bundle`; it is not a runtime dependency.
 
