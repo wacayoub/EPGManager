@@ -1,4 +1,4 @@
-name: Verify unified EPGManager sources
+name: Verify unified EPGManager source diagnostics
 on:
   pull_request:
   push:
@@ -30,3 +30,11 @@ jobs:
           python tools/build_derived_feeds.py
           python tools/mena_readiness_audit.py
           python tools/source_health_snapshot.py --output output/current-health.json
+      - name: Record scope and receiver release status
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo '## Source diagnostics only'
+            echo 'Vu+ release: **NO_GO**. A source CI PASS does not certify the canonical mena-data publication, Enigma2 validation or import authorization.'
+          } >> "$GITHUB_STEP_SUMMARY"

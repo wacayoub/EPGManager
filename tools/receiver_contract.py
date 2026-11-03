@@ -8,6 +8,8 @@ maintaining drifting copies.
 """
 from __future__ import annotations
 
+MAX_VUPLUS_XML_BYTES = 12 * 1024 * 1024
+
 BEIN_CORE = {
     "beIN.4K.qa", "beIN.Drama.qa", "beIN.Movies.Action.qa", "beIN.Movies.Drama.qa",
     "beIN.Movies.Family.qa", "beIN.Movies.Premiere.qa", "beIN.Series.1.qa",

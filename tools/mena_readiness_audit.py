@@ -21,10 +21,12 @@ try:
     from tools.mena_source_snapshot import get_source_snapshot
     from tools.source_feed_pack import parse_xmltv_dt
     from tools.programme_authenticity import generated_placeholder, strict_arabic_channel, arabic_title
+    from tools.receiver_contract import MAX_VUPLUS_XML_BYTES
 except ImportError:
     from mena_source_snapshot import get_source_snapshot
     from source_feed_pack import parse_xmltv_dt
     from programme_authenticity import generated_placeholder, strict_arabic_channel, arabic_title
+    from receiver_contract import MAX_VUPLUS_XML_BYTES
 
 
 def audit(derived_feed, derived_metadata, routing_report, feed_dir, now=None):
@@ -55,7 +57,8 @@ def audit(derived_feed, derived_metadata, routing_report, feed_dir, now=None):
     if meta.get("sha256") != actual_sha:
         structural_errors.append("MENA_PUBLICATION_SHA_MISMATCH")
     try:
-        root = ET.fromstring(gzip.decompress(compressed))
+        uncompressed = gzip.decompress(compressed)
+        root = ET.fromstring(uncompressed)
     except (ValueError, OSError, ET.ParseError) as exc:
         raise ValueError("MENA_GZIP_OR_XML_PARSE_FAILURE:" + str(exc)[:160]) from exc
     if root.tag != "tv":
@@ -165,9 +168,24 @@ def audit(derived_feed, derived_metadata, routing_report, feed_dir, now=None):
         warnings.append("MENA_HAS_UNQUALIFIED_OR_EMPTY_GUIDES")
     if "tabie" not in owners_count:
         warnings.append("TABIE_ARCHIVE_EXCLUDED_UNTIL_GENUINE_FUTURE_PROGRAMMES")
+    release_blockers = ["CANONICAL_RECEIVER_PUBLICATION_NOT_VALIDATED", "ENIGMA2_RECEIVER_NOT_VALIDATED"]
+    if structural_errors:
+        release_blockers.append("SOURCE_SNAPSHOT_STRUCTURAL_ERRORS")
+    if statuses["NO_FUTURE_EPG"]:
+        release_blockers.append("SOURCE_IDS_WITHOUT_FUTURE_EPG")
+    if statuses["DEGRADED_WITH_EPG"]:
+        release_blockers.append("DEGRADED_SOURCE_GUIDES")
+    if len(uncompressed) > MAX_VUPLUS_XML_BYTES:
+        release_blockers.append("VUPLUS_XML_SIZE_EXCEEDS_BUDGET")
     report = {
         "schema": 1,
         "source": "mena",
+        "scope": "source_snapshot_diagnostic",
+        "receiver_release_status": "NO_GO",
+        "receiver_release_eligible": False,
+        "receiver_release_blockers": release_blockers,
+        "xml_size_bytes": len(uncompressed),
+        "vuplus_xml_budget_bytes": MAX_VUPLUS_XML_BYTES,
         "checked_utc": now.isoformat(),
         "source_generated_utc": meta.get("generated_utc"),
         "status": "INVALID" if structural_errors else
@@ -209,6 +227,9 @@ def render_markdown(report):
         f"Checked GMT+0: {report['checked_utc']}",
         f"Published GMT+0: {report['source_generated_utc']}",
         f"**Status:** {report['status']}",
+        "**Scope:** source snapshot diagnostic",
+        "**Vu+ release:** NO_GO; this report does not validate a canonical receiver publication or authorize an import.",
+        "Release blockers: " + "; ".join(report["receiver_release_blockers"]),
         "",
         f"**{report['channels']} logical IDs · {report['programmes']} source programme records · "
         f"{report['verified_source_count']} source fingerprints checked**",
@@ -255,6 +276,7 @@ def main():
         "programmes": report["programmes"], "counts": report["selected_statuses"],
         "errors": report["structural_errors"],
         "source_count": report["verified_source_count"],
+        "receiver_release_status": report["receiver_release_status"],
     }, ensure_ascii=False))
     return 1 if report["structural_errors"] else 0
 

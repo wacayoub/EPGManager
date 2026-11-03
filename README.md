@@ -1,5 +1,10 @@
 # EPGManager
 
+> **Vu+ release: NO-GO.** Source CI and `feeds/mena.xml.gz` on `main` are
+> source diagnostics. They do not certify the canonical receiver publication
+> on `mena-data`, hardware validation or permission to refresh Enigma2.
+> The historical installer and release instructions below are not a release recommendation.
+
 EPGManager now contains both the Enigma2 plugin and its MENA source engine.
 Provider scrapers, publication guards and the 14 direct feeds live in this repository.
 The receiver downloads finished XMLTV; it does not run the provider scrapers.
@@ -73,7 +78,7 @@ The active source package is selected by `source/current.txt`.
 
 ## Direct MENA feeds
 
-EPGManager consumes validated per-source feeds published by `wacayoub/EPG-Scrapers` as an upstream source layer. EPG-Scrapers owns source collection and per-source LKG only. EPGManager is the sole owner of receiver canonical IDs, global selection/LKG, language arbitration, provider ownership, MENA/Premium split, release gates and the final `mena-data` publication. Direct providers include Morocco, beIN MENA, OSN, Shahid/MBC, ElCinema, Rotana, Dubai+, Sport24, STC TV and Al Jazeera.
+EPGManager contains source collection and per-source LKG; EPG-Scrapers is a compatibility mirror. The source aggregate on `main` preserves catalogue IDs and reports missing guide data. It has a different contract from the canonical receiver shards and MENA/Premium split on `mena-data`. The legacy full publication workflow is retired; the unified source checks do not replace its release gates.
 
 The source screen prioritizes these direct feeds, supports a **Direct MENA only** filter with key `2`, and shows cached channel/coverage metadata when available. GoBX is intentionally not exposed until a validated feed is published.
 
@@ -85,4 +90,4 @@ STARZPLAY is temporarily hidden from active direct sources. Multinational channe
 
 ## 6.3.0 direct-feed mode
 
-Receiver-side provider scraping remains disabled. EPG-Scrapers generates validated source feeds; EPGManager Cloud consumes those candidates, applies the canonical receiver contract and publishes the final receiver-safe MENA artifacts. The Vu+ must never treat EPG-Scrapers' former derived MENA output as the authoritative receiver aggregate. Settings remain receiver-focused: XMLTV cache directory, mapping threshold, logging and debug. Legacy local generators stay hidden from Sources and Smart Mapping.
+Historical 6.3.0 behavior: receiver-side scraping was disabled. The current unified engine publishes source candidates and diagnostics; a fresh canonical receiver publication and hardware validation remain separate unmet requirements. Settings remain receiver-focused. Legacy local generators stay hidden from Sources and Smart Mapping.
