@@ -243,6 +243,9 @@ PY
     if [ -s output/morocco/morocco.xml.gz ]; then
       pack_source morocco output/morocco/morocco.xml.gz "" || true
     fi
+    if [ -s output/morocco/arryadia-source.json ]; then
+      cp output/morocco/arryadia-source.json reports/morocco-arryadia-source.json
+    fi
     ;;
 
 
