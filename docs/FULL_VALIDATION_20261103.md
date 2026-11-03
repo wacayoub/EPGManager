@@ -23,7 +23,7 @@ une nouvelle publication.
 | --- | --- | --- | --- |
 | AlKass | 00:17 | 8 / 8 | Publication vérifiée |
 | Tabie | 00:30 | 4 / 4 | Dernier flux conservé ; horizon court |
-| OSN | 01:40 | 80 / 100 | Publication vérifiée ; couverture partielle |
+| OSN | 01:40 | 80 / 100 | Publication vérifiée ; couverture partielle et horaires concurrents |
 | beIN | 02:22 | 65 / 68 | Publication vérifiée ; couverture partielle |
 | STC TV | 02:37 | 125 / 149 | Publication vérifiée ; couverture partielle |
 | STARZPLAY | 03:07 | 118 / 120 | Publication vérifiée ; couverture partielle |
@@ -46,6 +46,15 @@ Sport24 conserve ses contrôles stricts : ses trois donneurs exacts OSN/Dubai ne
 passent pas le contrôle requis de 48 heures. Aucune extension n'est inventée.
 Le chevauchement de vingt minutes de Noor Dubai reste signalé ; les horaires
 contradictoires de l'éditeur ne sont pas arbitrairement décalés.
+
+OSN présente aussi sept chevauchements sur Nicktoons et cinq sur OSN iQIYI.
+Des épisodes identiques apparaissent avec des débuts différents de cinq à
+quinze minutes. Le collecteur réunit les grilles Android et Legacy ; la provenance
+précise de ces lignes concurrentes ne peut pas être établie à partir du XMLTV
+final seul. La vérification directe des deux API de plateforme reçoit HTTP 403
+depuis cet environnement. Ces horaires restent à revoir, sans suppression ou
+décalage fondé uniquement sur le titre commun. Les 80 chaînes avec EPG futur
+ne constituent donc pas 80 grilles certifiées correctes.
 
 Le Maroc garde ses quinze identifiants. AFLAM, Arryadia HD1 et Arryadia TNT
 n'ont pas de programmes futurs vérifiés. Grand Format sur HD2/HD3 et le mode

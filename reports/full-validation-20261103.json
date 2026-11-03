@@ -16,7 +16,17 @@
       "3.13",
       "3.14"
     ],
-    "catalogue_changes_require_pr_ci": true
+    "catalogue_changes_require_pr_ci": true,
+    "catalogue_pr_ci_observed": {
+      "run_id": 41664531214,
+      "head_sha": "a51d3494abd51acec9c659d16a49d8dfc002a242",
+      "status": "PASS",
+      "python": [
+        "3.13",
+        "3.14"
+      ],
+      "scope": "Catalogue code and tests; subsequent report-only clarification requires final PR check."
+    }
   },
   "live_audit": {
     "run_id": "41658269105",
@@ -15991,6 +16001,7 @@
   "remaining_issues": [
     "Tabie tomorrow/day-after responses repeat current-date schedules; native dates are rejected and short candidates retain LKG.",
     "Sport24 has short/partial native coverage; exact OSN/Dubai donor IDs still fail the existing 48h guard.",
+    "OSN has 7 Nicktoons and 5 iQIYI overlapping future rows with differing starts. Android/Legacy merger is a possible origin, but raw producer provenance is not established; a direct current platform probe returned HTTP 403. No guessed retiming or title-only deduplication was applied.",
     "Noor Dubai has one genuine upstream overlapping interval; the source times were not guessed or shifted.",
     "Missing primary catalogue programmes remain explicit, including AFLAM, Arryadia HD1 and Arryadia TNT; HD2/HD3 Grand Format and main HD Smart remain labelled.",
     "Eleven newly maintained wrapper schedules have no observed scheduled collection yet; manual success cannot certify tomorrow delivery.",
