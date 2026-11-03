@@ -10,7 +10,7 @@
   "sources": [
     {
       "source": "morocco",
-      "feed_sha256": "8e17975dd573044140706456de31ae48e50659ec36c507fc83b942b983b14beb",
+      "feed_sha256": "c1fa62b82a0589da25bac415e668b83b0d6ca4652fb77a3956290a08991d3572",
       "channels": 15,
       "channels_with_future_epg": 12,
       "channels_without_future_epg": [
@@ -20,11 +20,8 @@
       ],
       "quality_status": "WARN",
       "status": "DEGRADED",
-      "future_programmes_overlapping_previous": 7,
-      "channels_with_overlapping_programmes": {
-        "2M": 4,
-        "Chada TV": 3
-      },
+      "future_programmes_overlapping_previous": 0,
+      "channels_with_overlapping_programmes": {},
       "future_programmes_without_description": 0,
       "suspected_placeholder_channels": [],
       "cleanup": {
@@ -74,7 +71,7 @@
       "status": "AVAILABLE",
       "future_programmes_overlapping_previous": 0,
       "channels_with_overlapping_programmes": {},
-      "future_programmes_without_description": 202,
+      "future_programmes_without_description": 201,
       "suspected_placeholder_channels": [],
       "cleanup": {
         "source": "alkass",
@@ -116,7 +113,7 @@
       "status": "DEGRADED",
       "future_programmes_overlapping_previous": 0,
       "channels_with_overlapping_programmes": {},
-      "future_programmes_without_description": 379,
+      "future_programmes_without_description": 368,
       "suspected_placeholder_channels": [],
       "cleanup": {
         "source": "tabie",
@@ -235,7 +232,7 @@
       "channels_with_overlapping_programmes": {
         "NoorDubaiTV.ae@SD": 1
       },
-      "future_programmes_without_description": 272,
+      "future_programmes_without_description": 270,
       "suspected_placeholder_channels": [],
       "cleanup": {
         "source": "dubaiplus",
@@ -270,18 +267,15 @@
     },
     {
       "source": "shahid",
-      "feed_sha256": "12c77be554e8b8f966d4907e0217a0a5aceb9116a65d388fc56ef0c1f3e09e3a",
+      "feed_sha256": "53417173a3e01625225dd8bd18b5d643750e1540fd36d41e833567e28ea52243",
       "channels": 71,
       "channels_with_future_epg": 71,
       "channels_without_future_epg": [],
       "quality_status": "WARN",
-      "status": "DEGRADED",
-      "future_programmes_overlapping_previous": 6,
-      "channels_with_overlapping_programmes": {
-        "MBC1.ae@SD": 3,
-        "MBC3USA.us@SD": 3
-      },
-      "future_programmes_without_description": 1806,
+      "status": "AVAILABLE",
+      "future_programmes_overlapping_previous": 0,
+      "channels_with_overlapping_programmes": {},
+      "future_programmes_without_description": 1797,
       "suspected_placeholder_channels": [],
       "cleanup": {
         "source": "shahid",
@@ -390,7 +384,216 @@
         "fabricated_programmes": 0,
         "receiver_modified": false,
         "changed": true
-      }
+      },
+      "cleanup_stages": [
+        {
+          "source": "shahid",
+          "operation": "remove_explicit_filler_unavailable_descriptions_and_same_start_duplicates",
+          "input_sha256": "ccfd785ba480a398182a63befd2f7e3a63f1f3673bb384c794c971d42b01b7fe",
+          "output_sha256": "12c77be554e8b8f966d4907e0217a0a5aceb9116a65d388fc56ef0c1f3e09e3a",
+          "preserved_generated_utc": "2026-11-03T09:19:56.461963+00:00",
+          "repacked_utc": "2026-11-03T13:55:58.420139+00:00",
+          "removed_programmes": 9,
+          "removed_by_id": {
+            "Alarabiya.ae@SD": 2,
+            "MBC4.ae@SD": 1,
+            "MBC5.ae@SD": 1,
+            "MBCAction.ae@SD": 1,
+            "MBCDrama.ae@SD": 2,
+            "MBCDramaUSA.us@SD": 1,
+            "MBCPersia.ae@SD": 1
+          },
+          "removed_unavailable_descriptions": 0,
+          "removed_placeholder_title_nodes": 0,
+          "removed_same_start_duplicates": 9,
+          "same_start_duplicates_by_id": {
+            "Alarabiya.ae@SD": 2,
+            "MBC4.ae@SD": 1,
+            "MBC5.ae@SD": 1,
+            "MBCAction.ae@SD": 1,
+            "MBCDrama.ae@SD": 2,
+            "MBCDramaUSA.us@SD": 1,
+            "MBCPersia.ae@SD": 1
+          },
+          "original_programmes": 4462,
+          "remaining_programmes": 4453,
+          "catalogue_ids_preserved": [
+            "AbdulmajeedAbdullah.sa@SD",
+            "Aflam.sa@SD",
+            "Alarabiya.ae@SD",
+            "AlArabiyaBusiness.ae@SD",
+            "AlArabiyaEnglish.sa@SD",
+            "AlArabiyaPrograms.ae",
+            "AlEkhbariya.sa@SD",
+            "AlHadath.sa@SD",
+            "AlkhuzamaRadio.sa@SD",
+            "AlQuranAlKareemTV.sa@SD",
+            "AlSaudiya.sa@SD",
+            "AlSaudiyaAlaan.sa@SD",
+            "AlSouriyaTV.sy@HD",
+            "AlSunnahAlNabawiyahTV.sa@SD",
+            "AsharqDiscovery.sa@SD",
+            "AsharqDocumentary.sa@SD",
+            "AsharqNews.sa@SD",
+            "BabAlHara.sa@SD",
+            "BigTimePlus.sa@SD",
+            "Fairuz.sa@HD",
+            "FIFAPlus.uk",
+            "GoalZone.sa",
+            "IqraaArabic.sa",
+            "MajidAlMohandis.sa@SD",
+            "Maraya.sa@HD",
+            "MBC1.ae@SD",
+            "MBC1Egypt.eg@HD",
+            "MBC1USA.us@SD",
+            "MBC2.ae@SD",
+            "MBC3.ae@SD",
+            "MBC3USA.us@SD",
+            "MBC4.ae@SD",
+            "MBC5.ae@SD",
+            "MBCAction.ae@SD",
+            "MBCBollywood.ae@SD",
+            "MBCDrama.ae@SD",
+            "MBCDramaUSA.us@SD",
+            "MBCFM.ae@SD",
+            "MBCIraq.iq@SD",
+            "MBCMasr.eg@SD",
+            "MBCMasr2.eg@SD",
+            "MBCMasrDrama.sa@SD",
+            "MBCMasrUSA.us@SD",
+            "MBCMax.ae@SD",
+            "MBCPersia.ae@SD",
+            "MBCPlusDrama.sa@SD",
+            "MohammedAbdo.sa@SD",
+            "MoviesAction.sa@SD",
+            "MoviesThriller.sa@SD",
+            "MTV.lb@SD",
+            "PanoramaFM.sa@SD",
+            "RabehSaqer.sa@HD",
+            "RashidAlMajed.sa@SD",
+            "SaudiThaqafiyaTV.sa@SD",
+            "SBC.sa@SD",
+            "shahid.49923693965985",
+            "shahid.49923697545394",
+            "shahid.49923766669525",
+            "shahid.49923766677799",
+            "shahid.49923781913188",
+            "shahid.951783",
+            "shahid.963543",
+            "shahid.969745",
+            "shahid.976272",
+            "shahid.977946",
+            "shahid.983124",
+            "shahid.992538",
+            "SpacetoonArabic.ae@SD",
+            "Tarab.sa@SD",
+            "ThikrayatTV.sa@SD",
+            "Wanasah.ae@SD"
+          ],
+          "fabricated_programmes": 0,
+          "receiver_modified": false,
+          "changed": true
+        },
+        {
+          "source": "shahid",
+          "operation": "remove_explicit_filler_unavailable_descriptions_and_same_start_duplicates",
+          "input_sha256": "12c77be554e8b8f966d4907e0217a0a5aceb9116a65d388fc56ef0c1f3e09e3a",
+          "output_sha256": "53417173a3e01625225dd8bd18b5d643750e1540fd36d41e833567e28ea52243",
+          "preserved_generated_utc": "2026-11-03T09:19:56.461963+00:00",
+          "repacked_utc": "2026-11-03T14:05:16.048356+00:00",
+          "removed_programmes": 4,
+          "removed_by_id": {
+            "MBC1.ae@SD": 2,
+            "MBC3USA.us@SD": 2
+          },
+          "removed_unavailable_descriptions": 0,
+          "removed_placeholder_title_nodes": 0,
+          "removed_same_start_duplicates": 4,
+          "same_start_duplicates_by_id": {
+            "MBC1.ae@SD": 2,
+            "MBC3USA.us@SD": 2
+          },
+          "original_programmes": 4453,
+          "remaining_programmes": 4449,
+          "catalogue_ids_preserved": [
+            "AbdulmajeedAbdullah.sa@SD",
+            "Aflam.sa@SD",
+            "Alarabiya.ae@SD",
+            "AlArabiyaBusiness.ae@SD",
+            "AlArabiyaEnglish.sa@SD",
+            "AlArabiyaPrograms.ae",
+            "AlEkhbariya.sa@SD",
+            "AlHadath.sa@SD",
+            "AlkhuzamaRadio.sa@SD",
+            "AlQuranAlKareemTV.sa@SD",
+            "AlSaudiya.sa@SD",
+            "AlSaudiyaAlaan.sa@SD",
+            "AlSouriyaTV.sy@HD",
+            "AlSunnahAlNabawiyahTV.sa@SD",
+            "AsharqDiscovery.sa@SD",
+            "AsharqDocumentary.sa@SD",
+            "AsharqNews.sa@SD",
+            "BabAlHara.sa@SD",
+            "BigTimePlus.sa@SD",
+            "Fairuz.sa@HD",
+            "FIFAPlus.uk",
+            "GoalZone.sa",
+            "IqraaArabic.sa",
+            "MajidAlMohandis.sa@SD",
+            "Maraya.sa@HD",
+            "MBC1.ae@SD",
+            "MBC1Egypt.eg@HD",
+            "MBC1USA.us@SD",
+            "MBC2.ae@SD",
+            "MBC3.ae@SD",
+            "MBC3USA.us@SD",
+            "MBC4.ae@SD",
+            "MBC5.ae@SD",
+            "MBCAction.ae@SD",
+            "MBCBollywood.ae@SD",
+            "MBCDrama.ae@SD",
+            "MBCDramaUSA.us@SD",
+            "MBCFM.ae@SD",
+            "MBCIraq.iq@SD",
+            "MBCMasr.eg@SD",
+            "MBCMasr2.eg@SD",
+            "MBCMasrDrama.sa@SD",
+            "MBCMasrUSA.us@SD",
+            "MBCMax.ae@SD",
+            "MBCPersia.ae@SD",
+            "MBCPlusDrama.sa@SD",
+            "MohammedAbdo.sa@SD",
+            "MoviesAction.sa@SD",
+            "MoviesThriller.sa@SD",
+            "MTV.lb@SD",
+            "PanoramaFM.sa@SD",
+            "RabehSaqer.sa@HD",
+            "RashidAlMajed.sa@SD",
+            "SaudiThaqafiyaTV.sa@SD",
+            "SBC.sa@SD",
+            "shahid.49923693965985",
+            "shahid.49923697545394",
+            "shahid.49923766669525",
+            "shahid.49923766677799",
+            "shahid.49923781913188",
+            "shahid.951783",
+            "shahid.963543",
+            "shahid.969745",
+            "shahid.976272",
+            "shahid.977946",
+            "shahid.983124",
+            "shahid.992538",
+            "SpacetoonArabic.ae@SD",
+            "Tarab.sa@SD",
+            "ThikrayatTV.sa@SD",
+            "Wanasah.ae@SD"
+          ],
+          "fabricated_programmes": 0,
+          "receiver_modified": false,
+          "changed": true
+        }
+      ],
+      "removed_same_start_duplicates_total": 13
     },
     {
       "source": "rotana",
@@ -404,7 +607,7 @@
       "status": "DEGRADED",
       "future_programmes_overlapping_previous": 0,
       "channels_with_overlapping_programmes": {},
-      "future_programmes_without_description": 238,
+      "future_programmes_without_description": 235,
       "suspected_placeholder_channels": [],
       "cleanup": {
         "source": "rotana",
@@ -755,7 +958,7 @@
       "status": "DEGRADED",
       "future_programmes_overlapping_previous": 0,
       "channels_with_overlapping_programmes": {},
-      "future_programmes_without_description": 1167,
+      "future_programmes_without_description": 1147,
       "suspected_placeholder_channels": [],
       "cleanup": {
         "source": "elcinema",
@@ -889,7 +1092,7 @@
       "status": "DEGRADED",
       "future_programmes_overlapping_previous": 0,
       "channels_with_overlapping_programmes": {},
-      "future_programmes_without_description": 2622,
+      "future_programmes_without_description": 2600,
       "suspected_placeholder_channels": [],
       "cleanup": {
         "source": "starzplay",
@@ -1068,7 +1271,7 @@
       "status": "DEGRADED",
       "future_programmes_overlapping_previous": 0,
       "channels_with_overlapping_programmes": {},
-      "future_programmes_without_description": 121,
+      "future_programmes_without_description": 120,
       "suspected_placeholder_channels": [],
       "cleanup": {
         "source": "stctv",
@@ -1241,5 +1444,111 @@
         "changed": false
       }
     }
-  ]
+  ],
+  "post_refresh_checked_utc": "2026-11-03T14:05:17.586080+00:00",
+  "morocco_refresh_verification": {
+    "source": "morocco",
+    "producer_run_id": "41649556916",
+    "producer_attempt": "1",
+    "verified_publication_commit": "883610e517c423a55103014ff07bec1280a3eb85",
+    "verified_publication_sha256": "c1fa62b82a0589da25bac415e668b83b0d6ca4652fb77a3956290a08991d3572",
+    "programmes_at_publication": 1838,
+    "current_health": {
+      "source": "morocco",
+      "checked_utc": "2026-11-03T14:05:38.568855+00:00",
+      "feed_sha256": "c1fa62b82a0589da25bac415e668b83b0d6ca4652fb77a3956290a08991d3572",
+      "status": "DEGRADED",
+      "last_attempt_kept_lkg": false,
+      "channels": 15,
+      "channels_with_future_epg": 12,
+      "channels_without_future_epg": [
+        "AFLAM.ma",
+        "Arryadia_HD1",
+        "Arryadia_TNT"
+      ],
+      "suspected_placeholder_channels": [],
+      "channels_with_overlapping_programmes": {},
+      "future_programmes_overlapping_previous": 0,
+      "viewer_reported_recurring_channels": [
+        "Arryadia_HD2",
+        "Arryadia_HD3"
+      ],
+      "viewer_reported_recurring_programmes": 338,
+      "smart_estimated_channels": [
+        "Arryadia_HD"
+      ],
+      "smart_estimated_programmes": 58,
+      "remaining_max_hours": 168.91,
+      "channels_with_less_than_24h": [
+        "AFLAM.ma",
+        "Arryadia_HD1",
+        "Arryadia_TNT"
+      ],
+      "action_success_does_not_certify_guide_quality": true
+    },
+    "current_bytes_differ_from_attempt": false,
+    "receiver_release_status": "NO_GO",
+    "scope": "exact_source_attempt_and_current_source_health"
+  },
+  "total_removed_same_start_duplicates": 13,
+  "noor_dubai_provider_timing_evidence": {
+    "checked_utc": "2026-11-03T14:08:16.446281+00:00",
+    "endpoint": "https://d1vr1mlm6fadud.cloudfront.net/content/channels",
+    "outcome": "CONTRADICTORY_STOPS_CONFIRMED_IN_BOTH_LOCALIZATIONS",
+    "observations": [
+      {
+        "locale": "en-US",
+        "channel": "Noor DubaiTV",
+        "rows": [
+          {
+            "id": "828541992024",
+            "start": "2026-11-04T00:34:00+00:00",
+            "stop": "2026-11-04T01:00:00+00:00"
+          },
+          {
+            "id": "828541992025",
+            "start": "2026-11-04T01:00:00+00:00",
+            "stop": "2026-11-04T01:50:00+00:00"
+          },
+          {
+            "id": "828541992026",
+            "start": "2026-11-04T01:30:00+00:00",
+            "stop": "2026-11-04T02:00:00+00:00"
+          },
+          {
+            "id": "828541479953",
+            "start": "2026-11-04T02:00:00+00:00",
+            "stop": "2026-11-04T03:00:00+00:00"
+          }
+        ]
+      },
+      {
+        "locale": "ar-AE",
+        "channel": "Noor DubaiTV",
+        "rows": [
+          {
+            "id": "828541992024",
+            "start": "2026-11-04T00:34:00+00:00",
+            "stop": "2026-11-04T01:00:00+00:00"
+          },
+          {
+            "id": "828541992025",
+            "start": "2026-11-04T01:00:00+00:00",
+            "stop": "2026-11-04T01:50:00+00:00"
+          },
+          {
+            "id": "828541992026",
+            "start": "2026-11-04T01:30:00+00:00",
+            "stop": "2026-11-04T02:00:00+00:00"
+          },
+          {
+            "id": "828541479953",
+            "start": "2026-11-04T02:00:00+00:00",
+            "stop": "2026-11-04T03:00:00+00:00"
+          }
+        ]
+      }
+    ],
+    "programme_rows_changed": false
+  }
 }
