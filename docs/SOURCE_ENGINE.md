@@ -39,20 +39,24 @@ not publication deadlines: GitHub may delay a scheduled workflow.
 | ElCinema | 04:20 |
 | OSN | 01:40 |
 | beIN | 02:22 |
-| Sport24 | 03:05 |
+| Sport24 | 06:03 |
 | Shahid | 03:39 |
 | Rotana | 03:50 |
 | Al Jazeera | 04:12 |
 | Dubai Plus | 04:44 |
-| STARZPLAY | 05:12 |
+| STARZPLAY | 03:07 |
 | STC | 02:37 |
-| AlKass | 06:30 |
+| AlKass | 00:17 |
 | Tunisia TV | 06:35 |
 | Morocco | 07:07 |
 
-STC runs at 02:37 before its verified consumers Rotana (03:50) and STARZPLAY
-(05:12). The 73-minute lead gives STC its 70-minute job allowance before Rotana,
-subject to GitHub delivery delays.
+STC runs at 02:37 before its local-feed consumer Rotana (03:50).
+AlKass runs at 00:17 before OSN (01:40); OSN precedes DubaiPlus (04:44),
+which precedes Sport24 (06:03). STARZPLAY runs at 03:07 before ElCinema (04:20).
+Each local donor has at least the 70-minute collection allowance before its
+consumer. STARZPLAY’s own STC fallback fetches the live API independently;
+it does not wait for the published STC feed. GitHub delivery delays can exceed
+these margins. Dependency order is enforced by repository verification.
 
 The 08:37 local postprocessing may extend ElCinema from verified donors and
 rebuilds the diagnostic MENA source aggregate. This allows the 07:07 Morocco
@@ -84,7 +88,7 @@ EPGManager owns the source engine and its diagnostic aggregate. EPG-Scrapers is 
 
 ## Guide quality
 
-STARZPLAY is active on its own 05:12 Morocco local workflow. A successful Actions run or a
+STARZPLAY is active on its own 03:07 Morocco local workflow. A successful Actions run or a
 MAIN/B1/B2 role does not certify guide quality. Review `<source>-current-health.json` and the source-specific quality reports: expired IDs stay visible but never green;
 placeholder suspicions remain explicit, and generated Arryadia/AFLAM filler is
 excluded from new derived publications. A degraded genuine exact-ID backup may

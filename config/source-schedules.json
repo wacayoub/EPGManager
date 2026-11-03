@@ -6,7 +6,7 @@
       "timezone": "Africa/Casablanca"
     },
     "alkass": {
-      "time": "06:30",
+      "time": "00:17",
       "timezone": "Africa/Casablanca"
     },
     "tabie": {
@@ -34,7 +34,7 @@
       "timezone": "Africa/Casablanca"
     },
     "sport24": {
-      "time": "03:05",
+      "time": "06:03",
       "timezone": "Africa/Casablanca"
     },
     "osn": {
@@ -50,7 +50,7 @@
       "timezone": "Africa/Casablanca"
     },
     "starzplay": {
-      "time": "05:12",
+      "time": "03:07",
       "timezone": "Africa/Casablanca"
     },
     "stctv": {
@@ -62,5 +62,27 @@
     "time": "08:37",
     "timezone": "Africa/Casablanca"
   },
-  "note": "Daily targets in Morocco local wall-clock time, including seasonal changes; GitHub delivery can be delayed."
+  "note": "Daily targets in Morocco local wall-clock time, including seasonal changes; GitHub delivery can be delayed.",
+  "collection_budget_minutes": 70,
+  "local_feed_dependencies": {
+    "osn": [
+      "alkass"
+    ],
+    "dubaiplus": [
+      "osn"
+    ],
+    "sport24": [
+      "osn",
+      "dubaiplus"
+    ],
+    "rotana": [
+      "stctv"
+    ],
+    "elcinema": [
+      "osn",
+      "stctv",
+      "bein",
+      "starzplay"
+    ]
+  }
 }

@@ -45,7 +45,7 @@ class SourceTiming(unittest.TestCase):
         def minutes(source):
             hour,minute=map(int,self.policy['sources'][source]['time'].split(':'))
             return 60*hour+minute
-        for consumer in ('rotana','starzplay'):
+        for consumer in ('rotana',):
             self.assertGreaterEqual(minutes(consumer)-minutes('stctv'),70)
 
     def test_local_target_follows_morocco_seasonal_clock(self):

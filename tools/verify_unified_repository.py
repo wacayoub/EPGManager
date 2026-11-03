@@ -6,6 +6,10 @@ import json
 import re
 import xml.etree.ElementTree as ET
 import yaml
+try:
+    from tools.source_schedule_order import validate as validate_schedule_order
+except ModuleNotFoundError:
+    from source_schedule_order import validate as validate_schedule_order
 
 
 def verify(root='.'):
@@ -30,6 +34,13 @@ def verify(root='.'):
     expected={'refresh-'+name+'.yml' for name in sources}|{'daily-epg-chain.yml','epg-watchdog.yml'}
     assert set(schedules)==expected, 'duplicate or missing automatic publication schedule'
     policy=json.loads((root/'config/source-schedules.json').read_text(encoding='utf-8'))
+    validate_schedule_order(policy)
+    core=yaml.load((root/'.github/workflows/refresh-source-core.yml').read_text(encoding='utf-8'),Loader=yaml.BaseLoader)
+    assert int(core['jobs']['refresh']['timeout-minutes'])==policy['collection_budget_minutes'], 'collection budget drift'
+    sequence=yaml.load((root/'.github/workflows/audit-sources-one-by-one.yml').read_text(encoding='utf-8'),Loader=yaml.BaseLoader)
+    strategy=sequence['jobs']['source']['strategy']
+    assert strategy['max-parallel']=='1', 'sequential audit must collect one source at a time'
+    assert strategy['matrix']['source']==sorted(sources,key=lambda name:policy['sources'][name]['time']), 'sequential source order must follow donor-aware schedule'
     assert set(policy['sources'])==set(sources), 'schedule policy must cover all sources'
     for name in sources:
         row=policy['sources'][name]
