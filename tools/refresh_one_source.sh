@@ -54,6 +54,12 @@ case "$SOURCE" in
         rm -f output/final/bein.hybrid.xml.gz
       fi
     fi
+    # Arabization also changes XML bytes when the English guide is absent.
+    # Always regenerate both sidecars from the final candidate before LKG checks.
+    if [ -s output/final/bein.xml.gz ]; then
+      cp output/final/bein.xml.gz output/source-build/bein.final.xml.gz
+      pack_source bein output/source-build/bein.final.xml.gz output/source-build/bein.channels.xml || true
+    fi
     ;;
 
   osn)

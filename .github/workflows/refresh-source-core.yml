@@ -15,9 +15,9 @@ permissions:
   contents: write
 
 concurrency:
-  # Morocco must not wait behind unrelated source downloads. Same-source runs
-  # still serialize; publication uses source-scoped commits and bounded rebase.
-  group: ${{ inputs.source == 'morocco' && 'epg-morocco-source-publish' || 'epg-source-publish' }}
+  # Different providers must not replace one another's pending runs.
+  # Source-scoped commits and bounded rebase handle concurrent publication.
+  group: epg-source-${{ inputs.source }}
   cancel-in-progress: false
 
 jobs:

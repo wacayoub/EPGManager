@@ -14,13 +14,29 @@ except ImportError:
 
 
 def inspect(root, source, now=None):
+    try:
+        return inspect_valid_publication(root, source, now)
+    except (OSError, ValueError, TypeError, KeyError, ET.ParseError, EOFError) as exc:
+        return {'source': source, 'checked_utc': (now or datetime.now(timezone.utc)).isoformat(),
+                'status': 'INVALID_PUBLICATION', 'reason': str(exc)[:160],
+                'action_success_does_not_certify_guide_quality': True}
+
+
+def inspect_valid_publication(root, source, now=None):
     now = now or datetime.now(timezone.utc)
     root = Path(root)
     path = root / 'feeds' / (source + '.xml.gz')
     if not path.exists():
         return {'source': source, 'checked_utc': now.isoformat(), 'status': 'MISSING'}
     data = path.read_bytes()
+    meta = json.loads((root/'feeds'/(source+'.json')).read_text(encoding='utf-8'))
+    if (meta.get('label') != source or meta.get('sha256') != hashlib.sha256(data).hexdigest()
+            or meta.get('size_bytes') != len(data)):
+        raise ValueError('Published label, SHA256 or size mismatch')
     report = analyze(path, source, now)
+    if (meta.get('channels') != report['channels'] or meta.get('programmes') != report['programmes']
+            or report['invalid_dates']):
+        raise ValueError('Published XMLTV counts or dates invalid')
     xml = ET.fromstring(gzip.decompress(data))
     ends = [parse_time(p.get('stop')) for p in xml.findall('programme')]
     ends = [x for x in ends if x and x > now]

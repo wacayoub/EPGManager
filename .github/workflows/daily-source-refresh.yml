@@ -45,3 +45,4 @@ jobs:
     uses: ./.github/workflows/verify-source-refresh.yml
     with:
       source: ${{ inputs.source }}
+      expected_run_id: ${{ github.run_id }}

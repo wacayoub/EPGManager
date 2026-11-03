@@ -1,0 +1,36 @@
+name: Refresh and verify all 14 EPG sources
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: recover-all-epg-sources
+  cancel-in-progress: false
+jobs:
+  refresh:
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        source: [morocco, alkass, tabie, tunisiatv, aljazeera, dubaiplus, shahid, rotana, sport24, osn, bein, elcinema, starzplay, stctv]
+    uses: ./.github/workflows/refresh-source-core.yml
+    with:
+      source: ${{ matrix.source }}
+      scheduled: false
+    secrets: inherit
+  verify:
+    needs: refresh
+    if: always()
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        source: [morocco, alkass, tabie, tunisiatv, aljazeera, dubaiplus, shahid, rotana, sport24, osn, bein, elcinema, starzplay, stctv]
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: ${{ matrix.source }}
+      expected_run_id: ${{ github.run_id }}
+  source_aggregate:
+    needs: [refresh, verify]
+    if: always()
+    uses: ./.github/workflows/rebuild-mena-derived.yml

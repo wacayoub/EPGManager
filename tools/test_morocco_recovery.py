@@ -133,10 +133,12 @@ class MoroccoRecovery(unittest.TestCase):
         self.assertEqual(doc['on']['schedule'],[{'cron':'7 7 * * *','timezone':'Etc/GMT'}])
         self.assertNotIn('push',doc['on']); self.assertIn('workflow_dispatch',doc['on'])
 
-    def test_only_morocco_is_separated_from_shared_source_queue(self):
+    def test_each_provider_has_its_own_queue_and_elcinema_donors_share_only_elcinema(self):
         core=yaml.load((ROOT/'.github/workflows/refresh-source-core.yml').read_text(),Loader=yaml.BaseLoader)
-        self.assertEqual(core['concurrency']['group'],"${{ inputs.source == 'morocco' && 'epg-morocco-source-publish' || 'epg-source-publish' }}")
+        self.assertEqual(core['concurrency']['group'],'epg-source-${{ inputs.source }}')
         self.assertEqual(core['concurrency']['cancel-in-progress'],'false')
+        donor=yaml.load((ROOT/'.github/workflows/elcinema-daily-donors.yml').read_text(),Loader=yaml.BaseLoader)
+        self.assertEqual(donor['concurrency']['group'],'epg-source-elcinema')
 
     def test_manual_retry_does_not_fabricate_schedule_lateness(self):
         result=observation('workflow_dispatch',datetime(2026,10,31,14,tzinfo=timezone.utc))
