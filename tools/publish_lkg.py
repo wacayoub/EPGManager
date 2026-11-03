@@ -14,6 +14,7 @@ from pathlib import Path
 import gzip
 import hashlib
 import json
+import os
 import re
 import shutil
 import xml.etree.ElementTree as ET
@@ -303,6 +304,8 @@ selected_sources = [args.source] if args.source else list(POLICY)
 
 result = {
     "generated_utc": datetime.now(timezone.utc).isoformat(),
+    "github_run_id": os.environ.get("GITHUB_RUN_ID", ""),
+    "github_run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT", ""),
     "sources": {},
 }
 

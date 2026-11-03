@@ -6,6 +6,10 @@ on:
       source:
         required: true
         type: string
+      expected_run_id:
+        required: false
+        type: string
+        default: ''
 
 permissions:
   contents: read
@@ -35,6 +39,9 @@ jobs:
               raise SystemExit(f"Missing publish report: {report}")
 
           data = json.loads(report.read_text(encoding="utf-8"))
+          expected_run = "${{ inputs.expected_run_id }}"
+          if expected_run and str(data.get("github_run_id", "")) != expected_run:
+              raise SystemExit(f"{source}: report is from a different workflow run")
           row = (data.get("sources") or {}).get(source) or {}
           generated = data.get("generated_utc")
           published = row.get("published") is True
