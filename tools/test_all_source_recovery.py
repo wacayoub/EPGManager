@@ -75,7 +75,7 @@ class AllSourceRecovery(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp)
             (root/'tools').mkdir()
-            for name in ('source_feed_pack.py','programme_authenticity.py'):
+            for name in ('source_feed_pack.py','programme_authenticity.py','source_timeline.py'):
                 shutil.copyfile(ROOT/'tools'/name,root/'tools'/name)
             sample(root/'fixture.xml.gz')
             (root/'fixture.xml').write_bytes(gzip.decompress((root/'fixture.xml.gz').read_bytes()))

@@ -29,7 +29,9 @@ Validation includes:
 
 ## Schedule
 All automatic source schedules use **Morocco local time** (`timezone: Africa/Casablanca`), once daily.
-The civil clock follows seasonal and Ramadan changes. The schedule policy is
+Schedules follow the civil clock. Morocco's current legal offset is GMT since
+20 September 2026, as confirmed by the [official government notice](https://www.cg.gov.ma/fr/node/13036).
+Keep runtime timezone data current. The schedule policy is
 `config/source-schedules.json`; workflow verification rejects policy drift. Times below are requested start times,
 not publication deadlines: GitHub may delay a scheduled workflow.
 
@@ -72,6 +74,8 @@ one refresh and exact-run publication verification before the next source.
 
 Source collection success does not certify complete guide coverage. Consult
 [the per-source review](PER_SOURCE_SCHEDULE_AUDIT_20261103.md) for individual gaps.
+The [source cleanup](SOURCE_CLEANUP_20261103.md) records the full current audit,
+parser corrections and remaining unresolved overlaps.
 Receiver release remains **NO_GO**; the diagnostic aggregate does not certify
 canonical receiver IDs, premium/MENA splitting, hardware validation or import authorization.
 

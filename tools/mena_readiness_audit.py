@@ -156,6 +156,7 @@ def audit(derived_feed, derived_metadata, routing_report, feed_dir, now=None):
             "actual_programmes": programme_counts[cid],
             "actual_future_programmes": future_counts[cid],
             "editorial_review_programmes": editorial_ids[cid],
+            "selected_source_overlap_rows": chosen_item.get('overlapping_programmes',0),
             "suspected_placeholder": bool(chosen_item.get("suspected_placeholder")),
             "selected_source_reported_future_programmes":
                 chosen_item.get("future_programmes", 0),

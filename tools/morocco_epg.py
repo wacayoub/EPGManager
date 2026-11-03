@@ -1214,11 +1214,21 @@ def _telerama_detail_desc(h,href,title=""):
 def parse_2m(h,text,day,detail_cache=None):
  soup=BeautifulSoup(text,"lxml");out=[];seen=set()
  if detail_cache is None:detail_cache={}
+ cards=soup.select('.tv-grid__card-container-left--channel a.js-tv-grid-card') or soup.find_all('a')
+ clocks=[]
+ for a in cards:
+  match=re.search(r'(?<!\d)([0-2]?\d)h([0-5]\d)(?!\d)',a.get_text(' ',strip=True))
+  if match and int(match.group(1))<24:clocks.append((a,int(match.group(1))*60+int(match.group(2))))
+ # The dated grid includes the previous evening's carry-in before the first
+ # early-morning row. Assign only that leading segment to the previous day.
+ rollover=next((i for i in range(1,len(clocks)) if clocks[0][1]>=18*60
+                and clocks[i-1][1]-clocks[i][1]>=12*60 and clocks[i][1]<=6*60),0)
+ previous_day_cards={id(a) for a,_ in clocks[:rollover]}
  cats=("Magazine sportif","Documentaire de société","Magazine d'information",
        "Magazine de services","Magazine de société","Magazine culturel",
        "Série dramatique","Série sentimentale","Divertissement","Documentaire",
        "Feuilleton","Magazine","Journal","Météo","Débat","Théâtre","Film","Série")
- for a in soup.find_all("a"):
+ for a in cards:
   parts=[clean(x) for x in a.stripped_strings if clean(x)]
   raw=clean(" ".join(parts))
   m=re.search(r"(?<!\d)([0-2]?\d)h([0-5]\d)(?!\d)",raw)
@@ -1232,14 +1242,16 @@ def parse_2m(h,text,day,detail_cache=None):
     title=clean(prefix[len(cat):])
     break
   if not title or len(title)>120 or re.fullmatch(r"[0-2]?\d[h:]?[0-5]\d",title):continue
-  k=("%02d:%02d"%(int(m.group(1)),int(m.group(2))),title.casefold())
+  hr,mi=int(m.group(1)),int(m.group(2))
+  if hr>23:continue
+  broadcast_day=day-timedelta(days=1) if id(a) in previous_day_cards else day
+  k=(broadcast_day,hr,mi,title.casefold())
   if k in seen:continue
   seen.add(k)
-  hr,mi=int(m.group(1)),int(m.group(2))
   # Telerama's 2M grid is published one hour ahead of the actual Morocco
   # broadcast clock. Keep a fixed -1h correction here; do NOT convert through
   # Europe/Paris, otherwise summer time would incorrectly shift 13:45 to 11:45.
-  source_dt=datetime.combine(day,dtime(hr,mi))-timedelta(hours=1)
+  source_dt=datetime.combine(broadcast_day,dtime(hr,mi))-timedelta(hours=1)
   start=morocco_wall_clock(source_dt.date(),source_dt.time())
 
   # Same Morocco Cloud 2M logic: normalized Arabic title + translated/normalized description.
@@ -1321,14 +1333,19 @@ def _parse_chada_piisas(text,day):
  # Piisas renders each schedule item as a list row. Parse DOM rows first,
  # then fall back to every text node / raw HTML so minor markup changes
  # do not zero the feed.
- candidates=[]
- for el in soup.find_all(["li","p","div","span","a"]):
+ candidates=[clean(el.get_text(' ',strip=True)) for el in soup.find_all('li')
+             if re.match(r'^\s*[0-2]?\d:[0-5]\d\s*(?:-|–|—)',el.get_text(' ',strip=True))]
+ # Structured rows are authoritative. The introductory prose also contains
+ # clocks ("01:00 avec...") and must never create extra programme titles.
+ fallback=[] if candidates else soup.find_all(["li","p","div","span","a"])
+ for el in fallback:
   t=clean(" ".join(el.stripped_strings))
   if t and re.search(r"\b[0-2]?\d:[0-5]\d\b",t):
    candidates.append(t)
- candidates.extend(clean(x) for x in soup.stripped_strings if x)
- candidates.append(clean(soup.get_text(" ",strip=True)))
- candidates.append(clean(re.sub(r"<[^>]+>"," ",text)))
+ if fallback:
+  candidates.extend(clean(x) for x in soup.stripped_strings if x)
+  candidates.append(clean(soup.get_text(" ",strip=True)))
+  candidates.append(clean(re.sub(r"<[^>]+>"," ",text)))
  rx=re.compile(r"(?<!\d)([0-2]?\d:[0-5]\d)\s*(?:-|–|—|:|\u00a0)*\s*([^|\n]+?)(?=(?:\s+[0-2]?\d:[0-5]\d\b)|$)")
  for cand in candidates:
   for m in rx.finditer(cand):
@@ -1660,7 +1677,8 @@ def select_groups(results,old,now=None,days=7):
 
 def main():
  ap=argparse.ArgumentParser();ap.add_argument("--output-dir",default="output");ap.add_argument("--previous",default="");ap.add_argument("--days",type=int,default=7);ap.add_argument("--arryadia-history",default="data/arryadia-history.json");ap.add_argument("--scheduled",action="store_true");a=ap.parse_args();now=datetime.now(TZ)
- if a.scheduled and now.hour not in (6,18):log("Schedule gate skip: local hour %02d"%now.hour);return 0
+ # The workflow owns the 07:07 Morocco-local schedule. Accept delayed jobs
+ # and legacy --scheduled callers; the old 06:00/18:00 gate skipped valid runs.
  a.days=min(7,max(1,a.days))
  outdir=Path(a.output_dir);outdir.mkdir(parents=True,exist_ok=True);old=previous(Path(a.previous)) if a.previous else [];results={};jobs={"snrt":lambda:scrape_snrt(a.days),"arryadia":lambda:scrape_arryadia(a.days,old,a.arryadia_history,outdir/"arryadia-source.json"),"2m":lambda:scrape_2m(a.days),"chada":lambda:scrape_chada(a.days),"medi1":lambda:scrape_medi1(a.days)}
  with ThreadPoolExecutor(max_workers=4) as ex:

@@ -13,10 +13,12 @@ import xml.etree.ElementTree as ET
 try:
     from tools.programme_authenticity import clean_programme
     from tools.source_feed_pack import parse_xmltv_dt
+    from tools.source_timeline import same_start_duplicates
     from tools import audit_source_quality, validate_48h
 except ModuleNotFoundError:
     from programme_authenticity import clean_programme
     from source_feed_pack import parse_xmltv_dt
+    from source_timeline import same_start_duplicates
     import audit_source_quality, validate_48h
 
 
@@ -67,17 +69,25 @@ def clean_payload(source, raw, metadata, expected_sha, now=None):
         active.add(cid)
         if start <= now < stop:
             current.add(cid)
+    _, duplicates = same_start_duplicates(root.findall('programme'), parse_xmltv_dt)
+    duplicate_ids = Counter()
+    for event in duplicates:
+        duplicate_ids[event.get('channel')] += 1
+        removed[event.get('channel')] += 1
+        root.remove(event)
     # Serialization alone is never a reason to republish an unchanged source.
     changed = bool(removed or removed_desc or removed_titles)
     new_raw = gzip.compress(ET.tostring(root, encoding='utf-8', xml_declaration=True), compresslevel=9, mtime=0) if changed else raw
     new_meta = dict(metadata)
     report = {
-        'source': source, 'operation': 'remove_only_explicit_filler_and_unavailable_descriptions',
+        'source': source, 'operation': 'remove_explicit_filler_unavailable_descriptions_and_same_start_duplicates',
         'input_sha256': digest, 'output_sha256': hashlib.sha256(new_raw).hexdigest(),
         'preserved_generated_utc': metadata['generated_utc'], 'repacked_utc': now.isoformat(),
         'removed_programmes': sum(removed.values()), 'removed_by_id': dict(sorted(removed.items())),
         'removed_unavailable_descriptions': removed_desc,
         'removed_placeholder_title_nodes': removed_titles,
+        'removed_same_start_duplicates': len(duplicates),
+        'same_start_duplicates_by_id': dict(sorted(duplicate_ids.items())),
         'original_programmes': len(events), 'remaining_programmes': len(root.findall('programme')),
         'catalogue_ids_preserved': ids, 'fabricated_programmes': 0,
         'receiver_modified': False, 'changed': changed,

@@ -103,11 +103,20 @@ def analyze(path, source, now):
             bad_channels[cid] += 1
     end_window = now + timedelta(hours=48)
     holes = {}
+    overlaps = {}
     short = []
     occasional_without_events = []
     occasional_with_short_or_gap = []
     for cid in names:
         intervals = sorted(by_id.get(cid, []))
+        previous_stop = None
+        count = 0
+        for start, stop in intervals:
+            if previous_stop is not None and start < previous_stop:
+                count += 1
+            previous_stop = max(previous_stop, stop) if previous_stop else stop
+        if count:
+            overlaps[cid] = count
         cursor = now
         gap = timedelta()
         for start, stop in intervals:
@@ -143,6 +152,8 @@ def analyze(path, source, now):
         "channels_without_future_epg": [cid for cid in names if not future_counts.get(cid)],
         "channels_with_shorter_than_24h": sorted(short),
         "channels_with_internal_gap_over_90min": holes,
+        "channels_with_overlapping_programmes": overlaps,
+        "future_programmes_overlapping_previous": sum(overlaps.values()),
         "future_programmes_without_description": missing_desc,
         "future_programmes_with_unavailable_description": placeholder_desc,
         "future_programmes_with_placeholder_or_channel_title": placeholder_title,
@@ -161,7 +172,7 @@ def analyze(path, source, now):
         "invalid_dates": invalid_dates,
     }
     result["quality_status"] = (
-        "WARN" if (short or holes or bad_channels or invalid_dates or sum(viewer_counts.values()) or sum(smart_counts.values())) else "PASS"
+        "WARN" if (short or holes or overlaps or bad_channels or invalid_dates or sum(viewer_counts.values()) or sum(smart_counts.values())) else "PASS"
     )
     return result
 

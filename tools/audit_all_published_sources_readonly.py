@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Read-only verification of EVERY published direct source in EPG-Scrapers.
+"""Read-only verification of EVERY published direct source in EPGManager.
 
 Assesses public XMLTV checksums, report cohorts, stale publications,
 missing per-ID EPG, and flagged placeholder-looking content. No network, no
@@ -24,7 +24,7 @@ COHORT_SECONDS = 15 * 60
 MAX_GZIP_BYTES = 12 * 1024 * 1024
 HARD = frozenset(("MISSING_REPORT", "INVALID_PUBLIC_METADATA", "GZIP_SHA_MISMATCH",
                   "STALE_PUBLISHED_DATA", "OUT_OF_COHORT_REPORT", "BAD_REPORT_SOURCE"))
-RISK = frozenset(("ZERO_EPG_IDS", "48H_FAILED_IDS", "SUSPECT_PLACEHOLDER_IDS",
+RISK = frozenset(("ZERO_EPG_IDS", "48H_FAILED_IDS", "SUSPECT_PLACEHOLDER_IDS", "OVERLAPPING_PROGRAMMES",
                   "MISSING_DESCRIPTIONS", "SHORT_48H_COVERAGE"))
 
 
@@ -63,6 +63,7 @@ def assess(source, root, now):
         "published_age_hours": None, "feed_sha256_matches": None,
         "audit_status": "UNVERIFIED", "quality_status": "UNVERIFIED",
         "programme_provenance_certified": False,
+        "future_programmes_overlapping_previous": None,
         "receiver_cache_validated": False,
     }
     base = root / "feeds" / source
@@ -146,6 +147,10 @@ def assess(source, root, now):
             row = match[0]
             result["audit_status"] = row.get("status", "UNVERIFIED")
             result["quality_status"] = quality.get("quality_status", "UNVERIFIED")
+            overlaps = quality.get('future_programmes_overlapping_previous')
+            result['future_programmes_overlapping_previous'] = overlaps
+            if isinstance(overlaps, int) and overlaps > 0:
+                flag('OVERLAPPING_PROGRAMMES')
             bad = int(row.get("failed_channels") or 0)
             warn = int(row.get("warning_channels") or 0)
             zeros = quality.get("channels_without_future_epg")
