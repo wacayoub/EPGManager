@@ -71,6 +71,9 @@ Every source records its target and observed job-setup delay in
 The obsolete 06:00 hour filter is removed so a delayed job can still collect.
 Use the manual **Collect and verify sources one by one** workflow to complete
 one refresh and exact-run publication verification before the next source.
+The [GitHub trigger audit](GITHUB_SOURCE_TRIGGERS_20261103.md) checks registration
+state and actual scheduled collection steps; missing or skipped evidence is
+reported explicitly. It runs in the daily watchdog without changing source hours.
 
 Source collection success does not certify complete guide coverage. Consult
 [the per-source review](PER_SOURCE_SCHEDULE_AUDIT_20261103.md) for individual gaps.

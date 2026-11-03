@@ -17,6 +17,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -163,6 +164,22 @@ jobs:
         run: |
           gh workflow run rebuild-mena-derived.yml --repo "$GITHUB_REPOSITORY" --ref main
 
+      # Run after reconstruction: unavailable trigger diagnostics must not stop
+      # a valid MENA rebuild, but must remain visible as a failed audit.
+      - name: Audit source workflow registrations and actual collection steps
+        id: triggers
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/workflow_trigger_audit.py --output output/watchdog-trigger-health.json --github-output "$GITHUB_OUTPUT"
+
+      - name: Save watchdog diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-trigger-diagnostics-${{ github.run_id }}
+          path: output/watchdog-*.json
+          retention-days: 7
+
       - name: Watchdog summary
         if: always()
         shell: bash
@@ -170,6 +187,7 @@ jobs:
           {
             echo "## EPG watchdog"
             echo "- Status: ${{ steps.health.outputs.status }}"
+            echo "- Source trigger audit: ${{ steps.triggers.outputs.trigger_status }}"
             echo "- Published guides requiring review now: ${{ steps.health.outputs.degraded_guides }}"
             echo "- Fresh sources: ${{ steps.health.outputs.fresh_sources }}"
             echo "- LKG accepted today: ${{ steps.health.outputs.lkg_sources }}"
