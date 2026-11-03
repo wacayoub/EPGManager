@@ -11,27 +11,27 @@
     "DEGRADED_SOURCE_GUIDES",
     "VUPLUS_XML_SIZE_EXCEEDS_BUDGET"
   ],
-  "xml_size_bytes": 13853420,
+  "xml_size_bytes": 13894345,
   "vuplus_xml_budget_bytes": 12582912,
-  "checked_utc": "2026-11-03T10:33:03.660017+00:00",
-  "source_generated_utc": "2026-11-03T10:33:03.242859+00:00",
+  "checked_utc": "2026-11-03T10:56:52.713890+00:00",
+  "source_generated_utc": "2026-11-03T10:56:52.426293+00:00",
   "status": "READY_WITH_WARNINGS",
   "structural_errors": [],
   "warnings": [
     "MENA_HAS_UNQUALIFIED_OR_EMPTY_GUIDES"
   ],
   "channels": 514,
-  "programmes": 30166,
+  "programmes": 30237,
   "orphan_programmes": 0,
   "exact_duplicate_programmes": 0,
   "invalid_programme_times": 0,
   "source_manifest_sha256_match": true,
   "verified_source_count": 14,
-  "mena_sha256": "c876b00a79bf634a5ef659952213df63762868b6a0e84683978e6a8e6e105ce2",
+  "mena_sha256": "8ff99235daf8e2fd21daf73747df420714aacf5dac775115b84007cde04671db",
   "selected_statuses": {
-    "DEGRADED_WITH_EPG": 96,
+    "DEGRADED_WITH_EPG": 98,
     "QUALIFIED_AT_BUILD": 366,
-    "NO_FUTURE_EPG": 52
+    "NO_FUTURE_EPG": 50
   },
   "selected_roles": {
     "MAIN": 265,
@@ -60,7 +60,8 @@
     "no_future_epg_is_never_green": true,
     "main_role_does_not_imply_high_quality": true,
     "keep_empty_ids_visible_for_saved_mapping": true,
-    "no_synthetic_programmes": true,
+    "unlabelled_synthetic_programmes_allowed": false,
+    "user_authorized_hd2_hd3_recurring_schedule": "labelled and editorial review required",
     "release_blocking": "structural_integrity_only",
     "editorial_warnings_explicit": true,
     "enigma2_receiver_validated": false
@@ -209,10 +210,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 29,
-      "actual_future_programmes": 27,
+      "actual_future_programmes": 26,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 27,
+      "selected_source_reported_future_programmes": 26,
       "candidate_sources": [
         "shahid"
       ]
@@ -523,10 +524,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 57,
-      "actual_future_programmes": 54,
+      "actual_future_programmes": 53,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 54,
+      "selected_source_reported_future_programmes": 53,
       "candidate_sources": [
         "elcinema"
       ]
@@ -595,10 +596,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 25,
-      "actual_future_programmes": 20,
+      "actual_future_programmes": 19,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 20,
+      "selected_source_reported_future_programmes": 19,
       "candidate_sources": [
         "aljazeera",
         "bein"
@@ -929,10 +930,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 61,
-      "actual_future_programmes": 55,
+      "actual_future_programmes": 54,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 55,
+      "selected_source_reported_future_programmes": 54,
       "candidate_sources": [
         "osn"
       ]
@@ -1019,10 +1020,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 15,
-      "actual_future_programmes": 11,
+      "actual_future_programmes": 10,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 9,
+      "selected_source_reported_future_programmes": 8,
       "candidate_sources": [
         "shahid",
         "elcinema"
@@ -1267,15 +1268,15 @@
       "owner": "morocco",
       "selected_role": "MAIN",
       "selection_reason": "degraded_best_available",
-      "status": "NO_FUTURE_EPG",
+      "status": "DEGRADED_WITH_EPG",
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 0,
-      "actual_future_programmes": 0,
-      "editorial_review_programmes": 0,
+      "actual_programmes": 49,
+      "actual_future_programmes": 49,
+      "editorial_review_programmes": 49,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 0,
+      "selected_source_reported_future_programmes": 49,
       "candidate_sources": [
         "morocco"
       ]
@@ -1285,15 +1286,15 @@
       "owner": "morocco",
       "selected_role": "MAIN",
       "selection_reason": "degraded_best_available",
-      "status": "NO_FUTURE_EPG",
+      "status": "DEGRADED_WITH_EPG",
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 0,
-      "actual_future_programmes": 0,
-      "editorial_review_programmes": 0,
+      "actual_programmes": 49,
+      "actual_future_programmes": 49,
+      "editorial_review_programmes": 49,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 0,
+      "selected_source_reported_future_programmes": 49,
       "candidate_sources": [
         "morocco"
       ]
@@ -1326,10 +1327,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 100,
-      "actual_future_programmes": 96,
+      "actual_future_programmes": 95,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 96,
+      "selected_source_reported_future_programmes": 95,
       "candidate_sources": [
         "shahid"
       ]
@@ -1363,10 +1364,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 103,
-      "actual_future_programmes": 98,
+      "actual_future_programmes": 97,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 98,
+      "selected_source_reported_future_programmes": 97,
       "candidate_sources": [
         "shahid"
       ]
@@ -1399,10 +1400,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 65,
-      "actual_future_programmes": 61,
+      "actual_future_programmes": 60,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 61,
+      "selected_source_reported_future_programmes": 60,
       "candidate_sources": [
         "shahid"
       ]
@@ -1437,10 +1438,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 223,
-      "actual_future_programmes": 198,
+      "actual_future_programmes": 195,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 198,
+      "selected_source_reported_future_programmes": 195,
       "candidate_sources": [
         "bein"
       ]
@@ -2215,10 +2216,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 48,
-      "actual_future_programmes": 43,
+      "actual_future_programmes": 42,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 43,
+      "selected_source_reported_future_programmes": 42,
       "candidate_sources": [
         "bein"
       ]
@@ -2269,10 +2270,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 283,
-      "actual_future_programmes": 269,
+      "actual_future_programmes": 267,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 269,
+      "selected_source_reported_future_programmes": 267,
       "candidate_sources": [
         "bein"
       ]
@@ -2363,10 +2364,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 255,
-      "actual_future_programmes": 241,
+      "actual_future_programmes": 239,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 241,
+      "selected_source_reported_future_programmes": 239,
       "candidate_sources": [
         "osn"
       ]
@@ -2543,10 +2544,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 16,
-      "actual_future_programmes": 13,
+      "actual_future_programmes": 12,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 13,
+      "selected_source_reported_future_programmes": 12,
       "candidate_sources": [
         "bein"
       ]
@@ -2635,10 +2636,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 66,
-      "actual_future_programmes": 62,
+      "actual_future_programmes": 61,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 62,
+      "selected_source_reported_future_programmes": 61,
       "candidate_sources": [
         "osn",
         "elcinema"
@@ -2730,10 +2731,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 42,
-      "actual_future_programmes": 42,
+      "actual_future_programmes": 41,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 42,
+      "selected_source_reported_future_programmes": 41,
       "candidate_sources": [
         "dubaiplus",
         "stctv"
@@ -2954,10 +2955,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 789,
-      "actual_future_programmes": 739,
+      "actual_future_programmes": 734,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 739,
+      "selected_source_reported_future_programmes": 734,
       "candidate_sources": [
         "shahid"
       ]
@@ -3010,10 +3011,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 31,
-      "actual_future_programmes": 30,
+      "actual_future_programmes": 29,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 30,
+      "selected_source_reported_future_programmes": 29,
       "candidate_sources": [
         "shahid",
         "starzplay"
@@ -3355,10 +3356,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 178,
-      "actual_future_programmes": 164,
+      "actual_future_programmes": 163,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 164,
+      "selected_source_reported_future_programmes": 163,
       "candidate_sources": [
         "bein"
       ]
@@ -3502,10 +3503,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 61,
-      "actual_future_programmes": 57,
+      "actual_future_programmes": 56,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 57,
+      "selected_source_reported_future_programmes": 56,
       "candidate_sources": [
         "shahid"
       ]
@@ -3520,10 +3521,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 56,
-      "actual_future_programmes": 54,
+      "actual_future_programmes": 53,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 54,
+      "selected_source_reported_future_programmes": 53,
       "candidate_sources": [
         "elcinema"
       ]
@@ -3556,10 +3557,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 66,
-      "actual_future_programmes": 64,
+      "actual_future_programmes": 63,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 64,
+      "selected_source_reported_future_programmes": 63,
       "candidate_sources": [
         "shahid",
         "osn",
@@ -3595,10 +3596,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 69,
-      "actual_future_programmes": 66,
+      "actual_future_programmes": 65,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 66,
+      "selected_source_reported_future_programmes": 65,
       "candidate_sources": [
         "shahid"
       ]
@@ -3633,10 +3634,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 214,
-      "actual_future_programmes": 199,
+      "actual_future_programmes": 198,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 198,
+      "selected_source_reported_future_programmes": 197,
       "candidate_sources": [
         "shahid",
         "osn",
@@ -3654,10 +3655,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 221,
-      "actual_future_programmes": 206,
+      "actual_future_programmes": 205,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 206,
+      "selected_source_reported_future_programmes": 205,
       "candidate_sources": [
         "shahid"
       ]
@@ -3672,10 +3673,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 96,
-      "actual_future_programmes": 91,
+      "actual_future_programmes": 90,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 90,
+      "selected_source_reported_future_programmes": 89,
       "candidate_sources": [
         "shahid",
         "elcinema",
@@ -3692,10 +3693,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 96,
-      "actual_future_programmes": 92,
+      "actual_future_programmes": 91,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 92,
+      "selected_source_reported_future_programmes": 91,
       "candidate_sources": [
         "shahid",
         "osn",
@@ -3732,10 +3733,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 66,
-      "actual_future_programmes": 61,
+      "actual_future_programmes": 60,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 60,
+      "selected_source_reported_future_programmes": 59,
       "candidate_sources": [
         "shahid",
         "elcinema",
@@ -3829,10 +3830,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 44,
-      "actual_future_programmes": 42,
+      "actual_future_programmes": 41,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 42,
+      "selected_source_reported_future_programmes": 41,
       "candidate_sources": [
         "stctv"
       ]
@@ -3847,10 +3848,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 84,
-      "actual_future_programmes": 79,
+      "actual_future_programmes": 78,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 79,
+      "selected_source_reported_future_programmes": 78,
       "candidate_sources": [
         "shahid",
         "osn",
@@ -3964,10 +3965,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 82,
-      "actual_future_programmes": 77,
+      "actual_future_programmes": 76,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 77,
+      "selected_source_reported_future_programmes": 76,
       "candidate_sources": [
         "shahid"
       ]
@@ -4093,10 +4094,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 98,
-      "actual_future_programmes": 93,
+      "actual_future_programmes": 92,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 93,
+      "selected_source_reported_future_programmes": 92,
       "candidate_sources": [
         "osn"
       ]
@@ -4111,10 +4112,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 79,
-      "actual_future_programmes": 75,
+      "actual_future_programmes": 74,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 75,
+      "selected_source_reported_future_programmes": 74,
       "candidate_sources": [
         "osn"
       ]
@@ -4257,10 +4258,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 71,
-      "actual_future_programmes": 68,
+      "actual_future_programmes": 67,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 68,
+      "selected_source_reported_future_programmes": 67,
       "candidate_sources": [
         "starzplay",
         "elcinema",
@@ -4313,10 +4314,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 144,
-      "actual_future_programmes": 133,
+      "actual_future_programmes": 132,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 133,
+      "selected_source_reported_future_programmes": 132,
       "candidate_sources": [
         "osn"
       ]
@@ -4331,10 +4332,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 171,
-      "actual_future_programmes": 161,
+      "actual_future_programmes": 160,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 161,
+      "selected_source_reported_future_programmes": 160,
       "candidate_sources": [
         "osn"
       ]
@@ -4349,10 +4350,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 157,
-      "actual_future_programmes": 147,
+      "actual_future_programmes": 145,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 147,
+      "selected_source_reported_future_programmes": 145,
       "candidate_sources": [
         "osn"
       ]
@@ -4421,10 +4422,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 92,
-      "actual_future_programmes": 85,
+      "actual_future_programmes": 84,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 85,
+      "selected_source_reported_future_programmes": 84,
       "candidate_sources": [
         "osn",
         "elcinema",
@@ -4585,10 +4586,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 72,
-      "actual_future_programmes": 67,
+      "actual_future_programmes": 66,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 67,
+      "selected_source_reported_future_programmes": 66,
       "candidate_sources": [
         "osn"
       ]
@@ -4657,10 +4658,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 107,
-      "actual_future_programmes": 104,
+      "actual_future_programmes": 103,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 104,
+      "selected_source_reported_future_programmes": 103,
       "candidate_sources": [
         "osn",
         "stctv"
@@ -4676,10 +4677,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 107,
-      "actual_future_programmes": 100,
+      "actual_future_programmes": 99,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 100,
+      "selected_source_reported_future_programmes": 99,
       "candidate_sources": [
         "osn"
       ]
@@ -4730,10 +4731,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 164,
-      "actual_future_programmes": 153,
+      "actual_future_programmes": 151,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 153,
+      "selected_source_reported_future_programmes": 151,
       "candidate_sources": [
         "osn"
       ]
@@ -4766,10 +4767,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 161,
-      "actual_future_programmes": 156,
+      "actual_future_programmes": 154,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 156,
+      "selected_source_reported_future_programmes": 154,
       "candidate_sources": [
         "osn"
       ]
@@ -4787,7 +4788,7 @@
       "actual_future_programmes": 141,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 142,
+      "selected_source_reported_future_programmes": 141,
       "candidate_sources": [
         "osn"
       ]
@@ -4838,10 +4839,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 254,
-      "actual_future_programmes": 241,
+      "actual_future_programmes": 240,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 241,
+      "selected_source_reported_future_programmes": 240,
       "candidate_sources": [
         "osn"
       ]
@@ -4910,10 +4911,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 30,
-      "actual_future_programmes": 28,
+      "actual_future_programmes": 27,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 28,
+      "selected_source_reported_future_programmes": 27,
       "candidate_sources": [
         "osn"
       ]
@@ -5018,10 +5019,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 99,
-      "actual_future_programmes": 95,
+      "actual_future_programmes": 94,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 95,
+      "selected_source_reported_future_programmes": 94,
       "candidate_sources": [
         "osn"
       ]
@@ -5054,10 +5055,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 75,
-      "actual_future_programmes": 71,
+      "actual_future_programmes": 70,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 71,
+      "selected_source_reported_future_programmes": 70,
       "candidate_sources": [
         "osn"
       ]
@@ -5072,10 +5073,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 60,
-      "actual_future_programmes": 56,
+      "actual_future_programmes": 55,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 56,
+      "selected_source_reported_future_programmes": 55,
       "candidate_sources": [
         "osn"
       ]
@@ -5108,10 +5109,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 66,
-      "actual_future_programmes": 62,
+      "actual_future_programmes": 61,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 62,
+      "selected_source_reported_future_programmes": 61,
       "candidate_sources": [
         "osn"
       ]
@@ -5144,10 +5145,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 60,
-      "actual_future_programmes": 56,
+      "actual_future_programmes": 55,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 56,
+      "selected_source_reported_future_programmes": 55,
       "candidate_sources": [
         "osn"
       ]
@@ -5180,10 +5181,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 69,
-      "actual_future_programmes": 64,
+      "actual_future_programmes": 63,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 64,
+      "selected_source_reported_future_programmes": 63,
       "candidate_sources": [
         "tabie",
         "elcinema"
@@ -5217,10 +5218,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 528,
-      "actual_future_programmes": 497,
+      "actual_future_programmes": 492,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 497,
+      "selected_source_reported_future_programmes": 492,
       "candidate_sources": [
         "shahid"
       ]
@@ -5527,10 +5528,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 67,
-      "actual_future_programmes": 66,
+      "actual_future_programmes": 65,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 65,
+      "selected_source_reported_future_programmes": 64,
       "candidate_sources": [
         "dubaiplus",
         "elcinema",
@@ -5602,10 +5603,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 166,
-      "actual_future_programmes": 153,
+      "actual_future_programmes": 150,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 153,
+      "selected_source_reported_future_programmes": 150,
       "candidate_sources": [
         "shahid"
       ]
@@ -5638,10 +5639,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 108,
-      "actual_future_programmes": 100,
+      "actual_future_programmes": 99,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 100,
+      "selected_source_reported_future_programmes": 99,
       "candidate_sources": [
         "shahid"
       ]
@@ -5692,10 +5693,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 87,
-      "actual_future_programmes": 82,
+      "actual_future_programmes": 81,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 82,
+      "selected_source_reported_future_programmes": 81,
       "candidate_sources": [
         "shahid"
       ]
@@ -5710,10 +5711,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 80,
-      "actual_future_programmes": 76,
+      "actual_future_programmes": 75,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 76,
+      "selected_source_reported_future_programmes": 75,
       "candidate_sources": [
         "shahid"
       ]
@@ -5728,10 +5729,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 99,
-      "actual_future_programmes": 92,
+      "actual_future_programmes": 91,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 92,
+      "selected_source_reported_future_programmes": 91,
       "candidate_sources": [
         "shahid"
       ]
@@ -5746,10 +5747,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 63,
-      "actual_future_programmes": 59,
+      "actual_future_programmes": 58,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 59,
+      "selected_source_reported_future_programmes": 58,
       "candidate_sources": [
         "shahid"
       ]
@@ -5782,10 +5783,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 80,
-      "actual_future_programmes": 75,
+      "actual_future_programmes": 74,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 75,
+      "selected_source_reported_future_programmes": 74,
       "candidate_sources": [
         "shahid"
       ]
@@ -5878,10 +5879,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 16,
-      "actual_future_programmes": 15,
+      "actual_future_programmes": 13,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 15,
+      "selected_source_reported_future_programmes": 13,
       "candidate_sources": [
         "sport24"
       ]
@@ -5953,10 +5954,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 7,
-      "actual_future_programmes": 6,
+      "actual_future_programmes": 5,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 6,
+      "selected_source_reported_future_programmes": 5,
       "candidate_sources": [
         "bein",
         "elcinema"
@@ -5990,10 +5991,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 50,
-      "actual_future_programmes": 49,
+      "actual_future_programmes": 48,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 49,
+      "selected_source_reported_future_programmes": 48,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6008,10 +6009,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 72,
-      "actual_future_programmes": 69,
+      "actual_future_programmes": 68,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 69,
+      "selected_source_reported_future_programmes": 68,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6044,10 +6045,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 77,
-      "actual_future_programmes": 71,
+      "actual_future_programmes": 70,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 71,
+      "selected_source_reported_future_programmes": 70,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6353,10 +6354,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 143,
-      "actual_future_programmes": 135,
+      "actual_future_programmes": 134,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 135,
+      "selected_source_reported_future_programmes": 134,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6498,10 +6499,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 234,
-      "actual_future_programmes": 221,
+      "actual_future_programmes": 220,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 221,
+      "selected_source_reported_future_programmes": 220,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6516,10 +6517,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 464,
-      "actual_future_programmes": 441,
+      "actual_future_programmes": 437,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 441,
+      "selected_source_reported_future_programmes": 437,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6534,10 +6535,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 439,
-      "actual_future_programmes": 416,
+      "actual_future_programmes": 412,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 416,
+      "selected_source_reported_future_programmes": 412,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6642,10 +6643,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 305,
-      "actual_future_programmes": 290,
+      "actual_future_programmes": 287,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 290,
+      "selected_source_reported_future_programmes": 287,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6660,10 +6661,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 186,
-      "actual_future_programmes": 174,
+      "actual_future_programmes": 173,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 174,
+      "selected_source_reported_future_programmes": 173,
       "candidate_sources": [
         "starzplay"
       ]
@@ -7002,10 +7003,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 113,
-      "actual_future_programmes": 107,
+      "actual_future_programmes": 106,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 107,
+      "selected_source_reported_future_programmes": 106,
       "candidate_sources": [
         "starzplay"
       ]
@@ -7128,10 +7129,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 22,
-      "actual_future_programmes": 21,
+      "actual_future_programmes": 20,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 21,
+      "selected_source_reported_future_programmes": 20,
       "candidate_sources": [
         "starzplay"
       ]
@@ -7309,10 +7310,10 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 63,
-      "actual_future_programmes": 54,
+      "actual_future_programmes": 52,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 54,
+      "selected_source_reported_future_programmes": 52,
       "candidate_sources": [
         "starzplay"
       ]
@@ -7345,10 +7346,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 123,
-      "actual_future_programmes": 115,
+      "actual_future_programmes": 114,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 115,
+      "selected_source_reported_future_programmes": 114,
       "candidate_sources": [
         "starzplay"
       ]
@@ -7399,10 +7400,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 78,
-      "actual_future_programmes": 74,
+      "actual_future_programmes": 73,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 74,
+      "selected_source_reported_future_programmes": 73,
       "candidate_sources": [
         "starzplay"
       ]
@@ -7471,10 +7472,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 207,
-      "actual_future_programmes": 195,
+      "actual_future_programmes": 194,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 195,
+      "selected_source_reported_future_programmes": 194,
       "candidate_sources": [
         "starzplay"
       ]
@@ -7545,10 +7546,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 28,
-      "actual_future_programmes": 27,
+      "actual_future_programmes": 26,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 27,
+      "selected_source_reported_future_programmes": 26,
       "candidate_sources": [
         "starzplay",
         "stctv"
@@ -7583,10 +7584,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 138,
-      "actual_future_programmes": 131,
+      "actual_future_programmes": 130,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 130,
+      "selected_source_reported_future_programmes": 129,
       "candidate_sources": [
         "starzplay",
         "stctv"
@@ -7620,10 +7621,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 45,
-      "actual_future_programmes": 45,
+      "actual_future_programmes": 44,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 45,
+      "selected_source_reported_future_programmes": 44,
       "candidate_sources": [
         "starzplay"
       ]
@@ -7674,10 +7675,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 116,
-      "actual_future_programmes": 110,
+      "actual_future_programmes": 109,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 110,
+      "selected_source_reported_future_programmes": 109,
       "candidate_sources": [
         "starzplay"
       ]
@@ -7711,10 +7712,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 12,
-      "actual_future_programmes": 11,
+      "actual_future_programmes": 9,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 11,
+      "selected_source_reported_future_programmes": 9,
       "candidate_sources": [
         "starzplay",
         "stctv"
@@ -7767,10 +7768,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 91,
-      "actual_future_programmes": 87,
+      "actual_future_programmes": 86,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 87,
+      "selected_source_reported_future_programmes": 86,
       "candidate_sources": [
         "stctv"
       ]
@@ -7803,10 +7804,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 264,
-      "actual_future_programmes": 254,
+      "actual_future_programmes": 252,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 254,
+      "selected_source_reported_future_programmes": 252,
       "candidate_sources": [
         "stctv"
       ]
@@ -7857,10 +7858,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 64,
-      "actual_future_programmes": 62,
+      "actual_future_programmes": 61,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 62,
+      "selected_source_reported_future_programmes": 61,
       "candidate_sources": [
         "stctv"
       ]
@@ -7965,10 +7966,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 206,
-      "actual_future_programmes": 196,
+      "actual_future_programmes": 195,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 196,
+      "selected_source_reported_future_programmes": 195,
       "candidate_sources": [
         "stctv"
       ]
@@ -8019,10 +8020,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 96,
-      "actual_future_programmes": 94,
+      "actual_future_programmes": 93,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 94,
+      "selected_source_reported_future_programmes": 93,
       "candidate_sources": [
         "stctv"
       ]
@@ -8109,10 +8110,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 56,
-      "actual_future_programmes": 54,
+      "actual_future_programmes": 53,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 54,
+      "selected_source_reported_future_programmes": 53,
       "candidate_sources": [
         "stctv"
       ]
@@ -8289,10 +8290,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 168,
-      "actual_future_programmes": 162,
+      "actual_future_programmes": 161,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 162,
+      "selected_source_reported_future_programmes": 161,
       "candidate_sources": [
         "stctv"
       ]
@@ -8685,10 +8686,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 197,
-      "actual_future_programmes": 190,
+      "actual_future_programmes": 189,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 190,
+      "selected_source_reported_future_programmes": 189,
       "candidate_sources": [
         "stctv"
       ]
@@ -8757,10 +8758,10 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 82,
-      "actual_future_programmes": 80,
+      "actual_future_programmes": 79,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 80,
+      "selected_source_reported_future_programmes": 79,
       "candidate_sources": [
         "stctv"
       ]
@@ -9278,11 +9279,11 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 39,
-      "actual_future_programmes": 39,
+      "actual_programmes": 38,
+      "actual_future_programmes": 38,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 39,
+      "selected_source_reported_future_programmes": 38,
       "candidate_sources": [
         "tabie"
       ]
@@ -9296,11 +9297,11 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 491,
-      "actual_future_programmes": 491,
+      "actual_programmes": 465,
+      "actual_future_programmes": 464,
       "editorial_review_programmes": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 491,
+      "selected_source_reported_future_programmes": 465,
       "candidate_sources": [
         "tabie"
       ]
