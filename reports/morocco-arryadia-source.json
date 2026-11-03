@@ -1,6 +1,6 @@
 {
   "source": "arryadia",
-  "checked_utc": "2026-11-03T12:00:20.184591+00:00",
+  "checked_utc": "2026-11-03T12:21:19.283987+00:00",
   "scope": "official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format",
   "receiver_release_status": "NO_GO",
   "attempts": [
@@ -169,7 +169,7 @@
       }
     ],
     "simultaneous_matches_not_assigned": [],
-    "smart_recurring_programmes": 50,
+    "smart_recurring_programmes": 49,
     "official_broadcast_claim": false
   },
   "status": "ESTIMATED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID",
@@ -181,14 +181,32 @@
     "Arryadia_HD2",
     "Arryadia_HD3"
   ],
-  "smart_estimated_events": 59,
+  "smart_estimated_events": 58,
   "requested_window_hours": 168,
-  "output_events": 397,
+  "output_events": 396,
   "channel_counts": {
-    "Arryadia_HD": 59,
+    "Arryadia_HD": 58,
     "Arryadia_TNT": 0,
     "Arryadia_HD1": 0,
     "Arryadia_HD2": 169,
     "Arryadia_HD3": 169
+  },
+  "official_service_activation": {
+    "Arryadia_HD1": {
+      "status": "WAITING_FOR_OFFICIAL_EPG",
+      "official_future_programmes": 0,
+      "retained_exact_lkg": 0,
+      "service_scope": "explicit HD1 listings only",
+      "estimated_schedule_allowed": false,
+      "receiver_action": false
+    },
+    "Arryadia_TNT": {
+      "status": "WAITING_FOR_OFFICIAL_EPG",
+      "official_future_programmes": 0,
+      "retained_exact_lkg": 0,
+      "service_scope": "local terrestrial TNT; independent of satellite",
+      "estimated_schedule_allowed": false,
+      "receiver_action": false
+    }
   }
 }
