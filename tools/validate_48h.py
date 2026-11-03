@@ -20,7 +20,7 @@ except ModuleNotFoundError:
 DT_RE=re.compile(r"^(\d{14}|\d{12})(?:\s*([+-]\d{4}|Z))?$")
 
 PROFILES={
-    "morocco.xml.gz":{"target_hours":48.0,"min_hours":8.0,"gap_warn":90},
+    "morocco.xml.gz":{"target_hours":168.0,"min_hours":8.0,"gap_warn":90},
     "bein.xml.gz":{"target_hours":48.0,"min_hours":4.0,"gap_warn":90},
     "elcinema.xml.gz":{"target_hours":48.0,"min_hours":36.0,"gap_warn":90},
     "osn.xml.gz":{"target_hours":48.0,"min_hours":36.0,"gap_warn":90},

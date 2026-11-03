@@ -1275,12 +1275,12 @@ def parse_2m(h,text,day,detail_cache=None):
  return out
 
 def scrape_2m(days):
- # Strict receiver policy: publish only the next 48 hours.
- # We may need up to 3 calendar pages when the run starts late in the day,
- # but events beyond now+48h are never kept.
- h=Http();now=datetime.now(TZ);today=now.date();target=now+timedelta(hours=48);out=[];detail_cache={}
+ # Read available dated weekdays, at most one week; never repeat a week page.
+ days=min(7,max(1,int(days)))
+ h=Http();h.deadline=time.monotonic()+max(90,days*30)
+ now=datetime.now(TZ);today=now.date();target=now+timedelta(days=days);out=[];detail_cache={}
  weekdays=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"]
- page_days=(target.date()-today).days+1
+ page_days=days
  for i in range(page_days):
   d=today+timedelta(days=i)
   url="https://television.telerama.fr/chaine/2m-maroc" if i==0 else f"https://television.telerama.fr/programme-tv-{weekdays[d.weekday()]}/2m-maroc"
@@ -1295,7 +1295,7 @@ def scrape_2m(days):
       if ev.start < target and not ((ev.start,ev.title.casefold()) in seen or seen.add((ev.start,ev.title.casefold())))]
  infer(out)
  out=[ev for ev in out if ev.stop and ev.stop>now-timedelta(hours=2) and ev.start<target and ev.stop>ev.start and ev.stop-ev.start<=timedelta(hours=4)]
- log("2M strict 48h total: %d events; detail_pages=%d; cutoff=%s"%(len(out),len(detail_cache),target.isoformat()))
+ log("2M requested %dd total: %d events; detail_pages=%d; cutoff=%s"%(days,len(out),len(detail_cache),target.isoformat()))
  untranslated=[ev for ev in out if re.search(r"[A-Za-zÀ-ÿ]",re.sub(r"(?i)\b2M\b","",ev.title or ""))]
  log("2M Arabic title coverage: %d/%d; remaining_latin=%d"%(len(out)-len(untranslated),len(out),len(untranslated)))
  for ev in untranslated[:10]:log("2M untranslated title: %s"%ev.title)
@@ -1402,7 +1402,7 @@ def scrape_snrt(days):
   h=Http();r=h.get(url);soup=BeautifulSoup(r.text,"lxml");structured=[]
   visible=_snrt_visible_descs(soup);visible_used=defaultdict(int);visible_matches=0
   detail_cache={};detail_matches=0
-  now=datetime.now(TZ);detail_from=now-timedelta(hours=12);detail_until=now+timedelta(days=min(max(days,1),3))
+  now=datetime.now(TZ);detail_from=now-timedelta(hours=12);detail_until=now+timedelta(days=min(max(days,1),7))
   for row in soup.find_all("div",class_=lambda x:x and "grille-line" in x.split()):
    dc=[x for x in row.get("class",[]) if x.isdigit() and len(x)==8]
    tt=row.find("div",class_="grille-time")
@@ -1514,7 +1514,8 @@ def scrape_arryadia(days,history=None,history_path=None,report_path=None,include
   from tools.arryadia_official_grid import parse_grid
  except ModuleNotFoundError:
   from arryadia_official_grid import parse_grid
- now=datetime.now(TZ);limit=now+timedelta(days=min(days,3))
+ days=min(7,max(1,int(days)));window_hours=24*days
+ now=datetime.now(TZ);limit=now+timedelta(days=days)
  report={"source":"arryadia","checked_utc":now.astimezone(timezone.utc).isoformat(),
          "scope":"official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format","receiver_release_status":"NO_GO","attempts":[]}
  h=Http();out=[];official=[]
@@ -1538,7 +1539,7 @@ def scrape_arryadia(days,history=None,history_path=None,report_path=None,include
   report["attempts"].append(attempt)
   if out:break
  archive=_arryadia_history_update(history_path,official,days=7) if history_path else []
- filled=_arryadia_fill(out,hours=48,history=list(history or [])+archive)
+ filled=_arryadia_fill(out,hours=window_hours,history=list(history or [])+archive)
  retained=len(filled)-len(out)
  smart=[]
  if include_smart:
@@ -1546,7 +1547,7 @@ def scrape_arryadia(days,history=None,history_path=None,report_path=None,include
    from tools.arryadia_smart_epg import generate
   except ModuleNotFoundError:
    from arryadia_smart_epg import generate
-  smart,smart_report=generate(official+archive,filled,now,hours=48,model_path=smart_model_path)
+  smart,smart_report=generate(official+archive,filled,now,hours=window_hours,model_path=smart_model_path)
   report["smart_hd"]=smart_report
   filled+=smart
  viewer=[]
@@ -1555,14 +1556,14 @@ def scrape_arryadia(days,history=None,history_path=None,report_path=None,include
    from tools.arryadia_hourly_grand_format import generate_hourly
   except ModuleNotFoundError:
    from arryadia_hourly_grand_format import generate_hourly
-  viewer=[e for e in generate_hourly(days=min(days,3),now=now,verified=filled) if e.stop>now]
+  viewer=[e for e in generate_hourly(days=days,now=now,verified=filled,horizon_hours=window_hours) if e.stop>now]
  provider_status="CURRENT_GRID" if out else "STALE_OFFICIAL_GRID" if any(a["status"]=="STALE_OFFICIAL_GRID" for a in report["attempts"]) else "OFFICIAL_GUIDE_UNAVAILABLE"
  filled+=viewer
  report.update(status="CURRENT_GRID" if out else "FUTURE_LKG_ONLY" if filled else "STALE_OFFICIAL_GRID" if any(a["status"]=="STALE_OFFICIAL_GRID" for a in report["attempts"]) else "OFFICIAL_GUIDE_UNAVAILABLE",
                official_future_events=len(out),retained_exact_lkg=retained,
                provider_status=provider_status,viewer_reported_hourly_events=len(viewer),
                viewer_reported_channel_ids=sorted({e.channel for e in viewer}),
-               smart_estimated_events=len(smart),
+               smart_estimated_events=len(smart),requested_window_hours=window_hours,
                output_events=len(filled),channel_counts={cid:sum(e.channel==cid for e in filled) for cid in ARR_IDS})
  if viewer and not out:report["status"]="VIEWER_REPORTED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID"
  if smart and not out:report["status"]="ESTIMATED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID"
@@ -1605,12 +1606,12 @@ def to_xml(rows,path):
   if e.source in (SMART_SOURCE,BOTOLA_SOURCE):ET.SubElement(p,"category",{"lang":"en"}).text=BOTOLA_CATEGORY if e.source==BOTOLA_SOURCE else SMART_CATEGORY
  ET.indent(root,space="  ");ET.ElementTree(root).write(path,encoding="utf-8",xml_declaration=True);return dict(counts)
 
-def select_groups(results,old,now=None):
+def select_groups(results,old,now=None,days=7):
  """Isolate provider failures; retain exact future LKG per channel, never shift dates."""
  now=now or datetime.now(TZ)
  def usable(e):
   return (e.start and e.stop and e.stop>e.start and e.stop>now and
-          e.start<now+timedelta(days=3) and not generated_placeholder(e.title) and
+          e.start<now+timedelta(days=min(7,max(1,int(days)))) and not generated_placeholder(e.title) and
           e.source not in ("arryadia-auto","arryadia-smart","arryadia-repeat"))
  final=[];status={}
  for g in ("snrt","arryadia","2m","chada","medi1"):
@@ -1643,13 +1644,14 @@ def select_groups(results,old,now=None):
 def main():
  ap=argparse.ArgumentParser();ap.add_argument("--output-dir",default="output");ap.add_argument("--previous",default="");ap.add_argument("--days",type=int,default=7);ap.add_argument("--arryadia-history",default="data/arryadia-history.json");ap.add_argument("--scheduled",action="store_true");a=ap.parse_args();now=datetime.now(TZ)
  if a.scheduled and now.hour not in (6,18):log("Schedule gate skip: local hour %02d"%now.hour);return 0
- outdir=Path(a.output_dir);outdir.mkdir(parents=True,exist_ok=True);old=previous(Path(a.previous)) if a.previous else [];results={};jobs={"snrt":lambda:scrape_snrt(a.days),"arryadia":lambda:scrape_arryadia(min(a.days,3),old,a.arryadia_history,outdir/"arryadia-source.json"),"2m":lambda:scrape_2m(a.days),"chada":lambda:scrape_chada(a.days),"medi1":lambda:scrape_medi1(a.days)}
+ a.days=min(7,max(1,a.days))
+ outdir=Path(a.output_dir);outdir.mkdir(parents=True,exist_ok=True);old=previous(Path(a.previous)) if a.previous else [];results={};jobs={"snrt":lambda:scrape_snrt(a.days),"arryadia":lambda:scrape_arryadia(a.days,old,a.arryadia_history,outdir/"arryadia-source.json"),"2m":lambda:scrape_2m(a.days),"chada":lambda:scrape_chada(a.days),"medi1":lambda:scrape_medi1(a.days)}
  with ThreadPoolExecutor(max_workers=4) as ex:
   fs={ex.submit(fn):name for name,fn in jobs.items()}
   for f in as_completed(fs):
    try:results[fs[f]]=f.result()
    except Exception as e:log("%s crashed: %s"%(fs[f],e));results[fs[f]]=[]
- final,status=select_groups(results,old)
+ final,status=select_groups(results,old,days=a.days)
  if not final:
   log("No genuine future programmes; retain the published feed");return 2
  seen=set();merged=[]

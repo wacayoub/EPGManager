@@ -3,6 +3,7 @@ set -uo pipefail
 
 SOURCE="${1:?source required}"
 HOURS="${2:-48}"
+if [ "$SOURCE" = "morocco" ]; then HOURS=168; fi
 ROOT="${GITHUB_WORKSPACE:-$(pwd)}"
 UPSTREAM="$ROOT/vendor/iptv-org-epg"
 mkdir -p "$ROOT/output/source-build" "$ROOT/output/final" "$ROOT/output/morocco" "$ROOT/reports" "$ROOT/data"
@@ -236,9 +237,9 @@ PY
 
   morocco)
     if [ -s feeds/morocco.xml.gz ]; then
-      python tools/morocco_epg.py --output-dir output/morocco --days 3 --previous feeds/morocco.xml.gz || true
+      python tools/morocco_epg.py --output-dir output/morocco --days 7 --previous feeds/morocco.xml.gz || true
     else
-      python tools/morocco_epg.py --output-dir output/morocco --days 3 || true
+      python tools/morocco_epg.py --output-dir output/morocco --days 7 || true
     fi
     if [ -s output/morocco/morocco.xml.gz ]; then
       pack_source morocco output/morocco/morocco.xml.gz "" || true
@@ -450,6 +451,10 @@ echo "SOURCE_REFRESH_DONE source=$SOURCE hours=$HOURS"
 # even on KEEP_LKG; it does not relabel old quality reports as new publication.
 python tools/source_health_snapshot.py --source "$SOURCE" \
   --output "reports/$SOURCE-current-health.json" || exit 2
+if [ "$SOURCE" = "morocco" ]; then
+  python tools/morocco_seven_day_coverage.py --feed feeds/morocco.xml.gz \
+    --output reports/morocco-7day-coverage.json || exit 2
+fi
 if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
   printf '\n### Published source health (%s, GMT+0)\n\n' "$SOURCE" >> "$GITHUB_STEP_SUMMARY"
   printf 'Scrape success and published guide availability are separate.\n\n```json\n' >> "$GITHUB_STEP_SUMMARY"
