@@ -15,7 +15,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 CASABLANCA = ZoneInfo("Africa/Casablanca")
-# ElCinema 01:20, OSN 01:40, beIN 02:22 Casablanca daily.
+# ElCinema 04:20, OSN 01:40, beIN 02:22 Casablanca daily.
 # Their 15:00 automatic retries are permanently disabled to avoid duplicates.
 TARGETS = ("shahid",)
 MIN_ON_AIR_AT_PUBLICATION = 0.60

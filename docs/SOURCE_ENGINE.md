@@ -36,7 +36,7 @@ not publication deadlines: GitHub may delay a scheduled workflow.
 | Source | Morocco local time |
 |---|---|
 | Tabie | 00:30 |
-| ElCinema | 01:20 |
+| ElCinema | 04:20 |
 | OSN | 01:40 |
 | beIN | 02:22 |
 | Sport24 | 03:05 |

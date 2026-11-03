@@ -31,6 +31,16 @@ class SourceTiming(unittest.TestCase):
             self.assertIsNone(result['observed_delay_seconds'])
             self.assertIsNone(result['scheduled_for_utc'])
 
+    def test_elcinema_three_hours_later_on_morocco_clock(self):
+        self.assertEqual(self.policy['sources']['elcinema'],
+                         {'time':'04:20','timezone':'Africa/Casablanca'})
+        # Five minutes after 04:20 civil time with the runtime IANA rules:
+        # July UTC+1; March and post-September November UTC+0.
+        for stamp in ('2026-07-03T03:25:00+00:00','2026-03-03T04:25:00+00:00','2026-11-03T04:25:00+00:00'):
+            result=observation('elcinema','schedule',datetime.fromisoformat(stamp),self.policy)
+            self.assertEqual(result['observed_delay_seconds'],300)
+            self.assertFalse(result['delayed'])
+
     def test_stc_finishes_its_allowance_before_its_consumers(self):
         def minutes(source):
             hour,minute=map(int,self.policy['sources'][source]['time'].split(':'))
