@@ -79,7 +79,8 @@ upstream source snapshot; only derived feeds and observation reports were built.
 
 On 3 November the owner explicitly chose one repository after being informed
 that historical receiver packages still contain EPG-Scrapers URLs. The former
-compatibility mirror is therefore being retired. All 55 original branch tips
+compatibility mirror is therefore archived. Permanent deletion was refused by
+GitHub (HTTP 403; the token lacks `delete_repo`). All 55 original branch tips
 are preserved as `archive/epg-scrapers/*` tags in EPGManager, with a complete
 local Git bundle and an export of GitHub ticket/PR metadata. See the
 [archive manifest and migration boundary](../archives/epg-scrapers/README.md).

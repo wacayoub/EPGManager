@@ -5,6 +5,13 @@ collection schedules and published source bundles. The owner requested retiremen
 of `wacayoub/EPG-Scrapers` on 3 November 2026, accepting that old hardcoded raw
 URLs stop working when that repository is deleted.
 
+Current state: the old repository is **archived, not deleted**, and EPGManager
+is the only active repository. GitHub refused DELETE with HTTP 403 because
+the available token lacks `delete_repo`; Windows browser control was also
+unavailable. The owner can finish deletion from the old repository's GitHub
+settings. `retirement-status.json` records the verified API outcome. Until then,
+old raw URLs remain readable as frozen snapshots and no longer receive updates.
+
 ## Preserved material
 
 - All 55 original branch tips and their complete ancestry are available through
