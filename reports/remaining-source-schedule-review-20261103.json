@@ -1,0 +1,610 @@
+{
+  "checked_utc": "2026-11-03T10:11:55.666946+00:00",
+  "scope": "13 other sources: exact recent collection evidence, current published bytes and schedule dependencies; no new collection or scheduled delivery is claimed",
+  "sources_verified": 13,
+  "receiver_release_status": "NO_GO",
+  "local_feed_dependencies": [
+    {
+      "donor": "alkass",
+      "consumer": "osn",
+      "lead_minutes": 83
+    },
+    {
+      "donor": "osn",
+      "consumer": "dubaiplus",
+      "lead_minutes": 184
+    },
+    {
+      "donor": "osn",
+      "consumer": "sport24",
+      "lead_minutes": 263
+    },
+    {
+      "donor": "dubaiplus",
+      "consumer": "sport24",
+      "lead_minutes": 79
+    },
+    {
+      "donor": "stctv",
+      "consumer": "rotana",
+      "lead_minutes": 73
+    },
+    {
+      "donor": "osn",
+      "consumer": "elcinema",
+      "lead_minutes": 160
+    },
+    {
+      "donor": "stctv",
+      "consumer": "elcinema",
+      "lead_minutes": 103
+    },
+    {
+      "donor": "bein",
+      "consumer": "elcinema",
+      "lead_minutes": 118
+    },
+    {
+      "donor": "starzplay",
+      "consumer": "elcinema",
+      "lead_minutes": 73
+    }
+  ],
+  "sources": [
+    {
+      "source": "morocco",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "80262af30fa9508f1024d43e66ffc9cb629b292c",
+      "verified_publication_sha256": "7d730772d4e0931e9d351982a50a037fb0910c919fe5474f622ec98a75cbe1a0",
+      "programmes_at_publication": 578,
+      "current_health": {
+        "source": "morocco",
+        "checked_utc": "2026-11-03T10:11:49.544316+00:00",
+        "feed_sha256": "7d730772d4e0931e9d351982a50a037fb0910c919fe5474f622ec98a75cbe1a0",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 15,
+        "channels_with_future_epg": 9,
+        "channels_without_future_epg": [
+          "AFLAM.ma",
+          "Arryadia_HD",
+          "Arryadia_HD1",
+          "Arryadia_HD2",
+          "Arryadia_HD3",
+          "Arryadia_TNT"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 49.84,
+        "channels_with_less_than_24h": [
+          "AFLAM.ma",
+          "Arryadia_HD",
+          "Arryadia_HD1",
+          "Arryadia_HD2",
+          "Arryadia_HD3",
+          "Arryadia_TNT"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "07:07",
+        "timezone": "Africa/Casablanca"
+      }
+    },
+    {
+      "source": "alkass",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "f5b295da622a5528ca51e4feef568c1ae8938b12",
+      "verified_publication_sha256": "2cffc47b99ae1fab1751da52bc5b7c2275ea387ef57a914e2756cb4ee4b98571",
+      "programmes_at_publication": 262,
+      "current_health": {
+        "source": "alkass",
+        "checked_utc": "2026-11-03T10:11:49.840987+00:00",
+        "feed_sha256": "2cffc47b99ae1fab1751da52bc5b7c2275ea387ef57a914e2756cb4ee4b98571",
+        "status": "AVAILABLE",
+        "last_attempt_kept_lkg": false,
+        "channels": 8,
+        "channels_with_future_epg": 8,
+        "channels_without_future_epg": [],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 34.8,
+        "channels_with_less_than_24h": [],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "00:17",
+        "timezone": "Africa/Casablanca"
+      }
+    },
+    {
+      "source": "tabie",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "d99289797e1b1d629eec940e42bdc3299b09faa3",
+      "verified_publication_sha256": "097367f929640433be09b6c50df39cab1e12b75668d18b86109dca7bb8ce8f0f",
+      "programmes_at_publication": 636,
+      "current_health": {
+        "source": "tabie",
+        "checked_utc": "2026-11-03T10:11:50.132556+00:00",
+        "feed_sha256": "097367f929640433be09b6c50df39cab1e12b75668d18b86109dca7bb8ce8f0f",
+        "status": "AVAILABLE",
+        "last_attempt_kept_lkg": false,
+        "channels": 4,
+        "channels_with_future_epg": 4,
+        "channels_without_future_epg": [],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 10.8,
+        "channels_with_less_than_24h": [
+          "QatarTelevision.qa@SD",
+          "QatarTelevision2.qa@SD",
+          "TabieKids.qa",
+          "TabieNow.qa"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "00:30",
+        "timezone": "Africa/Casablanca"
+      }
+    },
+    {
+      "source": "tunisiatv",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "b33162d72d989b428a8c54c57008db17c3b4be5c",
+      "verified_publication_sha256": "76f83e1060a49cefbd4e188536d2ffe4e7ce4851230b89c6a7e283c18a742ced",
+      "programmes_at_publication": 122,
+      "current_health": {
+        "source": "tunisiatv",
+        "checked_utc": "2026-11-03T10:11:50.444140+00:00",
+        "feed_sha256": "76f83e1060a49cefbd4e188536d2ffe4e7ce4851230b89c6a7e283c18a742ced",
+        "status": "AVAILABLE",
+        "last_attempt_kept_lkg": false,
+        "channels": 2,
+        "channels_with_future_epg": 2,
+        "channels_without_future_epg": [],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 47.87,
+        "channels_with_less_than_24h": [],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "06:35",
+        "timezone": "Africa/Casablanca"
+      }
+    },
+    {
+      "source": "aljazeera",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "b39ae89ac5b9fe3f1cd6785ac1213ee2eb5ebac9",
+      "verified_publication_sha256": "5473ab6d66e3f5cec765445de66f816a93dd1812e7101e50232a339b442ca283",
+      "programmes_at_publication": 111,
+      "current_health": {
+        "source": "aljazeera",
+        "checked_utc": "2026-11-03T10:11:50.711946+00:00",
+        "feed_sha256": "5473ab6d66e3f5cec765445de66f816a93dd1812e7101e50232a339b442ca283",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 5,
+        "channels_with_future_epg": 2,
+        "channels_without_future_epg": [
+          "AlJazeera2.qa@HD",
+          "AlJazeeraDocumentary.qa@SD",
+          "AlJazeeraMubasher.qa@SD"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 47.8,
+        "channels_with_less_than_24h": [
+          "AlJazeera2.qa@HD",
+          "AlJazeeraDocumentary.qa@SD",
+          "AlJazeeraMubasher.qa@SD"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "04:12",
+        "timezone": "Africa/Casablanca"
+      }
+    },
+    {
+      "source": "dubaiplus",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "e1ca10a08d9f419d8d0c6a83feb654b61918fcee",
+      "verified_publication_sha256": "d6d6b32950b729c253fc53cae169a33ff60aadb5c5c2b9991f2eb56cfcf4604d",
+      "programmes_at_publication": 411,
+      "current_health": {
+        "source": "dubaiplus",
+        "checked_utc": "2026-11-03T10:11:50.987884+00:00",
+        "feed_sha256": "d6d6b32950b729c253fc53cae169a33ff60aadb5c5c2b9991f2eb56cfcf4604d",
+        "status": "AVAILABLE",
+        "last_attempt_kept_lkg": false,
+        "channels": 9,
+        "channels_with_future_epg": 9,
+        "channels_without_future_epg": [],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 48.8,
+        "channels_with_less_than_24h": [],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "04:44",
+        "timezone": "Africa/Casablanca"
+      }
+    },
+    {
+      "source": "shahid",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "f11886f5894790770413f04cc8c57a1c1a4f1b02",
+      "verified_publication_sha256": "ccfd785ba480a398182a63befd2f7e3a63f1f3673bb384c794c971d42b01b7fe",
+      "programmes_at_publication": 4462,
+      "current_health": {
+        "source": "shahid",
+        "checked_utc": "2026-11-03T10:11:51.394968+00:00",
+        "feed_sha256": "ccfd785ba480a398182a63befd2f7e3a63f1f3673bb384c794c971d42b01b7fe",
+        "status": "AVAILABLE",
+        "last_attempt_kept_lkg": false,
+        "channels": 71,
+        "channels_with_future_epg": 71,
+        "channels_without_future_epg": [],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 61.8,
+        "channels_with_less_than_24h": [],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "03:39",
+        "timezone": "Africa/Casablanca"
+      }
+    },
+    {
+      "source": "rotana",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "be75591ec0e78c65fa2fd84fdf8576ab7dde7553",
+      "verified_publication_sha256": "2dd6bd4ee30266f259a2009611ce8e332929a4ddcad1358f544cf6acbcbde13c",
+      "programmes_at_publication": 400,
+      "current_health": {
+        "source": "rotana",
+        "checked_utc": "2026-11-03T10:11:51.974713+00:00",
+        "feed_sha256": "2dd6bd4ee30266f259a2009611ce8e332929a4ddcad1358f544cf6acbcbde13c",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 9,
+        "channels_with_future_epg": 8,
+        "channels_without_future_epg": [
+          "RotanaClip.sa@SD"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 48.8,
+        "channels_with_less_than_24h": [
+          "RotanaClip.sa@SD"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "03:50",
+        "timezone": "Africa/Casablanca"
+      }
+    },
+    {
+      "source": "sport24",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "220835eb6b8282805afa91f59dbebabf13a0787d",
+      "verified_publication_sha256": "2c8950e98beec370c583cfd96ddcf847fafb2840a04a8b8b738d9734e0a965e5",
+      "programmes_at_publication": 144,
+      "current_health": {
+        "source": "sport24",
+        "checked_utc": "2026-11-03T10:11:52.257148+00:00",
+        "feed_sha256": "2c8950e98beec370c583cfd96ddcf847fafb2840a04a8b8b738d9734e0a965e5",
+        "status": "AVAILABLE",
+        "last_attempt_kept_lkg": false,
+        "channels": 9,
+        "channels_with_future_epg": 9,
+        "channels_without_future_epg": [],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 15.55,
+        "channels_with_less_than_24h": [
+          "sport24.adsports.1",
+          "sport24.adsports.2",
+          "sport24.adsports.3",
+          "sport24.adsports.4",
+          "sport24.dubaisports.1",
+          "sport24.dubaisports.2",
+          "sport24.thmanyah.1",
+          "sport24.thmanyah.2",
+          "sport24.thmanyah.3"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "06:03",
+        "timezone": "Africa/Casablanca"
+      }
+    },
+    {
+      "source": "osn",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "f997f49f1f6f3073e0e99b7ca696989679f24ca9",
+      "verified_publication_sha256": "209301fe57ae93501acae0a97d4de5d0992fe555a6766d76ecac5b11c684af01",
+      "programmes_at_publication": 6045,
+      "current_health": {
+        "source": "osn",
+        "checked_utc": "2026-11-03T10:11:52.706150+00:00",
+        "feed_sha256": "209301fe57ae93501acae0a97d4de5d0992fe555a6766d76ecac5b11c684af01",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 100,
+        "channels_with_future_epg": 79,
+        "channels_without_future_epg": [
+          "AlfaSeries.ae@SD",
+          "AlfaSeriesPlus2.ae@SD",
+          "AlSafwa.ae@SD",
+          "AlYawm.ae@SD",
+          "ANC.ph",
+          "Cinema1.ae@SD",
+          "Cinema2.ae@SD",
+          "CineMo.ph",
+          "Fann.ae@SD",
+          "Gametoon.nl@SD",
+          "GMALifeTV.ph",
+          "GMANewsTV.ph",
+          "GMAPinoyTVMiddleEast.ph",
+          "MusicNow.ae@SD",
+          "MyxMiddleEast.ph",
+          "osn.213",
+          "osn.215",
+          "osn.216",
+          "osn.217",
+          "osn.220",
+          "OSNBlippiAndFriends"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 49.8,
+        "channels_with_less_than_24h": [
+          "ANC.ph",
+          "AlSafwa.ae@SD",
+          "AlYawm.ae@SD",
+          "AlfaSeries.ae@SD",
+          "AlfaSeriesPlus2.ae@SD",
+          "CineMo.ph",
+          "Cinema1.ae@SD",
+          "Cinema2.ae@SD",
+          "Fann.ae@SD",
+          "GMALifeTV.ph",
+          "GMANewsTV.ph",
+          "GMAPinoyTVMiddleEast.ph",
+          "Gametoon.nl@SD",
+          "MusicNow.ae@SD",
+          "MyxMiddleEast.ph",
+          "OSNBlippiAndFriends",
+          "osn.213",
+          "osn.215",
+          "osn.216",
+          "osn.217",
+          "osn.220"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "01:40",
+        "timezone": "Africa/Casablanca"
+      }
+    },
+    {
+      "source": "bein",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "c42bbeb30d856563684c1d8206facc4860bb6313",
+      "verified_publication_sha256": "ac62a2987f89b5f05c97037420457ce7b6fbcba1ab94fe50dd4687cbe8964039",
+      "programmes_at_publication": 2597,
+      "current_health": {
+        "source": "bein",
+        "checked_utc": "2026-11-03T10:11:53.495403+00:00",
+        "feed_sha256": "ac62a2987f89b5f05c97037420457ce7b6fbcba1ab94fe50dd4687cbe8964039",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 68,
+        "channels_with_future_epg": 65,
+        "channels_without_future_epg": [
+          "AlkassEight.qa@SD",
+          "BloombergTV.us@MiddleEast",
+          "CNNArabic.ae@SD"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 49.8,
+        "channels_with_less_than_24h": [
+          "AlJazeeraDocumentary.qa@SD",
+          "AlkassEight.qa@SD",
+          "AlkassFive.qa@SD",
+          "AlkassFour.qa@SD",
+          "AlkassOne.qa@SD",
+          "AlkassSeven.qa@SD",
+          "AlkassSix.qa@SD",
+          "AlkassThree.qa@SD",
+          "AlkassTwo.qa@SD",
+          "BloombergTV.us@MiddleEast",
+          "CBeebiesMiddleEast.uk@SD",
+          "CNNArabic.ae@SD",
+          "ClubMTVEurope.uk@SD",
+          "Fatafeat.ae@SD",
+          "FoodNetworkEMEA.us@SD",
+          "FoxArabia.ae@SD",
+          "HGTVArabia.us@SD",
+          "MTV80s.uk@SD",
+          "MTV90s.uk@SD",
+          "StarMoviesMiddleEast.ae@SD",
+          "beINBoxOffice1.qa@SD"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "02:22",
+        "timezone": "Africa/Casablanca"
+      }
+    },
+    {
+      "source": "starzplay",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "8a8bfa26f8966d3c758f3d30b59463d63a67ddcc",
+      "verified_publication_sha256": "1208f7539ea9b5ca285824f53ace07e6ca6f2d793ca308328c3a5dd2c5cad345",
+      "programmes_at_publication": 8518,
+      "current_health": {
+        "source": "starzplay",
+        "checked_utc": "2026-11-03T10:11:54.132654+00:00",
+        "feed_sha256": "1208f7539ea9b5ca285824f53ace07e6ca6f2d793ca308328c3a5dd2c5cad345",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 119,
+        "channels_with_future_epg": 117,
+        "channels_without_future_epg": [
+          "starzplay.515470888131",
+          "starzplay.527810088109"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 63.55,
+        "channels_with_less_than_24h": [
+          "StarzplaySports3.sa@HD",
+          "starzplay.515470888131",
+          "starzplay.527810088109",
+          "starzplay.705949224430",
+          "starzplay.705949224431"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "03:07",
+        "timezone": "Africa/Casablanca"
+      }
+    },
+    {
+      "source": "stctv",
+      "producer_run_id": "41609383152",
+      "producer_attempt": "1",
+      "verified_publication_commit": "a82731a0c664750d8f8e1806997a8002f13d3c65",
+      "verified_publication_sha256": "ff2a67c554ae125d9518487e109daca3022db8881e36b276d88e662fd223f661",
+      "programmes_at_publication": 7827,
+      "current_health": {
+        "source": "stctv",
+        "checked_utc": "2026-11-03T10:11:55.106169+00:00",
+        "feed_sha256": "ff2a67c554ae125d9518487e109daca3022db8881e36b276d88e662fd223f661",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 149,
+        "channels_with_future_epg": 124,
+        "channels_without_future_epg": [
+          "AsharqDocumentary.sa@SD",
+          "BahrainTV.bh@SD",
+          "DMC.eg@SD",
+          "SharjahTV.ae@SD",
+          "starzplay.460050472022",
+          "starzplay.770738728162",
+          "stctv.07c7055a52f7",
+          "stctv.0c7f54b591ee",
+          "stctv.0e0a2a4c571f",
+          "stctv.101231b7a2a1",
+          "stctv.4667a521021a",
+          "stctv.62271af08509",
+          "stctv.7b72e3bc5436",
+          "stctv.7d9deabe3500",
+          "stctv.899b0d26dbea",
+          "stctv.a60e07fa6b41",
+          "stctv.bb90021b8c50",
+          "stctv.bea09674c73f",
+          "stctv.bf3456c5b9b2",
+          "stctv.cb251a15e222",
+          "stctv.d2c88738ab47",
+          "stctv.d2ded9de3b1b",
+          "stctv.de47c15b885a",
+          "stctv.def1ba405daf",
+          "stctv.ea722d790a94"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 49.38,
+        "channels_with_less_than_24h": [
+          "AsharqDocumentary.sa@SD",
+          "BahrainTV.bh@SD",
+          "DMC.eg@SD",
+          "DubaiSports2.ae@SD",
+          "SharjahTV.ae@SD",
+          "StarzplaySports1.sa@HD",
+          "StarzplaySports2.sa@HD",
+          "StarzplaySports3.sa@HD",
+          "starzplay.460050472022",
+          "starzplay.770738728162",
+          "stctv.07c7055a52f7",
+          "stctv.0c7f54b591ee",
+          "stctv.0e0a2a4c571f",
+          "stctv.101231b7a2a1",
+          "stctv.4667a521021a",
+          "stctv.4a2b60976c7f",
+          "stctv.62271af08509",
+          "stctv.7b72e3bc5436",
+          "stctv.7d9deabe3500",
+          "stctv.899b0d26dbea",
+          "stctv.a60e07fa6b41",
+          "stctv.bb90021b8c50",
+          "stctv.bea09674c73f",
+          "stctv.bf3456c5b9b2",
+          "stctv.cac5e490d765",
+          "stctv.cb251a15e222",
+          "stctv.d2c88738ab47",
+          "stctv.d2ded9de3b1b",
+          "stctv.de47c15b885a",
+          "stctv.def1ba405daf",
+          "stctv.ea722d790a94"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "current_bytes_differ_from_attempt": false,
+      "receiver_release_status": "NO_GO",
+      "scope": "exact_source_attempt_and_current_source_health",
+      "planned_schedule": {
+        "time": "02:37",
+        "timezone": "Africa/Casablanca"
+      }
+    }
+  ]
+}

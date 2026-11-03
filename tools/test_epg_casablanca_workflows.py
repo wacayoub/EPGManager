@@ -88,7 +88,7 @@ class TestScheduledWorkflows(unittest.TestCase):
 
     def test_four_remaining_sources_daily_once_and_manual_preserved(self):
         slots = (("tabie","30 0 * * *"),("rotana","50 3 * * *"),
-                 ("alkass","30 6 * * *"),("tunisiatv","35 6 * * *"))
+                 ("alkass","17 0 * * *"),("tunisiatv","35 6 * * *"))
         for source,cron in slots:
             with self.subTest(source=source):
                 p=load(f"refresh-{source}.yml")

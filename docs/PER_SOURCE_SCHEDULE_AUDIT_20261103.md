@@ -5,18 +5,18 @@ All times below are **Morocco local time (`Africa/Casablanca`)** and follow seas
 | Source | Daily local target | Future channels / catalogue at review | Individual review |
 | --- | --- | ---: | --- |
 | morocco | 07:07 | 9 / 15 | SNRT/2M/Medi1: Arryadia exposes an old grid; AFLAM has no verified current guide. Keep missing IDs explicit. |
-| alkass | 06:30 | 8 / 8 | Direct official TV guide; all eight channels have future data. |
+| alkass | 00:17 | 8 / 8 | Direct official TV guide; all eight channels have future data. |
 | tabie | 00:30 | 4 / 4 | Direct provider schedules; four channels have future data. |
 | tunisiatv | 06:35 | 2 / 2 | Official programme pages; both channels have future data. |
 | aljazeera | 04:12 | 2 / 5 | Official GraphQL Arabic/English work. AJ2 returns no rows; Mubasher/Documentary lack verified schedule endpoints. |
 | dubaiplus | 04:44 | 9 / 9 | Official channel API; all nine channels have future data. |
 | shahid | 03:39 | 71 / 71 | Official adapter; all 71 channels have future data. |
 | rotana | 03:50 | 7 / 9 | Official streams page plus verified STC fallback; AlResalah and RotanaClip still lack genuine rows. |
-| sport24 | 03:05 | 9 / 9 | UTC timestamps retained; verified donor extension recovers all nine channels. |
+| sport24 | 06:03 | 9 / 9 | UTC timestamps retained; verified donor extension recovers all nine channels. |
 | osn | 01:40 | 79 / 100 | Android/Legacy batches, blank GUID filtering and English/Arabic merge. Raw OSNtv Now works; canonical receiver identity remains unvalidated. |
 | bein | 02:22 | 65 / 68 | Arabic/English discovery, midnight anchor correction and final sidecar repack. Three catalogue channels still lack rows. |
 | elcinema | 04:20 | 95 / 97 | Midnight rollover and authentic short-horizon retry; two catalogue IDs still lack rows. |
-| starzplay | 05:12 | 117 / 119 | Official API bilingual merge; two catalogue entries have no future rows. |
+| starzplay | 03:07 | 117 / 119 | Official API bilingual merge; two catalogue entries have no future rows. |
 | stctv | 02:37 | 124 / 149 | Official channel/schedule APIs; channel-name loops removed rather than published as genuine programmes. |
 
 Each of the 14 files was checked independently for gzip SHA256/size, XMLTV counts, unique IDs, exact TXT catalogue, valid programme intervals and real future coverage. All have useful future data, but partial guides remain DEGRADED. Missing provider programmes are not fabricated or silently removed from the catalogue. Exact gaps and programme counts are in [the machine report](../reports/per-source-review-20261103.json).
@@ -38,20 +38,22 @@ STC moved from 05:55 to 02:37 local time so its verified Rotana and STARZPLAY co
 | Source | Local target | Final future channels / catalogue | Programmes published |
 | --- | --- | ---: | ---: |
 | morocco | 07:07 | 9 / 15 | 578 |
-| alkass | 06:30 | 8 / 8 | 262 |
+| alkass | 00:17 | 8 / 8 | 262 |
 | tabie | 00:30 | 4 / 4 | 636 |
 | tunisiatv | 06:35 | 2 / 2 | 122 |
 | aljazeera | 04:12 | 2 / 5 | 111 |
 | dubaiplus | 04:44 | 9 / 9 | 411 |
 | shahid | 03:39 | 71 / 71 | 4462 |
 | rotana | 03:50 | 8 / 9 | 400 |
-| sport24 | 03:05 | 9 / 9 | 144 |
+| sport24 | 06:03 | 9 / 9 | 144 |
 | osn | 01:40 | 79 / 100 | 6045 |
 | bein | 02:22 | 65 / 68 | 2597 |
 | elcinema | 04:20 | 95 / 97 | 4357 |
-| starzplay | 05:12 | 117 / 119 | 8518 |
+| starzplay | 03:07 | 117 / 119 | 8518 |
 | stctv | 02:37 | 124 / 149 | 7827 |
 
 Rotana improved from 7/9 to 8/9: 128 genuine Al Resalah programmes were recovered through its already verified exact STC donor. Rotana Clip remained excluded because its donor was not verified. Other catalogue gaps remain explicit. A successful manual run verifies collection/publication, not future on-time delivery by GitHub or receiver-release eligibility.
 
 ElCinema schedule update: at the user’s request, the daily target moved three hours later, from 01:20 to 04:20 Morocco local time. The 08:37 postprocessing target remains 4h17 later (3h07 beyond the full 70-minute collection allowance), subject to GitHub scheduler delays. Historical machine evidence retains the targets in effect at its observation. This timing change does not establish an improvement in upstream guide coverage.
+
+Other-source schedule review: AlKass now runs at 00:17, STARZPLAY at 03:07 and Sport24 at 06:03 to respect local publication dependencies. See [the 13-source review](OTHER_SOURCE_SCHEDULE_REVIEW_20261103.md). Historical machine evidence retains the targets observed at collection time.
