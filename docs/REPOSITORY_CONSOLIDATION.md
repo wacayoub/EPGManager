@@ -77,10 +77,16 @@ tests passed. CI also runs Python 3.14. Rebuild and readiness checks succeed
 with explicit editorial warnings. Direct feed bytes were preserved from the
 upstream source snapshot; only derived feeds and observation reports were built.
 
-The old EPG-Scrapers repository must remain a compatibility mirror for receivers
-using its existing raw URLs until their configurations have been migrated.
-Its provider workflows are to be retired when the unified main branch is live;
-the mirror copies verified publications and never scrapes providers.
+On 3 November the owner explicitly chose one repository after being informed
+that historical receiver packages still contain EPG-Scrapers URLs. The former
+compatibility mirror is therefore being retired. All 55 original branch tips
+are preserved as `archive/epg-scrapers/*` tags in EPGManager, with a complete
+local Git bundle and an export of GitHub ticket/PR metadata. See the
+[archive manifest and migration boundary](../archives/epg-scrapers/README.md).
+The current source overlay rewrites saved legacy feed URLs when loading them;
+this does not change an already installed rc78 binary or saved receiver files.
+Deletion of the old repository makes its raw URLs unavailable. No new plugin
+release or receiver refresh is authorized by this cleanup.
 
 Receiver modified: **false**. GUI, native EPGImport and installed plugin parity
 were **not tested** in this repository consolidation. This does not publish a

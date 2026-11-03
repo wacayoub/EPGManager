@@ -87,7 +87,7 @@ Other source publication windows remain 48 hours.
 - `reports/<source>-run-timing.json`
 - `reports/refresh-runs/<run>/<attempt>/<source>.json`
 
-EPGManager owns the source engine and its diagnostic aggregate. EPG-Scrapers is a compatibility mirror with no collection schedules. Receiver publication is a separate guarded contract.
+EPGManager owns the source engine, direct publications and diagnostic aggregate. EPG-Scrapers is being retired after its history was preserved in this repository; [migration details](../archives/epg-scrapers/README.md) describe old-client limitations. Receiver publication is a separate guarded contract.
 
 
 ## Guide quality

@@ -2,7 +2,7 @@
 """EPGManager: read-only direct GitHub XMLTV freshness checks.
 
 The Native EPGImport engine consumes HTTPS *.xml.gz; this module only reads
-the corresponding EPG-Scrapers health report, never a receiver-side XML copy.
+the corresponding EPGManager health report, never a receiver-side XML copy.
 """
 from __future__ import print_function
 import json
@@ -37,7 +37,7 @@ def _check_one(item):
     row = {"id": sid, "name": name, "ok": False, "mode": "remote-url"}
     key = _source_key(item)
     if not key:
-        row["error"] = "Not a recognized EPG-Scrapers URL"
+        row["error"] = "Not a recognized EPGManager URL"
         return row
     try:
         req = Request(AUDITS + key + "-48h-audit.json",

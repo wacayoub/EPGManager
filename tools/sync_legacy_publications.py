@@ -1,4 +1,8 @@
-"""Copy verified public bundles to the former repository; never scrape."""
+"""Historical recovery utility for verified bundles; no active workflow uses it.
+
+EPGManager owns publications. EPG-Scrapers is retired; this tool is kept only
+to recover historical checkouts, and never scrapes.
+"""
 import argparse
 import hashlib
 import json
