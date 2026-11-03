@@ -86,7 +86,12 @@ canonical receiver IDs, premium/MENA splitting, hardware validation or import au
 EPGManager owns the source engine and its diagnostic aggregate. EPG-Scrapers is a compatibility mirror with no collection schedules. Receiver publication is a separate guarded contract.
 
 
-## Guide qualityArryadia HD2/HD3 retain the user-authorized hourly **Grand Format** recurrence.It is labelled as viewer-reported in XMLTV and quality reports, survives packingand aggregation, and yields to announced same-channel programmes. HD/TNT Smartforecasts remain disabled. See [restored Grand Format](ARRYADIA_GRAND_FORMAT_RESTORED.md).
+## Guide quality
+
+Arryadia HD2/HD3 retain the user-authorized hourly **Grand Format** recurrence.
+It is labelled as viewer-reported in XMLTV and quality reports, survives packing
+and aggregation, and yields to announced same-channel programmes. HD/TNT Smart
+forecasts remain disabled. See [restored Grand Format](ARRYADIA_GRAND_FORMAT_RESTORED.md).
 
 STARZPLAY is active on its own 03:07 Morocco local workflow. A successful Actions run or a
 MAIN/B1/B2 role does not certify guide quality. Review `<source>-current-health.json` and the source-specific quality reports: expired IDs stay visible but never green;
