@@ -73,7 +73,7 @@ jobs:
     secrets: inherit
 
   # Only Shahid may be retried at 15:00.
-  # OSN (01:40), ElCinema (01:20), and beIN (02:22) run once daily.
+  # OSN (01:40), ElCinema (04:20), and beIN (02:22) run once daily.
   # Their individual scrapers cannot be selected by this retry policy.
   finalize:
     needs: [decide, retry]
