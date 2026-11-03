@@ -20,12 +20,12 @@ import xml.etree.ElementTree as ET
 try:
     from tools.mena_source_snapshot import get_source_snapshot
     from tools.source_feed_pack import parse_xmltv_dt
-    from tools.programme_authenticity import generated_placeholder, strict_arabic_channel, arabic_title
+    from tools.programme_authenticity import generated_placeholder, strict_arabic_channel, arabic_title, viewer_reported_schedule
     from tools.receiver_contract import MAX_VUPLUS_XML_BYTES
 except ImportError:
     from mena_source_snapshot import get_source_snapshot
     from source_feed_pack import parse_xmltv_dt
-    from programme_authenticity import generated_placeholder, strict_arabic_channel, arabic_title
+    from programme_authenticity import generated_placeholder, strict_arabic_channel, arabic_title, viewer_reported_schedule
     from receiver_contract import MAX_VUPLUS_XML_BYTES
 
 
@@ -101,7 +101,7 @@ def audit(derived_feed, derived_metadata, routing_report, feed_dir, now=None):
         if stop > now:
             future_counts[cid] += 1
             title_text = next(((x.text or "").strip() for x in p.findall("title") if x.text), "")
-            if generated_placeholder(title_text) or (
+            if viewer_reported_schedule(p) or generated_placeholder(title_text) or (
                     strict_arabic_channel(cid) and not arabic_title(title_text)):
                 editorial_ids[cid] += 1
         title = tuple((x.text or "").strip() for x in p.findall("title"))
@@ -209,7 +209,8 @@ def audit(derived_feed, derived_metadata, routing_report, feed_dir, now=None):
             "no_future_epg_is_never_green": True,
             "main_role_does_not_imply_high_quality": True,
             "keep_empty_ids_visible_for_saved_mapping": True,
-            "no_synthetic_programmes": True,
+            "unlabelled_synthetic_programmes_allowed": False,
+            "user_authorized_hd2_hd3_recurring_schedule": "labelled and editorial review required",
             "release_blocking": "structural_integrity_only",
             "editorial_warnings_explicit": True,
             "enigma2_receiver_validated": False,

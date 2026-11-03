@@ -1,6 +1,13 @@
 """Recognize explicit generated schedule rows, not merely repeated real shows."""
 import re
 
+VIEWER_CATEGORY = "Viewer-reported recurring schedule"
+VIEWER_SOURCE = "viewer-reported-arryadia-hourly-grand-format"
+
+
+def viewer_reported_schedule(node):
+    return any((x.text or '').strip() == VIEWER_CATEGORY for x in node.findall('category'))
+
 
 def generated_placeholder(title):
     title = re.sub(r"\s+", " ", str(title or "")).strip().casefold()

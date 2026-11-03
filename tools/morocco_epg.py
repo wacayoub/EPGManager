@@ -19,9 +19,9 @@ from bs4 import BeautifulSoup
 from lxml import html as LH
 from zoneinfo import ZoneInfo
 try:
- from tools.programme_authenticity import generated_placeholder
+ from tools.programme_authenticity import generated_placeholder, VIEWER_CATEGORY, VIEWER_SOURCE, viewer_reported_schedule
 except ImportError:
- from programme_authenticity import generated_placeholder
+ from programme_authenticity import generated_placeholder, VIEWER_CATEGORY, VIEWER_SOURCE, viewer_reported_schedule
 try: import cloudscraper
 except Exception: cloudscraper=None
 
@@ -848,7 +848,7 @@ def _arryadia_fill(rows,hours=48,slot_hours=2,history=None):
  now=datetime.now(TZ);end=now+timedelta(hours=max(1,hours))
  out=[e for e in rows if not _arryadia_is_generic(e) and not generated_placeholder(e.title)]
  for e in sorted(history or [],key=lambda e:e.start):
-  if (e.channel not in ARR_IDS or not e.stop or e.stop<=now or
+  if (e.source==VIEWER_SOURCE or e.channel not in ARR_IDS or not e.stop or e.stop<=now or
       e.stop<=e.start or e.start>=end or _arryadia_is_generic(e) or
       generated_placeholder(e.title)):
    continue
@@ -887,7 +887,7 @@ def previous(path):
     if len(off)!=5 or off[0] not in "+-":
      raise ValueError("invalid XMLTV timezone: %r"%raw)
     return datetime.strptime(stamp+" "+off,"%Y%m%d%H%M%S %z").astimezone(TZ)
-   t=p.find("title"); d=p.find("desc"); out.append(Event(p.get("channel"),dt(p.get("start")),t.text or "",d.text if d is not None else "",dt(p.get("stop")) if p.get("stop") else None,t.get("lang") or "ar",d.get("lang") if d is not None else "ar","old"))
+   t=p.find("title"); d=p.find("desc"); out.append(Event(p.get("channel"),dt(p.get("start")),t.text or "",d.text if d is not None else "",dt(p.get("stop")) if p.get("stop") else None,t.get("lang") or "ar",d.get("lang") if d is not None else "ar",VIEWER_SOURCE if viewer_reported_schedule(p) else "old"))
   return out
  except Exception as e: log("Previous feed unreadable: %s"%e); return []
 
@@ -1505,14 +1505,14 @@ def scrape_snrt(days):
   if not clean(e.desc):e.desc=_snrt_fallback_desc(e.channel,e.title)
  return out
 
-def scrape_arryadia(days,history=None,history_path=None,report_path=None):
+def scrape_arryadia(days,history=None,history_path=None,report_path=None,include_viewer_schedule=True):
  try:
   from tools.arryadia_official_grid import parse_grid
  except ModuleNotFoundError:
   from arryadia_official_grid import parse_grid
  now=datetime.now(TZ);limit=now+timedelta(days=min(days,3))
  report={"source":"arryadia","checked_utc":now.astimezone(timezone.utc).isoformat(),
-         "scope":"official dated grid and exact future LKG only","receiver_release_status":"NO_GO","attempts":[]}
+         "scope":"official grid, exact LKG and user-authorized HD2/HD3 hourly Grand Format","receiver_release_status":"NO_GO","attempts":[]}
  h=Http();out=[];official=[]
  for url in ("https://www.snrt.ma/ar/node/4070","https://www.snrt.ma/fr/node/4070"):
   attempt={"url":url}
@@ -1535,13 +1535,26 @@ def scrape_arryadia(days,history=None,history_path=None,report_path=None):
   if out:break
  archive=_arryadia_history_update(history_path,official,days=7) if history_path else []
  filled=_arryadia_fill(out,hours=48,history=list(history or [])+archive)
+ retained=len(filled)-len(out)
+ viewer=[]
+ if include_viewer_schedule:
+  try:
+   from tools.arryadia_hourly_grand_format import generate_hourly
+  except ModuleNotFoundError:
+   from arryadia_hourly_grand_format import generate_hourly
+  viewer=[e for e in generate_hourly(days=min(days,3),now=now,verified=filled) if e.stop>now]
+ provider_status="CURRENT_GRID" if out else "STALE_OFFICIAL_GRID" if any(a["status"]=="STALE_OFFICIAL_GRID" for a in report["attempts"]) else "OFFICIAL_GUIDE_UNAVAILABLE"
+ filled+=viewer
  report.update(status="CURRENT_GRID" if out else "FUTURE_LKG_ONLY" if filled else "STALE_OFFICIAL_GRID" if any(a["status"]=="STALE_OFFICIAL_GRID" for a in report["attempts"]) else "OFFICIAL_GUIDE_UNAVAILABLE",
-               official_future_events=len(out),retained_exact_lkg=len(filled)-len(out),
+               official_future_events=len(out),retained_exact_lkg=retained,
+               provider_status=provider_status,viewer_reported_hourly_events=len(viewer),
+               viewer_reported_channel_ids=sorted({e.channel for e in viewer}),
                output_events=len(filled),channel_counts={cid:sum(e.channel==cid for e in filled) for cid in ARR_IDS})
+ if viewer and not out:report["status"]="VIEWER_REPORTED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID"
  if report_path:
   p=Path(report_path);p.parent.mkdir(parents=True,exist_ok=True)
   p.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
- log("Arryadia official status=%s future=%d exact_LKG=%d"%(report["status"],len(out),len(filled)-len(out)))
+ log("Arryadia status=%s official=%d exact_LKG=%d viewer_reported=%d"%(report["status"],len(out),retained,len(viewer)))
  return filled
 
 
@@ -1551,6 +1564,12 @@ def to_xml(rows,path):
  # discarded here and reported in logs.
  valid_rows=[];dropped=0
  for e in rows:
+  if e.source==VIEWER_SOURCE:
+   try:
+    from tools.arryadia_hourly_grand_format import is_viewer_report
+   except ModuleNotFoundError:
+    from arryadia_hourly_grand_format import is_viewer_report
+   if not is_viewer_report(e):raise ValueError("Unauthorized Arryadia viewer-reported schedule")
   if generated_placeholder(e.title) or e.source in ("arryadia-auto","arryadia-smart","arryadia-repeat"):
    dropped+=1
    continue
@@ -1563,6 +1582,7 @@ def to_xml(rows,path):
  for cid in sorted(set(CHANNELS)|{e.channel for e in valid_rows}):ch=ET.SubElement(root,"channel",{"id":cid});ET.SubElement(ch,"display-name").text=CHANNELS.get(cid,cid)
  for e in sorted(valid_rows,key=lambda e:(e.start,e.channel,e.title)):
   p=ET.SubElement(root,"programme",{"start":xdt(e.start),"stop":xdt(e.stop),"channel":e.channel});ET.SubElement(p,"title",{"lang":e.tl or lang(e.title)}).text=e.title;ET.SubElement(p,"desc",{"lang":e.dl or lang(e.desc)}).text=e.desc or e.title;counts[e.channel]+=1
+  if e.source==VIEWER_SOURCE:ET.SubElement(p,"category",{"lang":"en"}).text=VIEWER_CATEGORY
  ET.indent(root,space="  ");ET.ElementTree(root).write(path,encoding="utf-8",xml_declaration=True);return dict(counts)
 
 def select_groups(results,old,now=None):
@@ -1585,6 +1605,10 @@ def select_groups(results,old,now=None):
    rows.append(e);kept+=1
   mode=("fresh" if ok else "degraded-fresh") if fresh else ("last-known-good" if rows else "missing")
   status[g]={"mode":mode,"events":len(rows),"retained_exact_lkg":kept,"detail":detail,"qualified":ok}
+  viewer_count=sum(e.source==VIEWER_SOURCE for e in rows)
+  if viewer_count:
+   status[g]["viewer_reported_hourly_events"]=viewer_count
+   if all(e.source==VIEWER_SOURCE for e in fresh):status[g]["mode"]="viewer-reported"
   log("%s: %s (%s); exact LKG=%d"%(g,mode,detail,kept))
   final+=rows
  return final,status

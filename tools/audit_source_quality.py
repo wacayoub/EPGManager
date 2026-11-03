@@ -15,10 +15,10 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 try:
     from bein_occasional_policy import is_occasional_bein
-    from programme_authenticity import generated_placeholder
+    from programme_authenticity import generated_placeholder, viewer_reported_schedule
 except ModuleNotFoundError:
     from tools.bein_occasional_policy import is_occasional_bein
-    from tools.programme_authenticity import generated_placeholder
+    from tools.programme_authenticity import generated_placeholder, viewer_reported_schedule
 
 BAD_DESC = (
     "دليل البرامج غير متوفر", "جدول البرامج غير متوفر",
@@ -63,6 +63,7 @@ def analyze(path, source, now):
     bad_channels = defaultdict(int)
     future_counts = defaultdict(int)
     future_titles = defaultdict(set)
+    viewer_counts = defaultdict(int)
     missing_desc = 0
     placeholder_desc = 0
     placeholder_title = 0
@@ -81,6 +82,7 @@ def analyze(path, source, now):
             continue
         future_programmes += 1
         future_counts[cid] += 1
+        if viewer_reported_schedule(p):viewer_counts[cid] += 1
         by_id[cid].append((start, stop))
         title = next(((x.text or "").strip() for x in p.findall("title") if x.text), "")
         if title:
@@ -127,7 +129,7 @@ def analyze(path, source, now):
     # A high placeholder ratio is stronger evidence of artificial schedule rows.
     repeated_all = sorted(cid for cid,count in future_counts.items()
                           if count >= 10 and len(future_titles.get(cid, set())) <= 2)
-    repeated = [cid for cid in repeated_all if cid not in occasional]
+    repeated = [cid for cid in repeated_all if cid not in occasional and viewer_counts[cid] != future_counts[cid]]
     result = {
         "source": source,
         "generated_utc": now.isoformat(),
@@ -144,6 +146,8 @@ def analyze(path, source, now):
         "future_programmes_with_placeholder_or_channel_title": placeholder_title,
         "suspected_placeholder_channels": [{"id": cid, "count": bad_channels[cid]} for cid in quality_bad],
         "future_programmes_by_channel": dict(sorted(future_counts.items())),
+        "viewer_reported_recurring_programmes": sum(viewer_counts.values()),
+        "viewer_reported_recurring_channels": sorted(cid for cid,count in viewer_counts.items() if count),
         "suspected_repeated_title_channels": repeated,
         "occasional_event_channel_ids": sorted(occasional),
         "occasional_event_channels_without_future_match": sorted(occasional_without_events),
@@ -153,7 +157,7 @@ def analyze(path, source, now):
         "invalid_dates": invalid_dates,
     }
     result["quality_status"] = (
-        "WARN" if (short or holes or bad_channels or invalid_dates) else "PASS"
+        "WARN" if (short or holes or bad_channels or invalid_dates or sum(viewer_counts.values())) else "PASS"
     )
     return result
 
