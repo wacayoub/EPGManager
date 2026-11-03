@@ -3,7 +3,7 @@ name: EPG Daily Watchdog
 on:
   schedule:
     - cron: "15 14 * * *"
-      timezone: "Etc/GMT"
+      timezone: "Africa/Casablanca"
   workflow_dispatch:
 
 permissions:
@@ -38,7 +38,7 @@ jobs:
           from zoneinfo import ZoneInfo
           from tools.mena_source_snapshot import get_source_snapshot, needs_rebuild
 
-          tz = ZoneInfo("Etc/GMT")
+          tz = ZoneInfo("Africa/Casablanca")
           now = datetime.now(tz)
           today = now.date()
           sources = [

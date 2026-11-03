@@ -1,10 +1,9 @@
 name: EPG 48h - STARZPLAY
 
 on:
-  # Sole automatic STARZPLAY scraper: 05:12 fixed GMT+0, no seasonal shift.
   schedule:
     - cron: "12 5 * * *"
-      timezone: "Etc/GMT"
+      timezone: "Africa/Casablanca"
   workflow_dispatch:
 
 permissions:

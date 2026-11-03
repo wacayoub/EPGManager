@@ -1,10 +1,9 @@
 name: EPG 48h - Shahid MBC
 
 on:
-  # Sole Shahid/MBC scheduled scraper, Moroccan local civil time.
   schedule:
     - cron: "39 3 * * *"
-      timezone: "Etc/GMT"
+      timezone: "Africa/Casablanca"
   workflow_dispatch:
 
 permissions:

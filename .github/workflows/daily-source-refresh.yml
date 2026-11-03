@@ -1,6 +1,11 @@
 name: EPG 48h - Manual source refresh
 
 on:
+  workflow_call:
+    inputs:
+      source:
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       source:

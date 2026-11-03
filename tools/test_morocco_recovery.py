@@ -128,9 +128,9 @@ class MoroccoRecovery(unittest.TestCase):
     def test_genuine_french_2m_news_remains_french(self):
         self.assertEqual(m.tr2m_title(None,'Info Soir'),'Info Soir')
 
-    def test_0707_gmt_schedule_is_unchanged_and_single(self):
+    def test_0707_local_schedule_is_single(self):
         doc=yaml.load((ROOT/'.github/workflows/refresh-morocco.yml').read_text(),Loader=yaml.BaseLoader)
-        self.assertEqual(doc['on']['schedule'],[{'cron':'7 7 * * *','timezone':'Etc/GMT'}])
+        self.assertEqual(doc['on']['schedule'],[{'cron':'7 7 * * *','timezone':'Africa/Casablanca'}])
         self.assertNotIn('push',doc['on']); self.assertIn('workflow_dispatch',doc['on'])
 
     def test_each_provider_has_its_own_queue_and_elcinema_donors_share_only_elcinema(self):

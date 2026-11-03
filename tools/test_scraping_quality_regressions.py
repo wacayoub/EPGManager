@@ -144,6 +144,7 @@ class DerivedQuality(unittest.TestCase):
             replace_feed(d,'morocco','2M',[(now-timedelta(days=2),now-timedelta(days=1),'برنامج حقيقي','وصف')])
             (Path(d)/'reports/morocco-publish-lkg.json').write_text(json.dumps({
                 'generated_utc':now.isoformat(),'sources':{'morocco':{'decision':'KEEP_LKG'}}}))
+            (Path(d)/'feeds/morocco.txt').write_text('2M|2M\n')
             state=inspect(d,'morocco',now)
             self.assertEqual(state['status'],'NO_FUTURE_EPG')
             self.assertTrue(state['last_attempt_kept_lkg'])
