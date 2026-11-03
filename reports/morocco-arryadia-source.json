@@ -1,6 +1,6 @@
 {
   "source": "arryadia",
-  "checked_utc": "2026-11-03T11:38:36.160388+00:00",
+  "checked_utc": "2026-11-03T12:00:20.184591+00:00",
   "scope": "official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format",
   "receiver_release_status": "NO_GO",
   "attempts": [
@@ -79,9 +79,29 @@
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261105/0?countryCode=MA&locale=en",
           "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261106/0?countryCode=MA&locale=en",
+          "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261107/0?countryCode=MA&locale=en",
+          "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261108/0?countryCode=MA&locale=en",
+          "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261109/0?countryCode=MA&locale=en",
+          "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261110/0?countryCode=MA&locale=en",
+          "http_status": 200
         }
       ],
-      "fixture_count": 1
+      "fixture_count": 9
     },
     "botola_matches_added": [
       {
@@ -90,28 +110,85 @@
         "kickoff_utc": "2026-11-04T20:00:00+00:00",
         "broadcast_channel_confirmed": false,
         "duration_minutes_estimated": 120
+      },
+      {
+        "fixture_id": "ls:1908637",
+        "title": "Hassania Agadir vs RS Berkane - Botola Pro",
+        "kickoff_utc": "2026-11-06T18:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
+      },
+      {
+        "fixture_id": "ls:1908646",
+        "title": "Union Touarga vs Amal Tiznit - Botola Pro",
+        "kickoff_utc": "2026-11-06T20:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
+      },
+      {
+        "fixture_id": "ls:1908647",
+        "title": "KACM vs Wydad - Botola Pro",
+        "kickoff_utc": "2026-11-07T16:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
+      },
+      {
+        "fixture_id": "ls:1908641",
+        "title": "MAS Fès vs FUS Rabat - Botola Pro",
+        "kickoff_utc": "2026-11-07T18:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
+      },
+      {
+        "fixture_id": "ls:1908643",
+        "title": "MAT Tétouan vs CODM Meknès - Botola Pro",
+        "kickoff_utc": "2026-11-07T20:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
+      },
+      {
+        "fixture_id": "ls:1908640",
+        "title": "Renaissance Zemamra vs Widad Temara - Botola Pro",
+        "kickoff_utc": "2026-11-08T16:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
+      },
+      {
+        "fixture_id": "ls:1908638",
+        "title": "FAR Rabat vs Difaâ El Jadida - Botola Pro",
+        "kickoff_utc": "2026-11-08T18:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
+      },
+      {
+        "fixture_id": "ls:1908639",
+        "title": "Raja vs Ittihad Tanger - Botola Pro",
+        "kickoff_utc": "2026-11-08T20:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
       }
     ],
     "simultaneous_matches_not_assigned": [],
-    "smart_recurring_programmes": 15,
+    "smart_recurring_programmes": 50,
     "official_broadcast_claim": false
   },
   "status": "ESTIMATED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID",
   "official_future_events": 0,
   "retained_exact_lkg": 0,
   "provider_status": "STALE_OFFICIAL_GRID",
-  "viewer_reported_hourly_events": 122,
+  "viewer_reported_hourly_events": 338,
   "viewer_reported_channel_ids": [
     "Arryadia_HD2",
     "Arryadia_HD3"
   ],
-  "smart_estimated_events": 16,
-  "output_events": 138,
+  "smart_estimated_events": 59,
+  "requested_window_hours": 168,
+  "output_events": 397,
   "channel_counts": {
-    "Arryadia_HD": 16,
+    "Arryadia_HD": 59,
     "Arryadia_TNT": 0,
     "Arryadia_HD1": 0,
-    "Arryadia_HD2": 61,
-    "Arryadia_HD3": 61
+    "Arryadia_HD2": 169,
+    "Arryadia_HD3": 169
   }
 }
