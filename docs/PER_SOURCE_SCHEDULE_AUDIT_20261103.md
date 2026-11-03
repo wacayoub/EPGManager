@@ -17,7 +17,7 @@ All times below are **Morocco local time (`Africa/Casablanca`)** and follow seas
 | bein | 02:22 | 65 / 68 | Arabic/English discovery, midnight anchor correction and final sidecar repack. Three catalogue channels still lack rows. |
 | elcinema | 01:20 | 95 / 97 | Midnight rollover and authentic short-horizon retry; two catalogue IDs still lack rows. |
 | starzplay | 05:12 | 117 / 119 | Official API bilingual merge; two catalogue entries have no future rows. |
-| stctv | 05:55 | 124 / 149 | Official channel/schedule APIs; channel-name loops removed rather than published as genuine programmes. |
+| stctv | 02:37 | 124 / 149 | Official channel/schedule APIs; channel-name loops removed rather than published as genuine programmes. |
 
 Each of the 14 files was checked independently for gzip SHA256/size, XMLTV counts, unique IDs, exact TXT catalogue, valid programme intervals and real future coverage. All have useful future data, but partial guides remain DEGRADED. Missing provider programmes are not fabricated or silently removed from the catalogue. Exact gaps and programme counts are in [the machine report](../reports/per-source-review-20261103.json).
 
@@ -28,3 +28,5 @@ The [manual sequential workflow](../.github/workflows/audit-sources-one-by-one.y
 Recent scheduled-run history is attached separately in [the observed schedule report](../reports/source-schedule-observations-20261103.json). Only three of the 14 newly consolidated workflow files had scheduled runs at review; absence of a run is not proof of on-time execution. The observed Tabie/ElCinema/OSN starts were many hours after their configured fixed-GMT targets. Retiming cannot promise exact delivery: [GitHub documents scheduler delays and possible dropped jobs](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).
 
 Vu+ remains **NO_GO**; no receiver was modified and the frozen canonical release is unchanged.
+
+STC moved from 05:55 to 02:37 local time so its verified Rotana and STARZPLAY consumers can use the latest donor publication. The 73-minute lead over Rotana covers the 70-minute job allowance subject to scheduler delays.

@@ -31,6 +31,13 @@ class SourceTiming(unittest.TestCase):
             self.assertIsNone(result['observed_delay_seconds'])
             self.assertIsNone(result['scheduled_for_utc'])
 
+    def test_stc_finishes_its_allowance_before_its_consumers(self):
+        def minutes(source):
+            hour,minute=map(int,self.policy['sources'][source]['time'].split(':'))
+            return 60*hour+minute
+        for consumer in ('rotana','starzplay'):
+            self.assertGreaterEqual(minutes(consumer)-minutes('stctv'),70)
+
     def test_local_target_follows_morocco_seasonal_clock(self):
         for month in (3,11):
             now=datetime(2026,month,3,7,12,tzinfo=timezone.utc)

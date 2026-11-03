@@ -1,3 +1,5 @@
+> Historical schedule, superseded on 3 November 2026 by the user-requested Morocco local clock. See [current source schedules](SOURCE_ENGINE.md#schedule) and [per-source audit](PER_SOURCE_SCHEDULE_AUDIT_20261103.md).
+
 # EPG-Scrapers — All source schedules on fixed GMT+0 (18 October 2026)
 
 **Definition:** User explicitly requests **GMT+0 fixed clock**, not
