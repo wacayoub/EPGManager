@@ -1,10 +1,9 @@
 name: EPG 48h - Tabie QMC
 
 on:
-  # Only automatic source scrape: fixed GMT+0, independent of Morocco DST.
   schedule:
     - cron: "30 0 * * *"
-      timezone: "Etc/GMT"
+      timezone: "Africa/Casablanca"
   workflow_dispatch:
 
 permissions:

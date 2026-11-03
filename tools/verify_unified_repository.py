@@ -26,9 +26,19 @@ def verify(root='.'):
         if 'schedule' in events:
             schedules.append(path.name)
             for row in events['schedule']:
-                assert row.get('timezone')=='Etc/GMT', 'source schedules must use fixed GMT+0'
+                assert row.get('timezone')=='Africa/Casablanca', 'source schedules must use Morocco local time'
     expected={'refresh-'+name+'.yml' for name in sources}|{'daily-epg-chain.yml','epg-watchdog.yml'}
     assert set(schedules)==expected, 'duplicate or missing automatic publication schedule'
+    policy=json.loads((root/'config/source-schedules.json').read_text(encoding='utf-8'))
+    assert set(policy['sources'])==set(sources), 'schedule policy must cover all sources'
+    for name in sources:
+        row=policy['sources'][name]
+        hour,minute=map(int,row['time'].split(':'))
+        doc=yaml.load((root/f'.github/workflows/refresh-{name}.yml').read_text(encoding='utf-8'),Loader=yaml.BaseLoader)
+        assert doc['on']['schedule']==[{'cron':f'{minute} {hour} * * *','timezone':row['timezone']}], name+': schedule drift'
+    chain=yaml.load((root/'.github/workflows/daily-epg-chain.yml').read_text(encoding='utf-8'),Loader=yaml.BaseLoader)
+    hour,minute=map(int,policy['postprocess']['time'].split(':'))
+    assert chain['on']['schedule']==[{'cron':f'{minute} {hour} * * *','timezone':policy['postprocess']['timezone']}], 'postprocess schedule drift'
     for name in sources:
         raw=(root/f'feeds/{name}.xml.gz').read_bytes()
         meta=json.loads((root/f'feeds/{name}.json').read_text(encoding='utf-8'))

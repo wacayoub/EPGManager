@@ -1,10 +1,9 @@
 name: EPG 48h - beIN MENA
 
 on:
-  # Sole scheduled beIN upstream scraper: 02:22 Casablanca civil time.
   schedule:
     - cron: "22 2 * * *"
-      timezone: "Etc/GMT"
+      timezone: "Africa/Casablanca"
   workflow_dispatch:
 
 permissions:

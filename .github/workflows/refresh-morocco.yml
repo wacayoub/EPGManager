@@ -1,11 +1,9 @@
 name: EPG 48h - Morocco
 
 on:
-  # Sole automatic Morocco source scrape: 07:07 fixed GMT+0, no DST.
-  # Never re-scrape Morocco automatically on implementation commits.
   schedule:
     - cron: "7 7 * * *"
-      timezone: "Etc/GMT"
+      timezone: "Africa/Casablanca"
   workflow_dispatch:
 
 permissions:

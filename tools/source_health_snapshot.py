@@ -42,6 +42,10 @@ def inspect_valid_publication(root, source, now=None):
     if (xml.tag!='tv' or not all(ids) or len(ids)!=len(set(ids))
             or any(p.get('channel') not in ids for p in xml.findall('programme'))):
         raise ValueError('Published XMLTV channel identities are invalid')
+    index=(root/'feeds'/(source+'.txt')).read_text(encoding='utf-8').splitlines()
+    indexed=[line.split('|',1)[0].strip() for line in index if line.strip()]
+    if len(indexed)!=len(set(indexed)) or set(indexed)!=set(ids):
+        raise ValueError('Published TXT channel index disagrees with XMLTV')
     ends = [parse_time(p.get('stop')) for p in xml.findall('programme')]
     ends = [x for x in ends if x and x > now]
     remaining = (max(ends) - now).total_seconds() / 3600 if ends else 0

@@ -1,0 +1,23 @@
+name: Collect and verify sources one by one
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sequential-source-audit
+  cancel-in-progress: false
+jobs:
+  source:
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        source: [morocco, alkass, tabie, tunisiatv, aljazeera, dubaiplus, shahid, rotana, sport24, osn, bein, elcinema, starzplay, stctv]
+    uses: ./.github/workflows/daily-source-refresh.yml
+    with:
+      source: ${{ matrix.source }}
+    secrets: inherit
+  aggregate:
+    needs: source
+    if: ${{ always() }}
+    uses: ./.github/workflows/rebuild-mena-derived.yml

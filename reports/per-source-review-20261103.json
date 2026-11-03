@@ -1,0 +1,641 @@
+{
+  "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+  "receiver_release_status": "NO_GO",
+  "scope": "per-source published-byte review before sequential recollection",
+  "sources": [
+    {
+      "source": "morocco",
+      "schedule": {
+        "time": "07:07",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "morocco",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "ef03ecf2a7e0f0674a807041177daaf546c8e40eca6e4c560515dd4d227817f6",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 15,
+        "channels_with_future_epg": 9,
+        "channels_without_future_epg": [
+          "AFLAM.ma",
+          "Arryadia_HD",
+          "Arryadia_HD1",
+          "Arryadia_HD2",
+          "Arryadia_HD3",
+          "Arryadia_TNT"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 50.83,
+        "channels_with_less_than_24h": [
+          "AFLAM.ma",
+          "Arryadia_HD",
+          "Arryadia_HD1",
+          "Arryadia_HD2",
+          "Arryadia_HD3",
+          "Arryadia_TNT"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "SNRT/2M/Medi1: Arryadia exposes an old grid; AFLAM has no verified current guide. Keep missing IDs explicit.",
+      "programme_count": 578,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": [
+        "AFLAM.ma",
+        "Arryadia_HD",
+        "Arryadia_HD1",
+        "Arryadia_HD2",
+        "Arryadia_HD3",
+        "Arryadia_TNT"
+      ]
+    },
+    {
+      "source": "alkass",
+      "schedule": {
+        "time": "06:30",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "alkass",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "c660a45e3bcf7603345df3bbf79534cc35248dc11e3ee5855663ba597b968bd0",
+        "status": "AVAILABLE",
+        "last_attempt_kept_lkg": false,
+        "channels": 8,
+        "channels_with_future_epg": 8,
+        "channels_without_future_epg": [],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 35.8,
+        "channels_with_less_than_24h": [],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "Direct official TV guide; all eight channels have future data.",
+      "programme_count": 269,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": []
+    },
+    {
+      "source": "tabie",
+      "schedule": {
+        "time": "00:30",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "tabie",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "4186733a279bad3e70155138b8de3cbdcc5d6d50db82bab48a06dbd35d4d77bf",
+        "status": "AVAILABLE",
+        "last_attempt_kept_lkg": false,
+        "channels": 4,
+        "channels_with_future_epg": 4,
+        "channels_without_future_epg": [],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 11.8,
+        "channels_with_less_than_24h": [
+          "QatarTelevision.qa@SD",
+          "QatarTelevision2.qa@SD",
+          "TabieKids.qa",
+          "TabieNow.qa"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "Direct provider schedules; four channels have future data.",
+      "programme_count": 683,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": []
+    },
+    {
+      "source": "tunisiatv",
+      "schedule": {
+        "time": "06:35",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "tunisiatv",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "5a1a66ec0260ebc911310f2cfd0a56f8962e8ad741f65276ba371eab75149005",
+        "status": "AVAILABLE",
+        "last_attempt_kept_lkg": false,
+        "channels": 2,
+        "channels_with_future_epg": 2,
+        "channels_without_future_epg": [],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 48.87,
+        "channels_with_less_than_24h": [],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "Official programme pages; both channels have future data.",
+      "programme_count": 124,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": []
+    },
+    {
+      "source": "aljazeera",
+      "schedule": {
+        "time": "04:12",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "aljazeera",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "ef288e538f78334b188ce5e981be1f1f374b3eff46c5917e2e8d1a5996a7b56e",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 5,
+        "channels_with_future_epg": 2,
+        "channels_without_future_epg": [
+          "AlJazeera2.qa@HD",
+          "AlJazeeraDocumentary.qa@SD",
+          "AlJazeeraMubasher.qa@SD"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 48.8,
+        "channels_with_less_than_24h": [
+          "AlJazeera2.qa@HD",
+          "AlJazeeraDocumentary.qa@SD",
+          "AlJazeeraMubasher.qa@SD"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "Official GraphQL Arabic/English work. AJ2 returns no rows; Mubasher/Documentary lack verified schedule endpoints.",
+      "programme_count": 112,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": [
+        "AlJazeera2.qa@HD",
+        "AlJazeeraDocumentary.qa@SD",
+        "AlJazeeraMubasher.qa@SD"
+      ]
+    },
+    {
+      "source": "dubaiplus",
+      "schedule": {
+        "time": "04:44",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "dubaiplus",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "656c9574c276ed8ecdedb0ca107ce8030fbf56d31a575d5c06f3831c5c0a9e66",
+        "status": "AVAILABLE",
+        "last_attempt_kept_lkg": false,
+        "channels": 9,
+        "channels_with_future_epg": 9,
+        "channels_without_future_epg": [],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 48.8,
+        "channels_with_less_than_24h": [],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "Official channel API; all nine channels have future data.",
+      "programme_count": 407,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": []
+    },
+    {
+      "source": "shahid",
+      "schedule": {
+        "time": "03:39",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "shahid",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "2460b303b4d7b7a035930a3d7c766f5e997ca2fb6817934be2ac60bca9299a63",
+        "status": "AVAILABLE",
+        "last_attempt_kept_lkg": false,
+        "channels": 71,
+        "channels_with_future_epg": 71,
+        "channels_without_future_epg": [],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 62.8,
+        "channels_with_less_than_24h": [],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "Official adapter; all 71 channels have future data.",
+      "programme_count": 4453,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": []
+    },
+    {
+      "source": "rotana",
+      "schedule": {
+        "time": "03:50",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "rotana",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "8047d084e3595f10b73f58521705881f669c8790b6881c5f3525f00e3eca087e",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 9,
+        "channels_with_future_epg": 7,
+        "channels_without_future_epg": [
+          "AlResalah.sa@SD",
+          "RotanaClip.sa@SD"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 49.3,
+        "channels_with_less_than_24h": [
+          "AlResalah.sa@SD",
+          "RotanaClip.sa@SD"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "Official streams page plus verified STC fallback; AlResalah and RotanaClip still lack genuine rows.",
+      "programme_count": 273,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": [
+        "AlResalah.sa@SD",
+        "RotanaClip.sa@SD"
+      ]
+    },
+    {
+      "source": "sport24",
+      "schedule": {
+        "time": "03:05",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "sport24",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "36ade243c18530055fae5cbe0e020da29a7ec517d297230d7b8c32456ab16d78",
+        "status": "AVAILABLE",
+        "last_attempt_kept_lkg": false,
+        "channels": 9,
+        "channels_with_future_epg": 9,
+        "channels_without_future_epg": [],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 16.55,
+        "channels_with_less_than_24h": [
+          "sport24.adsports.1",
+          "sport24.adsports.2",
+          "sport24.adsports.3",
+          "sport24.adsports.4",
+          "sport24.dubaisports.1",
+          "sport24.dubaisports.2",
+          "sport24.thmanyah.1",
+          "sport24.thmanyah.2",
+          "sport24.thmanyah.3"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "UTC timestamps retained; verified donor extension recovers all nine channels.",
+      "programme_count": 156,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": []
+    },
+    {
+      "source": "osn",
+      "schedule": {
+        "time": "01:40",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "osn",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "1f2b0f3e5784a62b08845d76af52a938204b97d89253888c544b75267578c847",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 100,
+        "channels_with_future_epg": 79,
+        "channels_without_future_epg": [
+          "AlfaSeries.ae@SD",
+          "AlfaSeriesPlus2.ae@SD",
+          "AlSafwa.ae@SD",
+          "AlYawm.ae@SD",
+          "ANC.ph",
+          "Cinema1.ae@SD",
+          "Cinema2.ae@SD",
+          "CineMo.ph",
+          "Fann.ae@SD",
+          "Gametoon.nl@SD",
+          "GMALifeTV.ph",
+          "GMANewsTV.ph",
+          "GMAPinoyTVMiddleEast.ph",
+          "MusicNow.ae@SD",
+          "MyxMiddleEast.ph",
+          "osn.213",
+          "osn.215",
+          "osn.216",
+          "osn.217",
+          "osn.220",
+          "OSNBlippiAndFriends"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 50.8,
+        "channels_with_less_than_24h": [
+          "ANC.ph",
+          "AlSafwa.ae@SD",
+          "AlYawm.ae@SD",
+          "AlfaSeries.ae@SD",
+          "AlfaSeriesPlus2.ae@SD",
+          "CineMo.ph",
+          "Cinema1.ae@SD",
+          "Cinema2.ae@SD",
+          "Fann.ae@SD",
+          "GMALifeTV.ph",
+          "GMANewsTV.ph",
+          "GMAPinoyTVMiddleEast.ph",
+          "Gametoon.nl@SD",
+          "MusicNow.ae@SD",
+          "MyxMiddleEast.ph",
+          "OSNBlippiAndFriends",
+          "osn.213",
+          "osn.215",
+          "osn.216",
+          "osn.217",
+          "osn.220"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "Android/Legacy batches, blank GUID filtering and English/Arabic merge. Raw OSNtv Now works; canonical receiver identity remains unvalidated.",
+      "programme_count": 6033,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": [
+        "AlfaSeries.ae@SD",
+        "AlfaSeriesPlus2.ae@SD",
+        "AlSafwa.ae@SD",
+        "AlYawm.ae@SD",
+        "ANC.ph",
+        "Cinema1.ae@SD",
+        "Cinema2.ae@SD",
+        "CineMo.ph",
+        "Fann.ae@SD",
+        "Gametoon.nl@SD",
+        "GMALifeTV.ph",
+        "GMANewsTV.ph",
+        "GMAPinoyTVMiddleEast.ph",
+        "MusicNow.ae@SD",
+        "MyxMiddleEast.ph",
+        "osn.213",
+        "osn.215",
+        "osn.216",
+        "osn.217",
+        "osn.220",
+        "OSNBlippiAndFriends"
+      ]
+    },
+    {
+      "source": "bein",
+      "schedule": {
+        "time": "02:22",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "bein",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "4d50505e5f19c21341822992ca219630750c4e59b5fb42c60ec533de7ac7b872",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 68,
+        "channels_with_future_epg": 65,
+        "channels_without_future_epg": [
+          "AlkassEight.qa@SD",
+          "BloombergTV.us@MiddleEast",
+          "CNNArabic.ae@SD"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 49.3,
+        "channels_with_less_than_24h": [
+          "AlJazeeraDocumentary.qa@SD",
+          "AlkassEight.qa@SD",
+          "AlkassFive.qa@SD",
+          "AlkassFour.qa@SD",
+          "AlkassOne.qa@SD",
+          "AlkassSeven.qa@SD",
+          "AlkassSix.qa@SD",
+          "AlkassThree.qa@SD",
+          "AlkassTwo.qa@SD",
+          "BloombergTV.us@MiddleEast",
+          "CBeebiesMiddleEast.uk@SD",
+          "CNNArabic.ae@SD",
+          "ClubMTVEurope.uk@SD",
+          "Fatafeat.ae@SD",
+          "FoodNetworkEMEA.us@SD",
+          "FoxArabia.ae@SD",
+          "HGTVArabia.us@SD",
+          "MTV80s.uk@SD",
+          "MTV90s.uk@SD",
+          "StarMoviesMiddleEast.ae@SD",
+          "beINBoxOffice1.qa@SD",
+          "beINBoxOffice2.qa@SD"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "Arabic/English discovery, midnight anchor correction and final sidecar repack. Three catalogue channels still lack rows.",
+      "programme_count": 2618,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": [
+        "AlkassEight.qa@SD",
+        "BloombergTV.us@MiddleEast",
+        "CNNArabic.ae@SD"
+      ]
+    },
+    {
+      "source": "elcinema",
+      "schedule": {
+        "time": "01:20",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "elcinema",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "aa344ddaa39bb26357c81f24edebacf5757dc4bfa8d284d5c27f2fdec00d48a8",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 97,
+        "channels_with_future_epg": 95,
+        "channels_without_future_epg": [
+          "Althania.sy@SD",
+          "DubaiOne.ae@SD"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 49.3,
+        "channels_with_less_than_24h": [
+          "AlMasriyah.eg@SD",
+          "AlSaeedah.eg@SD",
+          "AlSaudiya.sa@SD",
+          "Althania.sy@SD",
+          "BahrainTV.bh@SD",
+          "DiscoveryChannelMiddleEastAfrica.us@SD",
+          "DubaiOne.ae@SD",
+          "DubaiTV.ae@SD",
+          "ERTU1.eg@SD",
+          "LBCInternational.lb@SD",
+          "MBCMasrDrama.sa@SD",
+          "MasperoZaman.eg@SD",
+          "NileLife.eg@SD"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "Midnight rollover and authentic short-horizon retry; two catalogue IDs still lack rows.",
+      "programme_count": 4075,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": [
+        "Althania.sy@SD",
+        "DubaiOne.ae@SD"
+      ]
+    },
+    {
+      "source": "starzplay",
+      "schedule": {
+        "time": "05:12",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "starzplay",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "5a3095b3274c3e660d43800d311ce7a43f989f391c47143c8e527ccdb9a83e04",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 119,
+        "channels_with_future_epg": 117,
+        "channels_without_future_epg": [
+          "starzplay.515470888131",
+          "starzplay.527810088109"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 64.55,
+        "channels_with_less_than_24h": [
+          "StarzplaySports3.sa@HD",
+          "starzplay.515470888131",
+          "starzplay.527810088109",
+          "starzplay.705949224430",
+          "starzplay.705949224431"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "Official API bilingual merge; two catalogue entries have no future rows.",
+      "programme_count": 8520,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": [
+        "starzplay.515470888131",
+        "starzplay.527810088109"
+      ]
+    },
+    {
+      "source": "stctv",
+      "schedule": {
+        "time": "05:55",
+        "timezone": "Africa/Casablanca"
+      },
+      "health": {
+        "source": "stctv",
+        "checked_utc": "2026-11-03T09:11:55.793820+00:00",
+        "feed_sha256": "b080c6784d41ea0ca9b2162dbac878778b0f1dcd6fce52c4e4a1815f965a6d80",
+        "status": "DEGRADED",
+        "last_attempt_kept_lkg": false,
+        "channels": 149,
+        "channels_with_future_epg": 124,
+        "channels_without_future_epg": [
+          "AsharqDocumentary.sa@SD",
+          "BahrainTV.bh@SD",
+          "DMC.eg@SD",
+          "SharjahTV.ae@SD",
+          "starzplay.460050472022",
+          "starzplay.770738728162",
+          "stctv.07c7055a52f7",
+          "stctv.0c7f54b591ee",
+          "stctv.0e0a2a4c571f",
+          "stctv.101231b7a2a1",
+          "stctv.4667a521021a",
+          "stctv.62271af08509",
+          "stctv.7b72e3bc5436",
+          "stctv.7d9deabe3500",
+          "stctv.899b0d26dbea",
+          "stctv.a60e07fa6b41",
+          "stctv.bb90021b8c50",
+          "stctv.bea09674c73f",
+          "stctv.bf3456c5b9b2",
+          "stctv.cb251a15e222",
+          "stctv.d2c88738ab47",
+          "stctv.d2ded9de3b1b",
+          "stctv.de47c15b885a",
+          "stctv.def1ba405daf",
+          "stctv.ea722d790a94"
+        ],
+        "suspected_placeholder_channels": [],
+        "remaining_max_hours": 49.55,
+        "channels_with_less_than_24h": [
+          "AsharqDocumentary.sa@SD",
+          "BahrainTV.bh@SD",
+          "DMC.eg@SD",
+          "DubaiSports2.ae@SD",
+          "SharjahTV.ae@SD",
+          "StarzplaySports1.sa@HD",
+          "StarzplaySports2.sa@HD",
+          "StarzplaySports3.sa@HD",
+          "starzplay.460050472022",
+          "starzplay.770738728162",
+          "stctv.07c7055a52f7",
+          "stctv.0c7f54b591ee",
+          "stctv.0e0a2a4c571f",
+          "stctv.101231b7a2a1",
+          "stctv.4667a521021a",
+          "stctv.4a2b60976c7f",
+          "stctv.62271af08509",
+          "stctv.7b72e3bc5436",
+          "stctv.7d9deabe3500",
+          "stctv.899b0d26dbea",
+          "stctv.a60e07fa6b41",
+          "stctv.bb90021b8c50",
+          "stctv.bea09674c73f",
+          "stctv.bf3456c5b9b2",
+          "stctv.cac5e490d765",
+          "stctv.cb251a15e222",
+          "stctv.d2c88738ab47",
+          "stctv.d2ded9de3b1b",
+          "stctv.de47c15b885a",
+          "stctv.def1ba405daf",
+          "stctv.ea722d790a94"
+        ],
+        "action_success_does_not_certify_guide_quality": true
+      },
+      "provider_review": "Official channel/schedule APIs; channel-name loops removed rather than published as genuine programmes.",
+      "programme_count": 7760,
+      "invalid_times": 0,
+      "placeholder_rows": 0,
+      "missing_future_ids": [
+        "AsharqDocumentary.sa@SD",
+        "BahrainTV.bh@SD",
+        "DMC.eg@SD",
+        "SharjahTV.ae@SD",
+        "starzplay.460050472022",
+        "starzplay.770738728162",
+        "stctv.07c7055a52f7",
+        "stctv.0c7f54b591ee",
+        "stctv.0e0a2a4c571f",
+        "stctv.101231b7a2a1",
+        "stctv.4667a521021a",
+        "stctv.62271af08509",
+        "stctv.7b72e3bc5436",
+        "stctv.7d9deabe3500",
+        "stctv.899b0d26dbea",
+        "stctv.a60e07fa6b41",
+        "stctv.bb90021b8c50",
+        "stctv.bea09674c73f",
+        "stctv.bf3456c5b9b2",
+        "stctv.cb251a15e222",
+        "stctv.d2c88738ab47",
+        "stctv.d2ded9de3b1b",
+        "stctv.de47c15b885a",
+        "stctv.def1ba405daf",
+        "stctv.ea722d790a94"
+      ]
+    }
+  ]
+}
