@@ -1,7 +1,7 @@
 {
   "source": "arryadia",
-  "checked_utc": "2026-11-03T10:54:48.784860+00:00",
-  "scope": "official grid, exact LKG and user-authorized HD2/HD3 hourly Grand Format",
+  "checked_utc": "2026-11-03T11:38:36.160388+00:00",
+  "scope": "official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format",
   "receiver_release_status": "NO_GO",
   "attempts": [
     {
@@ -45,21 +45,73 @@
       "status": "STALE_OFFICIAL_GRID"
     }
   ],
-  "status": "VIEWER_REPORTED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID",
+  "smart_hd": {
+    "channel": "Arryadia_HD",
+    "mode": "learned_from_official_dated_rows",
+    "template_count": 8,
+    "model_observed_dates": [
+      "2026-09-21",
+      "2026-09-22",
+      "2026-09-23",
+      "2026-09-24",
+      "2026-09-25",
+      "2026-09-26"
+    ],
+    "fixture_provider": {
+      "provider": "LiveScore",
+      "requests": [
+        {
+          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-03",
+          "http_status": 403
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/live/soccer/0?countryCode=MA&locale=en",
+          "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261103/0?countryCode=MA&locale=en",
+          "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261104/0?countryCode=MA&locale=en",
+          "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261105/0?countryCode=MA&locale=en",
+          "http_status": 200
+        }
+      ],
+      "fixture_count": 1
+    },
+    "botola_matches_added": [
+      {
+        "fixture_id": "ls:1888107",
+        "title": "FAR Rabat vs Raja - Botola Pro",
+        "kickoff_utc": "2026-11-04T20:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
+      }
+    ],
+    "simultaneous_matches_not_assigned": [],
+    "smart_recurring_programmes": 15,
+    "official_broadcast_claim": false
+  },
+  "status": "ESTIMATED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID",
   "official_future_events": 0,
   "retained_exact_lkg": 0,
   "provider_status": "STALE_OFFICIAL_GRID",
-  "viewer_reported_hourly_events": 124,
+  "viewer_reported_hourly_events": 122,
   "viewer_reported_channel_ids": [
     "Arryadia_HD2",
     "Arryadia_HD3"
   ],
-  "output_events": 124,
+  "smart_estimated_events": 16,
+  "output_events": 138,
   "channel_counts": {
-    "Arryadia_HD": 0,
+    "Arryadia_HD": 16,
     "Arryadia_TNT": 0,
     "Arryadia_HD1": 0,
-    "Arryadia_HD2": 62,
-    "Arryadia_HD3": 62
+    "Arryadia_HD2": 61,
+    "Arryadia_HD3": 61
   }
 }
