@@ -27,8 +27,8 @@ old raw URLs remain readable as frozen snapshots and no longer receive updates.
   `EPG-Scrapers-complete-20261103.bundle`; it is not a runtime dependency.
 
 Historical workflows remain in Git history. Archive tags do not activate their
-schedules. The old mirror utility is retained only for historical recovery;
-EPGManager's workflows do not call it.
+schedules. The unused mirror utility was removed from the maintained tree and
+is recoverable at `archive/pre-cleanup-20261103`; current workflows do not use it.
 
 ## Current publication URLs
 

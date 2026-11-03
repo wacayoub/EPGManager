@@ -1,93 +1,68 @@
 # EPGManager
 
+EPGManager contains the Enigma2 plugin source and the source engine for its
+14 direct EPG feeds. GitHub Actions collects provider schedules, verifies
+publication bundles and preserves the last known good feed on failure.
+The receiver downloads finished XMLTV.
+
 > **Vu+ release: NO-GO.** Source CI and `feeds/mena.xml.gz` on `main` are
-> source diagnostics. They do not certify the canonical receiver publication
-> on `mena-data`, hardware validation or permission to refresh Enigma2.
-> The historical installer and release instructions below are not a release recommendation.
+> diagnostics. The canonical receiver publication on `mena-data`, hardware
+> validation and permission to refresh Enigma2 remain separate requirements.
 
-EPGManager now contains both the Enigma2 plugin and its MENA source engine.
-Provider scrapers, publication guards and the 14 direct feeds live in this repository.
-The receiver downloads finished XMLTV; it does not run the provider scrapers.
+## Sources and schedules
 
-See [source engine and schedules](docs/SOURCE_ENGINE.md) and
-[consolidation verification](docs/REPOSITORY_CONSOLIDATION.md).
+- [Source engine, Morocco local schedules and publication contract](docs/SOURCE_ENGINE.md)
+- [Per-source review](docs/PER_SOURCE_SCHEDULE_AUDIT_20261103.md)
+- [Morocco seven-day coverage](docs/MOROCCO_SEVEN_DAY_GUIDE.md)
+- [Arryadia Smart EPG and Botola](docs/ARRYADIA_HD_SMART_BOTOLA.md)
+- [Arryadia HD1 and local TNT official programme activation](docs/ARRYADIA_HD1_TNT_OFFICIAL_ACTIVATION.md)
+- [Receiver release blockers](docs/VU_RELEASE_NO_GO_20261103.md)
 
-The following installer information describes the historical release channel;
-this repository consolidation does not install or update the receiver.
+Direct bundles are published under `feeds/<source>.xml.gz`, with matching JSON
+metadata and TXT channel inventories. `reports/` contains current source
+diagnostics, byte-pinned publication decisions and producer receipts.
 
+## Repository layout
 
-Enigma2 / OpenATV EPG Manager with Native Import, Smart Mapping and online updates.
+| Path | Purpose |
+|---|---|
+| `.github/workflows/` | Source collection, recovery, postprocessing and verification |
+| `tools/` | Active adapters, publication guards, diagnostics and regression tests |
+| `tests/` | Plugin source migration and publication tests |
+| `config/` | Source, language and schedule policies |
+| `data/` | Arryadia models/history and translation caches used by collection |
+| `source/` | Selected plugin base package and maintained source overlay |
+| `feeds/` | Fourteen direct bundles and the diagnostic MENA aggregate |
+| `docs/` | Operating contracts, audits and migration records |
+| `archives/epg-scrapers/` | Consolidation provenance and transferred issue index |
 
-## Install from GitHub
+`source/current.txt` selects the retained plugin base ZIP. Changes are in
+`source/overlay/`. The obsolete rc70 release builder has been removed; this
+repository currently has no enabled plugin release workflow.
 
-Permanent installer URL:
+The historical installer is `install.sh`; its manifest is `update.json`.
+These existing endpoints and the published package remain unchanged by cleanup.
+The old package does not acquire new overlay changes automatically.
 
-`https://raw.githubusercontent.com/wacayoub/EPGManager/main/install.sh`
+## Validation
 
-Recommended SSH command on OpenATV:
+Install `requirements.txt` and PyYAML, then run:
 
 ```sh
-wget -qO- https://raw.githubusercontent.com/wacayoub/EPGManager/main/install.sh | sh
+python -m unittest discover -s tools -p 'test_*.py' -q
+python -m unittest discover -s tests -p 'test_*.py' -q
+python tools/verify_unified_repository.py
 ```
 
-The installer reads the permanent `update.json` manifest, downloads the current IPK, verifies its file size and SHA-256, then installs it with `opkg`.
+CI also rebuilds and verifies the source aggregate on Python 3.13 and 3.14.
 
-After installation, restart the Enigma2 GUI.
+## Migration and historical files
 
-## Online Update
+EPGManager is the only active repository. EPG-Scrapers is archived; permanent
+deletion remains blocked by the current token's missing `delete_repo` permission.
+See [migration details](archives/epg-scrapers/README.md),
+[consolidation](docs/REPOSITORY_CONSOLIDATION.md) and
+[repository cleanup](docs/REPOSITORY_CLEANUP_20261103.md).
 
-Starting with **2026.10.04-rc76**, open **Plugins > EPG Manager Online Update**.
-
-- **GREEN**: install a newer GitHub release.
-- **YELLOW**: check GitHub again.
-- **BLUE**: force reinstall the current GitHub release.
-- The updater verifies the IPK size and SHA-256 before calling `opkg`.
-- After a successful update, EPG Manager offers to restart the Enigma2 GUI.
-
-The permanent update manifest is:
-
-`https://raw.githubusercontent.com/wacayoub/EPGManager/main/update.json`
-
-## Automatic release system
-
-The repository contains the current plugin source package under `source/` and a GitHub Actions workflow at `.github/workflows/build-release.yml`.
-
-To publish the current version:
-
-1. Open **Actions** on GitHub.
-2. Select **Build and Publish EPGManager**.
-3. Click **Run workflow**.
-4. Optionally enter release notes.
-
-The workflow automatically:
-
-- restores the current source package;
-- builds the IPK;
-- calculates SHA-256 and file size;
-- creates or updates the GitHub Release;
-- uploads the IPK;
-- regenerates `update.json`;
-- commits the new update manifest to `main`.
-
-The Enigma2 plugin checks this permanent manifest URL:
-
-`https://raw.githubusercontent.com/wacayoub/EPGManager/main/update.json`
-
-The active source package is selected by `source/current.txt`.
-
-
-## Direct MENA feeds
-
-EPGManager contains source collection, per-source LKG and all direct publications. The former EPG-Scrapers repository is archived; its history is preserved under `archive/epg-scrapers/*` tags here. Permanent deletion requires a GitHub permission unavailable to the current token. See [migration and archives](archives/epg-scrapers/README.md) for current URLs and old-client limitations. The source aggregate on `main` preserves catalogue IDs and reports missing guide data. It has a different contract from the canonical receiver shards and MENA/Premium split on `mena-data`. The legacy full publication workflow is retired; the unified source checks do not replace its release gates.
-
-The source screen prioritizes these direct feeds, supports a **Direct MENA only** filter with key `2`, and shows cached channel/coverage metadata when available. GoBX is intentionally not exposed until a validated feed is published.
-
-
-## 6.2.1 multinational fix
-
-STARZPLAY is temporarily hidden from active direct sources. Multinational channel feeds are expected to use original English titles with Arabic descriptions; Arabic-native channels keep Arabic titles and descriptions. National Geographic Abu Dhabi remains an Arabic-native exception.
-
-
-## 6.3.0 direct-feed mode
-
-Historical 6.3.0 behavior: receiver-side scraping was disabled. The current unified engine publishes source candidates and diagnostics; a fresh canonical receiver publication and hardware validation remain separate unmet requirements. Settings remain receiver-focused. Legacy local generators stay hidden from Sources and Smart Mapping.
+Retired probes, experimental workflows, inspection copies and old package
+versions are available in Git history at `archive/pre-cleanup-20261103`.
