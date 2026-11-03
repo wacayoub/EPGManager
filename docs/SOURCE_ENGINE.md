@@ -28,11 +28,12 @@ Validation includes:
 - per-channel zero-EPG and future-zero monitoring
 
 ## Schedule
-All automatic source schedules use **fixed GMT+0** (`timezone: Etc/GMT`), once daily.
-There is no seasonal or Ramadan shift. Times below are requested start times,
+All automatic source schedules use **Morocco local time** (`timezone: Africa/Casablanca`), once daily.
+The civil clock follows seasonal and Ramadan changes. The schedule policy is
+`config/source-schedules.json`; workflow verification rejects policy drift. Times below are requested start times,
 not publication deadlines: GitHub may delay a scheduled workflow.
 
-| Source | GMT+0 |
+| Source | Morocco local time |
 |---|---|
 | Tabie | 00:30 |
 | ElCinema | 01:20 |
@@ -44,31 +45,46 @@ not publication deadlines: GitHub may delay a scheduled workflow.
 | Al Jazeera | 04:12 |
 | Dubai Plus | 04:44 |
 | STARZPLAY | 05:12 |
-| STC | 05:55 |
+| STC | 02:37 |
 | AlKass | 06:30 |
 | Tunisia TV | 06:35 |
 | Morocco | 07:07 |
 
-The 07:15 orchestration may extend ElCinema from verified donors, but this repository no longer builds or publishes a receiver-wide MENA aggregate. `wacayoub/EPGManager` is the only owner of final merge, canonical receiver IDs, premium/MENA split, global LKG and Vu+ publication. Manual source refresh remains available.
+STC runs at 02:37 before its verified consumers Rotana (03:50) and STARZPLAY
+(05:12). The 73-minute lead gives STC its 70-minute job allowance before Rotana,
+subject to GitHub delivery delays.
 
-Receiver imports must follow **actual publication**, not just the requested cron.
-On 23 October the MENA rebuild completed at 12:39 GMT+0; a 10:00 import therefore
-could not include every source's new publication. 13:15 would cover that observed
-day with a margin, but is not a guarantee against future GitHub delays. Check source
-SHA/generation/remaining guide before calling a cycle up to date. Never purge real
-receiver EPG because a provider is late.
+The 08:37 local postprocessing may extend ElCinema from verified donors and
+rebuilds the diagnostic MENA source aggregate. This allows the 07:07 Morocco
+job its 70-minute timeout plus a 20-minute margin. The 14:15 local watchdog
+checks source snapshot changes; GitHub delivery delays can still exceed any
+fixed margin. These are requested launch times, not guaranteed publication times.
+
+Every source records its target and observed job-setup delay in
+`reports/<source>-run-timing.json`. Manual refreshes have no scheduled delay.
+The obsolete 06:00 hour filter is removed so a delayed job can still collect.
+Use the manual **Collect and verify sources one by one** workflow to complete
+one refresh and exact-run publication verification before the next source.
+
+Source collection success does not certify complete guide coverage. Consult
+[the per-source review](PER_SOURCE_SCHEDULE_AUDIT_20261103.md) for individual gaps.
+Receiver release remains **NO_GO**; the diagnostic aggregate does not certify
+canonical receiver IDs, premium/MENA splitting, hardware validation or import authorization.
 
 ## Outputs
 - `feeds/<source>.xml.gz`
-- `reports/latest.json`
-- `reports/latest.md`
+- `feeds/<source>.json` and `feeds/<source>.txt`
+- `reports/<source>-publish-lkg.json`
+- `reports/<source>-current-health.json`
+- `reports/<source>-run-timing.json`
+- `reports/refresh-runs/<run>/<attempt>/<source>.json`
 
-The repository is the source engine. It publishes only validated per-source feeds for EPGManager consumption. It must not publish a final receiver MENA aggregate or own receiver canonical IDs.
+EPGManager owns the source engine and its diagnostic aggregate. EPG-Scrapers is a compatibility mirror with no collection schedules. Receiver publication is a separate guarded contract.
 
 
 ## Guide quality
 
-STARZPLAY is active on its own 05:12 GMT+0 workflow. A successful Actions run or a
+STARZPLAY is active on its own 05:12 Morocco local workflow. A successful Actions run or a
 MAIN/B1/B2 role does not certify guide quality. Review `<source>-current-health.json` and the source-specific quality reports: expired IDs stay visible but never green;
 placeholder suspicions remain explicit, and generated Arryadia/AFLAM filler is
 excluded from new derived publications. A degraded genuine exact-ID backup may
