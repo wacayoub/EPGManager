@@ -341,6 +341,7 @@ for key in selected_sources:
                 shutil.copy2(p, FEEDS / p.name)
         row["decision"] = "PUBLISH"
         row["published"] = True
+        row["published_sha256"] = hashlib.sha256(dst.read_bytes()).hexdigest()
         row["reasons"] = []
         result["sources"][key] = row
         print(
@@ -363,3 +364,10 @@ report_path.write_text(
     json.dumps(result, ensure_ascii=False, indent=2) + "\n",
     encoding="utf-8",
 )
+if re.fullmatch(r"\d+", result["github_run_id"]) and re.fullmatch(r"\d+", result["github_run_attempt"]):
+    receipt_dir = REPORTS / "refresh-runs" / result["github_run_id"] / result["github_run_attempt"]
+    receipt_dir.mkdir(parents=True, exist_ok=True)
+    for key, row in result["sources"].items():
+        receipt = dict(result, sources={key: row}, scope="source_publication_attempt")
+        (receipt_dir / (key + ".json")).write_text(
+            json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

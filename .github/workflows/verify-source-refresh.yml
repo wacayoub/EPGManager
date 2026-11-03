@@ -1,5 +1,4 @@
-name: Verify published EPG source
-
+name: Verify exact EPG source publication attempt
 on:
   workflow_call:
     inputs:
@@ -10,10 +9,12 @@ on:
         required: false
         type: string
         default: ''
-
+      expected_run_attempt:
+        required: false
+        type: string
+        default: '1'
 permissions:
   contents: read
-
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -22,52 +23,24 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-          fetch-depth: 1
-
-      - name: Verify fresh published programmes
+          fetch-depth: 0
+      - name: Verify producer commit and current published source
         shell: bash
+        env:
+          SOURCE_NAME: ${{ inputs.source }}
+          PRODUCER_RUN_ID: ${{ inputs.expected_run_id }}
+          PRODUCER_ATTEMPT: ${{ inputs.expected_run_attempt }}
         run: |
           python - <<'PY'
-          import json
-          from datetime import datetime
+          import json,os
           from pathlib import Path
-          from zoneinfo import ZoneInfo
-
-          source = "${{ inputs.source }}"
-          report = Path(f"reports/{source}-publish-lkg.json")
-          if not report.is_file():
-              raise SystemExit(f"Missing publish report: {report}")
-
-          data = json.loads(report.read_text(encoding="utf-8"))
-          expected_run = "${{ inputs.expected_run_id }}"
-          if expected_run and str(data.get("github_run_id", "")) != expected_run:
-              raise SystemExit(f"{source}: report is from a different workflow run")
-          row = (data.get("sources") or {}).get(source) or {}
-          generated = data.get("generated_utc")
-          published = row.get("published") is True
-          stats = row.get("candidate_stats") or {}
-          programmes = int(stats.get("programmes") or 0)
-
-          if not generated:
-              raise SystemExit(f"{source}: report has no generated_utc")
-
-          tz = ZoneInfo("Africa/Casablanca")
-          generated_day = datetime.fromisoformat(
-              str(generated).replace("Z", "+00:00")
-          ).astimezone(tz).date()
-          today = datetime.now(tz).date()
-
-          if generated_day != today:
-              raise SystemExit(
-                  f"{source}: stale refresh report ({generated_day}), expected {today}"
-              )
-          if not published:
-              raise SystemExit(f"{source}: candidate was not published")
-          if programmes <= 0:
-              raise SystemExit(f"{source}: no programmes downloaded")
-
-          print(
-              f"VERIFIED source={source} published=true "
-              f"programmes={programmes} generated_day={generated_day}"
-          )
+          from tools.verify_source_attempt import verify
+          source=os.environ['SOURCE_NAME']
+          run=os.environ['PRODUCER_RUN_ID']
+          attempt=os.environ['PRODUCER_ATTEMPT']
+          if not run:
+              latest=json.loads(Path('reports',source+'-publish-lkg.json').read_text(encoding='utf-8'))
+              run=str(latest.get('github_run_id',''))
+              attempt=str(latest.get('github_run_attempt','1'))
+          print(json.dumps(verify('.',source,run,attempt),ensure_ascii=False,indent=2))
           PY

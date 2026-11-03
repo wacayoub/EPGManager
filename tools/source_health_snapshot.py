@@ -38,6 +38,10 @@ def inspect_valid_publication(root, source, now=None):
             or report['invalid_dates']):
         raise ValueError('Published XMLTV counts or dates invalid')
     xml = ET.fromstring(gzip.decompress(data))
+    ids=[c.get('id') for c in xml.findall('channel')]
+    if (xml.tag!='tv' or not all(ids) or len(ids)!=len(set(ids))
+            or any(p.get('channel') not in ids for p in xml.findall('programme'))):
+        raise ValueError('Published XMLTV channel identities are invalid')
     ends = [parse_time(p.get('stop')) for p in xml.findall('programme')]
     ends = [x for x in ends if x and x > now]
     remaining = (max(ends) - now).total_seconds() / 3600 if ends else 0

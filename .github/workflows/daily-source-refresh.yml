@@ -46,3 +46,4 @@ jobs:
     with:
       source: ${{ inputs.source }}
       expected_run_id: ${{ github.run_id }}
+      expected_run_attempt: ${{ github.run_attempt }}
