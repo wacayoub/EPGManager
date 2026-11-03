@@ -16,6 +16,26 @@ def clean(text):
     return re.sub(r'\s+',' ',text or '').strip()
 
 
+def service_ids(row):
+    def markers(text,metadata=False):
+        text=clean(text).replace('_',' ')
+        matches=re.findall(r'\b(?:hd\s*[123]|tnt|sat)\b',text,re.I)
+        ids={VARIANTS[re.sub(r'\s+','',tag.lower())] for tag in matches}
+        arabic=re.sub(r'[\u064b-\u065f\u0640]','',text).replace('أ','ا').replace('إ','ا')
+        if (re.search(r'\b(?:الارضية|الارضي|ارضي|ارضية|terrestre)\b',arabic,re.I)
+                or metadata and text.casefold() in ('local','locale','terrestrial')):
+            ids.add('Arryadia_TNT')
+        return ids
+    # Typed service metadata takes precedence over incidental title/synopsis words.
+    explicit=' '.join(str(row.get(key,'')) for key in ('data-channel','data-service'))
+    ids=markers(explicit,True)
+    if ids:return ids
+    labels=' '.join(x.get_text(' ',strip=True) for x in row.select('.grille-channel,.channel-label,.service-label'))
+    ids=markers(labels,True)
+    if ids:return ids
+    return markers(row.get_text(' ',strip=True)) or {'Arryadia_HD'}
+
+
 def row_date(row):
     node=row
     for _ in range(6):
@@ -51,12 +71,9 @@ def parse_grid(html,wall_clock):
         description=clean(content.get_text(' ',strip=True))
         if description.startswith(title):description=clean(description[len(title):])
         if description.startswith(label):description=clean(description[len(label):])
-        markers=clean(' '.join(str(row.get(key,'')) for key in ('data-channel','data-service'))+' '+row.get_text(' ',strip=True))
-        matched=re.findall(r'\b(?:hd\s*[123]|tnt|sat)\b',markers.replace('_',' '),re.I)
-        ids={VARIANTS[re.sub(r'\s+','',tag.lower())] for tag in matched}
         # A generic SNRT Arryadia grid establishes the main service only.
         # No source statement establishes that TNT/HD1/HD2/HD3 simulcast it.
-        ids=ids or {'Arryadia_HD'}
+        ids=service_ids(row)
         start=wall_clock(day,time(int(match[1]),int(match[2])))
         for channel in ids:
             key=(channel,start,title.casefold())

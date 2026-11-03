@@ -99,6 +99,9 @@ enabled [HD Smart EPG with published Botola fixtures](ARRYADIA_HD_SMART_BOTOLA.m
 explicitly labelled as estimates. TNT and HD1 remain unchanged.
 See [restored Grand Format](ARRYADIA_GRAND_FORMAT_RESTORED.md).
 
+HD1 and local terrestrial TNT [gain EPG automatically from explicit SNRT listings](ARRYADIA_HD1_TNT_OFFICIAL_ACTIVATION.md),
+checking both official languages. Their empty IDs remain available while waiting.
+
 STARZPLAY is active on its own 03:07 Morocco local workflow. A successful Actions run or a
 MAIN/B1/B2 role does not certify guide quality. Review `<source>-current-health.json` and the source-specific quality reports: expired IDs stay visible but never green;
 placeholder suspicions remain explicit, and generated Arryadia/AFLAM filler is
