@@ -13,7 +13,10 @@ from __future__ import annotations
 from datetime import datetime, time, timedelta
 from zoneinfo import ZoneInfo
 
-import morocco_epg as base
+try:
+    from tools import morocco_epg as base
+except ModuleNotFoundError:
+    import morocco_epg as base
 
 TZ = ZoneInfo("Africa/Casablanca")
 IDS = frozenset(("Arryadia_HD2", "Arryadia_HD3"))

@@ -13,11 +13,11 @@ import xml.etree.ElementTree as ET
 try:
     from tools.mena_source_snapshot import get_source_snapshot
     from tools.audit_source_quality import analyze as analyze_quality
-    from tools.programme_authenticity import strict_arabic_channel, arabic_title, clean_programme
+    from tools.programme_authenticity import strict_arabic_channel, arabic_title, clean_programme, viewer_reported_schedule
 except ImportError:
     from mena_source_snapshot import get_source_snapshot
     from audit_source_quality import analyze as analyze_quality
-    from programme_authenticity import strict_arabic_channel, arabic_title, clean_programme
+    from programme_authenticity import strict_arabic_channel, arabic_title, clean_programme, viewer_reported_schedule
 
 FEEDS = Path("feeds")
 REPORTS = Path("reports")
@@ -171,6 +171,7 @@ def metrics(rows):
     return {
         "programmes": len(rows),
         "future_programmes": len(future),
+        "viewer_reported_recurring_programmes": sum(viewer_reported_schedule(p) for p in future),
         "future_hours": round(max(0.0, (last - now).total_seconds() / 3600.0), 1) if last else 0.0,
         "description_pct": round(100.0 * sum(1 for d in descs if d) / len(sample), 1) if sample else 0.0,
         "arabic_title_pct": pct(titles, lambda x: bool(AR.search(x))),
@@ -223,6 +224,7 @@ def qualified(profile, m):
     q = POLICY["quality"]
     return (
         not m.get("suspected_placeholder", False)
+        and not m.get("viewer_reported_recurring_programmes",0)
         and not m.get("editorial_language_review", False)
         and (profile != "arabic_strict" or (
             m["arabic_title_pct"] == 100.0

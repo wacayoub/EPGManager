@@ -113,7 +113,7 @@ class MoroccoRecovery(unittest.TestCase):
     def test_failed_arryadia_download_has_no_unbound_soup_error_or_fake_rows(self):
         http=Mock(); http.get.side_effect=requests.HTTPError(response=Response(503))
         with patch.object(m,'Http',return_value=http),patch.object(m,'log') as log:
-            self.assertEqual(m.scrape_arryadia(2),[])
+            self.assertEqual(m.scrape_arryadia(2,include_viewer_schedule=False),[])
         self.assertFalse(any('DOM diagnostic failed' in str(call) for call in log.call_args_list))
 
     def test_outage_retains_only_exact_future_genuine_lkg(self):

@@ -54,7 +54,7 @@ STC runs at 02:37 before its local-feed consumer Rotana (03:50).
 AlKass runs at 00:17 before OSN (01:40); OSN precedes DubaiPlus (04:44),
 which precedes Sport24 (06:03). STARZPLAY runs at 03:07 before ElCinema (04:20).
 Each local donor has at least the 70-minute collection allowance before its
-consumer. STARZPLAY’s own STC fallback fetches the live API independently;
+consumer. STARZPLAYâ€™s own STC fallback fetches the live API independently;
 it does not wait for the published STC feed. GitHub delivery delays can exceed
 these margins. Dependency order is enforced by repository verification.
 
@@ -87,6 +87,11 @@ EPGManager owns the source engine and its diagnostic aggregate. EPG-Scrapers is 
 
 
 ## Guide quality
+
+Arryadia HD2/HD3 retain the user-authorized hourly **Grand Format** recurrence.
+It is labelled as viewer-reported in XMLTV and quality reports, survives packing
+and aggregation, and yields to announced same-channel programmes. HD/TNT Smart
+forecasts remain disabled. See [restored Grand Format](ARRYADIA_GRAND_FORMAT_RESTORED.md).
 
 STARZPLAY is active on its own 03:07 Morocco local workflow. A successful Actions run or a
 MAIN/B1/B2 role does not certify guide quality. Review `<source>-current-health.json` and the source-specific quality reports: expired IDs stay visible but never green;

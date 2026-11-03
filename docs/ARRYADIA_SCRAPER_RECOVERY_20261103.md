@@ -1,5 +1,7 @@
 # Arryadia collector correction — 3 November 2026
 
+Update: the user-authorized hourly Grand Format schedule on HD2/HD3 is restored separately from official-grid availability. See [restoration and provenance](ARRYADIA_GRAND_FORMAT_RESTORED.md). The official-grid observations below remain timestamped evidence.
+
 The collector is repaired; **current Arryadia programme availability is not recovered**. The live [Arabic](https://www.snrt.ma/ar/node/4070) and [French](https://www.snrt.ma/fr/node/4070) SNRT endpoints both returned HTTP 200 and 97 explicitly dated grid rows for 21–26 September 2026. Both have zero future programmes on 3 November. A current date elsewhere in the HTML does not make this an updated guide. The [recorded live probe](../reports/morocco-arryadia-source.json) distinguishes successful HTTP from stale guide data.
 
 Corrections:
