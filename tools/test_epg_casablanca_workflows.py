@@ -22,7 +22,7 @@ class TestScheduledWorkflows(unittest.TestCase):
     def test_main_sequence_once_each_casablanca_morning(self):
         p = load("daily-epg-chain.yml")
         self.assertEqual(p["on"]["schedule"], [{
-            "cron": "15 7 * * *", "timezone": "Etc/GMT",
+            "cron": "37 8 * * *", "timezone": "Africa/Casablanca",
         }])
         self.assertEqual(len([key for key in p["jobs"] if key != "finalize"]), 1)
         self.assertNotIn("osn", p["jobs"])
@@ -44,7 +44,7 @@ class TestScheduledWorkflows(unittest.TestCase):
     def test_1415_watchdog_is_not_full_chain_retry(self):
         p = load("epg-watchdog.yml")
         self.assertEqual(p["on"]["schedule"], [{
-            "cron": "15 14 * * *", "timezone": "Etc/GMT",
+            "cron": "15 14 * * *", "timezone": "Africa/Casablanca",
         }])
         contents = (WF / "epg-watchdog.yml").read_text()
         self.assertNotIn("gh workflow run daily-epg-chain.yml", contents)
@@ -56,7 +56,7 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertIn("workflow_dispatch", p["on"])
         shahid = load("refresh-shahid.yml")
         self.assertEqual(shahid["on"]["schedule"], [{
-            "cron": "39 3 * * *", "timezone": "Etc/GMT",
+            "cron": "39 3 * * *", "timezone": "Africa/Casablanca",
         }])
         self.assertIn("workflow_dispatch", shahid["on"])
         self.assertNotIn("push", shahid["on"])
@@ -72,7 +72,7 @@ class TestScheduledWorkflows(unittest.TestCase):
     def test_dubaiplus_exact_0444_gmt_only_one_source_schedule(self):
         p = load("refresh-dubaiplus.yml")
         self.assertEqual(p["on"]["schedule"], [{
-            "cron": "44 4 * * *", "timezone": "Etc/GMT",
+            "cron": "44 4 * * *", "timezone": "Africa/Casablanca",
         }])
         self.assertIn("workflow_dispatch", p["on"])
         self.assertNotIn("push", p["on"])
@@ -93,7 +93,7 @@ class TestScheduledWorkflows(unittest.TestCase):
             with self.subTest(source=source):
                 p=load(f"refresh-{source}.yml")
                 self.assertEqual(p["on"]["schedule"], [
-                    {"cron":cron,"timezone":"Etc/GMT"}])
+                    {"cron":cron,"timezone":"Africa/Casablanca"}])
                 self.assertIn("workflow_dispatch",p["on"])
                 self.assertNotIn("push",p["on"])
                 self.assertEqual(p["jobs"]["refresh"]["with"], {
@@ -102,7 +102,7 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertNotIn("30 19 * * *",
                          (WF/"epg-evening-casablanca.yml").read_text().split("  workflow_dispatch:")[0])
 
-    def test_all_known_scheduled_workflows_are_fixed_gmt_zero(self):
+    def test_all_known_scheduled_workflows_are_morocco_local_time(self):
         names = ("refresh-elcinema.yml", "refresh-osn.yml",
                  "refresh-bein.yml", "refresh-sport24.yml",
                  "refresh-shahid.yml", "refresh-dubaiplus.yml",
@@ -115,7 +115,7 @@ class TestScheduledWorkflows(unittest.TestCase):
                 p=load(name)
                 self.assertTrue(p["on"]["schedule"])
                 for entry in p["on"]["schedule"]:
-                    self.assertEqual(entry["timezone"], "Etc/GMT")
+                    self.assertEqual(entry["timezone"], "Africa/Casablanca")
 
     def test_manual_legacy_group_sports_and_morocco_are_independent(self):
         p = load("epg-evening-casablanca.yml")
@@ -127,7 +127,7 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertEqual(p["jobs"]["morocco"]["with"]["source"], "morocco")
         self.assertIn("DISPATCH_GROUP", (WF / "epg-evening-casablanca.yml").read_text())
         morocco=load("refresh-morocco.yml")
-        self.assertEqual(morocco["on"]["schedule"], [{"cron":"7 7 * * *","timezone":"Etc/GMT"}])
+        self.assertEqual(morocco["on"]["schedule"], [{"cron":"7 7 * * *","timezone":"Africa/Casablanca"}])
         self.assertIn("workflow_dispatch",morocco["on"])
         self.assertNotIn("push",morocco["on"])
         self.assertNotIn("morocco",load("daily-epg-chain.yml")["jobs"])
