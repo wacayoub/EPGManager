@@ -1,6 +1,6 @@
 # EPG Source ID Monitoring
 
-Generated: 2026-11-03T12:23:43.440606+00:00
+Generated: 2026-11-03T14:13:00.489581+00:00
 
 Total monitored IDs: **3660**
 
@@ -23,13 +23,13 @@ Total monitored IDs: **3660**
 | aljazeera.xml.gz | 5 | 111 | 0 | 0 | 0 | 3 |
 | alkass.xml.gz | 8 | 262 | 0 | 0 | 0 | 0 |
 | bein.xml.gz | 68 | 2597 | 0 | 0 | 0 | 3 |
-| dubaiplus.xml.gz | 9 | 411 | 0 | 0 | 0 | 0 |
+| dubaiplus.xml.gz | 9 | 405 | 0 | 0 | 0 | 0 |
 | elcinema.xml.gz | 97 | 4357 | 0 | 0 | 0 | 2 |
-| mena.xml.gz | 514 | 31358 | 0 | 0 | 61 | 49 |
-| morocco.xml.gz | 15 | 1871 | 0 | 0 | 0 | 3 |
+| mena.xml.gz | 514 | 31238 | 0 | 0 | 49 | 49 |
+| morocco.xml.gz | 15 | 1838 | 0 | 0 | 0 | 3 |
 | osn.xml.gz | 100 | 6045 | 0 | 0 | 0 | 21 |
 | rotana.xml.gz | 9 | 400 | 0 | 0 | 0 | 1 |
-| shahid.xml.gz | 71 | 4462 | 0 | 0 | 0 | 0 |
+| shahid.xml.gz | 71 | 4449 | 0 | 0 | 0 | 0 |
 | sport24.xml.gz | 9 | 144 | 0 | 0 | 0 | 0 |
 | starzplay.xml.gz | 119 | 8518 | 0 | 0 | 0 | 2 |
 | stctv.xml.gz | 149 | 7827 | 0 | 0 | 0 | 25 |

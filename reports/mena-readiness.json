@@ -11,36 +11,36 @@
     "DEGRADED_SOURCE_GUIDES",
     "VUPLUS_XML_SIZE_EXCEEDS_BUDGET"
   ],
-  "xml_size_bytes": 14419379,
+  "xml_size_bytes": 14420244,
   "vuplus_xml_budget_bytes": 12582912,
-  "checked_utc": "2026-11-03T14:05:57.855702+00:00",
-  "source_generated_utc": "2026-11-03T14:05:57.337144+00:00",
+  "checked_utc": "2026-11-03T14:12:58.155184+00:00",
+  "source_generated_utc": "2026-11-03T14:12:57.850121+00:00",
   "status": "READY_WITH_WARNINGS",
   "structural_errors": [],
   "warnings": [
     "MENA_HAS_UNQUALIFIED_OR_EMPTY_GUIDES"
   ],
   "channels": 514,
-  "programmes": 31222,
+  "programmes": 31238,
   "orphan_programmes": 0,
   "exact_duplicate_programmes": 0,
   "invalid_programme_times": 0,
   "source_manifest_sha256_match": true,
   "verified_source_count": 14,
-  "mena_sha256": "8c26b51435124685f8ce1da7cbc6ec6b647c1c186ff22a0d74049b7115f22fed",
+  "mena_sha256": "830e47624c9c58bd1d0671720c2b48a2eeb2b8e8d589760ea6eb16f145108be1",
   "selected_statuses": {
-    "DEGRADED_WITH_EPG": 106,
-    "QUALIFIED_AT_BUILD": 359,
+    "DEGRADED_WITH_EPG": 108,
+    "QUALIFIED_AT_BUILD": 357,
     "NO_FUTURE_EPG": 49
   },
   "selected_roles": {
-    "MAIN": 265,
-    "B1": 244,
+    "MAIN": 266,
+    "B1": 243,
     "B2": 5
   },
   "selected_owners": {
     "morocco": 15,
-    "elcinema": 56,
+    "elcinema": 55,
     "shahid": 65,
     "sport24": 9,
     "osn": 89,
@@ -49,13 +49,13 @@
     "alkass": 1,
     "rotana": 2,
     "stctv": 91,
-    "dubaiplus": 4,
+    "dubaiplus": 5,
     "tunisiatv": 2,
     "starzplay": 108,
     "tabie": 3
   },
   "router_duplicate_groups": 93,
-  "router_backup_selected": 249,
+  "router_backup_selected": 248,
   "quality_policy": {
     "no_future_epg_is_never_green": true,
     "main_role_does_not_imply_high_quality": true,
@@ -135,11 +135,11 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 32,
-      "actual_future_programmes": 22,
+      "actual_future_programmes": 21,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 12,
+      "selected_source_reported_future_programmes": 11,
       "candidate_sources": [
         "sport24",
         "starzplay",
@@ -796,7 +796,7 @@
       "xmltv_id": "AlkassSix.qa@SD",
       "owner": "bein",
       "selected_role": "B1",
-      "selection_reason": "preferred_healthy_source",
+      "selection_reason": "degraded_best_available",
       "status": "DEGRADED_WITH_EPG",
       "qualified_when_built": false,
       "best_match_green_allowed": false,
@@ -1034,11 +1034,11 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 10,
-      "actual_future_programmes": 4,
+      "actual_future_programmes": 3,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 4,
+      "selected_source_reported_future_programmes": 3,
       "candidate_sources": [
         "elcinema"
       ]
@@ -1513,11 +1513,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 223,
-      "actual_future_programmes": 172,
+      "actual_future_programmes": 171,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 172,
+      "selected_source_reported_future_programmes": 171,
       "candidate_sources": [
         "bein"
       ]
@@ -1760,11 +1760,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 56,
-      "actual_future_programmes": 49,
+      "actual_future_programmes": 48,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 49,
+      "selected_source_reported_future_programmes": 48,
       "candidate_sources": [
         "bein"
       ]
@@ -2490,11 +2490,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 255,
-      "actual_future_programmes": 222,
+      "actual_future_programmes": 221,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 222,
+      "selected_source_reported_future_programmes": 221,
       "candidate_sources": [
         "osn"
       ]
@@ -2566,11 +2566,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 45,
-      "actual_future_programmes": 22,
+      "actual_future_programmes": 21,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 22,
+      "selected_source_reported_future_programmes": 21,
       "candidate_sources": [
         "bein"
       ]
@@ -2832,12 +2832,12 @@
       "owner": "stctv",
       "selected_role": "B2",
       "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
+      "status": "DEGRADED_WITH_EPG",
+      "qualified_when_built": false,
+      "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 34,
-      "actual_future_programmes": 30,
+      "actual_programmes": 37,
+      "actual_future_programmes": 33,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
@@ -2857,12 +2857,12 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 29,
-      "actual_future_programmes": 28,
+      "actual_programmes": 31,
+      "actual_future_programmes": 31,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 28,
+      "selected_source_reported_future_programmes": 31,
       "candidate_sources": [
         "dubaiplus"
       ]
@@ -2872,12 +2872,12 @@
       "owner": "stctv",
       "selected_role": "B1",
       "selection_reason": "preferred_healthy_source",
-      "status": "QUALIFIED_AT_BUILD",
-      "qualified_when_built": true,
-      "best_match_green_allowed": true,
+      "status": "DEGRADED_WITH_EPG",
+      "qualified_when_built": false,
+      "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 42,
-      "actual_future_programmes": 39,
+      "actual_programmes": 45,
+      "actual_future_programmes": 42,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
@@ -2938,11 +2938,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 60,
-      "actual_future_programmes": 52,
+      "actual_future_programmes": 58,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 52,
+      "selected_source_reported_future_programmes": 58,
       "candidate_sources": [
         "dubaiplus",
         "osn",
@@ -2952,19 +2952,19 @@
     },
     {
       "xmltv_id": "DubaiZaman.ae@SD",
-      "owner": "elcinema",
-      "selected_role": "B1",
+      "owner": "dubaiplus",
+      "selected_role": "MAIN",
       "selection_reason": "degraded_best_available",
       "status": "DEGRADED_WITH_EPG",
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 53,
-      "actual_future_programmes": 45,
+      "actual_programmes": 69,
+      "actual_future_programmes": 66,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 45,
+      "selected_source_reported_future_programmes": 66,
       "candidate_sources": [
         "dubaiplus",
         "elcinema"
@@ -3113,11 +3113,11 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 789,
-      "actual_future_programmes": 683,
+      "actual_future_programmes": 681,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 683,
+      "selected_source_reported_future_programmes": 681,
       "candidate_sources": [
         "shahid"
       ]
@@ -4097,11 +4097,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 52,
-      "actual_future_programmes": 36,
+      "actual_future_programmes": 35,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 36,
+      "selected_source_reported_future_programmes": 35,
       "candidate_sources": [
         "shahid",
         "elcinema"
@@ -4313,11 +4313,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 98,
-      "actual_future_programmes": 85,
+      "actual_future_programmes": 84,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 85,
+      "selected_source_reported_future_programmes": 84,
       "candidate_sources": [
         "osn"
       ]
@@ -4564,11 +4564,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 171,
-      "actual_future_programmes": 152,
+      "actual_future_programmes": 151,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 152,
+      "selected_source_reported_future_programmes": 151,
       "candidate_sources": [
         "osn"
       ]
@@ -4639,12 +4639,12 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 57,
-      "actual_future_programmes": 51,
+      "actual_programmes": 56,
+      "actual_future_programmes": 55,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 1,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 51,
+      "selected_source_reported_future_programmes": 55,
       "candidate_sources": [
         "dubaiplus"
       ]
@@ -4947,11 +4947,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 63,
-      "actual_future_programmes": 55,
+      "actual_future_programmes": 54,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 55,
+      "selected_source_reported_future_programmes": 54,
       "candidate_sources": [
         "osn"
       ]
@@ -4985,11 +4985,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 164,
-      "actual_future_programmes": 140,
+      "actual_future_programmes": 139,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 140,
+      "selected_source_reported_future_programmes": 139,
       "candidate_sources": [
         "osn"
       ]
@@ -5023,11 +5023,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 161,
-      "actual_future_programmes": 145,
+      "actual_future_programmes": 144,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 145,
+      "selected_source_reported_future_programmes": 144,
       "candidate_sources": [
         "osn"
       ]
@@ -5042,11 +5042,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 152,
-      "actual_future_programmes": 131,
+      "actual_future_programmes": 130,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 131,
+      "selected_source_reported_future_programmes": 130,
       "candidate_sources": [
         "osn"
       ]
@@ -5099,11 +5099,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 254,
-      "actual_future_programmes": 224,
+      "actual_future_programmes": 223,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 224,
+      "selected_source_reported_future_programmes": 223,
       "candidate_sources": [
         "osn"
       ]
@@ -5213,11 +5213,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 26,
-      "actual_future_programmes": 23,
+      "actual_future_programmes": 22,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 23,
+      "selected_source_reported_future_programmes": 22,
       "candidate_sources": [
         "osn"
       ]
@@ -5460,11 +5460,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 69,
-      "actual_future_programmes": 56,
+      "actual_future_programmes": 55,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 56,
+      "selected_source_reported_future_programmes": 55,
       "candidate_sources": [
         "tabie",
         "elcinema"
@@ -5499,11 +5499,11 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 528,
-      "actual_future_programmes": 457,
+      "actual_future_programmes": 456,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 457,
+      "selected_source_reported_future_programmes": 456,
       "candidate_sources": [
         "shahid"
       ]
@@ -5824,12 +5824,12 @@
       "qualified_when_built": true,
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
-      "actual_programmes": 67,
-      "actual_future_programmes": 62,
+      "actual_programmes": 70,
+      "actual_future_programmes": 69,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 61,
+      "selected_source_reported_future_programmes": 69,
       "candidate_sources": [
         "dubaiplus",
         "elcinema",
@@ -6094,11 +6094,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 80,
-      "actual_future_programmes": 70,
+      "actual_future_programmes": 69,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 70,
+      "selected_source_reported_future_programmes": 69,
       "candidate_sources": [
         "shahid"
       ]
@@ -6113,11 +6113,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 75,
-      "actual_future_programmes": 65,
+      "actual_future_programmes": 64,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 65,
+      "selected_source_reported_future_programmes": 64,
       "candidate_sources": [
         "starzplay",
         "elcinema",
@@ -6849,11 +6849,11 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 234,
-      "actual_future_programmes": 206,
+      "actual_future_programmes": 205,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 206,
+      "selected_source_reported_future_programmes": 205,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6868,11 +6868,11 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 464,
-      "actual_future_programmes": 411,
+      "actual_future_programmes": 409,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 411,
+      "selected_source_reported_future_programmes": 409,
       "candidate_sources": [
         "starzplay"
       ]
@@ -6887,11 +6887,11 @@
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
       "actual_programmes": 439,
-      "actual_future_programmes": 384,
+      "actual_future_programmes": 383,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 384,
+      "selected_source_reported_future_programmes": 383,
       "candidate_sources": [
         "starzplay"
       ]
@@ -7001,11 +7001,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 305,
-      "actual_future_programmes": 265,
+      "actual_future_programmes": 264,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 265,
+      "selected_source_reported_future_programmes": 264,
       "candidate_sources": [
         "starzplay"
       ]
@@ -7800,11 +7800,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 78,
-      "actual_future_programmes": 68,
+      "actual_future_programmes": 67,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 68,
+      "selected_source_reported_future_programmes": 67,
       "candidate_sources": [
         "starzplay"
       ]
@@ -7994,11 +7994,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 138,
-      "actual_future_programmes": 121,
+      "actual_future_programmes": 120,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 120,
+      "selected_source_reported_future_programmes": 119,
       "candidate_sources": [
         "starzplay",
         "stctv"
@@ -8090,11 +8090,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 116,
-      "actual_future_programmes": 102,
+      "actual_future_programmes": 101,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 102,
+      "selected_source_reported_future_programmes": 101,
       "candidate_sources": [
         "starzplay"
       ]
@@ -8226,11 +8226,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 264,
-      "actual_future_programmes": 237,
+      "actual_future_programmes": 236,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 237,
+      "selected_source_reported_future_programmes": 236,
       "candidate_sources": [
         "stctv"
       ]
@@ -9176,11 +9176,11 @@
       "best_match_green_allowed": true,
       "manual_mapping_visible": true,
       "actual_programmes": 27,
-      "actual_future_programmes": 24,
+      "actual_future_programmes": 23,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 24,
+      "selected_source_reported_future_programmes": 23,
       "candidate_sources": [
         "stctv"
       ]
@@ -9783,12 +9783,12 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 27,
-      "actual_future_programmes": 27,
+      "actual_programmes": 26,
+      "actual_future_programmes": 26,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 27,
+      "selected_source_reported_future_programmes": 26,
       "candidate_sources": [
         "tabie"
       ]
@@ -9802,12 +9802,12 @@
       "qualified_when_built": false,
       "best_match_green_allowed": false,
       "manual_mapping_visible": true,
-      "actual_programmes": 316,
-      "actual_future_programmes": 316,
+      "actual_programmes": 307,
+      "actual_future_programmes": 307,
       "editorial_review_programmes": 0,
       "selected_source_overlap_rows": 0,
       "suspected_placeholder": false,
-      "selected_source_reported_future_programmes": 316,
+      "selected_source_reported_future_programmes": 307,
       "candidate_sources": [
         "tabie"
       ]
