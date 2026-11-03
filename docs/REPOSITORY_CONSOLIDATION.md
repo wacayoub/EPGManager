@@ -8,15 +8,16 @@ parents and restored files are recorded in `consolidation-provenance.json`.
 The latest EPG-Scrapers source engine replaces four older same-name tools.
 The derived builder, readiness audit and reusable rebuild workflow were
 restored from verified commit `8562218`: upstream had deleted them while its
-tests and watchdog still required them. The 07:15 GMT+0 chain again performs
-donor extension followed by derived reconstruction. The 14 individual daily
-source schedules, including Morocco at 07:07 GMT+0, remain unchanged.
+tests and watchdog still required them. The source chain performs donor extension
+followed by derived reconstruction. Current schedules use Morocco local time
+and are maintained in [`SOURCE_ENGINE.md`](SOURCE_ENGINE.md).
 
-76 former EPGManager workflows and 117 diagnostic/experimental scraper
-workflows are preserved under `archived-workflows/`, outside GitHub's active
-workflow directory. Historical generator tests are under `archived-tests/`.
+76 former EPGManager workflows, 117 diagnostic/experimental scraper workflows
+and retired generator tests were initially copied into archive folders. They
+were removed from the current tree during [repository cleanup](REPOSITORY_CLEANUP_20261103.md)
+and remain available at `archive/pre-cleanup-20261103` in Git history.
 The current engine uses one CI workflow for its full offline test suite.
-The historical rc70 release builder stays disabled.
+The obsolete rc70 release builder was removed while receiver release remains NO_GO.
 
 ## Correctness fixes
 
@@ -30,7 +31,7 @@ The historical rc70 release builder stays disabled.
 - ElCinema donor reports use their verified repack cohort. Original provider
   generation remains the freshness clock; an unverified or stale repack
   cannot make old data look current.
-- Reusable workflow dependencies, fixed GMT+0 schedules and all 14 published
+- Reusable workflow dependencies, Morocco local schedules and all 14 published
   gzip/XML/JSON/TXT bundles are checked by `verify_unified_repository.py`.
 
 ## Measured source evidence

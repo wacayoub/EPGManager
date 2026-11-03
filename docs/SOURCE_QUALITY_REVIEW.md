@@ -33,7 +33,8 @@ Detailed URL/status and replacement evidence:
 `reports/source-review-external-catalogue.json`.
 
 Expired `others` and `vuplus-test` publications and diagnostic test feeds are
-archived under `docs/archived-feeds/`. Neither expired bundle contained any future
+preserved in Git history at `archive/pre-cleanup-20261103` under
+`docs/archived-feeds/`. Neither expired bundle contained any future
 event: their latest stops were 30 September and 5 October respectively. The active
 publication directory now contains the 14 direct feeds plus derived MENA.
 
