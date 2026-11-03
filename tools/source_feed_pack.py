@@ -23,8 +23,10 @@ import re
 import xml.etree.ElementTree as ET
 try:
     from tools.programme_authenticity import clean_programme
+    from tools.source_timeline import same_start_duplicates
 except ModuleNotFoundError:
     from programme_authenticity import clean_programme
+    from source_timeline import same_start_duplicates
 
 
 def read_xml(path: Path) -> ET.Element:
@@ -174,6 +176,10 @@ def main() -> int:
             pp.set("stop", fmt_utc(stop))
             programmes[cid].append(pp)
 
+    removed_same_start_duplicates = 0
+    for cid, rows in programmes.items():
+        programmes[cid], dropped = same_start_duplicates(rows, parse_xmltv_dt)
+        removed_same_start_duplicates += len(dropped)
     all_ids = sorted(channels, key=str.casefold)
     active_ids = sorted((cid for cid in all_ids if programmes.get(cid)), key=str.casefold)
     zero_ids = [cid for cid in all_ids if cid not in set(active_ids)]
@@ -237,6 +243,7 @@ def main() -> int:
         "rejected_missing_title": rejected_missing_title,
         "rejected_placeholder_title": rejected_placeholder,
         "removed_unavailable_descriptions": removed_unavailable_descriptions,
+        "removed_same_start_duplicates": removed_same_start_duplicates,
         "inferred_stop": inferred_stop,
         "window_hours": args.window_hours,
         "timezone_output": "UTC +0000",

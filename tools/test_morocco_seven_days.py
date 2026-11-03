@@ -52,7 +52,7 @@ class MoroccoSevenDays(unittest.TestCase):
         if not bash:self.skipTest('bash unavailable')
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);(root/'tools').mkdir()
-            for name in ('source_feed_pack.py','programme_authenticity.py'):shutil.copyfile(ROOT/'tools'/name,root/'tools'/name)
+            for name in ('source_feed_pack.py','programme_authenticity.py','source_timeline.py'):shutil.copyfile(ROOT/'tools'/name,root/'tools'/name)
             now=datetime.now(m.TZ)
             rows=generate_hourly(7,now,horizon_hours=168)
             start=now+timedelta(days=6)

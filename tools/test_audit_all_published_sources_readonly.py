@@ -59,6 +59,13 @@ class TestAllSources(unittest.TestCase):
         self.assertIn("GZIP_SHA_MISMATCH",self.audit()["issues"])
         self.assertEqual(self.audit()["release_health"],"BLOCKED")
 
+    def test_overlapping_schedule_is_not_a_clean_summary(self):
+        self.q['future_programmes_overlapping_previous']=2
+        self.q['quality_status']='WARN'
+        self.save()
+        self.assertIn('OVERLAPPING_PROGRAMMES',self.audit()['issues'])
+        self.assertNotEqual(self.audit()['release_health'],'NO_RED_FLAGS_IN_SUMMARIES')
+
     def test_stale_feed_is_blocked(self):
         self.m["generated_utc"]=iso(NOW-timedelta(days=12))
         self.a["generated_utc"]=self.m["generated_utc"]

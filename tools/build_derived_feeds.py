@@ -164,6 +164,12 @@ def metrics(rows):
     titles = [text_of(p, "title") for p in sample]
     descs = [text_of(p, "desc") for p in sample]
     last = None
+    previous_stop = None
+    overlaps = 0
+    for start, stop in sorted((parse_dt(p.get('start')),parse_dt(p.get('stop'))) for p in future):
+        if previous_stop is not None and start < previous_stop:
+            overlaps += 1
+        previous_stop = max(previous_stop,stop) if previous_stop else stop
     for p in future:
         stop = parse_dt(p.get("stop") or p.get("start"))
         if stop and (last is None or stop > last):
@@ -171,6 +177,7 @@ def metrics(rows):
     return {
         "programmes": len(rows),
         "future_programmes": len(future),
+        "overlapping_programmes": overlaps,
         "viewer_reported_recurring_programmes": sum(viewer_reported_schedule(p) for p in future),
         "estimated_programmes": sum(estimated_schedule(p) for p in future),
         "future_hours": round(max(0.0, (last - now).total_seconds() / 3600.0), 1) if last else 0.0,
@@ -225,6 +232,7 @@ def qualified(profile, m):
     q = POLICY["quality"]
     return (
         not m.get("suspected_placeholder", False)
+        and not m.get("overlapping_programmes",0)
         and not m.get("viewer_reported_recurring_programmes",0)
         and not m.get("estimated_programmes",0)
         and not m.get("editorial_language_review", False)
