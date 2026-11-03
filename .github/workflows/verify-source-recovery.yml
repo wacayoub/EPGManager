@@ -1,0 +1,26 @@
+name: Verify all 14 source attempts without scraping again
+on:
+  workflow_dispatch:
+    inputs:
+      producer_run_id:
+        description: Collection workflow run to verify
+        required: true
+        type: string
+      producer_attempt:
+        required: false
+        default: '1'
+        type: string
+permissions:
+  contents: read
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        source: [morocco, alkass, tabie, tunisiatv, aljazeera, dubaiplus, shahid, rotana, sport24, osn, bein, elcinema, starzplay, stctv]
+    uses: ./.github/workflows/verify-source-refresh.yml
+    with:
+      source: ${{ matrix.source }}
+      expected_run_id: ${{ inputs.producer_run_id }}
+      expected_run_attempt: ${{ inputs.producer_attempt }}

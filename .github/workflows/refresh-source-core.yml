@@ -280,6 +280,7 @@ jobs:
           git add "feeds/$SOURCE.xml.gz" "feeds/$SOURCE.txt" "feeds/$SOURCE.json" 2>/dev/null || true
           git add "reports/$SOURCE"*.json 2>/dev/null || true
           git add "reports/$SOURCE"*.md 2>/dev/null || true
+          git add "reports/refresh-runs/$GITHUB_RUN_ID/$GITHUB_RUN_ATTEMPT/$SOURCE.json" 2>/dev/null || true
 
           case "$SOURCE" in
             bein)
