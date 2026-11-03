@@ -38,7 +38,7 @@ class RestoredGrandFormat(unittest.TestCase):
         http=Mock();http.get.side_effect=requests.HTTPError()
         with tempfile.TemporaryDirectory() as tmp,patch.object(m,'Http',return_value=http):
             report=Path(tmp)/'report.json'
-            rows=m.scrape_arryadia(3,report_path=report)
+            rows=m.scrape_arryadia(3,report_path=report,include_smart=False)
             data=json.loads(report.read_text())
         self.assertTrue(rows);self.assertEqual({e.channel for e in rows},IDS)
         self.assertEqual(data['official_future_events'],0)

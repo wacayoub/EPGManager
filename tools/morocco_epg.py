@@ -19,9 +19,9 @@ from bs4 import BeautifulSoup
 from lxml import html as LH
 from zoneinfo import ZoneInfo
 try:
- from tools.programme_authenticity import generated_placeholder, VIEWER_CATEGORY, VIEWER_SOURCE, viewer_reported_schedule
+ from tools.programme_authenticity import generated_placeholder, VIEWER_CATEGORY, VIEWER_SOURCE, viewer_reported_schedule, SMART_CATEGORY, BOTOLA_CATEGORY, SMART_SOURCE, BOTOLA_SOURCE, schedule_source
 except ImportError:
- from programme_authenticity import generated_placeholder, VIEWER_CATEGORY, VIEWER_SOURCE, viewer_reported_schedule
+ from programme_authenticity import generated_placeholder, VIEWER_CATEGORY, VIEWER_SOURCE, viewer_reported_schedule, SMART_CATEGORY, BOTOLA_CATEGORY, SMART_SOURCE, BOTOLA_SOURCE, schedule_source
 try: import cloudscraper
 except Exception: cloudscraper=None
 
@@ -603,7 +603,7 @@ def _sofascore_botola_fixtures(http,hours=48):
     ut=tournament.get("uniqueTournament") or {}
     if int(ut.get("id") or 0)!=937:continue
     status=((ev.get("status") or {}).get("type") or "").casefold()
-    if status in ("canceled","cancelled","postponed"):continue
+    if status not in ("notstarted","inprogress"):continue
     ts=ev.get("startTimestamp")
     if not ts:continue
     start=_morocco_from_unix(ts)
@@ -646,7 +646,9 @@ def _livescore_parse_start(raw):
 def _livescore_stage_is_botola(stage):
  label=" ".join(clean(stage.get(k)) for k in ("Cnm","Snm","CompN","CompUrlName","Scd"))
  n=norm(label)
- return "botola" in n or ("morocco" in n and any(k in n for k in ("pro","league","premier")))
+ if re.search(r"\b(?:botola(?: pro)? 2|division 2|pro 2|d2|women|feminin|feminine|u19|u21|espoirs)\b",n):return False
+ country=norm(stage.get('Cnm'))
+ return country in ('morocco','maroc','') and 'botola' in n
 
 def _livescore_botola_fixtures(http,hours=48):
  # LiveScore CDN is an unauthenticated fallback when SofaScore blocks GitHub
@@ -669,6 +671,8 @@ def _livescore_botola_fixtures(http,hours=48):
    if not _livescore_stage_is_botola(stage):continue
    for ev in stage.get("Events",[]) or []:
     try:
+     phase=clean(ev.get("Eps")).casefold()
+     if phase in ("ft","aet","ap","wo") or any(x in phase for x in ("postp","cancel","abandon","suspend","finished","full time")):continue
      start=_livescore_parse_start(ev.get("Esd"))
      if not start:continue
      stop=start+timedelta(hours=2)
@@ -848,7 +852,7 @@ def _arryadia_fill(rows,hours=48,slot_hours=2,history=None):
  now=datetime.now(TZ);end=now+timedelta(hours=max(1,hours))
  out=[e for e in rows if not _arryadia_is_generic(e) and not generated_placeholder(e.title)]
  for e in sorted(history or [],key=lambda e:e.start):
-  if (e.source==VIEWER_SOURCE or e.channel not in ARR_IDS or not e.stop or e.stop<=now or
+  if (e.source in (VIEWER_SOURCE,SMART_SOURCE,BOTOLA_SOURCE) or e.channel not in ARR_IDS or not e.stop or e.stop<=now or
       e.stop<=e.start or e.start>=end or _arryadia_is_generic(e) or
       generated_placeholder(e.title)):
    continue
@@ -887,7 +891,7 @@ def previous(path):
     if len(off)!=5 or off[0] not in "+-":
      raise ValueError("invalid XMLTV timezone: %r"%raw)
     return datetime.strptime(stamp+" "+off,"%Y%m%d%H%M%S %z").astimezone(TZ)
-   t=p.find("title"); d=p.find("desc"); out.append(Event(p.get("channel"),dt(p.get("start")),t.text or "",d.text if d is not None else "",dt(p.get("stop")) if p.get("stop") else None,t.get("lang") or "ar",d.get("lang") if d is not None else "ar",VIEWER_SOURCE if viewer_reported_schedule(p) else "old"))
+   t=p.find("title"); d=p.find("desc"); out.append(Event(p.get("channel"),dt(p.get("start")),t.text or "",d.text if d is not None else "",dt(p.get("stop")) if p.get("stop") else None,t.get("lang") or "ar",d.get("lang") if d is not None else "ar",schedule_source(p)))
   return out
  except Exception as e: log("Previous feed unreadable: %s"%e); return []
 
@@ -1505,14 +1509,14 @@ def scrape_snrt(days):
   if not clean(e.desc):e.desc=_snrt_fallback_desc(e.channel,e.title)
  return out
 
-def scrape_arryadia(days,history=None,history_path=None,report_path=None,include_viewer_schedule=True):
+def scrape_arryadia(days,history=None,history_path=None,report_path=None,include_viewer_schedule=True,include_smart=True,smart_model_path='data/arryadia-smart-model.json'):
  try:
   from tools.arryadia_official_grid import parse_grid
  except ModuleNotFoundError:
   from arryadia_official_grid import parse_grid
  now=datetime.now(TZ);limit=now+timedelta(days=min(days,3))
  report={"source":"arryadia","checked_utc":now.astimezone(timezone.utc).isoformat(),
-         "scope":"official grid, exact LKG and user-authorized HD2/HD3 hourly Grand Format","receiver_release_status":"NO_GO","attempts":[]}
+         "scope":"official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format","receiver_release_status":"NO_GO","attempts":[]}
  h=Http();out=[];official=[]
  for url in ("https://www.snrt.ma/ar/node/4070","https://www.snrt.ma/fr/node/4070"):
   attempt={"url":url}
@@ -1536,6 +1540,15 @@ def scrape_arryadia(days,history=None,history_path=None,report_path=None,include
  archive=_arryadia_history_update(history_path,official,days=7) if history_path else []
  filled=_arryadia_fill(out,hours=48,history=list(history or [])+archive)
  retained=len(filled)-len(out)
+ smart=[]
+ if include_smart:
+  try:
+   from tools.arryadia_smart_epg import generate
+  except ModuleNotFoundError:
+   from arryadia_smart_epg import generate
+  smart,smart_report=generate(official+archive,filled,now,hours=48,model_path=smart_model_path)
+  report["smart_hd"]=smart_report
+  filled+=smart
  viewer=[]
  if include_viewer_schedule:
   try:
@@ -1549,8 +1562,10 @@ def scrape_arryadia(days,history=None,history_path=None,report_path=None,include
                official_future_events=len(out),retained_exact_lkg=retained,
                provider_status=provider_status,viewer_reported_hourly_events=len(viewer),
                viewer_reported_channel_ids=sorted({e.channel for e in viewer}),
+               smart_estimated_events=len(smart),
                output_events=len(filled),channel_counts={cid:sum(e.channel==cid for e in filled) for cid in ARR_IDS})
  if viewer and not out:report["status"]="VIEWER_REPORTED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID"
+ if smart and not out:report["status"]="ESTIMATED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID"
  if report_path:
   p=Path(report_path);p.parent.mkdir(parents=True,exist_ok=True)
   p.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
@@ -1564,6 +1579,10 @@ def to_xml(rows,path):
  # discarded here and reported in logs.
  valid_rows=[];dropped=0
  for e in rows:
+  if e.source in (SMART_SOURCE,BOTOLA_SOURCE):
+   if (e.channel!='Arryadia_HD' or not e.stop or e.stop<=e.start or e.stop-e.start>timedelta(hours=3)
+       or ('[Estimé]' not in e.title and '[Diffusion estimée]' not in e.title)
+       or 'تقدير' not in e.desc):raise ValueError('Unauthorized Arryadia Smart schedule')
   if e.source==VIEWER_SOURCE:
    try:
     from tools.arryadia_hourly_grand_format import is_viewer_report
@@ -1583,6 +1602,7 @@ def to_xml(rows,path):
  for e in sorted(valid_rows,key=lambda e:(e.start,e.channel,e.title)):
   p=ET.SubElement(root,"programme",{"start":xdt(e.start),"stop":xdt(e.stop),"channel":e.channel});ET.SubElement(p,"title",{"lang":e.tl or lang(e.title)}).text=e.title;ET.SubElement(p,"desc",{"lang":e.dl or lang(e.desc)}).text=e.desc or e.title;counts[e.channel]+=1
   if e.source==VIEWER_SOURCE:ET.SubElement(p,"category",{"lang":"en"}).text=VIEWER_CATEGORY
+  if e.source in (SMART_SOURCE,BOTOLA_SOURCE):ET.SubElement(p,"category",{"lang":"en"}).text=BOTOLA_CATEGORY if e.source==BOTOLA_SOURCE else SMART_CATEGORY
  ET.indent(root,space="  ");ET.ElementTree(root).write(path,encoding="utf-8",xml_declaration=True);return dict(counts)
 
 def select_groups(results,old,now=None):
@@ -1600,6 +1620,7 @@ def select_groups(results,old,now=None):
   ok,detail=valid(g,fresh)
   rows=list(fresh);kept=0
   for e in sorted(carried+old,key=lambda e:e.start):
+   if e.source in (SMART_SOURCE,BOTOLA_SOURCE):continue
    if e.channel not in GROUPS[g] or not usable(e):continue
    if any(x.channel==e.channel and x.start<e.stop and x.stop>e.start for x in rows):continue
    rows.append(e);kept+=1
@@ -1609,6 +1630,11 @@ def select_groups(results,old,now=None):
   if viewer_count:
    status[g]["viewer_reported_hourly_events"]=viewer_count
    if all(e.source==VIEWER_SOURCE for e in fresh):status[g]["mode"]="viewer-reported"
+  smart_count=sum(e.source in (SMART_SOURCE,BOTOLA_SOURCE) for e in rows)
+  if smart_count:
+   status[g]["smart_estimated_events"]=smart_count
+   status[g]["qualified"]=False
+   status[g]["mode"]="with-estimated-schedule"
   log("%s: %s (%s); exact LKG=%d"%(g,mode,detail,kept))
   final+=rows
  return final,status
