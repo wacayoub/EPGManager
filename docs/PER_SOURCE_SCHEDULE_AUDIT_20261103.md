@@ -30,3 +30,26 @@ Recent scheduled-run history is attached separately in [the observed schedule re
 Vu+ remains **NO_GO**; no receiver was modified and the frozen canonical release is unchanged.
 
 STC moved from 05:55 to 02:37 local time so its verified Rotana and STARZPLAY consumers can use the latest donor publication. The 73-minute lead over Rotana covers the 70-minute job allowance subject to scheduler delays.
+
+## Completed sequential recollection
+
+[Run 41609383152](https://github.com/wacayoub/EPGManager/actions/runs/41609383152) completed successfully: 14 source collections, 14 exact-run publication verifications and the diagnostic aggregate rebuild. Job intervals confirm that each source refresh and verification finished before another source began. [Final machine evidence](../reports/sequential-source-audit-20261103.json) pins every source to its producer commit and SHA.
+
+| Source | Local target | Final future channels / catalogue | Programmes published |
+| --- | --- | ---: | ---: |
+| morocco | 07:07 | 9 / 15 | 578 |
+| alkass | 06:30 | 8 / 8 | 262 |
+| tabie | 00:30 | 4 / 4 | 636 |
+| tunisiatv | 06:35 | 2 / 2 | 122 |
+| aljazeera | 04:12 | 2 / 5 | 111 |
+| dubaiplus | 04:44 | 9 / 9 | 411 |
+| shahid | 03:39 | 71 / 71 | 4462 |
+| rotana | 03:50 | 8 / 9 | 400 |
+| sport24 | 03:05 | 9 / 9 | 144 |
+| osn | 01:40 | 79 / 100 | 6045 |
+| bein | 02:22 | 65 / 68 | 2597 |
+| elcinema | 01:20 | 95 / 97 | 4357 |
+| starzplay | 05:12 | 117 / 119 | 8518 |
+| stctv | 02:37 | 124 / 149 | 7827 |
+
+Rotana improved from 7/9 to 8/9: 128 genuine Al Resalah programmes were recovered through its already verified exact STC donor. Rotana Clip remained excluded because its donor was not verified. Other catalogue gaps remain explicit. A successful manual run verifies collection/publication, not future on-time delivery by GitHub or receiver-release eligibility.
