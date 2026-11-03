@@ -1,4 +1,4 @@
-name: Rebuild derived MENA feed
+name: Rebuild diagnostic MENA source aggregate
 
 on:
   workflow_call:
@@ -70,3 +70,11 @@ jobs:
 
           echo "Unable to publish derived MENA feed after retries"
           exit 1
+      - name: Record source publication scope
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo '## Diagnostic source aggregate'
+            echo 'Vu+ release: **NO_GO**. This workflow publishes source diagnostics on main; it does not promote mena-data or validate the receiver.'
+          } >> "$GITHUB_STEP_SUMMARY"

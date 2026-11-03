@@ -24,17 +24,26 @@ import hashlib
 import json
 from pathlib import Path
 import re
+from statistics import median
 import xml.etree.ElementTree as ET
 
 
 AR_RE = re.compile(r"[\u0600-\u06ff]")
 LATIN_RE = re.compile(r"[A-Za-z]")
-MAX_VUPLUS_XML_BYTES = 12 * 1024 * 1024
-
-from receiver_contract import (
-    BEIN_CORE, BEIN_OPTIONAL, OSN, MBC, ROTANA, ROTANA_OPTIONAL,
-    DMI, DMI_OPTIONAL_REAL_EPG_ONLY, ADM, PREMIUM_INTERNATIONAL, PROVIDERS,
-)
+try:
+    from tools.receiver_contract import (
+        BEIN_CORE, BEIN_OPTIONAL, OSN, MBC, ROTANA, ROTANA_OPTIONAL,
+        DMI, DMI_OPTIONAL_REAL_EPG_ONLY, ADM, PREMIUM_INTERNATIONAL, PROVIDERS,
+        MAX_VUPLUS_XML_BYTES,
+    )
+    from tools.source_feed_pack import parse_xmltv_dt
+except ModuleNotFoundError:
+    from receiver_contract import (
+        BEIN_CORE, BEIN_OPTIONAL, OSN, MBC, ROTANA, ROTANA_OPTIONAL,
+        DMI, DMI_OPTIONAL_REAL_EPG_ONLY, ADM, PREMIUM_INTERNATIONAL, PROVIDERS,
+        MAX_VUPLUS_XML_BYTES,
+    )
+    from source_feed_pack import parse_xmltv_dt
 
 
 def read_file(path: Path):
@@ -111,12 +120,19 @@ def programme_counter(programmes):
     )
 
 
-def check_xml(path: Path, errors):
+def check_xml(path: Path, errors, now=None):
+    now = now or datetime.now(timezone.utc)
+    if now.tzinfo is None:
+        raise ValueError("Coverage clock must have a timezone")
     data, raw, root, ids, programmes = ids_and_programmes(path)
+    if root.tag != "tv":
+        errors.append("%s: INVALID_XMLTV_ROOT" % path.name)
     id_set = set(ids)
     event_ids = {(p.get("channel") or "").strip() for p in programmes}
     if len(ids) != len(id_set):
         errors.append("%s: DUPLICATE_CHANNEL_IDS" % path.name)
+    if not all(ids):
+        errors.append("%s: BLANK_CHANNEL_ID" % path.name)
     if not event_ids.issubset(id_set):
         errors.append("%s: ORPHAN_PROGRAMMES=%s" % (path.name, sorted(event_ids - id_set)[:10]))
     if id_set - event_ids:
@@ -127,6 +143,26 @@ def check_xml(path: Path, errors):
     ]
     if len(slots) != len(set(slots)):
         errors.append("%s: DUPLICATE_PROGRAMME_SLOTS" % path.name)
+    latest = {}
+    future_events = 0
+    invalid_times = 0
+    for programme in programmes:
+        try:
+            start = parse_xmltv_dt(programme.get("start"))
+            stop = parse_xmltv_dt(programme.get("stop"))
+        except (ValueError, OverflowError):
+            start = stop = None
+        if start is None or stop is None or stop <= start:
+            invalid_times += 1
+            continue
+        cid = programme.get("channel")
+        if cid in id_set and stop > now:
+            future_events += 1
+            latest[cid] = max(stop, latest.get(cid, stop))
+    if invalid_times:
+        errors.append("%s: INVALID_PROGRAMME_TIMES=%d" % (path.name, invalid_times))
+    horizons = [max(0.0, (latest[cid]-now).total_seconds()/3600) if cid in latest else 0.0
+                for cid in id_set]
     return {
         "ids": id_set,
         "programmes": programmes,
@@ -136,6 +172,15 @@ def check_xml(path: Path, errors):
         "xml_size_bytes": len(raw),
         "sha256": hashlib.sha256(data).hexdigest(),
         "language": language_ratios(programmes),
+        "future_programme_count": future_events,
+        "channels_without_future_epg": sorted(id_set-set(latest)),
+        "coverage": {
+            "reference_utc": now.astimezone(timezone.utc).isoformat(),
+            "computed_from": "final_decompressed_xmltv_programmes",
+            "median_future_hours": median(horizons) if horizons else 0.0,
+            "minimum_future_hours": min(horizons) if horizons else 0.0,
+            "channels_without_future_epg": len(id_set-set(latest)),
+        },
     }
 
 
@@ -151,17 +196,20 @@ def main() -> int:
     ap.add_argument("--minimum-median-future-hours", type=float, default=30.0)
     ap.add_argument("--json")
     ap.add_argument("--text")
+    ap.add_argument("--artifact-checks-only", action="store_true",
+                    help="Allow exit 0 for offline artifact checks; never certifies a Vu+ release")
     args = ap.parse_args()
     base = Path(args.dir)
     errors = []
     warnings = []
     profiles = {}
+    checked_at = datetime.now(timezone.utc)
 
     if (base / "mena-other.xml.gz").exists() or (base / "mena-other.txt").exists():
         errors.append("MENA_OTHER_RECEIVER_SHARD_PRESENT")
 
     for path in sorted(base.glob("*.xml.gz")):
-        profiles[path.name[:-7]] = check_xml(path, errors)
+        profiles[path.name[:-7]] = check_xml(path, errors, checked_at)
 
     required_files = {"mena-arabic", "mena", "premium", "provider-international"} | set(PROVIDERS)
     missing_files = sorted(required_files - set(profiles))
@@ -254,10 +302,10 @@ def main() -> int:
             if row.get(key) != actual.get(field):
                 errors.append("manifest.json: splits.%s.%s mismatch" % (split, key))
 
-    coverage = manifest.get("coverage") or {}
-    median = float(coverage.get("median_future_hours", 0.0) or 0.0)
-    if median < args.minimum_median_future_hours:
-        errors.append("REAL_COVERAGE_MEDIAN=%.2fh < %.2fh" % (median, args.minimum_median_future_hours))
+    coverage = combined.get("coverage") or {}
+    measured_median = float(coverage.get("median_future_hours", 0.0) or 0.0)
+    if measured_median < args.minimum_median_future_hours:
+        errors.append("REAL_COVERAGE_MEDIAN=%.2fh < %.2fh" % (measured_median, args.minimum_median_future_hours))
 
     shard_manifest = json.loads((base / "shards.json").read_text(encoding="utf-8"))
     seen = set()
@@ -281,6 +329,10 @@ def main() -> int:
         errors.append("shards.json: published_channels mismatch")
     if combined and shard_manifest.get("input_channels") != combined.get("channels"):
         errors.append("shards.json: input_channels mismatch")
+    for stem in sorted({"mena-arabic", "mena", "premium"} | set(shard_manifest.get("shards") or {})):
+        profile = profiles.get(stem)
+        if profile and profile["channels_without_future_epg"]:
+            errors.append("%s: NO_FUTURE_EPG_IDS=%d" % (stem, len(profile["channels_without_future_epg"])))
 
     aliases = json.loads((base / "receiver-id-aliases.json").read_text(encoding="utf-8"))
     canonical_ids = set(aliases.get("canonical_ids") or [])
@@ -311,27 +363,39 @@ def main() -> int:
                     % (resolved, previous_channels, current_channels)
                 )
 
+    artifact_status = "FAIL" if errors else "PASS"
+    release_blockers = ["ENIGMA2_RECEIVER_NOT_VALIDATED", "RECEIVER_REFRESH_AUTHORIZATION_NOT_ESTABLISHED"]
+    if not args.artifact_checks_only:
+        errors.extend(release_blockers)
     payload = {
         "schema": 2,
         "status": "FAIL" if errors else "PASS",
         "errors": errors,
         "warnings": warnings,
+        "artifact_checks_status": artifact_status,
+        "receiver_release_blockers": release_blockers,
         "provider_channels": {stem: profiles.get(stem, {}).get("channels", 0) for stem in PROVIDERS},
         "language": {stem: profiles.get(stem, {}).get("language", {}) for stem in ("mena", *PROVIDERS)},
         "coverage": coverage,
+        "manifest_declared_coverage": manifest.get("coverage") or {},
+        "scope": "offline_receiver_artifact_checks",
+        "receiver_release_status": "NO_GO",
+        "enigma2_receiver_validated": False,
+        "release_authorized": False,
         "vuplus_xml_bytes": combined.get("xml_size_bytes", 0),
         "checked_at": datetime.now(timezone.utc).isoformat(),
     }
     if args.json:
         Path(args.json).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    lines = ["RECEIVER RELEASE GATE: %s" % payload["status"]]
+    lines = ["RECEIVER ARTIFACT CHECKS: %s" % payload["status"],
+             "VU+ RELEASE: NO_GO — hardware validation and authorization are not established by this offline check"]
     lines.extend("- " + error for error in errors)
     lines.extend("- WARNING: " + warning for warning in warnings)
     if not errors:
         lines.append(
-            "canonical union, manifests, provider cores, policy-aligned language, "
-            "LKG continuity, real coverage and Vu+ size: PASS"
+            "offline canonical union, manifests, provider cores, policy-aligned language, "
+            "LKG continuity, current XMLTV horizons and configured payload-size budget: PASS"
         )
     if args.text:
         Path(args.text).write_text("\n".join(lines) + "\n", encoding="utf-8")
