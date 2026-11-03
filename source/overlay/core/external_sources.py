@@ -126,7 +126,6 @@ _RAW = [
 ("Sweden","https://epgshare01.online/epgshare01/epg_ripper_SE1.xml.gz","Europe"),
 ("Switzerland","https://epgshare01.online/epgshare01/epg_ripper_CH1.xml.gz","Europe"),
 ("UK","https://epgshare01.online/epgshare01/epg_ripper_UK1.xml.gz","Europe"),
-("Egypt-EPGShare","https://epgshare01.online/epgshare01/epg_ripper_EG1.xml.gz","Africa"),
 ("Kenya","https://epgshare01.online/epgshare01/epg_ripper_KE1.xml.gz","Africa"),
 ("Nigeria","https://epgshare01.online/epgshare01/epg_ripper_NG1.xml.gz","Africa"),
 ("South_Africa","https://epgshare01.online/epgshare01/epg_ripper_ZA1.xml.gz","Africa"),
@@ -137,8 +136,7 @@ _RAW = [
 ("Japan","https://epgshare01.online/epgshare01/epg_ripper_JP1.xml.gz","Asia"),
 ("South_Korea","https://epgshare01.online/epgshare01/epg_ripper_KR1.xml.gz","Asia"),
 ("Malaysia","https://epgshare01.online/epgshare01/epg_ripper_MY1.xml.gz","Asia"),
-("Pakistan","https://epgshare01.online/epgshare01/epg_ripper_PK1.xml.gz","Asia"),
-("Philippines","https://epgshare01.online/epgshare01/epg_ripper_PH1.xml.gz","Asia"),
+("Philippines","https://epgshare01.online/epgshare01/epg_ripper_PH2.xml.gz","Asia"),
 ("Singapore","https://epgshare01.online/epgshare01/epg_ripper_SG1.xml.gz","Asia"),
 ("Thailand","https://epgshare01.online/epgshare01/epg_ripper_TH1.xml.gz","Asia"),
 ("Turkey","https://epgshare01.online/epgshare01/epg_ripper_TR1.xml.gz","Asia"),
@@ -158,15 +156,23 @@ _RAW = [
 ]
 
 
-# Confirmed twice against the publisher on 2026-11-02; see source-review report.
+# Confirmed against the publisher on 2026-11-02/03; see full-validation report.
 _SHARE_BASE = "https://epgshare01.online/epgshare01/epg_ripper_"
 URL_REPLACEMENTS = {
     _SHARE_BASE + old + ".xml.gz": _SHARE_BASE + new + ".xml.gz"
-    for old, new in (("BE1", "BE2"), ("CA1", "CA2"), ("US1", "US2"))
+    for old, new in (("BE1", "BE2"), ("CA1", "CA2"), ("US1", "US2"), ("PH1", "PH2"))
 }
-RETIRED_SOURCE_URLS = frozenset(
-    _SHARE_BASE + code + ".xml.gz" for code in ("EE1", "IS1", "SI1", "CN1", "VE1")
-)
+RETIRED_SOURCE_REASONS = {
+    _SHARE_BASE + code + ".xml.gz": "confirmed HTTP 404"
+    for code in ("EE1", "IS1", "SI1", "CN1", "VE1")
+}
+# EG1 contains only expired 2024 data; PK1 contains no programmes. Both were
+# rechecked in full twice on 2026-11-03. OpenEPG EGYPT remains available.
+RETIRED_SOURCE_REASONS.update({
+    _SHARE_BASE + "EG1.xml.gz": "expired guide with no future programmes",
+    _SHARE_BASE + "PK1.xml.gz": "empty programme guide",
+})
+RETIRED_SOURCE_URLS = frozenset(RETIRED_SOURCE_REASONS)
 
 
 def canonical_source_url(url):
@@ -221,7 +227,8 @@ def download_source(source, epg_dir, retries=3, timeout=30):
         source = BY_ID[source]
     url = canonical_source_url(source["url"])
     if url in RETIRED_SOURCE_URLS:
-        raise ValueError("Source retired after confirmed HTTP 404: %s" % source.get("name", source.get("id", "")))
+        raise ValueError("Source retired (%s): %s" % (
+            RETIRED_SOURCE_REASONS[url], source.get("name", source.get("id", ""))))
     if not os.path.isdir(epg_dir):
         os.makedirs(epg_dir)
     lower = url.lower().split("?", 1)[0]
