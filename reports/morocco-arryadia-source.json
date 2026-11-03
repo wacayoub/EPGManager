@@ -1,7 +1,7 @@
 {
   "source": "arryadia",
-  "checked_utc": "2026-11-03T10:31:17.008122+00:00",
-  "scope": "official dated grid and exact future LKG only",
+  "checked_utc": "2026-11-03T10:54:48.784860+00:00",
+  "scope": "official grid, exact LKG and user-authorized HD2/HD3 hourly Grand Format",
   "receiver_release_status": "NO_GO",
   "attempts": [
     {
@@ -45,15 +45,21 @@
       "status": "STALE_OFFICIAL_GRID"
     }
   ],
-  "status": "STALE_OFFICIAL_GRID",
+  "status": "VIEWER_REPORTED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID",
   "official_future_events": 0,
   "retained_exact_lkg": 0,
-  "output_events": 0,
+  "provider_status": "STALE_OFFICIAL_GRID",
+  "viewer_reported_hourly_events": 124,
+  "viewer_reported_channel_ids": [
+    "Arryadia_HD2",
+    "Arryadia_HD3"
+  ],
+  "output_events": 124,
   "channel_counts": {
     "Arryadia_HD": 0,
     "Arryadia_TNT": 0,
     "Arryadia_HD1": 0,
-    "Arryadia_HD2": 0,
-    "Arryadia_HD3": 0
+    "Arryadia_HD2": 62,
+    "Arryadia_HD3": 62
   }
 }
