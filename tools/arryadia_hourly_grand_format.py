@@ -48,10 +48,10 @@ def is_viewer_report(event, now=None):
         return False
     if local_stop != local_start + timedelta(hours=1):
         return False
-    return now.date() <= local_start.date() < now.date() + timedelta(days=7)
+    return now.date() <= local_start.date() and local_start < now + timedelta(days=7)
 
 
-def generate_hourly(days=7, now=None, verified=()):
+def generate_hourly(days=7, now=None, verified=(), horizon_hours=None):
     """Generate reported one-hour programme loop unless a real event overlaps.
 
     This purposely does not use/archive any stale SNRT schedule. Time range is
@@ -65,11 +65,13 @@ def generate_hourly(days=7, now=None, verified=()):
         if e.channel in IDS and e.start and e.stop and e.stop > e.start
     )
     result = []
-    for offset in range(days):
+    end=now+timedelta(hours=min(168,max(1,horizon_hours))) if horizon_hours else None
+    for offset in range(days+(1 if end else 0)):
         day = now.date() + timedelta(days=offset)
         for hour in range(DAILY_SLOTS):
             start = datetime.combine(day, time(hour), TZ)
             stop = start + timedelta(hours=1)
+            if end and (stop<=now or start>=end):continue
             for cid in sorted(IDS):
                 if any(e.channel == cid and e.start < stop and e.stop > start for e in relevant):
                     continue

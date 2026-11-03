@@ -76,6 +76,10 @@ Receiver release remains **NO_GO**; the diagnostic aggregate does not certify
 canonical receiver IDs, premium/MENA splitting, hardware validation or import authorization.
 
 ## Outputs
+
+Morocco publishes a [seven-day guide where available](MOROCCO_SEVEN_DAY_GUIDE.md),
+with per-ID actual coverage in `reports/morocco-7day-coverage.json`.
+Other source publication windows remain 48 hours.
 - `feeds/<source>.xml.gz`
 - `feeds/<source>.json` and `feeds/<source>.txt`
 - `reports/<source>-publish-lkg.json`
