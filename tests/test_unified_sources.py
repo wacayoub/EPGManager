@@ -114,7 +114,27 @@ class UnifiedCatalogue(unittest.TestCase):
             self.assertEqual(sum(r['url'].endswith('epg_ripper_CA2.xml.gz') for r in rows), 1)
             self.assertFalse(any(r['id']=='saved_estonia' for r in rows))
             self.assertTrue(legacy['url'].endswith('CA1.xml.gz'))
-            self.assertEqual(len(external._RAW), 112)
+            self.assertEqual(len(external._RAW), 110)
+            saved = [
+                {'id': 'saved_philippines', 'url': external._SHARE_BASE+'PH1.xml.gz'},
+                {'id': 'installed_ph2', 'url': external._SHARE_BASE+'PH2.xml.gz'},
+                {'id': 'saved_egypt', 'url': external._SHARE_BASE+'EG1.xml.gz'},
+                {'id': 'saved_pakistan', 'url': external._SHARE_BASE+'PK1.xml.gz'},
+            ]
+            unchanged = copy.deepcopy(saved)
+            with patch.object(catalog, 'discover_epgimport_sources', return_value=saved):
+                rows = catalog.all_sources()
+            philippines = [r for r in rows if r['url'].endswith('epg_ripper_PH2.xml.gz')]
+            self.assertEqual([r['id'] for r in philippines], ['ext_philippines'])
+            self.assertFalse(any(r['id'] in ('saved_egypt', 'saved_pakistan') for r in rows))
+            self.assertEqual(saved, unchanged)
+            self.assertTrue(any(r['url'].endswith('/egypt1.xml.gz') for r in rows))
+            # Stale saved selections are refused before any directory or download.
+            with patch.object(external.os.path, 'isdir', side_effect=AssertionError('filesystem reached')):
+                for source in saved[2:]:
+                    with self.assertRaisesRegex(ValueError, 'Source retired') as error:
+                        external.download_source(source, 'unused')
+                    self.assertNotIn('404', str(error.exception))
             for source in external.SOURCES:
                 self.assertNotIn(source['url'], external.RETIRED_SOURCE_URLS)
 
