@@ -90,8 +90,10 @@ EPGManager owns the source engine and its diagnostic aggregate. EPG-Scrapers is 
 
 Arryadia HD2/HD3 retain the user-authorized hourly **Grand Format** recurrence.
 It is labelled as viewer-reported in XMLTV and quality reports, survives packing
-and aggregation, and yields to announced same-channel programmes. HD/TNT Smart
-forecasts remain disabled. See [restored Grand Format](ARRYADIA_GRAND_FORMAT_RESTORED.md).
+and aggregation, and yields to announced same-channel programmes. The user also
+enabled [HD Smart EPG with published Botola fixtures](ARRYADIA_HD_SMART_BOTOLA.md),
+explicitly labelled as estimates. TNT and HD1 remain unchanged.
+See [restored Grand Format](ARRYADIA_GRAND_FORMAT_RESTORED.md).
 
 STARZPLAY is active on its own 03:07 Morocco local workflow. A successful Actions run or a
 MAIN/B1/B2 role does not certify guide quality. Review `<source>-current-health.json` and the source-specific quality reports: expired IDs stay visible but never green;

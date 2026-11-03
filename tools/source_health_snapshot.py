@@ -61,7 +61,7 @@ def inspect_valid_publication(root, source, now=None):
         'source': source, 'checked_utc': now.isoformat(),
         'feed_sha256': hashlib.sha256(data).hexdigest(),
         'status': 'NO_FUTURE_EPG' if not ends else 'DEGRADED' if (
-            missing or flagged or remaining < 8 or kept or report.get('viewer_reported_recurring_programmes')) else 'AVAILABLE',
+            missing or flagged or remaining < 8 or kept or report.get('viewer_reported_recurring_programmes') or report.get('smart_estimated_programmes')) else 'AVAILABLE',
         'last_attempt_kept_lkg': kept,
         'channels': report['channels'],
         'channels_with_future_epg': report['channels_with_future_epg'],
@@ -69,6 +69,8 @@ def inspect_valid_publication(root, source, now=None):
         'suspected_placeholder_channels': flagged,
         'viewer_reported_recurring_channels': report.get('viewer_reported_recurring_channels',[]),
         'viewer_reported_recurring_programmes': report.get('viewer_reported_recurring_programmes',0),
+        'smart_estimated_channels': report.get('smart_estimated_channels',[]),
+        'smart_estimated_programmes': report.get('smart_estimated_programmes',0),
         'remaining_max_hours': round(remaining, 2),
         'channels_with_less_than_24h': report['channels_with_shorter_than_24h'],
         'action_success_does_not_certify_guide_quality': True,

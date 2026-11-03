@@ -25,7 +25,7 @@ class ArryadiaGrid(unittest.TestCase):
             path=Path(tmp)/'report.json'
             with patch.object(m,'Http',return_value=client),patch.object(m,'datetime',wraps=datetime) as clock:
                 clock.now.return_value=NOW
-                rows=m.scrape_arryadia(3,history=history,report_path=path,include_viewer_schedule=False)
+                rows=m.scrape_arryadia(3,history=history,report_path=path,include_viewer_schedule=False,include_smart=False)
             report=json.loads(path.read_text(encoding='utf-8'))
         return rows,report,client
 

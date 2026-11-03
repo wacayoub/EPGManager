@@ -1,5 +1,7 @@
 # Restored Arryadia HD2/HD3 Grand Format
 
+Later user request: [Smart with Botola](ARRYADIA_HD_SMART_BOTOLA.md) is now enabled on HD only. HD2/HD3 retain the Grand Format policy described here; TNT stays unchanged.
+
 The user confirmed **Grand Format every hour on HD2 and HD3 only**. Smart forecasts on HD/TNT remain disabled. The existing `arryadia_hourly_grand_format.py` implementation survived in the repository, but was not connected to the unified production collector. This integration omission made both services disappear from future-EPG coverage despite the earlier viewer-reported solution.
 
 The Morocco collector now invokes that implementation by default. It creates one-hour calendar slots on HD2 and HD3 over the requested collection window, keeps the French title **Grand Format** and the Arabic description explaining the viewer observation, and gives announced same-channel programmes priority over every intersecting recurring hour. Other Arryadia variants do not receive this recurrence.
