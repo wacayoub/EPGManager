@@ -1,6 +1,6 @@
 {
   "source": "arryadia",
-  "checked_utc": "2026-11-03T15:25:34.706338+00:00",
+  "checked_utc": "2026-11-04T14:23:44.714024+00:00",
   "scope": "official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format",
   "receiver_release_status": "NO_GO",
   "attempts": [
@@ -61,15 +61,11 @@
       "provider": "LiveScore",
       "requests": [
         {
-          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-03",
+          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-04",
           "http_status": 403
         },
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/live/soccer/0?countryCode=MA&locale=en",
-          "http_status": 200
-        },
-        {
-          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261103/0?countryCode=MA&locale=en",
           "http_status": 200
         },
         {
@@ -98,6 +94,10 @@
         },
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261110/0?countryCode=MA&locale=en",
+          "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261111/0?countryCode=MA&locale=en",
           "http_status": 200
         }
       ],
