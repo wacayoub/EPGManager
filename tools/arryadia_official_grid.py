@@ -19,20 +19,29 @@ def clean(text):
 def service_ids(row):
     def markers(text,metadata=False):
         text=clean(text).replace('_',' ')
-        matches=re.findall(r'\b(?:hd\s*[123]|tnt|sat)\b',text,re.I)
-        ids={VARIANTS[re.sub(r'\s+','',tag.lower())] for tag in matches}
+        matches=re.findall(r'\b(?:hd\s*-?\s*[123]|tnt|sat)\b',text,re.I)
+        ids={VARIANTS[re.sub(r'[\s-]+','',tag.lower())] for tag in matches}
         arabic=re.sub(r'[\u064b-\u065f\u0640]','',text).replace('أ','ا').replace('إ','ا')
         if (re.search(r'\b(?:الارضية|الارضي|ارضي|ارضية|terrestre)\b',arabic,re.I)
                 or metadata and text.casefold() in ('local','locale','terrestrial')):
             ids.add('Arryadia_TNT')
+        if metadata and text.casefold() in ('arryadia', 'arryadia hd', 'hd'):
+            ids.add('Arryadia_HD')
         return ids
-    # Typed service metadata takes precedence over incidental title/synopsis words.
-    explicit=' '.join(str(row.get(key,'')) for key in ('data-channel','data-service'))
-    ids=markers(explicit,True)
+
+    def declared(node):
+        return markers(str(node.get('data-channel','')),True) | markers(str(node.get('data-service','')),True)
+
+    ids=declared(row)
     if ids:return ids
     labels=' '.join(x.get_text(' ',strip=True) for x in row.select('.grille-channel,.channel-label,.service-label'))
     ids=markers(labels,True)
     if ids:return ids
+    # A separately labelled service section may contain unmarked programme rows.
+    for parent in row.parents:
+        if parent.name in ('body','html','[document]'):break
+        ids=declared(parent)
+        if ids:return ids
     return markers(row.get_text(' ',strip=True)) or {'Arryadia_HD'}
 
 
@@ -49,6 +58,22 @@ def row_date(row):
                     except ValueError:pass
         node=getattr(node,'parent',None)
     return None
+
+
+def infer_stops(events):
+    """Set inferred ends from the next start for each service."""
+    result=sorted(events,key=lambda e:(e['channel'],e['start'],e['title']))
+    next_starts={}
+    stops={}
+    for event in reversed(result):
+        channel,start=event['channel'],event['start']
+        key=(channel,start)
+        if key not in stops:
+            following=next_starts.get(channel)
+            stops[key]=following if following and following-start<=timedelta(hours=6) else start+timedelta(hours=1)
+            next_starts[channel]=start
+        event['stop']=stops[key]
+    return result
 
 
 def parse_grid(html,wall_clock):
@@ -79,10 +104,7 @@ def parse_grid(html,wall_clock):
             key=(channel,start,title.casefold())
             event={'channel':channel,'start':start,'title':title,'desc':description or title}
             if key not in events or len(event['desc'])>len(events[key]['desc']):events[key]=event
-    result=sorted(events.values(),key=lambda x:(x['channel'],x['start'],x['title']))
-    for i,event in enumerate(result):
-        following=next((x['start'] for x in result[i+1:] if x['channel']==event['channel'] and x['start']>event['start']),None)
-        event['stop']=following if following and following-event['start']<=timedelta(hours=6) else event['start']+timedelta(hours=1)
+    result=infer_stops(events.values())
     return result,{'observed_programme_dates':sorted(dates),'grid_rows':len(rows),
                    'parsed_events':len(result),'undated_rows':undated,'invalid_rows':invalid,
                    'rejected_placeholder_rows':placeholders,'end_times':'inferred from next same-service start within 6h; terminal/isolated rows capped at 1h'}

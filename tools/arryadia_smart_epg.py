@@ -19,7 +19,7 @@ CHANNEL='Arryadia_HD'
 
 def family(title):
     n=base.norm(title)
-    if n in ('flash info','موجز الأخبار','موجز الاخبار'):return 'news'
+    if n in ('flash info','موجز الأخبار','موجز الاخبار','موجز الرياضية'):return 'news'
     if ('arryadia chabab' in n or 'الرياضية شباب' in n):
         if 'reportage' in n or 'روبورتاج' in n:return 'reportage'
         if 'football' in n or 'كرة القدم' in n:return 'youth-football'
