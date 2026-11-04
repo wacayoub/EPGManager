@@ -1528,14 +1528,14 @@ def scrape_snrt(days):
 
 def scrape_arryadia(days,history=None,history_path=None,report_path=None,include_viewer_schedule=True,include_smart=True,smart_model_path='data/arryadia-smart-model.json'):
  try:
-  from tools.arryadia_official_grid import parse_grid
+  from tools.arryadia_official_grid import infer_stops,parse_grid
  except ModuleNotFoundError:
-  from arryadia_official_grid import parse_grid
+  from arryadia_official_grid import infer_stops,parse_grid
  days=min(7,max(1,int(days)));window_hours=24*days
  now=datetime.now(TZ);limit=now+timedelta(days=days)
  report={"source":"arryadia","checked_utc":now.astimezone(timezone.utc).isoformat(),
          "scope":"official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format","receiver_release_status":"NO_GO","attempts":[]}
- h=Http();out=[];official=[]
+ h=Http();out=[];official=[];merged={}
  for url in ("https://www.snrt.ma/ar/node/4070","https://www.snrt.ma/fr/node/4070"):
   attempt={"url":url}
   try:
@@ -1545,24 +1545,28 @@ def scrape_arryadia(days,history=None,history_path=None,report_path=None,include
    current=[e for e in events if e["stop"]>now and e["start"]<limit]
    attempt["future_events"]=len(current)
    attempt["status"]="CURRENT_GRID" if current else "STALE_OFFICIAL_GRID" if events else "NO_DATED_PROGRAMMES"
-   source_rows=[Event(e["channel"],e["start"],e["title"],e["desc"],e["stop"],lang(e["title"]),lang(e["desc"]),"arryadia-snrt") for e in events]
-   official+=source_rows
-   if current:
-    added=0
-    for event in source_rows:
-     if event.stop<=now or event.start>=limit:continue
-     if any(e.channel==event.channel and e.start<event.stop and e.stop>event.start for e in out):continue
-     out.append(event);added+=1
-    attempt["added_nonoverlapping_events"]=added
-    if added:
-     report.setdefault("selected_url",url)
-     report.setdefault("selected_urls",[]).append(url)
+   attempt["added_nonoverlapping_events"]=0
+   for event in events:
+    # Arabic wins an identical service/start. Later starts from either locale
+    # are independent evidence, even inside a provisional inferred interval.
+    merged.setdefault((event["channel"],event["start"]),(event,attempt))
   except Exception as exc:
    attempt.update(status="HTTP_OR_PARSE_ERROR",error=type(exc).__name__)
    response=getattr(exc,"response",None)
    if response is not None:attempt["http_status"]=response.status_code
   report["attempts"].append(attempt)
-  # A current primary AR grid must not hide an FR-only TNT/local or HD1 listing.
+ for event in infer_stops(e for e,_ in merged.values()):
+  row=Event(event["channel"],event["start"],event["title"],event["desc"],event["stop"],
+            lang(event["title"]),lang(event["desc"]),"arryadia-snrt")
+  official.append(row)
+  if row.stop>now and row.start<limit:
+   out.append(row)
+   _,attempt=merged[(row.channel,row.start)]
+   attempt["added_nonoverlapping_events"]+=1
+ for attempt in report["attempts"]:
+  if attempt.get("added_nonoverlapping_events"):
+   report.setdefault("selected_url",attempt["url"])
+   report.setdefault("selected_urls",[]).append(attempt["url"])
  archive=_arryadia_history_update(history_path,official,days=7) if history_path else []
  filled=_arryadia_fill(out,hours=window_hours,history=list(history or [])+archive)
  retained=len(filled)-len(out)

@@ -28,6 +28,24 @@ class OfficialActivation(unittest.TestCase):
         self.assertEqual({e.channel for e in events},{'Arryadia_HD'})
         self.assertTrue(all(r['status']=='WAITING_FOR_OFFICIAL_EPG' for r in report['official_service_activation'].values()))
 
+    def test_later_official_start_survives_the_other_locales_inferred_end(self):
+        for marker,channel in [('SAT','Arryadia_HD'),('HD1','Arryadia_HD1'),('TNT','Arryadia_TNT')]:
+            with self.subTest(channel=channel):
+                events,report,_=self.collect([
+                    row(clock='12H00',marker=marker,title='الأخبار الرياضية'),
+                    row(clock='12H30',marker=marker,title='Official next programme'),
+                ])
+                self.assertEqual([e.channel for e in events],[channel,channel])
+                self.assertEqual(events[0].stop,events[1].start)
+                self.assertEqual(events[1].start.minute,30)
+                self.assertEqual(len(report['selected_urls']),2)
+
+    def test_service_section_is_used_when_programme_has_no_variant_label(self):
+        html='<section data-service="Arryadia HD-1">'+row()+'</section>'
+        html+='<section data-service="local">'+row(title='Local fixture')+'</section>'
+        events,_=parse_grid(html,m.morocco_wall_clock)
+        self.assertEqual({e['channel'] for e in events},{'Arryadia_HD1','Arryadia_TNT'})
+
     def test_arabic_and_french_terrestrial_markers_target_tnt_only(self):
         for marker in ('مباشر أرضي','البث الأرضي','القناة الأرضية','Diffusion terrestre'):
             with self.subTest(marker=marker):
