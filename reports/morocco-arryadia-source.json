@@ -1,55 +1,25 @@
 {
   "source": "arryadia",
-  "checked_utc": "2026-11-04T17:43:06.322782+00:00",
+  "checked_utc": "2026-11-05T14:32:46.819151+00:00",
   "scope": "official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format",
   "receiver_release_status": "NO_GO",
   "attempts": [
     {
       "url": "https://www.snrt.ma/ar/node/4070",
-      "observed_programme_dates": [
-        "2026-09-21",
-        "2026-09-22",
-        "2026-09-23",
-        "2026-09-24",
-        "2026-09-25",
-        "2026-09-26"
-      ],
-      "grid_rows": 97,
-      "parsed_events": 97,
-      "undated_rows": 0,
-      "invalid_rows": 0,
-      "rejected_placeholder_rows": 0,
-      "end_times": "inferred from next same-service start within 6h; terminal/isolated rows capped at 1h",
-      "http_status": 200,
-      "future_events": 0,
-      "status": "STALE_OFFICIAL_GRID",
-      "added_nonoverlapping_events": 0
+      "status": "HTTP_OR_PARSE_ERROR",
+      "error": "HTTPError",
+      "http_status": 502
     },
     {
       "url": "https://www.snrt.ma/fr/node/4070",
-      "observed_programme_dates": [
-        "2026-09-21",
-        "2026-09-22",
-        "2026-09-23",
-        "2026-09-24",
-        "2026-09-25",
-        "2026-09-26"
-      ],
-      "grid_rows": 97,
-      "parsed_events": 97,
-      "undated_rows": 0,
-      "invalid_rows": 0,
-      "rejected_placeholder_rows": 0,
-      "end_times": "inferred from next same-service start within 6h; terminal/isolated rows capped at 1h",
-      "http_status": 200,
-      "future_events": 0,
-      "status": "STALE_OFFICIAL_GRID",
-      "added_nonoverlapping_events": 0
+      "status": "HTTP_OR_PARSE_ERROR",
+      "error": "HTTPError",
+      "http_status": 502
     }
   ],
   "smart_hd": {
     "channel": "Arryadia_HD",
-    "mode": "learned_from_official_dated_rows",
+    "mode": "persisted_model_after_provider_outage",
     "template_count": 8,
     "model_observed_dates": [
       "2026-09-21",
@@ -63,15 +33,11 @@
       "provider": "LiveScore",
       "requests": [
         {
-          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-04",
+          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-05",
           "http_status": 403
         },
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/live/soccer/0?countryCode=MA&locale=en",
-          "http_status": 200
-        },
-        {
-          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261104/0?countryCode=MA&locale=en",
           "http_status": 200
         },
         {
@@ -101,22 +67,19 @@
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261111/0?countryCode=MA&locale=en",
           "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261112/0?countryCode=MA&locale=en",
+          "http_status": 200
         }
       ],
-      "fixture_count": 9
+      "fixture_count": 8
     },
     "botola_matches_added": [
       {
-        "fixture_id": "ls:1888107",
-        "title": "FAR Rabat vs Raja - Botola Pro",
-        "kickoff_utc": "2026-11-04T20:00:00+00:00",
-        "broadcast_channel_confirmed": false,
-        "duration_minutes_estimated": 120
-      },
-      {
         "fixture_id": "ls:1908637",
         "title": "Hassania Agadir vs RS Berkane - Botola Pro",
-        "kickoff_utc": "2026-11-06T18:00:00+00:00",
+        "kickoff_utc": "2026-11-06T17:00:00+00:00",
         "broadcast_channel_confirmed": false,
         "duration_minutes_estimated": 120
       },
@@ -177,17 +140,17 @@
   "status": "ESTIMATED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID",
   "official_future_events": 0,
   "retained_exact_lkg": 0,
-  "provider_status": "STALE_OFFICIAL_GRID",
+  "provider_status": "OFFICIAL_GUIDE_UNAVAILABLE",
   "viewer_reported_hourly_events": 338,
   "viewer_reported_channel_ids": [
     "Arryadia_HD2",
     "Arryadia_HD3"
   ],
-  "smart_estimated_events": 58,
+  "smart_estimated_events": 57,
   "requested_window_hours": 168,
-  "output_events": 396,
+  "output_events": 395,
   "channel_counts": {
-    "Arryadia_HD": 58,
+    "Arryadia_HD": 57,
     "Arryadia_TNT": 0,
     "Arryadia_HD1": 0,
     "Arryadia_HD2": 169,
