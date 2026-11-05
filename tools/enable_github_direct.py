@@ -8,6 +8,7 @@ Rytec, source selection, and Enigma2 settings. Requires a GUI restart to load.
 from __future__ import print_function
 import argparse
 import os
+import re
 import shutil
 import sys
 import tempfile
@@ -19,6 +20,8 @@ PLUGIN = Path("/usr/lib/enigma2/python/Plugins/Extensions/EPGManager")
 BACKUP_BASE = Path("/etc/enigma2/epgmanager-github-direct-backups")
 HELPER_URL = ("https://raw.githubusercontent.com/wacayoub/EPGManager/"
               "main/tools/github_direct_stream.py")
+OLD_SOURCE_ROOT = "https://raw.githubusercontent.com/wacayoub/EPG-Scrapers/main/"
+NEW_SOURCE_ROOT = "https://raw.githubusercontent.com/wacayoub/EPGManager/main/"
 CYCLE_CALL = "direct_sync = self._sync_direct_xml_for_import(selected)"
 NATIVE_START = "        else:\n            # rc36.8 direct-feed contract:"
 NATIVE_END = "        overlay_meta = {}"
@@ -105,12 +108,77 @@ def atomic_write(path, text):
             os.unlink(temp)
 
 
+def patch_source_urls(text, filename):
+    """Migrate active URL constants while retaining saved source IDs."""
+    pattern = re.compile(
+        r"(?m)^(BASE|REPORT_CSV|EPG_SCRAPERS_BASE|SCRAPERS_BASE|PREFIX|AUDITS|REPORT_BASE|ROOT)(\s*=\s*)([\"'])"
+        + re.escape(OLD_SOURCE_ROOT)
+        + r"((?:(?:feeds|reports)(?:/[^\"'\r\n]*)?)?)\3")
+    updated = pattern.sub(
+        lambda match: match[1] + match[2] + match[3]
+        + NEW_SOURCE_ROOT + match[4] + match[3], text)
+    if Path(filename).name == "direct_native_import.py":
+        for quote in ('"', "'"):
+            old_guard = "url.startswith(" + quote + OLD_SOURCE_ROOT + "feeds/" + quote + ")"
+            new_guard = "url.startswith(" + quote + NEW_SOURCE_ROOT + "feeds/" + quote + ")"
+            updated = updated.replace(old_guard, new_guard)
+    compile(updated, filename, "exec")
+    return updated
+
+
+def migrate_source_urls(core, check=False, backup_base=BACKUP_BASE):
+    paths = [core / name for name in (
+        "external_sources.py", "github_direct_sync.py", "github_direct_stream.py",
+        "github_match_health.py", "verified_epg_refresh.py", "direct_native_import.py")]
+    if not paths[0].is_file():
+        raise ValueError("Installed external source catalogue unavailable")
+    before, after = {}, {}
+    for path in paths:
+        if not path.is_file():
+            continue
+        original = path.read_text(encoding="utf-8")
+        updated = patch_source_urls(original, str(path))
+        if updated != original:
+            before[path], after[path] = original, updated
+    if not after:
+        print("No legacy active URL constants found.")
+        return 0
+    for path in after:
+        print("SOURCE URL MIGRATION", path)
+    if check:
+        print("CHECK ONLY")
+        return 0
+    backup = backup_base / ("source-urls-" + datetime.now().strftime("%Y%m%dT%H%M%S%f"))
+    backup.mkdir(parents=True, exist_ok=False)
+    for path in after:
+        shutil.copy2(str(path), str(backup / path.name))
+    try:
+        for path, updated in after.items():
+            atomic_write(path, updated)
+    except Exception:
+        for path in after:
+            shutil.copy2(str(backup / path.name), str(path))
+        raise
+    print("SOURCE URL MIGRATION INSTALLED")
+    print("BACKUP:", backup)
+    print("Restart the Enigma2 GUI once to load the updated Python modules.")
+    return 0
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--plugin-dir", default=str(PLUGIN))
     parser.add_argument("--check", action="store_true", help="Only test compatibility")
+    parser.add_argument("--source-urls-only", action="store_true",
+                        help="Migrate the installed direct feed and dashboard URLs")
     args = parser.parse_args()
     core = Path(args.plugin_dir) / "core"
+    if args.source_urls_only:
+        try:
+            return migrate_source_urls(core, check=args.check)
+        except Exception as exc:
+            print("SOURCE URL MIGRATION FAILED:", exc)
+            return 2
     a = core / "epg_cycle.py"
     b = core / "direct_native_import.py"
     c = core / "github_direct_stream.py"

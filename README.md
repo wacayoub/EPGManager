@@ -46,6 +46,12 @@ The historical installer is `install.sh`; its manifest is `update.json`.
 These existing endpoints and the published package remain unchanged by cleanup.
 The old package does not acquire new overlay changes automatically.
 
+For an installed rc78/rc80 still reading the archived EPG-Scrapers URLs, run
+`python3 tools/enable_github_direct.py --source-urls-only --check` to inspect the
+targeted migration, then omit `--check` to apply it with a backup. Restart the
+Enigma2 GUI to load the corrected feed, status, evidence and import URL checks.
+The migration keeps saved source IDs and the existing source selections.
+
 ## Validation
 
 Install `requirements.txt` and PyYAML, then run:
