@@ -1,6 +1,6 @@
 # EPG Source ID Monitoring
 
-Generated: 2026-11-04T20:26:27.261386+00:00
+Generated: 2026-11-05T15:46:35.465093+00:00
 
 Total monitored IDs: **3662**
 
@@ -12,8 +12,8 @@ Total monitored IDs: **3662**
 | DUPLICATE | 227 |
 | DUPLICATE_WINNER | 406 |
 | INVALID_SOURCE | 335 |
-| NO_EPG | 148 |
-| OK | 1033 |
+| NO_EPG | 103 |
+| OK | 1078 |
 | QUARANTINE | 933 |
 
 ## Direct feeds
@@ -21,19 +21,19 @@ Total monitored IDs: **3662**
 | Feed | IDs | Programmes | Dup IDs | Dup programmes | Invalid times | Zero EPG |
 |---|---:|---:|---:|---:|---:|---:|
 | aljazeera.xml.gz | 5 | 115 | 0 | 0 | 0 | 3 |
-| alkass.xml.gz | 8 | 257 | 0 | 0 | 0 | 0 |
-| bein.xml.gz | 68 | 2889 | 0 | 0 | 0 | 16 |
-| dubaiplus.xml.gz | 9 | 428 | 0 | 0 | 0 | 0 |
-| elcinema.xml.gz | 97 | 4855 | 0 | 0 | 0 | 8 |
-| mena.xml.gz | 515 | 31428 | 0 | 0 | 3 | 64 |
-| morocco.xml.gz | 15 | 1659 | 0 | 0 | 0 | 3 |
-| osn.xml.gz | 100 | 6224 | 0 | 0 | 0 | 20 |
-| rotana.xml.gz | 9 | 394 | 0 | 0 | 0 | 1 |
-| shahid.xml.gz | 71 | 4531 | 0 | 0 | 0 | 0 |
-| sport24.xml.gz | 9 | 106 | 0 | 0 | 0 | 1 |
-| starzplay.xml.gz | 120 | 8504 | 0 | 0 | 0 | 5 |
-| stctv.xml.gz | 149 | 7858 | 0 | 0 | 0 | 27 |
-| tabie.xml.gz | 4 | 981 | 0 | 0 | 122 | 0 |
-| tunisiatv.xml.gz | 2 | 118 | 0 | 0 | 0 | 0 |
+| alkass.xml.gz | 8 | 264 | 0 | 0 | 0 | 0 |
+| bein.xml.gz | 68 | 2821 | 0 | 0 | 0 | 1 |
+| dubaiplus.xml.gz | 9 | 472 | 0 | 0 | 0 | 0 |
+| elcinema.xml.gz | 97 | 4953 | 0 | 0 | 0 | 0 |
+| mena.xml.gz | 515 | 31453 | 0 | 0 | 41 | 47 |
+| morocco.xml.gz | 15 | 1486 | 0 | 0 | 0 | 3 |
+| osn.xml.gz | 100 | 6310 | 0 | 0 | 0 | 20 |
+| rotana.xml.gz | 9 | 386 | 0 | 0 | 0 | 1 |
+| shahid.xml.gz | 71 | 4538 | 0 | 0 | 0 | 0 |
+| sport24.xml.gz | 9 | 153 | 0 | 0 | 0 | 2 |
+| starzplay.xml.gz | 120 | 8325 | 0 | 0 | 0 | 2 |
+| stctv.xml.gz | 149 | 7743 | 0 | 0 | 0 | 24 |
+| tabie.xml.gz | 4 | 962 | 0 | 0 | 120 | 0 |
+| tunisiatv.xml.gz | 2 | 119 | 0 | 0 | 0 | 0 |
 
 Interactive/filterable page: reports/epg-source-id-monitoring.html
