@@ -1,6 +1,7 @@
 name: EPG 48h - Daily source postprocessing
 
 on:
+  workflow_call:
   schedule:
     - cron: "37 8 * * *"
       timezone: "Africa/Casablanca"
