@@ -1,37 +1,33 @@
 {
   "source": "Al Jazeera Network official public schedules",
   "source_url": "https://www.aljazeera.net/video/live",
-  "generated_utc": "2026-11-05T10:54:35.796174+00:00",
+  "generated_utc": "2026-11-06T09:28:38.126203+00:00",
   "timezone_source": "Asia/Qatar",
   "timezone_output": "UTC +0000",
   "window_hours": 48,
   "channels": 5,
-  "active_channels": 1,
-  "programmes": 74,
+  "active_channels": 2,
+  "programmes": 92,
   "channel_reports": {
     "AlJazeera.qa@Arabic": {
       "xmltv_id": "AlJazeera.qa@Arabic",
       "live_url": "https://www.aljazeera.net/video/live",
-      "schedule_urls": [
-        "https://www.aljazeera.net/schedule"
-      ],
+      "schedule_urls": [],
       "http": [
         {
           "url": "https://www.aljazeera.net/video/live",
           "status": 200
-        },
-        {
-          "url": "https://www.aljazeera.net/schedule",
-          "status": 200
         }
       ],
-      "programmes": 0,
+      "programmes": 16,
       "error": "",
       "graphql": {
         "status": 200,
         "url": "https://www.aljazeera.com/graphql?wp-site=aja&operationName=ArchipelagoSchedulePageQuery&variables=%7B%22postName%22%3A%22schedule%22%2C%22preview%22%3A%22%22%7D&extensions=%7B%7D",
-        "programmes_found": 0
-      }
+        "programmes_found": 137
+      },
+      "first_start_utc": "2026-11-06T07:00:00+00:00",
+      "last_stop_utc": "2026-11-07T22:59:59+00:00"
     },
     "AlJazeera2.qa@HD": {
       "xmltv_id": "AlJazeera2.qa@HD",
@@ -92,19 +88,18 @@
           "status": 200
         }
       ],
-      "programmes": 74,
+      "programmes": 76,
       "error": "",
       "graphql": {
         "status": 200,
         "url": "https://www.aljazeera.com/graphql?wp-site=aje&operationName=ArchipelagoSchedulePageQuery&variables=%7B%22postName%22%3A%22schedule%22%2C%22preview%22%3A%22%22%7D&extensions=%7B%7D",
-        "programmes_found": 285
+        "programmes_found": 292
       },
-      "first_start_utc": "2026-11-05T08:30:00+00:00",
-      "last_stop_utc": "2026-11-07T11:00:00+00:00"
+      "first_start_utc": "2026-11-06T07:00:00+00:00",
+      "last_stop_utc": "2026-11-08T09:30:00+00:00"
     }
   },
   "zero_epg_ids": [
-    "AlJazeera.qa@Arabic",
     "AlJazeera2.qa@HD",
     "AlJazeeraMubasher.qa@SD",
     "AlJazeeraDocumentary.qa@SD"
