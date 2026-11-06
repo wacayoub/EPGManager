@@ -19,9 +19,9 @@ from bs4 import BeautifulSoup
 from lxml import html as LH
 from zoneinfo import ZoneInfo
 try:
- from tools.programme_authenticity import generated_placeholder, VIEWER_CATEGORY, VIEWER_SOURCE, viewer_reported_schedule, SMART_CATEGORY, BOTOLA_CATEGORY, SMART_SOURCE, BOTOLA_SOURCE, schedule_source
+ from tools.programme_authenticity import generated_placeholder, VIEWER_CATEGORY, VIEWER_SOURCE, viewer_reported_schedule, SMART_CATEGORY, BOTOLA_CATEGORY, SMART_SOURCE, BOTOLA_SOURCE, AUTO_SOURCE, AUTO_CATEGORY, schedule_source
 except ImportError:
- from programme_authenticity import generated_placeholder, VIEWER_CATEGORY, VIEWER_SOURCE, viewer_reported_schedule, SMART_CATEGORY, BOTOLA_CATEGORY, SMART_SOURCE, BOTOLA_SOURCE, schedule_source
+ from programme_authenticity import generated_placeholder, VIEWER_CATEGORY, VIEWER_SOURCE, viewer_reported_schedule, SMART_CATEGORY, BOTOLA_CATEGORY, SMART_SOURCE, BOTOLA_SOURCE, AUTO_SOURCE, AUTO_CATEGORY, schedule_source
 try: import cloudscraper
 except Exception: cloudscraper=None
 
@@ -852,7 +852,7 @@ def _arryadia_fill(rows,hours=48,slot_hours=2,history=None):
  now=datetime.now(TZ);end=now+timedelta(hours=max(1,hours))
  out=[e for e in rows if not _arryadia_is_generic(e) and not generated_placeholder(e.title)]
  for e in sorted(history or [],key=lambda e:e.start):
-  if (e.source in (VIEWER_SOURCE,SMART_SOURCE,BOTOLA_SOURCE) or e.channel not in ARR_IDS or not e.stop or e.stop<=now or
+  if (e.source in (VIEWER_SOURCE,SMART_SOURCE,BOTOLA_SOURCE,AUTO_SOURCE) or e.channel not in ARR_IDS or not e.stop or e.stop<=now or
       e.stop<=e.start or e.start>=end or _arryadia_is_generic(e) or
       generated_placeholder(e.title)):
    continue
@@ -1519,7 +1519,7 @@ def scrape_snrt(days):
    e.desc=rich;e.dl=lang(rich,"ar");cross_desc+=1
  log("SNRT cross-channel official descriptions applied=%d bank=%d"%(cross_desc,len(desc_bank)))
 
- # An unavailable AFLAM schedule remains empty. Never generate a timetable.
+ # User-requested AFLAM fallback is added after exact future LKG selection.
  infer(out)
  # Never publish a blank SNRT description.
  for e in out:
@@ -1618,6 +1618,12 @@ def to_xml(rows,path):
  # discarded here and reported in logs.
  valid_rows=[];dropped=0
  for e in rows:
+  if e.source==AUTO_SOURCE:
+   try:
+    from tools.morocco_auto_epg import is_auto_fallback
+   except ModuleNotFoundError:
+    from morocco_auto_epg import is_auto_fallback
+   if not is_auto_fallback(e):raise ValueError('Unauthorized Morocco automatic fallback')
   if e.source in (SMART_SOURCE,BOTOLA_SOURCE):
    if (e.channel!='Arryadia_HD' or not e.stop or e.stop<=e.start or e.stop-e.start>timedelta(hours=3)
        or ('[Estimé]' not in e.title and '[Diffusion estimée]' not in e.title)
@@ -1641,6 +1647,7 @@ def to_xml(rows,path):
  for e in sorted(valid_rows,key=lambda e:(e.start,e.channel,e.title)):
   p=ET.SubElement(root,"programme",{"start":xdt(e.start),"stop":xdt(e.stop),"channel":e.channel});ET.SubElement(p,"title",{"lang":e.tl or lang(e.title)}).text=e.title;ET.SubElement(p,"desc",{"lang":e.dl or lang(e.desc)}).text=e.desc or e.title;counts[e.channel]+=1
   if e.source==VIEWER_SOURCE:ET.SubElement(p,"category",{"lang":"en"}).text=VIEWER_CATEGORY
+  if e.source==AUTO_SOURCE:ET.SubElement(p,"category",{"lang":"en"}).text=AUTO_CATEGORY
   if e.source in (SMART_SOURCE,BOTOLA_SOURCE):ET.SubElement(p,"category",{"lang":"en"}).text=BOTOLA_CATEGORY if e.source==BOTOLA_SOURCE else SMART_CATEGORY
  ET.indent(root,space="  ");ET.ElementTree(root).write(path,encoding="utf-8",xml_declaration=True);return dict(counts)
 
@@ -1659,7 +1666,7 @@ def select_groups(results,old,now=None,days=7):
   ok,detail=valid(g,fresh)
   rows=list(fresh);kept=0
   for e in sorted(carried+old,key=lambda e:e.start):
-   if e.source in (SMART_SOURCE,BOTOLA_SOURCE):continue
+   if e.source in (SMART_SOURCE,BOTOLA_SOURCE,AUTO_SOURCE):continue
    if e.channel not in GROUPS[g] or not usable(e):continue
    if any(x.channel==e.channel and x.start<e.stop and x.stop>e.start for x in rows):continue
    rows.append(e);kept+=1
@@ -1693,6 +1700,19 @@ def main():
  final,status=select_groups(results,old,days=a.days)
  if not final:
   log("No genuine future programmes; retain the published feed");return 2
+ # Fill only after real fresh/LKG programmes have won their own service slots.
+ try:
+  from tools.morocco_auto_epg import generate as generate_auto
+ except ModuleNotFoundError:
+  from morocco_auto_epg import generate as generate_auto
+ auto,auto_report=generate_auto(final,now,hours=24*a.days)
+ final+=auto
+ for group in ('snrt','arryadia'):
+  count=sum(e.channel in GROUPS[group] for e in auto)
+  if count:
+   status[group].update(automatic_fallback_programmes=count,qualified=False,mode='with-automatic-fallback')
+   status[group]['events']+=count
+ (outdir/'auto-fallback.json').write_text(json.dumps(auto_report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
  seen=set();merged=[]
  for e in sorted(final,key=lambda e:(e.channel,e.start,e.title.casefold())):
   k=(e.channel,xdt(e.start),e.title.casefold())
