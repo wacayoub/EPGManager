@@ -15,6 +15,7 @@ The receiver downloads finished XMLTV.
 - [Per-source review](docs/PER_SOURCE_SCHEDULE_AUDIT_20261103.md)
 - [Source cleanup and remaining guide defects](docs/SOURCE_CLEANUP_20261103.md)
 - [GitHub source-trigger checks](docs/GITHUB_SOURCE_TRIGGERS_20261103.md)
+- [Vu+ source clock and scheduled fallback](docs/VUPLUS_SOURCE_CLOCK.md)
 - [Morocco seven-day coverage](docs/MOROCCO_SEVEN_DAY_GUIDE.md)
 - [Arryadia Smart EPG and Botola](docs/ARRYADIA_HD_SMART_BOTOLA.md)
 - [Arryadia HD1 and local TNT official programme activation](docs/ARRYADIA_HD1_TNT_OFFICIAL_ACTIVATION.md)

@@ -62,6 +62,15 @@
     "time": "08:37",
     "timezone": "Africa/Casablanca"
   },
+  "watchdog": {
+    "time": "14:15",
+    "timezone": "Africa/Casablanca"
+  },
+  "schedule_driver": {
+    "primary": "vuplus-clock",
+    "workflow": "vuplus-clock.yml",
+    "native_schedule_role": "fallback"
+  },
   "note": "Daily targets in Morocco local wall-clock time, including seasonal changes; GitHub delivery can be delayed.",
   "collection_budget_minutes": 70,
   "local_feed_dependencies": {

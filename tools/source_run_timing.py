@@ -16,7 +16,7 @@ def observation(source, event, now, policy):
     target = local.replace(hour=hour, minute=minute, second=0, microsecond=0)
     if target > local:
         target -= timedelta(days=1)
-    scheduled = event == 'schedule'
+    scheduled = event in ('schedule', 'source-clock')
     delay = round((local-target).total_seconds()) if scheduled else None
     return dict(source=source, event=event, observed_utc=now.astimezone(timezone.utc).isoformat(),
                 daily_target=row['time'], timezone=row['timezone'],

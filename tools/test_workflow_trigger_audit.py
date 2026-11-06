@@ -1,12 +1,13 @@
 """Trigger evidence must distinguish active, unavailable and skipped collection."""
 from copy import deepcopy
+from datetime import datetime, timezone
 import json
 from pathlib import Path
 import tempfile
 import unittest
 import yaml
 
-from tools.workflow_trigger_audit import audit, collection_evidence
+from tools.workflow_trigger_audit import audit, collection_evidence, delivery_timing
 
 
 class FakeGitHub:
@@ -94,6 +95,38 @@ class TriggerAuditTests(unittest.TestCase):
         self.assertLess(rebuild,trigger)
         self.assertNotIn('continue-on-error',steps[trigger])
         self.assertNotIn('self-hosted','\n'.join(p.read_text() for p in (root/'.github/workflows').glob('*.yml')))
+
+    def test_late_success_is_reported_and_queue_time_is_separate(self):
+        now=datetime(2026,11,6,8,0,tzinfo=timezone.utc)
+        self.client.runs=[{'id':100,'conclusion':'success','created_at':'2026-11-06T07:10:00Z'}]
+        self.client.jobs=[{'steps':[{'name':'Refresh source guide (48h)',
+                                    'conclusion':'success','started_at':'2026-11-06T07:10:20Z'}]}]
+        result=audit(self.root,self.client,now)
+        self.assertEqual(result['status'],'REVIEW')
+        timing=result['sources'][0]['delivery_timing']
+        self.assertEqual(timing['trigger_delay_seconds'],24000)
+        self.assertEqual(timing['creation_to_collection_seconds'],20)
+        self.assertIn('tabie:TRIGGER_LATE_24000s',result['warnings'])
+
+    def test_yesterdays_success_does_not_hide_todays_missing_trigger(self):
+        now=datetime(2026,11,6,8,0,tzinfo=timezone.utc)
+        schedule={'time':'00:30','timezone':'Africa/Casablanca'}
+        timing=delivery_timing(schedule,{'created_at':'2026-11-05T00:31:00Z'},[],now)
+        self.assertTrue(timing['latest_due_unobserved'])
+        self.assertEqual(timing['trigger_delay_seconds'],60)
+
+    def test_clock_driver_is_used_instead_of_the_native_fallback(self):
+        policy={'sources':{'tabie':{'time':'00:30','timezone':'Africa/Casablanca'}},
+                'schedule_driver':{'primary':'vuplus-clock','workflow':'vuplus-clock.yml'}}
+        (self.root/'config/source-schedules.json').write_text(json.dumps(policy))
+        self.client.runs=[{'id':100,'conclusion':'success','created_at':'2026-11-06T00:30:10Z',
+                           'display_title':'Vu+ clock tabie 2026-11-06'}]
+        self.client.jobs=[{'steps':[{'name':'Refresh source guide (48h)','conclusion':'success',
+                                    'started_at':'2026-11-06T00:30:25Z'}]}]
+        now=datetime(2026,11,6,0,40,tzinfo=timezone.utc)
+        result=audit(self.root,self.client,now)
+        self.assertEqual(result['status'],'NO_TRIGGER_FLAGS')
+        self.assertEqual(result['sources'][0]['schedule_driver'],'vuplus-clock')
 
 
 if __name__=='__main__':unittest.main()

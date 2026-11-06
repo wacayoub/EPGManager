@@ -1,7 +1,7 @@
 """Read-only GitHub launch diagnostics; never dispatch, enable or cancel work."""
 import argparse
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import json
 import os
 from pathlib import Path
@@ -9,6 +9,11 @@ import re
 from urllib.error import HTTPError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo
+try:
+    from tools.vuplus_clock import collection_gate, target
+except ModuleNotFoundError:
+    from vuplus_clock import collection_gate, target
 
 
 class GitHub:
@@ -53,6 +58,29 @@ def collection_evidence(run, jobs):
     return 'COLLECTION_NOT_PROVEN'
 
 
+def delivery_timing(schedule, run, jobs, now):
+    local = now.astimezone(ZoneInfo(schedule['timezone']))
+    due = target(schedule, local.date())
+    if due > local:
+        due -= timedelta(days=1)
+    created = datetime.fromisoformat(run['created_at'].replace('Z', '+00:00')) if run and run.get('created_at') else None
+    if created is not None and created.tzinfo is None:
+        raise ValueError('GitHub run creation has no timezone')
+    run_due = target(schedule, created.astimezone(local.tzinfo).date()) if created else None
+    if run_due and run_due > created:
+        run_due -= timedelta(days=1)
+    starts = [step['started_at'] for job in jobs for step in job.get('steps', [])
+              if step.get('started_at') and step.get('name', '').startswith('Refresh source guide')]
+    start = datetime.fromisoformat(min(starts).replace('Z', '+00:00')) if starts else None
+    return {
+        'latest_due_local': due.isoformat(),
+        'run_created_local': created.astimezone(local.tzinfo).isoformat() if created else None,
+        'trigger_delay_seconds': round((created-run_due).total_seconds()) if created else None,
+        'creation_to_collection_seconds': round((start-created).total_seconds()) if start and created else None,
+        'latest_due_unobserved': (now-due).total_seconds() > 900 and (created is None or created < due),
+    }
+
+
 def audit(root, client, now=None):
     root = Path(root)
     now = now or datetime.now(timezone.utc)
@@ -65,6 +93,15 @@ def audit(root, client, now=None):
     maintained = {'.github/workflows/' + p.name for p in (root/'.github/workflows').glob('*.yml')}
     errors, warnings = [], []
     sources = sorted(policy['sources'], key=lambda name: policy['sources'][name]['time'])
+    driver = policy.get('schedule_driver') or {}
+    clock_runs = []
+    driver_error = None
+    if driver.get('primary') == 'vuplus-clock':
+        try:
+            clock_runs = client.get('actions/workflows/'+driver['workflow']+'/runs',
+                                    event='push', per_page=100).get('workflow_runs', [])
+        except Exception as error:
+            driver_error = type(error).__name__
 
     def source_row(source):
         if not re.fullmatch(r'[a-z][a-z0-9]{1,25}', source):
@@ -81,11 +118,24 @@ def audit(root, client, now=None):
             row['issues'].append('WORKFLOW_NOT_ACTIVE')
         try:
             runs = client.get('actions/workflows/' + filename + '/runs', event='schedule', per_page=1).get('workflow_runs', [])
-            run = runs[0] if runs else None
+            native_run = runs[0] if runs else None
+            run = native_run
+            row['schedule_driver'] = driver.get('primary', 'github-schedule')
+            if driver.get('primary') == 'vuplus-clock':
+                row['last_native_scheduled_run'] = ({k: native_run.get(k) for k in
+                    ('id', 'created_at', 'status', 'conclusion', 'html_url')} if native_run else None)
+                run = next((r for r in clock_runs
+                            if r.get('display_title', '').startswith('Vu+ clock '+source+' ')), None)
+                if driver_error:
+                    raise RuntimeError('External clock runs unavailable')
             row['last_scheduled_run'] = ({k: run.get(k) for k in
                 ('id', 'created_at', 'status', 'conclusion', 'head_sha', 'html_url')} if run else None)
             jobs = client.pages('actions/runs/' + str(run['id']) + '/jobs', 'jobs') if run else []
             row['scheduled_collection_evidence'] = collection_evidence(run, jobs)
+            if (row['scheduled_collection_evidence'] == 'COLLECTION_SKIPPED'
+                    and not collection_gate(root, policy, source, 'schedule', '', now)[0]):
+                row['scheduled_collection_evidence'] = 'DAILY_ATTEMPT_ALREADY_RECORDED'
+            row['delivery_timing'] = delivery_timing(policy['sources'][source], run, jobs, now)
         except Exception as error:
             row['scheduled_collection_evidence'] = 'UNVERIFIED'
             row['api_error'] = type(error).__name__
@@ -95,8 +145,13 @@ def audit(root, client, now=None):
         rows = list(pool.map(source_row, sources))
     for row in rows:
         errors.extend(row['source'] + ':' + issue for issue in row['issues'])
-        if row['scheduled_collection_evidence'] != 'COLLECTION_STEP_SUCCEEDED':
+        if row['scheduled_collection_evidence'] not in ('COLLECTION_STEP_SUCCEEDED', 'DAILY_ATTEMPT_ALREADY_RECORDED'):
             warnings.append(row['source'] + ':' + row['scheduled_collection_evidence'])
+        timing = row.get('delivery_timing') or {}
+        if (timing.get('trigger_delay_seconds') or 0) > 900:
+            warnings.append(row['source'] + ':TRIGGER_LATE_' + str(timing['trigger_delay_seconds']) + 's')
+        if timing.get('latest_due_unobserved'):
+            warnings.append(row['source'] + ':LATEST_DUE_RUN_NOT_OBSERVED')
         run = row.get('last_scheduled_run') or {}
         if run.get('conclusion') not in (None, 'success'):
             warnings.append(row['source'] + ':LAST_SCHEDULED_RUN_' + str(run['conclusion']).upper())
