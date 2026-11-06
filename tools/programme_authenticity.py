@@ -7,6 +7,8 @@ SMART_CATEGORY = "Smart estimated programme"
 BOTOLA_CATEGORY = "Estimated Botola broadcast"
 SMART_SOURCE = "arryadia-smart-estimate"
 BOTOLA_SOURCE = "arryadia-botola-estimate"
+AUTO_CATEGORY = "Automatic fallback schedule"
+AUTO_SOURCE = "morocco-auto-fallback"
 
 
 def viewer_reported_schedule(node):
@@ -17,12 +19,17 @@ def smart_estimated_schedule(node):
     return any((x.text or '').strip() in (SMART_CATEGORY,BOTOLA_CATEGORY) for x in node.findall('category'))
 
 
+def automatic_fallback_schedule(node):
+    return any((x.text or '').strip() == AUTO_CATEGORY for x in node.findall('category'))
+
+
 def estimated_schedule(node):
-    return viewer_reported_schedule(node) or smart_estimated_schedule(node)
+    return viewer_reported_schedule(node) or smart_estimated_schedule(node) or automatic_fallback_schedule(node)
 
 
 def schedule_source(node):
     categories={(x.text or '').strip() for x in node.findall('category')}
+    if AUTO_CATEGORY in categories:return AUTO_SOURCE
     if BOTOLA_CATEGORY in categories:return BOTOLA_SOURCE
     if SMART_CATEGORY in categories:return SMART_SOURCE
     return VIEWER_SOURCE if VIEWER_CATEGORY in categories else 'old'

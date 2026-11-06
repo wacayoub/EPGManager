@@ -247,6 +247,9 @@ PY
     if [ -s output/morocco/arryadia-source.json ]; then
       cp output/morocco/arryadia-source.json reports/morocco-arryadia-source.json
     fi
+    if [ -s output/morocco/auto-fallback.json ]; then
+      cp output/morocco/auto-fallback.json reports/morocco-auto-fallback.json
+    fi
     ;;
 
 

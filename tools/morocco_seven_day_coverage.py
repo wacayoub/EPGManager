@@ -8,11 +8,11 @@ from zoneinfo import ZoneInfo
 try:
     from tools.source_health_snapshot import inspect
     from tools.source_feed_pack import parse_xmltv_dt
-    from tools.programme_authenticity import viewer_reported_schedule,smart_estimated_schedule
+    from tools.programme_authenticity import viewer_reported_schedule,smart_estimated_schedule,automatic_fallback_schedule
 except ModuleNotFoundError:
     from source_health_snapshot import inspect
     from source_feed_pack import parse_xmltv_dt
-    from programme_authenticity import viewer_reported_schedule,smart_estimated_schedule
+    from programme_authenticity import viewer_reported_schedule,smart_estimated_schedule,automatic_fallback_schedule
 
 
 def coverage(feed,now=None):
@@ -36,8 +36,10 @@ def coverage(feed,now=None):
         latest=max((stop for _,stop,_ in rows),default=None)
         viewer=sum(viewer_reported_schedule(n) for _,_,n in rows)
         smart=sum(smart_estimated_schedule(n) for _,_,n in rows)
+        auto=sum(automatic_fallback_schedule(n) for _,_,n in rows)
         detail.append({'id':cid,'programmes_in_requested_window':len(rows),
-                       'source_programmes':len(rows)-viewer-smart,'viewer_reported_programmes':viewer,
+                       'source_programmes':len(rows)-viewer-smart-auto,'viewer_reported_programmes':viewer,
+                       'automatic_fallback_programmes':auto,
                        'smart_estimated_programmes':smart,
                        'programmes_by_start_date_local':dict(sorted(Counter(s.astimezone(zone).date().isoformat() for s,_,_ in rows).items())),
                        'last_stop_utc':latest.isoformat() if latest else None,

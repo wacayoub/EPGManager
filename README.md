@@ -19,6 +19,7 @@ The receiver downloads finished XMLTV.
 - [Morocco seven-day coverage](docs/MOROCCO_SEVEN_DAY_GUIDE.md)
 - [Arryadia Smart EPG and Botola](docs/ARRYADIA_HD_SMART_BOTOLA.md)
 - [Arryadia HD1 and local TNT official programme activation](docs/ARRYADIA_HD1_TNT_OFFICIAL_ACTIVATION.md)
+- [Automatic fallback EPG for Aflam, Arryadia HD1 and TNT](docs/MOROCCO_AUTO_EPG.md)
 - [Receiver release blockers](docs/VU_RELEASE_NO_GO_20261103.md)
 
 Direct bundles are published under `feeds/<source>.xml.gz`, with matching JSON
