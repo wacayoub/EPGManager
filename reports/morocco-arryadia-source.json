@@ -1,6 +1,6 @@
 {
   "source": "arryadia",
-  "checked_utc": "2026-11-06T13:39:19.820735+00:00",
+  "checked_utc": "2026-11-07T07:07:33.844937+00:00",
   "scope": "official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format",
   "receiver_release_status": "NO_GO",
   "attempts": [
@@ -63,15 +63,11 @@
       "provider": "LiveScore",
       "requests": [
         {
-          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-06",
+          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-07",
           "http_status": 403
         },
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/live/soccer/0?countryCode=MA&locale=en",
-          "http_status": 200
-        },
-        {
-          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261106/0?countryCode=MA&locale=en",
           "http_status": 200
         },
         {
@@ -101,25 +97,15 @@
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261113/0?countryCode=MA&locale=en",
           "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261114/0?countryCode=MA&locale=en",
+          "http_status": 200
         }
       ],
-      "fixture_count": 8
+      "fixture_count": 6
     },
     "botola_matches_added": [
-      {
-        "fixture_id": "ls:1908637",
-        "title": "Hassania Agadir vs RS Berkane - Botola Pro",
-        "kickoff_utc": "2026-11-06T17:00:00+00:00",
-        "broadcast_channel_confirmed": false,
-        "duration_minutes_estimated": 120
-      },
-      {
-        "fixture_id": "ls:1908646",
-        "title": "Union Touarga vs Amal Tiznit - Botola Pro",
-        "kickoff_utc": "2026-11-06T20:00:00+00:00",
-        "broadcast_channel_confirmed": false,
-        "duration_minutes_estimated": 120
-      },
       {
         "fixture_id": "ls:1908647",
         "title": "KACM vs Wydad - Botola Pro",
@@ -164,7 +150,7 @@
       }
     ],
     "simultaneous_matches_not_assigned": [],
-    "smart_recurring_programmes": 49,
+    "smart_recurring_programmes": 50,
     "official_broadcast_claim": false
   },
   "status": "ESTIMATED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID",
@@ -176,11 +162,11 @@
     "Arryadia_HD2",
     "Arryadia_HD3"
   ],
-  "smart_estimated_events": 57,
+  "smart_estimated_events": 56,
   "requested_window_hours": 168,
-  "output_events": 395,
+  "output_events": 394,
   "channel_counts": {
-    "Arryadia_HD": 57,
+    "Arryadia_HD": 56,
     "Arryadia_TNT": 0,
     "Arryadia_HD1": 0,
     "Arryadia_HD2": 169,
