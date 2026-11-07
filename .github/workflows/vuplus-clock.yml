@@ -1,0 +1,50 @@
+name: Vu+ source clock
+run-name: Vu+ clock ${{ fromJSON(github.event.head_commit.message).task }} ${{ fromJSON(github.event.head_commit.message).day }}
+on:
+  push:
+    branches: [vuplus-clock]
+permissions:
+  contents: write
+  actions: write
+jobs:
+  route:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      kind: ${{ steps.request.outputs.kind }}
+      task: ${{ steps.request.outputs.task }}
+      day: ${{ steps.request.outputs.day }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - id: request
+        env:
+          CLOCK_REQUEST: ${{ github.event.head_commit.message }}
+        run: python tools/vuplus_clock.py validate-request --policy config/source-schedules.json
+  source:
+    needs: route
+    if: needs.route.outputs.kind == 'source'
+    uses: wacayoub/EPGManager/.github/workflows/refresh-source-core.yml@main
+    with:
+      source: ${{ needs.route.outputs.task }}
+      scheduled_local_date: ${{ needs.route.outputs.day }}
+    secrets: inherit
+  verify_source:
+    needs: [route, source]
+    if: needs.source.outputs.collection_ran == 'true'
+    uses: wacayoub/EPGManager/.github/workflows/verify-source-refresh.yml@main
+    with:
+      source: ${{ needs.route.outputs.task }}
+      expected_run_id: ${{ github.run_id }}
+      expected_run_attempt: ${{ github.run_attempt }}
+  postprocess:
+    needs: route
+    if: needs.route.outputs.kind == 'postprocess'
+    uses: wacayoub/EPGManager/.github/workflows/daily-epg-chain.yml@main
+    secrets: inherit
+  watchdog:
+    needs: route
+    if: needs.route.outputs.kind == 'watchdog'
+    uses: wacayoub/EPGManager/.github/workflows/epg-watchdog.yml@main
+    secrets: inherit
