@@ -1,12 +1,26 @@
 {
-  "generated_utc": "2026-11-08T04:44:33.557423+00:00",
-  "github_run_id": "42447994934",
+  "generated_utc": "2026-11-08T08:56:42.422404+00:00",
+  "github_run_id": "42465001376",
   "github_run_attempt": "1",
   "sources": {
     "dubaiplus": {
       "candidate": "output/final/dubaiplus.xml.gz",
-      "published": true,
+      "published": false,
       "candidate_stats": {
+        "channels": 0,
+        "active_channels": 0,
+        "zero_epg_channels": 0,
+        "programmes": 0,
+        "future_channels": 0,
+        "future_ratio": 0.0,
+        "current_channels": 0,
+        "current_ratio": 0.0,
+        "future_horizon_hours": 0.0,
+        "first_future_start_lead_hours": null,
+        "missing_title_rows": 0,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
         "channels": 9,
         "active_channels": 9,
         "zero_epg_channels": 0,
@@ -15,28 +29,20 @@
         "future_ratio": 1.0,
         "current_channels": 9,
         "current_ratio": 1.0,
-        "future_horizon_hours": 49.74067792527778,
+        "future_horizon_hours": 45.53821513055556,
         "first_future_start_lead_hours": 0.0,
         "missing_title_rows": 0,
         "invalid_rows": 0
       },
-      "previous_stats": {
-        "channels": 9,
-        "active_channels": 9,
-        "zero_epg_channels": 0,
-        "programmes": 457,
-        "future_channels": 9,
-        "future_ratio": 1.0,
-        "current_channels": 9,
-        "current_ratio": 1.0,
-        "future_horizon_hours": 30.007342198333333,
-        "first_future_start_lead_hours": 0.0,
-        "missing_title_rows": 0,
-        "invalid_rows": 0
-      },
-      "decision": "PUBLISH",
-      "published_sha256": "d3b19e4ab1c7febd22646ff596b56b5681ce1b4f790ed2478f8b149accfa532b",
-      "reasons": []
+      "decision": "KEEP_LKG",
+      "reasons": [
+        "active_channels<7",
+        "programmes<20",
+        "future_ratio<0.70",
+        "future_horizon<4h",
+        "channel_regression>40%",
+        "programme_regression>65%"
+      ]
     }
   }
 }
