@@ -55,10 +55,9 @@ POLICY = {
     "starzplay":  {"min_channels": 3,  "min_programmes": 20, "min_future_ratio": 0.66, "min_horizon_hours": 8},
     # Dubai+ official public API: compact nine-channel DMI lineup.
     "dubaiplus": {"min_channels": 7,  "min_programmes": 20,  "min_future_ratio": 0.70, "min_horizon_hours": 4},
-    # Al Jazeera official public schedule. Four IDs are retained; publication
-    # accepts two active channels because the official indexed guide currently
-    # exposes complete schedules for Al Jazeera and Al Jazeera 2.
-    "aljazeera": {"min_channels": 2, "min_programmes": 40, "min_future_ratio": 0.95, "min_horizon_hours": 36},
+    # Keep all five IDs visible. English can extend its guide even when the
+    # Arabic provider page has expired, subject to the future-ID guard below.
+    "aljazeera": {"min_channels": 1, "min_programmes": 40, "min_future_ratio": 0.95, "min_horizon_hours": 36},
     # STC production preserves the complete public catalogue. The standard
     # regression gate must protect it from a partial sports-only scrape.
     "stctv":     {"min_channels": 3, "min_programmes": 20, "min_future_ratio": 1.00, "min_horizon_hours": 8},
@@ -145,6 +144,7 @@ def stats(path: Path):
         "zero_epg_channels": max(0, len(channels) - active_channels),
         "programmes": programmes,
         "future_channels": future_channels,
+        "future_channel_ids": sorted(cid for cid, count in future_by_channel.items() if count),
         "future_ratio": ratio,
         "current_channels": len(currently_covered),
         "current_ratio": (len(currently_covered) / active_channels if active_channels else 0.0),
@@ -182,6 +182,9 @@ def evaluate(key: str, candidate: Path, previous: Path):
     if previous.exists() and previous.stat().st_size:
         try:
             old = stats(previous)
+            if (key == "aljazeera" and cur["future_channels"] == 1
+                    and set(old["future_channel_ids"]) - set(cur["future_channel_ids"])):
+                reasons.append("would_drop_an_aljazeera_channel_with_future_epg")
             # Reject catastrophic regressions while allowing legitimate lineup changes.
             # One deliberate migration is allowed for beIN: the old feed contained
             # package/third-party/AFC IDs; production is now scoped to ~43 owned
