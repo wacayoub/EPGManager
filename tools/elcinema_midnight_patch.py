@@ -60,16 +60,28 @@ PIN_TZ = """const civilDate = time.slice(0, 10)
     ? 'Etc/UTC' : 'Africa/Casablanca'
   return dayjs.tz(time, 'YYYY-MM-DD hh:mm A', broadcastZone)"""
 
+MULTI_DAY = """
+// A single channel response contains all advertised calendar sections.
+// The caller fetches it once and lets the existing parser select each date.
+const parseElCinemaDay = module.exports.parser
+module.exports.parser = function (args) {
+  const days = Math.max(1, Math.min(8, Number.parseInt(process.env.EPGMANAGER_ELCINEMA_DAYS, 10) || 1))
+  return Array.from({ length: days }, (_, offset) =>
+    parseElCinemaDay({ ...args, date: args.date.add(offset, 'day') })
+  ).flat()
+}
+"""
+
 def patch(src: str) -> str:
     if not isinstance(src, str) or len(src) > 100000:
         raise ValueError("unexpected upstream adapter")
     if src.count(NEW) == 1 and src.count(PIN_TZ) == 1:
-        return src
+        return src if MULTI_DAY in src else src + MULTI_DAY
     if src.count(OLD) != 1:
         raise ValueError("ElCinema parser changed: no exact unique day-rollover anchor")
     if src.count(OLD_TZ) != 1:
         raise ValueError("ElCinema timezone parser changed: no exact unique TZ anchor")
-    return src.replace(OLD, NEW, 1).replace(OLD_TZ, PIN_TZ, 1)
+    return src.replace(OLD, NEW, 1).replace(OLD_TZ, PIN_TZ, 1) + MULTI_DAY
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)

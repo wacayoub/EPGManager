@@ -121,12 +121,13 @@ def fetch_day(session: requests.Session, channel_id: int, date: str, retries: in
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--days", type=int, default=3)
+    ap.add_argument("--window-hours", type=int, default=48)
     ap.add_argument("--output", default="output/source-build/tabie.raw.xml")
     ap.add_argument("--catalogue", default="output/source-build/tabie.channels.xml")
     ap.add_argument("--report", default="reports/tabie-direct.json")
     args = ap.parse_args()
 
-    days = max(2, min(5, args.days))
+    days = max(2, min(8, args.days))
     now = datetime.now(QATAR)
     dates = [(now.date() + timedelta(days=i)).isoformat() for i in range(days)]
 
@@ -173,9 +174,10 @@ def main() -> int:
         kept = 0
         errors = []
         per_day = {}
-        for date in dates:
+        for index, date in enumerate(dates):
             try:
-                rows = fetch_day(sess, channel_id, date)
+                # Preserve retries near air time and bound speculative later dates.
+                rows = fetch_day(sess, channel_id, date, retries=3 if index < 3 else 1)
             except Exception as exc:
                 errors.append(str(exc))
                 per_day[date] = {"status": "ERROR", "programmes": 0}
@@ -245,7 +247,7 @@ def main() -> int:
 
     # Keep catalogue/report identities stable; only ACTIVE guide IDs belong in
     # the exported Tabie XMLTV and catalogue. Report every excluded ID.
-    id_filter = retain_live_ids(raw, catalogue, now)
+    id_filter = retain_live_ids(raw, catalogue, now, args.window_hours)
     report["published_ids"] = id_filter["retained_ids"]
     report["excluded_no_live_epg_ids"] = id_filter["excluded_ids"]
     report["publication_policy"] = "active_with_genuine_current_or_future_programmes_only"

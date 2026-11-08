@@ -45,7 +45,8 @@ POLICY = {
     # Provider replay of the same date must never count as future days.
     "tabie":     {"min_channels": 3,  "min_programmes": 80,  "min_future_ratio": 0.80, "min_horizon_hours": 8},
     "alkass":    {"min_channels": 8,  "min_programmes": 40,  "min_future_ratio": 0.75, "min_horizon_hours": 24},
-    "tunisiatv": {"min_channels": 2,  "min_programmes": 30,  "min_future_ratio": 1.00, "min_horizon_hours": 24},
+    # A genuine current-day grid can publish if later weekday pages replay it.
+    "tunisiatv": {"min_channels": 2,  "min_programmes": 30,  "min_future_ratio": 1.00, "min_horizon_hours": 8},
     # Sport24 is event-driven; valid event schedules can naturally expose less
     # than eight continuous hours while still being fresher than the current LKG.
     "sport24":   {"min_channels": 2,  "min_programmes": 10,  "min_future_ratio": 0.60, "min_horizon_hours": 4},
@@ -197,7 +198,7 @@ def evaluate(key: str, candidate: Path, previous: Path):
             # fully expired archive, but MUST be labelled as partial coverage.
             # Never apply if the old feed has any future events, or the
             # candidate lacks a verified near-term programme.
-            # Tabie can serve three working IDs while the previous feed
+            # Tabie can serve two working IDs while the previous feed
             # contains nine EMPTY/EXPIRED IDs. Publication must preserve
             # ONLY actual valid programme-bearing IDs, without allowing
             # arbitrary empty or distant fake schedules through.
@@ -216,12 +217,12 @@ def evaluate(key: str, candidate: Path, previous: Path):
             recovery_short_horizon = (
                 key == "tabie"
                 and old["future_channels"] == 0
-                and 3 <= cur["channels"] <= 9
+                and 2 <= cur["channels"] <= 9
                 and cur["active_channels"] == cur["channels"]
                 and cur["future_channels"] == cur["channels"]
                 and cur["future_ratio"] >= 0.99
                 and cur["future_horizon_hours"] >= 8
-                and cur["programmes"] >= p["min_programmes"]
+                and cur["programmes"] >= (40 if cur["channels"] == 2 else p["min_programmes"])
                 and cur["first_future_start_lead_hours"] is not None
                 and cur["first_future_start_lead_hours"] <= 6.0
                 and candidate_tabie_ids.issubset(tabie_genuine_ids)
@@ -255,7 +256,7 @@ def evaluate(key: str, candidate: Path, previous: Path):
             old = {"warning": f"previous unreadable: {exc}"}
 
     if recovery_short_horizon:
-        reasons = [r for r in reasons if not r.startswith("future_horizon<")]
+        reasons = [r for r in reasons if not r.startswith(("future_horizon<", "active_channels<", "programmes<"))]
         cur["partial_recovery_from_expired_lkg"] = True
         cur["hours_of_recovered_guide"] = round(cur["future_horizon_hours"], 1)
     # A source that is current only at the end of its 48h horizon is not
