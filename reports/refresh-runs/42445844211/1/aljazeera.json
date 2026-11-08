@@ -1,0 +1,44 @@
+{
+  "generated_utc": "2026-11-08T04:12:40.159408+00:00",
+  "github_run_id": "42445844211",
+  "github_run_attempt": "1",
+  "sources": {
+    "aljazeera": {
+      "candidate": "output/final/aljazeera.xml.gz",
+      "published": false,
+      "candidate_stats": {
+        "channels": 5,
+        "active_channels": 1,
+        "zero_epg_channels": 4,
+        "programmes": 78,
+        "future_channels": 1,
+        "future_ratio": 1.0,
+        "current_channels": 1,
+        "current_ratio": 1.0,
+        "future_horizon_hours": 48.2888444825,
+        "first_future_start_lead_hours": 0.0,
+        "missing_title_rows": 0,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
+        "channels": 5,
+        "active_channels": 2,
+        "zero_epg_channels": 3,
+        "programmes": 79,
+        "future_channels": 1,
+        "future_ratio": 0.5,
+        "current_channels": 1,
+        "current_ratio": 0.5,
+        "future_horizon_hours": 24.288843642777778,
+        "first_future_start_lead_hours": 0.0,
+        "missing_title_rows": 0,
+        "invalid_rows": 0
+      },
+      "decision": "KEEP_LKG",
+      "reasons": [
+        "active_channels<2"
+      ]
+    }
+  },
+  "scope": "source_publication_attempt"
+}
