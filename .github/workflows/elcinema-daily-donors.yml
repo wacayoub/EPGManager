@@ -33,6 +33,27 @@ jobs:
           set -euo pipefail
           python tools/elcinema_daily_donors.py --apply > /tmp/elcinema-daily-donor-report.json
           cat /tmp/elcinema-daily-donor-report.json
+      - name: Verify coverage after donor extensions
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! python - <<'PY'
+          import json
+          from pathlib import Path
+          digest = json.loads(Path("feeds/elcinema.json").read_text())["sha256"]
+          try:
+              coverage = json.loads(Path("reports/elcinema-7day-coverage.json").read_text())
+              health = json.loads(Path("reports/elcinema-current-health.json").read_text())[0]
+          except (OSError, ValueError, IndexError):
+              raise SystemExit(1)
+          raise SystemExit(any(report.get("feed_sha256") != digest for report in (coverage, health)))
+          PY
+          then
+            python tools/source_health_snapshot.py --source elcinema \
+              --output reports/elcinema-current-health.json
+            python tools/morocco_seven_day_coverage.py --feed feeds/elcinema.xml.gz \
+              --output reports/elcinema-7day-coverage.json
+          fi
       - name: Publish ElCinema feed and reports only when changed
         shell: bash
         run: |
@@ -41,7 +62,8 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add feeds/elcinema.xml.gz feeds/elcinema.json \
             reports/elcinema-quality.json reports/elcinema-48h-audit.json \
-            reports/elcinema-daily-donor.json
+            reports/elcinema-daily-donor.json reports/elcinema-current-health.json \
+            reports/elcinema-7day-coverage.json
           if git diff --cached --quiet; then
             echo "No genuine non-overlapping same-day donor events; leave original feed unchanged"
             exit 0
