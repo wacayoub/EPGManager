@@ -3,8 +3,8 @@
 """Dubai+ public JSON EPG adapter.
 
 Uses the same public /content/channels JSON feed loaded by the Dubai+ web EPG.
-No login, DRM, playback URLs, or anti-bot bypass. Two metadata requests maximum:
-English + Arabic, then merge locally using the EPGManager Hybrid policy.
+Read the public English and Arabic metadata in bounded time windows and
+merge it locally using the EPGManager Hybrid policy.
 """
 from __future__ import annotations
 import argparse, json, re
@@ -46,15 +46,13 @@ def spec(name):
 
 def has_ar(s): return bool(AR.search(s or ""))
 
-def fetch(lang,hours,timeout):
-    now=datetime.now(timezone.utc)
-    # Request a small metadata window around now. Dubai+ expects epoch ms.
-    start=int((now-timedelta(hours=4)).timestamp()*1000)
-    end=int((now+timedelta(hours=max(2,hours)+4)).timestamp()*1000)
+def fetch_window(lang, start, end, timeout):
+    start_ms = int(start.timestamp() * 1000)
+    end_ms = int(end.timestamp() * 1000)
     params={
       "locationId":LOCATION_ID,
       "language":lang,
-      "byListingTime":f"{start}~{end}",
+      "byListingTime":f"{start_ms}~{end_ms}",
       "offsetTime":"0",
       "origin":"mpx",
       "size":"50",
@@ -75,6 +73,41 @@ def fetch(lang,hours,timeout):
 def entries(data):
     if isinstance(data,dict) and isinstance(data.get("entries"),list): return data["entries"]
     return []
+
+
+def fetch(lang, hours, timeout):
+    now = datetime.now(timezone.utc)
+    start = now - timedelta(hours=4)
+    end = now + timedelta(hours=max(2, hours) + 4)
+    channels = {}
+    listings = {}
+    windows = []
+    while start < end:
+        stop = min(end, start + timedelta(hours=48))
+        window = {"start_utc": start.isoformat(), "stop_utc": stop.isoformat()}
+        try:
+            payload, url = fetch_window(lang, start, stop, timeout)
+        except requests.RequestException as exc:
+            if not windows:
+                raise
+            window["error"] = str(exc)
+        else:
+            window.update(url=url, channels=len(entries(payload)))
+            for channel in entries(payload):
+                channel_id = str(channel.get("id") or "")
+                if not channel_id:
+                    continue
+                channels.setdefault(channel_id, dict(channel))
+                by_start = listings.setdefault(channel_id, {})
+                for listing in channel.get("listings") or []:
+                    key = listing.get("startTime")
+                    if key is not None:
+                        by_start.setdefault(int(key), listing)
+        windows.append(window)
+        start = stop
+    for channel_id, channel in channels.items():
+        channel["listings"] = list(listings[channel_id].values())
+    return {"entries": list(channels.values())}, windows
 
 def listing_map(entry):
     out={}
@@ -226,10 +259,11 @@ def main():
     ET.indent(root,space="  ")
     Path(args.output).parent.mkdir(parents=True,exist_ok=True)
     Path(args.output).write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
-    stats.update({"http_status":status,"error":err,"urls":urls,"policy":"public metadata only; two JSON requests; no playback/auth bypass"})
+    stats.update({"http_status":status,"error":err,"request_windows":urls,
+                  "policy":"public metadata in windows of at most 48 hours per language"})
     Path(args.report).parent.mkdir(parents=True,exist_ok=True)
     Path(args.report).write_text(json.dumps(stats,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-    print(json.dumps({k:v for k,v in stats.items() if k not in ("urls","source_channels")},ensure_ascii=False))
+    print(json.dumps({k:v for k,v in stats.items() if k not in ("request_windows","source_channels")},ensure_ascii=False))
     return 0 if stats.get("channels") and stats.get("programmes") else 11
 
 if __name__=="__main__":

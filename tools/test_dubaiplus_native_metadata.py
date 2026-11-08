@@ -1,9 +1,23 @@
 # -*- coding: utf-8 -*-
 """Dubai+ Arabic metadata: authentic only, never fabricate descriptions."""
 import unittest
+from datetime import timedelta
+from unittest.mock import patch
 from tools import dubaiplus_api_source as api
 
 class TestDubaiNativeMetadata(unittest.TestCase):
+    def test_week_uses_bounded_windows_and_deduplicates_boundary_listings(self):
+        def provider(lang, start, stop, timeout):
+            self.assertLessEqual(stop - start, timedelta(hours=48))
+            listings = [{"startTime": int(day.timestamp() * 1000)} for day in (start, stop)]
+            return {"entries": [{"id": "dubai", "listings": listings}]}, api.API
+
+        with patch.object(api, "fetch_window", side_effect=provider):
+            data, windows = api.fetch("en-US", 168, 10)
+        self.assertEqual(len(windows), 4)
+        self.assertEqual(len(data["entries"]), 1)
+        self.assertEqual(len(data["entries"][0]["listings"]), 5)
+
     def test_ar_ae_localized_description_for_both_profiles(self):
         en={"program":{"title":"Dubai Television","description":"English only",
                        "descriptionLocalized":{"en-US":"English text"}}}
