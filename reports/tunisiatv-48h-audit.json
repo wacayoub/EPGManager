@@ -1,45 +1,43 @@
 {
-  "generated_utc": "2026-11-08T06:35:33.628884+00:00",
+  "generated_utc": "2026-11-08T08:56:21.469009+00:00",
   "mode": "source-aware",
   "feeds": [
     {
       "feed": "tunisiatv.xml.gz",
-      "generated_utc": "2026-11-08T06:35:33.628834+00:00",
+      "generated_utc": "2026-11-08T08:56:21.468982+00:00",
       "target_hours": 48.0,
       "minimum_acceptable_hours": 24.0,
       "max_gap_minutes_warning": 240,
       "channels": 2,
       "invalid_times": 0,
       "orphan_programmes": 0,
-      "failed_channels": 0,
-      "warning_channels": 1,
-      "informational_channels": 1,
-      "occasional_channel_ids": [
-        "ElWatania2.tn@SD"
-      ],
-      "status": "WARN",
+      "failed_channels": 2,
+      "warning_channels": 0,
+      "informational_channels": 0,
+      "occasional_channel_ids": [],
+      "status": "FAIL",
       "rows": [
         {
           "id": "ElWatania1.tn@SD",
-          "status": "WARN",
-          "reason": "INTERNAL_GAP",
-          "future_hours": 48.39,
-          "latest_stop_utc": "2026-11-10T06:59:00+00:00",
-          "max_gap_minutes": 361.0,
-          "programmes": 53,
+          "status": "FAIL",
+          "reason": "TOO_SHORT",
+          "future_hours": 14.04,
+          "latest_stop_utc": "2026-11-08T22:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 20,
           "occasional_event_channel": false,
           "verified_regular_off_air": false
         },
         {
           "id": "ElWatania2.tn@SD",
-          "status": "INFO",
-          "reason": "OFF_AIR_OVERNIGHT_0000_0600_TUNIS",
-          "future_hours": 48.56,
-          "latest_stop_utc": "2026-11-10T07:09:00+00:00",
-          "max_gap_minutes": 361.0,
-          "programmes": 51,
+          "status": "FAIL",
+          "reason": "TOO_SHORT",
+          "future_hours": 14.04,
+          "latest_stop_utc": "2026-11-08T22:59:00+00:00",
+          "max_gap_minutes": 1.0,
+          "programmes": 19,
           "occasional_event_channel": false,
-          "verified_regular_off_air": true
+          "verified_regular_off_air": false
         }
       ]
     }
