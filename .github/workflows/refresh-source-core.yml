@@ -260,16 +260,14 @@ jobs:
           bash -n tools/refresh_one_source.sh
           python -m py_compile tools/build_catalogues.py tools/publish_lkg.py tools/source_feed_pack.py tools/validate_48h.py tools/morocco_epg.py tools/aljazeera_source.py tools/starzplay_source.py tools/starzplay_api_source.py tools/stctv_source.py tools/stctv_per_id_readiness.py tools/audit_source_quality.py tools/dubaiplus_api_source.py tools/dubaiplus_verified_osn_gap.py tools/alkass_source.py tools/tunisiatv_source.py tools/tabie_source.py tools/rotana_source.py tools/rotana_verified_stc_fallback.py tools/sport24_source.py tools/sport24_verified_donors.py tools/elcinema_zero_epg_fallback.py tools/osn_complete_catalogue.py tools/osn_frontend_probe.py tools/osn_zero_epg_fallback.py
 
-      - name: Refresh source guide (Morocco 7 days; other sources 48h)
+      - name: Refresh source guide (7-day window)
         if: steps.gate.outputs.run == 'true'
         shell: bash
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
-          hours=48
-          if [ "${{ inputs.source }}" = "morocco" ]; then hours=168; fi
-          bash tools/refresh_one_source.sh "${{ inputs.source }}" "$hours"
+          bash tools/refresh_one_source.sh "${{ inputs.source }}"
 
       - name: Commit only this source
         if: steps.gate.outputs.run == 'true'

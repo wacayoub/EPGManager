@@ -54,6 +54,14 @@ def exercise(candidate_ids=REAL,lead=1,old_expired=True,programmes=30,other=None
         return result,before,published
 
 class TestQMCActiveOnlyExpiredLKG(unittest.TestCase):
+    def test_two_current_qatar_ids_replace_an_expired_feed(self):
+        result,before,after=exercise(
+            candidate_ids=("QatarTelevision.qa@SD","QatarTelevision2.qa@SD"),
+            lead=-0.1,programmes=27)
+        self.assertEqual(result["decision"],"PUBLISH",result)
+        self.assertNotEqual(before,after)
+        self.assertTrue(result["candidate_stats"]["partial_recovery_from_expired_lkg"])
+
     def test_three_genuine_near_future_ids_replace_expired_nine(self):
         result,before,after=exercise()
         self.assertEqual(result["decision"],"PUBLISH",result)

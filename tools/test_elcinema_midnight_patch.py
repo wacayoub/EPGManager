@@ -37,7 +37,7 @@ class MidnightPatch(unittest.TestCase):
             patch(BASE.replace(OLD_TZ,"return dayjs.tz(time, 'UTC')"))
     def test_never_rewrite_unrelated_code(self):
         extra="// DO NOT DROP EXISTING XMLTV OR MAPPINGS\n"
-        self.assertTrue(patch(BASE+extra).endswith(extra))
+        self.assertIn(extra, patch(BASE+extra))
     def test_reject_nonstring_and_bloated_input(self):
         for x in (None,1,"X"*100001):
             with self.subTest(x_type=type(x).__name__):

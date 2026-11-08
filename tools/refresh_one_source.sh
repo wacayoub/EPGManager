@@ -2,8 +2,14 @@
 set -uo pipefail
 
 SOURCE="${1:?source required}"
-HOURS="${2:-48}"
+HOURS="${2:-168}"
 if [ "$SOURCE" = "morocco" ]; then HOURS=168; fi
+if ! [[ "$HOURS" =~ ^[1-9][0-9]{0,2}$ ]] || (( HOURS > 168 )); then
+  echo "Window must be between 1 and 168 hours" >&2
+  exit 2
+fi
+# Date-based APIs need the final partial calendar day as well.
+DAYS=$(( (HOURS + 23) / 24 + 1 ))
 ROOT="${GITHUB_WORKSPACE:-$(pwd)}"
 UPSTREAM="$ROOT/vendor/iptv-org-epg"
 mkdir -p "$ROOT/output/source-build" "$ROOT/output/final" "$ROOT/output/morocco" "$ROOT/reports" "$ROOT/data"
@@ -18,11 +24,14 @@ has_programmes() {
 
 grab_upstream() {
   key="$1"; channels="$2"; output="$3"; delay="${4:-}"
+  local grab_days="$DAYS"
+  # ElCinema exposes all available dates in one channel page.
+  if [[ "$key" == elcinema* ]]; then grab_days=1; fi
   set +e
   cd "$UPSTREAM"
-  cmd=(npm run grab -- "--channels=$channels" "--output=$output" --days=3 --maxConnections=1 --timeout=20000)
+  cmd=(npm run grab -- "--channels=$channels" "--output=$output" "--days=$grab_days" --maxConnections=1 --timeout=20000)
   [ -n "$delay" ] && cmd+=("--delay=$delay")
-  timeout --signal=TERM --kill-after=30s 900s "${cmd[@]}"
+  EPGMANAGER_ELCINEMA_DAYS="$DAYS" timeout --signal=TERM --kill-after=30s 900s "${cmd[@]}"
   rc=$?
   cd "$ROOT"
   [ -s "$output" ] || empty_xml "$output"
@@ -254,7 +263,7 @@ PY
 
 
   tabie)
-    python tools/tabie_source.py --days 3
+    python tools/tabie_source.py --days "$DAYS" --window-hours "$HOURS"
     pack_source tabie output/source-build/tabie.raw.xml output/source-build/tabie.channels.xml || true
     ;;
 
@@ -264,7 +273,7 @@ PY
     ;;
 
   tunisiatv)
-    python tools/tunisiatv_source.py
+    python tools/tunisiatv_source.py --days "$DAYS"
     pack_source tunisiatv output/source-build/tunisiatv.raw.xml output/source-build/tunisiatv.channels.xml || true
     ;;
 
@@ -410,7 +419,7 @@ python tools/publish_lkg.py --source "$SOURCE" --report "reports/$SOURCE-publish
 cohort="$(python tools/report_cohort_gate.py --source "$SOURCE" \
   --decision "reports/$SOURCE-publish-lkg.json" --feeds-dir feeds)" || exit 2
 if [ "$cohort" = "REBUILD" ]; then
-  python tools/validate_48h.py "feeds/$SOURCE.xml.gz" --hours "$HOURS" \
+  python tools/validate_48h.py "feeds/$SOURCE.xml.gz" --hours 48 \
     --max-gap-minutes 90 --report "reports/$SOURCE-48h-audit.json" || true
   python tools/audit_source_quality.py --input "feeds/$SOURCE.xml.gz" \
     --source "$SOURCE" --report "reports/$SOURCE-quality.json"
@@ -454,10 +463,8 @@ echo "SOURCE_REFRESH_DONE source=$SOURCE hours=$HOURS"
 # even on KEEP_LKG; it does not relabel old quality reports as new publication.
 python tools/source_health_snapshot.py --source "$SOURCE" \
   --output "reports/$SOURCE-current-health.json" || exit 2
-if [ "$SOURCE" = "morocco" ]; then
-  python tools/morocco_seven_day_coverage.py --feed feeds/morocco.xml.gz \
-    --output reports/morocco-7day-coverage.json || exit 2
-fi
+python tools/morocco_seven_day_coverage.py --feed "feeds/$SOURCE.xml.gz" \
+  --output "reports/$SOURCE-7day-coverage.json" || exit 2
 if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
   printf '\n### Published source health (%s, GMT+0)\n\n' "$SOURCE" >> "$GITHUB_STEP_SUMMARY"
   printf 'Scrape success and published guide availability are separate.\n\n```json\n' >> "$GITHUB_STEP_SUMMARY"

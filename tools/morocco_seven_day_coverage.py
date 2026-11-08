@@ -1,6 +1,6 @@
-"""Observe actual per-ID coverage in the final 168-hour Morocco publication."""
+"""Observe actual per-ID coverage in a published seven-day source window."""
 import argparse,gzip,hashlib,json
-from collections import Counter
+from collections import Counter, defaultdict
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
 import xml.etree.ElementTree as ET
@@ -17,17 +17,19 @@ except ModuleNotFoundError:
 
 def coverage(feed,now=None):
     feed=Path(feed);now=now or datetime.now(timezone.utc);end=now+timedelta(hours=168)
-    health=inspect(feed.parent.parent,'morocco',now)
+    source = feed.name.removesuffix('.xml.gz')
+    health=inspect(feed.parent.parent,source,now)
     if health['status'] in ('INVALID_PUBLICATION','MISSING'):
-        raise ValueError('Invalid final Morocco publication')
+        raise ValueError(f'Invalid final {source} publication')
     raw=feed.read_bytes();xml=ET.fromstring(gzip.decompress(raw));zone=ZoneInfo('Africa/Casablanca')
+    by_channel = defaultdict(list)
+    for node in xml.findall('programme'):
+        start,stop=parse_xmltv_dt(node.get('start')),parse_xmltv_dt(node.get('stop'))
+        if start<end and stop>now:
+            by_channel[node.get('channel')].append((start,stop,node))
     detail=[]
     for channel in xml.findall('channel'):
-        cid=channel.get('id');rows=[]
-        for node in xml.findall('programme'):
-            if node.get('channel')!=cid:continue
-            start,stop=parse_xmltv_dt(node.get('start')),parse_xmltv_dt(node.get('stop'))
-            if start<end and stop>now:rows.append((start,stop,node))
+        cid=channel.get('id');rows=by_channel[cid]
         cursor=now;missing=0.0
         for start,stop,_ in sorted(rows,key=lambda r:(r[0],r[1])):
             if start>cursor:missing+=(min(start,end)-min(cursor,end)).total_seconds()/60
@@ -46,9 +48,11 @@ def coverage(feed,now=None):
                        'remaining_max_hours':round(max(0,(latest-now).total_seconds()/3600),2) if latest else 0,
                        'uncovered_minutes_in_168h':round(missing,2),
                        'status':'NO_FUTURE_EPG' if not rows else 'FULL_REQUESTED_WINDOW' if missing==0 else 'PARTIAL_REQUESTED_WINDOW'})
-    return {'checked_utc':now.isoformat(),'scope':'actual final published Morocco bytes; 7 days requested where available',
+    return {'checked_utc':now.isoformat(),'source':source,'scope':'actual final published bytes; 7 days requested where available',
             'requested_hours':168,'feed_sha256':hashlib.sha256(raw).hexdigest(),
             'channels':len(detail),'channels_with_future_epg':sum(r['programmes_in_requested_window']>0 for r in detail),
+            'channels_with_continuous_168h':sum(r['status']=='FULL_REQUESTED_WINDOW' for r in detail),
+            'latest_stop_utc':max((r['last_stop_utc'] for r in detail if r['last_stop_utc']),default=None),
             'receiver_release_status':'NO_GO','ids':detail}
 
 

@@ -117,7 +117,7 @@ def source_data(name):
     # Never republish the 9 expired IDs of an obsolete Tabie archive as live.
     if name == "tabie":
         now = datetime.now(timezone.utc)
-        horizon = now + timedelta(hours=48)
+        horizon = now + timedelta(hours=168)
         legitimate = set()
         for p in root.findall("programme"):
             start, stop = parse_dt(p.get("start")), parse_dt(p.get("stop"))

@@ -3,6 +3,7 @@
 """Direct XMLTV scraper for Télévision Tunisienne (Watania 1/2)."""
 from __future__ import annotations
 
+import argparse
 from datetime import date, datetime, time as dtime, timedelta
 import json
 from pathlib import Path
@@ -150,8 +151,12 @@ def fetch_day(session, site_id, name, target):
 
 
 def main()->int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--days", type=int, default=3)
+    args = parser.parse_args()
     now=datetime.now(TZ)
-    targets=[now.date()+timedelta(days=i) for i in range(3)]
+    # The official URLs identify weekdays, so an eighth request repeats day one.
+    targets=[now.date()+timedelta(days=i) for i in range(max(1, min(7, args.days)))]
     sess=requests.Session()
     sess.headers.update({"User-Agent":UA,"Accept-Language":"ar,en;q=0.8"})
 
@@ -167,10 +172,20 @@ def main()->int:
 
         allrows=[]
         days={}
+        grids={}
         for target in targets:
             try:
                 url,rows=fetch_day(sess,site_id,name,target)
-                days[target.isoformat()]={"url":url,"programmes":len(rows),"status":"OK"}
+                # The page can replay today's undated grid for other weekdays.
+                # Compare the entire grid before stamping those rows as future.
+                fingerprint = tuple((row["start"].time(), row["stop"].time(), row["title"]) for row in rows)
+                if fingerprint and fingerprint in grids:
+                    days[target.isoformat()]={"url":url,"programmes":0,"status":"REPEATED_UNDATED_GRID",
+                                               "matches_day":grids[fingerprint]}
+                    continue
+                if fingerprint:
+                    grids[fingerprint] = target.isoformat()
+                days[target.isoformat()]={"url":url,"programmes":len(rows),"status":"OK" if rows else "EMPTY"}
                 allrows.extend(rows)
             except Exception as exc:
                 days[target.isoformat()]={"programmes":0,"status":"ERROR","error":str(exc)}
