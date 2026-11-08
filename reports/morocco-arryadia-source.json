@@ -1,6 +1,6 @@
 {
   "source": "arryadia",
-  "checked_utc": "2026-11-07T07:07:33.844937+00:00",
+  "checked_utc": "2026-11-08T07:07:35.094388+00:00",
   "scope": "official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format",
   "receiver_release_status": "NO_GO",
   "attempts": [
@@ -63,15 +63,11 @@
       "provider": "LiveScore",
       "requests": [
         {
-          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-07",
+          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-08",
           "http_status": 403
         },
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/live/soccer/0?countryCode=MA&locale=en",
-          "http_status": 200
-        },
-        {
-          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261107/0?countryCode=MA&locale=en",
           "http_status": 200
         },
         {
@@ -101,32 +97,15 @@
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261114/0?countryCode=MA&locale=en",
           "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261115/0?countryCode=MA&locale=en",
+          "http_status": 200
         }
       ],
-      "fixture_count": 6
+      "fixture_count": 3
     },
     "botola_matches_added": [
-      {
-        "fixture_id": "ls:1908647",
-        "title": "KACM vs Wydad - Botola Pro",
-        "kickoff_utc": "2026-11-07T16:00:00+00:00",
-        "broadcast_channel_confirmed": false,
-        "duration_minutes_estimated": 120
-      },
-      {
-        "fixture_id": "ls:1908641",
-        "title": "MAS Fès vs FUS Rabat - Botola Pro",
-        "kickoff_utc": "2026-11-07T18:00:00+00:00",
-        "broadcast_channel_confirmed": false,
-        "duration_minutes_estimated": 120
-      },
-      {
-        "fixture_id": "ls:1908643",
-        "title": "MAT Tétouan vs CODM Meknès - Botola Pro",
-        "kickoff_utc": "2026-11-07T20:00:00+00:00",
-        "broadcast_channel_confirmed": false,
-        "duration_minutes_estimated": 120
-      },
       {
         "fixture_id": "ls:1908640",
         "title": "Renaissance Zemamra vs Widad Temara - Botola Pro",
@@ -162,11 +141,11 @@
     "Arryadia_HD2",
     "Arryadia_HD3"
   ],
-  "smart_estimated_events": 56,
+  "smart_estimated_events": 53,
   "requested_window_hours": 168,
-  "output_events": 394,
+  "output_events": 391,
   "channel_counts": {
-    "Arryadia_HD": 56,
+    "Arryadia_HD": 53,
     "Arryadia_TNT": 0,
     "Arryadia_HD1": 0,
     "Arryadia_HD2": 169,
