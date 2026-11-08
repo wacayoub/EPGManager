@@ -1,38 +1,73 @@
 {
-  "generated_qatar": "2026-11-08T03:30:37.023358+03:00",
-  "rejected_long_duration": 0,
-  "date_mismatch_rows": 168,
-  "date_mismatch_rows_dropped": 168,
-  "days_with_recycled_provider_response": 4,
+  "generated_qatar": "2026-11-08T11:56:14.990186+03:00",
+  "rejected_long_duration": 16,
+  "date_mismatch_rows": 4571,
+  "date_mismatch_rows_dropped": 4571,
+  "days_with_recycled_provider_response": 28,
   "dates": [
     "2026-11-08",
     "2026-11-09",
-    "2026-11-10"
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
   ],
   "endpoint": "/Live/GetSchedule",
   "channels": {
     "QatarTelevision.qa@SD": {
       "channel_id": 23,
       "name": "Qatar TV",
-      "programmes": 42,
+      "programmes": 26,
       "days": {
         "2026-11-08": {
           "status": "OK",
-          "programmes": 42,
-          "api_rows": 42,
+          "programmes": 26,
+          "api_rows": 26,
           "date_mismatch_rows_dropped": 0
         },
         "2026-11-09": {
           "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
-          "api_rows": 42,
-          "date_mismatch_rows_dropped": 42
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
         },
         "2026-11-10": {
           "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
-          "api_rows": 42,
-          "date_mismatch_rows_dropped": 42
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
+        },
+        "2026-11-11": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
+        },
+        "2026-11-12": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
+        },
+        "2026-11-13": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
+        },
+        "2026-11-14": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
+        },
+        "2026-11-15": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
         }
       },
       "errors": [],
@@ -41,25 +76,55 @@
     "QatarTelevision2.qa@SD": {
       "channel_id": 22,
       "name": "Qatar TV 2",
-      "programmes": 42,
+      "programmes": 26,
       "days": {
         "2026-11-08": {
           "status": "OK",
-          "programmes": 42,
-          "api_rows": 42,
+          "programmes": 26,
+          "api_rows": 26,
           "date_mismatch_rows_dropped": 0
         },
         "2026-11-09": {
           "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
-          "api_rows": 42,
-          "date_mismatch_rows_dropped": 42
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
         },
         "2026-11-10": {
           "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
-          "api_rows": 42,
-          "date_mismatch_rows_dropped": 42
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
+        },
+        "2026-11-11": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
+        },
+        "2026-11-12": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
+        },
+        "2026-11-13": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
+        },
+        "2026-11-14": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
+        },
+        "2026-11-15": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 26,
+          "date_mismatch_rows_dropped": 26
         }
       },
       "errors": [],
@@ -83,6 +148,36 @@
           "date_mismatch_rows_dropped": 0
         },
         "2026-11-10": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-11": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-12": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-13": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-14": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-15": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1,
@@ -114,6 +209,36 @@
           "programmes": 0,
           "api_rows": 1,
           "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-11": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-12": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-13": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-14": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-15": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
         }
       },
       "errors": [],
@@ -137,6 +262,36 @@
           "date_mismatch_rows_dropped": 0
         },
         "2026-11-10": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-11": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-12": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-13": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-14": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-15": {
           "status": "OK",
           "programmes": 0,
           "api_rows": 1,
@@ -168,6 +323,36 @@
           "programmes": 0,
           "api_rows": 1,
           "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-11": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-12": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-13": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-14": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-15": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
         }
       },
       "errors": [],
@@ -195,6 +380,36 @@
           "programmes": 0,
           "api_rows": 1,
           "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-11": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-12": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-13": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-14": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
+        },
+        "2026-11-15": {
+          "status": "OK",
+          "programmes": 0,
+          "api_rows": 1,
+          "date_mismatch_rows_dropped": 0
         }
       },
       "errors": [],
@@ -203,73 +418,133 @@
     "TabieNow.qa": {
       "channel_id": 34,
       "name": "Tabie Now",
-      "programmes": 0,
+      "programmes": 555,
       "days": {
         "2026-11-08": {
           "status": "OK",
-          "programmes": 0,
-          "api_rows": 1,
+          "programmes": 555,
+          "api_rows": 556,
           "date_mismatch_rows_dropped": 0
         },
         "2026-11-09": {
-          "status": "OK",
+          "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
-          "api_rows": 1,
-          "date_mismatch_rows_dropped": 0
+          "api_rows": 556,
+          "date_mismatch_rows_dropped": 555
         },
         "2026-11-10": {
-          "status": "OK",
+          "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
-          "api_rows": 1,
-          "date_mismatch_rows_dropped": 0
+          "api_rows": 556,
+          "date_mismatch_rows_dropped": 555
+        },
+        "2026-11-11": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 556,
+          "date_mismatch_rows_dropped": 555
+        },
+        "2026-11-12": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 556,
+          "date_mismatch_rows_dropped": 555
+        },
+        "2026-11-13": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 556,
+          "date_mismatch_rows_dropped": 555
+        },
+        "2026-11-14": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 556,
+          "date_mismatch_rows_dropped": 555
+        },
+        "2026-11-15": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 556,
+          "date_mismatch_rows_dropped": 555
         }
       },
       "errors": [],
-      "status": "ZERO_EPG"
+      "status": "ACTIVE"
     },
     "TabieKids.qa": {
       "channel_id": 35,
       "name": "Tabie Kids",
-      "programmes": 0,
+      "programmes": 46,
       "days": {
         "2026-11-08": {
           "status": "OK",
-          "programmes": 0,
-          "api_rows": 1,
+          "programmes": 46,
+          "api_rows": 47,
           "date_mismatch_rows_dropped": 0
         },
         "2026-11-09": {
-          "status": "OK",
+          "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
-          "api_rows": 1,
-          "date_mismatch_rows_dropped": 0
+          "api_rows": 47,
+          "date_mismatch_rows_dropped": 46
         },
         "2026-11-10": {
-          "status": "OK",
+          "status": "PROVIDER_WRONG_DATE",
           "programmes": 0,
-          "api_rows": 1,
-          "date_mismatch_rows_dropped": 0
+          "api_rows": 47,
+          "date_mismatch_rows_dropped": 46
+        },
+        "2026-11-11": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 47,
+          "date_mismatch_rows_dropped": 46
+        },
+        "2026-11-12": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 47,
+          "date_mismatch_rows_dropped": 46
+        },
+        "2026-11-13": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 47,
+          "date_mismatch_rows_dropped": 46
+        },
+        "2026-11-14": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 47,
+          "date_mismatch_rows_dropped": 46
+        },
+        "2026-11-15": {
+          "status": "PROVIDER_WRONG_DATE",
+          "programmes": 0,
+          "api_rows": 47,
+          "date_mismatch_rows_dropped": 46
         }
       },
       "errors": [],
-      "status": "ZERO_EPG"
+      "status": "ACTIVE"
     }
   },
   "published_ids": [
     "QatarTelevision.qa@SD",
-    "QatarTelevision2.qa@SD"
+    "QatarTelevision2.qa@SD",
+    "TabieKids.qa",
+    "TabieNow.qa"
   ],
   "excluded_no_live_epg_ids": [
     "AlRayyanAlQadeem.qa@SD",
     "AlRayyanTV.qa@SD",
     "AlkassOne.qa@SD",
     "QatarBusinessChannel.qa@SD",
-    "QatarQuranTV.qa@SD",
-    "TabieKids.qa",
-    "TabieNow.qa"
+    "QatarQuranTV.qa@SD"
   ],
   "publication_policy": "active_with_genuine_current_or_future_programmes_only",
-  "programmes_before_id_filter": 84,
-  "programmes": 84,
-  "active_channels": 2
+  "programmes_before_id_filter": 653,
+  "programmes": 653,
+  "active_channels": 4
 }
