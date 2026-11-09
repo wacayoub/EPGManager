@@ -1,6 +1,6 @@
 {
   "source": "arryadia",
-  "checked_utc": "2026-11-08T08:56:17.163398+00:00",
+  "checked_utc": "2026-11-09T17:24:59.276381+00:00",
   "scope": "official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format",
   "receiver_release_status": "NO_GO",
   "attempts": [
@@ -63,15 +63,11 @@
       "provider": "LiveScore",
       "requests": [
         {
-          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-08",
+          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-09",
           "http_status": 403
         },
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/live/soccer/0?countryCode=MA&locale=en",
-          "http_status": 200
-        },
-        {
-          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261108/0?countryCode=MA&locale=en",
           "http_status": 200
         },
         {
@@ -101,35 +97,17 @@
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261115/0?countryCode=MA&locale=en",
           "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261116/0?countryCode=MA&locale=en",
+          "http_status": 200
         }
       ],
-      "fixture_count": 3
+      "fixture_count": 0
     },
-    "botola_matches_added": [
-      {
-        "fixture_id": "ls:1908640",
-        "title": "Renaissance Zemamra vs Widad Temara - Botola Pro",
-        "kickoff_utc": "2026-11-08T16:00:00+00:00",
-        "broadcast_channel_confirmed": false,
-        "duration_minutes_estimated": 120
-      },
-      {
-        "fixture_id": "ls:1908638",
-        "title": "FAR Rabat vs Difaâ El Jadida - Botola Pro",
-        "kickoff_utc": "2026-11-08T18:00:00+00:00",
-        "broadcast_channel_confirmed": false,
-        "duration_minutes_estimated": 120
-      },
-      {
-        "fixture_id": "ls:1908639",
-        "title": "Raja vs Ittihad Tanger - Botola Pro",
-        "kickoff_utc": "2026-11-08T20:00:00+00:00",
-        "broadcast_channel_confirmed": false,
-        "duration_minutes_estimated": 120
-      }
-    ],
+    "botola_matches_added": [],
     "simultaneous_matches_not_assigned": [],
-    "smart_recurring_programmes": 50,
+    "smart_recurring_programmes": 49,
     "official_broadcast_claim": false
   },
   "status": "ESTIMATED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID",
@@ -141,11 +119,11 @@
     "Arryadia_HD2",
     "Arryadia_HD3"
   ],
-  "smart_estimated_events": 53,
+  "smart_estimated_events": 49,
   "requested_window_hours": 168,
-  "output_events": 391,
+  "output_events": 387,
   "channel_counts": {
-    "Arryadia_HD": 53,
+    "Arryadia_HD": 49,
     "Arryadia_TNT": 0,
     "Arryadia_HD1": 0,
     "Arryadia_HD2": 169,
