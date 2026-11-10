@@ -1,16 +1,16 @@
 {
-  "generated_utc": "2026-11-09T16:46:50.019924+00:00",
-  "github_run_id": "42658138143",
+  "generated_utc": "2026-11-10T06:35:41.088369+00:00",
+  "github_run_id": "42769493350",
   "github_run_attempt": "1",
   "sources": {
     "tunisiatv": {
       "candidate": "output/final/tunisiatv.xml.gz",
-      "published": false,
+      "published": true,
       "candidate_stats": {
         "channels": 2,
         "active_channels": 2,
         "zero_epg_channels": 0,
-        "programmes": 21,
+        "programmes": 50,
         "future_channels": 2,
         "future_channel_ids": [
           "ElWatania1.tn@SD",
@@ -19,7 +19,7 @@
         "future_ratio": 1.0,
         "current_channels": 2,
         "current_ratio": 1.0,
-        "future_horizon_hours": 6.202772171944445,
+        "future_horizon_hours": 16.388586425555555,
         "first_future_start_lead_hours": 0.0,
         "missing_title_rows": 0,
         "invalid_rows": 0
@@ -39,12 +39,9 @@
         "missing_title_rows": 0,
         "invalid_rows": 0
       },
-      "decision": "KEEP_LKG",
-      "reasons": [
-        "programmes<30",
-        "future_horizon<8h",
-        "programme_regression>65%"
-      ]
+      "decision": "PUBLISH",
+      "published_sha256": "fd2f2b9b64b212d157c3aa84257a1a2886ebb2dbf32a295c155058236aa5e9ac",
+      "reasons": []
     }
   }
 }

@@ -1,40 +1,44 @@
 {
-  "checked_utc": "2026-11-09T16:46:50.124140+00:00",
+  "checked_utc": "2026-11-10T06:35:41.274697+00:00",
   "source": "tunisiatv",
   "scope": "actual final published bytes; 7 days requested where available",
   "requested_hours": 168,
-  "feed_sha256": "a4e1b91de4ffd0699f139ff0b2b547616a92372364dff25cebf601086ac5f1f6",
+  "feed_sha256": "fd2f2b9b64b212d157c3aa84257a1a2886ebb2dbf32a295c155058236aa5e9ac",
   "channels": 2,
-  "channels_with_future_epg": 0,
+  "channels_with_future_epg": 2,
   "channels_with_continuous_168h": 0,
-  "latest_stop_utc": null,
+  "latest_stop_utc": "2026-11-10T22:59:00+00:00",
   "receiver_release_status": "NO_GO",
   "ids": [
     {
       "id": "ElWatania1.tn@SD",
-      "programmes_in_requested_window": 0,
-      "source_programmes": 0,
+      "programmes_in_requested_window": 22,
+      "source_programmes": 22,
       "viewer_reported_programmes": 0,
       "automatic_fallback_programmes": 0,
       "smart_estimated_programmes": 0,
-      "programmes_by_start_date_local": {},
-      "last_stop_utc": null,
-      "remaining_max_hours": 0,
-      "uncovered_minutes_in_168h": 10080.0,
-      "status": "NO_FUTURE_EPG"
+      "programmes_by_start_date_local": {
+        "2026-11-10": 22
+      },
+      "last_stop_utc": "2026-11-10T22:59:00+00:00",
+      "remaining_max_hours": 16.39,
+      "uncovered_minutes_in_168h": 9115.69,
+      "status": "PARTIAL_REQUESTED_WINDOW"
     },
     {
       "id": "ElWatania2.tn@SD",
-      "programmes_in_requested_window": 0,
-      "source_programmes": 0,
+      "programmes_in_requested_window": 19,
+      "source_programmes": 19,
       "viewer_reported_programmes": 0,
       "automatic_fallback_programmes": 0,
       "smart_estimated_programmes": 0,
-      "programmes_by_start_date_local": {},
-      "last_stop_utc": null,
-      "remaining_max_hours": 0,
-      "uncovered_minutes_in_168h": 10080.0,
-      "status": "NO_FUTURE_EPG"
+      "programmes_by_start_date_local": {
+        "2026-11-10": 19
+      },
+      "last_stop_utc": "2026-11-10T22:59:00+00:00",
+      "remaining_max_hours": 16.39,
+      "uncovered_minutes_in_168h": 9108.69,
+      "status": "PARTIAL_REQUESTED_WINDOW"
     }
   ]
 }
