@@ -1,0 +1,11 @@
+EPG Manager 8.2.2-rc32 — Force Mapping ON Sources Only
+
+- Force Mapping / targeted automatic suggestions now use ONLY Smart Sources switched ON.
+- An OFF source cannot become eligible merely because its compact Channel-ID cache still exists.
+- Country/provider bundles expose only their ON child feeds to Force Mapping.
+- Auto Repair strategic/dedicated ranking no longer bypasses the ON allow-list.
+- GREEN/Auto Map Source refuses an OFF source and asks the user to enable it first.
+- Existing stale AUTO mappings from a source switched OFF are ignored so the channel can be repaired from an ON source.
+- MANUAL mappings/locks remain protected and are never deleted by this policy.
+- Built-in local EPGManager feeds participate only while their own configuration switch is enabled.
+- Arabic-first MENA cloud policy from RC31 is retained unchanged.

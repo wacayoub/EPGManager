@@ -1,0 +1,25 @@
+EPGManager 8.2.2-rc26 - MENA Arabic Cloud
+
+Scope
+- Builds directly on rc25 Performance; all rc25 speed/cache changes are preserved.
+- Adds one receiver-side MENA Arabic Cloud XMLTV source generated on GitHub.
+- No web scraping is executed on the Vu+ receiver.
+
+MENA Arabic Cloud
+- Programme feed: https://raw.githubusercontent.com/wacayoub/EPGManager/mena-data/mena-arabic.xml.gz
+- Lightweight mapping catalogue: https://raw.githubusercontent.com/wacayoub/EPGManager/mena-data/mena-arabic.txt
+- TV-only Arabic catalogue, Morocco excluded because Morocco Cloud remains the specialist authority.
+- Official/broadcaster guides are preferred by the cloud generator; secondary TV guides fill public coverage.
+- Per-channel Last Known Good protection keeps a previous valid guide when a website temporarily fails.
+- Channels with no usable public schedule are not fabricated.
+
+Mapping integration
+- Smart Mapping can discover the MENA Cloud through its tiny ID/name catalogue.
+- MBC, UAE, Saudi, Qatar, beIN and broad MENA strategic discovery can consult MENA Cloud.
+- Existing local beIN language safety and OpenEPG fallbacks remain in place.
+- Morocco mapping continues to use the dedicated Morocco Cloud path.
+
+Performance
+- The Vu+ downloads one compressed XMLTV file only when the source is imported/refreshed.
+- Browsing/mapping uses the compact text catalogue instead of downloading programme data.
+- No additional receiver threads or HTML parsers were added.
