@@ -1,12 +1,30 @@
 {
-  "generated_utc": "2026-11-10T04:12:38.351950+00:00",
-  "github_run_id": "42754329826",
+  "generated_utc": "2026-11-11T04:12:46.627173+00:00",
+  "github_run_id": "42957675040",
   "github_run_attempt": "1",
   "sources": {
     "aljazeera": {
       "candidate": "output/final/aljazeera.xml.gz",
       "published": true,
       "candidate_stats": {
+        "channels": 5,
+        "active_channels": 2,
+        "zero_epg_channels": 3,
+        "programmes": 405,
+        "future_channels": 2,
+        "future_channel_ids": [
+          "AlJazeera.qa@Arabic",
+          "AlJazeera.qa@English"
+        ],
+        "future_ratio": 1.0,
+        "current_channels": 2,
+        "current_ratio": 1.0,
+        "future_horizon_hours": 163.78704715583333,
+        "first_future_start_lead_hours": 0.0,
+        "missing_title_rows": 0,
+        "invalid_rows": 0
+      },
+      "previous_stats": {
         "channels": 5,
         "active_channels": 2,
         "zero_epg_channels": 3,
@@ -19,30 +37,13 @@
         "future_ratio": 1.0,
         "current_channels": 2,
         "current_ratio": 1.0,
-        "future_horizon_hours": 163.78934608583333,
-        "first_future_start_lead_hours": 0.0,
-        "missing_title_rows": 0,
-        "invalid_rows": 0
-      },
-      "previous_stats": {
-        "channels": 5,
-        "active_channels": 1,
-        "zero_epg_channels": 4,
-        "programmes": 243,
-        "future_channels": 1,
-        "future_channel_ids": [
-          "AlJazeera.qa@English"
-        ],
-        "future_ratio": 1.0,
-        "current_channels": 1,
-        "current_ratio": 1.0,
-        "future_horizon_hours": 139.78934413527776,
+        "future_horizon_hours": 139.78704325055554,
         "first_future_start_lead_hours": 0.0,
         "missing_title_rows": 0,
         "invalid_rows": 0
       },
       "decision": "PUBLISH",
-      "published_sha256": "ce0aa6aa2e3627bb52c8e1573239c1bc911e1917839a2fc83e500fd640f1c978",
+      "published_sha256": "c8269a6c05b450cf0ee0063f11e1efd79d8b169307cb449d57b81a579b43f43d",
       "reasons": []
     }
   }
