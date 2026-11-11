@@ -54,6 +54,20 @@ class SourceClockTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_request(self.policy, requests[0], NOW.replace(hour=0, minute=0))
 
+    def test_five_minute_ticks_keep_one_task_per_tick_in_order(self):
+        # The receiver crontab runs every 5 minutes and a tick sends at most
+        # one task. Targets closer than one tick would queue behind each other.
+        tick = 5
+        for day in ("2026-07-03", "2026-11-06"):
+            date = datetime.fromisoformat(day).date()
+            rows = dict(self.policy["sources"], postprocess=self.policy["postprocess"],
+                        watchdog=self.policy["watchdog"])
+            times = sorted(target(row, date) for row in rows.values())
+            gaps = [(b - a).total_seconds() / 60 for a, b in zip(times, times[1:])]
+            self.assertGreater(min(gaps), tick, day)
+        late = NOW.replace(hour=0, minute=20)  # first */5 tick after the 00:17 target
+        self.assertEqual([r["task"] for r in due_tasks(self.policy, {}, late)], ["alkass"])
+
     def test_probe_only_routes_to_probe(self):
         request = {"task": "probe", "day": "2026-11-06", "due": NOW.isoformat()}
         self.assertEqual(validate_request(self.policy, request, NOW), "probe")
