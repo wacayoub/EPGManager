@@ -596,7 +596,8 @@ def _prune_to_receiver_refs(mapping, registry_index):
     return out, dropped
 
 
-def _fast_single_owner_maps(items, parsed, registry_index, store=None, store_rows=None):
+def _fast_single_owner_maps(items, parsed, registry_index, store=None, store_rows=None,
+                            dead_claim=None):
     """Keep one exact source+XMLTV owner per receiver service, CPU-bounded.
 
     RC20 removes the RC19 quadratic persisted-owner fallback and avoids running
@@ -663,9 +664,40 @@ def _fast_single_owner_maps(items, parsed, registry_index, store=None, store_row
     def claim_score(mid, cid, cref):
         return (owner_score(mid, cref), identity_score(mid, cid, cref))
 
+    # rc82: a direct-feed ID proven to have no future programmes (NO_EPG) must
+    # not keep a service when another feed offers the same service with a
+    # guide. UNKNOWN and non-direct sources count as live, so nothing changes
+    # while the monitor has no verdict.
+    dead_cache = {}
+    if dead_claim is None:
+        try:
+            from . import github_direct_sync
+            monitor = github_direct_sync.load()
+
+            def dead_claim(mid, cid):
+                return bool(github_direct_sync.dead_id(mid, cid, data=monitor))
+        except Exception:
+            def dead_claim(mid, cid):
+                return False
+
+    def is_dead(mid, cid):
+        key = (str(mid or "").lower(), str(cid or "").lower())
+        cached = dead_cache.get(key)
+        if cached is None:
+            try:
+                cached = bool(dead_claim(key[0], key[1]))
+            except Exception:
+                cached = False
+            dead_cache[key] = cached
+        return cached
+
     def better_claim(mid, cid, cref, previous):
         if previous == (mid, cid):
             return False
+        current_dead = is_dead(mid, cid)
+        previous_dead = is_dead(previous[0], previous[1])
+        if current_dead != previous_dead:
+            return previous_dead
         current_owner = owner_score(mid, cref)
         previous_owner = owner_score(previous[0], cref)
         if current_owner != previous_owner:
@@ -712,6 +744,13 @@ def _fast_single_owner_maps(items, parsed, registry_index, store=None, store_row
                 exact = persisted_exact.get(cref)
                 if exact:
                     cand = exact.get((lmid, lcid))
+                    if (cand is not None and str(cand.get("mode") or "").lower() != "manual"
+                            and is_dead(lmid, lcid)):
+                        # rc82: an automatic saved owner without programmes
+                        # competes again; the fallback pass below prefers a
+                        # live claim and keeps this one if nothing better exists.
+                        unresolved_persisted.add(cref)
+                        continue
                     if cand is not None:
                         prev_target = locked_target.get(cref)
                         if prev_target is None:

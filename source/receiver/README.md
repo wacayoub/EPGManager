@@ -36,7 +36,7 @@ Do not edit `rc81/` in place. Copy it to a new version folder (for example
 
 ## rc82 (candidate, not built or installed)
 
-`rc82/` is rc81 with three fixes, covered by `tests/test_receiver_rc82.py`:
+`rc82/` is rc81 with four fixes, covered by `tests/test_receiver_rc82.py`:
 
 - `core/epg_priority_guard.py`: rc81 turned off satellite EIT (`dxNoEIT`,
   0x1000) on every DVB service that ever received an import and never turned
@@ -50,5 +50,11 @@ Do not edit `rc81/` in place. Copy it to a new version folder (for example
   gone after a reboot.
 - `core/logger.py`: writes `epgmanager.log` to `/media/hdd/epgmanager/logs`
   when `/media/hdd` is mounted, so the log survives reboots and crashes.
+- `core/direct_native_import.py`: when several feeds carry the same channel
+  ID, a feed whose ID is proven empty (`github_direct_sync.dead_id`, NO_EPG)
+  no longer keeps the service if another feed has a guide for it. Automatic
+  saved owners compete again; manual mappings always win; UNKNOWN counts as
+  live. With the 11 November feeds this affects 21 channels, including
+  Thmanyah 1-3, Asharq Documentary, Sharjah TV, Oman TV and Al Kass 1-8.
 
 Do not install rc82 on a receiver that is not known to be clean.

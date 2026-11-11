@@ -133,6 +133,77 @@ class PersistentLog(unittest.TestCase):
             self.assertEqual(module._log_candidates()[0], '/var/log')
 
 
+THMANYAH = '1:0:19:1:2:3:4:0:0:0:'
+SPORT24 = 'ext_epgscrapers_sport24'
+STCTV = 'ext_epgscrapers_stctv'
+
+
+def load_importer():
+    package = types.ModuleType('rc82_imp')
+    package.__path__ = [str(CORE)]
+    stub = lambda name, **attrs: types.SimpleNamespace(__name__='rc82_imp.' + name, **attrs)
+    rank = {SPORT24: (5,), STCTV: (1,)}  # sport24 normally outranks stctv
+    modules = {'rc82_imp': package}
+    names = ('channel_mapper channel_registry source_catalog srp_channel_map source_priority '
+             'source_readiness source_fast_status source_variant_policy external_sources '
+             'source_channel_cache native_importer programme_feed_policy service_epg_sanitizer '
+             'precision_match_engine deterministic_matcher openepg_arabic_overlay '
+             'epg_priority_guard native_epgimport_bridge logger').split()
+    for name in names:
+        modules['rc82_imp.' + name] = stub(name)
+    modules['rc82_imp.channel_registry'].canonical_service_ref = lambda ref: ref
+    modules['rc82_imp.channel_mapper']._token_score = lambda a, b: 0
+    modules['rc82_imp.channel_mapper'].EPG_DIR = tempfile.gettempdir()
+    modules['rc82_imp.source_catalog'].mapping_source_id = lambda item: item['id']
+    modules['rc82_imp.source_priority'].ownership_rank = lambda item, service: rank.get(item.get('id'), (0,))
+    modules['rc82_imp.source_channel_cache'].get = lambda sid: []
+    bridge = modules['rc82_imp.native_epgimport_bridge']
+    for name in ('EPGImportLocalRunner', 'LocalEPGSource', '_source_aliases', 'CountingEPGCacheProxy',
+                 '_load_epgimport_class', 'load_rytec_native_source'):
+        setattr(bridge, name, type(name, (), {}))
+    modules['rc82_imp.logger'].get_logger = lambda name: types.SimpleNamespace(
+        info=lambda *a, **k: None, warning=lambda *a, **k: None, exception=lambda *a, **k: None)
+    with patch.dict(sys.modules, modules):
+        return importlib.import_module('rc82_imp.direct_native_import'), modules
+
+
+class FakeStore:
+    def __init__(self, rows):
+        self.rows = rows
+
+    def all_readonly(self):
+        return self.rows
+
+
+class EmptyFeedOwnership(unittest.TestCase):
+    items = [{'id': SPORT24}, {'id': STCTV}]
+    parsed = {SPORT24: {'sport24.thmanyah.1': [THMANYAH]}, STCTV: {'sport24.thmanyah.1': [THMANYAH]}}
+
+    def owners(self, dead, store=None):
+        module, modules = load_importer()
+        with patch.dict(sys.modules, modules):
+            out, _stats = module._fast_single_owner_maps(
+                self.items, self.parsed, ({}, {}), store=store,
+                dead_claim=lambda mid, cid: (mid, cid) in dead)
+        return sorted(out)
+
+    def test_empty_feed_loses_to_feed_with_programmes(self):
+        self.assertEqual(self.owners(set()), [SPORT24])  # unchanged when both are live
+        self.assertEqual(self.owners({(SPORT24, 'sport24.thmanyah.1')}), [STCTV])
+
+    def test_saved_automatic_owner_without_programmes_is_replaced(self):
+        store = FakeStore({SPORT24 + '::sport24.thmanyah.1': {'mode': 'auto', 'confidence': 90, 'refs': [THMANYAH]}})
+        self.assertEqual(self.owners({(SPORT24, 'sport24.thmanyah.1')}, store), [STCTV])
+
+    def test_manual_owner_is_never_overridden(self):
+        store = FakeStore({SPORT24 + '::sport24.thmanyah.1': {'mode': 'manual', 'confidence': 100, 'refs': [THMANYAH]}})
+        self.assertEqual(self.owners({(SPORT24, 'sport24.thmanyah.1')}, store), [SPORT24])
+
+    def test_all_empty_keeps_previous_choice(self):
+        dead = {(SPORT24, 'sport24.thmanyah.1'), (STCTV, 'sport24.thmanyah.1')}
+        self.assertEqual(self.owners(dead), [SPORT24])
+
+
 class Rc82Package(unittest.TestCase):
     def test_python_compiles_and_versions_agree(self):
         base = ROOT / 'source/receiver/rc82'
