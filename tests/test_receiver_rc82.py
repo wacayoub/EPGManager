@@ -109,14 +109,15 @@ class PriorityGuardExpiry(unittest.TestCase):
 class SourcesExport(unittest.TestCase):
     def test_volatile_paths_are_never_exported(self):
         export, modules = load_core('epgimport_export')
-        with tempfile.TemporaryDirectory() as folder:
-            xml = Path(folder) / 'feed.xml'; xml.write_text('<tv/>')
-            chans = Path(folder) / 'feed.channels.xml'; chans.write_text('<channels/>')
-            rows = [{'source_id': 'good', 'xml_path': str(xml), 'map_path': str(chans)},
-                    {'source_id': 'tmp', 'xml_path': '/tmp/x.xml', 'map_path': str(chans)},
-                    {'source_id': 'volatile', 'xml_path': str(xml), 'map_path': '/var/volatile/x.xml'}]
-            with patch.dict(sys.modules, modules), patch.object(export.os.path, 'exists', return_value=True):
-                text, count = export.build_direct_sources(rows)
+        # Receiver paths; existence is mocked (a real temp dir is under /tmp on Linux).
+        xml = '/etc/epgmanager_epg/feed.xml'
+        chans = '/etc/epgmanager_epg/epgmanager_channels/feed.channels.xml'
+        rows = [{'source_id': 'good', 'xml_path': xml, 'map_path': chans},
+                {'source_id': 'tmp', 'xml_path': '/tmp/x.xml', 'map_path': chans},
+                {'source_id': 'volatile', 'xml_path': xml, 'map_path': '/var/volatile/x.xml'},
+                {'source_id': 'run', 'xml_path': '/run/x/../x.xml', 'map_path': chans}]
+        with patch.dict(sys.modules, modules), patch.object(export.os.path, 'exists', return_value=True):
+            text, count = export.build_direct_sources(rows)
         self.assertEqual(count, 1)
         self.assertIn('EPG Manager - good', text)
         self.assertNotIn('/tmp/', text)
