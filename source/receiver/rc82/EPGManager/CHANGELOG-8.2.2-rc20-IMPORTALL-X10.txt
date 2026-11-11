@@ -1,0 +1,23 @@
+EPGManager 8.2.2-rc20
+
+Import All performance audit / RC20 fast path
+- Root cause #1 fixed: Import All no longer requires a remote Channel-ID catalogue when a valid ServiceRef map already exists. Native EPGImport only needs the map + provider URL. RC19 could re-probe dozens of remote feeds before import even though their mappings were ready.
+- Root cause #2 fixed: first-use remote map preparation now harvests channel IDs only. It prefers provider channels.xml, otherwise stops at the first <programme>; only non-standard programme-only feeds use a small bounded fallback. Cached channel shards are reused with zero network I/O.
+- Root cause #3 fixed: equivalent ServiceRef expansion is deferred until after the first ownership arbitration. RC19 expanded every competing source first, creating 200k+ duplicate claims on large setups. RC20 expands only already-winning automatic targets, then performs a small final ownership pass.
+- Root cause #4 fixed: persisted-owner lookup no longer contains a quadratic fallback scan across every mapping for every receiver reference. Persisted rows are indexed canonically once.
+- Root cause #5 fixed: source-priority ownership scores and canonical ServiceRefs are cached in the hot path. Services with a valid persisted owner skip expensive fallback ranking.
+- Root cause #6 fixed: shared provider channels.xml maps are pruned to receiver refs once per file instead of once per selected source. Cached parsed maps are reused without cloning tens of thousands of lists.
+- MappingStore adds a read-only zero-copy view for Import All so a 75k-row mapping table is not shallow-copied repeatedly.
+- Import progress no longer jumps back to 3% after AUTO PREPARE; the direct-plan stage starts at 64% and is labelled FAST PREPARE.
+- Detailed prepare-stage timings are recorded in the Import All stats/log for future profiling.
+
+Regression / performance tests
+- Synthetic ownership test approximating the receiver screenshot (7,375 receiver services, 52 sources, 258,125 claims, ~95% persisted locks): RC19 5.86s -> RC20 0.56s on the audit host (10.5x for the ownership hot path), with identical final-plan SHA-256.
+- Equivalent-ServiceRef algorithm test: RC19 1.24s -> RC20 0.10s (~12x), with identical final-plan SHA-256 and identical 1,500 final refs.
+- All Python files compile successfully.
+
+Preserved from RC19
+- Qatar 1 conservative Live : inference for full football matches.
+- Deterministic Arabic Opta description translation and RTL/LTR rendering fixes.
+- Single Native EPGImport/eEPGCache writer; no parallel cache writers.
+- Import All remains read-only for mapping ownership; no Smart Mapping state is rewritten.

@@ -34,8 +34,21 @@ Do not edit `rc81/` in place. Copy it to a new version folder (for example
 `rc82/`), change the copy, then build and publish the package. Update
 `update.json` only when the new `.ipk` and its SHA-256 have been released.
 
-Known defect to fix in the next version: `core/epg_priority_guard.py` turns
-off satellite EIT (`dxNoEIT`, 0x1000) on every DVB service that ever received
-an import, and only turns it back on during an explicit reset. When a feed
-later stops covering a service, that service keeps an empty guide. On the
-receiver this affects Al Jazeera English HD and Al Jazeera Documentary.
+## rc82 (candidate, not built or installed)
+
+`rc82/` is rc81 with three fixes, covered by `tests/test_receiver_rc82.py`:
+
+- `core/epg_priority_guard.py`: rc81 turned off satellite EIT (`dxNoEIT`,
+  0x1000) on every DVB service that ever received an import and never turned
+  it back on, so a service its feed stopped covering kept an empty guide
+  (Al Jazeera English HD and Al Jazeera Documentary on the receiver). rc82
+  records when each service was last written and returns SAT EIT after
+  48 hours without EPGManager events. Upgrading releases nothing at once, and
+  an import that wrote no DVB service releases nothing.
+- `core/epgimport_export.py`: never writes `/tmp`, `/var/volatile` or `/run`
+  paths into `/etc/epgimport/epgmanager.sources.xml`, since those files are
+  gone after a reboot.
+- `core/logger.py`: writes `epgmanager.log` to `/media/hdd/epgmanager/logs`
+  when `/media/hdd` is mounted, so the log survives reboots and crashes.
+
+Do not install rc82 on a receiver that is not known to be clean.

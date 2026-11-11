@@ -1,0 +1,19 @@
+EPGManager 8.2.2-rc25 - Performance / Fluidity
+
+Scope: performance only. Mapping/EPG safety rules are unchanged from rc24.
+
+- Smart Mapping receiver paint no longer queries Enigma2 NOW EPG for every mapped
+  service in the satellite/bouquet. Bulk paint is allocation/cache only; NOW EPG
+  is queried and repainted only for the highlighted mapped service.
+- Satellite rendered-row cache no longer expires every minute just because the
+  NOW programme changed. The cached base rows remain reusable while the selected
+  NOW row is transient.
+- Manual Source Override pages large provider Channel-ID catalogues in chunks of
+  120 rows. CH-/CH+ move between ID pages, avoiding thousands of MultiContent rows.
+- MappingStore is process-resident per mapping file. Repeated MappingStore()
+  constructions reuse the same parsed store and reload automatically if the JSON
+  file signature changes externally.
+- Manual/smart mapping row refreshes invalidate and repaint the cached channel
+  view instead of rebuilding all rows with per-channel NOW EPG calls.
+- Existing RC24 Morocco Cloud, 2M multi-source fallback, Arabic/Darija policy,
+  Safe Match, provider/language/satellite rules and mapping ownership are kept.

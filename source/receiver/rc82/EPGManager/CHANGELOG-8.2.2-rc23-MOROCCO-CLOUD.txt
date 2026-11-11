@@ -1,0 +1,40 @@
+EPGManager 8.2.2-rc23 - Morocco Cloud
+=======================================
+
+Morocco EPG architecture
+- SNRT, Arryadia, 2M, Chada TV and Medi1 TV are now represented by one
+  EPG MANAGER / Morocco Cloud external XMLTV source.
+- The receiver no longer needs to run the Morocco HTML scrapers during normal
+  Import All. It downloads one compressed XMLTV feed like EPGShare/OpenEPG.
+- The former local Morocco scraper modules remain installed as an emergency
+  recovery/diagnostic path but are hidden from normal Smart Sources.
+- Existing Smart Sources selections for local SNRT/2M-Chada/Medi1/Arryadia
+  migrate automatically to Morocco Cloud.
+- Existing learned/manual channel mappings are copied to the cloud source while
+  preserving the same XMLTV channel IDs and retaining the old records for rollback.
+- Morocco Cloud is preferred over generic MENA fallbacks on service collisions.
+
+GitHub cloud generator
+- One generator script merges SNRT + Arryadia + 2M + Chada TV + Medi1 TV.
+- Scheduled generation only at 06:00 and 18:00 Africa/Casablanca.
+- GitHub Actions workflow_dispatch allows manual generation at any time.
+- Generation is parallel on GitHub, never on the Vu+.
+- Last-Known-Good protection is applied per provider family; an invalid scrape
+  cannot replace a healthy previous feed.
+- Output: morocco.xml.gz plus a tiny channel catalogue and manifest.
+
+Chada TV
+- Keeps Chada TV in the Morocco feed.
+- Normalizes known show subjects to clean Arabic titles.
+- Removes presenter names from titles and places recognized presenters in the
+  Arabic synopsis.
+- Curated Arabic descriptions for recurring shows such as Dandana, L'Botola,
+  100% VAR and Chada Al Ousra.
+- Unknown shows keep the real source title and receive only a neutral Arabic
+  channel description; no invented synopsis.
+
+Preserved from RC22
+- Qatar1 Arabic-only descriptions and replay-aware Live validation.
+- Expanded SAFE EPG MATCH programme-preview coverage.
+- RC21 Smart Mapping save/repaint fix.
+- RC20 Import All fast path.

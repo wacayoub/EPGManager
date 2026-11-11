@@ -1,0 +1,16 @@
+EPGManager 8.2.2-rc19
+
+Qatar 1 / beIN SPORTS live + description correction
+- Qatar 1 can omit an explicit LIVE flag even for a real live match. RC19 adds a conservative football live detector based on a true Team A vs Team B subject, a recognised football competition, a full broadcast-length XMLTV slot, and hard replay/highlight exclusions.
+- A long Qatar 1 match such as Sunderland vs Arsenal (19:29-22:30) is now rendered as: Live : Sunderland vs Arsenal - الدوري الإنجليزي الممتاز.
+- Explicit provider LIVE markers still win; beIN SPORTS NEWS, Mini Match, highlights, replay, review, archive, pre-match/post-match and Live Studio are never promoted by the inference rule.
+- Common Opta Premier League head-to-head/statistics prose is translated deterministically to full Arabic without adding slow per-programme online translation requests.
+- Unknown/free-form provider prose keeps the existing safe factual Arabic fallback; no invented translation is generated.
+- Qatar 1 bilingual descriptions now use separate Original / العربية lines for cleaner Enigma2 rendering.
+- Latin team/player names and scores are wrapped as LTR islands inside Arabic descriptions to prevent Pango/Enigma2 bidi reordering.
+- Native beIN structured Arabic match descriptions now keep "Team A vs Team B" as one LTR island, fixing reversed or displaced team names in RTL text.
+
+Preserved from RC18
+- Smart Sources multi-selection and bounded concurrent preparation remain unchanged.
+- Native EPGImport remains a single eEPGCache writer.
+- Mapping ownership, XMLTV IDs and ServiceRefs are not changed by the Qatar 1 presentation overlay.
