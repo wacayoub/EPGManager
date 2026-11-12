@@ -1,0 +1,11 @@
+EPGManager 8.2.2-rc38
+======================
+
+- Added Shahid / MBC as a first-class validated EPG-Scrapers direct feed.
+- Added Rotana as a first-class validated EPG-Scrapers direct feed.
+- Reset ALL SIDs now preflights/rebuilds all 7 current direct feeds transactionally.
+- Shahid and Rotana use their published XMLTV ID catalogues for mapping.
+- GitHub Direct Sync dashboard expanded from 5 to 7 monitored direct feeds.
+- Main SaaS dashboard now shows Shahid/MBC and Rotana health cards.
+- Existing rc37 canonical-ID reset, rollback backup and native eEPGCache fallback retained.
+- No synthetic EPG is forced for channels without validated future programmes.

@@ -1,0 +1,83 @@
+#!/bin/sh
+# rc36.2 intentionally keeps postinst simple and non-destructive.
+set -e
+PLUGIN_DIR="/usr/lib/enigma2/python/Plugins/Extensions/EPGManager"
+NEW_DIR="/etc/epgmanager_epg"
+CONFIG_FILE="/etc/enigma2/epgmanager.conf"
+DEFAULTS="$PLUGIN_DIR/config/defaults.json"
+mkdir -p "$NEW_DIR" "$NEW_DIR/backups"
+
+# Hard package integrity check: if opkg did not place the actual plugin, fail visibly.
+[ -f "$PLUGIN_DIR/plugin.py" ] || { echo "EPGManager: missing $PLUGIN_DIR/plugin.py after unpack" >&2; exit 71; }
+[ -f "$PLUGIN_DIR/ui/main.py" ] || { echo "EPGManager: missing ui/main.py after unpack" >&2; exit 72; }
+[ -f "$PLUGIN_DIR/core/runtime_prereqs.py" ] || { echo "EPGManager: missing core/runtime_prereqs.py after unpack" >&2; exit 73; }
+
+if [ ! -f "$CONFIG_FILE" ] && [ -f "$DEFAULTS" ]; then
+    cp -p "$DEFAULTS" "$CONFIG_FILE" 2>/dev/null || true
+fi
+[ -f "$NEW_DIR/custom_dictionary.json" ] || cp -p "$PLUGIN_DIR/data/custom_dictionary.json" "$NEW_DIR/custom_dictionary.json" 2>/dev/null || true
+cp -f "$PLUGIN_DIR/data/translation_cache_ar_v4.json" "$NEW_DIR/translation_cache_ar_v4.json" 2>/dev/null || true
+cp -f "$PLUGIN_DIR/data/unknown_shows.json" "$NEW_DIR/unknown_shows.json" 2>/dev/null || true
+
+# Preserve source choices; initialize only when absent.
+if [ ! -f /etc/enigma2/epgmanager_source_preferences.json ]; then
+cat > /etc/enigma2/epgmanager_source_preferences.json <<'EPGMRCPREF'
+{
+  "version": 13,
+  "countries": {},
+  "selected_ids": [
+    "ext_epgscrapers_morocco",
+    "ext_epgscrapers_bein",
+    "ext_epgscrapers_elcinema",
+    "ext_epgscrapers_osn",
+    "ext_epgscrapers_sport24",
+    "ext_epgscrapers_dubaiplus",
+    "ext_epgscrapers_starzplay",
+    "ext_epgscrapers_shahid",
+    "ext_epgscrapers_rotana",
+    "ext_epgscrapers_stctv",
+    "ext_epgscrapers_aljazeera",
+    "ext_epgscrapers_alkass",
+    "ext_epgscrapers_tunisiatv",
+    "ext_epgscrapers_tabie"
+  ],
+  "pinned_ids": []
+}
+EPGMRCPREF
+fi
+
+# rc70: preserve the user's existing source selection exactly. Older postinst
+# revisions filtered selected_ids through a stale direct-source whitelist and
+# could silently remove newer sources such as Al Kass, TunisiaTV and Tabie.
+python3 - <<'EPGMRCPREFKEEP'
+import json, os
+p='/etc/enigma2/epgmanager_source_preferences.json'
+try:
+    data=json.load(open(p,'r')) if os.path.exists(p) else {}
+except Exception:
+    data={}
+if isinstance(data,dict):
+    data['version']=max(int(data.get('version') or 0),13)
+    data.setdefault('countries',{})
+    data.setdefault('selected_ids',[])
+    data.setdefault('pinned_ids',[])
+    tmp=p+'.tmp'
+    with open(tmp,'w') as fh:
+        json.dump(data,fh,indent=2,sort_keys=True); fh.write('\n')
+    os.rename(tmp,p)
+EPGMRCPREFKEEP
+
+# Remove only bytecode, never package source files or directories.
+find "$PLUGIN_DIR" -type d -name __pycache__ -prune -exec rm -rf {} + 2>/dev/null || true
+find "$PLUGIN_DIR" -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete 2>/dev/null || true
+
+PREREQ_LOG="/tmp/epgmanager-prereq-check.log"
+PYTHONPATH="/usr/lib/enigma2/python${PYTHONPATH:+:$PYTHONPATH}" python3 "$PLUGIN_DIR/core/runtime_prereqs.py" >"$PREREQ_LOG" 2>&1 || {
+    rc=$?
+    echo "EPGManager: prerequisite check failed; see $PREREQ_LOG" >&2
+    exit "$rc"
+}
+
+# Final existence check after all install actions.
+[ -s "$PLUGIN_DIR/plugin.py" ] || { echo "EPGManager: plugin.py disappeared during postinst" >&2; exit 74; }
+exit 0

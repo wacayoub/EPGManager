@@ -1,0 +1,24 @@
+EPGManager 8.2.2-rc24 - 2M Multi-Source Cloud
+================================================
+
+2M cloud resilience
+- Keeps TeleCableSat as the historical primary source.
+- Adds Telerama as Backup 1 for full-day/current schedules.
+- Adds Sudinfo / Cine-Tele-Revue as Backup 2, including programme durations when available.
+- Adds TVMag / Le Figaro as a today-only emergency web fallback.
+- Uses Last-Known-Good only if the fresh multi-source horizon is still incomplete.
+- Rejects cached/wrong-date pages before they can enter the XMLTV feed.
+- Detects Sudinfo after-midnight rollover and preserves explicit stop times when available.
+- Fills missing programme slots without overwriting healthy primary rows.
+
+2M language policy preserved
+- Known 2M programme names remain normalized to Arabic/Darija.
+- Descriptions remain Arabic-only; short French category labels are replaced by semantic Arabic descriptions.
+- First evening Info Soir / Météo / Eco News titles remain French.
+- Later/replay occurrences use the canonical Arabic titles.
+
+Receiver architecture
+- Vu+ still downloads only:
+  https://raw.githubusercontent.com/wacayoub/EPGManager/epg-data/morocco.xml.gz
+- No new receiver-side scraping or performance cost is introduced.
+- RC23 Morocco Cloud migration/mapping behavior and all earlier RC22/RC21/RC20 fixes are preserved.

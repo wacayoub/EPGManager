@@ -1,0 +1,8 @@
+EPGManager 8.2.2-rc65 - EPG ID single-source owner
+
+- EPG SOURCE ID MONITOR now follows the global SRP master one-owner decision.
+- A receiver ServiceRef can be shown MAPPED by one source/channel ID only.
+- Other valid source candidates are shown as ALT (grey), not as extra MAPPED rows.
+- Existing SRP master priority/manual ownership remains authoritative.
+- If master state is missing, the monitor performs the existing cache-only state recovery before painting mappings.
+- No EPG feed, source selection, bouquet, lamedb or user mapping is deleted.
