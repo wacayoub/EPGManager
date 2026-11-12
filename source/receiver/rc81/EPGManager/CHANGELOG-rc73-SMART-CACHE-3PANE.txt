@@ -1,0 +1,11 @@
+EPGManager rc73 — SMART CACHE + 3-PANE MAPPING
+
+- Home BLUE button is now Add Source / Sources.
+- System Check moved into LOGS & DIAGNOSTICS on BLUE.
+- Smart Mapping visible workflow reduced to 3 panes: Reception -> Receiver Channel -> Best EPG Match.
+- Removed the permanent Source column.
+- Source details and manual source override moved to BLUE -> More.
+- Smart Mapping automatically reuses current compact Channel-ID cache.
+- Missing/stale selected source catalogues refresh in a daemon worker only; fresh caches do not trigger network refresh.
+- Automatic best-match positioning is preserved: safest candidate remains first and selected automatically.
+- Manual source refresh is no longer required in the normal Smart Mapping workflow.

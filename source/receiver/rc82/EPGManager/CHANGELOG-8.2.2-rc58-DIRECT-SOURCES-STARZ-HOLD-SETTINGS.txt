@@ -1,0 +1,11 @@
+EPGManager 8.2.2-rc58 - DIRECT SOURCES / STARZPLAY HOLD / SETTINGS CLEANUP
+
+- Built from the validated 8.2.2-rc57 package, not the obsolete 6.x line.
+- STARZPLAY direct source is on hold and is no longer exposed by EPGManager.
+- Added Al Jazeera as a direct EPG-Scrapers feed (XMLTV + ID catalogue + GitHub status).
+- Current direct set remains 10 feeds: Morocco, beIN, ElCinema, OSN, Sport24, Dubai+, Shahid/MBC, Rotana, STC TV, Al Jazeera.
+- Existing default rc57 selections migrate once: STARZPLAY is removed and Al Jazeera is added. Custom subsets remain custom.
+- Removed obsolete visible Settings rows: Automatic source maintenance / Local sources refresh time.
+- Legacy background_source_updates remains only for backward config compatibility and is forced OFF on save/recommended values.
+- Dashboard and Smart Mapping source labels now use Al Jazeera instead of STARZPLAY.
+- Existing rc54-rc57 Smart Mapping, NOW/NEXT, mapping locks, LKG guards, STC, Dubai+, OSN and ElCinema fixes are preserved.

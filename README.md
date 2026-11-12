@@ -36,6 +36,7 @@ diagnostics, byte-pinned publication decisions and producer receipts.
 | `config/` | Source, language and schedule policies |
 | `data/` | Arryadia models/history and translation caches used by collection |
 | `source/` | Selected plugin base package and maintained source overlay |
+| `source/receiver/rc81/` | Exact rc81 plugin installed on the receiver, checked by `tests/test_receiver_source.py` |
 | `feeds/` | Fourteen direct bundles and the diagnostic MENA aggregate |
 | `docs/` | Operating contracts, audits and migration records |
 | `archives/epg-scrapers/` | Consolidation provenance and transferred issue index |

@@ -1,0 +1,17 @@
+EPGManager 8.2.2-rc37 — SID Reset / Canonical Mapping / Native Import
+
+- Adds Advanced Tools -> RESET ALL SIDs + rebuild/import fresh EPG.
+- Creates a rollback tar.gz before reset.
+- Resets only EPGManager mapping/SRP/cache state; never lamedb, bouquets or favourites.
+- Re-selects the five production GitHub feeds and refreshes their current XMLTV data.
+- Rebuilds SID maps from canonical XMLTV IDs and current receiver services.
+- Fixes bulk/manual mapping code that lower-cased XMLTV IDs in generated channels.xml files.
+- Adds same-source one-owner specificity so generic IDs cannot steal numbered channels (e.g. beIN SPORTS vs beIN SPORTS 1).
+- Adds exact native eEPGCache XMLTV import fallback when OE-Alliance EPGImport is not installed.
+- Keeps import non-fuzzy: the native fallback consumes the already prepared source->ServiceRef map only.
+- Cleans old pre-bulk/pre-exclusive mapping snapshots during an explicit full SID reset.
+- Uses current production feeds: Morocco, beIN, ElCinema, OSN and Sport24.
+- Reset is transactional: all five feeds must refresh/validate before any old SID state is removed.
+- Reset aborts without touching mappings when source preflight fails or the rollback backup cannot be created.
+- Fixes native XMLTV streaming metadata loss caused by clearing title/desc/category children before programme end.
+- Reset success requires 5/5 direct sources plus a successful global one-owner SRP master rebuild.

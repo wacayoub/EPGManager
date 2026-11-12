@@ -1,6 +1,6 @@
 # Source clock on the Vu+
 
-The receiver checks the configured Africa/Casablanca targets every minute.
+The receiver checks the configured Africa/Casablanca targets every 5 minutes.
 It sends a small Git request to the dedicated `vuplus-clock` branch when a task
 is due. GitHub then runs the existing collector from `main`.
 The 14 provider collections, postprocessing at 08:37 and watchdog at 14:15 use
@@ -22,7 +22,18 @@ The SSH host keys are pinned to GitHub's published keys.
 The pure-Python Git runtime is pinned by URL and SHA-256 in
 `config/vuplus-clock-runtime.json`.
 
-The managed crontab entry runs `vuplus_clock.py tick` every minute.
+The managed crontab entry runs `vuplus_clock.py tick` every 5 minutes:
+
+```
+*/5 * * * * /usr/bin/python3 /etc/epgmanager-clock/vuplus_clock.py tick >/dev/null 2>&1 # epgmanager-source-clock
+```
+
+Each tick starts Python (about 0.4 s of CPU on a Vu+ Zero 4K) and writes
+`state.json`, so a 1-minute entry cost about 10 CPU-minutes and 1,440 writes
+a day for 16 deliveries. With 5-minute ticks a task is sent at most 5 minutes
+after its target. The closest targets are 8 minutes apart, so every task still
+gets its own tick in target order; `tools/test_vuplus_clock.py` fails if a
+schedule change brings two targets within one tick.
 The controller serializes concurrent ticks and sends at most one due task per
 tick. Successful delivery is recorded atomically. A failed delivery retries on
 the next tick. A deterministic commit makes a retry of the same task idempotent.

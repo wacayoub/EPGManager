@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sources>
+  <!-- EPGManager beta117: Poland uses the current OE-Alliance Azman pack and its authoritative Service-Reference map. -->
+  <mappings>
+    <channel name="azman.channels.xml.xz">
+      <url>http://www.topolowa4.pl/azman.channels.xml.xz</url>
+      <url>http://www.xmltvepg.nl/azman.channels.xml.xz</url>
+      <url>http://rytecepg.wanwizard.eu/azman.channels.xml.xz</url>
+      <url>http://epg.vuplus-community.net/azman.channels.xml.xz</url>
+    </channel>
+  </mappings>
+  <sourcecat sourcecatname="EPGManager Poland - Azman">
+    <source type="gen_xmltv" channels="azman.channels.xml.xz">
+      <description>EPGManager / Poland Azman / Basic</description>
+      <url>http://www.topolowa4.pl/azman_basic.xml.xz</url>
+      <url>http://www.xmltvepg.nl/azman_basic.xml.xz</url>
+      <url>http://rytecepg.wanwizard.eu/azman_basic.xml.xz</url>
+      <url>http://epg.vuplus-community.net/azman_basic.xml.xz</url>
+    </source>
+    <source type="gen_xmltv" channels="azman.channels.xml.xz">
+      <description>EPGManager / Poland Azman / Additional</description>
+      <url>http://www.topolowa4.pl/azman_misc.xml.xz</url>
+      <url>http://www.xmltvepg.nl/azman_misc.xml.xz</url>
+      <url>http://rytecepg.wanwizard.eu/azman_misc.xml.xz</url>
+      <url>http://epg.vuplus-community.net/azman_misc.xml.xz</url>
+    </source>
+  </sourcecat>
+</sources>

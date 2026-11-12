@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
     branches: [main, codex/unify-scrapers-sources]
-    paths: ['tools/**', 'tests/**', 'source/overlay/**', '.github/workflows/**', 'config/**']
+    paths: ['tools/**', 'tests/**', 'source/overlay/**', 'source/receiver/**','.github/workflows/**', 'config/**']
   workflow_dispatch:
 permissions:
   contents: read
