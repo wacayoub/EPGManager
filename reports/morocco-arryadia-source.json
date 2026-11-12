@@ -1,6 +1,6 @@
 {
   "source": "arryadia",
-  "checked_utc": "2026-11-11T07:07:36.056006+00:00",
+  "checked_utc": "2026-11-12T15:56:23.682280+00:00",
   "scope": "official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format",
   "receiver_release_status": "NO_GO",
   "attempts": [
@@ -63,15 +63,11 @@
       "provider": "LiveScore",
       "requests": [
         {
-          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-11",
+          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-12",
           "http_status": 403
         },
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/live/soccer/0?countryCode=MA&locale=en",
-          "http_status": 200
-        },
-        {
-          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261111/0?countryCode=MA&locale=en",
           "http_status": 200
         },
         {
@@ -101,13 +97,17 @@
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261118/0?countryCode=MA&locale=en",
           "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261119/0?countryCode=MA&locale=en",
+          "http_status": 200
         }
       ],
       "fixture_count": 0
     },
     "botola_matches_added": [],
     "simultaneous_matches_not_assigned": [],
-    "smart_recurring_programmes": 50,
+    "smart_recurring_programmes": 49,
     "official_broadcast_claim": false
   },
   "status": "ESTIMATED_SCHEDULE_WITHOUT_CURRENT_OFFICIAL_GRID",
@@ -119,11 +119,11 @@
     "Arryadia_HD2",
     "Arryadia_HD3"
   ],
-  "smart_estimated_events": 50,
+  "smart_estimated_events": 49,
   "requested_window_hours": 168,
-  "output_events": 388,
+  "output_events": 387,
   "channel_counts": {
-    "Arryadia_HD": 50,
+    "Arryadia_HD": 49,
     "Arryadia_TNT": 0,
     "Arryadia_HD1": 0,
     "Arryadia_HD2": 169,
