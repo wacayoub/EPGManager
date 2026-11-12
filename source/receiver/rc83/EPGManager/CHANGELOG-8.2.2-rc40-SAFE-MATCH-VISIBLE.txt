@@ -1,0 +1,9 @@
+EPGManager 8.2.2-rc40 — SAFE EPG MATCH VISIBLE
+
+- Fixes the right SAFE EPG MATCH pane appearing blank on some OpenATV/Metrix builds while rows and scrollbar were present.
+- Uses a neutral MultiContent row payload and direct eListboxPythonMultiContent publishing for compatibility.
+- Adds explicit selected-row foreground/background rendering so candidate text remains visible.
+- Keeps rc39 XMLTV-ID health colours/badges: green ID OK, red NO EPG, orange warning.
+- When the global Smart index is not ready, selected-source matching now falls back to a bounded RAM-only shortlist from already prepared IDs instead of presenting an empty pane.
+- No network request is triggered by cursor movement or RIGHT navigation.
+- Mapping/SID/import logic is otherwise unchanged from rc39.

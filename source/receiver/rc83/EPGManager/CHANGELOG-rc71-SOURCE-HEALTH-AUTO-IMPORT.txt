@@ -1,0 +1,37 @@
+EPGManager rc71 — CURRENT SCRAPER HEALTH + AUTO IMPORT RETRY
+=============================================================
+Date: 2026-10-01
+Base: rc70 AUTO_IMPORT_STABILITY
+
+UPDATED DIRECT SOURCE STATUS
+----------------------------
+- Keeps the 14 current EPG-Scrapers direct sources:
+  Morocco, beIN, ElCinema, OSN, Sport24, Dubai+, STARZPLAY GCC, Shahid/MBC,
+  Rotana, STC TV, Al Jazeera, Al Kass, TunisiaTV and Tabie QMC.
+- GitHub source status now consumes active_channels, zero_epg_channels and
+  zero_epg_ids from each feeds/<source>.json metadata file.
+- A feed with partial ID coverage is shown as WARNING instead of HEALTHY.
+- Feeds older than 36 hours are marked STALE. This makes an old LKG visible
+  instead of presenting it as a fresh green scraper result.
+- Dashboard provider cards now show source online count, active IDs, total IDs,
+  coverage and zero-EPG IDs.
+- System Check warns on stale/partial direct metadata while still allowing the
+  usable LKG XML to remain available.
+
+AUTO IMPORT RELIABILITY
+-----------------------
+- A scheduled Native Import is recorded successful only after the import runner
+  returns ok=True.
+- 'No mapped local XMLTV source' no longer advances last_native_import.
+- Startup/import exceptions no longer fake a successful daily import.
+- Failed starts and failed imports use the same bounded retry policy:
+  up to 3 attempts for the slot, 10 minutes apart.
+- Existing 60-second scheduler poll, 5-minute boot grace and <=3h boot catch-up
+  window from rc70 are preserved.
+
+UPGRADE SAFETY
+--------------
+- Existing mappings, selected sources and local direct/LKG XML are preserved.
+- Manual per-source time corrections are now included in the pre-upgrade backup.
+- No receiver-side web scraping was added; all programme scraping remains on
+  wacayoub/EPG-Scrapers and the Vu+ consumes the published XMLTV feeds.

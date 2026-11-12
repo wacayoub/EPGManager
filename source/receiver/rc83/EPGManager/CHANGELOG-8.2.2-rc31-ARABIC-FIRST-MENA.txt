@@ -1,0 +1,13 @@
+EPG Manager 8.2.2-rc31 — Arabic-First MENA
+
+- MENA programme-source policy is now Arabic-first end-to-end.
+- Cloud generation chooses a structurally safe Arabic timeline before English/international fallback for regular Arabic channels.
+- Receiver ownership mirrors the same order when multiple selected feeds claim one service:
+  MENA Cloud AR > local MENA > OpenEPG/other MENA AR > neutral/bilingual MENA > FR > EN.
+- English is fallback only when no trustworthy Arabic EPG is available.
+- Wrong foreign-guide contamination is rejected instead of being shown on an unrelated Arabic channel.
+- beIN/OSN keep their dedicated premium policy; beIN Sports keeps Qatar1-style hybrid EN/AR titles with Arabic descriptions.
+- MBC keeps season/episode metadata out of titles and inside Arabic descriptions.
+- 48-hour / 2-day MENA guide, exclusive country/provider shards and lightweight .txt Smart Mapping catalogues are unchanged.
+- No full programme XML parsing is added to Smart Mapping UI.
+- Manual mappings, mapping ownership protection and existing caches remain unchanged.

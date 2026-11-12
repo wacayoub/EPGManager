@@ -34,7 +34,24 @@ Do not edit `rc81/` in place. Copy it to a new version folder (for example
 `rc82/`), change the copy, then build and publish the package. Update
 `update.json` only when the new `.ipk` and its SHA-256 have been released.
 
-## rc82 (candidate, not built or installed)
+## rc83 (installed on the receiver 2026-11-12)
+
+`rc83/` is rc82 with two changes, covered by `tests/test_receiver_rc83.py`:
+
+- `core/native_epgimport_bridge.py`, `core/epg_priority_guard.py`: a service
+  counts as written only when it receives at least one programme that has not
+  ended. A stale feed used to mark the service as owned, which turned off its
+  SAT EIT and left the guide blank: 303 of 4,443 protected services on the
+  receiver (BBC News, Bloomberg, Euronews, Disney Channel, Tunisia Nat 1/2, …).
+  Services that only received finished programmes get SAT EIT back at the end
+  of the same import.
+- `core/direct_native_import.py`: the Fast Import plan is 2.3x faster
+  (170 s to 73 s on the Vu+ Zero 4K, 72 selected sources) by caching
+  duplicate-channel name keys, source ranking parts, the dead-feed check for
+  sources that cannot have a verdict, and the shared-Rytec-map test. The plan
+  was verified byte-identical to rc82's on the receiver.
+
+## rc82 (installed 2026-11-12, replaced by rc83)
 
 `rc82/` is rc81 with four fixes, covered by `tests/test_receiver_rc82.py`:
 

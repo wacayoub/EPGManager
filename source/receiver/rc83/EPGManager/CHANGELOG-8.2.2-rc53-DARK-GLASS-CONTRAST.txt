@@ -1,0 +1,30 @@
+EPGManager 8.2.2-rc53 — DARK GLASS / READABILITY
+
+USER FIELD FEEDBACK
+-------------------
+The rc51/rc52 live-TV glass effect was too transparent on a real Vu+ / OpenATV / Metrix display.
+Programme video competed with Smart Mapping IDs, source names, dashboard cards and footer text.
+
+RC53 VISUAL FIX
+---------------
+- Main full-screen background: transparency reduced from 0x70 to 0x20.
+- Header/footer panels: 0x48 -> 0x10.
+- Dashboard cards: 0x3A -> 0x14.
+- List rows: 0x3A/0x36 -> 0x08.
+- Smart Mapping body: 0x70 -> 0x28.
+- Smart Mapping header/footer: 0x50 -> 0x10.
+- Active/selected rows are now fully opaque for maximum readability.
+- RGB colours, source status colours and layout dimensions are unchanged.
+
+RESULT
+------
+The current TV picture remains faintly visible as a Metrix-style background, but text and mapping
+status now dominate the screen instead of the video. No video stop/play call was added.
+
+UNCHANGED
+---------
+- rc52 green/red EPG ID status and NOW/NEXT display.
+- rc50 ElCinema ID aliases.
+- rc49 full direct IDs and dashboard tabs.
+- Optional Auto Mapping, protected reset, source priority, timezone and import logic.
+- No mapping/source/cache/network logic changed in rc53.

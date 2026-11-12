@@ -1,0 +1,16 @@
+EPGManager 8.2.2-rc42
+
+Full virtual pipeline validation build.
+
+Fixes:
+- EPG SCRAPERS direct feeds are treated as validated direct catalogues for SAFE EXACT ownership only after all hard programme-feed, variant, provider, satellite and language guards pass.
+- This allows broad-MENA direct catalogues such as OSN and ElCinema to produce safe SRP ownership for exact/canonical identities instead of staying REVIEW-only.
+- Added Al Araby 2 TV / Al Araby 2 TV HD aliases to the curated al_araby_2 identity.
+
+Virtual end-to-end test performed with receiver-originated DVB SRPs and all seven direct sources:
+- SRP Master: 7/7 sources built, 11 source ID claims -> 9 single-owner receiver services, 0 unresolved IDs in the fixture.
+- Smart Mapping: 9/9 fixture receiver services painted with exactly one owner.
+- Import All prepare: 7/7 sources ready, 9 mapped channel IDs/service refs, duplicate claims suppressed deterministically.
+- Native eEPGCache fallback: 22 programmes parsed, 18 imported to 9 receiver services, 0 failed events, 0 foreign SRP targets; 4 duplicate-source programmes skipped by single-owner policy.
+- Mapping state remained unchanged during Import All.
+- Mapping regression pack: 33/33 PASS.
