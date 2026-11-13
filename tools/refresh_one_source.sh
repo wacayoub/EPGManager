@@ -241,6 +241,15 @@ PY
       python tools/elcinema_hybrid.py merge --arabic output/source-build/elcinema.raw.xml --english output/source-build/elcinema.hybrid.en.raw.xml --policy config/elcinema-language-policy.json --cache data/elcinema_translation_cache.json --output output/source-build/elcinema.hybrid.raw.xml --report reports/elcinema-hybrid.json || true
       [ -s output/source-build/elcinema.hybrid.raw.xml ] && mv output/source-build/elcinema.hybrid.raw.xml output/source-build/elcinema.raw.xml
     fi
+    # ElCinema publishes some channels hours away from the real broadcast time
+    # (5 h early for Rotana/beIN Movies on 13 Nov 2026). Correct each channel
+    # against the trusted production feeds before packing.
+    if has_programmes output/source-build/elcinema.raw.xml; then
+      python tools/elcinema_time_calibrate.py --input output/source-build/elcinema.raw.xml --output output/source-build/elcinema.calibrated.raw.xml --learned config/elcinema-time-offsets.json --report reports/elcinema-time-calibration.json || true
+      if has_programmes output/source-build/elcinema.calibrated.raw.xml; then
+        mv output/source-build/elcinema.calibrated.raw.xml output/source-build/elcinema.raw.xml
+      fi
+    fi
     pack_source elcinema output/source-build/elcinema.raw.xml output/source-build/elcinema.channels.xml || true
     ;;
 
