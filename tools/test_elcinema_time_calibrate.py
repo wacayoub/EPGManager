@@ -86,18 +86,26 @@ class Calibration(unittest.TestCase):
         self.assertEqual(starts(elc, "Alone.iq@SD"), before)
         self.assertEqual(report["no_reference"], 1)
 
-    def test_learned_shift_used_when_reference_missing_and_expires(self):
-        fresh = {"oman.om@sd": {"shift_minutes": 300, "verified_utc": (NOW - timedelta(days=3)).isoformat()}}
-        elc = feed({"Oman.om@SD": grid(TITLES, offset_hours=-5)})
-        report = cal.calibrate(elc, {}, fresh, NOW)
-        self.assertIn("oman.om@sd", report["learned_applied"])
-        self.assertEqual(starts(elc, "Oman.om@SD"), [cal.fmt_time(r[0]) for r in grid(TITLES)])
+    def test_remembered_shift_is_not_reused_without_proof(self):
+        # MBC Drama was 5 h early in one run and correct in the next: a shift
+        # remembered from an earlier run must never move today's rows.
+        learned = {"mbcdrama.ae@sd": {"shift_minutes": 300, "verified_utc": (NOW - timedelta(hours=12)).isoformat()}}
+        elc = feed({"MBCDrama.ae@SD": grid(TITLES)})
+        before = starts(elc, "MBCDrama.ae@SD")
+        report = cal.calibrate(elc, {}, learned, NOW)
+        self.assertEqual(starts(elc, "MBCDrama.ae@SD"), before)
+        self.assertEqual(report["learned_applied"], {})
+        self.assertEqual(report["no_reference"], 1)
 
-        old = {"oman.om@sd": {"shift_minutes": 300, "verified_utc": (NOW - timedelta(days=40)).isoformat()}}
-        elc = feed({"Oman.om@SD": grid(TITLES, offset_hours=-5)})
-        before = starts(elc, "Oman.om@SD")
-        report = cal.calibrate(elc, {}, old, NOW)
-        self.assertEqual(starts(elc, "Oman.om@SD"), before)
+    def test_same_channel_follows_each_runs_own_proof(self):
+        learned = {}
+        early = feed({"MBCDrama.ae@SD": grid(TITLES, offset_hours=-5)})
+        cal.calibrate(early, refs({"MBCDrama.ae@SD": grid(TITLES)}), learned, NOW)
+        self.assertEqual(starts(early, "MBCDrama.ae@SD"), [cal.fmt_time(r[0]) for r in grid(TITLES)])
+        on_time = feed({"MBCDrama.ae@SD": grid(TITLES)})
+        cal.calibrate(on_time, refs({"MBCDrama.ae@SD": grid(TITLES)}), learned, NOW)
+        self.assertEqual(starts(on_time, "MBCDrama.ae@SD"), [cal.fmt_time(r[0]) for r in grid(TITLES)])
+        self.assertEqual(learned["mbcdrama.ae@sd"]["shift_minutes"], 0)
 
     def test_repeats_every_eight_hours_pick_the_aligned_shift(self):
         # Same six titles re-aired every 8 h: titles fit +5 h and -3 h equally;
