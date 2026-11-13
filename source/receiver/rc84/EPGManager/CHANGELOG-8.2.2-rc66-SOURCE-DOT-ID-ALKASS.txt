@@ -1,0 +1,9 @@
+EPGManager 8.2.2-rc66
+
+- EPG SOURCE ID MONITOR now displays friendly SOURCE.CHANNEL identities.
+  Example: STC TV.CNN.
+- Stable XMLTV IDs are unchanged internally; existing mappings remain valid.
+- Monitor rows are grouped source-first for faster provider/category browsing.
+- Added dedicated Al Kass direct source (Al Kass 1-8) from EPG-Scrapers.
+- Al Kass direct source is preferred over generic Qatar fallbacks for Al Kass channels.
+- Existing custom source selections remain custom; full direct installs migrate once to include Al Kass.

@@ -1,0 +1,18 @@
+EPGManager 2026.11.12-rc83
+==========================
+
+Fixes
+- A channel counts as "written" only when it received at least one programme
+  that has not ended yet. Before, a stale feed (only finished programmes) still
+  marked the channel as owned by EPGManager, which blocked its satellite EIT and
+  left the guide blank. Seen on the receiver: AD Sport 1/2, Star Movies, Bloomberg,
+  Nat Geo Wild, DreamWorks, Al Hayat and others.
+- Channels whose feed had only finished programmes get their satellite guide back
+  at the end of the same import (no 48-hour wait).
+
+Speed (import plan; same plan as rc82, verified on the receiver)
+- Duplicate-channel name keys are memoised (was ~200k recomputations).
+- Source ranking caches the source-only part and the name/provider bonus.
+- The "dead feed" check is skipped for sources that cannot have a verdict
+  (no GitHub monitor entry and no local quality profile).
+- The shared-Rytec-map test is cached per source pair.

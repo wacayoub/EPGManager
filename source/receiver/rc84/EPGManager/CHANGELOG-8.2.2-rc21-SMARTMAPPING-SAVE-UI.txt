@@ -1,0 +1,19 @@
+EPGManager 8.2.2-rc21
+
+SMART MAPPING MANUAL CORRECTION FIX
+- Fixed the exact "too many values to unpack (expected 2)" error shown after mapping/correcting a receiver channel.
+- Root cause: ChannelPaneList.build_rows() requires a callback returning (tag, state), but two post-save repaint paths passed _mapping_suffix(), which returns one string. Python then tried to unpack the characters of that string into two values.
+- Both manual Assign and SmartMatch IPTV post-save repaint paths now use _cached_mapping_visual(), the same validated callback used by normal receiver-list painting.
+- Current-programme preview is preserved during the post-save repaint.
+- Mapping persistence remains exclusive and no mapping/source policy was changed.
+
+SAFE EPG MATCH UI
+- Safe-match rows now reserve 62 px for two-line entries.
+- Main candidate font reduced slightly to 18 for long provider/channel labels.
+- Text width is constrained to the real 505 px pane (with scrollbar allowance) instead of drawing past the pane edge.
+- NOW/NEXT EPG preview line gets 25 px height and no longer clips into the next row.
+- Skin itemHeight is synchronized with the custom MultiContent list.
+
+PRESERVED
+- RC20 Import All x10 CPU hot-path optimizations.
+- RC19 Qatar 1 Live inference and Arabic description fixes.

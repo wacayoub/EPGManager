@@ -1,0 +1,10 @@
+EPGManager 8.2.2-rc46
+
+REAL RECEIVER FIXES
+- SAFE EPG MATCH no longer inserts the SUGGESTIONS title as a selectable row.
+- MultiContent rows use unique numeric payloads instead of None.
+- SAFE pane UP/DOWN moves the native eListbox cursor first, with a bounded fallback.
+- Auto Mapping stays optional: opening it does not start work. GREEN Start Search now launches the batch immediately when ready or queues it while the receiver snapshot warms.
+- YELLOW = protected RESET ALL SIDs + rebuild/import, with the existing confirmation and rollback backup.
+- Refresh selected source moved to BLUE -> More.
+- Keeps rc45 Morocco permanent-GMT and seven-direct-source behavior.
