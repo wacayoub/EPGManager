@@ -34,7 +34,23 @@ Do not edit `rc81/` in place. Copy it to a new version folder (for example
 `rc82/`), change the copy, then build and publish the package. Update
 `update.json` only when the new `.ipk` and its SHA-256 have been released.
 
-## rc83 (installed on the receiver 2026-11-12)
+## rc84 (installed on the receiver 2026-11-13)
+
+`rc84/` is rc83 with a faster Smart Mapping screen, covered by
+`tests/test_receiver_rc84.py`. Import and mapping logic are unchanged.
+
+- Measured inside Enigma2 on the Vu+ Zero 4K (12,230 satellite services):
+  opening Smart Mapping blocked the remote for 4.3 s, now 1.6 s; switching
+  to 7.0W (about 700 channels) 1.2 s, now 0.8 s on the first visit.
+- `core/channel_registry.py`: `canonical_service_ref()` results are cached.
+- `ui/channel_mapping.py`: the ref-key cache is no longer cleared when the
+  mapped view loads, and its bound is raised; the conflict check counts
+  MANUAL owners without ranking every candidate; the header runs it only for
+  mapped services; orbital labels are computed once per position; the
+  background source-cache refresh starts 4 s after the screen opens.
+- `ui/compat.py`: list rows reuse the desktop size for 5 s.
+
+## rc83 (installed 2026-11-12, replaced by rc84)
 
 `rc83/` is rc82 with two changes, covered by `tests/test_receiver_rc83.py`:
 

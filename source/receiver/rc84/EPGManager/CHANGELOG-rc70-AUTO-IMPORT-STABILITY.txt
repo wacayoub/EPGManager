@@ -1,0 +1,23 @@
+EPGManager rc70 — AUTO IMPORT + STABILITY
+=========================================
+
+Base: user-supplied rc69 package.
+
+FIXES
+-----
+- Register PluginDescriptor.WHERE_AUTOSTART so Native Auto Import actually starts with Enigma2.
+- Auto Import scheduler is reloaded immediately when Settings are saved; no GUI/Enigma2 restart required.
+- Native scheduler checks every 60 seconds instead of every 5 minutes.
+- Safe reboot catch-up: wait 5 minutes after boot, then catch a missed slot only when it is <= 3 hours old.
+- Do not start first-use remote mapping or GitHub control-plane network sync during Enigma2 boot; these remain lazy/on-demand.
+- Fix postinst source-selection migration so upgrades no longer remove Alkass, TunisiaTV or Tabie.
+- Fresh installations include all current direct sources.
+- Native Import time can be adjusted in 5-minute steps.
+- Recommended/fresh-install Auto Import time moved to 08:20 Casablanca, after the 06:00–08:10 staggered source refresh window.
+- Active plugin version is rc70; legacy 8.2.2 label removed from current package metadata/UI version.
+
+SAFETY
+------
+- User mappings and source selections are preserved on upgrade.
+- Existing LKG/direct XML files are preserved.
+- Receiver boot stays cache-only; no heavy programme download is added to autostart.

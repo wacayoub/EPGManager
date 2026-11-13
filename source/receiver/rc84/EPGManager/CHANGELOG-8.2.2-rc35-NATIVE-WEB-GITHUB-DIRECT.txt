@@ -1,0 +1,11 @@
+EPGManager 8.2.2-rc35
+
+- Replaced rc34 home theme with a fully new native Enigma2 web/SaaS analytics dashboard.
+- No HTML/WebView: opaque native widgets only for low CPU/GPU cost.
+- Receiver-side Source Manager removed from normal workflow.
+- BLUE now opens read-only GitHub Direct Sync status.
+- Six validated EPG-Scrapers feeds are always active: 2M, Chada, beIN, ElCinema, OSN, Sport24.
+- Dashboard syncs only tiny per-feed JSON metadata from GitHub in background.
+- Full XMLTV is fetched only by the import path.
+- Direct-source health bars show channels/programmes and sync state.
+- Legacy source-selection APIs remain only for compatibility but cannot disable the fixed direct feeds.
