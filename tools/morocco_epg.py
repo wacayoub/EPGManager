@@ -118,6 +118,17 @@ T2M={
  "yid al fellah":"يد الفلاح",
  "capsules festival international du film de femmes de sale":"كبسولات المهرجان الدولي لفيلم المرأة بسلا"}
 
+# Darija/Arabizi programme names that Google Translate returns unchanged
+# (seen on the 2M grid, 13 Nov 2026). Keys are normalised with norm().
+T2M_DARIJA={
+ "Lahbiba Oummi":"الحبيبة أمي","Hadik Hyati":"هاديك حياتي","Anis wa Manal":"أنيس ومنال",
+ "Disk Hyati":"ديسك حياتي","Zour Bladek":"زور بلادك","Abtal al bihar":"أبطال البحار",
+ "Hikayat fi Al Adghal":"حكايات في الأدغال","Chkoun Yl9a li dar":"شكون يلقى لي دار",
+ "Al Hayat Maratan Okhra":"الحياة مرة أخرى","Chada al alhane":"شدى الألحان",
+ "Al fossoul al khamsa":"الفصول الخمسة","Al Milaf":"الملف","Khir Lblad":"خير لبلاد",
+ "Chkoun Yistatmar Fmachrou3i":"شكون يستثمر فمشروعي","Ma3a Ramdani":"مع رمضاني",
+}
+
 T2M_FORCE_AR={
  "les interventions des partis politiques":"مداخلات الأحزاب السياسية",
  "interventions des partis politiques":"مداخلات الأحزاب السياسية"
@@ -162,6 +173,7 @@ def norm(x):
  # incorrectly rejected as "same as title" and cross-channel matching failed.
  return re.sub(r"\s+"," ",re.sub(r"[^a-z0-9\u0600-\u06ff%]+"," ",x)).strip()
 def ar(x): return bool(re.search(r"[\u0600-\u06ff]",str(x or "")))
+T2M_DARIJA_N={norm(k):v for k,v in T2M_DARIJA.items()}
 def lang(x,default="ar"): return "ar" if ar(x) else ("fr" if re.search(r"[A-Za-zÀ-ÿ]",str(x or "")) else default)
 def xdt(d): return d.strftime("%Y%m%d%H%M%S %z")
 
@@ -943,6 +955,39 @@ def google_ar(http,text,force=False):
  cache[key]=out
  return out
 
+def google_translit(http,text):
+ """Write Arabizi/Darija in Arabic script with Google Input Tools.
+
+ Google Translate returns Moroccan Darija written in Latin letters unchanged
+ ("Hadik Hyati"), which left those 2M titles in Latin. Each word is
+ transliterated on its own (better than the whole phrase), with the article
+ "al"/"el" joined to its noun first ("Al Milaf" -> "الملف", not "أل ميلاف").
+ Returns "" unless every Latin word came back in Arabic script."""
+ raw=clean(text)
+ if not raw or not re.search(r"[A-Za-z]",raw):return ""
+ cache=getattr(http,"_ar_translation_cache",None)
+ if cache is None:
+  cache={}
+  try:setattr(http,"_ar_translation_cache",cache)
+  except Exception:pass
+ joined=re.sub(r"(?i)\b(al|el)[ -]+(?=[A-Za-z])",lambda m:m.group(1),raw)
+ out=[]
+ for word in joined.split():
+  if not re.search(r"[A-Za-z]",word) or word.upper()=="2M":
+   out.append(word);continue
+  key=("translit",word.casefold())
+  if key not in cache:
+   value=""
+   try:
+    r=http.get("https://inputtools.google.com/request",params={"text":word,"itc":"ar-t-i0-und","num":"1","cp":"0","cs":"1","ie":"utf-8","oe":"utf-8","app":"demopage"})
+    data=r.json()
+    if data and data[0]=="SUCCESS":value=clean(data[1][0][1][0])
+   except Exception:value=""
+   cache[key]=value if ar(value) and not re.search(r"[A-Za-z]",value) else ""
+  if not cache[key]:return ""
+  out.append(cache[key])
+ return " ".join(out)
+
 def tr2m_title(http,title):
  raw=clean(title);n=norm(raw)
  # Genuine French-language news must keep its on-air French title.
@@ -950,22 +995,27 @@ def tr2m_title(http,title):
  if n in T2M_FORCE_AR:return T2M_FORCE_AR[n]
  if n in T2M_MIXED:return T2M_MIXED[n]
  if n in T2M:return T2M[n]
+ if n in T2M_DARIJA_N:return T2M_DARIJA_N[n]
  # Translate the programme type and its name, instead of leaving unfamiliar
  # French/Latin titles in the receiver's guide. Keep known deterministic
  # mappings above; the provider translation is the fallback for every other
  # title, including names with an Arabic season/episode prefix.
- for pre,apre in (("serie marocaine","مسلسل مغربي"),("serie turque","مسلسل تركي"),("serie","مسلسل"),("film marocain","فيلم مغربي"),("film","فيلم"),("documentaire","وثائقي"),("rediffusion","إعادة")):
+ for pre,apre in (("dessin anime","رسوم متحركة"),("telefilm","فيلم تلفزيوني"),("spectacle","عرض"),("serie marocaine","مسلسل مغربي"),("serie turque","مسلسل تركي"),("serie","مسلسل"),("film marocain","فيلم مغربي"),("film","فيلم"),("documentaire","وثائقي"),("rediffusion","إعادة")):
   if n.startswith(pre+" "):
    rest=raw[len(pre):].strip(" :-")
    rn=norm(rest)
-   mapped=T2M_FORCE_AR.get(rn) or T2M.get(rn) or ""
+   mapped=T2M_FORCE_AR.get(rn) or T2M.get(rn) or T2M_DARIJA_N.get(rn) or ""
    if not mapped:
     mapped=google_ar(http,rest,force=ar(rest) and bool(re.search(r"[A-Za-z]",rest)))
    if not ar(mapped):
     mapped=google_ar(http,rest,force=True)
+   if not ar(mapped) or re.search(r"[A-Za-z]",re.sub(r"(?i)\b2M\b","",mapped)):
+    mapped=google_translit(http,rest) or mapped
    return apre+(" : "+mapped if mapped else "")
  translated=google_ar(http,raw,force=ar(raw) and bool(re.search(r"[A-Za-z]",raw)))
- return translated if ar(translated) else raw
+ if ar(translated):return translated
+ # Darija in Latin letters: Google Translate returns it unchanged.
+ return google_translit(http,raw) or raw
 
 def tr2m_desc(http,desc,category="",title=""):
  # Restore the stable 2M policy: category-aware Arabic descriptions, and only

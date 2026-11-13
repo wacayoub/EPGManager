@@ -72,4 +72,54 @@ class TwoMTranslationTests(unittest.TestCase):
         rows[0].title='Auto-moto'; rows[1].title='Untranslated unknown show'
         self.assertFalse(m.valid('2m',rows)[0])
 
+class ToolReply:
+    def __init__(self, data): self.data=data
+    def json(self): return self.data
+
+class DarijaHttp:
+    """Translate echoes Latin back (as Google does for Darija); Input Tools transliterates."""
+    def __init__(self, words): self.words={k.casefold():v for k,v in words.items()}; self.translate_calls=[]; self.translit_calls=[]
+    def get(self, url, params):
+        if 'inputtools' in url:
+            word=params['text']; self.translit_calls.append(word)
+            out=self.words.get(word.casefold())
+            return ToolReply(['SUCCESS',[[word,[out] if out else []]]] if out else ['FAILED'])
+        self.translate_calls.append(params['q'])
+        return Reply(params['q'])
+
+class TwoMDarijaTests(unittest.TestCase):
+    def test_known_darija_titles_are_arabic_without_network(self):
+        expected={
+            'Hadik Hyati':'هاديك حياتي','Lahbiba Oummi':'الحبيبة أمي','Zour Bladek':'زور بلادك',
+            'Chkoun Yl9a li dar':'شكون يلقى لي دار','Ma3a Ramdani':'مع رمضاني','Al Milaf':'الملف',
+            'Al Hayat Maratan Okhra':'الحياة مرة أخرى','Chkoun Yistatmar Fmachrou3i':'شكون يستثمر فمشروعي',
+        }
+        h=DarijaHttp({})
+        for title,arabic in expected.items():
+            with self.subTest(title=title): self.assertEqual(m.tr2m_title(h,title),arabic)
+        self.assertEqual(h.translate_calls+h.translit_calls,[])
+
+    def test_french_programme_types_are_translated(self):
+        h=DarijaHttp({})
+        self.assertEqual(m.tr2m_title(h,'Dessin animé Hikayat fi Al Adghal'),'رسوم متحركة : حكايات في الأدغال')
+        self.assertEqual(m.tr2m_title(h,'Téléfilm Al fossoul al khamsa'),'فيلم تلفزيوني : الفصول الخمسة')
+        self.assertEqual(m.tr2m_title(h,'Spectacle Chada al alhane'),'عرض : شدى الألحان')
+
+    def test_unknown_darija_title_is_transliterated_word_by_word(self):
+        h=DarijaHttp({'Lalla':'لالة','Lhamdia':'الحمدية','Almasra':'المسرى'})
+        self.assertEqual(m.tr2m_title(h,'Lalla Lhamdia'),'لالة الحمدية')
+        self.assertEqual(h.translate_calls,['Lalla Lhamdia'])
+        # The article is joined to its noun before transliteration.
+        self.assertEqual(m.tr2m_title(h,'Al Masra'),'المسرى')
+        self.assertIn('AlMasra',h.translit_calls)
+
+    def test_partial_transliteration_keeps_the_original(self):
+        h=DarijaHttp({'Lalla':'لالة'})
+        self.assertEqual(m.tr2m_title(h,'Lalla Unknownword'),'Lalla Unknownword')
+
+    def test_info_soir_stays_french(self):
+        h=DarijaHttp({})
+        self.assertEqual(m.tr2m_title(h,'Info soir'),'Info soir')
+        self.assertEqual(h.translate_calls+h.translit_calls,[])
+
 if __name__=='__main__': unittest.main(verbosity=2)
