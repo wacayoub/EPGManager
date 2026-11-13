@@ -17,9 +17,10 @@ difference is measured:
   of all programme start times lining up at that same shift and clearly
   better than at +-1 h (an hourly grid lines up at every whole hour);
 - trusted references that disagree with each other leave the channel alone;
-- an accepted shift is stored in a learned table (config) so a channel keeps
-  its verified correction on a day when no reference is available
-  (entries expire after MAX_AGE_DAYS);
+- every accepted shift is recorded in config/elcinema-time-offsets.json for
+  review, but only shifts proven in the same run are applied: the same
+  channel came 5 h early in one run and on time in another (MBC Drama,
+  13 Nov 2026 12:21 vs 23:46 UTC), so an old shift could break a correct row;
 - channels without any evidence are left exactly as they are.
 
 Only programme start/stop attributes change. Nothing is invented or removed.
@@ -51,7 +52,6 @@ ALIGN_SHARE = 0.8
 ALIGN_MARGIN = 0.3  # alignment must beat the +-1 h neighbours (hourly grids align anywhere)
 MAX_WINDOW = 14 * 3600
 STEP = 900
-MAX_AGE_DAYS = 30
 
 
 def parse_time(value: str) -> datetime:
@@ -204,16 +204,8 @@ def calibrate(root: ET.Element, references: dict, learned: dict, now: datetime) 
             else:
                 report["unchanged_with_reference"].append(cid)
             continue
-        entry = learned.get(cid)
-        if entry:
-            try:
-                age = now - datetime.fromisoformat(entry["verified_utc"])
-            except Exception:
-                age = timedelta(days=MAX_AGE_DAYS + 1)
-            if age <= timedelta(days=MAX_AGE_DAYS) and int(entry.get("shift_minutes") or 0):
-                shifts[cid] = int(entry["shift_minutes"]) * 60
-                report["learned_applied"][cid] = entry
-                continue
+        # No proof in this run: leave the rows exactly as ElCinema sent them.
+        # A remembered shift is not reused (offsets change between runs).
         report["no_reference"] += 1
 
     moved = 0
