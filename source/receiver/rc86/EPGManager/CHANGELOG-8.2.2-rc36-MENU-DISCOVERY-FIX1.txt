@@ -1,0 +1,5 @@
+EPGManager 8.2.2-rc36 fix1
+- Make plugin.py dependency-light during Enigma2 plugin discovery.
+- Defer EPGManager core/config/UI imports until startup or explicit launch.
+- Catch autostart errors so Plugin Browser and Extensions Menu entries remain visible.
+- Show a MessageBox with the launch error if the GUI itself cannot load.
