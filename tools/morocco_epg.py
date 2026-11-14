@@ -63,16 +63,17 @@ CHANNELS={
  "Assadisa":"Assadissa","Tamazight":"Tamazight","AFLAM.ma":"Aflam TV",
  "Arryadia_HD":"Arryadia HD","Arryadia_TNT":"Arryadia TNT","Arryadia_HD1":"Arryadia HD1",
  "Arryadia_HD2":"Arryadia HD2","Arryadia_HD3":"Arryadia HD3","2M":"2M","Chada TV":"Chada TV",
- "MEDI1TV_AR.ma":"Medi1 TV Arabic","MEDI1TV_MAGHREB.ma":"Medi1 TV Maghreb"}
-GROUPS={"snrt":{"AlAoula","Arrabiaa","AlMaghribiya","Assadisa","Tamazight","AFLAM.ma"},
+ "MEDI1TV_AR.ma":"Medi1 TV Arabic","MEDI1TV_MAGHREB.ma":"Medi1 TV Maghreb","Laayoune":"Laayoune TV"}
+GROUPS={"snrt":{"AlAoula","Arrabiaa","AlMaghribiya","Assadisa","Tamazight","AFLAM.ma","Laayoune"},
  "arryadia":{"Arryadia_HD","Arryadia_TNT","Arryadia_HD1","Arryadia_HD2","Arryadia_HD3"},
  "2m":{"2M"},"chada":{"Chada TV"},"medi1":{"MEDI1TV_AR.ma","MEDI1TV_MAGHREB.ma"}}
 SNRT={"AlAoula":"https://www.snrt.ma/ar/node/1208","Arrabiaa":"https://www.snrt.ma/ar/node/4071",
  "AlMaghribiya":"https://www.snrt.ma/ar/node/4072","Assadisa":"https://www.snrt.ma/ar/node/4073",
- "Tamazight":"https://www.snrt.ma/ar/node/4075"}
+ "Tamazight":"https://www.snrt.ma/ar/node/4075","Laayoune":"https://www.snrt.ma/ar/node/4069"}
 SNRT_AR_NAMES={
  "AlAoula":"قناة الأولى","Arrabiaa":"قناة الثقافية","AlMaghribiya":"قناة المغربية",
- "Assadisa":"قناة السادسة","Tamazight":"قناة الأمازيغية","AFLAM.ma":"قناة السابعة أفلام"
+ "Assadisa":"قناة السادسة","Tamazight":"قناة الأمازيغية","AFLAM.ma":"قناة السابعة أفلام",
+ "Laayoune":"قناة العيون"
 }
 # SNRT programme tabs are broadcast days: 00:00-06:59 belongs to the next
 # calendar date; the next tab/daytime schedule starts at 07:00.
