@@ -1,4 +1,4 @@
-# Automatic fallback for Aflam, Arryadia HD1 and local TNT
+# Automatic fallback for Aflam, Arryadia HD, HD1 and local TNT
 
 At the user's request on 6 November 2026, the Morocco daily collector fills
 uncovered intervals on these three exact services over its rolling seven-day
@@ -6,6 +6,12 @@ window. Aflam uses three-hour blocks, as in the former automatic guide; HD1 and
 local TNT use two-hour blocks. Titles begin with `[Auto]`. Descriptions explicitly
 say these are automatic fallback blocks, without a confirmed film, match, or
 on-air claim. No satellite guide is copied onto local TNT.
+
+On 14 November 2026 the main Arryadia HD channel was added with two-hour
+`[Auto] برامج الرياضية` blocks. Its Smart estimates and Botola matches still come
+first; the blocks fill only the hours they leave empty. SNRT's own grid has
+not been updated since September 2026, so the main channel otherwise had an
+8-9 hour hole every day.
 
 Fresh official programmes and exact still-future last-known-good programmes
 take priority on their own service. Blocks are split around those intervals.
