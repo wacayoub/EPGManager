@@ -1,0 +1,30 @@
+EPGManager 8.2.2-rc60 — EPGManager-first / SAT EIT protection
+Date: 2026-09-27
+
+Problem fixed
+-------------
+On DVB/SAT channels, EPGManager could import the correct XMLTV EPG and replace
+stale cache data, but after zapping/restarting Enigma2 the transponder EIT could
+arrive again and overwrite the imported programme slots.
+
+Fix
+---
+- After a successful EPGManager import, every DVB service that actually received
+  EPGManager events is protected with OpenATV's native dxNoEIT flag (0x1000).
+- The service database is saved once, so the priority survives GUI/rebox restarts.
+- Only successfully imported EPGManager DVB services are protected.
+- IPTV refs are ignored.
+- Global SAT EPG is NOT disabled: channels not managed by EPGManager continue to
+  receive normal DVB/SAT EIT.
+- Empty/dead feeds do not gain priority because the guard uses the runner's
+  successfully-written mapped_services set.
+- No network refresh/autostart behavior was enabled or changed.
+- Includes an ownership journal at /etc/epgmanager_epg/.epgmanager_priority.json
+  for diagnostics and future safe Reset/unmap cleanup.
+
+OpenATV compatibility
+---------------------
+This uses the same native flag that OpenATV itself applies in eEPGCache when
+EPG_IMPORT is used (eDVBService::dxNoEIT = 0x1000), then persists it through
+ eDVBDB.saveServicelist(). If an image lacks these APIs, import continues and the
+priority persistence reports a non-fatal diagnostic instead of crashing.

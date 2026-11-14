@@ -1,0 +1,9 @@
+EPGManager 8.2.2-rc36.4 - Group XML Import Fix
+
+- EPG GROUPS now persist complete XMLTV files using readable names: group-osn.xml, group-rotana.xml, group-bein-sports.xml, etc.
+- GREEN Refresh Source downloads the full grouped XML and builds/refreshes its ServiceRef map.
+- YELLOW Import Source / Multi Import automatically creates a missing group XML and map before importing.
+- Native import prefers the persisted grouped XML, so the exact on-disk feed is the feed injected into eEPGCache.
+- Local XML discovery recognizes grouped feeds with their real ext_epggroup_* IDs.
+- Ordinary remote OpenEPG/EPGShare/Rytec/direct feeds retain the existing remote-stream policy.
+- No change to scraper winner priority or GitHub grouped-feed generation.

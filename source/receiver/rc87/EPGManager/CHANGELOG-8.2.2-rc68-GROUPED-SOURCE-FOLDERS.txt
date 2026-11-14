@@ -1,0 +1,28 @@
+EPGManager 8.2.2-rc68 — GROUPED SOURCE FOLDERS
+Date: 2026-09-27
+Base: 8.2.2-rc67 grouped EPG IDs
+
+REQUEST
+- Apply the same logical grouping to the SOURCE pane and SOURCES • LIVE FEED HUB, not only EPG IDs.
+
+GROUPS
+- Major bouquets: beIN, OSN, MBC / SHAHID, ROTANA, STARZPLAY, AL JAZEERA, AL KASS, ART.
+- Countries: MOROCCO, UAE, SAUDI, QATAR, EGYPT, KUWAIT, BAHRAIN, LEBANON, JORDAN, IRAQ, TUNISIA, ALGERIA, LIBYA, PALESTINE, YEMEN, OMAN, SYRIA, MAURITANIA.
+- Remaining sources: OTHER MENA / INTERNATIONAL.
+- Empty groups are hidden.
+- Fallback providers stay inside the appropriate logical group; FALLBACK is not a visible channel/source group.
+
+UI
+- Smart Mapping Source Override uses collapsible logical folders.
+- Current owner folder auto-opens; AUTO Best Match remains first.
+- Live Feed Hub provider pages use the same collapsible grouping.
+- OK opens/closes a group; concrete source actions remain unchanged.
+
+DIRECT SOURCES
+- Adds TunisiaTV and Tabie QMC direct feeds already published by EPG-Scrapers.
+- Complete rc67 direct selections migrate once to include both feeds; custom subsets are preserved.
+
+SAFETY
+- UI grouping never renames source IDs or XMLTV IDs.
+- One-owner mapping arbitration remains unchanged.
+- No bouquet/lamedb/mapping deletion.

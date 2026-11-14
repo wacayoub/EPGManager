@@ -1,0 +1,18 @@
+EPGManager 8.2.2-rc34 — Modern AI SaaS + Direct EPG-Scrapers
+
+- New modern AI/PHP-SaaS visual palette: deep navy surfaces, violet primary accent, cyan secondary accent, cleaner cards and selected rows.
+- Smart Sources now has a dedicated EPG SCRAPERS provider page.
+- Adds validated direct GitHub feeds from wacayoub/EPG-Scrapers:
+  * Direct 2M
+  * Direct Chada TV
+  * Direct beIN MENA
+  * Direct ElCinema Arabic
+  * Direct OSN
+  * Direct Sport24
+- Direct feeds point to feeds/<source>.xml.gz and retain independent source IDs; no XML merge is introduced.
+- beIN, ElCinema, OSN and Sport24 use their published feeds/<source>.txt channel-ID catalogues when available.
+- Removes all Arabic/MENA OpenEPG feeds from Smart Sources (Morocco, Egypt, Palestine, Qatar, Saudi Arabia, UAE).
+- Removes the remaining Arabic EPGShare source (Al Jazeera); EPGShare is now international/non-Arab fallback only.
+- Existing invalid persisted selections are automatically cleaned by SourcePreferences on catalogue reload.
+- OpenEPG non-Arab feeds (Turkey, France, Spain) and Rytec/Azman/Koala remain available.
+- Daily direct-source schedule metadata: 06:00 Africa/Casablanca.

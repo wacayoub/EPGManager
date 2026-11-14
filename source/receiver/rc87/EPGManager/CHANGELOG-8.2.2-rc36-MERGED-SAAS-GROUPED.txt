@@ -1,0 +1,10 @@
+EPGManager 8.2.2-rc36 — Real SaaS Dashboard + Grouped XMLTV Import
+
+- Uses the Real Native SaaS Dashboard UI/theme as the visual base.
+- Keeps 105 runtime sources from rc36 SaaS: 6 EPG-Scrapers Direct, 10 OpenEPG non-Arab, 30 EPGShare non-Arab, 55 Rytec, 2 Azman and 2 Koala.
+- Adds 27 EPG GROUPS XMLTV feeds for selective Vu+ import.
+- Key 2 opens EPG GROUPS; keys 3..6 open Direct / EPGShare / OpenEPG / Rytec.
+- MENA Cloud / EPG MANAGER runtime feeds remain removed.
+- Source preferences remain user-selectable; six validated Direct feeds are the safe default on a clean install.
+- Restores CONFIG_SCHEMA_VERSION metadata required by core/config.py.
+- Grouped feeds are receiver-facing final XMLTV views and do not replace upstream scraper/source arbitration.

@@ -1,0 +1,11 @@
+EPGManager 8.2.2-rc45
+=======================
+
+- SAFE EPG MATCH: restore MenuList-owned cursor state for MultiContent rows.
+- SAFE EPG MATCH: deterministic UP/DOWN movement skips separator rows.
+- Normal Smart Mapping no longer launches silent Auto Repair.
+- GREEN Auto Mapping is now an explicit optional action; manual/locked mappings remain authoritative.
+- Morocco legal time: pin current/future Morocco wall clocks to GMT (+0000) from 2026-09-20.
+- 2M legacy listing: treat published 2M times as Morocco/channel wall clock, not Europe/Paris wall clock.
+- Native XMLTV import keeps provider offsets and converts to UTC epoch.
+- GitHub EPG-Scrapers paired fix: Morocco direct feed GMT policy and offset-aware monitoring parser.

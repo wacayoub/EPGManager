@@ -1,0 +1,10 @@
+EPGManager rc74 — SOURCE LABELS + YELLOW DETAILS + TIME FIX
+
+- Smart Mapping candidate rows now always show the owning EPG source beside each XMLTV ID.
+- Healthy green rows no longer repeat an OK badge; green is the health signal.
+- Red rows retain an explicit NO EPG warning.
+- YELLOW opens Source / Details / manual source override directly.
+- Reset IDs moved into BLUE -> More to keep the primary mapping workflow non-destructive.
+- ElCinema and STARZPLAY direct XMLTV downloads receive a +60 minute programme timestamp correction for the Morocco receiver timeline.
+- The correction is applied before source-quality audit and EPGImport, so Smart Mapping preview and imported EPG use identical times.
+- Upgrade invalidates only ElCinema/STARZPLAY local programme caches so corrected XML is fetched on the next source sync/import.

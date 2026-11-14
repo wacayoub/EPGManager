@@ -1,0 +1,29 @@
+EPGManager 8.2.2-rc22
+======================
+
+Qatar 1 Arabic description
+- Removed the bilingual Original:/Arabic description presentation.
+- Qatar 1 beIN Sports descriptions now contain one Arabic-only <desc lang="ar">.
+- Removes alternate English <desc> elements for translated target programmes.
+- Added deterministic Arabic Opta H2H templates for the current EPL examples.
+- If free prose cannot be translated safely, uses a factual Arabic-only match summary instead of hybrid English/Arabic text.
+
+LIVE correctness
+- Provider/inferred Live is no longer trusted per occurrence in isolation.
+- The feed is indexed by fixture; only the earliest full-match occurrence can retain/infer Live.
+- Later overnight/daytime repeats of the same fixture are treated as re-airings even if Qatar/OpenEPG leaves a Live prefix.
+- Missing Live is still inferred for a currently-airing first occurrence and for an imminent first full live-size slot.
+- A false provider Live prefix is stripped before the beIN formatter so it cannot reappear.
+
+SAFE EPG MATCH preview coverage
+- Preview future horizon increased from 36h to 96h.
+- Per-service preview warm budget increased from 8 to 24 candidate IDs.
+- Remote streaming scan increased from 6 MiB/6000 programmes to 24 MiB/30000 programmes.
+- When a refreshed local external XML cache exists, SAFE EPG MATCH scans it directly before any network request.
+- Preview cache capacity increased from 256 to 1024 IDs.
+- Mapping ownership/scoring remains untouched; preview data is presentation-only.
+
+Preserved
+- RC21 Smart Mapping save/repaint fix.
+- RC20 Import All fast path.
+- Existing manual mappings and source priority rules.

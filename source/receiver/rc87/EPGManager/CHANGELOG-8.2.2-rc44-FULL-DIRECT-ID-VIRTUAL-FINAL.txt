@@ -1,0 +1,10 @@
+EPGManager 8.2.2-rc44
+
+FINAL FULL DIRECT-ID VIRTUAL VALIDATION
+- Direct Smart Mapping now reuses the same fail-closed PrecisionMatch proof gate as SRP Master for validated EPG-Scrapers catalogues, eliminating contradictory SRP=OK / Smart Mapping=REVIEW or BLOCKED results.
+- All 207 currently active source-ID claims from the 7 direct catalogues auto-resolve in the full virtual receiver test; 3 Morocco catalogue IDs with zero programme rows remain NO EPG and are never auto-mapped.
+- Adds source-ID-specific disambiguation for Althania.sy@SD -> Al Thania TV and AmmanTV.jo@SD -> Amman TV.
+- Keeps beIN 4K separate from beIN SPORTS 4K HDR and LBC SAT separate from LBC International.
+- OSN and Shahid direct feeds support their validated Arabic/English rows without allowing fuzzy-only auto mapping.
+- Retains rc43 local XML health authority, atomic refresh/LKG, seven direct feeds and one-ServiceRef ownership.
+- Final qualification covers source health, SRP Master, Smart Mapping V2, one-owner arbitration, Import All preparation and native eEPGCache fallback on one synthetic physical receiver service per channel identity.
