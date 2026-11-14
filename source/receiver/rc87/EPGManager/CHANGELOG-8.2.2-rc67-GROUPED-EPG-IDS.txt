@@ -1,0 +1,19 @@
+EPGManager 8.2.2-rc67 — GROUPED EPG IDs
+Date: 2026-09-27
+Base: 8.2.2-rc66 source-qualified IDs + dedicated Al Kass
+
+EPG ID MONITOR
+- Keeps SOURCE.CHANNEL display from rc66.
+- Adds visible group headers without changing XMLTV IDs or mappings.
+- Major bouquet groups first: beIN, OSN, MBC / SHAHID, ROTANA, STARZPLAY,
+  AL JAZEERA, AL KASS, ART.
+- Remaining IDs are filed by country: MOROCCO, UAE, SAUDI, QATAR, EGYPT,
+  KUWAIT, BAHRAIN, LEBANON, JORDAN, IRAQ, TUNISIA, ALGERIA, LIBYA,
+  PALESTINE, YEMEN, OMAN, SYRIA, MAURITANIA, OTHER MENA, INTERNATIONAL.
+- Empty groups are not rendered.
+- Zero-EPG filtered view uses the same grouping.
+
+SAFETY
+- UI-only classification. Stable source IDs and XMLTV channel IDs are untouched.
+- rc65/rc66 one-owner mapping arbitration remains unchanged.
+- No mapping, bouquet, lamedb, source preference or EPG XML is deleted.

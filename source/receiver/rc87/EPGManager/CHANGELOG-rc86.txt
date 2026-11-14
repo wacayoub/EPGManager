@@ -1,0 +1,23 @@
+EPGManager 2026.11.14-rc86
+==========================
+
+Home screen (EPG Control Center) shows correct figures
+- "EPG IDs OK 0/667" is now "IDS WITH GUIDE 611/667". IDs the fresh GitHub
+  monitor reports with upcoming programmes were counted as "unknown" because
+  no local per-ID profile had certified them yet.
+- LAST IMPORT reads "423,895" with "progs • 14/11 07:39" instead of a bare
+  number; it turns red if the last import failed.
+- Source cards show how old each feed is ("Feed 3h ago", the oldest of the
+  group) instead of "Updated 2s ago", which was only the screen's last poll.
+- The Emirates card is now GULF / N. AFRICA and also covers Tabie and
+  Tunisia TV, so all 14 direct feeds are visible.
+- TIME / SYSTEM no longer stays "NOT RUN": the offline System Check (local
+  files only, no network, no mapping change) runs in the background after
+  every successful scheduled import.
+- System Check ignores a local feed copy in /etc/epgmanager_epg that is more
+  than a day older than its GitHub feed. Import reads GitHub directly; the
+  copies on the Vu+ dated from 14 Oct and made all 14 sources FAIL with
+  "no future EPG". It also counts monitored IDs with a guide (611, not 0).
+
+Unchanged
+- Import, mapping and guide-strength logic are identical to rc85.

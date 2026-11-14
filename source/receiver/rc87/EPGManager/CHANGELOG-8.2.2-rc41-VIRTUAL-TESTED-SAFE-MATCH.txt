@@ -1,0 +1,7 @@
+EPGManager 8.2.2-rc41
+
+- Fixes the real SAFE EPG MATCH blank-pane bug: RT_HALIGN_RIGHT was used by the health badge renderer but never imported. The resulting NameError was swallowed by the generic list fallback, leaving selectable blank MultiContent rows on OpenATV/Metrix.
+- Keeps green ID OK / red NO EPG badges and candidate previews.
+- Corrects post-install direct-source selection from 5 to all 7 current GitHub feeds, including Shahid/MBC and Rotana.
+- Clears all 7 local direct XML caches before a fresh direct import, avoiding stale Shahid/Rotana data after upgrade.
+- Virtual Enigma2 harness validates SAFE row rendering, real candidate shortlist generation and Mapping V2 decisions before packaging.

@@ -1,0 +1,14 @@
+EPGManager 8.2.2-rc55 — DUBAIPLUS DIRECT HYBRID
+
+- Added Dubai+ as the eighth validated direct EPG-Scrapers source.
+- Feed: dubaiplus.xml.gz; catalogue: dubaiplus.txt.
+- Group/countries: EMIRATES / AE / MENA.
+- Hybrid capability: Arabic-native Dubai channels remain AR title + AR description;
+  Dubai One and Dubai Sports/Racing can use EN title + AR description.
+- Smart Mapping exposes Dubai+ as an independent source with full direct IDs.
+- Dashboard keeps eight tiles: SPORT24 tile becomes EMIRATES and aggregates
+  Sport24 + Dubai+ so the UI is not made denser.
+- Dubai+ gets provider ownership preference for Dubai-branded services when
+  Sport24/OpenEPG/EPGShare also claim the same receiver service.
+- Existing rc54 mapping safety, NOW/NEXT, Manual/Locked protection and
+  user-controlled Auto Mapping remain unchanged.

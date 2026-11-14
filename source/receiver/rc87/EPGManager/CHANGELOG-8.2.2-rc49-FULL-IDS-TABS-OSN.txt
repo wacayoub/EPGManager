@@ -1,0 +1,11 @@
+EPGManager 8.2.2-rc49
+=======================
+- Smart Mapping direct source pane now keeps ALL real XMLTV IDs visible.
+- SAFE candidates stay first; remaining IDs follow alphabetically.
+- Each ID keeps EPG OK / NO EPG / EPG ? status.
+- OSNtv glued presentation prefix is normalized safely to OSN for candidate discovery.
+- No fake OSN ID is created: absent source IDs remain absent.
+- Dashboard top tabs are now remote-operable with LEFT/RIGHT + OK and keys 1-7.
+- DUPLICATES opens a cache-only duplicate ServiceRef/shared-ID audit.
+- ZERO EPG opens a red-ID-only monitor.
+- Existing GREEN Smart Mapping, YELLOW Import All and BLUE System Check remain unchanged.

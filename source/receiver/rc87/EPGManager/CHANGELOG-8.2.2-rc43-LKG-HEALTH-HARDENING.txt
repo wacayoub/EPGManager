@@ -1,0 +1,15 @@
+EPGManager 8.2.2-rc43
+
+Double-check hardening after rc42 virtual pipeline.
+
+Fixes:
+- Local complete XMLTV quality is authoritative for per-ID health. A stale GitHub monitoring CSV can no longer mark a locally verified future ID red.
+- Per-ID quality profiles now persist timezone-aware future_last/future_programmes from the same full-file audit pass.
+- Direct ID repair uses the same local-vs-monitor health arbitration before pruning automatic mappings.
+- Import All no longer deletes the current direct XML before refresh. New payloads replace old ones atomically only after validation.
+- When GitHub refresh fails, Import All may reuse the current local file only if a complete audit still proves future EPG.
+- Package upgrades preserve the current direct XML/status cache instead of forcing an unnecessary cold start.
+- Source selections migrate to all seven direct feeds once; later reinstall/upgrades preserve the user's valid direct subset and pins.
+
+Known cleanup intentionally deferred:
+- legacy OpenEPG/EPGShare/Rytec/Azman/Koala catalogue definitions and receiver-side local scraper modules remain packaged but are filtered out of the direct-only runtime. Removing them is a separate refactor to avoid destabilising mapping logic before real receiver validation.

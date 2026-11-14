@@ -1,0 +1,17 @@
+EPGManager 2026.11.14-rc87
+==========================
+
+Time shown clearly for users in every time zone
+- Settings: the automatic import time is UTC. The row now says so and shows
+  the receiver's offset, e.g. "EPG Import start time (UTC; local UTC+1)",
+  and the help panel converts the chosen time: "13:15 UTC = 14:15 on this
+  receiver". "GMT+0" alone was easy to read as local time.
+- System Check adds RECEIVER TIME ZONE (information only, never a warning):
+  the zone and offset of the receiver clock, with a hint when the box runs on
+  UTC that clock, guide and timers then show UTC.
+- Home screen TIME / SYSTEM shows the receiver zone ("UTC", "UTC+1") until
+  the live NOW comparison has samples, instead of "UNKNOWN".
+
+Unchanged
+- Import, mapping and guide-strength logic are identical to rc86. The import
+  time keeps its UTC meaning, so existing settings do not move.
