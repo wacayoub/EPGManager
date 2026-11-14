@@ -179,6 +179,7 @@ def evaluate(key: str, candidate: Path, previous: Path):
 
     old = None
     recovery_short_horizon = False
+    expired_lkg_recovery = False
     if previous.exists() and previous.stat().st_size:
         try:
             old = stats(previous)
@@ -239,7 +240,25 @@ def evaluate(key: str, candidate: Path, previous: Path):
                     cur["future_horizon_hours"] + 4 < old["future_horizon_hours"] and
                     cur["future_horizon_hours"] < old["future_horizon_hours"] * 0.65):
                 reasons.append("future_horizon_regression>35%")
-            planned_scope_rebase = planned_bein_scope_rebase or recovery_short_horizon
+            # Any source: the published LKG has nothing left in the future
+            # (tunisiatv.tn only publishes today's grid, so an afternoon run
+            # holds under 30 future programmes and the 11 Nov feed was kept
+            # until it was entirely in the past). A valid, current guide for
+            # every channel is then strictly better than an expired one.
+            expired_lkg_recovery = (
+                key != "tabie"  # Tabie keeps its stricter ID whitelist above
+                and old["future_channels"] == 0
+                and cur["channels"] >= p["min_channels"]
+                and cur["future_channels"] == cur["channels"]
+                and cur["future_ratio"] >= p["min_future_ratio"]
+                and cur["future_horizon_hours"] >= 4
+                and cur["first_future_start_lead_hours"] is not None
+                and cur["first_future_start_lead_hours"] <= 6.0
+                and cur["missing_title_rows"] == 0
+                and cur["invalid_rows"] == 0
+            )
+            planned_scope_rebase = (planned_bein_scope_rebase or recovery_short_horizon
+                                    or expired_lkg_recovery)
             if (
                 not planned_scope_rebase
                 and old["channels"]
@@ -262,6 +281,10 @@ def evaluate(key: str, candidate: Path, previous: Path):
         reasons = [r for r in reasons if not r.startswith(("future_horizon<", "active_channels<", "programmes<"))]
         cur["partial_recovery_from_expired_lkg"] = True
         cur["hours_of_recovered_guide"] = round(cur["future_horizon_hours"], 1)
+    elif expired_lkg_recovery:
+        reasons = [r for r in reasons if not r.startswith(("future_horizon<", "programmes<"))]
+        cur["partial_recovery_from_expired_lkg"] = True
+        cur["hours_of_recovered_guide"] = round(cur["future_horizon_hours"], 1)
     # A source that is current only at the end of its 48h horizon is not
     # usable for Smart Mapping now. Restrict this gate to programme-rich
     # linear sources; live-news rolling schedules are a separate policy.
@@ -275,7 +298,8 @@ def evaluate(key: str, candidate: Path, previous: Path):
         reasons.append("current_coverage_regression>25pp")
     minimum_now = {"tabie": 0.60, "shahid": 0.60}
     floor = minimum_now.get(key)
-    if floor is not None and cur["current_ratio"] < floor and not recovery_short_horizon:
+    if (floor is not None and cur["current_ratio"] < floor
+            and not recovery_short_horizon and not expired_lkg_recovery):
         reasons.append(f"current_ratio<{floor:.2f}")
     return cur, old, reasons
 
