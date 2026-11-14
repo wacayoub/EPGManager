@@ -1,0 +1,18 @@
+EPGManager 8.2.2-rc39 — ID Health + Safe Repair
+
+- XMLTV ID health colouring is enabled by default and can be disabled in Main Settings.
+- Direct ID Monitor now colours the XMLTV ID itself:
+  GREEN = fresh monitor confirms future EPG;
+  RED = fresh monitor proves zero future programmes;
+  ORANGE = EPG warning or stale/wrong Service Reference;
+  YELLOW mapping badge = healthy ID is not mapped yet.
+- Smart Mapping SAFE EPG list shows independent ID-health badges (ID OK / NO EPG / WARN).
+- New Advanced Tools entry: Direct ID health / repair.
+- New BLUE action in ID Monitor: Repair unmapped / wrong IDs.
+- Repair refreshes current direct feeds, reloads canonical XMLTV IDs, prunes stale automatic ownership,
+  rebuilds receiver mappings from live lamedb, and reruns the ID coverage audit.
+- Manual mappings are never deleted by direct-ID repair.
+- Automatic mapping now excludes only IDs proven by a fresh GitHub monitor to have ZERO future EPG.
+  UNKNOWN/stale monitor data and short-horizon warnings remain eligible, preventing false quarantine.
+- Stale monitoring older than 24h is treated as UNKNOWN rather than RED.
+- Existing Reset ALL SIDs, bouquets, lamedb, favourites and tuner configuration are unchanged.

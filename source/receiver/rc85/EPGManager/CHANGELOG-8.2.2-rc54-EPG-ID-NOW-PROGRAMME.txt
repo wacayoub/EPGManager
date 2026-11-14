@@ -1,0 +1,19 @@
+EPGManager 8.2.2-rc54 — EPG ID + CURRENT PROGRAMME
+=====================================================
+Date: 2026-09-26
+
+SMART MAPPING UI
+----------------
+- Removed provider/source suffixes from pane 4 EPG-ID rows.
+- Source remains visible only in the dedicated SOURCE pane.
+- Header changed to EPG ID + NOW/CURRENT PROGRAMME + EPG status.
+- Each candidate row can show a small cached NOW/NEXT programme line below the XMLTV ID.
+- Selected EPG detail now shows only XMLTV ID + NOW/NEXT, without repeating source.
+
+PERFORMANCE / SAFETY
+--------------------
+- Per-row programme display uses cache/eEPGCache only in the navigation path.
+- Missing selected NOW/NEXT may warm asynchronously using the existing bounded preview path.
+- When preview arrives, only the selected row is modified; cursor position is preserved.
+- No mapping score, ownership, source priority, import logic or provider arbitration changed.
+- rc53 dark low-transparency Metrix background is preserved.

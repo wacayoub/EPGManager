@@ -1,0 +1,32 @@
+{
+  "schema_version": 15,
+  "update_interval_hours": 6,
+  "epg_days": 7,
+  "retry_count": 2,
+  "timeout_seconds": 20,
+  "parallel_workers": 2,
+  "logging_level": "INFO",
+  "debug_mode": false,
+  "last_update": null,
+  "sources_enabled": {
+    "medi1tv": true,
+    "chada_2m": true,
+    "snrt": true,
+    "bein_sports": true,
+    "arryadia": true
+  },
+  "download_schedule_enabled": false,
+  "schedule_mode": "daily",
+  "daily_update_time": "06:00",
+  "native_import_schedule_enabled": false,
+  "native_import_time": "08:20",
+  "epg_output_dir": "/etc/epgmanager_epg",
+  "last_native_import": null,
+  "background_source_updates": false,
+  "background_local_time": "06:00",
+  "performance_mode": "balanced",
+  "safe_source_replacement": true,
+  "reject_abnormal_drop": true,
+  "skip_unchanged_sources": true,
+  "color_id_health": true
+}

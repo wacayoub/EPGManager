@@ -1,0 +1,10 @@
+EPGManager 8.2.2-rc56 — STARZPLAY + NEW SOURCE VISIBILITY
+
+- Fixes rc55 source-selection migration that could keep newly-added sources hidden after upgrade.
+- Direct feed registry is now 9 sources: Morocco, beIN, ElCinema, OSN, Sport24, Dubai+, STARZPLAY, Shahid/MBC, Rotana.
+- STARZPLAY is available in Sources, Smart Mapping, ID Monitor, System Check and Import All.
+- STARZPLAY bilingual Hybrid policy remains generated upstream: international titles EN + Arabic descriptions; Arabic-native channels AR + AR.
+- Dashboard card 5 now shows Sport24 + Dubai+ + STARZPLAY.
+- One-time preference schema migration selects all 9 direct sources; subsequent user selections remain preserved.
+- STC TV and GoBX are intentionally not exposed as importable direct feeds yet: repository support is still probe-only, so EPGManager does not fabricate XMLTV feeds.
+- rc55 Dubai+ priority and all rc54 Smart Mapping/NOW-NEXT behaviour are preserved.
