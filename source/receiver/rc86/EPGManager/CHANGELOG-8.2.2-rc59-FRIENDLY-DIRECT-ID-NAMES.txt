@@ -1,0 +1,22 @@
+EPGManager 8.2.2-rc59 - FRIENDLY DIRECT-ID NAMES
+==================================================
+Date: 2026-09-27
+Base: 8.2.2-rc58
+
+FIX
+---
+* Smart Mapping candidate rows now show the provider channel display-name first
+  and the stable XMLTV ID second.
+* Opaque STC TV IDs such as stctv.bb90021b8c50 are no longer shown alone;
+  they render like: Sharjah Sports • stctv.bb90021b8c50.
+* The SELECTED EPG strip also shows channel name + full XMLTV ID above NOW/NEXT.
+* Semantic IDs remain unchanged and mapping keys are NOT renamed, so existing
+  manual/automatic mappings stay compatible.
+* STARZPLAY direct remains ON HOLD exactly as in rc58. STARZPLAY Sports 1-3
+  exposed through STC TV remain available under their current stable IDs.
+
+UI
+--
+* Column header updated to CHANNEL • EPG ID / NOW.
+* Channel name is placed first so narrow Metrix layouts preserve the useful name
+  even when the technical ID is clipped at the right edge.

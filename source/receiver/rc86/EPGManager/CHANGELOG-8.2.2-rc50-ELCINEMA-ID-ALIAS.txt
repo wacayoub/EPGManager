@@ -1,0 +1,16 @@
+EPGManager 8.2.2-rc50
+======================
+
+ElCinema discovery fix
+----------------------
+- Keeps the ElCinema XMLTV feed unchanged; no fake programmes or IDs are added.
+- Adds conservative Latin search aliases derived from stable XMLTV IDs when a
+  direct feed publishes Arabic-only display names.
+- Examples: MBC2.ae@SD -> MBC2 / MBC 2, MBCAction.ae@SD -> MBC Action,
+  DMCDrama.eg@SD -> DMC Drama, AbuDhabiTV.ae@SD -> Abu Dhabi TV.
+- Visible channel names and exact XMLTV IDs remain provider-owned.
+- Country/feed suffixes (.ae@SD, .eg@SD, etc.) are not used as channel names.
+- Old compact source caches are enriched in RAM; a source re-download is not
+  required just to make the aliases searchable.
+- Smart name index cache version bumped so the new aliases are rebuilt once.
+- rc49 full-ID visibility, source health, tab navigation and OSN safeguards are preserved.

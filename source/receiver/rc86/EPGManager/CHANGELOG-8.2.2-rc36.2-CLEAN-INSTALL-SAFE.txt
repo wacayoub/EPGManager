@@ -1,0 +1,7 @@
+EPGManager 8.2.2-rc36.2
+- Preserve merged SaaS dashboard + Grouped XMLTV catalogue.
+- Keep dependency-light/fail-safe plugin discovery entrypoint.
+- Remove aggressive package-directory manifest cleanup from postinst.
+- No automatic Enigma2 restart inside postinst; receiver restart is explicit after opkg returns.
+- Verify plugin.py and core payload exist at install time.
+- Safe no-op prerm/postrm so package removal never deletes user state.
