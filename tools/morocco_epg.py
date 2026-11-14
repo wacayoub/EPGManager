@@ -128,6 +128,8 @@ T2M_DARIJA={
  "Al fossoul al khamsa":"الفصول الخمسة","Al Milaf":"الملف","Khir Lblad":"خير لبلاد",
  "Chkoun Yistatmar Fmachrou3i":"شكون يستثمر فمشروعي","Ma3a Ramdani":"مع رمضاني",
  "Soirée Fonoun Morrakochiya":"سهرة فنون مراكشية","Infissam":"انفصام",
+ "Daif Al Akhbar":"ضيف الأخبار","Tariq Attahaddi":"طريق التحدي","Tourouq Al 3arifine":"طرق العارفين",
+ "Khnifist R'mad":"خنيفيسة الرماد","Bouchaib bous'oud":"بوشعيب بوسعود",
 }
 
 T2M_FORCE_AR={

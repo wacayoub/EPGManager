@@ -119,6 +119,11 @@ class TwoMDarijaTests(unittest.TestCase):
         self.assertEqual(m.tr2m_title(h,'Soirée Fonoun Morrakochiya'),'سهرة فنون مراكشية')
         self.assertEqual(m.tr2m_title(h,'Téléfilm Infissam'),'فيلم تلفزيوني : انفصام')
         self.assertEqual(m.tr2m_title(h,'Infissam'),'انفصام')
+        # Google gave 'مسكين الأخبار', 'طارق التحديدي', 'تروق أل عارفين' ...
+        for title,arabic in {'Daif Al Akhbar':'ضيف الأخبار','Tariq Attahaddi':'طريق التحدي',
+                             'Tourouq Al 3arifine':'طرق العارفين',"Khnifist R'mad":'خنيفيسة الرماد'}.items():
+            self.assertEqual(m.tr2m_title(h,title),arabic)
+        self.assertEqual(m.tr2m_title(h,"Téléfilm Bouchaib bous'oud"),'فيلم تلفزيوني : بوشعيب بوسعود')
         self.assertEqual(h.translate_calls+h.translit_calls,[])
 
     def test_partial_transliteration_keeps_the_original(self):
