@@ -15,6 +15,11 @@ Best guide among several valid EPG IDs
   official beIN), Alkass One (28 h -> 76 h), Bloomberg in European bouquets.
 
 Smart Mapping
-- The suggestion list opens on a "BEST GUIDE (recommended)" row: best name
-  match first, then the strongest guide, then the usual order. Every row shows
-  its guide length (e.g. "7d guide", "4h guide", "no guide").
+- The BEST EPG MATCH pane (OK on a channel) ranks equally trusted IDs by guide
+  strength instead of A-Z, and shows each row's guide length right after the
+  match score ("Match 100% 7d guide"). Rows shown as the same "Match NN%" are
+  equal on name; the stronger guide wins. Generated / empty IDs stay below.
+- The saved owner stays on top only when it is a manual mapping or no
+  candidate has a clearly stronger guide (AD Sport 1 HD: StarzPlay 7 days now
+  above the automatic STC TV owner with 4 h).
+- The full suggestion browser opens on a "BEST GUIDE (recommended)" row.

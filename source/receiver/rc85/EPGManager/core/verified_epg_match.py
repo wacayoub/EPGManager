@@ -237,10 +237,26 @@ def annotate_suggestions(rows, report=None, now=None):
                 item["_precision_grade"] = ("NO EPG" if evidence["status"] in
                                               ("NO_EPG", "NO_FUTURE_EPG") else "REVIEW")
         annotated.append(item)
+    # rc85: guide strength (_guide_class, set by Smart Mapping; 1 = unknown).
+    # A saved MANUAL owner always stays on top; a saved automatic owner stays
+    # on top only when no candidate has a clearly stronger guide.
+    best_class = min([int(epg.get("_guide_class", 1)) for epg in annotated] or [1])
+
+    def owner_first(epg):
+        if not epg.get("_suggestion_current"):
+            return 1
+        if epg.get("_suggestion_manual"):
+            return 0
+        return 0 if int(epg.get("_guide_class", 1)) <= best_class else 1
+
     annotated.sort(key=lambda epg: (
-        0 if epg.get("_suggestion_current") else 1,
-        int(epg.get("_verified_epg_rank", 3)),
+        owner_first(epg),
+        0 if int(epg.get("_verified_epg_rank", 3)) <= 3 else 1,
         0 if epg.get("_precision_auto") else 1,
+        -min(100, int(round(int(epg.get("_precision_confidence") or 0) / 10.0))),
+        int(epg.get("_guide_class", 1)),
+        int(epg.get("_verified_epg_rank", 3)),
+        -float(epg.get("_guide_hours") or 0.0),
         -int(epg.get("_precision_confidence") or 0),
         0 if epg.get("_suggestion_active") else 1,
         str(epg.get("source_name") or epg.get("source_id") or "").casefold(),
