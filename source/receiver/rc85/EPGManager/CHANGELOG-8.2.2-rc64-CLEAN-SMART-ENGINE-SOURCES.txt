@@ -1,0 +1,8 @@
+EPGManager 8.2.2-rc64 — Clean Smart Engine Sources
+
+- Removed the 33 legacy EPG MANAGER cloud entries from the runtime source catalogue.
+- Removed Morocco Cloud, MENA All/General/Premium, all MENA country shards, all MENA provider shards, and old MENA Source diagnostic feeds.
+- Smart Engine no longer shows duplicated entries such as MENA Iraq, Jordan, Kuwait, Lebanon, Libya, MBC Group, Oman, OSN, Palestine, Premium, Qatar, Rotana, Saudi Arabia, ElCinema source, OSN source, or Sport24 source.
+- Kept all current validated EPG-Scrapers direct feeds, including STARZPLAY GCC.
+- Kept optional EPGShare, OpenEPG, and the unified Rytec family unchanged.
+- Existing saved legacy source selections are automatically ignored/pruned because their IDs are no longer valid runtime sources.

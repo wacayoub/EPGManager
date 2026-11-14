@@ -1,0 +1,60 @@
+EPGManager 8.2.2-rc47
+
+STABILITY FIRST
+- SAFE EPG MATCH now uses the native plain Enigma2 MenuList selection model.
+  This removes the MultiContent cursor path that could remain pinned to row 0
+  on some OpenATV/Metrix builds. UP/DOWN/OK now use the same path as normal menus.
+- Candidate rows keep ID OK / NO EPG / WARN text and optional NOW/NEXT preview.
+
+AUTO MAPPING = DRY-RUN FIRST
+- GREEN Auto Mapping remains fully optional.
+- Start Search only scans and reports SAFE/PROVEN candidates.
+- No mapping is written during search.
+- A result summary is shown before an explicit APPLY confirmation.
+- Declining APPLY leaves every mapping unchanged.
+
+YELLOW RESET MENU
+- Recommended: reset AUTO/AUTO-REPAIR mappings only, preserving MANUAL/LOCKED,
+  ignored refs, bouquets, lamedb and tuner settings.
+- FULL RESET remains available separately with its existing backup/preflight.
+- AUTO-only reset is undoable through the mapping snapshot history.
+
+UNRESOLVED / REASONS
+- New UNRESOLVED ONLY filter shows yellow/orange/red receiver channels.
+- Receiver rows now explain why attention is needed, including NO FUTURE EPG,
+  AMBIGUOUS/MULTIPLE OWNERS, REVIEW, MANUAL UNMAPPED/AUTO BLOCKED,
+  NO SAFE MATCH/NO SRP, INDEX PREPARING and NO XMLTV/SRP PROOF.
+- Manual/locked rows are blue; ambiguous/wrong rows orange.
+
+SYSTEM CHECK
+- New user-triggered offline-first System Check validates all 7 direct sources,
+  local XML presence, XMLTV start/stop syntax, future programmes, duplicate IDs,
+  SRP ownership, unresolved IDs, duplicate ServiceRef owners and ID health.
+- Runtime timezone audit compares XMLTV NOW titles with Enigma2 eEPGCache when
+  mapped receiver samples are available and flags a likely +/-60 minute shift.
+- System Check never downloads feeds and never changes mappings.
+
+DIAGNOSTIC EXPORT
+- Exports /tmp/epgmanager_diagnostic_YYYYMMDD-HHMMSS.txt and keeps
+  /etc/enigma2/epgmanager_last_diagnostic.txt.
+- Includes source, XMLTV ID, ServiceRef, mapping mode, confidence/score,
+  health/status and mapping reason.
+
+HOME DASHBOARD
+- Home is now an EPG Control Center rather than source-only status.
+- KPIs: direct feeds, EPG IDs OK, mapped, unresolved, no EPG, last import,
+  timezone/system state.
+- The eighth card is now SYSTEM HEALTH with mapped refs, unresolved, no-EPG and
+  duplicate-owner counts.
+- BLUE opens System Check; Sources remain available with number 2 and GitHub Sync
+  with number 6.
+
+SAFETY
+- One-owner ServiceRef audit is included in System Check.
+- Existing atomic/LKG import protection and full-reset backup/rollback remain.
+- No auto mapping is started when Smart Mapping opens or when reception changes.
+
+INSTALL / UPGRADE
+- Removed the stale postinst cleanup that could delete direct ext_epgscrapers XML
+  cache files during upgrade. Current/LKG XML is now preserved until Import All
+  atomically replaces it with a validated newer feed.

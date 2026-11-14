@@ -34,7 +34,25 @@ Do not edit `rc81/` in place. Copy it to a new version folder (for example
 `rc82/`), change the copy, then build and publish the package. Update
 `update.json` only when the new `.ipk` and its SHA-256 have been released.
 
-## rc84 (installed on the receiver 2026-11-13)
+## rc85 (installed on the receiver 2026-11-14)
+
+`rc85/` is rc84 plus guide strength, covered by `tests/test_receiver_rc85.py`.
+When several selected feeds carry a valid ID for the same channel, the one
+with the stronger guide wins before the fixed source ranking:
+
+- `core/id_quality.py` (new): STRONG (48 h or more ahead) > GOOD (12-48 h,
+  or no data) > THIN (under 12 h) > EMPTY, from the fresh local quality
+  profile or the GitHub per-ID monitor already on the receiver.
+- `core/direct_native_import.py`: the strength class is compared right after
+  the empty-feed check; the same class keeps the rc84 order. A saved
+  automatic mapping with a THIN guide competes again; manual mappings never
+  change. On the receiver this moved 25 channel references, all to a much
+  longer guide (AD Sport 1/2 3.8 h -> 163 h, Abu Dhabi TV, Roya, Al Jadeed,
+  beIN Drama, Alkass One, Bloomberg in European bouquets).
+- `ui/channel_mapping.py`: Smart Mapping opens the suggestion list on a
+  "BEST GUIDE (recommended)" row and shows each row's guide length.
+
+## rc84 (installed 2026-11-13, replaced by rc85)
 
 `rc84/` is rc83 with a faster Smart Mapping screen, covered by
 `tests/test_receiver_rc84.py`. Import and mapping logic are unchanged.

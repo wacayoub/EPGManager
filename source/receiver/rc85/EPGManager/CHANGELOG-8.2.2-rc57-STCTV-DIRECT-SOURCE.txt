@@ -1,0 +1,9 @@
+EPGManager 8.2.2-rc57 - STC TV direct source refresh
+
+- Adds STC TV as the 10th GitHub direct source.
+- Uses feeds/stctv.xml.gz and feeds/stctv.txt already published by wacayoub/EPG-Scrapers; no STC scraping runs on the Vu+ receiver.
+- Keeps source catalogues dynamic so refreshed beIN/OSN/Shahid/ElCinema IDs appear without hard-coded channel lists.
+- Marks STC as bilingual AR/EN and keeps it as a broad fallback; provider-specialist feeds retain mapping priority.
+- Dashboard now reports 10 direct sources and exposes STC health with Rotana in the compact 8-card layout.
+- Source-preference schema 10 adds STC automatically only for users who previously had all nine direct feeds selected; custom subsets are preserved.
+- Preserves all existing mappings, pins, LKG XML and user settings during upgrade.

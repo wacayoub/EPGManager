@@ -1,0 +1,19 @@
+EPGManager 2026.11.13-rc84
+==========================
+
+Smart Mapping speed (same screen content as rc83)
+- Opening Smart Mapping blocked the remote for about 4.3 s on the Vu+ Zero 4K
+  (12,230 satellite services). Measured inside Enigma2:
+  header summary 2.8 s, mapped-view load 1.1 s, satellite list 0.4 s.
+- canonical_service_ref() results are cached (pure string function, ~27k calls
+  on open).
+- The receiver-ref key cache is no longer cleared when the mapped view loads,
+  and its bound is 65,536 instead of 16,384 (it emptied itself mid-way).
+- The conflict check counts distinct MANUAL owners directly instead of ranking
+  every candidate by source priority first, and the header runs it only for
+  mapped services (one pass instead of two over 12k services).
+- The satellite list computes each orbital label once per position.
+- List rows reuse the desktop size for 5 s instead of asking Enigma2 8 times
+  per row.
+- The background source-cache refresh starts 4 s after the screen opens, so it
+  no longer competes with the first paint.

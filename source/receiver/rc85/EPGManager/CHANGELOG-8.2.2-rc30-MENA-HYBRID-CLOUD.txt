@@ -1,0 +1,14 @@
+EPG Manager 8.2.2-rc30 — MENA Hybrid Cloud
+
+- Removes the obsolete receiver-local Nilesat web source and its boot scheduler.
+- Replaces the monolithic receiver-facing MENA Cloud with 29 exclusive lightweight shards:
+  18 country feeds + MENA Other + 10 premium/provider feeds.
+- Provider-first ownership prevents the same XMLTV ID from being published by both a provider and country shard.
+- Smart Mapping reads tiny .txt ID catalogues; programme XML stays off the UI path.
+- Keeps Morocco on its dedicated Morocco Cloud.
+- MENA guide horizon remains 48 hours / 2 days.
+- One-time migration converts an old selected MENA monolithic source to the new shard set.
+- beIN Sports cloud now uses the Qatar1-style hybrid EN/AR display title policy:
+  Latin team/proper names + Arabic competition/editorial wording, Arabic descriptions, season/round moved out of title.
+- MBC provider cloud keeps season/episode out of programme titles and moves them into Arabic descriptions.
+- Cloud quality gate rejects overlapping/invalid timelines and bad provider schedules instead of publishing false EPG.

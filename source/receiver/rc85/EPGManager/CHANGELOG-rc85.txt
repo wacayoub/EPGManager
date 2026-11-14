@@ -1,0 +1,20 @@
+EPGManager 2026.11.14-rc85
+==========================
+
+Best guide among several valid EPG IDs
+- When several selected feeds carry a correct ID for the same channel, the
+  import now prefers the ID with the stronger guide before the fixed source
+  ranking: STRONG (48 h or more ahead) > GOOD (12-48 h, or no data) >
+  THIN (under 12 h) > EMPTY. Same class keeps the rc84 order (official /
+  provider / language). Manual mappings are never changed.
+- Guide strength comes from data already on the receiver (fresh local quality
+  profile, else the GitHub per-ID monitor); no extra network.
+- Measured on the Vu+ Zero 4K (14 Nov 2026): 25 channel references change,
+  all to a much longer guide - AD Sport 1/2 (3.8 h -> 163 h), Abu Dhabi TV,
+  Roya, Al Jadeed (elcinema -> STC TV / StarzPlay), beIN Drama (elcinema ->
+  official beIN), Alkass One (28 h -> 76 h), Bloomberg in European bouquets.
+
+Smart Mapping
+- The suggestion list opens on a "BEST GUIDE (recommended)" row: best name
+  match first, then the strongest guide, then the usual order. Every row shows
+  its guide length (e.g. "7d guide", "4h guide", "no guide").
