@@ -1,0 +1,8 @@
+EPGManager 8.2.2-rc36.5 - Strict Direct Sources Only
+
+- Removed EPG GROUPS and all grouped XMLTV feeds.
+- Removed EPG MANAGER aggregate/country/provider cloud shards from Smart Sources.
+- Removed OpenEPG, EPGShare, Rytec, Azman and Koala from this direct-only build.
+- Smart Sources now exposes only six validated EPG-Scrapers direct feeds:
+  Direct 2M, Direct Chada TV, Direct beIN MENA, Direct ElCinema Arabic, Direct OSN, Direct Sport24.
+- Installer removes stale ext_epggroup selections, local group XML files and group SRP maps.

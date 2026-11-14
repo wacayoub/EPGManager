@@ -1,0 +1,26 @@
+#!/bin/sh
+set +e
+BACKUP_ROOT="/etc/epgmanager_epg/backups"
+STAMP="$(date +%Y%m%d-%H%M%S 2>/dev/null || echo preinstall)"
+DEST="$BACKUP_ROOT/pre-upgrade-$STAMP"
+mkdir -p "$DEST" 2>/dev/null || true
+for f in \
+    /etc/enigma2/epgmanager.conf \
+    /etc/enigma2/epgmanager_mappings.json \
+    /etc/enigma2/epgmanager_source_preferences.json \
+    /etc/enigma2/epgmanager_mapping_sources.json \
+    /etc/enigma2/epgmanager_source_time_offsets.json \
+    /etc/enigma2/epgmanager_native_settings.json \
+    /etc/enigma2/epgmanager_native_sources.json \
+    /etc/enigma2/epgmanager_online_update.json \
+    /etc/enigma2/epgmanager_smartmatch_learning.json \
+    /etc/epgmanager_epg/custom_dictionary.json; do
+    [ -f "$f" ] || continue
+    name="$(echo "$f" | sed 's#^/##; s#/#__#g')"
+    cp -p "$f" "$DEST/$name" 2>/dev/null || true
+done
+if [ -f /etc/enigma2/settings ]; then
+    awk '/^config\.plugins\.epgmanager\./ { print }' /etc/enigma2/settings > "$DEST/enigma2__epgmanager_settings.conf" 2>/dev/null || true
+    [ -s "$DEST/enigma2__epgmanager_settings.conf" ] || rm -f "$DEST/enigma2__epgmanager_settings.conf" 2>/dev/null || true
+fi
+exit 0

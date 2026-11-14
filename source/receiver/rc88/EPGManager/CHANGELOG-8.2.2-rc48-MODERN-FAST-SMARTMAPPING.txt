@@ -1,0 +1,16 @@
+EPGManager 8.2.2-rc48 — Modern Fast Smart Mapping
+==================================================
+
+- Smart Mapping UI is simplified for TV/remote use.
+- Source pane shows short source names only: Morocco, beIN, ElCinema, OSN, Rotana, Shahid/MBC, Sport24.
+- Removed visible [MENA], provider backend and EPG SCRAPERS clutter from normal Smart Mapping.
+- EPG candidate rows show only: score + XMLTV ID + source + EPG health.
+- NOW/NEXT moved out of the list into the selected-candidate detail strip.
+- Candidate list no longer resolves/warm-previews every row before painting.
+- Only the highlighted candidate may warm NOW/NEXT asynchronously.
+- Receiver cursor pause automatically paints bounded cross-source suggestions from RAM.
+- Normal Source navigation is FAST candidate mode; it no longer injects the full provider catalogue.
+- Full source catalogue browse remains available explicitly through BLUE -> More -> Manual Source Override.
+- Current mapping preview uses the same compact ID/source/EPG row format.
+- Candidate pane widened and Source pane narrowed for better readability on 1080p TV screens.
+- Existing dry-run Auto Mapping, protected Reset IDs, System Check, timezone audit and one-owner mapping rules remain unchanged.

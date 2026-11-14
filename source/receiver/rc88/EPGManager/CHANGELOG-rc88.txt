@@ -1,0 +1,14 @@
+EPGManager 2026.11.14-rc88
+==========================
+
+Time zone hint for zones at UTC+0
+- Settings told every receiver at offset 0 that it "runs on UTC" and should
+  set a time zone, even when one was set (Africa/Casablanca, Europe/Lisbon,
+  Europe/London in winter). It now names the zone:
+  "13:15 UTC = 13:15 on this receiver (Africa/Casablanca, UTC+0)".
+  The advice to set a time zone appears only when the receiver really uses
+  UTC/GMT.
+- Home screen TIME / SYSTEM shows "UTC+0" for such zones and "UTC" only for a
+  receiver set to UTC.
+
+Found by testing the published rc87 Online Update on a Vu+ Zero 4K.

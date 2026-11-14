@@ -1,0 +1,7 @@
+EPGManager 2026.10.02-rc75 — ElCinema Casablanca time alignment
+
+- Keep rc74 source labels, YELLOW Source Details and mapping UI.
+- Remove the receiver-side +60 minute shift from ElCinema. Its GitHub feed now parses provider wall times in Africa/Casablanca and publishes UTC timestamps; the extra shift would move programmes one hour late.
+- Keep the verified +60 minute correction for STARZPLAY GCC.
+- Invalidate the prior ElCinema/STARZPLAY timestamp cache once, then use the new source time policy. A failed download cannot silently reuse a cache created under the previous policy.
+- Keep the existing auto-import behavior and configuration schema unchanged.
