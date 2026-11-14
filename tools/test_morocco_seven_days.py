@@ -73,7 +73,7 @@ class MoroccoSevenDays(unittest.TestCase):
             meta=json.loads((feeds/'morocco.json').read_text())
             self.assertEqual(meta['window_hours'],168)
             report=coverage(feeds/'morocco.xml.gz',now)
-            self.assertEqual(report['channels'],15)
+            self.assertEqual(report['channels'],len(m.CHANNELS))
             self.assertEqual({r['id'] for r in report['ids']},set(m.CHANNELS))
             two=next(r for r in report['ids'] if r['id']=='2M')
             self.assertEqual(two['source_programmes'],1)
