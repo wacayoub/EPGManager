@@ -1,0 +1,14 @@
+EPGManager rc72 — LIVE FEED SOURCE STATUS TABLE
+================================================
+Date: 2026-10-01
+Base: rc71 CURRENT SOURCES + AUTO IMPORT
+
+LIVE FEED HUB
+-------------
+- Main source table now shows: STATUS, EPG IDS/TOTAL, PROGRAMMES, MAPPED and LAST REFRESH.
+- Direct rows combine feeds/<source>.json with the latest per-ID monitoring CSV cached by github_direct_sync.
+- EPG IDS/TOTAL means IDs with future EPG / total IDs; it follows the current monitoring table when complete.
+- STATUS is OK / PARTIAL / STALE / OFFLINE; a terminal import DONE no longer hides feed health.
+- LAST REFRESH shows the real scraper generated_utc timestamp instead of an Unknown HEAD-check value.
+- Direct status JSON refresh remains lightweight; opening the screen does not download XMLTV bodies.
+- Existing source selection, mappings, Auto Import rc71 retry logic and XML/LKG data are preserved.

@@ -1,0 +1,12 @@
+EPGManager 8.2.2-rc61 — STARZPLAY GCC direct source
+
+- Built strictly from rc60; all rc54→rc60 fixes are retained.
+- Re-enables STARZPLAY as a validated direct GitHub XMLTV source.
+- Uses the GCC union feed published by wacayoub/EPG-Scrapers: AE, SA, KW, QA, BH, OM.
+- Current validation at integration: 112/112 active IDs, 100% coverage over a 48h window.
+- Adds STARZPLAY to GitHub direct health/status, ID monitoring and Smart Mapping labels.
+- New installs select STARZPLAY with the other validated direct feeds.
+- Existing users with the complete rc60 default direct set are migrated to include STARZPLAY.
+- Custom source subsets are preserved and are not expanded.
+- STARZPLAY is treated as a broad GCC fallback; provider-specific feeds keep ownership on overlaps.
+- No provider scraping is performed on the Vu+; only finished XMLTV/ID files are downloaded.
