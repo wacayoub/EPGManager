@@ -21,6 +21,22 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class MoroccoAutoEPG(unittest.TestCase):
+    def test_main_arryadia_hd_gaps_are_filled_around_smart_estimates(self):
+        # 14 Nov 2026: SNRT's grid stopped in September, so the smart model left
+        # 13:25-22:00 empty on the main channel.
+        now = datetime(2026, 11, 14, 12, 0, tzinfo=m.TZ)
+        smart = [m.Event('Arryadia_HD', now+timedelta(hours=1), '[Estimé] موجز الرياضية', 'تقدير',
+                         now+timedelta(hours=1, minutes=25), 'ar', 'ar', 'arryadia-smart-estimate'),
+                 m.Event('Arryadia_HD', now+timedelta(hours=10), '[Estimé] موجز الرياضية', 'تقدير',
+                         now+timedelta(hours=10, minutes=25), 'ar', 'ar', 'arryadia-smart-estimate')]
+        auto, _ = generate(smart, now, hours=24)
+        hd = sorted([e for e in auto if e.channel == 'Arryadia_HD'] + smart, key=lambda e: e.start)
+        self.assertEqual(hd[0].start, now)
+        self.assertEqual(hd[-1].stop, now+timedelta(hours=24))
+        self.assertTrue(all(a.stop == b.start for a, b in zip(hd, hd[1:])))
+        self.assertTrue(all(is_auto_fallback(e) for e in auto))
+        self.assertEqual([e.title for e in hd if e.source != AUTO_SOURCE], [s.title for s in smart])
+
     def test_rolling_seven_days_cover_only_the_three_authorized_services(self):
         now = datetime.now(m.TZ).replace(microsecond=0)
         rows, report = generate([], now)

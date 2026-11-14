@@ -6,8 +6,12 @@ try:
 except ModuleNotFoundError:
     from programme_authenticity import AUTO_SOURCE
 
-# Main HD keeps Smart/Botola; HD2/HD3 keep the reported Grand Format loop.
+# Main HD keeps Smart/Botola first; the automatic blocks only fill the hours
+# those estimates leave empty (SNRT's grid stopped in September, so the main
+# channel otherwise had an 8-9 h hole every day). HD2/HD3 keep the reported
+# Grand Format loop.
 SERVICES = {
+    'Arryadia_HD': ('[Auto] برامج الرياضية', 2),
     'AFLAM.ma': ('[Auto] برامج قناة السابعة AFLAM', 3),
     'Arryadia_HD1': ('[Auto] برامج الرياضية HD1', 2),
     'Arryadia_TNT': ('[Auto] برامج الرياضية TNT المحلية', 2),
