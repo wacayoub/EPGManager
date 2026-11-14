@@ -1,8 +1,15 @@
 name: EPG 48h - TunisiaTV
 
 on:
+  # tunisiatv.tn only publishes today's grid, so the run must happen early.
+  # GitHub delivers these triggers ~6-8 h late (the Vu+ clock that fixed this
+  # is off until the reflash): 00:45 lands around 07:30-08:30 Morocco time.
+  # The 02:45 slot is a retry; the collection gate skips it once today's
+  # run is done.
   schedule:
-    - cron: "35 6 * * *"
+    - cron: "45 0 * * *"
+      timezone: "Africa/Casablanca"
+    - cron: "45 2 * * *"
       timezone: "Africa/Casablanca"
   workflow_dispatch:
 

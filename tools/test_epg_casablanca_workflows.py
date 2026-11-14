@@ -87,13 +87,13 @@ class TestScheduledWorkflows(unittest.TestCase):
         self.assertEqual(set(chain["jobs"]), {"elcinema_extend","finalize"})
 
     def test_four_remaining_sources_daily_once_and_manual_preserved(self):
-        slots = (("tabie","30 0 * * *"),("rotana","50 3 * * *"),
-                 ("alkass","17 0 * * *"),("tunisiatv","35 6 * * *"))
-        for source,cron in slots:
+        slots = (("tabie",("30 0 * * *",)),("rotana",("50 3 * * *",)),
+                 ("alkass",("17 0 * * *",)),("tunisiatv",("45 0 * * *","45 2 * * *")))
+        for source,crons in slots:
             with self.subTest(source=source):
                 p=load(f"refresh-{source}.yml")
                 self.assertEqual(p["on"]["schedule"], [
-                    {"cron":cron,"timezone":"Africa/Casablanca"}])
+                    {"cron":cron,"timezone":"Africa/Casablanca"} for cron in crons])
                 self.assertIn("workflow_dispatch",p["on"])
                 self.assertNotIn("push",p["on"])
                 self.assertEqual(p["jobs"]["refresh"]["with"], {
