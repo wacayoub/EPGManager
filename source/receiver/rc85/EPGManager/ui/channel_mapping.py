@@ -5310,10 +5310,38 @@ class ChannelMappingScreen(Screen):
                                         _alpha_text(mapped.get("display_name") or cid)), mapped)
 
         rows = [pair[1] for pair in best_by_source.values()]
+        # rc85: guide strength of every candidate (cache-only). Among equally
+        # trusted IDs the stronger guide now comes first instead of A-Z order.
+        for e in rows:
+            g_class, g_hours, g_known = self._guide_strength(e.get("source_id"), e.get("channel_id"))
+            e["_guide_class"] = int(g_class)
+            e["_guide_hours"] = g_hours
+            e["_guide_label"] = id_quality.label(g_class, g_hours) if g_known else ""
+        best_class = min([int(e.get("_guide_class", 1)) for e in rows] or [1])
+
+        def owner_pin(e):
+            if not e.get("_suggestion_current"):
+                return 1
+            if e.get("_suggestion_manual"):
+                return 0
+            # rc85: an automatic owner is not pinned on top of a stronger guide.
+            if int(e.get("_guide_class", 1)) > best_class:
+                return 1
+            return 0 if int(e.get("_verified_epg_rank", 3)) <= 2 else 2
+
         rows.sort(key=lambda e: (
-            0 if e.get("_suggestion_current") and (e.get("_suggestion_manual") or int(e.get("_verified_epg_rank", 3)) <= 2) else 2 if e.get("_suggestion_current") else 1,
-            int(e.get("_verified_epg_rank", 3)),
+            owner_pin(e),
+            # rc85: the verified rank only separates usable IDs (live / warning /
+            # unknown) from generated or empty ones; among usable IDs the
+            # name verdict and then the stronger guide decide.
+            0 if int(e.get("_verified_epg_rank", 3)) <= 3 else 1,
             0 if e.get("_precision_auto") else 1,
+            # Compare the name verdict at the percentage the user sees: rows
+            # all shown as "Match 100%" are equal, so the guide decides.
+            -min(100, int(round(int(e.get("_precision_confidence") or 0) / 10.0))),
+            int(e.get("_guide_class", 1)),
+            int(e.get("_verified_epg_rank", 3)),
+            -float(e.get("_guide_hours") or 0.0),
             -int(e.get("_precision_confidence") or 0),
             0 if e.get("_suggestion_active") else 1,
             _alpha_text(e.get("_suggestion_source_label") or e.get("source_name") or e.get("source_id") or ""),
@@ -5435,6 +5463,14 @@ class ChannelMappingScreen(Screen):
                                                 mapped=bool(epg.get("_suggestion_current")))
                 # A verified CURRENT programme outranks generated/no-EPG IDs.
                 # The label is observational, not permission for Auto Repair.
+                if epg.get("_guide_label"):
+                    # rc85: right after "Match NN%" so a long ID cannot push it off-screen.
+                    label = str(epg.get("_guide_label"))
+                    if preview.startswith("Match "):
+                        head, sep, tail = preview.partition("%  ")
+                        preview = (head + sep + label + "  •  " + tail) if sep else (label + "  •  " + preview)
+                    else:
+                        preview = label + "  •  " + preview
                 health = str(epg.get("_verified_epg_health") or "")
                 if health == "REAL_CURRENT_EPG":
                     preview += "  •  EPG NOW ✓"

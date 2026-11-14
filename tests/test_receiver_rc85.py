@@ -180,6 +180,42 @@ class SmartMappingBestGuide(unittest.TestCase):
         self.assertIsNone(self.best([empty]))
 
 
+def load_verified_epg_match():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('rc85_vem', str(CORE / 'verified_epg_match.py'))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+class SuggestionOrder(unittest.TestCase):
+    """AD Sport 1 HD on 14 Nov 2026: saved owner STC TV 4 h, StarzPlay 7 days."""
+
+    def row(self, sid, klass, hours, current=False, manual=False):
+        return {'source_id': sid, 'channel_id': sid + '.id', '_precision_auto': True,
+                '_precision_confidence': 1000 if current else 995, '_guide_class': klass,
+                '_guide_hours': hours, '_suggestion_current': current, '_suggestion_manual': manual}
+
+    def order(self, rows):
+        vem = load_verified_epg_match()
+        unknown = {'status': 'UNKNOWN', 'rank': 3}
+        with patch.object(vem, 'quality_for_id', return_value=unknown):
+            return [r['source_id'] for r in vem.annotate_suggestions(rows, report={})]
+
+    def test_stronger_guide_goes_above_a_thin_automatic_owner(self):
+        rows = [self.row('stctv', 2, 3.8, current=True), self.row('sport24', 2, 7.3),
+                self.row('starzplay', 0, 163.3)]
+        self.assertEqual(self.order(rows)[0], 'starzplay')
+
+    def test_manual_owner_always_stays_first(self):
+        rows = [self.row('stctv', 2, 3.8, current=True, manual=True), self.row('starzplay', 0, 163.3)]
+        self.assertEqual(self.order(rows)[0], 'stctv')
+
+    def test_owner_with_equal_guide_stays_first(self):
+        rows = [self.row('starzplay', 0, 163.3), self.row('stctv', 0, 60.0, current=True)]
+        self.assertEqual(self.order(rows)[0], 'stctv')
+
+
 class Rc85Package(unittest.TestCase):
     def test_version_strings(self):
         self.assertIn('__version__ = "2026.11.14-rc85"', (PLUGIN / 'version.py').read_text(encoding='utf-8'))
