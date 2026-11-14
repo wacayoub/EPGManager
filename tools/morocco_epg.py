@@ -127,6 +127,7 @@ T2M_DARIJA={
  "Al Hayat Maratan Okhra":"الحياة مرة أخرى","Chada al alhane":"شدى الألحان",
  "Al fossoul al khamsa":"الفصول الخمسة","Al Milaf":"الملف","Khir Lblad":"خير لبلاد",
  "Chkoun Yistatmar Fmachrou3i":"شكون يستثمر فمشروعي","Ma3a Ramdani":"مع رمضاني",
+ "Soirée Fonoun Morrakochiya":"سهرة فنون مراكشية","Infissam":"انفصام",
 }
 
 T2M_FORCE_AR={

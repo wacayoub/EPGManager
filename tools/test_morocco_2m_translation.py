@@ -113,6 +113,14 @@ class TwoMDarijaTests(unittest.TestCase):
         self.assertEqual(m.tr2m_title(h,'Al Masra'),'المسرى')
         self.assertIn('AlMasra',h.translit_calls)
 
+    def test_titles_seen_wrong_on_14_nov(self):
+        # Google gave 'سواريه فنون موراكوشيا' and 'تحديد' for these two.
+        h=DarijaHttp({})
+        self.assertEqual(m.tr2m_title(h,'Soirée Fonoun Morrakochiya'),'سهرة فنون مراكشية')
+        self.assertEqual(m.tr2m_title(h,'Téléfilm Infissam'),'فيلم تلفزيوني : انفصام')
+        self.assertEqual(m.tr2m_title(h,'Infissam'),'انفصام')
+        self.assertEqual(h.translate_calls+h.translit_calls,[])
+
     def test_partial_transliteration_keeps_the_original(self):
         h=DarijaHttp({'Lalla':'لالة'})
         self.assertEqual(m.tr2m_title(h,'Lalla Unknownword'),'Lalla Unknownword')
