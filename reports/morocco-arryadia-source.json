@@ -1,6 +1,6 @@
 {
   "source": "arryadia",
-  "checked_utc": "2026-11-24T18:50:54.737261+00:00",
+  "checked_utc": "2026-11-25T17:56:37.704006+00:00",
   "scope": "official grid, exact LKG, user-authorized HD Smart/Botola and HD2/HD3 Grand Format",
   "receiver_release_status": "NO_GO",
   "attempts": [
@@ -63,15 +63,11 @@
       "provider": "LiveScore",
       "requests": [
         {
-          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-24",
+          "url": "https://www.sofascore.com/api/v1/sport/football/scheduled-events/2026-11-25",
           "http_status": 403
         },
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/live/soccer/0?countryCode=MA&locale=en",
-          "http_status": 200
-        },
-        {
-          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261124/0?countryCode=MA&locale=en",
           "http_status": 200
         },
         {
@@ -101,11 +97,44 @@
         {
           "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261201/0?countryCode=MA&locale=en",
           "http_status": 200
+        },
+        {
+          "url": "https://prod-cdn-mev-api.livescore.com/v1/api/app/date/soccer/20261202/0?countryCode=MA&locale=en",
+          "http_status": 200
         }
       ],
-      "fixture_count": 0
+      "fixture_count": 4
     },
-    "botola_matches_added": [],
+    "botola_matches_added": [
+      {
+        "fixture_id": "ls:1922386",
+        "title": "Amal Tiznit vs MAT Tétouan - Botola Pro",
+        "kickoff_utc": "2026-11-27T18:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
+      },
+      {
+        "fixture_id": "ls:1922398",
+        "title": "CODM Meknès vs Renaissance Zemamra - Botola Pro",
+        "kickoff_utc": "2026-11-28T16:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
+      },
+      {
+        "fixture_id": "ls:1922394",
+        "title": "Union Touarga vs KACM - Botola Pro",
+        "kickoff_utc": "2026-11-29T20:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
+      },
+      {
+        "fixture_id": "ls:1922383",
+        "title": "Ittihad Tanger vs Hassania Agadir - Botola Pro",
+        "kickoff_utc": "2026-11-30T20:00:00+00:00",
+        "broadcast_channel_confirmed": false,
+        "duration_minutes_estimated": 120
+      }
+    ],
     "simultaneous_matches_not_assigned": [],
     "smart_recurring_programmes": 49,
     "official_broadcast_claim": false
@@ -119,11 +148,11 @@
     "Arryadia_HD2",
     "Arryadia_HD3"
   ],
-  "smart_estimated_events": 49,
+  "smart_estimated_events": 53,
   "requested_window_hours": 168,
-  "output_events": 387,
+  "output_events": 391,
   "channel_counts": {
-    "Arryadia_HD": 49,
+    "Arryadia_HD": 53,
     "Arryadia_TNT": 0,
     "Arryadia_HD1": 0,
     "Arryadia_HD2": 169,
